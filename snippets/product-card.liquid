@@ -1,0 +1,32 @@
+{% comment %}
+    Renders a product card
+
+    Accepts:
+    - product_card_product: {Object} Product Liquid object
+
+    Usage:
+    {% render 'product-card', product_card_product: product %}
+{% endcomment %}
+
+
+<div class="product-card{% if product_card_product.media[1] != nil %} has-animation{% endif %}">
+  <a href="{{ product_card_product.url }}">
+    <div class="product-card__image">
+      {% render 'lazy-image' image: product_card_product.featured_media, fade: true, classes: 'img-fill' %}
+      {% if product_card_product.media[1] != nil %}
+        {% render 'lazy-image' image: product_card_product.media[1], fade: true, classes: 'img-fill' %}
+      {% endif %}
+    </div>
+  </a>
+  <div class="product-card__container">
+    <p class="product-card__title">{{ product_card_product.title }}</p>
+    <div class="product-card__content">
+      <p class="product-card__price">
+        {% if product_card_product.compare_at_price > product_card_product.price %}
+          <span class="old-price">{{ product_card_product.compare_at_price | money }}</span>
+        {% endif %}
+        {{ product_card_product.price | money }}
+      </p>
+    </div>
+  </div>
+</div>

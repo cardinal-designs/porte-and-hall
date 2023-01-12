@@ -1,0 +1,21 @@
+.hero {
+  height: 650px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__container {
+  text-align: center;
+}
+
+.hero__title {
+  margin: 0 0 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    height: 550px;
+  }
+}

@@ -1,0 +1,347 @@
+{{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+
+<header class="header header--{{ section.settings.logo_position }} page-width">
+
+  {% if section.settings.menu != blank %}
+    <button class="js-open-menu header__icon header__icon--menu" aria-label="Menu">
+      {% render 'icon' icon: 'hamburger' %}
+    </button>
+  {% endif %}
+
+  <!-- Logo -->
+  <div class="header__logo">
+    <a href="{{ routes.root_url }}" class="header__logo-link">
+      <div class="header__logo-wrapper">
+        {% if section.settings.svg_logo != blank %}
+          <div class="header__svg-logo">
+            {{ section.settings.svg_logo }}
+          </div>
+        {% else %}
+          {% if section.settings.logo != blank %}
+            {% assign image_size = section.settings.logo_width | append: 'x' %}
+            <img srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+              src="{{ section.settings.logo | img_url: image_size }}"
+              loading="lazy"
+              class="header__heading-logo"
+              width="{{ section.settings.logo.width }}"
+              height="{{ section.settings.logo.height }}"
+              alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
+            >
+          {% else %}
+            <span class="h2">{{ shop.name }}</span>
+          {% endif %}
+        {% endif %}
+      </div>
+    </a>
+  </div>
+
+  <style>
+    .header__logo {
+      width: {{ section.settings.logo_width }}px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .header__logo {
+        width: {{ section.settings.mobile_logo_width }}px;
+      } 
+    }
+  </style>
+
+  <!-- Navigation -->
+  {% if section.settings.menu != blank %}
+    <nav class="header__menu">
+      <ul class="header__menu-list" role="list">
+        {% for link in section.settings.menu.links %}
+
+          {% assign downcased_link_title = link.title | downcase | strip %}
+          {% assign mega_menu_names = '' %}
+  
+          {% for block in section.blocks %}
+            {% if block.type == 'mega_menu' %}
+              {% assign trim_mega_menu_name = block.settings.title | strip %}
+              {% assign mega_menu_names = mega_menu_names | append: trim_mega_menu_name | append: ',' %}
+            {% endif %}
+          {% endfor %}
+  
+          {% assign mega_menu_names = mega_menu_names | downcase | split: ',' | compact %}
+          
+          {% unless mega_menu_names contains downcased_link_title %}
+            <li>
+              {% if link.links != blank %}
+                <div class="header__menu-item header__menu-item--has-dropdown">
+                  <span {% if link.child_active %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
+                  {% render 'icon' icon: 'caret' %}
+                </div>
+                <ul class="header__submenu" role="list" tabindex="-1">
+                  {% for childlink in link.links %}
+                    <li>
+                      <a href="{{ childlink.url }}" class="header__submenu-item{% if childlink.current %} header__submenu-item--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
+                        {{ childlink.title | escape }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <a href="{{ link.url }}" class="header__menu-item"{% if link.current %} aria-current="page"{% endif %}>
+                  {{ link.title | escape }}
+                </a>
+              {% endif %}
+            </li>
+            {% else %}
+            <li class="header__mega-menu-wrapper">
+              <a href="{{ link.url }}" class="header__menu-item header__menu-item--mega body-3 bold"{% if link.current %} aria-current="page"{% endif %}>
+                {{ link.title | escape }}
+              </a>
+
+              {% for block in section.blocks %}
+                {% assign trim_mega_menu_name = block.settings.title | strip %}
+                {% assign downcased_mega_menu_name = trim_mega_menu_name | downcase %}
+                {% assign mega_menu_names = mega_menu_names | append: trim_mega_menu_name | append: ',' %}
+                
+                {% if downcased_mega_menu_name == downcased_link_title %}
+                  <div class="header__mega-menu-outer">
+                    <div class="header__mega-menu">
+                      <div class="page-width">
+                        <div class="header__mega-menu-container">
+                          <div class="header__mega-menu-links">
+                            {% for child_link in link.links %}
+                              <div class="header__mega-menu-group">
+                                <p class="header__mega-menu-group-title">{{ child_link.title }}</p>
+                                <ul class="header__mega-menu-group-links" role="list">
+                                  {% for grandchild_link in child_link.links %}
+                                    <li>
+                                      <a href="{{ grandchild_link.url }}" class="">{{ grandchild_link.title }}</a>
+                                    </li>
+                                  {% endfor %}
+                                </ul>
+                              </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </li>
+            <div class="header__mega-menu-overlay"></div>
+          {% endunless %}
+        {% endfor %}
+      </ul>
+    </nav>
+  {% endif %}
+
+  <!-- Icons -->
+  <div class="header__icons">
+    {% if section.settings.enable_search %}  
+      <button class="js-open-search header__icon header__icon--search hide-mobile" aria-label="Open Search Bar">
+        {% render 'icon' icon: 'search' %}
+      </button>
+    {% endif %}
+
+    {% if shop.customer_accounts_enabled %}
+      <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__icon header__icon--account hide-mobile">
+        {% render 'icon' icon: 'account' %}
+        <span class="visually-hidden">
+          {% liquid
+            if customer
+              echo 'customer.account_fallback' | t
+            else
+              echo 'customer.log_in' | t
+            endif
+          %}
+        </span>
+      </a>
+    {% endif %}
+
+    {% if template != 'cart' %}
+      <button class="js-open-cart header__icon header__icon--cart" id="cart-icon-bubble" aria-label="Open Cart Drawer">
+        {% render 'icon' icon: 'cart' %}
+        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+        {% if cart != empty %}
+          <div class="cart-count-bubble">
+            {% if cart.item_count < 100 %}
+              <span aria-hidden="true">{{ cart.item_count }}</span>
+            {% endif %}
+            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+          </div>
+        {% endif %}
+      </button>
+    {% else %}
+      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart" id="cart-icon-bubble">
+        {% render 'icon' icon: 'cart' %}
+        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+        {% if cart != empty %}
+          <div class="cart-count-bubble">
+            {% if cart.item_count < 100 %}
+              <span aria-hidden="true">{{ cart.item_count }}</span>
+            {% endif %}
+            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+          </div>
+        {% endif %}
+      </a>
+    {% endif %}
+  </div>
+
+  {% if section.settings.enable_search %}  
+    <div class="header__search">
+      <div class="page-width">
+        <div class="header__search-container">
+          <form action="{{ routes.search_url }}" method="get" role="search" class="header__search-form">
+            <div class="header__search-group">
+              <input class="header__search-input" id="Search-In-Modal" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search...">
+              <input type="hidden" name="options[prefix]" value="last">
+              <button class="header__search-button" aria-label="{{ 'general.search.search' | t }}">
+                {% render 'icon' icon: 'search' %}
+              </button>
+            </div>
+          </form>
+          <button class="js-close-search header__search-close">
+            {% render 'icon' icon: 'close' %}
+          </button>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</header>
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {% if section.settings.logo %}
+      {% assign image_size = section.settings.logo.width | append: 'x' %}
+      "logo": {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},
+    {% endif %}
+    "sameAs": [
+      {{ settings.social_twitter_link | json }},
+      {{ settings.social_facebook_link | json }},
+      {{ settings.social_pinterest_link | json }},
+      {{ settings.social_instagram_link | json }},
+      {{ settings.social_tumblr_link | json }},
+      {{ settings.social_snapchat_link | json }},
+      {{ settings.social_youtube_link | json }},
+      {{ settings.social_vimeo_link | json }}
+    ],
+    "url": {{ shop.url | append: page.url | json }}
+  }
+</script>
+
+{% if request.page_type == 'index' %}
+  {% assign potential_action_target = shop.url | append: routes.search_url | append: "?q={search_term_string}" %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ shop.url | append: page.url | json }}
+    }
+  </script>
+{% endif %}
+
+{% javascript %}
+  const openSearch = document.querySelector('.js-open-search');
+  const closeSearch = document.querySelector('.js-close-search');
+  const search = document.querySelector('.header__search');
+
+  openSearch.addEventListener('click', () => {
+    if (search.classList.contains('is-visible')) {
+      search.classList.remove('is-visible');
+    } else {
+      search.classList.add('is-visible');
+    }
+  });
+
+  closeSearch.addEventListener('click', () => {
+    search.classList.remove('is-visible');
+  }); 
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "svg_logo",
+      "label": "SVG Logo",
+      "info": "Optional. This will override logo image picker."
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:sections.header.settings.logo.label"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 250,
+      "step": 10,
+      "default": 150,
+      "unit": "px",
+      "label": "Logo Width"
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_width",
+      "min": 50,
+      "max": 150,
+      "step": 5,
+      "default": 100,
+      "unit": "px",
+      "label": "Mobile Logo Width"
+    },
+    {
+      "type": "select",
+      "id": "logo_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "left",
+      "label": "Logo Position"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_search",
+      "label": "Enable Search",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mega_menu",
+      "name": "Mega Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Menu Item",
+          "info": "Enter menu item to apply a mega menu dropdown."
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

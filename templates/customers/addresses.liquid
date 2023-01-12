@@ -1,0 +1,23 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+{{ 'section-page-header.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'customer.js' | asset_url }}" defer></script>
+
+<header class="account-header">
+  <div class="page-width">
+    <h1 class="account-header__title h2">My Addresses</h1>
+  </div>
+</header>
+
+
+<div class="page-width">
+  <div class="adresses-page__container" data-customer-addresses>
+    {% render 'addresses' %}
+  </div>
+</div>
+
+<script>
+  window.onload = () => {
+    typeof CustomerAddresses !== 'undefined' && new CustomerAddresses();
+  }
+</script>

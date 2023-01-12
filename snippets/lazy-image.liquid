@@ -1,0 +1,6 @@
+{%- capture supported_sizes -%}{%- render 'image-size', sizes: '200,300,400,600,800,900,1000,1200,1400,1600,1800', image: image -%}{%- endcapture -%}
+{% assign image_url = image | img_url: 'master' %}
+
+<div class="aspect-ratio{% if fill %} img-fill{% endif %} {{ classes }}" style="max-width: 100%; width: 100%; --aspect-ratio: {{ image.aspect_ratio }}">
+  <img class="lazyload{% if blur %} lazyload--blur{% endif %}{% if fade %} lazyload--fade{% endif %}" data-src="{{ image_url }}" data-widths="[{{- supported_sizes -}}]" data-sizes="auto" alt="{{ image.alt | escape }}" data-media-id="{{ image.id }}">
+</div>

@@ -1,0 +1,32 @@
+.article-template {
+  margin: 60px 0 100px;
+}
+
+.article-template__header {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.article-template__date {
+  margin: 0 0 20px;
+}
+
+.article-template__title {
+  margin: 0;
+}
+
+.article-template__image-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.article-template__image {
+  padding-bottom: 60%;
+  position: relative;
+}
+
+.article-template__content {
+  max-width: 700px;
+  margin: 40px auto 0;
+}

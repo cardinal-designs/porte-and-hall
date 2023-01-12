@@ -1,0 +1,47 @@
+{{ 'section-page-header.css' | asset_url | stylesheet_tag }}
+
+<div class="page-header">
+  {% if section.settings.mobile_image != blank %}
+    {% render 'lazy-image' image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile' %}
+    {% render 'lazy-image' image: section.settings.mobile_image, fade: true, fill: true, classes: 'hide-desktop' %}
+  {% elsif section.settings.image != blank %}
+    {% render 'lazy-image' image: section.settings.image, fade: true, fill: true %}
+  {% endif %}
+  <div class="page-width">
+    <div class="page-header__container">
+      {% if section.settings.title != blank %}
+        <h1 class="page-header__title h2">{{ section.settings.title }}</h1>
+      {% else %}
+        <h1 class="page-header__title h2">{{ page.title }}</h1>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Page Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile Image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page Header"
+      }
+    ]
+  }
+{% endschema %}

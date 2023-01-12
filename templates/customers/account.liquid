@@ -1,0 +1,143 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'customer.js' | asset_url }}" defer></script>
+
+<header class="account-header">
+  <div class="page-width">
+    <h1 class="account-header__title h2">My Account</h1>
+  </div>
+</header>
+
+<div class="customer">
+
+  <div class="page-width">
+    <div class="customer__container">
+
+      <div class="customer__navigation">
+        <button class="customer__navigation-button hide-desktop">
+          <span class="customer__navigation-button-text">My Addresses</span>
+          {% render 'icon' icon: 'caret' %}
+        </button>
+        <div class="customer__navigation-container">
+          <button class="customer__navigation-link active" data-tab="addresses">My Addresses</button>
+          <button class="customer__navigation-link" data-tab="orders">Order History</button>
+          <a href="{{ routes.account_logout_url }}" class="customer__navigation-link">Log Out</a>
+        </div>
+      </div>
+
+      <div class="customer__content">
+
+        <div class="customer__content-section active" data-tab="addresses">
+          <h2 class="customer__content-title h5 hide-mobile">My Addresses</h2>
+
+          <div class="customer__address-container" data-customer-addresses>
+            {% render 'addresses' %}
+          </div>
+        </div>
+
+        
+        <div class="customer__content-section" data-tab="orders">
+          <h2 class="customer__content-title h5 hide-mobile">My Orders</h2>
+
+          {% paginate customer.orders by 20 %}
+            <div class="customer__order-container no-scrollbar">
+              {% if customer.orders.size > 0 %}
+
+                <div class="order-history">
+                  {% for order in customer.orders %}
+                    <div class="order-history__item">
+                      <div class="order-history__item-header">
+                        <div class="order-history__item-header-group">
+                          <p class="order-history__item-order tag-2">Order {{ order.name }}</p>
+                          <p class="order-history__item-date body-3 m-body-3">{{ order.created_at | time_tag: format: 'date' }}</p>
+                          <div class="order-history__item-fufillment tag-3">{{ order.fulfillment_status_label }}</div>
+                        </div>
+                        <a href="{{ order.customer_url }}" class="button button--fuchsia">Order Details</a>
+                      </div>
+                      <div class="order-history__item-content hide-mobile">
+                        {% for line_item in order.line_items %}
+                          <div class="order-history__product">
+                            <div class="order-history__product__image">
+                              {% render 'lazy-image' image: line_item.image, fade: true, fill: true %}
+                            </div>
+                            <div class="order-history__product-content">
+                              <p class="order-history__product-title">{{ line_item.product.title }}</p>
+                              <div class="order-history__product-variant">
+                                {% if line_item.product.has_only_default_variant == false %}
+                                  {% for option in line_item.options_with_values %}
+                                    <p class="order-history__product-option">
+                                      {{ option.name }}:
+                                      {{ option.value }}
+                                    </p>
+                                  {% endfor %}
+                                {% endif %}
+                              </div>
+                              <p class="order-history__product-quantity tag-3">Quantity: {{ line_item.quantity }}</p>
+                            </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+
+              {% else %}
+                <p class="body-5">{{ 'customer.orders.none' | t }}</p>
+              {% endif %}
+            </div>
+
+            {% if paginate.pages > 1 %}
+              {% if paginate.parts.size > 0 %}
+                  <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+                    <ul role="list">
+                    {% if paginate.previous %}
+                      <li>
+                        <a href="{{ paginate.previous.url }}" aria-label="{{ 'general.pagination.previous' | t }}">
+                          <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                          </svg>
+                        </a>
+                      </li>
+                    {% endif %}
+
+                    {% for part in paginate.parts %}
+                      <li>
+                        {% if part.is_link %}
+                          <a href="{{ part.url }}" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">{{ part.title }}</a>
+                        {% else %}
+                          {% if part.title == paginate.current_page %}
+                            <span aria-current="page" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">{{ part.title }}</span>
+                          {% else %}
+                            <span>{{ part.title }}</span>
+                          {% endif %}
+                        {% endif %}
+                      </li>
+                    {% endfor %}
+
+                    {% if paginate.next %}
+                      <li>
+                        <a href="{{ paginate.next.url }}" aria-label="{{ 'general.pagination.next' | t }}" >
+                          <svg aria-hidden="true" focusable="false" viewBox="0 0 10 6">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                          </svg>
+                        </a>
+                      </li>
+                    {% endif %}
+                    </ul>
+                  </nav>
+              {% endif %}
+            {% endif %}
+          {% endpaginate %}
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  window.onload = () => {
+    typeof CustomerAddresses !== 'undefined' && new CustomerAddresses();
+  }
+</script>

@@ -1,0 +1,19 @@
+.product {
+  display: grid;
+  grid-template-columns: minmax(0, .6fr) minmax(0, .4fr);
+  gap: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .product {
+    display: block;
+  }
+}
+
+/*================ Media ================*/
+.product__media {
+  padding-bottom: 100%;
+  position: relative;
+}
+
+/*================ Info ================*/
