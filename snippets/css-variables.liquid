@@ -1,0 +1,128 @@
+{% style %}
+    /* FONTS */
+
+    @font-face {
+      font-family: handwriting;
+      src: url('{{ "LaBelleAurore-Regular.ttf" | asset_url }}') format('truetype'),
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: louize;
+      src: url('{{ "LouizeDisplayTrial-Regular.eot" | asset_url }}');
+      src: url('{{ "LouizeDisplayTrial-Regular.woff" | asset_url }}') format('woff'),
+        url('{{ "LouizeDisplayTrial-Regular.ttf" | asset_url }}') format('truetype'),
+        url('{{ "LouizeDisplayTrial-Regular.svg" | asset_url }}') format('svg');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+    font-family: louize;
+    src: url('{{ "LouizeDisplayTrial-Medium.eot" | asset_url }}');
+    src: url('{{ "LouizeDisplayTrial-Medium.woff" | asset_url }}') format('woff'),
+      url('{{ "LouizeDisplayTrial-Medium.ttf" | asset_url }}') format('truetype'),
+      url('{{ "LouizeDisplayTrial-Medium.svg" | asset_url }}') format('svg');
+      font-weight: 500;
+      font-style: normal;
+  }
+
+    @font-face {
+      font-family: brandon;
+      src: url('{{ "BrandonGrotesque-Light.ttf" | asset_url }}') format('truetype'), url({{ "BrandonGrotesque-Light.woff" | asset_url }}) format('woff'), url({{ "BrandonGrotesque-Light.woff2" | asset_url }}) format('woff2');
+      font-weight: 300;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: brandon;
+      src: url('{{ "BrandonGrotesque-Regular.ttf" | asset_url }}') format('truetype'), url({{ "BrandonGrotesque-Regular.woff" | asset_url }}) format('woff'), url({{ "BrandonGrotesque-Regular.woff2" | asset_url }}) format('woff2');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: brandon;
+      src: url('{{ "BrandonGrotesque-RegularItalic.ttf" | asset_url }}') format('truetype'), url({{ "BrandonGrotesque-RegularItalic.woff" | asset_url }}) format('woff'), url({{ "BrandonGrotesque-RegularItalic.woff2" | asset_url }}) format('woff2');
+      font-weight: 400;
+      font-style: italic;
+    }
+
+
+    @font-face {
+      font-family: brandon;
+      src: url('{{ "BrandonGrotesque-Medium.ttf" | asset_url }}') format('truetype'), url({{ "BrandonGrotesque-Medium.woff" | asset_url }}) format('woff'), url({{ "BrandonGrotesque-Medium.woff2" | asset_url }}) format('woff2');
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: brandon;
+      src: url('{{ "BrandonGrotesque-Bold.ttf" | asset_url }}') format('truetype'), url({{ "BrandonGrotesque-Bold.woff" | asset_url }}) format('woff'), url({{ "BrandonGrotesque-Bold.woff2" | asset_url }}) format('woff2');
+      font-weight: 600;
+      font-style: normal;
+    }
+
+      :root {
+        --header-height: 119px;
+        --mobile-header-height: 119px;
+
+        /* Brand Colors */
+        --gold: #D2B066;
+        --gold-secondary: #D1BD93;
+        --gold-secondary--dark: #A19377;
+
+        --blue: #546B82;
+        --blue-secondary: #30383D;
+
+        --beige: #D9D3C4;
+        --beige-secondary: #F4F2EE;
+
+        --off-white: #EEEFEF;
+        --gray: #999999;
+
+        /* Status Colors */
+        --disabled: #999999;
+        --focus: #F4F2EE;
+        --error: #FF0000;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      html {
+        box-sizing: border-box;
+        height: 100%;
+      }
+
+      body {
+        display: grid;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-columns: 100%;
+        min-height: 100%;
+        margin: 0;
+        font-family: brandon, sans-serif;
+        color: {{ settings.text_color }};
+        background: {{ settings.background_color }};
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      button {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+        color: {{ settings.text_color }};
+      }
+{% endstyle %}

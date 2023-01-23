@@ -4,7 +4,7 @@
         <a href="{{ section.settings.link }}" class="announcement-bar__item">
       {% endif %}
         <div class="page-width">
-          <p>{{ section.settings.text }}</p>
+          {{ section.settings.text }}
         </div>
     {% if section.settings.link != blank %}
       </a>
@@ -51,7 +51,7 @@
       "type": "color",
       "id": "background_color",
       "label": "Background Color",
-      "default": "#000000"
+      "default": "#546B82"
     },
     {
       "type": "color",
