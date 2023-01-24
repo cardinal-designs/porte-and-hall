@@ -1,13 +1,26 @@
 .list-social {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-end;
+  row-gap: 20px;
 }
 
 @media only screen and (max-width: 768px) {
   .list-social {
     justify-content: center;
   }
+}
+
+.list-social__item {
+  font-family: brandon;
+  font-size: 18px;
+  line-height: 120%;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding-left: 33px;
+  position: relative;
 }
 
 .list-social__item .icon {
@@ -18,8 +31,21 @@
 .list-social__link {
   align-items: center;
   display: flex;
-  padding: 1.3rem;
+  /* padding: 1.3rem; */
   color: rgb(var(--color-foreground));
+}
+
+.list-social__icon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 50%;
+  background-position: center center;
+  background-size: 120%;
 }
 
 .list-social__link:hover .icon {

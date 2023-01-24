@@ -2,10 +2,31 @@
 <link rel="stylesheet" href="{{ 'component-list-social.css' | asset_url }}" media="print" onload="this.media='all'">
 <noscript>{{ 'component-list-social.css' | asset_url | stylesheet_tag }}</noscript>
 
-<footer class="footer">
-  <div class="page-width">
-    <div class="footer__top">
+<style>
+  .header__logo {
+    width: {{ section.settings.logo_width }}px;
+  }
 
+  @media screen and (max-width: 768px) {
+    .header__logo {
+      width: {{ section.settings.mobile_logo_width }}px;
+    }
+  }
+</style>
+
+<footer class="footer">
+  <div class="footer__shape">
+    {% render 'sun-svg' %}
+  </div>
+  <div class="page-width">
+    <div class="footer__logo">
+      {% if section.settings.svg_logo != blank %}
+        <div class="footer__svg-logo">
+          {{ section.settings.svg_logo }}
+        </div>
+      {% endif %}
+    </div>
+    <div class="footer__top">
       <div class="footer__blocks">
         {% for block in section.blocks %}
           <div class="footer__block" {{ block.shopify_attributes }}>
@@ -17,7 +38,10 @@
               <ul class="footer__menu list-unstyled">
                 {% for link in block.settings.menu.links %}
                   <li>
-                    <a href="{{ link.url }}" class="footer__menu-link{% if link.active %} footer__menu-link--active{% endif %}">
+                    <a
+                      href="{{ link.url }}"
+                      class="footer__menu-link{% if link.active %} footer__menu-link--active{% endif %}"
+                    >
                       {{ link.title }}
                     </a>
                   </li>
@@ -26,11 +50,15 @@
             {% endif %}
           </div>
         {% endfor %}
+
+        <div class="footer__block">
+          {% render 'social' %}
+        </div>
       </div>
 
       <div class="footer__newsletter">
         {% if section.settings.newsletter_heading != blank %}
-          <h2 class="footer__heading">{{ section.settings.newsletter_heading | escape }}</h2>
+          <h3 class="footer__heading">{{ section.settings.newsletter_heading | escape }}</h3>
         {% endif %}
 
         {% if section.settings.newsletter_text != blank %}
@@ -41,7 +69,7 @@
           <input type="hidden" name="contact[tags]" value="newsletter">
           <div class="newsletter-form__field-wrapper">
             <div class="field">
-              <label class="field__label hidden" for="NewsletterForm--{{ section.id }}">
+              <label class="field__label hidden visually-hidden" for="NewsletterForm--{{ section.id }}">
                 {{ 'newsletter.label' | t }}
               </label>
               <input
@@ -61,34 +89,60 @@
                 {% elsif form.posted_successfully? %}
                   aria-describedby="ContactFooter-success"
                 {% endif %}
-                placeholder="Email"
+                placeholder="{{ 'newsletter.label' | t }}"
                 required
               >
               <button type="submit" class="footer__newsletter-button" name="commit" aria-label="Submit">
-                {% render 'icon' icon: 'arrow' %}
+                {{ 'newsletter.button_label' | t }}
+                {% render 'icon', icon: 'caret' %}
               </button>
             </div>
             {% if form.errors %}
-              <p class="newsletter-form__message form__message" id="ContactFooter-error">{% render 'icon' icon: 'error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</p>
+              <p class="newsletter-form__message form__message" id="ContactFooter-error">
+                {% render 'icon', icon: 'error' -%}
+                {{- form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email }}
+              </p>
             {% endif %}
           </div>
           {% if form.posted_successfully? %}
-            <p class="newsletter-form__message newsletter-form__message--success form__message" id="ContactFooter-success" tabindex="-1" autofocus>{% render 'icon' icon: 'success' %}{{ 'newsletter.success' | t }}</p>
+            <p
+              class="newsletter-form__message newsletter-form__message--success form__message"
+              id="ContactFooter-success"
+              tabindex="-1"
+              autofocus
+            >
+              {% render 'icon', icon: 'success' -%}
+              {{- 'newsletter.success' | t }}
+            </p>
           {% endif %}
         {% endform %}
-
-        {% render 'social' %}
       </div>
-
     </div>
   </div>
 
   <div class="footer__bottom">
     <div class="page-width">
-      <p class="footer__copy">&copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url }}</p>
+      <p class="footer__copy">
+        &copy; {{ 'now' | date: '%Y' }}
+        {{ shop.name | link_to: routes.root_url }}
+        {% if section.settings.policies != blank %}
+          |
+          {% for link in section.settings.policies.links %}
+            <a
+              href="{{ link.url }}"
+              class="footer__policy-link"
+            >
+              {{ link.title }}
+            </a>
+            {% unless forloop.last %}
+              |
+            {% endunless %}
+          {% endfor %}
+        {% endif %}
+      </p>
     </div>
   </div>
-
 </footer>
 
 {% schema %}
@@ -116,6 +170,32 @@
   ],
   "settings": [
     {
+      "type": "textarea",
+      "id": "svg_logo",
+      "label": "SVG Logo",
+      "info": "Optional. This will override logo image picker."
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 400,
+      "step": 10,
+      "default": 150,
+      "unit": "px",
+      "label": "Logo Width"
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_width",
+      "min": 50,
+      "max": 300,
+      "step": 5,
+      "default": 100,
+      "unit": "px",
+      "label": "Mobile Logo Width"
+    },
+    {
       "type": "text",
       "id": "newsletter_heading",
       "label": "Newsletter Heading",
@@ -126,6 +206,11 @@
       "id": "newsletter_text",
       "label": "Newsletter Text",
       "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    },
+    {
+      "type": "link_list",
+      "id": "policies",
+      "label": "Footer policies"
     }
   ]
 }
