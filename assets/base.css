@@ -1402,6 +1402,7 @@ header.condensed .header__menu {
   background: var(--blue);
   color: white;
   position: relative;
+  overflow: hidden;
 }
 
 .footer__shape {
@@ -1414,6 +1415,15 @@ header.condensed .header__menu {
 .footer__logo{
   text-align: center;
   padding-top: 50px;
+}
+
+.footer__svg-logo {
+  margin: auto;
+}
+
+.footer__svg-logo svg {
+  width: 100%;
+  height: auto;
 }
 
 /*================ Top ================*/
@@ -1501,12 +1511,26 @@ header.condensed .header__menu {
   }
 
   .footer__blocks {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 50px;
+    column-gap: 20px;
   }
 
   .footer__block {
     padding-right: 0;
     padding-bottom: 40px;
+    flex: 1;
+  }
+
+  .footer__menu {
+    row-gap: 30px;
+  }
+
+  .footer__newsletter {
+    margin-bottom: 40px;
   }
 }
 

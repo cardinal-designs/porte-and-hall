@@ -3,13 +3,14 @@
 <noscript>{{ 'component-list-social.css' | asset_url | stylesheet_tag }}</noscript>
 
 <style>
-  .header__logo {
+  .footer__svg-logo {
     width: {{ section.settings.logo_width }}px;
   }
 
   @media screen and (max-width: 768px) {
-    .header__logo {
+    .footer__svg-logo {
       width: {{ section.settings.mobile_logo_width }}px;
+      margin: auto;
     }
   }
 </style>
@@ -51,7 +52,7 @@
           </div>
         {% endfor %}
 
-        <div class="footer__block">
+        <div class="footer__block hide-mobile">
           {% render 'social' %}
         </div>
       </div>
@@ -117,6 +118,10 @@
             </p>
           {% endif %}
         {% endform %}
+      </div>
+
+      <div class="footer__block hide-desktop">
+        {% render 'social' %}
       </div>
     </div>
   </div>
