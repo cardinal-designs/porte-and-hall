@@ -314,11 +314,12 @@ p,
 .body-xs {
   font-size: 11px;
   line-height: 120%;
+  letter-spacing: 1px;
 }
 
 @media only screen and (max-width: 768px) {
   .body-xs {
-    font-size: 11px;
+    font-size: 9px;
     line-height: 120%;
   }
 }
@@ -966,7 +967,7 @@ deferred-media {
   margin-left: 3.5px;
   transition: transform .3s ease;
   -webkit-transition: -webkit-transform .3s ease;
-}
+} 
 
 .header__submenu {
   min-width: 150px;
@@ -1544,10 +1545,16 @@ header.condensed .header__menu {
 
 .footer__copy {
   text-align: center;
-  font-size: 11px;
-  line-height: 13.2px;
-  letter-spacing: 1px;
-  font-weight: 500;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .footer__copy {
+    text-transform: uppercase;
+    max-width: 50%;
+    margin: auto;
+    line-height: 2rem;
+  }
 }
 
 /*============================================================================
