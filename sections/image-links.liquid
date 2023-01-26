@@ -1,0 +1,73 @@
+{{ 'section-image-links.css' | asset_url | stylesheet_tag }}
+
+<section class="image-links">
+  <div class="page-width">
+    <div class="image-links__inner">
+      <div class="image-links__heading">
+        <h2>{{ section.settings.heading }}</h2>
+        <span class="divider"><span class="divider-line"></span> {% render 'divider' %}</span>
+      </div>
+
+      <div class="image-links__blocks">
+        {% for block in section.blocks %}
+          <div class="image-links__block-wrapper">
+            <div class="image-links__block-image">
+              {% render 'lazy-image', image: block.settings.image, fade: true, classes: 'img-fill' %}
+              <div class="image-links__block-label body-xs">{{ block.settings.text }}</div>
+            </div>
+            <a class="text-link image-links__block-link" href="{{ block.settings.link }}">
+              {{ block.settings.link_text }} >
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image Links",
+  "class": "with-spacing",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Links"
+    }
+  ]
+}
+{% endschema %}

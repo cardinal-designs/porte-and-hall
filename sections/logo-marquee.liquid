@@ -1,0 +1,69 @@
+{{ 'section-logo-marquee.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="logo-marquee{% if section.settings.background_color == 'rgba(0,0,0,0)' %} no-bg{% endif %}"
+  style="background-color: {{ section.settings.background_color }}"
+>
+  <div class="logo-marquee__container">
+    {% for block in section.blocks %}
+      <div class="logo-marquee__item">
+        <div class="logo-marquee__image">
+          {% if block.settings.svg != blank %}
+            {{ block.settings.svg }}
+          {% else %}
+            {% render 'lazy-image', image: block.settings.logo, fade: true, classes: 'img-fill' %}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="logo-marquee__container">
+    {% for block in section.blocks %}
+      <div class="logo-marquee__item">
+        <div class="logo-marquee__image">
+          {% if block.settings.svg != blank %}
+            {{ block.settings.svg }}
+          {% else %}
+            {% render 'lazy-image', image: block.settings.logo, fade: true, classes: 'img-fill' %}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Logo Marquee",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "textarea",
+          "id": "svg",
+          "label": "SVG"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo Marquee"
+    }
+  ]
+}
+{% endschema %}

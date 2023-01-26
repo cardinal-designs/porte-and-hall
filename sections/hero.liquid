@@ -1,66 +1,73 @@
 {{ 'section-hero.css' | asset_url | stylesheet_tag }}
 
 <div class="hero">
-  {% if section.settings.mobile_image != blank %}
-    {% render 'lazy-image' image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile' %}
-    {% render 'lazy-image' image: section.settings.mobile_image, fade: true, fill: true, classes: 'hide-desktop' %}
-  {% elsif section.settings.image != blank %}
-    {% render 'lazy-image' image: section.settings.image, fade: true, fill: true %}
-  {% endif %}
-  <div class="page-width">
+  <div class="hero__content">
     <div class="hero__container">
-      <h2 class="hero__title">{{ section.settings.title }}</h2>
+      <h1 class="hero__title">{{ section.settings.title }}</h1>
       <a href="{{ section.settings.button_link }}" class="button">{{ section.settings.button_label }}</a>
     </div>
+  </div>
+
+  <div class="hero__media">
+    {% if section.settings.mobile_image != blank %}
+      {% render 'lazy-image', image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile' %}
+      {% render 'lazy-image', image: section.settings.mobile_image, fade: true, fill: true, classes: 'hide-desktop' %}
+    {% elsif section.settings.image != blank %}
+      {% render 'lazy-image', image: section.settings.image, fade: true, fill: true %}
+    {% endif %}
+  </div>
+
+  <div class="hero__element">
+    {% render 'sun-svg', color: '#ffffff', opacity: 1 %}
   </div>
 </div>
 
 {% schema %}
-  {
-    "name": "Hero",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Image"
-      },
-      {
-        "type": "image_picker",
-        "id": "image",
-        "label": "Image"
-      },
-      {
-        "type": "image_picker",
-        "id": "mobile_image",
-        "label": "Mobile Image"
-      },
-      {
-        "type": "header",
-        "content": "Content"
-      },
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Title"
-      },
-      {
-        "type": "header",
-        "content": "Button"
-      },
-      {
-        "type": "text",
-        "id": "button_label",
-        "label": "Button Label"
-      },
-      {
-        "type": "url",
-        "id": "button_link",
-        "label": "Button Link"
-      }
-    ],
-    "presets": [
-      {
-        "name": "Hero"
-      }
-    ]
-  }
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
 {% endschema %}

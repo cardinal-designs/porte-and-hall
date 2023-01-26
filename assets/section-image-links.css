@@ -1,0 +1,37 @@
+.image-links__heading {
+  color: var(--blue);
+  display: grid;
+  grid-template-columns: 60% minmax(auto, 1fr);
+  margin-bottom: 34px;
+}
+
+.image-links__blocks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(auto, 1fr));
+  column-gap: 18px;
+}
+
+.image-links__block-image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1.74/1;
+  margin-bottom: 30px;
+}
+
+.image-links__block-label {
+  position: absolute;
+  bottom: 31px;
+  left: 0;
+  background: var(--blue);
+  color: white;
+  padding: 9px 10px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.image-links__block-wrapper {
+  text-align: center;
+}
+
+.image-links__block-link {
+  color: var(--gold-secondary);
+}
