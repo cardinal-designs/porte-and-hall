@@ -1,0 +1,156 @@
+{{ 'section-fan-motif.css' | asset_url | stylesheet_tag }}
+{% liquid
+  if section.settings.color == 'orange'
+    assign fan-motif = 'fan-motif--orange.png' | asset_url
+    assign background = 'fan-motif-background--orange.jpg' | asset_url
+  else
+    assign fan-motif = 'fan-motif--green.png' | asset_url
+    assign background = 'fan-motif-background--green.jpg' | asset_url
+  endif
+%}
+<section class="fan-motif" style="background: no-repeat center/cover url('{{ background }}')">
+  <div class="fan-motif__background">
+    <div class="fan-motif__inner fan-motif__layout-{{ section.settings.alignment }}">
+      <div class="fan-motif__content-wrapper">
+        <div class="fan-motif__motif">
+          <img src="{{ fan-motif }}" width="67" alt="Fan motif">
+        </div>
+
+        {% if section.settings.heading != blank %}
+          <h2 class="fan-motif__heading blue">{{ section.settings.heading | newline_to_br }}</h2>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <p class="body blue">{{ section.settings.text }}</p>
+        {% endif %}
+
+        {% if section.settings.link != blank and section.settings.link_text != blank %}
+          <a href="{{ section.settings.link }}" class="text-link gold-secondary--dark">
+            {{- section.settings.link_text }} ></a
+          >
+        {% endif %}
+
+        {% if section.blocks != blank and section.settings.alignment == 'center' %}
+          <div class="fan-motif__blocks">
+            {% for block in section.blocks %}
+              <div class="fan-motif__icon-wrapper">
+                <div class="fan-motif__icon-image">
+                  {{ block.settings.image | image_url: width: 328 | image_tag: width: 164 }}
+                </div>
+                <h3 class="fan-motif__icon-label blue">{{ block.settings.title }}</h3>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if section.settings.image and section.settings.alignment != 'center' %}
+        <div class="fan-motif__image-wrapper">
+          {{ section.settings.image | image_url: width: 800 | image_tag }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fan Motif Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "color",
+      "label": "Color",
+      "options": [
+        {
+          "label": "Orange and blue",
+          "value": "orange"
+        },
+        {
+          "label": "Green",
+          "value": "green"
+        }
+      ],
+      "default": "orange"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Content Alignment",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Only for Left or Right layout alignments"
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "name": "Icon",
+      "type": "icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fan Motif Section"
+    }
+  ]
+}
+{% endschema %}
