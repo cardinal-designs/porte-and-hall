@@ -104,11 +104,64 @@
       "settings": {
         "heading": "We’ve got all of your hard-working spaces covered, both indoor and outdoor."
       }
+    },
+    "0a69165e-8ae0-46b0-9ed4-6732d7ba88d1": {
+      "type": "fan-motif-section",
+      "blocks": {
+        "9d8e504b-949c-465e-a376-e30737f923aa": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Outsider-Scrape_1.gif",
+            "title": "Stain-Resistant"
+          }
+        },
+        "d1c8ec62-41c6-4863-8ae3-0c828ee958ed": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Outsider-Removable_aad5ef63-5b85-44d2-b720-2ffb6443308c.gif",
+            "title": "Slip-Resistant"
+          }
+        },
+        "73b0b674-5dfc-4b05-97b6-a256964f7310": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Homepage-Quality.gif",
+            "title": "High-Quality"
+          }
+        }
+      },
+      "block_order": [
+        "9d8e504b-949c-465e-a376-e30737f923aa",
+        "d1c8ec62-41c6-4863-8ae3-0c828ee958ed",
+        "73b0b674-5dfc-4b05-97b6-a256964f7310"
+      ],
+      "settings": {
+        "color": "orange",
+        "alignment": "center",
+        "heading": "Our mats are designed for heavy-duty use, without the bulky look & feel, and are:",
+        "text": "",
+        "link": "",
+        "link_text": ""
+      }
+    },
+    "542bd631-99ef-452b-91d4-02d612f961a0": {
+      "type": "fan-motif-section",
+      "settings": {
+        "color": "green",
+        "alignment": "left",
+        "heading": "First impressions matter.\nFor both you and your visitors.",
+        "text": "Just like a clean desk or freshly-made bed, coming home to a beautiful and functional entryway is restorative and uplifting. We aim to turn these often ovelooked areas of our homes into inspired areas that welcome and invite us home.",
+        "link": "shopify:\/\/pages\/about-us",
+        "link_text": "LEARN MORE ABOUT US",
+        "image": "shopify:\/\/shop_images\/door_illustration.png"
+      }
     }
   },
   "order": [
     "16587824044cd3c400",
     "d6a4e5b3-bc8d-47c2-be4d-b259ce228429",
-    "da10a9d1-b562-4add-8fa2-54431f6fa235"
+    "da10a9d1-b562-4add-8fa2-54431f6fa235",
+    "0a69165e-8ae0-46b0-9ed4-6732d7ba88d1",
+    "542bd631-99ef-452b-91d4-02d612f961a0"
   ]
 }
