@@ -12,10 +12,16 @@
   margin: auto;
 }
 
-.fan-motif__layout-left,
-.fan-motif__layout-right {
+.fan-motif__layout-left{
   display: grid;
   grid-template-columns: 52% 1fr;
+  grid-template-areas: 'left' 'right';
+  column-gap: 120px;
+}
+
+.fan-motif__layout-right {
+  display: grid;
+  grid-template-columns: 1fr 52%;
   grid-template-areas: 'left' 'right';
   column-gap: 120px;
 }
