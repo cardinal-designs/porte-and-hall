@@ -1,6 +1,23 @@
+{{ 'section-text-media-carousel.css' | asset_url | stylesheet_tag }}
+
 <section class="text-media-caorusel">
   <div class="text-media-carousel__inner">
-    <div class="text-media-carousel__media-wrapper"></div>
+    <div class="text-media-carousel__media-wrapper">
+      <div class="text-media-carousel__media-inner swiper">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="swiper-slide text-media-carousel__image" data-controlled-by="{{ forloop.index }}">
+              {% if block.settings.video != blank %}
+                {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+              {% elsif block.settings.image != blank %}
+                {% render 'lazy-image', image: block.settings.image, fade: true, fill: true %}
+              {% endif %}
+              <div class="text-media-carousel__media-label body-xs">{{ block.settings.media_label }}</div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
 
     <div class="text-media-carousel__content-wrapper">
       <div class="text-media-carousel__content-inner">
@@ -9,19 +26,43 @@
         <div class="text-media-carousel__text swiper">
           <div class="swiper-wrapper">
             {% for block in section.blocks %}
-              <div class="swiper-slide">
-                <h2 class="swiper-slide__heading">{{ block.settings.heading }}</h2>
-                <p class="swiper-slide__title">{{ block.settings.title }}</p>
+              <div class="swiper-slide" data-controlls="{{ forloop.index }}">
+                <h2 class="text-media__heading">{{ block.settings.heading }}</h2>
+                <p class="text-media__title">{{ block.settings.title }}</p>
 
-                <p class="swiper-slide__quote handwriting">{{ block.settings.quote }}</p>
+                <p class="text-media__quote handwriting">{{ block.settings.text }}</p>
+
+                <a href="{{ block.settings.link }}" class="text-link gold text-media__link">
+                  {{- block.settings.link_text -}}
+                  >
+                </a>
               </div>
             {% endfor %}
           </div>
+
+          <div class="swiper-pagination text-media-carousel__pagination"></div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+{% javascript %}
+  const imageSwiper = new Swiper('.text-media-carousel__media-inner', {
+    slidesPerView: 1,
+  });
+
+  const contentSwiper = new Swiper('.text-media-carousel__text', {
+    slidesPerView: 1,
+    pagination: {
+      el: '.text-media-carousel__pagination',
+      clickable: true,
+    },
+    controller: {
+      control: imageSwiper,
+    },
+  });
+{% endjavascript %}
 
 {% schema %}
 {

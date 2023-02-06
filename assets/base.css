@@ -214,6 +214,7 @@ h5,
 .h5,
 .h6 {
   margin: 0;  
+  color: var(--blue);
 }
 
 
@@ -1781,4 +1782,43 @@ header.condensed .header__menu {
 .micromodal-slide .modal__container,
 .micromodal-slide .modal__overlay {
   will-change: transform;
+}
+
+.swiper-wrapper {
+  padding-bottom: 45px;
+}
+
+.swiper-pagination {
+  bottom: 0;
+  padding: 3px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  column-gap: 7.5px;
+}
+
+.swiper-pagination-bullet {
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: 0;
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg);
+  opacity: 1;
+}
+.swiper-pagination-bullet-active {
+  position: relative;
+}
+
+.swiper-pagination-bullet-active:after{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 0;
+  content: "";
+  background: var(--gold);
+  transform: translate(-50%, -50%);
+  width: 5.68px;
+  height: 5.68px;
 }

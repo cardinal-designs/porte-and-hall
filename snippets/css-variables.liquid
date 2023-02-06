@@ -3,7 +3,7 @@
 
     @font-face {
       font-family: handwriting;
-      src: url('{{ "LaBelleAurore-Regular.ttf" | asset_url }}') format('truetype'),
+      src: url('{{ "LaBelleAurore-Regular.ttf" | asset_url }}') format('truetype');
       font-weight: 400;
       font-style: normal;
     }
@@ -144,5 +144,9 @@
 
       .gold-secondary--dark {
         color: var(--gold-secondary--dark );
+      }
+
+      .handwriting {
+        font-family: handwriting;
       }
 {% endstyle %}

@@ -1,0 +1,56 @@
+{{ 'section-featured-articles.css' | asset_url | stylesheet_tag }}
+{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
+
+<section class="featured-articles">
+  <div class="featured-articles__inner page-width">
+    <div class="featured-articles__heading">
+      <span class="divider">
+        {%- render 'divider' %}
+        <span class="divider-line"></span>
+      </span>
+      <h2 class="blue">{{ section.settings.heading }}</h2>
+      <span class="divider"> <span class="divider-line"></span> {% render 'divider' %} </span>
+    </div>
+
+    <div class="featured-articles__article-cards">
+      {% for block in section.blocks %}
+        <div class="blog-articles__article">
+          {% render 'article-card', article: block.settings.article %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Articles",
+  "class": "with-spacing",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "article",
+      "name": "Article",
+      "settings": [
+        {
+          "type": "article",
+          "id": "article",
+          "label": "Article"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Article"
+    }
+  ]
+}
+{% endschema %}
