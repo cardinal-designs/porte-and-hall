@@ -144,6 +144,75 @@
         "link_text": ""
       }
     },
+    "ca7269e3-0e99-4b33-8ac5-b2cb1e4e8322": {
+      "type": "text-media-carousel",
+      "blocks": {
+        "59bb0f61-51d2-4f23-93c7-9fa961309c5c": {
+          "type": "slide",
+          "settings": {
+            "heading": "Nicole Gibbons",
+            "title": "Founder of Clare Paint  |  Her Style: Farmhouse Chic\nProduct: The Innerweave Doormat in Chevron Natural",
+            "text": "“Sed ut perspiciatis, unde omnis iste natus error sit voluptatem lorem elit accusantium doloremque doloritis vin laudantium!”",
+            "link": "\/",
+            "link_text": "Read More",
+            "media_label": "THE INSIDER AREA MAT IN BARK (CREME)",
+            "image": "shopify:\/\/shop_images\/Rectangle_602.jpg",
+            "video_url": ""
+          }
+        },
+        "6023e449-1169-48e3-a76e-deef958316d0": {
+          "type": "slide",
+          "settings": {
+            "heading": "Name Here",
+            "title": "Title Info goes here",
+            "text": "Quote text here",
+            "link": "",
+            "link_text": "",
+            "media_label": "",
+            "image": "shopify:\/\/shop_images\/Rectangle_602.jpg",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "59bb0f61-51d2-4f23-93c7-9fa961309c5c",
+        "6023e449-1169-48e3-a76e-deef958316d0"
+      ],
+      "settings": {
+        "heading": "How I Style It"
+      }
+    },
+    "7337a49a-31a0-4e5d-9a53-968d18d1068e": {
+      "type": "featured-articles",
+      "blocks": {
+        "140e3c63-9b99-476d-9378-53fd1ce30b89": {
+          "type": "article",
+          "settings": {
+            "article": "news\/at-some-point-in-the-last-year"
+          }
+        },
+        "faf6f395-3915-4f58-b2c5-acd839476fc2": {
+          "type": "article",
+          "settings": {
+            "article": "news\/the-view-from-my-porch"
+          }
+        },
+        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23": {
+          "type": "article",
+          "settings": {
+            "article": "press\/one-looks-great-and-is-the-perfect-size-two-does-not-move-i-have-almost-busted-my-rear-end-with-other-mats-slipping-under-my-feet-lastly-and-most-importantly-so-easy-to-clean"
+          }
+        }
+      },
+      "block_order": [
+        "140e3c63-9b99-476d-9378-53fd1ce30b89",
+        "faf6f395-3915-4f58-b2c5-acd839476fc2",
+        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23"
+      ],
+      "settings": {
+        "heading": "Style tips from the Porte + Hall Blog"
+      }
+    },
     "542bd631-99ef-452b-91d4-02d612f961a0": {
       "type": "fan-motif-section",
       "settings": {
@@ -162,6 +231,8 @@
     "d6a4e5b3-bc8d-47c2-be4d-b259ce228429",
     "da10a9d1-b562-4add-8fa2-54431f6fa235",
     "0a69165e-8ae0-46b0-9ed4-6732d7ba88d1",
+    "ca7269e3-0e99-4b33-8ac5-b2cb1e4e8322",
+    "7337a49a-31a0-4e5d-9a53-968d18d1068e",
     "542bd631-99ef-452b-91d4-02d612f961a0"
   ]
 }
