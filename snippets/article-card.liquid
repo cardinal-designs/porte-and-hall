@@ -10,13 +10,16 @@
 {% endcomment %}
 
 <div class="article-card">
-  <a href="{{ article.url }}">
-    <div class="article-card__image">
-      {% render 'lazy-image', image: article.image, fade: true, classes: 'img-fill' %}
-    </div>
-  </a>
+  <div class="article-card__image">
+    {% render 'lazy-image', image: article.image, fade: true, classes: 'img-fill' %}
+    <div class="article-card__icon-overlay">{% render 'sun-svg', color: '#ffffff', opacity: '0.5' %}</div>
+  </div>
   <div class="article-card__container">
     <p class="article-card__date body-xs blue">{{ article.published_at | time_tag: '%m.%d.%Y' }}</p>
     <h3 class="article-card__title">{{ article.title }}</h3>
+
+    <div class="body blue">{{ article.excerpt | default: article.content | truncatewords: 30 }}</div>
+
+    <a href="{{ article.url }}" class="text-link gold">Read More ></a>
   </div>
 </div>

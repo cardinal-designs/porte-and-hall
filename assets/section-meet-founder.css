@@ -1,0 +1,90 @@
+.meet-founder {
+  padding: 20px;
+  background: var(--blue);
+  color: white;
+}
+
+.meet-founder__background {
+  border: 1px solid white;
+}
+
+.meet-founder__inner {
+  padding: 70px 0;
+  max-width: 1440px;
+  margin: auto;
+}
+
+.meet-founder__layout-left{
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  grid-template-areas: 'text media';
+  column-gap: 120px;
+}
+
+.meet-founder__layout-right {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  grid-template-areas: 'media text';
+  column-gap: 120px;
+}
+
+.meet-founder__layout-left .meet-founder__content-wrapper {
+  grid-area: text;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.meet-founder__image-wrapper {
+  grid-area: media;
+}
+
+.meet-founder__content-wrapper {
+  padding: 100px 0;
+}
+
+.meet-founder__layout-right .meet-founder__content-wrapper {
+  grid-area: text;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.meet-founder__layout-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.meet-founder__layout-center .meet-founder__content-wrapper {
+  max-width: 820px;
+  margin: 30px auto;
+}
+
+.meet-founder__heading {
+  margin: 30px 0;
+}
+
+.meet-founder__image-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.meet-founder__image-wrapper img {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.meet-founder__icon-wrapper {
+  text-align: center;
+}
+ .meet-founder__icon-label {
+  padding: 0 20px;
+ }

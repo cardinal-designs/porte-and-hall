@@ -3,6 +3,13 @@
   aspect-ratio: 1/1;
 }
 
+.article-card__icon-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .article-card__container {
   padding-top: 20px;
   position: relative;

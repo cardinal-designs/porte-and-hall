@@ -14,28 +14,32 @@
 
 .fan-motif__layout-left{
   display: grid;
-  grid-template-columns: 52% 1fr;
-  grid-template-areas: 'left' 'right';
+  grid-template-columns: 500px 1fr;
+  grid-template-areas: 'text media';
   column-gap: 120px;
 }
 
 .fan-motif__layout-right {
   display: grid;
-  grid-template-columns: 1fr 52%;
-  grid-template-areas: 'left' 'right';
+  grid-template-columns: 1fr 500px;
+  grid-template-areas: 'text media';
   column-gap: 120px;
 }
 
 .fan-motif__layout-left .fan-motif__content-wrapper {
-  grid-area: 'left';
+  grid-area: text;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 }
 
+.fan-mofit__image-wrapper {
+  grid-area: media;
+}
+
 .fan-motif__layout-right .fan-motif__content-wrapper {
-  grid-area: 'right';
+  grid-area: text;
   display: flex;
   flex-direction: column;
   justify-content: center;
