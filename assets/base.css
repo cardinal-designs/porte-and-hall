@@ -298,7 +298,26 @@ h6,
   }
 }
 
-p,
+.heading-with-accents {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  column-gap: 24px;
+  text-align: center;
+  width: calc(100% + 40px);
+  margin: 0 -20px 50px;
+}
+
+.heading-with-accents a {
+  color: var(--gold);
+}
+
+p {
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+}
+
 .p,
 .body {
   font-size: 18px;

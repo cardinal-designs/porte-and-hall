@@ -1,0 +1,72 @@
+{{ 'section-ugc-carousel.css' | asset_url | stylesheet_tag }}
+
+<section class="ugc-carousel">
+  <div class="page-width">
+    <div class="heading-with-accents">
+      <span class="divider">
+        {%- render 'divider' %}
+        <span class="divider-line"></span>
+      </span>
+      <div class="h2 blue">{{ section.settings.heading }}</div>
+      <span class="divider"> <span class="divider-line"></span> {% render 'divider' %} </span>
+    </div>
+  </div>
+
+  <div class="ugc-carousel__container swiper">
+    <div class="swiper-pagination ugc-carousel__pagination"></div>
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide">
+          <div class="ugc-carousel__item">
+            {{ block.settings.image | image_url: width: 400 | image_tag }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% javascript %}
+  const ugcSwiper = new Swiper('.ugc-carousel__container', {
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: '.ugc-carousel__pagination',
+      clickable: true,
+    },
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "UGC Carousel",
+  "class": "with-spacing",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "post",
+      "name": "Post",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "UGC Carousel"
+    }
+  ]
+}
+{% endschema %}
