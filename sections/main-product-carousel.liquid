@@ -1,0 +1,56 @@
+{{ 'component-product-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'section-product-carousel.css' | asset_url | stylesheet_tag }}
+
+<section class="product-carousel">
+  <div class="product-carousel__heading">
+    <h2>{{ section.settings.heading }}</h2>
+  </div>
+
+  <div class="product-carousel__container swiper">
+    <div class="swiper-pagination product-carousel__pagination"></div>
+    <div class="swiper-wrapper">
+      {% for product in section.settings.collection.products %}
+        <div class="product-carousel__item slide-item">
+          {% render 'product-card', product_card_product: product %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% javascript %}
+  const productSwiper = new Swiper('.product-carousel__container', {
+    slidesPerView: 5,
+    centeredSlides: true,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: '.product-carousel__pagination',
+      clickable: true,
+    },
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Product Carousel",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Carousel"
+    }
+  ]
+}
+{% endschema %}

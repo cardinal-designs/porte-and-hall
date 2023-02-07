@@ -25,6 +25,10 @@
 
 /* Text content */
 
+.text-media-carousel__text .swiper-wrapper {
+  padding-bottom: 45px;
+}
+
 .text-media-carousel__content-wrapper {
   background: var(--blue);
   padding: 20px;
