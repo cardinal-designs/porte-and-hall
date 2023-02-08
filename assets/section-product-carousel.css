@@ -1,3 +1,7 @@
+.product-carousel__heading {
+  margin-bottom: 30px;
+  text-align: center;
+}
 .product-carousel__container {
   position: relative;
 }
@@ -7,16 +11,16 @@
  padding-top: 65px;
 }
 
-.product-carousel__pagination {
+.product-carousel__pagination.swiper-pagination {
  top: 0;
  bottom: unset;
 }
 
 .product-carousel__container .swiper-slide {
- width: auto;
+ /* width: auto; */
 }
 
 .product-carousel__item {
- aspect-ratio: 1/1;
- width: 400px;
+ /* aspect-ratio: 1/1; */
+ width: 295px;
 }

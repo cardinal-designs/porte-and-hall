@@ -1,21 +1,31 @@
 {% comment %}
-    Renders a product card
+  Renders a product card
 
-    Accepts:
-    - product_card_product: {Object} Product Liquid object
+  Accepts:
+  - product_card_product: {Object} Product Liquid object
 
-    Usage:
-    {% render 'product-card', product_card_product: product %}
+  Usage:
+  {% render 'product-card', product_card_product: product %}
 {% endcomment %}
-
 
 <div class="product-card{% if product_card_product.media[1] != nil %} has-animation{% endif %}">
   <a href="{{ product_card_product.url }}">
     <div class="product-card__image">
-      {% render 'lazy-image' image: product_card_product.featured_media, fade: true, classes: 'img-fill' %}
-      {% if product_card_product.media[1] != nil %}
-        {% render 'lazy-image' image: product_card_product.media[1], fade: true, classes: 'img-fill' %}
+      {% render 'lazy-image', image: product_card_product.featured_media, fade: false, classes: 'img-fill' %}
+      {% if product_card_product.media[1] != null %}
+        {% render 'lazy-image', image: product_card_product.media[1], fade: false, classes: 'img-fill' %}
       {% endif %}
+
+      {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
+      <div class="product-card__image-label body-xs">
+        {% if lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
+          Indoor/Outdoor
+        {% elsif lowercase_tags contains 'indoor' %}
+          Indoor
+        {% elsif lowercase_tags contains 'outdoor' %}
+          Outdoor
+        {% endif %}
+      </div>
     </div>
   </a>
   <div class="product-card__container">
@@ -23,9 +33,9 @@
     <div class="product-card__content">
       <p class="product-card__price">
         {% if product_card_product.compare_at_price > product_card_product.price %}
-          <span class="old-price">{{ product_card_product.compare_at_price | money }}</span>
+          <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
         {% endif %}
-        {{ product_card_product.price | money }}
+        {{ product_card_product.price | money_without_trailing_zeros }}
       </p>
     </div>
   </div>
