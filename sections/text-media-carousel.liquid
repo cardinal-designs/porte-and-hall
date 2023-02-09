@@ -12,7 +12,10 @@
               {% elsif block.settings.image != blank %}
                 {% render 'lazy-image', image: block.settings.image, fade: true, fill: true %}
               {% endif %}
-              <div class="text-media-carousel__media-label body-xs">{{ block.settings.media_label }}</div>
+
+              {% if block.settings.media_label != blank %}
+                <div class="text-media-carousel__media-label body-xs">{{ block.settings.media_label }}</div>
+              {% endif %}
             </div>
           {% endfor %}
         </div>
@@ -27,15 +30,24 @@
           <div class="swiper-wrapper">
             {% for block in section.blocks %}
               <div class="swiper-slide" data-controlls="{{ forloop.index }}">
-                <h2 class="text-media__heading">{{ block.settings.heading }}</h2>
-                <p class="text-media__title">{{ block.settings.title }}</p>
+                {% if block.settings.heading != blank %}
+                  <h2 class="text-media__heading">{{ block.settings.heading }}</h2>
+                {% endif %}
 
-                <p class="text-media__quote handwriting">{{ block.settings.text }}</p>
+                {% if block.settings.text != blank %}
+                  <p class="text-media__title">{{ block.settings.title }}</p>
+                {% endif %}
 
-                <a href="{{ block.settings.link }}" class="text-link gold text-media__link">
-                  {{- block.settings.link_text -}}
-                  >
-                </a>
+                {% if block.settings.text != blank %}
+                  <p class="text-media__quote handwriting">{{ block.settings.text }}</p>
+                {% endif %}
+
+                {% if block.settings.link != blank and block.settings.link_text != blank %}
+                  <a href="{{ block.settings.link }}" class="text-link gold text-media__link">
+                    {{- block.settings.link_text -}}
+                    >
+                  </a>
+                {% endif %}
               </div>
             {% endfor %}
           </div>
