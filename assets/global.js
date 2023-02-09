@@ -739,8 +739,8 @@ var GlobalSection = class extends HTMLElement {
     super();
 
     this.parentEl = this.closest(".shopify-section")
-    this.section_id = this.getAttribute("[data-section-id]")
-    
+    this.section_id = this.getAttribute("data-section-id")
+
     fetch(`/?section_id=${ this.section_id}`)
       .then((response) => {
         if (response.status !== 200) {
@@ -752,6 +752,8 @@ var GlobalSection = class extends HTMLElement {
       .then((responseText) => {
         const responseHTML = new DOMParser().parseFromString(responseText, 'text/html');
         let globalElement = responseHTML.querySelector('.shopify-section');
+
+        console.log(globalElement)
         this.parentEl.innerHTML = globalElement.innerHTML;
       })
       .catch((err) => {
@@ -764,3 +766,44 @@ var GlobalSection = class extends HTMLElement {
 }
 
 customElements.define('global-section', GlobalSection)
+
+var UGCCarousel = class extends HTMLElement {
+  constructor(){
+    super();
+
+    this.section_id = `#${this.id}`
+    this.pagiantion = this.querySelector(".ugc-carousel__pagination")
+    if (!this.classList.contains("swiper-initialized")){
+      this.initializeCarousel();
+    }
+  }
+
+  initializeCarousel() {
+    const ugcSwiper = new Swiper(this, {
+      slidesPerView: 2.5,
+      centeredSlides: true,
+      spaceBetween: 10,
+      // loop: true,
+      pagination: {
+        el: this.pagination,
+        clickable: true,
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 5,
+          spaceBetween: 20,
+        },
+      },
+      on: {
+        init: function () {
+          console.log('swiper initialized');
+        },
+      },
+    });
+
+    ugcSwiper.destroy()
+    // ugcSwiper.init(this)
+  }
+}
+
+customElements.define('ugc-carousel', UGCCarousel)

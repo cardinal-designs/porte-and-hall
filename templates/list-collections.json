@@ -3,11 +3,36 @@
     "main": {
       "type": "main-list-collections",
       "settings": {
-        "image_ratio": "square"
+        "title": "Collections",
+        "sort": "alphabetical",
+        "image_ratio": "square",
+        "color_scheme": "background-1",
+        "image_padding": false
+      }
+    },
+    "1d266417-ee8a-4693-ab14-fe98eb203b0d": {
+      "type": "global-component",
+      "settings": {
+        "section_id": "template--14559877234751__d6a4e5b3-bc8d-47c2-be4d-b259ce228429"
+      }
+    },
+    "f8265a93-033d-4558-8ef0-eb0c54aac26e": {
+      "type": "global-component",
+      "settings": {
+        "section_id": "template--14559877234751__7337a49a-31a0-4e5d-9a53-968d18d1068e"
+      }
+    },
+    "79d72e2e-9762-498c-ad13-bb24ff2027f9": {
+      "type": "global-component",
+      "settings": {
+        "section_id": "template--14559877234751__401485ce-1e85-48de-9a73-3a8fb67a190f"
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "1d266417-ee8a-4693-ab14-fe98eb203b0d",
+    "f8265a93-033d-4558-8ef0-eb0c54aac26e",
+    "79d72e2e-9762-498c-ad13-bb24ff2027f9"
   ]
 }

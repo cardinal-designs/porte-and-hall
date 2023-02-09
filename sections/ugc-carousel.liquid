@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div class="ugc-carousel__container swiper">
+  <ugc-carousel class="ugc-carousel__container swiper" id="{{ section.id }}-ugc-carousel" init="false">
     <div class="swiper-pagination ugc-carousel__pagination"></div>
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
@@ -23,27 +23,8 @@
         </div>
       {% endfor %}
     </div>
-  </div>
+  </ugc-carousel>
 </section>
-
-{% javascript %}
-  const ugcSwiper = new Swiper('.ugc-carousel__container', {
-    slidesPerView: 2.5,
-    centeredSlides: true,
-    spaceBetween: 10,
-    loop: true,
-    pagination: {
-      el: '.ugc-carousel__pagination',
-      clickable: true,
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 'auto',
-        spaceBetween: 20,
-      },
-    },
-  });
-{% endjavascript %}
 
 {% schema %}
 {
