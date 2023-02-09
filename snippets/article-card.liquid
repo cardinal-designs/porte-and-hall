@@ -16,10 +16,10 @@
   </div>
   <div class="article-card__container">
     <p class="article-card__date body-xs blue">{{ article.published_at | time_tag: '%m.%d.%Y' }}</p>
-    <h3 class="article-card__title">{{ article.title }}</h3>
+    <h3 class="article-card__title blue">{{ article.title }}</h3>
 
-    <div class="body blue">{{ article.excerpt | default: article.content | truncatewords: 30 }}</div>
+    <div class="article-card__text body blue">{{ article.excerpt | default: article.content | truncatewords: 30 }}</div>
 
-    <a href="{{ article.url }}" class="text-link gold">Read More ></a>
+    <a href="{{ article.url }}" class="text-link gold article-card__link">Read More ></a>
   </div>
 </div>
