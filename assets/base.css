@@ -243,7 +243,7 @@ h2,
 @media only screen and (max-width: 768px) {
   h2,
   .h2 {
-    font-size: 32px;
+    font-size: 24px;
   }
 }
 
@@ -258,7 +258,7 @@ h3,
 @media only screen and (max-width: 768px) {
   h3,
   .h3 {
-    font-size: 26px;
+    font-size: 14px;
   }
 }
 
@@ -311,6 +311,19 @@ h6,
   color: var(--gold);
 }
 
+@media screen and (max-width: 768px) {
+  .heading-with-accents {
+    column-gap: 0;
+    grid-template-columns: 1fr 2fr 1fr;
+    margin: 0 0 20px;
+    width: 100%;
+  }
+  .heading-with-accents .h2 {
+    display: inline;
+    padding-bottom: 10px;
+  }
+}
+
 p {
   font-size: inherit;
   line-height: inherit;
@@ -326,7 +339,6 @@ p {
 }
 
 @media only screen and (max-width: 768px) {
-  p,
   .p,
   .body {
     font-size: 14px;
@@ -1637,6 +1649,12 @@ header.condensed .header__menu {
   margin: 100px 0;
 }
 
+@media screen and (max-width: 768px) {
+  .shopify-section.with-spacing {
+    margin: 50px 0;
+  }
+}
+
 .divider {
   width: 100%;
   display: flex;
@@ -1653,6 +1671,13 @@ header.condensed .header__menu {
 }
 
 .divider svg {}
+
+@media screen and (max-width: 768px) {
+  .divider:not(.header-divider) {
+    margin-top: 30px;
+    width: calc( 100% - 30px);
+  }
+}
 
 
 /*================ Badge ================*/

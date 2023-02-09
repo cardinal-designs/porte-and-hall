@@ -88,3 +88,37 @@
  .meet-founder__icon-label {
   padding: 0 20px;
  }
+
+ @media screen and (max-width: 768px) {
+
+  .meet-founder__inner {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+  }
+
+  .meet-founder__content-wrapper {
+    padding: 50px 0;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .meet-founder .signature-svg {
+    width: 100px;
+    height: auto;
+    margin: auto;
+  }
+
+  .meet-founder .signature-svg svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .meet-founder__heading {
+    padding: 0 20px;
+  }
+ }

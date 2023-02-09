@@ -40,6 +40,23 @@
 
 @media screen and (max-width: 768px) {
   .hero {
-    height: 550px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /* height: 550px; */
+  }
+
+  .hero__container {
+    padding: 20px;
+  }
+
+  .hero__media {
+    aspect-ratio: 1.25/1;
+    width: 100%;
+  }
+
+  .hero__element {
+    width: 60px;
   }
 }

@@ -35,3 +35,17 @@
 .image-links__block-link {
   color: var(--gold-secondary);
 }
+
+@media screen and (max-width: 768px) {
+  .image-links__heading {
+    display: block;
+  }
+
+  .image-links__blocks {
+    display: block;
+  }
+
+  .image-links__block-wrapper:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+}

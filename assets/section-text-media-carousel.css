@@ -29,6 +29,10 @@
   padding-bottom: 45px;
 }
 
+.text-media-carousel__text .swiper-slide > * {
+  margin-bottom: 30px;
+}
+
 .text-media-carousel__content-wrapper {
   background: var(--blue);
   padding: 20px;
@@ -48,4 +52,31 @@
 .text-media__quote {
   font-size: 32px;
   line-height: 120%;
+}
+
+@media screen and (max-width: 768px) {
+  .text-media-carousel__inner {
+    display: block;
+  }
+
+  .text-media__heading {
+    margin-bottom: 20px;
+  }
+
+  .text-media-carousel__content-inner {
+    padding: 35px 20px;
+  }
+
+  .text-media__quote {
+    font-size: 22px;
+    line-height: 120%;
+  }
+
+  .text-media-carousel__text .swiper-wrapper {
+    padding-bottom: 65px;
+  }
+
+  .text-media-carousel__image {
+    aspect-ratio: 1.25/1;
+  }
 }

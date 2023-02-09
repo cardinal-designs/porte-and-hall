@@ -4,15 +4,15 @@
 <section class="featured-articles">
   <div class="featured-articles__inner page-width">
     <div class="featured-articles__heading heading-with-accents">
-      <span class="divider">
+      <span class="divider header-divider">
         {%- render 'divider' %}
         <span class="divider-line"></span>
       </span>
       <h2 class="blue">{{ section.settings.heading }}</h2>
-      <span class="divider"> <span class="divider-line"></span> {% render 'divider' %} </span>
+      <span class="divider header-divider"> <span class="divider-line"></span> {% render 'divider' %} </span>
     </div>
 
-    <div class="featured-articles__article-cards">
+    <div class="featured-articles__article-cards no-scrollbar">
       {% for block in section.blocks %}
         <div class="blog-articles__article">
           {% render 'article-card', article: block.settings.article %}

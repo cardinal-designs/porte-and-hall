@@ -97,3 +97,28 @@
  .fan-motif__icon-label {
   padding: 0 20px;
  }
+
+ @media screen and (max-width: 768px){
+  .fan-motif__inner {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    text-align: center;
+    padding: 35px 20px;
+  }
+
+  .fan-motif__inner .fan-motif__content-wrapper {
+    text-align: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .fan-motif__text {
+    margin-bottom: 20px;
+  }
+
+  .fan-motif__blocks {
+    flex-direction: column;
+  }
+ }

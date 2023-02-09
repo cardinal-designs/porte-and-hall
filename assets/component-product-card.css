@@ -108,12 +108,19 @@
   }
 
   .product-card__title {
-    margin: 0 0 5px;
-    line-height: 1.5;
+    margin-top: 20px;
   }
 
-  .product-card__content {
-    height: auto;
-    display: block;
+  .product-card__price {
+    margin-top: 20px;
+  }
+
+  .product-card__swatch {
+    width: 16px;
+    height: 16px;
+  }
+
+  .product-card__link {
+    margin-top: 20px;
   }
 }

@@ -11,7 +11,7 @@
   padding-top: 65px;
 }
 
-.ugc-carousel__pagination {
+.ugc-carousel__pagination.swiper-pagination {
   top: 0;
   bottom: unset;
 }
@@ -22,7 +22,7 @@
 
 .ugc-carousel__item {
   aspect-ratio: 1/1;
-  width: 400px;
+  max-width: 400px;
 }
 
 .ugc-carousel__item img {
@@ -30,4 +30,16 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .ugc-carousel .heading-with-accents {
+    margin-bottom: 20px; 
+  }
+
+  .ugc-carousel__container .swiper-wrapper {
+    padding-bottom: 0;
+    padding-top: 55px;
+  }
+
 }
