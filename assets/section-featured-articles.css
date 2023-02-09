@@ -10,7 +10,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(auto, 1fr));
   column-gap: 20px;
-  overflow-x: scroll'
+  overflow-x: scroll;
 }
 
 @media screen and (max-width: 768px) {
