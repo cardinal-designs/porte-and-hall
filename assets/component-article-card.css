@@ -31,3 +31,14 @@
   margin-top: 23px;
   display: block;
 }
+
+@media screen and (max-width: 768px) {
+
+  .article-card__text {
+    margin-top: 10px;
+  }
+
+  .article-card__link {
+    margin-top: 20px;
+  }
+}
