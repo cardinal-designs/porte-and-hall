@@ -1,0 +1,29 @@
+<global-section class="global-component" data-section-id="{{ section.id }}"></global-section>
+
+{% schema %}
+{
+  "name": "Global Section",
+  "class": "hidden",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Select a section from the homepage to use"
+    },
+    {
+      "type": "paragraph",
+      "content": "To edit global section content, make changes on the homepage"
+    },
+    {
+      "type": "textarea",
+      "id": "section_id",
+      "label": "Section",
+      "info": "Get the section ID from the homepage"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Global Section"
+    }
+  ]
+}
+{% endschema %}

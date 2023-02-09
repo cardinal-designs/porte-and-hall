@@ -1,6 +1,7 @@
 {{ 'section-logo-marquee.css' | asset_url | stylesheet_tag }}
 
 <section
+  data-section-id="{{ section.id }}"
   class="logo-marquee{% if section.settings.background_color == 'rgba(0,0,0,0)' %} no-bg{% endif %}"
   style="background-color: {{ section.settings.background_color }}"
 >
