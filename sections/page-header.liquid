@@ -2,10 +2,10 @@
 
 <div class="page-header">
   {% if section.settings.mobile_image != blank %}
-    {% render 'lazy-image' image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile' %}
-    {% render 'lazy-image' image: section.settings.mobile_image, fade: true, fill: true, classes: 'hide-desktop' %}
+    {% render 'lazy-image', image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile' %}
+    {% render 'lazy-image', image: section.settings.mobile_image, fade: true, fill: true, classes: 'hide-desktop' %}
   {% elsif section.settings.image != blank %}
-    {% render 'lazy-image' image: section.settings.image, fade: true, fill: true %}
+    {% render 'lazy-image', image: section.settings.image, fade: true, fill: true %}
   {% endif %}
   <div class="page-width">
     <div class="page-header__container">
@@ -19,29 +19,29 @@
 </div>
 
 {% schema %}
-  {
-    "name": "Page Header",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "image",
-        "label": "Image"
-      },
-      {
-        "type": "image_picker",
-        "id": "mobile_image",
-        "label": "Mobile Image"
-      },
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Title"
-      }
-    ],
-    "presets": [
-      {
-        "name": "Page Header"
-      }
-    ]
-  }
+{
+  "name": "Page Image Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page Image Header"
+    }
+  ]
+}
 {% endschema %}

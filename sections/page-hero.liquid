@@ -1,0 +1,59 @@
+{{ 'section-page-hero.css' | asset_url | stylesheet_tag }}
+<div class="page-hero__inner">
+  <div class="page-width">
+    <h1 class="page-hero__heading blue">{{ section.settings.heading }}</h1>
+
+    {% if section.blocks != blank %}
+      <div class="page-hero__blocks">
+        {% for block in section.blocks %}
+          <div class="page-hero__icon-wrapper">
+            <div class="page-hero__icon-image">
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | image_url: width: 172 | image_tag: width: 86 }}
+              {% endif %}
+            </div>
+            <h3 class="page-hero__icon-label blue">{{ block.settings.title }}</h3>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page Hero",
+  "class": "page-hero",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "name": "Icon",
+      "type": "icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page Hero"
+    }
+  ]
+}
+{% endschema %}
