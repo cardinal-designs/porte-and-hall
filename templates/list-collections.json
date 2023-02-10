@@ -42,20 +42,12 @@
     },
     "main": {
       "type": "main-list-collections",
-      "settings": {
-        "title": "Collections",
-        "sort": "alphabetical",
-        "image_ratio": "square",
-        "color_scheme": "background-1",
-        "image_padding": false
-      },
       "blocks": {
         "47c21a09-3d3c-4a25-9983-f939eb95b743": {
           "type": "collection",
           "settings": {
             "collection": "the-innerweave-doormat",
             "title": "",
-            "grid_items_count": 8,
             "button_text": "Shop now"
           }
         },
@@ -64,7 +56,6 @@
           "settings": {
             "collection": "the-insider-doormat",
             "title": "",
-            "grid_items_count": 8,
             "button_text": "Shop now"
           }
         },
@@ -73,7 +64,6 @@
           "settings": {
             "collection": "the-outsider-doormat",
             "title": "",
-            "grid_items_count": 8,
             "button_text": "Shop now"
           }
         },
@@ -82,7 +72,6 @@
           "settings": {
             "collection": "the-innerweave-runner",
             "title": "",
-            "grid_items_count": 8,
             "button_text": "Shop now"
           }
         },
@@ -91,7 +80,6 @@
           "settings": {
             "collection": "the-insider-runner",
             "title": "",
-            "grid_items_count": 8,
             "button_text": "Shop now"
           }
         },
@@ -100,7 +88,6 @@
           "settings": {
             "collection": "the-innerweave-area-mat",
             "title": "",
-            "grid_items_count": 8,
             "button_text": "Shop now"
           }
         },
@@ -109,7 +96,6 @@
           "settings": {
             "collection": "the-insider-area-mat",
             "title": "",
-            "grid_items_count": 8,
             "button_text": "Shop now"
           }
         }
@@ -122,7 +108,9 @@
         "1991b75a-bf16-4c3f-bdeb-f4b25c7a1761",
         "ec5562a6-1c33-4c7f-b245-7ae06ea67878",
         "4fb3b30d-b223-4069-9290-3c208d01b1b6"
-      ]
+      ],
+      "settings": {
+      }
     },
     "f8265a93-033d-4558-8ef0-eb0c54aac26e": {
       "type": "global-component",
