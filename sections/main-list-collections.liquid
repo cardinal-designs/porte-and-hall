@@ -14,10 +14,10 @@
         Tags: {{ collection.all_tags | size }}
         <br>
         Filters: {{ collection.filters | size }}
-        {% for filter in collection.filters %}
+        {%- for filter in collection.filters -%}
           {{ filter.type }} | {{ filter.values }}
           <br>
-        {% endfor %}
+        {%- endfor -%}
         <br>
         <hr>
         </form>
