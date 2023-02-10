@@ -7,7 +7,7 @@
       {% for block in section.blocks %}
         {%- assign collection1 = block.settings.collection -%}
         {%  assign collection = collections[collection1] %}
-        {{ collection | json }}
+        {{ collection.url }}
         {{ collection.title }}
         <br>
         Types: {{ collection.all_types }}
