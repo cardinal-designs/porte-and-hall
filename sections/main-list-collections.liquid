@@ -30,6 +30,7 @@
 
 <form class="filter-form">
   {%- assign collection = block.settings.collection -%}
+  ff{{ collection }}
   {%- for filter in collection.filters -%}
     <details class="filter-group">
       <summary class="filter-group-summary">
