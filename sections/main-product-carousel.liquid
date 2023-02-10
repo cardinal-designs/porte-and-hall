@@ -17,7 +17,9 @@
           <div class="product-carousel__item swiper-slide">
             {% render 'grouped-product-card',
               product_card_product: collection.products[0],
-              collection: collections[block.settings.collection]
+              collection: collections[block.settings.collection],
+              title: block.settings.title,
+              button_text: block.settings.button_text
             %}
           </div>
         {% endfor %}
@@ -73,19 +75,10 @@
           "info": "If none is set, collection title is used."
         },
         {
-          "type": "range",
-          "id": "grid_items_count",
-          "min": 2,
-          "max": 50,
-          "step": 1,
-          "label": "Products to show",
-          "default": 8
-        },
-        {
           "type": "text",
           "id": "button_text",
           "label": "Button text",
-          "default": "View all products"
+          "default": "Shop Now"
         }
       ]
     }

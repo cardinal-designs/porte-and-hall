@@ -752,9 +752,7 @@ var GlobalSection = class extends HTMLElement {
       .then((responseText) => {
         const responseHTML = new DOMParser().parseFromString(responseText, 'text/html');
         let globalElement = responseHTML.querySelector('.shopify-section');
-
-        console.log(globalElement)
-        this.parentEl.innerHTML = globalElement.innerHTML;
+        this.parentEl.outerHTML = globalElement.outerHTML;
       })
       .catch((err) => {
         console.log(err);

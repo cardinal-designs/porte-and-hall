@@ -70,7 +70,7 @@
     </div>
     <div class="product-card__container">
       <h3 class="product-card__title blue">
-        {{ collection.title | replace: ' | ', '<br>' }}
+        {{ title | default: collection.title | replace: ' | ', '<br>' }}
         {%- if collection.title == 'The Outsider' -%}
           <br>
           Doormat
@@ -95,8 +95,8 @@
           <div class="product-card__description body blue">{{ collection.metafields.custom.short_description }}</div>
         {% endif %}
 
-        <a href="{{ product_card_product.url }}" class="text-link gold-secondary--dark product-card__link"
-          >Shop Now ></a
+        <a href="{{ product_card_product.url }}" class="text-link gold-secondary--dark product-card__link">
+          {{- button_text }} ></a
         >
       </div>
     </div>

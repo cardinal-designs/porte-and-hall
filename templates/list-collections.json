@@ -1,5 +1,45 @@
 {
   "sections": {
+    "bbe3413a-bf2a-4b4b-b774-0f6068ca5851": {
+      "type": "page-hero",
+      "blocks": {
+        "2b0d0088-6c3d-48fc-aebe-ea6130c622e7": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Outsider-Scrape_1.gif",
+            "title": "STAIN-RESISTANT"
+          }
+        },
+        "f9f45ca9-6345-4f5f-89d5-56aebb2a5189": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Outsider-Removable_aad5ef63-5b85-44d2-b720-2ffb6443308c.gif",
+            "title": "SLIP-RESISTANT"
+          }
+        },
+        "711cf30f-2298-4b22-8226-af3f38d9b8dd": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Homepage-Quality.gif",
+            "title": "HIGH-QUALITY"
+          }
+        }
+      },
+      "block_order": [
+        "2b0d0088-6c3d-48fc-aebe-ea6130c622e7",
+        "f9f45ca9-6345-4f5f-89d5-56aebb2a5189",
+        "711cf30f-2298-4b22-8226-af3f38d9b8dd"
+      ],
+      "settings": {
+        "heading": "Our mats are designed for heavy-duty use, without the bulky look & feel."
+      }
+    },
+    "1d266417-ee8a-4693-ab14-fe98eb203b0d": {
+      "type": "global-component",
+      "settings": {
+        "section_id": "template--14559877234751__d6a4e5b3-bc8d-47c2-be4d-b259ce228429"
+      }
+    },
     "main": {
       "type": "main-list-collections",
       "settings": {
@@ -8,13 +48,81 @@
         "image_ratio": "square",
         "color_scheme": "background-1",
         "image_padding": false
-      }
-    },
-    "1d266417-ee8a-4693-ab14-fe98eb203b0d": {
-      "type": "global-component",
-      "settings": {
-        "section_id": "template--14559877234751__d6a4e5b3-bc8d-47c2-be4d-b259ce228429"
-      }
+      },
+      "blocks": {
+        "47c21a09-3d3c-4a25-9983-f939eb95b743": {
+          "type": "collection",
+          "settings": {
+            "collection": "the-innerweave-doormat",
+            "title": "",
+            "grid_items_count": 8,
+            "button_text": "Shop now"
+          }
+        },
+        "9a85f052-f42b-4c01-a0b1-f3e1eab885dd": {
+          "type": "collection",
+          "settings": {
+            "collection": "the-insider-doormat",
+            "title": "",
+            "grid_items_count": 8,
+            "button_text": "Shop now"
+          }
+        },
+        "3e40d22f-4bb8-4312-a0b0-39da0e026121": {
+          "type": "collection",
+          "settings": {
+            "collection": "the-outsider-doormat",
+            "title": "",
+            "grid_items_count": 8,
+            "button_text": "Shop now"
+          }
+        },
+        "82dbb134-ceef-446c-bc41-66f34d7c534c": {
+          "type": "collection",
+          "settings": {
+            "collection": "the-innerweave-runner",
+            "title": "",
+            "grid_items_count": 8,
+            "button_text": "Shop now"
+          }
+        },
+        "1991b75a-bf16-4c3f-bdeb-f4b25c7a1761": {
+          "type": "collection",
+          "settings": {
+            "collection": "the-insider-runner",
+            "title": "",
+            "grid_items_count": 8,
+            "button_text": "Shop now"
+          }
+        },
+        "ec5562a6-1c33-4c7f-b245-7ae06ea67878": {
+          "type": "collection",
+          "settings": {
+            "collection": "the-innerweave-area-mat",
+            "title": "",
+            "grid_items_count": 8,
+            "button_text": "Shop now"
+          }
+        },
+        "4fb3b30d-b223-4069-9290-3c208d01b1b6": {
+          "type": "collection",
+          "settings": {
+            "collection": "the-insider-area-mat",
+            "title": "",
+            "grid_items_count": 8,
+            "button_text": "Shop now"
+          }
+        }
+      },
+      "block_order": [
+        "47c21a09-3d3c-4a25-9983-f939eb95b743",
+        "9a85f052-f42b-4c01-a0b1-f3e1eab885dd",
+        "3e40d22f-4bb8-4312-a0b0-39da0e026121",
+        "82dbb134-ceef-446c-bc41-66f34d7c534c",
+        "1991b75a-bf16-4c3f-bdeb-f4b25c7a1761",
+        "ec5562a6-1c33-4c7f-b245-7ae06ea67878",
+        "4fb3b30d-b223-4069-9290-3c208d01b1b6"
+      ]
     },
     "f8265a93-033d-4558-8ef0-eb0c54aac26e": {
       "type": "global-component",
@@ -30,8 +138,9 @@
     }
   },
   "order": [
-    "main",
+    "bbe3413a-bf2a-4b4b-b774-0f6068ca5851",
     "1d266417-ee8a-4693-ab14-fe98eb203b0d",
+    "main",
     "f8265a93-033d-4558-8ef0-eb0c54aac26e",
     "79d72e2e-9762-498c-ad13-bb24ff2027f9"
   ]
