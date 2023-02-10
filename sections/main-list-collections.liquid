@@ -5,8 +5,8 @@
   <div class="shop-all__inner">
     <div class="shop-all__filters">
       {% for block in section.blocks %}
-        {%- assign collection = block.settings.collection -%}
-        {{ collection[collection] | json }}
+        {%- assign collection1 = block.settings.collection -%}
+        {{ collection[collection1] | json }}
         {{ collection.title }}
         <br>
         Types: {{ collection.all_types }}
