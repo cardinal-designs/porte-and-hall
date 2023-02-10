@@ -4,7 +4,6 @@
 <div class="page-width">
   <div class="shop-all__inner">
     <div class="shop-all__filters">
-      <form class="filter-form">
       {% for block in section.blocks %}
         {%- assign collection = block.settings.collection -%}
         {{ collection.title }}
@@ -21,7 +20,6 @@
         <br>
         <hr>
       {% endfor %}
-      </form>
     </div>
     <div class="shop-all__products">
       {% for block in section.blocks %}
