@@ -5,7 +5,6 @@
   <div class="shop-all__inner">
     <div class="shop-all__filters">
       {% for block in section.blocks %}
-        <form class="filter-form">
         {%- assign collection = block.settings.collection -%}
         {{ collection.title }}
         <br>
@@ -20,7 +19,6 @@
         {%- endfor -%}
         <br>
         <hr>
-        </form>
       {% endfor %}
      
 
