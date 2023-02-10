@@ -771,19 +771,13 @@ var UGCCarousel = class extends HTMLElement {
   constructor(){
     super();
 
-    this.section_id = `#${this.id}`
-    this.pagiantion = this.querySelector(".ugc-carousel__pagination")
-    if (!this.classList.contains("swiper-initialized")){
-      this.initializeCarousel();
-    }
-  }
-
-  initializeCarousel() {
-    const ugcSwiper = new Swiper(this, {
+    this.section_id = this.querySelector(`.swiper`).id
+    this.pagination = this.querySelector(`.ugc-carousel__pagination`)
+    const swiper_options = {
       slidesPerView: 2.5,
       centeredSlides: true,
       spaceBetween: 10,
-      // loop: true,
+      loop: true,
       pagination: {
         el: this.pagination,
         clickable: true,
@@ -799,11 +793,52 @@ var UGCCarousel = class extends HTMLElement {
           console.log('swiper initialized');
         },
       },
-    });
+    }
 
-    ugcSwiper.destroy()
-    // ugcSwiper.init(this)
+    if (!this.classList.contains("swiper-initialized")){
+      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+    }
+  }
+
+  initializeCarousel(swipe, options) {
+    const ugcSwiper = new Swiper(swipe, options);
   }
 }
 
 customElements.define('ugc-carousel', UGCCarousel)
+
+var ProductCarousel = class extends HTMLElement {
+  constructor(){
+    super();
+
+    this.section_id = this.querySelector(`.swiper`).id
+    this.pagination = this.querySelector(`.swiper-pagination`)
+    const swiper_options = {
+      slidesPerView: 2.25,
+      centeredSlides: false,
+      spaceBetween: 20,
+      draggable: true,
+      loop: true,
+      pagination: {
+        el: this.pagination,
+        clickable: true,
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 'auto',
+          centeredSlides: true,
+        },
+      },
+    }
+
+    if (!this.classList.contains("swiper-initialized")){
+      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+    }
+  }
+
+  initializeCarousel(swipe, options) {
+    const productSwiper = new Swiper(swipe, options);
+  }
+}
+
+customElements.define('product-carousel', ProductCarousel)

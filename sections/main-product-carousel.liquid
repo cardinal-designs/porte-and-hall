@@ -8,41 +8,23 @@
     <h2 class="blue">{{ section.settings.heading }}</h2>
   </div>
 
-  <div class="product-carousel__container swiper">
-    <div class="swiper-pagination product-carousel__pagination"></div>
-    <div class="swiper-wrapper">
-      {% for block in section.blocks %}
-        {%- assign collection = collections[block.settings.collection] -%}
-        <div class="product-carousel__item swiper-slide">
-          {% render 'grouped-product-card',
-            product_card_product: collection.products[0],
-            collection: collections[block.settings.collection]
-          %}
-        </div>
-      {% endfor %}
+  <product-carousel>
+    <div class="product-carousel__container swiper">
+      <div class="swiper-pagination product-carousel__pagination"></div>
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {%- assign collection = collections[block.settings.collection] -%}
+          <div class="product-carousel__item swiper-slide">
+            {% render 'grouped-product-card',
+              product_card_product: collection.products[0],
+              collection: collections[block.settings.collection]
+            %}
+          </div>
+        {% endfor %}
+      </div>
     </div>
-  </div>
+  </product-carousel>
 </section>
-
-{% javascript %}
-  const productSwiper = new Swiper('.product-carousel__container', {
-    slidesPerView: 2.25,
-    centeredSlides: false,
-    spaceBetween: 20,
-    draggable: true,
-    loop: true,
-    pagination: {
-      el: '.product-carousel__pagination',
-      clickable: true,
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 'auto',
-        centeredSlides: true,
-      },
-    },
-  });
-{% endjavascript %}
 
 {% schema %}
 {

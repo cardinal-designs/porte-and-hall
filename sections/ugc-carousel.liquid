@@ -12,16 +12,18 @@
     </div>
   </div>
 
-  <ugc-carousel class="ugc-carousel__container swiper" id="{{ section.id }}-ugc-carousel" init="false">
-    <div class="swiper-pagination ugc-carousel__pagination"></div>
-    <div class="swiper-wrapper">
-      {% for block in section.blocks %}
-        <div class="swiper-slide">
-          <div class="ugc-carousel__item">
-            {{ block.settings.image | image_url: width: 400 | image_tag }}
+  <ugc-carousel>
+    <div class="ugc-carousel__container swiper" id="{{ section.id }}-ugc-carousel">
+      <div class="swiper-pagination ugc-carousel__pagination"></div>
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide">
+            <div class="ugc-carousel__item">
+              {{ block.settings.image | image_url: width: 400 | image_tag }}
+            </div>
           </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      </div>
     </div>
   </ugc-carousel>
 </section>
