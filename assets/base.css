@@ -1941,6 +1941,21 @@ header.condensed .header__menu {
   margin-bottom: 10px;
 }
 
+.rte h1,
+.rte h2  {
+  margin-bottom: 30px;
+}
+
+.rte h3 {
+  margin-bottom: 20px;
+}
+
+.rte h4,
+.rte h5,
+.rte h6 {
+  margin-bottom: 10px;
+}
+
 @media screen and (max-width: 1024px) {
 
   .shopify-policy__body {
