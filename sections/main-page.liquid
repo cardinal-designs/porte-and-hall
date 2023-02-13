@@ -4,17 +4,19 @@
 <noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 
-<div class="Page_Header" style="background-image:url({{ section.settings.image | img_url : 'original' }});text-align:{{ section.settings.alignment }};">
-  <div class="Page_Header_Inner" style="background-color:url({{ section.settings.bg_color }})">
-    <h1 class="main-page-title page-title h0">
-      {{ page.title | escape }}
-    </h1>
+<div class="Page_Wrapper" id="{{ section.id }}">
+  <div class="Page_Header" style="background-image:url({{ section.settings.image | img_url : 'original' }});text-align:{{ section.settings.alignment }};">
+    <div class="Page_Header_Inner" style="background-color:url({{ section.settings.bg_color }})">
+      <h1 class="main-page-title page-title h0">
+        {{ page.title | escape }}
+      </h1>
+    </div>
   </div>
-</div>
-
-<div class="page-width page-width--narrow Page_Rte">
-  <div class="rte">
-    {{ page.content }}
+  
+  <div class="page-width page-width--narrow Page_Rte">
+    <div class="rte">
+      {{ page.content }}
+    </div>
   </div>
 </div>
 
@@ -27,6 +29,35 @@
     {
       "type": "header",
       "content": "Layout"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "section_height",
+      "label": "Section Height",
+      "options": [
+        {
+          "label": "210",
+          "value": "210"
+        },
+        {
+          "label": "310",
+          "value": "310"
+        },
+        {
+          "label": "410",
+          "value": "410"
+        },
+        {
+          "label": "510",
+          "value": "510"
+        }
+      ],
+      "default": "310"
     },
     {
       "type": "select",
@@ -47,11 +78,6 @@
         }
       ],
       "default": "center"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Background Image"
     },
     {
       "type": "color",
