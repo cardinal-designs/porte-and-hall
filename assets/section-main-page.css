@@ -69,3 +69,11 @@
 .template-page .header__menu {
   display: none;
 }
+
+@media screen and (max-width: 767px) {
+
+  .page-width.page-width--narrow.Page_Rte {
+    padding: 40px 20px 0;
+  }
+
+}
