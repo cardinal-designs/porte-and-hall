@@ -1958,6 +1958,10 @@ header.condensed .header__menu {
   margin-bottom: 10px;
 }
 
+.Legal_Pages .header__menu {
+  display:none;
+}
+
 @media screen and (max-width: 1024px) {
 
   .shopify-policy__body {
