@@ -1918,8 +1918,14 @@ header.condensed .header__menu {
   background-repeat: no-repeat;
   background-size: cover;
   height: 350px;
+  background-image: url(//cdn.shopify.com/s/files/1/0084/8602/7327/files/Rectangle_600_1024x1024.jpg?v=1676271652);
+}
+
+.shopify-policy__title h1 {
+  height: 100%;
+  width: 100%;
+  background-color: #F4F2EE;
   align-items: center;
   display: flex;
   justify-content: center;
-  background-image: url(//cdn.shopify.com/s/files/1/0084/8602/7327/files/Rectangle_600_1024x1024.jpg?v=1676271652);
 }
