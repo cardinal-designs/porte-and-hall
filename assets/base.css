@@ -1945,7 +1945,7 @@ header.condensed .header__menu {
 @media screen and (max-width: 1024px) {
 
   .shopify-policy__body {
-    padding: 70px 40px 0;
+    padding: 50px 40px 50px;
   }
   
 }
@@ -1953,7 +1953,7 @@ header.condensed .header__menu {
 @media screen and (max-width: 767px) {
 
   .shopify-policy__body {
-    padding: 40px 20px 0;
+    padding: 40px 20px;
   }
 
   .rte ul {
