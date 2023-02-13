@@ -1940,3 +1940,24 @@ header.condensed .header__menu {
 .shopify-policy__body p {
   margin-bottom: 10px;
 }
+
+
+@media screen and (max-width: 1024px) {
+
+  .page-width--narrow.Page_Rte {
+    padding: 70px 40px 0;
+  }
+  
+}
+
+@media screen and (max-width: 767px) {
+
+  .page-width--narrow.Page_Rte {
+    padding: 40px 20px 0;
+  }
+
+  .rte ul {
+    padding-left: 1rem;
+  }
+
+}
