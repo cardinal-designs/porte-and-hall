@@ -6,7 +6,7 @@
 
 <div class="Page_Wrapper" id="{{ section.id }}">
   <div class="Page_Header" style="background-image:url({{ section.settings.image | img_url : 'original' }});text-align:{{ section.settings.alignment }};">
-    <div class="Page_Header_Inner" style="background-color:url({{ section.settings.bg_color }})">
+    <div class="Page_Header_Inner" style="background-color:{{ section.settings.bg_color }}">
       <h1 class="main-page-title page-title h0">
         {{ page.title | escape }}
       </h1>
