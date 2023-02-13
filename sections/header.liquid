@@ -2,7 +2,7 @@
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
 
 <header class="header">
-  <div class="header--{{ section.settings.logo_position }} header--inner page-width">
+  <div class="header--{{ section.settings.logo_position }} header--inner ">
     <!-- Logo -->
     <div class="header__logo">
       <a href="{{ routes.root_url }}" class="header__logo-link">
@@ -140,7 +140,7 @@
   <div class="header__navigation">
     <!-- Navigation -->
     {% if section.settings.menu != blank %}
-      <nav class="header__menu page-width">
+      <nav class="header__menu">
         <ul class="header__menu-list" role="list">
           {% for link in section.settings.menu.links %}
             {% assign downcased_link_title = link.title | downcase | strip %}

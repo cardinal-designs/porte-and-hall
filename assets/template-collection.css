@@ -15,3 +15,10 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+.collection-grid-section {
+  display: grid;
+  grid-template-columns: minmax(0, 276px) minmax(auto, 1fr);
+  column-gap: 40.5px;
+  grid-template-areas: 'filters grid'
+}

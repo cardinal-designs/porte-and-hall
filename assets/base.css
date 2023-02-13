@@ -1024,6 +1024,8 @@ deferred-media {
 .header__menu {
   padding-top: 15px;
   padding-bottom: 20px;
+  max-width: 1440px;
+  margin: auto;
 }
 
 .header__menu-list {
@@ -1035,7 +1037,7 @@ deferred-media {
 }
 
 .header__menu-item {
-  padding: 0 15px;
+  padding: 0 5px;
   font-size: 14px;
   line-height: 16.8px;
   letter-spacing: 2px;
