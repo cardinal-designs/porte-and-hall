@@ -40,7 +40,7 @@
   margin:0 0 10px;
 }
 
-.page-width.page-width--narrow.Page_Rte {
+.page-width--narrow.Page_Rte {
   padding: 70px 95px 0;
 }
 
@@ -70,9 +70,17 @@
   display: none;
 }
 
+@media screen and (max-width: 1024px) {
+
+  .page-width--narrow.Page_Rte {
+    padding: 70px 40px 0;
+  }
+  
+}
+
 @media screen and (max-width: 767px) {
 
-  .page-width.page-width--narrow.Page_Rte {
+  .page-width--narrow.Page_Rte {
     padding: 40px 20px 0;
   }
 
