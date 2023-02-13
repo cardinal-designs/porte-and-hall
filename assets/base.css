@@ -1036,6 +1036,10 @@ deferred-media {
   list-style: none;
 }
 
+.header__menu-list > li {
+  position: relative;
+}
+
 .header__menu-item {
   padding: 0 5px;
   font-size: 14px;
@@ -1066,7 +1070,7 @@ deferred-media {
   padding: 30px;
   position: absolute;
   top: 100%;
-  right: 5px;
+  /* right: 5px; */
   list-style: none;
   background: var(--blue);
   transform: translateX(-50%);

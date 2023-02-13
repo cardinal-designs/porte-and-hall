@@ -3,7 +3,12 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
 
-<link rel="preload" href="{{ 'component-rte.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link
+  rel="preload"
+  href="{{ 'component-rte.css' | asset_url }}"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+>
 
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 
@@ -12,7 +17,12 @@
   <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
 
   <div class="page-width" id="main-collection-filters" data-id="{{ section.id }}">
-    {% render 'facets', results: collection, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting, collapse_on_larger_devices: section.settings.collapse_on_larger_devices %}
+    {% render 'facets',
+      results: collection,
+      enable_filtering: section.settings.enable_filtering,
+      enable_sorting: section.settings.enable_sorting,
+      collapse_on_larger_devices: section.settings.collapse_on_larger_devices
+    %}
   </div>
 {% endif %}
 
@@ -23,8 +33,12 @@
         <div class="loading-overlay gradient"></div>
         <div class="title-wrapper center">
           <h2 class="title title--primary">
-            {{ 'sections.collection_template.empty' | t }}<br>
-            {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "underlined-link link" }}
+            {{ 'sections.collection_template.empty' | t -}}
+            <br>
+            {{
+              'sections.collection_template.use_fewer_filters_html'
+              | t: link: collection.url, class: 'underlined-link link'
+            }}
           </h2>
         </div>
       </div>
@@ -35,7 +49,7 @@
         <ul id="product-grid" data-id="{{ section.id }}" class="product-grid list-unstyled">
           {% for product in collection.products %}
             <li class="product-grid__item">
-              {% render 'product-card' product_card_product: product %}
+              {% render 'product-card', product_card_product: product %}
             </li>
           {% endfor %}
         </ul>
@@ -51,7 +65,7 @@
 {% schema %}
 {
   "name": "t:sections.main-collection-product-grid.name",
-  "class": "spaced-section collection-grid-section",
+  "class": "spaced-section collection-grid-section with-spacing",
   "settings": [
     {
       "type": "range",
