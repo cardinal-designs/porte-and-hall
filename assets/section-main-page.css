@@ -22,10 +22,16 @@
   height: 52.5rem;
 }
 
-.Page_Rte h1 {
+.Page_Rte h1,
+.Page_Rte h2  {
   margin-bottom: 30px;
 }
 
-.Page_Rte h2 {
-  margin-bottom: 30px;
+.Page_Rte h3 {
+  margin-bottom: 20px;
+}
+
+.Page_Rte h4,
+.Page_Rte h5  {
+  margin-bottom: 10px;
 }
