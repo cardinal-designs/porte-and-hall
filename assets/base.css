@@ -1912,3 +1912,13 @@ header.condensed .header__menu {
   max-width: 100%;
   padding: 0;
 }
+
+.shopify-policy__title {
+  padding: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 350px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
