@@ -4,10 +4,13 @@
 <noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 
-<div class="page-width page-width--narrow Page_Rte">
+<div class="Page_Header">
   <h1 class="main-page-title page-title h0">
     {{ page.title | escape }}
   </h1>
+</div>
+
+<div class="page-width page-width--narrow Page_Rte">
   <div class="rte">
     {{ page.content }}
   </div>
