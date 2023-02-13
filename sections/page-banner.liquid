@@ -1,12 +1,102 @@
+{{ 'section-fan-motif.css' | asset_url | stylesheet_tag }}
+{% liquid
+  if section.settings.color == 'orange'
+    assign fan-motif = 'fan-motif--orange.png' | asset_url
+    assign background = 'fan-motif-background--orange.jpg' | asset_url
+  else
+    assign fan-motif = 'fan-motif--green.png' | asset_url
+    assign background = 'fan-motif-background--green.jpg' | asset_url
+  endif
+%}
+<section class="fan-motif" style="background: no-repeat center/cover url('{{ background }}')">
+  <div class="fan-motif__background">
+    <div class="fan-motif__inner fan-motif__layout-{{ section.settings.alignment }}">
+      <div class="fan-motif__content-wrapper">
+        <div class="fan-motif__motif">
+          <img src="{{ fan-motif }}" width="67" alt="Fan motif">
+        </div>
+
+        {% if section.settings.heading != blank %}
+          <h2 class="fan-motif__heading blue">{{ section.settings.heading | newline_to_br }}</h2>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <p class="body blue fan-motif__text">{{ section.settings.text }}</p>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</section>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Page Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "color",
+      "label": "Color",
+      "options": [
+        {
+          "label": "Orange and blue",
+          "value": "orange"
+        },
+        {
+          "label": "Green",
+          "value": "green"
+        }
+      ],
+      "default": "orange"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Content Alignment",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Center",
+          "value": "center"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page Header"
+    }
+  ]
+}
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
