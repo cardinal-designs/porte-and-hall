@@ -5,7 +5,7 @@
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 
 <div class="Page_Header" style="background-image:url({{ section.settings.image | img_url : 'original' }});text-align:{{ section.settings.alignment }};">
-  <div class="Page_Header_Inner">
+  <div class="Page_Header_Inner" style="background-color:url({{ section.settings.bg_color }})">
     <h1 class="main-page-title page-title h0">
       {{ page.title | escape }}
     </h1>
@@ -52,6 +52,11 @@
       "type": "image_picker",
       "id": "image",
       "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color"
     }
   ]
 }
