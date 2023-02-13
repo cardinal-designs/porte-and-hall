@@ -51,10 +51,12 @@
 .Page_Header_Inner {
   height: 100%;
   display: flex;
-  align-items: last baseline;
+  align-items: center;
   justify-content: center;
 }
 
 .Page_Header {
   padding: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
