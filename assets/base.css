@@ -1931,6 +1931,8 @@ header.condensed .header__menu {
   display: flex;
   justify-content: center;
   color: #546b82;
+  text-transform: capitalize;
+
 }
 
 .shopify-policy__body {
