@@ -106,15 +106,20 @@
     </svg>
 
   {% when 'close' %}
-    <svg
-      class="icon icon-close"
-      width="26"
-      height="26"
-      viewBox="0 0 26 26"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M26 1.66613L24.334 0L13 11.3339L1.66597 0L0 1.66613L11.334 13L0 24.3339L1.66597 26L13 14.6661L24.334 26L26 24.3339L14.666 13L26 1.66613Z" fill="white"/>
+    {% comment %}
+      <svg
+        class="icon icon-close"
+        width="26"
+        height="26"
+        viewBox="0 0 26 26"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M26 1.66613L24.334 0L13 11.3339L1.66597 0L0 1.66613L11.334 13L0 24.3339L1.66597 26L13 14.6661L24.334 26L26 24.3339L14.666 13L26 1.66613Z" fill="white"/>
+      </svg>
+    {% endcomment %}
+    <svg width="11" height="11" viewBox="0 0 11 11" fill="none" class="icon icon-close">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 4.65393L10.1539 0L11 0.846074L6.34607 5.5L11 10.1539L10.1539 11L5.5 6.34607L0.846074 11L0 10.1539L4.65393 5.5L0 0.846074L0.846074 0L5.5 4.65393Z" fill="currentColor"/>
     </svg>
 
   {% when 'discount' %}

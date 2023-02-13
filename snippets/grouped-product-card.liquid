@@ -18,6 +18,9 @@
             else
               assign element_classes = 'product-card__swatch'
             endif
+            if product == product_card_product
+              assign element_classes = element_classes | append: ' product-card__active-swatch'
+            endif
             assign swatch_file_name = value | handle | append: '.png'
             assign swatch_image = images[swatch_file_name]
             if collection_title contains 'outsider' and swatch_count == 4

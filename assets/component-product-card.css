@@ -80,6 +80,10 @@
   transition: all .3s ease;
 }
 
+.product-card__active-swatch {
+  order: -1;
+}
+
 .product-card__swatch.hidden {
   opacity: 0;
 }

@@ -1,0 +1,130 @@
+.facets__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.facets__summary {
+  color: #999999;
+  border-bottom: 1px solid #999999;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  font-weight: 600;
+}
+
+.facets__summary::marker {
+  display: none;
+  content: "";
+}
+
+.facets__display {
+  margin-bottom: 70px;
+}
+
+.facets__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  row-gap: 21px;
+}
+
+.facets__item {
+  padding: 9px 0;
+}
+
+.facets__item label,
+.facets__item input[type='checkbox'] {
+  cursor: pointer;
+}
+
+.facet-checkbox {
+  padding: 0 0 0 27px;
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+}
+
+.facet-checkbox input[type='checkbox'] {
+  position: absolute;
+  opacity: 1;
+  width: 18px;
+  height: 18px;
+  top: 50%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  transform: translateY(-50%);
+  z-index: -1;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid var(--blue);
+}
+
+.facet-checkbox > input[type='checkbox']:checked {
+  background: var(--blue);
+}
+
+@media screen and (forced-colors: active) {
+  .facet-checkbox > input[type='checkbox']:checked {
+    border: none;
+  }
+}
+
+.facet-checkbox--disabled {
+  color: rgba(var(--color-foreground), 0.4);
+}
+
+.active-facets {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+@media screen and (min-width: 769px) {
+  .active-facets {
+    order: 10;
+    margin-top: 30px;
+  }
+}
+
+.active-facets__button {
+  display: inline-block;
+  padding: 10px 11px 10px 7px;
+}
+
+.active-facets__button-inner > svg {
+  vertical-align: text-top;
+}
+
+.product-count {
+  background: var(--gold-secondary--dark);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.product-count__text.loading {
+  visibility: hidden;
+}
+
+.product-count .loading-overlay__spinner {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.8rem;
+}
+
+.product-count__text.loading + .loading-overlay__spinner {
+  display: block;
+}

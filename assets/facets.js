@@ -29,11 +29,12 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderPage(searchParams, event, updateURLHash = true) {
+    this.searchParams = searchParams
     FacetFiltersForm.searchParamsPrev = searchParams;
     const sections = FacetFiltersForm.getSections();
     const countContainer = document.getElementById('ProductCount');
     const countContainerDesktop = document.getElementById('ProductCountDesktop');
-    document.getElementById('ProductGridContainer').querySelector('.collection').classList.add('loading');
+    document.getElementById('ProductGridContainer').closest('.collection-grid__inner').classList.add('loading');
     if (countContainer){
       countContainer.classList.add('loading');
     }
@@ -73,7 +74,15 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderProductGridContainer(html) {
-    document.getElementById('ProductGridContainer').innerHTML = new DOMParser().parseFromString(html, 'text/html').getElementById('ProductGridContainer').innerHTML;
+    const filteredProducts = new DOMParser().parseFromString(html, 'text/html')
+    if(this.searchParams.includes("filter")){
+      filteredProducts.querySelector("#filtered-product-grid").classList.remove("hidden")
+      filteredProducts.querySelector("#product-grid").classList.add("hidden")
+    } else {
+      filteredProducts.querySelector("#filtered-product-grid").classList.add("hidden")
+      filteredProducts.querySelector("#product-grid").classList.remove("hidden")
+    }
+    document.getElementById('ProductGridContainer').innerHTML = filteredProducts.getElementById('ProductGridContainer').innerHTML;
   }
 
   static renderProductCount(html) {
@@ -86,6 +95,7 @@ class FacetFiltersForm extends HTMLElement {
       containerDesktop.innerHTML = count;
       containerDesktop.classList.remove('loading');
     }
+    document.getElementById('ProductGridContainer').closest('.collection-grid__inner').classList.remove('loading');
   }
 
   static renderFilters(html, event) {
@@ -149,7 +159,8 @@ class FacetFiltersForm extends HTMLElement {
   static getSections() {
     return [
       {
-        section: document.getElementById('product-grid').dataset.id,
+        // section: document.getElementById('product-grid').dataset.id,
+        section: document.getElementById('filtered-product-grid').dataset.id,
       }
     ]
   }

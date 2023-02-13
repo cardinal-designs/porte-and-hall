@@ -253,6 +253,7 @@ h3,
   line-height: 120%;
   font-family: brandon;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 768px) {
@@ -433,6 +434,11 @@ blockquote {
   
 }
 
+.button--light {
+  background: var(--off-white);
+  color: var(--blue);
+}
+
 /* Button - other */
 .button:disabled,
 .button[aria-disabled='true'],
@@ -448,6 +454,12 @@ blockquote {
 
 .button--full {
   width: 100%;
+}
+
+.button--xs {
+  font-size: 9px;
+  line-height: 120%;
+  font-weight: 600;
 }
 
 .button.loading {
@@ -1748,6 +1760,10 @@ header.condensed .header__menu {
 
 .spinner {
   animation: rotator 1.4s linear infinite;
+}
+
+.spinner .path {
+  stroke: currentColor;
 }
 
 @keyframes rotator {
