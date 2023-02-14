@@ -82,6 +82,12 @@
   padding: 100px 0 60px;
 }
 
+.customer-gate__recover-link {
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
 @media screen and (max-width: 768px) {
   .customer-gate__recover-container {
     padding: 40px 0;
