@@ -2082,8 +2082,11 @@ header.condensed .header__menu {
   border-bottom: 1px solid #546B82;
 }
 
-.field {
-  margin-bottom: 50px;
+.field__input {
+  border-bottom: 1px solid #546B82;
+  font-size: 18px;
+  line-height: 1.3em;
+  color: var(--blue);
 }
 
 /* INPUT CSS END */
