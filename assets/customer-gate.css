@@ -33,10 +33,13 @@
 
 .customer__alt-link {
   margin-top: 14px;
-  display: block;
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   text-decoration: underline;
+  font-weight: 400;
+  line-height: 1.2em;
+  display: block;
+  letter-spacing: 1px;
 }
 
 .customer-gate__recover-link {
