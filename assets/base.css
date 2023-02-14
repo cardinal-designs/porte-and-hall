@@ -2093,4 +2093,20 @@ header.condensed .header__menu {
   color: var(--blue);
 }
 
+.field__input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: var(--blue);
+}
+
+.field__input::-moz-placeholder { /* Firefox 19+ */
+  color: var(--blue);
+}
+
+.field__input:-ms-input-placeholder { /* IE 10+ */
+  color: var(--blue);
+}
+
+.field__input:-moz-placeholder { /* Firefox 18- */
+  color: var(--blue);
+}
+
 /* INPUT CSS END */
