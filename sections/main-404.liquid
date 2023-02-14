@@ -2,16 +2,33 @@
   .template-404 .title + * {
     margin-top: 1rem;
   }
+  
+  .template-404 {
+    padding: 40px 0;
+    text-align: center;
+  }
 
+  .template-404 h1 {
+    margin: 1rem 0 0;
+  }
+
+  .template-404 .button {
+    display: inline-block;
+  }
+    
   @media screen and (min-width: 769px) {
     .template-404 .title + * {
       margin-top: 2rem;
+    }
+
+    .template-404 {
+      padding: 50px 0;
     }
   }
 </style>
 
 <div class="template-404 page-width page-margin center">
-  <p>
+  <p class="body">
     {{ 'templates.404.subtext' | t }}
   </p>
   <h1 class="title">

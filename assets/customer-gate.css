@@ -1,6 +1,6 @@
 /* Main */
 .customer-gate__wrapper {
-  padding: 100px 0 200px;
+  padding: 100px 0 100px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -33,10 +33,14 @@
 
 .customer__alt-link {
   margin-top: 14px;
-  display: block;
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   text-decoration: underline;
+  font-weight: 400;
+  line-height: 1.2em;
+  display: block;
+  letter-spacing: 1px;
+  margin:40px 0;
 }
 
 .customer-gate__recover-link {
@@ -80,6 +84,14 @@
   max-width: 440px;
   margin: 0 auto;
   padding: 100px 0 60px;
+}
+
+.customer-gate__recover-link {
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  line-height: 1.2em;
+  display: block;
 }
 
 @media screen and (max-width: 768px) {
