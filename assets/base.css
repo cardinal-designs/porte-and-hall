@@ -1945,6 +1945,14 @@ header.condensed .header__menu {
   color: var(--blue);
 }
 
+.rte li,
+.rte p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 130%;
+  color: var(--blue);
+}
+
 .rte h1,
 .rte h2,
 .rte h3,
