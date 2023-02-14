@@ -1946,6 +1946,15 @@ header.condensed .header__menu {
 }
 
 .rte h1,
+.rte h2,
+.rte h3,
+.rte h4,
+.rte h5,
+.rte h6 {
+  color: var(--blue);
+}
+
+.rte h1,
 .rte h2  {
   margin-bottom: 30px;
 }
