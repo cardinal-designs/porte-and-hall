@@ -2003,6 +2003,11 @@ header.condensed .header__menu {
     height: 196px;
   }
 
+  .rte li,
+  .rte p {
+    font-size: 14px;
+  }
+
 }
 
 /* Template Policy Page End */
