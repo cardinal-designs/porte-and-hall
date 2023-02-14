@@ -2091,6 +2091,10 @@ header.condensed .header__menu {
   font-weight: 400;
 }
 
+.field__input {
+  margin-bottom: 50px;
+}
+
 .field__input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: var(--blue);
   font-family: brandon;
