@@ -95,6 +95,11 @@
     padding: 40px 20px;
   }
 
+  .rte li,
+  .rte p {
+    font-size: 14px;
+  }
+  
   .rte ul {
     padding-left: 1rem;
   }
