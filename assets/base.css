@@ -1975,7 +1975,8 @@ header.condensed .header__menu {
 }
 
 .rte li,
-.rte p {
+.rte p,
+.rte blockquote {
   font-size: 18px;
   font-weight: 400;
   line-height: 130%;
