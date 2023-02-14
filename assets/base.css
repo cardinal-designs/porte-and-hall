@@ -2020,6 +2020,10 @@ header.condensed .header__menu {
   color: var(--gold-secondary);
 }
 
+.rte a:hover {
+  opacity: .6;
+}
+
 .template-policy .header__menu {
   display:none;
 }
