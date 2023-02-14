@@ -2088,6 +2088,7 @@ header.condensed .header__menu {
   line-height: 1.3em;
   color: var(--blue);
   font-family: brandon;
+  font-weight: 400;
 }
 
 .field__input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
