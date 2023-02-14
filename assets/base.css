@@ -1977,6 +1977,10 @@ header.condensed .header__menu {
   margin-bottom: 10px;
 }
 
+.rte ol {
+  padding-left: 2rem;
+}
+
 .template-policy .header__menu {
   display:none;
 }
