@@ -1921,6 +1921,10 @@ header.condensed .header__menu {
   justify-content: center;
 }
 
+.Page_Header_Inner h1 {
+  color: var(--blue);  
+}
+
 .Page_Header {
   padding: 20px;
   background-repeat: no-repeat;
