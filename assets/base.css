@@ -1908,7 +1908,32 @@ header.condensed .header__menu {
   height: 5.68px;
 }
 
-/* Template Policy Page Start */
+/* Pages Start */
+
+.Page_Rte {
+  padding: 50px 0;
+}
+
+.Page_Header_Inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Page_Header {
+  padding: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.Page_Header_Inner h1 {
+  font-family: louize;
+}
+
+.template-page .header__menu {
+  display: none;
+}
 
 .shopify-policy__container {
   max-width: 100%;
@@ -2026,4 +2051,4 @@ header.condensed .header__menu {
   
 }
 
-/* Template Policy Page End */
+/* Pages End */
