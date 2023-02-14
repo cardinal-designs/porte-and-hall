@@ -2089,4 +2089,8 @@ header.condensed .header__menu {
   color: var(--blue);
 }
 
+.field__input::placeholder {
+  color: var(--blue);
+}
+
 /* INPUT CSS END */
