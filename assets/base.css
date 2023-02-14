@@ -2028,10 +2028,14 @@ header.condensed .header__menu {
   margin: 10px 0;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1050px) {
 
   .rte {
     padding: 50px 0;
+  }
+
+  .shopify-policy__body {
+    padding: 0 40px;
   }
   
 }
@@ -2058,7 +2062,11 @@ header.condensed .header__menu {
   .rte blockquote {
     margin: 20px;
   }
-  
+
+  .shopify-policy__body {
+    padding: 0 20px;
+  }
+    
 }
 
 /* Pages End */
