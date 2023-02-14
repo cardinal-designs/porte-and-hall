@@ -1965,7 +1965,7 @@ header.condensed .header__menu {
 
 .shopify-policy__body {
   max-width: 1440px;
-  padding: 70px 95px 50px;
+  padding: 50px 95px;
   margin: 0 auto;
 }
 
@@ -1985,7 +1985,7 @@ header.condensed .header__menu {
 
 .rte blockquote {
   border-color: var(--blue);
-  margin: 0 20px;
+  margin: 30px;
 }
 
 .rte h1,
@@ -2061,6 +2061,10 @@ header.condensed .header__menu {
 
   .rte {
     padding: 40px 0;
+  }
+
+  .rte blockquote {
+    margin: 20px;
   }
   
 }
