@@ -1981,6 +1981,10 @@ header.condensed .header__menu {
   padding-left: 2rem;
 }
 
+.rte a {
+  color: var(--gold-secondary);
+}
+
 .template-policy .header__menu {
   display:none;
 }
