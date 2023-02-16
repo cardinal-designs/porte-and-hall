@@ -22,6 +22,7 @@
 <style>
   
   #faqs {
+    background-color: {{ section.settings.bg_color }};
     color: {{ section.settings.color }};
     padding: 92px 0 80px;
   }
@@ -32,6 +33,10 @@
     border-radius: 15px;
     position: relative;
     cursor: pointer;
+  }
+
+  #faqs .faq-col-inner.active {
+    background-color: {{ section.settings.bg_color_answer_active }};
   }
 
   #faqs p {
