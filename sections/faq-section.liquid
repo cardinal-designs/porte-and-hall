@@ -83,8 +83,8 @@
   for (i = 0; i < acc.length; i++) {
     acc[i].addEventListener("click", function() {
       console.log(acc_answer);
-      acc_answer.classList.remove("active");
       this.classList.toggle("active");
+      acc_answer.classList.remove("active");
       var panel = this.nextElementSibling;
       if (panel.style.maxHeight) {
         panel.style.maxHeight = null;
