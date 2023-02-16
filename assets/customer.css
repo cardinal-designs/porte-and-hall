@@ -503,6 +503,15 @@ li.address h5 {
   margin: 0 0 23px;
 }
 
+td#RowSubtotal {
+  font-size: 14px;
+  line-height: 16.8px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
 @media screen and (max-width: 1050px) {
   .order-detail__container {
     display: block;
