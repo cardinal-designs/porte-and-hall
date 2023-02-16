@@ -1,12 +1,321 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+<div id="faqs">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <p class="section-header">{{ section.settings.title }}</p>    
+      </div>
+    </div>
+   <div class="faq-items row">
+    {% for block in section.blocks %}
+      <div class="faq-col">
+        <div class="faq-col-inner">
+          <p class="faq-title">{{ block.settings.title }}</p>
+          <div class="faq-answer">{{ block.settings.answer }}</div>    
+          <img class="faq-arrow" src="https://cdn.shopify.com/s/files/1/0308/3621/files/down-arrow.png?v=1667546238">
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  
+  #faqs {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.color }};
+    padding: 92px 0 80px;
   }
+
+  #faqs .faq-col-inner {
+    background-color: {{ section.settings.bg_color_answer }};
+    padding: 37px 44px 37px;
+    margin-bottom: 59px;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  #faqs .faq-col-inner.active {
+    background-color: {{ section.settings.bg_color_answer_active }};
+  }
+
+  #faqs p {
+    color: inherit;
+  }
+
+  .faq-answer, .faq-answer p {
+    font-family: 'acumin-pro-wide';
+    font-weight: 200;
+    line-height: 1.4;
+    font-size: 20px;
+  }
+
+  #faqs p.section-header {
+    color: var(--color-medium-brown);
+    text-align: center;
+    max-width: 596px;
+    margin: 0 auto 83px;
+    font-size: 24px;
+    line-height: 1.5;
+  }
+
+  #faqs p.faq-title {
+    font-size: 24px;
+    margin-bottom: 0px;
+    padding-right: 30px;
+    line-height: 1.15;
+  }
+
+  #faqs .faq-arrow {
+    position: absolute;
+    top: 41px;
+    right: 48px;
+    width: 23px;
+  }
+
+  #faqs .container {
+    max-width: 1781px;
+    padding: 0 15px !important;
+    width: 100%;
+    margin: 0 auto;    
+  }
+  
+  .faq-items-wrapper {
+    padding: 0 30px;
+  }
+  
+  .faq-items .faq-col {
+    padding: 0 47px;
+  }
+
+  #faqs .faq-col-inner.active .faq-arrow {
+    transform: rotate(180deg);
+  }
+
+  #faqs .faq-col-inner .faq-answer {
+    display: none;
+  }
+
+  #faqs .faq-col-inner.active .faq-answer {
+    display: block;
+    padding-top: 20px;
+  }
+
+  #faqs .faq-col-inner .faq-answer p {
+    font-size: 20px;
+  }
+
+  #faqs .faq-items {
+    display: block;
+    column-count: 2;
+  }
+
+  #faqs .faq-items > div {
+    width: 100%;
+    -webkit-break-inside: avoid;
+    -moz-break-inside: avoid;
+    -o-break-inside: avoid;
+    -ms-break-inside: avoid;
+    break-inside: avoid;
+    padding: 0 47px;
+  }
+
+  /******** MOBILE ********/
+
+  @media (max-width:1400px) {
+
+    #faqs .faq-items > div {
+      padding: 0 27px;
+    }
+    
+  }
+
+  @media (max-width: 767px) {
+    
+    #faqs {
+      padding: 50px 0 60px;
+    }
+
+    #faqs .faq-items {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    #faqs p.section-header {
+      margin: 0 auto 43px;
+      font-size: 16px;
+      padding: 0 17px;
+      line-height: 1.4;    
+    }
+
+    #faqs p.faq-title {
+      font-size: 14px;
+      line-height: 1.4;    
+    }
+
+    #faqs .faq-arrow {
+      position: absolute;
+      top: 25px;
+      right: 20px;
+      width: 13px;
+    }
+
+    #faqs .faq-items {
+      margin: 0;
+    }
+
+    #faqs .faq-items > div, #faqs .col-12 {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    #faqs .faq-col-inner {
+      margin-bottom: 20px;
+      padding: 20px;
+    }
+
+    #faqs .faq-items .faq-col:nth-child(odd), 
+    #faqs .faq-items .faq-col:nth-child(even) {
+      padding: 0;
+    }
+
+    #faqs .faq-col-inner .faq-answer p {
+       font-size: 14px;   
+    }
+    
+  }
+          
+  /******** TABLET ********/
+
+  @media (min-width:768px) and (max-width: 989px) {
+
+    #faqs {
+      padding: 72px 0 88px;
+    }      
+          
+    #faqs .container { 
+      padding: 0 35px !important;    
+    }
+        
+    #faqs .faq-items {
+      margin: 0;
+    }
+
+    #faqs .faq-items {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    #faqs .faq-items .faq-col {
+      padding: 0;
+    }
+
+    #faqs p.faq-title {
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    #faqs .faq-col-inner {
+      padding: 35px 40px 32px;
+      margin-bottom: 30px;
+    }
+    
+    #faqs p.section-header {
+      font-size: 20px;
+      max-width: 460px;
+      line-height: 1.4;
+      margin: 0 auto 56px;
+    }
+
+    #faqs .faq-items .faq-col:nth-child(odd), 
+    #faqs .faq-items .faq-col:nth-child(even) {
+      padding: 0;
+    }
+
+    #faqs .faq-arrow {
+      top: 36px;
+      right: 48px;
+      width: 20px;
+    }
+
+    #faqs .faq-col-inner .faq-answer p {
+      font-size: 16px;
+    }
+    
+  }
+
+</style>
+
+<script>
+  $(".faq-col-inner").click(function(){
+    $(".faq-col-inner").not(this).removeClass("active");
+    $(this).toggleClass("active");
+  });
+</script>
+
+{% schema %}
+{
+  "name": "FAQs",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#FFE8D5"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_answer",
+      "label": "Question Background Color",
+      "default": "#A34C24"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_answer_active",
+      "label": "Question Background Color (Active)",
+      "default": "#E31C79"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Font Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "main_header",
+      "label": "Header",
+      "default": "Ingredients"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Header Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQs"
+    }
+  ]
+}
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
