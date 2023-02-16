@@ -22,6 +22,10 @@
   color: var(--blue);
 }
 
+.Faq_Icon svg path {
+  fill: var(--blue);
+}
+
 .Faq_Question {
   font-weight: 500;
 }
