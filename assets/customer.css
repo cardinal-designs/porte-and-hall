@@ -306,6 +306,10 @@ li.address h5 {
   .select__select {
     font-size: 14px;
   }
+
+  .account__modal .field--flex input {
+    margin: 0;
+  }
   
 }
 /* Orders */
