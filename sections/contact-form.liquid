@@ -16,13 +16,6 @@
          <p class="body blue">{{ 'templates.contact.form.error_heading' | t }}
         </p></h2>
         </div>
-        <ul class="form-status-list caption-large" role="list">
-          <li>
-            <a href="#ContactForm-email" class="link">
-              {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
-            </a>
-          </li>
-        </ul>
       {% endif %}
       <div class="contact__fields">
         <div class="field">
