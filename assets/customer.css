@@ -310,8 +310,11 @@ li.address h5 {
   margin: 0;
   padding: 3px 10px;
   border-radius: 3px;
-  border: 1px solid currentColor;
-  font-size: 10px;
+  border: 1px solid var(--blue);
+  font-size: 11px;
+  line-height: 1.2em;
+  letter-spacing: 2px;
+  color: var(--blue);
 }
 
 .order-history__product {
