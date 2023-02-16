@@ -87,7 +87,8 @@
   function toggleAccordion() {
     const items = document.querySelectorAll('.faq-col-inner');
     const thisItem = this.parentNode;
-  
+    console.log(thisItem);
+    
     items.forEach(item => {
       if (thisItem == item) {
         thisItem.classList.toggle('is-open');
