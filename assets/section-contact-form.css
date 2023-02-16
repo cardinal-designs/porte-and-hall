@@ -43,6 +43,11 @@ select {
   letter-spacing: 1px;
   line-height: 1.2em;
 }
+.contact__fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 22px;
+}
 
 @media screen and (min-width: 769px) {
   .contact .field {
@@ -57,14 +62,6 @@ select {
 @media screen and (min-width: 769px) {
   .contact__button {
     margin-top: 50px;
-  }
-}
-
-@media screen and (min-width: 769px) {
-  .contact__fields {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 22px;
   }
 }
 
