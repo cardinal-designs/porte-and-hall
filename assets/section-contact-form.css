@@ -19,6 +19,11 @@
   color: var(--blue);
 }
 
+textarea#ContactForm-body {
+  border: 1px solid #546B82;
+  padding: 20px;
+}
+
 @media screen and (min-width: 769px) {
   .contact .field {
     margin-bottom: 2rem;
