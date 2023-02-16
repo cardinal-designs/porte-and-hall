@@ -215,7 +215,7 @@ label.field__label {
   max-height: 100%;
   max-width: 600px;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .account__modal-close {
