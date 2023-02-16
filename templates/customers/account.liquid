@@ -17,12 +17,12 @@
 
       <div class="customer__navigation">
         <button class="customer__navigation-button hide-desktop">
-          <span class="customer__navigation-button-text">My Addresses</span>
+          <span class="customer__navigation-button-text p">My Addresses</span>
           {% render 'icon' icon: 'caret' %}
         </button>
         <div class="customer__navigation-container">
-          <button class="customer__navigation-link active" data-tab="addresses">My Addresses</button>
-          <button class="customer__navigation-link" data-tab="orders">Order History</button>
+          <button class="customer__navigation-link p active" data-tab="addresses">My Addresses</button>
+          <button class="customer__navigation-link p" data-tab="orders">Order History</button>
           <a href="{{ routes.account_logout_url }}" class="customer__navigation-link">Log Out</a>
         </div>
       </div>
