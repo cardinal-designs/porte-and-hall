@@ -76,22 +76,50 @@
 </style>
 
 <script>
+  // W3C's JS Code
   var acc = document.getElementsByClassName("Faq_Question");
   var i;
-  var acc_answer = document.getElementsByClassName("Faq_Answer");
   
+  // Open the first accordion
+  var firstAccordion = acc[0];
+  var firstPanel = firstAccordion.nextElementSibling;
+  firstAccordion.classList.add("active");
+  firstPanel.style.maxHeight = firstPanel.scrollHeight + "px";
+
+  // Add onclick listener to every accordion element
   for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
-      console.log(acc_answer);
-      this.classList.toggle("active");
+    acc[i].onclick = function() {
+      // For toggling purposes detect if the clicked section is already "active"
+      var isActive = this.classList.contains("active");
+
+      // Close all accordions
+      var allAccordions = document.getElementsByClassName("Faq_Answer");
+      for (j = 0; j < allAccordions.length; j++) {
+        // Remove active class from section header
+        allAccordions[j].classList.remove("active");
+
+        // Remove the max-height class from the panel to close it
+        var panel = allAccordions[j].nextElementSibling;
+        var maxHeightValue = getStyle(panel, "maxHeight");
+      
+      if (maxHeightValue !== "0px") {
+          panel.style.maxHeight = null;
+        }
+      }
+
+      // Toggle the clicked section using a ternary operator
+      isActive ? this.classList.remove("active") : this.classList.add("active");
+
+      // Toggle the panel element
       var panel = this.nextElementSibling;
-      if (panel.style.maxHeight) {
+      var maxHeightValue = getStyle(panel, "maxHeight");
+      
+      if (maxHeightValue !== "0px") {
         panel.style.maxHeight = null;
       } else {
         panel.style.maxHeight = panel.scrollHeight + "px";
-      } 
-      acc_answer.classList.remove("active");
-    });
+      }
+    };
   }
 </script>
 
