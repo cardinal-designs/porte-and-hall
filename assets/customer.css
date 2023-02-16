@@ -149,11 +149,12 @@ div[data-address] {
 
 .address p {
   margin: 0;
+  letter-spacing: .02em;
+  font-size: 18px;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 16.8px;
-  letter-spacing: 0.02em;
+  line-height: 1.3em;
   text-transform: unset;
+  color: var(--blue);
 }
 
 .address__links {
