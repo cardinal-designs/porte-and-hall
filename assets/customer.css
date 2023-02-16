@@ -272,7 +272,13 @@ label.field__label {
 .customer__container h2,
 .customer__container h3,
 .customer__container h4,
-.customer__container h5 {
+.customer__container h5,
+.order-detail h1,
+.order-detail h2,
+.order-detail h3,
+.order-detail h4,
+.order-detail h5,
+.order-detail h6 {
   color: var(--blue);
 }
 
