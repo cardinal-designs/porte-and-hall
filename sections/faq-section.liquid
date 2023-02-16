@@ -13,7 +13,7 @@
         <div class="faq-col-inner">
           <p class="body Faq_Question">{{ block.settings.title }}</p>
           <div class="body Faq_Answer">{{ block.settings.answer }}</div>   
-          <span class="Faq_Icon"> {% render 'icon', icon: 'plus' %}</span>
+          <span class="Faq_Icon"> {% render 'icon', icon: 'plus' %}{% render 'icon', icon: 'minus' %}</span>
         </div>
       </div>
     {% endfor %}
