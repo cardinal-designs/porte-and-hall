@@ -339,7 +339,8 @@ li.address h5 {
 
 .order-history__item-date {
   margin: 0;
-  opacity: .5;
+  opacity: 1;
+  color: var(--gold);
 }
 
 .order-history__item-fufillment {
