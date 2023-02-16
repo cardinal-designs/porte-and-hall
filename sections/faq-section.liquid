@@ -78,9 +78,11 @@
 <script>
   var acc = document.getElementsByClassName("Faq_Question");
   var i;
+  var acc_answer = document.getElementsByClassName("Faq_Answer");
   
   for (i = 0; i < acc.length; i++) {
     acc[i].addEventListener("click", function() {
+      acc_answer.classList.remove("active");
       this.classList.toggle("active");
       var panel = this.nextElementSibling;
       if (panel.style.maxHeight) {
