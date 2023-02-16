@@ -11,7 +11,7 @@
     <div class="order-detail__container">
 
       <div class="order-detail__info">
-        <h2 class="order-detail__info-title h5">{{ 'customer.order.title' | t: name: order.name }}</h2>
+        <h3 class="order-detail__info-title h3">{{ 'customer.order.title' | t: name: order.name }}</h3>
 
         {% assign order_date = order.created_at | time_tag: format: "date_at_time" %}
         <p class="order-detail__info-item">{{ 'customer.order.date_html' | t: date: order_date }}</p>
