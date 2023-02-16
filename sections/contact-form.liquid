@@ -5,7 +5,10 @@
     <h2 class="title text-center">{{ section.settings.heading | escape }}</h2>
     {% form 'contact', id: 'ContactForm' %}
       {% if form.posted_successfully? %}
-        <div class="form-status form-status-list form__message" tabindex="-1" autofocus>{% render 'icon' icon: 'success' %} {{ 'templates.contact.form.post_success' | t }}</div>
+        <div class="form-status form-status-list form__message" tabindex="-1" autofocus>
+        {% render 'icon' icon: 'success' %} 
+        <p class="body blue">{{ 'templates.contact.form.post_success' | t }}</p>
+        </div>
       {% elsif form.errors %}
         <div class="form__message">
           <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>{% render 'icon' icon: 'error' %} {{ 'templates.contact.form.error_heading' | t }}</h2>
