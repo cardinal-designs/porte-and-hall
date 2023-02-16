@@ -11,7 +11,7 @@
 }
 
 .contact .field {
-  margin-bottom: 1.5rem;
+  margin-bottom: 50px;
 }
 
 .contact .title {
@@ -47,12 +47,6 @@ select {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 22px;
-}
-
-@media screen and (min-width: 769px) {
-  .contact .field {
-    margin-bottom: 50px;
-  }
 }
 
 .contact__button {
