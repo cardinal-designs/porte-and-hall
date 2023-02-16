@@ -239,6 +239,11 @@ li.address h5 {
   background-position: 99% 60%;
 }
 
+.select::after {
+  display: none;
+}
+
+
 /* Addresses page */
 .adresses-page__container {
   max-width: 1130px;
