@@ -170,7 +170,11 @@ li.address h5 {
 
 .address__link {
   text-decoration: underline;
-  font-size: 10px;
+  font-size: 11px;
+  color: var(--blue);
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1.2em;
 }
 
 /* Modal */
