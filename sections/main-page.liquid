@@ -12,12 +12,14 @@
       </h1>
     </div>
   </div>
-  
-  <div class="page-width Page_Rte">
-    <div class="rte">
-      {{ page.content }}
+
+  {%- if page.content != blank -%}
+    <div class="page-width Page_Rte">
+      <div class="rte">
+        {{ page.content }}
+      </div>
     </div>
-  </div>
+  {%- endif -%}
 </div>
 
 <style>
