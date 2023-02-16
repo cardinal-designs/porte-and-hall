@@ -485,7 +485,6 @@ li.address h5 {
 
 .order-details tr td a {
   font-size: 14px;
-  letter-spacing: 2px;
   line-height: 1.2em;
   text-decoration: underline;
   color: var(--gold);
@@ -501,7 +500,7 @@ li.address h5 {
 }
 
 .order-detail__addresses-title {
-  margin: 0 0 20px;
+  margin: 0 0 23px;
 }
 
 @media screen and (max-width: 1050px) {
