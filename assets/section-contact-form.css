@@ -73,6 +73,19 @@ form__message {
   max-width: 100px;
 }
 
+.form-status.form-status-list.form__message p {
+  flex: 0 0 100%;
+  text-align: center;
+  margin: 10px 0 40px;
+}
+
+.contact .form__message {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 @media screen and (min-width: 769px) {
   .contact__button {
     margin-top: 50px;
