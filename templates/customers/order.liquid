@@ -254,7 +254,7 @@
                 </tr>
               {% endfor %}
               <tr role="row">
-                <td class="text-right" id="RowTotal" role="rowheader" scope="row" colspan="3">{{ 'customer.order.total' | t }}</td>
+                <td id="RowTotal" role="rowheader" scope="row" colspan="3">{{ 'customer.order.total' | t }}</td>
                 <td></td>
                 <td class="text-right" headers="RowTotal" role="cell" colspan="2" data-label="{{ 'customer.order.total' | t }}">{{ order.total_price | money_with_currency }}</td>
               </tr>
