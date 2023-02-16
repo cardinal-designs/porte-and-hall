@@ -244,6 +244,12 @@ li.address h5 {
   display: none;
 }
 
+.account__modal-buttons button[type="reset"] {
+  font-size: 11px;
+  color: var(--blue);
+  letter-spacing: 2px;
+  line-height: 1.2em;
+}
 
 /* Addresses page */
 .adresses-page__container {
