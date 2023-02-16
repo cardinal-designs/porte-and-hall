@@ -481,6 +481,7 @@ label.field__label {
   word-break: break-word;
   margin: 0 0 10px;
   display: block;
+  max-width: 300px;
 }
 
 .order-detail__addresses {
