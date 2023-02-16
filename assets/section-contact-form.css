@@ -34,6 +34,12 @@ select {
   background-position: 99% 60%;
 }
 
+.Optional_Field {
+  font-size: 11px;
+  color: var(--blue);
+  font-weight: 500;
+}
+
 @media screen and (min-width: 769px) {
   .contact .field {
     margin-bottom: 50px;
