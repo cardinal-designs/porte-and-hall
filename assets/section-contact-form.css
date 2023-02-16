@@ -26,6 +26,8 @@ textarea#ContactForm-body {
 
 .Contact_Form {
   padding: 100px 0;
+  max-width: 820px;
+  margin: 0 auto;
 }
 
 select {
