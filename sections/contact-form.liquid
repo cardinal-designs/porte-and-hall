@@ -97,3 +97,19 @@
   ]
 }
 {% endschema %}
+
+<script>
+
+  let interval = null
+  
+  let domWorks = () => {
+     let d = document.querySelector('#ContactForm-email-error')
+     if(d){
+      console.log('dom manipulation')
+      clearInterval(interval) // Change it via reference
+     }
+  }
+  
+  interval = setInterval(domWorks, 100)
+  
+</script>
