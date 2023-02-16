@@ -488,6 +488,7 @@ li.address h5 {
   line-height: 1.2em;
   text-decoration: underline;
   color: var(--gold);
+  word-break: break-word;
 }
 
 .order-detail__addresses {
