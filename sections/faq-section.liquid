@@ -39,12 +39,14 @@
 
   .Faq_Question {
     font-weight: 500;
+    transition: 0.4s;
   }
 
   .Faq_Answer {
     font-weight: 400;
-    height: 0;
     opacity: 0;
+    max-height: 0;
+    overflow: hidden;
   }
   
   #faqs h2 {
@@ -65,36 +67,8 @@
     width: 23px;
   }
 
-  #faqs .container {
-    max-width: 1781px;
-    padding: 0 15px !important;
-    width: 100%;
-    margin: 0 auto;    
-  }
-  
-  .faq-items-wrapper {
-    padding: 0 30px;
-  }
-  
   .faq-items .faq-col {
      padding: 0 11px;
-  }
-
-  #faqs .faq-col-inner.active .faq-arrow {
-    transform: rotate(180deg);
-  }
-
-  #faqs .faq-col-inner .faq-answer {
-    display: none;
-  }
-
-  #faqs .faq-col-inner.active .faq-answer {
-    display: block;
-    padding-top: 20px;
-  }
-
-  #faqs .faq-col-inner .faq-answer p {
-    font-size: 20px;
   }
 
   #faqs .faq-items {
@@ -102,16 +76,6 @@
     column-count: 2;
   }
 
-  #faqs .faq-items > div {
-    width: 100%;
-    -webkit-break-inside: avoid;
-    -moz-break-inside: avoid;
-    -o-break-inside: avoid;
-    -ms-break-inside: avoid;
-    break-inside: avoid;
-    padding: 0 11px;
-  }
-  
   .Faq_Answer.active {
     height: 100%;
     opacity: 1;
