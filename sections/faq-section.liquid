@@ -84,13 +84,13 @@
     acc[i].addEventListener("click", function() {
       console.log(acc_answer);
       this.classList.toggle("active");
-      acc_answer.classList.remove("active");
       var panel = this.nextElementSibling;
       if (panel.style.maxHeight) {
         panel.style.maxHeight = null;
       } else {
         panel.style.maxHeight = panel.scrollHeight + "px";
       } 
+      acc_answer.classList.remove("active");
     });
   }
 </script>
