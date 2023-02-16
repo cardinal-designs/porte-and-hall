@@ -1,4 +1,9 @@
 /* Main */
+
+h1 {
+  color: var(--blue);  
+}
+
 .customer-gate__wrapper {
   padding: 100px 0 100px;
   display: flex;
