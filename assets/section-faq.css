@@ -68,6 +68,10 @@
   height: 16px;
 }
 
+.faq-col:last-child .faq-col-inner {
+  border-bottom: 1px solid #546B82;
+}
+
 @media screen and (max-width: 768px) {
   
   #faqs .faq-items {
