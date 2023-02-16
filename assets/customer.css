@@ -268,6 +268,10 @@ label.field__label {
   font-family: 'brandon';
 }
 
+.account-header h1 {
+  color: var(--blue);
+}
+
 .select::after {
   display: none;
 }
