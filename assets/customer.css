@@ -116,6 +116,15 @@
   .customer__content {
     margin-top: 40px;
   }
+
+  .customer__navigation-button-text.p {
+    text-transform: uppercase;
+    font-family: brandon;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--blue);
+  }
+  
 }
 
 /* Addresses */
@@ -389,14 +398,6 @@ li.address h5 {
     font-size: 14px;
   }
 
-  .customer__navigation-button-text.p {
-    text-transform: uppercase;
-    font-family: brandon;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: var(--blue);
-  }
-  
 }
 
 /* Order Details */
