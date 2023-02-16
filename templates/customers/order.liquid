@@ -243,7 +243,7 @@
               {% for shipping_method in order.shipping_methods %}
                 <tr role="row">
                   <td class="text-right" id="RowShipping" role="rowheader" scope="row" colspan="4">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</td>
-                  <td headers="RowShipping" role="cell" data-label="{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})">{{ shipping_method.price | money }}</td>
+                  <td class="text-right" headers="RowShipping" role="cell" data-label="{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})">{{ shipping_method.price | money }}</td>
                 </tr>
               {% endfor %}
               {% for tax_line in order.tax_lines %}
