@@ -47,6 +47,8 @@
 #faqs .faq-items {
   display: block;
   column-count: 2;
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
   column-gap: 22px;
   padding: 0 20px;
 }
@@ -81,6 +83,8 @@
   
   #faqs .faq-items {
     column-count: 1;
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
     column-gap: 0;
     padding: 0;
   }
