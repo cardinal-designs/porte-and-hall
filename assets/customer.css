@@ -484,7 +484,11 @@ li.address h5 {
 } 
 
 .order-details tr td a {
+  font-size: 11px;
+  letter-spacing: 2px;
+  line-height: 1.2em;
   text-decoration: underline;
+  color: var(--gold);
 }
 
 .order-detail__addresses {
