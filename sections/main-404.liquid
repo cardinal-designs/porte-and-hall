@@ -20,6 +20,10 @@
   #{{ section.id }} .Page_Header {
     height: 186px;
   }
+
+  span.Not_Found_Icon img {
+    max-width: 200px;
+  }
   
   @media screen and (min-width: 769px) {
     
@@ -35,16 +39,12 @@
       height: {{ section.settings.section_height }}px;
     }
 
-  }
-
-  @media screen and (max-width: 768px) {
-
     span.Not_Found_Icon img {
-      max-width: 200px;
+      max-width: 350px;
     }
-      
+
   }
-  
+
 </style>
 <div class="Page_Header" style="background-image:url({{ section.settings.image | img_url : '1920x' }});">
   <div class="template-404 page-margin center"style="background-color:{{ section.settings.bg_color }}">
