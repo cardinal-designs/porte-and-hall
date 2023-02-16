@@ -50,7 +50,7 @@
                     <div class="order-history__item">
                       <div class="order-history__item-header">
                         <div class="order-history__item-header-group">
-                          <p class="order-history__item-order h3 blue tag-2">Order {{ order.name }}</p>
+                          <h3 class="order-history__item-order h3 blue tag-2">Order {{ order.name }}</h3>
                           <p class="order-history__item-date body-3 m-body-3">{{ order.created_at | time_tag: format: 'date' }}</p>
                           <div class="order-history__item-fufillment tag-3">{{ order.fulfillment_status_label }}</div>
                         </div>
