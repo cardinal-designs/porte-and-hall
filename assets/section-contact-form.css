@@ -65,15 +65,15 @@ span.form__message svg {
   vertical-align: middle;
 }
 
-form__message {
+.form__message {
   color: #ac1515;
 }
 
-.form-status.form-status-list.form__message svg {
+.form__message svg {
   max-width: 100px;
 }
 
-.form-status.form-status-list.form__message p {
+.form__message p {
   flex: 0 0 100%;
   text-align: center;
   margin: 10px 0 40px;
@@ -102,7 +102,7 @@ form__message {
     padding: 50px 0;
   }
 
-  .form-status.form-status-list.form__message svg {
+  .form__message svg {
     max-width: 70px;
   }
 
