@@ -5,7 +5,7 @@
 
     <div class="customer-gate__recover-container" id="recover">
       <h1 class="customer-gate__title h2">Reset Password</h1>
-      <p class="customer-gate__text">{{ 'customer.recover_password.subtext' | t }}</p>
+      <p class="customer-gate__text body">{{ 'customer.recover_password.subtext' | t }}</p>
       
       {% form 'recover_customer_password' %}
         {% assign recover_success = form.posted_successfully? %}
