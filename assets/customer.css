@@ -503,7 +503,8 @@ li.address h5 {
   margin: 0 0 23px;
 }
 
-td#RowSubtotal {
+#RowSubtotal,
+#RowDiscount {
   font-size: 14px;
   line-height: 16.8px;
   letter-spacing: 2px;
