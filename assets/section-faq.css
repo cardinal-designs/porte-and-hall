@@ -91,6 +91,10 @@ svg.icon.icon-minus {
   border-bottom: 1px solid #546B82;
 }
 
+.is-open svg.icon.icon-minus {
+  display: block;
+}
+
 @media screen and (max-width: 768px) {
   
   #faqs .faq-items {
