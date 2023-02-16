@@ -60,6 +60,18 @@
   text-align: center;
 }
 
+.errors ul {
+  padding: 0;
+}
+
+.errors ul li {
+  list-style-type: none;
+}
+
+.errors {
+  color: #c40a0a;
+}
+
 @media screen and (max-width: 768px) {
   .customer-gate__wrapper {
     padding: 40px 0;
