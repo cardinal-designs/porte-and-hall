@@ -76,50 +76,21 @@
 </style>
 
 <script>
-  // W3C's JS Code
-  var acc = document.getElementsByClassName("Faq_Question");
-  var i;
+  const accSingleTriggers = document.querySelectorAll('.Faq_Question');
   
-  // Open the first accordion
-  var firstAccordion = acc[0];
-  var firstPanel = firstAccordion.nextElementSibling;
-  firstAccordion.classList.add("active");
-  firstPanel.style.maxHeight = firstPanel.scrollHeight + "px";
-
-  // Add onclick listener to every accordion element
-  for (i = 0; i < acc.length; i++) {
-    acc[i].onclick = function() {
-      // For toggling purposes detect if the clicked section is already "active"
-      var isActive = this.classList.contains("active");
-
-      // Close all accordions
-      var allAccordions = document.getElementsByClassName("Faq_Answer");
-      for (j = 0; j < allAccordions.length; j++) {
-        // Remove active class from section header
-        allAccordions[j].classList.remove("active");
-
-        // Remove the max-height class from the panel to close it
-        var panel = allAccordions[j].nextElementSibling;
-        var maxHeightValue = getStyle(panel, "maxHeight");
-      
-      if (maxHeightValue !== "0px") {
-          panel.style.maxHeight = null;
-        }
+  accSingleTriggers.forEach(trigger => trigger.addEventListener('click', toggleAccordion));
+  
+  function toggleAccordion() {
+    const items = document.querySelectorAll('.Faq_Answer');
+    const thisItem = this.parentNode;
+  
+    items.forEach(item => {
+      if (thisItem == item) {
+        thisItem.classList.toggle('is-open');
+        return;
       }
-
-      // Toggle the clicked section using a ternary operator
-      isActive ? this.classList.remove("active") : this.classList.add("active");
-
-      // Toggle the panel element
-      var panel = this.nextElementSibling;
-      var maxHeightValue = getStyle(panel, "maxHeight");
-      
-      if (maxHeightValue !== "0px") {
-        panel.style.maxHeight = null;
-      } else {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-      }
-    };
+      item.classList.remove('is-open');
+    });
   }
 </script>
 
