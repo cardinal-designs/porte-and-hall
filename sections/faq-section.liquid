@@ -10,7 +10,8 @@
       <div class="faq-col">
         <div class="faq-col-inner">
           <p class="body Faq_Question">{{ block.settings.title }}</p>
-          <div class="body Faq_Answer">{{ block.settings.answer }}</div>    
+          <div class="body Faq_Answer">{{ block.settings.answer }}</div>   
+          <span class="Faq_Icon"> {% render 'icon', icon: 'plus' %}</span>
         </div>
       </div>
     {% endfor %}
