@@ -36,11 +36,11 @@
   padding-right: 30px;
   line-height: 1.15;
 }
-
 #faqs .faq-items {
   display: block;
   column-count: 2;
   column-gap: 22px;
+  padding: 0 20px;
 }
 
 .Faq_Answer.active {
@@ -74,6 +74,7 @@
   #faqs .faq-items {
     column-count: 1;
     column-gap: 0;
+    padding: 0;
   }
   
   .Faq_Answer {
