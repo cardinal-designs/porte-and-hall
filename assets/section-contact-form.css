@@ -69,6 +69,10 @@ form__message {
   color: #ac1515;
 }
 
+.form-status.form-status-list.form__message svg {
+  max-width: 100px;
+}
+
 @media screen and (min-width: 769px) {
   .contact__button {
     margin-top: 50px;
