@@ -10,6 +10,14 @@
   border-top: 1px solid #546B82;
 }
 
+.faq-col {
+  -webkit-break-inside: avoid;
+  -moz-break-inside: avoid;
+  -o-break-inside: avoid;
+  -ms-break-inside: avoid;
+  break-inside: avoid;
+}
+
 #faqs p {
   color: inherit;
 }
