@@ -269,7 +269,10 @@ label.field__label {
 }
 
 .account-header h1,
-.account-header h2 {
+.account-header h2,
+.account-header h3,
+.account-header h4,
+.account-header h5 {
   color: var(--blue);
 }
 
