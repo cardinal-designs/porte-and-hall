@@ -30,7 +30,7 @@
       <div class="customer__content">
 
         <div class="customer__content-section active" data-tab="addresses">
-          <h2 class="customer__content-title h3 hide-mobile">My Addresses</h2>
+          <h2 class="customer__content-title p hide-mobile">My Addresses</h2>
 
           <div class="customer__address-container" data-customer-addresses>
             {% render 'addresses' %}
@@ -39,7 +39,7 @@
 
         
         <div class="customer__content-section" data-tab="orders">
-          <h2 class="customer__content-title h3 hide-mobile">My Orders</h2>
+          <h2 class="customer__content-title p hide-mobile">My Orders</h2>
 
           {% paginate customer.orders by 20 %}
             <div class="customer__order-container no-scrollbar">
