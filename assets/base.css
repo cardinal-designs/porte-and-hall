@@ -2122,9 +2122,25 @@ header.condensed .header__menu {
 @media screen and (max-width: 768px) {
   
   .field__input {
-    font-size: 18px;
+    font-size: 14px;
   }
 
+  .field__input::-webkit-input-placeholder {
+    font-size: 14px;
+  }
+  
+  .field__input::-moz-placeholder { /* Firefox 19+ */
+    font-size: 14px;
+  }
+  
+  .field__input:-ms-input-placeholder { /* IE 10+ */
+    font-size: 14px;
+  }
+  
+  .field__input:-moz-placeholder { /* Firefox 18- */
+    font-size: 14px;
+  }
+  
 }
 
 /* INPUT CSS END */
