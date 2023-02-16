@@ -63,7 +63,7 @@
                               {% render 'lazy-image' image: line_item.image, fade: true, fill: true %}
                             </div>
                             <div class="order-history__product-content">
-                              <p class="order-history__product-title">{{ line_item.product.title }}</p>
+                              <h3 class="order-history__product-title">{{ line_item.product.title }}</h3>
                               <div class="order-history__product-variant body">
                                 {% if line_item.product.has_only_default_variant == false %}
                                   {% for option in line_item.options_with_values %}
