@@ -266,15 +266,6 @@ label.field__label {
   display: none;
 }
 
-.account__modal-buttons button[type="reset"] {
-  font-size: 11px;
-  color: var(--blue);
-  letter-spacing: 1px;
-  line-height: 1.2em;
-  font-family: 'brandon';
-  text-decoration: underline;
-}
-
 /* Addresses page */
 .adresses-page__container {
   max-width: 1130px;
