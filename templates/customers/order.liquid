@@ -226,7 +226,6 @@
                         {{- discount_application.title -}}
                       </span>
                     </td>
-                     <td></td>
                     <td headers="RowDiscount" role="cell" data-label="{{ 'customer.order.discount' | t }}">
                       <div>
                         <span>-{{ discount_application.total_allocated_amount | money }}</span>
@@ -244,7 +243,6 @@
               {% for shipping_method in order.shipping_methods %}
                 <tr role="row">
                   <td id="RowShipping" role="rowheader" scope="row" colspan="4">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</td>
-                  <td></td>
                   <td headers="RowShipping" role="cell" data-label="{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})">{{ shipping_method.price | money }}</td>
                 </tr>
               {% endfor %}
