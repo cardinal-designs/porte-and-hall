@@ -106,6 +106,7 @@
      let d = document.querySelector('#ContactForm-email-error')
      if(d){
       console.log('dom manipulation')
+      document.querySelector('.contact__button button').classList.add('disabled')
       clearInterval(interval) // Change it via reference
      }
   }
