@@ -568,8 +568,7 @@ blockquote {
   box-sizing: border-box;
   border: 0;
   background: none;
-  font-size: 18px;
-  color: var(--blue)
+  color: currentColor;
 }
 
 /* Textarea */
