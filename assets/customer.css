@@ -184,15 +184,6 @@ li.address h5 {
   gap: 20px;
 }
 
-.address__link {
-  text-decoration: underline;
-  font-size: 11px;
-  color: var(--blue);
-  font-weight: 500;
-  letter-spacing: 1px;
-  line-height: 1.2em;
-}
-
 label.field__label {
   font-size: 11px;
   color: var(--blue);
