@@ -3,7 +3,7 @@
 <header class="account-header">
   <div class="Account_Header_Inner">
     <div class="page-width">
-      <h1 class="account-header__title h1">{{ 'customer.order.title' | t: name: order.name }}</h1>
+      <h1 class="account-header__title h1 blue">{{ 'customer.order.title' | t: name: order.name }}</h1>
     </div>
   </div>
 </header>
@@ -13,7 +13,7 @@
     <div class="order-detail__container">
 
       <div class="order-detail__info">
-        <h3 class="order-detail__info-title h3">{{ 'customer.order.title' | t: name: order.name }}</h3>
+        <h3 class="order-detail__info-title h3 blue">{{ 'customer.order.title' | t: name: order.name }}</h3>
 
         {% assign order_date = order.created_at | time_tag: format: "date_at_time" %}
         <p class="order-detail__info-item body blue">{{ 'customer.order.date_html' | t: date: order_date }}</p>
