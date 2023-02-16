@@ -2,10 +2,6 @@
   max-width: 100%;
 }
 
-.contact .form__message {
-  align-items: flex-start;
-}
-
 .contact .icon-success {
   margin-top: 0.2rem;
 }
@@ -84,6 +80,7 @@ span.form__message svg {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  text-align: center;
 }
 
 @media screen and (min-width: 769px) {
