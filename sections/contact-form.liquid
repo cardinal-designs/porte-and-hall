@@ -42,7 +42,7 @@
             aria-invalid="true"
             aria-describedby="ContactForm-email-error"
           {% endif %}
-          placeholder="{{ 'templates.contact.form.email' | t }}"
+          placeholder="{{ 'templates.contact.form.email' | t }}*"
         >
         {% if form.errors contains 'email' %}
           <small class="contact__field-error" id="ContactForm-email-error">
