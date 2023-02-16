@@ -193,6 +193,15 @@ li.address h5 {
   line-height: 1.2em;
 }
 
+label.field__label {
+  font-size: 11px;
+  color: var(--blue);
+  letter-spacing: 1px;
+  line-height: 1.2em;
+  font-family: 'brandon';
+  margin: 0 -7px 8px;
+}
+
 @media only screen and (max-width: 768px) {
   
   .address__links {
