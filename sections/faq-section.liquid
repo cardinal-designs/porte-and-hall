@@ -10,7 +10,7 @@
    <div class="faq-items row">
     {% for block in section.blocks %}
       <div class="faq-col">
-        <div class="faq-col-inner">
+        <div class="faq-col-inner {% if forloop.index == 1 %}is-open{% endif %}">
           <p class="body Faq_Question">{{ block.settings.title }}</p>
           <div class="body Faq_Answer">{{ block.settings.answer }}</div>   
           <span class="Faq_Icon"> {% render 'icon', icon: 'plus' %}</span>
