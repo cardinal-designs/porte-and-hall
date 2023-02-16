@@ -2119,4 +2119,12 @@ header.condensed .header__menu {
   font-family: brandon;
 }
 
+@media screen and (max-width: 768px) {
+  
+  .field__input {
+    font-size: 18px;
+  }
+
+}
+
 /* INPUT CSS END */
