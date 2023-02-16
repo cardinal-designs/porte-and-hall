@@ -2,7 +2,7 @@
 .account-header {
   padding: 60px 0;
   text-align: center;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--blue);
 }
 
 .account-header__title {
