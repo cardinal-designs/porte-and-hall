@@ -38,6 +38,8 @@ select {
   font-size: 11px;
   color: var(--blue);
   font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1.2em;
 }
 
 @media screen and (min-width: 769px) {
