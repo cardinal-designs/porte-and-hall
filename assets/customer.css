@@ -476,14 +476,14 @@ li.address h5 {
 .order-details tr td {
   padding: 20px 0;
   text-align: left;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 2.2;
-  letter-spacing: 0.02em;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.2em;
   text-transform: unset;
   border-bottom: 1px solid black;
   color: var(--blue);
-} 
+  letter-spacing: 1px;
+}
 
 .order-details tr td a {
   font-size: 14px;
