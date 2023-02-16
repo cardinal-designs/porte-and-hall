@@ -5,7 +5,7 @@
       {% for address in customer.addresses %}
         <li class="address" data-address>
           {% if address == customer.default_address %}
-            <h2 class="address__title h5">{{ 'customer.addresses.default' | t }}</h2>
+            <h2 class="address__title h5 blue">{{ 'customer.addresses.default' | t }}</h2>
           {% endif %}
           {{ address | format_address }}
           <div class="address__links">
