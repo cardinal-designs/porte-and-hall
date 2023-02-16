@@ -53,6 +53,10 @@ select {
   margin-top: 30px;
 }
 
+.header__menu {
+  display: none;
+}
+
 @media screen and (min-width: 769px) {
   .contact__button {
     margin-top: 50px;
