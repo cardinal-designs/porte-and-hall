@@ -274,8 +274,9 @@ li.address h5 {
 .account__modal-buttons button[type="reset"] {
   font-size: 11px;
   color: var(--blue);
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   line-height: 1.2em;
+  font-family: 'brandon';
 }
 
 /* Addresses page */
