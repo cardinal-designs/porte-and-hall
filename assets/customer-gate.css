@@ -78,8 +78,9 @@ h1 {
 }
 
 @media screen and (max-width: 768px) {
+  
   .customer-gate__wrapper {
-    padding: 40px 0;
+    padding: 50px 0;
     display: block;
   }
 
@@ -90,6 +91,7 @@ h1 {
   .customer-gate__text {
     margin-top: 14px;
   }
+  
 }
 
 /* Recover */
