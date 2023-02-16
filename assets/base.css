@@ -2054,6 +2054,10 @@ header.condensed .header__menu {
   margin: 10px 0;
 }
 
+.text-center {
+  text-align:center;
+}
+
 @media screen and (max-width: 1050px) {
 
   .rte {
