@@ -193,14 +193,11 @@
     },
     "contact": {
       "form": {
-        "first_name": "First name",
-        "last_name": "Last name",
-        "organization_name": "Organization name",
+        "name": "Name",
         "email": "Email",
-        "enquiry": "Reason for inquiry",
         "phone": "Phone number",
-        "comment": "Message",
-        "send": "SUBMIT",
+        "comment": "Comment",
+        "send": "Send",
         "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
         "error_heading": "Please adjust the following:"
       }
