@@ -44,6 +44,7 @@
 #faqs .faq-items {
   display: block;
   column-count: 2;
+  column-gap: 22px;
 }
 
 .Faq_Answer.active {
