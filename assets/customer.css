@@ -309,6 +309,10 @@ div[data-address] {
   margin: 15px 0 0;
 }
 
+.account-header {
+  background-image: url("https://cdn.shopify.com/s/files/1/0084/8602/7327/files/Rectangle_600_709112db-c9c6-4da2-886d-2728a4e401c0.png")
+}
+
 @media screen and (max-width: 768px) {
   .order-history__item-header {
     flex-direction: column;
