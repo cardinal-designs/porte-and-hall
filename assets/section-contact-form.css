@@ -71,3 +71,11 @@ select {
 .grecaptcha-badge {
   visibility: hidden;
 }
+
+@media screen and (max-width: 768px) {
+    
+  .Contact_Form {
+    padding: 50px 0;
+  }
+  
+}
