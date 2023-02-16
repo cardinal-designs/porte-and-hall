@@ -80,46 +80,46 @@
 </style>
 
 <script>
-const accordionBtns = document.querySelectorAll(".Faq_Question");
+// const accordionBtns = document.querySelectorAll(".Faq_Question");
 
-accordionBtns.forEach((accordion) => {
-  accordion.onclick = function () {
-    this.classList.toggle("is-open");
+// accordionBtns.forEach((accordion) => {
+//   accordion.onclick = function () {
+//     this.classList.toggle("is-open");
 
-    let content = this.nextElementSibling;
-    console.log(content);
+//     let content = this.nextElementSibling;
+//     console.log(content);
 
-    if (content.style.maxHeight) {
-      //this is if the accordion is open
-      content.style.maxHeight = null;
-    } else {
-      //if the accordion is currently closed
-      content.style.maxHeight = content.scrollHeight + "px";
-      console.log(content.style.maxHeight);
-    }
-  };
-});
+//     if (content.style.maxHeight) {
+//       //this is if the accordion is open
+//       content.style.maxHeight = null;
+//     } else {
+//       //if the accordion is currently closed
+//       content.style.maxHeight = content.scrollHeight + "px";
+//       console.log(content.style.maxHeight);
+//     }
+//   };
+// });
 
 
   
   
-  // const accSingleTriggers = document.querySelectorAll('.Faq_Question');
+  const accSingleTriggers = document.querySelectorAll('.Faq_Question');
   
-  // accSingleTriggers.forEach(trigger => trigger.addEventListener('click', toggleAccordion));
+  accSingleTriggers.forEach(trigger => trigger.addEventListener('click', toggleAccordion));
   
-  // function toggleAccordion() {
-  //   const items = document.querySelectorAll('.faq-col-inner');
-  //   const thisItem = this.parentNode;
-  //   console.log(thisItem);
+  function toggleAccordion() {
+    const items = document.querySelectorAll('.faq-col-inner');
+    const thisItem = this.parentNode;
+    console.log(thisItem);
     
-  //   items.forEach(item => {
-  //     if (thisItem == item) {
-  //       thisItem.classList.toggle('is-open');
-  //       return;
-  //     }
-  //     item.classList.remove('is-open');
-  //   });
-  // }
+    items.forEach(item => {
+      if (thisItem == item) {
+        thisItem.classList.toggle('is-open');
+        return;
+      }
+      item.classList.remove('is-open');
+    });
+  }
 </script>
 
 {% schema %}
