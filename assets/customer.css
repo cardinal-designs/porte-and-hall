@@ -268,7 +268,8 @@ label.field__label {
   font-family: 'brandon';
 }
 
-.account-header h1 {
+.account-header h1,
+.account-header h2 {
   color: var(--blue);
 }
 
