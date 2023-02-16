@@ -1,6 +1,6 @@
 {{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
 
-<div class="contact page-width page-width--narrow spaced-section">
+<div class="contact page-width spaced-section">
   <div class="Contact_Form">
     <h2 class="title text-center">{{ section.settings.heading | escape }}</h2>
     {% form 'contact', id: 'ContactForm' %}
