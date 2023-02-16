@@ -446,7 +446,7 @@ li.address h5 {
 .order-detail__info-title {
   margin: 0 0 30px;
   padding-bottom: 30px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--blue);
 }
 
 .order-detail__info-item {
