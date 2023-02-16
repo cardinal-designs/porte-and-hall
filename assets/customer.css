@@ -388,6 +388,14 @@ li.address h5 {
   .address__title {
     font-size: 14px;
   }
+
+  .customer__navigation-button-text.p {
+    text-transform: uppercase;
+    font-family: brandon;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--blue);
+  }
   
 }
 
