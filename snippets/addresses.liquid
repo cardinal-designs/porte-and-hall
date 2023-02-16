@@ -31,20 +31,17 @@
           </div>
         </li>
       {% endfor %}
-      <li class="Address_button">
-        <div data-address>
-          <button
-            class="button button--forest"
-            type="button"
-            aria-expanded="false"
-            aria-controls="AddAddress"
-            data-micromodal-trigger="address-add">
-            Add a New Address
-          </button>
-        </div>
-      </li>
     </ul>
-
+    <div class="Address_button" data-address>
+      <button
+        class="button button--forest"
+        type="button"
+        aria-expanded="false"
+        aria-controls="AddAddress"
+        data-micromodal-trigger="address-add">
+        Add a New Address
+      </button>
+    </div>
     {% if paginate.pages > 1 %}
       {% if paginate.parts.size > 0 %}
         <nav
