@@ -62,7 +62,7 @@ select {
   .contact__fields {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 2rem;
+    grid-column-gap: 22px;
   }
 }
 
