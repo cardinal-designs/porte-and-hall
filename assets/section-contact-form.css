@@ -24,6 +24,10 @@ textarea#ContactForm-body {
   padding: 20px;
 }
 
+.Contact_Form {
+  padding: 50px 0;
+}
+
 @media screen and (min-width: 769px) {
   .contact .field {
     margin-bottom: 50px;
