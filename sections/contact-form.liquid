@@ -53,9 +53,6 @@
           {% endif %}
         </div>
       </div>
-  <!--     <div class="field">
-        <input type="tel" id="ContactForm-phone" class="field__input" autocomplete="tel" name="contact[{{ 'templates.contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="{{ 'templates.contact.form.phone' | t }}">
-      </div> -->
       <div class="field">
         <select class="field__input" name="{{ 'templates.contact.form.enquiry' | t }}" id="Enquiry">
           <option value="" disabled selected>{{ 'templates.contact.form.enquiry' | t }}</option>
