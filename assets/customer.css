@@ -55,7 +55,7 @@
 }
 
 .customer__navigation-link.active {
-  opacity: 1
+  color: var(--gold);
 }
 
 .customer__content {
