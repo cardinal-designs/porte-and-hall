@@ -10,7 +10,7 @@
           {{ address | format_address }}
           <div class="address__links">
             <button
-              class="address__link"
+              class="address__link text-link gold"
               type="button"
               id="EditFormButton_{{ address.id }}"
               aria-label="Edit {{ forloop.index }}"
@@ -21,7 +21,7 @@
               Edit
             </button>
             <button
-              class="address__link"
+              class="address__link text-link gold"
               type="button"
               aria-label="Remove {{ forloop.index }}"
               data-target="{{ address.url }}"
