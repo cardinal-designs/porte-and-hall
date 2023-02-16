@@ -22,7 +22,7 @@
         </button>
         <div class="customer__navigation-container">
           <button class="customer__navigation-link p blue active" data-tab="addresses">My Addresses</button>
-          <button class="customer__navigation-link p" data-tab="orders">Order History</button>
+          <button class="customer__navigation-link p blue" data-tab="orders">Order History</button>
           <a href="{{ routes.account_logout_url }}" class="customer__navigation-link">Log Out</a>
         </div>
       </div>
@@ -30,7 +30,7 @@
       <div class="customer__content">
 
         <div class="customer__content-section active" data-tab="addresses">
-          <h2 class="customer__content-title h2 hide-mobile">My Addresses</h2>
+          <h2 class="customer__content-title h2 blue hide-mobile">My Addresses</h2>
 
           <div class="customer__address-container" data-customer-addresses>
             {% render 'addresses' %}
