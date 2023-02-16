@@ -491,6 +491,8 @@ li.address h5 {
   text-decoration: underline;
   color: var(--gold);
   word-break: break-word;
+  margin: 0 0 10px;
+  display: block;
 }
 
 .order-detail__addresses {
