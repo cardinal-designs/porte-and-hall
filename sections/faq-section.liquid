@@ -88,10 +88,13 @@
     top: 50%;
     transform: translateY(-50%);
   }
-
-  #faqs .faq-items {
-    display: block;
-    column-count: 1;
+  
+  @media screen and (max-width: 768px) {
+    
+    #faqs .faq-items {
+      column-count: 1;
+    }
+  
   }
 
 </style>
