@@ -14,8 +14,9 @@
   margin-bottom: 1.5rem;
 }
 
-.contact {
-
+.contact .title {
+  margin-bottom: 50px;
+  color: var(--blue);
 }
 
 @media screen and (min-width: 769px) {
