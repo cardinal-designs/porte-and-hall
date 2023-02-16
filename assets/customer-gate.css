@@ -44,16 +44,12 @@
 }
 
 .customer-gate__recover-link {
-  margin: -10px 0 20px;
+  margin: 0 0 50px;
   display: block;
   text-align: right;
   font-size: 12px;
   text-decoration: underline;
   position: relative;
-}
-
-.customer-gate__button {
-  margin-top: 10px;
 }
 
 .register .customer-gate__button {
