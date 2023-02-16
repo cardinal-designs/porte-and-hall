@@ -46,6 +46,8 @@
   font-family: brandon;
   font-weight: 600;
   letter-spacing: 2px;
+  color: var(--blue);
+  opacity: 1;
 }
 
 .customer__navigation-link:last-child {
