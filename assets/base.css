@@ -2033,7 +2033,7 @@ header.condensed .header__menu {
 }
 
 .text-center {
-  text-align:center;
+  text-align:center !important;
 }
 
 @media screen and (max-width: 1050px) {
