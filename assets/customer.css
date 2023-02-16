@@ -268,11 +268,11 @@ label.field__label {
   font-family: 'brandon';
 }
 
-.account-header h1,
-.account-header h2,
-.account-header h3,
-.account-header h4,
-.account-header h5 {
+.customer__container h1,
+.customer__container h2,
+.customer__container h3,
+.customer__container h4,
+.customer__container h5 {
   color: var(--blue);
 }
 
