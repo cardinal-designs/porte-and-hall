@@ -52,6 +52,18 @@
           {% endif %}
         </div>
       </div>
+
+      <div class="select field">
+      	<div class="selectBtn" data-type="Reason for inquiry">Reason for inquiry</div>
+      	<div class="selectDropdown">
+      		<div class="option" data-type="General inquiry">General inquiry</div>
+      		<div class="option" data-type="Return to request">Return to request</div>
+      		<div class="option" data-type="Question">Question</div>
+          <div class="option" data-type="Other">Other</div>
+      	</div>
+      </div>
+
+    
       <div class="field">
         <select class="field__input" name="{{ 'templates.contact.form.enquiry' | t }}" id="Enquiry">
           <option value="" disabled selected>{{ 'templates.contact.form.enquiry' | t }}</option>
