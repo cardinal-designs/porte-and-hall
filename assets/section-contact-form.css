@@ -113,6 +113,10 @@ span.form__message.Form_Error {
   font-size: 11px;
 }
 
+.Select_Button_Text.active-btn {
+  opacity: .6;
+}
+
 .select .selectBtn {
   width: 100%;
   cursor: pointer;
