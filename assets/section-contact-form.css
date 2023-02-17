@@ -106,27 +106,8 @@ span.form__message.Form_Error {
   background: #fff;
 }
 
-.select .selectBtn:after {
-  content: "";
-  position: absolute;
-  top: 45%;
-  right: 15px;
-  width: 6px;
-  height: 6px;
-  -webkit-transform: translateY(-50%) rotate(45deg);
-  transform: translateY(-50%) rotate(45deg);
-  border-right: 2px solid #666;
-  border-bottom: 2px solid #666;
-  transition: 0.2s ease;
-}
-
 .select .selectBtn.toggle {
   border-radius: 3px 3px 0 0;
-}
-
-.select .selectBtn.toggle:after {
-  -webkit-transform: translateY(-50%) rotate(-135deg);
-  transform: translateY(-50%) rotate(-135deg);
 }
 
 .select .selectDropdown.toggle {
