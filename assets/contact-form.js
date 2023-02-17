@@ -20,13 +20,24 @@ const on = (listener, query, fn) => {
   })
 }
 
-on('click', '.selectBtn', item => {
+
+let elementSelect = document.querySelector('.selectBtn');
+
+elementSelect.addEventListener('click',function(item){
   const target = item.target;
   const next = item.target.nextElementSibling;
   target.classList.toggle('active');
   next.classList.toggle('toggle');
   next.style.zIndex = index++;
 });
+
+// on('click', '.selectBtn', item => {
+//   const target = item.target;
+//   const next = item.target.nextElementSibling;
+//   target.classList.toggle('active');
+//   next.classList.toggle('toggle');
+//   next.style.zIndex = index++;
+// });
 
 on('click', '.option', item => {
   item.target.parentElement.classList.remove('toggle');
