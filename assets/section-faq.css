@@ -39,7 +39,7 @@
 }
 
 #faqs h2 {
-  margin: 0 auto 18px;
+  margin: 0 auto 38px;
   padding: 0 20px;
   color: var(--blue);
 }
@@ -113,6 +113,7 @@ svg.icon.icon-minus {
 
   #faqs h2 {
     padding: 0;
+    margin: 0 auto 18px;
   }
   
   .Faq_Answer {
