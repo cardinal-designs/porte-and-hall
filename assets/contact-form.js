@@ -52,18 +52,3 @@ elementEmail.addEventListener('input', function(ele){
     document.querySelector('.contact__button [type="submit"]').classList.add('disabled');
   }
 });
-
-// on('click', '.selectBtn', item => {
-//   const target = item.target;
-//   const next = item.target.nextElementSibling;
-//   target.classList.toggle('active');
-//   next.classList.toggle('toggle');
-//   next.style.zIndex = index++;
-// });
-
-// on('click', '.option', item => {
-//   item.target.parentElement.classList.remove('toggle');
-//   const parent = item.target.closest('.select').children[0];
-//   parent.setAttribute('data-type', item.target.getAttribute('data-type'));
-//   parent.innerText = item.target.innerText;
-// })
