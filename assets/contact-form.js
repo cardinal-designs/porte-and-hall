@@ -22,23 +22,25 @@ const on = (listener, query, fn) => {
 
 
 let elementSelect = document.querySelector('.selectBtn'),
-    elementOption = document.querySelectorAll('.selectDropdown .option');
+    elementOption = document.querySelectorAll('.selectDropdown .option'),
+    elementInput = document.querySelector('.reason_for_inquiry');
 
-elementSelect.addEventListener('click',function(item){
-  const target = item.target;
-  const next = item.target.nextElementSibling;
-  target.classList.toggle('active');
-  next.classList.toggle('toggle');
-  next.style.zIndex = index++;
-});
+  elementSelect.addEventListener('click',function(item){
+    const target = item.target;
+    const next = item.target.nextElementSibling;
+    target.classList.toggle('active');
+    next.classList.toggle('toggle');
+    next.style.zIndex = index++;
+  });
 
-elementOption.forEach(function(optionItem){
-  optionItem.addEventListener('click',function(ele){
-  ele.target.parentElement.classList.remove('toggle');
-  const parent = ele.target.closest('.select').children[0];
-  parent.setAttribute('data-type', ele.target.getAttribute('data-type'));
-  parent.innerText = ele.target.innerText;
-});
+  elementOption.forEach(function(optionItem){
+    optionItem.addEventListener('click',function(ele){
+    ele.target.parentElement.classList.remove('toggle');
+    const parent = ele.target.closest('.select').children[0];
+    parent.setAttribute('data-type', ele.target.getAttribute('data-type'));
+    parent.innerText = ele.target.innerText;
+    elementInput.value = ele.target.innerText;
+  });
 })
 
 
