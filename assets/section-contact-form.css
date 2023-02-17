@@ -85,6 +85,10 @@ span.form__message svg {
   display: none;
 }
 
+.Select_Button_Text.active {
+  opacity: .6;
+}
+
 .field--with-error #ContactForm-email {
   color: #F00;
 }
