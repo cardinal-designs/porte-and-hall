@@ -1557,6 +1557,10 @@ header.condensed .header__menu {
   width: 100%;
 }
 
+#NewsletterForm--footer {
+  color: inherit;
+}
+
 .footer__heading {
   margin-bottom: 30px;
 }
