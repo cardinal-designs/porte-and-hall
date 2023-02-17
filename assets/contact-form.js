@@ -8,7 +8,9 @@ const on = (listener, query, fn) => {
 }
 
 on('click', '.selectBtn', item => {
+  const target = item.target;
   const next = item.target.nextElementSibling;
+  target.classList.toggle('active');
   next.classList.toggle('toggle');
   next.style.zIndex = index++;
 });
