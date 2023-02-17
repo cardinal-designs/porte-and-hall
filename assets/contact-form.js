@@ -37,7 +37,6 @@ let elementSelect = document.querySelector('.Select_Button_Text'),
   elementOption.forEach(function(optionItem){
     optionItem.addEventListener('click',function(ele){
     ele.target.parentElement.classList.remove('toggle');
-    console.log(ele.target.parentElement);
     elementSelect.classList.remove('active');
     const parent = ele.target.closest('.select').children[0];
     parent.setAttribute('data-type', ele.target.getAttribute('data-type'));
