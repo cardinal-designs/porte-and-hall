@@ -21,7 +21,7 @@ const on = (listener, query, fn) => {
 }
 
 
-let elementSelect = document.querySelector('.selectBtn'),
+let elementSelect = document.querySelector('.Select_Button_Text'),
     elementOption = document.querySelectorAll('.selectDropdown .option'),
     elementInput = document.querySelector('.reason_for_inquiry'),
     elementEmail = document.querySelector('#ContactForm-email');
