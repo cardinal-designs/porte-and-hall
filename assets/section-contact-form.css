@@ -91,12 +91,6 @@ span.form__message.Form_Error {
   margin: 7px 0 0 0;
 }
 
-.select {
-  position: relative;
-  margin-bottom: 15px;
-  width: 250px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
 .select .selectBtn {
   background: var(--bg1);
   padding: 10px;
@@ -111,6 +105,7 @@ span.form__message.Form_Error {
   user-select: none;
   background: #fff;
 }
+
 .select .selectBtn:after {
   content: "";
   position: absolute;
