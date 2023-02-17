@@ -93,6 +93,11 @@ span.form__message svg {
   padding: 20px;
 }
 
+.selectBtn.field__input.active {
+  border: 1px solid var(--blue);
+  border-bottom: 0;
+}
+
 span.form__message.Form_Error {
   width: 100%;
   text-align: left;
