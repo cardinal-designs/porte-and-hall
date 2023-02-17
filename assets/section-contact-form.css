@@ -128,6 +128,10 @@ span.form__message.Form_Error {
   border: 1px solid var(--blue);
 }
 
+.selectBtn.field__input.active {
+  border-bottom-color: transparent;
+}
+
 .select .selectDropdown .option {
   padding: 20px;
   box-sizing: border-box;
