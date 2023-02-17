@@ -38,7 +38,7 @@ let elementSelect = document.querySelector('.Select_Button_Text'),
     optionItem.addEventListener('click',function(ele){
     ele.target.parentElement.classList.remove('toggle');
     elementSelect.classList.remove('active');
-    const parent = ele.target.closest('.select').children[0];
+    const parent = ele.target.closest('.selectBtn').children[0];
     parent.setAttribute('data-type', ele.target.getAttribute('data-type'));
     parent.innerText = ele.target.innerText;
     elementInput.value = ele.target.getAttribute('data-type');
