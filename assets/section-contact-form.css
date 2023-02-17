@@ -137,6 +137,7 @@ span.form__message.Form_Error {
   padding: 20px;
   box-sizing: border-box;
   cursor: pointer;
+  color: var(--blue);
 }
 
 .select .selectDropdown .option:hover {
