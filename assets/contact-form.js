@@ -21,7 +21,7 @@ const on = (listener, query, fn) => {
 }
 
 
-let elementSelect = document.querySelector('.selectBtn');
+// let elementSelect = document.querySelector('.selectBtn');
 
 elementSelect.addEventListener('click',function(item){
   const target = item.target;
