@@ -48,7 +48,7 @@
           {% if form.errors contains 'email' %}
             <small class="contact__field-error" id="ContactForm-email-error">
               <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
-              <span class="form__message Form_Error">{{ form.errors.translated_fields['email'] | capitalize }} {{ 'templates.contact.form.form_error' | t }}</span>
+              <span class="form__message Form_Error">{{ 'templates.contact.form.form_error' | t }}</span>
             </small>
           {% endif %}
         </div>
