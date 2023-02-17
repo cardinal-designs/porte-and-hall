@@ -45,7 +45,12 @@ let elementSelect = document.querySelector('.selectBtn'),
 })
 
 elementEmail.addEventListener('input', function(ele){
-    if(document.querySelector('.contact__button [type="submit"].disabled')) document.querySelector('.contact__button [type="submit"]').classList.remove('disabled');
+    if(document.querySelector('.contact__button [type="submit"].disabled')){
+      document.querySelector('.contact__button [type="submit"]').classList.remove('disabled');
+    }
+  if(ele.target.value==''){
+    document.querySelector('.contact__button [type="submit"]').classList.add('disabled');
+  }
 });
 
 // on('click', '.selectBtn', item => {
