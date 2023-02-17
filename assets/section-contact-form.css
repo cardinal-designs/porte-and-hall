@@ -89,8 +89,10 @@ span.form__message svg {
   color: #F00;
 }
 
-.selectBtn.field__input {
-  padding: 0px 20px 20px;
+.Select_Button_Text {
+  width: 100%;
+  display: block;
+  padding: 0 20px 20px;
 }
 
 .selectBtn.field__input.active {
