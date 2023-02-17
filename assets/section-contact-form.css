@@ -128,9 +128,15 @@ span.form__message.Form_Error {
 .select .selectBtn.toggle {
   border-radius: 3px 3px 0 0;
 }
+
 .select .selectBtn.toggle:after {
   -webkit-transform: translateY(-50%) rotate(-135deg);
   transform: translateY(-50%) rotate(-135deg);
+}
+
+.select .selectDropdown.toggle {
+  visibility: visible;
+  transform: scale(1, 1);
 }
 
 .select .selectDropdown {
