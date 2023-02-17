@@ -89,6 +89,10 @@ span.form__message svg {
   color: #F00;
 }
 
+.selectBtn.field__input {
+  padding: 20px;
+}
+
 span.form__message.Form_Error {
   width: 100%;
   text-align: left;
