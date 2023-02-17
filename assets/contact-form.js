@@ -39,6 +39,7 @@ let elementSelect = document.querySelector('.Select_Button_Text'),
     ele.target.parentElement.classList.remove('toggle');
     elementSelect.closest('.selectBtn').classList.remove('active');
     const parent = ele.target.closest('.select').querySelector('.Select_Button_Text');
+    parent.classList.add('active');
     parent.setAttribute('data-type', ele.target.getAttribute('data-type'));
     parent.innerText = ele.target.innerText;
     elementInput.value = ele.target.getAttribute('data-type');
