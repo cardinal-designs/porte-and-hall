@@ -22,6 +22,7 @@ const on = (listener, query, fn) => {
 
 
 let elementSelect = if(document.querySelector('.selectBtn')) document.querySelector('.selectBtn');
+let elementOption = if(document.querySelector('.selectDropdown .option')) document.querySelector('.selectDropdown .option');
 
 elementSelect.addEventListener('click',function(item){
   const target = item.target;
@@ -29,6 +30,13 @@ elementSelect.addEventListener('click',function(item){
   target.classList.toggle('active');
   next.classList.toggle('toggle');
   next.style.zIndex = index++;
+});
+
+elementOption.addEventListener('click',function(ele){
+  ele.target.parentElement.classList.remove('toggle');
+  const parent = ele.target.closest('.select').children[0];
+  parent.setAttribute('data-type', ele.target.getAttribute('data-type'));
+  parent.innerText = ele.target.innerText;
 });
 
 // on('click', '.selectBtn', item => {
@@ -39,9 +47,9 @@ elementSelect.addEventListener('click',function(item){
 //   next.style.zIndex = index++;
 // });
 
-on('click', '.option', item => {
-  item.target.parentElement.classList.remove('toggle');
-  const parent = item.target.closest('.select').children[0];
-  parent.setAttribute('data-type', item.target.getAttribute('data-type'));
-  parent.innerText = item.target.innerText;
-})
+// on('click', '.option', item => {
+//   item.target.parentElement.classList.remove('toggle');
+//   const parent = item.target.closest('.select').children[0];
+//   parent.setAttribute('data-type', item.target.getAttribute('data-type'));
+//   parent.innerText = item.target.innerText;
+// })
