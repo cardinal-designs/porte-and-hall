@@ -4,13 +4,12 @@
   }
   
   .template-404 {
-    padding: 50px 0;
+    padding: 40px 0;
     text-align: center;
   }
 
   .template-404 h1 {
     margin: 1rem 0 0;
-    color: var(--blue);
   }
 
   .template-404 .button {
@@ -21,17 +20,6 @@
     height: 186px;
   }
 
-  span.Not_Found_Icon img {
-    width: 100%;
-  }
-
-  .Not_Found_Icon {
-    display: block;
-    max-width: 580px;
-    margin: 0 auto 40px;
-    padding: 0 20px;
-  }
-  
   @media screen and (min-width: 769px) {
     
     .template-404 .title + * {
@@ -39,21 +27,74 @@
     }
 
     .template-404 {
-      padding: 100px 0;
+      padding: 50px 0;
     }
 
     #{{ section.id }} .Page_Header {
       height: {{ section.settings.section_height }}px;
     }
-    
-  }
 
+  }
 </style>
-<div class="template-404 page-margin center">
-  <span class="Not_Found_Icon">
-    <img src="{{ '404.svg' | asset_url }}">
-  </span>
-  <a href="{{ routes.all_products_collection_url }}" class="button">
-    {{ 'general.continue_shopping' | t }}
-  </a>
+<div class="Page_Header" style="background-image:url({{ section.settings.image | img_url : '1920x' }});">
+  <div class="template-404 page-margin center"style="background-color:{{ section.settings.bg_color }}">
+    <p class="body">
+      {{ 'templates.404.subtext' | t }}
+    </p>
+    <h1 class="title">
+      {{ 'templates.404.title' | t }}
+    </h1>
+    <a href="{{ routes.all_products_collection_url }}" class="button">
+      {{ 'general.continue_shopping' | t }}
+    </a>
+  </div>
 </div>
+
+{% schema %}
+{
+  "name": "404 Page",
+  "tag": "section",
+  "class": "spaced-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "section_height",
+      "label": "Section Height",
+      "options": [
+        {
+          "label": "250",
+          "value": "250"
+        },
+        {
+          "label": "350",
+          "value": "350"
+        },
+        {
+          "label": "450",
+          "value": "450"
+        },
+        {
+          "label": "550",
+          "value": "550"
+        }
+      ],
+      "default": "350"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F4F2EE"
+    }
+  ]
+}
+{% endschema %}
