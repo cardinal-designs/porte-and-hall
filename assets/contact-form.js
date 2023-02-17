@@ -41,6 +41,7 @@ let elementSelect = document.querySelector('.selectBtn'),
     parent.setAttribute('data-type', ele.target.getAttribute('data-type'));
     parent.innerText = ele.target.innerText;
     elementInput.value = ele.target.getAttribute('data-type');
+    ele.target.parentElement.parentElement.classList.remove('active');
   });
 })
 
