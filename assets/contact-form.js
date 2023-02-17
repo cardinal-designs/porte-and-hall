@@ -23,7 +23,8 @@ const on = (listener, query, fn) => {
 
 let elementSelect = document.querySelector('.selectBtn'),
     elementOption = document.querySelectorAll('.selectDropdown .option'),
-    elementInput = document.querySelector('.reason_for_inquiry');
+    elementInput = document.querySelector('.reason_for_inquiry'),
+    elementEmail = document.querySelector('#ContactForm-email');
 
   elementSelect.addEventListener('click',function(item){
     const target = item.target;
@@ -43,6 +44,9 @@ let elementSelect = document.querySelector('.selectBtn'),
   });
 })
 
+elementEmail.addEventListener('input', function(ele){
+    if(document.querySelector('.contact__button [type="submit"].disabled')) document.querySelector('.contact__button [type="submit"]').classList.remove('disabled');
+});
 
 // on('click', '.selectBtn', item => {
 //   const target = item.target;
