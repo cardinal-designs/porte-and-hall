@@ -1,3 +1,16 @@
+let interval = null
+
+let domWorks = () => {
+   let d = document.querySelector('#ContactForm-email-error')
+   if(d){
+    console.log('dom manipulation')
+    document.querySelector('.contact__button button').classList.add('disabled')
+    clearInterval(interval) // Change it via reference
+   }
+}
+
+interval = setInterval(domWorks, 100)
+
 let index = 1;
 const on = (listener, query, fn) => {
   document.querySelectorAll(query).forEach(item => {
