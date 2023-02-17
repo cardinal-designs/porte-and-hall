@@ -36,6 +36,17 @@
 
   }
 </style>
+
+{% liquid
+  if section.settings.color == 'orange'
+    assign fan-motif = 'fan-motif--orange.png' | asset_url
+    assign background = 'fan-motif-background--orange.jpg' | asset_url
+  else
+    assign fan-motif = 'fan-motif--green.png' | asset_url
+    assign background = 'fan-motif-background--green.jpg' | asset_url
+  endif
+%}
+
 <div class="Page_Header" style="background-image:url({{ section.settings.image | img_url : '1920x' }});">
   <div class="template-404 page-margin center"style="background-color:{{ section.settings.bg_color }}">
     <div class="fan-motif__motif">
