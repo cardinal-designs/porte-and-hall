@@ -28,7 +28,7 @@ let elementSelect = document.querySelector('.Select_Button_Text'),
 
   elementSelect.addEventListener('click',function(item){
     const target = item.target;
-    const next = item.target.nextElementSibling;
+    const next = item.target.parentElement.nextElementSibling;
     target.classList.toggle('active');
     next.classList.toggle('toggle');
     next.style.zIndex = index++;
