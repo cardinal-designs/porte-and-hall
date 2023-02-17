@@ -21,8 +21,8 @@ const on = (listener, query, fn) => {
 }
 
 
-let elementSelect = document.querySelector('.selectBtn')
-let elementOption = if(document.querySelector('.selectDropdown')) document.querySelectorAll('.selectDropdown .option');
+let elementSelect = document.querySelector('.selectBtn'),
+    elementOption = document.querySelectorAll('.selectDropdown .option');
 
 elementSelect.addEventListener('click',function(item){
   const target = item.target;
