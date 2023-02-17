@@ -126,6 +126,7 @@ span.form__message.Form_Error {
   visibility: hidden;
   transition: .2s ease;
   border: 1px solid var(--blue);
+  border-top: 0;
 }
 
 .selectBtn.field__input.active {
