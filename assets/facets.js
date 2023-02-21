@@ -34,7 +34,6 @@ class FacetFiltersForm extends HTMLElement {
     const sections = FacetFiltersForm.getSections();
     const countContainer = document.getElementById('ProductCount');
     const countContainerDesktop = document.getElementById('ProductCountDesktop');
-    document.getElementById('ProductGridContainer').closest('.collection-grid__inner').classList.add('loading');
     if (countContainer){
       countContainer.classList.add('loading');
     }
@@ -167,6 +166,7 @@ class FacetFiltersForm extends HTMLElement {
 
   onSubmitHandler(event) {
     event.preventDefault();
+    document.getElementById('ProductGridContainer').closest('.collection-grid__inner').classList.add('loading');
     const formData = new FormData(event.target.closest('form'));
     const searchParams = new URLSearchParams(formData).toString();
     FacetFiltersForm.renderPage(searchParams, event);
@@ -174,6 +174,7 @@ class FacetFiltersForm extends HTMLElement {
 
   onActiveFilterClick(event) {
     event.preventDefault();
+    document.getElementById('ProductGridContainer').closest('.collection-grid__inner').classList.add('loading');
     FacetFiltersForm.toggleActiveFacets();
     const url = event.currentTarget.href.indexOf('?') == -1 ? '' : event.currentTarget.href.slice(event.currentTarget.href.indexOf('?') + 1);
     FacetFiltersForm.renderPage(url);

@@ -8,6 +8,8 @@
 @media screen and (max-width: 768px) {
   .product-grid {
     grid-template-columns: repeat(2, minmax(auto, 1fr));
+    row-gap: 24px;
+    column-gap: 12px;
   }
 }
 
@@ -37,4 +39,17 @@
 
 .collection-grid__inner.loading > .loading-overlay {
   display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .collection-grid-section.spaced-section {
+    margin: 0;
+  }
+  .collection-grid__inner {
+    display: block;
+  }
+
+  #ProductGridContainer {
+    margin: 50px 0 24px;
+  }
 }

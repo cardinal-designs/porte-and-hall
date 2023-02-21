@@ -1,3 +1,284 @@
-<collection-filters>
-  <div class="collection-filters"></div>
+{% liquid
+  assign sort_by = collection.sort_by | default: collection.default_sort_by
+  assign total_active_values = 0
+  if collection.url
+    assign results_url = collection.url
+  else
+    assign terms = collection.terms | escape
+    assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+  endif
+%}
+
+{% for filter in collection.filters %}
+  {% if filter.type == 'list' %}
+    {% assign total_active_values = total_active_values | plus: filter.active_values.size %}
+  {% elsif filter.type == 'price_range' and filter.min_value.value or filter.max_value.value %}
+    {% assign total_active_values = total_active_values | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+<div class="collection-filters__button hide-desktop">
+  <button class="collection-filters__open js-open-filters h3">
+    <span>Filter {% render 'icon', icon: 'filter' %}</span>
+
+    <span id="mobile-product-count" class="filter-count">{{ collection.products_count }}</span>
+  </button>
+</div>
+
+<collection-filters
+  class="collection-filters"
+  data-collection-url="{{ collection.url }}"
+  data-current-sort="{{ collection.sort_by | default: collection.default_sort_by }}"
+>
+  <form class="filters-form">
+    <div class="collection-filters" id="filters">
+      <div class="collection-filters__container">
+        {% comment %}
+          <div class="collection-filters__button hide-mobile">
+            <button class="collection-filters__open js-open-filters h2">
+              {% render 'icon', icon: 'filter' %}
+              Filter
+              {% render 'icon', icon: 'caret-right' %}
+            </button>
+
+            <div id="collection-filters__clear">
+              {% if total_active_values > 0 %}
+                <button class="collection-filters__clear-all js-clear-all-filters cta">
+                  Clear Filters
+                  {% render 'icon', icon: 'close' %}
+                </button>
+              {% endif %}
+            </div>
+          </div>
+        {% endcomment %}
+
+        <div class="collection-filters__slideout">
+          <div class="collection-filters__slideout-container">
+            <div class="collection-filters__slideout-header hide-desktop">
+              <h4 class="collection-filters__slideout-title h2 blue">Filter</h4>
+              <button class="collection-filters__slideout-close js-close-filters">
+                {% render 'icon', icon: 'close' %}
+              </button>
+            </div>
+            <div class="collection-filters__slideout-content">
+              <div id="active-filters" class="hide-desktop">
+                {% if total_active_values > 0 %}
+                  <div class="collection-filters__active-filters">
+                    {% for filter in collection.filters %}
+                      {% case filter.type %}
+                        {% when 'list' %}
+                          {% for value in filter.active_values %}
+                            <button
+                              class="remove-filter active-filter body-xs body-bold"
+                              data-url="{{ filter.url_to_remove | remove: '%2F%3Fsection_id%3Dproduct-grid' }}"
+                              data-filter="{{ value.param_name }}-{{ value.value }}"
+                            >
+                              {{ filter.label }}:
+                              {{ value.label | escape }}
+                              {% render 'icon', icon: 'close' %}
+                            </button>
+                          {% endfor %}
+                        {% when 'price_range' %}
+                          {% if filter.min_value or filter.max_value %}
+                            {% assign min_value = filter.min_value.value | default: 0 %}
+                            {% assign max_value = filter.max_value.value | default: filter.range_max %}
+                            {% assign min_value_formatted = min_value | money_without_trailing_zeros %}
+                            {% assign max_value_formatted = max_value | money_without_trailing_zeros %}
+
+                            {% if min_value != 0 or max_value != filter.range_max %}
+                              <button
+                                class="remove-filter cta"
+                                data-url="{{ filter.url_to_remove | remove: '%2F%3Fsection_id%3Dproduct-grid' }}"
+                                data-filter="{{ value.param_name }}"
+                              >
+                                {{ min_value_formatted }} - {{ max_value_formatted }}
+                                {% render 'icon', icon: 'close' %}
+                              </button>
+                            {% endif %}
+                          {% endif %}
+                      {% endcase %}
+                    {% endfor %}
+
+                    <button class="text-link js-clear-all-filters js-clear-all-filters--close blue">Clear All</button>
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="collection-filters__filters" id="filter-dropdowns">
+                <div class="collection-filters__dropdowns">
+                  {% for filter in collection.filters %}
+                    {% assign total_active_values = total_active_values | plus: filter.active_values.size %}
+                    {% assign downcase_filter = filter.label | downcase %}
+                    <div class="collection-filters__dropdown">
+                      <button class="collection-filters__dropdown-button h3 {% if filter.active_values != blank %} has-active-filters{% endif %} active">
+                        {% if downcase_filter == 'product type' %}
+                          <span>Shop By Category</span>
+                        {% else %}
+                          <span>Shop By {{ filter.label }}</span>
+                        {% endif %}
+                        {% render 'icon', icon: 'dropdown' %}
+                      </button>
+                      <div class="collection-filters__dropdown-wrapper">
+                        <div
+                          class="collection-filters__dropdown-container{% if filter.type == 'price_range' %} collection-filters__dropdown-container--price-range{% endif %}"
+                          id="collection-filter-{{ filter.param_name | escape }}"
+                        >
+                          {% unless filter.type == 'price_range' %}
+                            {% for value in filter.values %}
+                              <label
+                                for="Filter-{{ filter.label | escape }}-{{ forloop.index }}"
+                                class="collection-filters__filter-label h3{% if value.count == 0 and value.active == false %} collection-filters__filter-button--disabled{% endif %}"
+                              >
+                                <input
+                                  type="checkbox"
+                                  class="collection-filters__filter-button"
+                                  name="{{ value.param_name }}"
+                                  value="{{ value.value }}"
+                                  data-filter="{{ value.param_name }}-{{ value.value }}"
+                                  id="Filter-{{ filter.label | escape }}-{{ forloop.index }}"
+                                  {% if value.active %}
+                                    checked
+                                  {% endif %}
+                                >
+                                {{ value.label | escape }}
+                                {% comment %} ({{ value.count }}) {% endcomment %}
+                              </label>
+                            {% endfor %}
+                          {% else %}
+                            <price-range class="price-range">
+                              {% assign min_value = filter.min_value.value | default: 0.0 | divided_by: 100.0 %}
+                              {% assign max_value = filter.max_value.value
+                                | default: filter.range_max
+                                | divided_by: 100.0
+                              %}
+                              {% assign range_max = filter.range_max | divided_by: 100.0 | ceil %}
+
+                              {% assign lower_bound_progress = min_value | divided_by: range_max | times: 100.0 %}
+                              {% assign higher_bound_progress = max_value | divided_by: range_max | times: 100.0 %}
+
+                              <div
+                                class="price-range__range-group range-group"
+                                style="--range-min: {{ lower_bound_progress }}%; --range-max: {{ higher_bound_progress }}%"
+                              >
+                                <input
+                                  type="range"
+                                  aria-label="Price - From"
+                                  class="range"
+                                  min="0"
+                                  max="{{ range_max | ceil }}"
+                                  value="{{ min_value | ceil }}"
+                                >
+                                <input
+                                  type="range"
+                                  aria-label="Price - To"
+                                  class="range"
+                                  min="0"
+                                  max="{{ range_max | ceil }}"
+                                  value="{{ max_value | ceil }}"
+                                >
+                              </div>
+
+                              <div class="price-range__input-group">
+                                <div class="price-range__input input-prefix cta">
+                                  <span class="price-range__currency">{{ cart.currency.symbol }}</span>
+                                  <input
+                                    aria-label="Price - From"
+                                    class="price-range__input-field price-range__input-field--min cta"
+                                    type="number"
+                                    inputmode="numeric"
+                                    {% if filter.min_value.value %}
+                                      value="{{ min_value | ceil }}"
+                                    {% endif %}
+                                    name="{{ filter.min_value.param_name }}"
+                                    id="{{ filter.min_value.param_name }}"
+                                    min="0"
+                                    max="{{ max_value | ceil }}"
+                                    placeholder="0"
+                                  >
+                                </div>
+
+                                <span class="price-range__delimiter body-5">to</span>
+
+                                <div class="price-range__input input-prefix cta">
+                                  <span class="price-range__currency">{{ cart.currency.symbol }}</span>
+                                  <input
+                                    aria-label="Price - To"
+                                    class="price-range__input-field price-range__input-field--max cta"
+                                    type="number"
+                                    inputmode="numeric"
+                                    {% if filter.max_value.value %}
+                                      value="{{ max_value | ceil }}"
+                                    {% endif %}
+                                    name="{{ filter.max_value.param_name }}"
+                                    id="{{ filter.max_value.param_name }}"
+                                    min="{{ min_value | ceil }}"
+                                    max="{{ range_max | ceil }}"
+                                    placeholder="{{ range_max | ceil }}"
+                                  >
+                                </div>
+                              </div>
+                            </price-range>
+                          {% endunless %}
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="collection-filters__controls">
+            <button class="button button--green button--apply js-close-filters">
+              <span id="apply-product-count">See Results ({{ collection.products_count }})</span>
+            </button>
+          </div>
+        </div>
+        <div class="collection-filters__right">
+          {% comment %}
+            <p class="collection-filters__results caption-2" id="product-results">{{ collection.products_count }} Product{% unless collection.products_count == 1 %}s{% endunless %}</p>
+          {% endcomment %}
+          <div class="filters-container sorting">
+            <div class="collection-filters__dropdown">
+              <button class="collection-filters__dropdown-button cta">
+                <span class="collection-filters__dropdown-button-sort-header hide-mobile">Sort By</span>
+                <span class="collection-filters__dropdown-active-sort">
+                  {% for option in collection.sort_options %}
+                    {% assign collection_sort_by = collection.sort_by | default: collection.default_sort_by %}
+                    {% if option.value == collection_sort_by %}
+                      {{ option.name | escape }}
+                    {% endif %}
+                  {% endfor %}
+                </span>
+                {% render 'icon', icon: 'caret' %}
+              </button>
+              <div class="collection-filters__dropdown-wrapper">
+                <div class="collection-filters__dropdown-container">
+                  {% for option in collection.sort_options %}
+                    {% unless option.value == 'manual' %}
+                      {% assign collection_sort_by = collection.sort_by | default: collection.default_sort_by %}
+                      <input
+                        type="radio"
+                        class="collection-filters__filter-button sort-by"
+                        name="sort_by"
+                        value="{{ option.value }}"
+                        id="Sort-{{ forloop.index }}"
+                        data-name="{{ option.name | escape }}"
+                        {% if option.value == collection_sort_by %}
+                          checked
+                        {% endif %}
+                      >
+                      <label for="Sort-{{ forloop.index }}" class="collection-filters__filter-label cta">
+                        {{ option.name | escape }}
+                      </label>
+                    {% endunless %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 </collection-filters>

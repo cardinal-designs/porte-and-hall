@@ -128,3 +128,32 @@
 .product-count__text.loading + .loading-overlay__spinner {
   display: block;
 }
+
+.mobile-facets__open-wrapper {
+  background: var(--gold-secondary--dark);
+  position: sticky;
+  top: 0;
+}
+
+.mobile-facets__open-wrapper::marker {
+  display: none;
+  content: "";
+}
+
+.mobile-facets__open svg {
+  width: 15px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .mobile-facets {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: rgba(var(--color-foreground), 0.5);
+    pointer-events: none;
+  }
+}

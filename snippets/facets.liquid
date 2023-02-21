@@ -24,7 +24,7 @@
 
 <div class="facets-container">
   {% unless collapse_on_larger_devices %}
-    <facet-filters-form class="facets small-hide">
+    <facet-filters-form class="facets hide-tablet">
       <form id="FacetFiltersForm" class="facets__form">
         <div class="active-facets active-facets-desktop">
           {% for filter in results.filters %}
@@ -66,6 +66,7 @@
               {% endif %}
             {% endif %}
           {% endfor %}
+
           <facet-remove class="active-facets__button-wrapper">
             <a href="{{ results_url }}" class="active-facets__button-remove text-link blue">
               <span>{{ 'products.facets.clear_all' | t }}</span>
@@ -315,7 +316,7 @@
           </div>
         {% endif %}
 
-        <div class="product-count light" role="status">
+        <div class="product-count light hide-desktop hide-mobile" role="status">
           <h3 id="ProductCountDesktop" class="product-count__text text-body">
             <span>
               {% if results.results_count %}
@@ -694,6 +695,7 @@
         {% endif %}
       {% endif %}
     {% endfor %}
+
     <facet-remove class="active-facets__button-wrapper">
       <a href="{{ results_url }}" class="active-facets__button-remove underlined-link">
         <span>{{ 'products.facets.clear_all' | t }}</span>
