@@ -37,7 +37,7 @@
   width: 1.8rem;
 }
 
-.collection-grid__inner.loading > .loading-overlay {
+.collection-grid__inner.loading .loading-overlay {
   display: block;
 }
 
