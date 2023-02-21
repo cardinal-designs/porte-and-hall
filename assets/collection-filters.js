@@ -15,9 +15,6 @@ class collectionFilters extends HTMLElement {
     this.closeFilterButtons = document.querySelectorAll('.js-close-filters');
     this.clearFilterButtons = document.querySelectorAll('.js-clear-all-filters')
 
-    // this.searchParams = ""
-    console.log(collectionFilters.searchParamsInitial)
-
     this.setListeners();
 
     if(collectionFilters.searchParamsInitial.includes('filter')){
