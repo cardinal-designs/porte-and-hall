@@ -116,7 +116,7 @@
                         {% else %}
                           <span>Shop By {{ filter.label }}</span>
                         {% endif %}
-                        {% render 'icon', icon: 'dropdown' %}
+                        {% render 'icon', icon: 'caret' %}
                       </button>
                       <div class="collection-filters__dropdown-wrapper">
                         <div
@@ -243,7 +243,7 @@
             </div>
           </div>
 
-          <div class="collection-filters__controls">
+          <div class="collection-filters__controls hide-desktop">
             <button class="button button--green button--apply js-close-filters">
               <span id="apply-product-count">See Results ({{ collection.products_count }})</span>
             </button>
@@ -255,7 +255,7 @@
           {% endcomment %}
           <div class="filters-container sorting">
             <div class="collection-filters__dropdown">
-              <button class="collection-filters__dropdown-button cta">
+              <button class="collection-filters__dropdown-button">
                 <span class="collection-filters__dropdown-button-sort-header hide-mobile">Sort By</span>
                 <span class="collection-filters__dropdown-active-sort">
                   {% for option in collection.sort_options %}
