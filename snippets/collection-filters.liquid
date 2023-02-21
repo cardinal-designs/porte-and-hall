@@ -67,6 +67,9 @@
                     {% for filter in collection.filters %}
                       {% case filter.type %}
                         {% when 'list' %}
+                          {% if filter.label == 'Size' %}
+                            {% continue %}
+                          {% endif %}
                           {% for value in filter.active_values %}
                             <button
                               class="remove-filter active-filter body-xs body-bold"
@@ -124,13 +127,35 @@
                           id="collection-filter-{{ filter.param_name | escape }}"
                         >
                           {% unless filter.type == 'price_range' %}
-                            {% for value in filter.values %}
-                              <label
-                                for="Filter-{{ filter.label | escape }}-{{ forloop.index }}"
-                                class="collection-filters__filter-label h3{% if value.count == 0 and value.active == false %} collection-filters__filter-button--disabled{% endif %}"
-                              >
+                            {% if filter.label == 'Size' %}
+                              <div class="collection-filters__input-wrapper">
                                 <input
-                                  type="checkbox"
+                                  type="radio"
+                                  class="collection-filters__filter-button"
+                                  name="{{ filter.values[0].param_name }}"
+                                  value=""
+                                  remove-filter="{{ filter.param_name }}"
+                                  id="Filter-{{ filter.label | escape }}-all"
+                                  {% if filter.active_values == blank %}
+                                    checked
+                                  {% endif %}
+                                >
+                                <label
+                                  for="Filter-{{ filter.label | escape }}-all"
+                                  class="collection-filters__filter-label collection-filters__filter-label-radio h3{% if value.count == 0 and value.active == false %} collection-filters__filter-button--disabled{% endif %}"
+                                >
+                                  Shop All
+                                </label>
+                              </div>
+                            {% endif %}
+                            {% for value in filter.values %}
+                              <div class="collection-filters__input-wrapper">
+                                <input
+                                  {% if filter.label == 'Size' %}
+                                    type="radio"
+                                  {% else %}
+                                    type="checkbox"
+                                  {% endif %}
                                   class="collection-filters__filter-button"
                                   name="{{ value.param_name }}"
                                   value="{{ value.value }}"
@@ -140,9 +165,14 @@
                                     checked
                                   {% endif %}
                                 >
-                                {{ value.label | escape }}
-                                {% comment %} ({{ value.count }}) {% endcomment %}
-                              </label>
+                                <label
+                                  for="Filter-{{ filter.label | escape }}-{{ forloop.index }}"
+                                  class="collection-filters__filter-label {% if filter.label == 'Size' %}collection-filters__filter-label-radio{% endif %}  h3{% if value.count == 0 and value.active == false %} collection-filters__filter-button--disabled{% endif %}"
+                                >
+                                  {{ value.label | escape }}
+                                  {% comment %} ({{ value.count }}) {% endcomment %}
+                                </label>
+                              </div>
                             {% endfor %}
                           {% else %}
                             <price-range class="price-range">

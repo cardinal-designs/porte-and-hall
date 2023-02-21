@@ -124,12 +124,19 @@ class collectionFilters extends HTMLElement {
     }
   }
 
-  handleFilterClick() {
-    this.reloadSections();
+  handleFilterClick(target) {
+    console.log(target)
+    if(target.value == ""){
+      target.closest(".collection-filters__dropdown-container").querySelectorAll('.collection-filters__filter-button').forEach(item => {
+        item.removeAttribute('checked');
+      });
+    }
+      this.reloadSections();
+  
   }
 
   removeSelectedFilter(filter) {
-    document.querySelector(`.collection-filters__filter-button[data-filter="${filter}"]:checked`).checked = false;
+    document.querySelector(`.collection-filters__filter-button[data-filter*="${filter}"]:checked`).checked = false;
   }
 
   handleSortClick(target) {
@@ -152,7 +159,7 @@ class collectionFilters extends HTMLElement {
     });
   }
 
-  clearAllFilters() {
+  clearAllFilters(event) {
     event.preventDefault();
     event.stopImmediatePropagation();
 
@@ -173,7 +180,14 @@ class collectionFilters extends HTMLElement {
   reloadSections(newUrl) {
     let url = '';
 
-    const formData = new FormData(this.form);
+    let formData = new FormData(this.form);
+
+    for (let pair of formData.entries()) {
+      if(pair[1] == ""){
+        formData.delete(pair[0])
+      }
+    }
+
     const searchParams = new URLSearchParams(formData).toString();
     url = location.pathname + '?' + searchParams;
 

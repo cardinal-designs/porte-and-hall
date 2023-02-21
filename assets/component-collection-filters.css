@@ -105,7 +105,7 @@
 /* Filter slideout */
 .collection-filters__slideout {
   max-width: 480px;
-  width: calc(100% - 40px);
+  width: calc(100% - 0px);
   padding-bottom: 100px;
   position: fixed;
   top: var(--header-height);
@@ -197,6 +197,7 @@
 
 .collection-filters__dropdown-wrapper {
   display: none;
+  margin-top: 15px;
 }
 
 @media screen and (min-width:769px) {
@@ -238,12 +239,43 @@
   transition: background .3s ease, color .3s ease;
 }
 
-.collection-filters__slideout .collection-filters__filter-button:checked + .collection-filters__filter-label {
-  background: var(--blue);
-  color: white;
+.collection-filters__input-wrapper {
+  position: relative;
 }
 
-.collection-filters__filter-label input[type='checkbox'] {
+.collection-filters__slideout .collection-filters__filter-button[type='radio']:checked + .collection-filters__filter-label {
+  background: #eeefef;
+}
+
+.collection-filters__slideout .collection-filters__filter-label-radio {
+  padding-left: 0;
+}
+
+.collection-filters__filter-button[type='radio'] {
+  position: absolute;
+  opacity: 1;
+  width: 0px;
+  height: 0px;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 10px 9px;
+  /* z-index: -1; */
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+}
+
+.collection-filters__filter-button[type='radio'] + label {
+  padding: 9px 10px;
+  margin: 6px 0;
+}
+
+/* .collection-filters__filter-button[type='radio']:checked + label {
+  background: var(--blue);
+} */
+
+.collection-filters__filter-button[type='checkbox'] {
   position: absolute;
   opacity: 1;
   width: 18px;
@@ -259,12 +291,12 @@
   border: 1px solid var(--blue);
 }
 
-.collection-filters__filter-label > input[type='checkbox']:checked {
+.collection-filters__filter-button[type='checkbox']:checked {
   background: var(--blue);
 }
 
 @media screen and (forced-colors: active) {
-  .collection-filters__filter-label > input[type='checkbox']:checked {
+  .collection-filters__filter-button[type='checkbox']:checked {
     border: none;
   }
 }
@@ -565,7 +597,8 @@
   }
   
   .collection-filters__dropdown-button {
-    padding: 11px 0;
+    padding: 10px 0;
+    font-size: 18px;
   }
 
   .collection-filters__dropdown-container {
