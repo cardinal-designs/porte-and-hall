@@ -122,7 +122,6 @@ class collectionFilters extends HTMLElement {
   }
 
   handleFilterClick(target) {
-    console.log(target)
     if(target.value == ""){
       target.closest(".collection-filters__dropdown-container").querySelectorAll('.collection-filters__filter-button').forEach(item => {
         item.removeAttribute('checked');
@@ -188,6 +187,8 @@ class collectionFilters extends HTMLElement {
     const searchParams = new URLSearchParams(formData).toString();
     url = location.pathname + '?' + searchParams;
 
+    console.log(searchParams)
+
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
     }
@@ -200,11 +201,6 @@ class collectionFilters extends HTMLElement {
         const html = responseText;
         const htmlContent = new DOMParser().parseFromString(html, 'text/html');
 
-        // Replace sections
-        this.getSectionsToRender().forEach((section => {
-          document.getElementById(section.id).innerHTML = htmlContent.getElementById(section.id).innerHTML;
-        }));
-
         if(searchParams.includes('filter')){
           document.querySelector("#filtered-product-grid").classList.remove("hidden")
           document.querySelector("#product-grid").classList.add("hidden")
@@ -212,6 +208,11 @@ class collectionFilters extends HTMLElement {
           document.querySelector("#filtered-product-grid").classList.add("hidden")
           document.querySelector("#product-grid").classList.remove("hidden")
         }
+
+        // Replace sections
+        this.getSectionsToRender().forEach((section) => {
+          document.getElementById(section.id).innerHTML = htmlContent.getElementById(section.id).innerHTML
+        });
 
         // Replace dropdown filters
         const dropdownContents = this.querySelectorAll('.collection-filters__dropdown-container');
