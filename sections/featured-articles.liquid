@@ -1,36 +1,56 @@
 {{ 'section-featured-articles.css' | asset_url | stylesheet_tag }}
 {{ 'component-article-card.css' | asset_url | stylesheet_tag }}
 
-<section class="featured-articles">
-  <div class="featured-articles__inner page-width">
-    <div class="featured-articles__heading heading-with-accents">
-      <span class="divider header-divider">
-        {%- render 'divider' %}
-        <span class="divider-line"></span>
-      </span>
-      <h2 class="blue">{{ section.settings.heading }}</h2>
-      <span class="divider header-divider"> <span class="divider-line"></span> {% render 'divider' %} </span>
-    </div>
-
-    <div class="featured-articles__article-cards no-scrollbar">
-      {% for block in section.blocks %}
-        <div class="blog-articles__article">
-          {% render 'article-card', article: block.settings.article %}
-        </div>
-      {% endfor %}
-    </div>
+<div class="featured-articles__inner page-width">
+  <div class="featured-articles__heading heading-with-accents">
+    <span class="divider header-divider">
+      {%- render 'divider' %}
+      <span class="divider-line"></span>
+    </span>
+    <h2 class="blue">{{ section.settings.heading }}</h2>
+    <span class="divider header-divider"> <span class="divider-line"></span> {% render 'divider' %} </span>
   </div>
-</section>
+
+  <div class="featured-articles__article-cards no-scrollbar">
+    {% for block in section.blocks %}
+      <div class="blog-articles__article">
+        {% render 'article-card', article: block.settings.article %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  {% if section.settings.background != blank %}
+    #shopify-section-{{section.id }}.featured-articles {
+      background: {{ section.settings.background }};
+      padding: 100px 0;
+      margin: 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      #shopify-section-{{section.id }}.featured-articles {
+        padding: 50px 0;
+      }
+    }
+  {% endif %}
+</style>
 
 {% schema %}
 {
   "name": "Featured Articles",
-  "class": "with-spacing",
+  "class": "featured-articles with-spacing",
+  "tag": "section",
   "settings": [
     {
       "type": "textarea",
       "id": "heading",
       "label": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Color"
     }
   ],
   "max_blocks": 3,
