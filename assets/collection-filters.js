@@ -111,7 +111,7 @@ class collectionFilters extends HTMLElement {
     document.body.classList.remove('scroll-lock');
     overlay.classList.remove('is-visible');
   
-    this.closeAllDropdowns();
+    // this.closeAllDropdowns();
   }
 
   handleDropdownClick(event) {

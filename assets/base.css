@@ -26,6 +26,10 @@ html {
   -moz-osx-font-smoothing: antialiased;
 }
 
+body.scroll-lock {
+  overflow: hidden;
+}
+
 /*================ Layout ================*/
 .page-width {
   max-width: 1440px;

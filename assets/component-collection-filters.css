@@ -83,7 +83,10 @@
   aspect-ratio: 1/1;
   display: block;
   padding: 3px;
+  line-height: .9;
   vertical-align: middle;
+  min-width: fit-content;
+  min-height: fit-content;
 }
 .collection-filters__clear-all {
   padding: 5px 14px;
