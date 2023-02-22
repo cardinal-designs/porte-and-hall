@@ -182,6 +182,7 @@
   align-items: center;
   color: #999999;
   border-bottom: 1px solid #999999;
+  margin-bottom: 15px;
 }
 
 .collection-filters__dropdown-button svg {
@@ -197,7 +198,6 @@
 
 .collection-filters__dropdown-wrapper {
   display: none;
-  margin-top: 15px;
 }
 
 @media screen and (min-width:769px) {
