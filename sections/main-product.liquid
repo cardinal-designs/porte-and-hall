@@ -3,39 +3,127 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-rte.css' | asset_url | stylesheet_tag }}
 
+{% liquid
+  for collection in product.collections
+    if collection.title contains ' | '
+      assign grouped_collection = collection
+    endif
+  endfor
+
+  assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
+  assign collection_title = grouped_collection.title | downcase
+  capture color_swatch_list
+    assign swatch_count = 1
+    for swatch in grouped_collection.products
+      for option in swatch.options_with_values
+        assign option_name = option.name | downcase
+        if color_label contains option_name
+          assign option_index = 'option' | append: forloop.index
+          for value in option.values
+            assign element_classes = 'product__swatch'
+            if swatch == product
+              assign element_classes = element_classes | append: ' product__active-swatch'
+            endif
+            assign swatch_file_name = value | handle | append: '.png'
+            assign swatch_image = images[swatch_file_name]
+            if collection_title contains 'outsider' and swatch_count == 4
+              echo ' | '
+            endif
+            echo "<a href='"
+            echo swatch.first_available_variant.url
+            echo "' class='"
+            echo element_classes
+            echo "'"
+            echo "style='background-image: url("
+            echo swatch_file_name | asset_url
+            echo ")' data-tooltip='"
+            echo value | escape
+            echo "'></a>"
+            assign swatch_count = swatch_count | plus: 1
+          endfor
+        endif
+      endfor
+    endfor
+  endcapture
+%}
+
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
 <section class="page-width">
   <div class="product">
     <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
-      {{ "accessibility.skip_to_product_info" | t }}
+      {{ 'accessibility.skip_to_product_info' | t }}
     </a>
 
     <div class="product__media-wrapper">
+      <ul class="product__media-thumbnails list-unstyled swiper" role="list">
+        <div class="swiper-wrapper">
+          {% for media in product.media %}
+            <li class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+              {% render 'product-media', media: media, position: forloop.index, width: '106' %}
+            </li>
+          {% endfor %}
+        </div>
+      </ul>
 
       <ul class="product__media-list list-unstyled swiper" role="list">
         <div class="swiper-wrapper">
           {% for media in product.media %}
             <li class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
               {% render 'product-media', media: media, position: forloop.index %}
+              <div class="product__media-buttons">
+                {% render 'pin-button', media: media %}
+                {% render 'zoom-button' %}
+              </div>
             </li>
           {% endfor %}
         </div>
         <div class="product__media-pagination swiper-pagination"></div>
       </ul>
-
     </div>
 
     <div class="product__info-wrapper">
       <div id="ProductInfo-{{ section.id }}" class="product__info-container">
         {% assign product_form_id = 'product-form-' | append: section.id %}
 
-        <h1 class="product__title">
-          {{ product.title | escape }}
+        <h3 class="product__tag gray">
+          {{ product.selected_or_first_available_variant.metafields.custom.use | default: '' }}
+        </h3>
+
+        <h1 class="product__title blue">
+          {{ grouped_collection.title | remove: ' |' | default: product.title }}
         </h1>
 
-        <div class="no-js-hidden" id="price-{{ section.id }}" role="status">
-          {% render 'price', product: product, use_variant: true, show_badges: true, price_class: '' %}
+        <div class="product__price-reviews-wrapper">
+          <div class="no-js-hidden" id="price-{{ section.id }}" role="status">
+            {% render 'price', product: product, use_variant: true, show_badges: true, price_class: '' %}
+          </div>
+
+          <span class="blue"> | </span>
+
+          <!-- Rating code -->
+          <div class="rating-reviews">
+            <span
+              class="stamped-product-reviews-badge stamped-main-badge"
+              data-id="{{ product.id }}"
+              data-product-sku="{{ product.handle }}"
+              data-product-type="{{product.type}}"
+              data-product-title="{{product.title}}"
+              style="display: inline-block;"
+            >
+              {{- product.metafields.stamped.badge -}}
+            </span>
+          </div>
+        </div>
+
+        {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
+          <div class="product__description body blue">
+            {{ grouped_collection.metafields.custom.short_description | default: product.description }}
+          </div>
+        {% endif %}
+
+        <div class="product__swatches">
+          {{ color_swatch_list }}
         </div>
 
         <div>
@@ -44,12 +132,6 @@
             {{ form | payment_terms }}
           {% endform %}
         </div>
-
-        {% if product.description != blank %}
-          <div class="product__description rte">
-            {{ product.description }}
-          </div>
-        {% endif %}
 
         <product-form class="product-form">
           <div class="product-form__error-message-wrapper" role="alert" hidden>
@@ -62,22 +144,36 @@
             <span class="product-form__error-message"></span>
           </div>
 
-          {% form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' %}
+          {% form 'product',
+            product,
+            id: product_form_id,
+            class: 'form',
+            novalidate: 'novalidate',
+            data-type: 'add-to-cart-form'
+          %}
             <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
             {% unless product.has_only_default_variant %}
               {% assign picker_type = 'button' %}
               {% if picker_type == 'button' %}
-                <variant-radios class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}">
+                <variant-radios
+                  class="no-js-hidden visually-hidden"
+                  data-section="{{ section.id }}"
+                  data-url="{{ product.url }}"
+                >
                   {% for option in product.options_with_values %}
                     <fieldset class="js product-form__input">
                       <legend class="form__label">{{ option.name }}</legend>
                       {% for value in option.values %}
-                        <input type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
-                              name="{{ option.name }}"
-                              value="{{ value | escape }}"
-                              form="{{ product_form_id }}"
-                              {% if option.selected_value == value %}checked{% endif %}
+                        <input
+                          type="radio"
+                          id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                          name="{{ option.name }}"
+                          value="{{ value | escape }}"
+                          form="{{ product_form_id }}"
+                          {% if option.selected_value == value %}
+                            checked
+                          {% endif %}
                         >
                         <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
                           {{ value }}
@@ -90,25 +186,35 @@
                   </script>
                 </variant-radios>
               {% else %}
-                <variant-selects class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}">
+                <variant-selects
+                  class="no-js-hidden visually-hidden"
+                  data-section="{{ section.id }}"
+                  data-url="{{ product.url }}"
+                >
                   {% for option in product.options_with_values %}
                     <div class="product-form__input product-form__input--dropdown">
                       <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
                         {{ option.name }}
                       </label>
                       <div class="select">
-                        <select id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                        <select
+                          id="Option-{{ section.id }}-{{ forloop.index0 }}"
                           class="select__select"
                           name="options[{{ option.name | escape }}]"
                           form="{{ product_form_id }}"
                         >
                           {% for value in option.values %}
-                            <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
+                            <option
+                              value="{{ value | escape }}"
+                              {% if option.selected_value == value %}
+                                selected="selected"
+                              {% endif %}
+                            >
                               {{ value }}
                             </option>
                           {% endfor %}
                         </select>
-                        {% render 'icon' icon: 'caret' %}
+                        {% render 'icon', icon: 'caret' %}
                       </div>
                     </div>
                   {% endfor %}
@@ -122,13 +228,19 @@
 
             <noscript class="product-form__noscript-wrapper-{{ section.id }}">
               <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
-                <label class="form__label" for="Variants-{{ section.id }}">{{ 'products.product.product_variants' | t }}</label>
+                <label class="form__label" for="Variants-{{ section.id }}">
+                  {{- 'products.product.product_variants' | t -}}
+                </label>
                 <div class="select">
                   <select name="id" id="Variants-{{ section.id }}" class="select__select" form="{{ product_form_id }}">
                     {% for variant in product.variants %}
                       <option
-                        {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
-                        {% if variant.available == false %}disabled{% endif %}
+                        {% if variant == product.selected_or_first_available_variant %}
+                          selected="selected"
+                        {% endif %}
+                        {% if variant.available == false %}
+                          disabled
+                        {% endif %}
                         value="{{ variant.id }}"
                       >
                         {{ variant.title }}
@@ -137,21 +249,25 @@
                       </option>
                     {% endfor %}
                   </select>
-                  {% render 'icon' icon: 'caret' %}
+                  {% render 'icon', icon: 'caret' %}
                 </div>
               </div>
             </noscript>
 
-            <div class="product-form__input product-form__quantity">
-              <label class="form__label" for="Quantity-{{ section.id }}">
-                {{ 'products.product.quantity.label' | t }}
-              </label>
-              <quantity-input class="quantity">
-                <button class="quantity__button no-js-hidden" name="minus" type="button">
-                  <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: product.title | escape }}</span>
-                  {% render 'icon' icon: 'minus' %}
-                </button>
-                <input class="quantity__input"
+            <div class="product__quantity-atc-wrapper">
+              <div class="product-form__input product-form__quantity">
+                <label class="form__label visually-hidden" for="Quantity-{{ section.id }}">
+                  {{ 'products.product.quantity.label' | t }}
+                </label>
+                <quantity-input class="quantity">
+                  <button class="quantity__button no-js-hidden" name="minus" type="button">
+                    <span class="visually-hidden">
+                      {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+                    </span>
+                    {% render 'icon', icon: 'minus' %}
+                  </button>
+                  <input
+                    class="quantity__input"
                     type="number"
                     name="quantity"
                     id="Quantity-{{ section.id }}"
@@ -159,20 +275,24 @@
                     value="1"
                     form="{{ product_form_id }}"
                   >
-                <button class="quantity__button no-js-hidden" name="plus" type="button">
-                  <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: product.title | escape }}</span>
-                  {% render 'icon' icon: 'plus' %}
-                </button>
-              </quantity-input>
-            </div>
-            
-            <div class="product-form__buttons">
-              <button
-                type="submit"
-                name="add"
-                class="product-form__submit button button--full {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
-              {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
-              >
+                  <button class="quantity__button no-js-hidden" name="plus" type="button">
+                    <span class="visually-hidden">
+                      {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+                    </span>
+                    {% render 'icon', icon: 'plus' %}
+                  </button>
+                </quantity-input>
+              </div>
+
+              <div class="product-form__buttons">
+                <button
+                  type="submit"
+                  name="add"
+                  class="product-form__submit button button--full {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
+                  {% if product.selected_or_first_available_variant.available == false %}
+                    disabled
+                  {% endif %}
+                >
                   <span>
                     {% if product.selected_or_first_available_variant.available %}
                       {{ 'products.product.add_to_cart' | t }}
@@ -180,55 +300,146 @@
                       {{ 'products.product.sold_out' | t }}
                     {% endif %}
                   </span>
+                  <span> | </span>
+                  <span>
+                    {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '' %}
+                  </span>
                   <div class="loading-overlay__spinner hidden">
-                    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      role="presentation"
+                      class="spinner"
+                      viewBox="0 0 66 66"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
                       <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
                     </svg>
                   </div>
-              </button>
-              {% if block.settings.show_dynamic_checkout %}
-                {{ form | payment_button }}
-              {% endif %}
+                </button>
+                {% if block.settings.show_dynamic_checkout %}
+                  {{ form | payment_button }}
+                {% endif %}
+              </div>
             </div>
           {% endform %}
         </product-form>
-
       </div>
     </div>
   </div>
-
 </section>
 
+{% render 'product-zoom' %}
+
 {% javascript %}
+  const thumbnailSlider = new Swiper('.product__media-thumbnails', {
+    slidesPerView: 'auto',
+    loop: false,
+    spaceBetween: 10,
+    direction: 'vertical',
+  });
+
+  const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
+    slidesPerView: 'auto',
+    loop: false,
+    spaceBetween: 10,
+    direction: 'vertical',
+  });
+
+  // Product zoom slider
+  const productZoomSlider = new Swiper('.product__zoom-slider', {
+    loop: false,
+    allowTouchMove: true,
+    navigation: {
+      prevEl: '.product__zoom-button.swiper-button-prev',
+      nextEl: '.product__zoom-button.swiper-button-next',
+    },
+    breakpoints: {
+      769: {
+        allowTouchMove: false,
+      },
+    },
+    thumbs: {
+      swiper: zoomThumbnailSlider,
+    },
+  });
+
   // Main product slider
   const productSlider = new Swiper('.product__media-list', {
     slidesPerView: 1,
     loop: false,
     spaceBetween: 20,
-    pagination: {
-      el: '.product__media-pagination'
-    }
+    // pagination: {
+    //   el: '.product__media-pagination',
+    // },
+    thumbs: {
+      swiper: thumbnailSlider,
+    },
+    controller: {
+      control: productZoomSlider,
+    },
   });
+
+  const zoomContainer = document.querySelector('.product__zoom');
+  const openZoom = document.querySelectorAll('[data-open-zoom]');
+  openZoom.forEach((zoom) => {
+    zoom.addEventListener('click', (event) => {
+      zoomContainer.classList.add('open');
+      document.body.classList.add('scroll-lock');
+    });
+
+    document.body.addEventListener(
+      'keyup',
+      (event) => {
+        closeZoomFunction(event.key);
+      },
+      true
+    );
+  });
+
+  const closeZoom = document.querySelector('[data-close-zoom]');
+  closeZoom.addEventListener('click', (event) => {
+    console.log('close');
+    closeZoomFunction();
+    document.body.removeEventListener(
+      'keyup',
+      (event) => {
+        closeZoomFunction(event.key);
+      },
+      true
+    );
+  });
+
+  function closeZoomFunction(eventType = '') {
+    if (eventType == '' || eventType == 'Escape') {
+      zoomContainer.classList.remove('open');
+      document.body.classList.remove('scroll-lock');
+    }
+  }
 {% endjavascript %}
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     function isIE() {
       const ua = window.navigator.userAgent;
       const msie = ua.indexOf('MSIE ');
       const trident = ua.indexOf('Trident/');
 
-      return (msie > 0 || trident > 0);
+      return msie > 0 || trident > 0;
     }
 
     if (!isIE()) return;
     const hiddenInput = document.querySelector('#{{ product_form_id }} input[name="id"]');
     const noScriptInputWrapper = document.createElement('div');
-    const variantSwitcher = document.querySelector('variant-radios[data-section="{{ section.id }}"]') || document.querySelector('variant-selects[data-section="{{ section.id }}"]');
-    noScriptInputWrapper.innerHTML = document.querySelector('.product-form__noscript-wrapper-{{ section.id }}').textContent;
+    const variantSwitcher =
+      document.querySelector('variant-radios[data-section="{{ section.id }}"]') ||
+      document.querySelector('variant-selects[data-section="{{ section.id }}"]');
+    noScriptInputWrapper.innerHTML = document.querySelector(
+      '.product-form__noscript-wrapper-{{ section.id }}'
+    ).textContent;
     variantSwitcher.outerHTML = noScriptInputWrapper.outerHTML;
 
-    document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function(event) {
+    document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
       hiddenInput.value = event.currentTarget.value;
     });
   });
@@ -280,15 +491,11 @@
 </script>
 
 {% schema %}
-  {
-    "name": "Product",
-    "tag": "section",
-    "class": "product-section",
-    "blocks": [
-
-    ],
-    "settings": [
-
-    ]
-  }
+{
+  "name": "Product",
+  "tag": "section",
+  "class": "product-section",
+  "blocks": [],
+  "settings": []
+}
 {% endschema %}

@@ -1,0 +1,44 @@
+<div class="product__zoom">
+  <div class="product__zoom-slider-wrapper">
+    <div class="product__zoom-slider swiper">
+      <div class="swiper-wrapper">
+        {% for media in product.media %}
+          <div class="product__zoom-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+            {% render 'product-media', media: media, position: forloop.index, zoom: false %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="product__zoom-thumbnails">
+    <ul class="product__media-thumbnails-zoom list-unstyled swiper" role="list">
+      <div class="swiper-wrapper">
+        {% for media in product.media %}
+          <li class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+            {% render 'product-media', media: media, position: forloop.index, width: '106' %}
+          </li>
+        {% endfor %}
+      </div>
+    </ul>
+  </div>
+
+  <button class="close-zoom" data-close-zoom>
+    {% render 'icon', icon: 'close' %}
+  </button>
+</div>
+
+<style>
+  .product__media-zoom {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    cursor: url('{{ "cursor-zoom.svg" | asset_url }}'), auto;
+  }
+
+  .product__zoom {
+    cursor: url('{{ "cursor-close.svg" | asset_url }}'), auto;
+  }
+</style>

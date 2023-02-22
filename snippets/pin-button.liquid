@@ -1,0 +1,9 @@
+<a
+  class="pin-button"
+  target="_blank"
+  href="//pinterest.com/pin/create/button/?url={{ shop.url }}{{ product.url }}&amp;media=http:{{ media | img_url: '1024x1024' | split: '?' | first }}&amp;description={{ product.title | strip_html | truncate: 200, '' | url_param_escape }}{% for tag in product.tags limit: 3 %}{{ tag | replace: ' ', '-' | prepend: ' #' | url_param_escape }}{% endfor %}"
+  data-pin-do="buttonPin"
+  data-pin-config="none"
+>
+  {%- render 'icon' with 'pinterest' -%}
+</a>

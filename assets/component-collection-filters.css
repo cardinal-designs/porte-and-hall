@@ -180,8 +180,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #999999;
-  border-bottom: 1px solid #999999;
+  color: var(--gray);
+  border-bottom: 1px solid var(--gray);
   margin-bottom: 15px;
 }
 
@@ -244,7 +244,7 @@
 }
 
 .collection-filters__slideout .collection-filters__filter-button[type='radio']:checked + .collection-filters__filter-label {
-  background: #eeefef;
+  background: var(--off-white);
 }
 
 .collection-filters__slideout .collection-filters__filter-label-radio {
@@ -462,7 +462,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #EEEFEF;
+  background: var(--off-white);
   color: var(--blue);
 }
 
