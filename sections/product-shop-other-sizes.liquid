@@ -1,6 +1,5 @@
 {{ 'component-product-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-shop-other-sizes.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'grouped-product-card.js' | asset_url }}" defer="defer"></script>
 {% liquid
   for collection in product.collections
     if collection.title contains ' | '

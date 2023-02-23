@@ -327,6 +327,102 @@
           {% endform %}
         </product-form>
       </div>
+
+      <div class="product__tabs-wrapper">
+        <div class="product__tabs-buttons">
+          {% assign tab_count = 0 %}
+          {% if grouped_collection.metafields.custom.product_features != blank %}
+            <button
+              class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
+              data-product-tabs="{{ tab_count }}"
+            >
+              Features
+            </button>
+
+            {% assign tab_count = tab_count | plus: 1 %}
+          {% endif %}
+
+          {% if grouped_collection.metafields.custom.product_materials != blank %}
+            <button
+              class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
+              data-product-tabs="{{ tab_count }}"
+            >
+              Materials
+            </button>
+
+            {% assign tab_count = tab_count | plus: 1 %}
+          {% endif %}
+
+          {% if grouped_collection.metafields.custom.dimensions != blank %}
+            <button
+              class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
+              data-product-tabs="{{ tab_count }}"
+            >
+              Dimensions
+            </button>
+
+            {% assign tab_count = tab_count | plus: 1 %}
+          {% endif %}
+
+          {% if grouped_collection.metafields.custom.product_care_instructions != blank %}
+            <button
+              class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
+              data-product-tabs="{{ tab_count }}"
+            >
+              Care
+            </button>
+
+            {% assign tab_count = tab_count | plus: 1 %}
+          {% endif %}
+        </div>
+
+        <div class="product__tabs-content">
+          <div class="product__tabs swiper">
+            <div class="swiper-wrapper">
+              {% if grouped_collection.metafields.custom.product_features != blank %}
+                <div class="swiper-slide">
+                  <div class="product__tabs-item">
+                    <div class="product__features">
+                      {% for feature in grouped_collection.metafields.custom.product_features.value %}
+                        <div class="product__features-item">
+                          {{ feature.image | image_url: width: 206 | image_tag: width: 103 }}
+                          <p class="body-xs">{{ feature.label }}</p>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if grouped_collection.metafields.custom.product_materials != blank %}
+                <div class="swiper-slide">
+                  <div class="product__tabs-item">
+                    <p class="body-xs">{{ grouped_collection.metafields.custom.product_materials | newline_to_br }}</p>
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if grouped_collection.metafields.custom.dimensions != blank %}
+                <div class="swiper-slide">
+                  <div class="product__tabs-item">
+                    <p class="body-xs">{{ grouped_collection.metafields.custom.dimensions | newline_to_br }}</p>
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if grouped_collection.metafields.custom.product_care_instructions != blank %}
+                <div class="swiper-slide">
+                  <div class="product__tabs-item">
+                    <p class="body-xs">
+                      {{ grouped_collection.metafields.custom.product_care_instructions | newline_to_br }}
+                    </p>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -334,6 +430,24 @@
 {% render 'product-zoom' %}
 
 {% javascript %}
+  const productTabs = new Swiper('.product__tabs', {
+    slidesPerView: 1,
+    loop: false,
+    allowTouchMove: false,
+  });
+
+  const productTabsButtons = document.querySelectorAll('[data-product-tabs]');
+  productTabsButtons.forEach((button) => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      Array.from(productTabsButtons)
+        .find((btn) => btn.classList.contains('active'))
+        .classList.remove('active');
+      e.target.classList.add('active');
+      productTabs.slideTo(e.target.dataset.productTabs);
+    });
+  });
+
   const thumbnailSlider = new Swiper('.product__media-thumbnails', {
     slidesPerView: 'auto',
     loop: false,

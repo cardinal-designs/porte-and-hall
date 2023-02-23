@@ -13,7 +13,7 @@
   justify-content: center;
   align-content: center;
 }
-.rating-reviews{
+.rave-reviews-main .rating-reviews{
   width:100%;
   text-align:center;
   margin-bottom:30px;
@@ -53,15 +53,15 @@
   display:none;
 }
 
-span.stamped-product-reviews-badge.stamped-main-badge {
+.rave-reviews-main span.stamped-product-reviews-badge.stamped-main-badge {
   display: none !important;
 }
 
-.stamped-review-avatar {
+.rave-reviews-main .stamped-review-avatar {
   display: none;
 }
 
-.stamped-review-header {
+.rave-reviews-main .stamped-review-header {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -72,7 +72,7 @@ span.stamped-product-reviews-badge.stamped-main-badge {
   margin-bottom: 15px;
 }
 
-.stamped-review-header .stamped-starratings {
+.rave-reviews-main .stamped-review-header .stamped-starratings {
   flex-basis: 100%;
   width: 100%;
 }

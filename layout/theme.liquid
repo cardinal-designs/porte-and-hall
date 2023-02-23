@@ -40,6 +40,8 @@
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
     </script>
+
+    <script src="{{ 'grouped-product-card.js' | asset_url }}" defer="defer"></script>
   </head>
 
   <body class="template-{{ template }} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
