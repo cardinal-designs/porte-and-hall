@@ -1,0 +1,20 @@
+.shop-other-sizes {
+  background: var(--beige-secondary);
+  padding: 50px 0;
+}
+
+.shop-other-sizes__inner {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(auto, 1fr));
+  column-gap: 27px;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+}
+.shop-other-sizes__item {
+  position: relative;
+}
+
+.shop-other-sizes__heading {
+  max-width: 280px;
+}

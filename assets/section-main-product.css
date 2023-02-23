@@ -63,6 +63,10 @@
   opacity: .7;
 }
 
+.product__media-list .swiper-wrapper {
+  height: unset;
+}
+
 .product__media {
   padding-bottom: 100%;
   position: relative;
@@ -335,4 +339,20 @@
 
 .product-form__submit.button .price {
   color: white;
+}
+
+/* afterpay */
+
+#afterpay-wrapper {
+  display: block;
+  margin-top: 20px;
+}
+
+afterpay-placement, .afterpay-paragraph {
+  color: var(--blue);
+  text-align: center;
+  font-family: brandon;
+  font-size: 11px;
+  line-height: 13.2px;
+  font-weight: 500;
 }

@@ -1,0 +1,64 @@
+{{ 'section-reviews.css' | asset_url | stylesheet_tag }}
+<div class="page-width">
+  <div class="rave-reviews-main" id="rave-reviews-main">
+    <div class="rave-reviews">
+      <h2>{{ section.settings.heading | default: 'Rave Reviews' }}</h2>
+      <!-- Rating code -->
+      <div class="rating-reviews">
+        <span
+          class="stamped-product-reviews-badge stamped-main-badge"
+          data-id="{{ product.id }}"
+          data-product-sku="{{ product.handle }}"
+          data-product-type="{{product.type}}"
+          data-product-title="{{product.title}}"
+          style="display: inline-block;"
+        >
+          {{- product.metafields.stamped.badge -}}
+        </span>
+      </div>
+      <!-- Rating code -->
+      <span
+        class="stamped-summary-actions-newreview"
+        onclick="StampedFn.toggleForm('review','6087780630718');return false;"
+        style="cursor: pointer;"
+        tabindex="0"
+        >Write a Review</span
+      >
+    </div>
+  </div>
+  <div class="divider">
+    {%- render 'divider' %}
+    <span class="divider-line"></span>
+    {%- render 'divider' %}
+  </div>
+
+  <div
+    id="stamped-main-widget"
+    data-widget-style="standard"
+    data-product-id="{{ product.id }}"
+    data-name="{{ product.title | escape }}"
+    data-url="{{ shop.url }}{{ product.url }}"
+    data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
+    data-description="{{ product.description | escape }}"
+    data-product-sku="{{product.handle}}"
+    data-product-type="{{product.type}}"
+    class="shopify-section--bordered"
+  >
+    {{ product.metafields.stamped.reviews }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Reviews",
+  "tag": "section",
+  "class": "rave-reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ]
+}
+{% endschema %}
