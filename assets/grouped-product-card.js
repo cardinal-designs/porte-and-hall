@@ -5,7 +5,7 @@ customElements.define('grouped-product-card', class GroupedProductCard extends H
     this.swatches = this.querySelector(".product-card__swatches")
     this.showSwatches = this.querySelector("[data-hidden-swatches]")
 
-    this.showSwatches.addEventListener("click", function(e){
+    this.showSwatches?.addEventListener("click", function(e){
       e.preventDefault()
       this.showAllSwatches()
       e.target.classList.add("hidden")

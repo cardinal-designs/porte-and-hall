@@ -1,0 +1,111 @@
+{{ 'section-see-it-in-action.css' | asset_url | stylesheet_tag }}
+{% liquid
+  for collection in product.collections
+    if collection.title contains ' | '
+      assign grouped_collection = collection
+    endif
+  endfor
+%}
+
+{% if grouped_collection.metafields.custom.see_it_in_action != blank %}
+  <div class="page-width">
+    <div class="see-it-in-action__inner">
+      <div class="see-it-in-action__header">
+        <h2 class="see-it-in-action__heading blue">{{ section.settings.heading | default: 'See it in action' }}</h2>
+
+        {% if section.settings.link != blank and section.settings.link_text != blank %}
+          <a href="{{ section.settings.link }}" class="text-link gold-secondary--dark see-it-in-action__link">
+            {{- section.settings.link_text -}}
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="see-it-in-action__tabs-wrapper">
+        <div class="see-it-in-action__tabs-buttons">
+          {% for button in grouped_collection.metafields.custom.see_it_in_action.value %}
+            <button
+              class="body-xs body-bold-weight {% if forloop.first %} active{% endif %}"
+              data-action-tabs="{{ forloop.index0 }}"
+            >
+              {{ button.style }}
+            </button>
+          {% endfor %}
+        </div>
+
+        <div class="see-it-in-action__tabs-content">
+          <div class="see-it-in-action__tabs swiper">
+            <div class="swiper-wrapper">
+              {% for slide in grouped_collection.metafields.custom.see_it_in_action.value %}
+                <div class="swiper-slide">
+                  <div class="see-it-in-action__tabs-item">
+                    <div class="see-it-in-action__tabs-image">
+                      {% render 'lazy-image', image: slide.media, fade: true, fill: true %}
+                    </div>
+
+                    <div class="see-it-in-action__tabs-label body-xs">{{ slide.label }}</div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% javascript %}
+  const tabsButtons = document.querySelectorAll('[data-action-tabs]');
+
+  const seeItSlider = new Swiper('.see-it-in-action__tabs', {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    allowTouchMove: false,
+    loop: false,
+    autoplay: {
+      delay: 5000,
+    },
+    on: {
+      slideChange: function () {
+        Array.from(tabsButtons)
+          .find((btn) => btn.classList.contains('active'))
+          .classList.remove('active');
+        Array.from(tabsButtons)
+          .find((btn) => btn.dataset.actionTabs == this.activeIndex)
+          .classList.add('active');
+      },
+    },
+  });
+
+  tabsButtons.forEach((button) => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      seeItSlider.slideTo(e.target.dataset.actionTabs);
+    });
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "See It In Action",
+  "tag": "section",
+  "class": "see-it-in-action with-spacing",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "heading"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text"
+    }
+  ]
+}
+{% endschema %}

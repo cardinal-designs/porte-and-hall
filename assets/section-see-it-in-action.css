@@ -1,0 +1,75 @@
+.see-it-in-action__header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.see-it-in-action__link {
+  display: block;
+  margin-top: 30px;
+}
+
+/* see-it-in-action TABS */
+.see-it-in-action__tabs-wrapper {
+  margin-top: 20px;
+}
+
+.see-it-in-action__tabs-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+  border-bottom: 1px solid var(--blue);
+  z-index: 1;
+  position: relative;
+}
+
+.see-it-in-action__tabs-content {
+  position: relative;
+  z-index: 0;
+}
+
+.see-it-in-action__tabs-buttons button {
+  flex: 1;
+  font-family: brandon;
+  color: var(--blue);
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 8px;
+  position: relative;
+}
+
+.see-it-in-action__tabs-buttons button.active:before {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--blue);
+  transform: translateY(100%);
+}
+
+.see-it-in-action__tabs-buttons button.active:after {
+  position: absolute;
+  content: url("data:image/svg+xml,%3Csvg width='21' height='10' viewBox='0 0 21 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.5 10L0.54071 0.25L20.4593 0.249998L10.5 10Z' fill='%23546B82'/%3E%3C/svg%3E%0A");;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  transform: translateY(100%);
+}
+
+.see-it-in-action__tabs-image {
+  position: relative;
+  padding-bottom: 56.25%;
+}
+
+.see-it-in-action__tabs-label {
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  background: var(--blue);
+  color: white;
+  padding: 10px;
+  font-weight: 600;
+}
