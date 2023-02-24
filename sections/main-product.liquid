@@ -78,9 +78,9 @@
             </li>
           {% endfor %}
         </div>
-        <div class="product__media-pagination swiper-pagination"></div>
-        <div class="product__media-button swiper-button-prev"></div>
-        <div class="product__media-button swiper-button-next"></div>
+        <div class="product__media-pagination swiper-pagination hide-desktop"></div>
+        <div class="product__media-button swiper-button-prev hide-desktop"></div>
+        <div class="product__media-button swiper-button-next hide-desktop"></div>
       </ul>
     </div>
 
@@ -123,6 +123,11 @@
             {{ grouped_collection.metafields.custom.short_description | default: product.description }}
           </div>
         {% endif %}
+
+        <div class="product__variant-name body">
+          {% assign variant_name = product.first_available_variant.title | split: '/' %}
+          <span>Style</span><span> — {{ variant_name[0] }}</span>
+        </div>
 
         <div class="product__swatches">
           {{ color_swatch_list }}

@@ -208,6 +208,10 @@
 
 /*================ Info ================*/
 
+.product__tag {
+  margin-bottom: 10px;
+}
+
 .product__price-reviews-wrapper {
   display: flex;
   flex-direction: row;
@@ -218,6 +222,16 @@
 
 .product__description {
   margin-top: 20px;
+  max-width: 400px;
+  padding-right: 10%;
+}
+
+.product__variant-name {
+  margin-top: 10px;
+}
+
+.product__variant-name span:first-of-type {
+  font-weight: 600;
 }
 
 /* SWATCHES */
@@ -430,6 +444,12 @@ afterpay-placement, .afterpay-paragraph {
   letter-spacing: 1px;
   color: var(--blue);
   padding: 0 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .product {
+    column-gap: 25px;
+  }
 }
 
 @media screen and (max-width: 768px) {
