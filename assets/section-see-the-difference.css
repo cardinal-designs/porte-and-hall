@@ -1,0 +1,40 @@
+.see-the-difference__inner {
+  max-width: 1030px;
+  margin: auto;
+}
+.see-the-difference__header {
+  text-align: center;
+  max-width: 610px;
+  margin: auto;
+}
+
+.see-the-difference__text {
+  margin-top: 10px;
+}
+
+.see-the-difference__images {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(auto, 1fr));
+  column-gap: 20px;
+  margin-top: 30px;
+}
+.see-the-difference__image {
+  position: relative;
+  padding-bottom: 100%;
+}
+
+.see-the-difference__label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
+}
