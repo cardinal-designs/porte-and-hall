@@ -2,7 +2,7 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'section-product-carousel.css' | asset_url | stylesheet_tag }}
 
-<section class="product-carousel">
+<div class="product-carousel__inner">
   <div class="product-carousel__heading">
     <h2 class="blue">{{ section.settings.heading }}</h2>
   </div>
@@ -25,12 +25,21 @@
       </div>
     </div>
   </product-carousel>
-</section>
+</div>
+
+<style>
+  {% if section.settings.background != blank %}
+    #shopify-section-{{section.id }}.product-carousel {
+      background: {{ section.settings.background }};
+    }
+  {% endif %}
+</style>
 
 {% schema %}
 {
   "name": "Product Carousel",
-  "class": "with-spacing",
+  "tag": "section",
+  "class": "product-carousel with-spacing",
   "settings": [
     {
       "type": "textarea",
@@ -55,6 +64,11 @@
       "label": "Show color swatch",
       "info": "Some colors appear white? [Learn more](http://support.maestrooo.com/article/80-product-uploading-custom-color-for-color-swatch).",
       "default": false
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
     }
   ],
   "blocks": [

@@ -1,4 +1,6 @@
-
+.faq {
+  background: var(--light-gray);
+}
 .faq__wrapper {
   display: grid;
   grid-template-columns: repeat(2, minmax(auto, 1fr));

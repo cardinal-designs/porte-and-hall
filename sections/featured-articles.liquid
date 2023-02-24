@@ -24,14 +24,6 @@
   {% if section.settings.background != blank %}
     #shopify-section-{{section.id }}.featured-articles {
       background: {{ section.settings.background }};
-      padding: 100px 0;
-      margin: 0;
-    }
-
-    @media screen and (max-width: 768px) {
-      #shopify-section-{{section.id }}.featured-articles {
-        padding: 50px 0;
-      }
     }
   {% endif %}
 </style>

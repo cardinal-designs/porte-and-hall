@@ -76,6 +76,9 @@
         "background_color": "#d8d3c7"
       }
     },
+    "design-details": {
+      "type": "details"
+    },
     "see-in-action": {
       "type": "see-it-in-action",
       "settings": {
@@ -220,7 +223,8 @@
         "heading": "Other mats you may like",
         "show_product_info": true,
         "show_vendor": false,
-        "show_color_swatch": false
+        "show_color_swatch": false,
+        "background": "#EEEFEF"
       }
     },
     "fan-motif": {
@@ -272,6 +276,7 @@
     "main",
     "other-sizes",
     "logo-marquee",
+    "design-details",
     "see-in-action",
     "styling-tips",
     "see-the-difference",

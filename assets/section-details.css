@@ -1,0 +1,106 @@
+.details__inner {
+  display: grid;
+  grid-template-columns: minmax(auto, 43%) minmax(0, 1fr);
+}
+
+.details__content-wrapper {
+  background: var(--blue);
+  padding: 20px;
+  color: white;
+  text-align: left;
+}
+
+.details__content-inner {
+  border: 1px solid white;
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.details__content {
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  row-gap: 30px;
+}
+
+.details__content-heading {
+  margin-top: 20px;
+}
+
+.details__points-item {
+  color: white;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  opacity: .3;
+  transition: opacity .3s ease;
+  padding-left: 38px;
+  position: relative;
+  margin-bottom: 8%;
+}
+
+.details__points-item > * {
+  pointer-events: none;
+}
+
+.details__points-item:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Ccircle cx='14' cy='14' r='4' fill='%23ffffff'/%3E%3Ccircle cx='14' cy='14' r='9.5' stroke='transparent'/%3E%3Ccircle cx='14' cy='14' r='13.5' stroke='trnsparent'/%3E%3C/svg%3E%0A");
+}
+
+.details__points-item.active {
+  opacity: 1;
+  pointer-events: none;
+}
+
+.details__points-item.active:before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Ccircle cx='14' cy='14' r='4' fill='%23D2B066'/%3E%3Ccircle cx='14' cy='14' r='9.5' stroke='%23D2B066'/%3E%3Ccircle cx='14' cy='14' r='13.5' stroke='%23D2B066'/%3E%3C/svg%3E%0A");
+}
+
+.details__image {
+  position: relative;
+  padding-bottom: 100%;
+  height: 100%;
+  display: block;
+}
+
+.details__image-container {
+  position: relative;
+  height: 100%;
+}
+
+.details__point {
+  position: absolute;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity .3s ease;
+}
+
+.details__point.active {
+  opacity: 1;
+}
+
+.details__image-label {
+  position: absolute;
+  bottom: 20px;
+  left: 0px;
+  background: var(--blue);
+  color: white;
+  text-transform: uppercase;
+  display: object;
+  padding: 9px 10px;
+  font-weight: 600;
+}
