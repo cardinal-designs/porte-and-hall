@@ -42,8 +42,9 @@
 }
 
 @media screen and (max-width: 768px) {
-  .collection-grid-section.spaced-section {
-    margin: 0;
+  .collection-grid-section.with-spacing > div:first-of-type {
+    padding-top: 0;
+    padding-bottom: 0;
   }
   .collection-grid__inner {
     display: block;
