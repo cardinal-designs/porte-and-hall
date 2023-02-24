@@ -18,6 +18,7 @@
   text-align:center;
   margin-bottom:30px;
 }
+
 .rave-reviews-main h2{
   width: 100%;
   font-size: 46px;
@@ -29,7 +30,8 @@
   display:block;
   margin-bottom: 25px;
 }
-.rave-reviews-main .stamped-summary-actions-newreview{
+.rave-reviews-main .stamped-summary-actions-newreview,
+.stamped-summary-actions-newreview {
   background: var(--gold-secondary);
   color: #fff;
   letter-spacing: 0.2em;
@@ -38,8 +40,12 @@
   font-size: 12px;
   line-height: 100%;
   padding: 14px 30px;
+  border: none;
+  box-shadow: none !important;
+  border-radius: 0;
 }
-.rave-reviews-main .stamped-summary-actions-newreview::before{
+.rave-reviews-main .stamped-summary-actions-newreview::before,
+.stamped-summary-actions-newreview::before {
   content:"";
 }
 
@@ -53,9 +59,21 @@
   display:none;
 }
 
-.rave-reviews-main span.stamped-product-reviews-badge.stamped-main-badge {
-  display: none !important;
+@media screen and (min-width: 769px) {
+  .rave-reviews-main span.stamped-product-reviews-badge.stamped-main-badge {
+    display: none !important;
+  }
 }
+
+.rave-reviews .stamped-badge .fa-star, 
+.rave-reviews .stamped-badge .fa-star-o,
+.rave-reviews .stamped-badge .fa-star-half-o,
+.rave-reviews .stamped-badge .stamped-fa-star,
+.rave-reviews .stamped-badge .stamped-fa-star-o,
+.rave-reviews .stamped-badge .stamped-fa-star-half-o {
+  color: var(--gold-secondary--dark) !important;
+}
+
 
 .rave-reviews-main .stamped-review-avatar,
 .stamped-review-avatar {
@@ -188,4 +206,33 @@
 .stamped-pagination .next {
   margin-left: 0 !important;
   color: black;
+}
+
+@media screen and (max-width: 768px) {
+
+  .rave-reviews-main {
+    padding-bottom: 0px;
+    margin-top: 50px ;
+  }
+
+  .rave-reviews h2 {
+    font-size: 24px;
+    line-height: 31.2px;
+  }
+
+  .rave-reviews-main .stamped-summary-actions-newreview,
+  .stamped-summary-actions-newreview {
+    display: inline-block;
+    width: auto;
+    padding: 14px 20px;
+  }
+
+  .rave-reviews .divider {
+    width: 100%;
+  }
+
+  .rave-reviews .stamped-badge-caption[data-reviews][data-label][data-version="2"]:after {
+    content: ")" !important;
+    margin-left: 2px;
+  }
 }

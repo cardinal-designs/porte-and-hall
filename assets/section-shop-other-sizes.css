@@ -18,3 +18,38 @@
 .shop-other-sizes__heading {
   max-width: 280px;
 }
+
+@media screen and (max-width: 768px) {
+  .shop-other-sizes {
+    padding: 0 0 50px;
+  }
+
+  .shop-other-sizes__inner {
+    grid-template-columns: repeat(2, minmax(auto, 1fr));
+    grid-auto-rows: auto;
+    grid-template-areas:
+    'header header'
+    'left right';
+    column-gap: 12px;
+    row-gap: 30px;
+  }
+
+  .shop-other-sizes__heading {
+    grid-area: header;
+    text-align: center;
+    width: 240px;
+    margin: auto;
+  }
+
+  .shop-other-sizes__item:first-of-type {
+    grid-area: left;
+  }
+
+  .shop-other-sizes__item:last-of-type {
+    grid-area: right;
+  }
+
+  .shop-other-sizes .divider {
+    width: 100%;
+  }
+}

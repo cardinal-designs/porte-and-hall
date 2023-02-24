@@ -432,3 +432,23 @@ afterpay-placement, .afterpay-paragraph {
   padding: 0 10px;
 }
 
+@media screen and (max-width: 768px) {
+
+  .product {
+    padding: 0;
+  }
+
+  .product__media-wrapper {
+    display: block;
+    width: calc(100% + 40px);
+    margin-left: -20px;
+  }
+  .product__media-list {
+    padding-bottom: 50px;
+  }
+
+  .close-zoom {
+    top: 20px;
+    right: 20px;
+  }
+}

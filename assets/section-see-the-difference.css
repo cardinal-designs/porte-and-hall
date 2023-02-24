@@ -38,3 +38,21 @@
   align-items: center;
   row-gap: 10px;
 }
+
+.see-the-difference__label svg {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .see-the-difference__label {
+    width: 100%;
+    row-gap: 5px;
+    font-size: 9px;
+    font-weight: 600;
+  }
+
+  .see-the-difference__label svg {
+    width: 115px;
+    height: auto;
+  }
+}

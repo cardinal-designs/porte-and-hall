@@ -87,6 +87,11 @@
   opacity: 0;
 }
 
+[data-hidden-swatches] {
+  font-weight: 600;
+  font-family: brandon;
+}
+
 .product-card__description {
   margin-top: 16.5px;
 }
@@ -116,6 +121,11 @@
 
   .product-card__price {
     margin-top: 20px;
+  }
+
+  .product-card__swatches {
+    column-gap: 5px;
+    row-gap: 5px;
   }
 
   .product-card__swatch {
@@ -161,4 +171,14 @@
 
 .product-card-simple .product-card__link {
   margin-top: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .product-card-simple {
+    display: block;
+  }
+
+  .product-card-simple .product-card__image {
+    width: 100%;
+  }
 }

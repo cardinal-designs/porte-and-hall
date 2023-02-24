@@ -74,3 +74,18 @@
   padding: 10px;
   font-weight: 600;
 }
+
+@media screen and (max-width: 768px) {
+
+  .see-it-in-action__header {
+    margin-bottom: 50px;
+  }
+  .see-it-in-action__tabs-buttons button {
+    font-size: 9px;
+    line-height: 10.8px;
+  }
+
+  .see-it-in-action__tabs-buttons button.active:after {
+    bottom: -4px;
+  }
+}

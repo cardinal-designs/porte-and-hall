@@ -56,7 +56,7 @@
     </a>
 
     <div class="product__media-wrapper">
-      <ul class="product__media-thumbnails list-unstyled swiper" role="list">
+      <ul class="hide-mobile product__media-thumbnails list-unstyled swiper" role="list">
         <div class="swiper-wrapper">
           {% for media in product.media %}
             <li class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
@@ -79,6 +79,8 @@
           {% endfor %}
         </div>
         <div class="product__media-pagination swiper-pagination"></div>
+        <div class="product__media-button swiper-button-prev"></div>
+        <div class="product__media-button swiper-button-next"></div>
       </ul>
     </div>
 
@@ -465,6 +467,7 @@
   // Product zoom slider
   const productZoomSlider = new Swiper('.product__zoom-slider', {
     loop: false,
+    slidesPerView: 1,
     allowTouchMove: true,
     navigation: {
       prevEl: '.product__zoom-button.swiper-button-prev',
@@ -485,11 +488,16 @@
     slidesPerView: 1,
     loop: false,
     spaceBetween: 20,
-    // pagination: {
-    //   el: '.product__media-pagination',
-    // },
+    pagination: {
+      el: '.product__media-pagination',
+      clickable: true,
+    },
     thumbs: {
       swiper: thumbnailSlider,
+    },
+    navigation: {
+      prevEl: '.product__media-button.swiper-button-prev',
+      nextEl: '.product__media-button.swiper-button-next',
     },
     controller: {
       control: productZoomSlider,

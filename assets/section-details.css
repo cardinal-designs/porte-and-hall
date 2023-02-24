@@ -104,3 +104,30 @@
   padding: 9px 10px;
   font-weight: 600;
 }
+
+@media screen and (max-width: 768px) {
+  .details__inner {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .details__media-wrapper {
+    width: 100%;
+  }
+
+  .details__image-container {
+    aspect-ratio: 1/1;
+    width: 100%;
+  }
+
+  .details__content-heading {
+    text-align: center;
+    align-self: center;
+  }
+
+  .details__point {
+    transform: translate(-50%, -50%) scale(.5);
+  }
+}

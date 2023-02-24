@@ -8,10 +8,12 @@
           </div>
         {% endfor %}
       </div>
+      <div class="product__zoom-button swiper-button-prev"></div>
+      <div class="product__zoom-button swiper-button-next"></div>
     </div>
   </div>
 
-  <div class="product__zoom-thumbnails">
+  <div class="product__zoom-thumbnails hide-mobile">
     <ul class="product__media-thumbnails-zoom list-unstyled swiper" role="list">
       <div class="swiper-wrapper">
         {% for media in product.media %}
