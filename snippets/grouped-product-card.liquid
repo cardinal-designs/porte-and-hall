@@ -52,7 +52,7 @@
 %}
 
 <grouped-product-card data-collection-id="{{collection.id}}">
-  <div class="product-card{% if product_card_product.media[1] != nil %} has-animation{% endif %}">
+  <div class="product-card{% if product_card_product.media[1] != nil %} has-animation{% endif %} {% if simple_card == true %}product-card-simple{% endif %}">
     <div class="product-card__image">
       {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill' %}
       {% if product_card_product.media[1] != null %}
@@ -62,7 +62,9 @@
       {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
 
       <div class="product-card__image-label body-xs">
-        {% if lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
+        {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
+          {{ product_card_product.first_available_variant.metafields.custom.use }}
+        {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
           Indoor/Outdoor
         {% elsif lowercase_tags contains 'indoor' %}
           Indoor
@@ -95,7 +97,9 @@
         </div>
 
         {% if collection.metafields.custom.short_description != blank %}
-          <div class="product-card__description body blue">{{ collection.metafields.custom.short_description }}</div>
+          {% unless simple_card == true %}
+            <div class="product-card__description body blue">{{ collection.metafields.custom.short_description }}</div>
+          {% endunless %}
         {% endif %}
 
         <a href="{{ product_card_product.url }}" class="text-link gold-secondary--dark product-card__link">

@@ -1,0 +1,70 @@
+{{ 'section-see-the-difference.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  for collection in product.collections
+    if collection.title contains ' | '
+      assign grouped_collection = collection
+    endif
+  endfor
+%}
+
+{% if grouped_collection.metafields.custom.see_the_difference != blank %}
+  <div class="page-width">
+    <div class="see-the-difference__inner">
+      <div class="see-the-difference__header">
+        <h2 class="see-the-difference__heading blue">{{ section.settings.heading | default: 'See the difference' }}</h2>
+        {% if section.settings.text != blank %}
+          <p class="see-the-difference__text body blue">{{ section.settings.text }}</p>
+        {% endif %}
+      </div>
+
+      <div class="see-the-difference__images">
+        <div class="see-the-difference__image see-the-difference__before">
+          {% render 'lazy-image',
+            image: grouped_collection.metafields.custom.see_the_difference.value.before,
+            blur: true,
+            fill: true
+          %}
+        </div>
+
+        <div class="see-the-difference__image see-the-difference__after">
+          {% render 'lazy-image',
+            image: grouped_collection.metafields.custom.see_the_difference.value.after,
+            blur: true,
+            fill: true
+          %}
+          <div class="see-the-difference__label">
+            <span class="body-xs">{{ section.settings.label }}</span>
+            <span>{% render 'small-logo' %}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "See The Difference",
+  "tag": "section",
+  "class": "see-the-difference with-spacing",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "After photo overlay text",
+      "default": "See the difference with"
+    }
+  ]
+}
+{% endschema %}

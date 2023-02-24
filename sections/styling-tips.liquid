@@ -1,0 +1,110 @@
+{{ 'section-styling-tips.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  for collection in product.collections
+    if collection.title contains ' | '
+      assign grouped_collection = collection
+    endif
+  endfor
+%}
+
+{% if grouped_collection.metafields.custom.styling_tips != blank %}
+  <section class="styling-tips">
+    <div class="styling-tips__background">
+      <div class="styling-tips__inner styling-tips__layout-right">
+        <div class="styling-tips__content-wrapper">
+          <div class="styling-tips__signature-wrapper">
+            {% if section.settings.image != blank %}
+              <div class="styling-tips__image">
+                {% render 'lazy-image', image: section.settings.image, fade: true, fill: false %}
+              </div>
+            {% endif %}
+            <div class="signature-svg">{% render 'signature' %}</div>
+          </div>
+          {% if section.settings.heading != blank %}
+            <h2 class="styling-tips__heading">{{ section.settings.heading | newline_to_br }}</h2>
+          {% endif %}
+
+          <div class="styling-tips__content swiper">
+            <div class="swiper-wrapper">
+              {% for slide in grouped_collection.metafields.custom.styling_tips.value %}
+                <div class="swiper-slide">
+                  <div class="styling-tips__content-item">
+                    <p class="handwriting">{{ slide.tip }}</p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="swiper-pagination styling-tips__pagination"></div>
+          </div>
+        </div>
+
+        <div class="styling-tips__image-wrapper">
+          <div class="styling-tips__images swiper">
+            <div class="swiper-wrapper">
+              {% for slide in grouped_collection.metafields.custom.styling_tips.value %}
+                <div class="swiper-slide">
+                  <div class="styling-tips__image-item">
+                    {% render 'lazy-image', image: slide.image, fade: false, fill: true %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% javascript %}
+  const stylingTipsImages = new Swiper('.styling-tips__images', {
+    slidesPerView: 1,
+    allowTouchMove: false,
+    loop: false,
+  });
+
+  const stylingTipsContent = new Swiper('.styling-tips__content', {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    pagination: {
+      el: '.styling-tips__pagination',
+      clickable: true,
+    },
+    controller: {
+      control: stylingTipsImages,
+    },
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Styling Tips",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Image with signature"
+    },
+    {
+      "type": "paragraph",
+      "content": "Our founder Stafford's styling tips"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Styling Tips"
+    }
+  ]
+}
+{% endschema %}

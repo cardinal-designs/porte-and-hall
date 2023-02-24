@@ -1,0 +1,62 @@
+{{ 'component-product-card.css' | asset_url | stylesheet_tag }}
+{{ 'section-shop-other-sizes.css' | asset_url | stylesheet_tag }}
+{% liquid
+  for collection in product.collections
+    if collection.title contains ' | '
+      assign grouped_collection = collection
+    endif
+  endfor
+%}
+
+{% assign product_type = grouped_collection.title | remove: 'The ' | split: ' | ' %}
+{% assign default_heading = 'Shop other ' | append: product_type[0] | append: ' sizes' %}
+
+{% if grouped_collection.metafields.custom.other_sizes != blank %}
+  {% assign other_sizes = grouped_collection.metafields.custom.other_sizes.value %}
+  <div class="page-width">
+    <div class="divider">
+      {%- render 'divider' %}
+      <span class="divider-line"></span>
+      {%- render 'divider' %}
+    </div>
+    <div class="shop-other-sizes__inner">
+      <h2 class="shop-other-sizes__heading blue">
+        {{ grouped_collection.metafields.custom.other_sizes_heading | default: default_heading }}
+      </h2>
+      {% for block in other_sizes %}
+        <div class="shop-other-sizes__item">
+          {% render 'grouped-product-card',
+            product_card_product: block.products[0],
+            collection: block,
+            title: block.title,
+            button_text: 'Shop Now',
+            simple_card: true
+          %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="divider">
+      {%- render 'divider' %}
+      <span class="divider-line"></span>
+      {%- render 'divider' %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Shop Other Sizes",
+  "tag": "section",
+  "class": "shop-other-sizes",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Edit heading text in Collection's 'Other Sizes Heading' Metafield"
+    },
+    {
+      "type": "paragraph",
+      "content": "Edit these selections in the Collection's 'Other Sizes' Metafield"
+    }
+  ]
+}
+{% endschema %}

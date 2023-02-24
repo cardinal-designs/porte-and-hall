@@ -1,0 +1,136 @@
+{{ 'section-details.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  for collection in product.collections
+    if collection.title contains ' | '
+      assign grouped_collection = collection
+    endif
+  endfor
+%}
+
+{% if grouped_collection.metafields.custom.design_details != blank %}
+  <div class="details__inner">
+    {% liquid
+      assign images = grouped_collection.metafields.custom.design_details.value | where: 'image'
+      assign details = grouped_collection.metafields.custom.design_details.value | where: 'title'
+      if images.size == details.size
+        assign image_carousel = true
+      else
+        assign image_carousel = false
+        assign single_image = images[0]
+      endif
+    %}
+
+    <div class="details__content-wrapper">
+      <div class="details__content-inner">
+        <div class="details__content">
+          <h2 class="details__content-heading">{{ section.settings.heading | default: 'Design details' }}</h2>
+
+          {% for points in details %}
+            <button
+              class="details__points-item {% if forloop.first %}active{% endif %}"
+              data-detail="{{ forloop.index0 }}"
+            >
+              <span class="details__points-title h3">{{ points.title }}</span>
+              <span class="details__points-text body">{{ points.description }}</span>
+            </button>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="details__media-wrapper">
+      {% if image_carousel == true %}
+        <div class="details__media-inner swiper">
+          <div class="swiper-wrapper">
+            {% for media in details %}
+              <div class="swiper-slide details__image-container">
+                <div class="details__image">
+                  {% render 'lazy-image', image: media.image, blur: true, fill: true %}
+                </div>
+                <div
+                  class="details__point"
+                  style="left: {{ media.horizontal_position }}%; top: {{ media.vertical_position }}%;"
+                >
+                  <svg width="240" height="240" viewBox="0 0 240 240" fill="none">
+                    <circle cx="120.249" cy="119.75" r="33.2143" fill="white" stroke="white" stroke-width="2"/>
+                    <circle cx="120.251" cy="119.75" r="84.5357" stroke="white" stroke-width="2"/>
+                    <circle cx="120.25" cy="119.75" r="118.25" stroke="white" stroke-width="3"/>
+                  </svg>
+                </div>
+                <div class="details__image-label body-xs">{{ media.image_label }}</div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% else %}
+        <div class="details__image-container">
+          <div class="details__image">
+            {% render 'lazy-image', image: single_image.image, blur: true, fill: true %}
+          </div>
+          {% for point in details %}
+            <div
+              class="details__point {% if forloop.first %}active{% endif %}"
+              data-detail="{{ forloop.index0 }}"
+              style="left: {{ point.horizontal_position }}%; top: {{ point.vertical_position }}%;"
+            >
+              <svg width="240" height="240" viewBox="0 0 240 240" fill="none">
+                <circle cx="120.249" cy="119.75" r="33.2143" fill="white" stroke="white" stroke-width="2"/>
+                <circle cx="120.251" cy="119.75" r="84.5357" stroke="white" stroke-width="2"/>
+                <circle cx="120.25" cy="119.75" r="118.25" stroke="white" stroke-width="3"/>
+              </svg>
+            </div>
+          {% endfor %}
+          <div class="details__image-label body-xs">{{ single_image.image_label }}</div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% javascript %}
+  const details = document.querySelectorAll('button.details__points-item');
+  const points = document.querySelectorAll('.details__point');
+
+  const imageCarousel = document.querySelector('.details__media-inner');
+  if (imageCarousel) {
+    const imageSlider = new Swiper(imageCarousel, {
+      slidesPerView: 1,
+      allowTouchMove: false,
+    });
+  }
+
+  details.forEach((button) => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      Array.from(details)
+        .find((point) => point.classList.contains('active'))
+        .classList.remove('active');
+      Array.from(points)
+        .find((point) => point.classList.contains('active'))
+        .classList.remove('active');
+
+      e.target.classList.add('active');
+      document.querySelector(`.details__point[data-detail="${e.target.dataset.detail}"]`).classList.add('active');
+
+      if (imageSlider) {
+        imageSlider.slideTo(e.target.dataset.detail);
+      }
+    });
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Details",
+  "tag": "section",
+  "class": "details",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ]
+}
+{% endschema %}

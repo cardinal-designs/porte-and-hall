@@ -1,34 +1,33 @@
 {{ 'section-image-links.css' | asset_url | stylesheet_tag }}
 
-<section class="image-links">
-  <div class="page-width">
-    <div class="image-links__inner">
-      <div class="image-links__heading">
-        <h2>{{ section.settings.heading }}</h2>
-        <span class="divider"><span class="divider-line"></span> {% render 'divider' %}</span>
-      </div>
+<div class="page-width">
+  <div class="image-links__inner">
+    <div class="image-links__heading">
+      <h2>{{ section.settings.heading }}</h2>
+      <span class="divider"><span class="divider-line"></span> {% render 'divider' %}</span>
+    </div>
 
-      <div class="image-links__blocks">
-        {% for block in section.blocks %}
-          <div class="image-links__block-wrapper">
-            <div class="image-links__block-image">
-              {% render 'lazy-image', image: block.settings.image, fade: true, classes: 'img-fill' %}
-              <div class="image-links__block-label body-xs">{{ block.settings.text }}</div>
-            </div>
-            <a class="text-link image-links__block-link" href="{{ block.settings.link }}">
-              {{ block.settings.link_text }} >
-            </a>
+    <div class="image-links__blocks">
+      {% for block in section.blocks %}
+        <div class="image-links__block-wrapper">
+          <div class="image-links__block-image">
+            {% render 'lazy-image', image: block.settings.image, fade: true, classes: 'img-fill' %}
+            <div class="image-links__block-label body-xs">{{ block.settings.text }}</div>
           </div>
-        {% endfor %}
-      </div>
+          <a class="text-link image-links__block-link" href="{{ block.settings.link }}">
+            {{ block.settings.link_text }} >
+          </a>
+        </div>
+      {% endfor %}
     </div>
   </div>
-</section>
+</div>
 
 {% schema %}
 {
   "name": "Image Links",
-  "class": "with-spacing",
+  "tag": "section",
+  "class": "image-links with-spacing",
   "settings": [
     {
       "type": "textarea",

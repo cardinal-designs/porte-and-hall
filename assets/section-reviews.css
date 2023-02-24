@@ -1,0 +1,238 @@
+.rave-reviews-main{
+  max-width: 1200px;
+  padding-bottom: 80px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.rave-reviews-main .rave-reviews{
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+.rave-reviews-main .rating-reviews{
+  width:100%;
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.rave-reviews-main h2{
+  width: 100%;
+  font-size: 46px;
+  line-height: 110%;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: var(--blue);
+  font-family: louize;
+  display:block;
+  margin-bottom: 25px;
+}
+.rave-reviews-main .stamped-summary-actions-newreview,
+.stamped-summary-actions-newreview {
+  background: var(--gold-secondary);
+  color: #fff;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: brandon;
+  font-size: 12px;
+  line-height: 100%;
+  padding: 14px 30px;
+  border: none;
+  box-shadow: none !important;
+  border-radius: 0;
+}
+.rave-reviews-main .stamped-summary-actions-newreview::before,
+.stamped-summary-actions-newreview::before {
+  content:"";
+}
+
+#stamped-main-widget .stamped-header{
+  display:none;
+}
+#stamped-main-widget .stamped-tab-container{
+  display:none !important;
+}
+#stamped-main-widget #stamped-reviews-filter{
+  display:none;
+}
+
+@media screen and (min-width: 769px) {
+  .rave-reviews-main span.stamped-product-reviews-badge.stamped-main-badge {
+    display: none !important;
+  }
+}
+
+.rave-reviews .stamped-badge .fa-star, 
+.rave-reviews .stamped-badge .fa-star-o,
+.rave-reviews .stamped-badge .fa-star-half-o,
+.rave-reviews .stamped-badge .stamped-fa-star,
+.rave-reviews .stamped-badge .stamped-fa-star-o,
+.rave-reviews .stamped-badge .stamped-fa-star-half-o {
+  color: var(--gold-secondary--dark) !important;
+}
+
+
+.rave-reviews-main .stamped-review-avatar,
+.stamped-review-avatar {
+  display: none !important;
+}
+
+.rave-reviews-main .stamped-review-header,
+.stamped-review-header {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 15px;
+  /* column-gap: 10px; */
+  margin-bottom: 15px;
+}
+
+.rave-reviews-main .stamped-review-header .stamped-starratings,
+.stamped-review-header .stamped-starratings {
+  flex-basis: 100%;
+  width: 100%;
+}
+
+.stamped-review-header .author ,
+.stamped-review-header .created {
+  font-family: brandon;
+  color: var(--blue);
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: 120%;
+  order: -1;
+}
+
+.stamped-review-header .author {
+  border-right: 1px solid var(--blue);
+  padding-right: 5px;
+  margin-right: 5px;
+}
+
+.stamped-review-header .created {
+  order: 0;
+}
+
+.stamped-review-header .created, .stamped-review-header  .stamped-review-header-byline .created {
+  font-family: brandon;
+  color: var(--blue) !important;
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: 120%;
+  font-weight: 600 !important;
+}
+
+.stamped-review-header .stamped-verified-badge {
+  font-family: brandon;
+  color: var(--blue) !important;
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: 120%;
+  font-weight: 600;
+  order: -2;
+  position: relative;
+  padding-left: 22px;
+  border-right: 1px solid var(--blue);
+  padding-right: 5px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.stamped-review-header .stamped-verified-badge:before {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  content: url("data:image/svg+xml,%3Csvg width='16' height='20' viewBox='0 0 16 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.9656 2.5901C13.9822 2.57773 12.5522 2.42746 10.9706 1.7875C9.74403 1.28986 8.80474 0.651669 8.14487 0.113363C7.95895 -0.0377877 7.69286 -0.0377877 7.50694 0.113363C6.84698 0.651669 5.90772 1.28986 4.68126 1.7875C3.09965 2.42745 1.66948 2.57773 0.686236 2.5901C0.447451 2.59364 0.24744 2.77043 0.213064 3.00821C-0.0935726 5.08719 -0.675987 11.5142 3.55778 16.6099C4.80544 18.1125 6.1888 19.1583 7.40641 19.884C7.66545 20.0387 7.98618 20.0387 8.24525 19.884C9.46295 19.1583 10.8454 18.1126 12.0939 16.6099C16.3285 11.514 15.7454 5.08708 15.4395 3.00821C15.4042 2.77043 15.2042 2.59366 14.9654 2.5901' fill='%23546B82'/%3E%3Cpath d='M11.0062 6.84204L10.5093 7.32837C9.39309 8.42305 8.21164 9.65942 7.09673 10.772L5.60605 9.57051L5.06531 9.13425L4.17383 10.1963L4.71457 10.6326L6.70214 12.2346L7.19539 12.6315L7.64479 12.1881C8.9062 10.9509 10.2704 9.50654 11.503 8.29748L11.9999 7.81115L11.0062 6.84204Z' fill='white'/%3E%3C/svg%3E%0A");
+}
+
+.stamped-review-header-title {
+  font-family: brandon;
+  color: var(--blue) !important;
+  text-transform: uppercase;
+  font-size: 18px !important;
+  line-height: 120%;
+  font-weight: 600;
+  margin-bottom: 30px !important;
+}
+
+.stamped-review-content-body, .stamped-review-product, .stamped-review-product a, .stamped-review-variant {
+  font-family: brandon;
+  color: var(--blue) !important;
+  font-size: 18px !important;
+  line-height: 120%;
+  font-weight: 400;
+}
+
+.stamped-review-product {
+  margin-top: 27px;
+}
+
+.stamped-review-footer {
+  display: none;
+}
+
+.stamped-review {
+  border-color: var(--blue) !important;
+}
+
+.stamped-review:last-of-type {
+  border-bottom: 1px solid var(--blue);
+  padding-bottom: 15px;
+}
+
+#stamped-main-widget .fa-star, #stamped-main-widget .fa-star-o, #stamped-main-widget .fa-star-half-o, #stamped-main-widget .stamped-fa-star, #stamped-main-widget .stamped-fa-star-o, #stamped-main-widget .stamped-fa-star-half-o {
+  color: var(--gold-secondary--dark) !important;
+}
+
+.stamped-pagination {
+  font-family: brandon;
+  color: var(--blue) !important;
+  font-size: 18px !important;
+  line-height: 120%;
+  font-weight: 400;
+}
+
+.stamped-pagination .previous {
+  margin-right: 0 !important;
+  color: black;
+}
+
+.stamped-pagination .next {
+  margin-left: 0 !important;
+  color: black;
+}
+
+@media screen and (max-width: 768px) {
+
+  .rave-reviews-main {
+    padding-bottom: 0px;
+    margin-top: 50px ;
+  }
+
+  .rave-reviews h2 {
+    font-size: 24px;
+    line-height: 31.2px;
+  }
+
+  .rave-reviews-main .stamped-summary-actions-newreview,
+  .stamped-summary-actions-newreview {
+    display: inline-block;
+    width: auto;
+    padding: 14px 20px;
+  }
+
+  .rave-reviews .divider {
+    width: 100%;
+  }
+
+  .rave-reviews .stamped-badge-caption[data-reviews][data-label][data-version="2"]:after {
+    content: ")" !important;
+    margin-left: 2px;
+  }
+}

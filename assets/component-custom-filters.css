@@ -6,8 +6,8 @@
 }
 
 .facets__summary {
-  color: #999999;
-  border-bottom: 1px solid #999999;
+  color: var(--gray)
+  border-bottom: 1px solid var(--gray)
   margin-bottom: 30px;
   padding-bottom: 10px;
   font-weight: 600;
