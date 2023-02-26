@@ -551,7 +551,7 @@ blockquote {
 
 .field__input {
   width: 100%;
-  padding: 7px 0;
+  padding: 5px 0;
   -webkit-appearance: none;
   appearance: none;
   box-sizing: border-box;
@@ -569,7 +569,7 @@ blockquote {
 
 /* Select */
 .select {
-  border: 1px solid currentColor;
+  border: 0;
   position: relative;
 }
 
@@ -587,7 +587,7 @@ blockquote {
 
 .select__select {
   width: 100%;
-  padding: 15px 50px 15px 15px;
+  padding: 5px 0;
   -webkit-appearance: none;
   appearance: none;
   box-sizing: border-box;
@@ -1599,6 +1599,10 @@ header.condensed .header__menu {
   width: 100%;
 }
 
+#NewsletterForm--footer {
+  color: inherit;
+}
+
 .footer__heading {
   margin-bottom: 30px;
 }
@@ -2089,7 +2093,7 @@ header.condensed .header__menu {
 }
 
 .text-center {
-  text-align:center;
+  text-align:center !important;
 }
 
 @media screen and (max-width: 1050px) {
@@ -2173,6 +2177,34 @@ header.condensed .header__menu {
 .field__input:-moz-placeholder { /* Firefox 18- */
   color: var(--blue);
   font-family: brandon;
+}
+
+@media screen and (max-width: 768px) {
+  
+  .field__input {
+    font-size: 14px;
+  }
+
+  .field__input::-webkit-input-placeholder {
+    font-size: 14px;
+  }
+  
+  .field__input::-moz-placeholder { /* Firefox 19+ */
+    font-size: 14px;
+  }
+  
+  .field__input:-ms-input-placeholder { /* IE 10+ */
+    font-size: 14px;
+  }
+  
+  .field__input:-moz-placeholder { /* Firefox 18- */
+    font-size: 14px;
+  }
+  
+}
+
+.text-right {
+  text-align: right !important;
 }
 
 /* INPUT CSS END */

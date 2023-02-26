@@ -1,8 +1,10 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
 
 <header class="account-header">
-  <div class="page-width">
-    <h1 class="account-header__title h2">{{ 'customer.order.title' | t: name: order.name }}</h1>
+  <div class="Account_Header_Inner">
+    <div class="page-width">
+      <h1 class="account-header__title h1 blue">{{ 'customer.order.title' | t: name: order.name }}</h1>
+    </div>
   </div>
 </header>
 
@@ -11,14 +13,14 @@
     <div class="order-detail__container">
 
       <div class="order-detail__info">
-        <h2 class="order-detail__info-title h5">{{ 'customer.order.title' | t: name: order.name }}</h2>
+        <h3 class="order-detail__info-title h3 blue">{{ 'customer.order.title' | t: name: order.name }}</h3>
 
         {% assign order_date = order.created_at | time_tag: format: "date_at_time" %}
-        <p class="order-detail__info-item">{{ 'customer.order.date_html' | t: date: order_date }}</p>
+        <p class="order-detail__info-item body blue">{{ 'customer.order.date_html' | t: date: order_date }}</p>
         {% if order.cancelled %}
           {% assign cancelled_at = order.cancelled_at | time_tag: format: "date_at_time" %}
-          <p class="order-detail__info-item">{{ 'customer.order.cancelled_html' | t: date: cancelled_at }}</p>
-          <p class="order-detail__info-item">{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason_label }}</p>
+          <p class="order-detail__info-item body blue">{{ 'customer.order.cancelled_html' | t: date: cancelled_at }}</p>
+          <p class="order-detail__info-item body blue">{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason_label }}</p>
         {% endif %}
   
         <div class="order-details-wrapper no-scrollbar">
@@ -114,6 +116,7 @@
                   <td
                     headers="Row{{ line_item.key }} ColumnSku"
                     role="cell"
+                    class="body"
                     data-label="{{ 'customer.order.sku' | t }}"
                   >
                     {{ line_item.sku }}
@@ -173,6 +176,7 @@
                   <td
                     headers="Row{{ line_item.key }} ColumnQuantity"
                     role="cell"
+                    class="text-center"
                     data-label="{{ 'customer.order.quantity' | t }}"
                   >
                     {{ line_item.quantity }}
@@ -217,9 +221,9 @@
                     <td id="RowDiscount" role="rowheader" scope="row" colspan="4">
                       {{ 'customer.order.discount' | t }}
                       <span class="cart-discount">
-                        <svg aria-hidden="true" focusable="false" viewBox="0 0 12 12">
+<!--                         <svg aria-hidden="true" focusable="false" viewBox="0 0 12 12">
                           <use href="#icon-discount" />
-                        </svg>
+                        </svg> -->
                         {{- discount_application.title -}}
                       </span>
                     </td>
@@ -240,8 +244,7 @@
               {% for shipping_method in order.shipping_methods %}
                 <tr role="row">
                   <td id="RowShipping" role="rowheader" scope="row" colspan="4">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</td>
-                  <td></td>
-                  <td headers="RowShipping" role="cell" data-label="{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})">{{ shipping_method.price | money }}</td>
+                  <td class="text-right" headers="RowShipping" role="cell" data-label="{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})">{{ shipping_method.price | money }}</td>
                 </tr>
               {% endfor %}
               {% for tax_line in order.tax_lines %}
@@ -254,7 +257,7 @@
               <tr role="row">
                 <td id="RowTotal" role="rowheader" scope="row" colspan="3">{{ 'customer.order.total' | t }}</td>
                 <td></td>
-                <td headers="RowTotal" role="cell" colspan="2" data-label="{{ 'customer.order.total' | t }}">{{ order.total_price | money_with_currency }}</td>
+                <td class="text-right" headers="RowTotal" role="cell" colspan="2" data-label="{{ 'customer.order.total' | t }}">{{ order.total_price | money_with_currency }}</td>
               </tr>
             </tfoot>
           </table>
@@ -264,8 +267,8 @@
       </div>
 
       <div class="order-detail__addresses">
-        <div class="order-detail__billing">
-          <h2 class="order-detail__addresses-title h5">Billing Address</h2>
+        <div class="order-detail__billing blue body">
+          <h3 class="order-detail__addresses-title h3">Billing Address</h3>
           <p class="order-detail__addresses-text">
             <strong>{{ 'customer.order.payment_status' | t }}:</strong>
             {{ order.financial_status_label }}
@@ -274,9 +277,9 @@
             {{ order.billing_address | format_address }}
           </div>
         </div>
-        <div class="order-detail__shipping">
-          <h2 class="order-detail__addresses-title h5">Shipping Address</h2>
-          <p class="order-detail__addresses-text">
+        <div class="order-detail__shipping blue body">
+          <h3 class="order-detail__addresses-title h3">Shipping Address</h3>
+          <p class="order-detail__addresses-text body">
             <strong>{{ 'customer.order.fulfillment_status' | t }}:</strong>
             {{ order.fulfillment_status_label }}
           </p>
