@@ -1608,7 +1608,6 @@ header.condensed .header__menu {
 }
 
 .newsletter-form {
-  /* max-width: 400px; */
   width: 100%;
 }
 
@@ -1624,7 +1623,6 @@ header.condensed .header__menu {
 .newsletter-form .footer__newsletter-button {
   position: absolute;
   right: 0;
-  /* transform: translate(-52%, 0); */
   color: var(--gold);
   font-family: brandon;
   font-size: 14px;
@@ -1692,6 +1690,14 @@ header.condensed .header__menu {
     margin: auto;
     line-height: 2rem;
   }
+}
+
+/*================ Klaviyo embed ================*/
+.footer .kl-private-reset-css-Xuajs1 input[type=email] {
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  padding-left: 0 !important;
 }
 
 /*============================================================================
