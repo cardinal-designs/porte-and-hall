@@ -1,33 +1,38 @@
 {% comment %}
-    Renders product media.
+  Renders product media.
 
-    Accepts:
-    - media: {Object} Product Media object
-    - position: {String} Position of the media. Used for accessible label.
-    - loop: {Boolean} Enable video looping (optional)
-    - modal_id: {String} The product modal that will be shown by clicking the thumbnail
-    - xr_button: {Boolean} Renders the "View in your space" button (shopify-xr-button) if the media is a 3D Model
+  Accepts:
+  - media: {Object} Product Media object
+  - position: {String} Position of the media. Used for accessible label.
+  - loop: {Boolean} Enable video looping (optional)
+  - modal_id: {String} The product modal that will be shown by clicking the thumbnail
+  - xr_button: {Boolean} Renders the "View in your space" button (shopify-xr-button) if the media is a 3D Model
 
-    Usage:
-    {% render 'product-thumbnail',
-      media: media,
-      position: forloop.index,
-      loop: section.settings.enable_video_looping,
-      modal_id: section.id
-    %}
+  Usage:
+  {% render 'product-thumbnail',
+    media: media,
+    position: forloop.index,
+    loop: section.settings.enable_video_looping,
+    modal_id: section.id
+  %}
 {% endcomment %}
 
 <noscript>
   {% if media.media_type == 'video' or media.media_type == 'external_video' %}
-    <span class="product__media-icon motion-reduce">{% render 'icon' icon: 'play' %}</span>
-    <div class="product__media media" style="padding-top: {{ 1 | divided_by: media.preview_image.aspect_ratio | times: 100 }}%;">
+    <span class="product__media-icon motion-reduce">{% render 'icon', icon: 'play' %}</span>
+    <div
+      class="product__media media"
+      style="padding-top: {{ 1 | divided_by: media.preview_image.aspect_ratio | times: 100 }}%;"
+    >
       <img
-        srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %}
+        srcset="
+          {% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %}
           {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %}
           {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %}
           {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %}
           {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %}
-          {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w"
+          {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w
+        "
         src="{{ media | img_url: '1500x' }}"
         sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | times: 0.64 | round }}px, (min-width: 769px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
         loading="lazy"
@@ -36,18 +41,28 @@
         alt="{{ media.preview_image.alt | escape }}"
       >
     </div>
-    <a href="{% if media.media_type == 'video' %}{{ media.sources[1].url }}{% else %}{{ media | external_video_url }}{% endif %}" class="product__media-toggle">
-      <span class="visually-hidden">{{ 'products.product.video_exit_message' | t: title: product.title | escape }}</span>
+    <a
+      href="{% if media.media_type == 'video' %}{{ media.sources[1].url }}{% else %}{{ media | external_video_url }}{% endif %}"
+      class="product__media-toggle"
+    >
+      <span class="visually-hidden">
+        {{- 'products.product.video_exit_message' | t: title: product.title | escape -}}
+      </span>
     </a>
   {% else %}
-    <div class="product__media media" style="padding-top: {{ 1 | divided_by: media.preview_image.aspect_ratio | times: 100 }}%;">
+    <div
+      class="product__media media"
+      style="padding-top: {{ 1 | divided_by: media.preview_image.aspect_ratio | times: 100 }}%;"
+    >
       <img
-        srcset="{% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %}
+        srcset="
+          {% if media.preview_image.width >= 288 %}{{ media.preview_image | img_url: '288x' }} 288w,{% endif %}
           {% if media.preview_image.width >= 576 %}{{ media.preview_image | img_url: '576x' }} 576w,{% endif %}
           {% if media.preview_image.width >= 750 %}{{ media.preview_image | img_url: '750x' }} 750w,{% endif %}
           {% if media.preview_image.width >= 1100 %}{{ media.preview_image | img_url: '1100x' }} 1100w,{% endif %}
           {% if media.preview_image.width >= 1500 %}{{ media.preview_image | img_url: '1500x' }} 1500w,{% endif %}
-          {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w"
+          {{ media.preview_image | img_url: 'master' }} {{ media.preview_image.width }}w
+        "
         src="{{ media | img_url: '1500x' }}"
         sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | times: 0.64 | round }}px, (min-width: 769px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
         loading="lazy"
@@ -61,7 +76,7 @@
 
 <div class="product__media">
   {% if media.media_type == 'image' %}
-    {% render 'lazy-image' image: media.preview_image, fade: true, classes: 'img-fill' %}
+    {% render 'lazy-image', image: media.preview_image, fade: true, classes: 'img-fill', width: width %}
   {% elsif media.media_type == 'video' %}
     <video autoplay loop muted playsinline class="img-fill">
       <source src="{{ media.sources[1].url }}" type="video/mp4">

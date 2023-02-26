@@ -4,22 +4,24 @@
 <div class="page-width">
   <div class="shop-all__inner">
     <div class="shop-all__filters">
-      {% for block in section.blocks %}
-        {%- assign collection = block.settings.collection -%}
-        {{ collection.title }}
-        <br>
-        Types: {{ collection.all_types }}
-        <br>
-        Tags: {{ collection.all_tags | size }}
-        <br>
-        Filters: {{ collection.filters | size }}
-        {%- for filter in collection.filters -%}
-          {{ filter.type }} | {{ filter.values }}
+      {% comment %}
+        {% for block in section.blocks %}
+          {%- assign collection = block.settings.collection -%}
+          {{ collection.title }}
           <br>
-        {%- endfor -%}
-        <br>
-        <hr>
-      {% endfor %}
+          Types: {{ collection.all_types }}
+          <br>
+          Tags: {{ collection.all_tags | size }}
+          <br>
+          Filters: {{ collection.filters | size }}
+          {%- for filter in collection.filters -%}
+            {{ filter.type }} | {{ filter.values }}
+            <br>
+          {%- endfor -%}
+          <br>
+          <hr>
+        {% endfor %}
+      {% endcomment %}
     </div>
     <div class="shop-all__products">
       {% for block in section.blocks %}

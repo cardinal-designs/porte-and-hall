@@ -21,6 +21,12 @@
   column-gap: 30px;
 }
 
+@media screen and (max-width: 768px) {
+  .page-hero__blocks {
+    column-gap: 10px;
+  }
+}
+
 .page-hero__icon-wrapper {
   text-align: center;
 }

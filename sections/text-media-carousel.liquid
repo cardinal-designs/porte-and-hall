@@ -1,63 +1,61 @@
 {{ 'section-text-media-carousel.css' | asset_url | stylesheet_tag }}
 
-<section class="text-media-caorusel">
-  <div class="text-media-carousel__inner">
-    <div class="text-media-carousel__media-wrapper">
-      <div class="text-media-carousel__media-inner swiper">
+<div class="text-media-carousel__inner">
+  <div class="text-media-carousel__media-wrapper">
+    <div class="text-media-carousel__media-inner swiper">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="swiper-slide text-media-carousel__image" data-controlled-by="{{ forloop.index }}">
+            {% if block.settings.video != blank %}
+              {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+            {% elsif block.settings.image != blank %}
+              {% render 'lazy-image', image: block.settings.image, fade: true, fill: true %}
+            {% endif %}
+
+            {% if block.settings.media_label != blank %}
+              <div class="text-media-carousel__media-label body-xs">{{ block.settings.media_label }}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="text-media-carousel__content-wrapper">
+    <div class="text-media-carousel__content-inner">
+      <h3 class="text-media-carousel__heading">{{ section.settings.heading }}</h3>
+
+      <div class="text-media-carousel__text swiper">
         <div class="swiper-wrapper">
           {% for block in section.blocks %}
-            <div class="swiper-slide text-media-carousel__image" data-controlled-by="{{ forloop.index }}">
-              {% if block.settings.video != blank %}
-                {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
-              {% elsif block.settings.image != blank %}
-                {% render 'lazy-image', image: block.settings.image, fade: true, fill: true %}
+            <div class="swiper-slide" data-controlls="{{ forloop.index }}">
+              {% if block.settings.heading != blank %}
+                <h2 class="text-media__heading">{{ block.settings.heading }}</h2>
               {% endif %}
 
-              {% if block.settings.media_label != blank %}
-                <div class="text-media-carousel__media-label body-xs">{{ block.settings.media_label }}</div>
+              {% if block.settings.text != blank %}
+                <p class="text-media__title">{{ block.settings.title }}</p>
+              {% endif %}
+
+              {% if block.settings.text != blank %}
+                <p class="text-media__quote handwriting">{{ block.settings.text }}</p>
+              {% endif %}
+
+              {% if block.settings.link != blank and block.settings.link_text != blank %}
+                <a href="{{ block.settings.link }}" class="text-link gold text-media__link">
+                  {{- block.settings.link_text -}}
+                  >
+                </a>
               {% endif %}
             </div>
           {% endfor %}
         </div>
-      </div>
-    </div>
 
-    <div class="text-media-carousel__content-wrapper">
-      <div class="text-media-carousel__content-inner">
-        <h3 class="text-media-carousel__heading">{{ section.settings.heading }}</h3>
-
-        <div class="text-media-carousel__text swiper">
-          <div class="swiper-wrapper">
-            {% for block in section.blocks %}
-              <div class="swiper-slide" data-controlls="{{ forloop.index }}">
-                {% if block.settings.heading != blank %}
-                  <h2 class="text-media__heading">{{ block.settings.heading }}</h2>
-                {% endif %}
-
-                {% if block.settings.text != blank %}
-                  <p class="text-media__title">{{ block.settings.title }}</p>
-                {% endif %}
-
-                {% if block.settings.text != blank %}
-                  <p class="text-media__quote handwriting">{{ block.settings.text }}</p>
-                {% endif %}
-
-                {% if block.settings.link != blank and block.settings.link_text != blank %}
-                  <a href="{{ block.settings.link }}" class="text-link gold text-media__link">
-                    {{- block.settings.link_text -}}
-                    >
-                  </a>
-                {% endif %}
-              </div>
-            {% endfor %}
-          </div>
-
-          <div class="swiper-pagination text-media-carousel__pagination"></div>
-        </div>
+        <div class="swiper-pagination text-media-carousel__pagination"></div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 {% javascript %}
   const imageSwiper = new Swiper('.text-media-carousel__media-inner', {
@@ -79,6 +77,8 @@
 {% schema %}
 {
   "name": "Text Media Carousel",
+  "tag": "section",
+  "class": "text-media-carousel",
   "settings": [
     {
       "type": "textarea",

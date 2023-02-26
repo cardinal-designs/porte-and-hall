@@ -1,6 +1,6 @@
 {{ 'section-ugc-carousel.css' | asset_url | stylesheet_tag }}
 
-<section class="ugc-carousel">
+<div>
   <div class="page-width">
     <div class="heading-with-accents">
       <span class="divider header-divider">
@@ -26,12 +26,13 @@
       </div>
     </div>
   </ugc-carousel>
-</section>
+</div>
 
 {% schema %}
 {
   "name": "UGC Carousel",
-  "class": "with-spacing",
+  "tag": "section",
+  "class": "ugc-carousel with-spacing",
   "settings": [
     {
       "type": "richtext",

@@ -140,7 +140,7 @@
   <div class="header__navigation">
     <!-- Navigation -->
     {% if section.settings.menu != blank %}
-      <nav class="header__menu page-width">
+      <nav class="header__menu">
         <ul class="header__menu-list" role="list">
           {% for link in section.settings.menu.links %}
             {% assign downcased_link_title = link.title | downcase | strip %}
