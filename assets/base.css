@@ -1698,6 +1698,17 @@ header.condensed .header__menu {
   border-left: 0 !important;
   border-right: 0 !important;
   padding-left: 0 !important;
+  font-family: brandon !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  line-height: 23.4px !important;
+}
+
+.footer .kl-private-reset-css-Xuajs1 input[type=email]::placeholder {
+  font-family: brandon !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  line-height: 23.4px !important;
 }
 
 /*============================================================================
