@@ -1738,6 +1738,21 @@ header.condensed .header__menu {
   line-height: 130% !important;
 }
 
+@media screen and (max-width: 768px) {
+  .footer .kl-private-reset-css-Xuajs1 input[type=email] {
+    font-size: 14px !important;
+  }
+  
+  .footer .kl-private-reset-css-Xuajs1 input[type=email]::placeholder {
+    font-size: 14px !important;
+  }
+
+  .footer .kl-private-reset-css-Xuajs1 p,
+  .footer .kl-private-reset-css-Xuajs1 p span {
+    font-size: 14px !important;
+  }
+}
+
 /*============================================================================
   Misc
 ==============================================================================*/
