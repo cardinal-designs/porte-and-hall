@@ -1722,9 +1722,11 @@ header.condensed .header__menu {
   border-top: 0 !important;
   border-left: 0 !important;
   border-right: 0 !important;
+  font-family: brandon !important;
   font-size: 14px !important;
   font-weight: 700 !important;
   line-height: 120% !important;
+  height: 38px !important
 }
 
 /*============================================================================
