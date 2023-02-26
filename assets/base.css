@@ -1701,14 +1701,14 @@ header.condensed .header__menu {
   font-family: brandon !important;
   font-size: 18px !important;
   font-weight: 400 !important;
-  line-height: 23.4px !important;
+  line-height: 130% !important;
 }
 
 .footer .kl-private-reset-css-Xuajs1 input[type=email]::placeholder {
   font-family: brandon !important;
   font-size: 18px !important;
   font-weight: 400 !important;
-  line-height: 23.4px !important;
+  line-height: 130% !important;
 }
 
 .footer .go1920118604.go1920118604.go1920118604:hover {
@@ -1722,6 +1722,9 @@ header.condensed .header__menu {
   border-top: 0 !important;
   border-left: 0 !important;
   border-right: 0 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 120% !important;
 }
 
 /*============================================================================
