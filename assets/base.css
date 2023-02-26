@@ -1720,6 +1720,7 @@ header.condensed .header__menu {
   padding: 0 !important;
   text-align: right !important;
   text-decoration: underline !important;
+  text-underline-offset: 2px;
   border-top: 0 !important;
   border-left: 0 !important;
   border-right: 0 !important;
