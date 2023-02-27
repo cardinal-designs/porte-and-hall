@@ -321,6 +321,16 @@
   transform: translateX(-50%) rotate(45deg);
 }
 
+.product__oos-notify-wrapper {
+  margin-top: 30px;
+}
+
+.product__oos-notify-wrapper p {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 500;
+}
+
 /* Stamped styles */
 
 .stamped-badge-caption {

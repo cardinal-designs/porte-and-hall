@@ -1208,14 +1208,21 @@ header.condensed .header__menu {
 }
 
 .cart-count-bubble {
-  height: 8px;
-  width: 8px;
   border-radius: 100%;
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
-  background: black;
-  border: 1px solid white;
+  background: var(--blue);
+  color: white;
+  aspect-ratio: 1/1;
+  transform: translate(40%, 25%);
+  padding: 2px;
+  font-size: 10px;
+  min-width: fit-content;
+  font-family: brandon;
+  min-height: fit-content;
+  line-height: 1.1;
+  font-weight: 600;
 }
 
 /*================ Search ================*/

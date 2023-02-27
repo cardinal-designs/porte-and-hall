@@ -130,7 +130,7 @@
         {% endif %}
 
         <div class="product__variant-name body">
-          {% assign variant_name = product.first_available_variant.title | split: '/' %}
+          {% assign variant_name = product.selected_or_first_available_variant.title | split: '/' %}
           <span>Style</span><span> — {{ variant_name[0] }}</span>
         </div>
 
@@ -266,7 +266,7 @@
               </div>
             </noscript>
 
-            <div class="product__quantity-atc-wrapper">
+            <div class="product__quantity-atc-wrapper {% if product.available == false%}visually-hidden{% endif%}">
               <div class="product-form__input product-form__quantity">
                 <label class="form__label visually-hidden" for="Quantity-{{ section.id }}">
                   {{ 'products.product.quantity.label' | t }}
@@ -339,6 +339,12 @@
           {% endform %}
         </product-form>
       </div>
+
+      {% if product.available == false %}
+        <div class="product__oos-notify-wrapper">
+          <p class="body">Notify me when THIS STYLE IS back in stock:</p>
+        </div>
+      {% endif %}
 
       <div class="product__tabs-wrapper">
         <div class="product__tabs-buttons">
@@ -439,7 +445,11 @@
   </div>
 </section>
 
-<sticky-atc data-main-form="{{product_form_id}}" data-section-id="{{ section.id }}">
+<sticky-atc
+  class="{% if product.available == false%}visually-hidden{% endif%}"
+  data-main-form="{{product_form_id}}"
+  data-section-id="{{ section.id }}"
+>
   <div class="product__quantity-atc-wrapper">
     <div class="product-form__input product-form__quantity">
       <label class="form__label visually-hidden" for="sticky-Quantity-{{ section.id }}">
