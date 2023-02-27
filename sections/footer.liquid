@@ -66,6 +66,7 @@
           <p class="footer__text">{{ section.settings.newsletter_text | escape }}</p>
         {% endif %}
 
+        {% comment %}
         {% form 'customer', id: 'ContactFooter', class: 'footer__newsletter-form newsletter-form' %}
           <input type="hidden" name="contact[tags]" value="newsletter">
           <div class="newsletter-form__field-wrapper">
@@ -99,11 +100,13 @@
               </button>
             </div>
             {% if form.errors %}
+              {% comment %}
               <p class="newsletter-form__message form__message" id="ContactFooter-error">
                 {% render 'icon', icon: 'error' -%}
                 {{- form.errors.translated_fields.email | capitalize }}
                 {{ form.errors.messages.email }}
               </p>
+              {% endcomment %}
             {% endif %}
           </div>
           {% if form.posted_successfully? %}
@@ -118,6 +121,9 @@
             </p>
           {% endif %}
         {% endform %}
+        {% endcomment %}
+        
+        <div class="klaviyo-form-SZV96h"></div>
       </div>
 
       <div class="footer__block hide-desktop">

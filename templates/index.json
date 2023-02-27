@@ -3,6 +3,7 @@
     "16587824044cd3c400": {
       "type": "hero",
       "settings": {
+        "video": "shopify:\/\/files\/videos\/Outdoor-Indoor-Mats-Doormats-Runners-AreaMats-Rugs (1).mp4",
         "image": "shopify:\/\/shop_images\/Rectangle_595.png",
         "title": "Ultra-durable, patented doormats, designed by an award-winning interior designer",
         "button_label": "Shop Now",
@@ -81,7 +82,7 @@
         "08b5bc26-e2e6-4d42-a104-492b1a89dd94": {
           "type": "block",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Rectangle_598.png",
+            "image": "shopify:\/\/shop_images\/Outdoor-Mat-Outsider-Teak-Frame-Blue-Insert-Doormat.jpg",
             "text": "The Outsider in Teak Blue",
             "link_text": "Show All Outdoor Mats",
             "link": "shopify:\/\/collections"
@@ -90,7 +91,7 @@
         "868e623f-12f7-4895-9dda-b6e5ce7484f1": {
           "type": "block",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Rectangle_599.png",
+            "image": "shopify:\/\/shop_images\/Indoor-Mat-Insider-Maze-Red-Doormat.jpg",
             "text": "The Insider in Maze Red",
             "link_text": "Shop All Indoor Mats",
             "link": "shopify:\/\/collections"
@@ -217,42 +218,43 @@
         "heading": "Meet our mats",
         "show_product_info": true,
         "show_vendor": false,
-        "show_color_swatch": false
+        "show_color_swatch": false,
+        "background": ""
       }
     },
     "ca7269e3-0e99-4b33-8ac5-b2cb1e4e8322": {
       "type": "text-media-carousel",
       "blocks": {
+        "6023e449-1169-48e3-a76e-deef958316d0": {
+          "type": "slide",
+          "settings": {
+            "heading": "Elizabeth Pash",
+            "title": "Founder of Elizabeth Pash Interiors & Antiques",
+            "text": "It was love at first sight with the Outsider.  Not only is it great looking, but it is practical--the perfect finishing touch that adds instant curb appeal!",
+            "link": "",
+            "link_text": "",
+            "media_label": "",
+            "image": "shopify:\/\/shop_images\/EP_Portrrait_x2_2x_037b6269-0743-4a5b-9f25-bfa55cfa25cc.jpg",
+            "video_url": ""
+          }
+        },
         "59bb0f61-51d2-4f23-93c7-9fa961309c5c": {
           "type": "slide",
           "settings": {
             "heading": "Nicole Gibbons",
             "title": "Founder of Clare Paint  |  Her Style: Farmhouse Chic\nProduct: The Innerweave Doormat in Chevron Natural",
             "text": "“Sed ut perspiciatis, unde omnis iste natus error sit voluptatem lorem elit accusantium doloremque doloritis vin laudantium!”",
-            "link": "\/",
-            "link_text": "Read More",
-            "media_label": "THE INSIDER AREA MAT IN BARK (CREME)",
-            "image": "shopify:\/\/shop_images\/Rectangle_602.jpg",
-            "video_url": ""
-          }
-        },
-        "6023e449-1169-48e3-a76e-deef958316d0": {
-          "type": "slide",
-          "settings": {
-            "heading": "Name Here",
-            "title": "Title Info goes here",
-            "text": "Quote text here",
             "link": "",
             "link_text": "",
-            "media_label": "",
-            "image": "shopify:\/\/shop_images\/Rectangle_602.jpg",
+            "media_label": "THE INSIDER AREA MAT IN BARK (CREME)",
+            "image": "shopify:\/\/shop_images\/IMG_1619_1__x2_2x_67cf7c01-faec-45de-a263-bcdded8c1dd8.jpg",
             "video_url": ""
           }
         }
       },
       "block_order": [
-        "59bb0f61-51d2-4f23-93c7-9fa961309c5c",
-        "6023e449-1169-48e3-a76e-deef958316d0"
+        "6023e449-1169-48e3-a76e-deef958316d0",
+        "59bb0f61-51d2-4f23-93c7-9fa961309c5c"
       ],
       "settings": {
         "heading": "How I Style It"
@@ -286,7 +288,8 @@
         "cc9c34ec-5a8d-4a24-9b5f-20963c337e23"
       ],
       "settings": {
-        "heading": "Style tips from the Porte + Hall Blog"
+        "heading": "Hit the ground stunning: The Porte + Hall blog",
+        "background": ""
       }
     },
     "542bd631-99ef-452b-91d4-02d612f961a0": {
@@ -306,7 +309,7 @@
       "settings": {
         "alignment": "right",
         "heading": "Meet Stafford, founder of Porte + Hall",
-        "text": "Stafford comes from over two decades of working in the interior design industry Sed ut perspiciatis, unde omnis iste natus error sit voluptatem lorem elit accusantium doloremque doloritis vin non laudantium.",
+        "text": "“In my 20 years as an interior designer, I struggled to source entry mats that were as well-designed and functional as the rest of the home. I was bewildered by the scarcity of options. Why was the first thing to greet you at your door not important? So I decided to design my own - because first impressions matter, for you and your guests.  Welcome to our collection and we hope you walk all over us!”",
         "link": "",
         "link_text": "",
         "image": "shopify:\/\/shop_images\/IMAGE_COLLAGE.png"

@@ -2,42 +2,189 @@
   max-width: 100%;
 }
 
-.contact .form__message {
-  align-items: flex-start;
-}
-
 .contact .icon-success {
   margin-top: 0.2rem;
 }
 
 .contact .field {
-  margin-bottom: 1.5rem;
+  margin-bottom: 50px;
 }
 
-@media screen and (min-width: 769px) {
-  .contact .field {
-    margin-bottom: 2rem;
-  }
+.contact .title {
+  margin-bottom: 50px;
+  color: var(--blue);
+}
+
+textarea#ContactForm-body {
+  border: 1px solid #546B82;
+  padding: 20px;
+  height: 313px;
+}
+
+.Contact_Form {
+  padding: 100px 0;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.6801 5.36588C4.86018 5.54471 5.15002 5.54471 5.31994 5.36588L9.35 1.36386C9.55 1.16525 9.55 0.847562 9.35 0.648955C9.15 0.450349 8.83008 0.450349 8.63009 0.648955L5.31992 3.93609C5.13984 4.11492 4.85 4.11492 4.68008 3.93609L1.36991 0.648955C1.16991 0.450348 0.849996 0.450348 0.649998 0.648955C0.449999 0.847561 0.449999 1.16525 0.649997 1.36386L4.6801 5.36588Z' fill='%23546B82'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M4.68008 3.93609C4.85 4.11492 5.13984 4.11492 5.31992 3.93609L8.63009 0.648955C8.83008 0.450349 9.15 0.450349 9.35 0.648955C9.55 0.847562 9.55 1.16525 9.35 1.36386L5.31994 5.36588C5.15002 5.54471 4.86018 5.54471 4.6801 5.36588L0.649997 1.36386C0.449999 1.16525 0.449999 0.847561 0.649998 0.648955C0.849996 0.450348 1.16991 0.450348 1.36991 0.648955L4.68008 3.93609ZM4.32778 5.72067L0.297682 1.71865C-0.0992262 1.3245 -0.0992281 0.688317 0.297681 0.294169C0.692655 -0.0980564 1.32725 -0.0980565 1.72223 0.294169L5 3.54913L8.27777 0.29417C8.67274 -0.0980561 9.30734 -0.0980561 9.70232 0.29417C10.0992 0.688317 10.0992 1.3245 9.70232 1.71865L5.67648 5.71647C5.30337 6.10222 4.69503 6.08536 4.32778 5.72067Z' fill='%23546B82'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 99% 60%;
+}
+
+.Optional_Field {
+  font-size: 11px;
+  color: var(--blue);
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1.2em;
+}
+.contact__fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 22px;
 }
 
 .contact__button {
-  margin-top: 3rem;
+  margin-top: 30px;
+}
+
+body.template-page\.contact .header__menu {
+  display: none;
+}
+
+span.form__message svg {
+  max-width: 14px;
+  color: #981515;
+  margin: -4px 0 0;
+  vertical-align: middle;
+}
+
+.form__message {
+  color: #ac1515;
+}
+
+.form__message svg {
+  max-width: 100px;
+}
+
+.form__message p {
+  flex: 0 0 100%;
+  text-align: center;
+  margin: 10px 0 40px;
+}
+
+.contact .form__message {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  color: #FF0000;
+  display: none;
+}
+
+.Select_Button_Text.active {
+  opacity: .6;
+}
+
+.Select_Button_Text {
+  width: 100%;
+  display: block;
+  padding: 0 20px 20px;
+}
+
+.selectBtn.field__input.active {
+  border: 1px solid var(--blue);
+  border-bottom: 0;
+  padding-top: 20px;
+}
+
+span.form__message.Form_Error {
+  width: 100%;
+  text-align: left;
+  display: block;
+  margin: 7px 0 0 0;
+  font-size: 11px;
+}
+
+.selectBtn.field__input.active .Select_Button_Text {
+  opacity: .6;
+}
+
+.select .selectBtn {
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.select .selectBtn.toggle {
+  border-radius: 3px 3px 0 0;
+}
+
+.select .selectDropdown.toggle {
+  visibility: visible;
+  transform: scale(1, 1);
+}
+
+.select .selectDropdown {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg1);
+  border-top: 1px solid #eee;
+  z-index: 1;
+  background: #fff;
+  -webkit-transform: scale(1,0);
+  transform: scaleY(0);
+  -webkit-transform-origin: top center;
+  transform-origin: top center;
+  visibility: hidden;
+  transition: .2s ease;
+  border: 1px solid var(--blue);
+  border-top: 0;
+}
+
+.select .selectDropdown .option {
+  margin: 0 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  color: var(--blue);
+  padding: 20px 20px;
+}
+
+.select .selectDropdown .option:hover {
+  background-color: #F4F2EE;
 }
 
 @media screen and (min-width: 769px) {
   .contact__button {
-    margin-top: 4rem;
-  }
-}
-
-@media screen and (min-width: 769px) {
-  .contact__fields {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 2rem;
+    margin-top: 50px;
   }
 }
 
 .grecaptcha-badge {
   visibility: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    
+  .Contact_Form {
+    padding: 50px 0;
+  }
+
+  .form__message svg {
+    max-width: 70px;
+  }
+
+  .field.Text_Area {
+    margin-bottom: 25px;
+  }
+  
 }

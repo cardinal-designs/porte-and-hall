@@ -5,12 +5,12 @@
       {% for address in customer.addresses %}
         <li class="address" data-address>
           {% if address == customer.default_address %}
-            <h2 class="address__title h6">{{ 'customer.addresses.default' | t }}</h2>
+            <h2 class="address__title h5 blue">{{ 'customer.addresses.default' | t }}</h2>
           {% endif %}
           {{ address | format_address }}
           <div class="address__links">
             <button
-              class="address__link"
+              class="address__link text-link gold"
               type="button"
               id="EditFormButton_{{ address.id }}"
               aria-label="Edit {{ forloop.index }}"
@@ -21,7 +21,7 @@
               Edit
             </button>
             <button
-              class="address__link"
+              class="address__link text-link gold"
               type="button"
               aria-label="Remove {{ forloop.index }}"
               data-target="{{ address.url }}"
@@ -31,20 +31,17 @@
           </div>
         </li>
       {% endfor %}
-      <li>
-        <div data-address>
-          <button
-            class="button button--forest"
-            type="button"
-            aria-expanded="false"
-            aria-controls="AddAddress"
-            data-micromodal-trigger="address-add">
-            Add a New Address
-          </button>
-        </div>
-      </li>
     </ul>
-
+    <div class="Address_button" data-address>
+      <button
+        class="button button--forest"
+        type="button"
+        aria-expanded="false"
+        aria-controls="AddAddress"
+        data-micromodal-trigger="address-add">
+        Add a New Address
+      </button>
+    </div>
     {% if paginate.pages > 1 %}
       {% if paginate.parts.size > 0 %}
         <nav
@@ -134,11 +131,10 @@
             data-micromodal-close>
             {% render 'icon' icon: 'close' %}
           </button>
-          <h2 class="account__modal-title sh1">Add Address</h2>
+          <h2 class="account__modal-title h4">Add Address</h2>
           {% form 'customer_address', customer.new_address, aria-labelledBy: 'AddressNewHeading' %}
             <div class="field-group">
               <div class="field">
-                <label class="field__label" for="AddressFirstNameNew">{{ 'customer.addresses.first_name' | t }}</label>
                 <input
                   class="field__input"
                   type="text"
@@ -149,7 +145,6 @@
                   placeholder="{{ 'customer.addresses.first_name' | t }}">
               </div>
               <div class="field">
-                <label class="field__label" for="AddressLastNameNew">{{ 'customer.addresses.last_name' | t }}</label>
                 <input
                   class="field__input"
                   type="text"
@@ -161,7 +156,6 @@
               </div>
             </div>
             <div class="field">
-              <label class="field__label" for="AddressCompanyNew">{{ 'customer.addresses.company' | t }}</label>
               <input
                 class="field__input"
                 type="text"
@@ -172,7 +166,6 @@
                 placeholder="{{ 'customer.addresses.company' | t }}">
             </div>
             <div class="field">
-              <label class="field__label" for="AddressAddress1New">{{ 'customer.addresses.address1' | t }}</label>
               <input
                 class="field__input"
                 type="text"
@@ -183,7 +176,6 @@
                 placeholder="{{ 'customer.addresses.address1' | t }}">
             </div>
             <div class="field">
-              <label class="field__label" for="AddressAddress2New">{{ 'customer.addresses.address2' | t }}</label>
               <input
                 class="field__input"
                 type="text"
@@ -194,7 +186,6 @@
                 placeholder="{{ 'customer.addresses.address2' | t }}">
             </div>
             <div class="field">
-              <label class="field__label" for="AddressCityNew">{{ 'customer.addresses.city' | t }}</label>
               <input
                 class="field__input"
                 type="text"
@@ -205,9 +196,6 @@
                 placeholder="{{ 'customer.addresses.city' | t }}">
             </div>
             <div class="field">
-              <label class="field__label" for="AddressCountryNew">
-                {{ 'customer.addresses.country' | t }}
-              </label>
               <div class="select">
                 <select
                   id="AddressCountryNew"
@@ -225,9 +213,6 @@
               class="field"
               id="AddressProvinceContainerNew"
               style="display:none;">
-              <label class="field__label" for="AddressProvinceNew">
-                {{ 'customer.addresses.province' | t }}
-              </label>
               <div class="select">
                 <select
                   class="select__select"
@@ -238,7 +223,6 @@
               </div>
             </div>
             <div class="field">
-              <label class="field__label" for="AddressZipNew">{{ 'customer.addresses.zip' | t }}</label>
               <input
                 class="field__input"
                 type="text"
@@ -250,7 +234,6 @@
                 placeholder="{{ 'customer.addresses.zip' | t }}">
             </div>
             <div class="field">
-              <label class="field__label" for="AddressPhoneNew">{{ 'customer.addresses.phone' | t }}</label>
               <input
                 class="field__input"
                 type="tel"
@@ -260,15 +243,15 @@
                 autocomplete="tel"
                 placeholder="{{ 'customer.addresses.phone' | t }}">
             </div>
-            <div class="field field--flex">
+            <div class="field field--flex Checkbox_Field">
               {{ form.set_as_default_checkbox }}
-              <label class="field__label" for="address_default_address_new">
+              <label class="field__label text-link gold" for="address_default_address_new">
                 {{ 'customer.addresses.set_default' | t }}
               </label>
             </div>
             <div class="account__modal-buttons">
               <button class="button">Add Address</button>
-              <button
+              <button class="text-link gold"
                 type="reset"
                 aria-label="Close modal"
                 data-micromodal-close>Cancel</button>
@@ -309,11 +292,10 @@
                 data-micromodal-close>
                 {% render 'icon' icon: 'close' %}
               </button>
-              <h2 class="account__modal-title sh1">Edit Address</h2>
+              <h2 class="account__modal-title h4">Edit Address</h2>
               {% form 'customer_address', address %}
                 <div class="field-group">
                   <div class="field">
-                    <label class="field__label" for="AddressFirstName_{{ form.id }}">{{ 'customer.addresses.first_name' | t }}</label>
                     <input
                       class="field__input"
                       type="text"
@@ -324,7 +306,6 @@
                       placeholder="{{ 'customer.addresses.first_name' | t }}">
                   </div>
                   <div class="field">
-                    <label class="field__label" for="AddressLastName_{{ form.id }}">{{ 'customer.addresses.last_name' | t }}</label>
                     <input
                       class="field__input"
                       type="text"
@@ -336,7 +317,6 @@
                   </div>
                 </div>
                 <div class="field">
-                  <label class="field__label" for="AddressCompany_{{ form.id }}">{{ 'customer.addresses.company' | t }}</label>
                   <input
                     class="field__input"
                     type="text"
@@ -347,7 +327,6 @@
                     placeholder="{{ 'customer.addresses.company' | t }}">
                 </div>
                 <div class="field">
-                  <label class="field__label" for="AddressAddress1_{{ form.id }}">{{ 'customer.addresses.address1' | t }}</label>
                   <input
                     class="field__input"
                     type="text"
@@ -358,7 +337,6 @@
                     placeholder="{{ 'customer.addresses.address1' | t }}">
                 </div>
                 <div class="field">
-                  <label class="field__label" for="AddressAddress2_{{ form.id }}">{{ 'customer.addresses.address2' | t }}</label>
                   <input
                     class="field__input"
                     type="text"
@@ -369,7 +347,6 @@
                     placeholder="{{ 'customer.addresses.address2' | t }}">
                 </div>
                 <div class="field">
-                  <label class="field__label" for="AddressCity_{{ form.id }}">{{ 'customer.addresses.city' | t }}</label>
                   <input
                     class="field__input"
                     type="text"
@@ -380,9 +357,6 @@
                     placeholder="{{ 'customer.addresses.city' | t }}">
                 </div>
                 <div class="field">
-                  <label class="field__label" for="AddressCountry_{{ form.id }}">
-                    {{ 'customer.addresses.country' | t }}
-                  </label>
                   <div class="select">
                     <select
                       id="AddressCountry_{{ form.id }}"
@@ -397,9 +371,6 @@
                   </div>
                 </div>
                 <div class="field" id="AddressProvinceContainer_{{ form.id }}" style="display:none;">
-                  <label class="field__label" for="AddressProvince_{{ form.id }}">
-                    {{ 'customer.addresses.province' | t }}
-                  </label>
                   <div class="select">
                     <select
                       class="select__select"
@@ -410,7 +381,6 @@
                   </div>
                 </div>
                 <div class="field">
-                  <label class="field__label" for="AddressZip_{{ form.id }}">{{ 'customer.addresses.zip' | t }}</label>
                   <input
                     class="field__input"
                     type="text"
@@ -422,7 +392,6 @@
                     placeholder="{{ 'customer.addresses.zip' | t }}">
                 </div>
                 <div class="field">
-                  <label class="field__label" for="AddressPhone_{{ form.id }}">{{ 'customer.addresses.phone' | t }}</label>
                   <input
                     class="field__input"
                     type="tel"
@@ -431,16 +400,16 @@
                     value="{{ form.phone }}"
                     autocomplete="tel"
                     placeholder="{{ 'customer.addresses.phone' | t }}">
-                </div>
-                <div class="field field--flex">
+                </div> 
+                <div class="field field--flex Checkbox_Field">
                   {{ form.set_as_default_checkbox }}
-                  <label class="field__label" for="address_default_address_{{ form.id }}">
+                  <label class="field__label text-link gold" for="address_default_address_new">
                     {{ 'customer.addresses.set_default' | t }}
                   </label>
                 </div>
                 <div class="account__modal-buttons">
                   <button class="button">Update Address</button>
-                  <button
+                  <button class="text-link gold"
                     type="reset"
                     aria-label="Close modal"
                     data-micromodal-close>Cancel</button>
