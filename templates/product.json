@@ -3,6 +3,9 @@
     "main": {
       "type": "main-product",
       "settings": {
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
+        "materials": "<p>{{ section.settings.collection.metafields.custom.materials | metafield_tag }}<\/p>",
+        "care": "<p>{{ section.settings.collection.metafields.custom.care | metafield_tag }}<\/p>"
       }
     },
     "other-sizes": {
