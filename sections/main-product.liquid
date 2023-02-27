@@ -311,7 +311,7 @@
                   <span>
                     {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '' %}
                   </span>
-                  <div class="loading-overlay__spinner hidden">
+                  <div class="loading-overlay__spinner">
                     <svg
                       aria-hidden="true"
                       focusable="false"
@@ -433,6 +433,72 @@
     </div>
   </div>
 </section>
+
+<sticky-atc data-main-form="{{product_form_id}}" data-section-id="{{ section.id }}">
+  <div class="product__quantity-atc-wrapper">
+    <div class="product-form__input product-form__quantity">
+      <label class="form__label visually-hidden" for="sticky-Quantity-{{ section.id }}">
+        {{ 'products.product.quantity.label' | t }}
+      </label>
+      <quantity-input class="quantity">
+        <button class="quantity__button no-js-hidden" name="minus" type="button">
+          <span class="visually-hidden">
+            {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+          </span>
+          {% render 'icon', icon: 'minus' %}
+        </button>
+        <input
+          class="quantity__input"
+          type="number"
+          name="quantity"
+          id="sticky-Quantity-{{ section.id }}"
+          min="1"
+          value="1"
+          form="{{ product_form_id }}"
+        >
+        <button class="quantity__button no-js-hidden" name="plus" type="button">
+          <span class="visually-hidden">
+            {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+          </span>
+          {% render 'icon', icon: 'plus' %}
+        </button>
+      </quantity-input>
+    </div>
+
+    <div class="product-form__buttons">
+      <button
+        name="add"
+        class="button button--full button--primary product-form__submit"
+        {% if product.selected_or_first_available_variant.available == false %}
+          disabled
+        {% endif %}
+      >
+        <span>
+          {% if product.selected_or_first_available_variant.available %}
+            {{ 'products.product.add_to_cart' | t }}
+          {% else %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
+        </span>
+        <span> | </span>
+        <span>
+          {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '' %}
+        </span>
+        <div class="loading-overlay__spinner">
+          <svg
+            focusable="false"
+            role="presentation"
+            class="spinner"
+            viewBox="0 0 66 66"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>
+      </button>
+    </div>
+  </div>
+</sticky-atc>
 
 {% render 'product-zoom' %}
 

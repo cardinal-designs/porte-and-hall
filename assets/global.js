@@ -520,9 +520,21 @@ var QuantityInput = class extends HTMLElement {
     this.input = this.querySelector('input');
     this.changeEvent = new Event('change', { bubbles: true })
 
+    this.mainForm = this.closest("form")
+    if(this.mainForm != null){
+      this.connectedForm = document.querySelector(`sticky-atc[data-main-form="${this.mainForm.getAttribute("id")}"]`)
+    } else {
+      this.mainForm = this.closest("sticky-atc")
+      this.connectedForm = document.querySelector(`form#${this.mainForm.dataset.mainForm}`)
+    }
+
     this.querySelectorAll('button').forEach(
       (button) => button.addEventListener('click', this.onButtonClick.bind(this))
     );
+
+    this.input.addEventListener("change", function(e){
+      this.onInputChange(e)
+    }.bind(this))
   }
 
   onButtonClick(event) {
@@ -531,6 +543,11 @@ var QuantityInput = class extends HTMLElement {
 
     event.target.name === 'plus' ? this.input.stepUp() : this.input.stepDown();
     if (previousValue !== this.input.value) this.input.dispatchEvent(this.changeEvent);
+  }
+
+  onInputChange(event) {
+      // update connected form
+      this.connectedForm.querySelector("input[name='quantity']").value = event.target.value
   }
 }
 
