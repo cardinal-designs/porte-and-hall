@@ -24,6 +24,9 @@
             if swatch == product
               assign element_classes = element_classes | append: ' product__active-swatch'
             endif
+            if swatch.available == false
+              assign element_classes = element_classes | append: ' product__oos-swatch'
+            endif
             assign swatch_file_name = value | handle | append: '.png'
             assign swatch_image = images[swatch_file_name]
             if collection_title contains 'outsider' and swatch_count == 4
@@ -34,11 +37,13 @@
             echo "' class='"
             echo element_classes
             echo "'"
+            echo "data-tooltip='"
+            echo value | escape
+            echo "' ><span "
             echo "style='background-image: url("
             echo swatch_file_name | asset_url
-            echo ")' data-tooltip='"
-            echo value | escape
-            echo "'></a>"
+            echo ")'>"
+            echo '</span></a>'
             assign swatch_count = swatch_count | plus: 1
           endfor
         endif
