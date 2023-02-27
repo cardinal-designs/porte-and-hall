@@ -7,7 +7,7 @@
     for product in collection.products
       for option in product.options_with_values
         assign option_name = option.name | downcase
-        if color_label contains option_name
+        if color_label contains option_name or option_name == 'style'
           assign option_index = 'option' | append: forloop.index
           for value in option.values
             if swatch_count > 4
@@ -76,10 +76,6 @@
     <div class="product-card__container">
       <h3 class="product-card__title blue">
         {{ title | default: collection.title | replace: ' | ', '<br>' }}
-        {%- if collection.title == 'The Outsider' -%}
-          <br>
-          Doormat
-        {%- endif %}
         {%- if collection.metafields.custom.dimensions != blank -%}
           <span class="body">({{ collection.metafields.custom.dimensions }})</span>
         {%- endif -%}
