@@ -133,6 +133,16 @@
     .styling-tips__image {
     width: 90px;
     height: 90px;
+    }
+    .signature-svg {
+    margin-left: -34px;
+    transform: translateY(31px);
+    z-index: 1;
+  }
+
+  .signature-svg svg {
+    width: 100px;
+    display: block;
   }
 }
 
