@@ -9,8 +9,8 @@
   </div>
 
   <div class="hero__media">
-    {% if section.settings.video_url != blank %}
-      
+    {% if section.settings.video != blank %}
+      {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
     {% else %}
       {% if section.settings.mobile_image != blank %}
         {% render 'lazy-image', image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile' %}
@@ -36,8 +36,8 @@
     },
     {
       "type": "text",
-      "id": "video_url",
-      "label": ".mp4 URL (default media if populated)"
+      "id": "video",
+      "label": "Video (default media if populated)"
     },
     {
       "type": "image_picker",
