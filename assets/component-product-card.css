@@ -110,7 +110,7 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
   .product-card__container {
     padding-top: 8px;
   }
@@ -173,7 +173,7 @@
   margin-top: 20px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .product-card-simple {
     display: block;
   }
