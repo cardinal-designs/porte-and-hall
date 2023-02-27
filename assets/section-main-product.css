@@ -322,6 +322,8 @@
   left: 50%;
   content: "";
   transform: translateX(-50%) rotate(45deg);
+    border-radius: 0;
+  aspect-ratio: unset;
 }
 
 .product__oos-notify-wrapper {
