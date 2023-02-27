@@ -1367,7 +1367,7 @@ header.condensed .header__menu {
 /*============================================================================
   Mobile menu
 ==============================================================================*/
-@media screen and (min-width: 1101px) {
+@media screen and (min-width: 990px) {
   .header__icon--menu {
     display: none;
   }
