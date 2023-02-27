@@ -11,10 +11,14 @@
           assign option_index = 'option' | append: forloop.index
           for value in option.values
             if swatch_count > 4
-              unless collection_title contains 'outsider'
-                assign element_classes = 'product-card__swatch hidden'
-                assign hidden_swatches = hidden_swatches | plus: 1
-              endunless
+              comment
+                unless collection_title contains 'outsider'
+              endcomment
+              assign element_classes = 'product-card__swatch hidden'
+              assign hidden_swatches = hidden_swatches | plus: 1
+              comment
+                endunless
+              endcomment
             else
               assign element_classes = 'product-card__swatch'
             endif
@@ -23,9 +27,11 @@
             endif
             assign swatch_file_name = value | handle | append: '.png'
             assign swatch_image = images[swatch_file_name]
-            if collection_title contains 'outsider' and swatch_count == 4
-              echo ' | '
-            endif
+            comment
+              if collection_title contains 'outsider' and swatch_count == 4
+                echo ' | '
+              endif
+            endcomment
             echo "<a href='"
             echo product.variants[0].url
             echo "' class='"
