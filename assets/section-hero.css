@@ -18,6 +18,18 @@
   overflow: hidden;
 }
 
+.hero video {
+  width: 101%;
+  height: 101%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
 .hero__content {
   background: var(--blue);
   color: white;
