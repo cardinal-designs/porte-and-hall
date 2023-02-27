@@ -7,7 +7,7 @@
     for product in collection.products
       for option in product.options_with_values
         assign option_name = option.name | downcase
-        if color_label contains option_name
+        if color_label contains option_name or option_name == 'Style'
           assign option_index = 'option' | append: forloop.index
           for value in option.values
             if swatch_count > 4
