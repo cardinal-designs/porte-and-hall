@@ -254,8 +254,6 @@
   aspect-ratio: 1/1;
   box-sizing: border-box;
   border-radius: 50%;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
   display: inline-block;
   cursor: pointer;
   opacity: 1;
@@ -267,6 +265,17 @@
   position: relative;
 }
 
+.product__swatch > span {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
 .product__swatch:focus {
   outline: 1px solid var(--blue);
 }
@@ -276,7 +285,7 @@
 }
 
 .product__active-swatch:after,
-.product__swatch:not(.product__active-swatch):hover:after {
+.product__swatch:not(.product__active-swatch):not(.product__oos-swatch):hover:after {
   content: "";
   position: absolute;
   top: 50%;
@@ -290,6 +299,36 @@
 
 .product__swatch.hidden {
   opacity: 0;
+}
+
+.product__oos-swatch {
+  border: 1px dashed var(--blue);
+  cursor: not-allowed;
+}
+
+.product__oos-swatch > span {
+  opacity: .5;
+}
+
+.product__oos-swatch:after {
+  height: 100%;
+  width: 1px;
+  border-left: 1px dashed var(--blue);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  content: "";
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.product__oos-notify-wrapper {
+  margin-top: 30px;
+}
+
+.product__oos-notify-wrapper p {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 500;
 }
 
 /* Stamped styles */
