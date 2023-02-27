@@ -10,6 +10,10 @@
         if color_label contains option_name or option_name == 'style'
           assign option_index = 'option' | append: forloop.index
           for value in option.values
+            assign matched_variant = product.variants | where: 'title', value
+            if matched_variant != blank
+              assign swatch_link = matched_variant[0].url
+            endif
             if swatch_count > 4
               assign element_classes = 'product-card__swatch hidden'
               assign hidden_swatches = hidden_swatches | plus: 1
@@ -27,7 +31,7 @@
               endif
             endcomment
             echo "<a href='"
-            echo product.variants[0].url
+            echo swatch_link | default: product.variants[0].url
             echo "' class='"
             echo element_classes
             echo "'"
