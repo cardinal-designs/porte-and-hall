@@ -1012,8 +1012,7 @@ deferred-media {
 }
 
 .header--inner {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 40px;
   display: grid;
   width: 100%;
   grid-template-areas: 
