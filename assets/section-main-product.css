@@ -472,7 +472,9 @@ afterpay-placement, .afterpay-paragraph {
 
 .product__tabs-item {
   padding: 30px 0 10px;
-  text-align: center;
+  text-align: left;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .product__features {

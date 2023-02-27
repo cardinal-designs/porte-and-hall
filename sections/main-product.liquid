@@ -432,10 +432,10 @@
                 </div>
               {% endif %}
 
-              {% if grouped_collection.metafields.custom.product_materials != blank %}
+              {% if section.settings.materials != blank %}
                 <div class="swiper-slide">
-                  <div class="product__tabs-item">
-                    <p class="body-xs">{{ grouped_collection.metafields.custom.product_materials | newline_to_br }}</p>
+                  <div class="product__tabs-item body-xs">
+                    {{ section.settings.materials }}
                   </div>
                 </div>
               {% endif %}
@@ -443,17 +443,23 @@
               {% if grouped_collection.metafields.custom.dimensions != blank %}
                 <div class="swiper-slide">
                   <div class="product__tabs-item">
-                    <p class="body-xs">{{ grouped_collection.metafields.custom.dimensions | newline_to_br }}</p>
+                    <p class="body-xs">
+                      Dimensions: {{ grouped_collection.metafields.custom.dimensions | newline_to_br }}
+                      {% if grouped_collection.metafields.custom.additional_dimensions != blank %}
+                        <br>
+                        {{ grouped_collection.metafields.custom.additional_dimensions }}
+                      {% endif %}
+                      <br>
+                      Weight: {{ grouped_collection.metafields.custom.weight }}
+                    </p>
                   </div>
                 </div>
               {% endif %}
 
-              {% if grouped_collection.metafields.custom.product_care_instructions != blank %}
+              {% if section.settings.care != blank %}
                 <div class="swiper-slide">
-                  <div class="product__tabs-item">
-                    <p class="body-xs">
-                      {{ grouped_collection.metafields.custom.product_care_instructions | newline_to_br }}
-                    </p>
+                  <div class="product__tabs-item body-xs">
+                    {{ section.settings.care }}
                   </div>
                 </div>
               {% endif %}
@@ -648,7 +654,6 @@
   }
 
   // Back in stock notifications
-
   const backInStock = document.querySelector('[data-bis-button]');
   backInStock?.addEventListener('click', function (e) {
     e.preventDefault();
@@ -771,6 +776,24 @@
   "tag": "section",
   "class": "product-section",
   "blocks": [],
-  "settings": []
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Connect collection for metafield access"
+    },
+    {
+      "type": "richtext",
+      "id": "materials",
+      "label": "Materials",
+      "info": "Connect collection metafields for Materials"
+    },
+    {
+      "type": "richtext",
+      "id": "care",
+      "label": "Care",
+      "info": "Connect collection metafields for care"
+    }
+  ]
 }
 {% endschema %}
