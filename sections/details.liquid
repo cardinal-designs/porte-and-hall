@@ -12,7 +12,7 @@
   <div class="details__inner">
     {% liquid
       assign images = grouped_collection.metafields.custom.design_details.value | where: 'image'
-      assign details = grouped_collection.metafields.custom.design_details.value | where: 'title'
+      assign details = grouped_collection.metafields.custom.design_details.value | where: 'text'
       if images.size == details.size
         assign image_carousel = true
       else
