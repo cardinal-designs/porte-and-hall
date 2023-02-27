@@ -343,6 +343,26 @@
       {% if product.available == false %}
         <div class="product__oos-notify-wrapper">
           <p class="body">Notify me when THIS STYLE IS back in stock:</p>
+          <div id="NotifyMe_form" class="NotifyMe_form">
+            <input
+              class="notify-email-val"
+              type="email"
+              id="notify_email"
+              name="email"
+              placeholder="Email Address"
+              class="email"
+              required
+            >
+            <input
+              class="notify-me-var"
+              type="hidden"
+              id="notify_id"
+              name="variant"
+              value="{{ product.variants[0].id }}"
+            >
+            <button type="button" class="text-link" value="Submit" data-bis-button>Submit ></button>
+            <div class="notifyme_error"></div>
+          </div>
         </div>
       {% endif %}
 
@@ -626,6 +646,54 @@
       document.body.classList.remove('scroll-lock');
     }
   }
+
+  // Back in stock notifications
+
+  const backInStock = document.querySelector('[data-bis-button]');
+  backInStock?.addEventListener('click', function (e) {
+    e.preventDefault();
+    const container = this.closest('.NotifyMe_form');
+    container.querySelector('.notifyme_error').innerHTML = '';
+    let variant_value = container.querySelector('.notify-me-var').value;
+    let email_value = container.querySelector('.notify-email-val').value;
+    let regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+    if (variant_value != '' && email_value != '') {
+      if (regex.test(email_value)) {
+        let formData = {
+          variant: variant_value,
+          email: email_value,
+        };
+
+        async function postData(url = '', data = {}) {
+          // Default options are marked with *
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          });
+          return response.json();
+        }
+
+        postData('https://secureddatasystem.com/clients/porteandhall/porteandhall.php', { data: formData }).then(
+          (data) => {
+            console.log(data); // JSON data parsed by `data.json()` call
+            container.querySelector('.notifyme_error').innerHTML =
+              '<p class="success">Thank You!!! We will notify you once the product is available.</p>';
+            container.querySelector('.notify-email-val').value = '';
+          }
+        );
+      } else {
+        container.querySelector('.notify-email-val').focus();
+        container.querySelector('.notifyme_error').innerHTML = '<p class="success">Invalid Email</p>';
+      }
+    } else {
+      container.querySelector('.notify-email-val').focus();
+      container.querySelector('.notifyme_error').innerHTML = '<p class="success">Email is required</p>';
+    }
+  });
 {% endjavascript %}
 
 <script>
