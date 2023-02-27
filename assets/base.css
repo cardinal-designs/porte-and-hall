@@ -340,6 +340,7 @@ p {
 .p,
 .body {
   font-family: brandon;
+  letter-spacing: .3px;
   font-size: 18px;
   font-weight: 400;
   line-height: 130%;
@@ -2253,4 +2254,10 @@ header.condensed .header__menu {
   bottom: 0;
   left: 0;
   transform: translateY(100%);
+}
+
+.notifyme_error .success {
+  margin-top: 10px;
+  text-transform: math-auto;
+  font-size: 14px;
 }

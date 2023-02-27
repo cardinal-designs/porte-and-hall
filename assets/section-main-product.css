@@ -218,6 +218,7 @@
   justify-content: flex-start;
   align-items: baseline;
   column-gap: 13px;
+  margin-top: 10px;
 }
 
 .product__description {
@@ -328,7 +329,7 @@
 .product__oos-notify-wrapper p {
   text-transform: uppercase;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Stamped styles */
