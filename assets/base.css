@@ -340,6 +340,7 @@ p {
 .p,
 .body {
   font-family: brandon;
+  letter-spacing: .3px;
   font-size: 18px;
   font-weight: 400;
   line-height: 130%;
@@ -2295,3 +2296,61 @@ header.condensed .header__menu {
 }
 
 /* INPUT CSS END */
+
+/* Notify me */
+
+.NotifyMe_form {
+  position: relative;
+  margin-top: 28px;
+  margin-bottom: 70px;
+}
+
+.NotifyMe_form button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+    transform: translateY(-50%);
+  color: var(--gold);
+  font-family: brandon;
+  font-size: 14px;
+  line-height: 16.8px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.NotifyMe_form input[type="email"] {
+  width: 100%;
+  padding: 7px 0;
+  appearance: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--blue);
+  color: var(--blue);
+  font-size: 18px;
+  font-family: brandon;
+  font-weight: 400;
+  position: relative;
+  padding-right: 60px;
+}
+
+.NotifyMe_form input[type="email"]::placeholder,
+.NotifyMe_form input::-webkit-input-placeholder  {
+  color: var(--blue);
+}
+
+.notifyme_error {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);
+}
+
+.notifyme_error .success {
+  margin-top: 10px;
+  text-transform: math-auto;
+  font-size: 14px;
+}
