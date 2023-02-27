@@ -346,7 +346,11 @@
 }
 
 .product__quantity-atc-wrapper svg.icon.icon-minus {
-  display: auto;
+  display: inherit;
+}
+
+.product__quantity-atc-wrapper svg.icon.icon-plus {
+  display: inherit;
 }
 
 .product-form__buttons {
