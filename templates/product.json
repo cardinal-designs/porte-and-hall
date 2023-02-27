@@ -125,8 +125,7 @@
       ],
       "settings": {
         "heading": "",
-        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
-        "faq_metafield": ""
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
       }
     },
     "reviews": {

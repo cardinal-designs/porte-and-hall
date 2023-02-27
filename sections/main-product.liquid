@@ -380,7 +380,7 @@
             {% assign tab_count = tab_count | plus: 1 %}
           {% endif %}
 
-          {% if grouped_collection.metafields.custom.product_materials != blank %}
+          {% if section.settings.materials != blank %}
             <button
               class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
               data-product-tabs="{{ tab_count }}"
@@ -402,7 +402,7 @@
             {% assign tab_count = tab_count | plus: 1 %}
           {% endif %}
 
-          {% if grouped_collection.metafields.custom.product_care_instructions != blank %}
+          {% if section.settings.care != blank %}
             <button
               class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
               data-product-tabs="{{ tab_count }}"
