@@ -11,14 +11,8 @@
           assign option_index = 'option' | append: forloop.index
           for value in option.values
             if swatch_count > 4
-              comment
-                unless collection_title contains 'outsider'
-              endcomment
               assign element_classes = 'product-card__swatch hidden'
               assign hidden_swatches = hidden_swatches | plus: 1
-              comment
-                endunless
-              endcomment
             else
               assign element_classes = 'product-card__swatch'
             endif
