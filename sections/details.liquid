@@ -57,7 +57,9 @@
                     <circle cx="120.25" cy="119.75" r="118.25" stroke="white" stroke-width="3"/>
                   </svg>
                 </div>
+                {%  if media.image_label != blank %}
                 <div class="details__image-label body-xs">{{ media.image_label }}</div>
+                {%  endif  %}
               </div>
             {% endfor %}
           </div>
@@ -80,7 +82,9 @@
               </svg>
             </div>
           {% endfor %}
+          {%  if single_image.image_label != blank %}
           <div class="details__image-label body-xs">{{ single_image.image_label }}</div>
+        {%  endif  %}
         </div>
       {% endif %}
     </div>
