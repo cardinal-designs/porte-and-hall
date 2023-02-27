@@ -50,6 +50,12 @@
   margin: 0 0 40px;
 }
 
+@media screen and (max-width: 1200px) {
+  .hero__container {
+    padding: 30px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .hero {
     display: flex;
