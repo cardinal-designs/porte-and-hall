@@ -460,6 +460,54 @@ afterpay-placement, .afterpay-paragraph {
   }
 }
 
+button[type="add"] > * {
+  pointer-events: none;
+}
+
+.loading .product-form__input {
+  opacity: .3;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.loading {
+  cursor: not-allowed;
+}
+
+sticky-atc {
+  z-index: 5;
+  opacity: 0;
+  transition: all .3s ease;
+}
+
+sticky-atc .quantity {
+  background: transparent;
+}
+
+sticky-atc .quantity > * {
+  color: white;
+}
+
+sticky-atc .product__quantity-atc-wrapper {
+  justify-content: center;
+  column-gap: 20px;
+}
+
+sticky-atc .product-form__buttons {
+  width: auto;
+}
+
+sticky-atc.show {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  opacity: 1;
+}
+
+sticky-atc .product__quantity-atc-wrapper {
+  margin-top: 0;
+}
+
 @media screen and (max-width: 768px) {
 
   .product {

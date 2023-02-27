@@ -4,7 +4,34 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
 
     this.form = this.querySelector('form');
     this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
+    this.connectedForm = document.querySelector(`sticky-atc[data-main-form="${this.form.getAttribute("id")}"]`)
     this.cartDrawer = document.querySelector('cart-drawer');
+
+    const header = document.querySelector(".outer-header-wrapper")
+
+    this.connectedForm.style.top = `${header.clientHeight}px`
+
+    window.addEventListener("resize", function(){
+      this.connectedForm.style.top = `${header.clientHeight}px`
+    }.bind(this))
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach( entry => {
+          console.log(entries)
+          entry.target.classList.toggle("show", entry.isIntersecting)
+          if(this.connectedForm){
+            this.connectedForm.classList.toggle("show", !entry.isIntersecting)
+          }
+        })
+      },
+      {
+        rootMargin: `-${(header.clientHeight - 20)}px`,
+        threshold: 0
+      }
+    )
+  
+    observer.observe(document.querySelector(".product-section"))
   }
 
   onSubmitHandler(evt) {
@@ -13,7 +40,8 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
     const submitButton = this.querySelector('[type="submit"]');
 
     submitButton.setAttribute('disabled', true);
-    submitButton.classList.add('loading');
+    submitButton.closest(".product__quantity-atc-wrapper").classList.add('loading');
+    this.connectedForm?.querySelector(".product__quantity-atc-wrapper").classList.add('loading');
 
     const body = JSON.stringify({
       ...JSON.parse(serializeForm(this.form)),
@@ -38,8 +66,9 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
         console.error(e);
       })
       .finally(() => {
-        submitButton.classList.remove('loading');
+        submitButton.closest(".product__quantity-atc-wrapper").classList.remove('loading');
         submitButton.removeAttribute('disabled');
+        this.connectedForm?.querySelector(".product__quantity-atc-wrapper").classList.remove('loading')
         this.cartDrawer.open();
       });
   }
@@ -76,3 +105,19 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
     }
   }
 });
+
+customElements.define('sticky-atc', class StickyATC extends HTMLElement {
+  constructor(){
+    super();
+
+    this.input = this.querySelector("input[name='quantity']")
+    this.submit = this.querySelector("button[name='add']")
+    this.mainForm = document.querySelector(`form#${this.dataset.mainForm}`)
+
+    this.submit.addEventListener('click', function(e){
+      e.preventDefault()
+      e.target.classList.add('loading')
+      this.mainForm.querySelector('button[type="submit"]').click()
+    }.bind(this))
+  }
+})

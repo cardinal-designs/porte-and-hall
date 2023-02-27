@@ -475,12 +475,31 @@ blockquote {
   font-weight: 600;
 }
 
-.button.loading {
-  color: transparent;
+.button.loading,
+.product__quantity-atc-wrapper.loading {
+  /* color: transparent; */
   position: relative;
 }
 
-.button.loading > .loading-overlay__spinner {
+.button.loading > span,
+.button.loading > span .price,
+.product__quantity-atc-wrapper.loading span,
+.product__quantity-atc-wrapper.loading .price {
+  color: transparent;
+}
+
+.button > .loading-overlay__spinner,
+.product__quantity-atc-wrapper .loading-overlay__spinner {
+  display: none;
+}
+
+.button.loading > .loading-overlay__spinner,
+.loading .loading-overlay__spinner {
+  display: block;
+}
+
+.button.loading > .loading-overlay__spinner,
+.loading .loading-overlay__spinner {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
