@@ -51,6 +51,10 @@
 }
 
 @media screen and (max-width: 1200px) {
+  .hero {
+    grid-template-columns: .55fr .45fr;
+  }
+  
   .hero__container {
     padding: 30px;
   }
