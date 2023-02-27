@@ -39,7 +39,7 @@
               endif
             endcomment
             echo "<a href='"
-            echo swatch_link | default: swatch.first_available_variant.url
+            echo swatch_link | default: swatch.variants[0].url
             echo "' class='"
             echo element_classes
             echo "'"
