@@ -129,10 +129,16 @@
           </div>
         {% endif %}
 
-        <div class="product__variant-name body">
-          {% assign variant_name = product.selected_or_first_available_variant.title | split: '/' %}
-          <span>Style</span><span> — {{ variant_name[0] }}</span>
-        </div>
+        {% for option in product.options_with_values %}
+          <div class="product__variant-name body">
+            {% if option.name == 'Size' %}
+              {% continue %}
+            {% endif %}
+            <span>
+              {%- if option.name == 'Color' %}Style{% else %}{{ option.name }}{% endif -%}</span
+            ><span> — {{ option.selected_value }}</span>
+          </div>
+        {% endfor %}
 
         <div class="product__swatches">
           {{ color_swatch_list }}

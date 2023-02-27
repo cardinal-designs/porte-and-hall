@@ -76,10 +76,6 @@
     <div class="product-card__container">
       <h3 class="product-card__title blue">
         {{ title | default: collection.title | replace: ' | ', '<br>' }}
-        {%- if collection.title == 'The Outsider' -%}
-          <br>
-          Doormat
-        {%- endif %}
         {%- if collection.metafields.custom.dimensions != blank -%}
           <span class="body">({{ collection.metafields.custom.dimensions }})</span>
         {%- endif -%}
