@@ -1,4 +1,4 @@
-{{ 'section-faq.css' | asset_url | stylesheet_tag }}
+{{ 'section-faq-custom.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'faq.js' | asset_url }}" defer="defer"></script>
 <div id="faqs" class="{% if section.settings.hide_mobile == true %}Hide_Mobile{% endif %} {% if section.settings.hide_desktop == true %}Hide_Desktop{% endif %}">
   <div class="page-width">
