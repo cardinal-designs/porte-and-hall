@@ -70,7 +70,7 @@
   top: -3px;
 }
 
-.form-group input:checked + label:after {
+.form__checkboxrow input:checked + label:after {
   content: '';
   display: block;
   position: absolute;
