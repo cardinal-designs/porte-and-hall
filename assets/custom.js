@@ -16,7 +16,7 @@ customElements.define('form-validation',class formValidation extends HTMLElement
         console.log(field.checkValidity())
         if(!field.checkValidity()){
           _this.errorMessage.push(`<li>${field.dataset.errorMessage}</li>`);
-          field.setCustomValidity(field.dataset.errorMessage);
+          // field.setCustomValidity(field.dataset.errorMessage);
         }
       });
     } 
