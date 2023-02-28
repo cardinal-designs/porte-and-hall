@@ -49,6 +49,10 @@
   display:none;
 }
 
-.form__checkboxrow label {
-  font-size: 14px;
+@media screen and (max-width: 768px) {
+
+  .form__checkboxrow label {
+    font-size: 14px;
+  }
+
 }
