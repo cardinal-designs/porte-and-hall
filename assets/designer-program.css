@@ -48,3 +48,7 @@
 .select::after {
   display:none;
 }
+
+.form__checkboxrow label {
+  font-size: 14px;
+}
