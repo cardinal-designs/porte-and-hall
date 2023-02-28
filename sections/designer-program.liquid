@@ -7,10 +7,7 @@
           <h2>{{ section.settings.heading }}</h2>
         {% endif %}
         {% if section.settings.top_text != blank %}
-          <span>{{ section.settings.top_text }}</span>
-        {% endif %}
-        {% if section.settings.top_desc != blank %}
-          <p>{{ section.settings.top_desc }}</p>
+          <span class="Optional_Field">{{ section.settings.top_text }}</span>
         {% endif %}
       </div>
       <div class="program__form designer--form">
@@ -232,11 +229,6 @@
         "type":"text",
         "id":"top_text",
         "label":"Top Text"
-      },
-      {
-        "type":"text",
-        "id":"top_desc",
-        "label":"Top Description"
       },
       {
         "type" : "url",
