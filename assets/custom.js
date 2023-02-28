@@ -16,6 +16,6 @@ customElements.define('form-validation',class formValidation extends HTMLElement
         (!field.checkValidity()) ? (_this.errorMessage.push(`<li>${field.dataset.errorMessage}</li>`),field.setCustomValidity(field.dataset.errorMessage)) : field.setCustomValidity('');
       });
     } 
-    console.log(this.errorMessage)
+    this.querySelector('.js-error-messages').innerHTML = this.errorMessage.join('');
   }
 })
