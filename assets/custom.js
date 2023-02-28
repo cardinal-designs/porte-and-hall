@@ -7,6 +7,11 @@ customElements.define('form-validation',class formValidation extends HTMLElement
     this.form.querySelector('[type="submit"]').addEventListener('click',event => this.validateForm(event))
   }
   validateForm(event){
-    console.log('hii');
+    let requiredFirlds = this.form.querySelectorAll('.field__input[required]');
+    if(requiredFirlds.length > 0){
+      requiredFirlds.forEach(function (field) {
+        console.log(field.checkValidity())
+      });
+    }
   }
 })
