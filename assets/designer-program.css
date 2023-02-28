@@ -31,3 +31,15 @@
 .Checkbox_Wrapper {
   margin-top: 50px;
 }
+
+.Checkbox_Wrapper .form__checkboxrow {
+  flex: 0 0 50%;
+  margin: 0 0 30px;
+}
+
+.Checkbox_Wrapper {
+  margin-top: 50px;
+  max-width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+}
