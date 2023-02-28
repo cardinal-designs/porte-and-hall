@@ -70,6 +70,19 @@
   top: -3px;
 }
 
+.form-group input:checked + label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 9px;
+  width: 6px;
+  height: 14px;
+  border: solid #0079bf;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
 .form__checkboxrow input {
   padding: 0;
   height: initial;
