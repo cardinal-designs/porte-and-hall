@@ -102,9 +102,14 @@
 .fan-motif__icon-wrapper {
   text-align: center;
 }
- .fan-motif__icon-label {
+
+.fan-motif__icon-label {
   padding: 0 20px;
- }
+}
+
+.Hide_Desktop {
+  display: none;  
+}
 
 @media screen and (max-width: 1024px) {
   .fan-motif__layout-left {
