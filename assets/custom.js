@@ -14,7 +14,8 @@ customElements.define('form-validation',class formValidation extends HTMLElement
     }
   }
   submitBtnClick(event){
-    this.form.classList.add('js-start-validation')
+    this.form.classList.add('js-start-validation');
+    this.validateForm();
   }
   validateForm(event){
     if(!this.form.classList.contains('js-start-validation')) return;
