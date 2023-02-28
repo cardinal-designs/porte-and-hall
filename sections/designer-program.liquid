@@ -1,5 +1,14 @@
 <div class="designer-program_Container" >
-  <section class="program__form designer--form">
+  <div class="designer_formText">
+    <h1>{{ section.settings.heading }}</h1>
+    {% if section.settings.top_text != blank %}
+      <span>{{ section.settings.top_text }}</span>
+    {% endif %}
+    {% if section.settings.top_desc != blank %}
+      <p>{{ section.settings.top_desc }}</p>
+    {% endif %}
+  </div>
+  <div class="program__form designer--form">
     <div class="form__wrapper">
          {%- assign formId = 'contact_form' -%}
           {% form 'contact', id: formId %}
@@ -214,7 +223,7 @@
           {% endif %}
       {% endform %}
     </div>
-  </section>
+  </div>
 </div>
 
 <script>
