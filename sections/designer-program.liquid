@@ -18,13 +18,13 @@
               <input type="hidden" name="contact[designer_program]" value="Designer Program">
               <div class="contact__fields">
                 <div class="field">
-                  <input class="field__input" type="text" id="FirstName" name="contact[First Name]" placeholder="First Name" />
+                  <input class="field__input" type="text" id="FirstName" name="contact[First Name]" placeholder="{{ 'templates.designer.form.first_name' | t }}" />
                 </div>
                 <div class="field">
-                  <input class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="Last Name" />
+                  <input class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="{{ 'templates.designer.form.last_name' | t }}" />
                 </div>  
                 <div class="field">
-                  <input class="field__input" type="text" id="organizationName" name="contact[Organization Name]" placeholder="Organization Name" />
+                  <input class="field__input" type="text" id="organizationName" name="contact[Organization Name]" placeholder="{{ 'templates.designer.form.organization_name' | t }}" />
                 </div>  
                 <div class="field field--with-error">
                   <input
@@ -41,7 +41,7 @@
                       aria-invalid="true"
                       aria-describedby="ContactForm-email-error"
                     {% endif %}
-                    placeholder="{{ 'templates.contact.form.email' | t }}*"
+                    placeholder="{{ 'templates.designer.form.email' | t }}*"
                   >
                   {% if form.errors contains 'email' %}
                     <small class="contact__field-error" id="ContactForm-email-error">
@@ -51,23 +51,23 @@
                   {% endif %}
                 </div>
                 <div class="field">
-                  <input class="field__input" type="text" id="CompanyWebsite" name="contact[Company Website]" placeholder="Company Website">
+                  <input class="field__input" type="text" id="CompanyWebsite" name="contact[Company Website]" placeholder="{{ 'templates.designer.form.company_website' | t }}">
                 </div> 
 
                 <div class="field">
-                  <input class="field__input" type="tel" id="PhoneNumber" name="contact[Business phone number]" placeholder="Business phone number"/>
+                  <input class="field__input" type="tel" id="PhoneNumber" name="contact[Business phone number]" placeholder="{{ 'templates.designer.form.phone' | t }}"/>
                 </div>
       
                 <div class="field">
-                  <input class="field__input" type="text" id="BusinessAddress" name="contact[Business Address]" placeholder="Business Address"/>
+                  <input class="field__input" type="text" id="BusinessAddress" name="contact[Business Address]" placeholder="{{ 'templates.designer.form.address' | t }}"/>
                 </div>
       
                 <div class="field">
-                  <input class="field__input" type="text" id="AptSuite" name="contact[Apt/Suite]" placeholder="Apt/Suite"/>
+                  <input class="field__input" type="text" id="AptSuite" name="contact[Apt/Suite]" placeholder="{{ 'templates.designer.form.suite' | t }}"/>
                 </div>
         
                 <div class="field">
-                  <input class="field__input" type="text" id="city" name="contact[City]" placeholder="City"/>
+                  <input class="field__input" type="text" id="city" name="contact[City]" placeholder="{{ 'templates.designer.form.city' | t }}"/>
                 </div>
                 
                 <div class="select field">
@@ -128,17 +128,17 @@
                 </div>  
               
                 <div class="field">
-                  <input class="field__input" type="text" id="ZipCode" name="contact[Zip]" placeholder="ZIP"/>
+                  <input class="field__input" type="text" id="ZipCode" name="contact[Zip]" placeholder="{{ 'templates.designer.form.zip' | t }}"/>
                 </div>
           
                 <div class="field">
-                  <input type="text" id="EinTax" name="contact[Federal]" placeholder="Federal Tax/EIN" required class="field__input required"/>
+                  <input type="text" id="EinTax" name="contact[Federal]" required class="field__input required" placeholder="{{ 'templates.designer.form.tax' | t }}"/>
                 </div>
               </div>
 
               <div class="contact__fields Instagram_Field">
                 <div class="form__row">
-                  <input class="field__input" type="text" id="InstaHandle" name="contact[Instagram Handle]" placeholder="Instagram Handle  We’d love to follow you!"/>
+                  <input class="field__input" type="text" id="InstaHandle" name="contact[Instagram Handle]" placeholder="{{ 'templates.designer.form.instagram' | t }}"/>
                 </div>
               </div>
               
