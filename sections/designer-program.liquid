@@ -12,7 +12,8 @@
           <p class="Optional_Field">{{ section.settings.top_text }}</p>
         {% endif %}
       </div>
-      <div class="program__form designer--form">
+      <form-validation>
+        <div class="program__form designer--form">
         <div class="form__wrapper">
             {% form 'contact', id: 'ContactForm', name: 'Contact_Form', class:'js-form-validation' %}
               <input type="hidden" name="contact[designer_program]" value="Designer Program">
@@ -224,6 +225,7 @@
           <li style="display:none" class="lname">Please Enter Last Name</li>
         </ul>
       </div>
+      </form-validation>
     </div>
   </div>
 </div>
