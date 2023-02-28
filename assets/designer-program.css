@@ -96,6 +96,16 @@
   margin-bottom: 70px;
 }
 
+.customPopup {
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #546b82b8;
+}
+
 .customPopup .customPopup-content {
   max-width: 480px;
   width: 90%;
