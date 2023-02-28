@@ -1,6 +1,6 @@
 {{ 'section-meet-founder.css' | asset_url | stylesheet_tag }}
 
-<section class="meet-founder">
+<section class="meet-founder {% if section.settings.hide_mobile == true %}Hide_Mobile{% endif %}">
   <div class="meet-founder__background">
     <div class="meet-founder__inner meet-founder__layout-{{ section.settings.alignment }}">
       <div class="meet-founder__content-wrapper">
