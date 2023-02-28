@@ -14,8 +14,7 @@
     <div class="program__form designer--form">
       <div class="form__wrapper">
          {%- assign formId = 'contact_form' -%}
-          {% form 'contact', id: formId %}
-            {% include 'form-status', form_id: formId %}
+          {% form 'contact', id: ContactForm %}
             <input type="hidden" name="contact[designer_program]" value="Designer Program">
   
             <div class="field">
