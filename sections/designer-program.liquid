@@ -18,10 +18,10 @@
               <input type="hidden" name="contact[designer_program]" value="Designer Program">
               <div class="contact__fields">
                 <div class="field">
-                  <input value="" class="field__input" type="text" id="firstName" name="contact[First Name]" placeholder="{{ 'templates.designer.form.first_name' | t }}*"/>
+                  <input value="" class="field__input" type="text" id="firstName" name="contact[First Name]" required="true" placeholder="{{ 'templates.designer.form.first_name' | t }}*"/>
                 </div>
                 <div class="field">
-                  <input class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="{{ 'templates.designer.form.last_name' | t }}*"/>
+                  <input class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="{{ 'templates.designer.form.last_name' | t }}*" required="true"/>
                 </div>  
                 <div class="field">
                   <input class="field__input" type="text" id="organizationName" name="contact[Organization Name]" placeholder="{{ 'templates.designer.form.organization_name' | t }}" />
@@ -37,6 +37,7 @@
                     autocapitalize="off"
                     value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
                     aria-required="true"
+                    required="true"
                     {% if form.errors contains 'email' %}
                       aria-invalid="true"
                       aria-describedby="ContactForm-email-error"
