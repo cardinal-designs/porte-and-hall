@@ -18,7 +18,7 @@
               <input type="hidden" name="contact[designer_program]" value="Designer Program">
               <div class="contact__fields">
                 <div class="field">
-                  <input class="field__input" type="text" id="FirstName" name="contact[First Name]" placeholder="{{ 'templates.designer.form.first_name' | t }}*"/>
+                  <input class="field__input" type="text" id="firstName" name="contact[First Name]" placeholder="{{ 'templates.designer.form.first_name' | t }}*"/>
                 </div>
                 <div class="field">
                   <input class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="{{ 'templates.designer.form.last_name' | t }}*"/>
@@ -225,14 +225,23 @@
 </div>
 
 <script>
-  function validateForm() {
-    let fname = document.forms["Contact_Form"]["contact[First Name]"].value;
-    let lname = document.forms["Contact_Form"]["contact[Last Name]"].value;
-    if (fname == "") {
-      alert("Name must be filled out");
-      return false;
+let elementSelect = document.querySelector('.contact__button button'),
+  fname = document.querySelectorAll('#firstName'),
+  lname = document.querySelectorAll('#firstName'),
+  errorDiv = document.querySelectorAll('#error-messages')
+
+  elementSelect.addEventListener('onsubmit',function(item){
+    
+    if(fname == '' || fname == null) {
+      errorDiv.append('<p>Please Enter First Name</p>')
     }
-  }
+    
+    if(lname == '' || lname == null) {
+      errorDiv.append('<p>Please Enter Last Name</p>')
+    }
+    
+  });
+  
 </script>
 
 {% schema %}
