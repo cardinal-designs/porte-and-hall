@@ -230,7 +230,7 @@ let elementSelect = document.querySelector('.contact__button button'),
   lname = document.querySelectorAll('#firstName'),
   errorDiv = document.querySelectorAll('#error-messages')
 
-  elementSelect.addEventListener('onsubmit',function(item){
+  elementSelect.addEventListener('click',function(item){
     
     if(fname == '' || fname == null) {
       errorDiv.append('<p>Please Enter First Name</p>')
