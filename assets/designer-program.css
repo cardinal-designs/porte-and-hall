@@ -132,6 +132,8 @@ ul.js-error-messages {
   color: red;
   list-style-type: none;
   margin: 40px 0;
+  font-size: 14px;
+  font-family: brandon;
 }
 
 @media screen and (max-width: 768px) {
