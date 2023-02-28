@@ -86,9 +86,14 @@
 .meet-founder__icon-wrapper {
   text-align: center;
 }
- .meet-founder__icon-label {
+
+.meet-founder__icon-label {
   padding: 0 20px;
- }
+}
+
+.Hide_Desktop {
+  display: none;  
+}
 
 @media screen and (max-width: 1024px) {
   .meet-founder__inner {
@@ -136,6 +141,10 @@
 
   .Hide_Mobile {
     display: none;  
+  }
+
+  .Hide_Desktop {
+    display: block;  
   }
    
  }
