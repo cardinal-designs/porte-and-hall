@@ -19,10 +19,10 @@
               <input type="hidden" name="contact[designer_program]" value="Designer Program">
               <div class="contact__fields">
                 <div class="field">
-                  <input value="" class="field__input" type="text" id="firstName" name="contact[First Name]" required="true" placeholder="{{ 'templates.designer.form.first_name' | t }}*"/>
+                  <input value="" class="field__input" type="text" id="firstName" name="contact[First Name]" required="true" data-error-message="Please Enter {{ 'templates.designer.form.first_name' | t }}" placeholder="{{ 'templates.designer.form.first_name' | t }}*"/>
                 </div>
                 <div class="field">
-                  <input class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="{{ 'templates.designer.form.last_name' | t }}*" required="true"/>
+                  <input class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="{{ 'templates.designer.form.last_name' | t }}*" required="true" data-error-message="Please Enter {{ 'templates.designer.form.last_name' | t }}"/>
                 </div>  
                 <div class="field">
                   <input class="field__input" type="text" id="organizationName" name="contact[Organization Name]" placeholder="{{ 'templates.designer.form.organization_name' | t }}" />
@@ -43,6 +43,7 @@
                       aria-invalid="true"
                       aria-describedby="ContactForm-email-error"
                     {% endif %}
+                    data-error-message="Please Enter Email"
                     placeholder="{{ 'templates.designer.form.email' | t }}*"
                   >
                   {% if form.errors contains 'email' %}
@@ -134,7 +135,7 @@
                 </div>
           
                 <div class="field">
-                  <input type="text" id="EinTax" name="contact[Federal]" required class="field__input required" placeholder="{{ 'templates.designer.form.tax' | t }}*"/>
+                  <input type="text" id="EinTax" name="contact[Federal]" required data-error-message="Please Enter {{ 'templates.designer.form.tax' | t }}" class="field__input required" placeholder="{{ 'templates.designer.form.tax' | t }}*"/>
                 </div>
               </div>
 
