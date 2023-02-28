@@ -9,16 +9,16 @@ customElements.define('form-validation',class formValidation extends HTMLElement
   validateForm(event){
     let requiredFirlds = this.form.querySelectorAll('.field__input[required]'),
         _this = this;
-    // this.errorMessage = [];
-    // if(requiredFirlds.length > 0){
-    //   requiredFirlds.forEach(function (field) {
-    //     if(!field.dataset.errorMessage) return;
-    //     if(!field.checkValidity()){
-    //       _this.errorMessage.push(`<li>${field.dataset.errorMessage}</li>`);
-    //       field.setCustomValidity(field.dataset.errorMessage);
-    //     };
-    //   });
-    // } 
-    // this.querySelector('.js-error-messages').innerHTML = this.errorMessage.join('');
+    this.errorMessage = [];
+    if(requiredFirlds.length > 0){
+      requiredFirlds.forEach(function (field) {
+        if(!field.dataset.errorMessage) return;
+        if(!field.checkValidity()){
+          _this.errorMessage.push(`<li>${field.dataset.errorMessage}</li>`);
+          field.setCustomValidity(field.dataset.errorMessage);
+        }
+      });
+    } 
+    this.querySelector('.js-error-messages').innerHTML = this.errorMessage.join('');
   }
 })
