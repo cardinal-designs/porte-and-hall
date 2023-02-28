@@ -51,29 +51,9 @@
                   {% endif %}
                 </div>
                 <div class="field">
-                  <input class="field__input" type="text" id="CompanyName" name="contact[Company]" placeholder="Company Name">
-                </div>
-                <div class="field">
                   <input class="field__input" type="text" id="CompanyWebsite" name="contact[Company Website]" placeholder="Company Website">
                 </div> 
-                <div class="field">
-                  <label for="{{ formId }}-email" class="form__row-label">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
-                  <input
-                  type="email"
-                  id="{{ formId }}-email"
-                  name="contact[email]"
-                  autocorrect="off"
-                  autocapitalize="off"
-                  value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-                  aria-required="true"
-                    class="Form__Input required"
-                  placeholder="Email Address" required
-                  >
-                {%- if form.errors contains 'email' -%}
-                  <span id="{{ formId}}-email-error" class="input-error-message">{% include 'icon-error' %} {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
-                {%- endif -%}
-               </div>  
-      
+
                 <div class="field">
                   <input class="field__input" type="tel" id="PhoneNumber" name="contact[Phone Number]"  placeholder="Phone Number"/>
                 </div>
