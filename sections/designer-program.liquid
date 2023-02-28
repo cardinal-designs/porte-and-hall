@@ -199,16 +199,16 @@
                 </button>
               </div>
       		{% if form.posted_successfully? %}
-              <div class="customPopup">
+              <div class="customPopup js-submit-popup">
                 <div class="Alert Alert--success customPopup-content">
-                <div class="customPopupclose">{%- include 'icon-close' -%}</div>
+                <div class="customPopupclose js-popup-close">{%- include 'icon-close' -%}</div>
                   Received! Thanks for submitting an application for our trade program. We will be back to you shortly.
                 </div>
               </div>
             
               <script>
-                document.querySelector('.customPopupclose').addEventListener('click',function(){
-                  document.querySelector('.customPopup').hide;
+                document.querySelector('.js-popup-close').addEventListener('click',function(){
+                  document.querySelector('.js-submit-popup').hide;
                    var uri = window.location.toString();
                   if (uri.indexOf("?") > 0) {
                     var clean_uri = uri.substring(0, uri.indexOf("?"));
