@@ -13,11 +13,10 @@ customElements.define('form-validation',class formValidation extends HTMLElement
     if(requiredFirlds.length > 0){
       requiredFirlds.forEach(function (field) {
         if(!field.dataset.errorMessage) return;
+        console.log(field.checkValidity())
         if(!field.checkValidity()){
           _this.errorMessage.push(`<li>${field.dataset.errorMessage}</li>`);
           field.setCustomValidity(field.dataset.errorMessage);
-        }else{
-          field.setCustomValidity('');
         }
       });
     } 
