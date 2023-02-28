@@ -13,7 +13,10 @@ customElements.define('form-validation',class formValidation extends HTMLElement
     if(requiredFirlds.length > 0){
       requiredFirlds.forEach(function (field) {
         if(!field.dataset.errorMessage) return;
-        (!field.checkValidity()) ? (_this.errorMessage.push(`<li>${field.dataset.errorMessage}</li>`),field.setCustomValidity(field.dataset.errorMessage)) : field.setCustomValidity('');
+        if(!field.checkValidity()){
+          _this.errorMessage.push(`<li>${field.dataset.errorMessage}</li>`);
+          field.setCustomValidity(field.dataset.errorMessage);
+        };
       });
     } 
     this.querySelector('.js-error-messages').innerHTML = this.errorMessage.join('');
