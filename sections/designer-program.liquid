@@ -180,37 +180,15 @@
               </div>
             </div>
       
-              <div class="form__row">
-                <label for="InstaHandle" class="form__row-label">Instagram Handle  We’d love to follow you!</label>
-                <input type="text" id="InstaHandle" name="contact[Instagram Handle]" placeholder="Instagram Handle"  />
-              </div>
+            <div class="form__row">
+              <label for="InstaHandle" class="form__row-label">Instagram Handle  We’d love to follow you!</label>
+              <input type="text" id="InstaHandle" name="contact[Instagram Handle]" placeholder="Instagram Handle"  />
+            </div>
       
-              <div class="form__row">
-                <input type="submit" class="btn cta cta--primary designer-form-btn" value="Submit">
-              </div>
-          
-    	      	<ul id="error-messages"></ul>
-        		{% if form.posted_successfully? %}
-              <div class="customPopup">
-                <div class="Alert Alert--success customPopup-content">
-                <div class="customPopupclose">{%- include 'close-icon' -%}</div>
-                  Received! Thanks for submitting an application for our trade program. We will be back to you shortly.
-                </div>
-              </div>
-          
-              <script>
-                $(document).ready(function(){
-                  $(".customPopupclose").click(function(){
-                    $(".customPopup").hide();
-                    var uri = window.location.toString();
-                    if (uri.indexOf("?") > 0) {
-                      var clean_uri = uri.substring(0, uri.indexOf("?"));
-                      window.history.replaceState({}, document.title, clean_uri);
-                    }
-                   });
-                });
-              </script>
-            {% endif %}
+            <div class="form__row">
+              <input type="submit" class="btn cta cta--primary designer-form-btn" value="Submit">
+            </div>
+
         {% endform %}
       </div>
     </div>
