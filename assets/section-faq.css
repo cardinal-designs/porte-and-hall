@@ -62,9 +62,5 @@
   .faq__column:not(:first-of-type) > .faq__item:first-child {
     border-top: transparent;
   }
-
-  .Hide_Mobile {
-    display: none;  
-  }
   
 }
