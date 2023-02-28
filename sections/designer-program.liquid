@@ -189,8 +189,11 @@
                 </div>
               </div>
 
-              <div class="form__row">
-                <input type="submit" class="btn cta cta--primary designer-form-btn" value="Submit">
+              <div class="Optional_Field text-center">*Optional form field</div>
+              <div class="contact__button text-center">
+                <button type="submit" class="button">
+                  {{ 'templates.contact.form.send' | t }}
+                </button>
               </div>
   
           {% endform %}
