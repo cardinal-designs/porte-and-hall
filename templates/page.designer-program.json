@@ -20,6 +20,7 @@
     "1c0d22eb-2fbd-421d-b48b-c0b1a1200dc2": {
       "type": "fan-motif-section",
       "settings": {
+        "hide_desktop": false,
         "hide_mobile": true,
         "color": "green",
         "alignment": "center",
@@ -32,6 +33,7 @@
     "3d7a4cfe-b875-4374-902d-1552bb383737": {
       "type": "meet-founder",
       "settings": {
+        "hide_desktop": false,
         "hide_mobile": true,
         "alignment": "right",
         "heading": "Meet Stafford, founder of Porte + Hall",
@@ -40,12 +42,46 @@
         "link_text": "",
         "image": "shopify:\/\/shop_images\/IMAGE_COLLAGE_4525dc98-0b51-42b8-81bb-d6aff921a5bb.png"
       }
+    },
+    "c2edffab-900a-444c-9814-5d168e3a79fa": {
+      "type": "faq-section",
+      "blocks": {
+        "e2d23f48-f63c-493b-bfc7-93a1da977d91": {
+          "type": "Item",
+          "settings": {
+            "title": "What is your refund policy?",
+            "answer": "<p>All orders are shipped within 7 business days. Shipping is available in the continental United States. Porte + Hall ships with UPS, USPS and FedEx. Porte + Hall does not ship to PO Boxes. Shipping is not available to Alaska, Hawaii, Puerto Rico or U.S. Virgin Islands. We currently do not ship to international destinations. Shipping rates vary based on size and weight of the box and number of boxes in an order. Payment methods we accept: Visa, Mastercard, American Express, PayPal and Apply Pay. Once an order is placed, you will receive a confirmation email. Once your order has shipped, you will receive a shipping confirmation email with tracking information. If you do not receive a tracking number please contact support@porteandhall.com.<br\/><br\/>We will accept returns within thirty (30) days of order placement for a full refund. Goods must be returned unused in original packaging. Shipping charges will be deducted from the original form of payment.<br\/><br\/>If you need to return an item, please visit our returns portal where you will be able to generate a pre-paid return label. The return shipping fee will be deducted from your total refund.<\/p>"
+          }
+        },
+        "8bfc8199-a92b-48ee-94a3-4cd6c4654dbb": {
+          "type": "Item",
+          "settings": {
+            "title": "",
+            "answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "e2d23f48-f63c-493b-bfc7-93a1da977d91",
+        "8bfc8199-a92b-48ee-94a3-4cd6c4654dbb"
+      ],
+      "settings": {
+        "hide_desktop": false,
+        "hide_mobile": false,
+        "bg_color": "#FFE8D5",
+        "bg_color_answer": "#A34C24",
+        "bg_color_answer_active": "#E31C79",
+        "color": "#546b82",
+        "main_header": "Ingredients",
+        "title": ""
+      }
     }
   },
   "order": [
     "main",
     "d6ffae26-0ed7-4647-a4f9-a65110b580f2",
     "1c0d22eb-2fbd-421d-b48b-c0b1a1200dc2",
-    "3d7a4cfe-b875-4374-902d-1552bb383737"
+    "3d7a4cfe-b875-4374-902d-1552bb383737",
+    "c2edffab-900a-444c-9814-5d168e3a79fa"
   ]
 }
