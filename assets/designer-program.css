@@ -67,7 +67,7 @@
   height: 18px;
   width: 18px;
   border: 1px solid #546B82;
-  top: 1px;
+  top: -3px;
 }
 
 .form__checkboxrow input:checked + label:after {
@@ -115,4 +115,8 @@
     margin-bottom: 50px;
   }
 
+  .form__checkboxrow label::before {
+    top: 1px;
+  }
+  
 }
