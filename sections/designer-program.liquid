@@ -16,19 +16,20 @@
          {%- assign formId = 'contact_form' -%}
           {% form 'contact', id: ContactForm %}
             <input type="hidden" name="contact[designer_program]" value="Designer Program">
-  
+            
+            <div class="field">
+              <input class="field__input" type="text" id="FirstName" name="contact[First Name]" placeholder="First Name" />
+            </div>
+            <div class="field">
+              <input class="field__input" class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="Last Name" />
+            </div>  
             <div class="field">
               <input class="field__input" type="text" id="CompanyName" name="contact[Company]" placeholder="Company Name">
             </div>
             <div class="field">
               <input class="field__input" type="text" id="CompanyWebsite" name="contact[Company Website]" placeholder="Company Website">
             </div>
-            <div class="field">
-              <input class="field__input" type="text" id="FirstName" name="contact[First Name]" placeholder="First Name" />
-            </div>
-            <div class="field">
-              <input class="field__input" class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="Last Name" />
-            </div>
+
             <div class="field">
               <input
               type="email"
