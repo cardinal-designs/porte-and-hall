@@ -234,7 +234,8 @@ let elementSelect = document.querySelector('.contact__button button'),
   errorDiv = document.querySelectorAll('#error-messages')
 
   elementSelect.addEventListener('click',function(item){
-    
+    console.log(fname)
+    console.log(lname)
     if(fname == '' || fname == null) {
       console.log('Please Enter First Name')
       document.querySelectorAll('.fname').show
