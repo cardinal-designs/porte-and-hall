@@ -149,5 +149,9 @@
   .Hide_Mobile {
     display: none;  
   }
-   
+
+  .Hide_Desktop {
+    display: block;  
+  }
+     
  }
