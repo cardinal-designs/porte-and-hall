@@ -14,7 +14,7 @@
       </div>
       <div class="program__form designer--form">
         <div class="form__wrapper">
-            {% form 'contact', id: 'ContactForm' %}
+            {% form 'contact', id: 'ContactForm', name: 'Contact_Form' %}
               <input type="hidden" name="contact[designer_program]" value="Designer Program">
               <div class="contact__fields">
                 <div class="field">
@@ -223,6 +223,17 @@
     </div>
   </div>
 </div>
+
+<script>
+  function validateForm() {
+    let fname = document.forms["Contact_Form"]["contact[First Name]"].value;
+    let lname = document.forms["Contact_Form"]["contact[Last Name]"].value;
+    if (fname == "") {
+      alert("Name must be filled out");
+      return false;
+    }
+  }
+</script>
 
 {% schema %}
   {
