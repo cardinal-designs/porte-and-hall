@@ -43,7 +43,7 @@
                       aria-invalid="true"
                       aria-describedby="ContactForm-email-error"
                     {% endif %}
-                    data-error-message="Please Enter Email"
+                    data-error-message="Please Enter {{ 'templates.designer.form.email' | t }}"
                     placeholder="{{ 'templates.designer.form.email' | t }}*"
                   >
                   {% if form.errors contains 'email' %}
@@ -221,16 +221,14 @@
             {% endif %}
           {% endform %}
         </div>
-        <ul id="error-messages">
-          <li style="display:none" class="fname">Please Enter First Name</li>
-          <li style="display:none" class="lname">Please Enter Last Name</li>
-        </ul>
+        <ul class="js-error-messages"></ul>
       </div>
       </form-validation>
     </div>
   </div>
 </div>
 
+{% comment %}
 <script>
 let elementSelect = document.querySelector('.button'),
   fname = document.querySelectorAll('#firstName').value,
@@ -252,8 +250,8 @@ let elementSelect = document.querySelector('.button'),
     }
     
   });
-  
 </script>
+{% endcomment %}
 
 {% schema %}
   {
