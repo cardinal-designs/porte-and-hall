@@ -208,7 +208,7 @@
             
               <script>
                 document.querySelector('.customPopupclose').addEventListener('click',function(){
-                  document.querySelector('.customPopup').hidden;
+                  document.querySelector('.customPopup').hide;
                    var uri = window.location.toString();
                   if (uri.indexOf("?") > 0) {
                     var clean_uri = uri.substring(0, uri.indexOf("?"));
