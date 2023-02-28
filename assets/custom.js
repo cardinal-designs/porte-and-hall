@@ -5,7 +5,7 @@ customElements.define('form-validation',class formValidation extends HTMLElement
     this.requiredFields = this.form.querySelectorAll('.field__input[required]');
     if(!this.form) return;
     console.log(this.form.querySelector('[type="submit"]'))
-    this.form.querySelector('[type="submit"]').addEventListener('click',event => this.validateForm(event));
+    this.form.querySelector('[type="submit"]').addEventListener('click',event => this.submitBtnClick(event));
     let _this = this;
     if(this.requiredFields.length > 0){
       this.requiredFields.forEach(function (field) {
@@ -13,7 +13,11 @@ customElements.define('form-validation',class formValidation extends HTMLElement
       });
     }
   }
+  submitBtnClick(event){
+    this.form.classList.add('js-start-validation')
+  }
   validateForm(event){
+    if(!this.form.classList.contains('js-start-validation')) return;
     let _this = this;
     this.errorMessage = [];
     if(this.requiredFields.length > 0){
