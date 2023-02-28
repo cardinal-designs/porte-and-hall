@@ -21,15 +21,11 @@
               <input class="field__input" type="text" id="FirstName" name="contact[First Name]" placeholder="First Name" />
             </div>
             <div class="field">
-              <input class="field__input" class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="Last Name" />
+              <input class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="Last Name" />
             </div>  
             <div class="field">
-              <input class="field__input" type="text" id="CompanyName" name="contact[Company]" placeholder="Company Name">
-            </div>
-            <div class="field">
-              <input class="field__input" type="text" id="CompanyWebsite" name="contact[Company Website]" placeholder="Company Website">
-            </div>
-
+              <input class="field__input" type="text" id="organizationName" name="contact[Organization Name]" placeholder="Organization Name" />
+            </div>  
             <div class="field">
               <input
               type="email"
@@ -40,12 +36,17 @@
               value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
               aria-required="true"
               class="field__input required"
-              placeholder="Email Address" required
-            >
+              placeholder="Email Address" required>
               {%- if form.errors contains 'email' -%}
                 <span id="{{ formId}}-email-error" class="input-error-message">{% include 'icon-error' %} {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
               {%- endif -%}
-           </div>  
+             </div> 
+            <div class="field">
+              <input class="field__input" type="text" id="CompanyName" name="contact[Company]" placeholder="Company Name">
+            </div>
+            <div class="field">
+              <input class="field__input" type="text" id="CompanyWebsite" name="contact[Company Website]" placeholder="Company Website">
+            </div> 
            <div class="field">
             <label for="{{ formId }}-email" class="form__row-label">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
             <input
