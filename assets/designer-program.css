@@ -39,7 +39,8 @@
 
 .Checkbox_Wrapper {
   margin-top: 50px;
-  max-width: 500px;
+  max-width: 570px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
