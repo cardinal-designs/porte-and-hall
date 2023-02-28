@@ -55,4 +55,8 @@
     font-size: 14px;
   }
 
+  .Checkbox_Wrapper .form__checkboxrow {
+    flex: 0 0 100%;
+  }
+
 }
