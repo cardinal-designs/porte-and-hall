@@ -1,6 +1,11 @@
 customElements.define('form-validation',class formValidation extends HTMLElement {
   constructor(params) {
     super();
-    console.log(this)
+    this.form = this.qierySelector('.js-form-validation');
+    if(!this.form) return;
+    this.form.addEventListener('submit',event => this.validateForm(event))
+  }
+  validateForm(event){
+    console.log(hii);
   }
 })
