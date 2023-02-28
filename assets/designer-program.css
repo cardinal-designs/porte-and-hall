@@ -18,3 +18,12 @@
 .How_Did_You_Hear {
   margin-top: 50px;
 }
+
+.form__checkboxrow label {
+  font-size: 18px;
+  line-height: 120%;
+  font-family: brandon;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;  
+}
