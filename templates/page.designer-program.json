@@ -3,13 +3,24 @@
     "main": {
       "type": "main-page",
       "settings": {
+        "page_heading": "",
         "image": "shopify:\/\/shop_images\/Rectangle_600.png",
         "section_height": "350",
-        "bg_color": "#F4F2EE"
+        "bg_color": "#f4f2ee"
+      }
+    },
+    "d6ffae26-0ed7-4647-a4f9-a65110b580f2": {
+      "type": "designer-program",
+      "settings": {
+        "heading": "",
+        "top_text": "",
+        "top_desc": "",
+        "thankyou_link": ""
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "d6ffae26-0ed7-4647-a4f9-a65110b580f2"
   ]
 }
