@@ -44,3 +44,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+.select::after {
+  display:none;
+}
