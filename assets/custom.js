@@ -20,11 +20,10 @@ customElements.define('form-validation',class formValidation extends HTMLElement
       this.requiredFields.forEach(function (field) {
         if(!field.dataset.errorMessage) return;
         console.log(field.checkValidity())
+        field.setCustomValidity('');
         if(!field.checkValidity()){
           _this.errorMessage.push(`<li>${field.dataset.errorMessage}</li>`);
           field.setCustomValidity(field.dataset.errorMessage);
-        }else{
-          field.setCustomValidity('');
         }
       });
     } 
