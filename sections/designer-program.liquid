@@ -1,204 +1,205 @@
 {{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
 <div class="designer-program_Container">
   <div class="contact page-width spaced-section">
-    <div class="designer_formText text-center">
-      {% if section.settings.heading != blank %}
-        <h2>{{ section.settings.heading }}</h2>
-      {% endif %}
-      {% if section.settings.top_text != blank %}
-        <span>{{ section.settings.top_text }}</span>
-      {% endif %}
-      {% if section.settings.top_desc != blank %}
-        <p>{{ section.settings.top_desc }}</p>
-      {% endif %}
-    </div>
-    
-    <div class="program__form designer--form">
-      <div class="form__wrapper">
-          {% form 'contact', id: ContactForm %}
-            <input type="hidden" name="contact[designer_program]" value="Designer Program">
-            <div class="contact__fields">
-              <div class="field">
-                <input class="field__input" type="text" id="FirstName" name="contact[First Name]" placeholder="First Name" />
-              </div>
-              <div class="field">
-                <input class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="Last Name" />
-              </div>  
-              <div class="field">
-                <input class="field__input" type="text" id="organizationName" name="contact[Organization Name]" placeholder="Organization Name" />
-              </div>  
-              <div class="field field--with-error">
-                <input
-                  autocomplete="email"
+    <div class="Contact_Form">
+      <div class="designer_formText text-center">
+        {% if section.settings.heading != blank %}
+          <h2>{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.top_text != blank %}
+          <span>{{ section.settings.top_text }}</span>
+        {% endif %}
+        {% if section.settings.top_desc != blank %}
+          <p>{{ section.settings.top_desc }}</p>
+        {% endif %}
+      </div>
+      <div class="program__form designer--form">
+        <div class="form__wrapper">
+            {% form 'contact', id: ContactForm %}
+              <input type="hidden" name="contact[designer_program]" value="Designer Program">
+              <div class="contact__fields">
+                <div class="field">
+                  <input class="field__input" type="text" id="FirstName" name="contact[First Name]" placeholder="First Name" />
+                </div>
+                <div class="field">
+                  <input class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="Last Name" />
+                </div>  
+                <div class="field">
+                  <input class="field__input" type="text" id="organizationName" name="contact[Organization Name]" placeholder="Organization Name" />
+                </div>  
+                <div class="field field--with-error">
+                  <input
+                    autocomplete="email"
+                    type="email"
+                    id="ContactForm-email"
+                    class="field__input"
+                    name="contact[email]"
+                    spellcheck="false"
+                    autocapitalize="off"
+                    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                    aria-required="true"
+                    {% if form.errors contains 'email' %}
+                      aria-invalid="true"
+                      aria-describedby="ContactForm-email-error"
+                    {% endif %}
+                    placeholder="{{ 'templates.contact.form.email' | t }}*"
+                  >
+                  {% if form.errors contains 'email' %}
+                    <small class="contact__field-error" id="ContactForm-email-error">
+                      <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+                      <span class="form__message Form_Error">{{ 'templates.contact.form.form_error' | t }}</span>
+                    </small>
+                  {% endif %}
+                </div>
+                <div class="field">
+                  <input class="field__input" type="text" id="CompanyName" name="contact[Company]" placeholder="Company Name">
+                </div>
+                <div class="field">
+                  <input class="field__input" type="text" id="CompanyWebsite" name="contact[Company Website]" placeholder="Company Website">
+                </div> 
+                <div class="field">
+                  <label for="{{ formId }}-email" class="form__row-label">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+                  <input
                   type="email"
-                  id="ContactForm-email"
-                  class="field__input"
+                  id="{{ formId }}-email"
                   name="contact[email]"
-                  spellcheck="false"
+                  autocorrect="off"
                   autocapitalize="off"
                   value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
                   aria-required="true"
-                  {% if form.errors contains 'email' %}
-                    aria-invalid="true"
-                    aria-describedby="ContactForm-email-error"
-                  {% endif %}
-                  placeholder="{{ 'templates.contact.form.email' | t }}*"
-                >
-                {% if form.errors contains 'email' %}
-                  <small class="contact__field-error" id="ContactForm-email-error">
-                    <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
-                    <span class="form__message Form_Error">{{ 'templates.contact.form.form_error' | t }}</span>
-                  </small>
-                {% endif %}
-              </div>
-              <div class="field">
-                <input class="field__input" type="text" id="CompanyName" name="contact[Company]" placeholder="Company Name">
-              </div>
-              <div class="field">
-                <input class="field__input" type="text" id="CompanyWebsite" name="contact[Company Website]" placeholder="Company Website">
-              </div> 
-              <div class="field">
-                <label for="{{ formId }}-email" class="form__row-label">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
-                <input
-                type="email"
-                id="{{ formId }}-email"
-                name="contact[email]"
-                autocorrect="off"
-                autocapitalize="off"
-                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-                aria-required="true"
-                  class="Form__Input required"
-                placeholder="Email Address" required
-                >
-              {%- if form.errors contains 'email' -%}
-                <span id="{{ formId}}-email-error" class="input-error-message">{% include 'icon-error' %} {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
-              {%- endif -%}
-             </div>  
-    
-              <div class="field">
-                <input class="field__input" type="tel" id="PhoneNumber" name="contact[Phone Number]"  placeholder="Phone Number"/>
-              </div>
-    
-              <div class="field">
-                <input class="field__input" type="text" id="BusinessAddress" name="contact[Business Address]"  placeholder="Business Address"/>
-              </div>
-    
-              <div class="field">
-                <input class="field__input" type="text" id="AptSuite" name="contact[Apt/Suite]"  />
-              </div>
+                    class="Form__Input required"
+                  placeholder="Email Address" required
+                  >
+                {%- if form.errors contains 'email' -%}
+                  <span id="{{ formId}}-email-error" class="input-error-message">{% include 'icon-error' %} {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                {%- endif -%}
+               </div>  
       
-              <div class="field">
-                <input class="field__input" type="text" id="city" name="contact[City]"  />
-              </div>
-              
-              <div class="field">
-                <select id="BusinessState" name="contact[State]" class="form__select selected" >
-                  <option value="" class="selected">Select a state</option>
-                  <option value="AL">Alabama</option>
-                  <option value="AK">Alaska</option>
-                  <option value="AZ">Arizona</option>
-                  <option value="AR">Arkansas</option>
-                  <option value="CA">California</option>
-                  <option value="CO">Colorado</option>
-                  <option value="CT">Connecticut</option>
-                  <option value="DE">Delaware</option>
-                  <option value="DC">District Of Columbia</option>
-                  <option value="FL">Florida</option>
-                  <option value="GA">Georgia</option>
-                  <option value="HI">Hawaii</option>
-                  <option value="ID">Idaho</option>
-                  <option value="IL">Illinois</option>
-                  <option value="IN">Indiana</option>
-                  <option value="IA">Iowa</option>
-                  <option value="KS">Kansas</option>
-                  <option value="KY">Kentucky</option>
-                  <option value="LA">Louisiana</option>
-                  <option value="ME">Maine</option>
-                  <option value="MD">Maryland</option>
-                  <option value="MA">Massachusetts</option>
-                  <option value="MI">Michigan</option>
-                  <option value="MN">Minnesota</option>
-                  <option value="MS">Mississippi</option>
-                  <option value="MO">Missouri</option>
-                  <option value="MT">Montana</option>
-                  <option value="NE">Nebraska</option>
-                  <option value="NV">Nevada</option>
-                  <option value="NH">New Hampshire</option>
-                  <option value="NJ">New Jersey</option>
-                  <option value="NM">New Mexico</option>
-                  <option value="NY">New York</option>
-                  <option value="NC">North Carolina</option>
-                  <option value="ND">North Dakota</option>
-                  <option value="OH">Ohio</option>
-                  <option value="OK">Oklahoma</option>
-                  <option value="OR">Oregon</option>
-                  <option value="PA">Pennsylvania</option>
-                  <option value="RI">Rhode Island</option>
-                  <option value="SC">South Carolina</option>
-                  <option value="SD">South Dakota</option>
-                  <option value="TN">Tennessee</option>
-                  <option value="TX">Texas</option>
-                  <option value="UT">Utah</option>
-                  <option value="VT">Vermont</option>
-                  <option value="VA">Virginia</option>
-                  <option value="WA">Washington</option>
-                  <option value="WV">West Virginia</option>
-                  <option value="WI">Wisconsin</option>
-                  <option value="WY">Wyoming</option>
-                </select>
-              </div>  
-              <div class="field">
-                <input class="field__input" type="text" id="ZipCode" name="contact[Zip]"  />
-              </div>
-              <div class="field">
-                <input type="text" id="EinTax" name="contact[Federal]" placeholder="Federal Tax/EIN" required class="field__input required" />
-              </div>
-              <div class="field">
-                <div class="form--row_check">
-                  <div class="form__checkboxrow">
-                    <input type="checkbox" id="howInstagram" name="contact[Instagram]" value="Instagram" /> 
-                    <label for="howInstagram" class="hidden">Instagram</label>
-                  </div>
-                  <div class="form__checkboxrow">
-                    <input type="checkbox" id="howPress" name="contact[Press]" value="Press" /> 
-                    <label for="howPress" class="hidden">Press</label>
-                  </div>
-                  <div class="form__checkboxrow">
-                    <input type="checkbox" id="howAdvertisment" name="contact[Advertisment]" value="Advertisment" /> 
-                    <label for="howAdvertisment" class="hidden">Advertisment</label>
-                  </div>
-                  <div class="form__checkboxrow">
-                    <input type="checkbox" id="howTradeshow" name="contact[Tradeshows]" value="PTradeshow" /> 
-                    <label for="howTradeshow" class="hidden">Tradeshow</label>
-                  </div>
-                  <div class="form__checkboxrow">
-                    <input type="checkbox" id="howPinterest" name="contact[Pinterest]" value="Pinterest" /> 
-                    <label for="howPinterest" class="hidden">Pinterest</label>
-                  </div>
-                  <div class="form__checkboxrow">
-                    <input type="checkbox" id="howSearch" name="contact[Search]" value="Search" /> 
-                    <label for="howSearch" class="hidden">Search</label>
-                  </div>
-                  <div class="form__checkboxrow">
-                    <input type="checkbox" id="howWordOfMouth" name="contact[Word Of Mouth]" value="Word Of Mouth" /> 
-                    <label for="howWordOfMouth" class="hidden">Word Of Mouth</label>
-                  </div>
-                  <div class="form__checkboxrow">
-                    <input type="checkbox" id="howOther" name="contact[Other]" value="Other" /> 
-                    <label for="howOther" class="hidden">Other</label>
+                <div class="field">
+                  <input class="field__input" type="tel" id="PhoneNumber" name="contact[Phone Number]"  placeholder="Phone Number"/>
+                </div>
+      
+                <div class="field">
+                  <input class="field__input" type="text" id="BusinessAddress" name="contact[Business Address]"  placeholder="Business Address"/>
+                </div>
+      
+                <div class="field">
+                  <input class="field__input" type="text" id="AptSuite" name="contact[Apt/Suite]"  />
+                </div>
+        
+                <div class="field">
+                  <input class="field__input" type="text" id="city" name="contact[City]"  />
+                </div>
+                
+                <div class="field">
+                  <select id="BusinessState" name="contact[State]" class="form__select selected" >
+                    <option value="" class="selected">Select a state</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select>
+                </div>  
+                <div class="field">
+                  <input class="field__input" type="text" id="ZipCode" name="contact[Zip]"  />
+                </div>
+                <div class="field">
+                  <input type="text" id="EinTax" name="contact[Federal]" placeholder="Federal Tax/EIN" required class="field__input required" />
+                </div>
+                <div class="field">
+                  <div class="form--row_check">
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howInstagram" name="contact[Instagram]" value="Instagram" /> 
+                      <label for="howInstagram" class="hidden">Instagram</label>
+                    </div>
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howPress" name="contact[Press]" value="Press" /> 
+                      <label for="howPress" class="hidden">Press</label>
+                    </div>
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howAdvertisment" name="contact[Advertisment]" value="Advertisment" /> 
+                      <label for="howAdvertisment" class="hidden">Advertisment</label>
+                    </div>
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howTradeshow" name="contact[Tradeshows]" value="PTradeshow" /> 
+                      <label for="howTradeshow" class="hidden">Tradeshow</label>
+                    </div>
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howPinterest" name="contact[Pinterest]" value="Pinterest" /> 
+                      <label for="howPinterest" class="hidden">Pinterest</label>
+                    </div>
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howSearch" name="contact[Search]" value="Search" /> 
+                      <label for="howSearch" class="hidden">Search</label>
+                    </div>
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howWordOfMouth" name="contact[Word Of Mouth]" value="Word Of Mouth" /> 
+                      <label for="howWordOfMouth" class="hidden">Word Of Mouth</label>
+                    </div>
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howOther" name="contact[Other]" value="Other" /> 
+                      <label for="howOther" class="hidden">Other</label>
+                    </div>
                   </div>
                 </div>
+                <div class="form__row">
+                  <label for="InstaHandle" class="form__row-label">Instagram Handle  We’d love to follow you!</label>
+                  <input type="text" id="InstaHandle" name="contact[Instagram Handle]" placeholder="Instagram Handle"  />
+                </div>
+                <div class="form__row">
+                  <input type="submit" class="btn cta cta--primary designer-form-btn" value="Submit">
+                </div>
               </div>
-              <div class="form__row">
-                <label for="InstaHandle" class="form__row-label">Instagram Handle  We’d love to follow you!</label>
-                <input type="text" id="InstaHandle" name="contact[Instagram Handle]" placeholder="Instagram Handle"  />
-              </div>
-              <div class="form__row">
-                <input type="submit" class="btn cta cta--primary designer-form-btn" value="Submit">
-              </div>
-            </div>
-
-        {% endform %}
+  
+          {% endform %}
+        </div>
       </div>
     </div>
   </div>
