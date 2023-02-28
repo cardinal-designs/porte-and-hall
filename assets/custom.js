@@ -3,6 +3,7 @@ customElements.define('form-validation',class formValidation extends HTMLElement
     super();
     this.form = this.querySelector('.js-form-validation');
     if(!this.form) return;
+    console.log(this.form.querySelector('[type="submit"]'))
     this.form.querySelector('[type="submit"]').addEventListener('click',event => this.validateForm(event))
   }
   validateForm(event){
