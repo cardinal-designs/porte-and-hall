@@ -14,7 +14,7 @@
       </div>
       <div class="program__form designer--form">
         <div class="form__wrapper">
-            {% form 'contact', id: ContactForm %}
+            {% form 'contact', id: 'ContactForm' %}
               <input type="hidden" name="contact[designer_program]" value="Designer Program">
               <div class="contact__fields">
                 <div class="field">
@@ -198,10 +198,25 @@
   
           {% endform %}
         </div>
+        <ul id="error-messages"></ul>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $("#ContactForm").validate({
+      errorLabelContainer: "#error-messages",
+      wrapper: "li",
+      messages: {
+        "contact[email]": "Please enter an email",
+        "contact[Federal]": "Please enter a Federal Tax/EIN"
+      }
+    });
+  });
+</script>
+
 {% schema %}
   {
     "name": "Designer Program",
