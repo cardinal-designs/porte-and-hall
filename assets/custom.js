@@ -2,7 +2,6 @@ customElements.define('form-validation',class formValidation extends HTMLElement
   constructor(params) {
     super();
     this.form = this.querySelector('.js-form-validation');
-    this.errorMessage = [];
     if(!this.form) return;
     console.log(this.form.querySelector('[type="submit"]'))
     this.form.querySelector('[type="submit"]').addEventListener('click',event => this.validateForm(event))
@@ -10,6 +9,7 @@ customElements.define('form-validation',class formValidation extends HTMLElement
   validateForm(event){
     let requiredFirlds = this.form.querySelectorAll('.field__input[required]'),
         _this = this;
+    this.errorMessage = [];
     if(requiredFirlds.length > 0){
       requiredFirlds.forEach(function (field) {
         if(!field.dataset.errorMessage) return;
