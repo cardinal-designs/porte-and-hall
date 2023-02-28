@@ -1,6 +1,8 @@
 <div class="designer-program_Container" >
   <div class="designer_formText">
-    <h1>{{ section.settings.heading }}</h1>
+    {% if section.settings.heading != blank %}
+      <h1>{{ section.settings.heading }}</h1>
+    {% endif %}
     {% if section.settings.top_text != blank %}
       <span>{{ section.settings.top_text }}</span>
     {% endif %}
