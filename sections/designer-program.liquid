@@ -236,14 +236,14 @@ let elementSelect = document.querySelector('.contact__button button'),
     if(fname == '' || fname == null) {
        console.log('Please Enter First Name');
         let p = document.createElement("p");
-        div.append("Please Enter First Name", p);
+        errorDiv.append("Please Enter First Name", p);
     }
     
     if(lname == '' || lname == null) {
        console.log('Test');
       console.log('Please Enter Last Name');
         let c = document.createElement("p");
-        div.append("Please Enter First Name", c);
+        errorDiv.append("Please Enter First Name", c);
     }
     
   });
