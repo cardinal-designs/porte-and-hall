@@ -101,6 +101,10 @@ svg.icon.icon-minus {
   display: block;
 }
 
+.Hide_Desktop {
+  display: none;  
+}
+
 @media screen and (max-width: 768px) {
   
   #faqs .faq-items {
