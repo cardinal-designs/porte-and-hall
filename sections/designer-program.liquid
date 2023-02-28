@@ -17,25 +17,19 @@
           {% include 'form-status', form_id: formId %}
           <input type="hidden" name="contact[designer_program]" value="Designer Program">
 
-          <h2 class="form__sectionheader">Personal Information</h2>
-          <div class="form__row">
-              <label for="CompanyName" class="form__row-label">Company</label>
-              <input type="text" id="CompanyName" name="contact[Company]" placeholder="Company Name">
+          <div class="field">
+            <input class="field__input" type="text" id="CompanyName" name="contact[Company]" placeholder="Company Name">
           </div>
-          <div class="form__row">
-              <label for="CompanyWebsite" class="form__row-label">Company Website</label>
-              <input type="text" id="CompanyWebsite" name="contact[Company Website]" placeholder="Company Website">
+          <div class="field">
+            <input class="field__input" type="text" id="CompanyWebsite" name="contact[Company Website]" placeholder="Company Website">
           </div>
-          <div class="form__row">
-            <label for="FullName" class="form__row-label">First Name</label> 
-            <input type="text" id="FirstName" name="contact[First Name]" placeholder="First Name" />
+          <div class="field">
+            <input class="field__input" type="text" id="FirstName" name="contact[First Name]" placeholder="First Name" />
           </div>
-          <div class="form__row">
-            <label for="FullName" class="form__row-label">Last Name</label> 
-            <input type="text" id="lastName" name="contact[Last Name]" placeholder="Last Name" />
+          <div class="field">
+            <input class="field__input" class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="Last Name" />
           </div>
-          <div class="form__row">
-            <label for="{{ formId }}-email" class="form__row-label">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+          <div class="field">
             <input
             type="email"
             id="{{ formId }}-email"
@@ -44,15 +38,14 @@
             autocapitalize="off"
             value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
             aria-required="true"
-              class="Form__Input required"
+            class="field__input required"
             placeholder="Email Address" required
           >
             {%- if form.errors contains 'email' -%}
               <span id="{{ formId}}-email-error" class="input-error-message">{% include 'icon-error' %} {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
             {%- endif -%}
          </div>  
-         <h2 class="form__sectionheader">Contact Information</h2>
-         <div class="form__row">
+         <div class="field">
           <label for="{{ formId }}-email" class="form__row-label">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
           <input
           type="email"
@@ -70,27 +63,23 @@
           {%- endif -%}
          </div>  
 
-          <div class="form__row">
-            <label for="PhoneNumber" class="form__row-label">Business Phone Number</label>
-            <input type="tel" id="PhoneNumber" name="contact[Phone Number]"  placeholder="Phone Number"/>
+          <div class="field">
+            <input class="field__input" type="tel" id="PhoneNumber" name="contact[Phone Number]"  placeholder="Phone Number"/>
           </div>
 
-          <div class="form__row">
-            <label for="BusinessAddress" class="form__row-label">Business Address</label>
-            <input type="text" id="BusinessAddress" name="contact[Business Address]"  placeholder="Business Address"/>
+          <div class="field">
+            <input class="field__input" type="text" id="BusinessAddress" name="contact[Business Address]"  placeholder="Business Address"/>
           </div>
 
-          <div class="form__row">
-            <label for="AptSuite" class="form__row-label">Apt/Suite</label>
-            <input type="text" id="AptSuite" name="contact[Apt/Suite]"  />
+          <div class="field">
+            <input class="field__input" type="text" id="AptSuite" name="contact[Apt/Suite]"  />
           </div>
     
-          <div class="form__row form_row--Mhalf">
-            <label for="city" class="form__row-label">City</label>
-            <input type="text" id="city" name="contact[City]"  />
+          <div class="field">
+            <input class="field__input" type="text" id="city" name="contact[City]"  />
           </div>
-          <div class="form__row form__row--split form_row--Mhalf">
-            <label for="BusinessState" class="form__row-label">State</label>
+          
+          <div class="field">
             <select id="BusinessState" name="contact[State]" class="form__select selected" >
               <option value="" class="selected">Select a state</option>
               <option value="AL">Alabama</option>
@@ -146,51 +135,48 @@
               <option value="WY">Wyoming</option>
             </select>
           </div>  
-          <div class="form__row form_row--Mhalf">
-            <label for="ZipCode" class="form__row-label">Zip</label>
-            <input type="text" id="ZipCode" name="contact[Zip]"  />
+          <div class="field">
+            <input class="field__input" type="text" id="ZipCode" name="contact[Zip]"  />
           </div>
-            <div class="form__row form_row--Mhalf">
-              <label for="EinTax" class="form__row-label">Federal Tax/EIN *</label>
-              <input type="text" id="EinTax" name="contact[Federal]" placeholder="Federal Tax/EIN" required class="Form__Input required" />
-            </div>
-            <div class="form__row">
-              <label class="form__sectionheader form__row-label">How did you hear about us? (Select all that apply)</label>
-              <div class="form--row_check">
-                <div class="form__checkboxrow">
-                    <input type="checkbox" id="howInstagram" name="contact[Instagram]" value="Instagram" /> 
-                    <label for="howInstagram" class="hidden">Instagram</label>
-                </div>
-                <div class="form__checkboxrow">
-                  <input type="checkbox" id="howPress" name="contact[Press]" value="Press" /> 
-                  <label for="howPress" class="hidden">Press</label>
-                </div>
-                <div class="form__checkboxrow">
-                  <input type="checkbox" id="howAdvertisment" name="contact[Advertisment]" value="Advertisment" /> 
-                  <label for="howAdvertisment" class="hidden">Advertisment</label>
-                </div>
-                <div class="form__checkboxrow">
-                  <input type="checkbox" id="howTradeshow" name="contact[Tradeshows]" value="PTradeshow" /> 
-                  <label for="howTradeshow" class="hidden">Tradeshow</label>
-                </div>
-                <div class="form__checkboxrow">
-                  <input type="checkbox" id="howPinterest" name="contact[Pinterest]" value="Pinterest" /> 
-                  <label for="howPinterest" class="hidden">Pinterest</label>
-                </div>
-                <div class="form__checkboxrow">
-                  <input type="checkbox" id="howSearch" name="contact[Search]" value="Search" /> 
-                  <label for="howSearch" class="hidden">Search</label>
-                </div>
-                <div class="form__checkboxrow">
-                  <input type="checkbox" id="howWordOfMouth" name="contact[Word Of Mouth]" value="Word Of Mouth" /> 
-                  <label for="howWordOfMouth" class="hidden">Word Of Mouth</label>
-                </div>
-                <div class="form__checkboxrow">
-                  <input type="checkbox" id="howOther" name="contact[Other]" value="Other" /> 
-                  <label for="howOther" class="hidden">Other</label>
-                </div>
+          <div class="field">
+            <input type="text" id="EinTax" name="contact[Federal]" placeholder="Federal Tax/EIN" required class="field__input required" />
+          </div>
+          <div class="field">
+            <div class="form--row_check">
+              <div class="form__checkboxrow">
+                <input type="checkbox" id="howInstagram" name="contact[Instagram]" value="Instagram" /> 
+                <label for="howInstagram" class="hidden">Instagram</label>
+              </div>
+              <div class="form__checkboxrow">
+                <input type="checkbox" id="howPress" name="contact[Press]" value="Press" /> 
+                <label for="howPress" class="hidden">Press</label>
+              </div>
+              <div class="form__checkboxrow">
+                <input type="checkbox" id="howAdvertisment" name="contact[Advertisment]" value="Advertisment" /> 
+                <label for="howAdvertisment" class="hidden">Advertisment</label>
+              </div>
+              <div class="form__checkboxrow">
+                <input type="checkbox" id="howTradeshow" name="contact[Tradeshows]" value="PTradeshow" /> 
+                <label for="howTradeshow" class="hidden">Tradeshow</label>
+              </div>
+              <div class="form__checkboxrow">
+                <input type="checkbox" id="howPinterest" name="contact[Pinterest]" value="Pinterest" /> 
+                <label for="howPinterest" class="hidden">Pinterest</label>
+              </div>
+              <div class="form__checkboxrow">
+                <input type="checkbox" id="howSearch" name="contact[Search]" value="Search" /> 
+                <label for="howSearch" class="hidden">Search</label>
+              </div>
+              <div class="form__checkboxrow">
+                <input type="checkbox" id="howWordOfMouth" name="contact[Word Of Mouth]" value="Word Of Mouth" /> 
+                <label for="howWordOfMouth" class="hidden">Word Of Mouth</label>
+              </div>
+              <div class="form__checkboxrow">
+                <input type="checkbox" id="howOther" name="contact[Other]" value="Other" /> 
+                <label for="howOther" class="hidden">Other</label>
               </div>
             </div>
+          </div>
     
             <div class="form__row">
               <label for="InstaHandle" class="form__row-label">Instagram Handle  We’d love to follow you!</label>
