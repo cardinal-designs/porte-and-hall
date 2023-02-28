@@ -226,31 +226,6 @@
   </div>
 </div>
 
-{% comment %}
-<script>
-let elementSelect = document.querySelector('.button'),
-  fname = document.querySelectorAll('#firstName').value,
-  lname = document.querySelectorAll('#lastName').value,
-  errorDiv = document.querySelectorAll('#error-messages');
-
-  elementSelect.addEventListener('click',function(){
-    console.log('Test');
-    console.log(fname);
-    console.log(lname);
-    if(fname == '' || fname == null) {
-      console.log('Please Enter First Name');
-      document.querySelectorAll('.fname').show;
-    }
-    
-    if(lname == '' || lname == null) {
-       console.log('Please Enter Last Name');
-      document.querySelectorAll('.lname').show;
-    }
-    
-  });
-</script>
-{% endcomment %}
-
 {% schema %}
   {
     "name": "Designer Program",
