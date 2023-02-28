@@ -82,6 +82,15 @@
   transform: rotate(45deg);
 }
 
+.form__checkboxrow input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
 
   .form__checkboxrow label {
