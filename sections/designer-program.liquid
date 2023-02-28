@@ -218,7 +218,10 @@
             {% endif %}
           {% endform %}
         </div>
-        <ul id="error-messages"></ul>
+        <ul id="error-messages">
+          <p style="display:none" class="fname">Please Enter First Name</p>
+          <p style="display:none" class="fname">Please Enter Last Name</p>
+        </ul>
       </div>
     </div>
   </div>
@@ -234,16 +237,11 @@ let elementSelect = document.querySelector('.contact__button button'),
     console.log('Test');
     
     if(fname == '' || fname == null) {
-       console.log('Please Enter First Name');
-        let p = document.createElement("p");
-        errorDiv.append("Please Enter First Name", p);
+      document.querySelectorAll('.fname').show
     }
     
     if(lname == '' || lname == null) {
-       console.log('Test');
-      console.log('Please Enter Last Name');
-        let c = document.createElement("p");
-        errorDiv.append("Please Enter First Name", c);
+      document.querySelectorAll('.lname').show
     }
     
   });
