@@ -8,7 +8,7 @@
     assign background = 'fan-motif-background--green.jpg' | asset_url
   endif
 %}
-<section class="fan-motif" style="background: no-repeat center/cover url('{{ background }}')">
+<section class="fan-motif {% if section.settings.hide_mobile %}Hide_Mobile{% endif %}" style="background: no-repeat center/cover url('{{ background }}')">
   <div class="fan-motif__background">
     <div class="fan-motif__inner fan-motif__layout-{{ section.settings.alignment }}">
       <div class="fan-motif__content-wrapper">
