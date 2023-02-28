@@ -41,6 +41,12 @@
   #{{ section.id }} .meet-founder__content-wrapper p.body {
     color: {{ section.settings.text_color }};
   }
+
+  {% if section.settings.border == true %}
+    #{{ section.id }} .meet-founder__background {
+      border: 0;
+    }
+  {% endif %}
   
 </style>
 
@@ -67,6 +73,11 @@
       "type": "color",
       "id": "text_color",
       "label": "Text Color"
+    },
+    {
+      "type": "color",
+      "id": "border",
+      "label": "Show Border"
     },
     {
       "type": "header",
