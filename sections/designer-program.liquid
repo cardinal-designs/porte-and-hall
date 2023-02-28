@@ -226,8 +226,8 @@
 
 <script>
 let elementSelect = document.querySelector('.contact__button button'),
-  fname = document.querySelectorAll('#firstName'),
-  lname = document.querySelectorAll('#lastName'),
+  fname = document.querySelectorAll('#firstName').value,
+  lname = document.querySelectorAll('#lastName').value,
   errorDiv = document.querySelectorAll('#error-messages')
 
   elementSelect.addEventListener('click',function(item){
