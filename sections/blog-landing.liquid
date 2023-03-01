@@ -13,7 +13,8 @@
     <div class="page-width">
       <div class="Blog_Landing_Articles">
         {% for article in blog.articles %}
-          <div class="Blog_Landing_Article">
+          {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
+          <div class="Blog_Landing_Article  {% if thecycle == 'odd' %}Blog_Landing_Article_Odd {% elsif thecycle == 'even'%}Blog_Landing_Article_Even{% endif %}">
             <div class="Blog_Landing_Article__Wrapper">
                <div class="Blog_Landing_Article_Image">
                  {% render 'lazy-image', image: article.image, fade: true, classes: 'img-fill' %}
