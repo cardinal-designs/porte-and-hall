@@ -74,6 +74,17 @@
   flex-direction: row-reverse;
 }
 
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Product_Callout {
+  position: absolute;
+  bottom: 31px;
+  left: 0;
+  background: var(--blue);
+  color: #fff;
+  padding: 9px 10px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
 @media only screen and (max-width: 1200px) {
   
 }
