@@ -22,7 +22,7 @@
                   {% assign myfields = article.metafields.custom %}
     
                   {% assign product = myfields.product_name_callout %}
-                  {{ product.title | json }}
+                  {{ product.id | json }}
                    <div class="Blog_Landing_Product_Callout body-xs"> {{ myfields.product_name_callout }}</div> 
               
                </div>
