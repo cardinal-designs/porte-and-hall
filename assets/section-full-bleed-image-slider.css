@@ -16,6 +16,10 @@
   position: relative;
 }
 
+.image-carousel__pagination.swiper-pagination {
+  bottom: 33px;
+}
+
 .image-carousel__item img {
   width: 100%;
   height: 100%;
