@@ -14,7 +14,7 @@
       <div class="Blog_Landing_Articles">
         {% for article in blog.articles %}
           {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
-          <div class="Blog_Landing_Article  {% if thecycle == 'odd' %}Blog_Landing_Article_Odd {% elsif thecycle == 'even'%}Blog_Landing_Article_Even{% endif %}">
+          <div class="Blog_Landing_Article{% if thecycle == 'odd' %} {{ section.settings.odd_row }} {% elsif thecycle == 'even'%} {{ section.settings.even_row }} {% endif %}">
             <div class="Blog_Landing_Article__Wrapper">
                <div class="Blog_Landing_Article_Image">
                  {% render 'lazy-image', image: article.image, fade: true, classes: 'img-fill' %}
@@ -51,7 +51,39 @@
          "type": "text",
          "id": "section_heading",
          "label": "Section Heading"
-       }
+       },
+       {
+        "type": "select",
+        "id": "odd_row",
+        "label": "Odd Row",
+        "options": [
+          {
+            "value": "image_left_text_right",
+            "label": "Image Left Text Right"
+          },
+          {
+            "value": "image_right_text_left",
+            "label": "image_right_text_left"
+          }
+        ],
+        "default": "image_left_text_right"
+      },
+      {
+        "type": "select",
+        "id": "even_row",
+        "label": "Even Row",
+        "options": [
+          {
+            "value": "image_left_text_right",
+            "label": "Image Left Text Right"
+          },
+          {
+            "value": "image_right_text_left",
+            "label": "image_right_text_left"
+          }
+        ],
+        "default": "image_left_text_right"
+      }
     ]
   }
 {% endschema %}
