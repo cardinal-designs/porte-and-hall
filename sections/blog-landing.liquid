@@ -21,9 +21,10 @@
                  {% render 'lazy-image', image: image, fade: true, classes: 'img-fill' %}
                   {% assign myfields = article.metafields.custom %}
     
-                 {% if myfields.product_name_callout %}
-                   <div class="Blog_Landing_Product_Callout body-xs"> {{ myfields.product_name_callout.id }}</div> 
-                 {% endif %}
+                  {% assign product = myfields.product_name_callout %}
+                  {{ product | json }}
+                   <div class="Blog_Landing_Product_Callout body-xs"> {{ myfields.product_name_callout }}</div> 
+              
                </div>
                <div class="Blog_Landing_Article_Container">
                  <span class="divider">{% render 'divider' %}<span class="divider-line"></span></span>
