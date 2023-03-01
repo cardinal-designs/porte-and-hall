@@ -6,7 +6,7 @@
       {% for block in section.blocks %}
         <div class="swiper-slide">
           <div class="image-carousel__item">
-            <img src="{{ block.settings.image | img_url: 'master'}}" alt="{{ block.settings.image.alt }}">
+           {% render 'lazy-image', image: block.settings.image, fade: true, classes: 'img-fill' %}
           </div>
         </div>
       {% endfor %}
