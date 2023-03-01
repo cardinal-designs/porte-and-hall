@@ -93,6 +93,14 @@
   
 }
 
+@media only screen and (max-width: 991px) {
+  
+  .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container {
+     padding: 0 40px 0 40px;
+  }
+  
+}
+
 @media only screen and (max-width: 768px) {
 
   .Blog_Landing .page-width {
