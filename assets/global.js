@@ -874,7 +874,11 @@ var ImageCarousel = class extends HTMLElement {
         clickable: true,
       },
       breakpoints: {
-        768: {
+        1920: {
+          slidesPerView: 4,
+          spaceBetween: 20,
+        },
+        1440: {
           slidesPerView: 3,
           spaceBetween: 20,
         },
