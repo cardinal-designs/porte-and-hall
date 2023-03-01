@@ -145,6 +145,10 @@ ul.js-error-messages {
   font-family: brandon;
 }
 
+.field__input {
+  padding: 7px 0;  
+}
+
 @media screen and (max-width: 768px) {
 
   .form__checkboxrow label {
