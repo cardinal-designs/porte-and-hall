@@ -56,6 +56,11 @@
   margin-top: 30px;
 }
 
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider:not(.header-divider) {
+  width: 100%;
+  padding: 0;
+}
+
 @media only screen and (max-width: 768px) {
 
   .Blog_Landing .main-blog-heading {
