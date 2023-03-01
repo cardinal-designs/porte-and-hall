@@ -8,7 +8,7 @@ customElements.define('ajax-pagination',class ajaxPagination extends HTMLElement
   doLoadMore(){
     fetch(`${this.next}&section_id=${this.sectionId}`)
     .then(resp => {
-      return resp.text;
+      return resp.text();
     })
     .then(data => {
       let fakeElement = document.createElement('div');
