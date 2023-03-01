@@ -11,10 +11,20 @@
     {% endif %}  
 
     <div class="page-width">
-      <div class="blog-landing-articles">
+      <div class="Blog_Landing_Articles">
         {% for article in blog.articles %}
-          <div class="blog-landing-articles__article">
-           
+          <div class="Blog_Landing_Article">
+            <div class="Blog_Landing_Article__Wrapper">
+               <div class="Blog_Landing_Article_Image">
+                 {% render 'lazy-image', image: article.image, fade: true, classes: 'img-fill' %}
+               </div>
+               <div class="Blog_Landing_Article_Container">
+                  <p class="article-card__date body-xs blue">{{ article.published_at | time_tag: '%m.%d.%Y' }}</p>
+                  <h3 class="article-card__title blue">{{ article.title }}</h3>
+                  <div class="article-card__text body blue">{{ article.excerpt | default: article.content | truncatewords: 50 }}</div>
+                  <a href="{{ article.url }}" class="text-link gold article-card__link">Read More ></a>
+               </div>
+            </div>
           </div>
         {% endfor %}
       </div>
