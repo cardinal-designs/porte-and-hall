@@ -27,6 +27,10 @@
   flex-wrap: wrap;
 }
 
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article {
+  margin-bottom: 40px;
+}
+
 .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Image {
   position: relative;
   aspect-ratio: 1/1;
