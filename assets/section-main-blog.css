@@ -72,6 +72,10 @@
 
 @media only screen and (max-width: 768px) {
 
+  .Blog_Landing .page-width {
+    padding: 0 20px;
+  }
+
   .Blog_Landing .main-blog-heading {
     margin-bottom: 80px;
   }
