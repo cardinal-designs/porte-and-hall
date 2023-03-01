@@ -149,6 +149,10 @@ ul.js-error-messages {
   padding: 18px 84px;
 }
 
+.fan-motif__text {
+  letter-spacing: 2px;
+}
+
 @media screen and (max-width: 768px) {
 
   .form__checkboxrow label {
