@@ -19,8 +19,10 @@
                <div class="Blog_Landing_Article_Image">
                  {% assign image = article.metafields.custom.alternate_featured_image.value | default: article.image  %}
                  {% render 'lazy-image', image: image, fade: true, classes: 'img-fill' %}
-                 {% if article.metafields.custom.product_name_callout %}
-                     <div class="Blog_Landing_Product_Callout body-xs"> {{ article.metafields.custom.product_name_callout.title }}</div> 
+                  {% assign myfields = article.metafields.custom %}
+    
+                 {% if myfields.product_name_callout %}
+                   <div class="Blog_Landing_Product_Callout body-xs"> {{ myfields.product_name_callout }}</div> 
                  {% endif %}
                </div>
                <div class="Blog_Landing_Article_Container">
