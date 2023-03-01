@@ -17,6 +17,11 @@
 .Blog_Landing .main-blog-heading {
   text-align: center;
   margin-bottom: 100px;
+  padding: 0 20px
+}
+
+@media only screen and (max-width: 768px) {
+  
 }
 
 /********* BLOG LANDING CSS END *********/
