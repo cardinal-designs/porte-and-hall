@@ -3,6 +3,7 @@ customElements.define('ajax-pagination',class ajaxPagination extends HTMLElement
     super();
     this.next = this.dataset.next;
     this.sectionId = this.dataset.sectionId;
+    this.wraperElement = this.dataset.wrapperElement;
     this.addEventListener('click',element => this.doLoadMore());
   }
   doLoadMore(){
@@ -13,7 +14,8 @@ customElements.define('ajax-pagination',class ajaxPagination extends HTMLElement
     .then(data => {
       let fakeElement = document.createElement('div');
       fakeElement.innerHTML = data;
-      console.log(this)
+      document.querySelector(`${this.sectionId}`).querySelector(this.wraperElement).insertAdjacentHTML('beforeend',fakeElement.querySelector(this.wraperElement).innerHTML);
+      this.replaceWith(fakeElement.querySelector('ajax-pagination'));
     })
   }
 })
