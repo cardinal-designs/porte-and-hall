@@ -14,7 +14,7 @@
       <div class="Blog_Landing_Articles">
         {% for article in blog.articles %}
           {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
-          <div class="Blog_Landing_Article{% if thecycle == 'odd' %} {% if section.settings.odd_row == 'image_left_text_right' %} Image_Left_Text_Right{% else %} Image_Right_Text_Left {% endif %} {% elsif thecycle == 'even'%} {% if section.settings.even_row == 'image_left_text_right' %} Image_Left_Text_Right{% else %} Image_Right_Text_Left {% endif %} {% endif %}">
+          <div class="Blog_Landing_Article{% if thecycle == 'odd' %}{% if section.settings.odd_row == 'image_fist' %} Image_First{% else %} Image_Second{% endif %}{% elsif thecycle == 'even'%} {% if section.settings.even_row == 'image_fist' %} Image_First{% else %} Image_Second {% endif %} {% endif %}">
             <div class="Blog_Landing_Article__Wrapper">
                <div class="Blog_Landing_Article_Image">
                  {% render 'lazy-image', image: article.image, fade: true, classes: 'img-fill' %}
