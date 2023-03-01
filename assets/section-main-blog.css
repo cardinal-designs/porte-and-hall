@@ -20,15 +20,15 @@
   padding: 0 20px
 }
 
+.Blog_Landing .Blog_Landing_Article {
+  margin-bottom: 40px;
+}
+
 .Blog_Landing .Blog_Landing_Article__Wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-}
-
-.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article {
-  margin-bottom: 40px;
 }
 
 .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Image {
