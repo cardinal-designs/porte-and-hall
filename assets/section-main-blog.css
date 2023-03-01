@@ -70,6 +70,10 @@
   padding: 0;
 }
 
+.Blog_Landing_Article.Image_Second .Blog_Landing_Article__Wrapper {
+  flex-direction: row-reverse;
+}
+
 @media only screen and (max-width: 1200px) {
   
 }
