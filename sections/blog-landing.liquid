@@ -38,9 +38,12 @@
         {% endfor %}
       </div>
 
-      <div class="loadmore--wrapper text-center">
-        <button type="button" class="button" data-next="{{ paginate.next }}">{{ 'blogs.load_more' | t }}</button>
-      </div>
+      <ajax-pagination class="">
+    --{{ paginate.previous }}
+        <div class="loadmore--wrapper text-center">
+          <button type="button" class="button" data-next="{{ paginate.next }}">{{ 'blogs.load_more' | t }}</button>
+        </div>
+      </ajax-pagination>
 
       {% if paginate.pages > 1 %}
         {% render 'pagination', paginate: paginate %}
