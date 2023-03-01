@@ -7,6 +7,7 @@ customElements.define('ajax-pagination',class ajaxPagination extends HTMLElement
     this.addEventListener('click',element => this.doLoadMore());
   }
   doLoadMore(){
+    this.classList.add('loading');
     fetch(`${this.next}&section_id=${this.sectionId}`)
     .then(resp => {
       return resp.text();
