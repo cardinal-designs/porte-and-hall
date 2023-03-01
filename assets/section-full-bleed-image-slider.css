@@ -13,6 +13,7 @@
 
 .image-carousel__item {
   aspect-ratio: 1/1;
+  position: relative;
 }
 
 .image-carousel__item img {
