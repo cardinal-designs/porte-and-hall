@@ -3,6 +3,12 @@
 
 <div class="main-blog">
   {% paginate blog.articles by 6 %}
+    
+    {% if section.settings.section_heading != blank  %}
+    <div class="main-blog-heading">
+      <h2 class="blue">{{ section.settings.section_heading }}</h2>
+    </div>
+    {% endif %}  
 
     <div class="page-width">
 
