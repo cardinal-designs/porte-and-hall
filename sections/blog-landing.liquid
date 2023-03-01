@@ -26,7 +26,7 @@
                    <div class="Blog_Landing_Product_Callout body-xs"> {{ myfields.product_name_callout }}</div> 
 
                   {% assign article_prod = article.metafields.custom.product_name_callout.value %}
-                  {{ article_prod }}
+                  {{ article_prod.value }}
                   <div class="product__title">{{ article_prod.title }}</div>
                  
                </div>
