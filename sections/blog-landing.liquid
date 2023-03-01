@@ -17,6 +17,8 @@
           <div class="Blog_Landing_Article {% if thecycle == 'odd' %}{% if section.settings.odd_row == 'image_fist' %}Image_First{% else %}Image_Second{% endif %}{% elsif thecycle == 'even'%}{% if section.settings.even_row == 'image_fist' %}Image_First{% else %}Image_Second {% endif %}{% endif %}">
             <div class="Blog_Landing_Article__Wrapper">
                <div class="Blog_Landing_Article_Image">
+                 {% assign image = article.metafields.custom.alternate_featured_image %}
+                 {{ image }}
                  {% render 'lazy-image', image: article.image, fade: true, classes: 'img-fill' %}
                  {% if article.metafields.custom.product_name_callout %}
                      <div class="Blog_Landing_Product_Callout body-xs"> {{ article.metafields.custom.product_name_callout.id }}</div> 
