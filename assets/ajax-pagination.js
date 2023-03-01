@@ -13,7 +13,7 @@ customElements.define('ajax-pagination',class ajaxPagination extends HTMLElement
     .then(data => {
       let fakeElement = document.createElement('div');
       fakeElement.innerHTML = data;
-      console.log(fakeElement,data)
+      console.log(this)
     })
   }
 })
