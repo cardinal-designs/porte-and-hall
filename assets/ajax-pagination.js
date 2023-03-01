@@ -4,7 +4,7 @@ customElements.define('ajax-pagination',class ajaxPagination extends HTMLElement
     this.next = this.dataset.next;
     this.sectionId = this.dataset.sectionId;
     this.wraperElement = this.dataset.wrapperElement;
-    this.button = this.querySelector('js-button');
+    this.button = this.querySelector('.js-button');
     this.button.addEventListener('click',element => this.doLoadMore());
   }
   doLoadMore(){
