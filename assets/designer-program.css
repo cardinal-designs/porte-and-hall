@@ -1,0 +1,191 @@
+.Designer_Program_Header h2 {
+  margin-bottom: 50px;
+}
+
+.Designer_Program_Header {
+  margin-bottom: 100px;
+}
+
+.form__row-label {
+  font-size: 18px;
+  line-height: 120%;
+  font-family: brandon;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.contact .field.How_Did_You_Hear {
+  margin: 50px 0 70px;
+}
+
+.form__checkboxrow label {
+  font-size: 18px;
+  line-height: 120%;
+  font-family: brandon;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;  
+}
+
+.Checkbox_Wrapper {
+  margin-top: 50px;
+}
+
+.Checkbox_Wrapper .form__checkboxrow {
+  flex: 0 0 50%;
+  margin: 0 0 30px;
+}
+
+.Checkbox_Wrapper {
+  margin-top: 50px;
+  max-width: 570px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.select::after {
+  display:none;
+}
+
+
+.form__checkboxrow label {
+  position: relative;
+  cursor: pointer;
+}
+
+.form__checkboxrow label::before {
+  content: "";
+  -webkit-appearance: none;
+  background-color: transparent;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 9px;
+  height: 18px;
+  width: 18px;
+  border: 1px solid #546B82;
+  top: -3px;
+}
+
+.form__checkboxrow input:checked + label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  width: 5px;
+  height: 10px;
+  border: solid #546B82;
+  border-width: 0 1px 1px 0;
+  transform: rotate(45deg);
+}
+
+.form__checkboxrow input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.customPopup {
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #546b82b8;
+}
+
+.customPopup .customPopup-content {
+  max-width: 480px;
+  width: 90%;
+  background: #fff;
+  margin: 0 auto;
+  padding: 30px 30px;
+  text-align: center;
+  margin-top: 40vh;
+  position: relative;
+  font-family: 'Brandon';
+  font-size: 20px;
+}
+
+.customPopupclose svg {
+  height: 15px;
+  width: 15px;
+}
+
+.customPopupclose {
+  position: absolute;
+  right: -10px;
+  top: -20px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 10px;
+  width: 40px;
+  height: 39px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+ul.js-error-messages {
+  color: red;
+  list-style-type: none;
+  margin: 0;
+  font-size: 14px;
+  font-family: brandon;
+}
+
+.field__input {
+  padding: 7px 0;  
+}
+
+.contact__button .button {
+  padding: 18px 84px;
+}
+
+.fan-motif__text {
+  letter-spacing: 2px;
+}
+
+.fan-motif__heading {
+  margin: 30px 0 50px;
+}
+
+@media screen and (max-width: 768px) {
+
+  .form__checkboxrow label {
+    font-size: 14px;
+  }
+
+  .Checkbox_Wrapper .form__checkboxrow {
+    flex: 0 0 100%;
+    margin: 0 0 35px;
+  }
+
+  .contact__fields.Instagram_Field {
+    display: block;
+  }
+
+  .Designer_Program_Header h2 {
+    margin-bottom: 20px;
+  }
+
+  .Designer_Program_Header {
+    margin-bottom: 50px;
+  }
+
+  .contact .field.How_Did_You_Hear {
+    margin-bottom: 10px;
+  }
+
+  .contact__button .button {
+    padding: 14px 19px;
+  }
+  
+}

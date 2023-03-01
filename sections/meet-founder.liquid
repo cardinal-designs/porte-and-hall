@@ -1,6 +1,6 @@
 {{ 'section-meet-founder.css' | asset_url | stylesheet_tag }}
 
-<section class="meet-founder">
+<section id="{{ section.id }}" class="meet-founder {% if section.settings.hide_mobile == true %}Hide_Mobile{% endif %} {% if section.settings.hide_desktop == true %}Hide_Desktop{% endif %}">
   <div class="meet-founder__background">
     <div class="meet-founder__inner meet-founder__layout-{{ section.settings.alignment }}">
       <div class="meet-founder__content-wrapper">
@@ -31,10 +31,54 @@
   </div>
 </section>
 
+<style>
+
+  #{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  #{{ section.id }} .meet-founder__heading,
+  #{{ section.id }} .meet-founder__content-wrapper p.body {
+    color: {{ section.settings.text_color }};
+  }
+
+  {% if section.settings.border != true %}
+    #{{ section.id }} .meet-founder__background {
+      border: 0;
+    }
+  {% endif %}
+  
+</style>
+
 {% schema %}
 {
   "name": "Meet Our Founder",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_desktop",
+      "label": "Hide on Desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_mobile",
+      "label": "Hide on Mobile"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color"
+    },
+    {
+      "type": "color",
+      "id": "border",
+      "label": "Show Border"
+    },
     {
       "type": "header",
       "content": "Layout"

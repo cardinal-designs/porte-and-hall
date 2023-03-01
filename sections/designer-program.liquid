@@ -1,0 +1,255 @@
+{{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
+{{ 'designer-program.css' | asset_url | stylesheet_tag }}
+
+<div class="Designer_Program_Main">
+  <div class="contact page-width spaced-section">
+    <div class="Contact_Form">
+      <div class="Designer_Program_Header text-center">
+        {% if section.settings.heading != blank %}
+          <h2>{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.top_text != blank %}
+          <p class="Optional_Field">{{ section.settings.top_text }}</p>
+        {% endif %}
+      </div>
+      <form-validation>
+        <div class="program__form designer--form">
+        <div class="form__wrapper">
+            {% form 'contact', id: 'ContactForm', name: 'Contact_Form', class:'js-form-validation' %}
+              <input type="hidden" name="contact[designer_program]" value="Designer Program">
+              <div class="contact__fields">
+                <div class="field">
+                  <input class="field__input" type="text" id="firstName" name="contact[First Name]" required="true" data-error-message="Please Enter {{ 'templates.designer.form.first_name' | t }}" placeholder="{{ 'templates.designer.form.first_name' | t }}*"/>
+                </div>
+                <div class="field">
+                  <input class="field__input" type="text" id="lastName" name="contact[Last Name]" placeholder="{{ 'templates.designer.form.last_name' | t }}*" required="true" data-error-message="Please Enter {{ 'templates.designer.form.last_name' | t }}"/>
+                </div>  
+                <div class="field">
+                  <input class="field__input" type="text" id="organizationName" name="contact[Organization Name]" placeholder="{{ 'templates.designer.form.organization_name' | t }}" />
+                </div>  
+                <div class="field field--with-error">
+                  <input
+                    autocomplete="email"
+                    type="email"
+                    id="ContactForm-email"
+                    class="field__input"
+                    name="contact[email]"
+                    spellcheck="false"
+                    autocapitalize="off"
+                    value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                    aria-required="true"
+                    required="true"
+                    {% if form.errors contains 'email' %}
+                      aria-invalid="true"
+                      aria-describedby="ContactForm-email-error"
+                    {% endif %}
+                    data-error-message="Please Enter {{ 'templates.designer.form.email' | t }}"
+                    placeholder="{{ 'templates.designer.form.email' | t }}*"
+                  >
+                  {% if form.errors contains 'email' %}
+                    <small class="contact__field-error" id="ContactForm-email-error">
+                      <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+                      <span class="form__message Form_Error">{{ 'templates.contact.form.form_error' | t }}</span>
+                    </small>
+                  {% endif %}
+                </div>
+                <div class="field">
+                  <input class="field__input" type="text" id="CompanyWebsite" name="contact[Company Website]" placeholder="{{ 'templates.designer.form.company_website' | t }}">
+                </div> 
+
+                <div class="field">
+                  <input class="field__input" type="tel" id="PhoneNumber" name="contact[Business phone number]" placeholder="{{ 'templates.designer.form.phone' | t }}"/>
+                </div>
+      
+                <div class="field">
+                  <input class="field__input" type="text" id="BusinessAddress" name="contact[Business Address]" placeholder="{{ 'templates.designer.form.address' | t }}"/>
+                </div>
+      
+                <div class="field">
+                  <input class="field__input" type="text" id="AptSuite" name="contact[Apt/Suite]" placeholder="{{ 'templates.designer.form.suite' | t }}"/>
+                </div>
+        
+                <div class="field">
+                  <input class="field__input" type="text" id="city" name="contact[City]" placeholder="{{ 'templates.designer.form.city' | t }}"/>
+                </div>
+                
+                <div class="select field">
+                  <select id="BusinessState" name="contact[State]" class="field__input selected" >
+                    <option value="" class="selected">Select a state</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </select>
+                </div>  
+              
+                <div class="field">
+                  <input class="field__input" type="text" id="ZipCode" name="contact[Zip]" placeholder="{{ 'templates.designer.form.zip' | t }}"/>
+                </div>
+          
+                <div class="field">
+                  <input type="text" id="EinTax" name="contact[Federal]" required data-error-message="Please Enter {{ 'templates.designer.form.tax' | t }}" class="field__input required" placeholder="{{ 'templates.designer.form.tax' | t }}*"/>
+                </div>
+              </div>
+
+              <div class="contact__fields Instagram_Field">
+                <div class="form__row">
+                  <input class="field__input" type="text" id="InstaHandle" name="contact[Instagram Handle]" placeholder="{{ 'templates.designer.form.instagram' | t }}"/>
+                </div>
+              </div>
+              
+              <div class="field How_Did_You_Hear">
+                <div class="form--row_check">
+                  <h3 class="form__sectionheader">How did you hear about us?</h3>
+                  <div class="Checkbox_Wrapper">
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howInstagram" name="contact[Instagram]" value="Instagram" /> 
+                      <label for="howInstagram">Instagram</label>
+                    </div>
+                    
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howPinterest" name="contact[Pinterest]" value="Pinterest" /> 
+                      <label for="howPinterest">Pinterest</label>
+                    </div>
+                    
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howPress" name="contact[Press]" value="Press" /> 
+                      <label for="howPress">Press</label>
+                    </div>
+
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howSearch" name="contact[Search]" value="Search" /> 
+                      <label for="howSearch">Search</label>
+                    </div>
+                    
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howAdvertisment" name="contact[Advertisment]" value="Advertisment" /> 
+                      <label for="howAdvertisment">Advertisment</label>
+                    </div>
+
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howWordOfMouth" name="contact[Word Of Mouth]" value="Word Of Mouth" /> 
+                      <label for="howWordOfMouth">Word Of Mouth</label>
+                    </div>
+                    
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howTradeshow" name="contact[Tradeshows]" value="PTradeshow" /> 
+                      <label for="howTradeshow">Tradeshow</label>
+                    </div>
+
+                    <div class="form__checkboxrow">
+                      <input type="checkbox" id="howOther" name="contact[Other]" value="Other" /> 
+                      <label for="howOther">Other</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="Optional_Field text-center">*Optional form field</div>
+              <div class="contact__button text-center">
+                <button type="submit" class="button">
+                  {{ 'templates.contact.form.send' | t }}
+                </button>
+              </div>
+      		{% if form.posted_successfully? %}
+              <div class="customPopup js-submit-popup">
+                <div class="Alert Alert--success customPopup-content">
+                <div class="customPopupclose js-popup-close">{%- include 'icon-close' -%}</div>
+                  Received! Thanks for submitting an application for our trade program. We will be back to you shortly.
+                </div>
+              </div>
+            
+              <script>
+                document.querySelector('.js-popup-close').addEventListener('click',function(){
+                  document.querySelector('.js-submit-popup').hidden = true;
+                   var uri = window.location.toString();
+                  if (uri.indexOf("?") > 0) {
+                    var clean_uri = uri.substring(0, uri.indexOf("?"));
+                    window.history.replaceState({}, document.title, clean_uri);
+                  }
+                });
+              </script>
+            {% endif %}
+          {% endform %}
+        </div>
+        <ul class="js-error-messages"></ul>
+      </div>
+      </form-validation>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Designer Program",
+    "settings": [
+      {
+        "type":"text",
+        "id":"heading",
+        "label":"Top Heading"
+      },
+      {
+        "type":"text",
+        "id":"top_text",
+        "label":"Top Text"
+      },
+      {
+        "type" : "url",
+        "id" : "thankyou_link",
+        "label" : "Link Submit"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Designer Program"
+      }
+    ]
+  }
+{% endschema %}
