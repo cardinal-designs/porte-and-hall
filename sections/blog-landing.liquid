@@ -21,7 +21,7 @@
                  {% render 'lazy-image', image: image, fade: true, classes: 'img-fill' %}
                  {% assign myfields = article.metafields.custom %}
                  {% assign product = myfields.product_name_callout.value %}
-                 <div class="Blog_Landing_Product_Callout body-xs"> {{ product.title }}</div> 
+                 {% if product.title != blank %}<div class="Blog_Landing_Product_Callout body-xs"> {{ product.title }}</div>{% endif %} 
                </div>
                <div class="Blog_Landing_Article_Container">
                  <span class="divider">{% render 'divider' %}<span class="divider-line"></span></span>
