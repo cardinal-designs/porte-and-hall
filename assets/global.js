@@ -882,7 +882,7 @@ var ImageCarousel = class extends HTMLElement {
           slidesPerView: 3,
           spaceBetween: 20,
         },
-        768: {
+        1023: {
           slidesPerView: 3,
           spaceBetween: 20,
         }
