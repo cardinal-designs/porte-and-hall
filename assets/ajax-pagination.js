@@ -16,7 +16,7 @@ customElements.define('ajax-pagination',class ajaxPagination extends HTMLElement
       fakeElement.innerHTML = data;
       console.log(document.querySelector(`#${this.sectionId}`))
       // document.querySelector(`#${this.sectionId}`).querySelector(this.wraperElement).insertAdjacentHTML('beforeend',fakeElement.querySelector(this.wraperElement).innerHTML);
-      this.replaceWith(fakeElement.querySelector('ajax-pagination'));
+      // this.replaceWith(fakeElement.querySelector('ajax-pagination'));
     })
   }
 })
