@@ -24,6 +24,7 @@
         "533e339b-359f-4049-93dd-a79cb7dc52d9": {
           "type": "image",
           "settings": {
+            "image": "shopify:\/\/shop_images\/Rectangle_595.jpg"
           }
         }
       },
@@ -47,11 +48,18 @@
       "type": "main-blog",
       "settings": {
       }
+    },
+    "f9bf3bc7-3905-4a40-b7e0-ea489d642f3a": {
+      "type": "ugc-carousel",
+      "settings": {
+        "heading": ""
+      }
     }
   },
   "order": [
     "a9c583da-befc-4ebc-9ffe-a04752044e42",
     "header",
-    "main"
+    "main",
+    "f9bf3bc7-3905-4a40-b7e0-ea489d642f3a"
   ]
 }
