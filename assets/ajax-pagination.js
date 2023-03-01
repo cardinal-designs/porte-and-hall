@@ -5,6 +5,7 @@ customElements.define('ajax-pagination',class ajaxPagination extends HTMLElement
     this.sectionId = this.dataset.sectionId;
     this.wraperElement = this.dataset.wrapperElement;
     this.addEventListener('click',element => this.doLoadMore());
+    console.log(this)
   }
   doLoadMore(){
     this.querySelector('button').classList.add('loading');
