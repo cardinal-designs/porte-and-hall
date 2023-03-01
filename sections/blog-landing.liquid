@@ -19,15 +19,9 @@
                <div class="Blog_Landing_Article_Image">
                  {% assign image = article.metafields.custom.alternate_featured_image.value | default: article.image  %}
                  {% render 'lazy-image', image: image, fade: true, classes: 'img-fill' %}
-                  {% assign myfields = article.metafields.custom %}
-    
-                  {% assign product = myfields.product_name_callout %}
-                  {{ product.id | json }}
-                   <div class="Blog_Landing_Product_Callout body-xs"> {{ myfields.product_name_callout.value.title }}</div> 
-
-                  {% assign article_prod = article.metafields.custom.product_name_callout.value %}
-                  <div class="product__title">{{ article_prod.title }}</div>
-                 
+                 {% assign myfields = article.metafields.custom %}
+                 {% assign product = myfields.product_name_callout %}
+                 <div class="Blog_Landing_Product_Callout body-xs"> {{ myfields.product_name_callout.value.title }}</div> 
                </div>
                <div class="Blog_Landing_Article_Container">
                  <span class="divider">{% render 'divider' %}<span class="divider-line"></span></span>
