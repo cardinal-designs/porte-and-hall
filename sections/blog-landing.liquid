@@ -19,14 +19,14 @@
                  {% render 'lazy-image', image: article.image, fade: true, classes: 'img-fill' %}
                </div>
                <div class="Blog_Landing_Article_Container">
-                 <span class="divider"><span class="divider-line"></span> {% render 'divider' %}</span>
+                 <span class="divider">{% render 'divider' %}<span class="divider-line"></span></span>
                  <div class="Blog_Landing_Article_Content">
                     <p class="article-card__date body-xs blue">{{ article.published_at | time_tag: '%m.%d.%Y' }}</p>
                     <h3 class="article-card__title blue">{{ article.title }}</h3>
                     <div class="article-card__text body blue">{{ article.excerpt | default: article.content | truncatewords: 50 | strip_html }}</div>
                     <a href="{{ article.url }}" class="text-link gold article-card__link">Read More ></a>
                  </div>
-                <span class="divider">{% render 'divider' %}<span class="divider-line"></span></span>
+                 <span class="divider"><span class="divider-line"></span> {% render 'divider' %}</span>
                </div>
             </div>
           </div>
