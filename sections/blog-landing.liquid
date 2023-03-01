@@ -38,8 +38,10 @@
         {% endfor %}
       </div>
 
+    {% if paginate.previous.url != blank %}11
+    {% else %}22
+    {% endif %}
       <ajax-pagination class="{% if paginate.next.url == blank %}hidden{% endif %}">
-    --{{ paginate.previous.url }}--{{ paginate.next.url }}
         <div class="loadmore--wrapper text-center">
           <button type="button" class="button">{{ 'blogs.load_more' | t }}</button>
         </div>
