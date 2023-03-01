@@ -15,8 +15,8 @@
   letter-spacing: 2px;
 }
 
-.How_Did_You_Hear {
-  margin-top: 50px;
+.contact .field.How_Did_You_Hear {
+  margin: 50px 0 70px;
 }
 
 .form__checkboxrow label {
@@ -90,10 +90,6 @@
   margin-bottom: 0;
   display: none;
   cursor: pointer;
-}
-
-.How_Did_You_Hear {
-  margin-bottom: 70px;
 }
 
 .customPopup {
@@ -176,12 +172,8 @@ ul.js-error-messages {
     top: 1px;
   }
   
-  .How_Did_You_Hear {
+  .contact .field.How_Did_You_Hear {
     margin-bottom: 70px;
-  }
-
-  .field.How_Did_You_Hear {
-    margin-bottom: 10px;
   }
     
 }
