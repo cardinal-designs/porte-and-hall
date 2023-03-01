@@ -44,7 +44,21 @@
           data-next="{{ paginate.next.url }}"
           data-section-id="{{ section.id }}">
         <div class="loadmore--wrapper text-center">
-          <button type="button" class="button">{{ 'blogs.load_more' | t }}</button>
+          <button type="button" class="button">
+          <span>{{ 'blogs.load_more' | t }}</span>
+          <div class="loading-overlay__spinner">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                role="presentation"
+                class="spinner"
+                viewBox="0 0 66 66"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </button>
         </div>
       </ajax-pagination>
 
