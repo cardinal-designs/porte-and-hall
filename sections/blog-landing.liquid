@@ -21,7 +21,7 @@
                  {% render 'lazy-image', image: image, fade: true, classes: 'img-fill' %}
                   {% assign myfields = article.metafields.custom %}
     
-                  {% assign product = myfields.product_name_callout %}
+                  {% assign product = myfields.product_name_callout.value %}
                   {{ product | json }}
                    <div class="Blog_Landing_Product_Callout body-xs"> {{ myfields.product_name_callout }}</div> 
               
