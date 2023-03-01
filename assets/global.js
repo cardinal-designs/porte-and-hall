@@ -865,7 +865,7 @@ var ImageCarousel = class extends HTMLElement {
     this.section_id = this.querySelector(`.swiper`).id
     this.pagination = this.querySelector(`.image-carousel__pagination`)
     const swiper_options = {
-      slidesPerView: 1.2,
+      slidesPerView: 4,
       centeredSlides: true,
       spaceBetween: 10,
       loop: true,
@@ -880,6 +880,10 @@ var ImageCarousel = class extends HTMLElement {
         },
         1440: {
           slidesPerView: 3,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 1.2,
           spaceBetween: 20,
         },
       },
