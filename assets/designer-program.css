@@ -145,6 +145,10 @@ ul.js-error-messages {
   padding: 7px 0;  
 }
 
+.contact__button .button {
+  padding: 18px 84px;
+}
+
 @media screen and (max-width: 768px) {
 
   .form__checkboxrow label {
