@@ -19,7 +19,7 @@
                <div class="Blog_Landing_Article_Image">
                  {% render 'lazy-image', image: article.image, fade: true, classes: 'img-fill' %}
                  {% if article.metafields.custom.product_name_callout %}
-                     <div class="Blog_Landing_Product_Callout body-xs"> {{ article.metafields.custom.product_name_callout.value }}</div> 
+                     <div class="Blog_Landing_Product_Callout body-xs"> {{ article.metafields.custom.product_name_callout.id }}</div> 
                  {% endif %}
                </div>
                <div class="Blog_Landing_Article_Container">
