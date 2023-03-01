@@ -39,8 +39,10 @@
       </div>
 
       <ajax-pagination 
-          class="{% if paginate.next.url == blank %}hidden{% endif %}" data-wrapper-element=".js-articles--wrapper"
-          data-next="{{ paginate.next.url }}">
+          class="{% if paginate.next.url == blank %}hidden{% endif %}" 
+          data-wrapper-element=".js-articles--wrapper"
+          data-next="{{ paginate.next.url }}"
+          data-section-id="{{ section.id }}">
         <div class="loadmore--wrapper text-center">
           <button type="button" class="button">{{ 'blogs.load_more' | t }}</button>
         </div>
