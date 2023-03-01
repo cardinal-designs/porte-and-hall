@@ -38,6 +38,10 @@
         {% endfor %}
       </div>
 
+      <div class="loadmore--wrapper">
+        <button type="button">Load More</button>
+      </div>
+
       {% if paginate.pages > 1 %}
         {% render 'pagination', paginate: paginate %}
       {% endif %}
