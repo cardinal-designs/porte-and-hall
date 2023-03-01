@@ -85,7 +85,11 @@
   font-weight: 500;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1199px) {
+
+  .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container {
+    padding: 0 40px 0 65px;
+  }
   
 }
 
