@@ -1,5 +1,33 @@
 {
   "sections": {
+    "8c3a8475-68eb-43b4-981f-26bc96009e1e": {
+      "type": "ugc-carousel",
+      "blocks": {
+        "f60db34e-f2ba-49e5-93c3-cea4a7cca6f1": {
+          "type": "post",
+          "settings": {
+          }
+        },
+        "203eb489-4436-43e3-9f9e-02bd481b6f68": {
+          "type": "post",
+          "settings": {
+          }
+        },
+        "2c0fb22d-da31-41dd-8d7c-2c114204417c": {
+          "type": "post",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "f60db34e-f2ba-49e5-93c3-cea4a7cca6f1",
+        "203eb489-4436-43e3-9f9e-02bd481b6f68",
+        "2c0fb22d-da31-41dd-8d7c-2c114204417c"
+      ],
+      "settings": {
+        "heading": ""
+      }
+    },
     "header": {
       "type": "page-header",
       "settings": {
@@ -13,6 +41,7 @@
     }
   },
   "order": [
+    "8c3a8475-68eb-43b4-981f-26bc96009e1e",
     "header",
     "main"
   ]
