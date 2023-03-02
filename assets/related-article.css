@@ -36,6 +36,10 @@
   margin: 0 -10px 50px -10px;
 }
 
+.divider svg {
+  flex: 1 0 32px;
+}
+
 @media screen and (max-width: 768px) {
 
   .blog-articles__article {
