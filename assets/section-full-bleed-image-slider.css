@@ -20,6 +20,11 @@
   bottom: 29px;
 }
 
+.image-carousel__pagination .swiper-pagination-bullet-active:after {
+  width: 6px;
+  height: 6px;
+}
+
 .image-carousel__item img {
   width: 100%;
   height: 100%;
