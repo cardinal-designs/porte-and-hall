@@ -15,6 +15,14 @@
   padding: 0 10px;
 }
 
+.Related_Article_Wrapper .article-card__container {
+  padding-top: 30px;
+}
+
+.Related_Article_Wrapper .article-card__date {
+  margin: 0 0 23px;
+}
+
 @media screen and (max-width: 768px) {
 
   .blog-articles__article {
