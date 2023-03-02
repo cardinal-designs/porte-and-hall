@@ -963,7 +963,7 @@ var ShopStoryCarousel = class extends HTMLElement {
     this.section_id = this.querySelector(`.swiper`).id
     this.pagination = this.querySelector(`.shop-story-carousel__pagination`)
     const swiper_options = {
-      slidesPerView: 2,
+      slidesPerView: 2.1,
       spaceBetween: 12,
       centeredSlides: false,
       loop: true,
