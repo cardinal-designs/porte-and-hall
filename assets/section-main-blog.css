@@ -94,6 +94,15 @@
   margin: 100px 0;
 }
 
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider svg {
+  height: 32px;
+  width: 32px;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider .divider-line {
+  width: 84%;
+}
+
 @media only screen and (max-width: 1199px) {
 
   .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container {
