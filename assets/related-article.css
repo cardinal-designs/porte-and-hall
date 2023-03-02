@@ -31,6 +31,11 @@
   letter-spacing: normal;
 }
 
+.Related_Article .heading-with-accents {
+  width: auto;
+  margin: 0 -10px 50px -10px;
+}
+
 @media screen and (max-width: 768px) {
 
   .blog-articles__article {
