@@ -120,6 +120,10 @@
     margin-bottom: 80px;
   }
 
+  .Blog_Landing .main-blog-heading h1 br {
+    display: none;
+  }
+
   .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Image {
     flex: 1 0 100%;
     width: 100%;
