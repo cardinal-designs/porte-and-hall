@@ -23,6 +23,10 @@
   margin: 0 0 23px;
 }
 
+.Related_Article_Wrapper .article-card__date time {
+  font-weight: 500;
+}
+
 @media screen and (max-width: 768px) {
 
   .blog-articles__article {
