@@ -95,8 +95,12 @@
   margin-bottom: 100px;
 }
 
-.loadmore--wrapper {
+.Blog_Landing .loadmore--wrapper {
   margin: 100px 0;
+}
+
+.Blog_Landing .loadmore--wrapper .button {
+    padding: 18px 60px;
 }
 
 .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider.divider-start {
