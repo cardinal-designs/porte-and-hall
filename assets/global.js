@@ -932,7 +932,7 @@ var ArticleCarousel = class extends HTMLElement {
           centeredSlides: true
         },
         1440: {
-          slidesPerView: 3.5,
+          slidesPerView: 3.2,
           spaceBetween: 20,
           centeredSlides: true
         }
