@@ -52,6 +52,10 @@
   padding-top: 124px;
 }
 
+.Article_Carousel .heading-with-accents {
+  column-gap: 100px;
+}
+
 @media screen and (max-width: 768px) {
 
   .Article_Carousel .heading-with-accents {
@@ -72,6 +76,10 @@
 
   .Article_Carousel {
     padding-top: 50px;
+  }
+
+  .Article_Carousel .heading-with-accents {
+    column-gap: 0px;
   }
   
 }
