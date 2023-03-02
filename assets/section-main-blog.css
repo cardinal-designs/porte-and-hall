@@ -50,7 +50,7 @@
 }
 
 .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .Blog_Landing_Article_Content {
-  padding: 50px 0 50px 16px;
+  padding: 50px 0;
 }
 
 .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .Blog_Landing_Article_Content .article-card__date {
@@ -100,7 +100,6 @@
 
 .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider.divider-end {
   justify-content: flex-start;
-  padding-left: 16px
 }
 
 .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider {
