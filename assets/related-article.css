@@ -38,6 +38,8 @@
 
 .divider svg {
   flex: 1 0 32px;
+  height: 32px;
+  width: 32px;
 }
 
 @media screen and (max-width: 768px) {
