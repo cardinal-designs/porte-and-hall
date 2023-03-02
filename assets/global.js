@@ -909,3 +909,95 @@ var ImageCarousel = class extends HTMLElement {
 }
 
 customElements.define('image-carousel', ImageCarousel)
+
+var ArticleCarousel = class extends HTMLElement {
+  constructor(){
+    super();
+
+    this.section_id = this.querySelector(`.swiper`).id
+    this.pagination = this.querySelector(`.article-carousel__pagination`)
+    const swiper_options = {
+      slidesPerView: 2,
+      spaceBetween: 12,
+      centeredSlides: false,
+      loop: true,
+      pagination: {
+        el: this.pagination,
+        clickable: true,
+      },
+      breakpoints: {
+        1920: {
+          slidesPerView: 4.1,
+          spaceBetween: 20,
+          centeredSlides: true
+        },
+        1440: {
+          slidesPerView: 3.5,
+          spaceBetween: 20,
+          centeredSlides: true
+        }
+      },
+      on: {
+        init: function () {
+          console.log('swiper initialized');
+        },
+      },
+    }
+
+    if (!this.classList.contains("swiper-initialized")){
+      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+    }
+  }
+
+  initializeCarousel(swipe, options) {
+    const articleSwiper = new Swiper(swipe, options);
+  }
+}
+
+customElements.define('article-carousel', ArticleCarousel)
+
+var ShopStoryCarousel = class extends HTMLElement {
+  constructor(){
+    super();
+
+    this.section_id = this.querySelector(`.swiper`).id
+    this.pagination = this.querySelector(`.shop-story-carousel__pagination`)
+    const swiper_options = {
+      slidesPerView: 2,
+      spaceBetween: 12,
+      centeredSlides: false,
+      loop: true,
+      pagination: {
+        el: this.pagination,
+        clickable: true,
+      },
+      breakpoints: {
+        1920: {
+          slidesPerView: 4.1,
+          spaceBetween: 20,
+          centeredSlides: true
+        },
+        1440: {
+          slidesPerView: 3.5,
+          spaceBetween: 20,
+          centeredSlides: true
+        }
+      },
+      on: {
+        init: function () {
+          console.log('swiper initialized');
+        },
+      },
+    }
+
+    if (!this.classList.contains("swiper-initialized")){
+      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+    }
+  }
+
+  initializeCarousel(swipe, options) {
+    const articleSwiper = new Swiper(swipe, options);
+  }
+}
+
+customElements.define('shop-story-carousel', ShopStoryCarousel)
