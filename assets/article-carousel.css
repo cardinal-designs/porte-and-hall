@@ -48,6 +48,10 @@
   list-style-type: none;
 }
 
+.Article_Carousel {
+  padding-top: 124px;
+}
+
 @media screen and (max-width: 768px) {
 
   .Article_Carousel .heading-with-accents {
