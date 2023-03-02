@@ -94,12 +94,8 @@
   margin: 100px 0;
 }
 
-.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider.divider-start {
-  justify-content: flex-start;
-}
-
-.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider.divider-end {
-  justify-content: flex-start;
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider {
+  column-gap: 6px;
 }
 
 .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider svg {
