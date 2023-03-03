@@ -4,16 +4,19 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
 
     this.form = this.querySelector('form');
     this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
-    this.connectedForm = document.querySelector(`sticky-atc[data-main-form="${this.form.getAttribute("id")}"]`)
+    this.connectedForm = document.querySelector(`sticky-atc[data-main-form="${this.form.getAttribute("id")}"]`) || ""
     this.cartDrawer = document.querySelector('cart-drawer');
 
     const header = document.querySelector(".outer-header-wrapper")
 
-    this.connectedForm.style.top = `${header.clientHeight}px`
+    if(this.connectedForm){
+          this.connectedForm.style.top = `${header.clientHeight}px`
 
-    window.addEventListener("resize", function(){
-      this.connectedForm.style.top = `${header.clientHeight}px`
-    }.bind(this))
+          window.addEventListener("resize", function(){
+            this.connectedForm.style.top = `${header.clientHeight}px`
+          }.bind(this))
+    }
+
 
     const observer = new IntersectionObserver(
       entries => {
@@ -41,7 +44,10 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
 
     submitButton.setAttribute('disabled', true);
     submitButton.closest(".product__quantity-atc-wrapper").classList.add('loading');
-    this.connectedForm?.querySelector(".product__quantity-atc-wrapper").classList.add('loading');
+    if(this.connectedForm){
+          this.connectedForm.querySelector(".product__quantity-atc-wrapper").classList.add('loading');
+    }
+
 
     const body = JSON.stringify({
       ...JSON.parse(serializeForm(this.form)),
@@ -68,7 +74,9 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
       .finally(() => {
         submitButton.closest(".product__quantity-atc-wrapper").classList.remove('loading');
         submitButton.removeAttribute('disabled');
-        this.connectedForm?.querySelector(".product__quantity-atc-wrapper").classList.remove('loading')
+        if(this.connectedForm){
+                  this.connectedForm.querySelector(".product__quantity-atc-wrapper").classList.remove('loading')
+        }
         this.cartDrawer.open();
       });
   }

@@ -539,6 +539,38 @@ sticky-atc .product__quantity-atc-wrapper {
   margin-top: 0;
 }
 
+variant-selects {
+  margin-top: 40px;
+  display: block;
+}
+
+.GiftWizard-gift-button {
+  margin-bottom: 0;
+  margin-right: 0;
+  padding: 5px 10px;
+}
+
+.button.loading {
+  pointer-events: none;
+}
+
+/* Giftcard template  */
+
+.giftcard {
+  padding-bottom: 50px;
+}
+
+.giftcard .product__info-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.giftcard .product__description {
+  max-width: unset;
+}
+
 @media screen and (max-width: 768px) {
 
   .product {
@@ -558,4 +590,10 @@ sticky-atc .product__quantity-atc-wrapper {
     top: 20px;
     right: 20px;
   }
+}
+
+/* Gift card template */
+
+.product-form__buttons.loading .loading-overlay__spinner {
+  display: block;
 }
