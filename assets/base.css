@@ -589,8 +589,13 @@ blockquote {
 
 /* Select */
 .select {
-  border: 0;
+  border: none;
+  /* border-bottom: 1px solid currentColor; */
   position: relative;
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; */
 }
 
 .select::after {
@@ -616,9 +621,16 @@ blockquote {
   color: currentColor;
 }
 
+.select,
+select,
+.select::placeholder {
+  font-family: brandon;
+  font-size: 18px;
+  font-weight: 400;
+}
+
 /* Textarea */
-.text-area,
-.select {
+.text-area {
   width: 100%;
   display: inline-block;
   position: relative;
