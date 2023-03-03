@@ -101,22 +101,21 @@
                       <div class="select">
                         <select
                           id="Option-{{ section.id }}-{{ forloop.index0 }}"
-                          class="select__select"
+                          class="select__select field__input"
                           name="options[{{ option.name | escape }}]"
                           form="{{ product_form_id }}"
                         >
                           {% for value in option.values %}
                             <option
                               value="{{ value | escape }}"
-                              {% comment %} {% if option.selected_value == value %}
+                              {% if option.selected_value == value %}
                                 selected="selected"
-                              {% endif %} {% endcomment %}
+                              {% endif %}
                             >
                               {{ value }}
                             </option>
                           {% endfor %}
                         </select>
-                        {% render 'icon', icon: 'caret' %}
                       </div>
                     </div>
                   {% endfor %}
@@ -150,7 +149,6 @@
                       </option>
                     {% endfor %}
                   </select>
-                  {% render 'icon', icon: 'caret' %}
                 </div>
               </div>
             </noscript>

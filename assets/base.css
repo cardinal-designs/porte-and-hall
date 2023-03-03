@@ -590,12 +590,12 @@ blockquote {
 /* Select */
 .select {
   border: none;
-  border-bottom: 1px solid currentColor;
+  /* border-bottom: 1px solid currentColor; */
   position: relative;
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
 }
 
 .select::after {
@@ -608,7 +608,6 @@ blockquote {
   top: 49%;
   right: 20px;
   transform: rotate(45deg) translateY(-50%);
-  display: none;
 }
 
 .select__select {
