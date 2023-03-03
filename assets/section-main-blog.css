@@ -11,3 +11,184 @@
     gap: 30px;
   }
 }
+
+/********* BLOG LANDING CSS START *********/
+
+.Blog_Landing .main-blog-heading {
+  text-align: center;
+  margin-bottom: 100px;
+  padding: 0 20px
+}
+
+.Blog_Landing .page-width {
+  max-width: 100%;
+  padding: 0;
+}
+
+.Blog_Landing .Blog_Landing_Article {
+  margin-bottom: 40px;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Image {
+  position: relative;
+  aspect-ratio: 1/1;
+  width: 48%;
+  flex: 1 0 48%;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container {
+  width: 52%;
+  flex: 1 0 52%;
+  padding: 0 100px 0 145px;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .Blog_Landing_Article_Content {
+  padding: 50px 0;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .Blog_Landing_Article_Content .article-card__date {
+  margin-bottom: 20px;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .Blog_Landing_Article_Content .article-card__date time {
+  font-weight: 500;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .Blog_Landing_Article_Content .article-card__text {
+  margin-top: 20px;
+  letter-spacing: normal;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .Blog_Landing_Article_Content .article-card__link {
+  margin-top: 30px;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider:not(.header-divider) {
+  width: 100%;
+  padding: 0;
+}
+
+.Blog_Landing_Article.Image_Second .Blog_Landing_Article__Wrapper {
+  flex-direction: row-reverse;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Product_Callout {
+  position: absolute;
+  bottom: 31px;
+  left: 0;
+  background: var(--blue);
+  color: #fff;
+  padding: 9px 10px;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 123%;
+  letter-spacing: 1px;
+}
+
+.Blog_Landing .pagination-wrapper {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.Blog_Landing .loadmore--wrapper {
+  margin: 100px 0;
+}
+
+.Blog_Landing .loadmore--wrapper .button {
+  padding: 18px 60px;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider.divider-start {
+  justify-content: flex-start;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider.divider-end {
+  justify-content: flex-start;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider {
+  column-gap: 6px;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider svg {
+  height: 32px;
+  width: 32px;
+}
+
+.Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .divider .divider-line {
+  width: 84%;
+}
+
+@media only screen and (max-width: 1199px) {
+
+  .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container {
+    padding: 0 40px 0 65px;
+  }
+  
+}
+
+@media only screen and (max-width: 991px) {
+  
+  .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container {
+     padding: 0 40px 0 40px;
+  }
+  
+}
+
+@media only screen and (max-width: 768px) {
+
+  .Blog_Landing .page-width {
+    padding: 0 20px;
+  }
+
+  .Blog_Landing .main-blog-heading {
+    margin-bottom: 80px;
+  }
+
+  .Blog_Landing .main-blog-heading h1 br {
+    display: none;
+  }
+
+  .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Image {
+    flex: 1 0 100%;
+    width: 100%;
+  }
+  
+  .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container {
+    width: 100%;
+    flex: 1 0 100%;
+    padding: 50px 0;
+  }
+
+  .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Article_Container .Blog_Landing_Article_Content .article-card__text {
+    margin-top: 30px;
+  }
+
+  .Blog_Landing .Blog_Landing_Article {
+    margin-bottom: 0;
+  }
+
+  .Blog_Landing .Blog_Landing_Article__Wrapper .Blog_Landing_Product_Callout {
+    padding: 5px 6px 4px;
+    font-size: 9px;
+  }
+
+  .Blog_Landing .loadmore--wrapper {
+    margin: 0 0 100px;
+  }
+
+  .Blog_Landing .loadmore--wrapper .button {
+    font-size: 16px;
+    padding: 14px 20px;
+  }
+  
+}
+
+/********* BLOG LANDING CSS END *********/

@@ -1,6 +1,6 @@
-{{ 'section-faq.css' | asset_url | stylesheet_tag }}
+{{ 'section-faq-custom.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'faq.js' | asset_url }}" defer="defer"></script>
-<div id="faqs">
+<div id="faqs" class="{% if section.settings.hide_mobile == true %}Hide_Mobile{% endif %} {% if section.settings.hide_desktop == true %}Hide_Desktop{% endif %}">
   <div class="page-width">
     <div class="row">
       <div class="col-12">
@@ -25,6 +25,16 @@
 {
   "name": "FAQs",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_desktop",
+      "label": "Hide on Desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_mobile",
+      "label": "Hide on Mobile"
+    },
     {
       "type": "color",
       "id": "bg_color",

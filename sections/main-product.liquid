@@ -17,11 +17,15 @@
     for swatch in grouped_collection.products
       for option in swatch.options_with_values
         assign option_name = option.name | downcase
-        if color_label contains option_name
+        if color_label contains option_name or option_name == 'style'
           assign option_index = 'option' | append: forloop.index
           for value in option.values
+            assign matched_variant = swatch.variants | where: 'title', value
+            if matched_variant != blank
+              assign swatch_link = matched_variant[0].url
+            endif
             assign element_classes = 'product__swatch'
-            if swatch == product
+            if swatch == product and option.selected_value == value
               assign element_classes = element_classes | append: ' product__active-swatch'
             endif
             if swatch.available == false
@@ -29,11 +33,13 @@
             endif
             assign swatch_file_name = value | handle | append: '.png'
             assign swatch_image = images[swatch_file_name]
-            if collection_title contains 'outsider' and swatch_count == 4
-              echo ' | '
-            endif
+            comment
+              if collection_title contains 'outsider' and swatch_count == 4
+                echo ' | '
+              endif
+            endcomment
             echo "<a href='"
-            echo swatch.first_available_variant.url
+            echo swatch_link | default: swatch.variants[0].url
             echo "' class='"
             echo element_classes
             echo "'"
@@ -129,15 +135,20 @@
           </div>
         {% endif %}
 
-        <div class="product__variant-name body">
-          {% assign variant_name = product.selected_or_first_available_variant.title | split: '/' %}
-          <span>Style</span><span> — {{ variant_name[0] }}</span>
-        </div>
+        {% for option in product.options_with_values %}
+          <div class="product__variant-name body">
+            {% if option.name == 'Size' %}
+              {% continue %}
+            {% endif %}
+            <span>
+              {%- if option.name == 'Color' %}Style{% else %}{{ option.name }}{% endif -%}</span
+            ><span> — {{ option.selected_value }}</span>
+          </div>
+        {% endfor %}
 
         <div class="product__swatches">
           {{ color_swatch_list }}
         </div>
-
         <div>
           {% form 'product', product, id: 'product-form-installment', class: 'installment' %}
             <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">

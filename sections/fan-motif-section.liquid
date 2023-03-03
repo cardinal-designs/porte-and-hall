@@ -8,7 +8,7 @@
     assign background = 'fan-motif-background--green.jpg' | asset_url
   endif
 %}
-<section class="fan-motif" style="background: no-repeat center/cover url('{{ background }}')">
+<section class="fan-motif {% if section.settings.hide_mobile == true %}Hide_Mobile{% endif %} {% if section.settings.hide_desktop == true %}Hide_Desktop{% endif %}" style="background: no-repeat center/cover url('{{ background }}')">
   <div class="fan-motif__background">
     <div class="fan-motif__inner fan-motif__layout-{{ section.settings.alignment }}">
       <div class="fan-motif__content-wrapper">
@@ -57,6 +57,16 @@
 {
   "name": "Fan Motif Section",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_desktop",
+      "label": "Hide on Desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_mobile",
+      "label": "Hide on Mobile"
+    },
     {
       "type": "header",
       "content": "Layout"

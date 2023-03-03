@@ -1,11 +1,20 @@
 .article-template {
-  margin: 60px 0 100px;
+  margin: 0 0 0;
 }
 
 .article-template__header {
-  max-width: 700px;
-  margin: 0 auto 40px;
+  margin: 0 auto;
   text-align: center;
+  background: #546B82;
+}
+
+.Article_Header {
+  display: flex;
+  align-items: center;
+  max-width: 1440px;
+  padding: 50px 150px 50px 100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
 }
 
 .article-template__date {
@@ -14,6 +23,7 @@
 
 .article-template__title {
   margin: 0;
+  color: #ffffff;
 }
 
 .article-template__image-container {
@@ -24,9 +34,98 @@
 .article-template__image {
   padding-bottom: 60%;
   position: relative;
+  flex: 0 0 50%;
 }
 
 .article-template__content {
-  max-width: 700px;
-  margin: 40px auto 0;
+  max-width: 820px;
+  margin: 0 auto 0;
+  padding: 132px 0 0;
+}
+
+.Article_Title {
+  flex: 0 0 50%;
+  text-align: left;
+  padding-right: 27px;
+}
+
+.rte blockquote {
+  font-size: 42px;
+  font-family: 'louize';
+  font-weight: 500;
+  margin: 50px 0;
+  padding: 0;
+  border: 0;
+  font-style: normal;
+}
+
+.rte p,
+.rte > span {
+  margin: 15px 0;
+  display: inline-block;
+}
+
+.Article_Carousel {
+  padding-bottom: 0 !important;
+}
+
+.rte p span {
+  margin: 0;
+}
+
+.rte ul,
+.rte ol {
+  padding-left: 40px;
+  margin: 0;
+}
+
+.rte img {
+  margin: 25px 0;
+  max-width: 100%;
+}
+
+.rte video {
+  width: 100%;
+  margin: 25px 0;
+}
+
+.rte p:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  
+  .Article_Header {
+    padding: 20px 20px 50px 20px;
+  }
+
+  .article-template__image {
+    flex: 0 0 100%;
+    padding-bottom: 100%;
+  }
+  
+  .Article_Title {
+    flex: 0 0 100%;
+    padding: 30px 20px 0;
+    order: 2;
+  }
+
+  .article-template__content {
+    padding: 90px 0 0;
+  }
+
+  .rte ul,
+  .rte ol {
+    padding-left: 30px;
+  }
+
+  .rte blockquote {
+    font-size: 24px;
+    margin: 30px 0 30px;
+  }
+
+  .rte img {
+    margin: 15px 0;
+  }
+
 }

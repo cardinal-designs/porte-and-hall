@@ -1,0 +1,48 @@
+.image-carousel__container {
+   position: relative;
+}
+
+.image-carousel__container .swiper-wrapper {
+  padding-bottom: 67px;
+  padding-top: 0;
+}
+ 
+.image-carousel__container .swiper-slide {
+  width: auto;
+}
+
+.image-carousel__item {
+  aspect-ratio: 1/1;
+  position: relative;
+}
+
+.image-carousel__pagination.swiper-pagination {
+  bottom: 29px;
+}
+
+.image-carousel__pagination .swiper-pagination-bullet-active:after {
+  width: 6px;
+  height: 6px;
+}
+
+.image-carousel__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.image-carousel__icon-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 768px) {
+
+  .image-carousel__container .swiper-wrapper {
+    padding-top: 20px;
+  }
+  
+}

@@ -1,0 +1,48 @@
+{{ 'article-carousel.css' | asset_url | stylesheet_tag }}
+<div class="Article_Carousel">
+  <div class="page-width">
+    <div class="heading-with-accents">
+      <span class="divider header-divider">
+        {%- render 'divider' %}
+        <span class="divider-line"></span>
+      </span>
+      <div class="h2 blue">{{ section.settings.heading }}</div>
+      <span class="divider header-divider"> <span class="divider-line"></span> {% render 'divider' %} </span>
+    </div>
+  </div>
+  <article-carousel>
+    <div class="article-carousel__container swiper" id="{{ section.id }}-article-carousel">
+      <div class="swiper-pagination article-carousel__pagination"></div>
+      <div class="swiper-wrapper">
+        {% assign my_fields = article.metafields.custom %}
+        {% for images in my_fields.carousel_images.value limit: 5 %}
+          <div class="swiper-slide">
+            <div class="article-carousel__item">
+             {% render 'lazy-image', image: images, fade: true, classes: 'img-fill' %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </article-carousel>
+</div>
+
+{% schema %}
+  {
+    "name": "Article Carousel",
+    "tag": "section",
+    "class": "article-carousel with-spacing",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "heading",
+        "label": "Heading"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Article Carousel"
+      }
+    ]
+  }
+{% endschema %}

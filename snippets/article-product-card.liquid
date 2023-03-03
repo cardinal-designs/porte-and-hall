@@ -4,7 +4,7 @@
   capture color_swatch_list
     assign swatch_count = 1
     assign hidden_swatches = 0
-    for product in collection.products
+    for product in my_fields.shop_story_product.value
       for option in product.options_with_values
         assign option_name = option.name | downcase
         if color_label contains option_name or option_name == 'style'
@@ -97,14 +97,11 @@
         </div>
 
         {% if collection.metafields.custom.short_description != blank %}
-          {% unless simple_card == true %}
-            <div class="product-card__description body blue">{{ collection.metafields.custom.short_description }}</div>
-          {% endunless %}
+          <div class="product-card__description body blue">{{ collection.metafields.custom.short_description }}</div>
         {% endif %}
 
         <a href="{{ product_card_product.url }}" class="text-link gold-secondary--dark product-card__link">
-          {{- button_text }} ></a
-        >
+          {{- button_text }} ></a>
       </div>
     </div>
   </div>
