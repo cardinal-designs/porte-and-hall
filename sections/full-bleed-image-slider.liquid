@@ -1,0 +1,50 @@
+{{ 'section-full-bleed-image-slider.css' | asset_url | stylesheet_tag }}
+
+<image-carousel>
+  <div class="image-carousel__container swiper" id="{{ section.id }}-image-carousel">
+    <div class="swiper-wrapper">
+      {% for block in section.blocks %}
+        <div class="swiper-slide">
+          <div class="image-carousel__item">
+           {% render 'lazy-image', image: block.settings.image, fade: true, classes: 'img-fill' %}
+           <div class="image-carousel__icon-overlay">{% render 'sun-svg', color: '#ffffff', opacity: '0.5' %}</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="swiper-pagination image-carousel__pagination"></div>
+  </div>
+</image-carousel>
+
+{% schema %}
+  {
+    "name": "Full Bleed Image Slider",
+    "tag": "section",
+    "class": "image-carousel with-spacing",
+    "settings": [],
+    "blocks": [
+     {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Full Bleed Image Slider"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

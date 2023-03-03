@@ -1,0 +1,125 @@
+{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
+
+<div class="main-blog">
+  {% paginate blog.articles by 4 %}
+    
+    {% if section.settings.section_heading != blank  %}
+    <div class="main-blog-heading">
+      <h1 class="blue">{{ section.settings.section_heading }}</h1>
+    </div>
+    {% endif %}  
+
+    <div class="page-width">
+      <div class="Blog_Landing_Articles js-articles--wrapper">
+        {% for article in blog.articles %}
+          {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
+          <div class="Blog_Landing_Article {% if thecycle == 'odd' %}{% if section.settings.odd_row == 'image_fist' %}Image_First{% else %}Image_Second{% endif %}{% elsif thecycle == 'even'%}{% if section.settings.even_row == 'image_fist' %}Image_First{% else %}Image_Second {% endif %}{% endif %}">
+            <div class="Blog_Landing_Article__Wrapper">
+               <div class="Blog_Landing_Article_Image">
+                 {% assign image = article.metafields.custom.alternate_featured_image.value | default: article.image  %}
+                 {% render 'lazy-image', image: image, fade: true, classes: 'img-fill' %}
+                 {% assign myfields = article.metafields.custom %}
+                 {% assign product = myfields.product_name_callout.value %}
+                 {% if product.title != blank %}<div class="Blog_Landing_Product_Callout body-xs"> {{ product.title }}</div>{% endif %} 
+               </div>
+               <div class="Blog_Landing_Article_Container">
+                 <span class="divider divider-start">{% render 'divider' %}<span class="divider-line"></span></span>
+                 <div class="Blog_Landing_Article_Content">
+                    <p class="article-card__date body-xs blue">{{ article.published_at | time_tag: '%m.%d.%Y' }}</p>
+                    <h2 class="article-card__title blue">{{ article.title }}</h3>
+                    <div class="article-card__text body blue">{{ article.excerpt | default: article.content | truncatewords: 50 | strip_html }}</div>
+                    <a href="{{ article.url }}" class="text-link gold-secondary--dark article-card__link">Read More ></a>
+                 </div>
+                 <span class="divider divider-end"><span class="divider-line"></span> {% render 'divider' %}</span>
+               </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <ajax-pagination 
+          class="{% if paginate.next.url == blank %}hidden{% endif %}" 
+          data-wrapper-element=".js-articles--wrapper"
+          data-next="{{ paginate.next.url }}"
+          data-section-id="{{ section.id }}">
+        <div class="loadmore--wrapper text-center">
+          <button type="button" class="button js-button">
+          <span>{{ 'blogs.load_more' | t }}</span>
+          <div class="loading-overlay__spinner">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                role="presentation"
+                class="spinner"
+                viewBox="0 0 66 66"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </ajax-pagination>
+
+      {% comment %}
+      {% if paginate.pages > 1 %}
+        {% render 'pagination', paginate: paginate %}
+      {% endif %}
+      {% endcomment %}
+    </div>
+  {% endpaginate %}
+</div>
+
+{% schema %}
+  {
+    "name": "Blog Landing",
+    "tag": "section",
+    "class": "Blog_Landing",
+    "settings": [
+       {
+         "type": "text",
+         "id": "section_heading",
+         "label": "Section Heading"
+       },
+       {
+        "type": "select",
+        "id": "odd_row",
+        "label": "Odd Row",
+        "options": [
+          {
+            "value": "image_fist",
+            "label": "Image First"
+          },
+          {
+            "value": "image_second",
+            "label": "Image Second"
+          }
+        ],
+        "default": "image_fist"
+      },
+      {
+        "type": "select",
+        "id": "even_row",
+        "label": "Even Row",
+        "options": [
+          {
+            "value": "image_fist",
+            "label": "Image First"
+          },
+          {
+            "value": "image_second",
+            "label": "Image Second"
+          }
+        ],
+        "default": "image_second"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
