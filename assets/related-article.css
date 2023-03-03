@@ -42,6 +42,10 @@
   width: 32px;
 }
 
+.Related_Article .article-card__title {
+  letter-spacing: 1px;
+}
+
 @media screen and (max-width: 768px) {
 
   .blog-articles__article {
