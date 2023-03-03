@@ -34,3 +34,11 @@
   }
   
 }
+
+@media screen and (max-width: 374px) {
+
+  .shop-story-carousel__container {
+    padding: 0 10px;
+  }
+  
+}
