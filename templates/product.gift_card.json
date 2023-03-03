@@ -1,7 +1,15 @@
 {
   "sections": {
     "main": {
-      "type": "main-giftcard",
+      "type": "main-product",
+      "settings": {
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
+        "materials": "<p>{{ section.settings.collection.metafields.custom.materials | metafield_tag }}<\/p>",
+        "care": "<p>{{ section.settings.collection.metafields.custom.care | metafield_tag }}<\/p>"
+      }
+    },
+    "other-sizes": {
+      "type": "product-shop-other-sizes",
       "settings": {
       }
     },
@@ -71,24 +79,33 @@
         "background_color": "#d8d3c7"
       }
     },
-    "fan-motif": {
-      "type": "fan-motif-section",
+    "design-details": {
+      "type": "details",
       "settings": {
-        "color": "green",
-        "alignment": "center",
-        "heading": "“Gift cards are the perfect gift to give for the new homeowner or design aficionado in your life —they can be used anytime.”",
-        "text": "— STAFFORD MEYER, FOUNDER OF PORTE + HALL"
+        "heading": ""
       }
     },
-    "meet-the-founder": {
-      "type": "meet-founder",
+    "see-in-action": {
+      "type": "see-it-in-action",
       "settings": {
-        "alignment": "right",
-        "heading": "Meet Stafford, founder of Porte + Hall",
-        "text": "Stafford comes from over two decades of working in the interior design industry Sed ut perspiciatis, unde omnis iste natus error sit voluptatem lorem elit accusantium doloremque doloritis vin non laudantium.",
-        "link": "",
-        "link_text": "",
-        "image": "shopify:\/\/shop_images\/IMAGE_COLLAGE.png"
+        "heading": "",
+        "link": "\/",
+        "link_text": "Get more inspiration >"
+      }
+    },
+    "styling-tips": {
+      "type": "styling-tips",
+      "settings": {
+        "heading": "Our founder Stafford's styling tips",
+        "image": "shopify:\/\/shop_images\/Ellipse_53.png"
+      }
+    },
+    "see-the-difference": {
+      "type": "see-the-difference",
+      "settings": {
+        "heading": "Small mat, big difference",
+        "text": "We all love a good before and after. Our mats lift and liven-up any space.",
+        "label": "See the difference with"
       }
     },
     "faq": {
@@ -96,41 +113,114 @@
       "blocks": {
         "question_1": {
           "type": "faq",
+          "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
           "settings": {
-            "title": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam ?",
-            "answer": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-          }
-        },
-        "question_2": {
-          "type": "faq",
-          "settings": {
-            "title": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam ?",
-            "answer": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-          }
-        },
-        "question_3": {
-          "type": "faq",
-          "settings": {
-            "title": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam ?",
-            "answer": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-          }
-        },
-        "question_4": {
-          "type": "faq",
-          "settings": {
-            "title": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam ?",
-            "answer": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+            "title": "{{ block.repeater.question.value }}",
+            "answer": "{{ block.repeater.answer | metafield_tag }}"
           }
         }
       },
       "block_order": [
-        "question_1",
-        "question_2",
-        "question_3",
-        "question_4"
+        "question_1"
       ],
       "settings": {
+        "heading": "",
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
+      }
+    },
+    "reviews": {
+      "type": "reviews",
+      "settings": {
         "heading": ""
+      }
+    },
+    "you-may-like": {
+      "type": "main-product-carousel",
+      "blocks": {
+        "47c21a09-3d3c-4a25-9983-f939eb95b743": {
+          "type": "collection",
+          "settings": {
+            "collection": "the-innerweave-doormat",
+            "title": "",
+            "button_text": "Shop now"
+          }
+        },
+        "9a85f052-f42b-4c01-a0b1-f3e1eab885dd": {
+          "type": "collection",
+          "settings": {
+            "collection": "the-insider-doormat",
+            "title": "",
+            "button_text": "Shop now"
+          }
+        },
+        "3e40d22f-4bb8-4312-a0b0-39da0e026121": {
+          "type": "collection",
+          "settings": {
+            "collection": "the-outsider-doormat",
+            "title": "",
+            "button_text": "Shop now"
+          }
+        },
+        "82dbb134-ceef-446c-bc41-66f34d7c534c": {
+          "type": "collection",
+          "settings": {
+            "collection": "the-innerweave-runner",
+            "title": "",
+            "button_text": "Shop now"
+          }
+        },
+        "1991b75a-bf16-4c3f-bdeb-f4b25c7a1761": {
+          "type": "collection",
+          "settings": {
+            "collection": "the-insider-runner",
+            "title": "",
+            "button_text": "Shop now"
+          }
+        },
+        "ec5562a6-1c33-4c7f-b245-7ae06ea67878": {
+          "type": "collection",
+          "settings": {
+            "collection": "the-innerweave-area-mat",
+            "title": "",
+            "button_text": "Shop now"
+          }
+        },
+        "4fb3b30d-b223-4069-9290-3c208d01b1b6": {
+          "type": "collection",
+          "settings": {
+            "collection": "the-insider-area-mat",
+            "title": "",
+            "button_text": "Shop now"
+          }
+        }
+      },
+      "block_order": [
+        "47c21a09-3d3c-4a25-9983-f939eb95b743",
+        "9a85f052-f42b-4c01-a0b1-f3e1eab885dd",
+        "3e40d22f-4bb8-4312-a0b0-39da0e026121",
+        "82dbb134-ceef-446c-bc41-66f34d7c534c",
+        "1991b75a-bf16-4c3f-bdeb-f4b25c7a1761",
+        "ec5562a6-1c33-4c7f-b245-7ae06ea67878",
+        "4fb3b30d-b223-4069-9290-3c208d01b1b6"
+      ],
+      "settings": {
+        "heading": "Never miss a mat. There’s more to see!",
+        "show_product_info": true,
+        "show_vendor": false,
+        "show_color_swatch": false,
+        "background": "#eeefef"
+      }
+    },
+    "fan-motif": {
+      "type": "fan-motif-section",
+      "settings": {
+        "color": "green",
+        "alignment": "left",
+        "heading": "First impressions matter.\nFor both you and your visitors.",
+        "text": "Just like a clean desk or freshly-made bed, coming home to a beautiful and functional entryway is restorative and uplifting. We aim to turn these often ovelooked areas of our homes into inspired areas that welcome and invite us home.",
+        "link": "shopify:\/\/pages\/about-us",
+        "link_text": "LEARN MORE ABOUT US",
+        "image": "shopify:\/\/shop_images\/door_illustration.png"
       }
     },
     "featured-articles": {
@@ -168,10 +258,16 @@
   },
   "order": [
     "main",
+    "other-sizes",
     "logo-marquee",
-    "fan-motif",
-    "meet-the-founder",
+    "design-details",
+    "see-in-action",
+    "styling-tips",
+    "see-the-difference",
     "faq",
+    "reviews",
+    "you-may-like",
+    "fan-motif",
     "featured-articles"
   ]
 }
