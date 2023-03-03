@@ -57,13 +57,8 @@
   column-gap: 100px;
 }
 
-
-@media screen and (max-width: 1366px) {
-
-  .article-carousel__container {
-    padding: 0 40px;
-  }
-  
+.article-carousel__container {
+  padding: 0 40px;
 }
 
 @media screen and (max-width: 1024px) {
