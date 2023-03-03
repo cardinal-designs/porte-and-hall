@@ -89,3 +89,11 @@
   }
   
 }
+
+@media screen and (max-width: 375px) {
+
+  .article-carousel__container {
+    padding: 0 20px;
+  }
+  
+}
