@@ -927,12 +927,12 @@ var ArticleCarousel = class extends HTMLElement {
       },
       breakpoints: {
         1920: {
-          slidesPerView: 4.1,
+          slidesPerView: 4,
           spaceBetween: 20,
           centeredSlides: true
         },
         1440: {
-          slidesPerView: 3.5,
+          slidesPerView: 3,
           spaceBetween: 20,
           centeredSlides: true
         },
@@ -977,12 +977,12 @@ var ShopStoryCarousel = class extends HTMLElement {
       },
       breakpoints: {
         1920: {
-          slidesPerView: 4.1,
+          slidesPerView: 4,
           spaceBetween: 20,
           centeredSlides: true
         },
         1440: {
-          slidesPerView: 3.5,
+          slidesPerView: 3,
           spaceBetween: 20,
           centeredSlides: true
         },
