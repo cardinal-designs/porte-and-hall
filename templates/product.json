@@ -3,6 +3,9 @@
     "main": {
       "type": "main-product",
       "settings": {
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
+        "materials": "<p>{{ section.settings.collection.metafields.custom.materials | metafield_tag }}<\/p>",
+        "care": "<p>{{ section.settings.collection.metafields.custom.care | metafield_tag }}<\/p>"
       }
     },
     "other-sizes": {
@@ -77,7 +80,10 @@
       }
     },
     "design-details": {
-      "type": "details"
+      "type": "details",
+      "settings": {
+        "heading": ""
+      }
     },
     "see-in-action": {
       "type": "see-it-in-action",
@@ -98,7 +104,7 @@
       "type": "see-the-difference",
       "settings": {
         "heading": "Small mat, big difference",
-        "text": "The rest of your home is beautifully designed, why not give the entrances to your home love, too? Click and drag below to see the difference a Porte + Hall mat can make for your home.",
+        "text": "We all love a good before and after. Our mats lift and liven-up any space.",
         "label": "See the difference with"
       }
     },
@@ -107,41 +113,19 @@
       "blocks": {
         "question_1": {
           "type": "faq",
+          "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
           "settings": {
-            "title": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam ?",
-            "answer": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-          }
-        },
-        "question_2": {
-          "type": "faq",
-          "settings": {
-            "title": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam ?",
-            "answer": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-          }
-        },
-        "question_3": {
-          "type": "faq",
-          "settings": {
-            "title": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam ?",
-            "answer": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-          }
-        },
-        "question_4": {
-          "type": "faq",
-          "settings": {
-            "title": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam ?",
-            "answer": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+            "title": "{{ block.repeater.question.value }}",
+            "answer": "{{ block.repeater.answer | metafield_tag }}"
           }
         }
       },
       "block_order": [
-        "question_1",
-        "question_2",
-        "question_3",
-        "question_4"
+        "question_1"
       ],
       "settings": {
-        "heading": ""
+        "heading": "",
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
       }
     },
     "reviews": {
@@ -220,11 +204,11 @@
         "4fb3b30d-b223-4069-9290-3c208d01b1b6"
       ],
       "settings": {
-        "heading": "Other mats you may like",
+        "heading": "Never miss a mat. There’s more to see!",
         "show_product_info": true,
         "show_vendor": false,
         "show_color_swatch": false,
-        "background": "#EEEFEF"
+        "background": "#eeefef"
       }
     },
     "fan-motif": {

@@ -9,11 +9,15 @@
   </div>
 
   <div class="hero__media">
-    {% if section.settings.mobile_image != blank %}
-      {% render 'lazy-image', image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile' %}
-      {% render 'lazy-image', image: section.settings.mobile_image, fade: true, fill: true, classes: 'hide-desktop' %}
-    {% elsif section.settings.image != blank %}
-      {% render 'lazy-image', image: section.settings.image, fade: true, fill: true %}
+    {% if section.settings.video != blank %}
+      {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+    {% else %}
+      {% if section.settings.mobile_image != blank %}
+        {% render 'lazy-image', image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile' %}
+        {% render 'lazy-image', image: section.settings.mobile_image, fade: true, fill: true, classes: 'hide-desktop' %}
+      {% elsif section.settings.image != blank %}
+        {% render 'lazy-image', image: section.settings.image, fade: true, fill: true %}
+      {% endif %}
     {% endif %}
 
     <div class="hero__element">
@@ -29,6 +33,11 @@
     {
       "type": "header",
       "content": "Image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video (default media if populated)"
     },
     {
       "type": "image_picker",

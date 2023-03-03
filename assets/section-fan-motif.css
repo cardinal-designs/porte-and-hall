@@ -106,6 +106,13 @@
   padding: 0 20px;
  }
 
+@media screen and (max-width: 1024px) {
+  .fan-motif__layout-left {
+    grid-template-columns: minmax(0, 1fr) 40%;
+    column-gap: 50px;
+  }
+}
+
  @media screen and (max-width: 768px){
   .fan-motif__inner {
     display: flex;

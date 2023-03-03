@@ -1,0 +1,88 @@
+{{ 'section-faq.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'faq.js' | asset_url }}" defer="defer"></script>
+<div id="faqs">
+  <div class="page-width">
+    <div class="row">
+      <div class="col-12">
+        <h2>{{ section.settings.title }}</h2>    
+      </div>
+    </div>
+   <div class="faq-items row">
+    {% for block in section.blocks %}
+      <div class="faq-col {% if forloop.index == 1 %}is-open{% endif %}">
+        <div class="faq-col-inner">
+          <p class="body Faq_Question">{{ block.settings.title }}</p>
+          <div class="body Faq_Answer">{{ block.settings.answer }}</div>   
+          <span class="Faq_Icon"> {% render 'icon', icon: 'plus' %}{% render 'icon', icon: 'minus' %}</span>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "FAQs",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#FFE8D5"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_answer",
+      "label": "Question Background Color",
+      "default": "#A34C24"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_answer_active",
+      "label": "Question Background Color (Active)",
+      "default": "#E31C79"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Font Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "main_header",
+      "label": "Header",
+      "default": "Ingredients"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Header Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQs"
+    }
+  ]
+}
+{% endschema %}

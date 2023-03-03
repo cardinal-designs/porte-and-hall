@@ -27,7 +27,7 @@
               echo ' | '
             endif
             echo "<a href='"
-            echo product.first_available_variant.url
+            echo product.variants[0].url
             echo "' class='"
             echo element_classes
             echo "'"
@@ -81,7 +81,7 @@
           Doormat
         {%- endif %}
         {%- if collection.metafields.custom.dimensions != blank -%}
-          <span class="body">{{ collection.metafields.custom.dimensions }}</span>
+          <span class="body">({{ collection.metafields.custom.dimensions }})</span>
         {%- endif -%}
       </h3>
       <div class="product-card__content">

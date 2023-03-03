@@ -3,8 +3,10 @@
 <script src="{{ 'customer.js' | asset_url }}" defer></script>
 
 <header class="account-header">
-  <div class="page-width">
-    <h1 class="account-header__title h2">My Account</h1>
+  <div class="Account_Header_Inner">
+    <div class="page-width">
+      <h1 class="account-header__title blue h1">My Account</h1>
+    </div>
   </div>
 </header>
 
@@ -15,12 +17,12 @@
 
       <div class="customer__navigation">
         <button class="customer__navigation-button hide-desktop">
-          <span class="customer__navigation-button-text">My Addresses</span>
+          <span class="customer__navigation-button-text blue p">My Addresses</span>
           {% render 'icon' icon: 'caret' %}
         </button>
         <div class="customer__navigation-container">
-          <button class="customer__navigation-link active" data-tab="addresses">My Addresses</button>
-          <button class="customer__navigation-link" data-tab="orders">Order History</button>
+          <button class="customer__navigation-link p blue active" data-tab="addresses">My Addresses</button>
+          <button class="customer__navigation-link p blue" data-tab="orders">Order History</button>
           <a href="{{ routes.account_logout_url }}" class="customer__navigation-link">Log Out</a>
         </div>
       </div>
@@ -28,7 +30,7 @@
       <div class="customer__content">
 
         <div class="customer__content-section active" data-tab="addresses">
-          <h2 class="customer__content-title h5 hide-mobile">My Addresses</h2>
+          <h2 class="customer__content-title h2 blue hide-mobile">My Addresses</h2>
 
           <div class="customer__address-container" data-customer-addresses>
             {% render 'addresses' %}
@@ -37,7 +39,7 @@
 
         
         <div class="customer__content-section" data-tab="orders">
-          <h2 class="customer__content-title h5 hide-mobile">My Orders</h2>
+          <h2 class="customer__content-title h2 hide-mobile">My Orders</h2>
 
           {% paginate customer.orders by 20 %}
             <div class="customer__order-container no-scrollbar">
@@ -48,7 +50,7 @@
                     <div class="order-history__item">
                       <div class="order-history__item-header">
                         <div class="order-history__item-header-group">
-                          <p class="order-history__item-order tag-2">Order {{ order.name }}</p>
+                          <h3 class="order-history__item-order h3 blue tag-2">Order {{ order.name }}</h3>
                           <p class="order-history__item-date body-3 m-body-3">{{ order.created_at | time_tag: format: 'date' }}</p>
                           <div class="order-history__item-fufillment tag-3">{{ order.fulfillment_status_label }}</div>
                         </div>
@@ -61,18 +63,18 @@
                               {% render 'lazy-image' image: line_item.image, fade: true, fill: true %}
                             </div>
                             <div class="order-history__product-content">
-                              <p class="order-history__product-title">{{ line_item.product.title }}</p>
-                              <div class="order-history__product-variant">
+                              <h3 class="order-history__product-title">{{ line_item.product.title }}</h3>
+                              <div class="order-history__product-variant blue body">
                                 {% if line_item.product.has_only_default_variant == false %}
                                   {% for option in line_item.options_with_values %}
-                                    <p class="order-history__product-option">
+                                    <p class="order-history__product-option blue body">
                                       {{ option.name }}:
                                       {{ option.value }}
                                     </p>
                                   {% endfor %}
                                 {% endif %}
                               </div>
-                              <p class="order-history__product-quantity tag-3">Quantity: {{ line_item.quantity }}</p>
+                              <p class="order-history__product-quantity blue body tag-3">Quantity: {{ line_item.quantity }}</p>
                             </div>
                           </div>
                         {% endfor %}

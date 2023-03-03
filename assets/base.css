@@ -340,6 +340,7 @@ p {
 .p,
 .body {
   font-family: brandon;
+  letter-spacing: .3px;
   font-size: 18px;
   font-weight: 400;
   line-height: 130%;
@@ -570,7 +571,7 @@ blockquote {
 
 .field__input {
   width: 100%;
-  padding: 7px 0;
+  padding: 5px 0;
   -webkit-appearance: none;
   appearance: none;
   box-sizing: border-box;
@@ -612,7 +613,7 @@ blockquote {
 
 .select__select {
   width: 100%;
-  padding: 15px 50px 15px 15px;
+  padding: 5px 0;
   -webkit-appearance: none;
   appearance: none;
   box-sizing: border-box;
@@ -1092,7 +1093,7 @@ deferred-media {
 .header__menu {
   padding-top: 15px;
   padding-bottom: 20px;
-  max-width: 1440px;
+  max-width: 1239px;
   margin: auto;
 }
 
@@ -1184,6 +1185,7 @@ deferred-media {
   grid-area: icons;
   column-gap: 20px;
   justify-self: end;
+  align-items: flex-end;
 }
 
 .header__icon {
@@ -1406,7 +1408,7 @@ header.condensed .header__menu {
 /*============================================================================
   Mobile menu
 ==============================================================================*/
-@media screen and (min-width: 1101px) {
+@media screen and (min-width: 990px) {
   .header__icon--menu {
     display: none;
   }
@@ -1638,12 +1640,15 @@ header.condensed .header__menu {
   width: 100%;
 }
 
+#NewsletterForm--footer {
+  color: inherit;
+}
+
 .footer__heading {
   margin-bottom: 30px;
 }
 
 .newsletter-form {
-  /* max-width: 400px; */
   width: 100%;
 }
 
@@ -1659,7 +1664,6 @@ header.condensed .header__menu {
 .newsletter-form .footer__newsletter-button {
   position: absolute;
   right: 0;
-  /* transform: translate(-52%, 0); */
   color: var(--gold);
   font-family: brandon;
   font-size: 14px;
@@ -1726,6 +1730,68 @@ header.condensed .header__menu {
     max-width: 50%;
     margin: auto;
     line-height: 2rem;
+  }
+}
+
+/*================ Klaviyo embed ================*/
+.footer .kl-private-reset-css-Xuajs1 input[type=email] {
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  padding-left: 0 !important;
+  font-family: brandon !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  line-height: 130% !important;
+}
+
+.footer .kl-private-reset-css-Xuajs1 input[type=email]::placeholder {
+  font-family: brandon !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  line-height: 130% !important;
+}
+
+.footer .go1920118604.go1920118604.go1920118604:hover {
+  border-color: white !important;
+}
+
+.footer .kl-private-reset-css-Xuajs1 button {
+  padding: 0 !important;
+  text-align: right !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  font-family: brandon !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  line-height: 120% !important;
+  letter-spacing: 2px !important;
+  height: 37px !important;
+}
+
+.footer .kl-private-reset-css-Xuajs1 p,
+.footer .kl-private-reset-css-Xuajs1 p span {
+  font-family: brandon !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  line-height: 130% !important;
+}
+
+@media screen and (max-width: 768px) {
+  .footer .kl-private-reset-css-Xuajs1 input[type=email] {
+    font-size: 14px !important;
+  }
+  
+  .footer .kl-private-reset-css-Xuajs1 input[type=email]::placeholder {
+    font-size: 14px !important;
+  }
+
+  .footer .kl-private-reset-css-Xuajs1 p,
+  .footer .kl-private-reset-css-Xuajs1 p span {
+    font-size: 14px !important;
   }
 }
 
@@ -2128,7 +2194,7 @@ header.condensed .header__menu {
 }
 
 .text-center {
-  text-align:center;
+  text-align:center !important;
 }
 
 @media screen and (max-width: 1050px) {
@@ -2214,4 +2280,90 @@ header.condensed .header__menu {
   font-family: brandon;
 }
 
+@media screen and (max-width: 768px) {
+  
+  .field__input {
+    font-size: 14px;
+  }
+
+  .field__input::-webkit-input-placeholder {
+    font-size: 14px;
+  }
+  
+  .field__input::-moz-placeholder { /* Firefox 19+ */
+    font-size: 14px;
+  }
+  
+  .field__input:-ms-input-placeholder { /* IE 10+ */
+    font-size: 14px;
+  }
+  
+  .field__input:-moz-placeholder { /* Firefox 18- */
+    font-size: 14px;
+  }
+  
+}
+
+.text-right {
+  text-align: right !important;
+}
+
 /* INPUT CSS END */
+
+/* Notify me */
+
+.NotifyMe_form {
+  position: relative;
+  margin-top: 28px;
+  margin-bottom: 70px;
+}
+
+.NotifyMe_form button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+    transform: translateY(-50%);
+  color: var(--gold);
+  font-family: brandon;
+  font-size: 14px;
+  line-height: 16.8px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.NotifyMe_form input[type="email"] {
+  width: 100%;
+  padding: 7px 0;
+  appearance: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--blue);
+  color: var(--blue);
+  font-size: 18px;
+  font-family: brandon;
+  font-weight: 400;
+  position: relative;
+  padding-right: 60px;
+}
+
+.NotifyMe_form input[type="email"]::placeholder,
+.NotifyMe_form input::-webkit-input-placeholder  {
+  color: var(--blue);
+}
+
+.notifyme_error {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);
+}
+
+.notifyme_error .success {
+  margin-top: 10px;
+  text-transform: math-auto;
+  font-size: 14px;
+}

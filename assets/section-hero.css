@@ -18,6 +18,18 @@
   overflow: hidden;
 }
 
+.hero video {
+  width: 101%;
+  height: 101%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
 .hero__content {
   background: var(--blue);
   color: white;
@@ -36,6 +48,16 @@
 
 .hero__title {
   margin: 0 0 40px;
+}
+
+@media screen and (max-width: 1200px) {
+  .hero {
+    grid-template-columns: .55fr .45fr;
+  }
+  
+  .hero__container {
+    padding: 30px;
+  }
 }
 
 @media screen and (max-width: 768px) {

@@ -124,6 +124,28 @@
   padding: 0 20px;
  }
 
+@media screen and (max-width: 1024px) {
+  .styling-tips__inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 50px;
+  }
+
+    .styling-tips__image {
+    width: 90px;
+    height: 90px;
+    }
+    .signature-svg {
+    margin-left: -34px;
+    transform: translateY(31px);
+    z-index: 1;
+  }
+
+  .signature-svg svg {
+    width: 100px;
+    display: block;
+  }
+}
+
  @media screen and (max-width: 768px) {
 
   .styling-tips__inner {

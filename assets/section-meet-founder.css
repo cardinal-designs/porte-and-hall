@@ -12,6 +12,7 @@
   padding: 70px 20px;
   max-width: 1440px;
   margin: auto;
+  align-items: center;
 }
 
 .meet-founder__layout-left{
@@ -41,7 +42,7 @@
 }
 
 .meet-founder__content-wrapper {
-  padding: 100px 0;
+/*   padding: 100px 0; */
 }
 
 .meet-founder__layout-right .meet-founder__content-wrapper {
@@ -88,6 +89,13 @@
  .meet-founder__icon-label {
   padding: 0 20px;
  }
+
+@media screen and (max-width: 1024px) {
+  .meet-founder__inner {
+    grid-template-columns: 40% minmax(0, 1fr);
+    column-gap: 50px;
+  }
+}
 
  @media screen and (max-width: 768px) {
 

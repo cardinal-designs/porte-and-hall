@@ -12,7 +12,7 @@
   <div class="details__inner">
     {% liquid
       assign images = grouped_collection.metafields.custom.design_details.value | where: 'image'
-      assign details = grouped_collection.metafields.custom.design_details.value | where: 'title'
+      assign details = grouped_collection.metafields.custom.design_details.value | where: 'text'
       if images.size == details.size
         assign image_carousel = true
       else
@@ -31,8 +31,12 @@
               class="details__points-item {% if forloop.first %}active{% endif %}"
               data-detail="{{ forloop.index0 }}"
             >
+            {%  if points.title != blank %}
               <span class="details__points-title h3">{{ points.title }}</span>
-              <span class="details__points-text body">{{ points.description }}</span>
+            {%  endif  %}
+            {%  if points.text != blank %}
+              <span class="details__points-text body">{{ points.text }}</span>
+            {%  endif %}
             </button>
           {% endfor %}
         </div>
@@ -49,7 +53,7 @@
                 </div>
                 <div
                   class="details__point"
-                  style="left: {{ media.horizontal_position }}%; top: {{ media.vertical_position }}%;"
+                  style="left: {{ media.horizontal_position | default: 50 }}%; top: {{ media.vertical_position | default: 50 }}%;"
                 >
                   <svg width="240" height="240" viewBox="0 0 240 240" fill="none">
                     <circle cx="120.249" cy="119.75" r="33.2143" fill="white" stroke="white" stroke-width="2"/>
@@ -57,7 +61,9 @@
                     <circle cx="120.25" cy="119.75" r="118.25" stroke="white" stroke-width="3"/>
                   </svg>
                 </div>
+                {%  if media.image_label != blank %}
                 <div class="details__image-label body-xs">{{ media.image_label }}</div>
+                {%  endif  %}
               </div>
             {% endfor %}
           </div>
@@ -71,7 +77,7 @@
             <div
               class="details__point {% if forloop.first %}active{% endif %}"
               data-detail="{{ forloop.index0 }}"
-              style="left: {{ point.horizontal_position }}%; top: {{ point.vertical_position }}%;"
+              style="left: {{ point.horizontal_position | default: 50 }}%; top: {{ point.vertical_position| default: 50 }}%;"
             >
               <svg width="240" height="240" viewBox="0 0 240 240" fill="none">
                 <circle cx="120.249" cy="119.75" r="33.2143" fill="white" stroke="white" stroke-width="2"/>
@@ -80,7 +86,9 @@
               </svg>
             </div>
           {% endfor %}
+          {%  if single_image.image_label != blank %}
           <div class="details__image-label body-xs">{{ single_image.image_label }}</div>
+        {%  endif  %}
         </div>
       {% endif %}
     </div>
