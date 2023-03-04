@@ -1,0 +1,80 @@
+<div class="page-width">
+  <div class="columns__inner">
+    <div class="column__header">
+      <h2 class="column__heading">{{ section.settings.heading | newline_to_br }}</h2>
+    </div>
+    <div class="column__container">
+      {% for block in section.blocks %}
+        <div class="column__item">
+          {% if block.settings.image != blank %}
+            <div class="column__item-image">
+              {{ block.settings.image | image_url: 1000 | image_tag }}
+              {% if block.settings.label %}
+                <div class="column__item-label">{{ block.settings.label }}</div>
+              {% endif %}
+            </div>
+          {% endif %}
+          <p class="column__item-heading">{{ block.settings.heading }}</p>
+          <p class="column__item-text">{{ block.settings.text }}</p>
+          {% if block.settings.link != blank and block.settings.link_text != blank %}
+            <a href="{{ block.setting.link }}" class="column__item-link text-link">{{ block.settings.link_text }} ></a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Columns",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "column",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "link_text",
+            "label": "Link text"
+          },
+          {
+            "type": "header",
+            "content": "Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "label",
+            "label": "Image label"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
