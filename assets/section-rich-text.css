@@ -74,3 +74,23 @@
 .rich-text__blocks > * + a {
   margin-top: 3rem;
 }
+
+
+/* Richtext section */
+.richtext {
+  text-align: center;
+}
+
+.richtext__icon svg {
+  width: 79px;
+}
+
+.richtext__heading {
+  max-width: 610px;
+  margin: 30px auto 0;
+}
+
+.richtext__text {
+  max-width: 820px;
+  margin: 20px auto 0;
+}

@@ -1,0 +1,35 @@
+{{'section-rich-text.css' | asset_url | stylesheet_tag }}
+<div class="page-width">
+  <div class="richtext__inner">
+    <div class="richtext__icon">
+      {% render 'sun-svg', opacity: "0.5", color: "#D2B066" %}
+    </div>
+
+    {% if section.settings.heading != blank %}
+    <h2 class="richtext__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.text != blank %}
+    <div class="richtext__text body">{{ section.settings.text }}</div>
+    {% endif %}
+  </div>  
+</div>
+{% schema %}
+  {
+    "name": "Richtext",
+    "tag": "section",
+    "class": "richtext with-spacing",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      }
+    ]
+  }
+{% endschema %}
