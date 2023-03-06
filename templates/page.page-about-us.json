@@ -102,7 +102,43 @@
       }
     },
     "text-image-columns": {
-      "type": "text-image-columns"
+      "type": "text-image-columns",
+      "blocks": {
+        "3a51b987-09be-4113-b173-7b59de677c61": {
+          "type": "section",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/About-Us-Indoor-Mat-Insider-Maze-Navy-Doormat.jpg",
+            "label": "The Insider | Maze (Navy)",
+            "heading": "We believe that form and function are not mutually exclusive",
+            "text": "Getting to the product that you see today was a long process. Our mats needed to perform and hold up to the elements, foot traffic, and hundreds of wipes and stomps. Our colors had to be vibrant. Our textures had to last. Our mats needed to be easy to maintain. We stand <em>on<\/em> our mats because they deliver."
+          }
+        },
+        "cf63a171-6ade-4f26-a84e-a9dde3b49f28": {
+          "type": "section",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/About-Us-Outdoor-Mat-Outsider-Teak-Frame-Grey-Insert-Doormat.jpg",
+            "label": "The Outsider | Teak Frame Grey Insert",
+            "heading": "We believe that small updates can make big changes to  your life",
+            "text": "Porte + Hall is inspired by all that brings us together. It celebrates the spirit of invitation and embodies the experience you get when you step inside your door, a feeling that whispers <em>you’re home. <\/em>Stafford’s designs are sophisticated, and her prints charming. Now you can get mats for exteriors and interiors that invite you to go ahead and stay awhile. Your front door is the first impression of the lives inside. What will your doorstep tell the world?"
+          }
+        },
+        "981de907-6468-49e8-a86e-ec675d0f7114": {
+          "type": "section",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/About-Us-Founder.jpg",
+            "label": "",
+            "heading": "We believe in problem-solving through innovation",
+            "text": "We're proud to launch our first 100% US-made and manufactured product in 2023. Every day is an opportunity to learn and grow, so check back with us as we continue to work towards adding even more people and planet-friendly materials to our collections."
+          }
+        }
+      },
+      "block_order": [
+        "3a51b987-09be-4113-b173-7b59de677c61",
+        "cf63a171-6ade-4f26-a84e-a9dde3b49f28",
+        "981de907-6468-49e8-a86e-ec675d0f7114"
+      ],
+      "settings": {
+      }
     },
     "0a69165e-8ae0-46b0-9ed4-6732d7ba88d1": {
       "type": "fan-motif-section",
