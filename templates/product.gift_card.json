@@ -74,9 +74,11 @@
     "fan-motif": {
       "type": "fan-motif-section",
       "settings": {
+        "hide_desktop": false,
+        "hide_mobile": false,
         "color": "green",
         "alignment": "center",
-        "heading": "“Gift cards are the perfect gift to give for the new homeowner or design aficionado in your life —they can be used anytime.”",
+        "heading": "“Porte + Hall gift cards make the perfect housewarming gift - something they may not get for themselves but is a livable luxury they will love.”",
         "text": "<strong>— STAFFORD MEYER, FOUNDER OF PORTE + HALL<\/strong>",
         "link": "",
         "link_text": ""
@@ -85,6 +87,11 @@
     "meet-the-founder": {
       "type": "meet-founder",
       "settings": {
+        "hide_desktop": false,
+        "hide_mobile": false,
+        "bg_color": "",
+        "text_color": "",
+        "border": "",
         "alignment": "right",
         "heading": "Meet Stafford, founder of Porte + Hall",
         "text": "Stafford comes from over two decades of working in the interior design industry Sed ut perspiciatis, unde omnis iste natus error sit voluptatem lorem elit accusantium doloremque doloritis vin non laudantium.",
@@ -109,6 +116,8 @@
         "question_1"
       ],
       "settings": {
+        "heading": "",
+        "collection": ""
       }
     },
     "featured-articles": {
