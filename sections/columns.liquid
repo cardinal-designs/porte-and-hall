@@ -23,6 +23,10 @@
         </div>
       {% endfor %}
     </div>
+
+    {%  if section.settings.link != blank and section.settings.link_text != blank %}
+      <a href="{{  section.settings.link }}" class="button">{{  section.settings.link_text }}</a>
+    {%  endif  %}
   </div>
 </div>
 {% schema %}
@@ -35,6 +39,20 @@
         "type": "textarea",
         "id": "heading",
         "label": "Heading"
+      },
+      {
+        "type": "header",
+        "content": "Button"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Link"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Link text"
       }
     ],
     "blocks": [
