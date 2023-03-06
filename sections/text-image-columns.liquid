@@ -1,3 +1,5 @@
+{{ 'section-text-image-columns.css' | asset_url | stylesheet_tag }}
+
 <div class="text-image-columns__inner">
   {% for block in section.blocks %}
     <div class="text-image-columns__block">
@@ -24,7 +26,7 @@
   {
     "name": "Text Image Columns",
     "tag": "section",
-    "class": "text-image-columns",
+    "class": "text-image-columns with-spacing",
     "blocks": [
       {
         "type": "section",
