@@ -79,6 +79,11 @@
 }
 
 @media screen and (max-width: 768px) {
+
+  .text-image-columns__text-wrapper {
+    margin: auto;
+    padding: 0 20px;
+  }
   .text-image-columns__text-wrapper .divider {
     width: 100%;
   }
