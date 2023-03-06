@@ -60,6 +60,7 @@
 
 .columns__cta {
   margin: 30px auto 0;
+  display: inline-block;
 }
 
 @media screen and (max-width: 768px) {
