@@ -9,71 +9,8 @@
         "button_link": ""
       }
     },
-    "d6a4e5b3-bc8d-47c2-be4d-b259ce228429": {
-      "type": "logo-marquee",
-      "blocks": {
-        "50d28991-9949-425a-8be2-904babebbf3d": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"146\" height=\"30\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
-          }
-        },
-        "149c1817-ad42-4e33-9606-3fdd86617b59": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"242\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Better_homes.svg?v=1613389157\" alt=\"logo\">"
-          }
-        },
-        "c601b093-74e6-4c97-9b9f-e92dbbc1954b": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"143\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
-          }
-        },
-        "525c8d7f-3fd8-424a-9bb9-796fe7acd9b9": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"100\" height=\"25\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
-          }
-        },
-        "3a0ca646-6b8d-40f7-bad1-95beb0f48c38": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"146\" height=\"30\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
-          }
-        },
-        "7776a47e-3b45-4168-a62f-1ed5450e55e4": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"242\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Better_homes.svg?v=1613389157\" alt=\"logo\">"
-          }
-        },
-        "75cd2c0e-3721-428e-9a94-ab9ee0f2702a": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"143\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
-          }
-        },
-        "e94d2efd-9517-44b1-ae3f-3c3ce149ac5f": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"100\" height=\"25\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
-          }
-        }
-      },
-      "block_order": [
-        "50d28991-9949-425a-8be2-904babebbf3d",
-        "149c1817-ad42-4e33-9606-3fdd86617b59",
-        "c601b093-74e6-4c97-9b9f-e92dbbc1954b",
-        "525c8d7f-3fd8-424a-9bb9-796fe7acd9b9",
-        "3a0ca646-6b8d-40f7-bad1-95beb0f48c38",
-        "7776a47e-3b45-4168-a62f-1ed5450e55e4",
-        "75cd2c0e-3721-428e-9a94-ab9ee0f2702a",
-        "e94d2efd-9517-44b1-ae3f-3c3ce149ac5f"
-      ],
-      "settings": {
-        "background_color": "#d8d3c7"
-      }
+    "richtext-one": {
+      "type": "richtext"
     },
     "83b2c825-49b8-4019-a11c-30b637687747": {
       "type": "text-media-carousel",
@@ -118,7 +55,7 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/About-Us-Outdoor-Mat-Outsider-Teak-Frame-Grey-Insert-Doormat.jpg",
             "label": "The Outsider | Teak Frame Grey Insert",
-            "heading": "We believe that small updates can make big changes to  your life",
+            "heading": "We believe that small updates can make big changes to your life",
             "text": "Porte + Hall is inspired by all that brings us together. It celebrates the spirit of invitation and embodies the experience you get when you step inside your door, a feeling that whispers <em>you’re home. <\/em>Stafford’s designs are sophisticated, and her prints charming. Now you can get mats for exteriors and interiors that invite you to go ahead and stay awhile. Your front door is the first impression of the lives inside. What will your doorstep tell the world?"
           }
         },
@@ -152,6 +89,9 @@
         "link": "",
         "link_text": ""
       }
+    },
+    "richtext-two": {
+      "type": "richtext"
     },
     "0de7e396-a909-4e48-b29c-f16f301ca77b": {
       "type": "meet-founder",
@@ -243,10 +183,11 @@
   },
   "order": [
     "16587824044cd3c400",
-    "d6a4e5b3-bc8d-47c2-be4d-b259ce228429",
+    "richtext-one",
     "83b2c825-49b8-4019-a11c-30b637687747",
     "text-image-columns",
     "0a69165e-8ae0-46b0-9ed4-6732d7ba88d1",
+    "richtext-two",
     "0de7e396-a909-4e48-b29c-f16f301ca77b",
     "ca7269e3-0e99-4b33-8ac5-b2cb1e4e8322",
     "401485ce-1e85-48de-9a73-3a8fb67a190f"

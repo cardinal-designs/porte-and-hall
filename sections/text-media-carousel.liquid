@@ -5,7 +5,7 @@
     <div class="text-media-carousel__media-inner swiper">
       <div class="swiper-wrapper">
         {% for block in section.blocks %}
-          <div class="swiper-slide text-media-carousel__image" data-controlled-by="{{ forloop.index }}">
+          <div class="swiper-slide text-media-carousel__image text-media-carousel__image-alignment-{{ block.settings.image_alignment }}" data-controlled-by="{{ forloop.index }}">
             {% if block.settings.video != blank %}
               {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
             {% elsif block.settings.image != blank %}
@@ -28,7 +28,7 @@
       <div class="text-media-carousel__text swiper">
         <div class="swiper-wrapper">
           {% for block in section.blocks %}
-            <div class="swiper-slide" data-controlls="{{ forloop.index }}">
+            <div class="swiper-slide text-media-carousel__alignment--{{ block.settings.text_alignment }}" data-controlls="{{ forloop.index }}">
               {% if block.settings.heading != blank %}
                 <h2 class="text-media__heading">{{ block.settings.heading | newline_to_br }}</h2>
               {% endif %}
@@ -139,6 +139,26 @@
           "label": "Link text"
         },
         {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Mobile text alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
           "type": "header",
           "content": "Media"
         },
@@ -155,6 +175,26 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "image_alignment",
+          "label": "Image alignment",
+          "options": [
+            {
+              "label": "Top",
+              "value": "top"
+            },
+            {
+              "label": "Center",
+              "value": "center"
+            },
+            {
+              "label": "Bottom",
+              "value": "bottom"
+            }
+          ],
+          "default": "center"
         },
         {
           "type": "video",

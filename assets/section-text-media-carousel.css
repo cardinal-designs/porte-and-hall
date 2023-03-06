@@ -30,6 +30,18 @@
   position: relative;
 }
 
+.text-media-carousel__image-alignment-top img {
+  object-position: top;
+}
+
+.text-media-carousel__image-alignment-center img {
+  object-position: center;
+}
+
+.text-media-carousel__image-alignment-bottom img {
+  object-position: bottom
+}
+
 .text-media-carousel__media-label {
   position: absolute;
   left: 0;
@@ -89,7 +101,19 @@
     padding: 35px 20px;
   }
 
-  .text-media__quote {
+  .text-media-carousel__alignment--left {
+    text-align: left;
+  }
+
+  .text-media-carousel__alignment--center {
+    text-align: center;
+  }
+
+  .text-media-carousel__alignment--right {
+    text-align: right;
+  }
+
+  .text-media__quote.handwriting {
     font-size: 22px;
     line-height: 120%;
   }
