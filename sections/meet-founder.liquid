@@ -4,9 +4,11 @@
   <div class="meet-founder__background">
     <div class="meet-founder__inner meet-founder__layout-{{ section.settings.alignment }}">
       <div class="meet-founder__content-wrapper">
+        {%  unless section.settings.show_signature == false %}
         <div class="signature-svg">
           {% render 'signature' %}
         </div>
+          {%  endunless  %}
         {% if section.settings.heading != blank %}
           <h2 class="meet-founder__heading">{{ section.settings.heading | newline_to_br }}</h2>
         {% endif %}
@@ -63,6 +65,12 @@
       "type": "checkbox",
       "id": "hide_mobile",
       "label": "Hide on Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_signature",
+      "label": "Show signature",
+      "default": true
     },
     {
       "type": "color",
