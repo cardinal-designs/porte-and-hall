@@ -1,0 +1,65 @@
+<div class="text-image-columns__inner">
+  {% for block in section.blocks %}
+    <div class="text-image-columns__block">
+      <div class="text-image-columns__image-wrapper">
+        {% if block.settings.image != blank %}
+          {{ block.settings.image | image_url: width: 1200 | image_tag }}
+        {% endif %}
+        {% if block.settings.label != blank %}
+          <div class="text-image-columns__image-label body-xs">{{ block.settings.label }}</div>
+        {% endif %}
+      </div>
+
+      <div class="text-image-columns__text-wrapper">
+        <span class="divider divider-start">{% render 'divider' %}<span class="divider-line"></span></span>
+        <h2 class="text-image-columns__heading">{{ block.settings.heading }}</h2>
+        <p class="text-image-columns__text body">{{ block.settings.text }}</p>
+        <span class="divider divider-end"><span class="divider-line"></span> {% render 'divider' %}</span>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "Text Image Columns",
+    "tag": "section",
+    "class": "text-image-columns",
+    "blocks": [
+      {
+        "type": "section",
+        "name": "Section",
+        "settings": [
+          {
+            "type": "header",
+            "content": "Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "label",
+            "label": "Image label"
+          },
+          {
+            "type": "header",
+            "content": "Text"
+          },
+          {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
