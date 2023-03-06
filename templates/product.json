@@ -89,7 +89,7 @@
       "type": "see-it-in-action",
       "settings": {
         "heading": "",
-        "link": "\/",
+        "link": "shopify:\/\/pages\/ideas-inspiration",
         "link_text": "Get more inspiration >"
       }
     },
@@ -214,6 +214,8 @@
     "fan-motif": {
       "type": "fan-motif-section",
       "settings": {
+        "hide_desktop": false,
+        "hide_mobile": false,
         "color": "green",
         "alignment": "left",
         "heading": "First impressions matter.\nFor both you and your visitors.",
