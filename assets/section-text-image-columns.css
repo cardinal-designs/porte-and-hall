@@ -23,11 +23,13 @@
 .text-image-columns__block:nth-of-type(odd) .text-image-columns__text-wrapper {
   margin-right: auto;
   margin-left: 0;
+  padding-right: 20px;
 }
 
 .text-image-columns__block:nth-of-type(even) .text-image-columns__text-wrapper {
   margin-left: auto;
   margin-right: 0;
+  padding-left: 20px;
 }
 
 .text-image-columns__image-wrapper {
@@ -56,12 +58,6 @@
 .text-image-columns__text-wrapper {
   grid-area: text;
   max-width: 505px;
-}
-
-@media screen and (min-width: 769px) {
-  .text-image-columns__text-wrapper.page-width {
-    padding: 0px;
-  }
 }
 
 .text-image-columns__text {
