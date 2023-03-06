@@ -17,6 +17,12 @@
           {{ page.title | escape }}
         </h1>
       {%- endif -%}
+
+      {% if section.settings.subhead != blank %}
+        <div class="h3 main-page-subhead">
+          {{ section.settings.subhead | newline_to_br }}
+        </div>
+      {% endif %}
     </div>
   </div>
 
@@ -38,7 +44,8 @@
   @media screen and (max-width: 767px) {
   
     #{{ section.id }} .Page_Header {
-      height: 186px;
+      min-height: 186px;
+      height: auto;
     }
     
   }
@@ -55,6 +62,11 @@
       "type": "text",
       "id": "page_heading",
       "label": "Page Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "subhead",
+      "label": "Subhead"
     },
     {
       "type": "header",

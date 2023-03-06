@@ -1,0 +1,83 @@
+{{ 'section-columns.css' | asset_url | stylesheet_tag }}
+<div class="page-width">
+  <div class="columns__inner">
+    <div class="columns__header">
+      <h2 class="columns__heading">{{ section.settings.heading | newline_to_br }}</h2>
+    </div>
+    <div class="columns__container">
+      {% for block in section.blocks %}
+        <div class="columns__item">
+          {% if block.settings.image != blank %}
+            <div class="columns__item-image">
+              {{ block.settings.image | image_url: width: 1000 | image_tag }}
+              {% if block.settings.label %}
+                <div class="columns__item-label">{{ block.settings.label }}</div>
+              {% endif %}
+            </div>
+          {% endif %}
+          <p class="columns__item-heading">{{ block.settings.heading }}</p>
+          <p class="columns__item-text">{{ block.settings.text }}</p>
+          {% if block.settings.link != blank and block.settings.link_text != blank %}
+            <a href="{{ block.settings.link }}" class="columns__item-link text-link gold">{{ block.settings.link_text }} ></a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Columns",
+    "tag": "section",
+    "class": "columns with-spacing",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "column",
+        "name": "Column",
+        "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "link_text",
+            "label": "Link text"
+          },
+          {
+            "type": "header",
+            "content": "Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "label",
+            "label": "Image label"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

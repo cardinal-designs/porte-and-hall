@@ -1,26 +1,19 @@
 {{ 'section-see-it-in-action.css' | asset_url | stylesheet_tag }}
 {% liquid
-  for collection in product.collections
-    if collection.title contains ' | '
-      assign grouped_collection = collection
-    endif
-  endfor
 
   assign style_categories = shop.metaobjects.style_category.values | sort: 'order'
   assign has_image = ""
- 
+
   for category in style_categories 
-   assign photos = category.product_photos.value 
-   for photo in photos 
-     assign match = photo.product_collection.value | where: 'id', grouped_collection.id 
-     if match != blank 
+    assign photos = category.product_photos.value 
+    if photos != blank 
       if has_image == ''
         assign has_image = category.name
       else
         assign has_image = has_image | append: ',' | append: category.name
       endif
-     endif 
-   endfor 
+      continue
+    endif
  endfor 
 
  assign has_image = has_image | split: ','
@@ -30,13 +23,7 @@
   <div class="page-width">
     <div class="see-it-in-action__inner">
       <div class="see-it-in-action__header">
-        <h2 class="see-it-in-action__heading blue">{{ section.settings.heading | default: 'See it in action' }}</h2>
-
-        {% if section.settings.link != blank and section.settings.link_text != blank %}
-          <a href="{{ section.settings.link }}" class="text-link gold-secondary--dark see-it-in-action__link">
-            {{- section.settings.link_text -}}
-          </a>
-        {% endif %}
+        <h2 class="see-it-in-action__heading blue">{{ section.settings.heading | newline_to_br }}</h2>
       </div>
 
       <div class="see-it-in-action__tabs-wrapper">
@@ -61,22 +48,30 @@
                 {% unless has_image contains style.name %}
                   {% continue %}
                 {% endunless %}
-                {% assign photos = style.product_photos.value %}
-                {% for photo in photos %}
-                  {% assign match = photo.product_collection.value | where: 'id', grouped_collection.id %}
-                  {% if match != blank %}
-                    <div class="swiper-slide">
-                      <div class="see-it-in-action__tabs-item">
-                        <div class="see-it-in-action__tabs-image">
-                          {% assign photo_object = photo.image.value | file_url %}
-                          {{ photo.image | image_url: width: 1200 | image_tag }}
+                  <div class="swiper-slide">
+                    <div class="see-it-in-action__tabs-item ideas-gallery__wrapper">
+                      {% assign photos = style.product_photos.value %}
+                      {% assign custom_index = 1 %}
+
+                      {% for photo in photos %}
+                        <div class="ideas-gallery__item" data-index={{ custom_index }}>
+                          <div class="see-it-in-action__tabs-image">
+                            {% assign photo_object = photo.image.value | file_url %}
+                            {{ photo.image | image_url: width: 1200 | image_tag }}
+                          </div>
+      
+                          <div class="see-it-in-action__tabs-label body-xs">{{ photo.product_name }} {{ photo.image.aspect_ratio }}</div>
                         </div>
-    
-                        <div class="see-it-in-action__tabs-label body-xs">{{ photo.product_name }} {{ photo.image.aspect_ratio }}</div>
-                      </div>
+                        {% assign remainder = forloop.index | modulo: 12 %}
+                        {% if forloop.index != 1 and remainder == 1 %}
+                          {% comment %} start custom index over {% endcomment %}
+                          {% assign custom_index = 1 %}
+                        {% else %}
+                          {% assign custom_index = custom_index | plus: 1 %}
+                        {% endif %}
+                      {% endfor %}
                     </div>
-                  {% endif %}
-                {% endfor %}
+                  </div>
               {% endfor %}
             </div>
           </div>
@@ -119,24 +114,15 @@
 
 {% schema %}
 {
-  "name": "See It In Action",
+  "name": "Ideas gallery",
   "tag": "section",
-  "class": "see-it-in-action with-spacing",
+  "class": "see-it-in-action with-spacing ideas-gallery",
   "settings": [
     {
-      "type": "text",
+      "type": "textarea",
       "id": "heading",
-      "label": "heading"
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "Link"
-    },
-    {
-      "type": "text",
-      "id": "link_text",
-      "label": "Link text"
+      "label": "heading",
+      "default": "Idea gallery:\nSelect your style & get inspiration"
     }
   ]
 }

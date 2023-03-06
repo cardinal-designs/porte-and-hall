@@ -2077,6 +2077,7 @@ header.condensed .header__menu {
 .Page_Header_Inner {
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -2093,6 +2094,12 @@ header.condensed .header__menu {
 
 .Page_Header_Inner h1 {
   font-family: louize;
+}
+
+@media screen and (max-width: 768px) {
+  .Page_Header_Inner {
+    padding: 50px 0;
+  }
 }
 
 .template-page .header__menu {
