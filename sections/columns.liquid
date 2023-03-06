@@ -1,23 +1,24 @@
+{{ 'section-columns.css' | asset_url | stylesheet_tag }}
 <div class="page-width">
   <div class="columns__inner">
-    <div class="column__header">
-      <h2 class="column__heading">{{ section.settings.heading | newline_to_br }}</h2>
+    <div class="columns__header">
+      <h2 class="columns__heading">{{ section.settings.heading | newline_to_br }}</h2>
     </div>
-    <div class="column__container">
+    <div class="columns__container">
       {% for block in section.blocks %}
-        <div class="column__item">
+        <div class="columns__item">
           {% if block.settings.image != blank %}
-            <div class="column__item-image">
-              {{ block.settings.image | image_url: 1000 | image_tag }}
+            <div class="columns__item-image">
+              {{ block.settings.image | image_url: width: 1000 | image_tag }}
               {% if block.settings.label %}
-                <div class="column__item-label">{{ block.settings.label }}</div>
+                <div class="columns__item-label">{{ block.settings.label }}</div>
               {% endif %}
             </div>
           {% endif %}
-          <p class="column__item-heading">{{ block.settings.heading }}</p>
-          <p class="column__item-text">{{ block.settings.text }}</p>
+          <p class="columns__item-heading">{{ block.settings.heading }}</p>
+          <p class="columns__item-text">{{ block.settings.text }}</p>
           {% if block.settings.link != blank and block.settings.link_text != blank %}
-            <a href="{{ block.setting.link }}" class="column__item-link text-link">{{ block.settings.link_text }} ></a>
+            <a href="{{ block.settings.link }}" class="columns__item-link text-link gold">{{ block.settings.link_text }} ></a>
           {% endif %}
         </div>
       {% endfor %}
@@ -27,6 +28,8 @@
 {% schema %}
   {
     "name": "Columns",
+    "tag": "section",
+    "class": "columns with-spacing",
     "settings": [
       {
         "type": "textarea",

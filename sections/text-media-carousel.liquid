@@ -1,6 +1,6 @@
 {{ 'section-text-media-carousel.css' | asset_url | stylesheet_tag }}
 
-<div class="text-media-carousel__inner">
+<div class="text-media-carousel__inner text-media-carousel__color-{{ section.settings.color }}">
   <div class="text-media-carousel__media-wrapper">
     <div class="text-media-carousel__media-inner swiper">
       <div class="swiper-wrapper">
@@ -84,6 +84,22 @@
       "type": "textarea",
       "id": "heading",
       "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "color",
+      "label": "Color",
+      "options": [
+        {
+          "label": "Dark",
+          "value": "dark"
+        },
+        {
+          "label": "Light",
+          "value": "light"
+        }
+      ],
+      "default": "dark"
     }
   ],
   "blocks": [

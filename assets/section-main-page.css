@@ -6,6 +6,11 @@
   margin-bottom: 0;
 }
 
+.main-page-subhead {
+  margin-top: 10px;
+  text-align: center;
+}
+
 @media screen and (min-width: 769px) {
   .main-page-title {
     margin-bottom: 0;
