@@ -10,7 +10,11 @@
       }
     },
     "richtext-one": {
-      "type": "richtext"
+      "type": "richtext",
+      "settings": {
+        "heading": "Imagine your entry with a doormat that’s actually pretty.",
+        "text": "<p>Stafford created Porte + Hall with a passion for design and a deep desire to help others articulate their personal story through their house. Out of all the places in the world, home is the destination we return to. It welcomes friends, creates memories, and gives shelter to everyone and everything we hold dear. Over the years as an interior designer, Stafford found a lack of doormat options. No one was making a mat that made thresholds sing. So, Stafford decided to be the change she wanted to see.<\/p>"
+      }
     },
     "83b2c825-49b8-4019-a11c-30b637687747": {
       "type": "text-media-carousel",
@@ -18,14 +22,16 @@
         "406197c7-1330-4b48-be5f-790c84db05d6": {
           "type": "slide",
           "settings": {
-            "heading": "100% sustainable, made in the  USA",
+            "heading": "",
             "title": "",
-            "text": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet",
+            "text": "Stafford went to work, making it her mission to transform the doorstep into a curated space worthy of warmth and attention. After late nights sketching, sample after sample of materials, design tweaks, and skipped weekends, Stafford knew she’d created the perfect mat. It is durable, never sheds, doesn’t fade, washes easily, and is incredibly absorbent and versatile. The creation of The Outsider mat opened the door to new opportunities to continue her vision. Now she could make interior mats that would never deteriorate or leave residue, had a sleek profile, and were simple to wash.",
             "handwriting": false,
             "link": "",
             "link_text": "",
+            "text_alignment": "left",
             "media_label": "",
-            "image": "shopify:\/\/shop_images\/Rectangle_602_2.jpg",
+            "image": "shopify:\/\/shop_images\/108A1754_1__2x_2x_1f665141-ad4a-4b99-a3e9-7aa67c042643.jpg",
+            "image_alignment": "top",
             "video_url": ""
           }
         }
@@ -34,7 +40,7 @@
         "406197c7-1330-4b48-be5f-790c84db05d6"
       ],
       "settings": {
-        "heading": "OUR MANUFACTURING",
+        "heading": "",
         "color": "dark"
       }
     },
@@ -84,14 +90,18 @@
         "hide_mobile": false,
         "color": "green",
         "alignment": "center",
-        "heading": "“As an interior designer, I believe deeply in the importance of your home's ability to brighten your mood and outlook.”",
+        "heading": "“I believe deeply in your home's ability to brighten your mood and outlook..”",
         "text": "<strong>— STAFFORD MEYER, FOUNDER OF PORTE + HALL<\/strong>",
         "link": "",
         "link_text": ""
       }
     },
     "richtext-two": {
-      "type": "richtext"
+      "type": "richtext",
+      "settings": {
+        "heading": "The Meaning Of Our Logo",
+        "text": "<p>Porte + Hall believes that sending out a beautiful first impression draws good people into your life. Great designs serve a greater purpose (such as keeping the dirt out of your home). We were inspired by the white-spotted puffer fish that takes up to a week to create intricate patterns in the sand to attract mates and later protect its offspring. Beauty meets functionality!<\/p>"
+      }
     },
     "0de7e396-a909-4e48-b29c-f16f301ca77b": {
       "type": "meet-founder",
@@ -121,8 +131,10 @@
             "handwriting": false,
             "link": "https:\/\/www.joinonelove.org\/",
             "link_text": "Visit their website",
+            "text_alignment": "left",
             "media_label": "",
             "image": "shopify:\/\/shop_images\/Rectangle_602_1.jpg",
+            "image_alignment": "top",
             "video_url": ""
           }
         }
