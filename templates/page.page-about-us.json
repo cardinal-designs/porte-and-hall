@@ -3,10 +3,9 @@
     "16587824044cd3c400": {
       "type": "hero",
       "settings": {
-        "video": "shopify:\/\/files\/videos\/Outdoor-Indoor-Mats-Doormats-Runners-AreaMats-Rugs (1).mp4",
-        "image": "shopify:\/\/shop_images\/Rectangle_595.png",
-        "title": "Designed and brought to you by our interior designer and founder.",
-        "button_label": "Shop Now",
+        "image": "shopify:\/\/shop_images\/About-Us-Outdoor-Mat-Outsider-Teak-Grey-Doormat.jpg",
+        "title": "First impressions matter.\nFor both you and your visitors.",
+        "button_label": "Shop All",
         "button_link": ""
       }
     },
@@ -76,150 +75,59 @@
         "background_color": "#d8d3c7"
       }
     },
-    "da10a9d1-b562-4add-8fa2-54431f6fa235": {
-      "type": "image-links",
+    "83b2c825-49b8-4019-a11c-30b637687747": {
+      "type": "text-media-carousel",
       "blocks": {
-        "08b5bc26-e2e6-4d42-a104-492b1a89dd94": {
-          "type": "block",
+        "406197c7-1330-4b48-be5f-790c84db05d6": {
+          "type": "slide",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Outdoor-Mat-Outsider-Teak-Frame-Blue-Insert-Doormat.jpg",
-            "text": "The Outsider in Teak Blue",
-            "link_text": "Show All Outdoor Mats",
-            "link": "shopify:\/\/collections"
-          }
-        },
-        "868e623f-12f7-4895-9dda-b6e5ce7484f1": {
-          "type": "block",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/Indoor-Mat-Insider-Maze-Red-Doormat.jpg",
-            "text": "The Insider in Maze Red",
-            "link_text": "Shop All Indoor Mats",
-            "link": "shopify:\/\/collections"
+            "heading": "100% sustainable, made in the  USA",
+            "title": "",
+            "text": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet",
+            "handwriting": false,
+            "link": "",
+            "link_text": "",
+            "media_label": "",
+            "image": "shopify:\/\/shop_images\/Rectangle_602_2.jpg",
+            "video_url": ""
           }
         }
       },
       "block_order": [
-        "08b5bc26-e2e6-4d42-a104-492b1a89dd94",
-        "868e623f-12f7-4895-9dda-b6e5ce7484f1"
+        "406197c7-1330-4b48-be5f-790c84db05d6"
       ],
       "settings": {
-        "heading": "We’ve got all of your hard-working spaces covered, both indoor and outdoor."
+        "heading": "OUR MANUFACTURING",
+        "color": "dark"
       }
     },
     "0a69165e-8ae0-46b0-9ed4-6732d7ba88d1": {
       "type": "fan-motif-section",
-      "blocks": {
-        "9d8e504b-949c-465e-a376-e30737f923aa": {
-          "type": "icon",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/Outsider-Scrape_1.gif",
-            "title": "Stain-Resistant"
-          }
-        },
-        "d1c8ec62-41c6-4863-8ae3-0c828ee958ed": {
-          "type": "icon",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/Outsider-Removable_aad5ef63-5b85-44d2-b720-2ffb6443308c.gif",
-            "title": "Slip-Resistant"
-          }
-        },
-        "73b0b674-5dfc-4b05-97b6-a256964f7310": {
-          "type": "icon",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/Homepage-Quality.gif",
-            "title": "High-Quality"
-          }
-        }
-      },
-      "block_order": [
-        "9d8e504b-949c-465e-a376-e30737f923aa",
-        "d1c8ec62-41c6-4863-8ae3-0c828ee958ed",
-        "73b0b674-5dfc-4b05-97b6-a256964f7310"
-      ],
       "settings": {
-        "color": "orange",
+        "hide_desktop": false,
+        "hide_mobile": false,
+        "color": "green",
         "alignment": "center",
-        "heading": "Our mats are designed for heavy-duty use, without the bulky look & feel, and are:",
-        "text": "",
+        "heading": "“As an interior designer, I believe deeply in the importance of your home's ability to brighten your mood and outlook.”",
+        "text": "<strong>— STAFFORD MEYER, FOUNDER OF PORTE + HALL<\/strong>",
         "link": "",
         "link_text": ""
       }
     },
-    "630d0a75-2fb2-42a8-bda0-7ad9acc2a8bb": {
-      "type": "main-product-carousel",
-      "blocks": {
-        "47c21a09-3d3c-4a25-9983-f939eb95b743": {
-          "type": "collection",
-          "settings": {
-            "collection": "the-innerweave-doormat",
-            "title": "",
-            "button_text": "Shop now"
-          }
-        },
-        "9a85f052-f42b-4c01-a0b1-f3e1eab885dd": {
-          "type": "collection",
-          "settings": {
-            "collection": "the-insider-doormat",
-            "title": "",
-            "button_text": "Shop now"
-          }
-        },
-        "3e40d22f-4bb8-4312-a0b0-39da0e026121": {
-          "type": "collection",
-          "settings": {
-            "collection": "the-outsider-doormat",
-            "title": "",
-            "button_text": "Shop now"
-          }
-        },
-        "82dbb134-ceef-446c-bc41-66f34d7c534c": {
-          "type": "collection",
-          "settings": {
-            "collection": "the-innerweave-runner",
-            "title": "",
-            "button_text": "Shop now"
-          }
-        },
-        "1991b75a-bf16-4c3f-bdeb-f4b25c7a1761": {
-          "type": "collection",
-          "settings": {
-            "collection": "the-insider-runner",
-            "title": "",
-            "button_text": "Shop now"
-          }
-        },
-        "ec5562a6-1c33-4c7f-b245-7ae06ea67878": {
-          "type": "collection",
-          "settings": {
-            "collection": "the-innerweave-area-mat",
-            "title": "",
-            "button_text": "Shop now"
-          }
-        },
-        "4fb3b30d-b223-4069-9290-3c208d01b1b6": {
-          "type": "collection",
-          "settings": {
-            "collection": "the-insider-area-mat",
-            "title": "",
-            "button_text": "Shop now"
-          }
-        }
-      },
-      "block_order": [
-        "47c21a09-3d3c-4a25-9983-f939eb95b743",
-        "9a85f052-f42b-4c01-a0b1-f3e1eab885dd",
-        "3e40d22f-4bb8-4312-a0b0-39da0e026121",
-        "82dbb134-ceef-446c-bc41-66f34d7c534c",
-        "1991b75a-bf16-4c3f-bdeb-f4b25c7a1761",
-        "ec5562a6-1c33-4c7f-b245-7ae06ea67878",
-        "4fb3b30d-b223-4069-9290-3c208d01b1b6"
-      ],
+    "0de7e396-a909-4e48-b29c-f16f301ca77b": {
+      "type": "meet-founder",
       "settings": {
-        "heading": "Meet our mats",
-        "show_product_info": true,
-        "show_vendor": false,
-        "show_color_swatch": false,
-        "background": ""
+        "hide_desktop": false,
+        "hide_mobile": false,
+        "bg_color": "",
+        "text_color": "",
+        "border": "",
+        "alignment": "right",
+        "heading": "Meet Stafford, founder of Porte + Hall",
+        "text": "“In my 20 years as an interior designer, I struggled to source entry mats that were as well-designed and functional as the rest of the home. I was bewildered by the scarcity of options. Why was the first thing to greet you at your door not important? So I decided to design my own - because first impressions matter, for you and your guests.  Welcome to our collection and we hope you walk all over us!”",
+        "link": "",
+        "link_text": "",
+        "image": "shopify:\/\/shop_images\/IMAGE_COLLAGE_4525dc98-0b51-42b8-81bb-d6aff921a5bb.png"
       }
     },
     "ca7269e3-0e99-4b33-8ac5-b2cb1e4e8322": {
@@ -228,91 +136,24 @@
         "6023e449-1169-48e3-a76e-deef958316d0": {
           "type": "slide",
           "settings": {
-            "heading": "Elizabeth Pash",
-            "title": "Founder of Elizabeth Pash Interiors & Antiques",
-            "text": "It was love at first sight with the Outsider.  Not only is it great looking, but it is practical--the perfect finishing touch that adds instant curb appeal!",
-            "link": "",
-            "link_text": "",
+            "heading": "Porte + Hall \nand One Love",
+            "title": "",
+            "text": "Porte + Hall believes in the power of supporting nonprofits near and dear to our hearts. We have developed a partnership with our friends at the One Love Foundation, committing 2% of all profits to the organization. One Love empowers young people to identify and avoid abuse and teaches them how to love better.",
+            "handwriting": false,
+            "link": "https:\/\/www.joinonelove.org\/",
+            "link_text": "Visit their website",
             "media_label": "",
-            "image": "shopify:\/\/shop_images\/EP_Portrrait_x2_2x_037b6269-0743-4a5b-9f25-bfa55cfa25cc.jpg",
-            "video_url": ""
-          }
-        },
-        "59bb0f61-51d2-4f23-93c7-9fa961309c5c": {
-          "type": "slide",
-          "settings": {
-            "heading": "Nicole Gibbons",
-            "title": "Founder of Clare Paint  |  Her Style: Farmhouse Chic\nProduct: The Innerweave Doormat in Chevron Natural",
-            "text": "“Sed ut perspiciatis, unde omnis iste natus error sit voluptatem lorem elit accusantium doloremque doloritis vin laudantium!”",
-            "link": "",
-            "link_text": "",
-            "media_label": "THE INSIDER AREA MAT IN BARK (CREME)",
-            "image": "shopify:\/\/shop_images\/IMG_1619_1__x2_2x_67cf7c01-faec-45de-a263-bcdded8c1dd8.jpg",
+            "image": "shopify:\/\/shop_images\/Rectangle_602_1.jpg",
             "video_url": ""
           }
         }
       },
       "block_order": [
-        "6023e449-1169-48e3-a76e-deef958316d0",
-        "59bb0f61-51d2-4f23-93c7-9fa961309c5c"
+        "6023e449-1169-48e3-a76e-deef958316d0"
       ],
       "settings": {
-        "heading": "How I Style It"
-      }
-    },
-    "7337a49a-31a0-4e5d-9a53-968d18d1068e": {
-      "type": "featured-articles",
-      "blocks": {
-        "140e3c63-9b99-476d-9378-53fd1ce30b89": {
-          "type": "article",
-          "settings": {
-            "article": "news\/at-some-point-in-the-last-year"
-          }
-        },
-        "faf6f395-3915-4f58-b2c5-acd839476fc2": {
-          "type": "article",
-          "settings": {
-            "article": "news\/the-view-from-my-porch"
-          }
-        },
-        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23": {
-          "type": "article",
-          "settings": {
-            "article": "news\/of-dogs-doormats"
-          }
-        }
-      },
-      "block_order": [
-        "140e3c63-9b99-476d-9378-53fd1ce30b89",
-        "faf6f395-3915-4f58-b2c5-acd839476fc2",
-        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23"
-      ],
-      "settings": {
-        "heading": "Hit the ground stunning: The Porte + Hall blog",
-        "background": ""
-      }
-    },
-    "542bd631-99ef-452b-91d4-02d612f961a0": {
-      "type": "fan-motif-section",
-      "settings": {
-        "color": "green",
-        "alignment": "left",
-        "heading": "First impressions matter.\nFor both you and your visitors.",
-        "text": "Just like a clean desk or freshly-made bed, coming home to a beautiful and functional entryway is restorative and uplifting. We aim to turn these often ovelooked areas of our homes into inspired areas that welcome and invite us home.",
-        "link": "shopify:\/\/pages\/about-us",
-        "link_text": "LEARN MORE ABOUT US",
-        "image": "shopify:\/\/shop_images\/door_illustration.png"
-      }
-    },
-    "0de7e396-a909-4e48-b29c-f16f301ca77b": {
-      "type": "meet-founder",
-      "settings": {
-        "alignment": "right",
-        "heading": "Meet Stafford, founder of Porte + Hall",
-        "text": "“In my 20 years as an interior designer, I struggled to source entry mats that were as well-designed and functional as the rest of the home. I was bewildered by the scarcity of options. Why was the first thing to greet you at your door not important? So I decided to design my own - because first impressions matter, for you and your guests.  Welcome to our collection and we hope you walk all over us!”",
-        "link": "",
-        "link_text": "",
-        "image": "shopify:\/\/shop_images\/IMAGE_COLLAGE_4525dc98-0b51-42b8-81bb-d6aff921a5bb.png"
+        "heading": "",
+        "color": "light"
       }
     },
     "401485ce-1e85-48de-9a73-3a8fb67a190f": {
@@ -364,13 +205,10 @@
   "order": [
     "16587824044cd3c400",
     "d6a4e5b3-bc8d-47c2-be4d-b259ce228429",
-    "da10a9d1-b562-4add-8fa2-54431f6fa235",
+    "83b2c825-49b8-4019-a11c-30b637687747",
     "0a69165e-8ae0-46b0-9ed4-6732d7ba88d1",
-    "630d0a75-2fb2-42a8-bda0-7ad9acc2a8bb",
-    "ca7269e3-0e99-4b33-8ac5-b2cb1e4e8322",
-    "7337a49a-31a0-4e5d-9a53-968d18d1068e",
-    "542bd631-99ef-452b-91d4-02d612f961a0",
     "0de7e396-a909-4e48-b29c-f16f301ca77b",
+    "ca7269e3-0e99-4b33-8ac5-b2cb1e4e8322",
     "401485ce-1e85-48de-9a73-3a8fb67a190f"
   ]
 }
