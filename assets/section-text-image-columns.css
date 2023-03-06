@@ -58,6 +58,12 @@
   max-width: 505px;
 }
 
+@media screen and (min-width: 769px) {
+  .text-image-columns__text-wrapper.page-width {
+    padding: 0px;
+  }
+}
+
 .text-image-columns__text {
   margin-top: 20px;
 }
