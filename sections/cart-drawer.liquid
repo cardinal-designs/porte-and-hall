@@ -11,8 +11,8 @@
         <div class="cart-drawer__content" id="cart-drawer__content" data-id="{{ section.id }}">
           {% if cart.items.size == 0 %}
             <div class="cart-drawer__empty">
-              <h3>Your cart is empty.</h3>
-              <a href="/collections" class="button">Shop All</a>
+              <h3>{{ section.settings.empty_text | default: "Your cart is empty." }}</h3>
+              <a href="{{ section.settings.button | default: "/>" }}" class="button">{{ section.settings.button_text | default: "Shop All" }}</a>
             </div>
           {% else %}
             <div class="cart-drawer__items" id="cart-drawer-items">
@@ -23,9 +23,9 @@
             
             <div class="cart-drawer__footer">
               <div class="cart-drawer__subtotal-wrapper" id="cart-drawer-subtotal">
-                <h4 class="sh5">Subtotal</h4>
+                <h4 class="body-sm">Subtotal</h4>
                 <div class="cart-drawer__loading-container">
-                  <h4 class="cart-drawer__subtotal sh5">{{ cart.total_price | money }}</h4>
+                  <h4 class="cart-drawer__subtotal">{{ cart.total_price | money_without_trailing_zeros }}</h4>
                   <div class="loading-overlay hidden" id="cart-drawer-loading">
                     <div class="loading-overlay__spinner">
                       <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +36,7 @@
                 </div>
               </div>
               <a href="/checkout" class="button button--full" name="checkout" form="cart">{{ 'sections.cart.checkout' | t }}</a>
-              <h6 class="cart-drawer__taxes body-3">{{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}</h6>
+              <h6 class="cart-drawer__taxes body-xs">{{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}</h6>
             </div>
           {% endif %}
         </div>
@@ -54,6 +54,25 @@
       "id": "cart_title",
       "label": "Cart Title",
       "default": "Your Cart"
+    },
+    {
+      "type": "header",
+      "content": "Empty Cart"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Empty cart message"
+    },
+    {
+      "type": "url",
+      "id": "button",
+      "label": "Empty cart shop link"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Empty cart button text"
     }
   ]
 }

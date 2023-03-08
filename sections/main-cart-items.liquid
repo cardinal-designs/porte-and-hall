@@ -5,16 +5,17 @@
 
   <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 
-  <cart-items class="page-width{% if cart == empty %} is-empty{% endif %}">
+  <div class="page-width">
+  <cart-items class="{% if cart == empty %} is-empty{% endif %}">
     <div class="title-wrapper-with-link">
-      <h1 class="title title--primary">{{ 'sections.cart.title' | t }}</h1>
-      <a href="{{ routes.all_products_collection_url }}" class="underlined-link">{{ 'general.continue_shopping' | t }}</a>
+      <h1 class="title title--primary">{{ section.settings.cart_text | default: "Your cart" }}</h1>
+      <a href="{{ section.settings.button | default: "/" }}" class="text-link">{{ section.settigns.button_text | default: "Continue Shopping" }}</a>
     </div>
 
     <div class="cart__warnings">
-      <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
-      <a href="{{ routes.all_products_collection_url }}" class="button">
-        {{ 'general.continue_shopping' | t }}
+      <h1 class="cart__empty-text">{{ section.settings.empty_text | default: "Your cart is empty" }}</h1>
+      <a href="{{ section.settings.button | default: "/" }}" class="button">
+        {{ seciton.settings.button_text | default: "Continue Shopping" }}
       </a>
 
       {% if shop.customer_accounts_enabled %}
@@ -56,16 +57,47 @@
         role="status">{{ 'accessibility.loading' | t }}</p>
     </form>
   </cart-items>
+</div>
 
   {% schema %}
     {
       "name": "t:sections.main-cart-items.name",
+      "tag": "section",
+      "class": "shopify-section cart-items with-spacing",
       "settings": [
         {
           "type": "checkbox",
           "id": "show_vendor",
           "default": false,
           "label": "t:sections.main-cart-items.settings.show_vendor.label"
+        },
+        {
+          "type": "text",
+          "id": "cart_text",
+          "label": "Cart title"
+        },
+        {
+          "type": "header",
+          "content": "Empty Cart"
+        },
+        {
+          "type": "text",
+          "id": "empty_text",
+          "label": "Empty cart message"
+        },
+        {
+          "type": "header",
+          "content": "Continue shopping"
+        },
+        {
+          "type": "url",
+          "id": "button",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Link text"
         }
       ]
     }
