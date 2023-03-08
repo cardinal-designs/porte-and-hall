@@ -68,6 +68,10 @@
   border-bottom: 1px solid var(--beige-secondary);
 }
 
+.cart-item .cart-item__image-wrapper {
+  display: flex;
+}
+
 cart-drawer-remove-button {
   background: currentColor;
 }
