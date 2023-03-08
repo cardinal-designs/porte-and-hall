@@ -49,7 +49,10 @@
       "cart-drawer": {
         "type": "cart-drawer",
         "settings": {
-          "cart_title": "Your Cart"
+          "cart_title": "Your Cart",
+          "empty_text": "",
+          "button": "shopify:\/\/collections\/shop-all",
+          "button_text": ""
         }
       },
       "footer": {
