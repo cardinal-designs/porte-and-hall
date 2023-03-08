@@ -298,8 +298,8 @@ h6,
 }
 
 @media only screen and (max-width: 768px) {
-  h5,
-  .h5 {
+  h6,
+  .h6 {
     font-size: 20px;
   }
 }
@@ -473,6 +473,7 @@ blockquote {
 
 .button--full {
   width: 100%;
+  display: block;
 }
 
 .button--xs {
@@ -1242,6 +1243,17 @@ header.condensed .header__menu {
   min-height: fit-content;
   line-height: 1.1;
   font-weight: 600;
+  min-width: 13px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-count-bubble > span {
+  display: block;
+  text-align: center;
+  width: 100%;
 }
 
 /*================ Search ================*/

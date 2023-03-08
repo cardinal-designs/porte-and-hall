@@ -5,7 +5,6 @@
 }
 
 .totals > * {
-  font-size: 1.6rem;
   margin: 0;
 }
 
@@ -20,8 +19,12 @@
   margin-left: 2rem;
 }
 
+.totals__subtotal {
+  color: var(--gray);
+}
+
 .totals__subtotal-value {
-  font-size: 1.8rem;
+
 }
 
 .cart__ctas + .totals {
