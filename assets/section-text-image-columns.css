@@ -89,4 +89,9 @@
   .text-image-columns__text-wrapper .divider {
     width: 100%;
   }
+
+  .text-image-columns__image-wrapper {
+    width: calc(100% - 40px);
+    margin: auto;
+  }
 }

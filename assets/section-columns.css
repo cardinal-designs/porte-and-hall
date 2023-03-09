@@ -1,3 +1,6 @@
+.columns.with-spacing > div:first-of-type {
+  padding-top: 50px;
+}
 .columns__inner {
   text-align: center;
 }

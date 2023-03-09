@@ -9,7 +9,7 @@
 }
 
 .meet-founder__inner {
-  padding: 70px 20px;
+  padding: 70px 80px;
   max-width: 1440px;
   margin: auto;
   align-items: center;
@@ -99,6 +99,7 @@
   .meet-founder__inner {
     grid-template-columns: 40% minmax(0, 1fr);
     column-gap: 50px;
+    padding: 70px 20px;
   }
 }
 
