@@ -137,6 +137,8 @@
         "73b0b674-5dfc-4b05-97b6-a256964f7310"
       ],
       "settings": {
+        "hide_desktop": false,
+        "hide_mobile": false,
         "color": "orange",
         "alignment": "center",
         "heading": "Our mats are designed for heavy-duty use, without the bulky look & feel, and are:",
@@ -231,10 +233,13 @@
             "heading": "Elizabeth Pash",
             "title": "Founder of Elizabeth Pash Interiors & Antiques",
             "text": "It was love at first sight with the Outsider.  Not only is it great looking, but it is practical--the perfect finishing touch that adds instant curb appeal!",
+            "handwriting": true,
             "link": "",
             "link_text": "",
+            "text_alignment": "center",
             "media_label": "",
             "image": "shopify:\/\/shop_images\/EP_Portrrait_x2_2x_037b6269-0743-4a5b-9f25-bfa55cfa25cc.jpg",
+            "image_alignment": "center",
             "video_url": ""
           }
         },
@@ -244,10 +249,13 @@
             "heading": "Nicole Gibbons",
             "title": "Founder of Clare Paint  |  Her Style: Farmhouse Chic\nProduct: The Innerweave Doormat in Chevron Natural",
             "text": "“Sed ut perspiciatis, unde omnis iste natus error sit voluptatem lorem elit accusantium doloremque doloritis vin laudantium!”",
+            "handwriting": true,
             "link": "",
             "link_text": "",
+            "text_alignment": "center",
             "media_label": "THE INSIDER AREA MAT IN BARK (CREME)",
             "image": "shopify:\/\/shop_images\/IMG_1619_1__x2_2x_67cf7c01-faec-45de-a263-bcdded8c1dd8.jpg",
+            "image_alignment": "center",
             "video_url": ""
           }
         }
@@ -257,7 +265,8 @@
         "59bb0f61-51d2-4f23-93c7-9fa961309c5c"
       ],
       "settings": {
-        "heading": "How I Style It"
+        "heading": "How I Style It",
+        "color": "dark"
       }
     },
     "7337a49a-31a0-4e5d-9a53-968d18d1068e": {
@@ -288,13 +297,15 @@
         "cc9c34ec-5a8d-4a24-9b5f-20963c337e23"
       ],
       "settings": {
-        "heading": "Hit the ground stunning: The Porte + Hall blog",
+        "heading": "Hit the ground stunning:\nThe Porte + Hall blog",
         "background": ""
       }
     },
     "542bd631-99ef-452b-91d4-02d612f961a0": {
       "type": "fan-motif-section",
       "settings": {
+        "hide_desktop": false,
+        "hide_mobile": false,
         "color": "green",
         "alignment": "left",
         "heading": "First impressions matter.\nFor both you and your visitors.",
@@ -307,6 +318,12 @@
     "0de7e396-a909-4e48-b29c-f16f301ca77b": {
       "type": "meet-founder",
       "settings": {
+        "hide_desktop": false,
+        "hide_mobile": false,
+        "show_signature": true,
+        "bg_color": "",
+        "text_color": "",
+        "border": true,
         "alignment": "right",
         "heading": "Meet Stafford, founder of Porte + Hall",
         "text": "“In my 20 years as an interior designer, I struggled to source entry mats that were as well-designed and functional as the rest of the home. I was bewildered by the scarcity of options. Why was the first thing to greet you at your door not important? So I decided to design my own - because first impressions matter, for you and your guests.  Welcome to our collection and we hope you walk all over us!”",

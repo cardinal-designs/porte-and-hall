@@ -62,7 +62,8 @@
 
 .see-it-in-action__tabs-image {
   position: relative;
-  padding-bottom: 56.25%;
+  width: 100%;
+  aspect-ratio: 1.55/1;
 }
 
 .see-it-in-action__tabs-image img {

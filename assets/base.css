@@ -34,12 +34,12 @@ body.scroll-lock {
 .page-width {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 80px;
+  padding: 0 100px;
 }
 
 @media screen and (max-width: 1050px) {
   .page-width {
-    padding: 0 40px;
+    padding: 0 50px;
   }
 }
 

@@ -53,6 +53,10 @@
 }
 
 @media screen and (max-width: 768px) {
+
+  .faq.with-spacing > div:first-of-type {
+    padding-top: 32px;
+  }
   
   .faq__wrapper {
     display: block;

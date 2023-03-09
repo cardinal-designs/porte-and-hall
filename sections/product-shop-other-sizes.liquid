@@ -9,7 +9,7 @@
 %}
 
 {% assign product_type = grouped_collection.title | remove: 'The ' | split: ' | ' %}
-{% assign default_heading = 'Shop other ' | append: product_type[0] | append: ' sizes' %}
+{% assign default_heading = 'Shop other <br>' | append: product_type[0] | append: ' sizes' %}
 
 {% if grouped_collection.metafields.custom.other_sizes != blank %}
   {% assign other_sizes = grouped_collection.metafields.custom.other_sizes.value %}

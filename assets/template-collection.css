@@ -41,6 +41,10 @@
   display: block;
 }
 
+.collection-grid-section.with-spacing > div:first-of-type {
+  padding-bottom: 58px;
+}
+
 @media screen and (max-width: 768px) {
   .collection-grid-section.with-spacing > div:first-of-type {
     padding-top: 0;

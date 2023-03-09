@@ -32,14 +32,14 @@
 }
 .rave-reviews-main .stamped-summary-actions-newreview,
 .stamped-summary-actions-newreview {
-  background: var(--gold-secondary);
+  background: var(--gold);
   color: #fff;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-family: brandon;
-  font-size: 12px;
+  font-size: 18px;
   line-height: 100%;
-  padding: 14px 30px;
+  padding: 18px 30px;
   border: none;
   box-shadow: none !important;
   border-radius: 0;
@@ -61,8 +61,13 @@
 
 @media screen and (min-width: 769px) {
   .rave-reviews-main span.stamped-product-reviews-badge.stamped-main-badge {
-    display: none !important;
+    /* display: none !important; */
   }
+}
+
+.rave-reviews-main span.stamped-product-reviews-badge.stamped-main-badge .stamped-badge-caption:after {
+  content: ")" !important;
+  margin-left: 2px;
 }
 
 .rave-reviews .stamped-badge .fa-star, 
@@ -198,14 +203,16 @@
   font-weight: 400;
 }
 
+.stamped-pagination a {
+  font-size: 18px !important;
+}
+
 .stamped-pagination .previous {
   margin-right: 0 !important;
-  color: black;
 }
 
 .stamped-pagination .next {
   margin-left: 0 !important;
-  color: black;
 }
 
 @media screen and (max-width: 768px) {
