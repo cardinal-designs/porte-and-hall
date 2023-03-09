@@ -1,3 +1,7 @@
+.product-carousel__inner {
+  padding-bottom: 76px !important;
+}
+
 .product-carousel__heading {
   margin-bottom: 30px;
   text-align: center;
@@ -23,4 +27,14 @@
 .product-carousel__item {
  /* aspect-ratio: 1/1; */
  width: 295px;
+}
+
+@media screen and (max-width: 768px) {
+  .product-carousel__inner {
+    padding-bottom: 26px !important;
+  }
+
+  .product-carousel__heading {
+    margin-bottom: 20px;
+  }
 }

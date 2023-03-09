@@ -7,7 +7,7 @@
       {%- render 'divider' %}
       <span class="divider-line"></span>
     </span>
-    <h2 class="blue">{{ section.settings.heading }}</h2>
+    <h2 class="blue">{{ section.settings.heading | newline_to_br }}</h2>
     <span class="divider header-divider"> <span class="divider-line"></span> {% render 'divider' %} </span>
   </div>
 

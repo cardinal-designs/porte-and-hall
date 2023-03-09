@@ -138,6 +138,20 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .product-card__image-label {
+    padding: 4px 6px;
+  }
+
+  .product-card__title {
+    margin-bottom: 0;
+  }
+
+  .product-card__price {
+    padding-top: 0;
+  }
+}
+
 
 /* simple product card */
 

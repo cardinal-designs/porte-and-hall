@@ -8,7 +8,7 @@
 
 .fan-motif__inner {
   padding: 50px 20px;
-  max-width: 1000px;
+  max-width: 1067px;
   margin: auto;
 }
 
@@ -56,7 +56,7 @@
 
 .fan-motif__layout-center .fan-motif__content-wrapper {
   max-width: 820px;
-  margin: 30px auto;
+  margin: 0 auto;
 }
 
 .fan-motif__content-wrapper {
@@ -112,7 +112,8 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .fan-motif__layout-left {
+  .fan-motif__layout-left,
+  .fan-motif__layout-right {
     grid-template-columns: minmax(0, 1fr) 40%;
     column-gap: 50px;
   }

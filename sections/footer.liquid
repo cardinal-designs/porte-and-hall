@@ -140,15 +140,15 @@
         {% if section.settings.policies != blank %}
           |
           {% for link in section.settings.policies.links %}
+            {% unless forloop.first %}
+              <span class="{% if forloop.last%}hide-mobile{% endif %}">|</span>
+            {% endunless %}
             <a
               href="{{ link.url }}"
               class="footer__policy-link"
             >
               {{ link.title }}
             </a>
-            {% unless forloop.last %}
-              |
-            {% endunless %}
           {% endfor %}
         {% endif %}
       </p>

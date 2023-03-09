@@ -38,7 +38,7 @@
               {% endif %}
 
               {% if block.settings.text != blank %}
-                <p class="text-media__quote {% if section.settings.handwriting %}handwriting{% else %}body-sm{% endif %}">{{ block.settings.text }}</p>
+                <p class="text-media__quote {% if block.settings.handwriting %}handwriting{% else %}body-sm{% endif %}">{{ block.settings.text }}</p>
               {% endif %}
 
               {% if block.settings.link != blank and block.settings.link_text != blank %}
