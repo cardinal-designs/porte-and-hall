@@ -110,7 +110,11 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+  }
 
+  .meet-founder__layout-left .meet-founder__content-wrapper,
+  .meet-founder__layout-right .meet-founder__content-wrapper {
+    align-items: center;
   }
 
   .meet-founder__image-wrapper {

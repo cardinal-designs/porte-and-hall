@@ -799,8 +799,8 @@ var UGCCarousel = class extends HTMLElement {
       },
       breakpoints: {
         768: {
-          slidesPerView: 5,
-          spaceBetween: 20,
+          slidesPerView: 'auto',
+          spaceBetween: 18,
         },
       },
       on: {
