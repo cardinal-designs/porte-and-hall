@@ -382,11 +382,14 @@
 .product__quantity-atc-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  column-gap: 30px;
   background: var(--gold);
-  padding: 5px;
+  padding: 5px 35px 5px 5px;
   margin-top: 30px;
+  width: fit-content;
+
 }
 
 .product__quantity-atc-wrapper svg.icon.icon-minus {
@@ -398,7 +401,7 @@
 }
 
 .product-form__buttons {
-  width: 100%;
+  /* width: 100%; */
 }
 
 .product-form__submit.button {
@@ -538,6 +541,7 @@ sticky-atc .quantity > * {
 sticky-atc .product__quantity-atc-wrapper {
   justify-content: center;
   column-gap: 20px;
+  width: 100%;
 }
 
 sticky-atc .product-form__buttons {

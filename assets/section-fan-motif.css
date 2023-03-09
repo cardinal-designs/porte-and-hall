@@ -139,6 +139,10 @@
     margin-bottom: 20px;
   }
 
+  .fan-motif__text + .fan-motif__link {
+    margin-top: 10px;
+  }
+
   .fan-motif__image-wrapper {
     padding: 0 33px;
   }
