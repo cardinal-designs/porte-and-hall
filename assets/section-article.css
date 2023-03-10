@@ -1,3 +1,8 @@
+@media screen and (min-width: 1025px) {
+  .article-template .page-width {
+    padding: 0 205px;
+  }
+}
 .article-template {
   margin: 0 0 0;
 }
@@ -12,7 +17,7 @@
   display: flex;
   align-items: center;
   max-width: 1440px;
-  padding: 50px 150px 50px 100px;
+  padding: 50px 0;
   margin: 0 auto;
   flex-wrap: wrap;
 }
@@ -32,14 +37,15 @@
 }
 
 .article-template__image {
-  padding-bottom: 60%;
+  /* padding-bottom: 60%; */
+  aspect-ratio: 1.01/1;
   position: relative;
   flex: 0 0 50%;
 }
 
 .article-template__content {
   max-width: 820px;
-  margin: 0 auto 0;
+  margin: 0 0;
   padding: 132px 0 0;
 }
 
@@ -49,7 +55,7 @@
   padding-right: 27px;
 }
 
-.rte blockquote {
+.article-template  .rte blockquote {
   font-size: 42px;
   font-family: 'louize';
   font-weight: 500;
@@ -59,8 +65,15 @@
   font-style: normal;
 }
 
-.rte p,
-.rte > span {
+.article-template .rte h3 {
+  margin: 0;
+}
+
+.article-template .rte p {
+  margin: 0 0 15px;
+}
+
+.article-template  .rte > span {
   margin: 15px 0;
   display: inline-block;
 }
@@ -69,34 +82,72 @@
   padding-bottom: 0 !important;
 }
 
-.rte p span {
+.article-template .rte p span {
   margin: 0;
 }
 
-.rte ul,
-.rte ol {
+.article-template .rte ul,
+.article-template .rte ol {
   padding-left: 40px;
   margin: 0;
 }
 
-.rte img {
+.article-template .rte img {
   margin: 25px 0;
   max-width: 100%;
 }
 
-.rte video {
+.article-template .rte img:not([style]) {
+  width: calc(50% - 10px);
+}
+.article-template .rte img:not([style]) + img:not([style]) {
+  margin-left: 16px;
+}
+
+.article-template .rte img[style*="float"] {
+  margin-top: 0;
+}
+
+.article-template .rte img[style*="float: left"] {
+  margin-right: 10px;
+}
+
+.article-template .rte img[style*="float: right"] {
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 425px) {
+  .article-template .rte img[style*="float"] {
+    float: none !important;
+  }
+}
+
+.article-template .rte video {
   width: 100%;
   margin: 25px 0;
 }
 
-.rte p:last-child {
+.article-template .rte p:last-child {
   margin-bottom: 0;
+}
+
+.article-template table {
+  clear: both;
+  display: block;
+  outline: none;
+  border: none;
+}
+
+.article-template table td {
+  border: none;
+  padding: 0;
+  display: block;
 }
 
 @media screen and (max-width: 768px) {
   
   .Article_Header {
-    padding: 20px 20px 50px 20px;
+    padding: 20px 0 50px;
   }
 
   .article-template__image {
@@ -114,17 +165,17 @@
     padding: 90px 0 0;
   }
 
-  .rte ul,
-  .rte ol {
+  .article-template .rte ul,
+  .article-template .rte ol {
     padding-left: 30px;
   }
 
-  .rte blockquote {
+  .article-template .rte blockquote {
     font-size: 24px;
     margin: 30px 0 30px;
   }
 
-  .rte img {
+  .article-template .rte img {
     margin: 15px 0;
   }
 

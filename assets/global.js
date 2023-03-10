@@ -960,52 +960,56 @@ var ArticleCarousel = class extends HTMLElement {
 
 customElements.define('article-carousel', ArticleCarousel)
 
-var ShopStoryCarousel = class extends HTMLElement {
-  constructor(){
-    super();
+// var ShopStoryCarousel = class extends HTMLElement {
+//   constructor(){
+//     super();
 
-    this.section_id = this.querySelector(`.swiper`).id
-    this.pagination = this.querySelector(`.shop-story-carousel__pagination`)
-    const swiper_options = {
-      slidesPerView: 2,
-      spaceBetween: 12,
-      centeredSlides: false,
-      loop: true,
-      pagination: {
-        el: this.pagination,
-        clickable: true,
-      },
-      breakpoints: {
-        1920: {
-          slidesPerView: 4,
-          spaceBetween: 20,
-          centeredSlides: true
-        },
-        1440: {
-          slidesPerView: 3.4,
-          spaceBetween: 20,
-          centeredSlides: true
-        },
-        1023: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        }
-      },
-      on: {
-        init: function () {
-          console.log('swiper initialized');
-        },
-      },
-    }
+//     this.section_id = this.querySelector(`.swiper`).id
+//     this.pagination = this.querySelector(`.shop-story-carousel__pagination`)
+//     const swiper_options = {
+//       slidesPerView: 2.25,
+//       spaceBetween: 20,
+//       centeredSlides: false,
+//       loop: true,
+//       pagination: {
+//         el: this.pagination,
+//         clickable: true,
+//       },
+//       breakpoints: {
+//         // 1920: {
+//         //   slidesPerView: 4,
+//         //   spaceBetween: 20,
+//         //   centeredSlides: true
+//         // },
+//         // 1440: {
+//         //   slidesPerView: 3.4,
+//         //   spaceBetween: 20,
+//         //   centeredSlides: true
+//         // },
+//         // 1023: {
+//         //   slidesPerView: 3,
+//         //   spaceBetween: 20,
+//         // },
+//         768: {
+//           slidesPerView: 'auto',
+//           centeredSlides: true,
+//         }
+//       },
+//       on: {
+//         init: function () {
+//           console.log('swiper initialized');
+//         },
+//       },
+//     }
 
-    if (!this.classList.contains("swiper-initialized")){
-      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
-    }
-  }
+//     if (!this.classList.contains("swiper-initialized")){
+//       this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+//     }
+//   }
 
-  initializeCarousel(swipe, options) {
-    const articleSwiper = new Swiper(swipe, options);
-  }
-}
+//   initializeCarousel(swipe, options) {
+//     const articleSwiper = new Swiper(swipe, options);
+//   }
+// }
 
-customElements.define('shop-story-carousel', ShopStoryCarousel)
+// customElements.define('shop-story-carousel', ShopStoryCarousel)

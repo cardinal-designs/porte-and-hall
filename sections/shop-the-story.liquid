@@ -1,7 +1,39 @@
 {{ 'component-product-card.css' | asset_url | stylesheet_tag }}
-{{ 'shop-story.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'shop-story.css' | asset_url | stylesheet_tag }} {% endcomment %}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'section-product-carousel.css' | asset_url | stylesheet_tag }}
 
-<div class="Shop_Story_Carousel">
+<div class="product-carousel__inner">
+  <div class="product-carousel__heading">
+    <h2 class="blue">{{ section.settings.heading }}</h2>
+  </div>
+
+  <product-carousel>
+    <div class="product-carousel__container swiper">
+      <div class="swiper-pagination product-carousel__pagination"></div>
+      <div class="swiper-wrapper">
+        {% assign my_fields = article.metafields.custom %}
+        {% for product in my_fields.shop_story_product.value %}
+          {% for collection in product.collections %}
+            {% if collection.title contains ' | ' %}
+              {% assign grouped_collection = collection %}
+            {% endif %}
+          {% endfor %}
+          <div class="product-carousel__item swiper-slide">
+            {% render 'grouped-product-card',
+              product_card_product: product,
+              title: grouped_collection.title,
+              collection: grouped_collection,
+              button_text: 'Shop Now'
+            %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </product-carousel>
+</div>
+
+{% comment %} <div class="Shop_Story_Carousel">
   <div class="page-width">
     <div class="text-center">
       <div class="h2 blue">{{ section.settings.heading }}</div>
@@ -10,29 +42,20 @@
   <shop-story-carousel>
     <div class="shop-story-carousel__container swiper" id="{{ section.id }}-shop-story-container">
       <div class="swiper-pagination shop-story-carousel__pagination"></div>
-      <div class="shop-story-carousel__item  swiper-wrapper">
+      <div class="swiper-wrapper">
         {% assign my_fields = article.metafields.custom %}
-        {% for product in my_fields.shop_story_product.value limit: 5 %}
+        {% for product in my_fields.shop_story_product.value %}
           {% for collection in product.collections %}
             {% if collection.title contains ' | ' %}
               {% assign grouped_collection = collection %}
             {% endif %}
           {% endfor %}
-          {% if rendered_collections contains grouped_collection.title %}
-            {% continue %}
-          {% else %}
-            {% assign rendered_collections = rendered_collections
-              | append: grouped_collection.title
-              | append: ', '
-            %}
-          {% endif %}
-          <div class="swiper-slide">
-            {% render 'article-product-card',
+          <div class="shop-story-carousel__item swiper-slide">
+            {% render 'grouped-product-card',
               product_card_product: product,
               title: grouped_collection.title,
               collection: grouped_collection,
-              button_text: 'Shop Now',
-              my_fields:my_fields
+              button_text: 'Shop Now'
             %}
           </div>
         {{ collection }}
@@ -40,7 +63,7 @@
       </div>
     </div>
   </shop-story-carousel>
-</div>
+</div> {% endcomment %}
 
 {% schema %}
   {
