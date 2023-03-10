@@ -92,7 +92,12 @@ span.form__message svg {
 .Select_Button_Text {
   width: 100%;
   display: block;
-  padding: 0 20px 20px;
+}
+
+@media screen and (min-width: 769px) {
+  .Select_Button_Text {
+    padding: 0 20px 20px;
+  }
 }
 
 .selectBtn.field__input.active {
