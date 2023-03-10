@@ -751,36 +751,36 @@ var AddToCart = class extends HTMLElement {
 
 customElements.define('add-to-cart', AddToCart);
 
-var GlobalSection = class extends HTMLElement {
-  constructor() {
-    super();
+// var GlobalSection = class extends HTMLElement {
+//   constructor() {
+//     super();
 
-    this.parentEl = this.closest(".shopify-section")
-    this.section_id = this.getAttribute("data-section-id")
+//     this.parentEl = this.closest(".shopify-section")
+//     this.section_id = this.getAttribute("data-section-id")
 
-    fetch(`/?section_id=${ this.section_id}`)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Section not found');
-        }
-        return response;
-      })
-      .then((response) => response.text())
-      .then((responseText) => {
-        const responseHTML = new DOMParser().parseFromString(responseText, 'text/html');
-        let globalElement = responseHTML.querySelector('.shopify-section');
-        this.parentEl.outerHTML = globalElement.outerHTML;
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        this.parentEl.classList.remove('hidden');
-      });
-  }
-}
+//     fetch(`/?section_id=${ this.section_id}`)
+//       .then((response) => {
+//         if (response.status !== 200) {
+//           throw new Error('Section not found');
+//         }
+//         return response;
+//       })
+//       .then((response) => response.text())
+//       .then((responseText) => {
+//         const responseHTML = new DOMParser().parseFromString(responseText, 'text/html');
+//         let globalElement = responseHTML.querySelector('.shopify-section');
+//         this.parentEl.outerHTML = globalElement.outerHTML;
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       })
+//       .finally(() => {
+//         this.parentEl.classList.remove('hidden');
+//       });
+//   }
+// }
 
-customElements.define('global-section', GlobalSection)
+// customElements.define('global-section', GlobalSection)
 
 var UGCCarousel = class extends HTMLElement {
   constructor(){

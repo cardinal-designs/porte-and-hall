@@ -2139,10 +2139,10 @@ header.condensed .header__menu {
     padding: 50px 0;
   }
 }
-
-.template-page .header__menu {
+//Commenting out because I asked Jac about the lack of nav in the designs and she said it should show on every page --JV
+/* .template-page .header__menu {
   display: none;
-}
+} */
 
 .shopify-policy__container {
   max-width: 100%;
