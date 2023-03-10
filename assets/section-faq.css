@@ -1,6 +1,10 @@
 .faq {
   background: var(--light-gray);
 }
+.faq + .faq.shopify-section.with-spacing > div:first-of-type {
+  padding-top: 0;
+}
+
 .faq__wrapper {
   display: grid;
   grid-template-columns: repeat(2, minmax(auto, 1fr));
@@ -50,6 +54,10 @@
 .faq__content {
   display: none;
   padding-top: 30px;
+}
+
+.faq__content a {
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 768px) {
