@@ -13,9 +13,7 @@
 
   <div class="featured-articles__article-cards no-scrollbar">
     {% for block in section.blocks %}
-      <div class="blog-articles__article">
-        {% render 'article-card', article: block.settings.article %}
-      </div>
+      {% render 'article-card', article: block.settings.article %}
     {% endfor %}
   </div>
 </div>

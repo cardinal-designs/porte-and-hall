@@ -1,9 +1,27 @@
 <ul class="list list-social list-unstyled" role="list">
+  {% if settings.social_instagram_link != blank %}
+    <li class="list-social__item">
+      <span
+        class="list-social__icon"
+        style="background-image: url({{ 'instagram-icon-color.png' | asset_url }})"
+      ></span>
+      <a
+        href="{{ settings.social_instagram_link }}"
+        target="_blank"
+        class="link link--text list-social__link"
+        aria-describedby="a11y-external-message"
+      >
+        {% comment %} {% render 'icon' icon: 'instagram' %} {% endcomment %}
+        <span class="">{{ 'general.social.links.instagram' | t }}</span>
+      </a>
+    </li>
+  {% endif %}
   {% if settings.social_facebook_link != blank %}
     <li class="list-social__item">
       <span class="list-social__icon" style="background-image: url({{ 'facebook-icon-color.png' | asset_url }})"></span>
       <a
         href="{{ settings.social_facebook_link }}"
+        target="_blank"
         class="link link--text list-social__link"
         aria-describedby="a11y-external-message"
       >
@@ -16,6 +34,7 @@
     <li class="list-social__item">
       <a
         href="{{ settings.social_twitter_link }}"
+        target="_blank"
         class="link link--text list-social__link"
         aria-describedby="a11y-external-message"
       >
@@ -28,6 +47,7 @@
     <li class="list-social__item">
       <a
         href="{{ settings.social_youtube_link }}"
+        target="_blank"
         class="link link--text list-social__link"
         aria-describedby="a11y-external-message"
       >
@@ -44,6 +64,7 @@
       ></span>
       <a
         href="{{ settings.social_pinterest_link }}"
+        target="_blank"
         class="link link--text list-social__link"
         aria-describedby="a11y-external-message"
       >
@@ -52,26 +73,11 @@
       </a>
     </li>
   {% endif %}
-  {% if settings.social_instagram_link != blank %}
-    <li class="list-social__item">
-      <span
-        class="list-social__icon"
-        style="background-image: url({{ 'instagram-icon-color.png' | asset_url }})"
-      ></span>
-      <a
-        href="{{ settings.social_instagram_link }}"
-        class="link link--text list-social__link"
-        aria-describedby="a11y-external-message"
-      >
-        {% comment %} {% render 'icon' icon: 'instagram' %} {% endcomment %}
-        <span class="">{{ 'general.social.links.instagram' | t }}</span>
-      </a>
-    </li>
-  {% endif %}
   {% if settings.social_tumblr_link != blank %}
     <li class="list-social__item">
       <a
         href="{{ settings.social_tumblr_link }}"
+        target="_blank"
         class="link link--text list-social__link"
         aria-describedby="a11y-external-message"
       >
@@ -84,6 +90,7 @@
     <li class="list-social__item">
       <a
         href="{{ settings.social_snapchat_link }}"
+        target="_blank"
         class="link link--text list-social__link"
         aria-describedby="a11y-external-message"
       >
@@ -96,6 +103,7 @@
     <li class="list-social__item">
       <a
         href="{{ settings.social_vimeo_link }}"
+        target="_blank"
         class="link link--text list-social__link"
         aria-describedby="a11y-external-message"
       >

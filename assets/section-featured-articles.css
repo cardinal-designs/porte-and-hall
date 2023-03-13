@@ -13,6 +13,10 @@
   overflow-x: scroll;
 }
 
+.blog-articles__article {
+  height: 100%;
+}
+
 @media screen and (max-width: 768px) {
   .blog-articles__article {
     width: 100%;
