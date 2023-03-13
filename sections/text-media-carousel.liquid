@@ -34,7 +34,7 @@
               {% endif %}
 
               {% if block.settings.text != blank %}
-                <p class="text-media__title">{{ block.settings.title }}</p>
+                <p class="text-media__title">{{ block.settings.title | newline_to_br }}</p>
               {% endif %}
 
               {% if block.settings.text != blank %}
