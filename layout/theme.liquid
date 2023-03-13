@@ -7,6 +7,8 @@
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <meta name="google-site-verification" content="tjEDE8k9mNiV-8gqcHIAD9HLahL51PjgqHc0nFOpQLo" />
+	<meta name="facebook-domain-verification" content="880tuton4kgymbs2q448hzydeyriqd" />
 
     {% if settings.favicon != blank %}
       <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
@@ -39,11 +41,52 @@
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
     {{ 'base.css' | asset_url | stylesheet_tag }}
 
+    <script async type="text/javascript" data-api-key="" id="stamped-script-widget" src="https://cdn-stamped-io.azureedge.net/files/widget.min.js"></script>
+    
+    <!-- BEGIN PRIVY WIDGET CODE -->
+	<script type='text/javascript'> var _d_site = _d_site || 'C944B2C24A5E6353CEBE51B6'; </script>
+	<script src='https://widget.privy.com/assets/widget.js'></script>
+	<!-- END PRIVY WIDGET CODE -->
+    <style>
+    #privy-container #privy-inner-container [tabindex]:focus {
+      outline: none !important;
+	}
+    </style>
+
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
     </script>
 
     <script src="{{ 'grouped-product-card.js' | asset_url }}" defer="defer"></script>
+
+    <!-- friendbuy app integration -->          
+    <script defer>
+      window['friendbuy'] = window['friendbuy'] || [];
+      window['friendbuy'].push(['site', 'site-e25da741-www.porteandhall.com']);
+      window['friendbuy'].push(['track', 'customer',
+          {
+              id: '{{ customer.id }}',
+              email: '{{ customer.email }}',
+              first_name: '{{ customer.first_name }}',
+              last_name: '{{ customer.last_name }}'
+          }
+      ]);
+      (function (f, r, n, d, b, y) {
+          b = f.createElement(r), y = f.getElementsByTagName(r)[0];b.async = 1;b.src = n;y.parentNode.insertBefore(b, y);
+      })(document, 'script', '//djnf6e5yyirys.cloudfront.net/js/friendbuy.min.js');
+    </script>
+    
+    <!-- Hotjar Tracking Code for https://www.porteandhall.com -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:2330939,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
   </head>
 
   <body class="template-{{ template }} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
