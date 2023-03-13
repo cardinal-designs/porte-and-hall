@@ -64,34 +64,6 @@
       {% else %}
         <div class="collection">
           <ul id="product-grid" data-id="{{ section.id }}" class="product-grid list-unstyled">
-            {% assign rendered_collections = '' %}
-            {% for product in collection.products %}
-              {% comment %} {% render 'product-card', product_card_product: product %} {% endcomment %}
-              {% for collection in product.collections %}
-                {% if collection.title contains ' | ' %}
-                  {% assign grouped_collection = collection %}
-                {% endif %}
-              {% endfor %}
-              {% if rendered_collections contains grouped_collection.title %}
-                {% continue %}
-              {% else %}
-                {% assign rendered_collections = rendered_collections
-                  | append: grouped_collection.title
-                  | append: ', '
-                %}
-              {% endif %}
-              <li class="product-grid__item">
-                {% render 'grouped-product-card',
-                  product_card_product: grouped_collection.products[0],
-                  collection: grouped_collection,
-                  title: grouped_collection.title,
-                  button_text: 'Shop Now'
-                %}
-              </li>
-            {% endfor %}
-          </ul>
-
-          <ul id="filtered-product-grid" data-id="{{ section.id }}" class="product-grid list-unstyled hidden">
             {% for product in collection.products %}
               {% comment %} {% render 'product-card', product_card_product: product %} {% endcomment %}
               {% for collection in product.collections %}

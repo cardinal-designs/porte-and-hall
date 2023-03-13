@@ -16,14 +16,6 @@ class collectionFilters extends HTMLElement {
     this.clearFilterButtons = document.querySelectorAll('.js-clear-all-filters')
 
     this.setListeners();
-
-    if(collectionFilters.searchParamsInitial.includes('filter')){
-      document.querySelector("#filtered-product-grid").classList.remove("hidden")
-      document.querySelector("#product-grid").classList.add("hidden")
-    } else {
-      document.querySelector("#filtered-product-grid").classList.add("hidden")
-      document.querySelector("#product-grid").classList.remove("hidden")
-    }
   }
 
   setListeners() {
@@ -201,14 +193,6 @@ class collectionFilters extends HTMLElement {
         const html = responseText;
         const htmlContent = new DOMParser().parseFromString(html, 'text/html');
 
-        if(searchParams.includes('filter')){
-          document.querySelector("#filtered-product-grid").classList.remove("hidden")
-          document.querySelector("#product-grid").classList.add("hidden")
-        } else {
-          document.querySelector("#filtered-product-grid").classList.add("hidden")
-          document.querySelector("#product-grid").classList.remove("hidden")
-        }
-
         // Replace sections
         this.getSectionsToRender().forEach((section) => {
           document.getElementById(section.id).innerHTML = htmlContent.getElementById(section.id).innerHTML
@@ -234,7 +218,6 @@ class collectionFilters extends HTMLElement {
   getSectionsToRender() {
     return [
       { id: 'product-grid' },
-      { id: 'filtered-product-grid' },
       { id: 'active-filters' },
       { id: 'apply-product-count' },
       { id: 'mobile-product-count' },
