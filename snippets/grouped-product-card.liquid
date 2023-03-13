@@ -85,7 +85,7 @@
         </div>
       </a>
     </div>
-    
+    {% if simple_card == true %}<div>{% endif%}
     <h3 class="product-card__title blue">
       {{ title | default: collection.title | replace: ' | ', '<br>' }}
       {%- if collection.metafields.custom.dimensions != blank -%}
@@ -116,5 +116,6 @@
     <a href="{{ product_card_product.url }}" class="text-link gold-secondary--dark product-card__link">
       {{- button_text }} ></a
     >
+  {% if simple_card == true %}</div>{% endif%}
   </div>
 </grouped-product-card>
