@@ -62,59 +62,59 @@
 %}
 
 <grouped-product-card data-collection-id="{{collection.id}}">
-  <div class="product-card{% if product_card_product.media[1] != nil %} has-animation{% endif %} {% if simple_card == true %}product-card-simple{% endif %}">
+  <div class="product-card {% if simple_card == true %}product-card-simple{% endif %}">
     <div class="product-card__image">
-      {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill' %}
-      {% if product_card_product.media[1] != null %}
-        {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill' %}
-      {% endif %}
-
-      {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
-
-      <div class="product-card__image-label body-xs">
-        {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
-          {{ product_card_product.first_available_variant.metafields.custom.use }}
-        {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
-          Indoor/Outdoor
-        {% elsif lowercase_tags contains 'indoor' %}
-          Indoor
-        {% elsif lowercase_tags contains 'outdoor' %}
-          Outdoor
+      <a href="{{ product_card_product.url }}">
+        {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill' %}
+        {% if product_card_product.media[1] != null %}
+          {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill' %}
         {% endif %}
-      </div>
-    </div>
-    <div class="product-card__container">
-      <h3 class="product-card__title blue">
-        {{ title | default: collection.title | replace: ' | ', '<br>' }}
-        {%- if collection.metafields.custom.dimensions != blank -%}
-          <span class="body">({{ collection.metafields.custom.dimensions }})</span>
-        {%- endif -%}
-      </h3>
-      <div class="product-card__content">
-        <p class="product-card__price body blue">
-          {% if product_card_product.compare_at_price > product_card_product.price %}
-            <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
-          {% endif %}
-          {{ product_card_product.price | money_without_trailing_zeros }}
-        </p>
 
-        <div class="product-card__swatches">
-          {% if active_swatch != blank %}
-            <a href="{{ active_swatch_link | default: active_swatch.variants[0].url}}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | asset_url }})"></a>
+        {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
+
+        <div class="product-card__image-label body-xs">
+          {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
+            {{ product_card_product.first_available_variant.metafields.custom.use }}
+          {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
+            Indoor/Outdoor
+          {% elsif lowercase_tags contains 'indoor' %}
+            Indoor
+          {% elsif lowercase_tags contains 'outdoor' %}
+            Outdoor
           {% endif %}
-          {{ color_swatch_list }}
         </div>
-
-        {% if collection.metafields.custom.short_description != blank %}
-          {% unless simple_card == true %}
-            <div class="product-card__description body blue">{{ collection.metafields.custom.short_description }}</div>
-          {% endunless %}
-        {% endif %}
-
-        <a href="{{ product_card_product.url }}" class="text-link gold-secondary--dark product-card__link">
-          {{- button_text }} ></a
-        >
-      </div>
+      </a>
     </div>
+    
+    <h3 class="product-card__title blue">
+      {{ title | default: collection.title | replace: ' | ', '<br>' }}
+      {%- if collection.metafields.custom.dimensions != blank -%}
+        <span class="body">({{ collection.metafields.custom.dimensions }})</span>
+      {%- endif -%}
+    </h3>
+
+    <p class="product-card__price body blue">
+      {% if product_card_product.compare_at_price > product_card_product.price %}
+        <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
+      {% endif %}
+      {{ product_card_product.price | money_without_trailing_zeros }}
+    </p>
+
+    <div class="product-card__swatches">
+      {% if active_swatch != blank %}
+        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url}}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | asset_url }})"></a>
+      {% endif %}
+      {{ color_swatch_list }}
+    </div>
+
+    {% if collection.metafields.custom.short_description != blank %}
+      {% unless simple_card == true %}
+        <div class="product-card__description body blue">{{ collection.metafields.custom.short_description }}</div>
+      {% endunless %}
+    {% endif %}
+
+    <a href="{{ product_card_product.url }}" class="text-link gold-secondary--dark product-card__link">
+      {{- button_text }} ></a
+    >
   </div>
 </grouped-product-card>

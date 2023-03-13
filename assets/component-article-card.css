@@ -1,6 +1,13 @@
+.article-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
 .article-card__image {
   position: relative;
   aspect-ratio: 1/1;
+  width: 100%;
 }
 
 .article-card__icon-overlay {
@@ -16,7 +23,7 @@
 }
 
 .article-card__date {
-  margin: 0 0 10px;
+  margin: 30px 0 10px;
 }
 
 .article-card__title {
@@ -25,10 +32,11 @@
 
 .article-card__text {
   margin-top: 23px;
+  margin-bottom: 23px;
 }
 
 .article-card__link {
-  margin-top: 23px;
+  margin-top: auto;
   display: block;
 }
 

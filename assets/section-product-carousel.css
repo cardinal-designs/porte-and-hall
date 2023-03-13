@@ -20,13 +20,13 @@
  bottom: unset;
 }
 
-.product-carousel__container .swiper-slide {
- /* width: auto; */
+.product-carousel__container .swiper-wrapper {
+
 }
 
 .product-carousel__item {
- /* aspect-ratio: 1/1; */
  width: 295px;
+ height: auto;
 }
 
 @media screen and (max-width: 768px) {
