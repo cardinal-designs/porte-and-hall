@@ -80,10 +80,11 @@
 }
 
 .product-card__active-swatch {
+  display: block !important;
   order: -1;
 }
 
-.product-card__swatch.hidden {
+.product-card__swatch.hidden:not(.product-card__active-swatch) {
   opacity: 0;
 }
 
