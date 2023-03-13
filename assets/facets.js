@@ -74,13 +74,6 @@ class FacetFiltersForm extends HTMLElement {
 
   static renderProductGridContainer(html) {
     const filteredProducts = new DOMParser().parseFromString(html, 'text/html')
-    if(this.searchParams.includes("filter")){
-      filteredProducts.querySelector("#filtered-product-grid").classList.remove("hidden")
-      filteredProducts.querySelector("#product-grid").classList.add("hidden")
-    } else {
-      filteredProducts.querySelector("#filtered-product-grid").classList.add("hidden")
-      filteredProducts.querySelector("#product-grid").classList.remove("hidden")
-    }
     document.getElementById('ProductGridContainer').innerHTML = filteredProducts.getElementById('ProductGridContainer').innerHTML;
   }
 
@@ -158,8 +151,7 @@ class FacetFiltersForm extends HTMLElement {
   static getSections() {
     return [
       {
-        // section: document.getElementById('product-grid').dataset.id,
-        section: document.getElementById('filtered-product-grid').dataset.id,
+        section: document.getElementById('product-grid').dataset.id,
       }
     ]
   }
