@@ -149,79 +149,11 @@
     },
     "630d0a75-2fb2-42a8-bda0-7ad9acc2a8bb": {
       "type": "main-product-carousel",
-      "blocks": {
-        "47c21a09-3d3c-4a25-9983-f939eb95b743": {
-          "type": "collection",
-          "settings": {
-            "collection": "the-innerweave-doormat",
-            "title": "",
-            "button_text": "Shop now"
-          }
-        },
-        "9a85f052-f42b-4c01-a0b1-f3e1eab885dd": {
-          "type": "collection",
-          "settings": {
-            "collection": "the-insider-doormat",
-            "title": "",
-            "button_text": "Shop now"
-          }
-        },
-        "3e40d22f-4bb8-4312-a0b0-39da0e026121": {
-          "type": "collection",
-          "settings": {
-            "collection": "the-outsider-doormat",
-            "title": "",
-            "button_text": "Shop now"
-          }
-        },
-        "82dbb134-ceef-446c-bc41-66f34d7c534c": {
-          "type": "collection",
-          "settings": {
-            "collection": "the-innerweave-runner",
-            "title": "",
-            "button_text": "Shop now"
-          }
-        },
-        "1991b75a-bf16-4c3f-bdeb-f4b25c7a1761": {
-          "type": "collection",
-          "settings": {
-            "collection": "the-insider-runner",
-            "title": "",
-            "button_text": "Shop now"
-          }
-        },
-        "ec5562a6-1c33-4c7f-b245-7ae06ea67878": {
-          "type": "collection",
-          "settings": {
-            "collection": "the-innerweave-area-mat",
-            "title": "",
-            "button_text": "Shop now"
-          }
-        },
-        "4fb3b30d-b223-4069-9290-3c208d01b1b6": {
-          "type": "collection",
-          "settings": {
-            "collection": "the-insider-area-mat",
-            "title": "",
-            "button_text": "Shop now"
-          }
-        }
-      },
-      "block_order": [
-        "47c21a09-3d3c-4a25-9983-f939eb95b743",
-        "9a85f052-f42b-4c01-a0b1-f3e1eab885dd",
-        "3e40d22f-4bb8-4312-a0b0-39da0e026121",
-        "82dbb134-ceef-446c-bc41-66f34d7c534c",
-        "1991b75a-bf16-4c3f-bdeb-f4b25c7a1761",
-        "ec5562a6-1c33-4c7f-b245-7ae06ea67878",
-        "4fb3b30d-b223-4069-9290-3c208d01b1b6"
-      ],
       "settings": {
         "heading": "Meet our mats",
-        "show_product_info": true,
-        "show_vendor": false,
-        "show_color_swatch": false,
-        "background": ""
+        "background": "",
+        "collection": "shop-all",
+        "button_text": "Shop now"
       }
     },
     "ca7269e3-0e99-4b33-8ac5-b2cb1e4e8322": {

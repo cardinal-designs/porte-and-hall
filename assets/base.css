@@ -2074,11 +2074,13 @@ header.condensed .header__menu {
 
 .swiper-pagination {
   bottom: 0;
-  padding: 3px 0;
+  padding: 3px 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: baseline;
+  row-gap: 15px;
+  flex-wrap: wrap;
   column-gap: 7.5px;
 }
 
@@ -2086,10 +2088,14 @@ header.condensed .header__menu {
   background: transparent;
   border: 1px solid var(--gold);
   border-radius: 0;
-  width: 12px;
-  height: 12px;
+  max-width: 12px;
+  max-height: 12px;
   transform: rotate(45deg);
   opacity: 1;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  margin: 0 2px !important;
 }
 .swiper-pagination-bullet-active {
   position: relative;
