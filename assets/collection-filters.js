@@ -161,7 +161,7 @@ class collectionFilters extends HTMLElement {
     // this.querySelector('.price-range__input-field--min')?.value =  '';
     // this.querySelector('.price-range__input-field--max')?.value =  '';
 
-    this.closeAllDropdowns();
+    // this.closeAllDropdowns();
     this.reloadSections();
 
     this.close();

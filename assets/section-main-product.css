@@ -478,10 +478,18 @@ afterpay-placement, .afterpay-paragraph {
 }
 
 .product__tabs-item {
-  padding: 30px 0 10px;
+  padding: 20px 0 10px;
   text-align: left;
   font-weight: 500;
   line-height: 1.5;
+}
+
+.product__tabs-item p {
+  line-height: 140%;
+}
+
+.product__tabs-item li {
+  margin: 5px 0;
 }
 
 .product__features {

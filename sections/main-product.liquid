@@ -458,7 +458,7 @@
                       Dimensions: {{ grouped_collection.metafields.custom.dimensions | newline_to_br }}
                       {% if grouped_collection.metafields.custom.additional_dimensions != blank %}
                         <br>
-                        {{ grouped_collection.metafields.custom.additional_dimensions }}
+                        {{ grouped_collection.metafields.custom.additional_dimensions | newline_to_br }}
                       {% endif %}
                       <br>
                       Weight: {{ grouped_collection.metafields.custom.weight }}
