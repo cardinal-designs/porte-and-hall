@@ -42,6 +42,14 @@
 
 @media screen and (max-width: 768px) {
 
+  .article-card__image {
+    width: 158px;
+  }
+
+  .article-card__date {
+    margin-top: 20px;
+  }
+
   .article-card__text {
     margin-top: 10px;
     margin-bottom: 20px;

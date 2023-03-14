@@ -320,7 +320,7 @@ h6,
 @media screen and (max-width: 768px) {
   .heading-with-accents {
     column-gap: 0;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
     margin: 0 0 20px;
     width: 100%;
   }
