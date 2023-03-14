@@ -833,7 +833,7 @@ var ProductCarousel = class extends HTMLElement {
       slidesPerGroup: 2,
       slidesPerGroupAuto: false,
       centeredSlides: false,
-      spaceBetween: 20,
+      spaceBetween: 10,
       loopedSlides: 2,
       draggable: true,
       loop: true,
@@ -849,6 +849,8 @@ var ProductCarousel = class extends HTMLElement {
         768: {
           slidesPerView: 'auto',
           slidesPerGroup: 3,
+          centeredSlides: false,
+          spaceBetween: 20,
           slidesPerGroupAuto: true,
           loopedSlides: 4,
           slidesPerGroupAuto: true,

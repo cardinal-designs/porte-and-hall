@@ -29,12 +29,35 @@
  height: auto;
 }
 
+.product-carousel .swiper-button-next:after,
+.product-carousel .swiper-button-prev:after {
+  fill: var(--gold);
+}
+
 @media screen and (max-width: 768px) {
+
+  .product-carousel__container .swiper-wrapper {
+    padding-top: 50px;
+    padding-left: 20px;
+   }
+
   .product-carousel__inner {
     padding-bottom: 26px !important;
   }
 
   .product-carousel__heading {
     margin-bottom: 20px;
+  }
+
+  .product-carousel .swiper-button-next,
+  .product-carousel .swiper-button-prev {
+    top: 125px;
+  }
+
+  .product-carousel .swiper-button-next {
+    right: 20px;
+  }
+  .product-carousel .swiper-button-prev {
+    left: 18px;
   }
 }
