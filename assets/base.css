@@ -1112,6 +1112,7 @@ deferred-media {
 
 .header__menu-list > li {
   position: relative;
+  text-align: center;
 }
 
 .header__menu-item {
@@ -1122,6 +1123,14 @@ deferred-media {
   font-weight: 600;
   text-transform: uppercase;
   color: var(--blue);
+  text-align: center;
+  display: inline-block;
+}
+
+@media screen and (max-width: 1024px) {
+  .header__menu-item {
+    font-size: 12px;
+  }
 }
 
 .header__menu-item--has-dropdown {
@@ -1508,7 +1517,7 @@ header.condensed .header__menu {
 }
 
 .menu-drawer__menu {
-  overflow-y: scroll;
+  overflow: auto;
 }
 
 .menu-drawer__menu li {
