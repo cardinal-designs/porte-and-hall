@@ -484,6 +484,10 @@ afterpay-placement, .afterpay-paragraph {
   line-height: 1.5;
 }
 
+.product__tabs-item li {
+  margin: 5px 0;
+}
+
 .product__features {
   display: flex;
   flex-direction: row;
