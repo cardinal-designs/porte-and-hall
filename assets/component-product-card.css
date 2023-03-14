@@ -149,6 +149,11 @@ grouped-product-card {
 
   .product-card__title {
     margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .product-card__description {
+    margin-bottom: 10px;
   }
 
   .product-card__price {

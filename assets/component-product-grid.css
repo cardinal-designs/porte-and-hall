@@ -6,6 +6,20 @@
   margin-bottom: -2rem;
 }
 
+.button > * {
+  pointer-events: none;
+}
+
+.load-more-wrapper {
+  text-align: center;
+}
+
+load-more.button {
+  display: inline-block;
+  margin-top: 20px;
+  position: relative;
+}
+
 @media screen and (min-width: 769px) {
   .product-grid .grid__item {
     padding-bottom: calc(5rem + var(--page-width-margin));

@@ -2,6 +2,7 @@
 {{ 'component-article-card.css' | asset_url | stylesheet_tag }}
 {{ 'related-article.css' | asset_url | stylesheet_tag }}
 
+{% if article.metafields.custom.related_articles != blank %}
 <div class="Related_Article">
   <div class="page-width">
     <div class="heading-with-accents">
@@ -23,6 +24,7 @@
     </div>
   </div>
 </div>
+{% endif %}
 
 {% schema %}
   {

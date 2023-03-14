@@ -22,4 +22,10 @@
     width: 100%;
     min-width: 158px;
   }
+
+  .featured-articles__article-cards {
+    column-gap: 15px;
+    width: calc(100% + 20px);
+    padding-right: 20px;
+  }
 }

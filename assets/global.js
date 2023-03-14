@@ -830,17 +830,30 @@ var ProductCarousel = class extends HTMLElement {
     this.pagination = this.querySelector(`.swiper-pagination`)
     const swiper_options = {
       slidesPerView: 2.25,
+      slidesPerGroup: 2,
+      slidesPerGroupAuto: false,
       centeredSlides: false,
-      spaceBetween: 20,
+      spaceBetween: 10,
+      loopedSlides: 2,
       draggable: true,
       loop: true,
       pagination: {
         el: this.pagination,
         clickable: true,
       },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
       breakpoints: {
         768: {
           slidesPerView: 'auto',
+          slidesPerGroup: 3,
+          centeredSlides: false,
+          spaceBetween: 20,
+          slidesPerGroupAuto: true,
+          loopedSlides: 4,
+          slidesPerGroupAuto: true,
           centeredSlides: true,
         },
       },
@@ -1013,3 +1026,30 @@ customElements.define('article-carousel', ArticleCarousel)
 // }
 
 // customElements.define('shop-story-carousel', ShopStoryCarousel)
+
+var LoadMore = class extends HTMLElement {
+  constructor() {
+    super();
+
+    const dataUrl = this.dataset.loadMore
+    const productGrid = this.closest(".collection").querySelector("#product-grid")
+    const loadMoreWrapper = productGrid?.nextElementSibling
+
+    this.addEventListener("click", function(e){
+      e.preventDefault();
+
+      this.classList.add("loading")
+
+      fetch(dataUrl).then(response => response.text()).then((responseText) => {
+        const html = responseText;
+        const htmlContent = new DOMParser().parseFromString(html, 'text/html')
+
+        productGrid.innerHTML = productGrid.innerHTML + htmlContent.querySelector("#product-grid").innerHTML;
+        loadMoreWrapper.innerHTML = htmlContent.querySelector("load-more") || ""
+
+      })
+    }.bind(this))
+  }
+}
+
+customElements.define('load-more', LoadMore)

@@ -1,4 +1,6 @@
 {{ 'article-carousel.css' | asset_url | stylesheet_tag }}
+
+{% if article.metafields.custom.carousel_images != blank %}
 <div class="Article_Carousel">
   <div class="page-width">
     <div class="heading-with-accents">
@@ -26,6 +28,7 @@
     </div>
   </article-carousel>
 </div>
+{% endif %}
 
 {% schema %}
   {
