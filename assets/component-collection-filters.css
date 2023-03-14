@@ -38,7 +38,7 @@
   z-index: 10;
   top: var(--mobile-header-height);
   background: var(--gold-secondary--dark);
-  padding: 21px;
+  padding: 11px 21px;
   text-align: center;
   width: calc(100% + 40px);
   margin: 0 -20px;
@@ -87,10 +87,9 @@
   aspect-ratio: 1/1;
   display: block;
   padding: 3px;
-  line-height: 1.1;
   letter-spacing: normal;
   vertical-align: middle;
-  min-width: fit-content;
+  min-width: 23px;
   min-height: fit-content;
 }
 .collection-filters__clear-all {
@@ -111,7 +110,6 @@
 .collection-filters__slideout {
   max-width: 480px;
   width: calc(100% - 0px);
-  padding-bottom: 100px;
   position: fixed;
   top: var(--header-height);
   left: 0;
@@ -120,6 +118,7 @@
   transform: translateX(-100%);
   transition: transform .3s ease;
   background: white;
+  padding-bottom: 58.8px;
 }
 
 .collection-filters__slideout.active {
@@ -133,6 +132,7 @@
     z-index: 0;
     width: 100%;
     top: 0;
+    padding-bottom: 0;
   }
 }
 
@@ -166,9 +166,14 @@
 
 .collection-filters__slideout-content {
   height: 100%;
-  max-height: calc(100vh - 200px);
   overflow: auto;
   position: relative;
+}
+
+@media screen and (min-width: 769px) {
+  .collection-filters__slideout-content {
+    max-height: calc(100vh - 200px);
+  }
 }
 
 /* Filter dropdowns */
