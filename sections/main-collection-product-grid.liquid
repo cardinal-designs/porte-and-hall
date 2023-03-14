@@ -63,30 +63,45 @@
         </div>
       {% else %}
         <div class="collection">
+          {% paginate collection.products by 50 %}
           <ul id="product-grid" data-id="{{ section.id }}" class="product-grid list-unstyled">
-            {% for product in collection.products %}
-              {% comment %} {% render 'product-card', product_card_product: product %} {% endcomment %}
-              {% for collection in product.collections %}
-                {% if collection.title contains ' | ' %}
-                  {% assign grouped_collection = collection %}
-                {% endif %}
+              {% for product in collection.products %}
+                {% comment %} {% render 'product-card', product_card_product: product %} {% endcomment %}
+                {% for collection in product.collections %}
+                  {% if collection.title contains ' | ' %}
+                    {% assign grouped_collection = collection %}
+                  {% endif %}
+                {% endfor %}
+                <li class="product-grid__item">
+                  {% render 'grouped-product-card',
+                    product_card_product: product,
+                    collection: grouped_collection,
+                    title: grouped_collection.title,
+                    button_text: 'Shop Now'
+                  %}
+                </li>
               {% endfor %}
-              <li class="product-grid__item">
-                {% render 'grouped-product-card',
-                  product_card_product: product,
-                  collection: grouped_collection,
-                  title: grouped_collection.title,
-                  button_text: 'Shop Now'
-                %}
-              </li>
-            {% endfor %}
           </ul>
-
-          {% comment %}
-            {% if paginate.pages > 1 %}
-              {% render 'pagination', paginate: paginate, anchor: '' %}
+            <div id="load-more-wrapper" class="load-more-wrapper">
+              {% if paginate.pages > 1 and paginate.next %}
+              <load-more role="button" class="button" data-load-more="{{ paginate.next.url }}">
+                <span>Load more</span>
+                <div class="loading-overlay__spinner">
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    role="presentation"
+                    class="spinner"
+                    viewBox="0 0 66 66"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                  </svg>
+                </div>
+              </load-more>
             {% endif %}
-          {% endcomment %}
+            </div>
+        {% endpaginate %}
         </div>
       {% endif %}
     </div>

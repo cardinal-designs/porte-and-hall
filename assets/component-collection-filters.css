@@ -2,6 +2,10 @@
   width: 100%;
   z-index: 10;
   background: white;
+  position: sticky;
+  top: 205px;
+  display: block;
+  height: fit-content;
 }
 
 @media screen and (min-width: 769px){
@@ -136,7 +140,6 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
   background: white;
 }
 
@@ -163,6 +166,8 @@
 
 .collection-filters__slideout-content {
   height: 100%;
+  max-height: calc(100vh - 200px);
+  overflow: auto;
   position: relative;
 }
 
@@ -229,7 +234,7 @@
 
 /* Filter button */
 .collection-filters__slideout .collection-filters__filter-label {
-  padding: 15px 0 15px 27px;
+  padding: 12px 0 12px 27px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -238,6 +243,7 @@
   background: transparent;
   color: var(--blue);
   transition: background .3s ease, color .3s ease;
+  font-size: 16px;
 }
 
 .collection-filters__input-wrapper {
@@ -269,7 +275,7 @@
 
 .collection-filters__filter-button[type='radio'] + label {
   padding: 9px 10px;
-  margin: 6px 0;
+  margin: 2px 0;
 }
 
 /* .collection-filters__filter-button[type='radio']:checked + label {
@@ -281,7 +287,7 @@
   opacity: 1;
   width: 18px;
   height: 18px;
-  top: 50%;
+  top: 21px;
   left: 0;
   margin: 0;
   padding: 0;

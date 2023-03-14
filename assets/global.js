@@ -1024,3 +1024,30 @@ customElements.define('article-carousel', ArticleCarousel)
 // }
 
 // customElements.define('shop-story-carousel', ShopStoryCarousel)
+
+var LoadMore = class extends HTMLElement {
+  constructor() {
+    super();
+
+    const dataUrl = this.dataset.loadMore
+    const productGrid = this.closest(".collection").querySelector("#product-grid")
+    const loadMoreWrapper = productGrid?.nextElementSibling
+
+    this.addEventListener("click", function(e){
+      e.preventDefault();
+
+      this.classList.add("loading")
+
+      fetch(dataUrl).then(response => response.text()).then((responseText) => {
+        const html = responseText;
+        const htmlContent = new DOMParser().parseFromString(html, 'text/html')
+
+        productGrid.innerHTML = productGrid.innerHTML + htmlContent.querySelector("#product-grid").innerHTML;
+        loadMoreWrapper.innerHTML = htmlContent.querySelector("load-more") || ""
+
+      })
+    }.bind(this))
+  }
+}
+
+customElements.define('load-more', LoadMore)
