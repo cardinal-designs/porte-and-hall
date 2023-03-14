@@ -59,7 +59,7 @@ class collectionFilters extends HTMLElement {
       const button = event.target.closest('.js-clear-all-filters');
       if (button) {
         event.preventDefault();
-        this.clearAllFilters();
+        this.clearAllFilters(event);
       }
     });
 
