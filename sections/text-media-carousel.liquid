@@ -1,10 +1,13 @@
 {{ 'section-text-media-carousel.css' | asset_url | stylesheet_tag }}
 
+{% assign media_slides = section.blocks | where: 'type', 'media' %}
+{% assign text_slides = section.blocks | where: 'type', 'text' %}
+
 <div class="text-media-carousel__inner text-media-carousel__color-{{ section.settings.color }}">
   <div class="text-media-carousel__media-wrapper">
     <div class="text-media-carousel__media-inner swiper">
       <div class="swiper-wrapper">
-        {% for block in section.blocks %}
+        {% for block in media_slides %}
           <div class="swiper-slide text-media-carousel__image text-media-carousel__image-alignment-{{ block.settings.image_alignment }}" data-controlled-by="{{ forloop.index }}">
             {% if block.settings.video != blank %}
               {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
@@ -27,7 +30,7 @@
 
       <div class="text-media-carousel__text swiper">
         <div class="swiper-wrapper">
-          {% for block in section.blocks %}
+          {% for block in text_slides %}
             <div class="swiper-slide text-media-carousel__alignment--{{ block.settings.text_alignment }}" data-controlls="{{ forloop.index }}">
               {% if block.settings.heading != blank %}
                 <h2 class="text-media__heading">{{ block.settings.heading | newline_to_br }}</h2>
@@ -50,7 +53,6 @@
             </div>
           {% endfor %}
         </div>
-
         <div class="swiper-pagination text-media-carousel__pagination"></div>
       </div>
     </div>
@@ -58,18 +60,18 @@
 </div>
 
 {% javascript %}
-  const imageSwiper = new Swiper('.text-media-carousel__media-inner', {
+  const contentSwiper = new Swiper('.text-media-carousel__text', {
     slidesPerView: 1,
   });
 
-  const contentSwiper = new Swiper('.text-media-carousel__text', {
+  const imageSwiper = new Swiper('.text-media-carousel__media-inner', {
     slidesPerView: 1,
     pagination: {
       el: '.text-media-carousel__pagination',
       clickable: true,
     },
     controller: {
-      control: imageSwiper,
+      control: contentSwiper,
     },
   });
 {% endjavascript %}
@@ -104,8 +106,8 @@
   ],
   "blocks": [
     {
-      "type": "slide",
-      "name": "Slide",
+      "type": "text",
+      "name": "Text Slide",
       "settings": [
         {
           "type": "textarea",
@@ -157,11 +159,13 @@
             }
           ],
           "default": "center"
-        },
-        {
-          "type": "header",
-          "content": "Media"
-        },
+        }
+      ]
+    },
+    {
+      "type": "media",
+      "name": "Media Slide",
+      "settings": [
         {
           "type": "textarea",
           "id": "media_label",

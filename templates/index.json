@@ -160,7 +160,7 @@
       "type": "text-media-carousel",
       "blocks": {
         "6023e449-1169-48e3-a76e-deef958316d0": {
-          "type": "slide",
+          "type": "text",
           "settings": {
             "heading": "Elizabeth Pash",
             "title": "Founder of Elizabeth Pash Interiors & Antiques\nProduct: The Smoke\/Blue Outsider Doormat",
@@ -168,23 +168,21 @@
             "handwriting": true,
             "link": "",
             "link_text": "",
-            "text_alignment": "center",
+            "text_alignment": "center"
+          }
+        },
+        "59bb0f61-51d2-4f23-93c7-9fa961309c5c": {
+          "type": "media",
+          "settings": {
             "media_label": "",
             "image": "shopify:\/\/shop_images\/EP_Portrrait_x2_2x_037b6269-0743-4a5b-9f25-bfa55cfa25cc.jpg",
             "image_alignment": "center",
             "video_url": ""
           }
         },
-        "59bb0f61-51d2-4f23-93c7-9fa961309c5c": {
-          "type": "slide",
+        "42a08d40-2e18-4572-9408-6ba2da7060b1": {
+          "type": "media",
           "settings": {
-            "heading": "Nicole Gibbons",
-            "title": "Founder of Clare Paint  |  Her Style: Farmhouse Chic\nProduct: The Innerweave Doormat in Chevron Natural",
-            "text": "“Sed ut perspiciatis, unde omnis iste natus error sit voluptatem lorem elit accusantium doloremque doloritis vin laudantium!”",
-            "handwriting": true,
-            "link": "",
-            "link_text": "",
-            "text_alignment": "center",
             "media_label": "The Outsider in Smoke \/ Blue",
             "image": "shopify:\/\/shop_images\/IMG_1619_1__x2_2x_67cf7c01-faec-45de-a263-bcdded8c1dd8.jpg",
             "image_alignment": "center",
@@ -194,7 +192,8 @@
       },
       "block_order": [
         "6023e449-1169-48e3-a76e-deef958316d0",
-        "59bb0f61-51d2-4f23-93c7-9fa961309c5c"
+        "59bb0f61-51d2-4f23-93c7-9fa961309c5c",
+        "42a08d40-2e18-4572-9408-6ba2da7060b1"
       ],
       "settings": {
         "heading": "How I Style It",
