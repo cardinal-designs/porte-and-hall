@@ -13,6 +13,7 @@
 }
 .shop-other-sizes__item {
   position: relative;
+  overflow: hidden;
 }
 
 .shop-other-sizes__heading {
