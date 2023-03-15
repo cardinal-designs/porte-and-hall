@@ -20,7 +20,7 @@
       "type": "text-media-carousel",
       "blocks": {
         "406197c7-1330-4b48-be5f-790c84db05d6": {
-          "type": "slide",
+          "type": "text",
           "settings": {
             "heading": "",
             "title": "",
@@ -28,7 +28,12 @@
             "handwriting": false,
             "link": "",
             "link_text": "",
-            "text_alignment": "left",
+            "text_alignment": "left"
+          }
+        },
+        "406197c7-1330-4b48-be5f-790c84db0fxg": {
+          "type": "media",
+          "settings": {
             "media_label": "",
             "image": "shopify:\/\/shop_images\/108A1754_1__2x_2x_1f665141-ad4a-4b99-a3e9-7aa67c042643.jpg",
             "image_alignment": "top",
@@ -37,7 +42,8 @@
         }
       },
       "block_order": [
-        "406197c7-1330-4b48-be5f-790c84db05d6"
+        "406197c7-1330-4b48-be5f-790c84db05d6",
+        "406197c7-1330-4b48-be5f-790c84db0fxg"
       ],
       "settings": {
         "heading": "",
@@ -123,7 +129,7 @@
       "type": "text-media-carousel",
       "blocks": {
         "6023e449-1169-48e3-a76e-deef958316d0": {
-          "type": "slide",
+          "type": "text",
           "settings": {
             "heading": "Porte + Hall \nand One Love",
             "title": "",
@@ -131,7 +137,12 @@
             "handwriting": false,
             "link": "https:\/\/www.joinonelove.org\/",
             "link_text": "Visit their website",
-            "text_alignment": "left",
+            "text_alignment": "left"
+          }
+        },
+        "6023e449-1169-48e3-a76e-deef95831nl9": {
+          "type": "media",
+          "settings": {
             "media_label": "",
             "image": "shopify:\/\/shop_images\/Rectangle_602_1.jpg",
             "image_alignment": "top",
@@ -140,7 +151,8 @@
         }
       },
       "block_order": [
-        "6023e449-1169-48e3-a76e-deef958316d0"
+        "6023e449-1169-48e3-a76e-deef958316d0",
+        "6023e449-1169-48e3-a76e-deef95831nl9"
       ],
       "settings": {
         "heading": "",
