@@ -1,0 +1,86 @@
+{{ 'section-design-detail-arrows.css' | asset_url | stylesheet_tag }}
+
+<script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.4" async></script>
+<script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.4" async></script>
+
+{% liquid
+  for collection in product.collections
+    if collection.title contains ' | '
+      assign grouped_collection = collection
+    endif
+  endfor
+%}
+
+{% if grouped_collection.metafields.custom.design_detail_arrows != blank %}
+  <div class="details__inner">
+    {% liquid
+      assign image = grouped_collection.metafields.custom.design_detail_arrows.value.image
+      assign arrows = grouped_collection.metafields.custom.design_detail_arrows.value.arrows
+    %}
+
+    <div class="details__content-wrapper">
+      <div class="details__content-inner">
+        <div class="details__content">
+          <h2 class="details__content-heading">{{ grouped_collection.metafields.custom.design_detail_arrows.value.heading }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="details__media-wrapper">
+        <div class="details__image-container">
+          <div class="details__image">
+            {{ image | image_url: width: 1200 | image_tag }}
+          </div>
+          {% for arrow in arrows.value %}
+            <div
+              class="details__arrow {% if arrow.left > 50 %}details__arrow-flipped{% endif %}"
+              style="left: {{ arrow.left | default: 50 }}%; top: {{ arrow.top | default: 50 }}%;"
+            >
+              <svg width="106" height="46" viewBox="0 0 106 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M79.4564 0.200115C89.0683 0.200115 97.9236 2.12884 105.391 5.73602L104.227 8.31503C78.5712 -4.07968 35.7311 4.27983 3.50109 44.2545L1.39308 42.4315C25.2237 12.878 54.8214 0.19997 79.458 0.19997L79.4564 0.200115Z" fill="white"/>
+                <path d="M2.09591 30.5149L5.37315 30.854L4.33794 41.6313L15.0172 39.1523L15.7359 42.4816L0.60955 46L2.09591 30.5149Z" fill="white"/>
+                </svg>              
+            </div>
+            <div class="h2 details__arrow-label">{{ arrow.label }}</div>  
+          {% endfor %}
+          <div class="details__image-label body-xs">{{ grouped_collection.metafields.custom.design_detail_arrows.value.image_label }}</div>
+        </div>
+    </div>
+  </div>
+{% endif %}
+
+{% javascript %}
+  const arrows = document.querySelectorAll(".details__arrow")
+
+  arrows.forEach((arrow) => {
+    const tooltip = arrow.nextElementSibling
+    computePosition(arrow, tooltip).then(({x, y}) => {
+      Object.assign(tooltip.style, {
+        left: `${x}px`,
+        top: `${y}px`,
+      });
+    });
+  })
+
+  const imageCarousel = document.querySelector('.details__media-inner');
+  if (imageCarousel) {
+    const imageSlider = new Swiper(imageCarousel, {
+      slidesPerView: 1,
+      allowTouchMove: false,
+    });
+  }
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Design Detail Arrows",
+  "tag": "section",
+  "class": "details",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ]
+}
+{% endschema %}
