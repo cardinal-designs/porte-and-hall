@@ -7,6 +7,8 @@
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <meta name="google-site-verification" content="tjEDE8k9mNiV-8gqcHIAD9HLahL51PjgqHc0nFOpQLo" />
+	<meta name="facebook-domain-verification" content="880tuton4kgymbs2q448hzydeyriqd" />
 
     {% if settings.favicon != blank %}
       <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
@@ -39,14 +41,56 @@
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
     {{ 'base.css' | asset_url | stylesheet_tag }}
 
+    <script async type="text/javascript" data-api-key="" id="stamped-script-widget" src="https://cdn-stamped-io.azureedge.net/files/widget.min.js"></script>
+    
+    <!-- BEGIN PRIVY WIDGET CODE -->
+	<script type='text/javascript'> var _d_site = _d_site || 'C944B2C24A5E6353CEBE51B6'; </script>
+	<script src='https://widget.privy.com/assets/widget.js'></script>
+	<!-- END PRIVY WIDGET CODE -->
+    <style>
+    #privy-container #privy-inner-container [tabindex]:focus {
+      outline: none !important;
+	}
+    </style>
+
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
     </script>
 
     <script src="{{ 'grouped-product-card.js' | asset_url }}" defer="defer"></script>
+
+    <!-- friendbuy app integration -->          
+    <script defer>
+      window['friendbuy'] = window['friendbuy'] || [];
+      window['friendbuy'].push(['site', 'site-e25da741-www.porteandhall.com']);
+      window['friendbuy'].push(['track', 'customer',
+          {
+              id: '{{ customer.id }}',
+              email: '{{ customer.email }}',
+              first_name: '{{ customer.first_name }}',
+              last_name: '{{ customer.last_name }}'
+          }
+      ]);
+      (function (f, r, n, d, b, y) {
+          b = f.createElement(r), y = f.getElementsByTagName(r)[0];b.async = 1;b.src = n;y.parentNode.insertBefore(b, y);
+      })(document, 'script', '//djnf6e5yyirys.cloudfront.net/js/friendbuy.min.js');
+    </script>
+    
+    <!-- Hotjar Tracking Code for https://www.porteandhall.com -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:2330939,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
   </head>
 
   <body class="template-{{ template }} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
+    <script>(function(e,t,n){var r,i=e.getElementsByTagName(t)[0];if(e.getElementById(n))return;r=e.createElement(t);r.id=n;r.src="https://button.aftership.com/all.js";i.parentNode.insertBefore(r,i)})(document,"script","aftership-jssdk")</script>
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -97,6 +141,45 @@
       window.accessibilityStrings = {
         shareSuccess: `{{ 'general.share.success_message' | t }}`,
       };
+    </script>
+
+    <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=LzQY7t"></script>
+    <script>
+        var klaviyo = klaviyo || [];
+        klaviyo.init({
+          account: "LzQY7t",
+          platform: "shopify"
+        });
+        klaviyo.enable("backinstock",{ 
+        trigger: {
+          product_page_text: "Notify Me When Available",
+          product_page_class: "btn Button Button--primary",
+          product_page_text_align: "center",
+          product_page_margin: "0px",
+          alternate_anchor: "ProductForm__AddToCart",
+          replace_anchor: false
+        },
+        modal: {
+         headline: "{product_name}",
+         body_content: "Register to receive a notification when this item comes back in stock.",
+         email_field_label: "Email",
+         button_label: "Notify me when available",
+         subscription_success_label: "You're in! We'll let you know when it's back.",
+         footer_content: '',
+         additional_styles: "@import url('https://fonts.googleapis.com/css?family=Helvetica+Neue');",
+          font_family: '"Helvetica Neue", Helvetica, Arial, sans-serif;',
+         drop_background_color: "#000",
+         background_color: "#fff",
+         text_color: "#222",
+         button_text_color: "#fff",
+         button_background_color: "#546b82",
+         close_button_color: "#ccc",
+         error_background_color: "#fcd6d7",
+         error_text_color: "#C72E2F",
+         success_background_color: "#d3efcd",
+         success_text_color: "#1B9500"
+        }
+      });
     </script>
   </body>
 </html>
