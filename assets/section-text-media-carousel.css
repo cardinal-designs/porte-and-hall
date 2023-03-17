@@ -55,6 +55,10 @@
 
 /* Text content */
 
+.text-media-carousel__text {
+  margin-top: 30px;
+}
+
 .text-media-carousel__text .swiper-wrapper {
   padding-bottom: 45px;
 }
@@ -76,7 +80,7 @@
 }
 
 .text-media-carousel__heading {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 
 .text-media__quote.handwriting {
@@ -94,8 +98,8 @@
     display: block;
   }
 
-  .text-media__heading {
-    margin-bottom: 20px;
+  .text-media-carousel__text {
+    margin-top: 20px;
   }
 
   .text-media-carousel__content-inner {
