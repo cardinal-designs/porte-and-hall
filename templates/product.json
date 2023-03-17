@@ -103,8 +103,9 @@
     "see-the-difference": {
       "type": "see-the-difference",
       "settings": {
+        "colleciton": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
         "heading": "Small mat, big difference",
-        "text": "We all love a good before and after. Our mats lift and liven-up any space.",
+        "text": "{{ section.settings.colleciton.metafields.custom.see_the_difference_subhead.value }}",
         "label": "See the difference with"
       }
     },

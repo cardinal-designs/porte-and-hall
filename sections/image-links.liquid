@@ -10,10 +10,12 @@
     <div class="image-links__blocks">
       {% for block in section.blocks %}
         <div class="image-links__block-wrapper">
+          <a href="{{ block.settings.link }}">
           <div class="image-links__block-image">
             {% render 'lazy-image', image: block.settings.image, fade: true, classes: 'img-fill' %}
             <div class="image-links__block-label body-xs">{{ block.settings.text }}</div>
           </div>
+        </a>
           <a class="text-link image-links__block-link" href="{{ block.settings.link }}">
             {{ block.settings.link_text }} >
           </a>
