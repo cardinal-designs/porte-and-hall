@@ -338,6 +338,13 @@
 
 /* Stamped styles */
 
+.rating-reviews {
+  width: 100%;
+}
+.rating-reviews .stamped-main-badge {
+  width: 100%;
+}
+
 .stamped-badge-caption {
   color: var(--gold-secondary--dark);
   font-family: brandon;
