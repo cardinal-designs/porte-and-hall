@@ -99,11 +99,10 @@
   border-radius: 50%;
   aspect-ratio: 1/1;
   display: block;
-  padding: 3px;
+  padding: 4px 3px 3px 3px;
   letter-spacing: normal;
   vertical-align: middle;
   min-width: 23px;
-  min-height: fit-content;
 }
 .collection-filters__clear-all {
   padding: 5px 14px;
@@ -615,7 +614,7 @@
   }
 
   .collection-filters__dropdowns {
-    padding: 0 20px 0 0;
+    padding: 0 20px;
   }
 
   .collection-filters__dropdown {

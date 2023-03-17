@@ -30,7 +30,7 @@
         <div
           class="details__arrow details__arrow-{{ arrow.arrow_direction | handleize }}"
           style="left: {{ arrow.left | default: 50 }}%; top: {{ arrow.top | default: 50 }}%;"
-        >
+          >
           {% render 'design-detail-arrow-svg', direction: arrow.arrow_direction %}         
         </div>
         <div class="h2 details__arrow-label">{{ arrow.label }}</div>  
@@ -42,27 +42,6 @@
 
 {% javascript %}
   const arrows = document.querySelectorAll(".details__arrow")
-
-  // const flipArrow = {
-  //   name: 'flipArrow',
-  //   async fn(state) {
-  //     const overflow = await window.FloatingUIDOM.detectOverflow(state);
-  //     // if(overflow.left > 0 || overflow.right > 0 ){
-  //     //   if(state.elements.reference.classList.contains("details__arrow-flipped")) {
-  //     //     state.elements.reference.style.transform = "translateX(-100%) scaleX(1)"
-  //     //   } else {
-  //     //     state.elements.reference.style.transform = "scaleX(-1)"
-  //     //   }
-  //     // } else {
-  //     //   if(state.elements.reference.classList.contains("details__arrow-flipped")) {
-  //     //     state.elements.reference.style.transform = "translateX(-100%) scaleX(-1)"
-  //     //   } else {
-  //     //     state.elements.reference.style.transform = "scaleX(1)"
-  //     //   }
-  //     // }
-  //     return {};
-  //   },
-  // };
 
   arrows.forEach((arrow) => {
     const tooltip = arrow.nextElementSibling
