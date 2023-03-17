@@ -793,6 +793,7 @@ var UGCCarousel = class extends HTMLElement {
       centeredSlides: true,
       spaceBetween: 10,
       loop: true,
+      mousewheel: true,
       pagination: {
         el: this.pagination,
         clickable: true,
