@@ -13,7 +13,7 @@
   <div class="article-card__image">
     <a href="{{ article.url }}">
     {% render 'lazy-image', image: article.image, fade: true, classes: 'img-fill' %}
-    <div class="article-card__icon-overlay">{% render 'sun-svg', color: '#ffffff', opacity: '0.5' %}</div>
+    {% comment %} <div class="article-card__icon-overlay">{% render 'sun-svg', color: '#ffffff', opacity: '0.5' %}</div> {% endcomment %}
     </a>
   </div>
     <p class="article-card__date body-xs blue">{{ article.published_at | time_tag: '%m.%d.%Y' }}</p>

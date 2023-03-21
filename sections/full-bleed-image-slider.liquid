@@ -7,7 +7,7 @@
         <div class="swiper-slide">
           <div class="image-carousel__item">
            {% render 'lazy-image', image: block.settings.image, fade: true, classes: 'img-fill' %}
-           <div class="image-carousel__icon-overlay">{% render 'sun-svg', color: '#ffffff', opacity: '0.5' %}</div>
+           {% comment %} <div class="image-carousel__icon-overlay">{% render 'sun-svg', color: '#ffffff', opacity: '0.5' %}</div> {% endcomment %}
           </div>
         </div>
       {% endfor %}
