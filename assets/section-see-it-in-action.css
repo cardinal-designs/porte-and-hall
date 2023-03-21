@@ -1,3 +1,7 @@
+.see-it-in-action__inner {
+  max-width: 1100px;
+  margin: auto;
+}
 .see-it-in-action__header {
   text-align: center;
   margin-bottom: 70px;
@@ -37,6 +41,12 @@
   text-transform: uppercase;
   padding: 8px;
   position: relative;
+  opacity: .6;
+  transition: all .3s ease;
+}
+
+.see-it-in-action__tabs-buttons button.active {
+  opacity: 1;
 }
 
 .see-it-in-action__tabs-buttons button.active:before {
@@ -63,7 +73,7 @@
 .see-it-in-action__tabs-image {
   position: relative;
   width: 100%;
-  aspect-ratio: 1.55/1;
+  aspect-ratio: 16/9;
 }
 
 .see-it-in-action__tabs-image img {
