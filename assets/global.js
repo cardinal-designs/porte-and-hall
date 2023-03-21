@@ -448,8 +448,8 @@ MicroModal.init({
   openClass: 'is-open',
   disableScroll: true,
   disableFocus: true,
-  awaitOpenAnimation: true,
-  awaitCloseAnimation: true
+  openTrigger: 'data-modal-trigger',
+  closeTrigger: 'data-modal-close'
 });
 
 /*================ Components ================*/

@@ -1,0 +1,88 @@
+<!-- [1] -->
+<div id="notify-me" aria-hidden="true" class="modal">
+
+  <!-- [2] -->
+  <div class="modal__overlay" tabindex="-1" data-modal-close>
+
+    <!-- [3] -->
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="notify-me-title">
+
+
+      <header class="modal__header">
+        <!-- [4] -->
+        <button class="modal__close" aria-label="Close modal" data-modal-close>{% render 'icon', icon: 'close' %}</button>
+      </header>
+
+      <div class="modal__body" id="notify-me-content">
+        <h1 id="notify-me-title" class="modal__title">
+          Notify Me
+        </h1>
+        <div id="NotifyMe_form" class="NotifyMe_form">
+          <input
+            class="notify-me-var"
+            type="hidden"
+            id="notify_id"
+            name="variant"
+            value="{{ products[0].variants[0].id }}"
+          >
+          <div class="field">
+            <button class="select_button select">
+                {% assign color_option = products[0].options_by_name['color'].values %}
+                {% assign swatch_file_name = color_option | handle | append: '.png' %}
+                {{ color_option }}
+                <span class="select_swatch"><img src="{{ swatch_file_name | asset_url }}"></span>
+            </button>
+            <div class="select_dropdown" style="display: none">
+              {% for p in products %}
+                {% assign color_option = p.options_by_name['color'].values %}
+                {% assign swatch_file_name = color_option | handle | append: '.png' %}
+                <button
+                  role="button"
+                  class="option body"
+                  data-value="{{ p.variants[0].id }}"
+                  data-swatch-name="{{ swatch_file_name | asset_url }}">
+                    {{ color_option }}
+                    <span class="select_swatch"><img src="{{ swatch_file_name | asset_url }}"></span>
+                </button>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="field-wrapper">
+          <input
+            class="notify-email-val"
+            type="email"
+            id="notify_email"
+            name="email"
+            placeholder="Email Address"
+            class="email"
+            required
+          >
+          <button type="button" class="text-link" value="Submit" data-bis-button>Submit ></button>
+          </div>
+          <div class="notifyme_error"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  let notifyMeSelect = document.querySelector("button.select_button")
+  let notifyMeSelectList = notifyMeSelect.nextElementSibling
+
+  notifyMeSelect.addEventListener('click', function(e){
+    slideToggle(notifyMeSelectList)
+    {% comment %} let swatch = e.target.querySelector(`option[value="${ this.value }"]`).dataset.swatchName {% endcomment %}
+  })
+
+  notifyMeSelectList.querySelectorAll(".option").forEach((option) => {
+    option.addEventListener("click", function(e){
+      let inputValue = this.dataset.value
+      notifyMeSelect.innerHTML = this.innerHTML
+      slideUp(notifyMeSelectList)
+
+      document.querySelector("#notify_id").value = inputValue
+    })
+  })
+</script>
