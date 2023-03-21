@@ -10,6 +10,8 @@
     endif
   endfor
 
+  assign oos_products = grouped_collection.products | where: 'available', false
+
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
   assign collection_title = grouped_collection.title | downcase
   capture color_swatch_list
@@ -350,7 +352,6 @@
           {% endform %}
         </product-form>
       </div>
-
       {% if product.available == false %}
         <div class="product__oos-notify-wrapper">
           <p class="body">Notify me when THIS STYLE IS back in stock:</p>
@@ -375,6 +376,10 @@
             <div class="notifyme_error"></div>
           </div>
         </div>
+      {% elsif oos_products.size > 0 %}
+      <div class="product__oos-notify-wrapper">
+        <p class="body"><button data-modal-trigger="notify-me" >Notify me</button> when out of stock styles are back in stock.</p>
+      </div>
       {% endif %}
 
       <div class="product__tabs-wrapper">
@@ -552,6 +557,10 @@
     </div>
   </div>
 </sticky-atc>
+
+{% if oos_products.size > 0 and product.available != false %}
+  {% render 'notify-me-modal', products: oos_products %}
+{% endif %}
 
 {% render 'product-zoom' %}
 

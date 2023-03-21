@@ -11,7 +11,13 @@
   padding: 50px 0 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1100px) {
+  .product {
+    gap: 25px;
+  }
+}
+
+@media screen and (max-width: 900px) {
   .product {
     display: block;
   }
@@ -336,6 +342,13 @@
   font-weight: 600;
 }
 
+.product__oos-notify-wrapper p button{
+  font-family: inherit;
+  font-size: inherit;
+  text-transform: inherit;
+  font-weight: inherit;
+}
+
 /* Stamped styles */
 
 .rating-reviews {
@@ -606,6 +619,13 @@ variant-selects {
   max-width: unset;
 }
 
+@media screen and (max-width: 900px) {
+
+  .product__media-list {
+    padding-bottom: 50px;
+  }
+}
+
 @media screen and (max-width: 768px) {
 
   .product {
@@ -616,9 +636,6 @@ variant-selects {
     display: block;
     width: calc(100% + 40px);
     margin-left: -20px;
-  }
-  .product__media-list {
-    padding-bottom: 50px;
   }
 
   .close-zoom {
