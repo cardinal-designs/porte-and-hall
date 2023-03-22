@@ -44,7 +44,8 @@ grouped-product-card {
 }
 
 .product-card__title > span.body {
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
+  text-transform: capitalize;
 }
 
 .product-card__price {
@@ -69,6 +70,7 @@ grouped-product-card {
   flex-wrap: wrap;
   /* overflow-x: scroll; */
   margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .product-card__swatch {
@@ -124,11 +126,11 @@ grouped-product-card {
   }
 
   .product-card__title {
-    margin-top: 20px;
+    margin-top: 0;
   }
 
   .product-card__price {
-    margin-top: 20px;
+    margin-top: 0px;
   }
 
   .product-card__swatches {
@@ -149,10 +151,10 @@ grouped-product-card {
 
   .product-card__title {
     margin-bottom: 0;
-    margin-top: 20px;
+    /* margin-top: 20px; */
   }
 
-  .product-card__description {
+  .product-card__swatches {
     margin-bottom: 10px;
   }
 
