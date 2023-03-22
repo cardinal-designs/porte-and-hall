@@ -25,6 +25,9 @@
             blur: true,
             fill: true
           %}
+          <div class="see-the-difference__label">
+            <span class="body-sm">{{ section.settings.before-label }}</span>
+          </div>
         </div>
 
         <div class="see-the-difference__image see-the-difference__after">
@@ -34,8 +37,7 @@
             fill: true
           %}
           <div class="see-the-difference__label">
-            <span class="body-xs">{{ section.settings.label }}</span>
-            <span>{% render 'small-logo' %}</span>
+            <span class="body-sm">{{ section.settings.after-label }}</span>
           </div>
         </div>
       </div>
@@ -67,9 +69,15 @@
     },
     {
       "type": "text",
-      "id": "label",
+      "id": "before-label",
+      "label": "Before photo overlay text",
+      "default": "Before"
+    },
+    {
+      "type": "text",
+      "id": "after-label",
       "label": "After photo overlay text",
-      "default": "See the difference with"
+      "default": "After"
     }
   ]
 }
