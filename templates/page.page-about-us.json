@@ -11,6 +11,9 @@
     },
     "richtext-one": {
       "type": "richtext",
+      "custom_css": [
+        "p {text-align: left;}"
+      ],
       "settings": {
         "heading": "Imagine your entry with a doormat that’s actually pretty.",
         "text": "<p>Stafford created Porte + Hall with a passion for design and a deep desire to help others articulate their personal story through their house. Out of all the places in the world, home is the destination we return to. It welcomes friends, creates memories, and gives shelter to everyone and everything we hold dear. Over the years as an interior designer, Stafford found a lack of doormat options. No one was making a mat that made thresholds sing. So, Stafford decided to be the change she wanted to see.<\/p>"
