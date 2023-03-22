@@ -21,6 +21,8 @@
           </div>
         {% endfor %}
       </div>
+      <div class="text-media-carousel__media-prev swiper-button-prev"></div>
+      <div class="text-media-carousel__media-next swiper-button-next"></div>
     </div>
   </div>
 
@@ -73,6 +75,10 @@
       el: '.text-media-carousel__pagination',
       clickable: true,
     },
+    navigation: {
+        nextEl: '.text-media-carousel__media-next',
+        prevEl: '.text-media-carousel__media-prev',
+      },
     controller: {
       control: contentSwiper,
     },
