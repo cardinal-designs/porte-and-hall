@@ -10,7 +10,12 @@
 
   <div class="hero__media">
     {% if section.settings.video != blank %}
-      {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+      {% if section.settings.mobile_video != blank %}
+        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "hide-mobile" }}
+        {{ section.settings.mobile_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "hide-desktop" }}
+      {% else %}
+        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+      {% endif %}
     {% else %}
       {% if section.settings.mobile_image != blank %}
         {% render 'lazy-image', image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile' %}
@@ -32,12 +37,21 @@
   "settings": [
     {
       "type": "header",
-      "content": "Image"
+      "content": "Video"
     },
     {
       "type": "video",
       "id": "video",
       "label": "Video (default media if populated)"
+    },
+    {
+      "type": "video",
+      "id": "mobile_video",
+      "label": "Mobile Video (default media if populated)"
+    },
+    {
+      "type": "header",
+      "content": "Image"
     },
     {
       "type": "image_picker",
