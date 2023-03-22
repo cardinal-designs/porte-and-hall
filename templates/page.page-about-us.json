@@ -108,6 +108,9 @@
     },
     "richtext-two": {
       "type": "richtext",
+      "custom_css": [
+        "p {text-align: left;}"
+      ],
       "settings": {
         "heading": "The Meaning Of Our Logo",
         "text": "<p>Porte + Hall believes that sending out a beautiful first impression draws good people into your life. Great designs serve a greater purpose (such as keeping the dirt out of your home). We were inspired by the white-spotted puffer fish that takes up to a week to create intricate patterns in the sand to attract mates and later protect its offspring. Beauty meets functionality!<\/p>"
