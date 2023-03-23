@@ -54,6 +54,10 @@
                       {% assign custom_index = 1 %}
 
                       {% for photo in photos %}
+                        {% assign firstCollection = photo.product_collection.value | first %}
+                        {% unless firstCollection == blank %}
+                        <a href="{{ firstCollection.products[0].url}}">
+                        {% endunless %}
                         <div class="ideas-gallery__item" data-index={{ custom_index }}>
                           <div class="see-it-in-action__tabs-image">
                             {% assign photo_object = photo.image.value | file_url %}
@@ -62,6 +66,9 @@
       
                           <div class="see-it-in-action__tabs-label body-xs">{{ photo.product_name }} {{ photo.image.aspect_ratio }}</div>
                         </div>
+                        {% unless firstCollection == blank %}
+                        </a>
+                      {% endunless %}
                         {% assign remainder = forloop.index | modulo: 12 %}
                         {% if forloop.index != 1 and remainder == 1 %}
                           {% comment %} start custom index over {% endcomment %}
