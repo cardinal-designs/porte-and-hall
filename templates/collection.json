@@ -34,6 +34,21 @@
         "heading": "Our Mats In Under A Minute"
       }
     },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 16,
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "add_image_padding": false,
+        "show_image_outline": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "collapse_on_larger_devices": false
+      }
+    },
     "82844bc9-ec6d-426a-9f52-a0a66dd5560e": {
       "type": "logo-marquee",
       "blocks": {
@@ -100,21 +115,6 @@
         "background_color": "#d8d3c7"
       }
     },
-    "product-grid": {
-      "type": "main-collection-product-grid",
-      "settings": {
-        "products_per_page": 16,
-        "image_ratio": "adapt",
-        "show_secondary_image": false,
-        "add_image_padding": false,
-        "show_image_outline": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "enable_filtering": true,
-        "enable_sorting": true,
-        "collapse_on_larger_devices": false
-      }
-    },
     "2046a8d4-8126-4344-8df2-6dd5193e7293": {
       "type": "featured-articles",
       "blocks": {
@@ -150,6 +150,8 @@
     "6cba2d1c-ca6b-48b3-8672-d03b3b848c6e": {
       "type": "fan-motif-section",
       "settings": {
+        "hide_desktop": false,
+        "hide_mobile": false,
         "color": "green",
         "alignment": "left",
         "heading": "First impressions matter.\nFor both you and your visitors.",
@@ -162,8 +164,8 @@
   },
   "order": [
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
-    "82844bc9-ec6d-426a-9f52-a0a66dd5560e",
     "product-grid",
+    "82844bc9-ec6d-426a-9f52-a0a66dd5560e",
     "2046a8d4-8126-4344-8df2-6dd5193e7293",
     "6cba2d1c-ca6b-48b3-8672-d03b3b848c6e"
   ]
