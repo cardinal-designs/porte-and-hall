@@ -49,6 +49,9 @@
  }
 
  @media screen and (max-width: 425px) {
+  .page-hero__heading {
+    font-size: 30px;
+  }
   .page-hero__blocks {
     flex-wrap: wrap;
   }
