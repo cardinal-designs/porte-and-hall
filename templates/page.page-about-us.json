@@ -11,9 +11,12 @@
     },
     "richtext-one": {
       "type": "richtext",
+      "custom_css": [
+        "p {text-align: left;}"
+      ],
       "settings": {
         "heading": "Imagine your entry with a doormat that’s actually pretty.",
-        "text": "<p>Stafford created Porte + Hall with a passion for design and a deep desire to help others articulate their personal story through their house. Out of all the places in the world, home is the destination we return to. It welcomes friends, creates memories, and gives shelter to everyone and everything we hold dear. Over the years as an interior designer, Stafford found a lack of doormat options. No one was making a mat that made thresholds sing. So, Stafford decided to be the change she wanted to see.<\/p>"
+        "text": "<p>Stafford created Porte + Hall with a passion for design and a deep desire to help others articulate their personal story. Our homes welcome friends, create memories, and give shelter to everyone and everything we hold dear. As an interior designer, Stafford found a lack of doormat options to create that sense of arrival. So, she decided to be the change she wanted to see.<\/p>"
       }
     },
     "83b2c825-49b8-4019-a11c-30b637687747": {
@@ -24,7 +27,7 @@
           "settings": {
             "heading": "",
             "title": "",
-            "text": "Stafford went to work, making it her mission to transform the doorstep into a curated space worthy of warmth and attention. After late nights sketching, sample after sample of materials, design tweaks, and skipped weekends, Stafford knew she’d created the perfect mat. It is durable, never sheds, doesn’t fade, washes easily, and is incredibly absorbent and versatile. The creation of The Outsider mat opened the door to new opportunities to continue her vision. Now she could make interior mats that would never deteriorate or leave residue, had a sleek profile, and were simple to wash.",
+            "text": "Stafford went to work, making it her mission to transform the doorstep into a curated space worthy of warmth and attention.  The process of building a better doormat took two years, lots of re-design and prototyping to achieve the desired result - a collection of indoor and outdoor mats that are as beautiful as they are durable.",
             "handwriting": false,
             "link": "",
             "link_text": "",
@@ -47,6 +50,7 @@
       ],
       "settings": {
         "heading": "",
+        "subhead": "",
         "color": "dark"
       }
     },
@@ -59,7 +63,7 @@
             "image": "shopify:\/\/shop_images\/About-Us-Indoor-Mat-Insider-Maze-Navy-Doormat.jpg",
             "label": "The Insider | Maze (Navy)",
             "heading": "We believe that form and function are not mutually exclusive",
-            "text": "Getting to the product that you see today was a long process. Our mats needed to perform and hold up to the elements, foot traffic, and hundreds of wipes and stomps. Our colors had to be vibrant. Our textures had to last. Our mats needed to be easy to maintain. We stand <em>on<\/em> our mats because they deliver."
+            "text": "Getting to the products that you see today was a long process. Our mats needed to perform and hold up to the elements, foot traffic, and hundreds of wipes and stomps. Our colors had to be vibrant. Our textures had to last. Our mats needed to be easy to maintain. We stand <em>on<\/em> our mats because they deliver."
           }
         },
         "cf63a171-6ade-4f26-a84e-a9dde3b49f28": {
@@ -68,7 +72,7 @@
             "image": "shopify:\/\/shop_images\/About-Us-Outdoor-Mat-Outsider-Teak-Frame-Grey-Insert-Doormat.jpg",
             "label": "The Outsider | Teak Frame Grey Insert",
             "heading": "We believe that small updates can make big changes to your life",
-            "text": "Porte + Hall is inspired by all that brings us together. It celebrates the spirit of invitation and embodies the experience you get when you step inside your door, a feeling that whispers <em>you’re home. <\/em>Stafford’s designs are sophisticated, and her prints charming. Now you can get mats for exteriors and interiors that invite you to go ahead and stay awhile. Your front door is the first impression of the lives inside. What will your doorstep tell the world?"
+            "text": "Porte + Hall is inspired by all that brings us together. It celebrates the spirit of invitation and embodies the experience you get when you step inside your door, a feeling that whispers <em>you’re home. <\/em>Your front door is the first impression of the lives inside. What will your doorstep tell the world?"
           }
         },
         "981de907-6468-49e8-a86e-ec675d0f7114": {
@@ -96,7 +100,7 @@
         "hide_mobile": false,
         "color": "green",
         "alignment": "center",
-        "heading": "“I believe deeply in your home's ability to brighten your mood and outlook..”",
+        "heading": "\"I believe deeply in your home's ability to brighten your mood and outlook.”",
         "text": "<strong>— STAFFORD MEYER, FOUNDER OF PORTE + HALL<\/strong>",
         "link": "",
         "link_text": ""
@@ -104,9 +108,12 @@
     },
     "richtext-two": {
       "type": "richtext",
+      "custom_css": [
+        "p {text-align: left;}"
+      ],
       "settings": {
         "heading": "The Meaning Of Our Logo",
-        "text": "<p>Porte + Hall believes that sending out a beautiful first impression draws good people into your life. Great designs serve a greater purpose (such as keeping the dirt out of your home). We were inspired by the white-spotted puffer fish that takes up to a week to create intricate patterns in the sand to attract mates and later protect its offspring. Beauty meets functionality!<\/p>"
+        "text": "<p>Porte + Hall believes that sending out a beautiful first impression draws good people into your life. We were inspired by the intricate patterns created in the sand by the white-spotted puffer fish.  Their beautiful creations attract mates and later protect their offspring. Beauty meets functionality!<\/p>"
       }
     },
     "0de7e396-a909-4e48-b29c-f16f301ca77b": {
@@ -123,7 +130,7 @@
         "text": "“In my 20 years as an interior designer, I struggled to source entry mats that were as well-designed and functional as the rest of the home. I was bewildered by the scarcity of options. Why was the first thing to greet you at your door not important? So I decided to design my own - because first impressions matter, for you and your guests.  Welcome to our collection and we hope you walk all over us!”",
         "link": "",
         "link_text": "",
-        "image": "shopify:\/\/shop_images\/IMAGE_COLLAGE_4525dc98-0b51-42b8-81bb-d6aff921a5bb.png"
+        "image": "shopify:\/\/shop_images\/web_collage_copy.png"
       }
     },
     "ca7269e3-0e99-4b33-8ac5-b2cb1e4e8322": {
@@ -157,6 +164,7 @@
       ],
       "settings": {
         "heading": "",
+        "subhead": "",
         "color": "light"
       }
     },

@@ -42,6 +42,8 @@ arrows.forEach((arrow) => {
     }
   }
 
+  updatePosition()
+
   window.FloatingUIDOM.autoUpdate(
     arrow,
     tooltip,

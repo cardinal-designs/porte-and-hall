@@ -12,6 +12,7 @@
     </div>
   </div>
 
+  {%  if section.settings.blocks != blank %}
   <ugc-carousel>
     <div class="ugc-carousel__container swiper" id="{{ section.id }}-ugc-carousel">
       <div class="swiper-pagination ugc-carousel__pagination"></div>
@@ -26,6 +27,9 @@
       </div>
     </div>
   </ugc-carousel>
+  {% endif %}
+
+  <div id="insta-feed"></div>
 </div>
 
 {% schema %}

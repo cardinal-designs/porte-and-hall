@@ -1632,6 +1632,7 @@ header.condensed .header__menu {
 .footer__svg-logo svg {
   width: 100%;
   height: auto;
+  display: block;
 }
 
 /*================ Top ================*/
