@@ -4,7 +4,7 @@
 <div class="contact page-width spaced-section">
   <div class="Contact_Form">
     <h2 class="title text-center">{{ section.settings.heading | escape }}</h2>
-    {% form 'contact', id: 'ContactForm' %}
+    {% form 'contact' %}
       {% if form.posted_successfully? %}
         <div class="form-status form-status-list form__message" tabindex="-1" autofocus>
         <p class="body blue">{{ 'templates.contact.form.post_success' | t }}</p>
