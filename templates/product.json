@@ -106,7 +106,8 @@
         "colleciton": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
         "heading": "Small mat, big difference",
         "text": "{{ section.settings.colleciton.metafields.custom.see_the_difference_subhead.value }}",
-        "label": "See the difference with"
+        "before-label": "Before",
+        "after-label": "After"
       }
     },
     "faq": {
@@ -164,7 +165,7 @@
         "140e3c63-9b99-476d-9378-53fd1ce30b89": {
           "type": "article",
           "settings": {
-            "article": "news\/at-some-point-in-the-last-year"
+            "article": "news\/how-to-find-the-best-doormat-for-your-home"
           }
         },
         "faf6f395-3915-4f58-b2c5-acd839476fc2": {
@@ -176,7 +177,7 @@
         "cc9c34ec-5a8d-4a24-9b5f-20963c337e23": {
           "type": "article",
           "settings": {
-            "article": "news\/of-dogs-doormats"
+            "article": "news\/why-pay-more-for-a-doormat"
           }
         }
       },
