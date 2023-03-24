@@ -67,9 +67,9 @@
                     {% for filter in collection.filters %}
                       {% case filter.type %}
                         {% when 'list' %}
-                          {% if filter.label == 'Size' %}
+                          {% comment %} {% if filter.label == 'Size' %}
                             {% continue %}
-                          {% endif %}
+                          {% endif %} {% endcomment %}
                           {% for value in filter.active_values %}
                             <button
                               class="remove-filter active-filter body-xs body-bold"
@@ -127,7 +127,7 @@
                           id="collection-filter-{{ filter.param_name | escape }}"
                         >
                           {% unless filter.type == 'price_range' %}
-                            {% if filter.label == 'Size' %}
+                            {% comment %} {% if filter.label == 'Size' %}
                               <div class="collection-filters__input-wrapper">
                                 <input
                                   type="radio"
@@ -147,15 +147,16 @@
                                   Shop All
                                 </label>
                               </div>
-                            {% endif %}
+                            {% endif %} {% endcomment %}
                             {% for value in filter.values %}
                               <div class="collection-filters__input-wrapper">
                                 <input
-                                  {% if filter.label == 'Size' %}
+                                  {% comment %} {% if filter.label == 'Size' %}
                                     type="radio"
                                   {% else %}
                                     type="checkbox"
-                                  {% endif %}
+                                  {% endif %} {% endcomment %}
+                                  type="checkbox"
                                   class="collection-filters__filter-button"
                                   name="{{ value.param_name }}"
                                   value="{{ value.value }}"
@@ -166,15 +167,15 @@
                                   {% endif %}
                                 >
                                 <label
+                                  {% comment %} {% if filter.label == 'Size' %}collection-filters__filter-label-radio{% endif %}  {% endcomment %}
                                   for="Filter-{{ filter.label | escape }}-{{ forloop.index }}"
-                                  class="collection-filters__filter-label {% if filter.label == 'Size' %}collection-filters__filter-label-radio{% endif %}  h3{% if value.count == 0 and value.active == false %} collection-filters__filter-button--disabled{% endif %}"
+                                  class="collection-filters__filter-label h3{% if value.count == 0 and value.active == false %} collection-filters__filter-button--disabled{% endif %}"
                                 >
                                   {{ value.label | escape }}
                                   {% comment %} ({{ value.count }}) {% endcomment %}
                                 </label>
                               </div>
                             {% endfor %}
-                            {% if filter.label != 'Size' %}
                               <div class="collection-filters__input-wrapper">
                                 <input
                                   type="checkbox"
@@ -194,7 +195,6 @@
                                   Shop All {{ filter.label }}
                                 </label>
                               </div>
-                            {% endif %}
                           {% else %}
                             <price-range class="price-range">
                               {% assign min_value = filter.min_value.value | default: 0.0 | divided_by: 100.0 %}
