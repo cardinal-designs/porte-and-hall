@@ -440,7 +440,7 @@
                       {% for feature in grouped_collection.metafields.custom.product_features.value %}
                         <div class="product__features-item">
                           {{ feature.image | image_url: width: 206 | image_tag: width: 103 }}
-                          <p class="body-xs">{{ feature.label }}</p>
+                          <p class="body-sm">{{ feature.label }}</p>
                         </div>
                       {% endfor %}
                     </div>
@@ -450,7 +450,7 @@
 
               {% if section.settings.materials != blank %}
                 <div class="swiper-slide">
-                  <div class="product__tabs-item body-xs">
+                  <div class="product__tabs-item body-sm">
                     {{ section.settings.materials }}
                   </div>
                 </div>
@@ -459,7 +459,7 @@
               {% if grouped_collection.metafields.custom.dimensions != blank %}
                 <div class="swiper-slide">
                   <div class="product__tabs-item">
-                    <p class="body-xs">
+                    <p class="body-sm">
                       Dimensions: {{ grouped_collection.metafields.custom.dimensions | newline_to_br }}
                       {% if grouped_collection.metafields.custom.additional_dimensions != blank %}
                         <br>
@@ -474,7 +474,7 @@
 
               {% if section.settings.care != blank %}
                 <div class="swiper-slide">
-                  <div class="product__tabs-item body-xs">
+                  <div class="product__tabs-item body-sm">
                     {{ section.settings.care }}
                   </div>
                 </div>
