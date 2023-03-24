@@ -41,7 +41,7 @@
                   <li>
                     <a
                       href="{{ link.url }}"
-                      {% if link.type == "http_link" %}
+                      {% if link.url contains "http://" or link.url contains "https://" %}
                         target="_blank"
                       {% endif %}
                       class="footer__menu-link{% if link.active %} footer__menu-link--active{% endif %}"
