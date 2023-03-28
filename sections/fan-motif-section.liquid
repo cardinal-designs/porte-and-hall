@@ -13,7 +13,7 @@
     <div class="fan-motif__inner fan-motif__layout-{{ section.settings.alignment }}">
       <div class="fan-motif__content-wrapper">
         <div class="fan-motif__motif">
-          <img src="{{ fan-motif }}" width="67" alt="Fan motif">
+          <img src="{{ fan-motif }}" width="67" height="50" alt="Fan motif">
         </div>
 
         {% if section.settings.heading != blank %}
@@ -35,7 +35,7 @@
             {% for block in section.blocks %}
               <div class="fan-motif__icon-wrapper">
                 <div class="fan-motif__icon-image">
-                  {{ block.settings.image | image_url: width: 328 | image_tag: width: 164 }}
+                  {{ block.settings.image | image_url: width: 328 | image_tag: width: 164, height: 120 }}
                 </div>
                 <h3 class="fan-motif__icon-label blue">{{ block.settings.title }}</h3>
               </div>
@@ -46,7 +46,7 @@
 
       {% if section.settings.image and section.settings.alignment != 'center' %}
         <div class="fan-motif__image-wrapper">
-          {{ section.settings.image | image_url: width: 800 | image_tag }}
+          {{ section.settings.image | image_url: width: 800 | image_tag: class: "lazyload" }}
         </div>
       {% endif %}
     </div>
