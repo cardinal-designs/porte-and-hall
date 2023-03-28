@@ -13,6 +13,7 @@ class collectionFilters extends HTMLElement {
 
     this.openFilterButtons = document.querySelectorAll('.js-open-filters');
     this.closeFilterButtons = document.querySelectorAll('.js-close-filters');
+    this.applyFilters = document.querySelector('.js-apply-filters');
     this.clearFilterButtons = document.querySelectorAll('.js-clear-all-filters')
 
     this.setListeners();
@@ -55,7 +56,7 @@ class collectionFilters extends HTMLElement {
     });
 
     // Clear All Filters
-    this.addEventListener('click', event => {
+    this.addEventListener('click', function(event) {
       const button = event.target.closest('.js-clear-all-filters');
       if (button) {
         event.preventDefault();
@@ -76,6 +77,12 @@ class collectionFilters extends HTMLElement {
         this.close();
       });
     });
+
+    this.applyFilters.addEventListener("click", function(e){
+      e.preventDefault();
+      this.reloadSections();
+      this.close();
+    }.bind(this))
   }
 
   open() {
@@ -92,15 +99,22 @@ class collectionFilters extends HTMLElement {
     });
   }
 
-  close() {
-    event.preventDefault();
+  close(event) {
+    if(event){
+      event.preventDefault();
+    }
+
     const overlay = this.getOverlayElement();
   
     document.querySelector('.collection-filters__slideout').classList.remove('active');
     document.body.classList.remove('scroll-lock');
-    overlay.classList.remove('is-visible');
+    overlay?.classList.remove('is-visible');
   
     // this.closeAllDropdowns();
+  }
+
+  apply() {
+    this.reloadSections();
   }
 
   handleDropdownClick(event) {
@@ -117,11 +131,14 @@ class collectionFilters extends HTMLElement {
     if(target.value == ""){
       target.closest(".collection-filters__dropdown-container").querySelectorAll('.collection-filters__filter-button').forEach(item => {
         item.removeAttribute('checked');
+        item.checked = false
       });
     } else {
-      target.closest(".collection-filters__dropdown-container").querySelector('.collection-filters__filter-button[remove-filter]:checked')?.removeAttribute('checked');
+      target.closest(".collection-filters__dropdown-container").querySelector('.collection-filters__filter-button[remove-filter]').removeAttribute('checked');
+      target.closest(".collection-filters__dropdown-container").querySelector('.collection-filters__filter-button[remove-filter]').checked = false
+
     }
-      this.reloadSections();
+      // this.reloadSections();
   
   }
 
@@ -150,11 +167,20 @@ class collectionFilters extends HTMLElement {
   }
 
   clearAllFilters(event) {
-    event.preventDefault();
-    event.stopImmediatePropagation();
+    if(event){
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
 
     document.querySelectorAll('.collection-filters__filters .collection-filters__filter-button').forEach(item => {
-      item.removeAttribute('checked');
+      if(item.checked){
+        item.checked = false
+        item.removeAttribute('checked');
+      }
+      if(item.getAttribute('remove-filter')) {
+        item.checked = true
+        item.setAttribute('checked', "true");
+      }
     });
 
     // Clear price range
@@ -173,16 +199,13 @@ class collectionFilters extends HTMLElement {
     let formData = new FormData(this.form);
 
     for (let pair of formData.entries()) {
-      if(pair[1] == ""){
+      if(pair[1] == "" || pair[1] == " "){
         formData.delete(pair[0])
       }
     }
 
     const searchParams = new URLSearchParams(formData).toString();
     url = location.pathname + '?' + searchParams;
-
-    console.log(url)
-
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
     }
@@ -197,7 +220,7 @@ class collectionFilters extends HTMLElement {
 
         // Replace sections
         this.getSectionsToRender().forEach((section) => {
-          document.getElementById(section.id).innerHTML = htmlContent.getElementById(section.id).innerHTML || ""
+          document.getElementById(section.id).innerHTML = htmlContent.getElementById(section.id) ? htmlContent.getElementById(section.id).innerHTML : ""
         });
 
         document.querySelector("#product-grid li:first-of-type").scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
@@ -208,8 +231,6 @@ class collectionFilters extends HTMLElement {
           const newContent = htmlContent.getElementById(content.id).innerHTML;
           content.innerHTML = newContent;
         });
-
-      
         this.disableLoading();
       })
       .catch(() => {
@@ -224,8 +245,7 @@ class collectionFilters extends HTMLElement {
     return [
       { id: 'product-grid' },
       { id: 'active-filters' },
-      { id: 'apply-product-count' },
-      { id: 'mobile-product-count' },
+      // { id: 'apply-product-count' },
       // { id: 'collection-filters__clear' },
       { id: 'load-more-wrapper' }
     ]

@@ -20,8 +20,6 @@
 <div class="collection-filters__button hide-desktop">
   <button class="collection-filters__open js-open-filters h3">
     <span>Filter {% render 'icon', icon: 'filter' %}</span>
-
-    <span id="mobile-product-count" class="filter-count" style="display: none;">{{ collection.products_count }}</span>
   </button>
 </div>
 
@@ -296,9 +294,9 @@
               </div>
             </div>
           </div>
-          <div class="collection-filters__controls hide-desktop">
-            <button class="button button--green button--apply js-close-filters">
-              <span id="apply-product-count">See Results ({{ collection.products_count }})</span>
+          <div class="collection-filters__controls">
+            <button class="button button--green button--apply js-apply-filters">
+              <span id="apply-product-count">Apply</span>
             </button>
           </div>
         </div>

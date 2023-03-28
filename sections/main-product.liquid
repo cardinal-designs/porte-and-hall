@@ -11,6 +11,7 @@
   endfor
 
   assign oos_products = grouped_collection.products | where: 'available', false
+  assign oos_products = ""
 
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
   assign collection_title = grouped_collection.title | downcase
