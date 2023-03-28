@@ -21,7 +21,7 @@
         {% render 'lazy-image', image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile' %}
         {% render 'lazy-image', image: section.settings.mobile_image, fade: true, fill: true, classes: 'hide-desktop' %}
       {% elsif section.settings.image != blank %}
-        
+        {% render 'lazy-image', image: section.settings.image, fade: true, fill: true %}
       {% endif %}
     {% endif %}
 
