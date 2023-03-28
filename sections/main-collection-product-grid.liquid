@@ -45,6 +45,13 @@
     {% endcomment %}
 
     {% render 'collection-filters' %}
+    <script>
+      function clearAll(e) {
+        e.preventDefault();
+        console.log("clear all")
+        document.querySelector('collection-filters').clearAllFilters()
+      }
+    </script>
 
     <div id="ProductGridContainer">
       {% if collection.products.size == 0 %}
@@ -54,10 +61,11 @@
             <h2 class="title title--primary">
               {{ 'sections.collection_template.empty' | t -}}
               <br>
+              
               {{
-                'sections.collection_template.use_fewer_filters_html'
-                | t: link: collection.url, class: 'underlined-link link'
+                'sections.collection_template.use_fewer_filters_html' | t
               }}
+              <button onclick="clearAll(event)" class="h2 collection-filter-clear-all">clear all</button>.
             </h2>
           </div>
         </div>
