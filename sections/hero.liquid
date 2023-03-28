@@ -12,7 +12,7 @@
     {% if section.settings.video != blank %}
       {% if section.settings.mobile_video != blank %}
         {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "hide-mobile" }}
-        {{ section.settings.mobile_video | video_tag: autoplay: true, loop: true, muted: true, alt: section.settings.video.preview_image.alt, controls: false, class: "hide-desktop" }}
+        {{ section.settings.mobile_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "hide-desktop" }}
       {% else %}
         {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
       {% endif %}
