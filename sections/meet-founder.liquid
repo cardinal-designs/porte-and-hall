@@ -26,7 +26,7 @@
 
       {% if section.settings.image != blank %}
         <div class="meet-founder__image-wrapper">
-          {{ section.settings.image | image_url: width: 1000 | image_tag: class: "lazyload" }}
+          {{ section.settings.image | image_url: width: 1000 | image_tag }}
         </div>
       {% endif %}
     </div>
