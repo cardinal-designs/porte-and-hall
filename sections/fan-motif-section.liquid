@@ -46,7 +46,7 @@
 
       {% if section.settings.image and section.settings.alignment != 'center' %}
         <div class="fan-motif__image-wrapper">
-          {{ section.settings.image | image_url: width: 800 | image_tag }}
+          {{ section.settings.image | image_url: width: 800 | image_tag: class: "lazyload" }}
         </div>
       {% endif %}
     </div>
