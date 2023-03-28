@@ -79,15 +79,6 @@
     "da10a9d1-b562-4add-8fa2-54431f6fa235": {
       "type": "image-links",
       "blocks": {
-        "08b5bc26-e2e6-4d42-a104-492b1a89dd94": {
-          "type": "block",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/Outdoor-Mat-Outsider-Teak-Frame-Blue-Insert-Doormat.jpg",
-            "text": "The Outsider in Teak \/ Blue",
-            "link_text": "Shop All Outdoor Mats",
-            "link": "\/collections\/shop-all?filter.v.m.filters.use=Outdoor"
-          }
-        },
         "868e623f-12f7-4895-9dda-b6e5ce7484f1": {
           "type": "block",
           "settings": {
@@ -96,11 +87,20 @@
             "link_text": "Shop All Indoor Mats",
             "link": "\/collections\/shop-all?filter.v.m.filters.use=Indoor"
           }
+        },
+        "08b5bc26-e2e6-4d42-a104-492b1a89dd94": {
+          "type": "block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Outdoor-Mat-Outsider-Teak-Frame-Blue-Insert-Doormat.jpg",
+            "text": "The Outsider in Teak \/ Blue",
+            "link_text": "Shop All Outdoor Mats",
+            "link": "\/collections\/shop-all?filter.v.m.filters.use=Outdoor"
+          }
         }
       },
       "block_order": [
-        "08b5bc26-e2e6-4d42-a104-492b1a89dd94",
-        "868e623f-12f7-4895-9dda-b6e5ce7484f1"
+        "868e623f-12f7-4895-9dda-b6e5ce7484f1",
+        "08b5bc26-e2e6-4d42-a104-492b1a89dd94"
       ],
       "settings": {
         "heading": "We’ve got all of your hard-working spaces covered, both indoor and outdoor."
