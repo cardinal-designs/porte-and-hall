@@ -62,9 +62,3 @@
     font-size: 28px;
   }
 }
-
-@media only screen and (max-width: 400px) {
-  .image-slideshow__text {
-    justify-content: flex-start;
-  }
-}
