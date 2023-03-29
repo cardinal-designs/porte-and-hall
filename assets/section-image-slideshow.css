@@ -42,5 +42,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-
+  .image-slideshow__text {
+    gap: 15px;
+  }
 }
