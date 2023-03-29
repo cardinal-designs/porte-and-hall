@@ -1,0 +1,94 @@
+{{ 'section-image-slideshow.css' | asset_url | stylesheet_tag }}
+
+<div class="image-slideshow{% if section.settings.page_width %} add-margin{% endif %}">
+  {% if section.settings.page_width %}
+    <div class="page-width">
+  {% endif %}
+    <div class="image-slideshow__slider swiper">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="image-slideshow__slide swiper-slide">
+            {% render 'lazy-image', image: block.settings.image, fade: true %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="image-slideshow__pagination swiper-pagination"></div>
+      <div class="image-slideshow__text">
+        <h2 class="image-slideshow__title h1">{{ section.settings.title | newline_to_br }}</h2>
+        <a href="{{ section.settings.button_link }}" class="button">{{ section.settings.button_label }}</a>
+      </div>
+    </div>
+  {% if section.settings.page_width %}
+    </div>
+  {% endif %}
+</div>
+
+{% javascript %}
+  const imageSlider = new Swiper('.image-slideshow__slider', {
+    slidesPerView: 1,
+    loop: true,
+    spaceBetween: 0,
+    speed: 500,
+    autoplay: {
+      delay: 3000,
+    },
+    pagination: {
+      el: '.image-slideshow__pagination',
+      clickable: true
+    }
+  });
+{% endjavascript %} 
+
+{% schema %}
+  {
+    "name": "Image Slideshow",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "page_width",
+        "label": "Add Page Width"
+      },
+      {
+        "type": "header",
+        "content": "Button"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button Label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button Link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image Slideshow"
+      }
+    ]
+  }
+{% endschema %}
