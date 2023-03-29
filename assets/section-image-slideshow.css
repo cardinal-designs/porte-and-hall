@@ -46,8 +46,12 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .image-slideshow.add-margin {
+    margin-bottom: 0;
+  }
+  
   .image-slideshow .page-width {
-    padding: 0 20px;
+    padding: 0;
   }
   
   .image-slideshow__text {
