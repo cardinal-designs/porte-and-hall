@@ -25,7 +25,6 @@
       </h2>
       {% for block in other_sizes %}
         <div class="shop-other-sizes__item">
-          {{ block.products[1].title }}
           {% render 'grouped-product-card',
             product_card_product: block.products[0],
             collection: block,
