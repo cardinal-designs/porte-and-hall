@@ -178,7 +178,7 @@
 .collection-filters__slideout-content {
   height: 100%;
   overflow: auto;
-  position: relative;
+  /* position: relative; */
 }
 
 @media screen and (min-width: 769px) {
@@ -515,6 +515,7 @@
   background: var(--gold-secondary--dark);
   font-size: 14px;
   line-height: 120%;
+  width: 100%;
 }
 
 /* Right / Sorting */
