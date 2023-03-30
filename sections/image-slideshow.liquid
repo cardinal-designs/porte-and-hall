@@ -44,7 +44,10 @@
     autoplay: {
       delay: 3000,
     },
-    pagination: '.image-slideshow__pagination',
+    pagination: {
+      el: '.image-slideshow__pagination',
+      clickable: true
+    },
     navigation: {
       nextEl: '.image-slideshow__media-button.swiper-button-next',
       prevEl: '.image-slideshow__media-button.swiper-button-prev',
