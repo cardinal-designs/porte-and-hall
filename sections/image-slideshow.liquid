@@ -1,4 +1,7 @@
 {{ 'section-image-slideshow.css' | asset_url | stylesheet_tag }}
+{% for block in section.blocks %}
+  {{ forloop.index }}
+  {% endfor %}
 
 <div class="image-slideshow{% if section.settings.page_width %} add-margin{% endif %}">
   {% if section.settings.page_width %}
@@ -22,7 +25,10 @@
         {% endfor %}
       </div>
       <div class="image-slideshow__pagination swiper-pagination"></div>
-      
+      <div class="image-slideshow__text">
+        <h2 class="image-slideshow__title h1">{{ section.settings.title | newline_to_br }}</h2>
+        <a href="{{ section.settings.button_link }}" class="button">{{ section.settings.button_label }}</a>
+      </div>
     </div>
   {% if section.settings.page_width %}
     </div>
