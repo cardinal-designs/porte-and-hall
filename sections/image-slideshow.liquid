@@ -7,9 +7,18 @@
     <div class="image-slideshow__slider swiper">
       <div class="swiper-wrapper">
         {% for block in section.blocks %}
-          <div class="image-slideshow__slide swiper-slide">
-            {% render 'lazy-image', image: block.settings.image, fade: true %}
-          </div>
+          {% if block.settings.image_mobile != blank %}
+            <div class="image-slideshow__slide swiper-slide hide-desktop">
+              {% render 'lazy-image', image: block.settings.image_mobile, fade: true %}
+            </div>
+            <div class="image-slideshow__slide swiper-slide hide-mobile">
+              {% render 'lazy-image', image: block.settings.image, fade: true %}
+            </div>
+          {% else %}
+            <div class="image-slideshow__slide swiper-slide">
+              {% render 'lazy-image', image: block.settings.image, fade: true %}
+            </div>
+          {% endif %}
         {% endfor %}
       </div>
       <div class="image-slideshow__pagination swiper-pagination"></div>
