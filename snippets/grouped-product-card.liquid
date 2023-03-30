@@ -90,7 +90,7 @@
     <a href="{{ product_card_product.url }}">
       <h3 class="product-card__title blue">
         {{ title | default: collection.title | replace: ' | ', '<br>' }}
-        <span class="body">{{ product_card_product.options_by_name['color'].values[0]  | capitalize }}</span>
+        <span class="body">{{ product_card_product.options_by_name['color'].values[1]  | capitalize }}</span>
         {% comment %} {%- if collection.metafields.custom.dimensions != blank -%}
           <span class="body">({{ collection.metafields.custom.dimensions }})</span>
         {%- endif -%} {% endcomment %}
