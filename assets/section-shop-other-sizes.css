@@ -8,7 +8,7 @@
   grid-template-columns: repeat(3, minmax(auto, 1fr));
   column-gap: 27px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding: 15px 0;
 }
 .shop-other-sizes__item {
