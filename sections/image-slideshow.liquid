@@ -1,7 +1,4 @@
 {{ 'section-image-slideshow.css' | asset_url | stylesheet_tag }}
-{% for block in section.blocks %}
-  {{ forloop.index }}
-  {% endfor %}
 
 <div class="image-slideshow{% if section.settings.page_width %} add-margin{% endif %}">
   {% if section.settings.page_width %}
