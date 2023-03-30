@@ -22,6 +22,9 @@
         {% endfor %}
       </div>
       <div class="image-slideshow__pagination swiper-pagination"></div>
+      <div class="image-slideshow__media-button swiper-button-prev"></div>
+      <div class="image-slideshow__media-button swiper-button-next"></div>
+      
       <div class="image-slideshow__text">
         <h2 class="image-slideshow__title h1">{{ section.settings.title | newline_to_br }}</h2>
         <a href="{{ section.settings.button_link }}" class="button">{{ section.settings.button_label }}</a>
@@ -44,6 +47,10 @@
     pagination: {
       el: '.image-slideshow__pagination',
       clickable: true
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
     }
   });
 {% endjavascript %} 
