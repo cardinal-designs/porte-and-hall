@@ -13,7 +13,7 @@ class collectionFilters extends HTMLElement {
 
     this.openFilterButtons = document.querySelectorAll('.js-open-filters');
     this.closeFilterButtons = document.querySelectorAll('.js-close-filters');
-    this.applyFilters = document.querySelector('.js-apply-filters');
+    // this.applyFilters = document.querySelector('.js-apply-filters');
     this.clearFilterButtons = document.querySelectorAll('.js-clear-all-filters')
 
     this.setListeners();
@@ -67,25 +67,25 @@ class collectionFilters extends HTMLElement {
     // Open
     this.openFilterButtons.forEach(filter => {
       filter.addEventListener('click', event => {
-        this.open();
+        this.open(event);
       });
     });
 
     // Close
     this.closeFilterButtons.forEach(filter => {
       filter.addEventListener('click', event => {
-        this.close();
+        this.close(event);
       });
     });
 
-    this.applyFilters.addEventListener("click", function(e){
-      e.preventDefault();
-      this.reloadSections();
-      this.close();
-    }.bind(this))
+    // this.applyFilters.addEventListener("click", function(e){
+    //   e.preventDefault();
+    //   this.reloadSections();
+    //   this.close();
+    // }.bind(this))
   }
 
-  open() {
+  open(event) {
     event.preventDefault();
     const overlay = this.getOverlayElement();
 
@@ -133,12 +133,14 @@ class collectionFilters extends HTMLElement {
         item.removeAttribute('checked');
         item.checked = false
       });
+      target.checked = true;
+      target.removeAttribute('checked');
     } else {
       target.closest(".collection-filters__dropdown-container").querySelector('.collection-filters__filter-button[remove-filter]').removeAttribute('checked');
       target.closest(".collection-filters__dropdown-container").querySelector('.collection-filters__filter-button[remove-filter]').checked = false
 
     }
-      // this.reloadSections();
+      this.reloadSections();
   
   }
 
@@ -198,11 +200,21 @@ class collectionFilters extends HTMLElement {
 
     let formData = new FormData(this.form);
 
+    console.log("before", ...formData)
+
+    let emptyValues = []
+
     for (let pair of formData.entries()) {
       if(pair[1] == "" || pair[1] == " "){
-        formData.delete(pair[0])
+        emptyValues.push(pair[0])
       }
     }
+
+    emptyValues.forEach(val => {
+      formData.delete(val)
+    })
+
+    console.log("after", ...formData)
 
     const searchParams = new URLSearchParams(formData).toString();
     url = location.pathname + '?' + searchParams;
