@@ -84,7 +84,7 @@
         &copy; {{ 'now' | date: '%Y' }}
         {{ shop.name | link_to: routes.root_url }}
         {% if section.settings.policies != blank %}
-          |
+          <span>&nbsp;|&nbsp;</span>
           {% for link in section.settings.policies.links %}
             {% unless forloop.first %}
               <span>&nbsp;|&nbsp;</span>
