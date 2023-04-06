@@ -68,63 +68,6 @@
         {% if section.settings.newsletter_text != blank %}
           <p class="footer__text">{{ section.settings.newsletter_text | escape }}</p>
         {% endif %}
-
-        {% comment %}
-        {% form 'customer', id: 'ContactFooter', class: 'footer__newsletter-form newsletter-form' %}
-          <input type="hidden" name="contact[tags]" value="newsletter">
-          <div class="newsletter-form__field-wrapper">
-            <div class="field">
-              <label class="field__label hidden visually-hidden" for="NewsletterForm--{{ section.id }}">
-                {{ 'newsletter.label' | t }}
-              </label>
-              <input
-                id="NewsletterForm--{{ section.id }}"
-                type="email"
-                name="contact[email]"
-                class="field__input"
-                value="{{ form.email }}"
-                aria-required="true"
-                autocorrect="off"
-                autocapitalize="off"
-                autocomplete="email"
-                {% if form.errors %}
-                  autofocus
-                  aria-invalid="true"
-                  aria-describedby="ContactFooter-error"
-                {% elsif form.posted_successfully? %}
-                  aria-describedby="ContactFooter-success"
-                {% endif %}
-                placeholder="{{ 'newsletter.label' | t }}"
-                required
-              >
-              <button type="submit" class="footer__newsletter-button" name="commit" aria-label="Submit">
-                {{ 'newsletter.button_label' | t }}
-                {% render 'icon', icon: 'caret' %}
-              </button>
-            </div>
-            {% if form.errors %}
-              {% comment %}
-              <p class="newsletter-form__message form__message" id="ContactFooter-error">
-                {% render 'icon', icon: 'error' -%}
-                {{- form.errors.translated_fields.email | capitalize }}
-                {{ form.errors.messages.email }}
-              </p>
-              {% endcomment %}
-            {% endif %}
-          </div>
-          {% if form.posted_successfully? %}
-            <p
-              class="newsletter-form__message newsletter-form__message--success form__message"
-              id="ContactFooter-success"
-              tabindex="-1"
-              autofocus
-            >
-              {% render 'icon', icon: 'success' -%}
-              {{- 'newsletter.success' | t }}
-            </p>
-          {% endif %}
-        {% endform %}
-        {% endcomment %}
         
         <div class="klaviyo-form-SZV96h"></div>
       </div>
@@ -144,7 +87,7 @@
           |
           {% for link in section.settings.policies.links %}
             {% unless forloop.first %}
-              <span class="{% if forloop.last%}hide-mobile{% endif %}">|</span>
+              <span>|</span>
             {% endunless %}
             <a
               href="{{ link.url }}"
