@@ -87,7 +87,7 @@
           |
           {% for link in section.settings.policies.links %}
             {% unless forloop.first %}
-              <span>|</span>
+              <span>&nbsp;|&nbsp;</span>
             {% endunless %}
             <a
               href="{{ link.url }}"
