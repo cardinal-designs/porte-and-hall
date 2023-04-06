@@ -190,7 +190,7 @@
                                   for="Filter-{{ filter.label | escape }}-all"
                                   class="collection-filters__filter-label h3{% if value.count == 0 and value.active == false %} collection-filters__filter-button--disabled{% endif %}"
                                 >
-                                  Shop All {{ filter.label }}
+                                  Shop All {{ filter.label }}{% if filter.label == "Collection" %}s{% endif %}
                                 </label>
                               </div>
                           {% else %}
