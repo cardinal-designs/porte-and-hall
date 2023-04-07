@@ -149,10 +149,6 @@
           </div>
         {% endfor %}
 
-        {% if product.metafields.custom.restock_date != blank %}
-          <p class="product__restock-note body">{{ product.metafields.custom.restock_date }}</p>
-        {% endif %}
-
         <div class="product__swatches">
           {{ color_swatch_list }}
         </div>
@@ -385,6 +381,10 @@
       <div class="product__oos-notify-wrapper">
         <p class="body"><button data-modal-trigger="notify-me" >Notify me</button> when out of stock styles are back in stock</p>
       </div>
+      {% endif %}
+
+      {% if product.metafields.custom.restock_date != blank %}
+        <p class="product__restock-note body">{{ product.metafields.custom.restock_date }}</p>
       {% endif %}
 
       <div class="product__tabs-wrapper">
