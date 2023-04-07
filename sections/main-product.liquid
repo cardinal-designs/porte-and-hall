@@ -149,6 +149,10 @@
           </div>
         {% endfor %}
 
+        {% if product.metafields.custom.restock_date != blank %}
+          <p class="product__restock-note">{{ product.metafields.custom.restock_date }}</p>
+        {% endif %}
+
         <div class="product__swatches">
           {{ color_swatch_list }}
         </div>
