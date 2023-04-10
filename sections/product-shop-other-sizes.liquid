@@ -10,6 +10,9 @@
 
 {% assign product_type = grouped_collection.title | remove: 'The ' | split: ' | ' %}
 {% assign default_heading = 'Shop other <br>' | append: product_type[0] | append: ' sizes' %}
+{% assign active_style = product.selected_or_first_available_variant.title %}
+{% assign product_size = product.options_by_name['size'].values[0] %}
+{% assign active_style = active_style | remove: product_size | remove: " / " %}
 
 {% if grouped_collection.metafields.custom.other_sizes != blank %}
   {% assign other_sizes = grouped_collection.metafields.custom.other_sizes.value %}
@@ -25,8 +28,15 @@
       </h2>
       {% for block in other_sizes %}
         <div class="shop-other-sizes__item">
+          {% assign match_current_style = block.products[0] %}
+          {% for product in block.products %}
+            {% if product.title contains active_style %}
+              {% assign match_current_style = product %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
           {% render 'grouped-product-card',
-            product_card_product: block.products[0],
+            product_card_product: match_current_style,
             collection: block,
             title: block.title,
             button_text: 'Shop Now',

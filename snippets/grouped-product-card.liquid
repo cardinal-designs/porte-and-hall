@@ -11,7 +11,7 @@
           assign option_index = 'option' | append: forloop.index
           for value in option.values
             assign matched_variant = product.variants | where: 'title', value
-
+            
             if product == product_card_product
               assign active_swatch = product
               if matched_variant != blank
