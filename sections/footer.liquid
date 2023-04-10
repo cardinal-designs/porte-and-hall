@@ -75,7 +75,7 @@
 
       <div class="footer__block hide-desktop">
         {% render 'social' %}
-        <a href="{{ section.settings.student_discount }}" class="footer__menu-link">{{ section.settings.student_discount }}</a>
+        <a href="{{ section.settings.student_discount_link }}" class="footer__menu-link">{{ section.settings.student_discount }}</a>
       </div>
     </div>
   </div>
@@ -170,6 +170,16 @@
       "type": "link_list",
       "id": "policies",
       "label": "Footer policies"
+    },
+    {
+      "type": "url",
+      "id": "student_discount_link",
+      "label": "Student Discount Link"
+    },
+    {
+      "type": "text",
+      "id": "student_discount",
+      "label": "Student Discount Link Label"
     }
   ]
 }
