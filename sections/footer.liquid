@@ -57,16 +57,18 @@
 
         <div class="footer__block hide-mobile">
           {% render 'social' %}
-          {% if section.settings.student_discount_link != blank %}
-            <li>
-              <a href="{{ section.settings.student_discount_link }}" class="footer__menu-link">{{ section.settings.student_discount }}</a>
-            </li>
-          {% endif %}
-          {% if section.settings.exclusive_beans_link != blank %}
-            <li>
-              <a href="{{ section.settings.exclusive_beans_link }}" class="footer__menu-link">{{ section.settings.exclusive_beans }}</a>
-            </li>
-          {% endif %}
+          <ul class="footer__menu list-unstyled">
+            {% if section.settings.student_discount_link != blank %}
+              <li>
+                <a href="{{ section.settings.student_discount_link }}" class="footer__menu-link">{{ section.settings.student_discount }}</a>
+              </li>
+            {% endif %}
+            {% if section.settings.exclusive_beans_link != blank %}
+              <li>
+                <a href="{{ section.settings.exclusive_beans_link }}" class="footer__menu-link">{{ section.settings.exclusive_beans }}</a>
+              </li>
+            {% endif %}
+          </ul>
         </div>
       </div>
 
@@ -84,16 +86,18 @@
 
       <div class="footer__block hide-desktop">
         {% render 'social' %}
-        {% if section.settings.student_discount_link != blank %}
-          <li>
-            <a href="{{ section.settings.student_discount_link }}" class="footer__menu-link">{{ section.settings.student_discount }}</a>
-          </li>
-        {% endif %}
-        {% if section.settings.exclusive_beans_link != blank %}
-          <li>
-            <a href="{{ section.settings.exclusive_beans_link }}" class="footer__menu-link">{{ section.settings.exclusive_beans }}</a>
-          </li>
-        {% endif %}
+        <ul class="footer__menu list-unstyled">
+          {% if section.settings.student_discount_link != blank %}
+            <li>
+              <a href="{{ section.settings.student_discount_link }}" class="footer__menu-link">{{ section.settings.student_discount }}</a>
+            </li>
+          {% endif %}
+          {% if section.settings.exclusive_beans_link != blank %}
+            <li>
+              <a href="{{ section.settings.exclusive_beans_link }}" class="footer__menu-link">{{ section.settings.exclusive_beans }}</a>
+            </li>
+          {% endif %}
+        </ul>
       </div>
     </div>
   </div>
