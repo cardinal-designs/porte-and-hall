@@ -85,10 +85,14 @@
       <div class="footer__block hide-desktop">
         {% render 'social' %}
         {% if section.settings.student_discount_link != blank %}
-          <a href="{{ section.settings.student_discount_link }}" class="footer__menu-link">{{ section.settings.student_discount }}</a>
+          <li>
+            <a href="{{ section.settings.student_discount_link }}" class="footer__menu-link">{{ section.settings.student_discount }}</a>
+          </li>
         {% endif %}
         {% if section.settings.exclusive_beans_link != blank %}
-          <a href="{{ section.settings.exclusive_beans_link }}" class="footer__menu-link">{{ section.settings.exclusive_beans }}</a>
+          <li>
+            <a href="{{ section.settings.exclusive_beans_link }}" class="footer__menu-link">{{ section.settings.exclusive_beans }}</a>
+          </li>
         {% endif %}
       </div>
     </div>
