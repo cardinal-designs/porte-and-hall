@@ -16,7 +16,6 @@
 
 {% if grouped_collection.metafields.custom.other_sizes != blank %}
   {% assign other_sizes = grouped_collection.metafields.custom.other_sizes.value %}
-  <p class="hide-desktop hide-mobile">{{ other_sizes }}</p>
   <div class="page-width">
     <div class="divider">
       {%- render 'divider' %}
