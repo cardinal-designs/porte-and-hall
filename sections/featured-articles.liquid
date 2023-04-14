@@ -13,10 +13,11 @@
 
   <div class="featured-articles__article-cards no-scrollbar">
     {%- if section.settings.show_recent_articles -%}
-      {% assign blog = section.settings.blog | sort:'published_at' %}
+      {% assign blog = section.settings.blog %}
       {%- for article in blog.articles limit: 3 -%}
         {% render 'article-card', article: article %}
       {%- endfor -%}
+
     {%- else -%}
       
       {%- for block in section.blocks -%}
