@@ -17,7 +17,6 @@
         {{ article.title | json }}
       {%- endfor -%}
       {%- for article in blog.articles limit: 3 -%}
-
         {% render 'article-card', article: article %}
       {%- endfor -%}
     {%- else -%}
