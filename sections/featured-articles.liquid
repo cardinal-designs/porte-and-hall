@@ -12,9 +12,20 @@
   </div>
 
   <div class="featured-articles__article-cards no-scrollbar">
-    {% for block in section.blocks %}
-      {% render 'article-card', article: block.settings.article %}
-    {% endfor %}
+    {%- if section.settings.show_recent_articles -%}
+      {% assign blog = section.settings.blog %}
+       {% assign recent_articles = blog.articles | sort:'published_at' | reverse %}
+      {%- for article in recent_articles limit: 3 -%}
+        {% render 'article-card', article: article %}
+      {%- endfor -%}
+
+    {%- else -%}
+      
+      {%- for block in section.blocks -%}
+        {% render 'article-card', article: block.settings.article %}
+      {%- endfor -%}
+      
+    {%- endif -%}
   </div>
 </div>
 
@@ -41,6 +52,16 @@
       "type": "color",
       "id": "background",
       "label": "Color"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select Blog"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_recent_articles",
+      "label": "Show Most Recent Articles"
     }
   ],
   "max_blocks": 3,
