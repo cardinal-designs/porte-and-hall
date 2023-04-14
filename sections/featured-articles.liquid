@@ -12,9 +12,15 @@
   </div>
 
   <div class="featured-articles__article-cards no-scrollbar">
-    {% for block in section.blocks %}
-      {% render 'article-card', article: block.settings.article %}
-    {% endfor %}
+    {%- if section.settings.show_recent_articles -%}
+      {% for article in blog.articles %}
+        {% render 'article-card', article: block.settings.article %}
+      {% endfor %}
+    {%- else -%}
+      {% for block in section.blocks %}
+        {% render 'article-card', article: block.settings.article %}
+      {% endfor %}
+    {%- endif -%}
   </div>
 </div>
 
