@@ -37,6 +37,10 @@
   font-family: brandon;
 }
 
+.stamped-form-label {
+  font-family: brandon !important;
+}
+
 .rave-reviews-main .stamped-summary-actions-newreview {
   background: var(--gold);
   color: #fff;
