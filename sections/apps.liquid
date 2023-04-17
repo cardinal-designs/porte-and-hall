@@ -1,4 +1,7 @@
 {{ 'section-reviews.css' | asset_url | stylesheet_tag }}
+{%- if section.settings.heading != blank -%}
+  <h2>{{ section.settings.heading | default: 'Rave Reviews' }}</h2>
+{%- endif -%}
 <div class="{% if section.settings.include_margins %}page-width{% endif %}">
   {% for block in section.blocks %}
     {% render block %}
