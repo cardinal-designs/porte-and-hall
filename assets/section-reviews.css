@@ -206,8 +206,9 @@
 }
 
 .summary-overview {
-  width: 100% !important;
-  float: none !important;
+  width: 100%!important;
+  float: none!important;
+  text-align: center;
 }
 
 div[data-widget-style*=standard] .stamped-summary-actions {
