@@ -6,7 +6,7 @@
   margin-right: auto;
 }
 
-.rave-reviews-main .rave-reviews{
+.rave-reviews-main .rave-reviews {
   max-width: 400px;
   margin: 0 auto;
   display: flex;
@@ -14,13 +14,14 @@
   justify-content: center;
   align-content: center;
 }
-.rave-reviews-main .rating-reviews{
+
+.rave-reviews-main .rating-reviews {
   width:100%;
   text-align:center;
   margin-bottom:30px;
 }
 
-.rave-reviews-main h2{
+.rave-reviews-main h2 {
   width: 100%;
   font-size: 46px;
   line-height: 110%;
@@ -31,6 +32,11 @@
   display:block;
   margin-bottom: 25px;
 }
+
+.stamped-questions-filter-label, .stamped-reviews-filter-label {
+  font-family: brandon;
+}
+
 .rave-reviews-main .stamped-summary-actions-newreview {
   background: var(--gold);
   color: #fff;
@@ -46,16 +52,17 @@
   float: none;
   display: inline-block;
 }
+
 .rave-reviews-main .stamped-summary-actions-newreview::before,
 .stamped-summary-actions-newreview::before {
   content:"";
 }
 
-#stamped-main-widget .stamped-tab-container{
+#stamped-main-widget .stamped-tab-container {
   display:none !important;
 }
 
-#stamped-main-widget #stamped-reviews-filter{
+#stamped-main-widget #stamped-reviews-filter {
   display:none;
 }
 
@@ -78,7 +85,6 @@
 .rave-reviews .stamped-badge .stamped-fa-star-half-o {
   color: var(--gold-secondary--dark) !important;
 }
-
 
 .rave-reviews-main .stamped-review-avatar,
 .stamped-review-avatar {
