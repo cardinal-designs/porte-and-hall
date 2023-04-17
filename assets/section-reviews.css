@@ -122,11 +122,12 @@
   order: 0;
 }
 
-.stamped-review-header .created, .stamped-review-header  .stamped-review-header-byline .created {
+.stamped-review-header .created,
+.stamped-review-header .stamped-review-header-byline .created {
   font-family: brandon;
   color: var(--blue) !important;
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 11px !important
   line-height: 120%;
   font-weight: 600 !important;
 }
