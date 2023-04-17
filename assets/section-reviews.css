@@ -242,7 +242,7 @@ div[data-widget-style*=standard] .stamped-summary-ratings {
 span.stamped-summary-text {
   color: var(--gold-secondary--dark);
   font-family: brandon;
-  font-size: 14px;
+  font-size: 14px !important;
   font-weight: 600;
   position: relative;
   padding: 0 6px;
@@ -251,7 +251,7 @@ span.stamped-summary-text {
 }
 
 #rave-reviews-main [data-widget-type=minimal] .stamped-summary-starrating i:before, div[data-widget-style*=standard] .stamped-summary-starrating i:before {
-  font-size: 18px!important;
+  font-size: 18px !important;
 }
 
 div.stamped-container[data-widget-style] {
