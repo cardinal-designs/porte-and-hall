@@ -1,8 +1,26 @@
-<div class="{% if section.settings.include_margins %}page-width{% endif %}">
-  {% for block in section.blocks %}
-    {% render block %}
-  {% endfor %}
-</div>
+{%- if section.settings.section_reviews -%}
+{{ 'section-reviews.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+{%- if section.settings.section_reviews -%}
+  <div class="rave-reviews">
+  <div class="rave-reviews-main" id="rave-reviews-main">
+{%- endif -%}
+
+  {%- if section.settings.heading != blank -%}
+    <h2>{{ section.settings.heading | default: 'Rave Reviews' }}</h2>
+  {%- endif -%}
+  
+  <div class="{% if section.settings.include_margins %}page-width{% endif %}">
+    {% for block in section.blocks %}
+      {% render block %}
+    {% endfor %}
+  </div>
+    
+{%- if section.settings.section_reviews -%}
+  </div>
+  </div>
+{%- endif -%}
 
 {% schema %}
 {
@@ -15,6 +33,17 @@
       "id": "include_margins",
       "default": true,
       "label": "t:sections.apps.settings.include_margins.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "section_reviews",
+      "default": true,
+      "label": "Check this if the section is reviews section"
     }
   ],
   "blocks": [

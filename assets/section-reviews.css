@@ -1,10 +1,11 @@
-.rave-reviews-main{
-  max-width: 1200px;
-  padding-bottom: 80px;
+.rave-reviews-main {
+  max-width: 1270px;
+  padding: 0 35px;
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
 }
+
 .rave-reviews-main .rave-reviews{
   max-width: 400px;
   margin: 0 auto;
@@ -30,8 +31,7 @@
   display:block;
   margin-bottom: 25px;
 }
-.rave-reviews-main .stamped-summary-actions-newreview,
-.stamped-summary-actions-newreview {
+.rave-reviews-main .stamped-summary-actions-newreview {
   background: var(--gold);
   color: #fff;
   letter-spacing: 0.2em;
@@ -43,18 +43,18 @@
   border: none;
   box-shadow: none !important;
   border-radius: 0;
+  float: none;
+  display: inline-block;
 }
 .rave-reviews-main .stamped-summary-actions-newreview::before,
 .stamped-summary-actions-newreview::before {
   content:"";
 }
 
-#stamped-main-widget .stamped-header{
-  display:none;
-}
 #stamped-main-widget .stamped-tab-container{
   display:none !important;
 }
+
 #stamped-main-widget #stamped-reviews-filter{
   display:none;
 }
@@ -123,11 +123,12 @@
   order: 0;
 }
 
-.stamped-review-header .created, .stamped-review-header  .stamped-review-header-byline .created {
+.stamped-review-header .created,
+.stamped-review-header .stamped-review-header-byline .created {
   font-family: brandon;
   color: var(--blue) !important;
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 12px !important;
   line-height: 120%;
   font-weight: 600 !important;
 }
@@ -162,7 +163,7 @@
   text-transform: uppercase;
   font-size: 18px !important;
   line-height: 120%;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 30px !important;
 }
 
@@ -191,8 +192,16 @@
   padding-bottom: 15px;
 }
 
-#stamped-main-widget .fa-star, #stamped-main-widget .fa-star-o, #stamped-main-widget .fa-star-half-o, #stamped-main-widget .stamped-fa-star, #stamped-main-widget .stamped-fa-star-o, #stamped-main-widget .stamped-fa-star-half-o {
+#stamped-main-widget .fa-star, #stamped-main-widget .fa-star-o, #stamped-main-widget .fa-star-half-o, #stamped-main-widget .stamped-fa-star-o, #stamped-main-widget .stamped-fa-star-half-o {
   color: var(--gold-secondary--dark) !important;
+}
+
+.stamped-summary-starrating .stamped-starratings.stamped-review-header-starratings {
+  color: var(--gold-secondary--dark) !important;  
+}
+
+.stamped-review-body .stamped-fa-star {
+  color: var(--gold-secondary--dark) !important;    
 }
 
 .stamped-pagination {
@@ -201,6 +210,26 @@
   font-size: 18px !important;
   line-height: 120%;
   font-weight: 400;
+}
+
+.summary-overview {
+  width: 100%!important;
+  float: none!important;
+  text-align: center;
+  margin: 0 0 30px;
+}
+
+div[data-widget-style*=standard] .stamped-summary-actions {
+  float: none !important;
+  text-align: center;
+}
+
+span.stamped-summary-caption.stamped-summary-caption-1 {
+  display: none !important;
+}
+
+.stamped-summary-photos.stamped-summary-photos-container {
+  display: none !important;
 }
 
 .stamped-pagination a {
@@ -213,6 +242,43 @@
 
 .stamped-pagination .next {
   margin-left: 0 !important;
+}
+
+div[data-widget-style*=standard] .stamped-summary-ratings {
+  display: none !important;
+}
+
+span.stamped-summary-text {
+  color: var(--gold-secondary--dark);
+  font-family: brandon;
+  font-size: 14px !important;
+  font-weight: 600;
+  position: relative;
+  padding: 0 6px;
+  text-transform: uppercase;
+  text-decoration: underline;
+  margin-bottom: 2px !important;
+}
+
+#rave-reviews-main [data-widget-type=minimal] .stamped-summary-starrating i:before, div[data-widget-style*=standard] .stamped-summary-starrating i:before {
+  font-size: 18px !important;
+}
+
+div.stamped-container[data-widget-style] {
+  margin-top: 0 !important;
+}
+
+#stamped-main-widget {
+  margin: 0 !important;
+}
+
+.stamped-review-header-starratings {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.rave-reviews-main .page-width {
+  padding: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -242,4 +308,13 @@
     content: ")" !important;
     margin-left: 2px;
   }
+
+  .stamped-review-header-starratings {
+    margin: 0 0 20px;
+  }
+
+  .stamped-review-header-title {
+    line-height: 24px;
+  }
+  
 }
