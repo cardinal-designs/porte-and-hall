@@ -3,14 +3,15 @@
 {%- endif -%}
 
 {%- if section.settings.section_reviews -%}
-  <div class="rave-reviews">
   <div class="rave-reviews-main" id="rave-reviews-main">
+    <div class="rave-reviews">
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading | default: 'Rave Reviews' }}</h2>
+      {%- endif -%}
+    </div>
+  </div>
 {%- endif -%}
 
-  {%- if section.settings.heading != blank -%}
-    <h2>{{ section.settings.heading | default: 'Rave Reviews' }}</h2>
-  {%- endif -%}
-  
   <div class="{% if section.settings.include_margins %}page-width{% endif %}">
     {% for block in section.blocks %}
       {% render block %}
@@ -18,8 +19,7 @@
   </div>
     
 {%- if section.settings.section_reviews -%}
-  </div>
-  </div>
+
 {%- endif -%}
 
 {% schema %}
