@@ -228,6 +228,10 @@ span.stamped-summary-text {
   text-decoration: underline;
 }
 
+#rave-reviews-main [data-widget-type=minimal] .stamped-summary-starrating i:before, div[data-widget-style*=standard] .stamped-summary-starrating i:before {
+  font-size: 18px!important;
+}
+
 @media screen and (max-width: 768px) {
 
   .rave-reviews-main {
