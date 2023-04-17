@@ -217,6 +217,17 @@ div[data-widget-style*=standard] .stamped-summary-ratings {
   display: none !important;
 }
 
+span.stamped-summary-text {
+  color: var(--gold-secondary--dark);
+  font-family: brandon;
+  font-size: 14px;
+  font-weight: 600;
+  position: relative;
+  padding: 0 6px;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 768px) {
 
   .rave-reviews-main {
