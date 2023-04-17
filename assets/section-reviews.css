@@ -267,6 +267,10 @@ div.stamped-container[data-widget-style] {
   margin-top: 0 !important;
 }
 
+.stamped-review-header-starratings {
+  display: block;
+}
+
 @media screen and (max-width: 768px) {
 
   .rave-reviews-main {
@@ -296,7 +300,6 @@ div.stamped-container[data-widget-style] {
   }
 
   .stamped-review-header-starratings {
-    display: block;
     margin: 0 0 20px;
   }
 
