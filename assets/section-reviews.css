@@ -248,6 +248,7 @@ span.stamped-summary-text {
   padding: 0 6px;
   text-transform: uppercase;
   text-decoration: underline;
+  margin-bottom: 2px !important;
 }
 
 #rave-reviews-main [data-widget-type=minimal] .stamped-summary-starrating i:before, div[data-widget-style*=standard] .stamped-summary-starrating i:before {
