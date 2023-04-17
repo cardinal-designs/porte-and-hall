@@ -254,6 +254,10 @@ span.stamped-summary-text {
   font-size: 18px!important;
 }
 
+div.stamped-container[data-widget-style] {
+  margin-top: 0 !important;
+}
+
 @media screen and (max-width: 768px) {
 
   .rave-reviews-main {
