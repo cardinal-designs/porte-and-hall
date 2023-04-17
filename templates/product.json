@@ -4,8 +4,8 @@
       "type": "main-product",
       "settings": {
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
-        "materials": "<p>{{ section.settings.collection.metafields.custom.materials | metafield_tag }}<\/p>",
-        "care": "<p>{{ section.settings.collection.metafields.custom.care | metafield_tag }}<\/p>"
+        "materials": "{{ section.settings.collection.metafields.custom.materials | metafield_tag }}",
+        "care": "{{ section.settings.collection.metafields.custom.care | metafield_tag }}"
       }
     },
     "other-sizes": {
@@ -192,6 +192,29 @@
         "blog": "news",
         "show_recent_articles": true
       }
+    },
+    "168172537899ce8b94": {
+      "type": "apps",
+      "blocks": {
+        "6592b9b9-85df-4f84-8df8-78524eaec36b": {
+          "type": "shopify:\/\/apps\/stamped-product-reviews-ugc\/blocks\/main-widget\/a103faaf-2125-4b0e-89fa-de5149736723",
+          "settings": {
+            "animation": true,
+            "tags_exclude": "",
+            "tags_include": "",
+            "search": "",
+            "linkify": true,
+            "use_metafields": false,
+            "sku_tagtype": "sku"
+          }
+        }
+      },
+      "block_order": [
+        "6592b9b9-85df-4f84-8df8-78524eaec36b"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
@@ -206,6 +229,7 @@
     "reviews",
     "you-may-like",
     "fan-motif",
-    "featured-articles"
+    "featured-articles",
+    "168172537899ce8b94"
   ]
 }
