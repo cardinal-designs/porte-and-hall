@@ -205,6 +205,11 @@
   font-weight: 400;
 }
 
+.summary-overview {
+  width: 100% !important;
+  float: none !important;
+}
+
 .stamped-pagination a {
   font-size: 18px !important;
 }
