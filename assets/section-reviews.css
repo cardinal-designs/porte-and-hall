@@ -213,6 +213,10 @@
   margin-left: 0 !important;
 }
 
+div[data-widget-style*=standard] .stamped-summary-ratings {
+  display: none !important;
+}
+
 @media screen and (max-width: 768px) {
 
   .rave-reviews-main {
