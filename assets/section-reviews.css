@@ -214,6 +214,10 @@ div[data-widget-style*=standard] .stamped-summary-actions {
   float: none !important;
 }
 
+span.stamped-summary-caption.stamped-summary-caption-1 {
+  display: none !important;
+}
+
 .stamped-pagination a {
   font-size: 18px !important;
 }
