@@ -210,6 +210,10 @@
   float: none !important;
 }
 
+div[data-widget-style*=standard] .stamped-summary-actions {
+  float: none !important;
+}
+
 .stamped-pagination a {
   font-size: 18px !important;
 }
