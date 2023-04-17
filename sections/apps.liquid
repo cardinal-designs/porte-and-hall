@@ -1,4 +1,6 @@
+{%- if section.settings.section_reviews -%}
 {{ 'section-reviews.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 
 {%- if section.settings.section_reviews -%}
   <div class="rave-reviews-main" id="rave-reviews-main">
