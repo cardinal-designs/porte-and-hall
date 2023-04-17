@@ -199,6 +199,10 @@
   color: var(--gold-secondary--dark) !important;  
 }
 
+.stamped-review-body .stamped-fa-star {
+  color: var(--gold-secondary--dark) !important;    
+}
+
 .stamped-pagination {
   font-family: brandon;
   color: var(--blue) !important;
