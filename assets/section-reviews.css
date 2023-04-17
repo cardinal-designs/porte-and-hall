@@ -193,6 +193,10 @@
   color: var(--gold-secondary--dark) !important;
 }
 
+.stamped-summary-starrating .stamped-starratings.stamped-review-header-starratings {
+  color: var(--gold-secondary--dark) !important;  
+}
+
 .stamped-pagination {
   font-family: brandon;
   color: var(--blue) !important;
