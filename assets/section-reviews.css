@@ -295,5 +295,9 @@ div.stamped-container[data-widget-style] {
     display: block;
     margin: 0 0 20px;
   }
+
+  .stamped-review-header-title {
+    line-height: 24px;
+  }
   
 }
