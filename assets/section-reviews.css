@@ -271,6 +271,10 @@ div.stamped-container[data-widget-style] {
   display: block;
 }
 
+.rave-reviews-main .page-width {
+  padding: 0;
+}
+
 @media screen and (max-width: 768px) {
 
   .rave-reviews-main {
