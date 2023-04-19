@@ -77,6 +77,12 @@ input#stamped-reviews-search-input {
   color: var(--blue);
 }
 
+input.stamped-form-input-email,
+input.stamped-form-input-text,
+textarea.stamped-form-input-textarea {
+  border: 1px solid var(--blue);
+}
+
 @media screen and (min-width: 769px) {
   .rave-reviews-main span.stamped-product-reviews-badge.stamped-main-badge {
     /* display: none !important; */
