@@ -290,6 +290,10 @@ div.stamped-container ul.stamped-tabs li {
   cursor: pointer;
 }
 
+.stamped-summary-text-1 {
+  font-family: brandon;  
+}
+
 @media screen and (max-width: 991px) {
   
   span.stamped-summary-actions {
