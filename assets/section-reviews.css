@@ -59,6 +59,11 @@ label.stamped-form-label {
   display: block;
 }
 
+.stamped-form-label+.stamped-form-input {
+  font-family: brandon !important;
+  font-size: 14px;
+}
+
 @media screen and (min-width: 769px) {
   .rave-reviews-main span.stamped-product-reviews-badge.stamped-main-badge {
     /* display: none !important; */
