@@ -356,4 +356,8 @@ div.stamped-container ul.stamped-tabs li {
     margin: 30px 0 0;
   }
   
+  select#stamped-sort-select {
+    border-top: 1px solid #eee!important;
+  }
+  
 }
