@@ -282,6 +282,10 @@ div.stamped-container ul.stamped-tabs li {
   color: var(--blue);  
 }
 
+.stamped-file-uploader label[for=stamped-file-uploader-input]>span {
+  font-family: brandon;
+}
+
 @media screen and (max-width: 991px) {
   
   span.stamped-summary-actions {
