@@ -367,6 +367,14 @@ div[data-widget-style*=standard] .stamped-summary {
     border-top: 1px solid #eee!important;
   }
 
+}
+
+@media screen and (max-width: 567px) {
+
+  .stamped-review-avatar {
+    display: none;
+  }
+
   .rave-reviews-main .stamped-review-header {
     display: flex!important;
     flex-direction: row;
@@ -377,12 +385,4 @@ div[data-widget-style*=standard] .stamped-summary {
     margin-bottom: 15px;
   }
   
-}
-
-@media screen and (max-width: 567px) {
-
-  .stamped-review-avatar {
-    display: none;
-  }
-
 }
