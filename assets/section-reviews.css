@@ -225,6 +225,13 @@ div.stamped-container[data-widget-style] {
   margin-top: 10px;
 }
 
+.stamped-review-footer {
+  font-size: 12px;
+  opacity: 1;
+  margin-top: 25px;
+  font-weight: 600;
+}
+
 @media screen and (max-width: 768px) {
 
   .rave-reviews-main {
