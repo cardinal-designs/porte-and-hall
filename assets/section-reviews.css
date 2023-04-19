@@ -278,6 +278,10 @@ div.stamped-container ul.stamped-tabs li {
   font-size: 14px!important;
 }
 
+.summary-rating-title:before {
+  color: var(--blue);  
+}
+
 @media screen and (max-width: 991px) {
   
   span.stamped-summary-actions {
