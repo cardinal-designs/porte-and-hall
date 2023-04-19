@@ -78,6 +78,10 @@ input#stamped-reviews-search-input {
   font-weight: 700;
 }
 
+.stamped-review {
+  border-top: 1px solid var(--blue);
+}
+
 input.stamped-form-input-email,
 input.stamped-form-input-text,
 textarea.stamped-form-input-textarea {
