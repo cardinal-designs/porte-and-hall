@@ -81,6 +81,7 @@ input.stamped-form-input-email,
 input.stamped-form-input-text,
 textarea.stamped-form-input-textarea {
   font-size: 16px;
+  color: var(--blue);
 }
 
 @media screen and (min-width: 769px) {
