@@ -79,7 +79,7 @@ input#stamped-reviews-search-input {
 }
 
 .stamped-review {
-  border-top: 1px solid var(--blue);
+  border-top: 1px solid var(--blue) !important;
 }
 
 input.stamped-form-input-email,
