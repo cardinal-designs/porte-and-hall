@@ -367,3 +367,11 @@ div[data-widget-style*=standard] .stamped-summary {
   }
   
 }
+
+@media screen and (max-width: 567px) {
+
+  .stamped-review-avatar {
+    display: none;
+  }
+
+}
