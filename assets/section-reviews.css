@@ -235,6 +235,12 @@ div.stamped-container[data-widget-style] {
   font-size: 11px;
 }
 
+div.stamped-container ul.stamped-tabs,
+div.stamped-container ul.stamped-tabs li {
+  font-family: brandon;
+  font-size: 16px!important;
+}
+
 @media screen and (max-width: 768px) {
 
   .rave-reviews-main {
