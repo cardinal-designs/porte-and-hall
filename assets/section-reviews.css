@@ -295,6 +295,12 @@ div.stamped-container ul.stamped-tabs li {
   font-family: brandon;  
 }
 
+div[data-widget-style*=standard] .stamped-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media screen and (max-width: 991px) {
   
   span.stamped-summary-actions {
