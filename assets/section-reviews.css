@@ -280,10 +280,10 @@ div.stamped-container ul.stamped-tabs li {
 }
 
 .summary-rating-title:before {
-  color: var(--blue);  
+  color: var(--blue) !important;
 }
 
-.stamped-file-uploader label[for=stamped-file-uploader-input]>span {
+.stamped-file-uploader label[for=stamped-file-uploader-input] > span {
   font-family: brandon;
   border-color: var(--blue) !important;
   color: var(--blue);
