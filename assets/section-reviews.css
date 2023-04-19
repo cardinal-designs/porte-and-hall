@@ -64,6 +64,10 @@ label.stamped-form-label {
   font-size: 14px;
 }
 
+input#stamped-button-submit {
+  background: var(--gold);
+}
+
 @media screen and (min-width: 769px) {
   .rave-reviews-main span.stamped-product-reviews-badge.stamped-main-badge {
     /* display: none !important; */
