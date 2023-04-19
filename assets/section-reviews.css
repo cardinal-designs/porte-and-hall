@@ -177,6 +177,7 @@ textarea.stamped-form-input-textarea {
   line-height: 120%;
   font-weight: 700;
   margin-bottom: 10px !important;
+  display: block !important;
 }
 
 .stamped-review-content-body, .stamped-review-product, .stamped-review-product a, .stamped-review-variant {
