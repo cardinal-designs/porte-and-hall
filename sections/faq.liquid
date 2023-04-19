@@ -1,6 +1,6 @@
 {{ 'section-faq.css' | asset_url | stylesheet_tag }}
 
-<div class="page-width">
+<div class="page-width" id="#{{ section.settings.anchor }}">
   <div class="faq__inner">
     <h2 class="faq__heading">{{ section.settings.heading | default: 'FAQ' }}</h2>
 
@@ -55,6 +55,11 @@
       "type": "text",
       "id": "heading",
       "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "anchor",
+      "label": "(Optional) Anchor Link"
     },
     {
       "type": "collection",
