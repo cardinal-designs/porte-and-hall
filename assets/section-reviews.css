@@ -187,10 +187,6 @@ textarea.stamped-form-input-textarea {
   margin-top: 10px;
 }
 
-.stamped-review {
-  border-color: var(--blue) !important;
-}
-
 .stamped-review:last-of-type {
   border-bottom: 1px solid var(--blue);
   padding-bottom: 15px;
