@@ -48,7 +48,7 @@
 }
 .rave-reviews-main .stamped-summary-actions-newreview::before,
 .stamped-summary-actions-newreview::before {
-  content:"";
+  color: var(--blue);
 }
 
 label.stamped-form-label {
