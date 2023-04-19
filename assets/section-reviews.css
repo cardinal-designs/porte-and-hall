@@ -286,6 +286,7 @@ div.stamped-container ul.stamped-tabs li {
   font-family: brandon;
   border-color: var(--blue) !important;
   color: var(--blue);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 991px) {
