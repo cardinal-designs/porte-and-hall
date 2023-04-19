@@ -230,7 +230,7 @@ div.stamped-container[data-widget-style] {
   margin-top: 25px !important;
   font-weight: 600 !important;
   color: var(--blue) !important;
-  font-family: brandon;
+  font-family: brandon !important;
   text-transform: uppercase;
   font-size: 11px;
 }
