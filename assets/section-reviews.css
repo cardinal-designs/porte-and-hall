@@ -72,6 +72,10 @@ input#stamped-reviews-search-input {
   font-family: brandon !important;
 }
 
+#stamped-sort-select {
+  color: var(--blue);
+}
+
 @media screen and (min-width: 769px) {
   .rave-reviews-main span.stamped-product-reviews-badge.stamped-main-badge {
     /* display: none !important; */
