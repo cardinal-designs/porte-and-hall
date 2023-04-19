@@ -365,6 +365,16 @@ div[data-widget-style*=standard] .stamped-summary {
   select#stamped-sort-select {
     border-top: 1px solid #eee!important;
   }
+
+  .rave-reviews-main .stamped-review-header {
+    display: flex!important;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 15px;
+    margin-bottom: 15px;
+  }
   
 }
 
