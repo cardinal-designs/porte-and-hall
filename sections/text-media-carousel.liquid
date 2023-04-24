@@ -3,7 +3,7 @@
 {% assign media_slides = section.blocks | where: 'type', 'media' %}
 {% assign text_slides = section.blocks | where: 'type', 'text' %}
 
-<div class="text-media-carousel__inner text-media-carousel__color-{{ section.settings.color }}" id="#{{ section.settings.anchor_link }}">
+<div class="text-media-carousel__inner text-media-carousel__color-{{ section.settings.color }}" id="{{ section.settings.anchor_link }}">
   <div class="text-media-carousel__media-wrapper">
     <div class="text-media-carousel__media-inner swiper">
       <div class="swiper-wrapper">
