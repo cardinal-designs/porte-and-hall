@@ -1054,3 +1054,12 @@ var LoadMore = class extends HTMLElement {
 }
 
 customElements.define('load-more', LoadMore)
+
+// offset anchor
+window.addEventListener('hashchange', offsetAnchor);
+window.setTimeout(offsetAnchor, 1);
+function offsetAnchor() {
+	if (location.hash.length !== 0) {
+		window.scrollTo(window.scrollX, window.scrollY - 50);
+	}
+}
