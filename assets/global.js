@@ -1060,6 +1060,6 @@ window.addEventListener('hashchange', offsetAnchor);
 window.setTimeout(offsetAnchor, 1);
 function offsetAnchor() {
 	if (location.hash.length !== 0) {
-		window.scrollTo(window.scrollX, window.scrollY - 50);
+		window.scrollTo(window.scrollX, window.scrollY - 150);
 	}
 }
