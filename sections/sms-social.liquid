@@ -1,12 +1,69 @@
+<div class="SMS_Section" style="background-image: url('{{ section.settings.image | img_url: 'master' }}')">
+  <div class="SMS_Inr_Block">
+    {% if section.settings.logo_image != blank %}
+      <div class="Site_Logo">
+        <img src="{{ section.settings.logo_image | img_url: '248x' }}">
+      </div>
+    {% endif %}
+    {% if section.settings.title != blank %}
+      <h2 class="h2 SMS_Section_Heading">{{ section.settings.title }}</h2>
+    {% endif %}
+    {% if section.settings.subtitle != blank %}
+      <h3 class="SMS_Section_Subheading">{{ section.settings.subtitle }}</h3>
+    {% endif %}
+    {% if section.settings.middle_content != blank %}
+      <h5 class="SMS_Section_Middle_Desc">{{ section.settings.middle_content }}</h5>
+    {% endif %}
+    {% if section.settings.bottom_Content != blank %}
+      <div class="SMS_Section_Bottom_Desc">{{ section.settings.bottom_Content }}</div>
+    {% endif %}
+    {% if section.settings.klavio_code != blank %}
+      <div class="Widget_Code">
+        {{ section.settings.klavio_code }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
 {% schema %}
   {
-    "name": "Section name",
-    "settings": []
+    "name": "SMS Social",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_image",
+        "label": "Site Logo"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "subtitle",
+        "label": "Sub Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "middle_content",
+        "label": "Middle Content"
+      },
+      {
+        "type": "richtext",
+        "id": "bottom_Content",
+        "label": "Bottom Content"
+      },
+      {
+        "type": "textarea",
+        "id": "klavio_code",
+        "label": "Klavio Code"
+      }
+    ]
   }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
