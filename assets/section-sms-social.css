@@ -68,6 +68,11 @@
   width: 100%;
 }
 
+.klaviyo-form-Vh9rbb input[type="tel],
+.klaviyo-form-Vh9rbb input[type="tel]:placholder {
+  font-family: brandon !important;  
+}
+
 .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:last-child button {
   border-radius: 0 !important;
   font-family: brandon !important;
