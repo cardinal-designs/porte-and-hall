@@ -1,3 +1,4 @@
+{{ 'section-sms-social.css' | asset_url | stylesheet_tag }}
 <div class="SMS_Section" style="background-image: url('{{ section.settings.image | img_url: 'master' }}')">
   <div class="SMS_Inr_Block">
     {% if section.settings.logo_image != blank %}
