@@ -2792,4 +2792,7 @@ select#notify_id {
     min-height: fit-content;
   }
 }
-        
+
+.Hidden {
+  display: none;
+}        

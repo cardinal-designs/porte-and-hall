@@ -1,0 +1,203 @@
+/*================ SMS SECTION CSS START ================*/
+
+.SMS_Section {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SMS_Section .SMS_Inr_Block .Site_Logo img {
+  max-width: 145px;
+}
+
+.SMS_Section .SMS_Inr_Block {
+  text-align: center;
+  max-width: 608px;
+  padding: 30px;
+  background-color: #fff;
+}
+
+.SMS_Section .SMS_Inr_Block .Site_Logo {
+  margin-bottom: 20px;
+}
+
+.SMS_Section .SMS_Inr_Block .SMS_Section_Heading {
+  color: #546B82;
+  font-size: 48px;
+  line-height: 1.2;
+  margin-bottom: 0;
+  font-weight: 500;
+  letter-spacing: 0.0025em;
+}
+
+.SMS_Section_Bottom_Desc a {
+  text-decoration: underline;
+}
+
+.SMS_Section .SMS_Inr_Block .SMS_Section_Subheading {
+  font-size: 22px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #546B82;
+  letter-spacing: .0025em;
+  text-transform: inherit;
+  font-weight: 400;
+}
+
+.SMS_Section .SMS_Inr_Block .SMS_Section_Middle_Desc {
+  font-size: 16px;
+  line-height: 1.500em;
+  margin-bottom: 20px;
+  font-weight: 400;
+  letter-spacing: 0.0025em;
+  color: #546b82;
+}
+
+.SMS_Section .SMS_Inr_Block .SMS_Section_Bottom_Desc p {
+  font-size: 10px;
+  color: rgba(39, 39, 41, 0.5);
+  letter-spacing: 0.0025em;
+}
+
+.SMS_Section .SMS_Inr_Block .Widget_Code {
+  margin-top: 25px;
+}
+
+.SMS_Section .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:first-child {
+  max-width: 352px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+
+.SMS_Section [data-testid=phoneNumberInput],
+.SMS_Section [data-testid=phoneNumberInput]::placeholder {
+  font-family: brandon !important;  
+}
+
+.SMS_Section .klaviyo-form-Vh9rbb::-webkit-input-placeholder {
+  font-family: brandon !important;  
+}
+
+.SMS_Section .klaviyo-form-Vh9rbb::-moz-placeholder {
+  font-family: brandon !important;  
+}
+
+.SMS_Section .klaviyo-form-Vh9rbb :-ms-input-placeholder {
+  font-family: brandon !important;  
+}
+
+.SMS_Section .klaviyo-form-Vh9rbb :-moz-placeholder {
+  font-family: brandon !important;  
+}
+
+.SMS_Section .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:last-child button {
+  border-radius: 0 !important;
+  font-family: brandon !important;
+  font-size: 18px !important;
+  letter-spacing: 0.03em !important;
+  max-width: 272px !important;
+  margin: 0 auto;
+}
+
+.SMS_Section .go3176171171 p,
+.SMS_Section .go3176171171 span {
+  font-family: brandon !important;
+  font-size: 16px !important;
+  color: #546b82 !important;
+}
+
+@media screen and (max-width: 768px) {
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Heading {
+    font-size: 80px;
+    margin-bottom: 10px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Subheading {
+    font-size: 28px;
+    margin-bottom: 30px;
+    padding: 0 61px;
+  }
+
+  .SMS_Section .SMS_Inr_Block .Site_Logo {
+    margin-bottom: 20px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Subheading br {
+    display: none;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Middle_Desc {
+    font-size: 20px;
+    margin-bottom: 28px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Middle_Desc br {
+    display: none;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .Site_Logo img {
+    max-width: 153px;
+  }
+
+  .SMS_Section .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:first-child {
+    margin: 0 auto 5px;
+  }
+
+  .SMS_Section_Bottom_Desc {
+    padding: 0 17px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .Widget_Code {
+    margin-top: 40px;
+  }
+  
+}
+
+@media screen and (max-width: 540px) {
+    
+  .SMS_Section .SMS_Inr_Block {
+    height: 100vh;
+    max-width: 100%;
+  }
+
+  .SMS_Section .SMS_Inr_Block {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .Site_Logo img {
+    max-width: 153px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Heading {
+    font-size: 42px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Subheading {
+    font-size: 18px;
+    padding: 0;
+    margin-bottom: 10px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Middle_Desc {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .Site_Logo {
+    margin-bottom: 20px;
+  }
+  
+  .SMS_Section_Bottom_Desc {
+    padding: 0;
+  }
+  
+}
+
+/*================ SMS SECTION CSS END ================*/

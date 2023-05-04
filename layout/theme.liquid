@@ -112,7 +112,7 @@
 
     <div class="page-overlay"></div>
 
-    <div class="outer-header-wrapper">
+    <div class="outer-header-wrapper {% if page.metafields.custom.hide_header == true %}Hidden{% endif %}">
       {% section 'announcement-bar' %}
       {% section 'header' %}
     </div>
