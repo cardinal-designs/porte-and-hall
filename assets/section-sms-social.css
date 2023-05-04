@@ -1,0 +1,130 @@
+/*================ SMS SECTION CSS START ================*/
+
+.SMS_Section {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SMS_Section .SMS_Inr_Block .Site_Logo img {
+  max-width: 172px;
+}
+
+.SMS_Section .SMS_Inr_Block {
+  text-align: center;
+  max-width: 608px;
+  padding: 40px 48px 58px;
+  background-color: #fff;
+}
+
+.SMS_Section .SMS_Inr_Block .Site_Logo {
+  margin-bottom: 32px;
+}
+
+.SMS_Section .SMS_Inr_Block .SMS_Section_Heading {
+  color: #C77FB6;
+  font-size: 60px;
+  line-height: 1.2;
+  margin-bottom: 22px;
+  font-weight: 500;
+  letter-spacing: 0.0025em;
+}
+
+.SMS_Section .SMS_Inr_Block .SMS_Section_Subheading {
+  font-family: 'GT Walsheim Pro';
+  font-size: 24px;
+  line-height: 1.500em;
+  margin-bottom: 20px;
+  color: #272729;
+  letter-spacing: 0.0025em;
+}
+
+.SMS_Section .SMS_Inr_Block .SMS_Section_Middle_Desc {
+  font-family: 'GT Walsheim Pro';
+  font-size: 14px;
+  line-height: 1.500em;
+  margin-bottom: 20px;
+  font-weight: 400;
+  letter-spacing: 0.0025em;
+  color: #000;
+}
+
+.SMS_Section .SMS_Inr_Block .SMS_Section_Bottom_Desc p {
+  font-size: 10px;
+  color: rgba(39, 39, 41, 0.5);
+  letter-spacing: 0.0025em;
+  font-family: 'GT Walsheim Pro';
+}
+
+.SMS_Section .SMS_Inr_Block .Widget_Code {
+  margin-top: 25px;
+}
+
+
+@media screen and (max-width: 768px) {
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Heading {
+    font-size: 80px;
+    margin-bottom: 15px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Subheading {
+    font-size: 28px;
+    margin-bottom: 40px;
+    padding: 0 5px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Subheading br {
+    display: none;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Middle_Desc {
+    font-size: 20px;
+    margin-bottom: 48px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Middle_Desc br {
+    display: none;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .Site_Logo img {
+    max-width: 100%;
+  }
+  
+}
+
+@media screen and (max-width: 540px) {
+  
+  .SMS_Section .SMS_Inr_Block {
+    padding: 40px 28px 58px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .Site_Logo img {
+    max-width: 195px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Heading {
+    font-size: 56px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Subheading {
+    font-size: 20px;
+    padding: 0;
+    margin-bottom: 30px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .SMS_Section_Middle_Desc {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+  
+  .SMS_Section .SMS_Inr_Block .Site_Logo {
+    margin-bottom: 25px;
+  }
+  
+}
+
+/*================ SMS SECTION CSS END ================*/
