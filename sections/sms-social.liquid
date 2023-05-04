@@ -16,11 +16,11 @@
       <h5 class="SMS_Section_Middle_Desc">{{ section.settings.middle_content }}</h5>
     {% endif %}
     {% if section.settings.bottom_Content != blank %}
-      <div class="SMS_Section_Bottom_Desc">{{ section.settings.bottom_Content }}</div>
+      <div class="SMS_Section_Bottom_Desc">{{ section.settings.bottom_content }}</div>
     {% endif %}
     {% if section.settings.klavio_code != blank %}
       <div class="Widget_Code">
-        {{ section.settings.klavio_code }}
+        {{ section.settings.klaviyo_code }}
       </div>
     {% endif %}
   </div>
@@ -57,13 +57,13 @@
       },
       {
         "type": "richtext",
-        "id": "bottom_Content",
+        "id": "bottom_content",
         "label": "Bottom Content"
       },
       {
         "type": "textarea",
-        "id": "klavio_code",
-        "label": "Klavio Code"
+        "id": "klaviyo_code",
+        "label": "Klaviyo Code"
       }
     ],
     "presets": [
