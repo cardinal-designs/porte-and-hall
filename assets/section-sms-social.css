@@ -139,6 +139,10 @@
   .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:first-child {
     margin: 0 auto 5px;
   }
+
+  .SMS_Section_Bottom_Desc {
+    padding: 0 17px;
+  }
   
 }
 
@@ -176,6 +180,10 @@
   
   .SMS_Section .SMS_Inr_Block .Site_Logo {
     margin-bottom: 25px;
+  }
+  
+  .SMS_Section_Bottom_Desc {
+    padding: 0;
   }
   
 }
