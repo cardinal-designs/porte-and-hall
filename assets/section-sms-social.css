@@ -118,6 +118,8 @@
 
   .SMS_Section .SMS_Inr_Block {
     padding: 40px 28px 58px;
+    display: flex;
+    align-items: center;
   }
   
   .SMS_Section .SMS_Inr_Block .Site_Logo img {
