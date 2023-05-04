@@ -107,14 +107,15 @@
     max-width: 100%;
   }
   
-  .SMS_Section .SMS_Inr_Block {
-    height: 100vh;
-  }
-  
 }
 
 @media screen and (max-width: 540px) {
-  
+    
+  .SMS_Section .SMS_Inr_Block {
+    height: 100vh;
+    max-width: 100%;
+  }
+
   .SMS_Section .SMS_Inr_Block {
     padding: 40px 28px 58px;
   }
