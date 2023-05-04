@@ -68,8 +68,7 @@
   width: 100%;
 }
 
-.klaviyo-form-Vh9rbb input[type="tel],
-.klaviyo-form-Vh9rbb input[type="tel]:placholder {
+[data-testid=phoneNumberInput] {
   font-family: brandon !important;  
 }
 
