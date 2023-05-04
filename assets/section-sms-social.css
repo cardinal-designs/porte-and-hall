@@ -63,7 +63,9 @@
 }
 
 .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:first-child {
-  border-radius: 40px !important; 
+  max-width: 352px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:last-child button {
