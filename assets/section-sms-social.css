@@ -68,7 +68,8 @@
   width: 100%;
 }
 
-[data-testid=phoneNumberInput] {
+[data-testid=phoneNumberInput],
+[data-testid=phoneNumberInput]:placeholder {
   font-family: brandon !important;  
 }
 
