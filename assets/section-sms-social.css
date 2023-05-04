@@ -66,34 +66,35 @@
   margin-top: 25px;
 }
 
-.klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:first-child {
+.SMS_Section .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:first-child {
   max-width: 352px;
   margin: 0 auto;
   width: 100%;
 }
 
-[data-testid=phoneNumberInput],
-[data-testid=phoneNumberInput]:placeholder {
+
+.SMS_Section [data-testid=phoneNumberInput],
+.SMS_Section [data-testid=phoneNumberInput]::placeholder {
   font-family: brandon !important;  
 }
 
-.klaviyo-form-Vh9rbb ::-webkit-input-placeholder {
+.SMS_Section .klaviyo-form-Vh9rbb::-webkit-input-placeholder {
   font-family: brandon !important;  
 }
 
-.klaviyo-form-Vh9rbb ::-moz-placeholder {
+.SMS_Section .klaviyo-form-Vh9rbb::-moz-placeholder {
   font-family: brandon !important;  
 }
 
-.klaviyo-form-Vh9rbb :-ms-input-placeholder {
+.SMS_Section .klaviyo-form-Vh9rbb :-ms-input-placeholder {
   font-family: brandon !important;  
 }
 
-.klaviyo-form-Vh9rbb :-moz-placeholder {
+.SMS_Section .klaviyo-form-Vh9rbb :-moz-placeholder {
   font-family: brandon !important;  
 }
 
-.klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:last-child button {
+.SMS_Section .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:last-child button {
   border-radius: 0 !important;
   font-family: brandon !important;
   font-size: 18px !important;
@@ -136,7 +137,7 @@
     max-width: 153px;
   }
 
-  .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:first-child {
+  .SMS_Section .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:first-child {
     margin: 0 auto 5px;
   }
 
