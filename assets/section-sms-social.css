@@ -34,12 +34,13 @@
 }
 
 .SMS_Section .SMS_Inr_Block .SMS_Section_Subheading {
-  font-family: 'GT Walsheim Pro';
   font-size: 24px;
-  line-height: 1.500em;
+  line-height: 1.5em;
   margin-bottom: 20px;
-  color: #272729;
-  letter-spacing: 0.0025em;
+  color: #546B82;
+  letter-spacing: .0025em;
+  text-transform: inherit;
+  font-weight: 400;
 }
 
 .SMS_Section .SMS_Inr_Block .SMS_Section_Middle_Desc {
