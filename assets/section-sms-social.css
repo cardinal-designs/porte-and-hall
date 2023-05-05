@@ -66,8 +66,7 @@
   margin-top: 25px;
 }
 
-.SMS_Section .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:first-child,
-.SMS_Section .klaviyo-form-XUjyHG .klaviyo-form [data-testid=form-row]:first-child {
+.SMS_Section .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:first-child {
   max-width: 352px;
   margin: 0 auto;
   width: 100%;
@@ -75,29 +74,23 @@
 
 
 .SMS_Section [data-testid=phoneNumberInput],
-.SMS_Section [data-testid=phoneNumberInput]::placeholder,
-.SMS_Section [type=email],
-.SMS_Section [type=email]::placeholder {
+.SMS_Section [data-testid=phoneNumberInput]::placeholder {
   font-family: brandon !important;  
 }
 
-.SMS_Section .klaviyo-form-Vh9rbb ::-webkit-input-placeholder,
-.SMS_Section .klaviyo-form-XUjyHG ::-webkit-input-placeholder {
+.SMS_Section .klaviyo-form-Vh9rbb::-webkit-input-placeholder {
   font-family: brandon !important;  
 }
 
-.SMS_Section .klaviyo-form-Vh9rbb ::-moz-placeholder,
-.SMS_Section .klaviyo-form-XUjyHG ::-moz-placeholder {
+.SMS_Section .klaviyo-form-Vh9rbb::-moz-placeholder {
   font-family: brandon !important;  
 }
 
-.SMS_Section .klaviyo-form-Vh9rbb :-ms-input-placeholder,
-.SMS_Section .klaviyo-form-XUjyHG :-ms-input-placeholder {
+.SMS_Section .klaviyo-form-Vh9rbb :-ms-input-placeholder {
   font-family: brandon !important;  
 }
 
-.SMS_Section .klaviyo-form-Vh9rbb :-moz-placeholder,
-.SMS_Section .klaviyo-form-XUjyHG :-moz-placeholder {
+.SMS_Section .klaviyo-form-Vh9rbb :-moz-placeholder {
   font-family: brandon !important;  
 }
 
@@ -105,14 +98,6 @@
   border-radius: 0 !important;
   font-family: brandon !important;
   font-size: 18px !important;
-  letter-spacing: 0.03em !important;
-  max-width: 272px !important;
-  margin: 0 auto;
-}
-
-.SMS_Section .klaviyo-form-XUjyHG .klaviyo-form [data-testid=form-row]:last-child button {
-  font-family: brandon !important;
-  font-size: 18px !important; 
   letter-spacing: 0.03em !important;
   max-width: 272px !important;
   margin: 0 auto;
@@ -159,8 +144,7 @@
     max-width: 153px;
   }
 
-  .SMS_Section .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:first-child,
-  .SMS_Section .klaviyo-form-XUjyHG .klaviyo-form [data-testid=form-row]:first-child {
+  .SMS_Section .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:first-child {
     margin: 0 auto 5px;
   }
 
