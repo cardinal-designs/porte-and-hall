@@ -75,7 +75,9 @@
 
 
 .SMS_Section [data-testid=phoneNumberInput],
-.SMS_Section [data-testid=phoneNumberInput]::placeholder {
+.SMS_Section [data-testid=phoneNumberInput]::placeholder,
+.SMS_Section [type=email],
+.SMS_Section [type=email]::placeholder {
   font-family: brandon !important;  
 }
 
