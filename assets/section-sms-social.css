@@ -157,7 +157,8 @@
     max-width: 153px;
   }
 
-  .SMS_Section .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:first-child {
+  .SMS_Section .klaviyo-form-Vh9rbb .klaviyo-form [data-testid=form-row]:first-child,
+  .SMS_Section .klaviyo-form-XUjyHG .klaviyo-form [data-testid=form-row]:first-child {
     margin: 0 auto 5px;
   }
 
