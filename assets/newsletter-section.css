@@ -1,5 +1,5 @@
 .newsletter {
-  padding: 10px 30px;
+  padding: 60px 0;
 }
 
 .newsletter--narrow .newsletter__wrapper,
@@ -83,6 +83,10 @@
   .footer .kl-private-reset-css-Xuajs1 p,
   .footer .kl-private-reset-css-Xuajs1 p span {
     font-size: 14px !important;
+  }
+
+  .newsletter {
+    padding: 10px 30px;
   }
   
   .newsletter .newsletter__wrapper {
