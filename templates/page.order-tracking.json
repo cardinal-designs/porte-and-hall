@@ -135,15 +135,6 @@
         "button_text": "Shop now"
       }
     },
-    "c8541b8c-e900-4413-858d-4fd2ec405950": {
-      "type": "ugc-carousel",
-      "custom_css": [
-        ".heading-with-accents a {color: inherit;}"
-      ],
-      "settings": {
-        "heading": "<p>Follow along with us <a href=\"https:\/\/www.instagram.com\/porteandhall\/\" target=\"_blank\" title=\"https:\/\/www.instagram.com\/porteandhall\/\">@PorteAndHall<\/a><\/p>"
-      }
-    },
     "049bbdc8-1886-4932-8ae7-2f4836a308e4": {
       "type": "newsletter",
       "blocks": {
@@ -167,6 +158,15 @@
         "color_scheme": "background-1",
         "full_width": true
       }
+    },
+    "c8541b8c-e900-4413-858d-4fd2ec405950": {
+      "type": "ugc-carousel",
+      "custom_css": [
+        ".heading-with-accents a {color: inherit;}"
+      ],
+      "settings": {
+        "heading": "<p>Follow along with us <a href=\"https:\/\/www.instagram.com\/porteandhall\/\" target=\"_blank\" title=\"https:\/\/www.instagram.com\/porteandhall\/\">@PorteAndHall<\/a><\/p>"
+      }
     }
   },
   "order": [
@@ -174,7 +174,7 @@
     "75e5524b-59f4-4c16-b0f9-593367967193",
     "ca1df935-d762-481b-9392-8a50ca84d6f3",
     "c84603d9-c17f-4c4e-b401-8da3c94ea5c6",
-    "c8541b8c-e900-4413-858d-4fd2ec405950",
-    "049bbdc8-1886-4932-8ae7-2f4836a308e4"
+    "049bbdc8-1886-4932-8ae7-2f4836a308e4",
+    "c8541b8c-e900-4413-858d-4fd2ec405950"
   ]
 }
