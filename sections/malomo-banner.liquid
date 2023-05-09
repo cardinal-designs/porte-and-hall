@@ -28,6 +28,10 @@
     text-align: center;
   }
 
+  .malomo-banner-col .shopify-app-block {
+    justify-content: unset !important;
+  }
+
   .malomo-banner-align--left {
     justify-content: flex-start;
     text-align: left;
@@ -97,56 +101,58 @@
 {%- endstyle -%}
 
 <div class="malomo-banner">
-  {%- if section.settings.header_text != blank -%}
-    <div class="malomo-banner-row malomo-banner-align--{{ section.settings.header_horizontal_alignment }} malomo-banner-header-row">
-      <{{section.settings.header_level}} class="malomo-banner-header">
-        {{section.settings.header_text}}
-      </{{section.settings.header_level}}>
-    </div>
-  {%- endif -%}
-
-  {%- if section.blocks.size > 0 -%}
-  <div class="malomo-banner-row">
-  {%- endif -%}
-
-  {%- for block in section.blocks -%}
-    {%- case block.type -%}
-      {%- when 'image' -%}
-        {%- if block.settings.image != blank -%}
-          {%- if block.settings.image_width != blank -%}
-            {%- assign srcset = block.settings.image | image_url: width: block.settings.image_width -%}
-            {%- capture style -%}max-width: min(100%, {{ block.settings.image_width }}px);{%- endcapture -%}
- 		      {%- else -%}
-            {%- assign srcset = block.settings.image | image_url -%}
-          {%- endif -%}
+  <div class="page-width">
+    {%- if section.settings.header_text != blank -%}
+      <div class="malomo-banner-row malomo-banner-align--{{ section.settings.header_horizontal_alignment }} malomo-banner-header-row">
+        <{{section.settings.header_level}} class="malomo-banner-header">
+          {{section.settings.header_text}}
+        </{{section.settings.header_level}}>
+      </div>
+    {%- endif -%}
   
-          <div class="malomo-banner-col malomo-banner-col-img malomo-banner-align--{{ block.settings.image_horizontal_alignment }}">
-            {%- if block.settings.image_link_url != blank -%}
-            <a href="{{block.settings.image_link_url}}" target="_blank">
+    {%- if section.blocks.size > 0 -%}
+    <div class="malomo-banner-row malomo-banner-align--{{ section.settings.header_horizontal_alignment }}">
+    {%- endif -%}
+  
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'image' -%}
+          {%- if block.settings.image != blank -%}
+            {%- if block.settings.image_width != blank -%}
+              {%- assign srcset = block.settings.image | image_url: width: block.settings.image_width -%}
+              {%- capture style -%}max-width: min(100%, {{ block.settings.image_width }}px);{%- endcapture -%}
+   		      {%- else -%}
+              {%- assign srcset = block.settings.image | image_url -%}
             {%- endif -%}
-            <img
-              alt="{{ block.settings.image.alt | escape }}"
-              class="malomo-banner-img"
-              loading="lazy"
-              src="{{ block.settings.image | image_url }}"
-              srcset="{{ srcset }}"
-              {%- if style -%}style="{{ style }}"{%- endif -%}
-            >
-            {%- if block.settings.image_link_url != blank -%}
-            </a>
-            {%- endif -%}
+    
+            <div class="malomo-banner-col malomo-banner-col-img malomo-banner-align--{{ block.settings.image_horizontal_alignment }}">
+              {%- if block.settings.image_link_url != blank -%}
+              <a href="{{block.settings.image_link_url}}" target="_blank">
+              {%- endif -%}
+              <img
+                alt="{{ block.settings.image.alt | escape }}"
+                class="malomo-banner-img"
+                loading="lazy"
+                src="{{ block.settings.image | image_url }}"
+                srcset="{{ srcset }}"
+                {%- if style -%}style="{{ style }}"{%- endif -%}
+              >
+              {%- if block.settings.image_link_url != blank -%}
+              </a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- when '@app' -%}
+          <div class="malomo-banner-col">
+            {% render block %}
           </div>
-        {%- endif -%}
-      {%- when '@app' -%}
-        <div class="malomo-banner-col">
-          {% render block %}
-        </div>
-    {%- endcase -%}
-  {%- endfor -%}
-
-  {%- if section.blocks.size > 0 -%}
+      {%- endcase -%}
+    {%- endfor -%}
+  
+    {%- if section.blocks.size > 0 -%}
+    </div>
+    {%- endif -%}
   </div>
-  {%- endif -%}
 </div>
 
 {% schema %}
