@@ -1,15 +1,4 @@
 {%- style -%}
-  {% assign header_font = section.settings.header_font %}
-
-  {{ header_font | font_face }}
-
-  {% assign header_font_bold = header_font | font_modify: 'weight', 'bolder' %}
-  {% assign header_font_italic = header_font | font_modify: 'style', 'italic' %}
-  {% assign header_font_bold_and_italic = header_font_bold | font_modify: 'style', 'italic' %}
-
-  {{ header_font_bold | font_face }}
-  {{ header_font_italic | font_face }}
-  {{ header_font_bold_and_italic | font_face }}
 
   .malomo-banner {
     background-color: {{ section.settings.background_color }};
@@ -61,7 +50,6 @@
   }
 
   .malomo-banner-header {
-    font-family: {{ section.settings.header_font.family }};
     font-size: {{ section.settings.header_font_size }}px;
     font-style: {{ section.settings.header_font.style }};
     font-weight: {{ section.settings.header_font.weight }};
@@ -244,12 +232,6 @@
       "id": "header_background_color",
       "label": "Background Color",
       "type": "color"
-    },
-    {
-      "default": "sans-serif",
-      "id": "header_font",
-      "label": "Font",
-      "type": "font_picker"
     },
     {
       "default": "40",
