@@ -1,18 +1,3 @@
-.malomo-banner {
-  background-color: {{ section.settings.background_color }};
-  {%- if section.settings.background_image != blank -%}
-  background-image: url('{{ section.settings.background_image | image_url }}');
-  background-position: center;
-  background-repeat: {{ section.settings.background_repeat }};
-  background-size: {{ section.settings.background_size }};
-  {%- endif -%}
-  min-height: {{ section.settings.height }}px;
-  padding: {{ section.settings.padding }}px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
 .malomo-banner .page-width {
   width: 100%;
 }
@@ -43,44 +28,12 @@
   justify-content: center;
 }
 
-.malomo-banner-col-img {
-  max-height: {{ section.settings.height }}px;
-}
-
-.malomo-banner-header {
-  font-size: {{ section.settings.header_font_size }}px;
-  font-style: {{ section.settings.header_font.style }};
-  font-weight: {{ section.settings.header_font.weight }};
-  margin: 0;
-  padding-bottom: {{ section.settings.header_padding_bottom }}px;
-  padding-top: {{ section.settings.header_padding_top }}px;
-  width: 100%;
-}
-
-.malomo-banner-header-row {
-  background-color: {{ section.settings.header_background_color }};
-}
-
-.malomo-banner-img {
-  display: block;
-  max-height: {{ section.settings.height }}px;
-}
-
-.malomo-banner .malomo-order-lookup,
-.malomo-banner .malomo-shipment-tracker {
-  background-color: {{ section.settings.malomo_background_color }};
-  border-color: {{ section.settings.malomo_border_color }};
-  border-radius: {{ section.settings.malomo_border_radius }}px;
-  border-style: {{ section.settings.malomo_border_style }};
-  border-width: {{ section.settings.malomo_border_width }}px;
-  padding: {{ section.settings.malomo_padding }}px;
-}
-
 .malomo-banner-row {
   display: flex;
 }
 
 @media only screen and (min-width : 320px) and (max-width : 480px) {
+  
   .malomo-banner-col {
     flex-basis: auto;
     width: 100%;
@@ -90,4 +43,5 @@
   .malomo-banner-img {
     display: none;
   }
+  
 }
