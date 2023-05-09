@@ -1,3 +1,7 @@
+.newsletter {
+  padding: 60px 0;
+}
+
 .newsletter--narrow .newsletter__wrapper,
 .newsletter:not(.newsletter--narrow) .newsletter__wrapper.color-background-1 {
   margin-top: 5rem;
