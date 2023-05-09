@@ -1,5 +1,5 @@
 .newsletter {
-  padding: 60px 0;
+  padding: 10px 30px;
 }
 
 .newsletter--narrow .newsletter__wrapper,
@@ -71,6 +71,7 @@
 }
 
 @media screen and (max-width: 768px) {
+  
   .footer .kl-private-reset-css-Xuajs1 input[type=email] {
     font-size: 14px !important;
   }
@@ -83,6 +84,12 @@
   .footer .kl-private-reset-css-Xuajs1 p span {
     font-size: 14px !important;
   }
+  
+  .newsletter .newsletter__wrapper {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  
 }
 
 @media screen and (min-width: 769px) {
