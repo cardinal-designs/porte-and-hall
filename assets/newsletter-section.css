@@ -9,6 +9,10 @@
   padding-bottom: 5rem;
 }
 
+.newsletter.center {
+  text-align: center;
+}
+
 @media screen and (min-width: 769px) {
   .newsletter--narrow .newsletter__wrapper,
   .newsletter:not(.newsletter--narrow) .newsletter__wrapper.color-background-1 {
