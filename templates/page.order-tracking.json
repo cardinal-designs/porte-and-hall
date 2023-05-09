@@ -17,22 +17,22 @@
         "eb2b74a7-24a8-4891-b71b-9609c9de98e8": {
           "type": "shopify:\/\/apps\/malomo-order-tracking\/blocks\/shipment-tracker\/5cb158a1-dc52-4d21-aac7-e017083c11e2",
           "settings": {
-            "publishable_api_key": "pk_312077ec1008bfa1ada2bf75e985275a",
+            "publishable_api_key": "pk_",
             "element": "shipmentTracker",
-            "block_width": 450,
+            "block_width": 350,
             "block_order_number_prefix": "",
-            "button_background_color": "#d2b066",
+            "button_background_color": "#DEE4E7",
             "button_border_color": "",
-            "button_border_radius": 0,
+            "button_border_radius": 3,
             "button_border_width": 0,
             "button_capitalization": "capitalize",
-            "button_height": 57,
-            "button_text_color": "#ffffff",
+            "button_height": 48,
+            "button_text_color": "#222222",
             "input_background_color": "#FFFFFF",
-            "input_border_color": "#546b82",
-            "input_border_radius": 0,
+            "input_border_color": "#DDDDDD",
+            "input_border_radius": 3,
             "input_border_width": 1,
-            "input_height": 40
+            "input_height": 42
           }
         }
       },
@@ -143,6 +143,30 @@
       "settings": {
         "heading": "<p>Follow along with us <a href=\"https:\/\/www.instagram.com\/porteandhall\/\" target=\"_blank\" title=\"https:\/\/www.instagram.com\/porteandhall\/\">@PorteAndHall<\/a><\/p>"
       }
+    },
+    "049bbdc8-1886-4932-8ae7-2f4836a308e4": {
+      "type": "newsletter",
+      "blocks": {
+        "6b8306c7-b369-4482-9a34-13bb6a8d7130": {
+          "type": "heading",
+          "settings": {
+            "heading": "Subscribe to our emails"
+          }
+        },
+        "b7bf42a2-cf30-4be9-b9c0-906d5194bc54": {
+          "type": "kalvio",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "6b8306c7-b369-4482-9a34-13bb6a8d7130",
+        "b7bf42a2-cf30-4be9-b9c0-906d5194bc54"
+      ],
+      "settings": {
+        "color_scheme": "background-1",
+        "full_width": true
+      }
     }
   },
   "order": [
@@ -150,6 +174,7 @@
     "75e5524b-59f4-4c16-b0f9-593367967193",
     "ca1df935-d762-481b-9392-8a50ca84d6f3",
     "c84603d9-c17f-4c4e-b401-8da3c94ea5c6",
-    "c8541b8c-e900-4413-858d-4fd2ec405950"
+    "c8541b8c-e900-4413-858d-4fd2ec405950",
+    "049bbdc8-1886-4932-8ae7-2f4836a308e4"
   ]
 }
