@@ -61,6 +61,81 @@
         "malomo_padding": "0"
       }
     },
+    "ca1df935-d762-481b-9392-8a50ca84d6f3": {
+      "type": "logo-marquee",
+      "blocks": {
+        "1733af77-9d7e-46bd-9c36-a97358e288ce": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"146\" height=\"30\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
+          }
+        },
+        "59b710a0-6694-4fc5-92b4-3b890633931f": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"242\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Better_homes.svg?v=1613389157\" alt=\"logo\">"
+          }
+        },
+        "3b5d494a-d1d9-45e1-bdab-cf0bf3209fbc": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"143\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
+          }
+        },
+        "e9a0132b-952a-45a4-a881-3e6b789afc26": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"100\" height=\"25\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
+          }
+        },
+        "5c924711-78c9-40a6-8b04-d3129a4e8413": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"146\" height=\"30\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
+          }
+        },
+        "9e99d20e-23c4-4da6-94ad-bd00d0b67a8a": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"242\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Better_homes.svg?v=1613389157\" alt=\"logo\">"
+          }
+        },
+        "41c09d59-9be8-4c66-a014-69e9fe7f8f1e": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"143\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
+          }
+        },
+        "36b6e9e6-33c1-43dd-b915-83aa94867f07": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"100\" height=\"25\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
+          }
+        }
+      },
+      "block_order": [
+        "1733af77-9d7e-46bd-9c36-a97358e288ce",
+        "59b710a0-6694-4fc5-92b4-3b890633931f",
+        "3b5d494a-d1d9-45e1-bdab-cf0bf3209fbc",
+        "e9a0132b-952a-45a4-a881-3e6b789afc26",
+        "5c924711-78c9-40a6-8b04-d3129a4e8413",
+        "9e99d20e-23c4-4da6-94ad-bd00d0b67a8a",
+        "41c09d59-9be8-4c66-a014-69e9fe7f8f1e",
+        "36b6e9e6-33c1-43dd-b915-83aa94867f07"
+      ],
+      "settings": {
+        "background_color": "#d8d3c7"
+      }
+    },
+    "c84603d9-c17f-4c4e-b401-8da3c94ea5c6": {
+      "type": "main-product-carousel",
+      "settings": {
+        "heading": "",
+        "background": "",
+        "collection": "shop-all",
+        "button_text": "Shop now"
+      }
+    },
     "c8541b8c-e900-4413-858d-4fd2ec405950": {
       "type": "ugc-carousel",
       "custom_css": [
@@ -74,6 +149,8 @@
   "order": [
     "main",
     "75e5524b-59f4-4c16-b0f9-593367967193",
+    "ca1df935-d762-481b-9392-8a50ca84d6f3",
+    "c84603d9-c17f-4c4e-b401-8da3c94ea5c6",
     "c8541b8c-e900-4413-858d-4fd2ec405950"
   ]
 }
