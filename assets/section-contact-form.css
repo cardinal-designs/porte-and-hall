@@ -19,6 +19,10 @@
   margin-bottom: 40px;
 }
 
+.contact .text a {
+  text-decoration: underline;
+}
+
 textarea#ContactForm-body {
   border: 1px solid #546B82;
   padding: 20px;
