@@ -12,7 +12,6 @@
 
 .contact .title {
   margin-bottom: 50px;
-  font-size: 32px;
   color: var(--blue);
 }
 
@@ -167,6 +166,10 @@ span.form__message.Form_Error {
 }
 
 @media screen and (min-width: 769px) {
+  .contact .title {
+    font-size: 32px;
+  }
+  
   .contact__button {
     margin-top: 50px;
   }
