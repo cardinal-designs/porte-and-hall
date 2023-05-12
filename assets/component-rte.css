@@ -42,14 +42,15 @@
 
 .rte a {
   color: rgba(var(--color-link), var(--alpha-link));
+  font-weight: 600;
   text-underline-offset: 0.3rem;
-  text-decoration-thickness: 0.1rem;
+  text-decoration-thickness: 2px;
   transition: text-decoration-thickness var(--duration-short) ease;
 }
 
 .rte a:hover {
   color: rgb(var(--color-link));
-  text-decoration-thickness: 0.2rem;
+  text-decoration-thickness: 2px;
 }
 
 .rte blockquote {
