@@ -11,8 +11,12 @@
 }
 
 .contact .title {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   color: var(--blue);
+}
+
+.contact .text {
+  margin-bottom: 40px;
 }
 
 textarea#ContactForm-body {
