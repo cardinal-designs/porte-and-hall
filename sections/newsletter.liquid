@@ -1,7 +1,7 @@
 {{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
 {{ 'newsletter-section.css' | asset_url | stylesheet_tag }}
 
-<div class="newsletter center{% if section.settings.full_width == false %} newsletter--narrow page-width{% endif%}">
+<div class="newsletter center{% if section.settings.full_width == false %} newsletter--narrow page-width{% endif%}" {% if section.settings.bg_color %}style="background-color: {{ section.settings.bg_color }}"{% endif %}>
   <div class="newsletter__wrapper color-{{ section.settings.color_scheme }} gradient">
     {% for block in section.blocks %}
       {% case block.type %}
@@ -11,6 +11,8 @@
           <h2 class="h1" {{ block.shopify_attributes }}>{{ block.settings.heading | escape }}</h2>
         {% when 'paragraph' %}
           <div class="newsletter__subheading rte" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+        {% when 'kalvio' %}
+          <div class="klaviyo-form-SZV96h"></div>
         {% when 'email_form' %}
           <div {{ block.shopify_attributes }}>
             {% form 'customer', class: 'newsletter-form' %}
@@ -93,6 +95,11 @@
       "label": "t:sections.newsletter.settings.color_scheme.label"
     },
     {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color"      
+    },
+    {
       "type": "checkbox",
       "id": "full_width",
       "default": true,
@@ -118,6 +125,12 @@
       ]
     },
     {
+      "type": "kalvio",
+      "name": "Klavio",
+      "limit": 1,
+      "settings": []
+    },
+    {
       "type": "paragraph",
       "name": "t:sections.newsletter.blocks.paragraph.name",
       "limit": 1,
@@ -137,6 +150,11 @@
     },
     {
       "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.newsletter.name"
     }
   ]
 }
