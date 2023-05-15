@@ -3,7 +3,10 @@
 
 <div class="contact page-width spaced-section">
   <div class="Contact_Form">
-    <h2 class="title text-center">{{ section.settings.heading | escape }}</h2>
+    <h2 class="title text-center">{{ section.settings.heading }}</h2>
+    {% if section.settings.subheading != blank %}
+      <p class="text text-center">{{ section.settings.subheading }}</p>
+    {% endif %}
     {% form 'contact' %}
       {% if form.posted_successfully? %}
         <div class="form-status form-status-list form__message" tabindex="-1" autofocus>
@@ -99,6 +102,11 @@
       "id": "heading",
       "default": "Contact form",
       "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading"
     }
   ]
 }

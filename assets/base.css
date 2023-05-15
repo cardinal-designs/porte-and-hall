@@ -37,6 +37,10 @@ body.scroll-lock {
   padding: 0 80px;
 }
 
+.page-width--narrow {
+  max-width: 850px;
+}
+
 @media screen and (max-width: 1050px) {
   .page-width {
     padding: 0 40px;

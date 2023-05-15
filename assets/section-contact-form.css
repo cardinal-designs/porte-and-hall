@@ -11,8 +11,17 @@
 }
 
 .contact .title {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   color: var(--blue);
+}
+
+.contact .text {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.contact .text a {
+  text-decoration: underline;
 }
 
 textarea#ContactForm-body {
@@ -166,6 +175,10 @@ span.form__message.Form_Error {
 }
 
 @media screen and (min-width: 769px) {
+  .contact .title {
+    font-size: 32px;
+  }
+  
   .contact__button {
     margin-top: 50px;
   }
