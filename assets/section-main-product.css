@@ -80,6 +80,10 @@
   position: relative;
 }
 
+.product__media video {
+  max-width: 100%;
+}
+
 .product__media-buttons {
   position: absolute;
   display: flex;
