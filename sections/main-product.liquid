@@ -444,7 +444,7 @@
                     <div class="product__features">
                       {% for feature in grouped_collection.metafields.custom.product_features.value %}
                         <div class="product__features-item">
-                          {{ feature.image | image_url: width: 206 | image_tag: width: 103 }}
+                          {%  if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{%  endif %}
                           <p class="body-sm">{{ feature.label }}</p>
                         </div>
                       {% endfor %}
