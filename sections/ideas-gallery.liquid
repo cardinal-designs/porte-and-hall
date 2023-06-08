@@ -39,7 +39,7 @@
               {% continue %}
             {% endunless %}
             <button
-              class="body-xs body-bold-weight {% if forloop.first %} active{% endif %}"
+              class="body-xs body-bold-weight {% if custom_index == 0 %} active{% endif %}"
               data-action-tabs="{{ custom_index }}"
             >
               {{ style.name }}
