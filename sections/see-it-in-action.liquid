@@ -1,12 +1,16 @@
 {{ 'section-see-it-in-action.css' | asset_url | stylesheet_tag }}
 {% liquid
   for collection in product.collections
-    if collection.title contains ' | '
+    if collection.title contains ' |'
       assign grouped_collection = collection
     endif
   endfor
 
-  assign style_categories = shop.metaobjects.style_category.values | sort: 'order'
+  if grouped_collection.metafields.custom.product_inspiration != blank 
+    assign style_categories = grouped_collection.metafields.custom.product_inspiration.value.style.value | sort: 'order'
+  else 
+    assign style_categories = shop.metaobjects.style_category.values | sort: 'order'
+  endif 
   assign has_image = ""
  
   for category in style_categories 
@@ -32,7 +36,11 @@
       <div class="see-it-in-action__header">
         <h2 class="see-it-in-action__heading blue">{{ section.settings.heading | default: 'See it in action' }}</h2>
 
-        {% if section.settings.link != blank and section.settings.link_text != blank %}
+        {% if section.settings.text != blank %}
+          <p class="see-the-difference__text body blue">{{ section.settings.text }}</p>
+        {% endif %}
+
+        {% if section.settings.link != blank and section.settings.link_text != blank and grouped_collection.metafields.custom.product_inspiration == blank  %}
           <a href="{{ section.settings.link }}" class="text-link gold-secondary--dark see-it-in-action__link">
             {{- section.settings.link_text -}}
           </a>
@@ -47,7 +55,7 @@
               {% continue %}
             {% endunless %}
             <button
-              class="body-xs body-bold-weight {% if custom_index %} active{% endif %}"
+              class="body-xs body-bold-weight {% if custom_index == 0 %} active{% endif %}"
               data-action-tabs="{{ custom_index }}"
             >
               {{ style.name }}
@@ -126,9 +134,20 @@
   "class": "see-it-in-action with-spacing",
   "settings": [
     {
-      "type": "text",
+      "type": "collection",
+      "id": "collection",
+      "label": "Connect collection for metafield access"
+    },
+    {
+      "type": "richtext",
       "id": "heading",
-      "label": "heading"
+      "label": "Title",
+      "info" : "Defaults to 'See it in action'"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Subhead"
     },
     {
       "type": "url",

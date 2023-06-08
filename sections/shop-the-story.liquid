@@ -16,7 +16,7 @@
         {% assign my_fields = article.metafields.custom %}
         {% for product in my_fields.shop_story_product.value %}
           {% for collection in product.collections %}
-            {% if collection.title contains ' | ' %}
+            {% if collection.title contains ' |' %}
               {% assign grouped_collection = collection %}
             {% endif %}
           {% endfor %}

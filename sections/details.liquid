@@ -2,7 +2,7 @@
 
 {% liquid
   for collection in product.collections
-    if collection.title contains ' | '
+    if collection.title contains ' |'
       assign grouped_collection = collection
     endif
   endfor

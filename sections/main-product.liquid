@@ -5,7 +5,7 @@
 
 {% liquid
   for collection in product.collections
-    if collection.title contains ' | '
+    if collection.title contains ' |'
       assign grouped_collection = collection
     endif
   endfor
@@ -103,7 +103,7 @@
         {% assign product_form_id = 'product-form-' | append: section.id %}
 
         <h3 class="product__tag gray">
-          {{ product.selected_or_first_available_variant.metafields.custom.use | default: '' }}
+          {{ product.variants.first.metafields.filters.use.value.first }}
         </h3>
 
         <h1 class="product__title blue">
@@ -444,7 +444,7 @@
                     <div class="product__features">
                       {% for feature in grouped_collection.metafields.custom.product_features.value %}
                         <div class="product__features-item">
-                          {%  if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{%  endif %}
+                          {% if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{% endif %}
                           <p class="body-sm">{{ feature.label }}</p>
                         </div>
                       {% endfor %}
@@ -470,8 +470,10 @@
                         <br>
                         {{ grouped_collection.metafields.custom.additional_dimensions | newline_to_br }}
                       {% endif %}
+                      {% if grouped_collection.metafields.custom.weight != blank %}
                       <br>
                       Weight: {{ grouped_collection.metafields.custom.weight }}
+                      {% endif %}
                     </p>
                   </div>
                 </div>
