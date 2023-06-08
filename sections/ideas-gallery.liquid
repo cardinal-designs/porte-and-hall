@@ -1,7 +1,11 @@
 {{ 'section-see-it-in-action.css' | asset_url | stylesheet_tag }}
 {% liquid
 
-  assign style_categories = shop.metaobjects.style_category.values | sort: 'order'
+  comment
+    assign style_categories = shop.metaobjects.style_category.values | sort: 'order'
+  endcomment
+  
+  assign style_categories  = shop.metaobjects.inspiration.inspiration-pjc1rt7j.style.value | sort: 'order'
   assign has_image = ""
 
   for category in style_categories 
