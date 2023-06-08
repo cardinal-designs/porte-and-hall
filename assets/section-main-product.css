@@ -235,7 +235,7 @@
 
 .product__description {
   margin-top: 20px;
-  max-width: 400px;
+  /* max-width: 400px; */
   padding-right: 10%;
 }
 
@@ -510,6 +510,7 @@ afterpay-placement, .afterpay-paragraph {
 
 .product__tabs-item {
   padding: 20px 0 10px;
+  margin-top: 10px;
   text-align: left;
   font-weight: 500;
   line-height: 1.5;
@@ -517,6 +518,10 @@ afterpay-placement, .afterpay-paragraph {
 
 .product__tabs-item p {
   line-height: 140%;
+}
+.product__tabs-item ul,
+.product__tabs-item ol {
+  margin: 0;
 }
 
 .product__tabs-item li {

@@ -5,7 +5,7 @@
 
 {% liquid
   for collection in product.collections
-    if collection.title contains ' | '
+    if collection.title contains ' |'
       assign grouped_collection = collection
     endif
   endfor
@@ -36,7 +36,9 @@
         </div>
         <div class="h2 details__arrow-label">{{ arrow.label }}</div>  
       {% endfor %}
-      <div class="details__image-label body-xs">{{ grouped_collection.metafields.custom.design_detail_arrows.value.image_label }}</div>
+      {% if grouped_collection.metafields.custom.design_detail_arrows.value.image_label != blank %}
+        <div class="details__image-label body-xs">{{ grouped_collection.metafields.custom.design_detail_arrows.value.image_label }}</div>
+      {% endif %}
     </div>
   </div>
 {% endif %}
