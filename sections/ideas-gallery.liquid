@@ -32,16 +32,19 @@
 
       <div class="see-it-in-action__tabs-wrapper">
         <div class="see-it-in-action__tabs-buttons">
+          {% assign custom_index = 0 %}
           {% for style in style_categories %}
+
             {% unless has_image contains style.name %}
               {% continue %}
             {% endunless %}
             <button
               class="body-xs body-bold-weight {% if forloop.first %} active{% endif %}"
-              data-action-tabs="{{ forloop.index0 }}"
+              data-action-tabs="{{ custom_index }}"
             >
               {{ style.name }}
             </button>
+            {% assign custom_index = custom_index | plus: 1 %}
           {% endfor %}
         </div>
 
