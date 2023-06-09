@@ -98,7 +98,7 @@
 
 <style>
   #shopify-section-{{ section.id }} {
-    {%  if section.settings.off-white == true %}
+    {%  if section.settings.bg_color == "off-white"%}
       background-color: var(--off-white);
     {%  endif  %}
   }
@@ -168,9 +168,9 @@
       "label": "Link text"
     },
     {
-      "type": "checkbox",
-      "id": "off-white",
-      "label": "Off-white background?"
+      "type": "text",
+      "id": "bg_color",
+      "label": "Background color"
     }
   ]
 }
