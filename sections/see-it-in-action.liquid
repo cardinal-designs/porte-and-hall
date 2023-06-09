@@ -40,7 +40,7 @@
           <p class="see-the-difference__text body blue">{{ section.settings.text }}</p>
         {% endif %}
 
-        {% if section.settings.link != blank and section.settings.link_text != blank and grouped_collection.metafields.custom.product_inspiration == blank  %}
+        {% if section.settings.link != blank and section.settings.link_text != blank and grouped_collection.metafields.custom.product_inspiration == blank %}
           <a href="{{ section.settings.link }}" class="text-link gold-secondary--dark see-it-in-action__link">
             {{- section.settings.link_text -}}
           </a>
@@ -71,7 +71,56 @@
                 {% unless has_image contains style.name %}
                   {% continue %}
                 {% endunless %}
-                {% assign photos = style.product_photos.value %}
+
+                <div class="swiper-slide">
+                  {% assign photos = style.product_photos.value %}
+                  {% assign photos_size = style.product_photos | split: "," | size %}
+                  <div class="see-it-in-action__tabs-item ideas-gallery__wrapper">
+                    {% assign custom_index = 1 %}
+                    {% for photo in photos %}
+                      {% assign match = photo.product_collection.value | where: 'id', grouped_collection.id %}
+                      {% if match != blank %}
+                        {% assign firstCollection = photo.product_collection.value | first %}
+                        {% unless firstCollection == blank %}
+                          <a href="{{ firstCollection.products[0].url }}">
+                        {% endunless %}
+                        <div class="ideas-gallery__item" data-index={{ custom_index }}>
+                          <div class="see-it-in-action__tabs-image">
+                            {% assign photo_object = photo.image.value | file_url %}
+                            {{ photo.image | image_url: width: 1200 | image_tag }}
+                          </div>
+      
+                          <div class="see-it-in-action__tabs-label body-xs">{{ photo.product_name }} {{ photo.image.aspect_ratio }}</div>
+                        </div>
+                        {% unless firstCollection == blank %}
+                          </a>
+                        {% endunless %}
+                        {% assign remainder = forloop.index | modulo: 12 %}
+                        {% if forloop.index != 1 and remainder == 1 %}
+                          {% comment %} start custom index over {% endcomment %}
+                          {% assign custom_index = 1 %}
+                        {% else %}
+                          {% assign custom_index = custom_index | plus: 1 %}
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                    
+                    {% style %}
+                      .see-it-in-action__tabs-item {
+                        {% case custom_index %}
+                        {% when 2 %}
+                          grid-template-columns: repeat(1, minmax(auto, 1fr))
+                        {% when 3 %}
+                          grid-template-columns: repeat(2, minmax(auto, 1fr))
+                        {% else %}
+                          grid-template-columns: repeat(3, minmax(auto, 1fr))
+                      {% endcase %}
+
+                      }
+                    {% endstyle %}
+                  </div>
+                </div>
+                {% comment %} {% assign photos = style.product_photos.value %}
                 {% for photo in photos %}
                   {% assign match = photo.product_collection.value | where: 'id', grouped_collection.id %}
                   {% if match != blank %}
@@ -86,7 +135,7 @@
                       </div>
                     </div>
                   {% endif %}
-                {% endfor %}
+                {% endfor %} {% endcomment %}
               {% endfor %}
             </div>
           </div>
