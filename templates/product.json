@@ -93,7 +93,7 @@
         "text": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_subhead | metafield_tag }}<\/p>",
         "link": "shopify:\/\/pages\/ideas-inspiration",
         "link_text": "Get more inspiration >",
-        "show_link": true
+        "bg_color": "{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}"
       }
     },
     "styling-tips": {
