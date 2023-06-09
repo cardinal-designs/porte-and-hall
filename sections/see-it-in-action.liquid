@@ -75,7 +75,7 @@
                 <div class="swiper-slide">
                   {% assign photos = style.product_photos.value %}
                   {% assign photos_size = style.product_photos | split: "," | size %}
-                  <div class="see-it-in-action__tabs-item ideas-gallery__wrapper">
+                  <div class="see-it-in-action__tabs-item">
                     {% assign custom_index = 1 %}
                     {% for photo in photos %}
                       {% assign match = photo.product_collection.value | where: 'id', grouped_collection.id %}
@@ -107,6 +107,10 @@
                     
                     {% style %}
                       .see-it-in-action__tabs-item {
+                        display: grid;
+                        grid-auto-rows: auto;
+                        gap: 20px;
+                        padding-top: 40px;
                         {% case custom_index %}
                         {% when 2 %}
                           grid-template-columns: repeat(1, minmax(auto, 1fr))
@@ -117,6 +121,16 @@
                       {% endcase %}
 
                       }
+
+                      {% if custom_index == 2 %}
+                        .ideas-gallery__item {
+                          aspect-ratio: unset;
+                        }
+
+                        .ideas-gallery__item .see-it-in-action__tabs-image {
+                          aspect-ratio: 16/9;
+                        }
+                      {% endif %}
                     {% endstyle %}
                   </div>
                 </div>
