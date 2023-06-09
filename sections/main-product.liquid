@@ -280,6 +280,10 @@
               </div>
             </noscript>
 
+            {% if product.metafields.custom.restock_date != blank %}
+              <p class="product__restock-note body">{{ product.metafields.custom.restock_date }}</p>
+            {% endif %}
+
             <div class="product__quantity-atc-wrapper {% if product.available == false%}visually-hidden{% endif%}">
               <div class="product-form__input product-form__quantity">
                 <label class="form__label visually-hidden" for="Quantity-{{ section.id }}">
@@ -381,10 +385,6 @@
       <div class="product__oos-notify-wrapper">
         <p class="body"><button data-modal-trigger="notify-me" >Notify me</button> when out of stock styles are back in stock</p>
       </div>
-      {% endif %}
-
-      {% if product.metafields.custom.restock_date != blank %}
-        <p class="product__restock-note body">{{ product.metafields.custom.restock_date }}</p>
       {% endif %}
 
       <div class="product__tabs-wrapper">
