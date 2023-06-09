@@ -96,6 +96,14 @@
   </div>
 {% endunless %}
 
+<style>
+  #{{ section.id }} {
+    {%  if section.settings.off-white == true %}
+      background-color: var(--off-white);
+    {%  endif  %}}
+  }
+</style>
+
 {% javascript %}
   const tabsButtons = document.querySelectorAll('[data-action-tabs]');
 
@@ -158,6 +166,11 @@
       "type": "text",
       "id": "link_text",
       "label": "Link text"
+    },
+    {
+      "type": "checkbox",
+      "id": "off-white",
+      "label": "Off-white background?"
     }
   ]
 }
