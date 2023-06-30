@@ -670,3 +670,11 @@ variant-selects {
 .product-form__buttons.loading .loading-overlay__spinner {
   display: block;
 }
+
+.bis-styles {
+  padding: 16px;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  color: white;
+}
