@@ -294,7 +294,7 @@
             {% endif %}
 
             <div class="product__quantity-atc-wrapper">
-              <div class="product-form__input product-form__quantity">
+              <div class="product-form__input product-form__quantity {% if product.available == false%}visually-hidden{% endif%}">
                 <label class="form__label visually-hidden" for="Quantity-{{ section.id }}">
                   {{ 'products.product.quantity.label' | t }}
                 </label>
