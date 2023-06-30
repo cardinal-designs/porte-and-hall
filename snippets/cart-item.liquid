@@ -144,6 +144,8 @@
       </div>
 
     </div>
-
+    {%  if item.product.metafields.custom.cart_note != blank %}
+       <p class="cart-note-meta">{{ item.product.metafields.custom.cart_note }}</p>
+    {% endif %}
   </div>
 </div>

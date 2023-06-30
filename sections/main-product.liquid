@@ -293,8 +293,8 @@
               <p class="product__restock-note body">{{ product.metafields.custom.restock_date }}</p>
             {% endif %}
 
-            <div class="product__quantity-atc-wrapper {% if product.available == false%}visually-hidden{% endif%}">
-              <div class="product-form__input product-form__quantity">
+            <div class="product__quantity-atc-wrapper  {% if product.available == false %}bis-styles{% endif %}">
+              <div class="product-form__input product-form__quantity {% if product.available == false%}visually-hidden{% endif%}">
                 <label class="form__label visually-hidden" for="Quantity-{{ section.id }}">
                   {{ 'products.product.quantity.label' | t }}
                 </label>
@@ -366,6 +366,7 @@
           {% endform %}
         </product-form>
       </div>
+      {% comment %}
       {% if product.available == false %}
         <div class="product__oos-notify-wrapper">
           <p class="body">Notify me when THIS STYLE IS back in stock:</p>
@@ -395,7 +396,7 @@
         <p class="body"><button data-modal-trigger="notify-me" >Notify me</button> when out of stock styles are back in stock</p>
       </div>
       {% endif %}
-
+      {% endcomment %}
       <div class="product__tabs-wrapper">
         <div class="product__tabs-buttons">
           {% assign tab_count = 0 %}
@@ -504,7 +505,7 @@
 </section>
 
 <sticky-atc
-  class="{% if product.available == false%}visually-hidden{% endif%}"
+  class=""
   data-main-form="{{product_form_id}}"
   data-section-id="{{ section.id }}"
   style="display: none"

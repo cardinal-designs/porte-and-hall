@@ -159,7 +159,52 @@
       };
     </script>
 
-    <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=LzQY7t"></script>
+
+
+
+<script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
+<script>
+    var klaviyo = klaviyo || [];
+    klaviyo.init({
+      account: "LzQY7t",
+      platform: "shopify"
+    });
+    klaviyo.enable("backinstock",{ 
+    trigger: {
+      product_page_text: "Notify Me When Available",
+      product_page_class: "btn",
+      product_page_text_align: "center",
+      product_page_margin: "0px",
+      replace_anchor: true
+    },
+    modal: {
+     headline: "{product_name}",
+     body_content: "Register to receive a notification when this item comes back in stock.",
+     email_field_label: "Email",
+     button_label: "Notify me when available",
+     subscription_success_label: "You're in! We'll let you know when it's back.",
+     footer_content: '',
+     additional_styles: "@font-face { font-family: louize; src: url('{{ "LouizeDisplayTrial-Medium.eot" | asset_url }}'); src: url('{{ "LouizeDisplayTrial-Medium.woff" | asset_url }}') format('woff'), url('{{ "LouizeDisplayTrial-Medium.ttf" | asset_url }}') format('truetype'), url('{{ "LouizeDisplayTrial-Medium.svg" | asset_url }}') format('svg'); font-weight: 500; font-style: normal;} @font-face {font-family: brandon; src: url('{{ "BrandonGrotesque-Regular.ttf" | asset_url }}') format('truetype'), url({{ "BrandonGrotesque-Regular.woff" | asset_url }}) format('woff'), url({{ "BrandonGrotesque-Regular.woff2" | asset_url }}) format('woff2');} #klaviyo-bis-modal p, #klaviyo-bis-modal input { font-family: brandon; font-weight: 400; letter-spacing: .3px; font-size: 18px; line-height: 130%; color: #546B82;} #klaviyo-bis-modal button { font-family: brandon; font-size: 18px; text-transform: uppercase; line-height: 130%; font-weight: 600; letter-spacing: 2px; } #klaviyo-bis-modal h3 { line-height: 130%; font-family: louize; font-weight: 500;}",
+     drop_background_color: "#000",
+     background_color: "#fff",
+     text_color: "#546B82",
+     button_text_color: "#fff",
+     button_background_color: "#D2B066",
+     close_button_color: "#ccc",
+     error_background_color: "#fcd6d7",
+     error_text_color: "#C72E2F",
+     success_background_color: "#d3efcd",
+     success_text_color: "#1B9500"
+    }
+  });
+</script>
+
+
+
+
+    
+
+<!--     <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=LzQY7t"></script>
     <script>
         var klaviyo = klaviyo || [];
         klaviyo.init({
@@ -169,11 +214,11 @@
         klaviyo.enable("backinstock",{ 
         trigger: {
           product_page_text: "Notify Me When Available",
-          product_page_class: "Button Button--primary",
+          product_page_class: "product__quantity-atc-wrapper",
           product_page_text_align: "center",
           product_page_margin: "0px",
-          alternate_anchor: "product-form__submit",
-          replace_anchor: false
+          alternate_anchor: "product__quantity-atc-wrapper",
+          replace_anchor: true
         },
         modal: {
          headline: "{product_name}",
@@ -196,7 +241,7 @@
          success_text_color: "#1B9500"
         }
       });
-    </script>
+    </script> -->
     
     {% if product %}
       <script>

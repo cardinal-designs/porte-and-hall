@@ -670,3 +670,20 @@ variant-selects {
 .product-form__buttons.loading .loading-overlay__spinner {
   display: block;
 }
+
+.bis-styles {
+  padding: 16px 40px;
+  text-align: center;
+  justify-content: center;
+  color: white;
+  font-family: brandon;
+  font-size: 18px;
+  line-height: 120%;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.product__restock-note {
+  color: red;
+}
