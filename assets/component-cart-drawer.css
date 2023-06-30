@@ -149,6 +149,13 @@ cart-drawer-remove-button {
   font-weight: 600;
 }
 
+.cart-note-meta {
+  font-size: 12px;
+  line-height: 1;
+  margin-top: 10px;
+  color: #546B82;
+}
+
 .cart-drawer__footer {
   padding: 20px;
   position: absolute;
@@ -432,11 +439,4 @@ cart-drawer-remove-button {
   transition: unset;
   background: #F6ECE1;
   cursor: pointer;
-}
-
-.cart-note-meta {
-  font-size: 12px;
-  line-height: 1;
-  color: red;
-  margin-top: 10px;
 }
