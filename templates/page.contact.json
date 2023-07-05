@@ -62,7 +62,7 @@
           "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
           "settings": {
             "title": "{{ block.repeater.question.value }}",
-            "answer": "<p>{{ block.repeater.answer | metafield_tag }}<\/p>"
+            "answer": "{{ block.repeater.answer | metafield_tag }}"
           }
         }
       },
@@ -83,7 +83,7 @@
           "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
           "settings": {
             "title": "{{ block.repeater.question.value }}",
-            "answer": "<p>{{ block.repeater.answer | metafield_tag }}<\/p>"
+            "answer": "{{ block.repeater.answer | metafield_tag }}"
           }
         }
       },
@@ -94,6 +94,27 @@
         "heading": "The Innerweave",
         "anchor": "innerweave",
         "collection": "the-innerweave-doormat"
+      }
+    },
+    "3c29aadf-96d8-4980-b0d6-b26e09356fe8": {
+      "type": "faq",
+      "blocks": {
+        "7c45a7ed-c592-4372-96ed-afb71910ac34": {
+          "type": "faq",
+          "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
+          "settings": {
+            "title": "{{ block.repeater.question.value }}",
+            "answer": "{{ block.repeater.answer | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "7c45a7ed-c592-4372-96ed-afb71910ac34"
+      ],
+      "settings": {
+        "heading": "The Outlier",
+        "anchor": "outlier",
+        "collection": "the-outlier"
       }
     },
     "b20d4531-7798-44fa-bb09-292ee77ec20f": {
@@ -275,6 +296,7 @@
     "c2edffab-900a-444c-9814-5d168e3a79fa",
     "30a17b90-f055-4dc2-b0f1-33ee82ab7faf",
     "eb2cc5d6-0330-47f5-ac0d-50ab29549fc4",
+    "3c29aadf-96d8-4980-b0d6-b26e09356fe8",
     "b20d4531-7798-44fa-bb09-292ee77ec20f",
     "b580a5ec-04b2-46fb-9acf-feb6427ec1c7",
     "61ca12bd-ea14-4d79-ae73-033056129a3a"
