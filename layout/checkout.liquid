@@ -52,3 +52,7 @@
     {{ tracking_code }}
   </body>
 </html>
+<script>
+  var element = document.querySelector('.order-summary__section .edit_checkout .field');
+  element.insertAdjacentHTML('afterend', '<div class="checkout-text"><i>*One code per order</i></div>');
+</script>
