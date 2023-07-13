@@ -13,8 +13,21 @@
     {{ checkout_stylesheets }}
     {{ checkout_scripts }}
     <style>
+      .order-summary__section--discount .edit_checkout .fieldset .field__input-btn-wrapper .field__input-wrapper input#checkout_reduction_code {
+        font-size: 13px;
+        padding: 0.9em 0.8em;
+      }
+      .order-summary__section--discount .edit_checkout .fieldset .field__input-btn-wrapper .field__input-btn  {
+        width: auto;
+      }
+  
+      .order-summary__section--discount .edit_checkout .fieldset .field--show-floating-label .field__input-btn-wrapper .field__input-wrapper input#checkout_reduction_code {
+        padding: 1.5em 0 0.3571428571em 0.8em;
+      }
+      
       .order-summary__section--discount .edit_checkout .fieldset .checkout-text {
         display: none;
+  /*       display: inline-block; */
         padding-left: 0.4285714286em;
         color: #e22120;
       }
