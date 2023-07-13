@@ -332,9 +332,9 @@
                     disabled
                   {% endif %}
                 >
-                  {{ product.selected_or_first_available_variant.inventory_quantity }}
+                  
                   <span>
-                    {% if product.selected_or_first_available_variant.inventory_policy == 'continue' %}
+                    {% if product.selected_or_first_available_variant.inventory_policy == 'continue' and product.selected_or_first_available_variant.inventory_quantity <= 0 %}
                       PREORDER
                     {% else %}
                       {% if product.selected_or_first_available_variant.available %}
