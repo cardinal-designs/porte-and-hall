@@ -332,12 +332,18 @@
                     disabled
                   {% endif %}
                 >
+                  
                   <span>
-                    {% if product.selected_or_first_available_variant.available %}
+                    {% if product.selected_or_first_available_variant.inventory_policy == 'continue' and product.selected_or_first_available_variant.inventory_quantity <= 0 %}
+                      PREORDER
+                    {% else %}
+                      {% if product.selected_or_first_available_variant.available %}
                       {{ 'products.product.add_to_cart' | t }}
                     {% else %}
                       {{ 'products.product.sold_out' | t }}
                     {% endif %}
+                    {% endif %}
+           
                   </span>
                   <span> | </span>
                   <span>
@@ -549,11 +555,15 @@
         {% endif %}
       >
         <span>
-          {% if product.selected_or_first_available_variant.available %}
-            {{ 'products.product.add_to_cart' | t }}
-          {% else %}
-            {{ 'products.product.sold_out' | t }}
-          {% endif %}
+           {% if product.selected_or_first_available_variant.inventory_policy == 'continue' and product.selected_or_first_available_variant.inventory_quantity <= 0 %}
+             PREORDER
+           {% else %}
+              {% if product.selected_or_first_available_variant.available %}
+                {{ 'products.product.add_to_cart' | t }}
+              {% else %}
+                {{ 'products.product.sold_out' | t }}
+              {% endif %}
+            {% endif %}
         </span>
         <span> | </span>
         <span>
