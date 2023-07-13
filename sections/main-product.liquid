@@ -332,6 +332,7 @@
                     disabled
                   {% endif %}
                 >
+                  {{ product.selected_or_first_available_variant.inventory_quantity }}
                   <span>
                     {% if product.selected_or_first_available_variant.inventory_policy == 'continue' %}
                       PREORDER
