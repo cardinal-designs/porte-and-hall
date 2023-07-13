@@ -12,6 +12,13 @@
 
     {{ checkout_stylesheets }}
     {{ checkout_scripts }}
+    <style>
+      .order-summary__section--discount .edit_checkout .fieldset .checkout-text {
+        display: none;
+        padding-left: 0.4285714286em;
+        color: #e22120;
+      }
+    </style>
   </head>
   <body>
     {{ skip_to_content_link }}
