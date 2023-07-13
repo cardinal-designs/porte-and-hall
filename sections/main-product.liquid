@@ -334,9 +334,9 @@
                 >
                   
                   <span>
-                    {% if product.selected_or_first_available_variant.inventory_policy == 'continue' and product.selected_or_first_available_variant.inventory_quantity <= 0 %}
+                    {% if product.selected_or_first_available_variant.inventory_policy == 'continue' and product.selected_or_first_available_variant.inventory_quantity <= 0 %}11
                       PREORDER
-                    {% else %}
+                    {% else %}22
                       {% if product.selected_or_first_available_variant.available %}
                       {{ 'products.product.add_to_cart' | t }}
                     {% else %}
