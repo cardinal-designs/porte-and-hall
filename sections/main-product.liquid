@@ -333,7 +333,7 @@
                   {% endif %}
                 >
                   <span>
-                    {{ product.title }}
+                    {{ product.selected_or_first_available_variant }}
                     {% if product.selected_or_first_available_variant.available %}
                       {{ 'products.product.add_to_cart' | t }}
                     {% else %}
