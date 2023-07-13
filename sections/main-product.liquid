@@ -323,7 +323,7 @@
                 </quantity-input>
               </div>
 
-              <div class="product-form__buttons 11">
+              <div class="product-form__buttons">
                 <button
                   type="submit"
                   name="add"
@@ -333,11 +333,13 @@
                   {% endif %}
                 >
                   <span>
+                    {{ product.title }}
                     {% if product.selected_or_first_available_variant.available %}
                       {{ 'products.product.add_to_cart' | t }}
                     {% else %}
                       {{ 'products.product.sold_out' | t }}
                     {% endif %}
+            
                   </span>
                   <span> | </span>
                   <span>
@@ -540,7 +542,7 @@
       </quantity-input>
     </div>
 
-    <div class="product-form__buttons 22">
+    <div class="product-form__buttons">
       <button
         name="add"
         class="button button--full button--primary product-form__submit"
