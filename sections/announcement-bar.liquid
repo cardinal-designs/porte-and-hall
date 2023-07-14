@@ -1,22 +1,13 @@
 <div class="announcement-bar">
   {% if section.settings.link != blank %}
-    <a href="{{ section.settings.link }}" class="announcement-bar__item" onClick="Privy('show', 2149710);">
+    <a href="{{ section.settings.link }}" class="announcement-bar__item">
   {% endif %}
-    <div class="page-width">
+    <div class="page-width" {% if section.settings.show_popup == true %} onClick="Privy('show', 2149710);" {% endif %}>
       {{ section.settings.text }}
     </div>
   {% if section.settings.link != blank %}
     </a>
   {% endif %}
-  {% if section.settings.show_popup == true  %}
-    <a class="announcement-bar__item" onClick="Privy('show', 2149710);">
-  {% endif %}
-    <div class="page-width">
-      {{ section.settings.text }}
-    </div>
-  {% if section.settings.show_popup == true %}
-    </a>    
-  {% endif %}    
 </div>
 
 <style>
