@@ -1,6 +1,6 @@
-<div class="announcement-bar" onClick="Privy('show', 2149710);">
-  {% if section.settings.link != blank %}
-    <a href="{{ section.settings.link }}" class="announcement-bar__item">
+<div class="announcement-bar">
+  {% if section.settings.link != blank or section.settings.show_popup == true %}
+    <a href="{{ section.settings.link }}" class="announcement-bar__item" onClick="Privy('show', 2149710);">
   {% endif %}
     <div class="page-width">
       {{ section.settings.text }}
@@ -62,6 +62,12 @@
       "id": "text_color",
       "label": "Text Color",
       "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_popup",
+      "label": "Show Privy Privy",
+      "default": true
     }
   ]
 }
