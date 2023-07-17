@@ -64,6 +64,25 @@
 
 <grouped-product-card data-collection-id="{{collection.id}}">
   <div class="product-card {% if simple_card == true %}product-card-simple{% endif %}">
+    {% if template.suffix == 'last-chance' %}
+      <div class="product-card__image">
+        <div class="swiper product-card__image-swiper">
+          <div class="swiper-wrapper">
+            {% for i in product_card_product.images %}
+              <div class="swiper-slide">
+                {% render 'lazy-image', image: i, fill: true %}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="product-card__discount-flag">
+          <div class="product-card__discount-amount">40 <span>%</span></div>
+          <span>off</span>
+        </div>
+      </div>
+    {% else %}
     <div class="product-card__image">
       <a href="{{ product_card_product.url }}">
         {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill' %}
@@ -86,7 +105,23 @@
         </div>
       </a>
     </div>
+    {% endif %}
     {% if simple_card == true %}<div>{% endif %}
+
+    {% if template.suffix == 'last-chance' %}
+      <div class="product-card__type-label body-xs">
+        {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
+          {{ product_card_product.first_available_variant.metafields.custom.use }}
+        {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
+          Indoor/Outdoor
+        {% elsif lowercase_tags contains 'indoor' %}
+          Indoor
+        {% elsif lowercase_tags contains 'outdoor' %}
+          Outdoor
+        {% endif %}
+      </div>
+    {% endif %}
+
     <a href="{{ product_card_product.url }}">
       <h3 class="product-card__title blue">
         {{ title | default: collection.title | replace: ' | ', '<br>' }}
@@ -101,25 +136,40 @@
       {% if product_card_product.compare_at_price > product_card_product.price %}
         <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
       {% endif %}
-      {{ product_card_product.price | money_without_trailing_zeros }}
+      <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
+      <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
     </p>
 
+    {% unless template.suffix == 'last-chance' %}
     <div class="product-card__swatches">
       {% if active_swatch != blank %}
-        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url}}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | asset_url }})"></a>
+        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | asset_url }})"></a>
       {% endif %}
       {{ color_swatch_list }}
     </div>
+    {% endunless %}
 
     {% if collection.metafields.custom.short_description != blank %}
       {% unless simple_card == true %}
-        <div class="product-card__description body blue" style="display: none;">{{ collection.metafields.custom.short_description }}</div>
+        <div class="product-card__description body" {% unless template.suffix == "last-chance" %}style="display: none;{% endunless %}">
+          {{ collection.metafields.custom.short_description }}
+
+          {%- if collection.metafields.custom.dimensions != blank and template.suffix == 'last-chance' -%}
+            <div class="body product-card__dimensions">({{ collection.metafields.custom.dimensions }})</div>
+          {%- endif -%}
+        </div>
       {% endunless %}
     {% endif %}
 
-    <a href="{{ product_card_product.url }}" class="text-link gold-secondary--dark product-card__link">
-      {{- button_text }} ></a
-    >
-  {% if simple_card == true %}</div>{% endif%}
+    {% if template.suffix == 'last-chance' %}
+      <div>
+        <div class="product-card__urgency">Only {{ product_card_product.selected_or_first_available_variant.inventory_quantity }} products left!</div>
+      <button data-quick-add class="product-card__quick-add" data-variant="{{ product.selected_or_first_available_variant.id }}">Add to Cart</button>
+      </div>
+    {% else %}
+      <a href="{{ product_card_product.url }}" class="text-link gold-secondary--dark product-card__link">
+      {{- button_text }} ></a>
+    {% endif %}
+  {% if simple_card == true %}</div>{% endif %}
   </div>
 </grouped-product-card>

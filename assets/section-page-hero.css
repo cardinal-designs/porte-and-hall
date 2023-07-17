@@ -7,7 +7,22 @@
   text-align: center;
   max-width: 810px;
   margin: auto;
-  padding: 0 0 30px;
+}
+
+.page-hero__text {
+  font-size: 28px;
+  line-height: 32px;
+  text-align: center;
+}
+
+.page-hero__swap-fonts .page-hero__heading {
+  font-family: brandon;
+  font-weight: 600;
+}
+
+.page-hero__swap-fonts .page-hero__text {
+  font-family: louize;
+  font-weight: 500;
 }
 
 .page-hero__blocks {
@@ -19,6 +34,7 @@
   max-width: 900px;
   margin: auto;
   column-gap: 30px;
+  margin-top: 30px;
 }
 
 .page-hero__icon-wrapper {
