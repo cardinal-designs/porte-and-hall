@@ -1,14 +1,14 @@
-{% if section.settings.link != blank %}
-<a href="{{ section.settings.link }}" class="announcement-bar__item">
-{% endif %}
-  <div class="announcement-bar">
+<div class="announcement-bar">
+  {% if section.settings.link != blank %}
+    <a href="{{ section.settings.link }}" class="announcement-bar__item">
+  {% endif %}
     <div class="page-width {% if section.settings.show_popup == true %}cursor_pointer {% endif %}" {% if section.settings.show_popup == true %} onClick="Privy('show', 2149710);" {% endif %}>
       {{ section.settings.text }}
     </div>
-  </div>
-{% if section.settings.link != blank %}
-</a>
-{% endif %}
+  {% if section.settings.link != blank %}
+    </a>
+  {% endif %}
+</div>
 
 <style>
   .announcement-bar {
