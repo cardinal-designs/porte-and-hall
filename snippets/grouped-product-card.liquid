@@ -77,10 +77,14 @@
           <div class="swiper-pagination"></div>
         </div>
 
+        {% if product_card_product.compare_at_price > product_card_product.price %}
+          {% assign price_change = product_card_product.compare_at_price | minus: product_card_product.price %}
+          {% assign percent_discount = price_change | times: 100 | divided_by: product_card_product.compare_at_price %}
         <div class="product-card__discount-flag">
-          <div class="product-card__discount-amount">40 <span>%</span></div>
+          <div class="product-card__discount-amount">{{ percent_discount }} <span>%</span></div>
           <span>off</span>
         </div>
+        {% endif %}
       </div>
     {% else %}
     <div class="product-card__image">
@@ -164,7 +168,21 @@
     {% if template.suffix == 'last-chance' %}
       <div>
         <div class="product-card__urgency">Only {{ product_card_product.selected_or_first_available_variant.inventory_quantity }} products left!</div>
-      <button data-quick-add class="product-card__quick-add" data-variant="{{ product.selected_or_first_available_variant.id }}">Add to Cart</button>
+      <button data-quick-add class="product-card__quick-add button" data-variant="{{ product_card_product.selected_or_first_available_variant.id }}">
+        <span>Add to Cart</span>
+        <div class="loading-overlay__spinner">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            role="presentation"
+            class="spinner"
+            viewBox="0 0 66 66"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>
+      </button>
       </div>
     {% else %}
       <a href="{{ product_card_product.url }}" class="text-link gold-secondary--dark product-card__link">

@@ -2799,4 +2799,8 @@ select#notify_id {
 
 .Hidden {
   display: none;
-}        
+}      
+
+.button > span {
+  pointer-events: none;
+}
