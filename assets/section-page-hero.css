@@ -19,6 +19,13 @@
   text-align: center;
 }
 
+.page-hero__small-text {
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  margin-top: 10px;
+}
+
 .page-hero__swap-fonts .page-hero__heading {
   font-family: brandon;
   font-weight: 600;
@@ -64,6 +71,11 @@
     line-height: 20px;
     max-width: 315px;
     margin: auto;
+  }
+  .page-hero__small-text {
+    font-size: 10px;
+    line-height: 14px;
+    text-align: center;
   }
 
   .page-hero__blocks {

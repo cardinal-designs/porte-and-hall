@@ -5,6 +5,9 @@
     {% if section.settings.text != blank %}
       <p class="page-hero__text blue">{{ section.settings.text }}</p>
     {% endif %}
+    {% if section.settings.small_text != blank %}
+      <p class="page-hero__small-text blue">{{ section.settings.small_text }}</p>
+    {% endif %}
 
     {% if section.blocks != blank %}
       <div class="page-hero__blocks">
@@ -37,6 +40,11 @@
       "type": "textarea",
       "id": "text",
       "label": "Text"
+    },
+    {
+      "type": "textarea",
+      "id": "small_text",
+      "label": "Small Text"
     },
     {
       "type": "checkbox",
