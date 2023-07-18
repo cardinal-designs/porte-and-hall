@@ -140,7 +140,6 @@
       {% if product_card_product.compare_at_price > product_card_product.price %}
         <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
       {% endif %}
-      <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
       <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
     </p>
 
