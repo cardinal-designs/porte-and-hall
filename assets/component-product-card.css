@@ -45,7 +45,7 @@ grouped-product-card {
 }
 
 .product-card__image-swiper .swiper-pagination-bullet-active {
-  background: var(--blue);
+  background: var(--blue-secondary);
 }
 
 .product-card__image-swiper .swiper-pagination-bullet-active:after {
