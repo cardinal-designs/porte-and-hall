@@ -32,7 +32,7 @@ grouped-product-card {
 
 .product-card__image-swiper .swiper-pagination-bullet {
   background: transparent;
-  border: 1px solid var(--blue);
+  border: 1px solid var(--blue-secondary);
   border-radius: 100%;
   max-width: 12px;
   max-height: 12px;
