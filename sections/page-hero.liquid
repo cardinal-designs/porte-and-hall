@@ -1,7 +1,13 @@
 {{ 'section-page-hero.css' | asset_url | stylesheet_tag }}
-<div class="page-hero__inner">
+<div class="page-hero__inner {% if section.settings.swap-fonts == true %}page-hero__swap-fonts{% endif %}">
   <div class="page-width">
     <h1 class="page-hero__heading blue">{{ section.settings.heading }}</h1>
+    {% if section.settings.text != blank %}
+      <p class="page-hero__text blue">{{ section.settings.text }}</p>
+    {% endif %}
+    {% if section.settings.small_text != blank %}
+      <p class="page-hero__small-text blue">{{ section.settings.small_text }}</p>
+    {% endif %}
 
     {% if section.blocks != blank %}
       <div class="page-hero__blocks">
@@ -29,6 +35,22 @@
       "type": "textarea",
       "id": "heading",
       "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "textarea",
+      "id": "small_text",
+      "label": "Small Text"
+    },
+    {
+      "type": "checkbox",
+      "id": "swap-fonts",
+      "label": "Swap fonts",
+      "default": false
     }
   ],
   "max_blocks": 3,

@@ -1,13 +1,13 @@
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(auto, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: 20px;
   row-gap: 60px;
 }
 
 @media screen and (max-width: 768px) {
   .product-grid {
-    grid-template-columns: repeat(2, minmax(auto, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     row-gap: 24px;
     column-gap: 12px;
   }
@@ -15,7 +15,7 @@
 
 .collection-grid__inner {
   display: grid;
-  grid-template-columns: minmax(0, 276px) minmax(auto, 1fr);
+  grid-template-columns: minmax(0, 276px) minmax(0, 1fr);
   column-gap: 40.5px;
   grid-template-areas: 'filters grid';
   position: relative;
