@@ -2,7 +2,7 @@
   {% if section.settings.link != blank %}
     <a href="{{ section.settings.link }}" class="announcement-bar__item">
   {% endif %}
-    <div class="page-width">
+    <div class="page-width {% if section.settings.show_popup == true %}cursor_pointer {% endif %}" {% if section.settings.show_popup == true %} onClick="Privy('show', 2149710);" {% endif %}>
       {{ section.settings.text }}
     </div>
   {% if section.settings.link != blank %}
@@ -14,6 +14,13 @@
   .announcement-bar {
     color: {{ section.settings.text_color }};
     background-color: {{ section.settings.background_color }};
+  }
+
+  .cursor_pointer {
+    cursor: pointer;
+    width: 100%;
+    padding: 0;
+    max-width: 100%;
   }
 
   .announcement-bar a {
@@ -41,7 +48,7 @@
   "name": "Announcement Bar",
   "settings": [
     {
-      "type": "text",
+      "type": "textarea",
       "id": "text",
       "default": "Welcome to our store",
       "label": "Text"
@@ -62,6 +69,12 @@
       "id": "text_color",
       "label": "Text Color",
       "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_popup",
+      "label": "Show Privy Popup",
+      "default": true
     }
   ]
 }

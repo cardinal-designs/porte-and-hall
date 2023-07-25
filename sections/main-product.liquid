@@ -5,7 +5,7 @@
 
 {% liquid
   for collection in product.collections
-    if collection.title contains ' | '
+    if collection.title contains ' |'
       assign grouped_collection = collection
     endif
   endfor
@@ -103,7 +103,7 @@
         {% assign product_form_id = 'product-form-' | append: section.id %}
 
         <h3 class="product__tag gray">
-          {{ product.selected_or_first_available_variant.metafields.custom.use | default: '' }}
+          {{ product.variants.first.metafields.filters.use.value.first }}
         </h3>
 
         <h1 class="product__title blue">
@@ -144,8 +144,17 @@
               {% continue %}
             {% endif %}
             <span>
-              {%- if option.name == 'Color' %}Style{% else %}{{ option.name }}{% endif -%}</span
-            ><span> — {{ option.selected_value }}</span>
+              {%- if option.name == 'Color' or option.name == 'color' -%}
+                {%- if product.title contains 'Outlier' or product.title contains 'Outsider' -%}
+                  {{ option.name }}
+                {% else %}
+                  Style
+                {%- endif -%}
+              {%- else -%}
+                  {{ option.name }}
+              {%- endif -%}
+            </span>
+            <span> — {{ option.selected_value }}</span>
           </div>
         {% endfor %}
 
@@ -280,8 +289,12 @@
               </div>
             </noscript>
 
-            <div class="product__quantity-atc-wrapper {% if product.available == false%}visually-hidden{% endif%}">
-              <div class="product-form__input product-form__quantity">
+            {% if product.metafields.custom.restock_date != blank %}
+              <p class="product__restock-note body">{{ product.metafields.custom.restock_date }}</p>
+            {% endif %}
+
+            <div class="product__quantity-atc-wrapper  {% if product.available == false %}bis-styles{% endif %}">
+              <div class="product-form__input product-form__quantity {% if product.available == false%}visually-hidden{% endif%}">
                 <label class="form__label visually-hidden" for="Quantity-{{ section.id }}">
                   {{ 'products.product.quantity.label' | t }}
                 </label>
@@ -319,12 +332,18 @@
                     disabled
                   {% endif %}
                 >
+                  
                   <span>
-                    {% if product.selected_or_first_available_variant.available %}
+                    {% if product.selected_or_first_available_variant.inventory_policy == 'continue' and product.selected_or_first_available_variant.inventory_quantity <= 0 %}
+                      PREORDER
+                    {% else %}
+                      {% if product.selected_or_first_available_variant.available %}
                       {{ 'products.product.add_to_cart' | t }}
                     {% else %}
                       {{ 'products.product.sold_out' | t }}
                     {% endif %}
+                    {% endif %}
+           
                   </span>
                   <span> | </span>
                   <span>
@@ -353,6 +372,7 @@
           {% endform %}
         </product-form>
       </div>
+      {% comment %}
       {% if product.available == false %}
         <div class="product__oos-notify-wrapper">
           <p class="body">Notify me when THIS STYLE IS back in stock:</p>
@@ -382,11 +402,7 @@
         <p class="body"><button data-modal-trigger="notify-me" >Notify me</button> when out of stock styles are back in stock</p>
       </div>
       {% endif %}
-
-      {% if product.metafields.custom.restock_date != blank %}
-        <p class="product__restock-note body">{{ product.metafields.custom.restock_date }}</p>
-      {% endif %}
-
+      {% endcomment %}
       <div class="product__tabs-wrapper">
         <div class="product__tabs-buttons">
           {% assign tab_count = 0 %}
@@ -444,7 +460,7 @@
                     <div class="product__features">
                       {% for feature in grouped_collection.metafields.custom.product_features.value %}
                         <div class="product__features-item">
-                          {%  if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{%  endif %}
+                          {% if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{% endif %}
                           <p class="body-sm">{{ feature.label }}</p>
                         </div>
                       {% endfor %}
@@ -470,8 +486,10 @@
                         <br>
                         {{ grouped_collection.metafields.custom.additional_dimensions | newline_to_br }}
                       {% endif %}
+                      {% if grouped_collection.metafields.custom.weight != blank %}
                       <br>
                       Weight: {{ grouped_collection.metafields.custom.weight }}
+                      {% endif %}
                     </p>
                   </div>
                 </div>
@@ -493,7 +511,7 @@
 </section>
 
 <sticky-atc
-  class="{% if product.available == false%}visually-hidden{% endif%}"
+  class=""
   data-main-form="{{product_form_id}}"
   data-section-id="{{ section.id }}"
   style="display: none"
@@ -537,11 +555,15 @@
         {% endif %}
       >
         <span>
-          {% if product.selected_or_first_available_variant.available %}
-            {{ 'products.product.add_to_cart' | t }}
-          {% else %}
-            {{ 'products.product.sold_out' | t }}
-          {% endif %}
+           {% if product.selected_or_first_available_variant.inventory_policy == 'continue' and product.selected_or_first_available_variant.inventory_quantity <= 0 %}
+             PREORDER
+           {% else %}
+              {% if product.selected_or_first_available_variant.available %}
+                {{ 'products.product.add_to_cart' | t }}
+              {% else %}
+                {{ 'products.product.sold_out' | t }}
+              {% endif %}
+            {% endif %}
         </span>
         <span> | </span>
         <span>

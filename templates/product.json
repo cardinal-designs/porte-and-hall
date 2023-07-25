@@ -88,9 +88,12 @@
     "see-in-action": {
       "type": "see-it-in-action",
       "settings": {
-        "heading": "",
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
+        "heading": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_section_title | metafield_tag }}<\/p>",
+        "text": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_subhead | metafield_tag }}<\/p>",
         "link": "shopify:\/\/pages\/ideas-inspiration",
-        "link_text": "Get more inspiration >"
+        "link_text": "Get more inspiration >",
+        "bg_color": "{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}"
       }
     },
     "styling-tips": {
@@ -127,6 +130,7 @@
       ],
       "settings": {
         "heading": "",
+        "anchor": "",
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
       }
     },
@@ -158,7 +162,8 @@
       ],
       "settings": {
         "include_margins": true,
-        "heading": "Rave Reviews"
+        "heading": "Rave Reviews",
+        "section_reviews": true
       }
     },
     "you-may-like": {

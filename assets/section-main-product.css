@@ -235,7 +235,7 @@
 
 .product__description {
   margin-top: 20px;
-  max-width: 400px;
+  /* max-width: 400px; */
   padding-right: 10%;
 }
 
@@ -251,6 +251,7 @@
   text-transform: uppercase;
   font-size: 11px;
   font-weight: 600;
+  margin-top: 12px;
 }
 
 /* SWATCHES */
@@ -418,7 +419,7 @@
   column-gap: 30px;
   background: var(--gold);
   padding: 5px 35px 5px 5px;
-  margin-top: 30px;
+  margin-top: 20px;
   width: fit-content;
 
 }
@@ -510,6 +511,7 @@ afterpay-placement, .afterpay-paragraph {
 
 .product__tabs-item {
   padding: 20px 0 10px;
+  margin-top: 10px;
   text-align: left;
   font-weight: 500;
   line-height: 1.5;
@@ -517,6 +519,10 @@ afterpay-placement, .afterpay-paragraph {
 
 .product__tabs-item p {
   line-height: 140%;
+}
+.product__tabs-item ul,
+.product__tabs-item ol {
+  margin: 0;
 }
 
 .product__tabs-item li {
@@ -663,4 +669,17 @@ variant-selects {
 
 .product-form__buttons.loading .loading-overlay__spinner {
   display: block;
+}
+
+.bis-styles {
+  padding: 16px 40px;
+  text-align: center;
+  justify-content: center;
+  color: white;
+  font-family: brandon;
+  font-size: 18px;
+  line-height: 120%;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
 }

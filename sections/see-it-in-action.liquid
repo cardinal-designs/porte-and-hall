@@ -1,12 +1,16 @@
 {{ 'section-see-it-in-action.css' | asset_url | stylesheet_tag }}
 {% liquid
   for collection in product.collections
-    if collection.title contains ' | '
+    if collection.title contains ' |'
       assign grouped_collection = collection
     endif
   endfor
 
-  assign style_categories = shop.metaobjects.style_category.values | sort: 'order'
+  if grouped_collection.metafields.custom.product_inspiration != blank 
+    assign style_categories = grouped_collection.metafields.custom.product_inspiration.value.style.value | sort: 'order'
+  else 
+    assign style_categories = shop.metaobjects.style_category.values | sort: 'order'
+  endif 
   assign has_image = ""
  
   for category in style_categories 
@@ -32,7 +36,11 @@
       <div class="see-it-in-action__header">
         <h2 class="see-it-in-action__heading blue">{{ section.settings.heading | default: 'See it in action' }}</h2>
 
-        {% if section.settings.link != blank and section.settings.link_text != blank %}
+        {% if section.settings.text != blank %}
+          <p class="see-the-difference__text body blue">{{ section.settings.text }}</p>
+        {% endif %}
+
+        {% if section.settings.link != blank and section.settings.link_text != blank and grouped_collection.metafields.custom.product_inspiration == blank %}
           <a href="{{ section.settings.link }}" class="text-link gold-secondary--dark see-it-in-action__link">
             {{- section.settings.link_text -}}
           </a>
@@ -41,16 +49,18 @@
 
       <div class="see-it-in-action__tabs-wrapper">
         <div class="see-it-in-action__tabs-buttons">
+          {% assign custom_index = 0 %}
           {% for style in style_categories %}
             {% unless has_image contains style.name %}
               {% continue %}
             {% endunless %}
             <button
-              class="body-xs body-bold-weight {% if forloop.first %} active{% endif %}"
-              data-action-tabs="{{ forloop.index0 }}"
+              class="body-xs body-bold-weight {% if custom_index == 0 %} active{% endif %}"
+              data-action-tabs="{{ custom_index }}"
             >
               {{ style.name }}
             </button>
+          {% assign custom_index = custom_index | plus: 1 %}
           {% endfor %}
         </div>
 
@@ -61,7 +71,70 @@
                 {% unless has_image contains style.name %}
                   {% continue %}
                 {% endunless %}
-                {% assign photos = style.product_photos.value %}
+
+                <div class="swiper-slide">
+                  {% assign photos = style.product_photos.value %}
+                  {% assign photos_size = style.product_photos | split: "," | size %}
+                  <div class="see-it-in-action__tabs-item">
+                    {% assign custom_index = 1 %}
+                    {% for photo in photos %}
+                      {% assign match = photo.product_collection.value | where: 'id', grouped_collection.id %}
+                      {% if match != blank %}
+                        {% assign firstCollection = photo.product_collection.value | first %}
+                        {% unless firstCollection == blank %}
+                          <a href="{{ firstCollection.products[0].url }}">
+                        {% endunless %}
+                        <div class="ideas-gallery__item" data-index={{ custom_index }}>
+                          <div class="see-it-in-action__tabs-image">
+                            {% assign photo_object = photo.image.value | file_url %}
+                            {{ photo.image | image_url: width: 1200 | image_tag }}
+                          </div>
+      
+                          <div class="see-it-in-action__tabs-label body-xs">{{ photo.product_name }} {{ photo.image.aspect_ratio }}</div>
+                        </div>
+                        {% unless firstCollection == blank %}
+                          </a>
+                        {% endunless %}
+                        {% assign remainder = forloop.index | modulo: 12 %}
+                        {% if forloop.index != 1 and remainder == 1 %}
+                          {% comment %} start custom index over {% endcomment %}
+                          {% assign custom_index = 1 %}
+                        {% else %}
+                          {% assign custom_index = custom_index | plus: 1 %}
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                    
+                    {% style %}
+                      .see-it-in-action__tabs-item {
+                        display: grid;
+                        grid-auto-rows: auto;
+                        gap: 20px;
+                        padding-top: 40px;
+                        {% case custom_index %}
+                        {% when 2 %}
+                          grid-template-columns: repeat(1, minmax(auto, 1fr))
+                        {% when 3 %}
+                          grid-template-columns: repeat(2, minmax(auto, 1fr))
+                        {% else %}
+                          grid-template-columns: repeat(3, minmax(auto, 1fr))
+                      {% endcase %}
+
+                      }
+
+                      {% if custom_index == 2 %}
+                        .ideas-gallery__item {
+                          aspect-ratio: unset;
+                        }
+
+                        .ideas-gallery__item .see-it-in-action__tabs-image {
+                          aspect-ratio: 16/9;
+                        }
+                      {% endif %}
+                    {% endstyle %}
+                  </div>
+                </div>
+                {% comment %} {% assign photos = style.product_photos.value %}
                 {% for photo in photos %}
                   {% assign match = photo.product_collection.value | where: 'id', grouped_collection.id %}
                   {% if match != blank %}
@@ -76,7 +149,7 @@
                       </div>
                     </div>
                   {% endif %}
-                {% endfor %}
+                {% endfor %} {% endcomment %}
               {% endfor %}
             </div>
           </div>
@@ -85,6 +158,14 @@
     </div>
   </div>
 {% endunless %}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    {%  if section.settings.bg_color == "off-white"%}
+      background-color: var(--off-white);
+    {%  endif  %}
+  }
+</style>
 
 {% javascript %}
   const tabsButtons = document.querySelectorAll('[data-action-tabs]');
@@ -124,9 +205,20 @@
   "class": "see-it-in-action with-spacing",
   "settings": [
     {
-      "type": "text",
+      "type": "collection",
+      "id": "collection",
+      "label": "Connect collection for metafield access"
+    },
+    {
+      "type": "richtext",
       "id": "heading",
-      "label": "heading"
+      "label": "Title",
+      "info" : "Defaults to 'See it in action'"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Subhead"
     },
     {
       "type": "url",
@@ -137,6 +229,11 @@
       "type": "text",
       "id": "link_text",
       "label": "Link text"
+    },
+    {
+      "type": "text",
+      "id": "bg_color",
+      "label": "Background color"
     }
   ]
 }

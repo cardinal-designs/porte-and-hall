@@ -1,7 +1,11 @@
 {{ 'section-see-it-in-action.css' | asset_url | stylesheet_tag }}
 {% liquid
 
-  assign style_categories = shop.metaobjects.style_category.values | sort: 'order'
+  comment
+    assign style_categories = shop.metaobjects.style_category.values | sort: 'order'
+  endcomment
+  
+  assign style_categories  = shop.metaobjects.inspiration.inspiration-pjc1rt7j.style.value | sort: 'order'
   assign has_image = ""
 
   for category in style_categories 
@@ -28,16 +32,19 @@
 
       <div class="see-it-in-action__tabs-wrapper">
         <div class="see-it-in-action__tabs-buttons">
+          {% assign custom_index = 0 %}
           {% for style in style_categories %}
+
             {% unless has_image contains style.name %}
               {% continue %}
             {% endunless %}
             <button
-              class="body-xs body-bold-weight {% if forloop.first %} active{% endif %}"
-              data-action-tabs="{{ forloop.index0 }}"
+              class="body-xs body-bold-weight {% if custom_index == 0 %} active{% endif %}"
+              data-action-tabs="{{ custom_index }}"
             >
               {{ style.name }}
             </button>
+            {% assign custom_index = custom_index | plus: 1 %}
           {% endfor %}
         </div>
 
@@ -56,7 +63,7 @@
                       {% for photo in photos %}
                         {% assign firstCollection = photo.product_collection.value | first %}
                         {% unless firstCollection == blank %}
-                        <a href="{{ firstCollection.products[0].url}}">
+                          <a href="{{ firstCollection.products[0].url}}">
                         {% endunless %}
                         <div class="ideas-gallery__item" data-index={{ custom_index }}>
                           <div class="see-it-in-action__tabs-image">
@@ -67,8 +74,8 @@
                           <div class="see-it-in-action__tabs-label body-xs">{{ photo.product_name }} {{ photo.image.aspect_ratio }}</div>
                         </div>
                         {% unless firstCollection == blank %}
-                        </a>
-                      {% endunless %}
+                          </a>
+                        {% endunless %}
                         {% assign remainder = forloop.index | modulo: 12 %}
                         {% if forloop.index != 1 and remainder == 1 %}
                           {% comment %} start custom index over {% endcomment %}

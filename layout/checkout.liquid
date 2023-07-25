@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+
+    <title>{{ page_title }}</title>
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+    <style>
+      .order-summary__section--discount .edit_checkout .fieldset .field__input-btn-wrapper .field__input-wrapper input#checkout_reduction_code {
+        font-size: 13px;
+        padding: 0.9em 0.8em;
+      }
+      .order-summary__section--discount .edit_checkout .fieldset .field__input-btn-wrapper .field__input-btn  {
+        width: auto;
+      }
+  
+      .order-summary__section--discount .edit_checkout .fieldset .field--show-floating-label .field__input-btn-wrapper .field__input-wrapper input#checkout_reduction_code {
+        padding: 1.5em 0 0.3571428571em 0.8em;
+      }
+      
+      .order-summary__section--discount .edit_checkout .fieldset .checkout-text {
+        display: none;
+        padding-left: 0.4285714286em;
+        color: #e22120;
+      }
+      
+      .order-summary__section--discount .edit_checkout .fieldset .field__input-btn-wrapper .field__input-btn {
+        width: auto;
+      }
+      
+      .order-summary__section--discount .edit_checkout .fieldset .field__input-btn-wrapper .field__input-wrapper input#checkout_reduction_code {
+        font-size: 13px;
+        padding: 0.9em 0.8em;
+      }
+
+      .field__input-btn-wrapper input#checkout_reduction_code {
+        border-radius: 0;
+      }
+      
+      .field__input-btn-wrapper button.field__input-btn.btn.btn--disabled {
+        margin: 0;
+        border-radius: 0;
+        background-color: #546B82;
+        max-width: 155px;
+        width: 100%;
+      }
+
+      .field__input:focus, .field__input-wrapper--flag-focus .field__input {
+        outline: none;
+        border-color: #1c1b1b;
+        -webkit-box-shadow: 0 0 0 1px #1c1b1b;
+        box-shadow: 0 0 0 1px #1c1b1b;
+      }
+      
+    </style>
+  </head>
+  <body>
+    {{ skip_to_content_link }}
+
+    <header class="banner" data-header role="banner">
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </header>
+
+    {{ order_summary_toggle }}
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main">
+          <header class="main__header" role="banner">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+          </header>
+          <main class="main__content" role="main">
+            {{ content_for_layout }}
+          </main>
+          <footer class="main__footer" role="contentinfo">
+            {{ content_for_footer }}
+          </footer>
+        </div>
+        <aside class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          <div class="sidebar__content">
+            {{ content_for_order_summary }}
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    {{ tracking_code }}
+  </body>
+</html>
+<script>
+  var element = document.querySelector('.order-summary__section .edit_checkout .field');
+  element.insertAdjacentHTML('afterend', '<div class="checkout-text"><i>*One code per order</i></div>');
+</script>

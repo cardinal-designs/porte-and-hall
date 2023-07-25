@@ -421,5 +421,32 @@
       "copy_code_success": "Code copied successfully",
       "print_gift_card": "Print"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "order_summary": {
+        "shopping_cart_label": "Order Summary",
+        "gift_card_and_discount_placeholder": "Gift card or discount code (one per order)",
+        "gift_card_and_discount_label": "Gift card or discount code (one per order)"
+      },
+      "contact": {
+        "email_or_phone_label": "Email",
+        "email_or_phone_placeholder": "Email"
+      },
+      "field_errors": {
+        "email_or_phone_blank": "Enter an email"
+      },
+      "marketing": {
+        "accept_sms_checkbox_label": "Join our SMS\/text list for early access & special offers",
+        "sms": {
+          "disclaimer": {
+            "description_html": "By joining our text list, you agree to receive recurring automated marketing messages (e.g. cart reminders) from Porte + Hall at the number provided. Consent is not a condition of purchase. Reply STOP to unsubscribe. Reply SUPPORT for help. Message frequency varies. Msg & data rates may apply. View our Privacy Policy and Terms of Service."
+          }
+        }
+      }
+    },
+    "errors": {
+      "reset_password_html": "This email address is already associated with an account. If this account is yours, you can reset your password <a href=\"\/account\/login#recover\">here.<\/a>"
+    }
   }
 }

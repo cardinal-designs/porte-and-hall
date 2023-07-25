@@ -13,7 +13,7 @@
       <div class="swiper-wrapper">
         {% for product in section.settings.collection.products limit: 25 %}
           {% for collection in product.collections %}
-            {% if collection.title contains ' | ' %}
+            {% if collection.title contains ' |' %}
               {% assign grouped_collection = collection %}
             {% endif %}
           {% endfor %}
