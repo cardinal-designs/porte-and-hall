@@ -107,6 +107,14 @@
   display: inline-block;
   margin-left: 1rem;
 }
+.cart-item__discounts {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+}
 
 @media screen and (min-width: 769px) and (max-width: 989px) {
   .cart-item cart-remove-button {
