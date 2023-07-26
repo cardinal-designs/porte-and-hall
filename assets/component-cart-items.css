@@ -107,6 +107,7 @@
   display: inline-block;
   margin-left: 1rem;
 }
+
 .cart-item__discounts {
   display: flex;
   flex-direction: row;
@@ -114,6 +115,15 @@
   align-items: center;
   flex-wrap: wrap;
   list-style: none;
+  gap: 5px;
+}
+
+.cart-item__discount-label {
+  background: var(--grey);
+  color: white;
+  padding: 3px 6px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 @media screen and (min-width: 769px) and (max-width: 989px) {
