@@ -111,7 +111,7 @@
         </h1>
 
         <div class="product__price-reviews-wrapper">
-          <div class="no-js-hidden" id="price-{{ section.id }}" role="status">
+          <div class="no-js-hidden product__price" id="price-{{ section.id }}" role="status">
             {% if product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product.price > product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
               <span class="old-price">{{ product.price | money_without_trailing_zeros }}</span>
               <span>{{ product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>

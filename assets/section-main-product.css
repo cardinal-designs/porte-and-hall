@@ -233,6 +233,23 @@
   margin-top: 10px;
 }
 
+.product__price {
+  /* margin: 10px 0 0;
+  padding-top: 5px; */
+}
+
+.product__price .old-price {
+  margin-right: 5px;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  opacity: .3;
+}
+
+.product__price .old-price + span {
+  font-weight: 600;
+}
+
+
 .product__description {
   margin-top: 20px;
   /* max-width: 400px; */
