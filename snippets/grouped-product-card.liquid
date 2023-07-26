@@ -145,10 +145,12 @@
     </a>
 
     <p class="product-card__price body blue">
-      {% if product_card_product.compare_at_price > product_card_product.price %}
-        <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
-      {% endif %}
-      <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
+      {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price %}
+        <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
+        <span>{{ product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price }}</span>
+      {% else %}
+        <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
+      {%  endif  %}
     </p>
 
     {% unless template.suffix == 'last-chance' %}
