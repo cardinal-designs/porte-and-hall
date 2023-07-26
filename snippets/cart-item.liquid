@@ -70,6 +70,17 @@
             </h6>
           {% endif %}
         {% endfor %}
+
+        {% if line_item.line_level_discount_allocations.size > 0 %}
+          Discounts:
+          <ul>
+            {% for discount_allocation in line_item.line_level_discount_allocations %}
+              <li>
+                {{ discount_allocation.discount_application.title }}-{{ discount_allocation.amount | money }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       </div>
 
       <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
