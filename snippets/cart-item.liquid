@@ -72,10 +72,9 @@
         {% endfor %}
 
         {% if item.line_level_discount_allocations.size > 0 %}
-          Discounts:
-          <ul>
+          <ul class="cart-item__discouns">
             {% for discount_allocation in item.line_level_discount_allocations %}
-              <li>
+              <li class="cart-item__discount-label">
                 {{ discount_allocation.discount_application.title }}-{{ discount_allocation.amount | money }}
               </li>
             {% endfor %}
