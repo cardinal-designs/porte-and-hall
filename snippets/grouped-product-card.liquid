@@ -107,6 +107,15 @@
             Outdoor
           {% endif %}
         </div>
+
+        {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price %}
+          {% assign price_change = product_card_product.price | minus: product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price %}
+          {% assign percent_discount = price_change | times: 100 | divided_by: product_card_product.price %}
+        <div class="product-card__discount-flag">
+          <div class="product-card__discount-amount">{{ percent_discount }} <span>%</span></div>
+          <span>off</span>
+        </div>
+        {% endif %}
       </a>
     </div>
     {% if simple_card == true %}<div>{% endif %}
