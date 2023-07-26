@@ -234,8 +234,10 @@
 }
 
 .product__price {
-  /* margin: 10px 0 0;
-  padding-top: 5px; */
+ display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
 }
 
 .product__price .old-price {
