@@ -352,7 +352,12 @@
                   </span>
                   <span> | </span>
                   <span>
-                    {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '' %}
+
+                    {% if product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product.price > product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+                      <span>{{ product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
+                    {% else %}
+                      {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '' %}
+                  {%  endif %}
                   </span>
                   <div class="loading-overlay__spinner">
                     <svg
