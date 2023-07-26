@@ -143,6 +143,10 @@ cart-drawer-remove-button {
   height: auto;
 }
 
+.cart-item__price dd {
+  margin-inline-start: 0;
+}
+
 .cart-item__discounted-prices {
    display: flex;
   flex-direction: row;
