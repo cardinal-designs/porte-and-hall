@@ -150,6 +150,7 @@
         <span>{{ product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price }}</span>
       {% else %}
         <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
+      <span>{{ product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price }}</span>
       {%  endif  %}
     </p>
 
