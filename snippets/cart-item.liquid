@@ -75,7 +75,7 @@
           <ul class="cart-item__discounts">
             {% for discount_allocation in item.line_level_discount_allocations %}
               <li class="cart-item__discount-label body-xs">
-                {{ discount_allocation.discount_application.title }} | save {{ discount_allocation.amount | money }}
+                Save {{ discount_allocation.amount | money }}
               </li>
             {% endfor %}
           </ul>
