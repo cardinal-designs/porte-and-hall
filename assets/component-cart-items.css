@@ -119,6 +119,7 @@
 }
 
 .cart-item__discount-label {
+  list-style: none;
   background: var(--grey);
   color: white;
   padding: 3px 6px;
