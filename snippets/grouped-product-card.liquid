@@ -64,7 +64,7 @@
 
 <grouped-product-card data-collection-id="{{collection.id}}">
   <div class="product-card {% if simple_card == true %}product-card-simple{% endif %}">
-    {% if template.suffix == 'last-chance' %}
+    {% comment %}
       <div class="product-card__image">
         <div class="swiper product-card__image-swiper">
           <div class="swiper-wrapper">
@@ -86,7 +86,7 @@
         </div>
         {% endif %}
       </div>
-    {% else %}
+    {% endcomment %}
     <div class="product-card__image">
       <a href="{{ product_card_product.url }}">
         {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill' %}
@@ -109,7 +109,6 @@
         </div>
       </a>
     </div>
-    {% endif %}
     {% if simple_card == true %}<div>{% endif %}
 
     {% if template.suffix == 'last-chance' %}
@@ -158,7 +157,7 @@
           {{ collection.metafields.custom.short_description }}
 
           {%- if collection.metafields.custom.dimensions != blank and template.suffix == 'last-chance' -%}
-            <div class="body product-card__dimensions TEST">({{ collection.metafields.custom.dimensions }})</div>
+            <div class="body product-card__dimensions">({{ collection.metafields.custom.dimensions }})</div>
           {%- endif -%}
         </div>
       {% endunless %}
