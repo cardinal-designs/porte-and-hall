@@ -145,7 +145,7 @@
     </a>
 
     <p class="product-card__price body blue">
-      {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price %}
+      {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
         <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
         <span>{{ product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value }}</span>
       {% else %}
