@@ -165,6 +165,25 @@ cart-drawer-remove-button {
   font-weight: 600;
 }
 
+.cart-item__discounts {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 5px;
+}
+
+.cart-item__discount-label {
+  list-style: none;
+  background: var(--grey);
+  color: white;
+  padding: 3px 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 .cart-note-meta {
   font-size: 12px;
   line-height: 1;
