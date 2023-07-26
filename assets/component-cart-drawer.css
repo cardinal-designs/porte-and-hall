@@ -143,6 +143,18 @@ cart-drawer-remove-button {
   height: auto;
 }
 
+.cart-item__discounted-prices {
+   display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+.cart-item__discounted-prices .cart-item__old-price {
+  margin-right: 5px;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  opacity: .3;
+}
 .cart-item__price .price {
   color: var(--blue);
   font-size: 18px;
