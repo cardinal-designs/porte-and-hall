@@ -143,10 +143,46 @@ cart-drawer-remove-button {
   height: auto;
 }
 
+.cart-item__price dd {
+  margin-inline-start: 0;
+}
+
+.cart-item__discounted-prices {
+   display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+.cart-item__discounted-prices .cart-item__old-price {
+  margin-right: 5px;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  opacity: .3;
+}
 .cart-item__price .price {
   color: var(--blue);
   font-size: 18px;
   font-weight: 600;
+}
+
+.cart-item__discounts {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 5px;
+  padding: 0;
+}
+
+.cart-item__discount-label {
+  list-style: none;
+  background: var(--gray);
+  color: white;
+  padding: 3px 6px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .cart-note-meta {
