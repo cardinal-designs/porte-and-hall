@@ -1,5 +1,5 @@
 {{ 'section-page-hero.css' | asset_url | stylesheet_tag }}
-<div class="page-hero__inner {% if section.settings.swap-fonts == true %}page-hero__swap-fonts{% endif %}" {% if section.settings.bg_image %}style="background-image:({{ section.settings.bg_image | asset_url }});"{% endif %}>
+<div class="page-hero__inner {% if section.settings.swap-fonts == true %}page-hero__swap-fonts{% endif %}" {% if section.settings.bg_image %}style="background-image:url({{ section.settings.bg_image | asset_url }});"{% endif %}>
   <div class="page-width">
     <h1 class="page-hero__heading blue">{{ section.settings.heading }}</h1>
     {% if section.settings.text != blank %}
