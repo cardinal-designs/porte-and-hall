@@ -28,13 +28,17 @@
 
 {% if section.settings.bg_image %}
 <style>
+.page-hero {
+  padding: 20px 0;
+  background-color: white;
+}
+  
 .page-hero__inner {
   background-image:url({{ section.settings.bg_image | img_url: 'master' }});
   background-size: contain;
   height: 150px;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: white;
 }
 </style>
 {% endif %}
