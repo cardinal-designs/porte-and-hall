@@ -2,7 +2,7 @@
 
 <div class="page-hero__inner {% if section.settings.swap-fonts == true %}page-hero__swap-fonts{% endif %}">
   {% if section.settings.bg_image != blank %}
-    {{ section.settings.bg_image | img_url: 'master' }}
+    {% render 'lazy-image', image: section.settings.bg_image %}
   {% endif %}
   <div class="page-width">
     <h1 class="page-hero__heading blue">{{ section.settings.heading }}</h1>
