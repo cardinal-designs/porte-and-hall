@@ -67,14 +67,10 @@
   width: 100%;
 }
 
-@media screen and (max-width: 768px) {
-  .page-hero {
-    min-height: 224px;
-  }
-  
+@media screen and (max-width: 768px) {  
   .page-hero__inner .aspect-ratio {
     max-width: 350px !important;
-    margin-bottom: -25px;
+    margin-bottom: 0;
   }
   .page-hero__text {
     font-size: 14px;
