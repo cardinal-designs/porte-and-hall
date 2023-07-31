@@ -8,8 +8,7 @@
 }
 
 .page-hero__inner .aspect-ratio {
-  max-width: 400px;
-  width: 400px;
+  max-width: 400px !important;
   margin-bottom: -50px;
 }
 
