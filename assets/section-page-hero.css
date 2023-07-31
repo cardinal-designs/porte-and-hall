@@ -8,8 +8,11 @@
 }
 
 .page-hero__inner .aspect-ratio {
-  width: 400px;
   margin-bottom: -50px;
+}
+
+.page-hero__inner .aspect-ratio img {
+  width: 400px;
 }
 
 .page-hero__heading {
