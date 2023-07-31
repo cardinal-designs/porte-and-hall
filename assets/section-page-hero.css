@@ -7,6 +7,11 @@
   align-items: initial;
 }
 
+.page-hero__inner .aspect-ratio {
+  width: 400px;
+  margin-bottom: -50px;
+}
+
 .page-hero__heading {
   text-align: center;
   max-width: 810px;
