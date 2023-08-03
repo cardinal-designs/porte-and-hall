@@ -114,7 +114,7 @@
     <div class="page-overlay"></div>
 
     <div class="outer-header-wrapper {% if page.metafields.custom.hide_header == true %}Hidden{% endif %}">
-      {% unless collection.custom.hide_announcement_bar == true %}
+      {% unless collection.metafields.custom.last_chance_price == true %}
         {% section 'announcement-bar' %}
       {% endunless %}
       {% section 'header' %}
