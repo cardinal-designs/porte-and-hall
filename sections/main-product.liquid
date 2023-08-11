@@ -127,12 +127,12 @@
             <span
               class="stamped-product-reviews-badge stamped-main-badge"
               data-id="{{ product.id }}"
-              data-product-sku="{{ product.handle }}"
+              data-product-sku="{{product.selected_or_first_available_variant.sku}}"
               data-product-type="{{product.type}}"
               data-product-title="{{product.title}}"
               style="display: inline-block;"
             >
-              {{- product.metafields.stamped.badge -}}
+              
             </span>
           </div>
         </div>
