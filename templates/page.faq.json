@@ -140,13 +140,21 @@
             "title": "What payment methods do you accept?",
             "answer": "<p>We accept Visa, Mastercard, American Express, PayPal, and Apple Pay.<\/p>"
           }
+        },
+        "c898dbcb-2fc9-4d05-992a-64a949434af2": {
+          "type": "faq",
+          "settings": {
+            "title": "How long does shipping take?",
+            "answer": "<p>All orders (unless a product is noted as presale) will be shipped from our warehouse in Connecticut within 5 business days. Customers typically receive their order 7-10 days after the order was placed. Once your order has shipped, you will receive a shipping confirmation email with tracking information.<\/p>"
+          }
         }
       },
       "block_order": [
         "35e866e1-70a2-465b-80bb-4642cb10f907",
         "fb60b197-4fa3-4f24-bd65-8598e12d96b3",
         "2cc580e0-bc3e-426d-865e-dab80bedec5b",
-        "9176525a-ac06-4428-939f-31f6276e313d"
+        "9176525a-ac06-4428-939f-31f6276e313d",
+        "c898dbcb-2fc9-4d05-992a-64a949434af2"
       ],
       "settings": {
         "heading": "Shipping & Payment Methods",
