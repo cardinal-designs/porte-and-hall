@@ -2,7 +2,10 @@
   {% if section.settings.link != blank %}
     <a href="{{ section.settings.link }}" class="announcement-bar__item">
   {% endif %}
-    <div class="page-width {% if section.settings.show_popup == true %}cursor_pointer {% endif %}" {% if section.settings.show_popup == true %} onClick="Privy('show', 3982006);" {% endif %}>
+    <div class="hide-desktop page-width {% if section.settings.show_popup == true %}cursor_pointer {% endif %}" {% if section.settings.show_popup == true %} onClick="Privy('show', {{ section.settings.privy_mobile }});" {% endif %}>
+      {{ section.settings.text }}
+    </div>
+    <div class="hide-mobile page-width {% if section.settings.show_popup == true %}cursor_pointer {% endif %}" {% if section.settings.show_popup == true %} onClick="Privy('show', {{ section.settings.privy_desktop }});" {% endif %}>
       {{ section.settings.text }}
     </div>
   {% if section.settings.link != blank %}
