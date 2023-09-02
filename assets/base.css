@@ -2804,3 +2804,12 @@ select#notify_id {
 .button > span {
   pointer-events: none;
 }
+/* ================= */
+
+.quantity__button svg.icon.icon-remove{
+  width: 16px;
+  position: relative;
+  top: 1px;
+}
+
+
