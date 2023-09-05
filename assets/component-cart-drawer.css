@@ -492,8 +492,13 @@ cart-drawer-remove-button {
   
     position: relative;
     display: flex;
-    align-items: center;
-  padding: 0 20px;
+    align-items: center; 
+}
+.cart-text-with-icon .icon-text-box:first-child{
+  padding-right:20px;
+}
+.cart-text-with-icon .icon-text-box:last-child{
+  padding-left:20px;
 }
 .cart-text-with-icon .icon-text-box:before{
   content:"";
@@ -511,6 +516,10 @@ cart-drawer-remove-button {
   font-size: 18px;
     margin: 0;
     line-height: 1.25;
+  max-width: 195px;
+}
+.cart-text-with-icon .icon-text-box:first-child h6{
+
   max-width: 195px;
 }
 .cart-text-with-icon .icon-text-box span{
