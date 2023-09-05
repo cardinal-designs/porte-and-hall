@@ -477,3 +477,7 @@ cart-drawer-remove-button {
   background: #F6ECE1;
   cursor: pointer;
 }
+.cart-drawer__content .cart-item .cart-item__remove{
+  display:none;
+}
+
