@@ -483,3 +483,10 @@ cart-drawer-remove-button {
 .cart-text-with-icon{
   display:none;
 }
+.cart-text-with-icon .icon-text-box{
+  width: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
