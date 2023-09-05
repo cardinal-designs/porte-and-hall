@@ -528,3 +528,11 @@ cart-drawer-remove-button {
 .cart-text-with-icon .icon-text-box span{
   padding-right: 14px;
 }
+.template-cart .cart__footer-wrapper:last-child .cart__footer{
+  padding-bottom: 0;
+}
+.template-cart .cart-text-with-icon{
+  justify-content: flex-end;
+    padding-bottom: 5rem;
+}
+
