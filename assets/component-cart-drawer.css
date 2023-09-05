@@ -487,6 +487,7 @@ cart-drawer-remove-button {
 }
 .cart-text-with-icon{
   display:none;
+  justify-content: center;
 }
 .cart-text-with-icon .icon-text-box{
   
@@ -516,11 +517,11 @@ cart-drawer-remove-button {
   font-size: 18px;
     margin: 0;
     line-height: 1.25;
-  max-width: 195px;
+  max-width: 150px;
 }
 .cart-text-with-icon .icon-text-box:first-child h6{
 
-  max-width: 195px;
+  max-width: 65px;
 }
 .cart-text-with-icon .icon-text-box span{
   padding-right: 14px;
