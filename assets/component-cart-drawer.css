@@ -487,6 +487,12 @@ cart-drawer-remove-button {
   width: 50%;
     position: relative;
     display: flex;
-    flex-direction: column;
     align-items: center;
+}
+.cart-text-with-icon .icon-text-box h6{
+  font-size: 14px;
+    margin: 0;
+}
+.cart-text-with-icon .icon-text-box span{
+  
 }
