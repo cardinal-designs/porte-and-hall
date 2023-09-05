@@ -493,15 +493,24 @@ cart-drawer-remove-button {
     position: relative;
     display: flex;
     align-items: center;
+  padding: 0 20px;
 }
 .cart-text-with-icon .icon-text-box:before{
   content:"";
   position:absolute;
+      right: 0;
+    top: 0;
+    background: #D2B065;
+    height: 100%;
+    width: 1px;
+}
+.cart-text-with-icon .icon-text-box:last-child:before{
+  display:none;
 }
 .cart-text-with-icon .icon-text-box h6{
   font-size: 18px;
     margin: 0;
-    line-height: 1;
+    line-height: 1.25;
   max-width: 195px;
 }
 .cart-text-with-icon .icon-text-box span{
