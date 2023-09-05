@@ -489,6 +489,10 @@ cart-drawer-remove-button {
     display: flex;
     align-items: center;
 }
+.cart-text-with-icon .icon-text-box:before{
+  content:"";
+  position:absolute;
+}
 .cart-text-with-icon .icon-text-box h6{
   font-size: 18px;
     margin: 0;
