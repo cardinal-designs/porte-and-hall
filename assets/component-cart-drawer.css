@@ -480,6 +480,11 @@ cart-drawer-remove-button {
 .cart-drawer__content .cart-item .cart-item__remove{
   display:none;
 }
+
+
+.cart-drawer__footer .cart-drawer__taxes{
+  margin: 20px 0;
+}
 .cart-text-with-icon{
   display:none;
 }
