@@ -549,5 +549,14 @@ cart-drawer-remove-button {
   .cart-drawer .cart-drawer__items{
     height: calc(100vh - 293px);
   }
+  .template-cart .cart-text-with-icon{
+    justify-content: center;
+  }
+  .cart-text-with-icon .icon-text-box{
+    width:50%;
+  }
+  .cart-text-with-icon .icon-text-box:first-child{
+     width:50%;
+  }
 }
 
