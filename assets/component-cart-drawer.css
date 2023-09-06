@@ -540,4 +540,7 @@ cart-drawer-remove-button {
     padding-bottom: 1.5rem;
     padding-top: 1rem;
 }
-
+.cart-drawer .cart-drawer__items{
+  overflow: auto;
+  overflow-x: hidden;
+}
