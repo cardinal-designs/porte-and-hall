@@ -485,6 +485,10 @@ cart-drawer-remove-button {
 .cart-drawer__footer .cart-drawer__taxes{
   margin: 20px 0;
 }
+.cart-drawer__items{
+  overflow-x: hidden;
+}
+
 .cart-text-with-icon{
   display:flex;
   justify-content: center;
