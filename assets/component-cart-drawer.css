@@ -543,4 +543,5 @@ cart-drawer-remove-button {
 .cart-drawer .cart-drawer__items{
   overflow: auto;
   overflow-x: hidden;
+ height: calc(100vh - 334px);
 }
