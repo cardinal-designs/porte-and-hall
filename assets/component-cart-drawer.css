@@ -545,3 +545,9 @@ cart-drawer-remove-button {
   overflow-x: hidden;
  height: calc(100vh - 334px);
 }
+@media (max-width:769px){
+  .cart-drawer .cart-drawer__items{
+    height: calc(100vh - 293px);
+  }
+}
+
