@@ -563,7 +563,12 @@ cart-drawer-remove-button {
   #ot-sdk-btn-floating.ot-floating-button{
         bottom: 60px;
   }
+  .cart-text-with-icon .icon-text-box:last-child{
+    padding-left: 12px;
+  }
   .cart-text-with-icon .icon-text-box:first-child{
     width:unset;
+    padding-right: 12px;
   }
+  
 }
