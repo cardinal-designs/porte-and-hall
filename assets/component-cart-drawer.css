@@ -480,7 +480,9 @@ cart-drawer-remove-button {
 .cart-drawer__content .cart-item .cart-item__remove{
   display:none;
 }
-
+.template-cart .cart-item .cart-item__remove{
+   display:none;
+}
 
 .cart-drawer__footer .cart-drawer__taxes{
   margin: 20px 0 18px;
