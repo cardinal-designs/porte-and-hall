@@ -486,7 +486,7 @@ cart-drawer-remove-button {
   margin: 20px 0;
 }
 .cart-text-with-icon{
-  display:none;
+  display:flex;
   justify-content: center;
 }
 .cart-text-with-icon .icon-text-box{
