@@ -477,3 +477,100 @@ cart-drawer-remove-button {
   background: #F6ECE1;
   cursor: pointer;
 }
+.cart-drawer__content .cart-item .cart-item__remove{
+  display:none;
+}
+.template-cart .cart-item .cart-item__remove{
+   display:none;
+}
+
+.cart-drawer__footer .cart-drawer__taxes{
+  margin: 20px 0 18px;
+}
+.cart-drawer .cart-drawer__items{
+  overflow-x: hidden;
+}
+
+.cart-text-with-icon{
+  display:flex;
+  justify-content: center;
+}
+.cart-text-with-icon .icon-text-box{
+  
+    position: relative;
+    display: flex;
+    align-items: center; 
+}
+.cart-text-with-icon .icon-text-box:first-child{
+  padding-right:20px;
+  justify-content: end;
+    width: 35%;
+}
+.cart-text-with-icon .icon-text-box:last-child{
+  padding-left:20px;
+}
+.cart-text-with-icon .icon-text-box:before{
+  content:"";
+  position:absolute;
+      right: 0;
+    top: 0;
+    background: #D2B065;
+    height: 100%;
+    width: 1px;
+}
+.cart-text-with-icon .icon-text-box:last-child:before{
+  display:none;
+}
+.cart-text-with-icon .icon-text-box h6{
+  font-size: 18px;
+    margin: 0;
+    line-height: 1.25;
+  max-width: 150px;
+}
+.cart-text-with-icon .icon-text-box:first-child h6{
+
+  max-width: 65px;
+}
+.cart-text-with-icon .icon-text-box span{
+  padding-right: 14px;
+}
+.template-cart .cart__footer-wrapper:last-child .cart__footer{
+  padding-bottom: 0;
+}
+.template-cart .cart-text-with-icon{
+  justify-content: flex-end;
+    padding-bottom: 1.5rem;
+    padding-top: 1rem;
+}
+.cart-drawer .cart-drawer__items{
+  overflow: auto;
+  overflow-x: hidden;
+ height: calc(100vh - 332px);
+}
+@media (max-width:769px){
+  .cart-drawer .cart-drawer__items{
+    height: calc(100vh - 291px);
+  }
+  .template-cart .cart-text-with-icon{
+    justify-content: center;
+  }
+  /* .cart-text-with-icon .icon-text-box{
+    width:50%;
+  }
+  .cart-text-with-icon .icon-text-box:first-child{
+     width:50%;
+  } */
+}
+@media (max-width:500px){
+  #ot-sdk-btn-floating.ot-floating-button{
+        bottom: 60px;
+  }
+  .cart-text-with-icon .icon-text-box:last-child{
+    padding-left: 12px;
+  }
+  .cart-text-with-icon .icon-text-box:first-child{
+    width:unset;
+    padding-right: 12px;
+  }
+  
+}

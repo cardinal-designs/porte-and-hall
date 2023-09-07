@@ -89,13 +89,21 @@
 
       <div class="cart-item__quantity">
         <quantity-input class="quantity">
-          <button
+
+            <button
+            class="quantity__button no-js-hidden"
+            name="minus"
+            type="button">
+            <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
+            {% render 'icon' icon: 'remove' %}
+          </button>
+          {% comment %} <button
             class="quantity__button no-js-hidden"
             name="minus"
             type="button">
             <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
             {% render 'icon' icon: 'minus' %}
-          </button>
+          </button>{% endcomment %}
           <input
             class="quantity__input"
             type="number"
