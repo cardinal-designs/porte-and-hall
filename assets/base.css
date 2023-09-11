@@ -2817,7 +2817,7 @@ select#notify_id {
 @media (max-width:641px){
   .onetrust-pc-dark-filter.ot-fade-in{
       display: block !important;
-      z-index: 6;
+      z-index: 10;
   }
 }
 
