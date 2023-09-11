@@ -2812,4 +2812,11 @@ select#notify_id {
   top: 0px;
 }
 
+/* ======== cookie bg ======= */
+
+@media (max-width:641px){
+  .onetrust-pc-dark-filter.ot-fade-in{
+      display: block !important;
+  }
+}
 
