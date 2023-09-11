@@ -2815,8 +2815,12 @@ select#notify_id {
 /* ======== cookie bg ======= */
 
 @media (max-width:641px){
-  .onetrust-pc-dark-filter.ot-fade-in{
-      /* display: unset !important; */
+  .make-overflow-hidden {
+      overflow: hidden;
+  }
+ .make-overflow-hidden .onetrust-pc-dark-filter.ot-fade-in{
+      display: unset !important;
+       background: rgba(0,0,0,.8);
       z-index: 10;
   }
 }
