@@ -2815,13 +2815,26 @@ select#notify_id {
 /* ======== cookie bg ======= */
 
 @media (max-width:641px){
-  .make-overflow-hidden {
+  /* .make-overflow-hidden {
       overflow: hidden;
   }
  .make-overflow-hidden .onetrust-pc-dark-filter.ot-fade-in{
       display: unset !important;
        background: rgba(0,0,0,.8);
       z-index: 10;
+  } */
+
+  #onetrust-banner-sdk:after{
+    content:"";
+    background: rgba(0,0,0,.8);
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
   }
 }
 
