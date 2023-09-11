@@ -2823,6 +2823,13 @@ select#notify_id {
        background: rgba(0,0,0,.8);
       z-index: 10;
   } */
+  .make-overflow-hidden #onetrust-consent-sdk .onetrust-pc-dark-filter.ot-fade-in {
+    display: unset !important;
+    z-index: 0;
+    background: rgba(0,0,0,0);
+    visibility: unset !important;
+    opacity: 0 !important;
+  }
   #onetrust-banner-sdk.otFlat{
     display: flex;
     align-items: flex-end;
