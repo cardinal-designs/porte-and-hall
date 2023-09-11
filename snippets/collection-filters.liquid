@@ -105,6 +105,12 @@
                 {% endif %}
               </div>
 
+                {% for filter in collection.filters %}
+                    {% assign total_active_values = total_active_values | plus: filter.active_values.size %}
+                    {% assign downcase_filter = filter.label | downcase %}
+                  {{ downcase_filter }}
+                  {% endfor %}
+
               <div class="collection-filters__filters" id="filter-dropdowns">
                 <div class="collection-filters__dropdowns">
                   {% for filter in collection.filters %}
