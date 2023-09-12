@@ -5,19 +5,51 @@
   </div>
 
   <div class="collection-navigation-with-slider">
-    <ul>
-      <li><a href="#">KITCHEN</a></li>
-       <li><a href="#">FRONT DOOR</a></li>
-       <li><a href="#">ENTRY</a></li>
-       <li><a href="#">HALLWAY</a></li>
-       <li><a href="#">MUDROOM</a></li>
-    </ul>
-    <div class="products-section">
-      
-    </div>
+    <div class="collection-navigation">
+      <ul>
+          <li><a href="#" class="tab-a active-a" data-id="tab1">KITCHEN</a></li>
+          <li><a href="#" class="tab-a" data-id="tab2">FRONT DOOR</a></li>
+          <li><a href="#" class="tab-a" data-id="tab3">ENTRY</a></li>
+          <li><a href="#" class="tab-a" data-id="tab4">HALLWAY</a></li>
+          <li><a href="#" class="tab-a" data-id="tab5">MUDROOM</a></li>
+      </ul>
+   </div>
+   <div class="products-section tab-active" data-id="tab1">
+       <h2>heading of tab one</h2>
+       <p>Content of tab one</p>
+   </div>
+
+   <div  class="products-section " data-id="tab2">
+          <h2>heading of tab two</h2>
+         <p>Content of tab two</p>
+   </div><!--end of tab two--> 
+      <div  class="products-section " data-id="tab3">
+          <h2>heading of tab three</h2>
+         <p>Content of tab three</p>     
+   </div><!--end of tab three--> 
+   <div  class="products-section " data-id="tab4">
+          <h2>heading of tab 4three</h2>
+         <p>Content of tab three</p>     
+   </div>
+    <div  class="products-section " data-id="tab5">
+          <h2>heading of tab 5three</h2>
+         <p>Content of tab three</p>     
+   </div>
   </div>
   
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){ 
+      $('.tab-a').click(function(){  
+        $(".products-section").removeClass('tab-active');
+        $(".products-section[data-id='"+$(this).attr('data-id')+"']").addClass("tab-active");
+        $(".tab-a").removeClass('active-a');
+        $(this).parent().find(".tab-a").addClass('active-a');
+       });
+  });
+</script>
 
 {% schema %}
   {
