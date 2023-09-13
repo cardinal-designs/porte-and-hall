@@ -2831,6 +2831,9 @@ select#notify_id {
     opacity: 0 !important;
   }
   #onetrust-banner-sdk.otFlat{
+    z-index: 9 !important;
+  }
+  #onetrust-banner-sdk.otFlat{
     display: flex;
     align-items: flex-end;
     height: 100vh;
