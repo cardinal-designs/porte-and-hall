@@ -2917,10 +2917,10 @@ select#notify_id {
   }
 
   @media only screen and (min-width: 768px){
-    #filter-dropdowns .collection-filters__dropdowns .collection-filters__dropdown:nth-child(3) .collection-filters__dropdown-wrapper .collection-filters__dropdown-container .collection-filters__input-wrapper label[for="Filter-Color-1"]::before, #filter-dropdowns .collection-filters__dropdowns .collection-filters__dropdown:nth-child(3) .collection-filters__dropdown-wrapper .collection-filters__dropdown-container .collection-filters__input-wrapper label[for="Filter-Color-2"]::before, #filter-dropdowns .collection-filters__dropdowns .collection-filters__dropdown:nth-child(3) .collection-filters__dropdown-wrapper .collection-filters__dropdown-container .collection-filters__input-wrapper label[for="Filter-Color-3"]::before, #filter-dropdowns .collection-filters__dropdowns .collection-filters__dropdown:nth-child(3) .collection-filters__dropdown-wrapper .collection-filters__dropdown-container .collection-filters__input-wrapper label[for="Filter-Color-4"]::before, #filter-dropdowns .collection-filters__dropdowns .collection-filters__dropdown:nth-child(3) .collection-filters__dropdown-wrapper .collection-filters__dropdown-container .collection-filters__input-wrapper label[for="Filter-Color-5"]::before, #filter-dropdowns .collection-filters__dropdowns .collection-filters__dropdown:nth-child(3) .collection-filters__dropdown-wrapper .collection-filters__dropdown-container .collection-filters__input-wrapper label[for="Filter-Color-6"]::before, #filter-dropdowns .collection-filters__dropdowns .collection-filters__dropdown:nth-child(3) .collection-filters__dropdown-wrapper .collection-filters__dropdown-container .collection-filters__input-wrapper label[for="Filter-Color-7"]::before{
+    #filter-dropdowns .collection-filters__dropdowns .collection-filters__dropdown:nth-child(3) .collection-filters__dropdown-wrapper .collection-filters__dropdown-container .collection-filters__input-wrapper label::before{
       height: 20px;
-    width: 20px;
-    margin-top: 0;
+      width: 20px;
+      margin-top: 0;
     }
     #filter-dropdowns .collection-filters__dropdowns .collection-filters__dropdown:nth-child(3) .collection-filters__dropdown-wrapper .collection-filters__dropdown-container .collection-filters__input-wrapper label[for="Filter-Color-8"]::before{
       height: 20px;
