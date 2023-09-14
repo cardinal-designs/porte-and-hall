@@ -2948,3 +2948,12 @@ select#notify_id {
   }
 }
 
+/* header */
+
+.cart-count-bubble{
+  font-weight: 500;
+}
+.cart-count-bubble span{
+  position: relative;
+    top: 1px;
+}
