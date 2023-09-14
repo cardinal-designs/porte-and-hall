@@ -2963,6 +2963,7 @@ select#notify_id {
 }
 .header__navigation{
   box-shadow:none;
+  padding-top:0px;
 }
 @media screen and (min-width: 769px){
   .header--inner{
