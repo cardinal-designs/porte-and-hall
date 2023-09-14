@@ -3039,5 +3039,12 @@ header.SectionHeader .Link{
     line-height: 40px;
     letter-spacing: 0.64px;
   }
+  .size-with-text .link-text {
+      padding: 6px 0;
+  }
+  header.SectionHeader .Link{
+    font-size: 14px;
+    line-height: 20px;
+  }
 }
 
