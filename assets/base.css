@@ -3020,7 +3020,6 @@ header.SectionHeader .SectionHeader__Heading{
   color: #546B82;
   font-family: louize;
   font-size: 42px;
-  font-style: normal;
   font-weight: 500;
   line-height: 50px;
   letter-spacing: 0.84px;
@@ -3034,3 +3033,11 @@ header.SectionHeader .Link{
   text-decoration-line: underline;
   text-transform: uppercase;
 }
+@media (max-width:860px){
+  header.SectionHeader .SectionHeader__Heading{
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 0.64px;
+  }
+}
+
