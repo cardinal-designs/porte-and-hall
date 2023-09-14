@@ -2981,6 +2981,12 @@ html, body{
 .header__menu-list>li{
   line-height: 1.1;
 }
+.outer-header-wrapper{
+  position: fixed;
+}
+main#MainContent{
+  padding-top:176px;
+}
 
 
 
