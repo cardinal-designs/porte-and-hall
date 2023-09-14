@@ -1,7 +1,36 @@
+<div class="custom-collection">
+  <div class="page-width">
+     {%- if section.settings.title != blank -%}
+          <header class="SectionHeader">
+  
+            {%- if section.settings.title != blank -%}
+              <h4 class="SectionHeader__Heading">{{ section.settings.title }}</h4>
+            {%- endif -%}
+          </header>
+        {%- endif -%}
+  </div>
+</div>
+
+
+
 {% schema %}
   {
-    "name": "Section name",
-    "settings": []
+    "name": "Custom Collection",
+    "class": "custom-collection-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Title"
+      }
+    ],
+    "presets": [
+    {
+      "name": "Custom Collection",
+      "settings": {}
+    }
+  ]
   }
 {% endschema %}
 
