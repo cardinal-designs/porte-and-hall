@@ -124,12 +124,23 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 32px;
+    height: 120px;
   }
   .size-with-text .icon-text-content {
     background: #EEEFEF;
+    display: flex;
+    align-items: center;
+    
   }
   .size-with-text .icon-type{
-    
+    height: 100%;
+    display: flex;
+    width: 90px;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--Primary, #546B82);
   }
   .size-with-text .icon-text-content p{
     color: #546B82;
