@@ -1,6 +1,6 @@
 {{ 'section-hero.css' | asset_url | stylesheet_tag }}
 
-<div class="hero">
+<div class="hero video-with-text">
   <div class="hero__content">
     <div class="hero__container">
       <h4 class="hero__title">{{ section.settings.title }}</h4>
@@ -15,6 +15,9 @@
     {% if section.settings.video != blank %}
         {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: true }}
     {% endif %}
+    <div class="hero__element">
+      {% render 'icon', icon: 'play' %}
+    </div>
   </div>
 </div>
 
@@ -58,3 +61,10 @@
   ]
 }
 {% endschema %}
+
+<style>
+  .video-with-text{
+    
+  }
+</style>
+
