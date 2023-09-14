@@ -1,12 +1,140 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
-{% endschema %}
+{{ 'section-see-it-in-action.css' | asset_url | stylesheet_tag }}
+{% liquid
 
-{% stylesheet %}
-{% endstylesheet %}
+  comment
+    assign style_categories = shop.metaobjects.style_category.values | sort: 'order'
+  endcomment
+  
+  assign style_categories  = shop.metaobjects.inspiration.inspiration-pjc1rt7j.style.value | sort: 'order'
+  assign has_image = ""
+
+  for category in style_categories 
+    assign photos = category.product_photos.value 
+    if photos != blank 
+      if has_image == ''
+        assign has_image = category.name
+      else
+        assign has_image = has_image | append: ',' | append: category.name
+      endif
+      continue
+    endif
+ endfor 
+
+ assign has_image = has_image | split: ','
+%}
+
+{% unless has_image == '' %}
+  <div class="page-width">
+    <div class="see-it-in-action__inner">
+      <div class="see-it-in-action__header">
+        <h2 class="see-it-in-action__heading blue">{{ section.settings.heading | newline_to_br }}</h2>
+      </div>
+
+      <div class="see-it-in-action__tabs-wrapper">
+        <div class="see-it-in-action__tabs-buttons">
+          {% assign custom_index = 0 %}
+          {% for style in style_categories %}
+
+            {% unless has_image contains style.name %}
+              {% continue %}
+            {% endunless %}
+            <button
+              class="body-xs body-bold-weight {% if custom_index == 0 %} active{% endif %}"
+              data-action-tabs="{{ custom_index }}"
+            >
+              {{ style.name }}
+            </button>
+            {% assign custom_index = custom_index | plus: 1 %}
+          {% endfor %}
+        </div>
+
+        <div class="see-it-in-action__tabs-content">
+          <div class="see-it-in-action__tabs swiper">
+            <div class="swiper-wrapper">
+              {% for style in style_categories %}
+                {% unless has_image contains style.name %}
+                  {% continue %}
+                {% endunless %}
+                  <div class="swiper-slide">
+                    <div class="see-it-in-action__tabs-item ideas-gallery__wrapper">
+                      {% assign photos = style.product_photos.value %}
+                      {% assign custom_index = 1 %}
+
+                      {% for photo in photos %}
+                        {% assign firstCollection = photo.product_collection.value | first %}
+                        {% unless firstCollection == blank %}
+                          <a href="{{ firstCollection.products[0].url}}">
+                        {% endunless %}
+                        <div class="ideas-gallery__item" data-index={{ custom_index }}>
+                          <div class="see-it-in-action__tabs-image">
+                            {% assign photo_object = photo.image.value | file_url %}
+                            {{ photo.image | image_url: width: 1200 | image_tag }}
+                          </div>
+      
+                          <div class="see-it-in-action__tabs-label body-xs">{{ photo.product_name }} {{ photo.image.aspect_ratio }}</div>
+                        </div>
+                        {% unless firstCollection == blank %}
+                          </a>
+                        {% endunless %}
+                        {% assign remainder = forloop.index | modulo: 12 %}
+                        {% if forloop.index != 1 and remainder == 1 %}
+                          {% comment %} start custom index over {% endcomment %}
+                          {% assign custom_index = 1 %}
+                        {% else %}
+                          {% assign custom_index = custom_index | plus: 1 %}
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endunless %}
 
 {% javascript %}
+  const tabsButtons = document.querySelectorAll('[data-action-tabs]');
+
+  const seeItSlider = new Swiper('.see-it-in-action__tabs', {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    allowTouchMove: false,
+    loop: false,
+    autoplay: {
+      delay: 5000,
+    },
+    on: {
+      slideChange: function () {
+        Array.from(tabsButtons)
+          .find((btn) => btn.classList.contains('active'))
+          .classList.remove('active');
+        Array.from(tabsButtons)
+          .find((btn) => btn.dataset.actionTabs == this.activeIndex)
+          .classList.add('active');
+      },
+    },
+  });
+
+  tabsButtons.forEach((button) => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      seeItSlider.slideTo(e.target.dataset.actionTabs);
+    });
+  });
 {% endjavascript %}
+
+{% schema %}
+{
+    "name": "Multi Product Slider",
+    "class": "multi-product-slider",
+    "settings": [],
+    "presets": [
+    {
+      "name": "Multi Product Slider"
+    }
+  ]
+}
+{% endschema %}
