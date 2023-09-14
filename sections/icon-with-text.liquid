@@ -1,12 +1,154 @@
+<section id="section-{{ section.id }}" class="section {{ section.settings.custom-class }}">
+     <div class="slideshow-icon-container">
+        <div class="slideshow-icon-wrapper">
+          {%- for block in section.blocks -%}
+            <div class="icon-text-content ">
+               {% if block.settings.icon_image %}
+                  <div class="svg-img">{{ block.settings.icon_image }}</div>
+               {%  endif %}
+               <h5 class="icon_text">{{ block.settings.title }}</h5>
+            </div>
+         {%  endfor %}
+        </div>
+    </div>
+
+   
+</section>
+
 {% schema %}
   {
-    "name": "Section name",
-    "settings": []
+    "name": "Icon with text",
+    "settings": [
+      {
+        "type": "text",
+        "id": "custom-class",
+        "label": "custom-class"
+      },
+      {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+      
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background",
+        "default": "#e4e4e4"
+      }
+    ],
+     "blocks": [
+    {
+     "type": "block",
+     "name": "Slide",
+     "limit":4,
+     "settings": [
+        {
+          "type": "textarea",
+          "id": "icon_image",
+          "label": "Add Icon"
+        },
+
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Enter text"
+        }
+      ]
+    }
+  
+  ],
+    "presets": [
+    {
+      "name": "Icon with text",
+      "settings": {}
+    }
+  ]
   }
 {% endschema %}
 
-{% stylesheet %}
-{% endstylesheet %}
+<style>
+    .slideshow_icon{
+        padding: 15px 10px;
+        background-color:{{section.settings.background}};
+/*         margin-top:-10px */
+    }
+  .slideshow_icon .slideshow-icon-container{
+        max-width: 1000px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+  }
+  .slideshow_icon .icon_text{
+    color:{{section.settings.text_color}}
+  }
+  
+  .slideshow_icon .slideshow-icon-wrapper{
+    display: contents !important;
+  }
+
+  .slideshow_icon .icon-text-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+/*     width: 150px; */
+  }
+  .slideshow_icon .slideshow-icon-container .icon-text-content h5{
+    padding-left:10px;
+    font-size: 17px;
+    line-height: 20.57px;
+    font-weight: 400;
+  }
+  .slideshow_icon .icon-text-content img{
+    width: 60px;
+    height:auto
+  }
+
+
+  .slideshow_icon .icon-text-content:nth-of-type(1){
+    width: 193px;
+  }
+  .slideshow_icon .icon-text-content:nth-of-type(2){
+    width: 275px;
+  }
+  .slideshow_icon .icon-text-content:nth-of-type(3){
+    width: 242px;
+  }
+
+  @media(max-width:767.98px){
+    .slideshow_icon{
+        overflow-x:scroll;
+        padding: 10px 0px!important;
+        margin-top:0
+    }
+    .slideshow_icon .slideshow-icon-container{
+      max-width: unset;
+      min-width:max-content;
+      justify-content: space-around;
+    }
+    .slideshow_icon .icon-text-content{
+      width: auto !important;
+    }
+    .slideshow_icon .icon-text-content img{
+      width: 30px;
+    }
+    .slideshow_icon .slideshow-icon-container .icon-text-content h5{
+      font-size: 10px;
+    }
+    .slideshow_icon::-webkit-scrollbar {
+     display:none;
+    }
+    .slideshow_icon .icon-text-content:nth-of-type(3){
+      display:none;
+    }
+    .slideshow_icon .icon-text-content:nth-of-type(1) img{
+      width: auto;
+      height: 30px;
+    }
+  }
+  
+</style>
 
 {% javascript %}
 {% endjavascript %}
