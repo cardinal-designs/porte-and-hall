@@ -2957,6 +2957,10 @@ select#notify_id {
   position: relative;
   top: 1px;
 }
+.header__menu-item{
+  font-weight: 500;
+  line-height: 120%;
+}
 @media screen and (min-width: 769px){
   .header--inner{
     padding:19.45px 94px;
