@@ -2978,9 +2978,16 @@ select#notify_id {
   line-height: 1.1;
 }
 
+
+
 @media screen and (min-width: 769px){
   .header--inner{
     padding:19.45px 94px;
   }
 }
-
+@media screen and (min-width: 989px) and (max-width:1560px){
+  .header__menu-list{
+    justify-content: space-around;
+    gap: unset;
+  }
+}
