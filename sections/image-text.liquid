@@ -1,4 +1,4 @@
-<section class="Section {{ section.settings.custom-class }} {%- if section.settings.image_position == 'center' -%}poscenter{% endif %}">
+<section class="Section {{ section.settings.custom-class }}">
   {%- capture section_content -%}
     <div class="FeatureText__ContentWrapper">
       <div class="FeatureText__Content">
@@ -37,17 +37,11 @@
     {%- endif -%}
   {%- endcapture -%}
 
-  <div class="FeatureText {% if section.settings.image != blank %}FeatureText--withImage FeatureText--image{{ section.settings.image_position | capitalize }}{% endif %}">
+  <div class="FeatureText">
    
-    {%- if section.settings.image_position == 'left' -%}
       {{- section_image -}}
       {{- section_content -}}
-    {%- elsif section.settings.image_position == 'right' -%}
-      {{- section_content -}}
-      {{- section_image -}}
-      {%- else -%}
-      {{- section_content -}}
-    {%- endif -%}
+
   </div>
 </section>
 
@@ -73,27 +67,6 @@
       "id": "image",
       "label": "Image",
       "info": "1200 x 1200px .png recommended"
-    },
-    
-    {
-      "type": "select",
-      "id": "image_position",
-      "label": "Image position",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "right"
     },
     {
       "type": "richtext",
