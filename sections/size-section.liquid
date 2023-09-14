@@ -1,5 +1,16 @@
 <section class="section size-with-text">
      <div class="page-width">
+       {%- if section.settings.title != blank or section.settings.content != blank -%}
+          <header class="SectionHeader">
+  
+            {%- if section.settings.title != blank -%}
+              <h4 class="SectionHeader__Heading">{{ section.settings.title }}</h4>
+            {%- endif -%}
+            {%- if section.settings.link_text != blank -%}
+              <a href="{{ section.settings.link_url }}" class="Link Link--underline">{{ section.settings.link_text | escape }}</a>
+            {%- endif -%}
+          </header>
+        {%- endif -%}
         <div class="icon-wrapper">
           {%- for block in section.blocks -%}
             <div class="icon-text-content ">
@@ -30,7 +41,23 @@
         "type": "text",
         "id": "custom-class",
         "label": "custom-class"
-      }
+      },
+      {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Title"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    }
       
     ],
      "blocks": [
