@@ -2942,5 +2942,9 @@ select#notify_id {
   padding:8.75px 0 7.41px;
   font-weight: 500;
 }
-
+@media screen and (max-width: 768px){
+  .announcement-bar{
+    padding:10.86px 0 9.37px;
+  }
+}
 
