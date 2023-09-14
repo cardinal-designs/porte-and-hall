@@ -65,6 +65,43 @@
         "content": "<ul>\n<li>No machine wash needed<\/li>\n<li>Wash with cold water (high pressure)<\/li>\n<li>Use OxiClean™ to tackle tough stains<\/li>\n<li>Hang to dry<\/li>\n<\/ul>"
       }
     },
+    "44d27af1-3359-4920-b45f-a777de8eced5": {
+      "type": "size-section",
+      "blocks": {
+        "94ab4387-3a89-42b1-8c1e-5bcf90e0d3c2": {
+          "type": "block",
+          "settings": {
+            "icon_type": "left",
+            "title": "DOORMAT"
+          }
+        },
+        "a60ec8c4-7a7f-49b3-872b-15a009e8e7fc": {
+          "type": "block",
+          "settings": {
+            "icon_type": "center",
+            "title": "RUNNER"
+          }
+        },
+        "a3cec467-69ab-4f36-998a-c0f2ada85be5": {
+          "type": "block",
+          "settings": {
+            "icon_type": "right",
+            "title": "AREA MAT"
+          }
+        }
+      },
+      "block_order": [
+        "94ab4387-3a89-42b1-8c1e-5bcf90e0d3c2",
+        "a60ec8c4-7a7f-49b3-872b-15a009e8e7fc",
+        "a3cec467-69ab-4f36-998a-c0f2ada85be5"
+      ],
+      "settings": {
+        "custom-class": "home-size-section",
+        "title": "Shop by size",
+        "link_text": "shop all",
+        "link_url": "shopify:\/\/collections\/all"
+      }
+    },
     "339880a2-1845-4515-a00b-2483f17bb3c5": {
       "type": "image-slideshow",
       "blocks": {
@@ -491,6 +528,7 @@
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62",
     "3726ddfa-f49e-4e18-a5f2-430400876ccd",
     "fd8fd5d7-6d77-45a1-8718-85dc6bc781d2",
+    "44d27af1-3359-4920-b45f-a777de8eced5",
     "339880a2-1845-4515-a00b-2483f17bb3c5",
     "16587824044cd3c400",
     "d6a4e5b3-bc8d-47c2-be4d-b259ce228429",
