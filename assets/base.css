@@ -2955,5 +2955,11 @@ select#notify_id {
 }
 .cart-count-bubble span{
   position: relative;
-    top: 1px;
+  top: 1px;
 }
+@media screen and (min-width: 769px){
+  .header--inner{
+    padding:19.45px 94px;
+  }
+}
+
