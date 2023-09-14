@@ -1,12 +1,64 @@
+{{ 'section-hero.css' | asset_url | stylesheet_tag }}
+
+<div class="hero">
+  <div class="hero__content">
+    <div class="hero__container">
+      <h4 class="hero__title">{{ section.settings.title }}</h4>
+      <p>{{ section.settings.sub-text }}</p>
+      <div class="content-section">
+        {{ section.settings.content }}
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__media">
+    {% if section.settings.video != blank %}
+        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+    {% endif %}
+
+    <div class="hero__element">
+      {% render 'sun-svg', color: '#ffffff', opacity: 1 %}
+    </div>
+  </div>
+</div>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Video with text",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Video"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video (default media if populated)"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "sub-text",
+      "label": "Content"
+    },
+    {
+      "type": "textarea",
+      "id": "content",
+      "label": "List Section"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video with text"
+    }
+  ]
+}
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
