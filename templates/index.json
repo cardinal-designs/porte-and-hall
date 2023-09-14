@@ -58,8 +58,30 @@
     },
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc": {
       "type": "custom-collection",
+      "blocks": {
+        "70266841-060c-4d29-8cf3-32d2f27e0956": {
+          "type": "block",
+          "settings": {
+            "title": "Indoor Mats",
+            "badge1": "Natural look",
+            "badge2": "Ultra-thin"
+          }
+        },
+        "81eefe71-5d4e-40de-af7c-1753292165b4": {
+          "type": "block",
+          "settings": {
+            "title": "Outdoor Mats",
+            "badge1": "Rubbery feel",
+            "badge2": "Removable insert"
+          }
+        }
+      },
+      "block_order": [
+        "70266841-060c-4d29-8cf3-32d2f27e0956",
+        "81eefe71-5d4e-40de-af7c-1753292165b4"
+      ],
       "settings": {
-        "title": "Title"
+        "title": "Meet our collections"
       }
     },
     "fd8fd5d7-6d77-45a1-8718-85dc6bc781d2": {
