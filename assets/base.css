@@ -3033,6 +3033,9 @@ header.SectionHeader .Link{
   text-decoration-line: underline;
   text-transform: uppercase;
 }
+.size-with-text .link-text{
+    padding:14px 0 16px;
+  }
 @media (max-width:860px){
   header.SectionHeader .SectionHeader__Heading{
     font-size: 32px;
