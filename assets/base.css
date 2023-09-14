@@ -3009,3 +3009,27 @@ main#MainContent{
     gap: unset;
   }
 }
+
+/* ========== section heading ======= */
+
+header.SectionHeader{
+  text-align: center;
+}
+header.SectionHeader .SectionHeader__Heading{
+  color: #546B82;
+  font-family: louize;
+  font-size: 42px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 50px;
+  letter-spacing: 0.84px;
+}
+header.SectionHeader .Link{
+  color: #A19377;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 1px;
+  text-decoration-line: underline;
+  text-transform: uppercase;
+}
