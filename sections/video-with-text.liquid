@@ -23,16 +23,15 @@
   </div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
-  var videos = document.getElementsByClassName("videos");
-  .parent()
-  .click(function () {
-      if (this.children("videos").get(0).paused) {
-          this.children("videos").get(0).play();
-          this.children(".hero__element").fadeOut();
-      } else {
-          this.children("videos").get(0).pause();
-          this.children(".hero__element").fadeIn();
+  $('.videos').parent().click(function () {
+      if($(this).children(".videos").get(0).paused){
+        $(this).children(".videos").get(0).play();   
+        $(this).children(".hero__element").fadeOut();
+      }else{       
+        $(this).children(".videos").get(0).pause();
+        $(this).children(".hero__element").fadeIn();
       }
   });
 </script>
