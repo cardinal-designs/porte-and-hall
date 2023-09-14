@@ -2935,6 +2935,10 @@ select#notify_id {
 
 /* ============================ new home page ============================ */
 
+html, body{
+  overflow-x:hidden;
+}
+
 /* announcementbar */
 
 .announcement-bar{
