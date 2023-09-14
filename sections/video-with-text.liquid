@@ -13,7 +13,7 @@
 
   <div class="hero__media">
     {% if section.settings.video != blank %}
-        {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: true }}
+        {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: true, class: 'videos' }}
     {% endif %}
     <div class="hero__element">
       <svg xmlns="http://www.w3.org/2000/svg" width="45" height="50" viewBox="0 0 45 50" fill="none">
@@ -22,6 +22,20 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.getElementByClassName("video")
+  .parent()
+  .click(function () {
+      if (this.children(".video").get(0).paused) {
+          this.children(".video").get(0).play();
+          this.children(".playpause").fadeOut();
+      } else {
+          this.children(".video").get(0).pause();
+          this.children(".playpause").fadeIn();
+      }
+  });
+</script>
 
 {% schema %}
 {
