@@ -15,10 +15,6 @@
     {% if section.settings.video != blank %}
         {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: true }}
     {% endif %}
-
-    <div class="hero__element">
-      {% render 'icon', icon: 'play' %}
-    </div>
   </div>
 </div>
 
