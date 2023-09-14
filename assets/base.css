@@ -2965,6 +2965,14 @@ select#notify_id {
   box-shadow:none;
   padding-top:0px;
 }
+.header__menu{
+  max-width: 1440px;
+}
+.header__menu-list{
+  justify-content: center;
+  gap: 0 60px;
+}
+
 @media screen and (min-width: 769px){
   .header--inner{
     padding:19.45px 94px;
