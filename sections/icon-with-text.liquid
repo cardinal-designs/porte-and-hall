@@ -1,6 +1,6 @@
 <section id="section-{{ section.id }}" class="section icons-with-text {{ section.settings.custom-class }}">
-     <div class="slideshow-icon-container">
-        <div class="slideshow-icon-wrapper">
+     <div class="icon-container">
+        <div class="icon-wrapper">
           {%- for block in section.blocks -%}
             <div class="icon-text-content ">
                {% if block.settings.icon_image %}
@@ -74,7 +74,7 @@
         background-color:{{section.settings.background}};
 /*         margin-top:-10px */
     }
-  .icons-with-text .slideshow-icon-container{
+  .icons-with-text .icon-container{
         max-width: 1000px;
         margin: auto;
         display: flex;
@@ -84,7 +84,7 @@
     color:{{section.settings.text_color}}
   }
   
-  .icons-with-text .slideshow-icon-wrapper{
+  .icons-with-text .icon-wrapper{
     display: contents !important;
   }
 
@@ -94,7 +94,7 @@
     justify-content: center;
 /*     width: 150px; */
   }
-  .icons-with-text .slideshow-icon-container .icon-text-content h5{
+  .icons-with-text .icon-container .icon-text-content h5{
     padding-left:10px;
     font-size: 17px;
     line-height: 20.57px;
@@ -122,7 +122,7 @@
         padding: 10px 0px!important;
         margin-top:0
     }
-    .icons-with-text .slideshow-icon-container{
+    .icons-with-text .icon-container{
       max-width: unset;
       min-width:max-content;
       justify-content: space-around;
@@ -133,7 +133,7 @@
     .icons-with-text .icon-text-content img{
       width: 30px;
     }
-    .icons-with-text .slideshow-icon-container .icon-text-content h5{
+    .icons-with-text .icon-container .icon-text-content h5{
       font-size: 10px;
     }
     .icons-with-text::-webkit-scrollbar {
