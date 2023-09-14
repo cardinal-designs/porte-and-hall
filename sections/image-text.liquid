@@ -5,15 +5,15 @@
         {%- if section.settings.subheading != blank or section.settings.title != blank or section.settings.content != blank -%}
           <header class="SectionHeader">
             {%- if section.settings.subheading != blank -%}
-              <h3 class="SectionHeader__SubHeading Heading u-h6">{{ section.settings.subheading | escape }}</h3>
+              <h4 class="SectionHeader__SubHeading">{{ section.settings.subheading | escape }}</h4>
             {%- endif -%}
 
             {%- if section.settings.title != blank -%}
-              <h2 class="SectionHeader__Heading Heading u-h1">{{ section.settings.title | escape }}</h2>
+              <div class="SectionHeader__Heading">{{ section.settings.title | escape }}</div>
             {%- endif -%}
 
             {%- if section.settings.content != blank -%}
-              <div class="SectionHeader__Description Rte">
+              <div class="SectionHeader__Description">
                 {{ section.settings.content }}
               </div>
             {%- endif -%}
@@ -50,6 +50,12 @@
   "name": "Image with text",
   "class": "image-with-text",
   "settings": [
+     {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "1200 x 1200px .png recommended"
+    },
     {
       "type": "text",
       "id": "subheading",
@@ -57,17 +63,12 @@
       "default": "Sub-heading"
     },
     {
-      "type": "text",
+      "type": "richtext",
       "id": "title",
       "label": "Heading",
-      "default": "Title"
+      "default": "<p>Add Title...</p>"
     },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image",
-      "info": "1200 x 1200px .png recommended"
-    },
+   
     {
       "type": "richtext",
       "id": "content",
