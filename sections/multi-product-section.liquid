@@ -1,27 +1,5 @@
 {{ 'section-see-it-in-action.css' | asset_url | stylesheet_tag }}
-{% liquid
 
-  comment
-    assign style_categories = shop.metaobjects.style_category.values | sort: 'order'
-  endcomment
-  
-  assign style_categories  = shop.metaobjects.inspiration.inspiration-pjc1rt7j.style.value | sort: 'order'
-  assign has_image = ""
-
-  for category in style_categories 
-    assign photos = category.product_photos.value 
-    if photos != blank 
-      if has_image == ''
-        assign has_image = category.name
-      else
-        assign has_image = has_image | append: ',' | append: category.name
-      endif
-      continue
-    endif
- endfor 
-
- assign has_image = has_image | split: ','
-%}
 
 {% unless has_image == '' %}
   <div class="page-width">
