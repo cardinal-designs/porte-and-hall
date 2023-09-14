@@ -30,9 +30,9 @@
   {%- capture section_image -%}
     {%- if section.settings.image != blank -%}
       <div class="FeatureText__ImageWrapper">
-        <div class="AspectRatio">
+        
           {% render 'lazy-image', image: section.settings.image, fade: true, classes: 'img-fill' %}
-        </div>
+      
       </div>
     {%- endif -%}
   {%- endcapture -%}
