@@ -240,11 +240,33 @@
     position: relative;
   }
   .custom-product-card .aspect-ratio{
- 
     transition: opacity .4s ease-in-out;
-
   }
-
+  .custom-product-card .product-card__swatches{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  .custom-product-card .product-card__swatches .product-card__swatch{
+    width: 30px;
+    height: 30px;
+    aspect-ratio: 1/1;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    cursor: pointer;
+    opacity: 1;
+    transition: all .3s ease;
+    position: relative;
+  }
   
 </style>
 
