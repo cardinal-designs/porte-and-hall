@@ -532,6 +532,40 @@
       "settings": {
         "heading": "<p><a href=\"https:\/\/www.instagram.com\/porteandhall\/\" target=\"_blank\" title=\"https:\/\/www.instagram.com\/porteandhall\/\">@porteandhall<\/a><\/p>"
       }
+    },
+    "16946940833216dae7": {
+      "type": "apps",
+      "blocks": {
+        "a6a7ec34-675c-47a4-9c07-092527c7d472": {
+          "type": "shopify:\/\/apps\/stamped-product-reviews-ugc\/blocks\/carousel\/a103faaf-2125-4b0e-89fa-de5149736723",
+          "settings": {
+            "title": "",
+            "auto_play": false,
+            "take": 30,
+            "color_title": "",
+            "color_star": "",
+            "color_text": "",
+            "color_link": "",
+            "review_ids": "",
+            "product_ids": "",
+            "category": "",
+            "product_brand": "",
+            "tags": "",
+            "min_rating": "none",
+            "fill_empty": false,
+            "random": false,
+            "with_photos": false
+          }
+        }
+      },
+      "block_order": [
+        "a6a7ec34-675c-47a4-9c07-092527c7d472"
+      ],
+      "settings": {
+        "include_margins": true,
+        "heading": "Reviews that make us smile",
+        "section_reviews": true
+      }
     }
   },
   "order": [
@@ -551,6 +585,7 @@
     "7337a49a-31a0-4e5d-9a53-968d18d1068e",
     "542bd631-99ef-452b-91d4-02d612f961a0",
     "0de7e396-a909-4e48-b29c-f16f301ca77b",
-    "401485ce-1e85-48de-9a73-3a8fb67a190f"
+    "401485ce-1e85-48de-9a73-3a8fb67a190f",
+    "16946940833216dae7"
   ]
 }
