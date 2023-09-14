@@ -3,10 +3,17 @@
         <div class="icon-wrapper">
           {%- for block in section.blocks -%}
             <div class="icon-text-content ">
-               {% if block.settings.icon_image %}
-                  <div class="svg-img">{{ block.settings.icon_image }}</div>
-               {%  endif %}
-               <h5 class="icon_text">{{ block.settings.title }}</h5>
+              <div class="icon-type">
+               {%- if block.settings.icon_type == 'left' -%}
+                
+                    <span class="type-1"></span>
+                {%- elsif block.settings.icon_type == 'right' -%}
+                  <span class="type-2"></span>
+              {%- else -%}
+                   <span class="type-3"></span>
+                {%- endif -%}
+              </div>
+               <p class="icon_text">{{ block.settings.title }}</p>
             </div>
          {%  endfor %}
         </div>
@@ -33,11 +40,25 @@
      "limit":3,
      "settings": [
         {
-          "type": "textarea",
-          "id": "icon_image",
-          "label": "Add Icon"
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon Type",
+          "options": [
+            {
+              "value": "left",
+              "label": "Door"
+            },
+            {
+              "value": "center",
+              "label": "Runner"
+            },
+            {
+              "value": "right",
+              "label": "Areamat"
+            }
+          ],
+          "default": "left"
         },
-
         {
           "type": "text",
           "id": "title",
