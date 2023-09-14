@@ -8,6 +8,26 @@
             {%- endif -%}
           </header>
         {%- endif -%}
+
+      <div class="collection-row">
+        {%- for block in section.blocks -%}
+          <div class="collection-col">
+              <h6>{{ block.settings.title }}</h6>
+              <div class="collection-row">
+                <div class="collection-col">
+                  <p class="badge">{{ block.settings.badge1 }}</p>
+                  {{ block.settings.product }}
+                </div>
+                <div class="collection-col">
+                  <p class="badge">{{ block.settings.badge2 }}</p>
+                  {{ block.settings.product }}
+                </div>
+              </div>
+          </div>
+        {%  endfor %}
+      </div>
+
+    
   </div>
 </div>
 
@@ -25,6 +45,49 @@
         "default": "Title"
       }
     ],
+    "blocks": [
+    {
+     "type": "block",
+     "name": "Collection-col",
+     "limit":4,
+     "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Enter type"
+        },
+       {
+          "type": "header",
+          "content": "Product 1"
+        },
+         {
+          "type": "text",
+          "id": "badge1",
+          "label": "Enter Badge"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+       {
+          "type": "header",
+          "content": "Product 2"
+        },
+         {
+          "type": "text",
+          "id": "badge2",
+          "label": "Enter Badge"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Add Product"
+        }
+      ]
+    }
+  
+  ],
     "presets": [
     {
       "name": "Custom Collection",
