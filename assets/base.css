@@ -2967,10 +2967,15 @@ select#notify_id {
 }
 .header__menu{
   max-width: 1440px;
+  padding-top: 22px;
+  padding-bottom: 18.5px;
 }
 .header__menu-list{
   justify-content: center;
   gap: 0 60px;
+}
+.header__menu-list>li{
+  line-height: 1.1;
 }
 
 @media screen and (min-width: 769px){
