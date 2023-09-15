@@ -3258,5 +3258,9 @@ header.SectionHeader .Link{
   width: calc(100% - 30px);
     margin: 0 15px;
 }
+.template-index #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .block {
+    width: 85%!important;
+}
+    
     
   }
