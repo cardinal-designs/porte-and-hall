@@ -3194,6 +3194,11 @@ header.SectionHeader .Link{
   font-family: brandon, sans-serif !important;
 } */
 
+ .template-index #stamped-reviews-widget[data-widget-type=carousel]{
+      max-width: 1360px;
+   padding:0 80px;
+}
+
 @media (max-width:767px){
  .template-index .rave-reviews .rave-reviews-main h2{
     font-size: 32px;
