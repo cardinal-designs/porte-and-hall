@@ -3228,4 +3228,26 @@ header.SectionHeader .Link{
     .template-index #stamped-reviews-widget[data-widget-type=carousel]{
       width:100%;
     }
+    .template-index .rave-reviews .rave-reviews-main .stamped-ratings-wrapper{
+      padding:0!important
+    }
+
+    .template-index .rave-reviews .stamped-carousel-buttons{
+    width:100%;
+}
+.template-index .rave-reviews .stamped-carousel-button-left{
+   position:absolute;
+   left:0px;
+   top: 50%;
+   transform: translateY(-50%);
+   z-index:999;
+}
+
+.template-index .rave-reviews .stamped-carousel-button-right{
+   position:absolute;
+   right:0px;
+   top: 50%;
+   transform: translateY(-50%);
+      z-index:999;
+}
   }
