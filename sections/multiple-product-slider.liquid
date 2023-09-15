@@ -299,8 +299,7 @@
 
   
             </div>
-            <div class="swipers-button-prev"></div>
-        <div class="swipers-button-next"></div>
+          
          </div>
       </product-carousel>
    </div>
@@ -335,6 +334,32 @@
         $(this).parent().find(".tab-a").addClass('active-a');
        });
   });
+
+   $(document).ready(function() {
+// Swiper: Slider
+    new Swiper('.swipers', {
+        loop: true,
+        nextButton: '.swipers-button-next',
+        prevButton: '.swipers-button-prev',
+        slidesPerView: 3,
+        paginationClickable: true,
+        spaceBetween: 20,
+        breakpoints: {
+            1920: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            1028: {
+                slidesPerView: 2,
+                spaceBetween: 30
+            },
+            480: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            }
+        }
+    });
+});
 </script>
 <style>
 
@@ -371,7 +396,20 @@
   .tab-active{
   	display: block;
   }
-  
+   .swiper{
+    width:100%;
+    height:100%;
+  }
+  .multi-product-slider{
+    background: #F4F2EE;
+    padding: 56px 0 80px;
+  }
+  .multi-product-slider .link-div{
+    padding:16px 0;
+  }
+  .multi-product-slider .SectionHeader{
+    margin-bottom:20px;
+  }
   
 </style>
 
@@ -412,50 +450,4 @@
 {% javascript %}
   
 {% endjavascript %}
-
-<script>
-  $(document).ready(function() {
-// Swiper: Slider
-    new Swiper('.swipers', {
-        loop: true,
-        nextButton: '.swipers-button-next',
-        prevButton: '.swipers-button-prev',
-        slidesPerView: 3,
-        paginationClickable: true,
-        spaceBetween: 20,
-        breakpoints: {
-            1920: {
-                slidesPerView: 3,
-                spaceBetween: 30
-            },
-            1028: {
-                slidesPerView: 2,
-                spaceBetween: 30
-            },
-            480: {
-                slidesPerView: 1,
-                spaceBetween: 10
-            }
-        }
-    });
-});
-
-</script>
-  
-<style>
-  .swiper{
-    width:100%;
-    height:100%;
-  }
-  .multi-product-slider{
-    background: #F4F2EE;
-    padding: 56px 0 80px;
-  }
-  .multi-product-slider .link-div{
-    padding:16px 0;
-  }
-  .multi-product-slider .SectionHeader{
-    margin-bottom:20px;
-  }
-</style>
 
