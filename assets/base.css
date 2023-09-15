@@ -3217,4 +3217,12 @@ header.SectionHeader .Link{
    padding: 40px 20px;
  }
 }
-  
+  @media (max-width:690px){
+    .template-index .rave-reviews .rave-reviews-main {
+        padding: 32px 15px;
+    }
+    .template-index #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-subtitle{
+      margin-right: 0;
+    float: left;
+    }
+  }
