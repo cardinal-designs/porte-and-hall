@@ -3129,5 +3129,10 @@ header.SectionHeader .Link{
 }
 
 .template-index  .stamped-carousel-scroll .stamped-reviews-autho:before{
-  
+    content: '';
+    background:#30383D;;
+    position: absolute;
+    width: 159px;
+    height: 4px;
+    left:0px;
  }
