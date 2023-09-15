@@ -3118,7 +3118,7 @@ header.SectionHeader .Link{
 }
 
 .template-index  .stamped-carousel-scroll .stamped-reviews-author{
-     margin-left:0px;
+     margin-left:0px !important;
      position:relative;
      font-size: 16px;
     font-style: normal;
