@@ -206,6 +206,17 @@
   .collection-row .collection-col{
     background: #EEEFEF;
     padding:20px;
+    position:relative;
+  }
+  .collection-row .collection-col:before{
+    content:"";
+    background: #EEEFEF;
+  }
+  .collection-row .collection-col .collection-col{
+    
+  }
+  .collection-row .collection-col .collection-col:before{
+    display:none;
   }
 
   .collection-row .collection-col h6{
