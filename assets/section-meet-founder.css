@@ -17,16 +17,16 @@
 
 .meet-founder__layout-left{
   display: grid;
-  grid-template-columns: 475px 1fr;
+  grid-template-columns: 400px 1fr;
   grid-template-areas: 'text media';
   column-gap: 80px;
 }
 
 .meet-founder__layout-right {
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: 1fr 475px;
   grid-template-areas: 'media text';
-  column-gap: 120px;
+  column-gap: 80px;
 }
 
 .meet-founder__layout-left .meet-founder__content-wrapper {
