@@ -3253,4 +3253,10 @@ header.SectionHeader .Link{
    transform: unset;
       z-index:999;
 }
+
+.template-index .rave-reviews .rave-reviews-main .stamped-carousel-scroll:before{
+  width: calc(100% - 30px);
+    margin: 0 15px;
+}
+    
   }
