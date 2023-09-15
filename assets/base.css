@@ -3087,3 +3087,6 @@ header.SectionHeader .Link{
     font-family: Roboto;
 }
 
+.template-index #stamped-reviews-widget[data-widget-type=carousel] .stamped-reviews-date{
+   display:none;
+}
