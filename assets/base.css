@@ -3101,12 +3101,6 @@ header.SectionHeader .Link{
 
 .template-index .rave-reviews .stamped-carousel-scroll .stamped-reviews-message{
     margin-left:0px !important;
-    font-size: 14px !important;
-    font-style: normal !important;
-    font-weight: 400 !important;
-    line-height: 20px !important; 
-    font-family: brandon !important;
-    color:#30383D !important;
     white-space:initial !important;
 }
 
@@ -3115,4 +3109,6 @@ header.SectionHeader .Link{
       font-style: normal !important;
        font-size: 14px !important;
        color:#30383D !important;
+       font-weight: 400 !important;
+       line-height: 20px !important; 
 }
