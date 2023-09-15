@@ -3231,7 +3231,10 @@ header.SectionHeader .Link{
     .template-index .rave-reviews .rave-reviews-main .stamped-ratings-wrapper{
       padding:0!important
     }
-
+.template-index #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-message, 
+    .template-index #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-author{
+  margin-left:0px !important;
+}
     .template-index .rave-reviews .stamped-carousel-buttons{
     width:100%;
 }
