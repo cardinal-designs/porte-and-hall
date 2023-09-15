@@ -3175,4 +3175,8 @@ header.SectionHeader .Link{
 .template-index .rave-reviews .rave-reviews-main .stamped-ratings-wrapper{
    padding: 0 20px 0 30px !important;
 }
+
+.template-index .rave-reviews .rave-reviews-main .stamped-ratings-wrapper:nth-child(1){
+   padding-left: 50px;
+}
   
