@@ -98,8 +98,9 @@
 @media screen and (max-width: 1024px) {
   .meet-founder__inner {
     grid-template-columns: 40% minmax(0, 1fr);
-    column-gap: 50px;
-    padding: 70px 20px;
+    grid-template-columns: 50% auto;
+    column-gap: 40px;
+    padding: 46px 20px;
   }
 }
 
