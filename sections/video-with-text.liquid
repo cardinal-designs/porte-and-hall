@@ -13,9 +13,9 @@
 
   <div class="hero__media">
     {% if section.settings.video != blank %}
-        {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos' }}
+        {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos', id: 'video' }}
     {% endif %}
-    <div class="hero__element">
+    <div id="circle-play" class="hero__element">
       <svg xmlns="http://www.w3.org/2000/svg" width="45" height="50" viewBox="0 0 45 50" fill="none">
 <path d="M42.9214 21.5359C45.5881 23.0755 45.5881 26.9245 42.9214 28.4641L6.92138 49.2487C4.25472 50.7883 0.921387 48.8638 0.921387 45.7846L0.921387 4.21539C0.921387 1.13619 4.25472 -0.788311 6.92139 0.751289L42.9214 21.5359Z" fill="white"/>
 </svg>
@@ -37,17 +37,17 @@
       
  // });
 
-  $('.videos').parent().click(function () {
-    if($(this).children(".videos").get(0).paused){
-        $(this).children(".videos").get(0).play();   
-        $(this).children(".hero__element").fadeOut();
-  }else{
-      $(this).children(".videos").get(0).stop();
-      $(this).children(".hero__element").fadeIn();
-  }
+ //  $('.videos').parent().click(function () {
+ //    if($(this).children(".videos").get(0).paused){
+ //          $(this).children(".videos").get(0).play();   
+ //          $(this).children(".hero__element").fadeOut();
+ //    }else{
+ //        $(this).children(".videos").get(0).stop();
+ //        $(this).children(".hero__element").fadeIn();
+ //    }
     
       
- });
+ // });
 
 
   
@@ -69,6 +69,28 @@
   video.addEventListener("pause", function () {
   	circlePlayButton.style.opacity = 1;
   }); {% endcomment %}
+
+
+  const video = document.getElementById("video");
+  const circlePlayButton = document.getElementById("circle-play");
+  
+  function togglePlay() {
+  	if (video.paused || video.ended) {
+  		video.play();
+  	} else {
+  		video.pause();
+  	}
+  }
+  
+  circlePlayButton.addEventListener("click", togglePlay);
+  video.addEventListener("playing", function () {
+  	circlePlayButton.style.opacity = 0;
+  });
+  video.addEventListener("pause", function () {
+  	circlePlayButton.style.opacity = 1;
+  });
+
+  
 </script>
 
 {% schema %}
