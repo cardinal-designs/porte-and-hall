@@ -3118,7 +3118,7 @@ header.SectionHeader .Link{
 }
 
 .template-index  .stamped-carousel-scroll .stamped-reviews-author{
-     margin-left:0px !important;
+     margin-left:8px !important;
      position:relative;
      font-size: 16px;
     font-style: normal;
@@ -3129,10 +3129,11 @@ header.SectionHeader .Link{
 }
 
 .template-index  .stamped-carousel-scroll .stamped-reviews-author:before{
-    content: '';
-    background:#30383D;;
+     content: "";
+    background: #30383D;
     position: absolute;
-    width: 159px;
-    height: 4px;
-    left:0px;
+    width: 5px;
+    height: 2px;
+    left: -8px;
+    bottom: 11px;
  }
