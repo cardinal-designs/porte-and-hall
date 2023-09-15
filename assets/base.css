@@ -3142,4 +3142,15 @@ header.SectionHeader .Link{
     bottom: 11px;
  }
 
-.template-index 
+.template-index .rave-reviews .stamped-carousel-buttons{
+    width:100%;
+}
+.template-index .rave-reviews .stamped-carousel-buttons{
+   position:absolute;
+   left:0px;
+}
+
+.template-index .rave-review .stamped-carousel-button-right{
+   position:absolute;
+   right:0px;
+}
