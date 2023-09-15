@@ -3181,7 +3181,7 @@ header.SectionHeader .Link{
    padding-left: 50px;
 }
 .template-index #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-subtitle{
-  margin: 0 0 12px;
+  margin: 0 40px 12px 0;
   color: #333;
   font-size: 14px;
   font-weight: 600;
@@ -3200,7 +3200,10 @@ header.SectionHeader .Link{
   width: calc(100% + 50px) !important;
     margin: 0 -20px 0 -30px;
 }
- 
+ .template-index .rave-reviews .rave-reviews-main .stamped-carousel-scroll:before{
+   width: calc(100% - 120px);
+    margin: 0 60px;
+ }
 
 @media (max-width:767px){
  .template-index .rave-reviews .rave-reviews-main h2{
