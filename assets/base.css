@@ -3084,7 +3084,6 @@ header.SectionHeader .Link{
     line-height: 20px; /* 142.857% */
     letter-spacing: 0.56px;
     color:#333;
-    font-family: Roboto;
 }
 
 .template-index #stamped-reviews-widget[data-widget-type=carousel] .stamped-reviews-date{
@@ -3092,4 +3091,8 @@ header.SectionHeader .Link{
 }
 .template-index .stamped-ratings-wrapper .stamped-reviews-rating .stamped-fa{
    color: #D2B066;
+}
+
+.template-index .stamped-carousel-scroll #stamped-carousel-scroll-wrapper .stamped-reviews-image img{
+   display:none;
 }
