@@ -3283,6 +3283,9 @@ header.SectionHeader .Link{
     .template-index .rave-reviews .rave-reviews-main .stamped-carousel-subtitle-count{
         font-size:13px;
     }
+    .template-index #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll{
+       margin: -12px -20px 0 -30px;
+    }
     
   }
 
