@@ -3151,7 +3151,7 @@ header.SectionHeader .Link{
    left:0px;
    top: 50%;
    transform: translateY(-50%);
-   z-index:999;
+   z-index:5;
 }
 
 .template-index .rave-reviews .stamped-carousel-button-right{
@@ -3159,7 +3159,7 @@ header.SectionHeader .Link{
    right:0px;
    top: 50%;
    transform: translateY(-50%);
-      z-index:999;
+      z-index:5;
 }
 
 .template-index .rave-reviews .stamped-reviews-title a{
