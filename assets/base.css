@@ -3113,6 +3113,10 @@ header.SectionHeader .Link{
        line-height: 20px !important; 
 }
 
-.template-index .rave-reviews .rave-reviews-main .stamped-carousel-scroll:before{
+ .template-index .rave-reviews .rave-reviews-main .stamped-carousel-scroll:before{
     border-bottom: 2px solid #CAD2D3 !important;
+}
+
+.template-index  .stamped-carousel-scroll .stamped-reviews-author{
+     margin-left:0px;
 }
