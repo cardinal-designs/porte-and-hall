@@ -3094,5 +3094,5 @@ header.SectionHeader .Link{
 }
 
 .template-index .stamped-carousel-scroll #stamped-carousel-scroll-wrapper .stamped-reviews-image {
-   display:none;
+   display:none !important;
 }
