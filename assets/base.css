@@ -3179,6 +3179,17 @@ header.SectionHeader .Link{
 .template-index .rave-reviews .rave-reviews-main .stamped-ratings-wrapper:nth-child(1){
    padding-left: 50px;
 }
+.template-index #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-subtitle{
+  margin: 0 0 12px;
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.56px;
+}
+.template-index .rave-reviews *{
+  font-family: brandon, sans-serif !important;
+}
 
 @media (max-width:767px){
  .template-index .rave-reviews .rave-reviews-main h2{
