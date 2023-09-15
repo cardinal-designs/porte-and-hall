@@ -3112,3 +3112,7 @@ header.SectionHeader .Link{
        font-weight: 400 !important;
        line-height: 20px !important; 
 }
+
+.template-index .rave-reviews .rave-reviews-main .stamped-carousel-scroll:before{
+    border-bottom: 2px solid #CAD2D3;
+}
