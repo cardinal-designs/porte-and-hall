@@ -3083,11 +3083,12 @@ header.SectionHeader .Link{
 
 .template-index .rave-reviews .rave-reviews-main .stamped-carousel-subtitle-count{
     font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     line-height: 20px; /* 142.857% */
     letter-spacing: 0.56px;
     color:#333;
+  text-transform: lowercase;
+  font-family: 'Roboto', sans-serif !important;
 }
 
 .template-index #stamped-reviews-widget[data-widget-type=carousel] .stamped-reviews-date{
