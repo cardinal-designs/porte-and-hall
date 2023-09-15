@@ -3290,3 +3290,7 @@ header.SectionHeader .Link{
     font-family: brandon;
     max-width:435px;
 }
+
+.shopify-section .announcement-bar .cursor_pointer{
+    cursor:default;
+}
