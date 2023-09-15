@@ -3239,18 +3239,18 @@ header.SectionHeader .Link{
     width:100%;
 }
 .template-index .rave-reviews .stamped-carousel-button-left{
-   position:absolute;
+   position:unset;
    left:0px;
    top: 50%;
-   transform: translateY(-50%);
+   transform: unset;
    z-index:999;
 }
 
 .template-index .rave-reviews .stamped-carousel-button-right{
-   position:absolute;
+   position:unset;
    right:0px;
    top: 50%;
-   transform: translateY(-50%);
+   transform: unset;
       z-index:999;
 }
   }
