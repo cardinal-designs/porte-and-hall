@@ -3186,6 +3186,7 @@ header.SectionHeader .Link{
   font-weight: 600;
   line-height: 20px;
   letter-spacing: 0.56px;
+  text-transform: lowercase;
 }
 .template-index .rave-reviews *{
   font-family: brandon, sans-serif !important;
