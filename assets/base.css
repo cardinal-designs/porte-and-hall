@@ -3194,11 +3194,11 @@ header.SectionHeader .Link{
   font-family: brandon, sans-serif !important;
 } */
 .template-index .rave-reviews .rave-reviews-main .stamped-ratings-wrapper{
-   padding: 0 30px 0 !important;
+   padding: 0 20px 0 30px!important;
 }
 .template-index #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll{
-  width: calc(100% + 60px) !important;
-    margin: 0 -30px;
+  width: calc(100% + 50px) !important;
+    margin: 0 -20px 0 -30px;
 }
  
 
