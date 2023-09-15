@@ -614,20 +614,27 @@
   });
 
    $(document).ready(function() {
-// Swiper: Slider
-    new Swiper('.swiper1', {
-        loop: false,
-        // nextButton: '.swipers-button-next',
-        // prevButton: '.swipers-button-prev',
-        slidesPerView: 4,
-        paginationClickable: false,
-        spaceBetween: 20,
-      navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-    });
-});
+      new Swiper('.swiper1', {
+          loop: false,
+          slidesPerView: 4,
+          paginationClickable: false,
+          spaceBetween: 20,
+        navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+          },
+      });
+     new Swiper('.swiper2', {
+          loop: false,
+          slidesPerView: 4,
+          paginationClickable: false,
+          spaceBetween: 20,
+        navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+          },
+      });
+  });
 
   
 </script>
