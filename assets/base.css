@@ -3061,7 +3061,14 @@ header.SectionHeader .Link{
 }
 
 .template-index .rave-reviews .rave-reviews-main h2{
-   margin-bottom:42px;
+    margin-bottom:42px;
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 62px; /* 147.619% */
+    letter-spacing: 0.84px;
+    color:#546B82;
+    font-family:Louize;
 }
 
 .template-index .rave-reviews .rave-reviews-main{
