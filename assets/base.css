@@ -3225,4 +3225,7 @@ header.SectionHeader .Link{
       margin-right: 0;
     float: left;
     }
+    .template-index #stamped-reviews-widget[data-widget-type=carousel]{
+      width:100%;
+    }
   }
