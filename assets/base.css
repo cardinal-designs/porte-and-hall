@@ -3194,6 +3194,10 @@ header.SectionHeader .Link{
   font-family: brandon, sans-serif !important;
 } */
 
+.template-index #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll{
+  width: calc(100% - 60px) !important;
+    padding: 0 30px;
+}
  
 
 @media (max-width:767px){
