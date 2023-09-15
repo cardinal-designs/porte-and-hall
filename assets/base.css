@@ -3148,9 +3148,13 @@ header.SectionHeader .Link{
 .template-index .rave-reviews .stamped-carousel-button-left{
    position:absolute;
    left:0px;
+   top: 50%;
+   transform: translateY(-50%);
 }
 
 .template-index .rave-review .stamped-carousel-button-right{
    position:absolute;
    right:0px;
+   top: 50%;
+   transform: translateY(-50%);
 }
