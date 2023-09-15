@@ -3120,13 +3120,14 @@ header.SectionHeader .Link{
 .template-index  .stamped-carousel-scroll .stamped-reviews-author{
      margin-left:0px;
      position:relative;
-}
-
-.template-index  .stamped-carousel-scroll .stamped-reviews-autho:before{
-    font-size: 16px;
+     font-size: 16px;
     font-style: normal;
     font-weight: 420;
     line-height: 24px; 
     font-family: brandon;
     color:#30383D;
+}
+
+.template-index  .stamped-carousel-scroll .stamped-reviews-autho:before{
+  
  }
