@@ -2933,4 +2933,7 @@ select#notify_id {
 
 
 
-
+/* fix privy not showing on top of cookie bar */
+#onetrust-consent-sdk #onetrust-banner-sdk {
+  z-index: 9999999;
+}
