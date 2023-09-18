@@ -1,0 +1,20 @@
+{%- capture supported_sizes -%}{%- render 'image-size', sizes: '200,300,400,600,800,900,1000,1200,1400,1600,1800', image: image -%}{%- endcapture -%}
+{% if width != blank %}
+  {% assign image_url = image | image_url: width: width %}
+{% else %}
+  {% assign image_url = image | img_url: 'master' %}
+{% endif %}
+
+<div
+  class="aspect-ratio{% if fill %} img-fill{% endif %} {{ classes }}"
+  style="max-width: 100%; width: 100%; --aspect-ratio: {{ image.aspect_ratio }}"
+>
+  <img
+    class=""
+    data-src="{{ image_url }}"
+    data-widths="[{{- supported_sizes -}}]"
+    data-sizes="auto"
+    alt="{{ image.alt | escape }}"
+    data-media-id="{{ image.id }}"
+  >
+</div>
