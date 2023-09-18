@@ -1,11 +1,8 @@
 <div class="page-width">
    <header class="SectionHeader">
-
-
     {%- if section.settings.title != blank -%}
       <h4 class="SectionHeader__Heading">{{ section.settings.title }}</h4>
     {%- endif -%}
-
     {%- if section.settings.link_text != blank -%}
       <div class="link-div"><a href="{{ section.settings.link_url }}" class="Link Link--underline">{{ section.settings.link_text | escape }}</a></div>
     {%- endif -%}
@@ -21,14 +18,13 @@
           <li><a href="javascript:void(0)" class="tab-a" data-id="tab5">MUDROOM</a></li>
       </ul>
    </div>
-{% assign count = 0 %}
+{% assign strlngt = 0 %}
 {%- for block in section.blocks -%}
-{% assign count = count | plus:1 %}
-   <div class="products-section {% if count ==1 %}tab-active{% endif %}" data-id="tab{{count}}">
+{% assign strlngt = strlngt | plus:1 %}
+   <div class="products-section {% if strlngt ==1 %}tab-active{% endif %}" data-id="tab{{strlngt}}">
            <h6>{{ block.settings.title }}</h6>
-          <div class="swiper{{count}}">
+          <div class="swiper{{strlngt}}">
             <div class="swiper-wrapper">
-
       {% for product in block.settings.collection.products limit: 20 %}
       {% for collection in product.collections %}
         {% if collection.title contains ' |' %}
@@ -46,13 +42,10 @@
       </div>
       </div>
     {% endfor %}
-
       </div>
-       <div class="swiper-button-prev swiper-button-prev{{count}}"></div>
-        <div class="swiper-button-next swiper-button-next{{count}}"></div>
+       <div class="swiper-button-prev swiper-button-prev{{strlngt}}"></div>
+        <div class="swiper-button-next swiper-button-next{{strlngt}}"></div>
    </div>
-
-  
 </div>
 {%  endfor %}
 </div>
