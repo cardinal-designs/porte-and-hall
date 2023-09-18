@@ -87,19 +87,6 @@
         {% endif %}
       </div>
     {% endcomment %}
-    {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
-
-        <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
-          {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
-            {{ product_card_product.first_available_variant.metafields.custom.use }}
-          {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
-            Indoor/Outdoor
-          {% elsif lowercase_tags contains 'indoor' %}
-            Indoor
-          {% elsif lowercase_tags contains 'outdoor' %}
-            Outdoor
-          {% endif %}
-        </div>
     <div class="product-card__image">
       <a href="{{ product_card_product.url }}">
         {% render 'taber-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill' %}
@@ -119,6 +106,19 @@
         {% endif %}
       </a>
     </div>
+    {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
+
+        <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
+          {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
+            {{ product_card_product.first_available_variant.metafields.custom.use }}
+          {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
+            Indoor/Outdoor
+          {% elsif lowercase_tags contains 'indoor' %}
+            Indoor
+          {% elsif lowercase_tags contains 'outdoor' %}
+            Outdoor
+          {% endif %}
+        </div>
     {% if simple_card == true %}<div>{% endif %}
 
     {% if template.suffix == 'last-chance' %}
