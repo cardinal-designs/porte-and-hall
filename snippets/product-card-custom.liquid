@@ -87,16 +87,9 @@
         {% endif %}
       </div>
     {% endcomment %}
-    <div class="product-card__image">
-      <a href="{{ product_card_product.url }}">
-        {% render 'taber-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill' %}
-        {% if product_card_product.media[1] != null %}
-          {% render 'taber-image', image: product_card_product.media[1], fade: true, classes: 'img-fill' %}
-        {% endif %}
+    {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
 
-        {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
-
-        <!-- <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
+        <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
           {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
             {{ product_card_product.first_available_variant.metafields.custom.use }}
           {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
@@ -106,7 +99,15 @@
           {% elsif lowercase_tags contains 'outdoor' %}
             Outdoor
           {% endif %}
-        </div> -->
+        </div>
+    <div class="product-card__image">
+      <a href="{{ product_card_product.url }}">
+        {% render 'taber-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill' %}
+        {% if product_card_product.media[1] != null %}
+          {% render 'taber-image', image: product_card_product.media[1], fade: true, classes: 'img-fill' %}
+        {% endif %}
+
+        
 
         {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
           {% assign price_change = product_card_product.price | minus: product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
