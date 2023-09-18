@@ -97,6 +97,50 @@
     },
     "cb7443ea-2e0d-49d4-9b54-bb61eac621af": {
       "type": "multiple-product-slider",
+      "blocks": {
+        "2dcd07ad-c5e9-4640-b20f-44dd3700374a": {
+          "type": "block",
+          "settings": {
+            "title": "Kitchen",
+            "collection": "kitchen-insider"
+          }
+        },
+        "b4028386-66bb-4ff3-ba7d-ab2915e1a475": {
+          "type": "block",
+          "settings": {
+            "title": "Front Door",
+            "collection": "the-insider-doormat"
+          }
+        },
+        "a20838b1-464e-4513-b7c9-ed919a87e808": {
+          "type": "block",
+          "settings": {
+            "title": "Entry",
+            "collection": "entry-insider"
+          }
+        },
+        "1af2ae8b-7300-43d6-ba79-f6c87b5c4d30": {
+          "type": "block",
+          "settings": {
+            "title": "Hallway",
+            "collection": "hallway-insider"
+          }
+        },
+        "49d22eb6-41cc-4329-a3b8-c5f0ad381d6d": {
+          "type": "block",
+          "settings": {
+            "title": "Mudroom",
+            "collection": "mudroom-insider"
+          }
+        }
+      },
+      "block_order": [
+        "2dcd07ad-c5e9-4640-b20f-44dd3700374a",
+        "b4028386-66bb-4ff3-ba7d-ab2915e1a475",
+        "a20838b1-464e-4513-b7c9-ed919a87e808",
+        "1af2ae8b-7300-43d6-ba79-f6c87b5c4d30",
+        "49d22eb6-41cc-4329-a3b8-c5f0ad381d6d"
+      ],
       "settings": {
         "title": "Shop by room",
         "link_text": "shop all",
