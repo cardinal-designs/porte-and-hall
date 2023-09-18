@@ -12,11 +12,11 @@
       <div class="collection-row">
         {% assign count = 0 %}
         {%- for block in section.blocks -%}
-          {% assign count = count | plus:1 %}
           <div class="collection-col">
               <h6>{{ block.settings.title }}</h6>
               <div class="collection-row">
               {% for product in block.settings.collection.products limit: 2 %}
+                {% assign count = count | plus:1 %}
               {% for collection in product.collections %}
                 {% if collection.title contains ' |' %}
                   {% assign grouped_collection = collection %}
