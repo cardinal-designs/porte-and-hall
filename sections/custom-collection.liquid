@@ -23,8 +23,7 @@
                 {% endif %}
               {% endfor %}
               <div class="collection-col">
-                
-                <p class="badge">{% if count==1 %}{{ block.settings.badge1}}{% elsif count ==2 %}{{ block.settings.badge2}}{% endif %}</p>
+                <p class="badge">{% if count=="1" %}{{ block.settings.badge1}}{% elsif count == "2" %}{{ block.settings.badge2}}{% endif %}</p>
                 {% render 'grouped-product-card',
                   product_card_product: product,
                   collection: grouped_collection,
