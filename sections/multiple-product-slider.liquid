@@ -24,7 +24,7 @@
 {% assign count = 0 %}
 {%- for block in section.blocks -%}
 {% assign count = count | plus:1 %}
-   <div class="products-section tab-active" data-id="tab{{count}}">
+   <div class="products-section {% if count ==1 %}tab-active{% endif %}" data-id="tab{{count}}">
            <h6>{{ block.settings.title }}</h6>
           <div class="swiper{{count}}">
             <div class="swiper-wrapper">
