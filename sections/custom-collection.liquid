@@ -23,7 +23,7 @@
                 {% endif %}
               {% endfor %}
               <div class="collection-col">
-                <p class="badge">{{ block.settings.badge | concat: count }}</p>
+                <p class="badge">{{ block.settings.badge | append: count }}</p>
                 {% render 'grouped-product-card',
                   product_card_product: product,
                   collection: grouped_collection,
