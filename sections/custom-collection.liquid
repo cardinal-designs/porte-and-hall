@@ -10,7 +10,9 @@
         {%- endif -%}
 
       <div class="collection-row">
+        {% assign count = 0 %}
         {%- for block in section.blocks -%}
+          {% assign count = count | plus:1 %}
           <div class="collection-col">
               <h6>{{ block.settings.title }}</h6>
               <div class="collection-row">
@@ -21,7 +23,7 @@
                 {% endif %}
               {% endfor %}
               <div class="collection-col">
-                <p class="badge">{{ block.settings.badge1 }}</p>
+                <p class="badge">{{ block.settings.badge }}{{ count }}</p>
                 {% render 'grouped-product-card',
                   product_card_product: product,
                   collection: grouped_collection,
