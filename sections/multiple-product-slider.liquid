@@ -11,12 +11,10 @@
   <div class="collection-navigation-with-slider">
     <div class="collection-navigation">
       <ul>
+        {% assign strlngt2 = 0 %}
         {%- for block in section.blocks -%}
-          <li><a href="javascript:void(0)" class="tab-a active-a" data-id="tab1">{{ block.settings.title }}</a></li>
-          <li><a href="javascript:void(0)" class="tab-a" data-id="tab2">FRONT DOOR</a></li>
-          <li><a href="javascript:void(0)" class="tab-a" data-id="tab3">ENTRY</a></li>
-          <li><a href="javascript:void(0)" class="tab-a" data-id="tab4">HALLWAY</a></li>
-          <li><a href="javascript:void(0)" class="tab-a" data-id="tab5">MUDROOM</a></li>
+          {% assign strlngt2 = strlngt2 | plus:1 %}
+          <li><a href="javascript:void(0)" class="tab-a {% if strlngt2 ==1 %}active-a{% endif %}" data-id="tab{{ strlngt2 }}">{{ block.settings.title }}</a></li>
           {% endfor %}
       </ul>
    </div>
