@@ -22,7 +22,6 @@
 {%- for block in section.blocks -%}
 {% assign strlngt = strlngt | plus:1 %}
    <div class="products-section {% if strlngt ==1 %}tab-active{% endif %}" data-id="tab{{strlngt}}">
-           <h6>{{ block.settings.title }}</h6>
           <div class="swiper{{strlngt}}">
             <div class="swiper-wrapper">
       {% for product in block.settings.collection.products limit: 20 %}
