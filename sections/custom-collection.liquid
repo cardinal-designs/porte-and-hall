@@ -14,7 +14,7 @@
           <div class="collection-col">
               <h6>{{ block.settings.title }}</h6>
               <div class="collection-row">
-              {% for product in section.settings.collection.products limit: 2 %}
+              {% for product in block.settings.collection.products limit: 2 %}
               {% for collection in product.collections %}
                 {% if collection.title contains ' |' %}
                   {% assign grouped_collection = collection %}
@@ -82,6 +82,11 @@
           "type": "text",
           "id": "badge2",
           "label": "Enter Badge"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
         }
       ]
     }
