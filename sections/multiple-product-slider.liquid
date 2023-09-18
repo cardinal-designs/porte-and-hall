@@ -25,12 +25,10 @@
 {%- for block in section.blocks -%}
 {% assign count = count | plus:1 %}
    <div class="products-section tab-active" data-id="tab{{count}}">
+           <h6>{{ block.settings.title }}</h6>
           <div class="swiper{{count}}">
             <div class="swiper-wrapper">
 
-  <div class="collection-col">
-      <h6>{{ block.settings.title }}</h6>
-      <div class="collection-row">
       {% for product in block.settings.collection.products limit: 20 %}
       {% for collection in product.collections %}
         {% if collection.title contains ' |' %}
@@ -53,11 +51,7 @@
        <div class="swiper-button-prev swiper-button-prev{{count}}"></div>
         <div class="swiper-button-next swiper-button-next{{count}}"></div>
    </div>
-  
-   </div>
 
- 
-  </div>
   
 </div>
 {%  endfor %}
