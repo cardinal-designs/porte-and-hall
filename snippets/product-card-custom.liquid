@@ -89,9 +89,9 @@
     {% endcomment %}
     <div class="product-card__image">
       <a href="{{ product_card_product.url }}">
-        {% render 'taber-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill' %}
+        {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill' %}
         {% if product_card_product.media[1] != null %}
-          {% render 'taber-image', image: product_card_product.media[1], fade: true, classes: 'img-fill' %}
+          {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill' %}
         {% endif %}
 
         
