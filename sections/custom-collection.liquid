@@ -42,7 +42,7 @@
                 </a>
 
                 {% for swatch in collection.metafields.custom.collection_swatch_images.value %}
-                  test: {{ swatch | image_url: width: 100 }}
+                  <img src="{{ swatch | image_url: width: 100 }}" loading="lazy" />
                 {% endfor %}
                 
                 <a href="{{ block.settings.collection1.url }}" class="text-link gold-secondary--dark product-card__link">
