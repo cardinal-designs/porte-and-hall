@@ -39,13 +39,14 @@
                   <h3 class="product-card__title blue">
                     {{ block.settings.collection1_title | default: block.settings.collection1.title }}
                   </h3>
+                  
+                  <div class="collection-swatch">
+                    {% for swatch in block.settings.collection1.metafields.custom.collection_swatch_images.value %}
+                      {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy', class: 'collection-swatch-img' }}
+                    {% endfor %}
+                  </div>
                 </a>
 
-                <div class="collection-swatch">
-                  {% for swatch in block.settings.collection1.metafields.custom.collection_swatch_images.value %}
-                    {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy', class: 'collection-swatch-img' }}
-                  {% endfor %}
-                </div>
                 
                 <a href="{{ block.settings.collection1.url }}" class="text-link gold-secondary--dark product-card__link">
                   Shop Now 
@@ -81,13 +82,14 @@
                   <h3 class="product-card__title blue">
                     {{ block.settings.collection2_title | default: block.settings.collection2.title }}
                   </h3>
+                  
+                  <div class="collection-swatch">
+                    {% for swatch in block.settings.collection2.metafields.custom.collection_swatch_images.value %}
+                      {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy', class: 'collection-swatch-img' }}
+                    {% endfor %}
+                  </div>                
                 </a>
 
-                <div class="collection-swatch">
-                  {% for swatch in block.settings.collection2.metafields.custom.collection_swatch_images.value %}
-                    {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy', class: 'collection-swatch-img' }}
-                  {% endfor %}
-                </div>                
         
                 <a href="{{ block.settings.collection2.url }}" class="text-link gold-secondary--dark product-card__link">
                   Shop Now 
