@@ -2,6 +2,16 @@
   #shopify-section-{{section.id}} .heading-with-accents a {
     color: inherit;
   }
+
+  #shopify-section-{{section.id}} .heading-with-accents p a:after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    right: 0px;
+  }  
   
   .image-gallery {
     display: grid;
