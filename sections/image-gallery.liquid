@@ -25,6 +25,14 @@
   .image-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (min-width: 767px) {
+    .image-gallery {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }    
   }
 {% endstyle %}
 
