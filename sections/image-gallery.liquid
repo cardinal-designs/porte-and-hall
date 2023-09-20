@@ -12,8 +12,8 @@
     height: 3px;
   }  
 
-  .custom-image-gallery {
-    padding: 56px 40px;
+  .custom-image-gallery .page-width {
+    padding: 20px;
   }  
   
   .image-gallery {
@@ -23,6 +23,10 @@
   }
 
   @media (min-width: 767px) {
+    .custom-image-gallery .page-width {
+      padding: 56px 40px;
+    }
+    
     .image-gallery {
       grid-template-columns: 1fr 1fr 1fr;
       gap: 24px;
