@@ -43,7 +43,7 @@
 
                 {% for collection in collections %}
                   {% for swatch in collection.metafields.custom.collection_swatch_images.value %}
-                    {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy' }}
+                    {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy', class: 'collection-swatch' }}
                   {% endfor %}
                 {% endfor %}
                 
