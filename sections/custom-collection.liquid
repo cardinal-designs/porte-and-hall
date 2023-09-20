@@ -23,7 +23,7 @@
                 collection: grouped_collection,
                 title: grouped_collection.title,
                 button_text: section.settings.button_text,
-                image: block.settings.collection_image
+                image: block.settings.collection_image1
               %}
             </div>
 
@@ -36,7 +36,7 @@
                 collection: grouped_collection,
                 title: grouped_collection.title,
                 button_text: section.settings.button_text,
-                image: block.settings.collection_image
+                image: block.settings.collection_image2
               %}
             </div>            
           </div>
@@ -82,12 +82,12 @@
         },
         {
           "type": "collection",
-          "id": "collection",
+          "id": "collection1",
           "label": "Collection"
         },
         {
           "type": "image_picker",
-          "id": "collection_image",
+          "id": "collection_image1",
           "label": "Collection image"
         },       
         {
@@ -98,7 +98,17 @@
           "type": "text",
           "id": "badge2",
           "label": "Enter Badge"
-        }
+        },
+        {
+          "type": "collection",
+          "id": "collection2",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_image2",
+          "label": "Collection image"
+        }       
       ]
     }
   
