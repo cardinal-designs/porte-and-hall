@@ -40,9 +40,9 @@
                     {{ block.settings.collection1_title | default: block.settings.collection1.title }}
                   </h3>
                   
-                  <div class="collection-swatch">
+                  <div class="product-card__swatches">
                     {% for swatch in block.settings.collection1.metafields.custom.collection_swatch_images.value %}
-                      {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy', class: 'collection-swatch-img' }}
+                      {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy', class: 'collection-swatch-img product-card__swatch' }}
                     {% endfor %}
 
                     {% if block.settings.collection1_show_more != blank %}
@@ -87,9 +87,9 @@
                     {{ block.settings.collection2_title | default: block.settings.collection2.title }}
                   </h3>
                   
-                  <div class="collection-swatch">
+                  <div class="product-card__swatches">
                     {% for swatch in block.settings.collection2.metafields.custom.collection_swatch_images.value %}
-                      {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy', class: 'collection-swatch-img' }}
+                      {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy', class: 'collection-swatch-img product-card__swatch' }}
                     {% endfor %}
 
                     {% if block.settings.collection2_show_more != blank %}
