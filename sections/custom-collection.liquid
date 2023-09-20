@@ -41,8 +41,8 @@
                   </h3>
                 </a>
   
-                {% for swatch in collection.metafields.custom.collection_swatch_images %}
-                  {{ swatch }}
+                {% for swatch in collection.metafields.custom.collection_swatch_images.value %}
+                  test: {{ swatch }}
                 {% endfor %}
                 
                 <a href="{{ block.settings.collection1.url }}" class="text-link gold-secondary--dark product-card__link">
