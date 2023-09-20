@@ -5,7 +5,11 @@
   }
 {% endstyle %}
 
-<div class="image-gallery"></div>
+<div class="image-gallery">
+  {% for block in section.settings.blocks %}
+    {{ block | image_url: width: 100 | image_tag: width: "100%" }}
+  {% endfor %}
+</div>
 
 {% schema %}
 {
