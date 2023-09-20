@@ -18,7 +18,7 @@
               <p class="badge">
                 {{- block.settings.badge1 -}}
               </p>
-test:{{ block.settings.collection_image1 }}
+test:{{ block.settings.collection_image1 | image_url: width: 650 }}
               <div class="product-card ">
                 <div class="product-card__image">
                   <a href="">
@@ -30,7 +30,7 @@ test:{{ block.settings.collection_image1 }}
                         alt="" 
                         data-media-id="" 
                         sizes="274px"
-                        src="{{ block.settings.collection_image1 }}">
+                        src="{{ block.settings.collection_image1 | image_url: width: 650 }}">
                     </div>
                   </a>
                 </div>
