@@ -661,10 +661,28 @@
     "20c1feb9-4e08-4fa2-923e-830e36370086": {
       "type": "image-gallery",
       "blocks": {
+        "4a6a2760-1857-4bba-bebb-36b9368b31a0": {
+          "type": "block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Frame_144.jpg"
+          }
+        },
+        "63c2a963-1d3c-45f7-ac8a-e710078da8bd": {
+          "type": "block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Frame_145.jpg"
+          }
+        },
         "1838a4c2-09a7-4af8-92c9-ce5ad7fbcb4e": {
           "type": "block",
           "settings": {
             "image": "shopify:\/\/shop_images\/Frame_146.jpg"
+          }
+        },
+        "d8186398-f916-446c-a4ee-2b20cdd4dddf": {
+          "type": "block",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Frame_147.jpg"
           }
         },
         "9872b365-4195-4285-ad63-7b67295da6f8": {
@@ -678,33 +696,15 @@
           "settings": {
             "image": "shopify:\/\/shop_images\/Frame_149.jpg"
           }
-        },
-        "4a6a2760-1857-4bba-bebb-36b9368b31a0": {
-          "type": "block",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/Frame_144.jpg"
-          }
-        },
-        "63c2a963-1d3c-45f7-ac8a-e710078da8bd": {
-          "type": "block",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/Frame_145.jpg"
-          }
-        },
-        "d8186398-f916-446c-a4ee-2b20cdd4dddf": {
-          "type": "block",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/Frame_147.jpg"
-          }
         }
       },
       "block_order": [
-        "1838a4c2-09a7-4af8-92c9-ce5ad7fbcb4e",
-        "9872b365-4195-4285-ad63-7b67295da6f8",
-        "ab14687b-0e98-49dd-a2fb-cfcc6c9ce9f3",
         "4a6a2760-1857-4bba-bebb-36b9368b31a0",
         "63c2a963-1d3c-45f7-ac8a-e710078da8bd",
-        "d8186398-f916-446c-a4ee-2b20cdd4dddf"
+        "1838a4c2-09a7-4af8-92c9-ce5ad7fbcb4e",
+        "d8186398-f916-446c-a4ee-2b20cdd4dddf",
+        "9872b365-4195-4285-ad63-7b67295da6f8",
+        "ab14687b-0e98-49dd-a2fb-cfcc6c9ce9f3"
       ],
       "settings": {
         "title": "<p>@<a href=\"https:\/\/www.instagram.com\/porteandhall\/\" target=\"_blank\" title=\"https:\/\/www.instagram.com\/porteandhall\/\">porteandhall<\/a><\/p>"
