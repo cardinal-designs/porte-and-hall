@@ -18,16 +18,16 @@
               <p class="badge">
                 {{- block.settings.badge1 -}}
               </p>
-test:{{ block.settings.collection_image1 | image_url: width: 650 }}
               <div class="product-card ">
                 <div class="product-card__image">
                   <a href="">
                     <div class="aspect-ratio img-fill" style="max-width: 100%; width: 100%; --aspect-ratio: ">
                       <img class="lazyload--fade lazyautosizes lazyloaded"
-                        data-src="{{ block.settings.collection_image1 }}"
+                        data-src="{{ block.settings.collection_image1 | image_url: width: 650 }}"
                         data-widths="[200,300,400,600,800,900,1000,1200,1400,1600,1800]" 
                         data-sizes="auto" 
                         alt="" 
+                        loading="lazy"
                         data-media-id="" 
                         sizes="274px"
                         src="{{ block.settings.collection_image1 | image_url: width: 650 }}">
