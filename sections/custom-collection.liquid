@@ -41,11 +41,9 @@
                   </h3>
                 </a>
 
-                {% for collection in collections %}
-                  {% for swatch in collection.metafields.custom.collection_swatch_images.value %}
+                  {% for swatch in block.settings.collection_image1.metafields.custom.collection_swatch_images.value %}
                     {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy', class: 'collection-swatch' }}
                   {% endfor %}
-                {% endfor %}
                 
                 <a href="{{ block.settings.collection1.url }}" class="text-link gold-secondary--dark product-card__link">
                   Shop Now 
