@@ -35,7 +35,7 @@
   
   <div class="image-gallery">
     {% for block in section.blocks %}
-      {{ block | image_url: width: 100 | image_tag: width: "100%", loading: "lazy" }}
+      {{ block | image_url: width: 900 | image_tag: width: "100%", loading: "lazy" }}
     {% endfor %}
   </div>
 </div>
