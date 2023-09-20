@@ -12,8 +12,8 @@
       {%- for block in section.blocks -%}
         <div class="collection-col">
           <h6>{{ block.settings.title }}</h6>
+          
           <div class="collection-row-inner">
-                 
             <div class="collection-col-inner">
               <p class="badge">
                 {{- block.settings.badge1 -}}
@@ -27,6 +27,22 @@
               %}
             </div>
           </div>
+
+          <div class="collection-row-inner">
+            <div class="collection-col-inner">
+              <p class="badge">
+                {{- block.settings.badge2 -}}
+              </p>
+              {% render 'product-card-custom',
+                product_card_product: product,
+                collection: grouped_collection,
+                title: grouped_collection.title,
+                button_text: section.settings.button_text,
+                image: block.settings.collection_image
+              %}
+            </div>
+          </div>
+          
         </div>
       {% endfor %}
     </div>
