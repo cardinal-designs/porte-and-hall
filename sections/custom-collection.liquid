@@ -35,33 +35,55 @@
                   </a>
                 </div>
               
-                <a href="">
+                <a href="{{ block.settings.collection_url1 }}">
                   <h3 class="product-card__title blue">
                     <span class="body"></span>
                   </h3>
                 </a>
               
-                <a href="" class="text-link gold-secondary--dark product-card__link">
+                <a href="{{ block.settings.collection_url1 }}" class="text-link gold-secondary--dark product-card__link">
                   Shop Now 
                   <span> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="29" height="16" viewBox="0 0 29 16" fill="none"><path d="M28.7071 8.70711C29.0976 8.31658 29.0976 7.68342 28.7071 7.29289L22.3431 0.928932C21.9526 0.538408 21.3195 0.538408 20.9289 0.928932C20.5384 1.31946 20.5384 1.95262 20.9289 2.34315L26.5858 8L20.9289 13.6569C20.5384 14.0474 20.5384 14.6805 20.9289 15.0711C21.3195 15.4616 21.9526 15.4616 22.3431 15.0711L28.7071 8.70711ZM0 9H28V7H0V9Z" fill="#A19377"></path></svg>
                   </span>
                 </a>
               </div>
-              
             </div>
 
             <div class="collection-col-inner">
               <p class="badge">
                 {{- block.settings.badge2 -}}
               </p>
-              {% render 'product-card-custom',
-                product_card_product: product,
-                collection: grouped_collection,
-                title: grouped_collection.title,
-                button_text: section.settings.button_text,
-                image: block.settings.collection_image2
-              %}
+              <div class="product-card ">
+                <div class="product-card__image">
+                  <a href="">
+                    <div class="aspect-ratio img-fill" style="max-width: 100%; width: 100%; --aspect-ratio: ">
+                      <img class="lazyload--fade lazyautosizes lazyloaded"
+                        data-src="{{ block.settings.collection_image2 | image_url: width: 650 }}"
+                        data-widths="[200,300,400,600,800,900,1000,1200,1400,1600,1800]" 
+                        data-sizes="auto" 
+                        alt="" 
+                        loading="lazy"
+                        data-media-id="" 
+                        sizes="274px"
+                        src="{{ block.settings.collection_image2 | image_url: width: 650 }}">
+                    </div>
+                  </a>
+                </div>
+              
+                <a href="{{ block.settings.collection_url2 }}">
+                  <h3 class="product-card__title blue">
+                    <span class="body"></span>
+                  </h3>
+                </a>
+              
+                <a href="{{ block.settings.collection_url2 }}" class="text-link gold-secondary--dark product-card__link">
+                  Shop Now 
+                  <span> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="16" viewBox="0 0 29 16" fill="none"><path d="M28.7071 8.70711C29.0976 8.31658 29.0976 7.68342 28.7071 7.29289L22.3431 0.928932C21.9526 0.538408 21.3195 0.538408 20.9289 0.928932C20.5384 1.31946 20.5384 1.95262 20.9289 2.34315L26.5858 8L20.9289 13.6569C20.5384 14.0474 20.5384 14.6805 20.9289 15.0711C21.3195 15.4616 21.9526 15.4616 22.3431 15.0711L28.7071 8.70711ZM0 9H28V7H0V9Z" fill="#A19377"></path></svg>
+                  </span>
+                </a>
+              </div>
             </div>            
           </div>
 
@@ -105,14 +127,14 @@
           "label": "Enter Badge"
         },
         {
-          "type": "collection",
-          "id": "collection1",
-          "label": "Collection"
-        },
-        {
           "type": "image_picker",
           "id": "collection_image1",
           "label": "Collection image"
+        },
+        {
+          "type": "url",
+          "id": "collection_url1",
+          "label": "Collection url"
         },       
         {
           "type": "header",
@@ -124,14 +146,14 @@
           "label": "Enter Badge"
         },
         {
-          "type": "collection",
-          "id": "collection2",
-          "label": "Collection"
-        },
-        {
           "type": "image_picker",
           "id": "collection_image2",
           "label": "Collection image"
+        },
+        {
+          "type": "url",
+          "id": "collection_url2",
+          "label": "Collection url"
         }       
       ]
     }
