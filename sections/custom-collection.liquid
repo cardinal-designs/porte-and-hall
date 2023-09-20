@@ -1,27 +1,31 @@
 <div class="custom-collection">
   <div class="page-width">
-     {%- if section.settings.title != blank -%}
-          <header class="SectionHeader">
-            {%- if section.settings.title != blank -%}
-              <h4 class="SectionHeader__Heading">{{ section.settings.title }}</h4>
-            {%- endif -%}
-          </header>
+    {%- if section.settings.title != blank -%}
+      <header class="SectionHeader">
+        {%- if section.settings.title != blank -%}
+          <h4 class="SectionHeader__Heading">{{ section.settings.title }}</h4>
         {%- endif -%}
-      <div class="collection-row">
-        {% assign count = 0 %}
-        {%- for block in section.blocks -%}
-          <div class="collection-col">
-              <h6>{{ block.settings.title }}</h6>
-              <div class="collection-row-inner">
-              {% for product in block.settings.collection.products limit: 2 %}
-                {% assign count = count | plus:1 %}
+      </header>
+    {%- endif -%}
+
+    <div class="collection-row">
+      {%- for block in section.blocks -%}
+        <div class="collection-col">
+          <h6>{{ block.settings.title }}</h6>
+          <div class="collection-row-inner">
+            {% for product in block.settings.collection.products limit: 2 %}
+              
               {% for collection in product.collections %}
                 {% if collection.title contains ' |' %}
                   {% assign grouped_collection = collection %}
                 {% endif %}
               {% endfor %}
+
+            
               <div class="collection-col-inner">
-                <p class="badge">{% if count==1 or count==3%}{{ block.settings.badge1}}{% elsif count == 2 or count == 4 %}{{ block.settings.badge2}}{% endif %}</p>
+                <p class="badge">
+                  {{- block.settings.badge -}}
+                </p>
                 {% render 'product-card-custom',
                   product_card_product: product,
                   collection: grouped_collection,
@@ -31,10 +35,10 @@
                 %}
               </div>
             {% endfor %}
-              </div>
           </div>
-        {%  endfor %}
-      </div>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </div>
 
