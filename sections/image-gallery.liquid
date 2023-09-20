@@ -8,38 +8,38 @@
 <div class="image-gallery"></div>
 
 {% schema %}
-  {
-    "name": "Image gallery",
-    "class": "custom-image-gallery",
-    "tag": "section",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Title"
-      }
-    ],
-    "blocks": [
+{
+  "name": "Image gallery",
+  "class": "custom-image-gallery",
+  "tag": "section",
+  "settings": [
     {
-     "type": "block",
-     "name": "Image",
-     "limit":4,
-     "settings": [
-
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        }
-      ]
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Title"
     }
   ],
-  "presets": [
+  "blocks": [
+  {
+   "type": "block",
+   "name": "Image",
+   "limit":4,
+   "settings": [
+
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ]
+  }
+],
+"presets": [
     {
       "name": "Image gallery",
       "settings": {}
     }
   ]
-  }
+}
 {% endschema %}
