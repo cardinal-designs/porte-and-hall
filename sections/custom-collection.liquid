@@ -13,28 +13,19 @@
         <div class="collection-col">
           <h6>{{ block.settings.title }}</h6>
           <div class="collection-row-inner">
-            {% for product in block.settings.collection.products limit: 2 %}
-              
-              {% for collection in product.collections %}
-                {% if collection.title contains ' |' %}
-                  {% assign grouped_collection = collection %}
-                {% endif %}
-              {% endfor %}
-
-            
-              <div class="collection-col-inner">
-                <p class="badge">
-                  {{- block.settings.badge -}}
-                </p>
-                {% render 'product-card-custom',
-                  product_card_product: product,
-                  collection: grouped_collection,
-                  title: grouped_collection.title,
-                  button_text: section.settings.button_text,
-                  image: block.settings.collection_image
-                %}
-              </div>
-            {% endfor %}
+                 
+            <div class="collection-col-inner">
+              <p class="badge">
+                {{- block.settings.badge1 -}}
+              </p>
+              {% render 'product-card-custom',
+                product_card_product: product,
+                collection: grouped_collection,
+                title: grouped_collection.title,
+                button_text: section.settings.button_text,
+                image: block.settings.collection_image
+              %}
+            </div>
           </div>
         </div>
       {% endfor %}
