@@ -12,7 +12,7 @@
         {%- for block in section.blocks -%}
           <div class="collection-col">
               <h6>{{ block.settings.title }}</h6>
-              <div class="collection-row">
+              <div class="collection-row-inner">
               {% for product in block.settings.collection.products limit: 2 %}
                 {% assign count = count | plus:1 %}
               {% for collection in product.collections %}
@@ -20,7 +20,7 @@
                   {% assign grouped_collection = collection %}
                 {% endif %}
               {% endfor %}
-              <div class="collection-col">
+              <div class="collection-col-inner">
                 <p class="badge">{% if count==1 or count==3%}{{ block.settings.badge1}}{% elsif count == 2 or count == 4 %}{{ block.settings.badge2}}{% endif %}</p>
                 {% render 'product-card-custom',
                   product_card_product: product,
@@ -141,10 +141,8 @@
     left: 0;
     top: 0;
   }
-  .collection-row .collection-col .collection-col{
-    
-  }
-  .collection-row .collection-col .collection-col:before{
+
+  .collection-row .collection-col .collection-col-inner:before{
     display:none;
   }
 
@@ -179,10 +177,10 @@
     width: max-content;
   }
 
-  .collection-row .collection-col .collection-row{
+  .collection-row .collection-col .collection-row-inner {
     gap: 20px;
   }
-  .collection-row .collection-col .collection-row .collection-col{
+  .collection-row .collection-col .collection-row-inner .collection-col-inner {
     background: transparent;
     padding: 21px 0 0;
     text-align: center;
@@ -335,7 +333,7 @@
     .collection-row .collection-col{
       padding: 7px 20px 10px;
     }
-    .collection-row .collection-col .collection-row .collection-col{
+    .collection-row .collection-col .collection-row-inner .collection-col-inner {
       padding: 12px 0 0;
     }
     .collection-row .collection-col .badge{
@@ -390,10 +388,10 @@
     .collection-row .collection-col{
       padding: 7px 12px 12px;
     }
-    .collection-row .collection-col .collection-row .collection-col{
+    .collection-row .collection-col .collection-row-inner .collection-col-inner {
       padding: 12px 0 0;
     }
-    .collection-row .collection-col .collection-row{
+    .collection-row .collection-col .collection-row-inner {
       gap:12px;
     }
    
