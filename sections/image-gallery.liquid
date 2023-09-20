@@ -5,14 +5,20 @@
   }
 {% endstyle %}
 
-<div class="section-header">
-  {{ section.settings.title }}
-</div>
-
-<div class="image-gallery">
-  {% for block in section.settings.blocks %}
-    {{ block | image_url: width: 100 | image_tag: width: "100%" }}
-  {% endfor %}
+<div class="page-width">
+  <div class="heading-with-accents">
+    <span class="divider header-divider"><span class="divider-line"></span></span>
+    <div class="h2 blue">
+      {{ section.settings.title }}
+    </div>    
+    <span class="divider header-divider"> <span class="divider-line"></span> </span>    
+  </div>
+  
+  <div class="image-gallery">
+    {% for block in section.settings.blocks %}
+      {{ block | image_url: width: 100 | image_tag: width: "100%" }}
+    {% endfor %}
+  </div>
 </div>
 
 {% schema %}
