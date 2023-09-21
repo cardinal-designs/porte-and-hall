@@ -98,6 +98,12 @@
           {% render 'lazy-image', image: custom_image, fade: true, classes: 'img-fill' %}
         {% endif %}
 
+        {% if template == index %}
+          {% if product.metafields.custom.image_for_homepage.value != blank %}
+            not blank
+          {% endif %}
+        {% endif %}
+
         
 
         {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
