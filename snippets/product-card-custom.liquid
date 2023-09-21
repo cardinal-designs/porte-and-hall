@@ -98,16 +98,6 @@
           {% render 'lazy-image', image: custom_image, fade: true, classes: 'img-fill' %}
         {% endif %}
 
-        {% if product.metafields.custom.image_for_homepage != blank %}
-          <p>testing</p>
-        {% endif %}
-
-        
-        {% if template == index %}
-        {% endif %}
-
-        
-
         {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
           {% assign price_change = product_card_product.price | minus: product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
           {% assign percent_discount = price_change | times: 100 | divided_by: product_card_product.price %}
