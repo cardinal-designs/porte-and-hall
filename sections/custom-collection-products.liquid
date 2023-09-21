@@ -25,14 +25,14 @@
                 <p class="badge">
                   {{- block.settings.badge1 -}}
                 </p>
-              </div>
-            {% endfor %}
-                {% render 'product-card',
+                {% render 'product-card-custom',
                   product_card_product: block.settings.product1,
                   collection: grouped_collection,
                   title: grouped_collection.title,
                   button_text: section.settings.button_text
                 %}
+              </div>
+            {% endfor %}
 
             {% for product in block.settings.collection2.products limit: 1 %}
               {% for collection in product.collections %}
