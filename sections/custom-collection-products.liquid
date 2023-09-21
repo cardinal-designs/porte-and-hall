@@ -19,11 +19,14 @@
                 {{- block.settings.badge1 -}}
               </p>
 
+              {% assign product = block.settings.product1 %}
+        
               {% render 'product-card-custom',
-                product_card_product: block.settings.product1,
+                product_card_product: product,
                 collection: grouped_collection,
                 title: block.settings.collection1_title,
-                button_text: section.settings.button_text
+                button_text: section.settings.button_text,
+                image: block.settings.collection_image1
               %}              
               
               <!-- product card -->
