@@ -98,9 +98,12 @@
           {% render 'lazy-image', image: custom_image, fade: true, classes: 'img-fill' %}
         {% endif %}
 
-          {% if product.metafields.global.image_for_homepage != blank %}
+        {% for product in products %}
+          {% if product.metafields.custom.image_for_homepage.value != blank %}
             not blank
           {% endif %}
+        {% endfor %}
+        
         {% if template == index %}
         {% endif %}
 
