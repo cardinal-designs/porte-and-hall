@@ -99,7 +99,7 @@
         {% endif %}
 
         {% for product in products %}
-          {% if product.metafields.custom.image_for_homepage.value != blank %}
+          {% if product.metafields.global.image_for_homepage.value != blank %}
             not blank
           {% endif %}
         {% endfor %}
