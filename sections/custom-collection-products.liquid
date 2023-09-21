@@ -28,7 +28,7 @@
                 {% render 'product-card-custom',
                   product_card_product: block.settings.product1,
                   collection: grouped_collection,
-                  title: 'test',
+                  title: block.settings.product1_title,
                   button_text: section.settings.button_text,
                   custom_image: block.settings.product_image1
                 %}
@@ -48,7 +48,7 @@
                 {% render 'product-card-custom',
                   product_card_product: block.settings.product2,
                   collection: grouped_collection,
-                  title: grouped_collection.title,
+                  title: block.settings.product2_title,
                   button_text: section.settings.button_text,
                   custom_image: block.settings.product_image2
                 %}
@@ -95,6 +95,11 @@
         "label": "Enter Badge"
       },
       {
+        "type": "text",
+        "id": "product1_title",
+        "label": "Product title"
+      },     
+      {
         "type": "collection",
         "id": "collection1",
         "label": "Collection"
@@ -118,6 +123,11 @@
         "id": "badge2",
         "label": "Enter Badge"
       },
+      {
+        "type": "text",
+        "id": "product2_title",
+        "label": "Product title"
+      },       
       {
         "type": "collection",
         "id": "collection2",
