@@ -3306,3 +3306,9 @@ header.SectionHeader .Link{
     padding: 10px 0px;
 }
 }
+
+
+/* hide preview bar */
+iframe#preview-bar-iframe {
+  display: none;
+}
