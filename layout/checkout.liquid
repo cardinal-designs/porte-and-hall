@@ -12,7 +12,13 @@
 
     {{ checkout_stylesheets }}
     {{ checkout_scripts }}
+    
     <style>
+      /* hide preview bar */
+      iframe#preview-bar-iframe {
+        display: none;
+      }
+      
       .order-summary__section--discount .edit_checkout .fieldset .field__input-btn-wrapper .field__input-wrapper input#checkout_reduction_code {
         font-size: 13px;
         padding: 0.9em 0.8em;
