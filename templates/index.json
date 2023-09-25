@@ -215,7 +215,15 @@
           "settings": {
             "icon_type": "left",
             "link": "https:\/\/www.porteandhall.com\/collections\/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Indoor",
-            "title": "DOORMAT"
+            "title": "INDOOR DOORMAT"
+          }
+        },
+        "bd92f877-456f-473c-8d14-cd312b5fe488": {
+          "type": "block",
+          "settings": {
+            "icon_type": "left",
+            "link": "",
+            "title": "OUTDOOR DOORMAT"
           }
         },
         "a60ec8c4-7a7f-49b3-872b-15a009e8e7fc": {
@@ -237,6 +245,7 @@
       },
       "block_order": [
         "94ab4387-3a89-42b1-8c1e-5bcf90e0d3c2",
+        "bd92f877-456f-473c-8d14-cd312b5fe488",
         "a60ec8c4-7a7f-49b3-872b-15a009e8e7fc",
         "a3cec467-69ab-4f36-998a-c0f2ada85be5"
       ],
