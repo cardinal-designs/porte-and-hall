@@ -57,6 +57,12 @@
             #shopify-section-{{ section.id }} .image-slideshow__block-content p {
               color: {{ block.settings.text_color }};
             }
+
+            {% if block.settings.block_align_left %}
+              .image-slideshow__block-content {
+                text-align: left;
+              }
+            {% endif %}
           {% endstyle %}        
         {% endfor %}
         
@@ -153,6 +159,12 @@
             "id": "button_url",
             "label": "Button URL"
           },
+          {
+            "type": "checkbox",
+            "id": "block_align_left",
+            "label": "Block align left",
+            "default": false
+          },          
           {
             "type": "color",
             "id": "text_color",
