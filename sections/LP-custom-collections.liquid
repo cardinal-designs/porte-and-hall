@@ -395,6 +395,10 @@
                 {% if block.settings.the_solution_content != blank %}
                   <p class="the_solution_content">{{ block.settings.the_solution_content }}</p>
                 {% endif %}
+
+                <a href="{{ block.settings.link_url }}">
+                  {{ block.settings.link_text }}
+                </a>
               </div>
             </div>
         
