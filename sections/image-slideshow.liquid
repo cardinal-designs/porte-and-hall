@@ -41,7 +41,9 @@
             {% endif %}
         
             {% if block.settings.section_paragraph != blank %}
-              {{ block.settings.section_paragraph }}
+              <div class="image-slideshow__paragraph">
+                {{ block.settings.section_paragraph }}
+              </div>
             {% endif %}
   
             {% if block.settings.button_text != blank %}
