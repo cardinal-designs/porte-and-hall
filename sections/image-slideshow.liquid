@@ -81,6 +81,12 @@
               #shopify-section-{{ section.id }} .image-slideshow__text {
                 flex-direction: row;
               }
+
+              @media (min-width: 768px) {
+                #shopify-section-{{ section.id }} .image-slideshow__text {
+                   padding-left: 48px; 
+                }
+              }            
             {% endif %}
 
             {% if block.settings.section_align_top_mobile %}
