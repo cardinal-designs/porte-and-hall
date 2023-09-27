@@ -35,7 +35,9 @@
         {% for block in section.blocks %}
           <div class="image-slideshow__block-content">
             {% if block.settings.section_header != blank %}
-              {{ block.settings.section_header }}
+              <h2 class="image-slideshow__title h1">
+                {{ block.settings.section_header }}
+              </h2>
             {% endif %}
         
             {% if block.settings.section_paragraph != blank %}
