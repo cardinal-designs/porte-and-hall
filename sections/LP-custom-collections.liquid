@@ -362,7 +362,7 @@
 
     <div class="collection-row">
       {%- for block in section.blocks -%}
-        <div class="collection-col {{ forloop.index0 }}">
+        <div class="collection-col index-{{ forloop.index0 }}">
           <h6>{{ block.settings.title }}</h6>
 
           <div class="collection-row-inner">
