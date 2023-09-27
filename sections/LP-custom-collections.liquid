@@ -365,7 +365,7 @@
         <div class="collection-col">
           <h6>{{ block.settings.title }}</h6>
 
-          <div class="collection-row-inner">
+          <div class="collection-row-inner product">
             {% for product in block.settings.collection1.products limit: 1 %}
               {% for collection in product.collections %}
                 {% if collection.title contains ' |' %}
