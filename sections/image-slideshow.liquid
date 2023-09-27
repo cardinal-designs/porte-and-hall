@@ -32,21 +32,23 @@
           <a href="{{ section.settings.button_link }}" class="button">{{ section.settings.button_label }}</a>
         {% endif %}
 
-        <div class="image-slideshow__block-content">
-          {% if block.settings.section_header != blank %}
-            {{ block.settings.section_header }}
-          {% endif %}
-      
-          {% if block.settings.section_paragraph != blank %}
-            {{ block.settings.section_paragraph }}
-          {% endif %}
-
-          {% if block.settings.button_text != blank %}
-            <a class="button" href="{{ block.settings.button_url }}">
-              {{ block.settings.button_text }}
-            </a>
-          {% endif %}
-        </div>  
+        {% for block in section.blocks %}
+          <div class="image-slideshow__block-content">
+            {% if block.settings.section_header != blank %}
+              {{ block.settings.section_header }}
+            {% endif %}
+        
+            {% if block.settings.section_paragraph != blank %}
+              {{ block.settings.section_paragraph }}
+            {% endif %}
+  
+            {% if block.settings.button_text != blank %}
+              <a class="button" href="{{ block.settings.button_url }}">
+                {{ block.settings.button_text }}
+              </a>
+            {% endif %}
+          </div>  
+        {% endfor %}
         
       </div>
     </div>
