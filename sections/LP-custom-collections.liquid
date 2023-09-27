@@ -337,25 +337,11 @@
               </div>
             {% endfor %}
 
-            {% for product in block.settings.collection2.products limit: 1 %}
-              {% for collection in product.collections %}
-                {% if collection.title contains ' |' %}
-                  {% assign grouped_collection = collection %}
-                {% endif %}
-              {% endfor %}
-              <div class="collection-col-inner">
-                <p class="badge">
-                  {{- block.settings.badge2 -}}
-                </p>
-                {% render 'product-card-custom',
-                  product_card_product: block.settings.product2,
-                  collection: grouped_collection,
-                  title: block.settings.product2_title,
-                  button_text: section.settings.button_text,
-                  custom_image: block.settings.product_image2
-                %}
-              </div>
-            {% endfor %}
+
+            <div class="collection-col-inner text">
+              test
+            </div>
+        
           </div>
         </div>
       {% endfor %}
