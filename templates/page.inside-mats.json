@@ -137,8 +137,8 @@
     "645a20a2-ab93-4674-9e7c-a3ebd19e07a7": {
       "type": "main-product-carousel",
       "custom_css": [
-        ".product-card {background: white; padding: 12px;}",
-        ".product-card a.text-link {margin: 0 auto; text-decoration: none; background: #D1BD93; color: #FFF; padding: 8.8px 16px 8px;}"
+        ".product-card {background: white; padding: 12px; gap: 4px;}",
+        ".product-card a.text-link {margin: 0 auto; text-decoration: none; background: #d1bd93; color: #fff; padding: 8.8px 16px 8px;}"
       ],
       "settings": {
         "heading": "Shop our best sellers",
