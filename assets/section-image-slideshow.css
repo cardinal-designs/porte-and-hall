@@ -10,6 +10,13 @@
   margin-left: auto;
 }
 
+@media (min-width: 990px) {
+  .image-slideshow__paragraph {
+    font-size: 24px;
+    max-width: 500px;
+  }
+}
+
 .image-slideshow.add-margin {
   margin-bottom: 20px;
 }
