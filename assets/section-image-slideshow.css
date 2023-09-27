@@ -10,6 +10,10 @@
   margin-left: auto;
 }
 
+.image-slideshow__paragraph {
+  max-width: 220px;
+}
+
 @media (min-width: 768px) {
   .image-slideshow__paragraph {
     font-size: 24px;
