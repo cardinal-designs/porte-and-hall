@@ -5,6 +5,10 @@
         {%- if section.settings.title != blank -%}
           <h2 class="SectionHeader__Heading">{{ section.settings.title }}</h2>
         {%- endif -%}
+
+        {% if section.settings.subtitle %}
+          <p>{{ section.settings.subtitle }}</p>
+        {% endif %}
       </header>
     {%- endif -%}
     
@@ -72,6 +76,11 @@
       "id": "title",
       "label": "Heading",
       "default": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
     }
   ],
   "blocks": [
