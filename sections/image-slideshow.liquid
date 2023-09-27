@@ -59,12 +59,18 @@
             }
 
             {% if block.settings.block_align_left %}
-              .image-slideshow__block-content {
+              #shopify-section-{{ section.id }} .image-slideshow__block-content {
                 text-align: left;
               }
 
-              .image-slideshow__block-content a {
+              #shopify-section-{{ section.id }} .image-slideshow__block-content a {
                 margin-left: initial;
+              }
+            {% endif %}
+
+            {% if block.settings.section_align_left %}
+              #shopify-section-{{ section.id }} .image-slideshow__text {
+                flex-direction: row;
               }
             {% endif %}
           {% endstyle %}        
@@ -168,7 +174,13 @@
             "id": "block_align_left",
             "label": "Block align left",
             "default": false
-          },          
+          },  
+          {
+            "type": "checkbox",
+            "id": "section_align_left",
+            "label": "Section align left",
+            "default": false
+          },            
           {
             "type": "color",
             "id": "text_color",
