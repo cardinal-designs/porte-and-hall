@@ -226,6 +226,12 @@
         "b14cc7d1-92e2-49be-8c01-b4268c113545",
         "a30099e7-0abb-43a6-b608-2abb094624e4"
       ],
+      "custom_css": [
+        ".faq {background: white;}",
+        ".faq .faq__heading {text-align: center;}",
+        ".faq .faq__wrapper {display: block; max-width: 900px; margin: 0 auto;}",
+        ".faq .faq__column>.faq__item:first-child {border-top: none;}"
+      ],
       "settings": {
         "heading": "",
         "anchor": "",
