@@ -1,3 +1,8 @@
+.image-slideshow__block-content {
+  display: flex;
+  flex-direction: column;
+}
+
 .image-slideshow.add-margin {
   margin-bottom: 20px;
 }
