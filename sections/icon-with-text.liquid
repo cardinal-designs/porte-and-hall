@@ -1,0 +1,155 @@
+<section id="section-{{ section.id }}" class="section icons-with-text {{ section.settings.custom-class }}">
+     <div class="icon-container">
+        <div class="icon-wrapper">
+          {%- for block in section.blocks -%}
+            <div class="icon-text-content ">
+               {% if block.settings.icon_image %}
+                  <div class="svg-img">{{ block.settings.icon_image }}</div>
+               {%  endif %}
+               <h5 class="icon_text">{{ block.settings.title }}</h5>
+            </div>
+         {%  endfor %}
+        </div>
+    </div>
+
+   
+</section>
+
+{% schema %}
+  {
+    "name": "Icon with text",
+    "settings": [
+      {
+        "type": "text",
+        "id": "custom-class",
+        "label": "custom-class"
+      },
+      {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+      
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background",
+        "default": "#e4e4e4"
+      }
+    ],
+     "blocks": [
+    {
+     "type": "block",
+     "name": "Icon",
+     "limit":4,
+     "settings": [
+        {
+          "type": "textarea",
+          "id": "icon_image",
+          "label": "Add Icon"
+        },
+
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Enter text"
+        }
+      ]
+    }
+  
+  ],
+    "presets": [
+    {
+      "name": "Icon with text",
+      "settings": {}
+    }
+  ]
+  }
+{% endschema %}
+
+<style>
+    .icons-with-text{
+        padding: 18px 10px 15px 10px;
+        background-color:{{section.settings.background}};
+/*         margin-top:-10px */
+    }
+  .icons-with-text .icon-container{
+        max-width: 1440px;
+        margin: auto;
+        display: flex;
+        gap:44px;
+        justify-content:center;
+      
+  }
+  .icons-with-text .icon_text{
+    color:{{section.settings.text_color}}
+  }
+  
+  .icons-with-text .icon-wrapper{
+    display: contents !important;
+  }
+
+  .icons-with-text .icon-text-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icons-with-text .icon-container .icon-text-content h5{
+    padding-left:6px;
+    font-size: 18px;
+    font-style:normal;
+    line-height: 28px;
+    font-weight: 400;
+   font-family: brandon;
+    text-align:center;
+  }
+  .icons-with-text .icon-text-content img{
+    width: 60px;
+    height:auto
+  }
+
+   .icons-with-text .icon-container .icon-text-content .svg-img svg{
+      width: 33px;
+      height: 18px;
+      margin-top: 3.5px;
+   }
+
+  @media(max-width:990px){
+        .icons-with-text .icon-container{
+           gap:44px;
+        }
+       .icons-with-text .icon-text-content{
+          display:block;
+       }
+       .icons-with-text .icon-container .icon-text-content h5{
+          padding-left:0px;
+          font-size: 13px;
+          font-style: normal;
+          line-height: 16px;
+          margin-top:12px;
+       }
+       .icons-with-text .icon-container .icon-text-content .svg-img{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+       }
+      .icons-with-text{
+         background:unset !important;
+      }
+     }
+
+      @media(max-width:767px){
+      .icons-with-text .icon-container{
+           gap:24px;
+        }
+        .icons-with-text{
+          padding:20px 20px 0px;
+        }
+        .icons-with-text .icon-container{
+          border-bottom:1px solid #A19377;
+          padding-bottom:20px;
+        }
+    }
+  
+</style>
