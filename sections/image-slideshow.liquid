@@ -18,11 +18,19 @@
             <div class="image-slideshow__slide swiper-slide">
               {% render 'lazy-image', image: block.settings.image, fade: true %}
               <div class="image-slideshow__content">
-                {{ block.settings.section_header }}
-                {{ block.settings.section_paragraph }}
-                <a class="button" href="{{ block.settings.button_url }}">
-                  {{ block.settings.button_text }}
-                </a>
+                {% if block.settings.section_header != blank %}
+                  {{ block.settings.section_header }}
+                {% endif %}
+            
+                {% if block.settings.section_paragraph != blank %}
+                  {{ block.settings.section_paragraph }}
+                {% endif %}
+
+                {% if block.settings.button_text != blank %}
+                  <a class="button" href="{{ block.settings.button_url }}">
+                    {{ block.settings.button_text }}
+                  </a>
+                {% endif %}
               </div>
             </div>
           {% endif %}
