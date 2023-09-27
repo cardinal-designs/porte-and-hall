@@ -33,6 +33,26 @@
     },
     "9ad6675a-2a82-4a25-b9fe-713d4ac82a2b": {
       "type": "malomo-banner",
+      "blocks": {
+        "bb73e00c-6379-4b4d-abe6-1a93d7f79717": {
+          "type": "block",
+          "settings": {
+          }
+        },
+        "7f07ebf1-d624-4d5f-938c-e63f62cbecde": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/5_Tigers_Eye_Stone.png",
+            "image_horizontal_alignment": "center",
+            "image_link_url": "",
+            "image_width": ""
+          }
+        }
+      },
+      "block_order": [
+        "bb73e00c-6379-4b4d-abe6-1a93d7f79717",
+        "7f07ebf1-d624-4d5f-938c-e63f62cbecde"
+      ],
       "settings": {
         "height": "500",
         "header_background_color": "transparent",
