@@ -292,9 +292,48 @@
 
   }
 
-  .custom-collection .product-card__image-label, .custom-collection .product-card__price{
+  .custom-collection .product-card__image-label, 
+  .custom-collection .product-card__price {
     display:none;
   }
+
+
+  /* text section */
+  .collection-col-inner.text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .collection-col-inner.text .title {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .collection-col-inner.text .the_problem_content {
+    font-size: 18px;
+    color: #30383d;
+    line-height: 32px;
+  }
+
+  .collection-col-inner.text .the_solution_content {
+    font-size: 14px;
+    color: #30383d;
+  }
+
+  @media (min-width: 768px) {
+    .collection-col-inner.text .title {
+      font-size: 18px;
+    }
+
+    .collection-col-inner.text .the_problem_content {
+      font-size: 28px;
+    }
+
+    .collection-col-inner.text .the_solution_content {
+      font-size: 20px;
+    }    
+  }  
 </style>
 
 <div class="custom-collection">
@@ -336,38 +375,6 @@
                 %}
               </div>
             {% endfor %}
-
-{% style %}
-  .collection-col-inner.text .title {
-    font-size: 14px;
-    font-weight: 600;
-  }
-
-  .collection-col-inner.text .the_problem_content {
-    font-size: 18px;
-    color: #30383d;
-    line-height: 32px;
-  }
-
-  .collection-col-inner.text .the_solution_content {
-    font-size: 14px;
-    color: #30383d;
-  }
-
-  @media (min-width: 768px) {
-    .collection-col-inner.text .title {
-      font-size: 18px;
-    }
-
-    .collection-col-inner.text .the_problem_content {
-      font-size: 28px;
-    }
-
-    .collection-col-inner.text .the_solution_content {
-      font-size: 20px;
-    }    
-  }
-{% endstyle %}
             
             <div class="collection-col-inner text">
               {% if block.settings.the_problem_title != blank %}
