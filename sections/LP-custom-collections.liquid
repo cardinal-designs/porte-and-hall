@@ -377,21 +377,25 @@
             {% endfor %}
             
             <div class="collection-col-inner text">
-              {% if block.settings.the_problem_title != blank %}
-                <p class="title">{{ block.settings.the_problem_title }}</p>
-              {% endif %}
+              <div class="problem">              
+                {% if block.settings.the_problem_title != blank %}
+                  <p class="title">{{ block.settings.the_problem_title }}</p>
+                {% endif %}
+  
+                {% if block.settings.the_problem_content != blank %}
+                  <p class="the_problem_content">{{ block.settings.the_problem_content }}</p>
+                {% endif %}
+              </div>
 
-              {% if block.settings.the_problem_content != blank %}
-                <p class="the_problem_content">{{ block.settings.the_problem_content }}</p>
-              {% endif %}
-
-              {% if block.settings.the_solution_title != blank %}
-                <p class="title">{{ block.settings.the_solution_title }}</p>
-              {% endif %}
-
-              {% if block.settings.the_solution_content != blank %}
-                <p class="the_solution_content">{{ block.settings.the_solution_content }}</p>
-              {% endif %}
+              <div class="solution">              
+                {% if block.settings.the_solution_title != blank %}
+                  <p class="title">{{ block.settings.the_solution_title }}</p>
+                {% endif %}
+  
+                {% if block.settings.the_solution_content != blank %}
+                  <p class="the_solution_content">{{ block.settings.the_solution_content }}</p>
+                {% endif %}
+              </div>
             </div>
         
           </div>
