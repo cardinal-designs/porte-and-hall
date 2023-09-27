@@ -134,6 +134,12 @@
       </div>
     {% endif %}
 
+    {% if section.settings.show_metafield_style %}
+      <div class="product-card__metafield-style">
+        test
+      </div>
+    {% endif %}
+      
     <a href="{{ product_card_product.url }}">
       <h3 class="product-card__title blue">
         {{ title | default: collection.title | replace: ' | ', '<br>' }}
