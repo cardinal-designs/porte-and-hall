@@ -147,6 +147,40 @@
         "collection": "the-insider",
         "button_text": "VIEW DETAILS"
       }
+    },
+    "1695812319e7f5a694": {
+      "type": "apps",
+      "blocks": {
+        "648db6f1-de82-40c4-9c13-6c83d5560592": {
+          "type": "shopify:\/\/apps\/stamped-product-reviews-ugc\/blocks\/carousel\/a103faaf-2125-4b0e-89fa-de5149736723",
+          "settings": {
+            "title": "Real Reviews from Real Customers",
+            "auto_play": false,
+            "take": 30,
+            "color_title": "",
+            "color_star": "",
+            "color_text": "",
+            "color_link": "",
+            "review_ids": "",
+            "product_ids": "",
+            "category": "",
+            "product_brand": "",
+            "tags": "",
+            "min_rating": "none",
+            "fill_empty": false,
+            "random": false,
+            "with_photos": false
+          }
+        }
+      },
+      "block_order": [
+        "648db6f1-de82-40c4-9c13-6c83d5560592"
+      ],
+      "settings": {
+        "include_margins": true,
+        "heading": "Reviews that make us smile",
+        "section_reviews": true
+      }
     }
   },
   "order": [
@@ -154,6 +188,7 @@
     "a403e2bd-6595-4763-8d67-02cc9878f906",
     "3d366c6f-b825-4c2d-a879-6d33132c33f5",
     "e63ab012-f31a-40fe-9f5d-45cacc2a0cf1",
-    "645a20a2-ab93-4674-9e7c-a3ebd19e07a7"
+    "645a20a2-ab93-4674-9e7c-a3ebd19e07a7",
+    "1695812319e7f5a694"
   ]
 }
