@@ -1,185 +1,8 @@
-<div class="custom-collection">
-  <div class="page-width">
-    {%- if section.settings.title != blank -%}
-      <header class="SectionHeader text-center">
-        {%- if section.settings.title != blank -%}
-          <h2 class="SectionHeader__Heading">{{ section.settings.title }}</h2>
-        {%- endif -%}
-
-        {% if section.settings.subtitle %}
-          <p>{{ section.settings.subtitle }}</p>
-        {% endif %}
-      </header>
-    {%- endif -%}
-    
-    <div class="collection-row">
-
-      {%- for block in section.blocks -%}
-        <div class="collection-col">
-          <h6>{{ block.settings.title }}</h6>
-          
-          <div class="collection-row-inner">
-            {% for product in block.settings.collection1.products limit: 1 %}
-              {% for collection in product.collections %}
-                {% if collection.title contains ' |' %}
-                  {% assign grouped_collection = collection %}
-                {% endif %}
-              {% endfor %}
-              <div class="collection-col-inner">
-                <p class="badge">
-                  {{- block.settings.badge1 -}}
-                </p>
-                {% render 'product-card-custom',
-                  product_card_product: block.settings.product1,
-                  collection: grouped_collection,
-                  title: block.settings.product1_title,
-                  button_text: section.settings.button_text,
-                  custom_image: block.settings.product_image1
-                %}
-              </div>
-            {% endfor %}
-
-            {% for product in block.settings.collection2.products limit: 1 %}
-              {% for collection in product.collections %}
-                {% if collection.title contains ' |' %}
-                  {% assign grouped_collection = collection %}
-                {% endif %}
-              {% endfor %}
-              <div class="collection-col-inner">
-                <p class="badge">
-                  {{- block.settings.badge2 -}}
-                </p>
-                {% render 'product-card-custom',
-                  product_card_product: block.settings.product2,
-                  collection: grouped_collection,
-                  title: block.settings.product2_title,
-                  button_text: section.settings.button_text,
-                  custom_image: block.settings.product_image2
-                %}
-              </div>
-            {% endfor %}            
-          </div>
-          
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-</div>
-
-{% schema %}
-{
-  "name": "LP Custom Collections",
-  "class": "LP-custom-collections",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Title"
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtitle"
-    }
-  ],
-  "blocks": [
-  {
-   "type": "block",
-   "name": "Collection-col",
-   "limit":4,
-   "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Enter type"
-      },
-     {
-        "type": "header",
-        "content": "Product 1"
-      },
-       {
-        "type": "text",
-        "id": "badge1",
-        "label": "Enter Badge"
-      },
-      {
-        "type": "text",
-        "id": "product1_title",
-        "label": "Product title"
-      },     
-      {
-        "type": "collection",
-        "id": "collection1",
-        "label": "Collection"
-      },
-      {
-        "type": "product",
-        "id": "product1",
-        "label": "Product"
-      },
-      {
-        "type": "image_picker",
-        "id": "product_image1",
-        "label": "Product image"
-      },     
-     {
-        "type": "header",
-        "content": "Product 2"
-      },
-       {
-        "type": "text",
-        "id": "badge2",
-        "label": "Enter Badge"
-      },
-      {
-        "type": "text",
-        "id": "product2_title",
-        "label": "Product title"
-      },       
-      {
-        "type": "collection",
-        "id": "collection2",
-        "label": "Collection"
-      },
-      {
-        "type": "product",
-        "id": "product2",
-        "label": "Product"
-      },
-      {
-        "type": "image_picker",
-        "id": "product_image2",
-        "label": "Product image"
-      }     
-    ]
-  }
-
-],
-  "presets": [
-  {
-    "name": "LP Custom Collections",
-    "settings": {}
-  }
-]
-}
-{% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
-
 <style>
-  /* header.SectionHeader .SectionHeader__Heading{
-     font-size:48px;
-  } */
-  
   .custom-collection{
     padding: 56px 0;
   }
-  
+
   .custom-collection .page-width{
     display: flex;
     flex-direction: column;
@@ -187,7 +10,7 @@
     align-items: center;
     gap: 40px;
   }
-  
+
   .custom-collection header.SectionHeader .SectionHeader__Heading{
     line-height: 62px;
     letter-spacing: 0.96px;
@@ -472,3 +295,168 @@
     display:none;
   }
 </style>
+
+<div class="custom-collection">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <header class="SectionHeader text-center">
+        {%- if section.settings.title != blank -%}
+          <h2 class="SectionHeader__Heading">{{ section.settings.title }}</h2>
+        {%- endif -%}
+
+        {% if section.settings.subtitle %}
+          <p>{{ section.settings.subtitle }}</p>
+        {% endif %}
+      </header>
+    {%- endif -%}
+
+    <div class="collection-row">
+      {%- for block in section.blocks -%}
+        <div class="collection-col">
+          <h6>{{ block.settings.title }}</h6>
+
+          <div class="collection-row-inner">
+            {% for product in block.settings.collection1.products limit: 1 %}
+              {% for collection in product.collections %}
+                {% if collection.title contains ' |' %}
+                  {% assign grouped_collection = collection %}
+                {% endif %}
+              {% endfor %}
+              <div class="collection-col-inner">
+                <p class="badge">
+                  {{- block.settings.badge1 -}}
+                </p>
+                {% render 'product-card-custom',
+                  product_card_product: block.settings.product1,
+                  collection: grouped_collection,
+                  title: block.settings.product1_title,
+                  button_text: section.settings.button_text,
+                  custom_image: block.settings.product_image1
+                %}
+              </div>
+            {% endfor %}
+
+            {% for product in block.settings.collection2.products limit: 1 %}
+              {% for collection in product.collections %}
+                {% if collection.title contains ' |' %}
+                  {% assign grouped_collection = collection %}
+                {% endif %}
+              {% endfor %}
+              <div class="collection-col-inner">
+                <p class="badge">
+                  {{- block.settings.badge2 -}}
+                </p>
+                {% render 'product-card-custom',
+                  product_card_product: block.settings.product2,
+                  collection: grouped_collection,
+                  title: block.settings.product2_title,
+                  button_text: section.settings.button_text,
+                  custom_image: block.settings.product_image2
+                %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "LP Custom Collections",
+  "class": "LP-custom-collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    }
+  ],
+  "blocks": [
+  {
+   "type": "block",
+   "name": "Collection-col",
+   "limit":4,
+   "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Enter type"
+      },
+     {
+        "type": "header",
+        "content": "Product 1"
+      },
+       {
+        "type": "text",
+        "id": "badge1",
+        "label": "Enter Badge"
+      },
+      {
+        "type": "text",
+        "id": "product1_title",
+        "label": "Product title"
+      },
+      {
+        "type": "collection",
+        "id": "collection1",
+        "label": "Collection"
+      },
+      {
+        "type": "product",
+        "id": "product1",
+        "label": "Product"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image1",
+        "label": "Product image"
+      },
+     {
+        "type": "header",
+        "content": "Product 2"
+      },
+       {
+        "type": "text",
+        "id": "badge2",
+        "label": "Enter Badge"
+      },
+      {
+        "type": "text",
+        "id": "product2_title",
+        "label": "Product title"
+      },
+      {
+        "type": "collection",
+        "id": "collection2",
+        "label": "Collection"
+      },
+      {
+        "type": "product",
+        "id": "product2",
+        "label": "Product"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image2",
+        "label": "Product image"
+      }
+    ]
+  }
+
+],
+  "presets": [
+  {
+    "name": "LP Custom Collections",
+    "settings": {}
+  }
+]
+}
+{% endschema %}
