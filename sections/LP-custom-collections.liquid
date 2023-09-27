@@ -337,22 +337,49 @@
               </div>
             {% endfor %}
 
+{% style %}
+  .collection-col-inner.text .title {
+    font-size: 14px;
+  }
 
+  .collection-col-inner.text .the_problem_content {
+    font-size: 18px;
+  }
+
+  .collection-col-inner.text .the_solution_content {
+    font-size: 14px;
+  }
+
+  @media (min-width: 768px) {
+    .collection-col-inner.text .title {
+      font-size: 18px;
+    }
+
+    .collection-col-inner.text .the_problem_content {
+      font-size: 28px;
+    }
+
+    .collection-col-inner.text .the_solution_content {
+      font-size: 20px;
+    }    
+  }
+{% endstyle %}
+            
             <div class="collection-col-inner text">
               {% if block.settings.the_problem_title != blank %}
-                <p>{{ block.settings.the_problem_title }}</p>
+                <p class="title">{{ block.settings.the_problem_title }}</p>
               {% endif %}
 
               {% if block.settings.the_problem_content != blank %}
-                <p>{{ block.settings.the_problem_content }}</p>
+                <p class="the_problem_content">{{ block.settings.the_problem_content }}</p>
               {% endif %}
 
               {% if block.settings.the_solution_title != blank %}
-                <p>{{ block.settings.the_solution_title }}</p>
+                <p class="title">{{ block.settings.the_solution_title }}</p>
               {% endif %}
 
               {% if block.settings.the_solution_content != blank %}
-                <p>{{ block.settings.the_solution_content }}</p>
+                <p class="the_solution_content">{{ block.settings.the_solution_content }}</p>
               {% endif %}
             </div>
         
