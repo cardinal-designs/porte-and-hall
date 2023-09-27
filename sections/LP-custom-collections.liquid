@@ -3,7 +3,7 @@
     {%- if section.settings.title != blank -%}
       <header class="SectionHeader">
         {%- if section.settings.title != blank -%}
-          <h4 class="SectionHeader__Heading">{{ section.settings.title }}</h4>
+          <h2 class="SectionHeader__Heading">{{ section.settings.title }}</h2>
         {%- endif -%}
       </header>
     {%- endif -%}
@@ -163,11 +163,12 @@
 {% endjavascript %}
 
 <style>
-  header.SectionHeader .SectionHeader__Heading{
+  /* header.SectionHeader .SectionHeader__Heading{
      font-size:48px;
-  }
+  } */
+  
   .custom-collection{
-    padding:56px 0;
+    padding: 56px 0;
   }
   .custom-collection .page-width{
     display: flex;
