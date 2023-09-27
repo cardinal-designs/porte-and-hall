@@ -1,5 +1,14 @@
 {{ 'section-image-slideshow.css' | asset_url | stylesheet_tag }}
 
+{% style %}
+  {% if section.settings.padding_left_right %}
+    #shopify-section-{{ section.id }} .image-slideshow {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+  {% endif %}
+{% endstyle %}
+
 <div class="image-slideshow{% if section.settings.page_width %} add-margin{% endif %}">
   {% if section.settings.page_width %}
     <div class="page-width">
@@ -126,6 +135,12 @@
         "id": "page_width",
         "label": "Add Page Width"
       },
+      {
+        "type": "checkbox",
+        "id": "padding_left_right",
+        "label": "Add left/right padding",
+        "default": false
+      },       
       {
         "type": "header",
         "content": "Button"
