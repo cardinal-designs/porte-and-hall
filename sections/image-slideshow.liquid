@@ -73,6 +73,14 @@
                 flex-direction: row;
               }
             {% endif %}
+
+            {% if block.settings.section_align_top_mobile %}
+              @media (max-width: 768px) {
+                #shopify-section-{{ section.id }} .image-slideshow__text {
+                  bottom: inherit;
+                }
+              }
+            {% endif %}
           {% endstyle %}        
         {% endfor %}
         
@@ -179,6 +187,12 @@
             "type": "checkbox",
             "id": "section_align_left",
             "label": "Section align left",
+            "default": false
+          },            
+          {
+            "type": "checkbox",
+            "id": "section_align_top_mobile",
+            "label": "Section align top mobile",
             "default": false
           },            
           {
