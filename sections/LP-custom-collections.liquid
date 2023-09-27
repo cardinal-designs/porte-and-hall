@@ -339,7 +339,10 @@
 
 
             <div class="collection-col-inner text">
-              test
+              {{ block.settings.the_problem_title }}
+              {{ block.settings.the_problem_content }}
+              {{ block.settings.the_solution_title }}
+              {{ block.settings.the_solution_content }}
             </div>
         
           </div>
@@ -379,7 +382,7 @@
       },
      {
         "type": "header",
-        "content": "Product 1"
+        "content": "Image"
       },
        {
         "type": "text",
@@ -408,33 +411,28 @@
       },
      {
         "type": "header",
-        "content": "Product 2"
-      },
-       {
-        "type": "text",
-        "id": "badge2",
-        "label": "Enter Badge"
+        "content": "Text"
       },
       {
         "type": "text",
-        "id": "product2_title",
-        "label": "Product title"
+        "id": "the_problem_title",
+        "label": "The problem title"
       },
       {
-        "type": "collection",
-        "id": "collection2",
-        "label": "Collection"
+        "type": "text",
+        "id": "the_problem_content",
+        "label": "The problem content"
       },
       {
-        "type": "product",
-        "id": "product2",
-        "label": "Product"
+        "type": "text",
+        "id": "the_solution_title",
+        "label": "The solution title"
       },
       {
-        "type": "image_picker",
-        "id": "product_image2",
-        "label": "Product image"
-      }
+        "type": "text",
+        "id": "the_solution_content",
+        "label": "The solution content"
+      }      
     ]
   }
 
