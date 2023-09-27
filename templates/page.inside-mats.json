@@ -84,11 +84,52 @@
         "text_color": "#30383d",
         "background": "rgba(0,0,0,0)"
       }
+    },
+    "e63ab012-f31a-40fe-9f5d-45cacc2a0cf1": {
+      "type": "LP-custom-collections",
+      "blocks": {
+        "c2f240f8-76ab-4d5b-b58f-9b0f143a1be2": {
+          "type": "block",
+          "settings": {
+            "title": "Natural Look",
+            "badge1": "badge",
+            "product1_title": "",
+            "collection1": "the-innerweave",
+            "product1": "",
+            "badge2": "",
+            "product2_title": "",
+            "collection2": "",
+            "product2": ""
+          }
+        },
+        "0e6e41de-4711-4807-88da-5ee4e3cc7662": {
+          "type": "block",
+          "settings": {
+            "title": "",
+            "badge1": "",
+            "product1_title": "",
+            "collection1": "",
+            "product1": "",
+            "badge2": "",
+            "product2_title": "",
+            "collection2": "",
+            "product2": ""
+          }
+        }
+      },
+      "block_order": [
+        "c2f240f8-76ab-4d5b-b58f-9b0f143a1be2",
+        "0e6e41de-4711-4807-88da-5ee4e3cc7662"
+      ],
+      "settings": {
+        "title": "Our Indoor Collections"
+      }
     }
   },
   "order": [
     "main",
     "a403e2bd-6595-4763-8d67-02cc9878f906",
-    "3d366c6f-b825-4c2d-a879-6d33132c33f5"
+    "3d366c6f-b825-4c2d-a879-6d33132c33f5",
+    "e63ab012-f31a-40fe-9f5d-45cacc2a0cf1"
   ]
 }
