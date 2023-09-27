@@ -17,21 +17,6 @@
           {% else %}
             <div class="image-slideshow__slide swiper-slide">
               {% render 'lazy-image', image: block.settings.image, fade: true %}
-              <div class="image-slideshow__content">
-                {% if block.settings.section_header != blank %}
-                  {{ block.settings.section_header }}
-                {% endif %}
-            
-                {% if block.settings.section_paragraph != blank %}
-                  {{ block.settings.section_paragraph }}
-                {% endif %}
-
-                {% if block.settings.button_text != blank %}
-                  <a class="button" href="{{ block.settings.button_url }}">
-                    {{ block.settings.button_text }}
-                  </a>
-                {% endif %}
-              </div>
             </div>
           {% endif %}
         {% endfor %}
@@ -39,8 +24,30 @@
       <div class="image-slideshow__pagination swiper-pagination"></div>
       
       <div class="image-slideshow__text">
-        <h2 class="image-slideshow__title h1">{{ section.settings.title | newline_to_br }}</h2>
-        <a href="{{ section.settings.button_link }}" class="button">{{ section.settings.button_label }}</a>
+        {% if section.settings.title != blank %}
+          <h2 class="image-slideshow__title h1">{{ section.settings.title | newline_to_br }}</h2>
+        {% endif %}
+
+        {% if section.settings.button_label != blank %}
+          <a href="{{ section.settings.button_link }}" class="button">{{ section.settings.button_label }}</a>
+        {% endif %}
+
+        <div class="image-slideshow__block-content">
+          {% if block.settings.section_header != blank %}
+            {{ block.settings.section_header }}
+          {% endif %}
+      
+          {% if block.settings.section_paragraph != blank %}
+            {{ block.settings.section_paragraph }}
+          {% endif %}
+
+          {% if block.settings.button_text != blank %}
+            <a class="button" href="{{ block.settings.button_url }}">
+              {{ block.settings.button_text }}
+            </a>
+          {% endif %}
+        </div>  
+        
       </div>
     </div>
   {% if section.settings.page_width %}
