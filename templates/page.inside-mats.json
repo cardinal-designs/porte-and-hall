@@ -138,7 +138,7 @@
       "type": "main-product-carousel",
       "custom_css": [
         ".product-card {background: white; padding: 12px; gap: 4px;}",
-        ".product-card a.text-link {margin: 0 auto; text-decoration: none; background: #d1bd93; color: #fff; padding: 12px 16px ;}"
+        ".product-card a.text-link {margin: 0 auto; text-decoration: none; background: #d1bd93; color: #fff; padding: 12px 16px;}"
       ],
       "settings": {
         "heading": "Shop our best sellers",
@@ -187,6 +187,50 @@
       "settings": {
         "custom_html": "<style>\n.rave-reviews .rave-reviews-main {\n   margin-top: 0px !important;\n}\n\n.shopify-app-block .stamped-carousel-title {\n   display: none;\n}\n\n.shopify-app-block .stamped-carousel-stars-wrapper {\n   display: none;\n}\n\n.rave-reviews .rave-reviews-main h2 {\n   margin-bottom: 25px;\n   font-size: 42px;\n   font-style: normal;\n   font-weight: 500;\n   line-height: 62px;\n   letter-spacing: 0.84px;\n   color: #546B82;\n   font-family: Louize;\n}\n\n.rave-reviews .rave-reviews-main {\n   padding: 56px 40px;\n   background: #F4F2EE;\n   max-width: unset !important;\n}\n\n.rave-reviews .rave-reviews-main .stamped-carousel-subtitle-count {\n   font-size: 14px;\n   font-weight: 600;\n   line-height: 20px;\n   letter-spacing: 0.56px;\n   color: #333;\n   text-transform: lowercase;\n   font-family: 'Roboto', sans-serif !important;\n}\n\n#stamped-reviews-widget[data-widget-type=carousel] .stamped-reviews-date {\n   display: none;\n}\n\n.stamped-ratings-wrapper .stamped-reviews-rating .stamped-fa {\n   color: #D2B066;\n}\n\n\n\n.rave-reviews .stamped-carousel-scroll #stamped-carousel-scroll-wrapper .stamped-reviews-image {\n   display: none !important;\n}\n\n.rave-reviews .stamped-carousel-scroll .stamped-reviews-message {\n   margin-left: 0px !important;\n   white-space: initial !important;\n}\n\n.rave-reviews .stamped-carousel-scroll .stamped-reviews-message .stamped-reviews-message-block {\n   font-family: brandon !important;\n   font-style: normal !important;\n   font-size: 14px !important;\n   color: #30383D !important;\n   font-weight: 400 !important;\n   line-height: 20px !important;\n}\n\n.rave-reviews .rave-reviews-main .stamped-carousel-scroll:before {\n   border-bottom: 2px solid #CAD2D3 !important;\n}\n\n.stamped-carousel-scroll .stamped-reviews-author {\n   margin-left: 8px !important;\n   position: relative;\n   font-size: 16px;\n   font-style: normal;\n   font-weight: 420;\n   line-height: 24px;\n   font-family: brandon;\n   color: #30383D;\n}\n\n.stamped-carousel-scroll .stamped-reviews-author:before {\n   content: \"\";\n   background: #30383D;\n   position: absolute;\n   width: 5px;\n   height: 2px;\n   left: -8px;\n   bottom: 11px;\n}\n\n.rave-reviews .stamped-carousel-buttons {\n   width: 100%;\n}\n\n.rave-reviews .stamped-carousel-button-left {\n   position: absolute;\n   left: 0px;\n   top: 50%;\n   transform: translateY(-50%);\n   z-index: 5;\n}\n\n.rave-reviews .stamped-carousel-button-right {\n   position: absolute;\n   right: 0px;\n   top: 50%;\n   transform: translateY(-50%);\n   z-index: 5;\n}\n\n.rave-reviews .stamped-reviews-title a {\n   font-size: 24px;\n   font-style: normal;\n   font-weight: 500;\n   line-height: 28px;\n   \/* 116.667% *\/\n   letter-spacing: 0.48px;\n   font-family: louize;\n   color: #30383D;\n\n}\n\n.rave-reviews .rave-reviews-main .stamped-ratings-wrapper:nth-child(1) {\n   padding-left: 50px;\n}\n\n#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-subtitle {\n   margin: 0 40px 12px 0;\n   color: #333;\n   font-size: 14px;\n   font-weight: 600;\n   line-height: 20px;\n   letter-spacing: 0.56px;\n   text-transform: lowercase;\n   font-family: 'Roboto', sans-serif !important;\n}\n\n.rave-reviews .rave-reviews-main .stamped-ratings-wrapper {\n   padding: 0 20px 0 30px !important;\n}\n\n#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll {\n   width: calc(100% + 50px) !important;\n   margin: 0 -20px 0 -30px;\n}\n\n.rave-reviews .rave-reviews-main .stamped-carousel-scroll:before {\n   width: calc(100% - 120px);\n   margin: 0 60px;\n}\n\n#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-button-left:before {\n   content: \"\" !important;\n   background: url('https:\/\/cdn.shopify.com\/s\/files\/1\/0084\/8602\/7327\/files\/Frame_78.svg?v=1694764036');\n   width: 20px;\n   height: 20px;\n   background-size: 20px;\n   position: absolute;\n   background-position: center;\n}\n\n#stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-button-right:before {\n   content: \"\" !important;\n   background: url('https:\/\/cdn.shopify.com\/s\/files\/1\/0084\/8602\/7327\/files\/Frame_80.svg?v=1694764035');\n   width: 20px;\n   height: 20px;\n   background-size: 20px;\n   position: absolute;\n   background-position: center;\n}\n\n@media (max-width:768px) {\n   .rave-reviews .rave-reviews-main h2 {\n      font-size: 32px;\n      line-height: 40px;\n   }\n\n   .rave-reviews .rave-reviews-main h2 {\n      margin-bottom: 20px;\n   }\n\n   .rave-reviews .rave-reviews-main {\n      padding: 40px 20px;\n   }\n}\n\n@media (max-width:690px) {\n   .rave-reviews .rave-reviews-main {\n      padding: 32px 15px;\n   }\n\n   #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-subtitle {\n      margin-right: 0;\n      float: left;\n   }\n\n   #stamped-reviews-widget[data-widget-type=carousel] {\n      width: 100%;\n   }\n\n   .rave-reviews .rave-reviews-main .stamped-ratings-wrapper {\n      padding: 0 !important\n   }\n\n   #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-message,\n   #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll .stamped-reviews-author {\n      margin-left: 0px !important;\n   }\n\n   .rave-reviews .stamped-carousel-buttons {\n      width: 100%;\n   }\n\n   .rave-reviews .stamped-carousel-button-left {\n      position: unset;\n      left: 0px;\n      top: 50%;\n      transform: unset;\n      z-index: 999;\n   }\n\n   .rave-reviews .stamped-carousel-button-right {\n      position: unset;\n      right: 0px;\n      top: 50%;\n      transform: unset;\n      z-index: 999;\n   }\n\n   .rave-reviews .rave-reviews-main .stamped-carousel-scroll:before {\n      width: calc(100% - 30px);\n      margin: 0 15px;\n   }\n\n   .rave-reviews .rave-reviews-main .stamped-carousel-subtitle-count {\n      font-size: 13px;\n   }\n\n   #stamped-reviews-widget[data-widget-type=carousel] .stamped-carousel-scroll {\n      margin: -12px -20px 0 -30px;\n   }\n\n}\n<\/style>"
       }
+    },
+    "393e25a9-0d94-4dcd-b158-465d5e60dfe6": {
+      "type": "faq",
+      "blocks": {
+        "a6533ec5-b732-417e-9491-9e3c55a2fd85": {
+          "type": "faq",
+          "settings": {
+            "title": "q1",
+            "answer": "<p>a1<\/p>"
+          }
+        },
+        "b985d6b5-33f9-4857-80a6-a3fc4812980a": {
+          "type": "faq",
+          "settings": {
+            "title": "q2",
+            "answer": "<p>a2<\/p>"
+          }
+        },
+        "b14cc7d1-92e2-49be-8c01-b4268c113545": {
+          "type": "faq",
+          "settings": {
+            "title": "q3",
+            "answer": "<p>a3<\/p>"
+          }
+        },
+        "a30099e7-0abb-43a6-b608-2abb094624e4": {
+          "type": "faq",
+          "settings": {
+            "title": "q4",
+            "answer": "<p>a4<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "a6533ec5-b732-417e-9491-9e3c55a2fd85",
+        "b985d6b5-33f9-4857-80a6-a3fc4812980a",
+        "b14cc7d1-92e2-49be-8c01-b4268c113545",
+        "a30099e7-0abb-43a6-b608-2abb094624e4"
+      ],
+      "settings": {
+        "heading": "",
+        "anchor": "",
+        "collection": ""
+      }
     }
   },
   "order": [
@@ -196,6 +240,7 @@
     "e63ab012-f31a-40fe-9f5d-45cacc2a0cf1",
     "645a20a2-ab93-4674-9e7c-a3ebd19e07a7",
     "1695812319e7f5a694",
-    "d69c6532-ecf2-4b1f-a095-e3b3cec59def"
+    "d69c6532-ecf2-4b1f-a095-e3b3cec59def",
+    "393e25a9-0d94-4dcd-b158-465d5e60dfe6"
   ]
 }
