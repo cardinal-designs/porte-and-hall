@@ -17,7 +17,7 @@
         "bd0708e9-d9bb-41bb-81cd-73cfaca002c8": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/4_Tigers_Eye_Natural.png"
+            "image": "shopify:\/\/shop_images\/inside-mats-hero.jpg"
           }
         }
       },
@@ -26,58 +26,14 @@
       ],
       "settings": {
         "title": "Step inside (and onto)\na better mat",
-        "page_width": true,
+        "page_width": false,
         "button_label": "",
         "button_link": ""
-      }
-    },
-    "9ad6675a-2a82-4a25-b9fe-713d4ac82a2b": {
-      "type": "malomo-banner",
-      "blocks": {
-        "bb73e00c-6379-4b4d-abe6-1a93d7f79717": {
-          "type": "block",
-          "settings": {
-          }
-        },
-        "7f07ebf1-d624-4d5f-938c-e63f62cbecde": {
-          "type": "image",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/5_Tigers_Eye_Stone.png",
-            "image_horizontal_alignment": "center",
-            "image_link_url": "",
-            "image_width": ""
-          }
-        }
-      },
-      "block_order": [
-        "bb73e00c-6379-4b4d-abe6-1a93d7f79717",
-        "7f07ebf1-d624-4d5f-938c-e63f62cbecde"
-      ],
-      "settings": {
-        "height": "500",
-        "header_background_color": "transparent",
-        "header_font_size": "40",
-        "header_horizontal_alignment": "center",
-        "header_padding_top": "0",
-        "header_padding_bottom": "0",
-        "header_level": "h2",
-        "header_text": "",
-        "background_color": "transparent",
-        "background_image": "shopify:\/\/shop_images\/4_Tigers_Eye_Natural.png",
-        "background_repeat": "no-repeat",
-        "background_size": "auto",
-        "malomo_background_color": "transparent",
-        "malomo_border_color": "",
-        "malomo_border_radius": "0",
-        "malomo_border_style": "none",
-        "malomo_border_width": "0",
-        "malomo_padding": "0"
       }
     }
   },
   "order": [
     "main",
-    "a403e2bd-6595-4763-8d67-02cc9878f906",
-    "9ad6675a-2a82-4a25-b9fe-713d4ac82a2b"
+    "a403e2bd-6595-4763-8d67-02cc9878f906"
   ]
 }
