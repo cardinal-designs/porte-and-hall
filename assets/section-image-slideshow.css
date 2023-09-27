@@ -3,6 +3,10 @@
   flex-direction: column;
 }
 
+.image-slideshow__block-content a {
+  margin-top: 24px;
+}
+
 .image-slideshow.add-margin {
   margin-bottom: 20px;
 }
