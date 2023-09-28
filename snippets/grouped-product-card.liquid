@@ -135,9 +135,11 @@
     {% endif %}
 
     {% if section.settings.show_metafield_style %}
-      <div class="product-card__metafield-style">
-        {{ product_card_product.metafields.custom.product_card_style.value }}
-      </div>
+      {% if product_card_product.metafields.custom.product_card_style.value != blank %}
+        <div class="product-card__metafield-style">
+          {{ product_card_product.metafields.custom.product_card_style.value }}
+        </div>
+      {% endif %}
     {% endif %}
       
     <a href="{{ product_card_product.url }}">
