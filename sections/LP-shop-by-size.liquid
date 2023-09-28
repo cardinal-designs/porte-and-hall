@@ -28,6 +28,7 @@
     
     height: 120px;
   }
+  
   .LP-shop-by-size .icon-type{
     height: 100%;
     display: flex;
@@ -38,30 +39,37 @@
     align-items: center;
     background: #546B82;
   }
+  
   .LP-shop-by-size .icon-type .type-1{
     border: 2px solid #D1BD93;
     height: 33px;
     width: 46px;
   }
+  
   .LP-shop-by-size .icon-type .type-2{
     width: 61px;
     height: 91.5px;
     border: 2px solid #D1BD93;
   }
+  
   .LP-shop-by-size .icon-type .type-3{
     width: 37px;
     height: 98px;
     border: 2px solid #D1BD93;
   }
-  .LP-shop-by-size .icon-text-content p{
+  
+  .LP-shop-by-size .icon-text-content p {
     color: #546B82;
     text-align: center;
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
     letter-spacing: 0.28px;
-    padding: 10px 20px 10px 12px;
     min-width: 144px;
+  }
+
+  .LP-shop-by-size .icon_text .size {
+    color: #000;
   }
 
   .LP-shop-by-size .icon-text-content a{
@@ -172,28 +180,6 @@
         </div>
       </div>
     {% endfor %}
-    
-    {% comment %}
-    {%- for block in section.blocks -%}
-      <div class="icon-text-content ">
-        <a href="{{ block.settings.link }}">
-          <div class="icon-type">
-            {%- if block.settings.icon_type == 'left' -%}
-              <span class="type-1"></span>
-            {%- elsif block.settings.icon_type == 'right' -%}
-              <span class="type-2"></span>
-            {%- else -%}
-              <span class="type-3"></span>
-            {%- endif -%}
-          </div>
-          <div class="icon_text">
-            <p class="type">{{ block.settings.block_type }}</p>
-            <p class="size">{{ block.settings.block_size }}</p>
-          </div>
-        </a>
-      </div>
-    {% endfor %}
-    {% endcomment %}
     
   </div>
 </div>
