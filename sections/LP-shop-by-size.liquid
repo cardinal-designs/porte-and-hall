@@ -1,13 +1,13 @@
 <section class="section size-with-text">
   <div class="page-width">
     {%- if section.settings.title != blank or section.settings.content != blank -%}
-      <header class="SectionHeader">
+      <header class="SectionHeader text-center">
         {%- if section.settings.title != blank -%}
           <h4 class="SectionHeader__Heading">{{ section.settings.title }}</h4>
         {%- endif -%}
         {%- if section.settings.link_text != blank -%}
           <div class="link-text">
-            <a href="{{ section.settings.link_url }}" class="Link Link--underline">
+            <a href="{{ section.settings.link_url }}" class="text-link gold-secondary--dark">
               {{- section.settings.link_text | escape -}}
             </a>
           </div>
