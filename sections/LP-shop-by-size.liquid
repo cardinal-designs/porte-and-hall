@@ -1,18 +1,112 @@
+<section class="section size-with-text">
+  <div class="page-width">
+    {%- if section.settings.title != blank or section.settings.content != blank -%}
+      <header class="SectionHeader">
+        {%- if section.settings.title != blank -%}
+          <h4 class="SectionHeader__Heading">{{ section.settings.title }}</h4>
+        {%- endif -%}
+        {%- if section.settings.link_text != blank -%}
+          <div class="link-text">
+            <a href="{{ section.settings.link_url }}" class="Link Link--underline">
+              {{- section.settings.link_text | escape -}}
+            </a>
+          </div>
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+    <div class="icon-wrapper">
+      {%- for block in section.blocks -%}
+        <div class="icon-text-content ">
+          <a href="{{ block.settings.link }}">
+            <div class="icon-type">
+              {%- if block.settings.icon_type == 'left' -%}
+                <span class="type-1"></span>
+              {%- elsif block.settings.icon_type == 'right' -%}
+                <span class="type-2"></span>
+              {%- else -%}
+                <span class="type-3"></span>
+              {%- endif -%}
+            </div>
+            <p class="icon_text">{{ block.settings.title }}</p>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 {% schema %}
   {
     "name": "LP Shop by size",
-    "settings": [],
+    "settings": [
+      {
+        "type": "text",
+        "id": "custom-class",
+        "label": "custom-class"
+      },
+      {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Title"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    }
+      
+    ],
+     "blocks": [
+    {
+     "type": "block",
+     "name": "Size",
+     "limit": 4,
+     "settings": [
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon Type",
+          "options": [
+            {
+              "value": "left",
+              "label": "Door"
+            },
+            {
+              "value": "center",
+              "label": "Runner"
+            },
+            {
+              "value": "right",
+              "label": "Areamat"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Add link"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Enter type"
+        }
+      ]
+    }
+  
+  ],
     "presets": [
     {
       "name": "LP Shop by size",
       "settings": {}
     }
-  ]    
+  ]
   }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
