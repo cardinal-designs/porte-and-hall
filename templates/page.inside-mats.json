@@ -142,21 +142,33 @@
           "settings": {
             "icon_type": "left",
             "link": "",
-            "title": "tt"
+            "block_type": "DOORMAT",
+            "block_size": "2'-2\" x 3'-0\""
           }
         },
         "fdd7e6cc-8e07-4216-96b8-5a6ebd2a0ca9": {
           "type": "block",
           "settings": {
-            "icon_type": "left",
+            "icon_type": "center",
             "link": "",
-            "title": ""
+            "block_type": "RUNNER",
+            "block_size": "2'-2\" x 6'-7\""
+          }
+        },
+        "39b343c5-8312-408f-b374-83bc63e93e62": {
+          "type": "block",
+          "settings": {
+            "icon_type": "right",
+            "link": "",
+            "block_type": "AREA MAT",
+            "block_size": "4'-6\" x 6'-6\""
           }
         }
       },
       "block_order": [
         "631a8f5a-099b-4aa8-b3cf-0bf9c74243fb",
-        "fdd7e6cc-8e07-4216-96b8-5a6ebd2a0ca9"
+        "fdd7e6cc-8e07-4216-96b8-5a6ebd2a0ca9",
+        "39b343c5-8312-408f-b374-83bc63e93e62"
       ],
       "settings": {
         "custom-class": "",
