@@ -10,7 +10,10 @@
       {% for block in section.blocks %}
         <div class="faq__item">
           <button class="faq__question body" data-faq="{{ forloop.index }}">
-            <span>{{ block.settings.title }}</span>
+            {% if block.settings.title != blank %}
+              <span>{{ block.settings.title }}</span>
+            {% endif %}
+            
             {% if block.settings.title_richtext != blank %}
               {{ block.settings.title_richtext }}
             {% endif %}
