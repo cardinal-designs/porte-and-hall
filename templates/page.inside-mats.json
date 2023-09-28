@@ -284,14 +284,16 @@
         "a6533ec5-b732-417e-9491-9e3c55a2fd85": {
           "type": "faq",
           "settings": {
-            "title": "q1",
-            "answer": "<p>a1<\/p>"
+            "title": "",
+            "title_richtext": "<p>What is your <strong>return\/exchange policy<\/strong>?<\/p>",
+            "answer": "<p>P+H wants our customers to be completely happy with their purchase. We will accept returns within thirty (30) days of order placement for a full refund. Goods must be returned unused in original packaging. Return shipping charges will be deducted from the original form of payment.<br\/><br\/>If you need to return an item, please<a href=\"https:\/\/porteandhall.loopreturns.com\/#\/\" title=\"https:\/\/porteandhall.loopreturns.com\/#\/\">click here<\/a>. A return label will be provided to you. If you experience any issues getting a return label please email us at<a href=\"mailto:support@porteandhall.com\" target=\"_blank\" title=\"mailto:support@porteandhall.com\">support@porteandhall.com<\/a><\/p>"
           }
         },
         "b985d6b5-33f9-4857-80a6-a3fc4812980a": {
           "type": "faq",
           "settings": {
             "title": "q2",
+            "title_richtext": "",
             "answer": "<p>a2<\/p>"
           }
         },
@@ -299,6 +301,7 @@
           "type": "faq",
           "settings": {
             "title": "q3",
+            "title_richtext": "",
             "answer": "<p>a3<\/p>"
           }
         },
@@ -306,6 +309,7 @@
           "type": "faq",
           "settings": {
             "title": "q4",
+            "title_richtext": "",
             "answer": "<p>a4<\/p>"
           }
         }
