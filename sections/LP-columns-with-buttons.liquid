@@ -17,29 +17,45 @@
 
 <div class="page-width">
   <div class="columns-wrap">
-    <div class="col">
-      <div class="column-image">
-        <img src=""/>
-      </div>
-      <div class="column-content">
-        <h5>Title</h5>
-        <div class="column-btn-group">
-          <a href="#" class="button">doormat</a>
-        </div>
-      </div>
-    </div>
+    {% for block in section.blocks %}
+      <div class="col">
+        <div class="column-image">
+          {% if block.settings.column_badge != blank %}
+            <p>{{ block.settings.column_badge }}</p>
+          {% endif %}
 
-    <div class="col">
-      <div class="column-image">
-        <img src=""/>
-      </div>
-      <div class="column-content">
-        <h5>Title</h5>
-        <div class="column-btn-group">
-          <a href="#" class="button">doormat</a>
+          {% if block.settings.column_image != blank %}
+            {{ block.settings.column_image | image_url: width: 900 | image_tag: width: '100%' }}
+          {% endif %}
+        </div>
+        <div class="column-content">
+          {% if block.settings.column_title != blank %}
+            <h5>{{ block.settings.column_title }}</h5>
+          {% endif %}
+      
+          <div class="column-btn-group">
+            {% if block.settings.button_1_text != blank %}
+              <a href="{{ block.settings.button_1_url }}" class="button">
+                {{ block.settings.button_1_text }}
+              </a>
+            {% endif %}
+      
+            {% if block.settings.button_2_text != blank %}
+              <a href="{{ block.settings.button_2_url }}" class="button">
+                {{ block.settings.button_2_text }}
+              </a>
+            {% endif %}
+      
+            {% if block.settings.button_3_text != blank %}
+              <a href="{{ block.settings.button_3_url }}" class="button">
+                {{ block.settings.button_3_text }}
+              </a>
+            {% endif %}
+      
+          </div>
         </div>
       </div>
-    </div>    
+    {% endfor %}  
   </div>
 </div>
 
