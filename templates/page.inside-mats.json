@@ -140,6 +140,7 @@
         "59ce5e46-fb0d-4224-8889-de9023da8c75": {
           "type": "block",
           "settings": {
+            "column_image": "shopify:\/\/shop_images\/insider_mats.jpg",
             "column_title": "Insider Mats",
             "block_type_1": "DOORMAT",
             "block_size_1": "2'-2\" x 3'-0\"",
@@ -151,10 +152,27 @@
             "block_size_3": "4'-6\" x 6'-6\"",
             "block_url_3": ""
           }
+        },
+        "4371bbde-1de4-47ff-92fc-d38d45ae16fa": {
+          "type": "block",
+          "settings": {
+            "column_image": "shopify:\/\/shop_images\/innerweave_mats.jpg",
+            "column_title": "Innerweave Mats",
+            "block_type_1": "",
+            "block_size_1": "",
+            "block_url_1": "",
+            "block_type_2": "",
+            "block_size_2": "",
+            "block_url_2": "",
+            "block_type_3": "",
+            "block_size_3": "",
+            "block_url_3": ""
+          }
         }
       },
       "block_order": [
-        "59ce5e46-fb0d-4224-8889-de9023da8c75"
+        "59ce5e46-fb0d-4224-8889-de9023da8c75",
+        "4371bbde-1de4-47ff-92fc-d38d45ae16fa"
       ],
       "settings": {
         "custom-class": "",
