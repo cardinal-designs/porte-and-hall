@@ -11,6 +11,9 @@
         <div class="faq__item">
           <button class="faq__question body" data-faq="{{ forloop.index }}">
             <span>{{ block.settings.title }}</span>
+            {% if block.settings.title_richtext != blank %}
+              {{ block.settings.title_richtext }}
+            {% endif %}
             <span>{% render 'icon', icon: 'accordion' %}</span>
           </button>
           <div class="faq__content body">
@@ -77,6 +80,11 @@
           "id": "title",
           "label": "Question"
         },
+        {
+          "type": "richtext",
+          "id": "title_richtext",
+          "label": "Question richtext"
+        },        
         {
           "type": "richtext",
           "id": "answer",
