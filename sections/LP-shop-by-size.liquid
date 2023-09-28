@@ -139,6 +139,7 @@
           </div>
           <div class="icon_text">
             {{ block.settings.block_type }}
+            {{ block.settings.block_size }}
           </div>
         </a>
       </div>
@@ -206,9 +207,14 @@
           "label": "Add link"
         },
         {
-          "type": "richtext",
+          "type": "text",
           "id": "block_type",
           "label": "Enter type"
+        },
+        {
+          "type": "text",
+          "id": "block_size",
+          "label": "Enter size"
         }
       ]
     }
