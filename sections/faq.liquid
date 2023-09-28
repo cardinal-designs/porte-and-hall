@@ -15,7 +15,7 @@
             {% endif %}
             
             {% if block.settings.title_richtext != blank %}
-              <span>{{ block.settings.title_richtext }}</span>
+              {{ block.settings.title_richtext }}
             {% endif %}
             <span>{% render 'icon', icon: 'accordion' %}</span>
           </button>
