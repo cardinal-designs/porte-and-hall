@@ -136,6 +136,26 @@
     },
     "92ec143d-1813-4b1b-925a-aa488dbc279a": {
       "type": "LP-shop-by-size",
+      "blocks": {
+        "59ce5e46-fb0d-4224-8889-de9023da8c75": {
+          "type": "block",
+          "settings": {
+            "column_title": "Insider Mats",
+            "block_type_1": "DOORMAT",
+            "block_size_1": "2'-2\" x 3'-0\"",
+            "block_url_1": "",
+            "block_type_2": "RUNNER",
+            "block_size_2": "2'-2\" x 6'-7\"",
+            "block_url_2": "",
+            "block_type_3": "AREA MAT",
+            "block_size_3": "4'-6\" x 6'-6\"",
+            "block_url_3": ""
+          }
+        }
+      },
+      "block_order": [
+        "59ce5e46-fb0d-4224-8889-de9023da8c75"
+      ],
       "settings": {
         "custom-class": "",
         "title": "Shop by size",
