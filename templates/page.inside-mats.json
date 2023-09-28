@@ -197,6 +197,40 @@
     },
     "82585cab-4eaf-49f4-9869-717a26d7fc04": {
       "type": "LP-columns-with-buttons",
+      "blocks": {
+        "7ce4ba1d-9666-4cbe-b032-9ae6781dcf0b": {
+          "type": "block",
+          "settings": {
+            "column_badge": "Natural look",
+            "column_image": "shopify:\/\/shop_images\/The_Innerweave_fe4633e1-a38f-4b73-a23f-5c6eb43c52c2.jpg",
+            "column_title": "The Innerweave",
+            "button_1_text": "DOORMAT",
+            "button_1_url": "",
+            "button_2_text": "RUNNER",
+            "button_2_url": "",
+            "button_3_text": "AREA MAT",
+            "button_3_url": ""
+          }
+        },
+        "c95386cf-d41d-4b8a-83ab-9cf117ee285a": {
+          "type": "block",
+          "settings": {
+            "column_badge": "Ultra-thin",
+            "column_image": "shopify:\/\/shop_images\/The_Insider_9cc72c18-954a-446c-822f-70ba43b92324.jpg",
+            "column_title": "The Insider",
+            "button_1_text": "DOORMAT",
+            "button_1_url": "",
+            "button_2_text": "RUNNER",
+            "button_2_url": "",
+            "button_3_text": "AREA MAT",
+            "button_3_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "7ce4ba1d-9666-4cbe-b032-9ae6781dcf0b",
+        "c95386cf-d41d-4b8a-83ab-9cf117ee285a"
+      ],
       "settings": {
       }
     },
