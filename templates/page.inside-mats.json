@@ -134,6 +134,37 @@
         "subtitle": "Mats created to solve the most common issues."
       }
     },
+    "92ec143d-1813-4b1b-925a-aa488dbc279a": {
+      "type": "LP-shop-by-size",
+      "blocks": {
+        "631a8f5a-099b-4aa8-b3cf-0bf9c74243fb": {
+          "type": "block",
+          "settings": {
+            "icon_type": "left",
+            "link": "",
+            "title": "tt"
+          }
+        },
+        "fdd7e6cc-8e07-4216-96b8-5a6ebd2a0ca9": {
+          "type": "block",
+          "settings": {
+            "icon_type": "left",
+            "link": "",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "631a8f5a-099b-4aa8-b3cf-0bf9c74243fb",
+        "fdd7e6cc-8e07-4216-96b8-5a6ebd2a0ca9"
+      ],
+      "settings": {
+        "custom-class": "",
+        "title": "Shop by size",
+        "link_text": "SHOP ALL",
+        "link_url": "\/collections\/shop-all?filter.v.m.filters.use=Indoor"
+      }
+    },
     "645a20a2-ab93-4674-9e7c-a3ebd19e07a7": {
       "type": "main-product-carousel",
       "custom_css": [
@@ -313,6 +344,7 @@
     "a403e2bd-6595-4763-8d67-02cc9878f906",
     "3d366c6f-b825-4c2d-a879-6d33132c33f5",
     "e63ab012-f31a-40fe-9f5d-45cacc2a0cf1",
+    "92ec143d-1813-4b1b-925a-aa488dbc279a",
     "645a20a2-ab93-4674-9e7c-a3ebd19e07a7",
     "1695812319e7f5a694",
     "d69c6532-ecf2-4b1f-a095-e3b3cec59def",
