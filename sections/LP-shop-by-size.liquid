@@ -20,20 +20,24 @@
     gap: 48px;
     margin-top: 48px;
   }
-
-  @media (min-width: 989px) {
-    .LP-shop-by-size .icon-wrapper {
-      grid-template-columns: 1fr 1fr;
-    }    
-  }  
   
   .LP-shop-by-size .icon-text-content {
     background: #EEEFEF;
     display: flex;
     align-items: center;
     
-    height: 120px;
+    height: 80px;
   }
+
+  @media (min-width: 989px) {
+    .LP-shop-by-size .icon-wrapper {
+      grid-template-columns: 1fr 1fr;
+    }    
+
+    .LP-shop-by-size .icon-text-content {
+      height: 120px
+    }
+  }    
   
   .LP-shop-by-size .icon-type {
     height: 100%;
