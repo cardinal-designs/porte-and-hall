@@ -1,17 +1,29 @@
 {% style %}
   .columns-wrap {
-      display: grid;
-      justify-content: center;
+    display: grid;
+    justify-content: center;
+    gap: 32px
+
+    max-width: 900px;
+    margin: 0 auto;
   }
   
   .columns-wrap .col {
-      text-align: center;
+    text-align: center;
   }
+
+  .columns-wrap .column-btn-group {
+    display: grid;
+    gap: 8px;
+    max-width: 85%;
+    margin: 0 auto;
+    margin-top: 12px;
+  }  
   
   @media (min-width: 989px) {
-      .columns-wrap {
-          grid-template-columns: 1fr 1fr;
-      }    
+    .columns-wrap {
+      grid-template-columns: 1fr 1fr;
+    }    
   }  
 {% endstyle %}
 
@@ -30,7 +42,7 @@
         </div>
         <div class="column-content">
           {% if block.settings.column_title != blank %}
-            <h5>{{ block.settings.column_title }}</h5>
+            <h4>{{ block.settings.column_title }}</h4>
           {% endif %}
       
           <div class="column-btn-group">
