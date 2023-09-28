@@ -22,7 +22,7 @@
             "section_header": "<p>Step inside (and onto)<br\/>a better mat<\/p>",
             "section_paragraph": "<p>Created by our founder, an interior designer who couldn't settle for less.<\/p>",
             "button_text": "SHOP INDOOR MATS",
-            "button_url": "#",
+            "button_url": "\/collections\/shop-all?filter.v.m.filters.use=Indoor",
             "block_align_left": true,
             "section_align_left": true,
             "section_align_top_mobile": true,
@@ -144,7 +144,7 @@
         "heading": "Shop our best sellers",
         "background": "#eeefef",
         "show_metafield_style": true,
-        "collection": "the-insider",
+        "collection": "best-sellers-inside-mats",
         "button_text": "VIEW DETAILS"
       }
     },
@@ -230,7 +230,7 @@
         ".faq {background: white;}",
         ".faq .faq__heading {text-align: center;}",
         ".faq .faq__wrapper {display: block; max-width: 900px; margin: 0 auto;}",
-        ".faq .faq__column>.faq__item:first-child {border-top: none;}"
+        ".faq .faq__column > .faq__item:first-child {border-top: none;}"
       ],
       "settings": {
         "heading": "",
