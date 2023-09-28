@@ -34,7 +34,8 @@
         "bd0708e9-d9bb-41bb-81cd-73cfaca002c8"
       ],
       "custom_css": [
-        "a.button {background: var(--gold-secondary--dark);}"
+        "a.button {background: var(--gold-secondary--dark);}",
+        ".image-slideshow__slide:after {background-color: transparent;}"
       ],
       "settings": {
         "title": "",
