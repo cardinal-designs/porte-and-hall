@@ -1,3 +1,20 @@
+{% style %}
+  .columns-wrap {
+      display: grid;
+      justify-content: center;
+  }
+  
+  .columns-wrap .col {
+      text-align: center;
+  }
+  
+  @media (min-width: 989px) {
+      .columns-wrap {
+          grid-template-columns: 1fr 1fr;
+      }    
+  }  
+{% endstyle %}
+
 <div class="page-width">
   <div class="columns-wrap">
     <div class="col">
