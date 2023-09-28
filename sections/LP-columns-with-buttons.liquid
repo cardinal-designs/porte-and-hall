@@ -12,14 +12,6 @@
     text-align: center;
   }
 
-  .columns-wrap .column-btn-group {
-    display: grid;
-    gap: 8px;
-    max-width: 85%;
-    margin: 0 auto;
-    margin-top: 12px;
-  }  
-
   .columns-wrap .column-badge {
     background: #546b82;
     color: #fff;
@@ -31,7 +23,21 @@
     margin-bottom: -20px;
     z-index: 10;
     position: relative;    
-  }
+  }  
+  
+  .columns-wrap .column-btn-group {
+    display: grid;
+    gap: 8px;
+    max-width: 85%;
+    margin: 0 auto;
+    margin-top: 12px;
+  }  
+
+  .column-btn-group .button {
+    background: white;
+    color: #ada188;
+    border: 2px solid;
+  }  
   
   @media (min-width: 989px) {
     .columns-wrap {
