@@ -5,8 +5,13 @@
 
   .LP-shop-by-size .column-wrap {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 12px;
+  }
+
+  @media (min-width: 760px) {
+    .LP-shop-by-size .column-wrap {
+      grid-template-columns: 60% 40%;
+    }    
   }
 
   .LP-shop-by-size .column-wrap .right-side {
