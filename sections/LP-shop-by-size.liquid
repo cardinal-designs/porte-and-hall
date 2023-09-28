@@ -137,7 +137,9 @@
               <span class="type-3"></span>
             {%- endif -%}
           </div>
-          <p class="icon_text">{{ block.settings.title }}</p>
+          <div class="icon_text">
+            {{ block.settings.block_type }}
+          </div>
         </a>
       </div>
     {% endfor %}
@@ -204,8 +206,8 @@
           "label": "Add link"
         },
         {
-          "type": "text",
-          "id": "title",
+          "type": "richtext",
+          "id": "block_type",
           "label": "Enter type"
         }
       ]
