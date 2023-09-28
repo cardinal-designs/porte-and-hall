@@ -1,39 +1,37 @@
-<section class="section size-with-text">
-  <div class="page-width">
-    {%- if section.settings.title != blank or section.settings.content != blank -%}
-      <header class="SectionHeader text-center">
-        {%- if section.settings.title != blank -%}
-          <h2 class="SectionHeader__Heading">{{ section.settings.title }}</h2>
-        {%- endif -%}
-        {%- if section.settings.link_text != blank -%}
-          <div class="link-text">
-            <a href="{{ section.settings.link_url }}" class="text-link gold-secondary--dark">
-              {{- section.settings.link_text | escape -}}
-            </a>
-          </div>
-        {%- endif -%}
-      </header>
-    {%- endif -%}
-    <div class="icon-wrapper">
-      {%- for block in section.blocks -%}
-        <div class="icon-text-content ">
-          <a href="{{ block.settings.link }}">
-            <div class="icon-type">
-              {%- if block.settings.icon_type == 'left' -%}
-                <span class="type-1"></span>
-              {%- elsif block.settings.icon_type == 'right' -%}
-                <span class="type-2"></span>
-              {%- else -%}
-                <span class="type-3"></span>
-              {%- endif -%}
-            </div>
-            <p class="icon_text">{{ block.settings.title }}</p>
+<div class="page-width">
+  {%- if section.settings.title != blank or section.settings.content != blank -%}
+    <header class="SectionHeader text-center">
+      {%- if section.settings.title != blank -%}
+        <h2 class="SectionHeader__Heading">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.link_text != blank -%}
+        <div class="link-text">
+          <a href="{{ section.settings.link_url }}" class="text-link gold-secondary--dark">
+            {{- section.settings.link_text | escape -}}
           </a>
         </div>
-      {% endfor %}
-    </div>
+      {%- endif -%}
+    </header>
+  {%- endif -%}
+  <div class="icon-wrapper">
+    {%- for block in section.blocks -%}
+      <div class="icon-text-content ">
+        <a href="{{ block.settings.link }}">
+          <div class="icon-type">
+            {%- if block.settings.icon_type == 'left' -%}
+              <span class="type-1"></span>
+            {%- elsif block.settings.icon_type == 'right' -%}
+              <span class="type-2"></span>
+            {%- else -%}
+              <span class="type-3"></span>
+            {%- endif -%}
+          </div>
+          <p class="icon_text">{{ block.settings.title }}</p>
+        </a>
+      </div>
+    {% endfor %}
   </div>
-</section>
+</div>
 
 {% schema %}
   {
