@@ -2,7 +2,10 @@
   .LP-shop-by-size .page-width{
     padding: 56px 40px;
   }
-  
+
+  .column-wrap {
+    display: flex;
+  }
 
   .LP-shop-by-size .icon-wrapper {
     display: grid;
@@ -130,41 +133,44 @@
     {%- for block in section.blocks -%}
       <div class="column-wrap">
         {{ block.settings.column_image | image_url: width: 900 | image_tag: width: '100%' }}
-        <div class="icon-text-content ">
-          <a href="{{ block.settings.block_url_1 }}">
-            <div class="icon-type">
-                <span class="type-1"></span>
-            </div>
-            <div class="icon_text">
-              <p class="type">{{ block.settings.block_type_1 }}</p>
-              <p class="size">{{ block.settings.block_size_1 }}</p>
-            </div>
-          </a>
+
+        <div class="right-side">
+          <div class="icon-text-content ">
+            <a href="{{ block.settings.block_url_1 }}">
+              <div class="icon-type">
+                  <span class="type-1"></span>
+              </div>
+              <div class="icon_text">
+                <p class="type">{{ block.settings.block_type_1 }}</p>
+                <p class="size">{{ block.settings.block_size_1 }}</p>
+              </div>
+            </a>
+          </div>
+        
+          <div class="icon-text-content ">
+            <a href="{{ block.settings.block_url_2 }}">
+              <div class="icon-type">
+                  <span class="type-2"></span>
+              </div>
+              <div class="icon_text">
+                <p class="type">{{ block.settings.block_type_2 }}</p>
+                <p class="size">{{ block.settings.block_size_2 }}</p>
+              </div>
+            </a>
+          </div>      
+    
+          <div class="icon-text-content ">
+            <a href="{{ block.settings.block_url_3 }}">
+              <div class="icon-type">
+                  <span class="type-3"></span>
+              </div>
+              <div class="icon_text">
+                <p class="type">{{ block.settings.block_type_3 }}</p>
+                <p class="size">{{ block.settings.block_size_3 }}</p>
+              </div>
+            </a>
+          </div>            
         </div>
-      
-        <div class="icon-text-content ">
-          <a href="{{ block.settings.block_url_2 }}">
-            <div class="icon-type">
-                <span class="type-2"></span>
-            </div>
-            <div class="icon_text">
-              <p class="type">{{ block.settings.block_type_2 }}</p>
-              <p class="size">{{ block.settings.block_size_2 }}</p>
-            </div>
-          </a>
-        </div>      
-  
-        <div class="icon-text-content ">
-          <a href="{{ block.settings.block_url_3 }}">
-            <div class="icon-type">
-                <span class="type-3"></span>
-            </div>
-            <div class="icon_text">
-              <p class="type">{{ block.settings.block_type_3 }}</p>
-              <p class="size">{{ block.settings.block_size_3 }}</p>
-            </div>
-          </a>
-        </div>     
       </div>
     {% endfor %}
     
