@@ -5,13 +5,8 @@
 
   .LP-shop-by-size .column-wrap {
     display: grid;
+    grid-template-columns: 60% 40%;
     gap: 12px;
-  }
-
-  @media (min-width: 989px) {
-    .LP-shop-by-size .column-wrap {
-      grid-template-columns: 60% 40%;
-    }    
   }
 
   .LP-shop-by-size .column-wrap .right-side {
@@ -21,10 +16,15 @@
 
   .LP-shop-by-size .icon-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 32px;
     margin-top: 48px;
   }
+
+  @media (min-width: 989px) {
+    .LP-shop-by-size .icon-wrapper {
+      grid-template-columns: 1fr 1fr;
+    }    
+  }  
   
   .LP-shop-by-size .icon-text-content {
     background: #EEEFEF;
