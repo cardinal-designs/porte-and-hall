@@ -94,7 +94,21 @@
           {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill' %}
         {% endif %}
 
-        {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
+        {% if custom_image != blank %}
+          {% render 'lazy-image', image: custom_image, fade: true, classes: 'img-fill' %}
+        {% endif %}
+
+        {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+          {% assign price_change = product_card_product.price | minus: product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+          {% assign percent_discount = price_change | times: 100 | divided_by: product_card_product.price %}
+        <!-- <div class="product-card__discount-flag">
+          <div class="product-card__discount-amount">{{ percent_discount }} <span>%</span></div>
+          <span>off</span>
+        </div> -->
+        {% endif %}
+      </a>
+    </div>
+    {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
 
         <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
           {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
@@ -107,17 +121,6 @@
             Outdoor
           {% endif %}
         </div>
-
-        {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
-          {% assign price_change = product_card_product.price | minus: product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
-          {% assign percent_discount = price_change | times: 100 | divided_by: product_card_product.price %}
-        <div class="product-card__discount-flag">
-          <div class="product-card__discount-amount">{{ percent_discount }} <span>%</span></div>
-          <span>off</span>
-        </div>
-        {% endif %}
-      </a>
-    </div>
     {% if simple_card == true %}<div>{% endif %}
 
     {% if template.suffix == 'last-chance' %}
@@ -134,14 +137,6 @@
       </div>
     {% endif %}
 
-    {% if section.settings.show_metafield_style %}
-      {% if product_card_product.metafields.custom.product_card_style.value != blank %}
-        <div class="product-card__metafield-style">
-          {{ product_card_product.metafields.custom.product_card_style.value }}
-        </div>
-      {% endif %}
-    {% endif %}
-      
     <a href="{{ product_card_product.url }}">
       <h3 class="product-card__title blue">
         {{ title | default: collection.title | replace: ' | ', '<br>' }}
@@ -203,7 +198,10 @@
       </div>
     {% else %}
       <a href="{{ product_card_product.url }}" class="text-link gold-secondary--dark product-card__link">
-      {{- button_text }} <span class="btn-arrow"> > </span> </a>
+       {% if button_text == blank %}Shop Now{% else %}{{ button_text }}{% endif %} <span> <svg xmlns="http://www.w3.org/2000/svg" width="29" height="16" viewBox="0 0 29 16" fill="none">
+                  <path d="M28.7071 8.70711C29.0976 8.31658 29.0976 7.68342 28.7071 7.29289L22.3431 0.928932C21.9526 0.538408 21.3195 0.538408 20.9289 0.928932C20.5384 1.31946 20.5384 1.95262 20.9289 2.34315L26.5858 8L20.9289 13.6569C20.5384 14.0474 20.5384 14.6805 20.9289 15.0711C21.3195 15.4616 21.9526 15.4616 22.3431 15.0711L28.7071 8.70711ZM0 9H28V7H0V9Z" fill="#A19377"/>
+                  </svg>
+                  </span></a>
     {% endif %}
   {% if simple_card == true %}</div>{% endif %}
   </div>

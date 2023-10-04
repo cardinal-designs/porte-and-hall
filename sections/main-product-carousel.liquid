@@ -2,6 +2,20 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'section-product-carousel.css' | asset_url | stylesheet_tag }}
 
+{% style %}
+  .product-card .product-card__metafield-style {
+    background: #546b82;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 24px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+{% endstyle %}
+
 <div class="product-carousel__inner">
   <div class="product-carousel__heading">
     <h2 class="blue">{{ section.settings.heading }}</h2>
@@ -57,6 +71,12 @@
       "id": "background",
       "label": "Background"
     },
+    {
+      "type": "checkbox",
+      "id": "show_metafield_style",
+      "label": "Show metafield style",
+      "default": false
+    },    
     {
       "type": "collection",
       "id": "collection",
