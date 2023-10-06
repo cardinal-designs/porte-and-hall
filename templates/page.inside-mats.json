@@ -92,24 +92,6 @@
     "e63ab012-f31a-40fe-9f5d-45cacc2a0cf1": {
       "type": "LP-custom-collections",
       "blocks": {
-        "c2f240f8-76ab-4d5b-b58f-9b0f143a1be2": {
-          "type": "block",
-          "settings": {
-            "title": "The Innerweave",
-            "badge1": "Natural Look",
-            "product1_title": "The Innerweave",
-            "collection1": "the-innerweave",
-            "product1": "the-innerweave-tigers-eye-natural-doormat",
-            "product_image1": "shopify:\/\/shop_images\/Innerweave_mat.jpg",
-            "the_problem_title": "THE PROBLEM",
-            "the_problem_content": "\"My mat sheds and looks gross!\"",
-            "the_solution_title": "THE SOLUTION",
-            "the_solution_content": "The Innerweave looks just as beautiful as a natural woven mat, but is made from materials that never shed, and are soft underfoot.",
-            "link_text": "LEARN MORE HERE",
-            "link_url": "shopify:\/\/products\/the-innerweave-tigers-eye-natural-doormat",
-            "footer_image": "shopify:\/\/shop_images\/Innerweave.jpg"
-          }
-        },
         "0e6e41de-4711-4807-88da-5ee4e3cc7662": {
           "type": "block",
           "settings": {
@@ -127,11 +109,29 @@
             "link_url": "shopify:\/\/products\/the-insider-retro-orange-doormat",
             "footer_image": "shopify:\/\/shop_images\/Insider_442a4f67-f8b9-492d-87ff-690a258230eb.jpg"
           }
+        },
+        "c2f240f8-76ab-4d5b-b58f-9b0f143a1be2": {
+          "type": "block",
+          "settings": {
+            "title": "The Innerweave",
+            "badge1": "Natural Look",
+            "product1_title": "The Innerweave",
+            "collection1": "the-innerweave",
+            "product1": "the-innerweave-tigers-eye-natural-doormat",
+            "product_image1": "shopify:\/\/shop_images\/Innerweave_mat.jpg",
+            "the_problem_title": "THE PROBLEM",
+            "the_problem_content": "\"My mat sheds and looks gross!\"",
+            "the_solution_title": "THE SOLUTION",
+            "the_solution_content": "The Innerweave looks just as beautiful as a natural woven mat, but is made from materials that never shed, and are soft underfoot.",
+            "link_text": "LEARN MORE HERE",
+            "link_url": "shopify:\/\/products\/the-innerweave-tigers-eye-natural-doormat",
+            "footer_image": "shopify:\/\/shop_images\/Innerweave.jpg"
+          }
         }
       },
       "block_order": [
-        "c2f240f8-76ab-4d5b-b58f-9b0f143a1be2",
-        "0e6e41de-4711-4807-88da-5ee4e3cc7662"
+        "0e6e41de-4711-4807-88da-5ee4e3cc7662",
+        "c2f240f8-76ab-4d5b-b58f-9b0f143a1be2"
       ],
       "settings": {
         "title": "Our Indoor Collections",
