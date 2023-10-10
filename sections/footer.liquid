@@ -40,13 +40,12 @@
                 {% for link in block.settings.menu.links %}
                   {% if link.title == 'Cookie Preferences' %}
                    <li>
-                    <a
-                      
+                    <span
                       id="onetrust-pc-sdk"
-                      class="footer__menu-link{% if link.active %} footer__menu-link--active{% endif %}"
+                      class="footer__menu-link"
                     >
                       {{ link.title }}
-                    </a>
+                    </span>
                   </li>
                   {% else %}
                   <li>
