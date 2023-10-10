@@ -38,13 +38,23 @@
             {% if block.settings.menu != blank %}
               <ul class="footer__menu list-unstyled">
                 {% for link in block.settings.menu.links %}
-                  ff{{ link.title }}
                   {% if link.title == 'Cookie Preferences' %}
+                   <li>
+                    <a
+                      href="{{ link.url }}"
+                      id="onetrust-pc-sdk"
+                      class="footer__menu-link{% if link.active %} footer__menu-link--active{% endif %}"
+                    >
+                      {{ link.title }}
+                    </a>
+                  </li>
                   {% else %}
                   <li>
                     <a
                       href="{{ link.url }}"
-                      id="onetrust-pc-sdk"
+                      {% if link.url contains "http://" or link.url contains "https://" %}
+                        target="_blank"
+                      {% endif %}
                       class="footer__menu-link{% if link.active %} footer__menu-link--active{% endif %}"
                     >
                       {{ link.title }}
