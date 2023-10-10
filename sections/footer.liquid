@@ -38,16 +38,6 @@
             {% if block.settings.menu != blank %}
               <ul class="footer__menu list-unstyled">
                 {% for link in block.settings.menu.links %}
-                  {% if link.title == 'Cookie Preferences' %}
-                   <li>
-                    <span
-                      id="onetrust-consent-sdk"
-                      class="footer__menu-link"
-                    >
-                      {{ link.title }}
-                    </span>
-                  </li>
-                  {% else %}
                   <li>
                     <a
                       href="{{ link.url }}"
@@ -59,7 +49,6 @@
                       {{ link.title }}
                     </a>
                   </li>
-                {% endif %}
                 {% endfor %}
               </ul>
             {% endif %}
