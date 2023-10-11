@@ -50,6 +50,11 @@
                     </a>
                   </li>
                 {% endfor %}
+                {% if forloop.index0 == 0 %}
+                <li class="site-footer__linklist-item">
+                <a href="#" data-acsb-custom-trigger="true"> Accessibility </a>
+                </li>
+                {% endif %}
               </ul>
             {% endif %}
           </div>
