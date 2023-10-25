@@ -134,6 +134,14 @@
       </div>
     {% endif %}
 
+    {% if section.settings.show_metafield_style %}
+      {% if product_card_product.metafields.custom.product_card_style.value != blank %}
+        <div class="product-card__metafield-style">
+          {{ product_card_product.metafields.custom.product_card_style.value }}
+        </div>
+      {% endif %}
+    {% endif %}
+      
     <a href="{{ product_card_product.url }}">
       <h3 class="product-card__title blue">
         {{ title | default: collection.title | replace: ' | ', '<br>' }}
@@ -195,7 +203,7 @@
       </div>
     {% else %}
       <a href="{{ product_card_product.url }}" class="text-link gold-secondary--dark product-card__link">
-      {{- button_text }} ></a>
+      {{- button_text }} <span class="btn-arrow"> > </span> </a>
     {% endif %}
   {% if simple_card == true %}</div>{% endif %}
   </div>

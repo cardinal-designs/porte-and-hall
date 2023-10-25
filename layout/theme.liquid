@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
+    <meta name="google-site-verification" content="IVpP462_ffIVedPbcCOwwr4v0yqczNWKVEY2XNhS4b4" />
     <script src="https://www.googleoptimize.com/optimize.js?id=OPT-WV5FTMC"></script>
     {% render 'elevar-head-listener' %}
     {% render 'elevar-head' %}
@@ -28,7 +29,74 @@
 
     <!-- begin Convert Experiences code-->
     <script type="text/javascript" src="//cdn-4.convertexperiments.com/js/10041621-10044581.js"></script>
-    <!-- end Convert Experiences code -->    
+    <!-- end Convert Experiences code -->
+    
+    <script type="text/javascript">
+    // adding the convert script to head
+    if (typeof _conv_host == 'undefined') {
+      window['_conv_prevent_bodyhide'] = true
+      let _conv_track = document.createElement('script')
+      _conv_track.src = '//cdn-3.convertexperiments.com/js/10021617-1002839.js'
+      document.getElementsByTagName('head')[0].appendChild(_conv_track)
+    }
+    // doing logic to submit track conversions
+    {% if first_time_accessed %}
+      console.debug('Convert: We are on the thank you page')
+      var convert_attributes = JSON.parse(
+        localStorage.getItem('convert_attributes')
+      )
+      if (convert_attributes) {
+        console.debug('Convert: We have attributes')
+        console.debug(convert_attributes)
+        //build POST data to be sent
+        const post = {
+          cid: convert_attributes.cid,
+          pid: convert_attributes.pid,
+          seg: convert_attributes.defaultSegments,
+          s: 'shopify',
+          vid: convert_attributes.vid,
+          ev: [
+            {
+              evt: 'tr',
+              goals: [convert_attributes.goals],
+              exps: convert_attributes.exps,
+              vars: convert_attributes.vars,
+              r: parseFloat(Shopify?.checkout?.total_price),
+              prc: Shopify?.checkout?.line_items.length
+            },
+            {
+              evt: 'hitGoal',
+              goals: [convert_attributes.goals],
+              exps: convert_attributes.exps,
+              vars: convert_attributes.vars
+            }
+          ]
+        }
+        const data = JSON.stringify(post)
+        console.debug(post)
+        fetch(
+          `https://${convert_attributes.pid}.metrics.convertexperiments.com/track`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Content-Length': data.length
+            },
+            body: data
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.debug('Convert: Conversion registered')
+          })
+          .catch(function (error) {
+            console.error(error)
+          })
+      }
+    {% else %}
+      console.debug('Convert: We are not on the thank you page')
+    {% endif %}
+    </script>
 
     {% if page_description %}
       <meta name="description" content="{{ page_description | escape }}">
@@ -300,8 +368,8 @@
     {% endif %}
 
     <!-- AccessiBe widget -->
-    <script> (function(){ var s = document.createElement('script'); var h = document.querySelector('head') || document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init({ statementLink : '', footerHtml : '', hideMobile : false, hideTrigger : false, disableBgProcess : false, language : 'en', position : 'left', leadColor : '#546b82', triggerColor : '#566b82', triggerRadius : '50%', triggerPositionX : 'left', triggerPositionY : 'bottom', triggerIcon : 'people', triggerSize : 'medium', triggerOffsetX : 20, triggerOffsetY : 9, mobile : { triggerSize : 'small', triggerPositionX : 'left', triggerPositionY : 'center', triggerOffsetX : 5, triggerOffsetY : 0, triggerRadius : '50%' } }); }; h.appendChild(s); })(); </script>
-
+    <script> (function(){ var s = document.createElement('script'); var h = document.querySelector('head') || document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init({ statementLink : '', footerHtml : '', hideMobile : false, hideTrigger : false, disableBgProcess : false, language : 'en', position : 'left', leadColor : '#556b82', triggerColor : '#50657b', triggerRadius : '50%', triggerPositionX : 'left', triggerPositionY : 'bottom', triggerIcon : 'people', triggerSize : 'medium', triggerOffsetX : 20, triggerOffsetY : 20, mobile : { triggerSize : 'small', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerOffsetX : 10, triggerOffsetY : 10, triggerRadius : '50%' } }); }; h.appendChild(s); })(); </script>   
+   
     <!-- OneTrust Cookies Consent Notice start for www.porteandhall.com -->
     <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="392ca035-48a4-413f-b3b6-5ee77c589497" ></script>
     <script type="text/javascript">
@@ -312,11 +380,12 @@
     <!-- OneTrust Cookies Consent Notice end for www.porteandhall.com -->
 
     
- <!-- Stamped - Begin script -->
+   {% style %} <!-- Stamped - Begin script -->
 <script>function myInit(){ StampedFn.init({ apiKey: 'pubkey-TQ3tfL1zl7718FiPc09D65z6h2K3NJ', sId: '175484' }); }</script>
 <script async onload="myInit()" type="text/javascript" src="https://cdn1.stamped.io/files/widget.min.js"></script> 
     <!-- Stamped - End script -->
-    
+     .ot-floating-button__front {visibility: hidden;}
+   {% endstyle %}
   </body>
 </html>
 

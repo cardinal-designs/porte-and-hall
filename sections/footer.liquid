@@ -7,6 +7,10 @@
     width: {{ section.settings.logo_width }}px;
   }
 
+  .optanon-show-settings {
+    cursor: pointer;
+  }
+
   @media screen and (max-width: 768px) {
     .footer__svg-logo {
       width: {{ section.settings.mobile_logo_width }}px;
@@ -50,6 +54,16 @@
                     </a>
                   </li>
                 {% endfor %}
+                {% if forloop.index0 == 0 %}
+                {% comment %}
+                <li>
+                  <a class="footer__menu-link" href="#" data-acsb-custom-trigger="true"> Accessibility </a>
+                </li>
+                {% endcomment %}
+                 <li>
+                <a class="footer__menu-link optanon-show-settings">Cookie Settings</a>
+                </li>
+                {% endif %}
               </ul>
             {% endif %}
           </div>

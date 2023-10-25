@@ -1,3 +1,26 @@
+.image-slideshow__block-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.image-slideshow__block-content a {
+  margin-top: 24px;
+  padding: 14px 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.image-slideshow__paragraph {
+  max-width: 220px;
+}
+
+@media (min-width: 768px) {
+  .image-slideshow__paragraph {
+    font-size: 24px;
+    max-width: 500px;
+  }
+}
+
 .image-slideshow.add-margin {
   margin-bottom: 20px;
 }
@@ -21,7 +44,7 @@
 }
 
 .image-slideshow__text {
-  padding: 10% 20px 20px;
+  padding: 20px 20px;
   position: absolute;
   top: 0;
   right: 0;

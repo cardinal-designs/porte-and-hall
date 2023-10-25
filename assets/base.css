@@ -3311,4 +3311,7 @@ header.SectionHeader .Link{
 /* hide preview bar */
 iframe#preview-bar-iframe {
   display: none;
+}/* fix privy not showing on top of cookie bar */
+#onetrust-consent-sdk #onetrust-banner-sdk {
+  z-index: 9999999;
 }
