@@ -1,0 +1,241 @@
+<section class="section size-with-text">
+     <div class="page-width">
+       {%- if section.settings.title != blank or section.settings.content != blank -%}
+          <header class="SectionHeader">
+  
+            {%- if section.settings.title != blank -%}
+              <h4 class="SectionHeader__Heading">{{ section.settings.title }}</h4>
+            {%- endif -%}
+            {%- if section.settings.link_text != blank -%}
+              <div class="link-text"><a href="{{ section.settings.link_url }}" class="Link Link--underline">{{ section.settings.link_text | escape }}</a></div>
+            {%- endif -%}
+          </header>
+        {%- endif -%}
+        <div class="icon-wrapper">
+          {%- for block in section.blocks -%}
+            <div class="icon-text-content ">
+              <a href="{{ block.settings.link }}">
+                  <div class="icon-type">
+                   {%- if block.settings.icon_type == 'left' -%}
+                    
+                        <span class="type-1"></span>
+                    {%- elsif block.settings.icon_type == 'right' -%}
+                      <span class="type-2"></span>
+                  {%- else -%}
+                       <span class="type-3"></span>
+                    {%- endif -%}
+                  </div>
+                 <p class="icon_text">{{ block.settings.title }}</p>
+                </a>
+            </div>
+         {%  endfor %}
+        </div>
+    </div>
+
+   
+</section>
+
+{% schema %}
+  {
+    "name": "Size-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "custom-class",
+        "label": "custom-class"
+      },
+      {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Title"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    }
+      
+    ],
+     "blocks": [
+    {
+     "type": "block",
+     "name": "Size",
+     "limit": 4,
+     "settings": [
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon Type",
+          "options": [
+            {
+              "value": "left",
+              "label": "Door"
+            },
+            {
+              "value": "center",
+              "label": "Runner"
+            },
+            {
+              "value": "right",
+              "label": "Areamat"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Add link"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Enter type"
+        }
+      ]
+    }
+  
+  ],
+    "presets": [
+    {
+      "name": "Size-section",
+      "settings": {}
+    }
+  ]
+  }
+{% endschema %}
+
+{% javascript %}
+{% endjavascript %}
+
+<style>
+  .size-with-text .page-width{
+    display: flex;
+    padding: 56px 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+  }
+  
+
+  .size-with-text .icon-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+
+  @media (min-width: 760px) {
+    .size-with-text .icon-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }    
+  }
+  
+  .size-with-text .icon-text-content {
+    background: #EEEFEF;
+    display: flex;
+    align-items: center;
+    
+    height: 120px;
+  }
+  .size-with-text .icon-type{
+    height: 100%;
+    display: flex;
+    width: 90px;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #546B82;
+  }
+  .size-with-text .icon-type .type-1{
+    border: 2px solid #D1BD93;
+    height: 33px;
+    width: 46px;
+  }
+  .size-with-text .icon-type .type-2{
+    width: 61px;
+    height: 91.5px;
+    border: 2px solid #D1BD93;
+  }
+  .size-with-text .icon-type .type-3{
+    width: 37px;
+    height: 98px;
+    border: 2px solid #D1BD93;
+  }
+  .size-with-text .icon-text-content p{
+    color: #546B82;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.28px;
+    padding: 10px 20px 10px 12px;
+    min-width: 144px;
+  }
+
+  .size-with-text .icon-text-content a{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+  }
+  
+  @media (max-width:760px){
+    .size-with-text .page-width{
+      padding: 40px 17px;
+    }
+    .size-with-text .icon-wrapper{
+      gap: 16px;
+    }
+    .size-with-text .icon-text-content{
+      flex-direction: column;
+      width: 104px;
+    }
+    .size-with-text .icon-text-content a{
+      flex-direction: column;
+    }
+    .size-with-text .icon-type{
+      width: 100%;
+      height: 80px;
+    }
+    .size-with-text .icon-text-content p{
+      font-size: 13px;
+      line-height: 20px;
+      letter-spacing: 0.26px;
+      padding:10px 8px;
+      min-width:unset;
+      width: 100%;
+    }
+    .size-with-text .icon-type .type-1{
+      height: 27.391px;
+      width: 42px;
+    }
+    .size-with-text .icon-type .type-2{
+      width: 42.333px;
+      height: 63.5px;
+    }
+    .size-with-text .icon-type .type-3{
+      width: 26.429px;
+      height: 70px;
+    }
+    /* .size-with-text .icon-text-content:nth-child(1){
+      order:1;
+    }
+    .size-with-text .icon-text-content:nth-child(2){
+      order:3;
+    }
+    .size-with-text .icon-text-content:nth-child(3){
+      order:2;
+    } */
+  }
+
+</style>

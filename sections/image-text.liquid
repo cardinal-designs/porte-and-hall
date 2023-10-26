@@ -1,0 +1,240 @@
+<section class="Section {{ section.settings.custom-class }}">
+  {%- capture section_content -%}
+    <div class="FeatureText__ContentWrapper">
+      <div class="FeatureText__Content">
+        {%- if section.settings.subheading != blank or section.settings.title != blank or section.settings.content != blank -%}
+          <header class="SectionHeader">
+            {%- if section.settings.subheading != blank -%}
+              <h4 class="SectionHeader__SubHeading">{{ section.settings.subheading | escape }}</h4>
+            {%- endif -%}
+
+            {%- if section.settings.title != blank -%}
+              <div class="SectionHeader__Heading">{{ section.settings.title }}</div>
+            {%- endif -%}
+
+            {%- if section.settings.content != blank -%}
+              <div class="SectionHeader__Description">
+                {{ section.settings.content }}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.link_text != blank -%}
+              <a href="{{ section.settings.link_url }}" class="Link Link--underline">{{ section.settings.link_text | escape }}</a>
+            {%- endif -%}
+          </header>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endcapture -%}
+
+  {%- capture section_image -%}
+    {%- if section.settings.image != blank -%}
+      <div class="FeatureText__ImageWrapper">
+        
+          {% render 'lazy-image', image: section.settings.image, fade: true, classes: 'img-fill' %}
+      
+      </div>
+    {%- endif -%}
+  {%- endcapture -%}
+
+  <div class="FeatureText">
+       {{- section_content -}}
+      {{- section_image -}}
+      
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image with text",
+  "class": "image-with-text",
+  "settings": [
+     {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "1200 x 1200px .png recommended"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub-heading",
+      "default": "Sub-heading"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "<p>Add Title...</p>"
+    },
+   
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Text",
+      "default": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "text",
+      "id": "custom-class",
+      "label": "custom-class"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "Image with text",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+<style>
+  .image-with-text .home-banner .FeatureText{
+     display:grid;
+    grid-template-columns: 1fr 1fr;
+    margin:0 auto;
+    position:relative;
+  align-items: center;
+  
+}
+  .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper{
+  margin-right: -40px;
+  padding-left: 40px;
+  }
+  .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .FeatureText__Content{
+  position: relative;
+    z-index: 1;
+  }
+
+ .image-with-text .home-banner .FeatureText .FeatureText__ImageWrapper{
+       position:relative;
+       min-height: 570px;
+   }
+
+   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
+      padding: 56px 40px 72px;
+    text-align: left;
+    max-width: 572px;
+    margin-left: auto;
+  background: #F4F2EE;
+
+   }
+
+     .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p{
+       color:#30383D;
+        font-size: 72px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 72px; /* 100% */
+        letter-spacing: 0.72px;
+        font-family: louize;
+     }
+  .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description p{
+       color:#546B82;
+       font-size: 30px;
+       font-style: normal;
+       font-weight: 400;
+      line-height: 36px; /* 112.5% */
+       letter-spacing: 0.64px;
+       font-family: brandon;
+
+    }
+
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader  .Link--underline{
+       background-color: #A19377;
+       padding:16px 40px;
+       color: #FFF;
+     font-family: brandon;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px; /* 150% */
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-decoration:none;
+    }
+
+   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description{
+       margin-bottom: 52px;
+      margin-top:10px;
+   }
+  @media screen and (max-width:1100px){
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
+      padding: 32px 32px 47px;
+    }
+  }
+  @media screen and (max-width:990px){
+    .image-with-text .home-banner .FeatureText{
+        grid-template-columns: 1fr;
+
+    }
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper{
+      order:2;
+      margin-right: 0px;
+    padding: 0 20px;
+    }
+    .image-with-text .home-banner .FeatureText .FeatureText__ImageWrapper{
+      order:1;
+      min-height: unset;
+    }
+    .image-with-text .home-banner .FeatureText .FeatureText__ImageWrapper .aspect-ratio{
+      position: relative;
+    }
+    
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
+      padding:24px 50px 34px;
+      text-align: center;
+      max-width: 500px;
+    margin: 0 auto;
+      margin-top: -90px;
+    }
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p{
+      font-size: 40px;
+      font-weight: 500;
+      line-height: 44px;
+      letter-spacing: 0.4px;
+    }
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description p{
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .Link--underline{
+      padding: 10px 34px;
+    }
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description{
+      margin-bottom:38px;
+    }
+  }
+  @media screen and (max-width:380px){
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
+          padding: 24px 20px 34px;
+    }
+  }
+
+  @media (min-width: 1700px) {
+    .image-with-text .home-banner .FeatureText {
+      grid-template-columns: 35% 65%;
+    }
+  }
+  
+</style>

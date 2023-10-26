@@ -126,9 +126,8 @@
     {% render 'css-variables' %}
 
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+    
     {{ 'base.css' | asset_url | stylesheet_tag }}
-
-    <script async type="text/javascript" data-api-key="" id="stamped-script-widget" src="https://cdn-stamped-io.azureedge.net/files/widget.min.js"></script>
     
     <!-- BEGIN PRIVY WIDGET CODE -->
 	<script type='text/javascript'> var _d_site = _d_site || 'C944B2C24A5E6353CEBE51B6'; </script>
@@ -138,6 +137,7 @@
     #privy-container #privy-inner-container [tabindex]:focus {
       outline: none !important;
 	}
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
     </style>
 
     <script>
@@ -174,6 +174,7 @@
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
+  
   </head>
 
   <body class="template-{{ template }} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
@@ -379,7 +380,10 @@
     <!-- OneTrust Cookies Consent Notice end for www.porteandhall.com -->
 
     
-   {% style %}
+   {% style %} <!-- Stamped - Begin script -->
+<script>function myInit(){ StampedFn.init({ apiKey: 'pubkey-TQ3tfL1zl7718FiPc09D65z6h2K3NJ', sId: '175484' }); }</script>
+<script async onload="myInit()" type="text/javascript" src="https://cdn1.stamped.io/files/widget.min.js"></script> 
+    <!-- Stamped - End script -->
      .ot-floating-button__front {visibility: hidden;}
    {% endstyle %}
   </body>

@@ -19,14 +19,14 @@
   display: grid;
   grid-template-columns: 400px 1fr;
   grid-template-areas: 'text media';
-  column-gap: 120px;
+  column-gap: 80px;
 }
 
 .meet-founder__layout-right {
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: 1fr 475px;
   grid-template-areas: 'media text';
-  column-gap: 120px;
+  column-gap: 80px;
 }
 
 .meet-founder__layout-left .meet-founder__content-wrapper {
@@ -98,8 +98,9 @@
 @media screen and (max-width: 1024px) {
   .meet-founder__inner {
     grid-template-columns: 40% minmax(0, 1fr);
-    column-gap: 50px;
-    padding: 70px 20px;
+    grid-template-columns: 50% auto;
+    column-gap: 40px;
+    padding: 46px 20px;
   }
 }
 
@@ -119,11 +120,11 @@
   }
 
   .meet-founder__image-wrapper {
-    padding-top: 30px;
+    padding-top: 10px;
   }
 
   .meet-founder__content-wrapper {
-    padding: 50px 0;
+    padding: 20px 0 10px;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -153,3 +154,10 @@
   }
    
  }
+@media screen and (max-width: 430px) {
+.meet-founder__heading{
+  max-width: 300px;
+}
+  
+}
+

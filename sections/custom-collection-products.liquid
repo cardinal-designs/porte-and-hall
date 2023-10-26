@@ -1,0 +1,462 @@
+<div class="custom-collection">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <header class="SectionHeader">
+        {%- if section.settings.title != blank -%}
+          <h4 class="SectionHeader__Heading">{{ section.settings.title }}</h4>
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+    
+    <div class="collection-row">
+
+      {%- for block in section.blocks -%}
+        <div class="collection-col">
+          <h6>{{ block.settings.title }}</h6>
+          
+          <div class="collection-row-inner">
+            {% for product in block.settings.collection1.products limit: 1 %}
+              {% for collection in product.collections %}
+                {% if collection.title contains ' |' %}
+                  {% assign grouped_collection = collection %}
+                {% endif %}
+              {% endfor %}
+              <div class="collection-col-inner">
+                <p class="badge">
+                  {{- block.settings.badge1 -}}
+                </p>
+                {% render 'product-card-custom',
+                  product_card_product: block.settings.product1,
+                  collection: grouped_collection,
+                  title: block.settings.product1_title,
+                  button_text: section.settings.button_text,
+                  custom_image: block.settings.product_image1
+                %}
+              </div>
+            {% endfor %}
+
+            {% for product in block.settings.collection2.products limit: 1 %}
+              {% for collection in product.collections %}
+                {% if collection.title contains ' |' %}
+                  {% assign grouped_collection = collection %}
+                {% endif %}
+              {% endfor %}
+              <div class="collection-col-inner">
+                <p class="badge">
+                  {{- block.settings.badge2 -}}
+                </p>
+                {% render 'product-card-custom',
+                  product_card_product: block.settings.product2,
+                  collection: grouped_collection,
+                  title: block.settings.product2_title,
+                  button_text: section.settings.button_text,
+                  custom_image: block.settings.product_image2
+                %}
+              </div>
+            {% endfor %}            
+          </div>
+          
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom coll products",
+  "class": "custom-collection-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Title"
+    }
+  ],
+  "blocks": [
+  {
+   "type": "block",
+   "name": "Collection-col",
+   "limit":4,
+   "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Enter type"
+      },
+     {
+        "type": "header",
+        "content": "Product 1"
+      },
+       {
+        "type": "text",
+        "id": "badge1",
+        "label": "Enter Badge"
+      },
+      {
+        "type": "text",
+        "id": "product1_title",
+        "label": "Product title"
+      },     
+      {
+        "type": "collection",
+        "id": "collection1",
+        "label": "Collection"
+      },
+      {
+        "type": "product",
+        "id": "product1",
+        "label": "Product"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image1",
+        "label": "Product image"
+      },     
+     {
+        "type": "header",
+        "content": "Product 2"
+      },
+       {
+        "type": "text",
+        "id": "badge2",
+        "label": "Enter Badge"
+      },
+      {
+        "type": "text",
+        "id": "product2_title",
+        "label": "Product title"
+      },       
+      {
+        "type": "collection",
+        "id": "collection2",
+        "label": "Collection"
+      },
+      {
+        "type": "product",
+        "id": "product2",
+        "label": "Product"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image2",
+        "label": "Product image"
+      }     
+    ]
+  }
+
+],
+  "presets": [
+  {
+    "name": "Custom Collection products",
+    "settings": {}
+  }
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+<style>
+  header.SectionHeader .SectionHeader__Heading{
+     font-size:48px;
+  }
+  .custom-collection{
+    padding:56px 0;
+  }
+  .custom-collection .page-width{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
+  .custom-collection header.SectionHeader .SectionHeader__Heading{
+    line-height: 62px;
+    letter-spacing: 0.96px;
+  }
+  .collection-row, .collection-row-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    width: 100%;
+  }
+  .collection-row .collection-col{
+    /* background: #EEEFEF; */
+    padding:20px 20px 10px;;
+    position:relative;
+  }
+  .collection-row .collection-col:before{
+    content:"";
+    background: #EEEFEF;
+    width: 100%;
+    height: calc(100% - 34px);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .collection-row .collection-col .collection-col-inner:before{
+    display:none;
+  }
+
+  .collection-row .collection-col h6{
+    color: #30383D;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 40px;
+    letter-spacing: 0.64px;
+    margin:0 0 12px;
+    position:relative;
+  }
+  .collection-row .collection-col .badge{
+    border-radius: 34px;
+    background: #546B82;
+    display: inline-flex;
+    padding: 8px 20px;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 26px;
+    border: 0;
+    letter-spacing: .1px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    z-index: 1;
+    width: max-content;
+  }
+
+  .collection-row .collection-col .collection-row-inner {
+    gap: 20px;
+  }
+  .collection-row .collection-col .collection-row-inner .collection-col-inner {
+    background: transparent;
+    padding: 21px 0 0;
+    text-align: center;
+    position: relative;
+  }
+
+  .custom-collection .product-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    transition: opacity .4s ease-in-out;
+    height: 100%;
+    border-right: 1px solid #CAD2D3;
+    border-bottom: 1px solid #CAD2D3;
+    border-left: 1px solid #CAD2D3;
+    background: #FFF;
+    padding-bottom:8px;
+  }
+  .custom-collection .product-card .product-card__image{
+    aspect-ratio: 1/1;
+    width: 100%;
+    position: relative;
+  }
+  .custom-collection .product-card .aspect-ratio{
+    transition: opacity .4s ease-in-out;
+  }
+  .custom-collection .product-card .product-card__swatches{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+    margin-bottom: 16px;
+    padding:0 6px;
+  }
+  .custom-collection .product-card *{
+    width:100%;
+  }
+  .custom-collection .product-card .product-card__swatches button{
+    width:auto;
+    color: #546B82;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.28px;
+     font-family: brandon;
+  }
+  .custom-collection .product-card .product-card__swatches .product-card__swatch{
+    width: 24px;
+    height: 24px;
+    aspect-ratio: 1/1;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    cursor: pointer;
+    opacity: 1;
+    transition: all .3s ease;
+    position: relative;
+  }
+
+  .custom-collection .product-card .product-card__title{
+    color: #30383D;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0.48px;
+    text-align:center;
+    text-transform: unset;
+    padding-top: 8px;
+  }
+  .custom-collection .product-card .product-card__title span{
+    display:none;
+  }
+  .custom-collection .product-card .product-content{
+    border: 1px solid #CAD2D3;
+    border-top:0px;
+    background:#FFF;
+    padding: 4px 10px 14px;
+  }
+  .custom-collection .product-card .text-link{
+    color: #A19377;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 2px solid #A19377;
+    text-underline-offset:0px;
+    text-decoration: none;
+    padding: 8px 20px 5.6px;
+    max-width: 180px;
+    margin: 0 auto;
+  }
+  .custom-collection .product-card .text-link *{
+    width:auto;
+  }
+  .custom-collection .product-card .text-link span{
+    position: relative;
+    top: 2px;
+    margin-left: 6px;
+  }
+
+  @media (max-width:1200px){
+    .custom-collection .page-width{
+      padding: 0 40px;
+    }
+    .collection-row{
+      gap: 20px;
+    }
+    .custom-collection .product-card .product-content{
+      padding:6px 8px 12px;
+    }
+
+    .custom-collection .product-card .text-link{
+      padding: 6px 12px 5px;
+      font-size: 12px;
+    line-height: 20px;
+
+    }
+    .custom-collection .product-card .text-link svg{
+      width: 20px;
+    }
+  }
+
+  @media (max-width:989px){
+    .custom-collection{
+      padding:32px 0 40px;
+    }
+    .custom-collection .page-width{
+      padding:0 20px;
+      gap: 20px;
+    }
+    .custom-collection header.SectionHeader .SectionHeader__Heading{
+      font-size: 24px;
+      line-height: 32px;
+      letter-spacing: 0.48px;
+    }
+    .collection-row{
+      grid-template-columns:1fr;
+    }
+    .collection-row .collection-row{
+      grid-template-columns:1fr 1fr;
+    }
+    .collection-row .collection-col{
+      padding: 7px 20px 10px;
+    }
+    .collection-row .collection-col .collection-row-inner .collection-col-inner {
+      padding: 12px 0 0;
+    }
+    .collection-row .collection-col .badge{
+      font-size: 14px;
+      line-height: 20px;
+      padding:3px 12px 1px;
+    }
+   .custom-collection .product-card .product-card__title{
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      letter-spacing: 0.32px;
+    }
+    .custom-collection .product-card .product-card__swatches{
+      column-gap: 4px;
+      row-gap: 4px;
+    }
+    .custom-collection .product-card .product-card__swatches button{
+      font-size: 10px;
+      line-height: 12px;
+      color: #A19377;
+    }
+    .custom-collection .product-card .product-card__swatches .product-card__swatch{
+      width: 14px;
+      height: 14px;
+    }
+    .custom-collection .product-card .text-link span{
+      top:3px;
+    }
+    .custom-collection .product-card .product-card__swatches{
+      margin-top: 6px;
+      margin-bottom: 16px;
+    }
+  }
+
+  @media (max-width:768px){
+     .collection-row .collection-col h6{
+       font-size:20px !important;
+       margin: 0px 0 0px;
+    }
+  }
+
+   @media (max-width:480px){
+     .custom-collection .product-card .text-link{
+       max-width: calc(100% - 8px);
+    margin: 0 4px;
+       text-align:center;
+     }
+   }
+
+  @media (max-width:400px){
+    .collection-row .collection-col{
+      padding: 7px 12px 12px;
+    }
+    .collection-row .collection-col .collection-row-inner .collection-col-inner {
+      padding: 12px 0 0;
+    }
+    .collection-row .collection-col .collection-row-inner {
+      gap:12px;
+    }
+
+  }
+
+  .custom-collection .product-card__image-label, .custom-collection .product-card__price{
+    display:none;
+  }
+</style>
