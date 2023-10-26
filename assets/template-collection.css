@@ -55,6 +55,10 @@
   display: block;
 }
 
+.shopify-section.with-spacing>div:first-of-type {
+  padding-top: 30px;
+}
+
 .collection-grid-section.with-spacing > div:first-of-type {
   padding-bottom: 58px;
 }
