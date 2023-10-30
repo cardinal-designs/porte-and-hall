@@ -83,7 +83,7 @@
             "collection_image1": "shopify:\/\/shop_images\/the_outlier.jpg",
             "collection1": "the-outlier",
             "collection1_title": "The Outlier",
-            "collection1_show_more": "",
+            "collection1_show_more": "0",
             "badge2": "Removable insert",
             "collection_image2": "shopify:\/\/shop_images\/the_outsider.jpg",
             "collection2": "the-outsider",
@@ -581,6 +581,7 @@
       "settings": {
         "heading": "Meet our mats",
         "background": "",
+        "show_metafield_style": false,
         "collection": "shop-all",
         "button_text": "Shop now"
       }
