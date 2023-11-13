@@ -121,6 +121,7 @@
           "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
           "settings": {
             "title": "{{ block.repeater.question.value }}",
+            "title_richtext": "",
             "answer": "{{ block.repeater.answer | metafield_tag }}"
           }
         }
@@ -136,7 +137,6 @@
     },
     "reviews": {
       "type": "reviews",
-      "disabled": true,
       "settings": {
         "heading": ""
       }
@@ -171,6 +171,7 @@
       "settings": {
         "heading": "Never miss a mat. There's more to see!",
         "background": "",
+        "show_metafield_style": false,
         "collection": "shop-all",
         "button_text": "Shop now"
       }
