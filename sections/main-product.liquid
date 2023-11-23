@@ -149,7 +149,7 @@
           </div>
           <div id="myModal" class="dimension-modal-content dimension_modal">
               <div class="dimension-modal-header">
-              <h6>The Insider Doormat</h6>
+              <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
               <div class="cancel-button close"><button class="cancel-icon">✖</button></div>
               </div>
               <div class="dimension-modal-body">
