@@ -795,7 +795,7 @@ variant-selects {
   
 }
 
-@media only screen (max-width: 418px) {
+@media (max-width: 418px) {
   
   .dimensions__button svg {
     min-width: 28px;
