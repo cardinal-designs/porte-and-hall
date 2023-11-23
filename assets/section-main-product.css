@@ -797,6 +797,11 @@ variant-selects {
 }
 
 @media (max-width: 418px) {
+
+  .dimensions__button {
+    padding: 14px 10px;
+    margin: 10px 0px;
+  }
   
   .dimensions__button svg {
     min-width: 28px;
