@@ -713,6 +713,7 @@ variant-selects {
   left: 0;
   z-index: 9;
   bottom: -100%;
+  width: 100%;
 }
 
 .dimension_modal.open {
@@ -724,6 +725,7 @@ variant-selects {
   height: auto;
   padding: 0;
   float: right;
+  width: 100%;
   background: #fff;
   padding: 20px;
 }
