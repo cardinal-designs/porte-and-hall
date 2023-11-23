@@ -154,8 +154,8 @@
               </div>
               <div class="dimension-modal-body">
                <p>{{ product.metafields.custom.product_dimensions.value.dimension }}</p>
-               <img src="{{ product.metafields.custom.product_dimensions.value.dimension_image }}" alt="no_img">
-              </div>
+               <img src="{{ product.metafields.custom.product_dimensions.value.dimension_image | img_url:'original' }}" alt="Dimension Image">
+              </div> 
           </div>
         </div>
 
