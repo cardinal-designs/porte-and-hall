@@ -152,7 +152,9 @@
               <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
               <div class="cancel-button close"><button class="cancel-icon">✖</button></div>
               </div>
-              {{ product.metafields.custom.product_dimensions }}
+              {% for item in product.metafields.custom.product_dimensions %}
+                {{ item }}
+              {% endfor %}
               <div class="dimension-modal-body">
                <p>2' 3" x 3"</p>
                <img src="https://abtest-img-upload.s3.eu-west-2.amazonaws.com/insiderdoormat.jpg" alt="no_img">
