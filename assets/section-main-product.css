@@ -788,12 +788,15 @@ variant-selects {
 }
 
 @media (min-width: 500px) {
+  
   .product__dimensions--wrapper {
     display: none;
   }
+  
 }
 
-@media only screen and (min-width: 376px) and (max-width: 418px) {
+@media only screen (max-width: 418px) {
+  
   .dimensions__button svg {
     min-width: 28px;
   }
@@ -802,4 +805,5 @@ variant-selects {
     font-size: 12px;
     width: 71%;
   }
+  
 }
