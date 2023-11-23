@@ -770,3 +770,9 @@ variant-selects {
   letter-spacing: normal;
   padding: 15px;
 }
+
+@media (min-width: 500px) {
+  .product__dimensions--wrapper {
+    display: none;
+  }
+}
