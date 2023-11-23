@@ -153,7 +153,7 @@
               <div class="cancel-button close"><button class="cancel-icon">✖</button></div>
               </div>
             
-            {{ product.metafields.custom.product_dimensions.value | json }}
+            {{ product.metafields.custom.product_dimensions.value.dimension | json }}
               {% for item in product.metafields.custom.product_dimensions %}
                 {{ item }}
               {% endfor %}
