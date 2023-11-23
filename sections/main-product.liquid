@@ -615,39 +615,6 @@
   </div>
 </sticky-atc>
 
-
-                <script>
-  // Get the modal
-var modal = document.getElementById('myModal');
-                  var body = document.querySelector('body');
-
-// Get the button that opens the modal
-var btn = document.getElementById("btnhomeModal");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal 
-btn.onclick = function() {
-    modal.classList.add("open");
-  body.classList.add("open");
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.classList.remove("open");
-  body.classList.remove("open");
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.classList.remove("open");
-      body.classList.remove("open");
-    }
-}
-                </script>
-
 {% if oos_products.size > 0 and product.available != false %}
   {% render 'notify-me-modal', products: oos_products %}
 {% endif %}
@@ -833,6 +800,28 @@ window.onclick = function(event) {
     document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
       hiddenInput.value = event.currentTarget.value;
     });
+
+    var modal = document.getElementById('myModal');
+    var body = document.querySelector('body');
+    var btn = document.getElementById("btnhomeModal");
+    var span = document.getElementsByClassName("close")[0];
+    
+    btn.onclick = function() {
+      modal.classList.add("open");
+      body.classList.add("open");
+    }
+    
+    span.onclick = function() {
+      modal.classList.remove("open");
+      body.classList.remove("open");
+    }
+    
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.classList.remove("open");
+        body.classList.remove("open");
+      }
+    }
   });
 </script>
 
