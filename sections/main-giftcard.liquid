@@ -50,7 +50,7 @@
         </h1>
 
         {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
-          <div class="product__description body blue">
+          <div class="product__description 456 body blue">
             {{ grouped_collection.metafields.custom.short_description | default: product.description }}
           </div>
         {% endif %}
