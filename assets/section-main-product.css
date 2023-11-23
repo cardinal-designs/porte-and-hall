@@ -803,6 +803,17 @@ variant-selects {
   background: #F4F2ED;
 }
 
+.dimension-modal-header h6 {
+  color: white;
+  font-size: 24px;
+  font-weight: 450;
+  line-height: 20px;
+  letter-spacing: 0.48px;
+  word-wrap: break-word;
+  margin: 0 0 0 auto;
+  padding: 0;
+}
+
 @media (min-width: 500px) {
   
   .product__dimensions--wrapper {
