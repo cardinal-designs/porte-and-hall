@@ -761,7 +761,12 @@ variant-selects {
 
 .dimensions__button p {
   color: #546A82;
-  font-weight: 450;
+  font-size: 15px;
+  font-weight: 700;
+  word-wrap: break-word;
+  margin: 0px 0px 0px 18px;
+  padding: 0px;
+  font-family: brandon, sans-serif;
 }
 
 .dimensions__button .button {
