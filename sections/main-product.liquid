@@ -626,12 +626,12 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 transition: 1s;
-    bottom: -100%;
                     top: initial;
                     left: 0;
                     display: flex;
     align-items: flex-end;
                         z-index: 9;
+                    transform: translateY(200%);
 }
 
 .modal-content {
@@ -665,7 +665,7 @@ margin: 0 auto;
 }
 
 .open {
-  bottom: 0;
+  transform: translateY(0);
 }
                   .template-product.open:before {
     content: '';
