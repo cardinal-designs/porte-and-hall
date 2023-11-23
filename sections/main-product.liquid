@@ -142,7 +142,10 @@
         {% endif %}
 
         <div class="product__dimensions--wrapper">
-          <p><span id="btnhomeModal" class="modal-click-send-home">send</span></p>
+          <div class="dimensions__button">
+            {%- render 'icon' with 'ruler' -%}
+            <p id="btnhomeModal" class="modal-click-send-home">send</p>
+          </div>
           <div id="myModal" class="dimension_modal">
             <div class="modal-content">
               <span class="close">&times;</span>
