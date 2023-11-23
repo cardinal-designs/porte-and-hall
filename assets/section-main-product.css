@@ -788,6 +788,14 @@ variant-selects {
   line-height: normal;
 }
 
+.dimension-modal-header {
+  background: #546A82;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 21px 0px 21px 0px;
+}
+
 @media (min-width: 500px) {
   
   .product__dimensions--wrapper {
