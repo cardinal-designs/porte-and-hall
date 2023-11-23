@@ -795,26 +795,26 @@
 
 
   var modal = document.getElementById('myModal');
-    var body = document.querySelector('body');
-    var btn = document.getElementById("btnhomeModal");
-    var span = document.getElementsByClassName("close")[0];
-    
-    btn.onclick = function() {
-      modal.classList.add("open");
-      body.classList.add("open");
-    }
-    
-    span.onclick = function() {
+  var body = document.querySelector('body');
+  var btn = document.getElementById("btnhomeModal");
+  var span = document.getElementsByClassName("close")[0];
+  
+  btn.onclick = function() {
+    modal.classList.add("open");
+    body.classList.add("open");
+  }
+  
+  span.onclick = function() {
+    modal.classList.remove("open");
+    body.classList.remove("open");
+  }
+  
+  window.onclick = function(event) {
+    if (event.target == modal) {
       modal.classList.remove("open");
       body.classList.remove("open");
     }
-    
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.classList.remove("open");
-        body.classList.remove("open");
-      }
-    }
+  }
 </script>
 
 {% liquid
