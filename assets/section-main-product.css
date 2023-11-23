@@ -797,4 +797,8 @@ variant-selects {
   .dimensions__button svg {
     min-width: 28px;
   }
+
+  .dimensions__button .button {
+    font-size: 12px;
+  }
 }
