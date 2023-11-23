@@ -141,6 +141,18 @@
           </div>
         {% endif %}
 
+        <div class="product__dimensions--wrapper">
+          <div class="modal fade" id="lab-slide-bottom-popup" data-keyboard="false" data-backdrop="false">
+            <div class="lab-modal-body">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h1>Terms and Conditions</h1>
+            </div>
+          </div>
+          <div class="container" style="padding-top:80px;">
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#lab-slide-bottom-popup"> Launch demo modal </button>
+          </div>
+        </div>
+
         {% for option in product.options_with_values %}
           <div class="product__variant-name body">
             {% if option.name == 'Size' %}
