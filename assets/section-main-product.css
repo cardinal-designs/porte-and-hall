@@ -769,6 +769,11 @@ variant-selects {
   font-family: brandon, sans-serif;
 }
 
+.dimensions__button svg {
+  width: 38px;
+  height: 38px;
+}
+
 .dimensions__button .button {
   background: #546A82;
   color: white;
