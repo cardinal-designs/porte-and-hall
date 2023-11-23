@@ -811,6 +811,10 @@ variant-selects {
     font-size: 12px;
     width: 71%;
   }
+  
+}
+
+@media (max-width: 375px) {
 
   .dimensions__button p {
     font-size: 13px;
