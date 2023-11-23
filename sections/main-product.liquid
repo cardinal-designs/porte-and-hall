@@ -605,6 +605,30 @@
   </div>
 </sticky-atc>
 
+                <style>
+                  .modal.fade.in .lab-modal-body {
+  bottom: 0;
+  opacity: 1;
+}
+
+
+.lab-modal-body {
+  position: relative;
+  bottom: -250px;
+  margin: 150px auto 0;
+  padding: 40px;
+  max-width: 60%;
+  height: auto;
+  background-color: rgb(248, 250, 247);
+  border: 1px solid #BEBEBE;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  -moz-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  -o-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+}
+                  </style>
+
 {% if oos_products.size > 0 and product.available != false %}
   {% render 'notify-me-modal', products: oos_products %}
 {% endif %}
