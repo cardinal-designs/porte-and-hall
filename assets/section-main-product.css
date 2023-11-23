@@ -749,3 +749,12 @@ variant-selects {
   position: fixed;
   z-index: 9;
 }
+
+.dimensions__button {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px solid #D0BC94;
+  padding: 18px 15px;
+  margin: 20px 0;
+}
