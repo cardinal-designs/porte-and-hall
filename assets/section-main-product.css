@@ -796,6 +796,13 @@ variant-selects {
   padding: 21px 0px 21px 0px;
 }
 
+.dimension-modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #F4F2ED;
+}
+
 @media (min-width: 500px) {
   
   .product__dimensions--wrapper {
