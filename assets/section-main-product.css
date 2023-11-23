@@ -771,9 +771,15 @@ variant-selects {
 
 .dimensions__button .button {
   background: #546A82;
+  color: white;
   font-size: 14px;
-  letter-spacing: normal;
-  padding: 15px;
+  font-family: brandon, sans-serif;
+  font-weight: 450;
+  word-wrap: break-word;
+  padding: 15px 9px 16px 14px;
+  width: 80%;
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 @media (min-width: 500px) {
