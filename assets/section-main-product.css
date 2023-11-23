@@ -739,6 +739,10 @@ variant-selects {
   margin: 0;
 }
 
+.dimension_modal .close button {
+  background: transparent;
+}
+
 .dimension_modal .close:hover,
 .dimension_modal .close:focus {
   color: black;
