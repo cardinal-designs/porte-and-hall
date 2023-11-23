@@ -840,6 +840,10 @@ variant-selects {
   padding: 0px 0px 29px 0px;
 }
 
+.product__info-container .dimension-wraper {
+  display: none;
+}
+
 @media (min-width: 500px) {
   
   .product__dimensions--wrapper {
