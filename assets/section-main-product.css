@@ -787,6 +787,7 @@ variant-selects {
   word-wrap: break-word;
   padding: 15px 9px 16px 14px;
   width: 80%;
+  max-width: 138px;
   margin-left: 10px;
   letter-spacing: normal;
   cursor: pointer;
