@@ -732,6 +732,11 @@ variant-selects {
 
 .dimension_modal .close {
   float: right;
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  margin-left: auto;
+  margin-right: 20px;
 }
 
 .dimension_modal .close:hover,
