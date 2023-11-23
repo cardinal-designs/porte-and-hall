@@ -142,15 +142,25 @@
         {% endif %}
 
         <div class="product__dimensions--wrapper">
-          <div class="modal fade" id="lab-slide-bottom-popup" data-keyboard="false" data-backdrop="false">
-            <div class="lab-modal-body">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-              <h1>Terms and Conditions</h1>
-            </div>
-          </div>
-          <div class="container" style="padding-top:80px;">
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#lab-slide-bottom-popup"> Launch demo modal </button>
-          </div>
+          
+  <div class="section start-project-home">
+        <p><span id="btnhomeModal" class="modal-click-send-home">send</span></p>
+
+  
+  <div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="contact-form-heading-modal">
+<h6>How may I help you?</h6>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, pariatur fugiat iusto voluptatem officiis eaque expedita aliquam ea nesciunt impedit minus? Rerum beatae vel provident hic quidem autem corporis unde.</p>
+</div>
+
+  </div>
+</div>
+</div>
+
+
+
         </div>
 
         {% for option in product.options_with_values %}
