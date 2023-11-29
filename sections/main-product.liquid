@@ -141,6 +141,24 @@
           </div>
         {% endif %}
 
+        <div class="product__dimensions--wrapper">
+          <div class="dimensions__button">
+            {%- render 'icon' with 'ruler' -%}
+            <p>Need help finding the right dimension?</p>
+            <div id="btnhomeModal" class="button">see dimensions</div>
+          </div>
+          <div id="myModal" class="dimension-modal-content dimension_modal">
+              <div class="dimension-modal-header">
+              <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
+              <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'cancel' %}</button></div>
+              </div>
+              <div class="dimension-modal-body">
+               <p>{{ product.metafields.custom.product_dimensions.value.dimension }}</p>
+               <img src="{{ product.metafields.custom.product_dimensions.value.dimension_image | img_url:'original' }}" alt="Dimension Image">
+              </div> 
+          </div>
+        </div>
+
         {% for option in product.options_with_values %}
           <div class="product__variant-name body">
             {% if option.name == 'Size' %}
@@ -778,7 +796,31 @@
     document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
       hiddenInput.value = event.currentTarget.value;
     });
+
   });
+
+
+  var modal = document.getElementById('myModal');
+  var body = document.querySelector('body');
+  var btn = document.getElementById("btnhomeModal");
+  var span = document.getElementsByClassName("close")[0];
+  
+  btn.onclick = function() {
+    modal.classList.add("open");
+    body.classList.add("open");
+  }
+  
+  span.onclick = function() {
+    modal.classList.remove("open");
+    body.classList.remove("open");
+  }
+  
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.classList.remove("open");
+      body.classList.remove("open");
+    }
+  }
 </script>
 
 {% liquid
