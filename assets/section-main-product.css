@@ -844,13 +844,13 @@ variant-selects {
   display: none;
 }
 
-@media (min-width: 500px) {
+/* @media (min-width: 500px) {
   
   .product__dimensions--wrapper {
     display: none;
   }
   
-}
+} */
 
 @media (max-width: 418px) {
 
