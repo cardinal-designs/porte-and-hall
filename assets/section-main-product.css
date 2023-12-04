@@ -845,17 +845,13 @@ variant-selects {
 }
 
 @media (min-width: 500px) {
-  
-  /* .product__dimensions--wrapper {
-    display: none;
-  } */
 
-  /* .dimension_modal.open {
+  .dimension_modal.open {
     top: 50%;
     left: 50%;
     max-width: 428px;
     transform: translate(-50%,-50%);
-  } */
+  }
 
 }
 
