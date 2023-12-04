@@ -862,6 +862,10 @@ variant-selects {
     padding-right: 90px;
   }
 
+  .dimensions__button {
+    padding: 8px 12px;
+  }
+
 }
 
 @media (max-width: 418px) {
