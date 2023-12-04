@@ -850,7 +850,7 @@ variant-selects {
     display: none;
   } */
 
-  .dimension_modal {
+  .dimension_modal.open {
     top: 50%;
     left: 50%;
     max-width: 428px;
