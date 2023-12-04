@@ -880,6 +880,10 @@ variant-selects {
     width: 100%;
   }
 
+  .template-product.open:before {
+    background: rgba(29, 29, 29, 0.60);
+  }
+
 }
 
 @media (max-width: 418px) {
