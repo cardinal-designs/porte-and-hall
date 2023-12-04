@@ -858,6 +858,10 @@ variant-selects {
     width: 30px;
   }
 
+  .dimensions__button p {
+    padding-right: 90px;
+  }
+
 }
 
 @media (max-width: 418px) {
