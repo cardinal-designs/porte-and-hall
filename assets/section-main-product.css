@@ -845,11 +845,45 @@ variant-selects {
 }
 
 @media (min-width: 500px) {
-  
-  .product__dimensions--wrapper {
-    display: none;
+
+  .dimension_modal.open {
+    top: 50%;
+    left: 50%;
+    max-width: 428px;
+    transform: translate(-50%,-50%);
   }
-  
+
+  .dimensions__button svg {
+    min-width: 30px;
+    width: 30px;
+  }
+
+  .dimensions__button p {
+    padding-right: 0px;
+    font-size: 14px;
+    line-height: 16.88px;
+  }
+
+  .dimensions__button {
+    padding: 8px 12px;
+    align-items: center;
+    max-width: 329px;
+  }
+
+  .dimensions__button .button {
+    font-size: 12px;
+    line-height: 16.88px;
+    height: 30px;
+    padding: 8px 0;
+    max-width: 121px;
+    width: 100%;
+    font-weight: 600;
+  }
+
+  .template-product.open:before {
+    background: rgba(29, 29, 29, 0.60);
+  }
+
 }
 
 @media (max-width: 418px) {
