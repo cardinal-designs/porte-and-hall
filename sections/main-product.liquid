@@ -617,11 +617,9 @@
   </div>
 </sticky-atc>
 
-{% unless product.handle contains 'outsider' %}
 {% if oos_products.size > 0 and product.available != false %}
   {% render 'notify-me-modal', products: oos_products %}
 {% endif %}
-{% endunless %}
 
 {% render 'product-zoom' %}
 
