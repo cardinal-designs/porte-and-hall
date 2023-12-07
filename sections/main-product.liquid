@@ -484,12 +484,18 @@
                 <div class="swiper-slide">
                   <div class="product__tabs-item">
                     <div class="product__features">
-                      {% for feature in grouped_collection.metafields.custom.product_features.value %}
+                      {% if product.handle contains 'outsider' %}
                         <div class="product__features-item">
-                          {% if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{% endif %}
-                          <p class="body-sm">{{ feature.label }}</p>
+                          <p class="body-sm">Have an Outsider mat but need a new insert? Click here to shop!</p>
                         </div>
-                      {% endfor %}
+                      {% else %}
+                        {% for feature in grouped_collection.metafields.custom.product_features.value %}
+                          <div class="product__features-item">
+                            {% if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{% endif %}
+                            <p class="body-sm">{{ feature.label }}</p>
+                          </div>
+                        {% endfor %}
+                      {% endif %}
                     </div>
                   </div>
                 </div>
