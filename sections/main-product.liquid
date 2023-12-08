@@ -325,7 +325,7 @@
                   {% assign format_color = "- " | append: active_style | append: " /" %}
                   {%  assign match_name = block.title | replace: "|",  format_color %}
                   {{  match_name }}
-                  <!-- {%  assign match = block.products | where: 'title', match_name %} -->
+                  <!-- {%  assign match = grouped_collection.products | where: 'title', match_name %} -->
                   <!-- {{ match.title }} -->
                 {% endfor %}
                 <div class="">
