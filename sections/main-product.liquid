@@ -321,15 +321,21 @@
               %}
 
               {% if other_sizes != blank %}
-                {% for block in other_sizes %}
-                  {% assign format_color = "- " | append: active_style | append: " /" %}
-                  {%  assign match_name = block.title | replace: "|",  format_color %}
-                  {%  assign match = block.products | where: 'title', match_name %}
-                  {{ match.first.title }}
-                {% endfor %}
-                <div class="">
-                  <span>Shop other sizes:</span>
-                </div>
+                {% capture other_size_links %}
+                  {% for block in other_sizes %}
+                    {% assign current_size = block.title | split: " | " %}
+                    {% assign format_color = "- " | append: active_style | append: " /" %}
+                    {%  assign match_name = block.title | replace: "|",  format_color %}
+                    {%  assign match = block.products | where: 'title', match_name %}
+                    <a href="{{ match.first.url }}">{{ current_size.last }}</a>
+                  {% endfor %}
+                {%  endcapture %}
+
+                {% unless other_size_links == blank %}
+                  <div class="">
+                    <span>Shop other sizes: {{ other_size_links }}</span>
+                  </div>
+                {%  endunless %}
               {% endif %}
 
 
