@@ -326,7 +326,7 @@
                   {%  assign match_name = block.title | replace: "|",  format_color %}
                   {{  match_name }}
                   {%  assign match = block.products | where: 'title', match_name %}
-                  {{ match.size }}
+                  {{ match.first.title }}
                 {% endfor %}
                 <div class="">
                   <span>Shop other sizes:</span>
