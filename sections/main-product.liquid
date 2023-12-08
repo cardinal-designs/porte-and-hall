@@ -345,6 +345,25 @@
                 </quantity-input>
               </div>
 
+              <!-- Shop Other Sizes -->
+              {% liquid
+                assign product_type = grouped_collection.title | remove: 'The ' | split: ' | '
+                assign active_style = product.selected_or_first_available_variant.title
+                assign product_size = product.options_by_name['size'].values[0]
+                assign active_style = active_style | remove: product_size | remove: " / " 
+                assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
+              %}
+
+              {% if other_sizes != blank %}
+                {% for block in other_sizes %}
+                  {%  assign match = block | where: 'title', active_style %}
+                  {{ match.title }}
+                {% endfor %}
+                <div class="">
+                  <span>Shop other sizes:</span>
+                </div>
+              {% endif %}
+
               <div class="product-form__buttons">
                 <button
                   type="submit"
