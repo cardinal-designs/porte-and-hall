@@ -327,7 +327,9 @@
                     {% assign format_color = "- " | append: active_style | append: " /" %}
                     {%  assign match_name = block.title | replace: "|",  format_color %}
                     {%  assign match = block.products | where: 'title', match_name %}
-                    <a class="text-link" href="{{ match.first.url }}">{{ current_size.last }}</a> <span class="other_size_divider">or</span>
+                    {% if match != blank %}
+                      <a class="text-link" href="{{ match.first.url }}">{{ current_size.last }}</a> <span class="other_size_divider">or</span>
+                    {% endif %}
                   {% endfor %}
                 {%  endcapture %}
 
