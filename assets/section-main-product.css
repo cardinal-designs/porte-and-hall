@@ -911,3 +911,15 @@ variant-selects {
   }
   
 }
+
+.other-sizes__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  margin-top: 20px;
+}
+
+.other-size__divider:last-child {
+  display: none;
+}
