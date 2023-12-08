@@ -322,8 +322,10 @@
 
               {% if other_sizes != blank %}
                 {% for block in other_sizes %}
+                  {% assign format_color = "- " | append: active_style | append: " /" %}
+                  {%  assign match_name = block.title | replace: "|",  format_color %}
                   {{ block.title }} : {{ active_style }}, {{ product_size }},{{ product_type }}
-                  <!-- {%  assign match = block.products | where: 'title', active_style %} -->
+                  <!-- {%  assign match = block.products | where: 'title', match_name %} -->
                   <!-- {{ match.title }} -->
                 {% endfor %}
                 <div class="">
