@@ -322,7 +322,7 @@
 
               {% if other_sizes != blank %}
                 {% for block in other_sizes %}
-                  {{ block.title }}
+                  {{ block.title }} : {{ active_style }}
                   {%  assign match = block.products | where: 'title', active_style %}
                   {{ match.title }}
                 {% endfor %}
