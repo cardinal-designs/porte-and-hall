@@ -322,6 +322,7 @@
 
               {% if other_sizes != blank %}
                 {% for block in other_sizes %}
+                  {{ block.title }}
                   {%  assign match = block | where: 'title', active_style %}
                   {{ match.title }}
                 {% endfor %}
