@@ -326,7 +326,7 @@
                   {%  assign match_name = block.title | replace: "|",  format_color %}
                   {{  match_name }}
                   <!-- {%  assign match = grouped_collection.products | where: 'title', match_name %} -->
-                  <!-- {{ match.title }} -->
+                  <!-- {{ match.first.title }} -->
                 {% endfor %}
                 <div class="">
                   <span>Shop other sizes:</span>
