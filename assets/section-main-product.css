@@ -917,6 +917,7 @@ variant-selects {
   flex-direction: row;
   justify-content: flex-start;
   align-items: baseline;
+  column-gap: 5px;
   margin-top: 20px;
 }
 
