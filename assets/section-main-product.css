@@ -569,6 +569,7 @@ afterpay-placement, .afterpay-paragraph {
   letter-spacing: 1px;
   color: var(--blue);
   padding: 0 10px;
+  text-align: left;
 }
 
 @media screen and (max-width: 1024px) {
