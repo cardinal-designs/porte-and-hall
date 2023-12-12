@@ -320,6 +320,8 @@
                 assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
               %}
 
+            <span data-active-style="{{ active_style }}"></span>
+
               {% if other_sizes != blank %}
                 {% capture other_size_links %}
                   {% for block in other_sizes %}
