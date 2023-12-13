@@ -182,6 +182,7 @@
         <div class="product__swatches">
           {{ color_swatch_list }}
         </div>
+        
         <div>
           {% form 'product', product, id: 'product-form-installment', class: 'installment' %}
             <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
@@ -309,6 +310,38 @@
                 </div>
               </div>
             </noscript>
+
+               <!-- Shop Other Sizes -->
+              {% liquid
+                assign product_type = grouped_collection.title | remove: 'The ' | split: ' | '
+                assign active_style = product.selected_or_first_available_variant.title
+                assign product_size = product.options_by_name['size'].values[0]
+                assign active_style = active_style | remove: product_size | remove: " / " 
+                assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
+              %}
+
+            <span data-active-style="{{ active_style }}"></span>
+
+              {% if other_sizes != blank %}
+                {% capture other_size_links %}
+                  {% for block in other_sizes %}
+                    {% assign current_size = block.title | split: " | " %}
+                    {% assign format_color = "- " | append: active_style | append: " /" %}
+                    {%  assign match_name = block.title | replace: "|",  format_color %}
+                    {%  assign match = block.products | where: 'title', match_name %}
+                    {% if match != blank %}
+                      <a class="inline-link" href="{{ match.first.url }}">{{ current_size.last }}</a> <span class="other-size__divider">or</span>
+                    {% endif %}
+                  {% endfor %}
+                {%  endcapture %}
+
+                {% unless other_size_links == blank %}
+                  <div class="other-sizes__wrapper">
+                    <span>Shop other sizes:</span> {{ other_size_links }}
+                  </div>
+                {%  endunless %}
+              {% endif %}
+
 
             {% if product.metafields.custom.restock_date != blank %}
               <p class="product__restock-note body">{{ product.metafields.custom.restock_date }}</p>
@@ -484,12 +517,18 @@
                 <div class="swiper-slide">
                   <div class="product__tabs-item">
                     <div class="product__features">
-                      {% for feature in grouped_collection.metafields.custom.product_features.value %}
+                      {% if product.handle contains 'outsider' %}
                         <div class="product__features-item">
-                          {% if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{% endif %}
-                          <p class="body-sm">{{ feature.label }}</p>
+                          <p class="body-sm">Have an Outsider mat but need a new insert? <a href="/products/outsider-insert-replacement">Click here</a> to shop!</p>
                         </div>
-                      {% endfor %}
+                      {% else %}
+                        {% for feature in grouped_collection.metafields.custom.product_features.value %}
+                          <div class="product__features-item">
+                            {% if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{% endif %}
+                            <p class="body-sm">{{ feature.label }}</p>
+                          </div>
+                        {% endfor %}
+                      {% endif %}
                     </div>
                   </div>
                 </div>
