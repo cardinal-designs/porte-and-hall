@@ -224,31 +224,6 @@
         "blog": "news",
         "show_recent_articles": true
       }
-    },
-    "17024672312c23204b": {
-      "type": "apps",
-      "blocks": {
-        "ddd01226-f9a0-4d76-8fb7-1a868bf2561f": {
-          "type": "shopify:\/\/apps\/stamped-product-reviews-ugc\/blocks\/main-widget\/a103faaf-2125-4b0e-89fa-de5149736723",
-          "settings": {
-            "animation": true,
-            "tags_exclude": "",
-            "tags_include": "",
-            "search": "",
-            "linkify": true,
-            "use_metafields": false,
-            "sku_tagtype": "sku"
-          }
-        }
-      },
-      "block_order": [
-        "ddd01226-f9a0-4d76-8fb7-1a868bf2561f"
-      ],
-      "settings": {
-        "include_margins": true,
-        "heading": "",
-        "section_reviews": true
-      }
     }
   },
   "order": [
@@ -264,7 +239,6 @@
     "168172537899ce8b94",
     "you-may-like",
     "fan-motif",
-    "featured-articles",
-    "17024672312c23204b"
+    "featured-articles"
   ]
 }
