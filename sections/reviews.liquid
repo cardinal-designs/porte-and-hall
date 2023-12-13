@@ -1,3 +1,5 @@
+{% comment %}}
+
 {{ 'section-reviews.css' | asset_url | stylesheet_tag }}
 <div class="page-width">
   <div class="rave-reviews-main" id="rave-reviews-main">
@@ -61,4 +63,12 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %}  {% endcomment %}}
+
+
+<!-- Stamped - Begin main-widget -->
+<div id="stamped-main-widget" class="stamped-main-widget" data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" data-image
+-url="{{ product.featured_image | product_img_url: "large" |replace: " ? ", " % 3F" | replace: "& "," % 26"}}" data-description="{{ product.description | escape }}" data-product-sku="{{product.handle}}" data-product-type="{{product.type}}">  </div>
+<!-- Stamped - End main-widget -->
+
+
