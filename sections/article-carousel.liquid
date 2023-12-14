@@ -17,7 +17,7 @@
       <div class="swiper-pagination article-carousel__pagination"></div>
       <div class="swiper-wrapper">
         {% assign my_fields = article.metafields.custom %}
-        {% for images in my_fields.carousel_images.value limit: 5 %}
+        {% for images in my_fields.carousel_images.value limit: 10 %}
           <div class="swiper-slide">
             <div class="article-carousel__item">
              {% render 'lazy-image', image: images, fade: true, classes: 'img-fill' %}
