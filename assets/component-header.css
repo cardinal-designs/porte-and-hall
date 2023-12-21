@@ -5,6 +5,9 @@
 .currency__button,
 #CurrencyList a {
   display: flex;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: .03em;
 }
 
 .currency__button svg,
@@ -16,4 +19,5 @@
 #CurrencyList {
   padding: 5px 10px;
   position: absolute;
+  list-style: none;
 }
