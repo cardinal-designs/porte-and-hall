@@ -35,3 +35,38 @@ customElements.define('form-validation',class formValidation extends HTMLElement
     this.querySelector('.js-error-messages').innerHTML = this.errorMessage.join('');
   }
 })
+
+document.addEventListener('DOMContentLoaded', function () {
+  const currencySelectors = document.querySelectorAll('[data-disclosure-currency]');
+  currencySelectors.forEach(function (currencySelector) {
+    const currencyOptions = currencySelector.querySelectorAll('[data-disclosure-option]');
+    currencyOptions.forEach(function (option) {
+      option.addEventListener('click', function (event) {
+        event.preventDefault();
+        const currencyCode = option.getAttribute('data-value');
+        const newUrl = `${window.location.origin}?currency=${currencyCode}`;
+        fetchCurrency(newUrl);
+      });
+    });
+    function fetchCurrency(newUrl) {
+      fetch(newUrl)
+        .then((response) => {
+          if (response.ok) {
+            location.reload();
+          } else {
+            console.error('Failed to fetch currency data.');
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching currency data: ', error);
+        });
+    }
+  });
+
+  const button = document.querySelector('.currency__button');
+  const currencyList = document.getElementById('CurrencyList');
+
+  button.addEventListener('click', function () {
+    currencyList.classList.toggle('hidden');
+  });
+});
