@@ -2,3 +2,9 @@
 #CurrencyList a {
   display: flex;
 }
+
+.currency__button,
+#CurrencyList a {
+  width: 18px;
+  margin-right: 5px;
+}
