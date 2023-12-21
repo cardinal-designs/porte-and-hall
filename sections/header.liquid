@@ -54,22 +54,19 @@
       {%- form 'localization', class: 'multi-selectors' -%}
         <div>
           <div data-disclosure-currency>
-            <button type="button" class="currency__button pl-10" aria-expanded="false" aria-controls="CurrencyList-{{ location }}" aria-describedby="CurrencyHeading-{{ location }}" data-disclosure-toggle class="group">
-        
-              <span class="flex items-center gap-px [&_svg]:w-[18px] [&_svg]:h-[auto]">
+            <button type="button" class="currency__button" aria-expanded="false" aria-controls="CurrencyList-{{ location }}" aria-describedby="CurrencyHeading-{{ location }}" data-disclosure-toggle class="group">
                 {% if form.current_currency.iso_code == 'USD' %}{% render 'icon' icon: 'us-flag-1' %}{% elsif form.current_currency.iso_code == 'CAD' %}{% render 'icon' icon: 'au-flag' %}{% endif %} 
-                <span class="text-m-body font-medium pl-5">
+                <span class="text-m-body font-medium">
                   {{ form.current_currency.iso_code }}
                 </span>
-              </span>
             </button> 
-            <ul id="CurrencyList" class="absolute toolbar disclosure-list--down disclosure-list--left bg-white shadow-card hidden" data-disclosure-list>
+            <ul id="CurrencyList" class="toolbar disclosure-list--down disclosure-list--left bg-white shadow-card hidden" data-disclosure-list>
               {%- for currency in form.available_currencies -%}
-                <li class="p-10 pt-5 pb-5">
-                  <a class="focus:text-light-blue hover:text-light-blue text-cta font-medium uppercase" href="#"{% if currency.iso_code == form.current_currency.iso_code %} aria-current="true"{% endif %} data-value="{{ currency.iso_code }}" data-disclosure-option>
-                    <span class="flex items-center gap-px [&_svg]:w-[18px] [&_svg]:h-[auto]">
+                <li class="">
+                  <a class="uppercase" href="#"{% if currency.iso_code == form.current_currency.iso_code %} aria-current="true"{% endif %} data-value="{{ currency.iso_code }}" data-disclosure-option>
+                    <span class="]">
                       {% if currency.iso_code == 'USD' %}{% render 'icon' icon: 'us-flag-1' %}{% elsif currency.iso_code == 'CAD' %}{% render 'icon' icon: 'au-flag' %}{% endif %} 
-                      <p class="text-m-body font-medium pl-5">{{ currency.iso_code }}</p>
+                      <p class="">{{ currency.iso_code }}</p>
                     </span>
                   </a>
                 </li>
