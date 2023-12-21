@@ -61,12 +61,12 @@
                   {{ form.current_currency.iso_code }}
                 </span>
             </button> 
-            <ul id="CurrencyList" class="toolbar disclosure-list--down disclosure-list--left bg-white shadow-card hidden" data-disclosure-list>
+            <ul id="CurrencyList" class="hidden" data-disclosure-list>
               {%- for currency in form.available_currencies -%}
-                <li class="">
+                <li>
                   <a class="uppercase" href="#"{% if currency.iso_code == form.current_currency.iso_code %} aria-current="true"{% endif %} data-value="{{ currency.iso_code }}" data-disclosure-option>
                     {% if currency.iso_code == 'USD' %}{% render 'icon' icon: 'us-flag-1' %}{% elsif currency.iso_code == 'CAD' %}{% render 'icon' icon: 'cad-flag' %}{% endif %} 
-                    <p class="">{{ currency.iso_code }}</p>
+                    <p>{{ currency.iso_code }}</p>
                   </a>
                 </li>
               {%- endfor -%}
