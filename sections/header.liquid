@@ -57,7 +57,7 @@
             <button type="button" class="currency__button pl-10" aria-expanded="false" aria-controls="CurrencyList-{{ location }}" aria-describedby="CurrencyHeading-{{ location }}" data-disclosure-toggle class="group">
         
               <span class="flex items-center gap-px [&_svg]:w-[18px] [&_svg]:h-[auto]">
-                {% if form.current_currency.iso_code == 'USD' %}{% render 'icon' icon: 'us-flag-1' %}{% elsif form.current_currency.iso_code == 'AUD' %}{% render 'icon' icon: 'au-flag' %}{% endif %} 
+                {% if form.current_currency.iso_code == 'USD' %}{% render 'icon' icon: 'us-flag-1' %}{% elsif form.current_currency.iso_code == 'CAD' %}{% render 'icon' icon: 'au-flag' %}{% endif %} 
                 <span class="text-m-body font-medium pl-5">
                   {{ form.current_currency.iso_code }}
                 </span>
@@ -68,7 +68,7 @@
                 <li class="p-10 pt-5 pb-5">
                   <a class="focus:text-light-blue hover:text-light-blue text-cta font-medium uppercase" href="#"{% if currency.iso_code == form.current_currency.iso_code %} aria-current="true"{% endif %} data-value="{{ currency.iso_code }}" data-disclosure-option>
                     <span class="flex items-center gap-px [&_svg]:w-[18px] [&_svg]:h-[auto]">
-                      {% if currency.iso_code == 'USD' %}{% render 'icon' icon: 'us-flag-1' %}{% elsif currency.iso_code == 'AUD' %}{% render 'icon' icon: 'au-flag' %}{% endif %} 
+                      {% if currency.iso_code == 'USD' %}{% render 'icon' icon: 'us-flag-1' %}{% elsif currency.iso_code == 'CAD' %}{% render 'icon' icon: 'au-flag' %}{% endif %} 
                       <p class="text-m-body font-medium pl-5">{{ currency.iso_code }}</p>
                     </span>
                   </a>
