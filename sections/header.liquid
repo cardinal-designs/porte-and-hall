@@ -1,4 +1,5 @@
 {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
+{{ 'component-header.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
 
 <header class="header">
@@ -64,10 +65,8 @@
               {%- for currency in form.available_currencies -%}
                 <li class="">
                   <a class="uppercase" href="#"{% if currency.iso_code == form.current_currency.iso_code %} aria-current="true"{% endif %} data-value="{{ currency.iso_code }}" data-disclosure-option>
-                    <span class="]">
-                      {% if currency.iso_code == 'USD' %}{% render 'icon' icon: 'us-flag-1' %}{% elsif currency.iso_code == 'CAD' %}{% render 'icon' icon: 'au-flag' %}{% endif %} 
-                      <p class="">{{ currency.iso_code }}</p>
-                    </span>
+                    {% if currency.iso_code == 'USD' %}{% render 'icon' icon: 'us-flag-1' %}{% elsif currency.iso_code == 'CAD' %}{% render 'icon' icon: 'au-flag' %}{% endif %} 
+                    <p class="">{{ currency.iso_code }}</p>
                   </a>
                 </li>
               {%- endfor -%}
