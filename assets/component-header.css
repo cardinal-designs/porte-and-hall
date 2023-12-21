@@ -5,6 +5,7 @@
 .currency__button,
 #CurrencyList a {
   display: flex;
+  align-items: center;
   font-size: 14px;
   line-height: 1.6;
   letter-spacing: .03em;
