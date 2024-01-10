@@ -2,7 +2,7 @@
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
     <meta name="google-site-verification" content="IVpP462_ffIVedPbcCOwwr4v0yqczNWKVEY2XNhS4b4" />
-    <script src="https://www.googleoptimize.com/optimize.js?id=OPT-WV5FTMC"></script>
+    <script src="https://www.googleoptimize.com/optimize.js?id=OPT-WV5FTMC" defer="defer"></script>
     {% render 'elevar-head-listener' %}
     {% render 'elevar-head' %}
     <meta charset="utf-8">
@@ -28,7 +28,7 @@
     </title>
 
     <!-- begin Convert Experiences code-->
-    <script type="text/javascript" src="//cdn-4.convertexperiments.com/js/10041621-10044581.js"></script>
+    <script type="text/javascript" src="//cdn-4.convertexperiments.com/js/10041621-10044581.js" defer="defer"></script>
     <!-- end Convert Experiences code -->
     
     <script type="text/javascript">
@@ -103,16 +103,20 @@
     {% endif %}
 
     {% render 'meta-tags' %}
-    
-    <link rel="preload" href="{{ 'swiper-bundle.min.css' | asset_url }}" as="style" />
-    <link rel="preload" href="{{ 'base.css' | asset_url }}" as="style" />
-    <link rel="preload" href="{{ 'gsap.min.js' | asset_url }}" as="script" />
-    <link rel="preload" href="{{ 'lazysizes.min.js' | asset_url }}" as="script" />
-    <link rel="preload" href="{{ 'micromodal.min.js' | asset_url }}" as="script" />
-    <link rel="preload" href="{{ 'swiper-bundle.min.js' | asset_url }}" as="script" />
-    <link rel="preload" href="{{ 'ajax-pagination.js' }}" as="script" />
-    <link rel="preload" href="{{ 'global.js'| asset_url }}" as="script" />
-    <link rel="preload" href="{{ 'custom.js' | asset_url }}" as="script" />
+    <script src="{{ 'preloader.js' | asset_url }}"></script>
+    <script src="{{ 'bootstrap.js' | asset_url }}"></script>
+    <script src="{{ 'preconnect_resources.js' | asset_url }}"></script>
+    <script src="{{ 'lazy.js' | asset_url }}"></script>
+
+    <link rel="preload" data-lazy-href="{{ 'swiper-bundle.min.css' | asset_url }}" as="style" />
+    <link rel="preload" data-lazy-href="{{ 'base.css' | asset_url }}" as="style" />
+    <link rel="preload" data-lazy-src="{{ 'gsap.min.js' | asset_url }}" as="script" />
+    <link rel="preload" data-lazy-src="{{ 'lazysizes.min.js' | asset_url }}" as="script" />
+    <link rel="preload" data-lazy-src="{{ 'micromodal.min.js' | asset_url }}" as="script" />
+    <link rel="preload" data-lazy-src="{{ 'swiper-bundle.min.js' | asset_url }}" as="script" />
+    <link rel="preload" data-lazy-src="{{ 'ajax-pagination.js' }}" as="script" />
+    <link rel="preload" data-lazy-src="{{ 'global.js'| asset_url }}" as="script" />
+    <link rel="preload" data-lazy-src="{{ 'custom.js' | asset_url }}" as="script" />
     
     <script src="{{ 'gsap.min.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
@@ -121,6 +125,9 @@
     <script src="{{ 'ajax-pagination.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
+
+
+    {%- assign content_for_header = content_for_header | replace: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'" -%}
 
     {{ content_for_header }}
     {% render 'css-variables' %}
@@ -131,7 +138,7 @@
     
     <!-- BEGIN PRIVY WIDGET CODE -->
 	<script type='text/javascript'> var _d_site = _d_site || 'C944B2C24A5E6353CEBE51B6'; </script>
-	<script src='https://widget.privy.com/assets/widget.js'></script>
+	<script src='https://widget.privy.com/assets/widget.js' defer="defer"></script>
 	<!-- END PRIVY WIDGET CODE -->
     <style>
     #privy-container #privy-inner-container [tabindex]:focus {
@@ -178,6 +185,7 @@
   </head>
 
   <body class="template-{{ template }} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
+    <img role="presentation" alt="" width="2000" height="2000" style="pointer-events:none;position:absolute;top:0;left:0;width:99vw;height:99vh;max-width:99vw;max-height:99vh" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIxMDAwIiBoZWlnaHQ9IjEwMDAiIHZpZXdCb3g9IjAgMCAxMDAwIDEwMDAiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8ZGVzYz5DcmVhdGVkIHdpdGggRmFicmljLmpzIDMuNS4wPC9kZXNjPgo8ZGVmcz4KPC9kZWZzPgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDApIi8+CjxnIHRyYW5zZm9ybT0ibWF0cml4KDAuOTIyOCAwIDAgMC44Nzg5IDUwNi44NTQ1IDQ4NC45KSIgaWQ9IjQ0NjM1NiI+CjxnIHN0eWxlPSIiIHZlY3Rvci1lZmZlY3Q9Im5vbi1zY2FsaW5nLXN0cm9rZSI+CgkJPGcgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgMSAtNDUwIC00NTApIiBpZD0iODUwMzc5Ij4KPHJlY3Qgc3R5bGU9InN0cm9rZTogbm9uZTsgc3Ryb2tlLXdpZHRoOiAxOyBzdHJva2UtZGFzaGFycmF5OiBub25lOyBzdHJva2UtbGluZWNhcDogYnV0dDsgc3Ryb2tlLWRhc2hvZmZzZXQ6IDA7IHN0cm9rZS1saW5lam9pbjogbWl0ZXI7IHN0cm9rZS1taXRlcmxpbWl0OiA0OyBpcy1jdXN0b20tZm9udDogbm9uZTsgZm9udC1maWxlLXVybDogbm9uZTsgZmlsbDogcmdiKDI1NSwyNTUsMjU1KTsgZmlsbC1vcGFjaXR5OiAwOyBmaWxsLXJ1bGU6IG5vbnplcm87IG9wYWNpdHk6IDA7IiB4PSItNTAiIHk9Ii01MCIgcng9IjAiIHJ5PSIwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIvPgo8L2c+CgkJPGcgdHJhbnNmb3JtPSJtYXRyaXgoMS43NzU2IDAgMCAxLjc3NTYgMC4wMDg5IDAuMDA5KSIgaWQ9IjgwNDExOCI+CjxwYXRoIHN0eWxlPSJzdHJva2U6IG5vbmU7IHN0cm9rZS13aWR0aDogMTsgc3Ryb2tlLWRhc2hhcnJheTogbm9uZTsgc3Ryb2tlLWxpbmVjYXA6IGJ1dHQ7IHN0cm9rZS1kYXNob2Zmc2V0OiAwOyBzdHJva2UtbGluZWpvaW46IG1pdGVyOyBzdHJva2UtbWl0ZXJsaW1pdDogNDsgaXMtY3VzdG9tLWZvbnQ6IG5vbmU7IGZvbnQtZmlsZS11cmw6IG5vbmU7IGZpbGw6IHJnYigwLDAsMCk7IGZpbGwtb3BhY2l0eTogMDsgZmlsbC1ydWxlOiBub256ZXJvOyBvcGFjaXR5OiAwOyIgdmVjdG9yLWVmZmVjdD0ibm9uLXNjYWxpbmctc3Ryb2tlIiB0cmFuc2Zvcm09IiB0cmFuc2xhdGUoLTI1Ni4wMDA1LCAtMjU2LjAwMDUpIiBkPSJNIDQxMC41NjYgNTkuMzU0IFYgMjguOTYyIEMgNDEwLjU2NiAxMi45OTEgMzk3LjU5OSAwIDM4MS42NjUgMCBoIC0yNTEuMzMgYyAtMTUuOTM0IDAgLTI4LjkwMSAxMi45OTEgLTI4LjkwMSAyOC45NjIgdiAzMC4zOTIgYyAtMTYuNjIgNC4zNTEgLTI4Ljk4MSAxOS4zNjggLTI4Ljk4MSAzNy4zMzUgdiAzOC41NTcgYyAwIDUuMzQgNC4zMjUgOS42NiA5LjY2IDkuNjYgaCAxOS45MzggbCAyNi44NzQgMzM5LjcwOCBjIDEuMjI2IDE1LjUgMTQuOTE1IDI3LjM4NyAzMC41MTkgMjcuMzg3IGggMTkzLjExMyBjIDE1Ljg2MyAwIDI5LjI2OSAtMTEuNjIzIDMwLjUxOSAtMjcuMzg3IGwgMjYuODc0IC0zMzkuNzA4IGggMTkuOTM4IGMgNS4zMzUgMCA5LjY2IC00LjMyMSA5LjY2IC05LjY2IFYgOTYuNjg5IEMgNDM5LjU0NyA3OC43MjIgNDI3LjE4NiA2My43MDUgNDEwLjU2NiA1OS4zNTQgeiBNIDEyMC43NTUgMjguOTYyIGMgMCAtNS4zMjEgNC4yOTcgLTkuNjQyIDkuNTggLTkuNjQyIGggMjUxLjMzIGMgNS4yODMgMCA5LjU4IDQuMzIxIDkuNTggOS42NDIgdiAyOSBIIDEyMC43NTUgViAyOC45NjIgeiBNIDM2My44MTEgNDgyLjM1OSBjIC0wLjQzOSA1LjU5NCAtNS41OTQgMTAuMzIxIC0xMS4yNTUgMTAuMzIxIEggMTU5LjQ0MyBjIC01LjU2MSAwIC0xMC44MjEgLTQuODIxIC0xMS4yNTUgLTEwLjMyMSBsIC0yNi42NDIgLTMzNy40NTMgaCAyNjguOTA2IEwgMzYzLjgxMSA0ODIuMzU5IHogTSA0MjAuMjI2IDEyNS41ODUgSCA5MS43NzQgViA5Ni42ODkgYyAwIC0xMC42OTggOC42OTggLTE5LjQwNiAxOS4zOTIgLTE5LjQwNiBoIDI4OS42NyBjIDEwLjY5MyAwIDE5LjM5MiA4LjcwOCAxOS4zOTIgMTkuNDA2IFYgMTI1LjU4NSB6IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9nPgoJCTxnIHRyYW5zZm9ybT0ibWF0cml4KDEuNzc1NiAwIDAgMS43NzU2IDAuMDA4MSA5NC4zNDkzKSIgaWQ9IjQ2NTk0NiI+CjxwYXRoIHN0eWxlPSJzdHJva2U6IG5vbmU7IHN0cm9rZS13aWR0aDogMTsgc3Ryb2tlLWRhc2hhcnJheTogbm9uZTsgc3Ryb2tlLWxpbmVjYXA6IGJ1dHQ7IHN0cm9rZS1kYXNob2Zmc2V0OiAwOyBzdHJva2UtbGluZWpvaW46IG1pdGVyOyBzdHJva2UtbWl0ZXJsaW1pdDogNDsgaXMtY3VzdG9tLWZvbnQ6IG5vbmU7IGZvbnQtZmlsZS11cmw6IG5vbmU7IGZpbGw6IHJnYigwLDAsMCk7IGZpbGwtb3BhY2l0eTogMDsgZmlsbC1ydWxlOiBub256ZXJvOyBvcGFjaXR5OiAwOyIgdmVjdG9yLWVmZmVjdD0ibm9uLXNjYWxpbmctc3Ryb2tlIiB0cmFuc2Zvcm09IiB0cmFuc2xhdGUoLTI1NiwgLTMwOS4xMzIpIiBkPSJNIDI1NiAxODMuNTQ3IGMgLTQzLjMzNSAwIC03Ny4yODMgNTUuMTYgLTc3LjI4MyAxMjUuNTg1IFMgMjEyLjY2NSA0MzQuNzE3IDI1NiA0MzQuNzE3IGMgNDMuMzM1IDAgNzcuMjgzIC01NS4xNiA3Ny4yODMgLTEyNS41ODUgUyAyOTkuMzM1IDE4My41NDcgMjU2IDE4My41NDcgeiBNIDI1NiA0MTUuMzk2IGMgLTMxLjQyIDAgLTU3Ljk2MiAtNDguNjYgLTU3Ljk2MiAtMTA2LjI2NCBTIDIyNC41OCAyMDIuODY4IDI1NiAyMDIuODY4IGMgMzEuNDIgMCA1Ny45NjIgNDguNjYgNTcuOTYyIDEwNi4yNjQgQyAzMTMuOTYyIDM2Ni43MzYgMjg3LjQyIDQxNS4zOTYgMjU2IDQxNS4zOTYgeiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjwvZz4KPC9nPgo8L2c+Cjwvc3ZnPg==">
      <!-- Stamped - Begin script -->
 <script>function myInit(){ StampedFn.init({ apiKey: 'pubkey-TQ3tfL1zl7718FiPc09D65z6h2K3NJ', sId: '175484' }); }</script>
 <script async onload="myInit()" type="text/javascript" src="https://cdn1.stamped.io/files/widget.min.js"></script> 
@@ -241,7 +249,7 @@
 
 
 
-<script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
+<script src="https://a.klaviyo.com/media/js/onsite/onsite.js" async></script>
 <script>
     var klaviyo = klaviyo || [];
     klaviyo.init({
@@ -376,7 +384,7 @@
     <script> (function(){ var s = document.createElement('script'); var h = document.querySelector('head') || document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init({ statementLink : '', footerHtml : '', hideMobile : false, hideTrigger : false, disableBgProcess : false, language : 'en', position : 'left', leadColor : '#556b82', triggerColor : '#50657b', triggerRadius : '50%', triggerPositionX : 'left', triggerPositionY : 'bottom', triggerIcon : 'people', triggerSize : 'medium', triggerOffsetX : 20, triggerOffsetY : 20, mobile : { triggerSize : 'small', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerOffsetX : 10, triggerOffsetY : 10, triggerRadius : '50%' } }); }; h.appendChild(s); })(); </script>   
    
     <!-- OneTrust Cookies Consent Notice start for www.porteandhall.com -->
-    <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="392ca035-48a4-413f-b3b6-5ee77c589497" ></script>
+    <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="392ca035-48a4-413f-b3b6-5ee77c589497" defer="defer"></script>
     <script type="text/javascript">
     function OptanonWrapper() {
       
@@ -388,6 +396,7 @@
    {% style %}
      .ot-floating-button__front {visibility: hidden;}
    {% endstyle %}
+   <script src="{{ 'optimization.js' | asset_url }}" defer></script>
   </body>
 </html>
 
@@ -440,7 +449,7 @@
     var afterpay_cart_total_price = {{ cart.total_price | json }};
     var afterpay_js_snippet_version = '1.1.5';
   </script>
-  <script type="text/javascript" src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
+  <script type="text/javascript" src="https://static.afterpay.com/shopify-afterpay-javascript.js" defer="defer"></script>
 {% else %}
   <!-- Afterpay disabled: {{ cart.currency.iso_code }} != {{ shop.currency }} -->
 {% endif %}
