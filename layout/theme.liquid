@@ -125,8 +125,8 @@
     <script data-lazy-src="{{ 'micromodal.min.js' | asset_url }}"></script>
     <script data-lazy-src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
     <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
-    <script data-lazy-src="{{ 'global.js' | asset_url }}" defer></script>
-    <script data-lazy-scr="{{ 'custom.js' | asset_url }}" defer></script>
+    <script data-lazy-src="{{ 'global.js' | asset_url }}"></script>
+    <script data-lazy-scr="{{ 'custom.js' | asset_url }}"></script>
 
 
     {%- assign content_for_header = content_for_header | replace: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'" -%}
