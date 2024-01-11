@@ -115,8 +115,8 @@
     {% comment %} {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }} {% endcomment %}
     
     <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'global.js' | asset_url }}" defer></script>
-    <script src="{{ 'custom.js' | asset_url }}" defer></script>
+    <script data-lazy-src="{{ 'global.js' | asset_url }}" defer></script>
+    <script data-lazy-scr="{{ 'custom.js' | asset_url }}" defer></script>
 
     <script src="{{ 'preloader.js' | asset_url }}"></script>
     <script src="{{ 'bootstrap.js' | asset_url }}"></script>
