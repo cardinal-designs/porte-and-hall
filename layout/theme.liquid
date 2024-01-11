@@ -103,31 +103,34 @@
     {% endif %}
 
     {% render 'meta-tags' %}
-    <script src="{{ 'preloader.js' | asset_url }}"></script>
-    <script src="{{ 'bootstrap.js' | asset_url }}"></script>
-    <script src="{{ 'preconnect_resources.js' | asset_url }}"></script>
-    <script src="{{ 'lazy.js' | asset_url }}"></script>
+
 
     <link rel="stylesheet" data-lazy-href="{{ 'swiper-bundle.min.css' | asset_url }}" as="style" />
     <link rel="stylesheet" data-lazy-href="{{ 'base.css' | asset_url }}" as="style" />
-    
-    <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
-    <script data-lazy-src="{{ 'gsap.min.js' | asset_url }}"></script>
-    <script data-lazy-src="{{ 'micromodal.min.js' | asset_url }}"></script>
-    <script data-lazy-src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
-    <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
-    <script data-lazy-src="{{ 'global.js' | asset_url }}"></script>
-    <script data-lazy-src="{{ 'custom.js' | asset_url }}"></script>
-
-
-    {%- assign content_for_header = content_for_header | replace: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'" -%}
-
-    {{ content_for_header }}
     {% render 'css-variables' %}
 
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
     
     {{ 'base.css' | asset_url | stylesheet_tag }}
+
+    <script src="{{ 'preloader.js' | asset_url }}"></script>
+    <script src="{{ 'bootstrap.js' | asset_url }}"></script>
+    <script src="{{ 'preconnect_resources.js' | asset_url }}"></script>
+    <script src="{{ 'lazy.js' | asset_url }}"></script>
+
+    <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
+    <script data-lazy-src="{{ 'gsap.min.js' | asset_url }}"></script>
+    <script data-lazy-src="{{ 'micromodal.min.js' | asset_url }}"></script>
+    <script data-lazy-src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+    <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
+    <script src="{{ 'global.js' | asset_url }}" defer></script>
+    <script src="{{ 'custom.js' | asset_url }}" defer></script>
+
+
+    {%- assign content_for_header = content_for_header | replace: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'" -%}
+
+    {{ content_for_header }}
+ 
     
     <!-- BEGIN PRIVY WIDGET CODE -->
 	<script type='text/javascript'> var _d_site = _d_site || 'C944B2C24A5E6353CEBE51B6'; </script>
