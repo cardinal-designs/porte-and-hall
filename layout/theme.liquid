@@ -103,13 +103,12 @@
     {% endif %}
 
     {% render 'meta-tags' %}
-
-
-    <link rel="stylesheet" data-lazy-href="{{ 'swiper-bundle.min.css' | asset_url }}" as="style" />
-    <link rel="stylesheet" data-lazy-href="{{ 'base.css' | asset_url }}" as="style" />
     {% render 'css-variables' %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+
+    <link rel="stylesheet" data-lazy-href="{{ 'swiper-bundle.min.css' | asset_url }}" as="style" />
+    <link rel="stylesheet" data-lazy-href="{{ 'base.css' | asset_url }}" as="style" />
 
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
     
