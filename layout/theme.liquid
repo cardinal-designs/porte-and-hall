@@ -109,9 +109,10 @@
     <link rel="stylesheet" data-lazy-href="{{ 'base.css' | asset_url }}" as="style" />
     {% render 'css-variables' %}
 
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
     
-    {{ 'base.css' | asset_url | stylesheet_tag }}
 
     <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer></script>
