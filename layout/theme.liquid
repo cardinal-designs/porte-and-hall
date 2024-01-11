@@ -112,13 +112,13 @@
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
     
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
 
     <script src="{{ 'preloader.js' | asset_url }}"></script>
     <script src="{{ 'bootstrap.js' | asset_url }}"></script>
     <script src="{{ 'preconnect_resources.js' | asset_url }}"></script>
     <script src="{{ 'lazy.js' | asset_url }}"></script>
 
-    <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
     <script data-lazy-src="{{ 'gsap.min.js' | asset_url }}"></script>
     <script data-lazy-src="{{ 'micromodal.min.js' | asset_url }}"></script>
     <script data-lazy-src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
