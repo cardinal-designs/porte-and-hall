@@ -108,8 +108,9 @@
     <script src="{{ 'preconnect_resources.js' | asset_url }}"></script>
     <script src="{{ 'lazy.js' | asset_url }}"></script>
 
-    <link rel="preload" data-lazy-href="{{ 'swiper-bundle.min.css' | asset_url }}" as="style" />
     <link rel="preload" href="{{ 'base.css' | asset_url }}" as="style" />
+
+    <link rel="preload" data-lazy-href="{{ 'swiper-bundle.min.css' | asset_url }}" as="style" />
     <link rel="preload" data-lazy-src="{{ 'gsap.min.js' | asset_url }}" as="script" />
     <link rel="preload" data-lazy-src="{{ 'lazysizes.min.js' | asset_url }}" as="script" />
     <link rel="preload" data-lazy-src="{{ 'micromodal.min.js' | asset_url }}" as="script" />
