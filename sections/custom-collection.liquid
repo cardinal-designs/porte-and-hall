@@ -1,224 +1,4 @@
-<div class="custom-collection">
-  <div class="page-width">
-    {%- if section.settings.title != blank -%}
-      <header class="SectionHeader">
-        {%- if section.settings.title != blank -%}
-          <h4 class="SectionHeader__Heading">{{ section.settings.title }}</h4>
-        {%- endif -%}
-      </header>
-    {%- endif -%}
-
-    <div class="collection-row">
-      {%- for block in section.blocks -%}
-        <div class="collection-col">
-          <h6>{{ block.settings.title }}</h6>
-          
-          <div class="collection-row-inner">
-            <div class="collection-col-inner">
-              <p class="badge">
-                {{- block.settings.badge1 -}}
-              </p>
-              <div class="product-card ">
-                <div class="product-card__image">
-                  <a href="{{ block.settings.collection1.url }}">
-                    <div class="aspect-ratio img-fill" style="max-width: 100%; width: 100%; --aspect-ratio: ">
-                      <img class="lazyload--fade lazyautosizes lazyloaded"
-                        data-src="{{ block.settings.collection_image1 | image_url: width: 650 }}"
-                        data-widths="[200,300,400,600,800,900,1000,1200,1400,1600,1800]" 
-                        data-sizes="auto" 
-                        alt="" 
-                        loading="lazy"
-                        data-media-id="" 
-                        sizes="274px"
-                        src="{{ block.settings.collection_image1 | image_url: width: 650 }}">
-                    </div>
-                  </a>
-                </div>
-              
-                <a href="{{ block.settings.collection1.url }}">
-                  <h3 class="product-card__title blue">
-                    {{ block.settings.collection1_title | default: block.settings.collection1.title }}
-                  </h3>
-                  
-                  <div class="product-card__swatches">
-                    {% for swatch in block.settings.collection1.metafields.custom.collection_swatch_images.value %}
-                      {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy', class: 'collection-swatch-img product-card__swatch' }}
-                    {% endfor %}
-
-                    {% if block.settings.collection1_show_more != blank %}
-                      <small>+{{ block.settings.collection1_show_more }} more</small>
-                    {% endif %}
-                  </div>
-                </a>
-
-                
-                <a href="{{ block.settings.collection1.url }}" class="text-link gold-secondary--dark product-card__link">
-                  Shop Now 
-                  <span> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="16" viewBox="0 0 29 16" fill="none"><path d="M28.7071 8.70711C29.0976 8.31658 29.0976 7.68342 28.7071 7.29289L22.3431 0.928932C21.9526 0.538408 21.3195 0.538408 20.9289 0.928932C20.5384 1.31946 20.5384 1.95262 20.9289 2.34315L26.5858 8L20.9289 13.6569C20.5384 14.0474 20.5384 14.6805 20.9289 15.0711C21.3195 15.4616 21.9526 15.4616 22.3431 15.0711L28.7071 8.70711ZM0 9H28V7H0V9Z" fill="#A19377"></path></svg>
-                  </span>
-                </a>
-              </div>
-            </div>
-
-            <div class="collection-col-inner">
-              <p class="badge">
-                {{- block.settings.badge2 -}}
-              </p>
-              <div class="product-card ">
-                <div class="product-card__image">
-                  <a href="{{ block.settings.collection2.url }}">
-                    <div class="aspect-ratio img-fill" style="max-width: 100%; width: 100%; --aspect-ratio: ">
-                      <img class="lazyload--fade lazyautosizes lazyloaded"
-                        data-src="{{ block.settings.collection_image2 | image_url: width: 650 }}"
-                        data-widths="[200,300,400,600,800,900,1000,1200,1400,1600,1800]" 
-                        data-sizes="auto" 
-                        alt="" 
-                        loading="lazy"
-                        data-media-id="" 
-                        sizes="274px"
-                        src="{{ block.settings.collection_image2 | image_url: width: 650 }}">
-                    </div>
-                  </a>
-                </div>
-              
-                <a href="{{ block.settings.collection2.url }}">
-                  <h3 class="product-card__title blue">
-                    {{ block.settings.collection2_title | default: block.settings.collection2.title }}
-                  </h3>
-                  
-                  <div class="product-card__swatches">
-                    {% for swatch in block.settings.collection2.metafields.custom.collection_swatch_images.value %}
-                      {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy', class: 'collection-swatch-img product-card__swatch' }}
-                    {% endfor %}
-
-                    {% if block.settings.collection2_show_more != blank %}
-                      <small>+{{ block.settings.collection2_show_more }} more</small>
-                    {% endif %}                    
-                  </div>                
-                </a>
-
-        
-                <a href="{{ block.settings.collection2.url }}" class="text-link gold-secondary--dark product-card__link">
-                  Shop Now 
-                  <span> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="16" viewBox="0 0 29 16" fill="none"><path d="M28.7071 8.70711C29.0976 8.31658 29.0976 7.68342 28.7071 7.29289L22.3431 0.928932C21.9526 0.538408 21.3195 0.538408 20.9289 0.928932C20.5384 1.31946 20.5384 1.95262 20.9289 2.34315L26.5858 8L20.9289 13.6569C20.5384 14.0474 20.5384 14.6805 20.9289 15.0711C21.3195 15.4616 21.9526 15.4616 22.3431 15.0711L28.7071 8.70711ZM0 9H28V7H0V9Z" fill="#A19377"></path></svg>
-                  </span>
-                </a>
-              </div>
-            </div>            
-          </div>
-
-          
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-</div>
-
-{% schema %}
-  {
-    "name": "Custom Collection",
-    "class": "custom-collection-section",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Title"
-      }
-    ],
-    "blocks": [
-    {
-     "type": "block",
-     "name": "Collection-col",
-     "limit":4,
-     "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Enter type"
-        },
-       {
-          "type": "header",
-          "content": "Product 1"
-        },
-         {
-          "type": "text",
-          "id": "badge1",
-          "label": "Enter Badge"
-        },
-        {
-          "type": "image_picker",
-          "id": "collection_image1",
-          "label": "Collection image"
-        },
-        {
-          "type": "collection",
-          "id": "collection1",
-          "label": "Collection"
-        },
-        {
-          "type": "text",
-          "id": "collection1_title",
-          "label": "Collection title",
-          "info": "if not set, it will pick the default one"
-        },
-        {
-          "type": "text",
-          "id": "collection1_show_more",
-          "label": "Show more number"
-        },       
-        {
-          "type": "header",
-          "content": "Product 2"
-        },
-        {
-          "type": "text",
-          "id": "badge2",
-          "label": "Enter Badge"
-        },
-        {
-          "type": "image_picker",
-          "id": "collection_image2",
-          "label": "Collection image"
-        },
-        {
-          "type": "collection",
-          "id": "collection2",
-          "label": "Collection"
-        },
-        {
-          "type": "text",
-          "id": "collection2_title",
-          "label": "Collection title",
-          "info": "if not set, it will pick the default one"
-        },
-        {
-          "type": "text",
-          "id": "collection2_show_more",
-          "label": "Show more number"
-        }       
-      ]
-    }
-  
-  ],
-    "presets": [
-    {
-      "name": "Custom Collection",
-      "settings": {}
-    }
-  ]
-  }
-{% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
-
-<style>
+{% style %}
   header.SectionHeader .SectionHeader__Heading{
      font-size:48px;
   }
@@ -528,5 +308,230 @@
     display:none;
   }
   
-</style>
+{% endstyle %}
+
+<div class="custom-collection">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <header class="SectionHeader">
+        {%- if section.settings.title != blank -%}
+          <h4 class="SectionHeader__Heading">{{ section.settings.title }}</h4>
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+
+    <div class="collection-row">
+      {%- for block in section.blocks -%}
+        <div class="collection-col">
+          <h6>{{ block.settings.title }}</h6>
+          
+          <div class="collection-row-inner">
+            <div class="collection-col-inner">
+              <p class="badge">
+                {{- block.settings.badge1 -}}
+              </p>
+              <div class="product-card ">
+                <div class="product-card__image">
+                  <a href="{{ block.settings.collection1.url }}">
+                    <div class="aspect-ratio img-fill" style="max-width: 100%; width: 100%; --aspect-ratio: ">
+                      <img class="lazyload--fade lazyautosizes lazyloaded"
+                        data-src="{{ block.settings.collection_image1 | image_url: width: 300 }}"
+                        data-widths="[200,300,400,600]" 
+                        data-sizes="auto" 
+                        alt="image" 
+                        loading="lazy"
+                        data-media-id="" 
+                        sizes="274px"
+                        height="{{ block.settings.collection_image1.height }}"
+                        width="{{ block.settings.collection_image1.width }}"
+                        src="{{ block.settings.collection_image1 | image_url: width: 300 }}">
+                    </div>
+                  </a>
+                </div>
+              
+                <a href="{{ block.settings.collection1.url }}">
+                  <h3 class="product-card__title blue">
+                    {{ block.settings.collection1_title | default: block.settings.collection1.title }}
+                  </h3>
+                  
+                  <div class="product-card__swatches">
+                    {% for swatch in block.settings.collection1.metafields.custom.collection_swatch_images.value %}
+                      {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy', class: 'collection-swatch-img product-card__swatch' }}
+                    {% endfor %}
+
+                    {% if block.settings.collection1_show_more != blank %}
+                      <small>+{{ block.settings.collection1_show_more }} more</small>
+                    {% endif %}
+                  </div>
+                </a>
+
+                
+                <a href="{{ block.settings.collection1.url }}" class="text-link gold-secondary--dark product-card__link">
+                  Shop Now 
+                  <span> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="16" viewBox="0 0 29 16" fill="none"><path d="M28.7071 8.70711C29.0976 8.31658 29.0976 7.68342 28.7071 7.29289L22.3431 0.928932C21.9526 0.538408 21.3195 0.538408 20.9289 0.928932C20.5384 1.31946 20.5384 1.95262 20.9289 2.34315L26.5858 8L20.9289 13.6569C20.5384 14.0474 20.5384 14.6805 20.9289 15.0711C21.3195 15.4616 21.9526 15.4616 22.3431 15.0711L28.7071 8.70711ZM0 9H28V7H0V9Z" fill="#A19377"></path></svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <div class="collection-col-inner">
+              <p class="badge">
+                {{- block.settings.badge2 -}}
+              </p>
+              <div class="product-card ">
+                <div class="product-card__image">
+                  <a href="{{ block.settings.collection2.url }}">
+                    <div class="aspect-ratio img-fill" style="max-width: 100%; width: 100%; --aspect-ratio: ">
+                      <img class="lazyload--fade lazyautosizes lazyloaded"
+                        data-src="{{ block.settings.collection_image2 | image_url: width: 300 }}"
+                        data-widths="[200,300,400,600]" 
+                        data-sizes="auto" 
+                        alt="image" 
+                        loading="lazy"
+                        data-media-id="" 
+                        sizes="274px"
+                        height="{{ block.settings.collection_image2.height }}"
+                        width="{{ block.settings.collection_image2.width }}"
+                        src="{{ block.settings.collection_image2 | image_url: width: 300 }}">
+                    </div>
+                  </a>
+                </div>
+              
+                <a href="{{ block.settings.collection2.url }}">
+                  <h3 class="product-card__title blue">
+                    {{ block.settings.collection2_title | default: block.settings.collection2.title }}
+                  </h3>
+                  
+                  <div class="product-card__swatches">
+                    {% for swatch in block.settings.collection2.metafields.custom.collection_swatch_images.value %}
+                      {{ swatch | image_url: width: 100 | image_tag: width: 25, loading: 'lazy', class: 'collection-swatch-img product-card__swatch' }}
+                    {% endfor %}
+
+                    {% if block.settings.collection2_show_more != blank %}
+                      <small>+{{ block.settings.collection2_show_more }} more</small>
+                    {% endif %}                    
+                  </div>                
+                </a>
+
+        
+                <a href="{{ block.settings.collection2.url }}" class="text-link gold-secondary--dark product-card__link">
+                  Shop Now 
+                  <span> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="16" viewBox="0 0 29 16" fill="none"><path d="M28.7071 8.70711C29.0976 8.31658 29.0976 7.68342 28.7071 7.29289L22.3431 0.928932C21.9526 0.538408 21.3195 0.538408 20.9289 0.928932C20.5384 1.31946 20.5384 1.95262 20.9289 2.34315L26.5858 8L20.9289 13.6569C20.5384 14.0474 20.5384 14.6805 20.9289 15.0711C21.3195 15.4616 21.9526 15.4616 22.3431 15.0711L28.7071 8.70711ZM0 9H28V7H0V9Z" fill="#A19377"></path></svg>
+                  </span>
+                </a>
+              </div>
+            </div>            
+          </div>
+
+          
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Custom Collection",
+    "class": "custom-collection-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Title"
+      }
+    ],
+    "blocks": [
+    {
+     "type": "block",
+     "name": "Collection-col",
+     "limit":4,
+     "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Enter type"
+        },
+       {
+          "type": "header",
+          "content": "Product 1"
+        },
+         {
+          "type": "text",
+          "id": "badge1",
+          "label": "Enter Badge"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_image1",
+          "label": "Collection image"
+        },
+        {
+          "type": "collection",
+          "id": "collection1",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "collection1_title",
+          "label": "Collection title",
+          "info": "if not set, it will pick the default one"
+        },
+        {
+          "type": "text",
+          "id": "collection1_show_more",
+          "label": "Show more number"
+        },       
+        {
+          "type": "header",
+          "content": "Product 2"
+        },
+        {
+          "type": "text",
+          "id": "badge2",
+          "label": "Enter Badge"
+        },
+        {
+          "type": "image_picker",
+          "id": "collection_image2",
+          "label": "Collection image"
+        },
+        {
+          "type": "collection",
+          "id": "collection2",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "collection2_title",
+          "label": "Collection title",
+          "info": "if not set, it will pick the default one"
+        },
+        {
+          "type": "text",
+          "id": "collection2_show_more",
+          "label": "Show more number"
+        }       
+      ]
+    }
+  
+  ],
+    "presets": [
+    {
+      "name": "Custom Collection",
+      "settings": {}
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
 

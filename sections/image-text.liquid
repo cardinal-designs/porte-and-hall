@@ -1,113 +1,4 @@
-<section class="Section {{ section.settings.custom-class }}">
-  {%- capture section_content -%}
-    <div class="FeatureText__ContentWrapper">
-      <div class="FeatureText__Content">
-        {%- if section.settings.subheading != blank or section.settings.title != blank or section.settings.content != blank -%}
-          <header class="SectionHeader">
-            {%- if section.settings.subheading != blank -%}
-              <h4 class="SectionHeader__SubHeading">{{ section.settings.subheading | escape }}</h4>
-            {%- endif -%}
-
-            {%- if section.settings.title != blank -%}
-              <div class="SectionHeader__Heading">{{ section.settings.title }}</div>
-            {%- endif -%}
-
-            {%- if section.settings.content != blank -%}
-              <div class="SectionHeader__Description">
-                {{ section.settings.content }}
-              </div>
-            {%- endif -%}
-
-            {%- if section.settings.link_text != blank -%}
-              <a href="{{ section.settings.link_url }}" class="Link Link--underline">{{ section.settings.link_text | escape }}</a>
-            {%- endif -%}
-          </header>
-        {%- endif -%}
-      </div>
-    </div>
-  {%- endcapture -%}
-
-  {%- capture section_image -%}
-    {%- if section.settings.image != blank -%}
-      <div class="FeatureText__ImageWrapper">
-        
-          {% render 'lazy-image', image: section.settings.image, fade: true, classes: 'img-fill' %}
-      
-      </div>
-    {%- endif -%}
-  {%- endcapture -%}
-
-  <div class="FeatureText">
-       {{- section_content -}}
-      {{- section_image -}}
-      
-
-  </div>
-</section>
-
-{% schema %}
-{
-  "name": "Image with text",
-  "class": "image-with-text",
-  "settings": [
-     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image",
-      "info": "1200 x 1200px .png recommended"
-    },
-    {
-      "type": "text",
-      "id": "subheading",
-      "label": "Sub-heading",
-      "default": "Sub-heading"
-    },
-    {
-      "type": "richtext",
-      "id": "title",
-      "label": "Heading",
-      "default": "<p>Add Title...</p>"
-    },
-   
-    {
-      "type": "richtext",
-      "id": "content",
-      "label": "Text",
-      "default": "<p>Add your own custom content to give more information about your store, availability details...</p>"
-    },
-    {
-      "type": "text",
-      "id": "link_text",
-      "label": "Link text"
-    },
-    {
-      "type": "url",
-      "id": "link_url",
-      "label": "Link URL"
-    },
-    {
-      "type": "text",
-      "id": "custom-class",
-      "label": "custom-class"
-    }
-  ],
-  "presets": [
-    {
-      "category": "Text",
-      "name": "Image with text",
-      "settings": {}
-    }
-  ]
-}
-{% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
-
-<style>
+{% style %}
   .image-with-text .home-banner .FeatureText{
      display:grid;
     grid-template-columns: 1fr 1fr;
@@ -237,4 +128,115 @@
     }
   }
   
-</style>
+{% endstyle %}
+ 
+ <section class="Section {{ section.settings.custom-class }}">
+  {%- capture section_content -%}
+    <div class="FeatureText__ContentWrapper">
+      <div class="FeatureText__Content">
+        {%- if section.settings.subheading != blank or section.settings.title != blank or section.settings.content != blank -%}
+          <header class="SectionHeader">
+            {%- if section.settings.subheading != blank -%}
+              <h4 class="SectionHeader__SubHeading">{{ section.settings.subheading | escape }}</h4>
+            {%- endif -%}
+
+            {%- if section.settings.title != blank -%}
+              <div class="SectionHeader__Heading">{{ section.settings.title }}</div>
+            {%- endif -%}
+
+            {%- if section.settings.content != blank -%}
+              <div class="SectionHeader__Description">
+                {{ section.settings.content }}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.link_text != blank -%}
+              <a href="{{ section.settings.link_url }}" class="Link Link--underline">{{ section.settings.link_text | escape }}</a>
+            {%- endif -%}
+          </header>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endcapture -%}
+
+  {%- capture section_image -%}
+    {%- if section.settings.image != blank -%}
+      <div class="FeatureText__ImageWrapper">
+        
+          {% render 'lazy-image', image: section.settings.image, fade: true, classes: 'img-fill' %}
+      
+      </div>
+    {%- endif -%}
+  {%- endcapture -%}
+
+  <div class="FeatureText">
+       {{- section_content -}}
+      {{- section_image -}}
+      
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image with text",
+  "class": "image-with-text",
+  "settings": [
+     {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "1200 x 1200px .png recommended"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub-heading",
+      "default": "Sub-heading"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "<p>Add Title...</p>"
+    },
+   
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Text",
+      "default": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "text",
+      "id": "custom-class",
+      "label": "custom-class"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "Image with text",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+

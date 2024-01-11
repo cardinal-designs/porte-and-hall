@@ -1,20 +1,22 @@
-{%- capture supported_sizes -%}{%- render 'image-size', sizes: '200,300,400,600,800,900,1000,1200,1400,1600,1800', image: image -%}{%- endcapture -%}
-{% if width != blank %}
-  {% assign image_url = image | image_url: width: width %}
-{% else %}
-  {% assign image_url = image | img_url: 'master' %}
-{% endif %}
-
 <div
   class="aspect-ratio{% if fill %} img-fill{% endif %} {{ classes }}"
   style="max-width: 100%; width: 100%; --aspect-ratio: {{ image.aspect_ratio }}"
 >
-  <img
-    class="lazyload{% if blur %} lazyload--blur{% endif %}{% if fade %} lazyload--fade{% endif %}"
-    data-src="{{ image_url }}"
-    data-widths="[{{- supported_sizes -}}]"
-    data-sizes="auto"
-    alt="{{ image.alt | escape }}"
-    data-media-id="{{ image.id }}"
-  >
+  
+    <img
+      srcset="{% if image.width >= 165 %}{{ image | image_url: width: 165 }} 165w,{% endif %}
+        {% if image.width >= 535 %}{{ image | image_url: width: 535 }} 535w,{% endif %}
+        {% if image.width >= 750 %}{{ image | image_url: width: 750 }} 750w,{% endif %}
+        {% if image.width >= 1000 %}{{ image | image_url: width: 1000 }} 1000w,{% endif %}
+        {% if image.width >= 1500 %}{{ image | image_url: width: 1500 }} 1500w,{% endif %}
+        {% if image.width >= 3000 %}{{ image | image_url: width: 3000 }} 3000w,{% endif %}
+        {{ image | img_url: 'master' }} {{ image.width }}w"
+      src="{{ image | img_url: '1500x' }}"
+      sizes="100vw"
+      alt="{{ image.alt | escape }}"
+      height="{{ image.height }}"
+      width="{{ image.width }}"
+      loading="lazy"
+      class="lazyload{% if blur %} lazyload--blur{% endif %}{% if fade %} lazyload--fade{% endif %}"
+    >
 </div>
