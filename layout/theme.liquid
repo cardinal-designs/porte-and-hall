@@ -112,7 +112,10 @@
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
     
     {{ 'base.css' | asset_url | stylesheet_tag }}
+
     <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'global.js' | asset_url }}" defer></script>
+    <script src="{{ 'custom.js' | asset_url }}" defer></script>
 
     <script src="{{ 'preloader.js' | asset_url }}"></script>
     <script src="{{ 'bootstrap.js' | asset_url }}"></script>
@@ -123,8 +126,6 @@
     <script data-lazy-src="{{ 'micromodal.min.js' | asset_url }}"></script>
     <script data-lazy-src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
     <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
-    <script src="{{ 'global.js' | asset_url }}" defer></script>
-    <script src="{{ 'custom.js' | asset_url }}" defer></script>
 
 
     {%- assign content_for_header = content_for_header | replace: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'" -%}
