@@ -103,12 +103,18 @@
     {% endif %}
 
     {% render 'meta-tags' %}
+    <style>body{
+    background: white;
+    }</style>
 
     <link rel="stylesheet" data-lazy-href="{{ 'swiper-bundle.min.css' | asset_url }}" as="style" />
     <link rel="stylesheet" href="{{ 'base.css' | asset_url }}" as="style" />
     {% render 'css-variables' %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+
+
+    {% comment %} {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }} {% endcomment %}
     
     <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer></script>
