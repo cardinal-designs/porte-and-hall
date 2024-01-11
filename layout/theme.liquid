@@ -108,24 +108,16 @@
     <script src="{{ 'preconnect_resources.js' | asset_url }}"></script>
     <script src="{{ 'lazy.js' | asset_url }}"></script>
 
-    <link href="{{ 'base.css' | asset_url }}" as="style" />
-
-    <link rel="preload" data-lazy-href="{{ 'swiper-bundle.min.css' | asset_url }}" as="style" />
-    <link rel="preload" data-lazy-src="{{ 'gsap.min.js' | asset_url }}" as="script" />
-    <link rel="preload" data-lazy-src="{{ 'lazysizes.min.js' | asset_url }}" as="script" />
-    <link rel="preload" data-lazy-src="{{ 'micromodal.min.js' | asset_url }}" as="script" />
-    <link rel="preload" data-lazy-src="{{ 'swiper-bundle.min.js' | asset_url }}" as="script" />
-    <link rel="preload" data-lazy-src="{{ 'ajax-pagination.js' }}" as="script" />
-    <link rel="preload" data-lazy-src="{{ 'global.js'| asset_url }}" as="script" />
-    <link rel="preload" data-lazy-src="{{ 'custom.js' | asset_url }}" as="script" />
+    <link rel="stylesheet" data-lazy-href="{{ 'swiper-bundle.min.css' | asset_url }}" as="style" />
+    <link rel="stylesheet" data-lazy-href="{{ 'base.css' | asset_url }}" as="style" />
     
-    <script src="{{ 'gsap.min.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'micromodal.min.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'ajax-pagination.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
+    <script data-lazy-src="{{ 'gsap.min.js' | asset_url }}"></script>
+    <script data-lazy-src="{{ 'micromodal.min.js' | asset_url }}"></script>
+    <script data-lazy-src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
+    <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
+    <script data-lazy-src="{{ 'global.js' | asset_url }}"></script>
+    <script data-lazy-src="{{ 'custom.js' | asset_url }}"></script>
 
 
     {%- assign content_for_header = content_for_header | replace: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'" -%}
