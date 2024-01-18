@@ -13,11 +13,13 @@ Version: 3.1.10
   window.dataLayer = window.dataLayer || [];
 </script>
 <script>
+  window.addEventListener("lazy-scripts-loaded", () => {
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
       new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
       "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,"script","dataLayer","GTM-MGNBN64");
+  }); 
 </script>
 <!-- End Google Tag Manager -->
 <script id="elevar-gtm-suite-config" type="application/json">{"gtm_id": "GTM-MGNBN64", "event_config": {"cart_reconcile": true, "cart_view": true, "checkout_complete": true, "checkout_step": true, "collection_view": true, "defers_collection_loading": false, "defers_search_results_loading": false, "product_add_to_cart": false, "product_add_to_cart_ajax": true, "product_remove_from_cart": true, "product_select": true, "product_view": true, "search_results_view": true, "user": true, "save_order_notes": true}, "gtm_suite_script": "https://shopify-gtm-suite.getelevar.com/shops/e17f598d52c1ccb456579c475aa5f52a9cbe75c8/3.1.10/gtm-suite.js", "consent_enabled": false, "apex_domain": null}</script>
