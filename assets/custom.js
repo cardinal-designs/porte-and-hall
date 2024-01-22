@@ -49,6 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(err => console.log(err))
   }
-  
+  getMetaFields(productID)
 });
 
