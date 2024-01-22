@@ -35,3 +35,20 @@ customElements.define('form-validation',class formValidation extends HTMLElement
     this.querySelector('.js-error-messages').innerHTML = this.errorMessage.join('');
   }
 })
+
+document.addEventListener('DOMContentLoaded', function() {
+  let productID = 6576948772927;
+  function getMetaFields(productID) {
+    const shopURL = '{{ shop.url }}';
+    const urlForMeta = shopURL + '/admin/products/' + productID + '/metafields.json';
+    
+    fetch(urlForMeta)
+    .then(response => response.json())
+    .then(function(data) {
+      console.log("	--Product Metafields: " + data);
+    })
+    .catch(err => console.log(err))
+  }
+  
+});
+
