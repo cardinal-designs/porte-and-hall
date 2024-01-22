@@ -222,6 +222,26 @@
     </ul>
 
     <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        cinsole.log("helloo")
+        let productID = 6576948772927;
+        function getMetaFields(productID) {
+          const shopURL = '{{ shop.url }}';
+          const urlForMeta = shopURL + '/admin/products/' + productID + '/metafields.json';
+          
+          fetch(urlForMeta)
+          .then(response => response.json())
+          .then(function(data) {
+            console.log("	--Product Metafields: " + data);
+          })
+          .catch(err => console.log(err))
+        }
+        getMetaFields(productID)
+      });
+
+    </script>
+
+    <script>
       window.shopUrl = '{{ shop.url }}';
       window.routes = {
         cart_add_url: '{{ routes.cart_add_url }}',
