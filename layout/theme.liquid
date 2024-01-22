@@ -220,27 +220,7 @@
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
     </ul>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        console.log("helloo")
-        let productID = 6576948772927;
-        function getMetaFields(productID) {
-          const shopURL = '{{ shop.url }}';
-          const urlForMeta = shopURL + '/admin/products/' + productID + '/metafields.json';
-          
-          fetch(urlForMeta)
-          .then(response => response.json())
-          .then(function(data) {
-            console.log("	--Product Metafields: " + data);
-          })
-          .catch(err => console.log(err))
-        }
-        getMetaFields(productID)
-      });
-
-    </script>
-
+    
     <script>
       window.shopUrl = '{{ shop.url }}';
       window.routes = {
