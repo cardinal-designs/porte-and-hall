@@ -37,6 +37,7 @@ customElements.define('form-validation',class formValidation extends HTMLElement
 })
 
 document.addEventListener('DOMContentLoaded', function() {
+  cinsole.log("helloo")
   let productID = 6576948772927;
   function getMetaFields(productID) {
     const shopURL = '{{ shop.url }}';
