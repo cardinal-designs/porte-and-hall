@@ -18,6 +18,7 @@
           "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
           "settings": {
             "title": "{{ block.repeater.question.value }}",
+            "title_richtext": "",
             "answer": "{{ block.repeater.answer | metafield_tag }}"
           }
         },
@@ -25,6 +26,7 @@
           "type": "faq",
           "settings": {
             "title": "Do you offer larger sizes of The Insider?",
+            "title_richtext": "",
             "answer": "<p>We do not offer larger sizes at this time. Our current sizes are: Doormat 2'2\" x 3'0\", Runner 2'2\" x 6' 7\" and Area Mat 4'6\" x 6'6\".<\/p>"
           }
         },
@@ -32,6 +34,7 @@
           "type": "faq",
           "settings": {
             "title": "Is The Insider safe on hardwood floors, radient heated floors and luxury vinyl plank flooring?",
+            "title_richtext": "",
             "answer": "<p>Yes, the Insider is safe to use on all floor types. The Insider has been tested on heated floors and can withstand heat up to 97 degrees fahrenheit. It is also safe on LVP floors. It will not transfer or leave residue.<\/p>"
           }
         }
@@ -55,6 +58,7 @@
           "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
           "settings": {
             "title": "{{ block.repeater.question.value }}",
+            "title_richtext": "",
             "answer": "{{ block.repeater.answer | metafield_tag }}"
           }
         }
@@ -76,6 +80,7 @@
           "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
           "settings": {
             "title": "{{ block.repeater.question.value }}",
+            "title_richtext": "",
             "answer": "{{ block.repeater.answer | metafield_tag }}"
           }
         }
@@ -97,6 +102,7 @@
           "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
           "settings": {
             "title": "{{ block.repeater.question.value }}",
+            "title_richtext": "",
             "answer": "{{ block.repeater.answer | metafield_tag }}"
           }
         }
@@ -117,6 +123,7 @@
           "type": "faq",
           "settings": {
             "title": "How do I obtain a tracking number for my order?",
+            "title_richtext": "",
             "answer": "<p>Once an order is placed, you will receive a confirmation email. Once your order has shipped, you will receive a shipping confirmation email with tracking information. If you do not receive a tracking number please contact <a href=\"mailto:support@porteandhall.com.\" target=\"_blank\" title=\"mailto:support@porteandhall.com.\">support@porteandhall.com.<\/a><\/p>"
           }
         },
@@ -124,6 +131,7 @@
           "type": "faq",
           "settings": {
             "title": "Do you ship internationally?",
+            "title_richtext": "",
             "answer": "<p>We do not currently ship to international destinations.<\/p>"
           }
         },
@@ -131,6 +139,7 @@
           "type": "faq",
           "settings": {
             "title": "How much does shipping cost?",
+            "title_richtext": "",
             "answer": "<p>Shipping rates vary based on size and weight of the box and number of boxes in an order.<\/p>"
           }
         },
@@ -138,6 +147,7 @@
           "type": "faq",
           "settings": {
             "title": "What payment methods do you accept?",
+            "title_richtext": "",
             "answer": "<p>We accept Visa, Mastercard, American Express, PayPal, and Apple Pay.<\/p>"
           }
         },
@@ -145,6 +155,7 @@
           "type": "faq",
           "settings": {
             "title": "How long does shipping take?",
+            "title_richtext": "",
             "answer": "<p>All orders (unless a product is noted as presale) will be shipped from our warehouse in Connecticut within 5 business days. Customers typically receive their order 7-10 days after the order was placed. Once your order has shipped, you will receive a shipping confirmation email with tracking information.<\/p>"
           }
         }
@@ -169,13 +180,15 @@
           "type": "faq",
           "settings": {
             "title": "What is your return\/exchange policy?",
-            "answer": "<p>P+H wants our customers to be completely happy with their purchase. We will accept returns within thirty (30) days of order placement for a full refund. Goods must be returned unused in original packaging. Return shipping charges will be deducted from the original form of payment.<br\/><br\/>If you need to return an item, please <a href=\"https:\/\/porteandhall.loopreturns.com\/#\/\" title=\"https:\/\/porteandhall.loopreturns.com\/#\/\">click here<\/a>. A return label will be provided to you. If you experience any issues getting a return label please email us at <a href=\"mailto:support@porteandhall.com\" target=\"_blank\" title=\"mailto:support@porteandhall.com\">support@porteandhall.com<\/a><\/p>"
+            "title_richtext": "",
+            "answer": "<p>P+H wants our customers to be completely happy with their purchase. We will accept returns within thirty (30) days of order placement for a full refund. Goods must be returned unused in original packaging. Return shipping charges will be deducted from the original form of payment. All Sale products are final sale.<br\/><br\/>If you need to return an item, please <a href=\"https:\/\/porteandhall.loopreturns.com\/#\/\" title=\"https:\/\/porteandhall.loopreturns.com\/#\/\">click here<\/a>. A return label will be provided to you. If you experience any issues getting a return label please email us at <a href=\"mailto:support@porteandhall.com\" target=\"_blank\" title=\"mailto:support@porteandhall.com\">support@porteandhall.com<\/a><\/p>"
           }
         },
         "fe9fe020-398e-4749-a79a-2e3a023e2ee8": {
           "type": "faq",
           "settings": {
             "title": "How do I return an item?",
+            "title_richtext": "",
             "answer": "<p>Please visit our <a href=\"https:\/\/porteandhall.loopreturns.com\/#\/\" title=\"https:\/\/porteandhall.loopreturns.com\/#\/\">returns portal<\/a>. Enter your order number and the email address used to place the order. A return label will be generated and further instructions will be provided. If you experience any issues with our returns portal please reach out to <a href=\"mailto:support@porteandhall.com\" target=\"_blank\" title=\"mailto:support@porteandhall.com\">support@porteandhall.com<\/a>.<\/p>"
           }
         },
@@ -183,6 +196,7 @@
           "type": "faq",
           "settings": {
             "title": "Do you charge a return fee? What is the return fee?",
+            "title_richtext": "",
             "answer": "<p>Return shipping fees are due to extremely high shipping costs that our carriers have imposed on us. The return shipping fee is only a fraction of the actual shipping cost. The return shipping fees range from $10-$35 depending on the product you are returning. We do not charge any other restocking fees.<\/p>"
           }
         }
@@ -205,6 +219,7 @@
           "type": "faq",
           "settings": {
             "title": "Are custom sizes available?",
+            "title_richtext": "",
             "answer": "<p>We do not currently offer custom sizes.<\/p>"
           }
         },
@@ -212,6 +227,7 @@
           "type": "faq",
           "settings": {
             "title": "Do you offer custom patterns?",
+            "title_richtext": "",
             "answer": "<p>We currently do not offer custom patterns. For collaborations please reach out to <a href=\"mailto:support@porteandhall.com\" target=\"_blank\" title=\"mailto:support@porteandhall.com\">support@porteandhall.com<\/a>.<\/p>"
           }
         },
@@ -219,6 +235,7 @@
           "type": "faq",
           "settings": {
             "title": "Where can I buy your products?",
+            "title_richtext": "",
             "answer": "<p>P+H currently sells inclusively through our website <a href=\"https:\/\/porteandhall.com\/\" title=\"https:\/\/porteandhall.com\/\"><span style=\"text-decoration:underline\">www.porteandhall.com<\/span><\/a><\/p>"
           }
         },
@@ -226,6 +243,7 @@
           "type": "faq",
           "settings": {
             "title": "How do I join your email list?",
+            "title_richtext": "",
             "answer": "<p>We’d love to have you on our email list to share new product information. Please<a href=\"https:\/\/porteandhall.com\/account\/login?return_url=%2Faccount\" title=\"https:\/\/porteandhall.com\/account\/login?return_url=%2Faccount\"> <span style=\"text-decoration:underline\">click here to join!<\/span><\/a><\/p>"
           }
         },
@@ -233,6 +251,7 @@
           "type": "faq",
           "settings": {
             "title": "What is your privacy policy?",
+            "title_richtext": "",
             "answer": "<p>You can view it here: <a href=\"https:\/\/porteandhall.com\/pages\/privacy-policy\" title=\"https:\/\/porteandhall.com\/pages\/privacy-policy\"><span style=\"text-decoration:underline\">Privacy Policy<\/span><\/a><\/p>"
           }
         },
@@ -240,6 +259,7 @@
           "type": "faq",
           "settings": {
             "title": "Do you have a trade program for interior designers?",
+            "title_richtext": "",
             "answer": "<p>We do have a trade program. We are always interested in new partners and relationships for Porte + Hall. Please use this link to apply to our <a href=\"https:\/\/porteandhall.com\/pages\/designer-program\" title=\"https:\/\/porteandhall.com\/pages\/designer-program\">Designer Program<\/a><\/p>"
           }
         },
@@ -247,6 +267,7 @@
           "type": "faq",
           "settings": {
             "title": "How do I reset my password?",
+            "title_richtext": "",
             "answer": "<p>You can reset your password on the Account login page, click the following link to begin the process, <a href=\"https:\/\/porteandhall.com\/account\/login#recover\" title=\"https:\/\/porteandhall.com\/account\/login#recover\">Forgot your password?<\/a><\/p>"
           }
         },
@@ -254,6 +275,7 @@
           "type": "faq",
           "settings": {
             "title": "Do you have gift cards?",
+            "title_richtext": "",
             "answer": "<p>Yes we do! Check out our virtual gift cards <a href=\"https:\/\/porteandhall.com\/products\/rise-ai-giftcard\" title=\"https:\/\/porteandhall.com\/products\/rise-ai-giftcard\">here.<\/a><\/p>"
           }
         },
@@ -261,6 +283,7 @@
           "type": "faq",
           "settings": {
             "title": "How do I use my promo code?",
+            "title_richtext": "",
             "answer": "<p>You can redeem your promo code on the Checkout page, under the Order Summary Section in the designated field at checkout that is labeled “Gift Card or Discount Code.”<\/p>"
           }
         },
@@ -268,6 +291,7 @@
           "type": "faq",
           "settings": {
             "title": "When will a new collection be available?",
+            "title_richtext": "",
             "answer": "<p>We are working on it! We are always launching new collections. Please join our <a href=\"https:\/\/porchandhall.com\/pages\/faq#shopify-section-footer\">email list<\/a> to be notified of new product launches.<\/p>"
           }
         }
