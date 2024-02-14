@@ -56,7 +56,20 @@
                 <div class="field">
                   <input class="field__input" type="text" id="CompanyWebsite" name="contact[Company Website]" placeholder="{{ 'templates.designer.form.company_website' | t }}">
                 </div> 
-
+                
+                <div class="select field">
+                  <select id="Category" name="contact[Category]" class="field__input selected">
+                    <option value="" class="selected">Select a state</option>
+                    <option value="Interior Designer">Interior Designer</option>
+                    <option value="Architect">Architect</option>
+                    <option value="Contractor">Contractor</option>
+                    <option value="Stager">Stager</option>
+                    <option value="Rental/Hotel Manager">Rental/Hotel Manager</option>
+                    <option value="Property Manager">Property Manager</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div> 
+                
                 <div class="field">
                   <input class="field__input" type="tel" id="PhoneNumber" name="contact[Business phone number]" placeholder="{{ 'templates.designer.form.phone' | t }}"/>
                 </div>
