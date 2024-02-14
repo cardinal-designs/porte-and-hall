@@ -158,6 +158,14 @@
             "title_richtext": "",
             "answer": "<p>All orders (unless a product is noted as presale) will be shipped from our warehouse in Connecticut within 5 business days. Customers typically receive their order 7-10 days after the order was placed. Once your order has shipped, you will receive a shipping confirmation email with tracking information.<\/p>"
           }
+        },
+        "faq_TQBU4R": {
+          "type": "faq",
+          "settings": {
+            "title": "Shipping Policy",
+            "title_richtext": "",
+            "answer": "<p>All orders are shipped within 7 business days. Shipping is available in the continental United States. Porte + Hall ships with UPS, USPS and FedEx. Porte + Hall does not ship to PO Boxes. Shipping is not available to Alaska, Hawaii, Puerto Rico or U.S. Virgin Islands. We currently do not ship to international destinations. Shipping rates vary based on size and weight of the box and number of boxes in an order. Payment methods we accept: Visa, Mastercard, American Express, PayPal and Apply Pay. Once an order is placed, you will receive a confirmation email. Once your order has shipped, you will receive a shipping confirmation email with tracking information. If you do not receive a tracking number please contact <a href=\"https:\/\/porchandhall.myshopify.com\/mailto\">support@porteandhall.com<\/a>.<\/p>"
+          }
         }
       },
       "block_order": [
@@ -165,7 +173,8 @@
         "fb60b197-4fa3-4f24-bd65-8598e12d96b3",
         "2cc580e0-bc3e-426d-865e-dab80bedec5b",
         "9176525a-ac06-4428-939f-31f6276e313d",
-        "c898dbcb-2fc9-4d05-992a-64a949434af2"
+        "c898dbcb-2fc9-4d05-992a-64a949434af2",
+        "faq_TQBU4R"
       ],
       "settings": {
         "heading": "Shipping & Payment Methods",
