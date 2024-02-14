@@ -157,9 +157,14 @@
                   <input class="field__input" type="text" id="InstaHandle" name="contact[Instagram Handle]" placeholder="{{ 'templates.designer.form.instagram' | t }}"/>
                 </div>
 
-                <div class="form__row">
-                  <input class="field__input" type="tel" id="Interested" name="contact[Interested]" placeholder="What collection are you the most interested in?"/>
-                </div>
+               <div class="select field">
+                  <select id="Interested" name="contact[Interested]" class="field__input selected">
+                    <option value="" class="selected">What collection are you the most interested in?</option>
+                    <option value="Insider - Indoor">Insider - Indoor</option>
+                    <option value="Outlier - Outdoor">Outlier - Outdoor</option>
+                    <option value="Innerweave - Indoor/Outdoor">Innerweave - Indoor/Outdoor</option>
+                  </select>
+                </div> 
               </div>
 
 
