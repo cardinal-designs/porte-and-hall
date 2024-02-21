@@ -1,0 +1,31 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "page_heading": "",
+        "subhead": "",
+        "image": "shopify:\/\/shop_images\/Rectangle_600_afdd9d4e-2ac5-4953-8125-1a557f66a497.jpg",
+        "section_height": "350",
+        "bg_color": "#f4f2ee"
+      }
+    },
+    "ac9a1099-817b-4064-8d5e-13b02703f2ef": {
+      "type": "sms-social",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Feb_File_000_1.png",
+        "logo_image": "shopify:\/\/shop_images\/Porte_Hall_FullLogo_RBG_Blue_1_1.png",
+        "title": "Get 15% off",
+        "subtitle": "Enter your email to get access to this exclusive offer. We'll email you the code.",
+        "middle_content": "Offer valid in the US only. <br>One use per code, cannot be combined with other offers.",
+        "bottom_content": "",
+        "klaviyo_code": "<div class=\"klaviyo-form-XUjyHG\"><\/div>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "ac9a1099-817b-4064-8d5e-13b02703f2ef"
+  ]
+}
