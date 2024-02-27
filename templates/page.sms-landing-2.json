@@ -22,10 +22,17 @@
         "bottom_content": "<p>By submitting this form and signing up for texts, you consent to receive marketing text messages (e.g. promos, cart reminders) from Thigh Society at the number provided, including messages sent by autodialer. Consent is not a condition of purchase. Msg & data rates may apply. Msg frequency varies. Unsubscribe at any time by replying STOP or clicking the unsubscribe link (where available). <a href=\"https:\/\/www.porteandhall.com\/pages\/privacy-policy\" target=\"_blank\" title=\"https:\/\/www.porteandhall.com\/pages\/privacy-policy\">Privacy Policy<\/a> & <a href=\"https:\/\/www.porteandhall.com\/pages\/terms-of-service\" target=\"_blank\" title=\"https:\/\/www.porteandhall.com\/pages\/terms-of-service\">Terms<\/a>.<\/p>",
         "klaviyo_code": "<div class=\"hide-desktop klaviyo-form-VJEEKn\"><\/div>\n<div class=\"hide-mobile klaviyo-form-XxNNfa\"><\/div>"
       }
+    },
+    "custom_liquid_i66d9w": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_html": "<div class=\"hide-desktop klaviyo-form-VJEEKn\"><\/div>\n<div class=\"hide-mobile klaviyo-form-XxNNfa\"><\/div>"
+      }
     }
   },
   "order": [
     "main",
-    "ac9a1099-817b-4064-8d5e-13b02703f2ef"
+    "ac9a1099-817b-4064-8d5e-13b02703f2ef",
+    "custom_liquid_i66d9w"
   ]
 }
