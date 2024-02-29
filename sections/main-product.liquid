@@ -353,7 +353,7 @@
             {% endif %}
 
             <div class="product__quantity-atc-wrapper  {% if product.available == false %}bis-styles{% endif %}">
-              <div class="product-form__input product-form__quantity {% if product.available == false%}visually-hidden{% endif%}">
+              <div class="product-form__input product-form__quantity {% if product.available == false or section.settings.hide_quantity == true %}visually-hidden{% endif%}">
                 <label class="form__label visually-hidden" for="Quantity-{{ section.id }}">
                   {{ 'products.product.quantity.label' | t }}
                 </label>
