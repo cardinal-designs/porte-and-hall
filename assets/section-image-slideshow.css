@@ -68,7 +68,7 @@
   bottom: 20px !important;
 }
 
-.indoor-mats-2.image-slideshow {
+.indoor-mats-2 .image-slideshow {
   display: none;
 }
 
@@ -89,7 +89,7 @@
     font-size: 28px;
   }
 
-  .indoor-mats-2.image-slideshow {
+  .indoor-mats-2 .image-slideshow {
     display: block;
   }
 }
