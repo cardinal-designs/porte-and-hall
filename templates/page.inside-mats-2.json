@@ -1,5 +1,17 @@
 {
   "sections": {
+    "image_text_JBkbbC": {
+      "type": "image-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/IMG_4401.jpg",
+        "subheading": "",
+        "title": "<p>Step inside (and onto)<br\/>a better mat.<\/p>",
+        "content": "<p>Created by our founder, an interior designer who couldn't settle for less.<\/p>",
+        "link_text": "SHOP NOW",
+        "link_url": "shopify:\/\/products\/the-insider-wild-side-dove-doormat",
+        "custom-class": "home-banner"
+      }
+    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -33,6 +45,7 @@
       "block_order": [
         "bd0708e9-d9bb-41bb-81cd-73cfaca002c8"
       ],
+      "disabled": true,
       "custom_css": [
         "a.button {background: var(--gold-secondary--dark);}",
         ".image-slideshow__slide:after {background-color: transparent;}"
@@ -440,6 +453,7 @@
     }
   },
   "order": [
+    "image_text_JBkbbC",
     "main",
     "a403e2bd-6595-4763-8d67-02cc9878f906",
     "3d366c6f-b825-4c2d-a879-6d33132c33f5",
