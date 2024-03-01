@@ -186,7 +186,7 @@
   
   </head>
 
-  <body class="template-{{ template }} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
+  <body class="{{ template.name }} template-{{ template }} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
     <script>
     if (window.location.pathname == '/collections') {
       window.location.href = '/collections/shop-all'
