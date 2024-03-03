@@ -4,12 +4,12 @@
       "type": "main-product",
       "settings": {
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
-        "materials": "<p>{{ section.settings.collection.metafields.custom.materials | metafield_tag }}<\/p>",
-        "care": "<p>{{ section.settings.collection.metafields.custom.care | metafield_tag }}<\/p>",
-        "hide_pinterest": false,
-        "hide_dimensions": false,
-        "hide_shop_other": false,
-        "hide_quantity": false
+        "materials": "{{ section.settings.collection.metafields.custom.materials | metafield_tag }}",
+        "care": "{{ section.settings.collection.metafields.custom.care | metafield_tag }}",
+        "hide_pinterest": true,
+        "hide_dimensions": true,
+        "hide_shop_other": true,
+        "hide_quantity": true
       }
     },
     "other-sizes": {

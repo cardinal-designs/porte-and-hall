@@ -86,7 +86,9 @@
             <li class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
               {% render 'product-media', media: media, position: forloop.index %}
               <div class="product__media-buttons">
-                {% render 'pin-button', media: media %}
+                {% unless section.settings.hide_pinterest == true %}
+                  {% render 'pin-button', media: media %}
+                {% endunless %}
                 {% render 'zoom-button' %}
               </div>
             </li>
@@ -140,7 +142,7 @@
             {{ grouped_collection.metafields.custom.short_description | default: product.description }}
           </div>
         {% endif %}
-
+        {% unless section.settings.hide_dimensions == true %}
         <div class="product__dimensions--wrapper">
           <div class="dimensions__button">
             {%- render 'icon' with 'ruler' -%}
@@ -158,6 +160,7 @@
               </div> 
           </div>
         </div>
+        {% endunless %}
 
         {% for option in product.options_with_values %}
           <div class="product__variant-name body">
@@ -335,11 +338,13 @@
                   {% endfor %}
                 {%  endcapture %}
 
-                {% unless other_size_links == blank %}
-                  <div class="other-sizes__wrapper">
-                    <span>Shop other sizes:</span> {{ other_size_links }}
-                  </div>
-                {%  endunless %}
+                {% unless section.settings.hide_shop_other == true %}
+                  {% unless other_size_links == blank %}
+                    <div class="other-sizes__wrapper">
+                      <span>Shop other sizes:</span> {{ other_size_links }}
+                    </div>
+                  {% endunless %}
+                {% endunless %}
               {% endif %}
 
 
@@ -347,8 +352,8 @@
               <p class="product__restock-note body">{{ product.metafields.custom.restock_date }}</p>
             {% endif %}
 
-            <div class="product__quantity-atc-wrapper  {% if product.available == false %}bis-styles{% endif %}">
-              <div class="product-form__input product-form__quantity {% if product.available == false%}visually-hidden{% endif%}">
+            <div class="product__quantity-atc-wrapper  {% if product.available == false %}bis-styles{% endif %} {% if section.settings.hide_quantity == true %}no-quant__button{% endif %}">
+              <div class="product-form__input product-form__quantity {% if product.available == false or section.settings.hide_quantity == true %}visually-hidden{% endif%}">
                 <label class="form__label visually-hidden" for="Quantity-{{ section.id }}">
                   {{ 'products.product.quantity.label' | t }}
                 </label>
@@ -930,6 +935,30 @@
       "id": "care",
       "label": "Care",
       "info": "Connect collection metafields for care"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_pinterest",
+      "label": "Hide Pinterest",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_dimensions",
+      "label": "Hide Dimensions Box",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_shop_other",
+      "label": "Hide Shop Other Sizes",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_quantity",
+      "label": "Hide Quantity Selector",
+      "default": false
     }
   ]
 }

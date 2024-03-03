@@ -925,3 +925,7 @@ variant-selects {
 .other-size__divider:last-child {
   display: none;
 }
+
+.no-quant__button {
+  padding: 16px 50px;
+}
