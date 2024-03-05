@@ -117,43 +117,22 @@
             {%- else -%}
               <search-form class="search-modal__form">
             {%- endif -%}
-                <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form header__search-form">
-              <!-- <form action="{{ routes.search_url }}" method="get" role="search" class="header__search-form"> -->
-                <div class="header__search-group">
-                  <!-- <input
-                    class="header__search-input"
-                    id="Search-In-Modal"
-                    type="search"
-                    name="q"
-                    value="{{ search.terms | escape }}"
-                    placeholder="Search..."
-                  > -->
-                  <input
-                    class="search__input field__input"
-                    id="Search-In-Modal"
-                    type="search"
-                    name="q"
-                    value="{{ search.terms | escape }}"
-                    placeholder="{{ 'general.search.search' | t }}..."
-                    {%- if section.settings.enable_search -%}
-                      role="combobox"
-                      aria-expanded="false"
-                      aria-owns="predictive-search-results"
-                      aria-controls="predictive-search-results"
-                      aria-haspopup="listbox"
-                      aria-autocomplete="list"
-                      autocorrect="off"
-                      autocomplete="off"
-                      autocapitalize="off"
-                      spellcheck="false"
-                    {%- endif -%}
-                  >
-                  <input type="hidden" name="options[prefix]" value="last">
-                  <button class="header__search-button" aria-label="{{ 'general.search.search' | t }}">
-                    {% render 'icon', icon: 'search' %}
-                  </button>
-                </div>
-              </form>
+            <form action="{{ routes.search_url }}" method="get" role="search" class="header__search-form">
+              <div class="header__search-group">
+                <input
+                  class="header__search-input"
+                  id="Search-In-Modal"
+                  type="search"
+                  name="q"
+                  value="{{ search.terms | escape }}"
+                  placeholder="Search..."
+                >
+                <input type="hidden" name="options[prefix]" value="last">
+                <button class="header__search-button" aria-label="{{ 'general.search.search' | t }}">
+                  {% render 'icon', icon: 'search' %}
+                </button>
+              </div>
+            </form>
 
             {%- if section.settings.enable_search -%}
               </predictive-search>
