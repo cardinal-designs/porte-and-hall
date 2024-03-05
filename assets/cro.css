@@ -19,6 +19,11 @@
   .indoor-mats-2 .header__icons {
     display: none;
   }
+
+  .indoor-mats-2 .image-slideshow__block-content a {
+    margin: 24px auto 0;
+    width: 75%;
+  }
 }
 
 @media (min-width: 990px){
