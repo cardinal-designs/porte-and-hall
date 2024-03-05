@@ -3338,7 +3338,7 @@ iframe#preview-bar-iframe {
   display: none;
 }
 
-@media (max-width: 989px){
+/* @media (max-width: 989px){
   .indoor-mats-2 .header--inner {
     grid-template-areas: unset;
     display: flex;
@@ -3349,7 +3349,7 @@ iframe#preview-bar-iframe {
     display: none;
   }
 }
-
+ */
 @media (min-width: 990px){
   .indoor-mats-2 main#MainContent {
     padding-top: 100px;
