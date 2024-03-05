@@ -25,4 +25,12 @@
   .indoor-mats-2 main#MainContent {
     padding-top: 100px;
   }
+
+  .indoor-mats-2 .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description p {
+    font-size: 24px;
+  }
+
+  .indoor-mats-2 .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p {
+    font-size: 52px;
+  }
 }
