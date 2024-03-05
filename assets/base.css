@@ -3330,29 +3330,3 @@ iframe#preview-bar-iframe {
   margin-bottom: 50px;
 }
 
-.indoor-mats-2 .header__navigation {
-  display: none;
-}
-
-.indoor-mats-2 .header__icon--cart {
-  display: none;
-}
-
-@media (max-width: 989px){
-  .indoor-mats-2 .header--inner {
-    grid-template-areas: unset;
-    display: flex;
-    justify-content: center;
-  }
-
-  .indoor-mats-2 .header__icons {
-    display: none;
-  }
-}
-
-@media (min-width: 990px){
-  .indoor-mats-2 main#MainContent {
-    padding-top: 100px;
-  }
-}
-
