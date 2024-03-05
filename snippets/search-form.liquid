@@ -44,7 +44,7 @@
   </div>
 
   {%- if section.settings.enable_search -%}
-    <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search style="display: none;">
+    <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search style="display: none !important;">
       {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
     </div>
 
