@@ -3341,6 +3341,8 @@ iframe#preview-bar-iframe {
 @media (max-width: 989px){
   .indoor-mats-2 .header--inner {
     grid-template-areas: unset;
+    display: flex;
+    justify-content: center;
   }
 
   .indoor-mats-2 .header__icons {
