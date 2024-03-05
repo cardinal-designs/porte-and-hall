@@ -132,6 +132,9 @@
 
     <script data-lazy-src="{{ 'gsap.min.js' | asset_url }}"></script>
     <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
+    
+    <script src="{{ 'predictive-search.js' | asset_url }}" defer></script>
+    
 
     {%- assign content_for_header = content_for_header | replace: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'" -%}
 
