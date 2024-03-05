@@ -21,8 +21,9 @@
   }
 
   .indoor-mats-2 .image-slideshow__block-content a {
+    margin-left: unset;
     margin: 24px auto 0;
-    width: 75%;
+    width: 75%;  
   }
 }
 
