@@ -3342,6 +3342,10 @@ iframe#preview-bar-iframe {
   .indoor-mats-2 .header--inner {
     grid-template-areas: unset;
   }
+
+  .indoor-mats-2 .header__icons {
+    display: none;
+  }
 }
 
 @media (min-width: 990px){
