@@ -121,7 +121,7 @@ predictive-search[loading] .predictive-search__results-list:first-child {
 .predictive-search__item--link {
   display: grid;
   grid-template-columns: 5rem 1fr;
-  grid-column-gap: 2rem;
+  grid-column-gap: 1rem;
   grid-template-areas: 'product-image product-content';
 }
 
