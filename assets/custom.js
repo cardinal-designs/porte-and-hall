@@ -36,6 +36,7 @@ customElements.define('form-validation',class formValidation extends HTMLElement
   }
 })
 
+console.log('Custom.js');
 document.addEventListener('click', function(event) {
     console.log('Event',event.target);
     var headerSearch = document.querySelector('.header__search');
