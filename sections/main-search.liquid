@@ -134,6 +134,7 @@
         </div>
       {% endif %}
     {% endif %}
+    <div class="page-width">
     <div id="ProductGridContainer">
       {% if search.results.size == 0 and search.filters != empty %}
         <div class="template-search__results collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
@@ -242,6 +243,7 @@
         {% endpaginate %}
         </div>
       {% endif %}
+    </div>
     </div>
   {% endif %}
 </div>
