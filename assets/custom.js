@@ -35,3 +35,10 @@ customElements.define('form-validation',class formValidation extends HTMLElement
     this.querySelector('.js-error-messages').innerHTML = this.errorMessage.join('');
   }
 })
+
+document.addEventListener('click', function(event) {
+    var headerSearch = document.querySelector('.header__search');
+    if (!headerSearch.contains(event.target) && headerSearch.classList.contains('is-visible')) {
+        headerSearch.classList.remove('is-visible');
+    }
+});
