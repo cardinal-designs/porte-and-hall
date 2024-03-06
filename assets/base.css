@@ -1283,12 +1283,12 @@ header.condensed .header__menu {
 .header__search {
   width: 100%;
   padding: 20px 0;
-  position: absolute;
+  /* position: absolute;
   top: 100%;
   left: 0;
   background: white;
   border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid black; */
   opacity: 0;
   visibility: hidden;
   transition: opacity .3s ease, visibility .3s ease;
