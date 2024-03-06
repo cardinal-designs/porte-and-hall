@@ -98,7 +98,7 @@ input::-webkit-search-decoration {
 .header__search-container .field__input:focus,
 .header__search-container .field__input:not(:placeholder-shown),
 .header__search-container .field__input:-webkit-autofill {
-  padding: 2.2rem 1.5rem 0.8rem 2rem;
+  padding: 2.2rem 1.5rem 0.8rem 0;
   margin: 1px;
 }
 
