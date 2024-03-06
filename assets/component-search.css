@@ -118,12 +118,12 @@ input::-webkit-search-decoration {
 }
 
 .header__search-container .field__input::placeholder,
-.template-search{
+.template-search .field__input::placeholder{
   opacity: 0;
 }
 
 .header__search-container .field__button,
-.template-search{
+.template-search .field__button{
   align-items: center;
   background-color: transparent;
   border: 0;
@@ -141,15 +141,15 @@ input::-webkit-search-decoration {
 }
 
 .header__search-container .field__button > svg,
-.template-search{
+.template-search .field__button > svg{
   height: 2.5rem;
   width: 2.5rem;
 }
 
 .header__search-container .field__input:-webkit-autofill ~ .field__button,
-.template-search,
+.template-search .field__input:-webkit-autofill ~ .field__button,
 .header__search-container .field__input:-webkit-autofill ~ .field__label,
-.template-search{
+.template-search .field__input:-webkit-autofill ~ .field__label{
   color: rgb(0, 0, 0);
 }
 .template-search.spaced-section,
