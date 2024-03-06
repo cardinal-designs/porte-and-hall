@@ -74,7 +74,7 @@ input::-webkit-search-decoration {
 
 .header__search-container .field__label{
   font-size: 1.6rem;
-  left: calc(1px + 2rem);
+  left: 0;
   top: calc(1rem + 1px);
   margin-bottom: 0;
   pointer-events: none;
