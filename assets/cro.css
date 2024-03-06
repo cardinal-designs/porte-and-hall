@@ -16,7 +16,7 @@
 
 .indoor-mats-2 .image-slideshow__block-content {
   justify-content: center;
-  text-align: center;
+  text-align: center !important;
 }
 
 @media (max-width: 989px){
