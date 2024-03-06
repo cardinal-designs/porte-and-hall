@@ -328,7 +328,7 @@ console.log('Custom.js');
 document.addEventListener('click', function(event) {
     var headerSearch = document.querySelector('.header__search');
     var iconSearch = document.querySelector('.icon-search');
-    
+    console.log('event.target',event.target);
     if (!headerSearch.contains(event.target) && headerSearch.classList.contains('is-visible')) {
         if (event.target !== iconSearch && !iconSearch.contains(event.target)) {
             headerSearch.classList.remove('is-visible');
