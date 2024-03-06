@@ -331,7 +331,7 @@ document.addEventListener('click', function(event) {
   var iconSearch = document.querySelector('.icon-search');
   if (!headerSearch.contains(event.target) && headerSearch.classList.contains('is-visible')) {
     console.log('CLick');
-    if (!iconSearch.contains(event.target)) {
+    if (!event.target.contains(iconSearch)) {
       console.log('A');
       headerSearch.classList.remove('is-visible');
     }
