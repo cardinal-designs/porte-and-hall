@@ -53,18 +53,21 @@ input::-webkit-search-decoration {
 }
 /* Field */
 
-.header__search-container .field,.template-search .field{
+.header__search-container .field,
+.template-search .field{
   position: relative;
   width: 100%;
   display: flex;
   transition: box-shadow .1s ease;
 }
 
-.header__search-container .field--with-error {
+.header__search-container .field--with-error,
+.template-search .field--with-error{
   flex-wrap: wrap;
 }
 
-.header__search-container .field__input {
+.header__search-container .field__input,
+.template-search .field__input{
   flex-grow: 1;
   text-align: left;
   padding: 1.5rem 0;
@@ -72,7 +75,8 @@ input::-webkit-search-decoration {
   transition: box-shadow .1s ease;
 }
 
-.header__search-container .field__label{
+.header__search-container .field__label,
+.template-search .field__label{
   font-size: 1.6rem;
   left: 0;
   top: calc(1rem + 1px);
@@ -87,8 +91,11 @@ input::-webkit-search-decoration {
 }
 
 .header__search-container .field__input:focus ~ .field__label,
+.template-search .field__input:focus ~ .field__label,
 .header__search-container .field__input:not(:placeholder-shown) ~ .field__label,
-.header__search-container .field__input:-webkit-autofill ~ .field__label {
+.template-search .field__input:not(:placeholder-shown) ~ .field__label,
+.header__search-container .field__input:-webkit-autofill ~ .field__label,
+.template-search .field__input:-webkit-autofill ~ .field__label{
   font-size: 1rem;
   top: calc(1px + 0.5rem);
   left: 0;
@@ -96,21 +103,27 @@ input::-webkit-search-decoration {
 }
 
 .header__search-container .field__input:focus,
+.template-search .field__input:focus,
 .header__search-container .field__input:not(:placeholder-shown),
-.header__search-container .field__input:-webkit-autofill {
+.template-search .field__input:not(:placeholder-shown),
+.header__search-container .field__input:-webkit-autofill,
+.template-search .field__input:-webkit-autofill{
   padding: 2.2rem 1.5rem 0.8rem 0;
   margin: 1px;
 }
 
-.header__search-container .field__input::-webkit-search-cancel-button {
+.header__search-container .field__input::-webkit-search-cancel-button,
+.template-search .field__input::-webkit-search-cancel-button{
   display: none;
 }
 
-.header__search-container .field__input::placeholder{
+.header__search-container .field__input::placeholder,
+.template-search{
   opacity: 0;
 }
 
-.header__search-container .field__button {
+.header__search-container .field__button,
+.template-search{
   align-items: center;
   background-color: transparent;
   border: 0;
@@ -127,15 +140,19 @@ input::-webkit-search-decoration {
   width: 4.4rem;
 }
 
-.header__search-container .field__button > svg {
+.header__search-container .field__button > svg,
+.template-search{
   height: 2.5rem;
   width: 2.5rem;
 }
 
 .header__search-container .field__input:-webkit-autofill ~ .field__button,
-.header__search-container .field__input:-webkit-autofill ~ .field__label {
+.template-search,
+.header__search-container .field__input:-webkit-autofill ~ .field__label,
+.template-search{
   color: rgb(0, 0, 0);
 }
-.template-search.spaced-section {
+.template-search.spaced-section,
+.template-search{
     margin-top: 50px;
 }
