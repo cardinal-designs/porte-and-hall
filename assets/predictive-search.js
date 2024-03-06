@@ -325,6 +325,7 @@ class PredictiveSearch extends SearchForm {
 customElements.define('predictive-search', PredictiveSearch);
 
 document.addEventListener('click', function(event) {
+    console.log('Event',event.target);
     var headerSearch = document.querySelector('.header__search');
     var iconSearch = document.querySelector('.icon-search');
     if (!event.target.classList.contains('icon-search')) {
