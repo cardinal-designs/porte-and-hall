@@ -330,7 +330,10 @@ document.addEventListener('click', function(event) {
     var iconSearch = document.querySelector('.icon-search');
     console.log('event.target',event.target);
     if (!headerSearch.contains(event.target) && headerSearch.classList.contains('is-visible')) {
+      console.log('A');
         if (event.target !== iconSearch && !iconSearch.contains(event.target)) {
+      console.log('B');
+          
             headerSearch.classList.remove('is-visible');
         }
     }
