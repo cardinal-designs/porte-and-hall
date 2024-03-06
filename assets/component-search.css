@@ -57,7 +57,7 @@ input::-webkit-search-decoration {
   position: relative;
   width: 100%;
   display: flex;
-  transition: box-shadow var(--duration-short) ease;
+  transition: box-shadow .1s ease;
 }
 
 .header__search-container .field--with-error {
@@ -69,7 +69,7 @@ input::-webkit-search-decoration {
   text-align: left;
   padding: 1.5rem;
   margin: 1px;
-  transition: box-shadow var(--duration-short) ease;
+  transition: box-shadow .1s ease;
 }
 
 .header__search-container .field__label{
@@ -79,9 +79,9 @@ input::-webkit-search-decoration {
   margin-bottom: 0;
   pointer-events: none;
   position: absolute;
-  transition: top var(--duration-short) ease,
-    font-size var(--duration-short) ease;
-  color: rgba(var(--color-foreground), 0.75);
+  transition: top .1s ease,
+    font-size .1s ease;
+  color: rgba(18, 18, 18, 0.75);
   letter-spacing: 0.1rem;
   line-height: 1.5;
 }
