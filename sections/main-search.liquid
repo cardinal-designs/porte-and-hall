@@ -151,7 +151,7 @@
           {% paginate search.results by 24 %}
           <ul id="product-grid" data-id="{{ section.id }}" class="product-grid list-unstyled">
               {% for item in search.results %}
-                {% case product.object_type %}
+                {% case item.object_type %}
                 {% when 'product' %}
                   {% comment %} {% render 'product-card', product_card_product: product %} {% endcomment %}
                   {% for collection in item.collections %}
