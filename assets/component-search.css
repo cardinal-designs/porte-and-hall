@@ -136,3 +136,6 @@ input::-webkit-search-decoration {
 .header__search-container .field__input:-webkit-autofill ~ .field__label {
   color: rgb(0, 0, 0);
 }
+.template-search.spaced-section {
+    margin-top: 50px;
+}
