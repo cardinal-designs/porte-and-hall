@@ -91,7 +91,7 @@ input::-webkit-search-decoration {
 .header__search-container .field__input:-webkit-autofill ~ .field__label {
   font-size: 1rem;
   top: calc(1px + 0.5rem);
-  left: calc(1px + 2rem);
+  left: 0;
   letter-spacing: 0.04rem;
 }
 
