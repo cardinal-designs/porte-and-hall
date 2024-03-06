@@ -53,7 +53,7 @@ input::-webkit-search-decoration {
 }
 /* Field */
 
-.header__search-container .field {
+.header__search-container .field,.template-search .field{
   position: relative;
   width: 100%;
   display: flex;
