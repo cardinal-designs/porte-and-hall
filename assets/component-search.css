@@ -31,3 +31,21 @@
 input::-webkit-search-decoration {
   -webkit-appearance: none;
 }
+
+
+.header__search-container .field__button {
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    color: currentColor;
+    cursor: pointer;
+    display: flex;
+    height: 4.4rem;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 4.4rem;
+}
