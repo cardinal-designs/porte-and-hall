@@ -9,6 +9,16 @@
   display: none;
 }
 
+.indoor-mats-2 .image-slideshow__paragraph {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.indoor-mats-2 .image-slideshow__block-content {
+  justify-content: center;
+  text-align: center;
+}
+
 @media (max-width: 989px){
   .indoor-mats-2 .header--inner {
     grid-template-areas: unset;
