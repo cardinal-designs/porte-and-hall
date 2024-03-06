@@ -328,7 +328,9 @@ document.addEventListener('click', function(event) {
     console.log('Event',event.target);
     var headerSearch = document.querySelector('.header__search');
     var iconSearch = document.querySelector('.icon-search');
+    console.log('A');
     if (!event.target.classList.contains('icon-search') || !event.target.classList.contains('search__input')) {
+      console.log('B');
         headerSearch.classList.remove('is-visible');
     }
 });
