@@ -326,9 +326,12 @@ customElements.define('predictive-search', PredictiveSearch);
 
 console.log('Custom.js');
 document.addEventListener('click', function(event) {
-    console.log('Event',event.target);
-    var headerSearch = document.querySelector('.header__search');
-    if (!headerSearch.contains(event.target) && headerSearch.classList.contains('is-visible')) {
-        headerSearch.classList.remove('is-visible');
+  console.log('Event',event.target);
+  var headerSearch = document.querySelector('.header__search');
+  var iconSearch = document.querySelector('.icon-search');
+  if (!headerSearch.contains(event.target) && headerSearch.classList.contains('is-visible')) {
+    if (!iconSearch.contains(event.target)) {
+      headerSearch.classList.remove('is-visible');
     }
+  }
 });
