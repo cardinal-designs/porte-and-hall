@@ -3,7 +3,7 @@
   position: absolute;
   top: calc(100% + 0.1rem);
   left: -0.1rem;
-  border-width: var(--popup-border-width);
+  border-width: 1px;
   border-style: solid;
   border-color: rgba(18, 18, 18, 0.1));
   background-color: rgb(255, 255, 255);
