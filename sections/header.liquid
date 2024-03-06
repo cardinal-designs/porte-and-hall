@@ -15,7 +15,6 @@
 
      {% if section.settings.enable_search %}
       <div class="header__search">
-        <div class="page-width">
           <div class="header__search-container">
             {% render 'search-form' %}
             {% comment %}
@@ -39,8 +38,7 @@
               {% render 'icon', icon: 'close' %}
             </button>
             {% endcomment %}
-            
-          </div>
+  
         </div>
       </div>
     {% endif %}
