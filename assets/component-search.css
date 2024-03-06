@@ -3,8 +3,8 @@
 }
 
 .search__button {
-  right: var(--inputs-border-width);
-  top: var(--inputs-border-width);
+  right: 1px;
+  top: 1px;
 }
 
 .search__button:focus-visible {
@@ -68,14 +68,14 @@ input::-webkit-search-decoration {
   flex-grow: 1;
   text-align: left;
   padding: 1.5rem;
-  margin: var(--inputs-border-width);
+  margin: 1px;
   transition: box-shadow var(--duration-short) ease;
 }
 
 .header__search-container .field__label{
   font-size: 1.6rem;
-  left: calc(var(--inputs-border-width) + 2rem);
-  top: calc(1rem + var(--inputs-border-width));
+  left: calc(1px + 2rem);
+  top: calc(1rem + 1px);
   margin-bottom: 0;
   pointer-events: none;
   position: absolute;
@@ -90,8 +90,8 @@ input::-webkit-search-decoration {
 .header__search-container .field__input:not(:placeholder-shown) ~ .field__label,
 .header__search-container .field__input:-webkit-autofill ~ .field__label {
   font-size: 1rem;
-  top: calc(var(--inputs-border-width) + 0.5rem);
-  left: calc(var(--inputs-border-width) + 2rem);
+  top: calc(1px + 0.5rem);
+  left: calc(1px + 2rem);
   letter-spacing: 0.04rem;
 }
 
@@ -99,7 +99,7 @@ input::-webkit-search-decoration {
 .header__search-container .field__input:not(:placeholder-shown),
 .header__search-container .field__input:-webkit-autofill {
   padding: 2.2rem 1.5rem 0.8rem 2rem;
-  margin: var(--inputs-border-width);
+  margin: 1px;
 }
 
 .header__search-container .field__input::-webkit-search-cancel-button {
