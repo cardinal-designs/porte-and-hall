@@ -1339,6 +1339,10 @@ header.condensed .header__menu {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
   }
+  predictive-search.search-modal__form {
+      width: 100%;
+      padding: 0 20px;
+  }
 }
 
 /*============================================================================
