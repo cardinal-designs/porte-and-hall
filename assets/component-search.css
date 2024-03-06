@@ -32,7 +32,9 @@ input::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
-
+.header__search-container .field{
+  margin-bottom: 0;
+}
 .header__search-container .field__button {
     align-items: center;
     background-color: transparent;
