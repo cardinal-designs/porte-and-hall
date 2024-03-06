@@ -1293,7 +1293,10 @@ header.condensed .header__menu {
   visibility: hidden;
   transition: opacity .3s ease, visibility .3s ease;
 }
-
+button.js-open-search.header__icon--search svg {
+    height: 20px;
+    width: 20px;
+}
 .header__search.is-visible {
   opacity: 1;
   visibility: visible;
