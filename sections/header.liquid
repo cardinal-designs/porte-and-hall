@@ -108,37 +108,6 @@
       {% endif %}
     </div>
 
-    {% if section.settings.enable_search %}
-      <div class="header__search">
-        <div class="page-width">
-          <div class="header__search-container">
-            {% render 'search-form' %}
-            {% comment %}
-            <form action="{{ routes.search_url }}" method="get" role="search" class="header__search-form">
-              <div class="header__search-group">
-                <input
-                  class="header__search-input"
-                  id="Search-In-Modal"
-                  type="search"
-                  name="q"
-                  value="{{ search.terms | escape }}"
-                  placeholder="Search..."
-                >
-                <input type="hidden" name="options[prefix]" value="last">
-                <button class="header__search-button" aria-label="{{ 'general.search.search' | t }}">
-                  {% render 'icon', icon: 'search' %}
-                </button>
-              </div>
-            </form>
-            <button class="js-close-search header__search-close">
-              {% render 'icon', icon: 'close' %}
-            </button>
-            {% endcomment %}
-            
-          </div>
-        </div>
-      </div>
-    {% endif %}
   </div>
 
   <div class="header__navigation">
