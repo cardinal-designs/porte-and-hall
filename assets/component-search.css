@@ -51,3 +51,88 @@ input::-webkit-search-decoration {
     top: 0;
     width: 4.4rem;
 }
+/* Field */
+
+.header__search-container .field {
+  position: relative;
+  width: 100%;
+  display: flex;
+  transition: box-shadow var(--duration-short) ease;
+}
+
+.header__search-container .field--with-error {
+  flex-wrap: wrap;
+}
+
+.header__search-container .field__input {
+  flex-grow: 1;
+  text-align: left;
+  padding: 1.5rem;
+  margin: var(--inputs-border-width);
+  transition: box-shadow var(--duration-short) ease;
+}
+
+.header__search-container .field__label{
+  font-size: 1.6rem;
+  left: calc(var(--inputs-border-width) + 2rem);
+  top: calc(1rem + var(--inputs-border-width));
+  margin-bottom: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: top var(--duration-short) ease,
+    font-size var(--duration-short) ease;
+  color: rgba(var(--color-foreground), 0.75);
+  letter-spacing: 0.1rem;
+  line-height: 1.5;
+}
+
+.header__search-container .field__input:focus ~ .field__label,
+.header__search-container .field__input:not(:placeholder-shown) ~ .field__label,
+.header__search-container .field__input:-webkit-autofill ~ .field__label {
+  font-size: 1rem;
+  top: calc(var(--inputs-border-width) + 0.5rem);
+  left: calc(var(--inputs-border-width) + 2rem);
+  letter-spacing: 0.04rem;
+}
+
+.header__search-container .field__input:focus,
+.header__search-container .field__input:not(:placeholder-shown),
+.header__search-container .field__input:-webkit-autofill {
+  padding: 2.2rem 1.5rem 0.8rem 2rem;
+  margin: var(--inputs-border-width);
+}
+
+.header__search-container .field__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.header__search-container .field__input::placeholder{
+  opacity: 0;
+}
+
+.header__search-container .field__button {
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  color: currentColor;
+  cursor: pointer;
+  display: flex;
+  height: 4.4rem;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 4.4rem;
+}
+
+.header__search-container .field__button > svg {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.header__search-container .field__input:-webkit-autofill ~ .field__button,
+.header__search-container .field__input:-webkit-autofill ~ .field__label {
+  color: rgb(0, 0, 0);
+}
