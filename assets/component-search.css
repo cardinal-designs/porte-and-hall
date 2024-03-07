@@ -191,3 +191,11 @@ button.search__button.field__button {
   }
 
 }
+
+@media screen and (max-width: 989px) {
+
+  .header__search-form {
+    max-width: 100%;
+  }
+
+}
