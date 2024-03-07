@@ -76,7 +76,7 @@ input::-webkit-search-decoration {
 .template-search .field__input{
   flex-grow: 1;
   text-align: left;
-  padding: 1.5rem 0;
+  padding: 10px 0;
   margin: 1px;
   transition: box-shadow .1s ease;
 }
