@@ -63,8 +63,8 @@ predictive-search[loading] .predictive-search {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: calc(100% - 4rem);
-  color: rgba(18, 18, 18, 0.7);
+  color: #121212b3;
+  padding: 20px;
 }
 
 predictive-search .spinner {
