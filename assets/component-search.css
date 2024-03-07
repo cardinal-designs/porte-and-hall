@@ -114,7 +114,7 @@ input::-webkit-search-decoration {
 .template-search .field__input:not(:placeholder-shown),
 .header__search-container .field__input:-webkit-autofill,
 .template-search .field__input:-webkit-autofill{
-  padding: 10px 10px;
+  padding: 10px 0;
   margin: 1px;
 }
 
