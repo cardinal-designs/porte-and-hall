@@ -159,6 +159,10 @@ input::-webkit-search-decoration {
   color: rgb(0, 0, 0);
 }
 
+.header__search {
+  max-width: 330px;
+}
+
 .template-search.spaced-section{
   margin-top: 50px;
   margin-bottom: 50px;
