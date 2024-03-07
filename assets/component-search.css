@@ -114,9 +114,10 @@ input::-webkit-search-decoration {
 .template-search .field__input:not(:placeholder-shown),
 .header__search-container .field__input:-webkit-autofill,
 .template-search .field__input:-webkit-autofill{
-  padding: 2.2rem 1.5rem 0.8rem 0;
+  padding: 10px 10px;
   margin: 1px;
 }
+
 
 .header__search-container .field__input::-webkit-search-cancel-button,
 .template-search .field__input::-webkit-search-cancel-button{
