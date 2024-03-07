@@ -118,15 +118,9 @@ input::-webkit-search-decoration {
   margin: 1px;
 }
 
-
 .header__search-container .field__input::-webkit-search-cancel-button,
 .template-search .field__input::-webkit-search-cancel-button{
   display: none;
-}
-
-.header__search-container .field__input::placeholder,
-.template-search .field__input::placeholder{
-  opacity: 0;
 }
 
 .header__search-container .field__button,
@@ -162,6 +156,8 @@ input::-webkit-search-decoration {
 
 .header__search {
   max-width: 330px;
+  opacity: 1;
+  visibility: visible;
 }
 
 .template-search.spaced-section{
