@@ -115,7 +115,6 @@ predictive-search[loading] .predictive-search__results-list:first-child {
 
 .predictive-search__list-item[aria-selected="true"] .predictive-search__item-heading,
 .predictive-search__list-item:hover .predictive-search__item-heading {
-  text-decoration: underline;
   text-underline-offset: 0.3rem;
 }
 
