@@ -177,6 +177,10 @@ button.search__button.field__button {
   margin: 14px 0 0;
 }
 
+#predictive-search-results {
+  background: #ffffff;  
+}
+
 @media screen and (min-width: 990px) {
   
   .js-open-search.header__icon.header__icon--search {
