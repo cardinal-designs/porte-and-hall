@@ -163,6 +163,7 @@ predictive-search[loading] .predictive-search__results-list:first-child {
 }
 
 .predictive-search__item--term {
+  font-family: brandon, sans-serif;
   justify-content: space-between;
   align-items: center;
   padding: 20px 20px;
