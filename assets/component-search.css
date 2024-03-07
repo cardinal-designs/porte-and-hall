@@ -156,8 +156,6 @@ input::-webkit-search-decoration {
 
 .header__search {
   max-width: 330px;
-  opacity: 1;
-  visibility: visible;
 }
 
 .template-search.spaced-section{
@@ -187,6 +185,11 @@ button.search__button.field__button {
   
   .js-open-search.header__icon.header__icon--search {
     opacity:0; 
+    visibility: visible;
+  }
+
+  .header__search {
+    opacity: 1;
     visibility: visible;
   }
 
