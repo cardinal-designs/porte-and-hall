@@ -180,11 +180,11 @@ predictive-search[loading] .predictive-search__results-list:first-child {
 }
 
 .predictive-search__item--term .icon-arrow {
-  width: calc(1.0 * 1.4rem);
-  height: calc(1.0 * 1.4rem);
+  width: 12px;
+  height: 12px;
   flex-shrink: 0;
-  margin-left: calc(1.0 * 2rem);
-  color: rgb(18, 18, 18);
+  margin-left: 2rem;
+  color: #121212;
 }
 
 .predictive-search__image {
