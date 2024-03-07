@@ -39,22 +39,24 @@ input::-webkit-search-decoration {
 .header__search-container .field{
   margin-bottom: 0;
 }
+
 .header__search-container .field__button {
-    align-items: center;
-    background-color: transparent;
-    border: 0;
-    color: currentColor;
-    cursor: pointer;
-    display: flex;
-    height: 4.4rem;
-    justify-content: center;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 4.4rem;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  color: currentColor;
+  cursor: pointer;
+  display: flex;
+  height: 4.4rem;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 4.4rem;
 }
+
 /* Field */
 
 .header__search-container .field,
@@ -88,7 +90,7 @@ input::-webkit-search-decoration {
   pointer-events: none;
   position: absolute;
   transition: top .1s ease,
-    font-size .1s ease;
+  font-size .1s ease;
   color: rgba(18, 18, 18, 0.75);
   letter-spacing: 0.1rem;
   line-height: 1.5;
@@ -156,16 +158,20 @@ input::-webkit-search-decoration {
 .template-search .field__input:-webkit-autofill ~ .field__label{
   color: rgb(0, 0, 0);
 }
+
 .template-search.spaced-section{
-    margin-top: 50px;
-    margin-bottom: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
+
 .template-search__header h1 {
-    text-align: center;
+  text-align: center;
 }
+
 .template-search .field{
   margin-bottom: 0;
 }
+
 .template-search .card__content {
-    margin: 10px 0;
+  margin: 10px 0;
 }
