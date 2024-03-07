@@ -85,6 +85,15 @@
 
     <!-- Icons -->
     <div class="header__icons">
+      {% if section.settings.enable_search %}
+        <button class="js-open-search header__icon header__icon--search" aria-label="Open Search Bar">
+          <svg class="icon icon-search" aria-hidden="true" focusable="false">
+            <use href="#icon-search">
+          </svg>
+          {% comment %}{% render 'icon', icon: 'search' %}{% endcomment %}
+        </button>
+      {% endif %}
+
       {% if shop.customer_accounts_enabled %}
         <a
           href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
