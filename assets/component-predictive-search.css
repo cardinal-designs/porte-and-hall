@@ -13,11 +13,13 @@
   box-shadow: 0px 4px 5px rgba(18, 18, 18, 0.0);
 }
 
-.predictive-search  .caption-with-letter-spacing {
-  font-size: 1rem;
-  letter-spacing: .13rem;
-  line-height: calc(1 + .2 / 1.0);
+.predictive-search .caption-with-letter-spacing {
   text-transform: uppercase;
+  color: #546b82;
+  font-family: louize;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: .84px;
 }
 
 .predictive-search--search-template {
