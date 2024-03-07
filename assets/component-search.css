@@ -182,3 +182,12 @@ button.search__button.field__button {
   width: auto;
   margin: 16px 0 0;
 }
+
+@media screen and (min-width: 990px) {
+  
+  .js-open-search.header__icon.header__icon--search {
+    opacity:0; 
+    visibility: visible;
+  }
+
+}
