@@ -175,3 +175,9 @@ input::-webkit-search-decoration {
 .template-search .card__content {
   margin: 10px 0;
 }
+
+button.search__button.field__button {
+  height: 20px;
+  width: auto;
+  margin: 16px 0 0;
+}
