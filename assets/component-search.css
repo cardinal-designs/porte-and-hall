@@ -196,6 +196,18 @@ button.search__button.field__button {
 
 }
 
+@media screen and (max-width: 1199px) {
+
+  .header__search {
+    max-width: 240px;
+  }
+
+  .predictive-search {
+    width: 400px;
+  }
+
+}
+
 @media screen and (max-width: 989px) {
 
   .header__search-form {
