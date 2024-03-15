@@ -212,6 +212,10 @@ grouped-product-card {
   margin-top: auto;
 }
 
+.product-cart-4 .product-card__price {
+  margin-top: -8px;
+}
+
 @media only screen and (min-width: 769px) {
   .product-card.has-animation:hover .aspect-ratio:first-child {
     opacity: 0;
