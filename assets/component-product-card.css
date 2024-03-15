@@ -252,6 +252,10 @@ grouped-product-card {
     width: 16px;
     height: 16px;
   }
+
+  .product-cart-4 .product-card__title {
+    font-size: 14px;
+  }
 }
 
 @media screen and (max-width: 768px) {
