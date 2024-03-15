@@ -20,6 +20,10 @@ load-more.button {
   position: relative;
 }
 
+.product-grid-4 {
+  row-gap: 25px;
+}
+
 @media screen and (min-width: 769px) {
   .product-grid .grid__item {
     padding-bottom: calc(5rem + var(--page-width-margin));
