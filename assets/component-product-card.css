@@ -253,7 +253,7 @@ grouped-product-card {
     height: 16px;
   }
 
-  .product-cart-4 .product-card__title {
+  .product-cart-4 .product-card__title, .product-cart-4 .product-card__title span {
     font-size: 13px;
     letter-spacing: 0;
   }
