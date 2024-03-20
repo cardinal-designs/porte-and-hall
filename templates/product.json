@@ -141,6 +141,7 @@
     },
     "reviews": {
       "type": "reviews",
+      "disabled": true,
       "settings": {
         "heading": ""
       }
@@ -164,7 +165,6 @@
       "block_order": [
         "6592b9b9-85df-4f84-8df8-78524eaec36b"
       ],
-      "disabled": true,
       "settings": {
         "include_margins": true,
         "heading": "Rave Reviews",
