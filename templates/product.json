@@ -141,7 +141,6 @@
     },
     "reviews": {
       "type": "reviews",
-      "disabled": true,
       "settings": {
         "heading": ""
       }
@@ -151,6 +150,7 @@
       "blocks": {
         "6592b9b9-85df-4f84-8df8-78524eaec36b": {
           "type": "shopify:\/\/apps\/stamped-product-reviews-ugc\/blocks\/main-widget\/a103faaf-2125-4b0e-89fa-de5149736723",
+          "disabled": true,
           "settings": {
             "animation": true,
             "tags_exclude": "",
@@ -165,6 +165,7 @@
       "block_order": [
         "6592b9b9-85df-4f84-8df8-78524eaec36b"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true,
         "heading": "Rave Reviews",
@@ -228,6 +229,31 @@
         "blog": "news",
         "show_recent_articles": true
       }
+    },
+    "171095291760b280c6": {
+      "type": "apps",
+      "blocks": {
+        "stamped_product_reviews_ugc_main_widget_VgTt3H": {
+          "type": "shopify:\/\/apps\/stamped-product-reviews-ugc\/blocks\/main-widget\/a103faaf-2125-4b0e-89fa-de5149736723",
+          "settings": {
+            "animation": true,
+            "tags_exclude": "",
+            "tags_include": "",
+            "search": "",
+            "linkify": true,
+            "use_metafields": false,
+            "sku_tagtype": "sku"
+          }
+        }
+      },
+      "block_order": [
+        "stamped_product_reviews_ugc_main_widget_VgTt3H"
+      ],
+      "settings": {
+        "include_margins": true,
+        "heading": "",
+        "section_reviews": true
+      }
     }
   },
   "order": [
@@ -243,6 +269,7 @@
     "168172537899ce8b94",
     "you-may-like",
     "fan-motif",
-    "featured-articles"
+    "featured-articles",
+    "171095291760b280c6"
   ]
 }
