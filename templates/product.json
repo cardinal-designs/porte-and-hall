@@ -196,31 +196,6 @@
         "image": "shopify:\/\/shop_images\/door_illustration.png"
       }
     },
-    "171095291760b280c6": {
-      "type": "apps",
-      "blocks": {
-        "stamped_product_reviews_ugc_main_widget_VgTt3H": {
-          "type": "shopify:\/\/apps\/stamped-product-reviews-ugc\/blocks\/main-widget\/a103faaf-2125-4b0e-89fa-de5149736723",
-          "settings": {
-            "animation": true,
-            "tags_exclude": "",
-            "tags_include": "",
-            "search": "",
-            "linkify": true,
-            "use_metafields": false,
-            "sku_tagtype": "sku"
-          }
-        }
-      },
-      "block_order": [
-        "stamped_product_reviews_ugc_main_widget_VgTt3H"
-      ],
-      "settings": {
-        "include_margins": true,
-        "heading": "",
-        "section_reviews": true
-      }
-    },
     "featured-articles": {
       "type": "featured-articles",
       "blocks": {
@@ -269,7 +244,6 @@
     "168172537899ce8b94",
     "you-may-like",
     "fan-motif",
-    "171095291760b280c6",
     "featured-articles"
   ]
 }
