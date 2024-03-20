@@ -42,9 +42,8 @@ data-name="{{ product.title | escape }}"
 data-url="{{ shop.url }}{{ product.url }}"   
 data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" 
 data-description="{{ product.description | escape }}"   
-data-product-sku="{{product.handle}}" 
-data-product-type="{{product.type}}"
-    class="shopify-section--bordered"
+data-product-sku="{{product.selected_or_first_available_variant.sku}}"data-product-type="{{product.type}}"
+class="shopify-section--bordered"
   >
   </div>
 </div>
