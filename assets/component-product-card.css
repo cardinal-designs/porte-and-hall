@@ -243,6 +243,10 @@ grouped-product-card {
     margin-top: 0px;
   }
 
+  .product-cart-4 .product-card__price {
+    font-size: 13px;
+  }
+
   .product-card__swatches {
     column-gap: 5px;
     row-gap: 5px;
