@@ -325,7 +325,7 @@
 
             <span data-active-style="{{ active_style }}"></span>
 
-              {% if other_sizes != blank %}
+              {% if other_sizes != blank and section.settings.shop_more_below != true %}
                 {% capture other_size_links %}
                   {% for block in other_sizes %}
                     {% assign current_size = block.title | split: " | " %}
@@ -432,6 +432,27 @@
               </div>
             </div>
 
+            {% if other_sizes != blank and section.settings.shop_more_below == true %}
+              {% capture other_size_links %}
+                  {% for block in other_sizes %}
+                    {% assign current_size = block.title | split: " | " %}
+                    {% assign format_color = "- " | append: active_style | append: " /" %}
+                    {%  assign match_name = block.title | replace: "|",  format_color %}
+                    {%  assign match = block.products | where: 'title', match_name %}
+                    {% if match != blank %}
+                      <a class="inline-link" href="{{ match.first.url }}">{{ current_size.last }}</a> <span class="other-size__divider">or</span>
+                    {% endif %}
+                  {% endfor %}
+                {%  endcapture %}
+
+                {% unless section.settings.hide_shop_other == true %}
+                  {% unless other_size_links == blank %}
+                    <div class="other-sizes__wrapper">
+                      <span>Shop other sizes:</span> {{ other_size_links }}
+                    </div>
+                  {% endunless %}
+                {% endunless %}
+            {% endif %}
             <div id="afterpay-wrapper"></div>
           {% endform %}
         </product-form>
@@ -958,6 +979,12 @@
       "type": "checkbox",
       "id": "hide_quantity",
       "label": "Hide Quantity Selector",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_more_below",
+      "label": "Move Shop Other to Bottom",
       "default": false
     }
   ]
