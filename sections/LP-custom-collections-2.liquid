@@ -450,11 +450,11 @@
                 {% endif %}
               </div>
             </div>
-
+            {% if block.settings.footer_image != blank %}
             <div class="collection-col-inner image">
               {{ block.settings.footer_image | image_url: width: 900 | image_tag: width: '100%' }}
             </div>
-        
+            {% endif %}
           </div>
         </div>
       {% endfor %}
