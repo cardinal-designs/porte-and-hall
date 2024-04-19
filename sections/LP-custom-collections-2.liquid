@@ -400,9 +400,8 @@
 
     <div class="collection-row">
       {%- for block in section.blocks -%}
-        {{ product.title }}
-        {{ block.settings.title }}
-        {% if product.title contains block.settings.title %}fef{% endif %}
+
+        {% unless product.title contains block.settings.title %}
         <div class="collection-col index-{{ forloop.index0 }}">
           <h6><b>{{ block.settings.title }}</b></h6>
 
@@ -460,6 +459,7 @@
             {% endif %}
           </div>
         </div>
+        {% endunless %}
       {% endfor %}
     </div>
   </div>
