@@ -18,7 +18,70 @@
     },
     "other-sizes": {
       "type": "product-shop-other-sizes",
+      "disabled": true,
       "settings": {
+      }
+    },
+    "lp_custom_collections_2_ABDk4m": {
+      "type": "LP-custom-collections-2",
+      "blocks": {
+        "block_wcQHYU": {
+          "type": "block",
+          "settings": {
+            "title": "",
+            "badge1": "",
+            "product1_title": "",
+            "collection1": "",
+            "product1": "",
+            "the_problem_title": "",
+            "the_problem_content": "",
+            "the_solution_title": "",
+            "the_solution_content": "",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_pgGtGT": {
+          "type": "block",
+          "settings": {
+            "title": "",
+            "badge1": "",
+            "product1_title": "",
+            "collection1": "",
+            "product1": "",
+            "the_problem_title": "",
+            "the_problem_content": "",
+            "the_solution_title": "",
+            "the_solution_content": "",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_pdi6Ua": {
+          "type": "block",
+          "settings": {
+            "title": "",
+            "badge1": "",
+            "product1_title": "",
+            "collection1": "",
+            "product1": "",
+            "the_problem_title": "",
+            "the_problem_content": "",
+            "the_solution_title": "",
+            "the_solution_content": "",
+            "link_text": "",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_wcQHYU",
+        "block_pgGtGT",
+        "block_pdi6Ua"
+      ],
+      "settings": {
+        "title": "Shop our other collections",
+        "subtitle": ""
       }
     },
     "logo-marquee": {
@@ -238,6 +301,7 @@
   "order": [
     "main",
     "other-sizes",
+    "lp_custom_collections_2_ABDk4m",
     "logo-marquee",
     "design-details",
     "see-in-action",
