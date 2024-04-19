@@ -428,27 +428,17 @@
             
             <div class="collection-col-inner text">
               <div class="problem">              
-                {% if block.settings.the_problem_title != blank %}
-                  <p class="title">{{ block.settings.the_problem_title }}</p>
+                {% if block.settings.check1 != blank %}
+                  <span>{% render 'icon', icon: 'checkmark' %}</span><p class="title">{{ block.settings.check1 }}</p>
                 {% endif %}
-  
-                {% if block.settings.the_problem_content != blank %}
-                  <p class="the_problem_content">{{ block.settings.the_problem_content }}</p>
+                {% if block.settings.check2 != blank %}
+                  <span>{% render 'icon', icon: 'checkmark' %}</span><p class="title">{{ block.settings.check2 }}</p>
                 {% endif %}
-              </div>
-
-              <div class="solution">              
-                {% if block.settings.the_solution_title != blank %}
-                  <p class="title">{{ block.settings.the_solution_title }}</p>
+                {% if block.settings.check3 != blank %}
+                  <span>{% render 'icon', icon: 'checkmark' %}</span><p class="title">{{ block.settings.check3 }}</p>
                 {% endif %}
-  
-                {% if block.settings.the_solution_content != blank %}
-                  <p class="the_solution_content">{{ block.settings.the_solution_content }}</p>
-                {% endif %}
-                {% if block.settings.link_url != blank %}
-                <a class="text-link gold-secondary--dark" href="{{ block.settings.link_url }}">
-                  {{ block.settings.link_text }}
-                </a>
+                {% if block.settings.check4 != blank %}
+                  <span>{% render 'icon', icon: 'checkmark' %}</span><p class="title">{{ block.settings.check4 }}</p>
                 {% endif %}
               </div>
             </div>
