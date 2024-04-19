@@ -400,6 +400,7 @@
 
     <div class="collection-row">
       {%- for block in section.blocks -%}
+        {% if product.title contains block.settings.title %}f{% endif %}
         <div class="collection-col index-{{ forloop.index0 }}">
           <h6><b>{{ block.settings.title }}</b></h6>
 
