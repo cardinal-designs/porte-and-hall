@@ -3,16 +3,17 @@
     "main": {
       "type": "main-product",
       "custom_css": [
-        "@media screen and (max-width: 768px) {.product__quantity-atc-wrapper {justify-content: center; width: 100%;}}"
+        "@media screen and (max-width: 768px) {.product__quantity-atc-wrapper {justify-content: center; width: 100%; }}"
       ],
       "settings": {
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
-        "materials": "{{ section.settings.collection.metafields.custom.materials | metafield_tag }}",
-        "care": "{{ section.settings.collection.metafields.custom.care | metafield_tag }}",
+        "materials": "<p>{{ section.settings.collection.metafields.custom.materials | metafield_tag }}<\/p>",
+        "care": "<p>{{ section.settings.collection.metafields.custom.care | metafield_tag }}<\/p>",
         "hide_pinterest": true,
         "hide_dimensions": true,
         "hide_shop_other": false,
-        "hide_quantity": true
+        "hide_quantity": true,
+        "show_more_below": true
       }
     },
     "other-sizes": {
