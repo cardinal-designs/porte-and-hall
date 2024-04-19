@@ -402,7 +402,7 @@
       {%- for block in section.blocks -%}
         {{ product.title }}afafaf
         {{ block.settings.title }}
-        {% if product.title contains block.settings.title %}f{% endif %}
+        {% if block.settings.title contains product.title %}beep{% endif %}
         <div class="collection-col index-{{ forloop.index0 }}">
           <h6><b>{{ block.settings.title }}</b></h6>
 
