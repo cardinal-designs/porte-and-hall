@@ -443,10 +443,11 @@
                 {% if block.settings.the_solution_content != blank %}
                   <p class="the_solution_content">{{ block.settings.the_solution_content }}</p>
                 {% endif %}
-
+                {% if block.settings.link_url != blank %}
                 <a class="text-link gold-secondary--dark" href="{{ block.settings.link_url }}">
                   {{ block.settings.link_text }}
                 </a>
+                {% endif %}
               </div>
             </div>
 
