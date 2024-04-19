@@ -403,10 +403,10 @@
     {%- endif -%}
 
     <div class="collection-row">
+      {% assign loopNum = 0 %}
       {%- for block in section.blocks -%}
-        {% assign loopNum = 0 %}
         {% unless product.title contains block.settings.title %}
-        {% assign loopNum = loopNum | plus: 1 %}
+        
         <div class="collection-col index-{{ loopNum }}">
           <h6><b>{{ block.settings.title }}</b></h6>
 
@@ -454,6 +454,7 @@
             {% endif %}
           </div>
         </div>
+        {% assign loopNum = loopNum | plus: 1 %}
         {% endunless %}
       {% endfor %}
     </div>
