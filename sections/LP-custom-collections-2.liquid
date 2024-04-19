@@ -410,14 +410,14 @@
         <div class="collection-col index-{{ loopNum }}">
           <h6><b>{{ block.settings.title }}</b></h6>
 
-          <div class="collection-row-inner product-1">
+          <div class="collection-row-inner">
             {% for product in block.settings.collection1.products limit: 1 %}
               {% for collection in product.collections %}
                 {% if collection.title contains ' |' %}
                   {% assign grouped_collection = collection %}
                 {% endif %}
               {% endfor %}
-              <div class="collection-col-inner">
+              <div class="collection-col-inner product-1">
                 <p class="badge">
                   {{- block.settings.badge1 -}}
                 </p>
