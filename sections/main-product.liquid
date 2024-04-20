@@ -146,7 +146,7 @@
         <div class="product__dimensions--wrapper">
           <div class="dimensions__button">
             {%- render 'icon' with 'ruler' -%}
-            <p>Need help finding the right dimension?</p>
+            <p>Dimensions — <u>view here</u></p>
             <div id="btnhomeModal" class="button">see dimensions</div>
           </div>
           <div id="myModal" class="dimension-modal-content dimension_modal">
@@ -161,7 +161,6 @@
           </div>
         </div>
         {% endunless %}
-        <div class="product__variant-name body">Dimensions</div>
         {% for option in product.options_with_values %}
           <div class="product__variant-name body">
             {% if option.name == 'Size' %}
