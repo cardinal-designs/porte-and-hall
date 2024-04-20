@@ -151,7 +151,9 @@
           </div>
         </div>
         {% endunless %}
-        <p id="btnhomeModal2">see dimensions</p>
+        {% if section.settings.text_dimensions == true %}
+        <p id="btnhomeModal2"><span>Dimensions:</span> <u>view here</u></p>
+        {% endif %}
          <div id="myModal" class="dimension-modal-content dimension_modal">
               <div class="dimension-modal-header">
               <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
