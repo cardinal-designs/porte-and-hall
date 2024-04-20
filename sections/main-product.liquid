@@ -149,7 +149,10 @@
             <p>Need help finding the right dimension?</p>
             <div id="btnhomeModal" class="button">see dimensions</div>
           </div>
-          <div id="myModal" class="dimension-modal-content dimension_modal">
+        </div>
+        {% endunless %}
+        <p id="btnhomeModal2">see dimensions</p>
+         <div id="myModal" class="dimension-modal-content dimension_modal">
               <div class="dimension-modal-header">
               <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
               <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %}</button></div>
@@ -159,9 +162,6 @@
                <img src="{{ product.metafields.custom.product_dimensions.value.dimension_image | img_url:'original' }}" alt="Dimension Image">
               </div> 
           </div>
-        </div>
-        {% endunless %}
-        <p id="btnhomeModal2">see dimensions</p>
         {% for option in product.options_with_values %}
           <div class="product__variant-name body">
             {% if option.name == 'Size' %}
