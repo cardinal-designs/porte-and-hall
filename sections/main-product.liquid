@@ -161,7 +161,7 @@
           </div>
         </div>
         {% endunless %}
-    
+        <p id="btnhomeModal2">see dimensions</p>
         {% for option in product.options_with_values %}
           <div class="product__variant-name body">
             {% if option.name == 'Size' %}
@@ -867,7 +867,11 @@
 
   var modal = document.getElementById('myModal');
   var body = document.querySelector('body');
-  var btn = document.getElementById("btnhomeModal");
+  if(!!document.getElementById("btnhomeModal")) {
+    var btn = document.getElementById("btnhomeModal");
+  } else if (!!document.getElementById("btnhomeModal2")) {
+    var btn = document.getElementById("btnhomeModal2");
+  }
   var span = document.getElementsByClassName("close")[0];
   
   btn.onclick = function() {
