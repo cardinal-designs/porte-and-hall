@@ -3,6 +3,33 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-rte.css' | asset_url | stylesheet_tag }}
 
+{%- comment -%}
+  If the product first varaiant inventory is 0 then find the variant with inventory and load the product page 
+{%- endcomment -%}
+
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign availableVariantId = '' -%}
+{%- assign availableVariantFound = false -%}
+
+{%- if current_variant.inventory_quantity <= 0 -%}
+    {%- for variant in product.variants -%}
+      {%- if variant.inventory_quantity > 0 and availableVariantId == '' -%}
+        {%- assign availableVariantId = variant.id -%}
+        {%- assign availableVariantFound = true -%}
+        {% break %}
+      {%- endif -%}
+    {%- endfor -%}
+ {% endif %} 
+
+ {% if availableVariantFound %}
+    <script>
+    window.location.href = '/products/{{ product.handle }}?variant={{ availableVariantId }}';
+  </script>
+
+{% endif %} 
+
+
+
 {% liquid
   for collection in product.collections
     if collection.title contains ' |'
