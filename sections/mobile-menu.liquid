@@ -22,10 +22,10 @@
             <li>
               <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link.title }}</a>
               {% if link.links != blank %}
-                <ul class="list-unstyled">
+                <ul class="menu-drawer__menu-secondary list-unstyled">
                   {% for child_link in link.links %}
                     <li>
-                      <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link.title }}</a>
+                      <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ child_link.title }}</a>
                     </li>
                   {% endfor %}
                 </ul>
