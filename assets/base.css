@@ -1566,10 +1566,10 @@ header.condensed .header__menu {
 }
 
 .menu-drawer__menu-additional {
-  margin: 0 20px;
+  margin: 0 20px 15px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 }
 
 .menu-drawer__menu-button--has-menu {
@@ -1617,7 +1617,6 @@ header.condensed .header__menu {
 
 .menu-drawer .header__icon--account {
   display: block;
-  text-align: center;
 }
 
 .menu-drawer .header__icon--account svg {
