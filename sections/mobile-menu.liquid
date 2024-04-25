@@ -53,26 +53,6 @@
               {% endif %}
             </li>
           {% endfor %}
-
-          <li>
-            {% if shop.customer_accounts_enabled %}
-              <a
-                href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
-                class="header__icon header__icon--account"
-              >
-                {% render 'icon', icon: 'account' %}
-                <span class="visually-hidden">
-                  {% liquid
-                    if customer
-                      echo 'customer.account_fallback' | t
-                    else
-                      echo 'customer.log_in' | t
-                    endif
-                  %}
-                </span>
-              </a>
-            {% endif %}
-          </li>
           {% endcomment %}
         </ul>
         {% if section.settings.additional_menu %}
@@ -83,6 +63,23 @@
               </li>
             {% endfor %}
           </ul>
+        {% endif %}
+        {% if shop.customer_accounts_enabled %}
+          <a
+            href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+            class="header__icon header__icon--account"
+          >
+            {% render 'icon', icon: 'account' %}
+            <span class="visually-hidden">
+              {% liquid
+                if customer
+                  echo 'customer.account_fallback' | t
+                else
+                  echo 'customer.log_in' | t
+                endif
+              %}
+            </span>
+          </a>
         {% endif %}
       </div>
     </div>
