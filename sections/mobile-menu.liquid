@@ -20,29 +20,15 @@
 
           {% for link in section.settings.menu.links %}
             <li>
+              <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link.title }}</a>
               {% if link.links != blank %}
-                <button class="menu-drawer__menu-button menu-drawer__menu-button--has-menu body" href="{{ link.url }}">
-                  {{ link.title }}
-                  {% render 'icon', icon: 'caret' %}
-                </button>
-                <ul class="menu-drawer__secondary-menu list-unstyled" role="list">
+                <ul class="list-unstyled">
                   {% for child_link in link.links %}
                     <li>
-                      <a class="menu-drawer__secondary-menu-button body" href="{{ link.url }}">{{ link.title }}</a>
+                      <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link.title }}</a>
                     </li>
                   {% endfor %}
                 </ul>
-              {% else %}
-                <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link.title }}</a>
-                {% if link.links != blank %}
-                  <ul class="list-unstyled">
-                    {% for child_link in link.links %}
-                      <li>
-                        <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link.title }}</a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
               {% endif %}
             </li>
           {% endfor %}
