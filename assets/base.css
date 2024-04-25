@@ -1526,7 +1526,6 @@ header.condensed .header__menu {
   height: calc(100% - 80px);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .menu-drawer__menu {
