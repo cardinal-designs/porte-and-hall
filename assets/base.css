@@ -1565,6 +1565,13 @@ header.condensed .header__menu {
   padding-left: 20px;
 }
 
+.menu-drawer__menu-additional {
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .menu-drawer__menu-button--has-menu {
   display: flex;
   justify-content: center;
