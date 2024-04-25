@@ -57,6 +57,15 @@
             {% endif %}
           </li>
         </ul>
+        {% if section.settings.additional_menu %}
+          <ul class="menu-drawer__menu-additional list-unstyled" role="list">
+            {% for link in section.settings.additional_menu.links %}
+              <li>
+                <a class="menu-drawer__menu-additional-button body" href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       </div>
     </div>
   </div>
