@@ -130,6 +130,7 @@
     {% endif %}
   </div>
   {% if search.performed %}
+    <div class="collection-grid__inner">
     {% if search.filters != empty %}
       {% comment %}
       {% if section.settings.enable_filtering or section.settings.enable_sorting %}
@@ -242,6 +243,7 @@
         {% endpaginate %}    
       {% endif %}
     </div> 
+    </div>
   {% endif %}
 </div>
 
