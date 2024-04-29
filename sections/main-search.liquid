@@ -15,7 +15,6 @@
   <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
 {% endif %}
 
-
 <style>
   .template-search__header {
     margin-bottom: 3rem;
@@ -133,14 +132,14 @@
     {% if search.performed %}
     <div class="collection-grid__inner">
     {% if search.filters != empty %}
-      
+      {% comment %}
       {% if section.settings.enable_filtering or section.settings.enable_sorting %}
         <div class="page-width">
           {% render 'facets', results: search, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting, collapse_on_larger_devices: section.settings.collapse_on_larger_devices %}
         </div>
       {% endif %}
-      
-{% comment %}
+      {% endcomment %}
+
       {% render 'collection-filters', collection: search %}
       <script>
         function clearAll(e) {
@@ -149,7 +148,6 @@
           document.querySelector('collection-filters').clearAllFilters()
         }
       </script>
-      {% endcomment %}
     {% endif %}
 
     
