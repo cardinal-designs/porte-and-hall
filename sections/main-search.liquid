@@ -172,14 +172,15 @@
                   {% case item.object_type %}
                     {% when 'product' %}
                       {% capture product_settings %}{% if section.settings.product_show_vendor %}vendor,{% endif %}title,price{% endcapture %}
-                      {% render 'product-card',
+                      {% render 'grouped-product-card',
                         product_card_product: item,
                         media_size: section.settings.image_ratio,
                         show_secondary_image: section.settings.show_secondary_image,
                         add_image_padding: section.settings.add_image_padding,
                         show_vendor: section.settings.show_vendor,
                         show_image_outline: section.settings.show_image_outline,
-                        show_rating: section.settings.show_rating
+                        show_rating: section.settings.show_rating,
+                        button_text: 'Shop Now'
                       %}
                     {% when 'article' %}
                       <a href="{{ item.url }}" class="card-wrapper">
