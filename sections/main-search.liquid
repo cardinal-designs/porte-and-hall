@@ -128,8 +128,8 @@
         <p role="status">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
       {% endif %}
     {% endif %}
-  </div>
-  {% if search.performed %}
+
+    {% if search.performed %}
     <div class="collection-grid__inner">
     {% if search.filters != empty %}
       {% comment %}
@@ -245,6 +245,9 @@
     </div> 
     </div>
   {% endif %}
+                  
+  </div>
+  
 </div>
 
 {% schema %}
