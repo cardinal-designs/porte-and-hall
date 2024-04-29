@@ -9,8 +9,8 @@
 {% endcomment %}
 
 <div class="product-card{% if product_card_product.media[1] != nil %} has-animation{% endif %}">
-  <a href="{{ product_card_product.url }}">
     <div class="product-card__image">
+  <a href="{{ product_card_product.url }}">
       {% render 'lazy-image', image: product_card_product.featured_media, fade: false, classes: 'img-fill' %}
       {% if product_card_product.media[1] != null %}
         {% render 'lazy-image', image: product_card_product.media[1], fade: false, classes: 'img-fill' %}
@@ -26,8 +26,8 @@
           Outdoor
         {% endif %}
       </div>
-    </div>
   </a>
+    </div>
   <div class="product-card__container">
     <p class="product-card__title">{{ product_card_product.title }}</p>
     <div class="product-card__content">
