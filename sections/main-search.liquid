@@ -3,6 +3,8 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
 
+<script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
+
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 
 <noscript>{{ 'component-search.css' | asset_url | stylesheet_tag }}</noscript>
