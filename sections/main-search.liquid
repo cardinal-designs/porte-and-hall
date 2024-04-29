@@ -2,6 +2,9 @@
 {{ 'component-product-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
+{{ 'component-collection-filters.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
 
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 
@@ -125,18 +128,32 @@
         <p role="status">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
       {% endif %}
     {% endif %}
-  </div>
-  {% if search.performed %}
+
+    {% if search.performed %}
+    <div class="collection-grid__inner">
     {% if search.filters != empty %}
+      {% comment %}
       {% if section.settings.enable_filtering or section.settings.enable_sorting %}
         <div class="page-width">
           {% render 'facets', results: search, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting, collapse_on_larger_devices: section.settings.collapse_on_larger_devices %}
         </div>
       {% endif %}
+      {% endcomment %}
+
+      {% render 'collection-filters', collection: search %}
+      <script>
+        function clearAll(e) {
+          e.preventDefault();
+          console.log("clear all")
+          document.querySelector('collection-filters').clearAllFilters()
+        }
+      </script>
     {% endif %}
+
+    
     <div id="ProductGridContainer">
       {% if search.results.size == 0 and search.filters != empty %}
-        <div class="template-search__results collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
+        <div class="template-search__results collection collection--empty" id="product-grid" data-id="{{ section.id }}">
           <div class="loading-overlay gradient"></div>
           <div class="title-wrapper center">
             <h2 class="title title--primary">
@@ -147,22 +164,23 @@
         </div>
       {% else %}
         {% paginate search.results by 24 %}
-          <div class="template-search__results collection page-width" id="product-grid" data-id="{{ section.id }}">
+          <div class="template-search__results collection" id="product-grid" data-id="{{ section.id }}">
             <div class="loading-overlay gradient"></div>
-            <ul class="grid grid--4-col-desktop grid--3-col-tablet grid--2-col grid--one-third-max grid--quarter-max negative-margin product-grid" role="list">
+            <ul class="grid grid--4-col-desktop grid--3-col-tablet grid--2-col grid--one-third-max grid--quarter-max negative-margin product-grid list-unstyled" role="list">
               {% for item in search.results %}
                 <li class="grid__item{% unless item.object_type == 'product' %} grid__item--small{% endunless %}">
                   {% case item.object_type %}
                     {% when 'product' %}
                       {% capture product_settings %}{% if section.settings.product_show_vendor %}vendor,{% endif %}title,price{% endcapture %}
-                      {% render 'product-card',
+                      {% render 'grouped-product-card',
                         product_card_product: item,
                         media_size: section.settings.image_ratio,
                         show_secondary_image: section.settings.show_secondary_image,
                         add_image_padding: section.settings.add_image_padding,
                         show_vendor: section.settings.show_vendor,
                         show_image_outline: section.settings.show_image_outline,
-                        show_rating: section.settings.show_rating
+                        show_rating: section.settings.show_rating,
+                        button_text: 'Shop Now'
                       %}
                     {% when 'article' %}
                       <a href="{{ item.url }}" class="card-wrapper">
@@ -226,7 +244,11 @@
         {% endpaginate %}    
       {% endif %}
     </div> 
+    </div>
   {% endif %}
+                  
+  </div>
+  
 </div>
 
 {% schema %}
