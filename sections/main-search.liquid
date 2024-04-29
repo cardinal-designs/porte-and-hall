@@ -153,7 +153,7 @@
     
     <div id="ProductGridContainer">
       {% if search.results.size == 0 and search.filters != empty %}
-        <div class="template-search__results collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
+        <div class="template-search__results collection collection--empty" id="product-grid" data-id="{{ section.id }}">
           <div class="loading-overlay gradient"></div>
           <div class="title-wrapper center">
             <h2 class="title title--primary">
@@ -164,7 +164,7 @@
         </div>
       {% else %}
         {% paginate search.results by 24 %}
-          <div class="template-search__results collection page-width" id="product-grid" data-id="{{ section.id }}">
+          <div class="template-search__results collection" id="product-grid" data-id="{{ section.id }}">
             <div class="loading-overlay gradient"></div>
             <ul class="grid grid--4-col-desktop grid--3-col-tablet grid--2-col grid--one-third-max grid--quarter-max negative-margin product-grid list-unstyled" role="list">
               {% for item in search.results %}
