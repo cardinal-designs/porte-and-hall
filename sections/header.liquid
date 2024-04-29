@@ -45,6 +45,24 @@
 
     <!-- Icons -->
     <div class="header__icons">
+
+      <form action="{{ routes.search_url }}" method="get" role="search" class="header__search-form">
+        <div class="header__search-group">
+          <input
+            class="header__search-input"
+            id="Search-In-Modal"
+            type="search"
+            name="q"
+            value="{{ search.terms | escape }}"
+            placeholder="Search..."
+          >
+          <input type="hidden" name="options[prefix]" value="last">
+          <button class="header__search-button" aria-label="{{ 'general.search.search' | t }}">
+            {% render 'icon', icon: 'search' %}
+          </button>
+        </div>
+      </form>
+      
       {% if section.settings.enable_search %}
         <button class="js-open-search header__icon header__icon--search hide-mobile" aria-label="Open Search Bar">
           {% render 'icon', icon: 'search' %}
