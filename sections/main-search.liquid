@@ -375,6 +375,10 @@
         // Query for the desired element
         const paginationWrapper = doc.querySelector('#pagination-wrapper');
         console.log('paginationWrapper', paginationWrapper)
+        const gf_pagination_wrap = document.querySelector('#gf_pagination_wrap');
+        if(gf_pagination_wrap){
+          gf_pagination_wrap.innerHTML = paginationWrapper.innerHTML;
+        }
       })
       .catch(error => {
         console.error('Fetch error:', error);
