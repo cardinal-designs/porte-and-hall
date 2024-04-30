@@ -3335,6 +3335,10 @@ iframe#preview-bar-iframe {
   column-gap: 0;
 }
 
+.template-search__results .card__content {
+  margin-top: 15px;
+}
+
 .template-search .collection-grid__products {
   column-gap: 40.5px;
 }
