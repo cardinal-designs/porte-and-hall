@@ -3334,3 +3334,7 @@ iframe#preview-bar-iframe {
   grid-template-columns: unset;
   column-gap: 0;
 }
+
+.template-search .collection-grid__products {
+  column-gap: 40.5px;
+}
