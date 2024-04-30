@@ -15,7 +15,7 @@
 <noscript>{{ 'component-pagination.css' | asset_url | stylesheet_tag }}</noscript>
 
 {% if paginate.parts.size > 0 %}
-  <div class="pagination-wrapper">
+  <div class="pagination-wrapper" id="pagination-wrapper">
     <nav class="pagination-update" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
       <ul class="pagination__list-update list-unstyled-update" role="list">
       {% if paginate.previous %}
