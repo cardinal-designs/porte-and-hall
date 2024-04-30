@@ -3332,4 +3332,5 @@ iframe#preview-bar-iframe {
 
 .template-search .collection-grid__inner {
   grid-template-columns: unset;
+  column-gap: 0;
 }
