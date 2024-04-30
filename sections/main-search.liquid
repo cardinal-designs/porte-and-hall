@@ -183,6 +183,7 @@
                         button_text: 'Shop Now'
                       %}
                     {% when 'article' %}
+                      <div class="grid__item">
                       <a href="{{ item.url }}" class="card-wrapper">
                         <div class="card card--search card--soft{% unless item.image %} card--text-only{% endunless %}">
                           <div class="card__inner">
@@ -222,7 +223,9 @@
                           </div>
                         </div>
                       </a>
+                      </div>
                     {% when 'page' %}
+                    <div class="grid__item">
                       <a href="{{ item.url }}" class="card-wrapper">
                         <div class="card card--search card--soft card--text-only">
                           <div class="card__inner">
@@ -233,6 +236,7 @@
                           </div>
                         </div>
                       </a>
+                    </div>
                   {% endcase %}
                 </li>
               {% endfor %}
