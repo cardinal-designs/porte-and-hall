@@ -227,27 +227,14 @@ class collectionFilters extends HTMLElement {
 
     const locationUrl = window.location.href;
     if(locationUrl?.includes('search') && locationUrl?.includes('q=')){
-
-      
-      
-      // Create a URLSearchParams object from the URL
       const params = new URLSearchParams(new URL(locationUrl).search);
-      
-      // Get the value of the query parameter 'q'
       const queryValue = params.get('q');
-      
-      console.log("queryValue", queryValue);
       if(queryValue){
         url = `${location.pathname}?q=${queryValue}&${searchParams}`;
       }else{
         url = `${location.pathname}?${searchParams}`;
       }
-      
-      // url = window.location.href + '?' + searchParams;
-      console.log("url", url)
     }
-    
-
     
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
