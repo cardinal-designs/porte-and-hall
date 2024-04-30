@@ -225,7 +225,12 @@ class collectionFilters extends HTMLElement {
     const searchParams = new URLSearchParams(formData).toString();
     url = location.pathname + '?' + searchParams;
 
-    console.log("url", url)
+    if(window.location.href?.includes('search') && window.location.href?.includes('q=')){
+      console.log("url", url)
+    }
+    
+
+    
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
     }
