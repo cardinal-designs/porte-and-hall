@@ -143,8 +143,8 @@ class collectionFilters extends HTMLElement {
       target.closest(".collection-filters__dropdown-container").querySelector('.collection-filters__filter-button[remove-filter]').checked = false
 
     }
-    console.log("2222")
-      // this.reloadSections();
+    console.log("777")
+      this.reloadSections();
   
   }
 
