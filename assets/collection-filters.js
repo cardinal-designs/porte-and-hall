@@ -237,6 +237,11 @@ class collectionFilters extends HTMLElement {
       const queryValue = params.get('q');
       
       console.log("queryValue", queryValue);
+      if(queryValue){
+        url = `${location.pathname}?q=${queryValue}&${searchParams}`;
+      }else{
+        url = `${location.pathname}?${searchParams}`;
+      }
       
       // url = window.location.href + '?' + searchParams;
       console.log("url", url)
