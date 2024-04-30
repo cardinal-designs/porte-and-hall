@@ -355,3 +355,41 @@
   ]
 }
 {% endschema %}
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    if(window.location.href?.includes('search')){
+      const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+              console.log('Mutation detected:', mutation);
+  
+              if (mutation.type === 'childList') {
+                  console.log('Child nodes have been added or removed.');
+              }
+  
+              if (mutation.type === 'attributes' && mutation.attributeName === 'id') {
+                  console.log('ID attribute changed. New ID:', mutation.target.id);
+              }
+          });
+      });
+  
+      const config = {
+          childList: true,
+          attributes: true,
+          attributeFilter: ['id'],
+          subtree: false
+      };
+  
+      const target = document.querySelector('.pagination-wrapper'); // Replace '.specific-class' with your target element's class
+  
+      if (target) {
+          observer.observe(target, config);
+      } else {
+          console.log('Target element not found.');
+      }
+    }
+    
+  });
+
+</script>
