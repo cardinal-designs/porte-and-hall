@@ -23,6 +23,7 @@ class collectionFilters extends HTMLElement {
     const onHistoryChange = (event) => {
       this.searchParams = event.state ? event.state.searchParams : "";
       if (searchParams === collectionFilters.searchParamsPrev) return;
+      console.log("555")
       this.reloadSections();
       window.addEventListener('popstate', onHistoryChange);
     }
@@ -51,7 +52,7 @@ class collectionFilters extends HTMLElement {
         const newUrl = window.location.protocol + '//' + window.location.host + initial;
 
         console.log("newUrl", newUrl)
-  
+        console.log("111")
         if (filter) this.removeSelectedFilter(filter);
         this.reloadSections(newUrl);
       }
@@ -142,6 +143,7 @@ class collectionFilters extends HTMLElement {
       target.closest(".collection-filters__dropdown-container").querySelector('.collection-filters__filter-button[remove-filter]').checked = false
 
     }
+    console.log("2222")
       this.reloadSections();
   
   }
@@ -159,6 +161,7 @@ class collectionFilters extends HTMLElement {
     sortTextDestination.innerHTML = sortText;
     
     this.closeAllDropdowns();
+    console.log("2222")
     this.reloadSections();
   }
 
@@ -192,6 +195,7 @@ class collectionFilters extends HTMLElement {
     // this.querySelector('.price-range__input-field--max')?.value =  '';
 
     // this.closeAllDropdowns();
+    console.log("444")
     this.reloadSections();
 
     this.close();
