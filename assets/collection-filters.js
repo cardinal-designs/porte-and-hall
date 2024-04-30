@@ -144,7 +144,7 @@ class collectionFilters extends HTMLElement {
 
     }
     console.log("2222")
-      this.reloadSections();
+      // this.reloadSections();
   
   }
 
