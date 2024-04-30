@@ -3330,3 +3330,6 @@ iframe#preview-bar-iframe {
   margin-bottom: 50px;
 }
 
+.template-search .collection-grid__inner {
+  grid-template-columns: unset;
+}
