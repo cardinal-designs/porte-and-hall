@@ -377,7 +377,13 @@
         console.log('paginationWrapper', paginationWrapper)
         const gf_pagination_wrap = document.querySelector('#gf_pagination_wrap');
         if(gf_pagination_wrap){
-          gf_pagination_wrap.innerHTML = paginationWrapper.innerHTML;
+          const childLength = gf_pagination_wrap.children?.length;
+          console.log("childLength", childLength)
+          if(childLength < 1){
+            gf_pagination_wrap.innerHTML = paginationWrapper.innerHTML;
+          }
+          gf_pagination_wrap.id = 'pagination-wrapper';
+          // gf_pagination_wrap.innerHTML = paginationWrapper.innerHTML;
         }
       })
       .catch(error => {
@@ -394,7 +400,7 @@
   
               if (mutation.type === 'childList') {
                   console.log('Child nodes have been added or removed.');
-                  // fetchPage(window.location.href)
+                  fetchPage(window.location.href)
               }
   
               if (mutation.type === 'attributes' && mutation.attributeName === 'id') {
