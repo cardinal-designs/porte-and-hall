@@ -11,8 +11,8 @@
     - anchor: {String} (optional) This can be added so that on page reload it takes you to wherever you've placed your anchor tag.
 {% endcomment %}
 
-
-<link rel="stylesheet" href="{{ 'component-pagination.css' | asset_url }}">
+{{ 'component-pagination.css' | asset_url | stylesheet_tag }}
+{% comment %} <link rel="stylesheet" href="{{ 'component-pagination.css' | asset_url }}">{% endcomment %}
 <noscript>{{ 'component-pagination.css' | asset_url | stylesheet_tag }}</noscript>
 
 {% if paginate.parts.size > 0 %}
