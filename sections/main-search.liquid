@@ -358,6 +358,30 @@
 
 
 <script>
+
+  function fetchPage(url) {
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then(html => {
+        // Parse the HTML content into a DOM element
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+  
+        // Query for the desired element
+        const paginationWrapper = doc.querySelector('#pagination-wrapper');
+        console.log('collectionContent', collectionContent)
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
+  }
+
+  
   document.addEventListener("DOMContentLoaded", () => {
     if(window.location.href?.includes('search')){
       const observer = new MutationObserver((mutations) => {
@@ -370,6 +394,7 @@
   
               if (mutation.type === 'attributes' && mutation.attributeName === 'id') {
                   console.log('ID attribute changed. New ID:', mutation.target.id);
+                  fetchPage(window.location.href)
               }
           });
       });
