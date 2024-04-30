@@ -14,11 +14,11 @@ customElements.define('ajax-pagination',class ajaxPagination extends HTMLElement
       return resp.text();
     })
     .then(data => {
-      // let fakeElement = document.createElement('div');
-      // fakeElement.innerHTML = data;
-      // console.log(document.querySelector(`#${this.sectionId}`))
-      // document.querySelector(`#shopify-section-${this.sectionId}`).querySelector(this.wraperElement).insertAdjacentHTML('beforeend',fakeElement.querySelector(this.wraperElement).innerHTML);
-      // this.replaceWith(fakeElement.querySelector('ajax-pagination'));
+      let fakeElement = document.createElement('div');
+      fakeElement.innerHTML = data;
+      console.log(document.querySelector(`#${this.sectionId}`))
+      document.querySelector(`#shopify-section-${this.sectionId}`).querySelector(this.wraperElement).insertAdjacentHTML('beforeend',fakeElement.querySelector(this.wraperElement).innerHTML);
+      this.replaceWith(fakeElement.querySelector('ajax-pagination'));
     })
   }
 })
