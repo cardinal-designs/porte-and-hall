@@ -277,7 +277,7 @@ class collectionFilters extends HTMLElement {
       { id: 'active-filters' },
       // { id: 'apply-product-count' },
       // { id: 'collection-filters__clear' },
-      { id: 'load-more-wrapper' }
+      // { id: 'load-more-wrapper' }
     ]
   }
 
