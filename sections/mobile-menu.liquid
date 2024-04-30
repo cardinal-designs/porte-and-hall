@@ -20,13 +20,12 @@
 
           {% for link in section.settings.menu.links %}
             <li>
-              {{ link.url }}
               <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link.title }}</a>
               {% if link.links != blank %}
                 <ul class="menu-drawer__menu-secondary list-unstyled">
                   {% for child_link in link.links %}
                     <li>
-                      <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ child_link.title }}</a>
+                      <a class="menu-drawer__menu-button body" href="{{ child_link.url }}">{{ child_link.title }}</a>
                     </li>
                   {% endfor %}
                 </ul>
