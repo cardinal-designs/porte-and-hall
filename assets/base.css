@@ -1212,7 +1212,7 @@ deferred-media {
   grid-area: icons;
   column-gap: 20px;
   justify-self: end;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .header__icon {
