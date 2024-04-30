@@ -129,8 +129,16 @@
       {% endif %}
     {% endif %}
 
+
+    {% assign isProduct = false %}
+    {% for item in search.results %}
+      {% if item.object_type == 'product' %}
+        {% assign isProduct = true %}
+      {% endif %}
+    {% endfor %}
+
     {% if search.performed %}
-    <div class="collection-grid__inner">
+    <div class="collection-grid__inner {% if isProduct %}collection-grid__products{% endif %}">
     {% if search.filters != empty %}
       {% comment %}
       {% if section.settings.enable_filtering or section.settings.enable_sorting %}
