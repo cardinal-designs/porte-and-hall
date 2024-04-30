@@ -272,7 +272,6 @@ class collectionFilters extends HTMLElement {
   }
 
   getSectionsToRender() {
-    console.log("tetetette")
     return [
       { id: 'product-grid' },
       { id: 'active-filters' },
@@ -283,7 +282,6 @@ class collectionFilters extends HTMLElement {
   }
 
   getSectionInnerHTML(html, selector) {
-    console.log("545454545554")
     return new DOMParser()
       .parseFromString(html, 'text/html')
       .querySelector(selector).innerHTML;
