@@ -272,6 +272,7 @@ class collectionFilters extends HTMLElement {
   }
 
   getSectionsToRender() {
+    console.log("tetetette")
     return [
       { id: 'product-grid' },
       { id: 'active-filters' },
