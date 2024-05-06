@@ -3351,3 +3351,10 @@ iframe#preview-bar-iframe {
 .spf-has-filter #gf-products {
     gap: 0;
 }
+  .template-search   .collection-filters {
+        z-index: 0;
+        display: none !important;
+    }
+a.spf-product-card__image-wrapper {
+    padding-top: 100% !important;
+}
