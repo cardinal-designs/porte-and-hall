@@ -3348,3 +3348,6 @@ iframe#preview-bar-iframe {
 .template-search .collection-grid__products {
   column-gap: 40.5px;
 }
+.spf-has-filter #gf-products {
+    gap: 0;
+}
