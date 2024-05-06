@@ -124,7 +124,7 @@
         "type": "shopify:\/\/apps\/smart-product-filter-search\/blocks\/app-embed\/5cc1944c-3014-4a2a-af40-7d65abc0ef73",
         "disabled": false,
         "settings": {
-          "productGridSelector": "ProductGridContainer",
+          "productGridSelector": "#product-grid > ul.product-grid",
           "useCustomQuickviewTemplate": false,
           "customJs": "",
           "customCss": "",
