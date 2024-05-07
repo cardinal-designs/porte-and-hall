@@ -389,11 +389,13 @@
           const searchListWrapper = document.querySelector('.search--list-wrapper');
           if(searchListWrapper){
             console.log("child", searchListWrapper.children?.length)
+            if(searchListWrapper.children?.length > 0){
+              if(childLength < 1){
+                gf_pagination_wrap.innerHTML = paginationWrapper.innerHTML;
+              }
+            }
           }
-          if(childLength < 1){
-            
-            gf_pagination_wrap.innerHTML = paginationWrapper.innerHTML;
-          }
+          
           gf_pagination_wrap.id = 'pagination-wrapper';
         }
       })
