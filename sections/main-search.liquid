@@ -386,11 +386,12 @@
         const gf_pagination_wrap = document.querySelector('#gf_pagination_wrap');
         if(gf_pagination_wrap){
           const childLength = gf_pagination_wrap.children?.length;
+          const searchListWrapper = document.querySelector('.search--list-wrapper');
+          if(searchListWrapper){
+            console.log("child", searchListWrapper.children?.length)
+          }
           if(childLength < 1){
-            const searchListWrapper = document.querySelector('.search--list-wrapper');
-            if(searchListWrapper){
-              console.log("child", searchListWrapper.children?.length)
-            }
+            
             gf_pagination_wrap.innerHTML = paginationWrapper.innerHTML;
           }
           gf_pagination_wrap.id = 'pagination-wrapper';
