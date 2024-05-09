@@ -1,3 +1,3 @@
-<!-- 2024-05-03T22:21:48.2877287Z -->
+<!-- 2024-05-09T04:12:04.4361608Z -->
 <style>.shoplift-hide { opacity: 0 !important; }</style>
-<script type="text/javascript">(function(rootPath, template, themeRole){ {{ shop.metafields.shoplift.snippet.value }} })("{{routes.root_url}}", { suffix: "{{ template.suffix }}", type: "{{ template.name }}" }, "{{ theme.role }}")</script>
+<script type="text/javascript">(function(rootPath, template, isThemePreview){ {{ shop.metafields.shoplift.snippet.value }} })("{{routes.root_url}}", { suffix: "{{ template.suffix }}", type: "{{ template.name }}" }, {% if content_for_header contains "previewBarInjector.init();" %}true{% else %}false{% endif %})</script>
