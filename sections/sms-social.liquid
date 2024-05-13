@@ -20,7 +20,7 @@
         <div class="SMS_Section_Bottom_Desc">{{ section.settings.bottom_content }}</div>
       {% endif %}
       {% if section.settings.klaviyo_code != blank %}
-        <div class="Widget_Code desktop_hide">
+        <div class="Widget_Code mobile_hide">
           {{ section.settings.klaviyo_code }}
         </div>
       {% endif %}
@@ -68,12 +68,12 @@
         "label": "Bottom Content"
       },
       {
-        "type": "textarea",
+        "type": "html",
         "id": "klaviyo_code",
         "label": "Desktop Klaviyo Code"
       },
       {
-        "type": "textarea",
+        "type": "html",
         "id": "mobile_klaviyo_code",
         "label": "Mobile Klaviyo Code"
       }
