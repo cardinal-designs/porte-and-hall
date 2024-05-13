@@ -3334,3 +3334,8 @@ iframe#preview-bar-iframe {
 .klaviyo-form.klaviyo-form.klaviyo-form[data-testid="klaviyo-form-VEEkwn"] [data-testid="form-component"] {
   width: 100%;  
 }
+
+.klaviyo-form.klaviyo-form.klaviyo-form[data-testid="klaviyo-form-T3FTE5"] [data-testid="form-component"] > .needsclick.kl-private-reset-css-Xuajs1 > .needsclick.kl-private-reset-css-Xuajs1,
+.klaviyo-form.klaviyo-form.klaviyo-form[data-testid="klaviyo-form-VEEkwn"] [data-testid="form-component"] >.needsclick.kl-private-reset-css-Xuajs1 > .needsclick.kl-private-reset-css-Xuajs1 {
+  justify-content: center;
+}
