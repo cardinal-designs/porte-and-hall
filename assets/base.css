@@ -3330,3 +3330,7 @@ iframe#preview-bar-iframe {
   margin-bottom: 50px;
 }
 
+.klaviyo-form.klaviyo-form.klaviyo-form[data-testid="klaviyo-form-T3FTE5"] [data-testid="form-component"],
+.klaviyo-form.klaviyo-form.klaviyo-form[data-testid="klaviyo-form-VEEkwn"] [data-testid="form-component"] {
+  width: 100%;  
+}
