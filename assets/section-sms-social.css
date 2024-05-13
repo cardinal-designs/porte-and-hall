@@ -96,7 +96,19 @@
   color: #546b82 !important;
 }
 
+@media screen and (min-width: 769px) {
+
+  .desktop_hide {
+    display: none !important;
+  }
+  
+}
+
 @media screen and (max-width: 768px) {
+
+  .mobile_hide {
+    display: none !important;
+  }
   
   .SMS_Section .SMS_Inr_Block .SMS_Section_Heading {
     font-size: 80px;
