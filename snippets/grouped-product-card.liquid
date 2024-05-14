@@ -192,7 +192,7 @@
 
         isSoldOut -- {{ isSoldOut }}
         
-      <button data-quick-add class="product-card__quick-add button" data-variant="{{ product_card_product.selected_or_first_available_variant.id }}">
+      <button {% unless isSoldOut %}data-quick-add{% endunless %} class="product-card__quick-add button" data-variant="{{ product_card_product.selected_or_first_available_variant.id }}">
         <span>Add to Cart</span>
         <div class="loading-overlay__spinner">
           <svg
