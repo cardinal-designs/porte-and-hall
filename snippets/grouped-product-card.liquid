@@ -186,11 +186,11 @@
       <div>
         {% comment %}<div class="product-card__urgency">Only {{ product_card_product.selected_or_first_available_variant.inventory_quantity }} products left!</div>{% endcomment %}
       {% assign isSoldOut = false %}
-      {% unless product_card_product.selected_or_first_available_variant.available %}
+      {% unless product_card_product.selected_or_first_available_variant.available and product_card_product.selected_or_first_available_variant.inventory_policy == 'continue' %}
         {% assign isSoldOut = true %}
       {% endunless %}
 
-        
+        isSoldOut -- {{ isSoldOut }}
         
       <button data-quick-add class="product-card__quick-add button" data-variant="{{ product_card_product.selected_or_first_available_variant.id }}">
         <span>Add to Cart</span>
