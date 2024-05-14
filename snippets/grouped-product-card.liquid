@@ -186,7 +186,7 @@
       <div>
         {% comment %}<div class="product-card__urgency">Only {{ product_card_product.selected_or_first_available_variant.inventory_quantity }} products left!</div>{% endcomment %}
       {% assign isSoldOut = false %}
-      {% unless product_card_product.selected_or_first_available_variant.available and product_card_product.selected_or_first_available_variant.inventory_policy == 'continue' %}
+      {% unless product_card_product.selected_or_first_available_variant.available and product_card_product.selected_or_first_available_variant.inventory_policy != 'continue' %}
         {% assign isSoldOut = true %}
       {% endunless %}
 
