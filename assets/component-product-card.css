@@ -208,6 +208,10 @@ grouped-product-card {
   font-weight: 600;
 }
 
+.product-card__quick-add:disabled {
+  opacity: 0.7;
+}
+
 .product-card__link {
   margin-top: auto;
 }
