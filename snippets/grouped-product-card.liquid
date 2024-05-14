@@ -186,7 +186,9 @@
       <div>
         {% comment %}<div class="product-card__urgency">Only {{ product_card_product.selected_or_first_available_variant.inventory_quantity }} products left!</div>{% endcomment %}
       {% assign isSoldOut = false %}
-      {{ product_card_product.selected_or_first_available_variant.available }}
+      {% unless product_card_product.selected_or_first_available_variant.available %}
+        {% assign isSoldOut = true %}
+      {% endunless %}
         
       <button data-quick-add class="product-card__quick-add button" data-variant="{{ product_card_product.selected_or_first_available_variant.id }}">
         <span>Add to Cart</span>
