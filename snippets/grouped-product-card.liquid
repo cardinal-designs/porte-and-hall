@@ -189,6 +189,8 @@
       {% unless product_card_product.selected_or_first_available_variant.available %}
         {% assign isSoldOut = true %}
       {% endunless %}
+
+        {{ product_card_product.selected_or_first_available_variant.inventory_policy }}
         
       <button data-quick-add class="product-card__quick-add button" data-variant="{{ product_card_product.selected_or_first_available_variant.id }}">
         <span>Add to Cart</span>
