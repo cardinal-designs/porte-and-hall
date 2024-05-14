@@ -184,9 +184,18 @@
 
     {% if template.suffix == 'last-chance' %}
       <div>
-<!--         <div class="product-card__urgency">Only {{ product_card_product.selected_or_first_available_variant.inventory_quantity }} products left!</div> -->
-      <button data-quick-add class="product-card__quick-add button" data-variant="{{ product_card_product.selected_or_first_available_variant.id }}">
-        <span>Add to Cart</span>
+        {% comment %}<div class="product-card__urgency">Only {{ product_card_product.selected_or_first_available_variant.inventory_quantity }} products left!</div>{% endcomment %}
+      {% assign isSoldOut = false %}
+      {% unless product_card_product.selected_or_first_available_variant.available and product_card_product.selected_or_first_available_variant.inventory_policy != 'continue' %}
+        {% assign isSoldOut = true %}
+      {% endunless %}
+        
+      <button {% unless isSoldOut %}data-quick-add{% endunless %} class="product-card__quick-add button" data-variant="{{ product_card_product.selected_or_first_available_variant.id }}" {% if isSoldOut %}disabled="disabled"{% endif %}>
+        {% if isSoldOut %}
+          <span>Sold Out</span>
+        {% else %}
+          <span>Add to Cart</span>
+        {% endif %}
         <div class="loading-overlay__spinner">
           <svg
             aria-hidden="true"

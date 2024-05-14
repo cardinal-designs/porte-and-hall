@@ -199,13 +199,17 @@ grouped-product-card {
 .product-card__quick-add {
   padding: 8px 16px;
   background: #D1BD93;
-  color: #30383D;
+  color: #30383d !important;
   text-transform: uppercase;
   font-family: brandon;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 2px;
   font-weight: 600;
+}
+
+.product-card__quick-add:disabled {
+  opacity: 0.7;
 }
 
 .product-card__link {
