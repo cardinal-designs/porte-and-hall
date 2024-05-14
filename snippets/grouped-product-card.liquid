@@ -184,7 +184,10 @@
 
     {% if template.suffix == 'last-chance' %}
       <div>
-<!--         <div class="product-card__urgency">Only {{ product_card_product.selected_or_first_available_variant.inventory_quantity }} products left!</div> -->
+        {% comment %}<div class="product-card__urgency">Only {{ product_card_product.selected_or_first_available_variant.inventory_quantity }} products left!</div>{% endcomment %}
+      {% assign isSoldOut = false %}
+      {{ product_card_product.selected_or_first_available_variant.available }}
+        
       <button data-quick-add class="product-card__quick-add button" data-variant="{{ product_card_product.selected_or_first_available_variant.id }}">
         <span>Add to Cart</span>
         <div class="loading-overlay__spinner">
