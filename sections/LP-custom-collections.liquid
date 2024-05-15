@@ -443,8 +443,17 @@
                 {% if block.settings.the_solution_content != blank %}
                   <p class="the_solution_content">{{ block.settings.the_solution_content }}</p>
                 {% endif %}
+
+                <a class="text-link gold-secondary--dark" href="{{ block.settings.link_url }}">
+                  {{ block.settings.link_text }}
+                </a>
               </div>
             </div>
+
+            <div class="collection-col-inner image">
+              {{ block.settings.footer_image | image_url: width: 900 | image_tag: width: '100%' }}
+            </div>
+        
           </div>
         </div>
       {% endfor %}

@@ -330,19 +330,12 @@
               {% if other_sizes != blank and section.settings.shop_more_below != true %}
                 {% capture other_size_links %}
                   {% for block in other_sizes %}
-                    {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
-                    {%- assign current_size = block.title | split: " | " -%}
-                    {%- assign format_color = "- " | append: active_style | append: " /" -%}
-                    {%- assign match_name = block.title | replace: "|",  format_color -%}
-                    {%- assign match = block.products | where: 'title', match_name -%}
+                    {% assign current_size = block.title | split: " | " %}
+                    {% assign format_color = "- " | append: active_style | append: " /" %}
+                    {%  assign match_name = block.title | replace: "|",  format_color %}
+                    {%  assign match = block.products | where: 'title', match_name %}
                     {% if match != blank %}
-                      <a 
-                        class="other-sizes__button" 
-                        href="{{ match.first.url }}"
-                      >
-                        <span>{{ current_size.last }}</span>
-                        <span class="other-sizes__dimension">{{ dimension }}</span>
-                      </a>
+                      <a class="inline-link" href="{{ match.first.url }}">{{ current_size.last }}</a> <span class="other-size__divider">or</span>
                     {% endif %}
                   {% endfor %}
                 {%  endcapture %}
@@ -350,10 +343,7 @@
                 {% unless section.settings.hide_shop_other == true %}
                   {% unless other_size_links == blank %}
                     <div class="other-sizes__wrapper">
-                      <span class="other-sizes__label">Size</span> 
-                      <div class="other-sizes__wrapper-links">
-                        {{ other_size_links }}
-                      </div>
+                      <span>Also available in:</span> {{ other_size_links }}
                     </div>
                   {% endunless %}
                 {% endunless %}
