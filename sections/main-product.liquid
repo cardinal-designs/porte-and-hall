@@ -460,7 +460,10 @@
                 {% unless section.settings.hide_shop_other == true %}
                   {% unless other_size_links == blank %}
                     <div class="other-sizes__wrapper">
-                      <span>Also available in:</span> {{ other_size_links }}
+                      <span class="other-sizes__label">Size</span> 
+                      <div class="other-sizes__wrapper-links">
+                        {{ other_size_links }}
+                      </div>
                     </div>
                   {% endunless %}
                 {% endunless %}
