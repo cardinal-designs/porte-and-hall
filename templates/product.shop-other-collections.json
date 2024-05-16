@@ -11,7 +11,7 @@
         "care": "{{ section.settings.collection.metafields.custom.care | metafield_tag }}",
         "hide_pinterest": true,
         "hide_dimensions": true,
-        "text_dimensions": true,
+        "text_dimensions": false,
         "hide_shop_other": false,
         "hide_quantity": true,
         "shop_more_below": true
