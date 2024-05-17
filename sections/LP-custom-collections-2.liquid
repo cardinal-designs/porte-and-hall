@@ -43,7 +43,7 @@
   .collection-row, .collection-row-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0px;
+    gap: 56px;
     width: 100%;
   }
   .collection-row .collection-col{
@@ -98,6 +98,9 @@
     margin-top: -15px;
   }
 
+  .collection-row .collection-col .collection-row-inner {
+    gap: 20px;
+  }
   .collection-row .collection-col .collection-row-inner .collection-col-inner {
     background: transparent;
     padding: 21px 0 0;
@@ -327,6 +330,9 @@
     }
     .collection-row .collection-col .collection-row-inner .collection-col-inner {
       padding: 12px 0 0;
+    }
+    .collection-row .collection-col .collection-row-inner {
+      gap:12px;
     }
 
   }
