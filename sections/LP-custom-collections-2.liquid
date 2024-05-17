@@ -435,6 +435,7 @@
               elsif product.handle contains 'area-mat' 
                  assign productType = 'area-mat' 
               endif 
+            
               if product.handle contains productType
               for option in product.options_with_values
                 assign option_name = option.name | downcase
