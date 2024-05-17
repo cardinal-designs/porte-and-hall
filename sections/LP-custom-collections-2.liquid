@@ -443,7 +443,7 @@
                   custom_image: block.settings.product_image1
                 %}
               {% endcomment %}
-                {{ grouped_collection }}
+                
                 <div class="image_container">
                 {% render 'lazy-image', image: block.settings.product_image1, fade: true, classes: 'img-fill' %}
                 </div>
@@ -452,6 +452,7 @@
             
             <div class="collection-col-inner text">
               <h6><b>{{ block.settings.title }}</b></h6>
+              {{ grouped_collection }}
               <div class="problem">              
                 {% if block.settings.check1 != blank %}
                   <p class="title"><span>{% render 'icon', icon: 'checkmark' %}</span> {{ block.settings.check1 }}</p>
