@@ -535,8 +535,6 @@
         {% unless product.title contains block.settings.title %}
         
         <div class="collection-col index-{{ loopNum }}">
-          
-
           <div class="collection-row-inner">
             {% for product in block.settings.collection1.products limit: 1 %}
               {% for collection in product.collections %}
