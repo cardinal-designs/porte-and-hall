@@ -557,19 +557,21 @@
                   {% break %}
                 {% endif %}
               {% endfor %}
-              {{ currentProduct.price }}
-              <span class="blue"> | </span>
-
-              <!-- Rating code -->
-              <div class="rating-reviews">
-                <span
-                  class="stamped-product-reviews-badge stamped-main-badge"
-                  data-id="{{ currentProduct.id }}"
-                  data-product-sku="{{currentProduct.selected_or_first_available_variant.sku}}"
-                  data-product-title="{{currentProduct.title}}"
-                  style="display: inline-block;">
-                  
-                </span>
+              <div class="price_rating">
+                <p>{{ currentProduct.price }}</p>
+                <span class="blue"> | </span>
+  
+                <!-- Rating code -->
+                <div class="rating-reviews">
+                  <span
+                    class="stamped-product-reviews-badge stamped-main-badge"
+                    data-id="{{ currentProduct.id }}"
+                    data-product-sku="{{currentProduct.selected_or_first_available_variant.sku}}"
+                    data-product-title="{{currentProduct.title}}"
+                    style="display: inline-block;">
+                    
+                  </span>
+                </div>
               </div>
               <div class="swatch_container">
               {{ color_swatch_list }}
