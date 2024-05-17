@@ -421,6 +421,21 @@
       {% assign loopNum = 0 %}
       {%- for block in section.blocks -%}
 
+                    {% for product in block.settings.collection1.products%}
+               {% assign productType = '' %}
+              {%  if product.handle contains 'doormat' %}
+                 {% assign productType = 'doormat' %}
+               {% elsif product.handle contains 'runner' %}
+                 {% assign productType = 'runner' %}
+             {%  elsif product.handle contains 'area-mat' %}
+               {%   assign productType = 'area-mat' %}
+              {% endif %}
+            
+              {% if product.handle contains productType%}
+ {{ product.handle}}
+  {% endif%}
+  {% endfor%}
+
         {% liquid
           assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
           capture color_swatch_list
