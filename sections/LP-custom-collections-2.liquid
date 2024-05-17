@@ -421,7 +421,7 @@
       {% assign loopNum = 0 %}
       {%- for block in section.blocks -%}
 
-                    {% for product in block.settings.collection1.products%}
+              {% for prod in block.settings.collection1.products%}
                {% assign productType = '' %}
               {%  if product.handle contains 'doormat' %}
                  {% assign productType = 'doormat' %}
@@ -431,7 +431,7 @@
                {%   assign productType = 'area-mat' %}
               {% endif %}
             {{ productType }}
-              {% if product.handle contains productType%}
+              {% if prod.handle contains productType%}
                
                 {% endif%}
   {% endfor%}
