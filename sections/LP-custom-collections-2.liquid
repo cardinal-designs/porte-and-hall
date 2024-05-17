@@ -452,10 +452,22 @@
             
             <div class="collection-col-inner text">
               <h6><b>{{ block.settings.title }}</b></h6>
-              ff{{ product.handle }}
+              {% assign productType = '' %}
+              {% assign currentProduct = '' %}
+              {% if product.handle contains 'doormat' %}
+                {% assign productType = 'doormat' %}
+              {% elsif product.handle contains 'runner' %}
+                {% assign productType = 'runner' %}
+              {% elsif product.handle contains 'area-mat' %}
+                {% assign productType = 'area-mat' %}
+              {% endif %}
               {% for prod in block.settings.collection1.products %}
-             
+                {% if prod.handle contains productType %}
+                  {% assign currentProduct = prod %}
+                  {% break %}
+                {% endif %}
               {% endfor %}
+              {{ currentProduct.title }}
               <div class="problem">              
                 {% if block.settings.check1 != blank %}
                   <p class="title"><span>•</span> {{ block.settings.check1 }}</p>
