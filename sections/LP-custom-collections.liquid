@@ -401,7 +401,7 @@
     <div class="collection-row">
       {%- for block in section.blocks -%}
         <div class="collection-col index-{{ forloop.index0 }}">
-          <h6><b>{{ block.settings.title }}</b></h6>
+          <h6>{{ block.settings.title }}</h6>
 
           <div class="collection-row-inner">
             {% for product in block.settings.collection1.products limit: 1 %}
