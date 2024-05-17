@@ -548,7 +548,9 @@
                 {% endif %}
               {% endfor %}
               {{ currentProduct.price }}
+              <div class="swatch_container">
               {{ color_swatch_list }}
+              </div>
               <div class="problem">              
                 {% if block.settings.check1 != blank %}
                   <p class="title"><span>•</span> {{ block.settings.check1 }}</p>
