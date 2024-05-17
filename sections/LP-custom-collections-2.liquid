@@ -430,10 +430,10 @@
              {%  elsif product.handle contains 'area-mat' %}
                {%   assign productType = 'area-mat' %}
               {% endif %}
-            
+            {{ productType }}
               {% if product.handle contains productType%}
- {{ product.handle}}
-  {% endif%}
+               
+                {% endif%}
   {% endfor%}
 
         {% liquid
