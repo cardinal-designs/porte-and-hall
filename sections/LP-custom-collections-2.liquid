@@ -452,10 +452,9 @@
             
             <div class="collection-col-inner text">
               <h6><b>{{ block.settings.title }}</b></h6>
-              {{ block.settings.collection1.products | json}}
               <div class="problem">              
                 {% if block.settings.check1 != blank %}
-                  <p class="title"><span>{% render 'icon', icon: 'checkmark' %}</span> {{ block.settings.check1 }}</p>
+                  <p class="title"><span>{% render 'icon', icon: 'close-circle' %}</span> {{ block.settings.check1 }}</p>
                 {% endif %}
                 {% if block.settings.check2 != blank %}
                   <p class="title"><span>{% render 'icon', icon: 'checkmark' %}</span> {{ block.settings.check2 }}</p>
