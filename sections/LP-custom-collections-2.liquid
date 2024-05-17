@@ -421,7 +421,7 @@
         {% unless product.title contains block.settings.title %}
         
         <div class="collection-col index-{{ loopNum }}">
-          <h6><b>{{ block.settings.title }}</b></h6>
+          
 
           <div class="collection-row-inner">
             {% for product in block.settings.collection1.products limit: 1 %}
@@ -450,6 +450,7 @@
             {% endfor %}
             
             <div class="collection-col-inner text">
+              <h6><b>{{ block.settings.title }}</b></h6>
               <div class="problem">              
                 {% if block.settings.check1 != blank %}
                   <p class="title"><span>{% render 'icon', icon: 'checkmark' %}</span> {{ block.settings.check1 }}</p>
