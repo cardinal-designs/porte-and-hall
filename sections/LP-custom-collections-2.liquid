@@ -557,7 +557,7 @@
                 {% endif %}
               {% endfor %}
               <div class="price_rating">
-                <p>{{ currentProduct.price }}</p>
+                <p>{{ currentProduct.price | money_without_trailing_zeros }}</p>
                 <span class="blue"> | </span>
   
                 <!-- Rating code -->
