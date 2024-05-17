@@ -429,6 +429,7 @@
                 <p class="badge">
                   {{- block.settings.badge1 -}}
                 </p>
+                {% comment %}
                 {% render 'product-card-custom',
                   product_card_product: block.settings.product1,
                   collection: grouped_collection,
@@ -436,6 +437,7 @@
                   button_text: section.settings.button_text,
                   custom_image: block.settings.product_image1
                 %}
+              {% endcomment %}
               </div>
             {% endfor %}
             
