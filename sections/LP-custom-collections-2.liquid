@@ -469,6 +469,10 @@
     .collection-col-inner.text {
       padding-top: 16px;
     }
+
+    .title-swatch_container {
+      display: felx;
+    }
   }
 </style>
 
@@ -600,9 +604,11 @@
             {% endfor %}
             
             <div class="collection-col-inner text">
-              <h6>{{ block.settings.title }}</h6>
-              <div class="hide-desktop swatch_container">
-              {{ color_swatch_list }}
+              <div class="title-swatch_container">
+                <h6>{{ block.settings.title }}</h6>
+                <div class="hide-desktop swatch_container">
+                {{ color_swatch_list }}
+                </div>
               </div>
               {% assign productType = '' %}
               {% assign currentProduct = '' %}
