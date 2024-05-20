@@ -9,6 +9,7 @@
       assign grouped_collection = collection
     endif
   endfor
+  
 
   assign oos_products = grouped_collection.products | where: 'available', false
   assign oos_products = ""
@@ -62,7 +63,7 @@
 %}
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-
+{{ collection }}
 <section class="page-width">
   <div class="product">
     <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
@@ -362,7 +363,7 @@
                   href="{{ product.url }}"
                 >
                   <span>{{ product_size }}</span>
-                  <span class="other-sizes__dimension">1{{ product.metafields.custom.product_dimensions.value.dimension }}</span>
+                  <span class="other-sizes__dimension">{{ product.metafields.custom.product_dimensions.value.dimension }}</span>
                 </a>
                 {%- comment -%} Other Sizes {%- endcomment -%}
                 {%- for block in other_sizes -%}
@@ -377,7 +378,7 @@
                       href="{{ match.first.url }}"
                     >
                       <span>{{ current_size.last }}</span>
-                      <span class="other-sizes__dimension">2{{ dimension }}</span>
+                      <span class="other-sizes__dimension">{{ dimension }}</span>
                     </a>
                   {%- endif -%}
                 {%- endfor -%}
