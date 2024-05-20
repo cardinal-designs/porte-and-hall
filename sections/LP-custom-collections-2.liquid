@@ -601,6 +601,9 @@
             
             <div class="collection-col-inner text">
               <h6>{{ block.settings.title }}</h6>
+              <div class="hide-desktop swatch_container">
+              {{ color_swatch_list }}
+              </div>
               {% assign productType = '' %}
               {% assign currentProduct = '' %}
               {% if product.handle contains 'doormat' %}
@@ -632,7 +635,7 @@
                   </span>
                 </div>
               </div>
-              <div class="swatch_container">
+              <div class="hide-mobile swatch_container">
               {{ color_swatch_list }}
               </div>
               <div class="problem">              
