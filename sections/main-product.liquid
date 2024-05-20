@@ -383,7 +383,17 @@
                       href="{{ match.first.url }}"
                     >
                       <span>{{ current_size.last }}</span>
+                      {% if current_size.last == 'Doormat' %}
+                      <span class="other-sizes__dimension">2' 3" x 3'</span>
+                      {% elsif current_size.last == 'Runner' %}
+                      <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
+                      {% elsif current_size.last == 'Area Mat' %}
+                      <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
+                      {% endif %}
+
+                      {% comment %}
                       <span class="other-sizes__dimension">{{ dimension }}</span>
+                      {% endcomment %}
                     </a>
                   {%- endif -%}
                 {%- endfor -%}
