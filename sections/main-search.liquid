@@ -191,6 +191,7 @@
                         show_rating: section.settings.show_rating,
                         button_text: 'Shop Now'
                       %}
+                    {% comment %}
                     {% when 'article' %}
                       <div class="grid__item">
                       <a href="{{ item.url }}" class="card-wrapper">
@@ -246,6 +247,7 @@
                         </div>
                       </a>
                     </div>
+                    {% endcomment %}
                   {% endcase %}
                 </li>
               {% endfor %}
