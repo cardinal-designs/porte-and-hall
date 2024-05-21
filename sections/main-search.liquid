@@ -2,6 +2,9 @@
 {{ 'component-product-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
+{{ 'component-collection-filters.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
 
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 
@@ -23,7 +26,7 @@
   }
 
   .template-search__search .search {
-    margin-top: 1rem;
+    margin-top: 3rem;
   }
 
   .template-search--empty {
@@ -36,7 +39,7 @@
 
   @media screen and (min-width: 769px) {
     .template-search__header {
-      margin-bottom: 1rem;
+      margin-bottom: 5rem;
     }
 
     .template-search .grid__item--small:not(:last-child) {
@@ -88,7 +91,9 @@
                 spellcheck="false"
               {% endif %}
             >
+            <label class="field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label>
             <input name="options[prefix]" type="hidden" value="last">
+            <input type="hidden" name="options[type]" value="products" />
 
             {% if settings.predictive_search_enabled %}
               <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
@@ -124,19 +129,40 @@
         <p role="status">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
       {% endif %}
     {% endif %}
-  </div>
-  {% if search.performed %}
+
+
+    {% assign isProduct = false %}
+    {% for item in search.results %}
+      {% if item.object_type == 'product' %}
+        {% assign isProduct = true %}
+      {% endif %}
+    {% endfor %}
+
+    {% if search.performed %}
+    <div class="collection-grid__inner {% if isProduct %}collection-grid__products{% endif %}">
     {% if search.filters != empty %}
+      {% comment %}
       {% if section.settings.enable_filtering or section.settings.enable_sorting %}
         <div class="page-width">
           {% render 'facets', results: search, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting, collapse_on_larger_devices: section.settings.collapse_on_larger_devices %}
         </div>
       {% endif %}
+      {% endcomment %}
+
+      {% render 'collection-filters', collection: search %}
+      <script>
+        function clearAll(e) {
+          e.preventDefault();
+          console.log("clear all")
+          document.querySelector('collection-filters').clearAllFilters()
+        }
+      </script>
     {% endif %}
-    <div class="page-width">
-    <div id="ProductGridContainer">
+
+    
+    <div id="ProductGridContainer" test="{{ search.results.size }}">
       {% if search.results.size == 0 and search.filters != empty %}
-        <div class="template-search__results collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
+        <div class="template-search__results collection collection--empty" id="product-grid" data-id="{{ section.id }}">
           <div class="loading-overlay gradient"></div>
           <div class="title-wrapper center">
             <h2 class="title title--primary">
@@ -146,54 +172,99 @@
           </div>
         </div>
       {% else %}
-        <div class="collection">
-          {% paginate search.results by 24 %}
-          <ul id="product-grid" data-id="{{ section.id }}" class="product-grid list-unstyled">
+        {% paginate search.results by 24 %}
+          <div class="template-search__results collection" id="product-grid" data-id="{{ section.id }}">
+            <div class="loading-overlay gradient"></div>
+            <ul class="search--list-wrapper grid grid--4-col-desktop grid--3-col-tablet grid--2-col grid--one-third-max grid--quarter-max negative-margin product-grid list-unstyled" role="list">
               {% for item in search.results %}
-                {% case item.object_type %}
-                {% when 'product' %}
-                  {% comment %} {% render 'product-card', product_card_product: product %} {% endcomment %}
-                  {% for collection in item.collections %}
-                    {% if collection.title contains ' |' %}
-                      {% assign grouped_collection = collection %}
-                    {% endif %}
-                  {% endfor %}
-                  <li class="product-grid__item">
-                    {% render 'grouped-product-card',
-                      product_card_product: item,
-                      collection: grouped_collection,
-                      title: grouped_collection.title,
-                      button_text: 'Shop Now'
-                    %}
-                  </li> 
-                {% endcase %}   
+                <li class="search--list demo grid__item{% unless item.object_type == 'product' %} grid__item--small{% endunless %}">
+                  {% case item.object_type %}
+                    {% when 'product' %}
+                      {% capture product_settings %}{% if section.settings.product_show_vendor %}vendor,{% endif %}title,price{% endcapture %}
+                      {% render 'product-card',
+                        product_card_product: item,
+                        media_size: section.settings.image_ratio,
+                        show_secondary_image: section.settings.show_secondary_image,
+                        add_image_padding: section.settings.add_image_padding,
+                        show_vendor: section.settings.show_vendor,
+                        show_image_outline: section.settings.show_image_outline,
+                        show_rating: section.settings.show_rating,
+                        button_text: 'Shop Now'
+                      %}
+                    {% comment %}
+                    {% when 'article' %}
+                      <div class="grid__item">
+                      <a href="{{ item.url }}" class="card-wrapper">
+                        <div class="card card--search card--soft{% unless item.image %} card--text-only{% endunless %}">
+                          <div class="card__inner">
+                            {% if item.image %}
+                              <div class="media media--cropped">
+                                <img
+                                  srcset="{% if item.image.src.width >= 165 %}{{ item.image.src | img_url: '165x' }} 165w,{% endif %}
+                                    {% if item.image.src.width >= 360 %}{{ item.image.src | img_url: '360x' }} 360w,{% endif %}
+                                    {% if item.image.src.width >= 533 %}{{ item.image.src | img_url: '533x' }} 533w,{% endif %}
+                                    {% if item.image.src.width >= 720 %}{{ item.image.src | img_url: '720x' }} 720w,{% endif %}
+                                    {% if item.image.src.width >= 940 %}{{ item.image.src | img_url: '940x' }} 940w,{% endif %}
+                                    {% if item.image.src.width >= 1065 %}{{ item.image.src | img_url: '1065x' }} 1065w,{% endif %}
+                                    {{ item.image.src | img_url: 'master' }} {{ item.image.src.width }}w"
+                                  src="{{ item.image.src | img_url: '940x' }}"
+                                  loading="lazy"
+                                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 769px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                                  width="{{ item.image.src.width }}"
+                                  height="{{ item.image.src.height }}"
+                                  alt="{{ item.image.src.alt | escape }}"
+                              >
+                              </div>
+                            {% endif %}
+                            <div class="card__content">
+                              <h2 class="card__text h3">{{ item.title | truncate: 50 | escape }}</h2>
+                              <div class="card-article-info caption-with-letter-spacing h5">
+                                {% if section.settings.article_show_date %}
+                                  <span class="circle-divider">{{ item.published_at | time_tag: format: 'date' }}</span>
+                                {% endif %}
+                                {% if section.settings.article_show_author %}
+                                  <span>{{ item.author }}</span>
+                                {% endif %}
+                              </div>
+                            </div>
+                            <div class="card__badge">
+                              <span class="badge color-background-1">{{ 'blogs.article.blog' | t }}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                      </div>
+                    {% when 'page' %}
+                    <div class="grid__item">
+                      <a href="{{ item.url }}" class="card-wrapper">
+                        <div class="card card--search card--soft card--text-only">
+                          <div class="card__inner">
+                            <div class="card__content"><h2 class="card__text h3">{{ item.title | truncate: 50 | escape }}</h2></div>
+                            <div class="card__badge">
+                              <span class="badge color-background-1">{{ 'templates.search.page' | t }}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    {% endcomment %}
+                  {% endcase %}
+                </li>
               {% endfor %}
-          </ul>
-            <div id="load-more-wrapper" class="load-more-wrapper">
-              {% if paginate.pages > 1 and paginate.next %}
-              <load-more role="button" class="button" data-load-more="{{ paginate.next.url }}">
-                <span>Load more</span>
-                <div class="loading-overlay__spinner">
-                  <svg
-                    aria-hidden="true"
-                    focusable="false"
-                    role="presentation"
-                    class="spinner"
-                    viewBox="0 0 66 66"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                  </svg>
-                </div>
-              </load-more>
+            </ul>
+
+            {% if paginate.pages > 1 %}
+              {% render 'pagination-search', paginate: paginate %}
             {% endif %}
-            </div>
-        {% endpaginate %}
-        </div>
+          </div>
+        {% endpaginate %}    
       {% endif %}
-    </div>
+    </div> 
     </div>
   {% endif %}
+                  
+  </div>
+  
 </div>
 
 {% schema %}
@@ -299,3 +370,69 @@
   ]
 }
 {% endschema %}
+
+
+<!-- <script>
+
+  function fetchPage(url) {
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const paginationWrapper = doc.querySelector('#pagination-wrapper');
+        const gf_pagination_wrap = document.querySelector('#gf_pagination_wrap');
+        if(gf_pagination_wrap){
+          const childLength = gf_pagination_wrap.children?.length;
+          const searchListWrapper = document.querySelector('.search--list-wrapper');
+          if(searchListWrapper){
+            console.log("child", searchListWrapper.children?.length)
+            if(searchListWrapper.children?.length > 0){
+              if(childLength < 1){
+                gf_pagination_wrap.innerHTML = paginationWrapper.innerHTML;
+              }
+            }
+          }
+          
+          gf_pagination_wrap.id = 'pagination-wrapper';
+        }
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
+  }
+
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    if(window.location.href?.includes('search')){
+      const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+              if (mutation.type === 'childList') {
+                  console.log('Child nodes have been added or removed.');
+                  fetchPage(window.location.href)
+              }
+          });
+      });
+  
+      const config = {
+          childList: true,
+          attributes: true,
+          attributeFilter: ['id'],
+          subtree: false
+      };
+  
+      const target = document.querySelector('.pagination-wrapper'); // Replace '.specific-class' with your target element's class
+      if (target) {
+          observer.observe(target, config);
+      } else {
+          console.log('Target element not found.');
+      }
+    }
+  });
+
+</script> -->
