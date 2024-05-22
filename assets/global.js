@@ -1059,6 +1059,7 @@ customElements.define('load-more', LoadMore)
 window.addEventListener('hashchange', offsetAnchor);
 window.setTimeout(offsetAnchor, 1);
 function offsetAnchor() {
+  console.log('scrolly')
 	if (location.hash.length !== 0) {
 		window.scrollTo(window.scrollX, window.scrollY - 130);
 	}
