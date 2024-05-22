@@ -395,18 +395,25 @@
                       class="other-sizes__button" 
                       href="{{ match.first.url }}"
                     >
-                      {{ current_size.first }}
                       <span>{{ current_size.last }}</span>
                       {% if current_size.last == 'Doormat' %}
-                        {% if true %}
-                          <span class="other-sizes__dimension">2' 3" x 3'</span>
+                        {% if current_size.first == 'The Innerweave' %}
+                          <span class="other-sizes__dimension">2' x 3'</span>
                         {% else %}
                           <span class="other-sizes__dimension">2' 3" x 3'</span>
                         {% endif %}
                       {% elsif current_size.last == 'Runner' %}
-                      <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
+                        {% if current_size.first == 'The Innerweave' %}
+                          <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
+                        {% else %}
+                          <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
+                        {% endif %}
                       {% elsif current_size.last == 'Area Mat' %}
-                      <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
+                        {% if current_size.first == 'The Innerweave' %}
+                          <span class="other-sizes__dimension">4' x 6'</span>
+                        {% else %}
+                          <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
+                        {% endif %}
                       {% endif %}
 
                       {% comment %}
