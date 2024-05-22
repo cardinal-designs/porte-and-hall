@@ -395,9 +395,14 @@
                       class="other-sizes__button" 
                       href="{{ match.first.url }}"
                     >
+                      {{ current_size }}
                       <span>{{ current_size.last }}</span>
                       {% if current_size.last == 'Doormat' %}
-                      <span class="other-sizes__dimension">2' 3" x 3'</span>
+                        {% if true %}
+                          <span class="other-sizes__dimension">2' 3" x 3'</span>
+                        {% else %}
+                          <span class="other-sizes__dimension">2' 3" x 3'</span>
+                        {% endif %}
                       {% elsif current_size.last == 'Runner' %}
                       <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
                       {% elsif current_size.last == 'Area Mat' %}
