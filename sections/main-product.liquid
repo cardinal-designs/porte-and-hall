@@ -423,8 +423,7 @@
                   </div>
                 {%- endunless -%}
               {%- endunless -%}
-            {%- else -%}  
-             {% if product.type == 'Outlier' %}
+            {%- elsif product.type == 'Outlier' and section.settings.shop_more_below == true  -%}  
                {%- capture other_size_links -%}
                 <a 
                   class="other-sizes__button active" 
@@ -442,7 +441,7 @@
                     </div>
                   </div>
                 {%- endunless -%}
-              {% endif %}      
+     
             {%- endif -%}
             
 
