@@ -410,18 +410,6 @@
                     </a>                
                   {%- endif -%}
                 {%- endfor -%}
-
-
-                
-                {% if false %}
-                <a 
-                  class="other-sizes__button active" 
-                  href="{{ product.url }}"
-                >
-                  <span>{{ product_size }}</span>
-                  <span class="other-sizes__dimension">1' 9" x 3'</span>
-                </a>
-                {% endif %}
               {%- endcapture -%}
 
 
@@ -435,8 +423,21 @@
                   </div>
                 {%- endunless -%}
               {%- endunless -%}
+            {%- else -%}  
+             {% if product.type == 'Outlier' %}
+               {%- capture other_size_links -%}
+                <a 
+                  class="other-sizes__button active" 
+                  href="{{ product.url }}"
+                >
+                  <span>{{ product_size }}</span>
+                  <span class="other-sizes__dimension">1' 9" x 3'</span>
+                </a>
+                {%- endcapture -%}
+              {% endif %}      
             {%- endif -%}
-{{ product.type }}
+            
+
             <div class="product__quantity-atc-wrapper  {% if product.available == false %}bis-styles{% endif %} {% if section.settings.hide_quantity == true %}no-quant__button{% endif %}">
               <div class="product-form__input product-form__quantity {% if product.available == false or section.settings.hide_quantity == true %}visually-hidden{% endif%}">
                 <label class="form__label visually-hidden" for="Quantity-{{ section.id }}">
