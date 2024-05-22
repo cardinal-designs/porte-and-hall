@@ -1053,7 +1053,7 @@ var LoadMore = class extends HTMLElement {
   }
 }
 
-customElements.define('load-more', LoadMore)
+customElements.define('load-more', LoadMore) 
 
 // offset anchor
 // window.addEventListener('hashchange', offsetAnchor);
