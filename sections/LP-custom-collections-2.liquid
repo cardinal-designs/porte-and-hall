@@ -677,6 +677,7 @@
             {% endfor %}
             
             <div class="collection-col-inner text">
+              <div>
               <div class="title-swatch_container">
                 <h6>{{ block.settings.title }}</h6>
                 <div class="hide-large swatch_container">
@@ -732,6 +733,7 @@
                 {% if block.settings.check4 != blank %}
                   <p class="title"><span>•</span> {{ block.settings.check4 }}</p>
                 {% endif %}
+              </div>
               </div>
                 <a href="{{ currentProduct.url }}" class="text-link gold-secondary--dark product-card__link">
                  {% if section.settings.button_text == blank %}Shop Now{% else %}{{ section.settings.button_text }}{% endif %} <span> <svg xmlns="http://www.w3.org/2000/svg" width="29" height="16" viewBox="0 0 29 16" fill="none">
