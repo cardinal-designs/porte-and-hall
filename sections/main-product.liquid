@@ -412,7 +412,7 @@
                 {%- endfor -%}
               {%- endcapture -%}
 
-{{ other_size_links }}
+
               {%- unless section.settings.hide_shop_other == true -%}
                 {%- unless other_size_links == blank -%}
                   <div class="other-sizes__wrapper other-sizes__wrapper--other-collections">
@@ -436,6 +436,14 @@
                   <span class="other-sizes__dimension">1' 9" x 3'</span>
                 </a>
                 {%- endcapture -%}
+                 {%- unless other_size_links == blank -%}
+                  <div class="other-sizes__wrapper other-sizes__wrapper--other-collections">
+                    <span class="other-sizes__label">Size</span> 
+                    <div class="other-sizes__wrapper-links">
+                      {{ other_size_links }}
+                    </div>
+                  </div>
+                {%- endunless -%}
               {% endif %}      
             {%- endif -%}
             
