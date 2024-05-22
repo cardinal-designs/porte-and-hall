@@ -412,7 +412,7 @@
                 {%- endfor -%}
 
 
-                {{ product.type }}
+                
                 {% if false %}
                 <a 
                   class="other-sizes__button active" 
@@ -423,6 +423,7 @@
                 </a>
                 {% endif %}
               {%- endcapture -%}
+{{ product.type }}
 
               {%- unless section.settings.hide_shop_other == true -%}
                 {%- unless other_size_links == blank -%}
