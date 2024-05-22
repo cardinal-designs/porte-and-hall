@@ -410,6 +410,18 @@
                     </a>                
                   {%- endif -%}
                 {%- endfor -%}
+
+
+                {{ product.type }}
+                {% if false %}
+                <a 
+                  class="other-sizes__button active" 
+                  href="{{ product.url }}"
+                >
+                  <span>{{ product_size }}</span>
+                  <span class="other-sizes__dimension">1' 9" x 3'</span>
+                </a>
+                {% endif %}
               {%- endcapture -%}
 
               {%- unless section.settings.hide_shop_other == true -%}
