@@ -357,8 +357,17 @@
             {%- if other_sizes != blank and section.settings.shop_more_below == true -%}
               {%- capture other_size_links -%}
                 {%- comment -%} Current Product Size {%- endcomment -%}
-
+                  {% assign active_order = '' %}
+                  {% if product.handle contains 'doormat' %}
+                    {% assign active_order = 1 %}
+                  {% elsif product.handle contains 'runner' %}
+                    {% assign active_order = 2 %}
+                  {% elsif product.handle contains 'area-mat' %}
+                    {% assign active_order = 3 %}
+                  {% endif %}
                 <a 
+                  
+                  style="order: {{ active_order }};"
                   class="other-sizes__button active" 
                   href="{{ product.url }}"
                 >
