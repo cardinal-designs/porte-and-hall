@@ -379,10 +379,10 @@
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
-                  {{current_size[1]}}
+    
                   {%- if match != blank -%}
                     <a 
-                      style="order: {% if match_name %}1{% elsif match_name %}2{% elsif match_name %}3{% endif %} ;"
+                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'Area Mat'  %}3{% endif %} ;"
                       class="other-sizes__button" 
                       href="{{ match.first.url }}"
                     >
