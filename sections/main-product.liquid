@@ -379,7 +379,7 @@
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
-                 {{ match }}
+                   {{ match_name }}
                     <a 
                       class="other-sizes__button {% if match == blank %}active{% endif %}" 
                       href="{{ match.first.url }}"
