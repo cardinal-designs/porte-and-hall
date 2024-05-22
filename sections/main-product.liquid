@@ -357,6 +357,7 @@
             {%- if other_sizes != blank and section.settings.shop_more_below == true -%}
               {%- capture other_size_links -%}
                 {%- comment -%} Current Product Size {%- endcomment -%}
+                {% comment %}
                 <a 
                   class="other-sizes__button active" 
                   href="{{ product.url }}"
@@ -370,6 +371,7 @@
                   <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
                   {% endif %}
                 </a>
+                {% endcomment %}
                 {%- comment -%} Other Sizes {%- endcomment -%}
                 {%- for block in other_sizes -%}
                   {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
@@ -377,9 +379,9 @@
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
-                  {%- if match != blank -%}
+                 
                     <a 
-                      class="other-sizes__button" 
+                      class="other-sizes__button {% if match == blank %}active{% endif %}" 
                       href="{{ match.first.url }}"
                     >
                       <span>{{ current_size.last }}</span>
@@ -395,7 +397,7 @@
                       <span class="other-sizes__dimension">{{ dimension }}</span>
                       {% endcomment %}
                     </a>
-                  {%- endif -%}
+               
                 {%- endfor -%}
               {%- endcapture -%}
 
