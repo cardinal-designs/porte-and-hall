@@ -357,7 +357,7 @@
             {%- if other_sizes != blank and section.settings.shop_more_below == true -%}
               {%- capture other_size_links -%}
                 {%- comment -%} Current Product Size {%- endcomment -%}
-                {% comment %}
+
                 <a 
                   class="other-sizes__button active" 
                   href="{{ product.url }}"
@@ -371,7 +371,7 @@
                   <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
                   {% endif %}
                 </a>
-                {% endcomment %}
+
                 {%- comment -%} Other Sizes {%- endcomment -%}
                 {%- for block in other_sizes -%}
                   {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
@@ -379,10 +379,10 @@
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
-                  
-                  
+                  {{ match_name }}
                   {%- if match != blank -%}
                     <a 
+                      style="order: {% if match_name %}1{% elsif match_name %}2{% elsif match_name %}3{% endif %} ;"
                       class="other-sizes__button" 
                       href="{{ match.first.url }}"
                     >
@@ -398,23 +398,8 @@
                       {% comment %}
                       <span class="other-sizes__dimension">{{ dimension }}</span>
                       {% endcomment %}
-                    </a>
-                    {%- else -%}
-                     <a 
-                        class="other-sizes__button active" 
-                        href="{{ product.url }}"
-                      >
-                        <span>{{ product_size }}</span>
-                        {% if product_size == 'Doormat' %}
-                        <span class="other-sizes__dimension">2' 3" x 3'</span>
-                        {% elsif product_size == 'Runner' %}
-                        <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
-                        {% elsif product_size == 'Area Mat' %}
-                        <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
-                        {% endif %}
-                      </a>
-                    {%- endif -%}
-                  
+                    </a>                
+                  {%- endif -%}
                 {%- endfor -%}
               {%- endcapture -%}
 
