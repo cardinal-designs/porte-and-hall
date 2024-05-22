@@ -365,16 +365,18 @@
                   {% elsif product.handle contains 'area-mat' %}
                     {% assign active_order = 3 %}
                   {% endif %}
+                
                 <a 
-                  {{ product_size }}
                   style="order: {{ active_order }};"
                   class="other-sizes__button active" 
                   href="{{ product.url }}"
                 >
                   <span>{{ product_size }}</span>
                   {% if product_size == 'Doormat' %}
+                    
                   <span class="other-sizes__dimension">2' 3" x 3'</span>
                   {% elsif product_size == 'Runner' %}
+                    {% if product.handle contains 'innerweave' %}ff{% endif %}
                   <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
                   {% elsif product_size == 'Area Mat' %}
                   <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
