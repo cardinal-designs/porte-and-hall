@@ -644,7 +644,9 @@
             endfor
             
             if hidden_swatches > 0
-              echo '<a class="body-xs blue">'
+              echo "<a href='"
+              echo block.settings.product1.url
+              echo "'class='body-xs blue'>'"
               echo '+'
               echo hidden_swatches
               echo '</a>'
