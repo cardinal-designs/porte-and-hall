@@ -316,7 +316,7 @@
               </div>
             </noscript>
 
-            grouped_collection -- {{ grouped_collection }}
+          
 
                <!-- Shop Other Sizes -->
               {% liquid
@@ -326,6 +326,12 @@
                 assign active_style = active_style | remove: product_size | remove: " / " 
                 assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
               %}
+
+            <p style="display: none;">product_type-- {{ product_type }}</p>
+            <p style="display: none;">active_style -- {{ active_style }}</p>
+            <p style="display: none;">product_size -- {{ product_size }}</p>
+            <p style="display: none;">active_style -- {{ active_style }}</p>
+            <p style="display: none;">other_sizes -- {{ other_sizes }}</p>
 
             <span data-active-style="{{ active_style }}"></span>
 
