@@ -643,27 +643,10 @@
               endfor
              endif
             endfor
-
-
-            assign productType = ''
-            assign currentProduct = ''
-            if product.handle contains 'doormat'
-              assign productType = 'doormat'
-            elsif product.handle contains 'runner'
-              assign productType = 'runner'
-            elsif product.handle contains 'area-mat'
-              assign productType = 'area-mat'
-            endif
-            for prod in block.settings.collection1.products
-              if prod.handle contains productType or prod.handle contains 'the-outlier-charcoal-doormat'
-                assign currentProduct = prod
-                break
-              endif
-            endfor
             
             if hidden_swatches > 0
               echo "<a href="
-              echo currentProduct.url
+              echo block.settings.product1.url
               echo " class='body-s blue'> "
               echo '+'
               echo hidden_swatches
@@ -675,22 +658,6 @@
 
         
         {% unless product.title contains block.settings.title %}
-
-          {% assign productType = '' %}
-          {% assign currentProduct = '' %}
-          {% if product.handle contains 'doormat' %}
-            {% assign productType = 'doormat' %}
-          {% elsif product.handle contains 'runner' %}
-            {% assign productType = 'runner' %}
-          {% elsif product.handle contains 'area-mat' %}
-            {% assign productType = 'area-mat' %}
-          {% endif %}
-          {% for prod in block.settings.collection1.products %}
-            {% if prod.handle contains productType or prod.handle contains 'the-outlier-charcoal-doormat' %}
-              {% assign currentProduct = prod %}
-              {% break %}
-            {% endif %}
-          {% endfor %}
         
         <div class="collection-col index-{{ loopNum }}">
           <div class="collection-row-inner">
@@ -715,7 +682,7 @@
               {% endcomment %}
                 
                 <div class="image_container">
-                  <a href="{{ currentProduct.url }}">
+                  <a href="{{ block.settings.product1.url }}">
                     {% render 'lazy-image', image: block.settings.product_image1, fade: true, classes: '' %}
                   </a>
                 </div>
@@ -730,7 +697,21 @@
                 {{ color_swatch_list }}
                 </div>
               </div>
-              
+              {% assign productType = '' %}
+              {% assign currentProduct = '' %}
+              {% if product.handle contains 'doormat' %}
+                {% assign productType = 'doormat' %}
+              {% elsif product.handle contains 'runner' %}
+                {% assign productType = 'runner' %}
+              {% elsif product.handle contains 'area-mat' %}
+                {% assign productType = 'area-mat' %}
+              {% endif %}
+              {% for prod in block.settings.collection1.products %}
+                {% if prod.handle contains productType or prod.handle contains 'outlier' %}
+                  {% assign currentProduct = prod %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
               <div class="price_rating">
                 <p>{{ currentProduct.price | money_without_trailing_zeros }}</p>
                 <span class="blue"> | </span>
@@ -767,7 +748,7 @@
                 {% endif %}
               </div>
               </div>
-                <a href="{{ currentProduct.url }}" class="text-link gold-secondary--dark product-card__link">
+                <a href="{{ block.settings.product1.url }}" class="text-link gold-secondary--dark product-card__link">
                  {% if section.settings.button_text == blank %}Shop Now{% else %}{{ section.settings.button_text }}{% endif %} <span> <svg xmlns="http://www.w3.org/2000/svg" width="29" height="16" viewBox="0 0 29 16" fill="none">
                   <path d="M28.7071 8.70711C29.0976 8.31658 29.0976 7.68342 28.7071 7.29289L22.3431 0.928932C21.9526 0.538408 21.3195 0.538408 20.9289 0.928932C20.5384 1.31946 20.5384 1.95262 20.9289 2.34315L26.5858 8L20.9289 13.6569C20.5384 14.0474 20.5384 14.6805 20.9289 15.0711C21.3195 15.4616 21.9526 15.4616 22.3431 15.0711L28.7071 8.70711ZM0 9H28V7H0V9Z" fill="#A19377"/>
                   </svg>
