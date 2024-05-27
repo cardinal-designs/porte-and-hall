@@ -646,7 +646,7 @@
             
             if hidden_swatches > 0
               echo "<a href="
-              echo block.settings.product1.selected_or_first_available_variant.url
+              echo block.settings.product1.url
               echo " class='body-s blue'> "
               echo '+'
               echo hidden_swatches
@@ -682,7 +682,7 @@
               {% endcomment %}
                 
                 <div class="image_container">
-                  <a href="{{ block.settings.product1.selected_or_first_available_variant.url }}">
+                  <a href="{{ block.settings.product1.url }}">
                     {% render 'lazy-image', image: block.settings.product_image1, fade: true, classes: '' %}
                   </a>
                 </div>
