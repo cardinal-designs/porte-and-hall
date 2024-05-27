@@ -333,6 +333,7 @@
             <p style="display: none;">product_size -- {{ product_size }}</p>
             <p style="display: none;">active_style -- {{ active_style }}</p>
             <p style="display: none;">other_sizes -- {{ other_sizes }}</p>
+            <p style="display: none;">shop_more_below -- {{ section.settings.shop_more_below }}</p>
 
             <span data-active-style="{{ active_style }}"></span>
 
@@ -348,6 +349,8 @@
                     {% endif %}
                   {% endfor %}
                 {%  endcapture %}
+
+                
 
                 {% unless section.settings.hide_shop_other == true %}
                   {% unless other_size_links == blank %}
