@@ -327,14 +327,6 @@
                 assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
               %}
 
-            <p style="display: none;">grouped_collection.title -- {{ grouped_collection.title }}</p>
-            <p style="display: none;">product_type -- {{ product_type }}</p>
-            <p style="display: none;">active_style -- {{ active_style }}</p>
-            <p style="display: none;">product_size -- {{ product_size }}</p>
-            <p style="display: none;">active_style -- {{ active_style }}</p>
-            <p style="display: none;">other_sizes -- {{ other_sizes }}</p>
-            <p style="display: none;">shop_more_below -- {{ section.settings.shop_more_below }}</p>
-
             <span data-active-style="{{ active_style }}"></span>
 
               {% if other_sizes != blank and section.settings.shop_more_below != true %}
@@ -349,8 +341,6 @@
                     {% endif %}
                   {% endfor %}
                 {%  endcapture %}
-
-                
 
                 {% unless section.settings.hide_shop_other == true %}
                   {% unless other_size_links == blank %}
