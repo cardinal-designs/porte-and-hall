@@ -643,10 +643,27 @@
               endfor
              endif
             endfor
+
+
+            assign productType = ''
+            assign currentProduct = ''
+            if product.handle contains 'doormat'
+              assign productType = 'doormat'
+            elsif product.handle contains 'runner'
+              assign productType = 'runner'
+            elsif product.handle contains 'area-mat'
+              assign productType = 'area-mat'
+            endif
+            for prod in block.settings.collection1.products
+              if prod.handle contains productType or prod.handle contains 'outlier'
+                assign currentProduct = prod
+                break
+              endif
+            endfor
             
             if hidden_swatches > 0
               echo "<a href="
-              echo block.settings.product1.url
+              echo currentProduct.url
               echo " class='body-s blue'> "
               echo '+'
               echo hidden_swatches
