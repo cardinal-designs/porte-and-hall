@@ -655,7 +655,7 @@
               assign productType = 'area-mat'
             endif
             for prod in block.settings.collection1.products
-              if prod.handle contains productType or prod.handle contains 'outlier'
+              if prod.handle contains productType or prod.handle contains 'the-outlier-charcoal-doormat'
                 assign currentProduct = prod
                 break
               endif
