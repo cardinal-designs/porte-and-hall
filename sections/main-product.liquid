@@ -327,6 +327,9 @@
                 assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
               %}
 
+            <p style="display: none">active_style -- {{ active_style }}</p>
+            <p style="display: none">product_size -- {{ product_size }}</p>
+
 
             <span data-active-style="{{ active_style }}"></span>
 
@@ -343,7 +346,7 @@
                       <p style="display: none">product -- {{ product.title }} -- {{ match_name }}</p>
                       
                     {% endfor %}
-                    <p style="display: none">active_style -- {{ active_style }}</p>
+                    
                     <p style="display: none">block.title -- {{ block.title }}</p>
                     <p style="display: none">match_name -- {{ match_name }}</p>
                     <p style="display: none">match -- {{ match }} -- {{ block.products.size }}</p>
