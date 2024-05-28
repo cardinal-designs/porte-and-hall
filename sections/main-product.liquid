@@ -336,6 +336,7 @@
                     {% assign current_size = block.title | split: " | " %}
                     {% assign format_color = "- " | append: active_style | append: " /" %}
                     {%  assign match_name = block.title | replace: "|",  format_color %}
+                    <p>match_name -- {{ match_name }}</p>
                     {%  assign match = block.products | where: 'title', match_name %}
                     {% if match != blank %}
                       <a class="inline-link" href="{{ match.first.url }}">{{ current_size.last }}</a> <span class="other-size__divider">or</span>
