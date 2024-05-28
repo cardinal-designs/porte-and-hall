@@ -340,7 +340,7 @@
                     {%  assign match = block.products | where: 'title', match_name %}
                     <p style="display: none">block.title -- {{ block.title }}</p>
                     <p style="display: none">match_name -- {{ match_name }}</p>
-                    <p style="display: none">match -- {{ match }}</p>
+                    <p style="display: none">match -- {{ match.title }}</p>
                     {% if match != blank %}
                       <a class="inline-link" href="{{ match.first.url }}">{{ current_size.last }}</a> <span class="other-size__divider">or</span>
                     {% endif %}
