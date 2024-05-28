@@ -338,7 +338,9 @@
                     {%  assign match_name = block.title | replace: "|",  format_color %}
                     {%  assign match = block.products | where: 'title', match_name %}
                     {% for product in block.products %}
-                      <p style="display: none">product -- {{ product.title }}</p>
+                      {% if product.title == match_name %}
+                      <p style="display: none">product -- {{ product.title }} -- {{ match_name }}</p>
+                      {% endif %}
                     {% endfor %}
                     <p style="display: none">block.title -- {{ block.title }}</p>
                     <p style="display: none">match_name -- {{ match_name }}</p>
