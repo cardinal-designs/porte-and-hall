@@ -318,6 +318,7 @@
 
           
 
+            <p style="display: none">selected_or_first_available_variant -- {{ product.selected_or_first_available_variant.title }}</p>
                <!-- Shop Other Sizes -->
               {% liquid
                 assign product_type = grouped_collection.title | remove: 'The ' | split: ' | '
@@ -327,7 +328,7 @@
                 assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
               %}
 
-            <p style="display: none">active_style -- {{ active_style }}</p>
+            
             <p style="display: none">product_size -- {{ product_size }}</p>
 
 
