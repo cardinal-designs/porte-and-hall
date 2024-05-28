@@ -337,6 +337,9 @@
                     {% assign format_color = "- " | append: active_style | append: " /" %}
                     {%  assign match_name = block.title | replace: "|",  format_color %}
                     {%  assign match = block.products | where: 'title', match_name %}
+                    {% for product in block.products %}
+                      <p style="display: none">product -- {{ product.title }}</p>
+                    {% endfor %}
                     <p style="display: none">block.title -- {{ block.title }}</p>
                     <p style="display: none">match_name -- {{ match_name }}</p>
                     <p style="display: none">match -- {{ match }} -- {{ block.products.size }}</p>
