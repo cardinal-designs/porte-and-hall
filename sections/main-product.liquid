@@ -333,18 +333,8 @@
                   {% for block in other_sizes %}
                     {% assign current_size = block.title | split: " | " %}
                     {% assign format_color = "- " | append: active_style | append: " /" %}
-                    
                     {%  assign match_name = block.title | replace: "|", format_color %}
                     {%  assign match = block.products | where: 'title', match_name %}
-                    {% for product in block.products %}
-                      
-                      <p style="display: none">product -- {{ product.title }} -- {{ match_name }}</p>
-                      
-                    {% endfor %}
-                    
-                    <p style="display: none">block.title -- {{ block.title }}</p>
-                    <p style="display: none">match_name -- {{ match_name }}</p>
-                    <p style="display: none">match -- {{ match }} -- {{ block.products.size }}</p>
                     {% if match != blank %}
                       <a class="inline-link" href="{{ match.first.url }}">{{ current_size.last }}</a> <span class="other-size__divider">or</span>
                     {% endif %}
