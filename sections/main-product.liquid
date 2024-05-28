@@ -318,6 +318,7 @@
 
           
 
+            <p style="display: none">selected_or_first_available_variant -- {{ product.selected_or_first_available_variant.title }}</p>
                <!-- Shop Other Sizes -->
               {% liquid
                 assign product_type = grouped_collection.title | remove: 'The ' | split: ' | '
@@ -327,13 +328,15 @@
                 assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
               %}
 
+
+
             <span data-active-style="{{ active_style }}"></span>
 
               {% if other_sizes != blank and section.settings.shop_more_below != true %}
                 {% capture other_size_links %}
                   {% for block in other_sizes %}
                     {% assign current_size = block.title | split: " | " %}
-                    {% assign format_color = "- " | append: active_style | append: " / " %}
+                    {% assign format_color = "- " | append: active_style | append: " /" %}
                     
                     {%  assign match_name = block.title | replace: "|",  format_color %}
                     {%  assign match = block.products | where: 'title', match_name %}
