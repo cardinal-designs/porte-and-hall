@@ -337,7 +337,7 @@
                     {% assign format_color = "- " | append: active_style | append: " /" %}
                     {%  assign match_name = block.title | replace: "|",  format_color %}
                     
-                    {%  assign match = block.products | where: 'title', match_name | first %}
+                    {%  assign match = block.products | where: 'title', match_name %}
                     <p style="display: none">block.title -- {{ block.title }}</p>
                     <p style="display: none">match_name -- {{ match_name }}</p>
                     <p style="display: none">match -- {{ match.first.title }} -- {{ block.products.size }}</p>
