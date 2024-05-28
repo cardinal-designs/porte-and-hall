@@ -333,7 +333,6 @@
               {% if other_sizes != blank and section.settings.shop_more_below != true %}
                 {% capture other_size_links %}
                   {% for block in other_sizes %}
-                    block.title -- {{ block.title }}
                     {% assign current_size = block.title | split: " | " %}
                     {% assign format_color = "- " | append: active_style | append: " /" %}
                     {%  assign match_name = block.title | replace: "|",  format_color %}
