@@ -675,15 +675,17 @@
 
               {% liquid
                 assign collection = block.settings.collection1
+                assign blockProduct = block.settings.product1
                 assign product_type = grouped_collection.title | remove: 'The ' | split: ' | '
                 assign active_style = mainProduct.selected_or_first_available_variant.title
                 assign product_color = mainProduct.options_by_name['color'].values[0]
                 assign active_style = active_style | remove: product_color | remove: " / " 
+                assign newProductTitle = blockProduct.title | append: " /" | append: active_style
               %}
 
               
               <div class="collection-col-inner product-1">
-                <p>active_style --- {{ active_style }} -- {{ block.settings.product1.title }}</p>
+                <p>active_style --- {{ newProductTitle }} -- {{ block.settings.product1.title }}</p>
                 <p class="badge">
                   {{- block.settings.badge1 -}}
                 </p>
