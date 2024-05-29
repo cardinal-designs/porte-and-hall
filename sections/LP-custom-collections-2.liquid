@@ -683,11 +683,13 @@
 
                 assign blockProductTitle = blockProduct.title | split: " / " | first
                 assign newProductTitle = blockProductTitle | append: " / " | append: active_style
+
+                assign match = collection.products | where: 'title', newProductTitle
               %}
 
               
               <div class="collection-col-inner product-1">
-                <p>active_style --- {{ newProductTitle }} -- {{ block.settings.product1.title }}</p>
+                <p>active_style --- {{ match.first.url }} -- {{ block.settings.product1.title }}</p>
                 <p class="badge">
                   {{- block.settings.badge1 -}}
                 </p>
