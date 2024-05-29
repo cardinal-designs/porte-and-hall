@@ -677,13 +677,13 @@
                 assign collection = block.settings.collection1
                 assign product_type = grouped_collection.title | remove: 'The ' | split: ' | '
                 assign active_style = mainProduct.selected_or_first_available_variant.title
-                assign product_size = mainProduct.options_by_name['size'].values[0]
-                assign active_style = active_style | remove: product_size | remove: " / " 
+                assign product_color = mainProduct.options_by_name['color'].values[0]
+                assign active_style = active_style | remove: product_color | remove: " / " 
               %}
 
               
               <div class="collection-col-inner product-1">
-                <p>active_style --- {{ product_size }} -- {{ product.title }}</p>
+                <p>active_style --- {{ active_style }} -- {{ product.title }}</p>
                 <p class="badge">
                   {{- block.settings.badge1 -}}
                 </p>
