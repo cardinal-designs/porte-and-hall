@@ -680,7 +680,7 @@
                 assign active_style = mainProduct.selected_or_first_available_variant.title
                 assign product_color = mainProduct.options_by_name['color'].values[0]
                 assign active_style = active_style | remove: product_color | remove: " / " 
-                assign newProductTitle = blockProduct.title | append: " /" | append: active_style
+                assign newProductTitle = blockProduct.title | append: " / " | append: active_style
               %}
 
               
