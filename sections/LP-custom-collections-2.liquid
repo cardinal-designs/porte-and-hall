@@ -579,6 +579,26 @@
       {% assign loopNum = 0 %}
       {%- for block in section.blocks -%}
 
+        {% assign mainProduct = product %}
+        {% liquid
+          assign collection = block.settings.collection1
+          assign blockProduct = block.settings.product1
+          assign active_style = mainProduct.selected_or_first_available_variant.title
+          assign product_color = mainProduct.options_by_name['color'].values[0]
+          assign active_style = active_style | remove: product_color | remove: " / "
+
+          assign blockProductTitle = blockProduct.title | split: " / " | first
+          assign newProductTitle = blockProductTitle | append: " / " | append: active_style
+
+          assign match = collection.products | where: 'title', newProductTitle
+        %}
+
+        {% assign productUrl = block.settings.product1.url %}
+        {% if match != blank %}
+          {% assign productUrl = match.first.url %}
+        {% endif %}
+        
+
         {% liquid
           assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
           capture color_swatch_list
@@ -646,7 +666,7 @@
             
             if hidden_swatches > 0
               echo "<a href="
-              echo block.settings.product1.url
+              echo productUrl
               echo " class='body-s blue'> "
               echo '+'
               echo hidden_swatches
@@ -654,14 +674,8 @@
             endif
           endcapture
         %}
-
-        
-
-
         
         {% unless product.title contains block.settings.title %}
-
-          {% assign mainProduct = product %}
         
         <div class="collection-col index-{{ loopNum }}">
           <div class="collection-row-inner">
@@ -671,25 +685,8 @@
                   {% assign grouped_collection = collection %}
                 {% endif %}
               {% endfor %}
-
-
-              {% liquid
-                assign collection = block.settings.collection1
-                assign blockProduct = block.settings.product1
-                assign product_type = grouped_collection.title | remove: 'The ' | split: ' | '
-                assign active_style = mainProduct.selected_or_first_available_variant.title
-                assign product_color = mainProduct.options_by_name['color'].values[0]
-                assign active_style = active_style | remove: product_color | remove: " / "
-
-                assign blockProductTitle = blockProduct.title | split: " / " | first
-                assign newProductTitle = blockProductTitle | append: " / " | append: active_style
-
-                assign match = collection.products | where: 'title', newProductTitle
-              %}
-
               
               <div class="collection-col-inner product-1">
-                <p>active_style --- {{ match.first.url }} -- {{ block.settings.product1.title }}</p>
                 <p class="badge">
                   {{- block.settings.badge1 -}}
                 </p>
@@ -704,7 +701,7 @@
               {% endcomment %}
                 
                 <div class="image_container">
-                  <a href="{{ block.settings.product1.url }}">
+                  <a href="{{ productUrl }}">
                     {% render 'lazy-image', image: block.settings.product_image1, fade: true, classes: '' %}
                   </a>
                 </div>
@@ -776,7 +773,7 @@
                 {% endif %}
               </div>
               </div>
-                <a href="{{ block.settings.product1.url }}" class="text-link gold-secondary--dark product-card__link">
+                <a href="{{ productUrl }}" class="text-link gold-secondary--dark product-card__link">
                  {% if section.settings.button_text == blank %}Shop Now{% else %}{{ section.settings.button_text }}{% endif %} <span> <svg xmlns="http://www.w3.org/2000/svg" width="29" height="16" viewBox="0 0 29 16" fill="none">
                   <path d="M28.7071 8.70711C29.0976 8.31658 29.0976 7.68342 28.7071 7.29289L22.3431 0.928932C21.9526 0.538408 21.3195 0.538408 20.9289 0.928932C20.5384 1.31946 20.5384 1.95262 20.9289 2.34315L26.5858 8L20.9289 13.6569C20.5384 14.0474 20.5384 14.6805 20.9289 15.0711C21.3195 15.4616 21.9526 15.4616 22.3431 15.0711L28.7071 8.70711ZM0 9H28V7H0V9Z" fill="#A19377"/>
                   </svg>
