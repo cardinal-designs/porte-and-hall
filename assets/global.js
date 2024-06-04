@@ -920,7 +920,7 @@ var ProductCarouselNew = class extends HTMLElement {
   }
 
   initializeCarousel(swipe, options) {
-    const productSwiper = new Swiper(swipe, options);
+    const productSwiperNew = new Swiper(swipe, options);
   }
 }
 
