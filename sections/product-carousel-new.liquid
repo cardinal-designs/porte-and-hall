@@ -1,6 +1,98 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{{ 'component-product-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'section-product-carousel.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .product-card .product-card__metafield-style {
+    background: #546b82;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 24px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    margin-bottom: 4px;
   }
+{% endstyle %}
+
+<div class="product-carousel__inner">
+  <div class="product-carousel__heading">
+    <h2 class="blue">{{ section.settings.heading }}</h2>
+  </div>
+
+  <product-carousel>
+    <div class="product-carousel__container swiper">
+      <div class="swiper-wrapper">
+        {% for product in section.settings.collection.products limit: 25 %}
+          {% for collection in product.collections %}
+            {% if collection.title contains ' |' %}
+              {% assign grouped_collection = collection %}
+            {% endif %}
+          {% endfor %}
+          <div class="product-carousel__item swiper-slide">
+            {% render 'grouped-product-card',
+              product_card_product: product,
+              collection: grouped_collection,
+              title: grouped_collection.title,
+              button_text: section.settings.button_text
+            %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination product-carousel__pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </product-carousel>
+</div>
+
+<style>
+  {% if section.settings.background != blank %}
+    #shopify-section-{{section.id }}.product-carousel {
+      background: {{ section.settings.background }};
+    }
+  {% endif %}
+</style>
+
+{% schema %}
+{
+  "name": "Product Carousel New",
+  "tag": "section",
+  "class": "product-carousel with-spacing",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_metafield_style",
+      "label": "Show metafield style",
+      "default": false
+    },    
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop Now"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Carousel New"
+    }
+  ]
+}
 {% endschema %}
