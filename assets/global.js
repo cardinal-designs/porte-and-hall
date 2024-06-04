@@ -881,13 +881,13 @@ var ProductCarouselNew = class extends HTMLElement {
     this.pagination = this.querySelector(`.swiper-pagination`)
     const swiper_options = {
       slidesPerView: 4,
-      slidesPerGroup: 4,
+      slidesPerGroup: 1,
       slidesPerGroupAuto: false,
       centeredSlides: false,
       spaceBetween: 10,
       loopedSlides: 1,
       draggable: true,
-      loop: true,
+      loop: false,
       pagination: {
         el: this.pagination,
         clickable: true,
