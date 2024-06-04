@@ -25,6 +25,11 @@
   margin-bottom: 100px;
 }
 
+.product-carousel__new .product-carousel__pagination.swiper-pagination {
+ top: unset;
+ bottom: 35px;
+}
+
 .product-carousel__item {
  width: 295px;
  height: auto;
