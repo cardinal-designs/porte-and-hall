@@ -20,8 +20,9 @@
  bottom: unset;
 }
 
-.product-carousel__container .swiper-wrapper {
-
+.product-carousel__new .product-carousel__container .swiper-wrapper {
+  margin-top: 0;
+  margin-bottom: 100px;
 }
 
 .product-carousel__item {
