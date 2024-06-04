@@ -880,8 +880,12 @@ var ProductCarouselNew = class extends HTMLElement {
     this.section_id = this.querySelector(`.swiper`).id
     this.pagination = this.querySelector(`.swiper-pagination`)
     const swiper_options = {
-      slidesPerView: 4,
+      slidesPerView: 2.25,
+      slidesPerGroup: 2,
+      slidesPerGroupAuto: false,
+      centeredSlides: false,
       spaceBetween: 10,
+      loopedSlides: 2,
       draggable: true,
       loop: true,
       pagination: {
@@ -895,11 +899,11 @@ var ProductCarouselNew = class extends HTMLElement {
       breakpoints: {
         768: {
           slidesPerView: 'auto',
-          slidesPerGroup: 3,
+          slidesPerGroup: 1,
           centeredSlides: false,
           spaceBetween: 20,
-          slidesPerGroupAuto: true,
           loopedSlides: 4,
+          slidesPerGroupAuto: false,
           centeredSlides: true,
         },
       },
@@ -911,7 +915,7 @@ var ProductCarouselNew = class extends HTMLElement {
   }
 
   initializeCarousel(swipe, options) {
-    const productSwiperNew = new Swiper(swipe, options);
+    const productSwiper = new Swiper(swipe, options);
   }
 }
 
