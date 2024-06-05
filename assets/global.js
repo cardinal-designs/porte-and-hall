@@ -912,7 +912,7 @@ var ProductCarouselNew = class extends HTMLElement {
      const swiper_options = { 
        spaceBetween: 30,
        draggable: true,
-       loop: true,
+       loop: false,
        slidesPerView: 4,
        centeredSlides: true,
       pagination: {
