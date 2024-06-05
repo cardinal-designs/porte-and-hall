@@ -23,6 +23,7 @@
 .product-carousel__new .product-carousel__container .swiper-wrapper {
   padding-top: 0;
   padding-bottom: 100px;
+  justify-content: center;
 }
 
 .product-carousel__new .product-carousel__pagination.swiper-pagination {
