@@ -914,6 +914,7 @@ var ProductCarouselNew = class extends HTMLElement {
       draggable: true,
       loop: true,
       slidesPerView: 4,
+       centeredSlides: true,
       pagination: {
         el: this.pagination,
         clickable: true,
