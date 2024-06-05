@@ -902,7 +902,7 @@ var ProductCarouselNew = class extends HTMLElement {
           slidesPerGroup: 1,
           centeredSlides: false,
           spaceBetween: 20,
-          loop: false,
+          loop: true,
           loopedSlides: 4,
           slidesPerGroupAuto: false,
           centeredSlides: false,
