@@ -926,7 +926,7 @@ var ProductCarouselNew = class extends HTMLElement {
       breakpoints: {
         768: {
           spaceBetween: 20,
-          slidesPerView: 2,
+          slidesPerView: 4,
           loop: false
         },
       },
