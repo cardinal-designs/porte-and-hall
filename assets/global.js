@@ -913,7 +913,7 @@ var ProductCarouselNew = class extends HTMLElement {
        spaceBetween: 30,
        draggable: true,
        loop: false,
-       slidesPerView: 4,
+       slidesPerView: 1,
        centeredSlides: false,
       pagination: {
         el: this.pagination,
@@ -926,7 +926,7 @@ var ProductCarouselNew = class extends HTMLElement {
       breakpoints: {
         768: {
           spaceBetween: 20,
-          slidesPerView: 1,
+          slidesPerView: 4,
           loop: false,
           centeredSlides: true,
         },
