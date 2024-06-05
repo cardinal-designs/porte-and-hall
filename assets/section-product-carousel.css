@@ -28,7 +28,7 @@
 .product-carousel__container-new {
   margin-left: 20px;
   margin-right: 20px;
-  width: calc(100% - 40px);
+  width: calc(100% - 40px) !important;
 }
 
 .product-carousel__new .product-carousel__pagination.swiper-pagination {
