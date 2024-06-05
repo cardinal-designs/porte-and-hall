@@ -879,13 +879,38 @@ var ProductCarouselNew = class extends HTMLElement {
 
     this.section_id = this.querySelector(`.swiper`).id
     this.pagination = this.querySelector(`.swiper-pagination`)
-    const swiper_options = {
-      slidesPerView: 2.25,
-      slidesPerGroup: 2,
-      slidesPerGroupAuto: false,
-      centeredSlides: false,
+    // const swiper_options = {
+    //   slidesPerView: 2.25,
+    //   slidesPerGroup: 2,
+    //   slidesPerGroupAuto: false,
+    //   centeredSlides: false,
+    //   spaceBetween: 10,
+    //   loopedSlides: 2,
+    //   draggable: true,
+    //   loop: true,
+    //   pagination: {
+    //     el: this.pagination,
+    //     clickable: true,
+    //   },
+    //   navigation: {
+    //     nextEl: '.swiper-button-next',
+    //     prevEl: '.swiper-button-prev',
+    //   },
+    //   breakpoints: {
+    //     768: {
+    //       slidesPerView: 'auto',
+    //       slidesPerGroup: 1,
+    //       centeredSlides: false,
+    //       spaceBetween: 20,
+    //       loopedSlides: 1,
+    //       slidesPerGroupAuto: false,
+    //       centeredSlides: true,
+    //     },
+    //   },
+    // }
+
+     const swiper_options = {
       spaceBetween: 10,
-      loopedSlides: 2,
       draggable: true,
       loop: true,
       pagination: {
@@ -898,13 +923,7 @@ var ProductCarouselNew = class extends HTMLElement {
       },
       breakpoints: {
         768: {
-          slidesPerView: 'auto',
-          slidesPerGroup: 1,
-          centeredSlides: false,
           spaceBetween: 20,
-          loopedSlides: 1,
-          slidesPerGroupAuto: false,
-          centeredSlides: true,
         },
       },
     }
