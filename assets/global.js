@@ -879,42 +879,15 @@ var ProductCarouselNew = class extends HTMLElement {
 
     this.section_id = this.querySelector(`.swiper`).id
     this.pagination = this.querySelector(`.swiper-pagination`)
-    const swiper_options = {
-      slidesPerView: 2.25,
-      slidesPerGroup: 2,
-      slidesPerGroupAuto: false,
-      centeredSlides: false,
-      spaceBetween: 10,
-      loopedSlides: 2,
-      draggable: true,
-      loop: true,
-      pagination: {
-        el: this.pagination,
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 'auto',
-          slidesPerGroup: 1,
-          centeredSlides: false,
-          spaceBetween: 20,
-          loopedSlides: 1,
-          slidesPerGroupAuto: false,
-          centeredSlides: true,
-        },
-      },
-    }
-
-    //  const swiper_options = {
-    //   spaceBetween: 30,
+    // const swiper_options = {
+    //   slidesPerView: 2.25,
+    //   slidesPerGroup: 2,
+    //   slidesPerGroupAuto: false,
+    //   centeredSlides: false,
+    //   spaceBetween: 10,
+    //   loopedSlides: 2,
     //   draggable: true,
     //   loop: true,
-    //   slidesPerView: 4,
-    //    centeredSlides: true,
     //   pagination: {
     //     el: this.pagination,
     //     clickable: true,
@@ -925,10 +898,37 @@ var ProductCarouselNew = class extends HTMLElement {
     //   },
     //   breakpoints: {
     //     768: {
+    //       slidesPerView: 'auto',
+    //       slidesPerGroup: 1,
+    //       centeredSlides: false,
     //       spaceBetween: 20,
+    //       loopedSlides: 1,
+    //       slidesPerGroupAuto: false,
+    //       centeredSlides: true,
     //     },
     //   },
     // }
+
+     const swiper_options = {
+       spaceBetween: 30,
+       draggable: true,
+       loop: true,
+       slidesPerView: 4,
+       centeredSlides: true,
+      pagination: {
+        el: this.pagination,
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        768: {
+          spaceBetween: 20,
+        },
+      },
+    }
 
     if (!this.classList.contains("swiper-initialized")){
       this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
