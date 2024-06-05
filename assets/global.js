@@ -897,15 +897,14 @@ var ProductCarouselNew = class extends HTMLElement {
         prevEl: '.swiper-button-prev',
       },
       breakpoints: {
-        1300: {
+        768: {
           slidesPerView: 'auto',
           slidesPerGroup: 1,
           centeredSlides: false,
           spaceBetween: 20,
-          loop: true,
           loopedSlides: 4,
           slidesPerGroupAuto: false,
-          centeredSlides: false,
+          centeredSlides: true,
         },
       },
     }
