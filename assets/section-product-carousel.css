@@ -23,11 +23,12 @@
 .product-carousel__new .product-carousel__container .swiper-wrapper {
   padding-top: 0;
   padding-bottom: 100px;
-      margin-left: 20px;
-    margin-right: 20px;
-    width: calc(100% - 40px);
-  /* justify-content: center;
-  gap: 20px; */
+}
+
+.product-carousel__container-new {
+  margin-left: 20px;
+  margin-right: 20px;
+  width: calc(100% - 40px);
 }
 
 .product-carousel__new .product-carousel__pagination.swiper-pagination {
