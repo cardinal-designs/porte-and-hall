@@ -3342,6 +3342,10 @@ iframe#preview-bar-iframe {
 
 /* Judge.me Review css Start */
 
+.jdgm-carousel-wrapper .jdgm-carousel-item__review-rating {
+  font-size: 100%;
+}
+
 .jdgm-carousel-wrapper .jdgm-star {
   color: #D2B066 !important;
 }
