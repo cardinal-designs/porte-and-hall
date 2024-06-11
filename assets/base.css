@@ -3383,6 +3383,15 @@ iframe#preview-bar-iframe {
   line-height: 20px;
 }
 
+.jdgm-carousel-wrapper .jdgm-carousel-item__reviewer-name {
+  font-weight: 700;
+  font-size: 13px;
+  margin-top: 5px;
+  line-height: 24px;
+  font-family: brandon;
+  color: #30383d;
+}
+
 .jdgm-carousel-wrapper .jdgm-carousel-number-of-reviews {
   color: #D2B066 !important;
 }
