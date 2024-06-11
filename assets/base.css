@@ -3346,6 +3346,10 @@ iframe#preview-bar-iframe {
   display: none;
 }
 
+.jdgm-rev-widg .jdgm-rev-widg__summary-text {
+  font-weight: bold;
+}
+
 .jdgm-carousel-wrapper .jdgm-carousel-item__review-rating {
   font-size: 100%;
   text-align: left;
