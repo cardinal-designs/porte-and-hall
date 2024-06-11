@@ -3398,10 +3398,6 @@ iframe#preview-bar-iframe {
   color: #D2B066 !important;
 }
 
-.jdgm-carousel-number-of-reviews {
-  color: #D2B066 !important;
-}
-
 .jdgm-widget .jdgm-carousel__right-arrow,
 .jdgm-widget .jdgm-carousel__left-arrow {
   border-width: 2px;
@@ -3416,7 +3412,8 @@ iframe#preview-bar-iframe {
 .jdgm-link,
 .jdgm-histogram__frequency,
 .jdgm-rev__timestamp,
-.jdgm-paginate__page {
+.jdgm-paginate__page,
+.jdgm-carousel-number-of-reviews {
   color: var(--blue)!important;
 }
 
