@@ -3406,7 +3406,9 @@ iframe#preview-bar-iframe {
 }
 
 .jdgm-rev__author,
-.jdgm-rev__icon:before {
+.jdgm-rev__icon:before,
+.jdgm-sort-dropdown-wrapper .jdgm-sort-dropdown, 
+.jdgm-sort-dropdown-wrapper .jdgm-sort-dropdown-arrow{
   color: var(--blue)!important;
 }
 
