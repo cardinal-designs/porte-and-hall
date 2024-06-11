@@ -3410,7 +3410,8 @@ iframe#preview-bar-iframe {
 .jdgm-sort-dropdown-wrapper .jdgm-sort-dropdown, 
 .jdgm-sort-dropdown-wrapper .jdgm-sort-dropdown-arrow,
 .jdgm-link,
-.jdgm-histogram__frequency {
+.jdgm-histogram__frequency,
+.jdgm-rev__timestamp {
   color: var(--blue)!important;
 }
 
