@@ -3405,6 +3405,11 @@ iframe#preview-bar-iframe {
   height: 10px;
 }
 
+.jdgm-rev__author,
+.jdgm-rev__icon:before {
+  color: var(--blue)!important;
+}
+
 @media (max-width: 767px){
   .jdgm-carousel-item {
     padding: 0 !important;
