@@ -3342,6 +3342,10 @@ iframe#preview-bar-iframe {
 
 /* Judge.me Review css Start */
 
+.jdgm-rev-widg .jdgm-link {
+  display: none;
+}
+
 .jdgm-carousel-wrapper .jdgm-carousel-item__review-rating {
   font-size: 100%;
   text-align: left;
