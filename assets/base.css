@@ -3404,4 +3404,10 @@ iframe#preview-bar-iframe {
   width: 10px;
   height: 10px;
 }
+
+@media (max-width: 767px){
+  .jdgm-carousel-item {
+    padding: 0;
+  }
+}
 /* Judge.me Review css End */
