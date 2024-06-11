@@ -3353,6 +3353,10 @@ iframe#preview-bar-iframe {
 .jdgm-verified-by-judgeme {
   display: none;
 }
+ 
+.jdgm-carousel-wrapper  .jdgm-carousel-item__review {
+  color: #30383D;
+}
 
 .jdgm-carousel-wrapper .jdgm-carousel-item__review-content,
 .jdgm-carousel-wrapper .jdgm-carousel-item__reviewer-name {
