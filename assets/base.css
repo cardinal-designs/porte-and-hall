@@ -3408,4 +3408,11 @@ iframe#preview-bar-iframe {
 .jdgm-carousel-wrapper .jdgm-carousel-number-of-reviews {
   color: #D2B066 !important;
 }
+
+.jdgm-carousel__right-arrow,
+.jdgm-carousel__left-arrow {
+  border: 2px none #e4e4e4;
+  width: 10px;
+  height: 10px;
+}
 /* Judge.me Review css End */
