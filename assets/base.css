@@ -3434,6 +3434,17 @@ iframe#preview-bar-iframe {
   background-color: var(--blue)!important;
 }
 
+.product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__text {
+  color: var(--gold-secondary--dark);
+  font-family: brandon;
+  font-size: 14px;
+  font-weight: 600;
+  position: relative;
+  padding: 0 6px;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
 @media (max-width: 767px){
   .jdgm-carousel-item {
     padding: 0 !important;
