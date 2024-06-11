@@ -3390,7 +3390,7 @@ iframe#preview-bar-iframe {
   line-height: 24px;
   font-family: brandon;
   opacity: 1;
-  color: #30383d;
+  color: var(--blue)!important;
   position: relative;
 }
 
