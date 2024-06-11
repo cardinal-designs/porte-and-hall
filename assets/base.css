@@ -3425,9 +3425,12 @@ iframe#preview-bar-iframe {
   border-color: var(--blue)!important
 }
 
-.jdgm-histogram__row .jdgm-star,
-.jdgm-histogram__bar-content {
+.jdgm-histogram__row .jdgm-star {
   color: var(--blue)!important;
+}
+
+.jdgm-histogram__bar-content {
+  background-color: var(--blue)!important;
 }
 
 @media (max-width: 767px){
