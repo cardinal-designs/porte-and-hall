@@ -3425,6 +3425,11 @@ iframe#preview-bar-iframe {
   border-color: var(--blue)!important
 }
 
+.jdgm-histogram__row .jdgm-star,
+.jdgm-histogram__bar-content {
+  color: var(--blue)!important;
+}
+
 @media (max-width: 767px){
   .jdgm-carousel-item {
     padding: 0 !important;
