@@ -8,8 +8,10 @@
         "care": "{{ section.settings.collection.metafields.custom.care | metafield_tag }}",
         "hide_pinterest": false,
         "hide_dimensions": false,
+        "text_dimensions": false,
         "hide_shop_other": false,
-        "hide_quantity": false
+        "hide_quantity": false,
+        "shop_more_below": false
       }
     },
     "other-sizes": {
@@ -229,6 +231,24 @@
         "blog": "news",
         "show_recent_articles": true
       }
+    },
+    "17180852712e9dff0e": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_JikdwE": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_JikdwE"
+      ],
+      "settings": {
+        "include_margins": true,
+        "heading": "",
+        "section_reviews": true
+      }
     }
   },
   "order": [
@@ -244,6 +264,7 @@
     "168172537899ce8b94",
     "you-may-like",
     "fan-motif",
-    "featured-articles"
+    "featured-articles",
+    "17180852712e9dff0e"
   ]
 }
