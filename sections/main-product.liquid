@@ -124,25 +124,11 @@
 
           <span class="blue"> | </span>
 
-          <!-- Start of Judge.me code --> 
+          {% comment %} Start of Judge.me code {% endcomment %}
           <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'> 
             {{ product.metafields.judgeme.badge }} 
           </div> 
-          <!-- End of Judge.me code -->
-
-
-          
-          <!-- Rating code -->
-          <div class="rating-reviews">
-            <span
-              class="stamped-product-reviews-badge stamped-main-badge"
-              data-id="{{ product.id }}"
-              data-product-sku="{{product.selected_or_first_available_variant.sku}}"
-              data-product-title="{{product.title}}"
-              style="display: inline-block;">
-              
-            </span>
-          </div>
+          {% comment %} End of Judge.me code {% endcomment %}
           
         </div>
 
