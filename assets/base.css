@@ -3434,6 +3434,10 @@ iframe#preview-bar-iframe {
   background-color: var(--blue)!important;
 }
 
+.product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__stars .jdgm-star {
+  color: var(--blue)!important;
+}
+
 .product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__text {
   color: var(--gold-secondary--dark);
   font-family: brandon;
