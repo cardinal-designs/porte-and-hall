@@ -3451,7 +3451,7 @@ iframe#preview-bar-iframe {
 }
 
 .jdgm-carousel-wrapper .jdgm-carousel-item__review {
-  height: auto;
+  height: auto !important;
 }
 
 @media (max-width: 767px){
