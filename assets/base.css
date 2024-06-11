@@ -3391,6 +3391,18 @@ iframe#preview-bar-iframe {
   font-family: brandon;
   opacity: 1;
   color: #30383d;
+  position: relative;
+}
+
+.jdgm-carousel-wrapper .jdgm-carousel-item__reviewer-name:before {
+  content: "-";
+  font-weight: 700;
+  font-size: 13px;
+  margin-top: 5px;
+  line-height: 24px;
+  font-family: brandon;
+  opacity: 1;
+  color: #30383d;
 }
 
 .jdgm-carousel-wrapper .jdgm-carousel-number-of-reviews {
