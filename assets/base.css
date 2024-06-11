@@ -3353,4 +3353,9 @@ iframe#preview-bar-iframe {
 .jdgm-verified-by-judgeme {
   display: none;
 }
+
+.jdgm-carousel-wrapper .jdgm-carousel-item__review-content,
+.jdgm-carousel-wrapper .jdgm-carousel-item__reviewer-name {
+  text-align: left;
+}
 /* Judge.me Review css End */
