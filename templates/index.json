@@ -688,6 +688,7 @@
       "blocks": {
         "a6a7ec34-675c-47a4-9c07-092527c7d472": {
           "type": "shopify:\/\/apps\/stamped-product-reviews-ugc\/blocks\/carousel\/a103faaf-2125-4b0e-89fa-de5149736723",
+          "disabled": true,
           "settings": {
             "title": "",
             "auto_play": false,
@@ -706,10 +707,17 @@
             "random": false,
             "with_photos": false
           }
+        },
+        "judge_me_reviews_featured_carousel_jC4VXK": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/featured_carousel\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "maxwidth": 1080
+          }
         }
       },
       "block_order": [
-        "a6a7ec34-675c-47a4-9c07-092527c7d472"
+        "a6a7ec34-675c-47a4-9c07-092527c7d472",
+        "judge_me_reviews_featured_carousel_jC4VXK"
       ],
       "settings": {
         "include_margins": true,
