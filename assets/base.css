@@ -3394,16 +3394,7 @@ iframe#preview-bar-iframe {
   position: relative;
 }
 
-.jdgm-carousel-wrapper .jdgm-carousel-item__reviewer-name:before {
-  content: "-";
-  font-weight: 700;
-  font-size: 16px;
-  margin-top: 5px;
-  line-height: normal;
-  font-family: brandon;
-  opacity: 1;
-  color: #30383d;
-}
+
 
 .jdgm-carousel-wrapper .jdgm-carousel-number-of-reviews {
   color: #D2B066 !important;
