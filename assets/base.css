@@ -3411,7 +3411,8 @@ iframe#preview-bar-iframe {
 .jdgm-sort-dropdown-wrapper .jdgm-sort-dropdown-arrow,
 .jdgm-link,
 .jdgm-histogram__frequency,
-.jdgm-rev__timestamp {
+.jdgm-rev__timestamp,
+.jdgm-paginate__page {
   color: var(--blue)!important;
 }
 
