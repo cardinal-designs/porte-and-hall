@@ -3394,7 +3394,10 @@ iframe#preview-bar-iframe {
   position: relative;
 }
 
-.jdgm-carousel-wrapper .jdgm-carousel-number-of-reviews,
+.jdgm-carousel-wrapper .jdgm-carousel-number-of-reviews {
+  color: #D2B066 !important;
+}
+
 .jdgm-carousel-number-of-reviews {
   color: #D2B066 !important;
 }
