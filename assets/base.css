@@ -3454,6 +3454,11 @@ iframe#preview-bar-iframe {
   height: auto !important;
 }
 
+.jdgm-rev[data-verified-buyer=true] .jdgm-rev__icon.jdgm-rev__icon:after, 
+.jdgm-rev__buyer-badge.jdgm-rev__buyer-badge {
+  background-color: var(--blue)!important;
+}
+
 @media (max-width: 767px){
   .jdgm-carousel-item {
     padding: 0 !important;
