@@ -22,7 +22,7 @@
 
 .product-carousel__new .product-carousel__container .swiper-wrapper {
   padding-top: 0;
-  padding-bottom: 0;
+  padding-bottom: 100px;
 }
 
 .product-carousel__container-new {
@@ -47,10 +47,6 @@
 }
 
 @media screen and (max-width: 768px) {
-
-  .product-carousel__new .product-carousel__container .swiper-wrapper {
-    padding-bottom: 30px;
-  }
 
   .product-carousel__container .swiper-wrapper {
     padding-top: 50px;
