@@ -26,9 +26,9 @@
 }
 
 .product-carousel__container-new {
-  margin-left: 20px;
-  margin-right: 20px;
-  width: calc(100% - 40px) !important;
+  margin-left: 60px;
+  margin-right: 60px;
+  width: calc(100% - 120px) !important;
 }
 
 .product-carousel__new .product-carousel__pagination.swiper-pagination {
@@ -71,5 +71,11 @@
   }
   .product-carousel .swiper-button-prev {
     left: 18px;
+  }
+
+  .product-carousel__container-new {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: calc(100% - 40px) !important;
   }
 }
