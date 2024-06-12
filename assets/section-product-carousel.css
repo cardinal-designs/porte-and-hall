@@ -48,6 +48,10 @@
 
 @media screen and (max-width: 768px) {
 
+  .product-carousel__new .product-carousel__container .swiper-wrapper {
+    padding-bottom: 30px;
+  }
+
   .product-carousel__container .swiper-wrapper {
     padding-top: 50px;
     padding-left: 20px;
