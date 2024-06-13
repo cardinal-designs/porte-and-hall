@@ -3341,6 +3341,10 @@ iframe#preview-bar-iframe {
 }
 
 /* Judge.me Review css Start */
+.jdgm-rev-widg .jdgm-rev-widg__summary-inner .jdgm-rev-widg__summary-stars {
+  position: relative;
+}
+
 .jdgm-rev-widg .jdgm-rev-widg__summary-inner .jdgm-rev-widg__summary-stars .jdgm-link {
   position: absolute;
   left: 0;
