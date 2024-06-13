@@ -3479,6 +3479,12 @@ iframe#preview-bar-iframe {
   display: none !important;
 }
 
+@media (max-width: 989px){
+  .jdgm-rev-widg .jdgm-rev-widg__summary-inner .jdgm-rev-widg__summary-stars .jdgm-link {
+    left: -12px;
+  }
+}
+
 @media (max-width: 767px){
   
   .jdgm-carousel-item {
