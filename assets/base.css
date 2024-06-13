@@ -3430,6 +3430,10 @@ iframe#preview-bar-iframe {
   border-color: var(--blue)!important
 }
 
+.jdgm-row-actions {
+  border-top: 0 !important;
+}
+
 .jdgm-histogram__row .jdgm-star {
   color: var(--blue)!important;
 }
@@ -3464,7 +3468,7 @@ iframe#preview-bar-iframe {
 }
 
 .jdgm-medals-wrapper {
-  display: none
+  display: none !important;
 }
 
 @media (max-width: 767px){
