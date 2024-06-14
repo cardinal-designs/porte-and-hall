@@ -880,7 +880,7 @@ var ProductCarouselNew = class extends HTMLElement {
     this.section_id = this.querySelector(`.swiper`).id
     this.pagination = this.querySelector(`.swiper-pagination`)
      const swiper_options = {  
-      spaceBetween: 20,
+      spaceBetween: 10,
       slidesPerView: 2.2,
       loop: true,
       draggable: true,
@@ -899,9 +899,6 @@ var ProductCarouselNew = class extends HTMLElement {
           loop: false,
           centeredSlides: false,
           slidesPerView: 4,
-        },
-        675: {
-          spaceBetween: 10,
         },
       },
     }
