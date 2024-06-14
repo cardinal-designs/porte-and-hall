@@ -900,6 +900,9 @@ var ProductCarouselNew = class extends HTMLElement {
           centeredSlides: false,
           slidesPerView: 4,
         },
+        675: {
+          spaceBetween: 10,
+        },
       },
     }
 
