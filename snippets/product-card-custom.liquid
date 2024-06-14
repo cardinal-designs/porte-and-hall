@@ -107,8 +107,7 @@
         </div> -->
         {% endif %}
       </a>
-    </div>
-    {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
+          {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
 
         <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' or hide_type == true %}hidden{% endif %}">
           {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
@@ -136,6 +135,8 @@
         {% endif %}
       </div>
     {% endif %}
+    </div>
+
 
     <a href="{{ product_card_product.url }}">
       <h3 class="product-card__title blue">
