@@ -3172,8 +3172,8 @@ header.SectionHeader .Link{
   font-weight: 500;
   line-height: 28px; /* 116.667% */
   letter-spacing: 0.48px;
-   font-family: louize;
-   color:#30383D;
+  font-family: louize;
+  color:#30383D;
 
 }
 
@@ -3339,3 +3339,172 @@ iframe#preview-bar-iframe {
 .klaviyo-form.klaviyo-form.klaviyo-form[data-testid="klaviyo-form-VEEkwn"] [data-testid="form-component"] >.needsclick.kl-private-reset-css-Xuajs1 > .needsclick.kl-private-reset-css-Xuajs1 {
   justify-content: center;
 }
+
+/* Judge.me Review css Start */
+.jdgm-rev-widg .jdgm-rev-widg__summary-inner .jdgm-rev-widg__summary-stars {
+  position: relative;
+}
+
+.jdgm-rev-widg .jdgm-rev-widg__summary-inner .jdgm-rev-widg__summary-stars .jdgm-link {
+  position: absolute;
+  left: 0;
+  text-decoration: none;
+  bottom: 20px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.jdgm-rev-widg .jdgm-rev-widg__summary-text {
+  font-weight: 500;
+}
+
+.jdgm-carousel-wrapper .jdgm-carousel-item__review-rating {
+  font-size: 100%;
+  text-align: left;
+}
+
+.jdgm-carousel-wrapper .jdgm-star {
+  color: #D2B066 !important;
+}
+
+.jdgm-verified-by-judgeme {
+  display: none;
+}
+ 
+.jdgm-carousel-wrapper .jdgm-carousel-item__review {
+  color: var(--blue)!important;
+}
+
+.jdgm-carousel-wrapper .jdgm-carousel-item__review-content,
+.jdgm-carousel-wrapper .jdgm-carousel-item__reviewer-name {
+  text-align: left;
+}
+
+.jdgm-carousel-wrapper .jdgm-carousel-item__review-title {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: .48px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.jdgm-carousel-wrapper .jdgm-carousel-item__review-body {
+  font-family: brandon ;
+  font-style: normal ;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.jdgm-carousel-wrapper .jdgm-carousel-item__reviewer-name {
+  font-weight: 700;
+  font-size: 13px;
+  margin-top: 5px;
+  line-height: 24px;
+  font-family: brandon;
+  opacity: 1;
+  color: var(--blue)!important;
+  position: relative;
+}
+
+.jdgm-widget .jdgm-carousel__right-arrow,
+.jdgm-widget .jdgm-carousel__left-arrow {
+  border-width: 2px;
+  width: 10px;
+  height: 10px;
+}
+
+.jdgm-rev__author,
+.jdgm-rev__icon:before,
+.jdgm-sort-dropdown-wrapper .jdgm-sort-dropdown, 
+.jdgm-sort-dropdown-wrapper .jdgm-sort-dropdown-arrow,
+.jdgm-link,
+.jdgm-histogram__frequency,
+.jdgm-rev__timestamp,
+.jdgm-paginate__page,
+.jdgm-carousel-number-of-reviews {
+  color: var(--blue)!important;
+}
+
+.jdgm-row-media, 
+.jdgm-row-search, 
+.jdgm-subtab, 
+.jdgm-row-actions, 
+.jdgm-quest, 
+.jdgm-rev, 
+.jdgm-paginate {
+  border-color: var(--blue)!important
+}
+
+.jdgm-row-actions {
+  border-top: 0 !important;
+}
+
+.jdgm-histogram__row .jdgm-star {
+  color: var(--blue)!important;
+}
+
+.jdgm-histogram__bar-content {
+  background-color: var(--blue)!important;
+}
+
+.product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__stars .jdgm-star {
+  color: var(--blue)!important;
+  font-size: 80%;
+}
+
+.product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__text {
+  color: var(--gold-secondary--dark);
+  font-family: brandon;
+  font-size: 14px;
+  font-weight: 600;
+  position: relative;
+  padding: 0 6px;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.jdgm-carousel-wrapper .jdgm-carousel-item__review {
+  height: auto !important;
+}
+
+.jdgm-rev[data-verified-buyer=true] .jdgm-rev__icon.jdgm-rev__icon:after, 
+.jdgm-rev__buyer-badge.jdgm-rev__buyer-badge {
+  background-color: var(--blue)!important;
+}
+
+.jdgm-medals-wrapper {
+  display: none !important;
+}
+
+@media (max-width: 989px){
+  
+  .jdgm-rev-widg .jdgm-rev-widg__summary-inner .jdgm-rev-widg__summary-stars .jdgm-link {
+    left: -12px;
+  }
+  
+}
+
+@media (max-width: 767px){
+  
+  .jdgm-rev-widg .jdgm-rev-widg__summary-inner .jdgm-rev-widg__summary-stars .jdgm-link {
+    left: -19px;
+    font-size: 20px;
+  }
+  
+  .jdgm-carousel-item {
+    padding: 0 !important;
+  }
+
+  .rave-reviews-main {
+    padding: 0 20px;
+  }
+  
+  .jdgm-rev-widg {
+    padding: 24px 0;
+  }
+  
+}
+/* Judge.me Review css End */
