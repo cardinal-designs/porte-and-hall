@@ -3490,7 +3490,8 @@ iframe#preview-bar-iframe {
 @media (max-width: 767px){
   
   .jdgm-rev-widg .jdgm-rev-widg__summary-inner .jdgm-rev-widg__summary-stars .jdgm-link {
-    left: 90px;
+    left: auto;
+    right: 10px;
     font-size: 20px;
   }
   
