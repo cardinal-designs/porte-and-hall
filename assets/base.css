@@ -3347,7 +3347,7 @@ iframe#preview-bar-iframe {
 
 .jdgm-rev-widg .jdgm-rev-widg__summary-inner .jdgm-rev-widg__summary-stars .jdgm-link {
   position: absolute;
-  left: 0;
+  left: calc(50% - 66px);
   text-decoration: none;
   bottom: 20px;
   font-size: 25px;
@@ -3477,14 +3477,6 @@ iframe#preview-bar-iframe {
 
 .jdgm-medals-wrapper {
   display: none !important;
-}
-
-@media (max-width: 989px){
-  
-  .jdgm-rev-widg .jdgm-rev-widg__summary-inner .jdgm-rev-widg__summary-stars .jdgm-link {
-    left: calc(50% - 56px);
-  }
-  
 }
 
 @media (max-width: 767px){
