@@ -1,22 +1,100 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "sections": {
     "main": {
       "type": "main-product",
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.product__quantity-atc-wrapper {justify-content: center; width: 100%; }}"
+      ],
       "settings": {
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
         "materials": "{{ section.settings.collection.metafields.custom.materials | metafield_tag }}",
         "care": "{{ section.settings.collection.metafields.custom.care | metafield_tag }}",
-        "hide_pinterest": false,
-        "hide_dimensions": false,
+        "hide_pinterest": true,
+        "hide_dimensions": true,
         "text_dimensions": false,
         "hide_shop_other": false,
-        "hide_quantity": false,
-        "shop_more_below": false
+        "hide_quantity": true,
+        "shop_more_below": true
       }
     },
     "other-sizes": {
       "type": "product-shop-other-sizes",
+      "disabled": true,
       "settings": {
+      }
+    },
+    "lp_custom_collections_2_ABDk4m": {
+      "type": "LP-custom-collections-2",
+      "blocks": {
+        "block_wcQHYU": {
+          "type": "block",
+          "settings": {
+            "title": "The Insider",
+            "badge1": "Ultra-thin",
+            "product1_title": "The Insider",
+            "collection1": "the-insider",
+            "product1": "the-insider-wild-side-dove-runner",
+            "product_image1": "shopify:\/\/shop_images\/WildSideDove_Doormat_v2.jpg",
+            "check1": "Ultra-thin to fit under your door",
+            "check2": "Slip resistant without marking",
+            "check3": "Water absorbent, protects your floor",
+            "check4": "Doesn’t bunch up",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_pgGtGT": {
+          "type": "block",
+          "settings": {
+            "title": "The Innerweave",
+            "badge1": "Natural Look",
+            "product1_title": "The Innerweave",
+            "collection1": "the-innerweave",
+            "product1": "the-innerweave-chevron-stone-runner",
+            "product_image1": "shopify:\/\/shop_images\/5_CHEVRON_STONE_BACKING_1copy.jpg",
+            "check1": "Indoor and outdoor",
+            "check2": "Stain-resistant",
+            "check3": "Soft, woven texture",
+            "check4": "",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_pdi6Ua": {
+          "type": "block",
+          "settings": {
+            "title": "The Outlier",
+            "badge1": "Outdoor",
+            "product1_title": "The Outlier",
+            "collection1": "the-outlier",
+            "product1": "the-outlier-charcoal-doormat",
+            "product_image1": "shopify:\/\/shop_images\/Screenshot_2024-05-20_at_3.11.04_PM_cc4f1ec4-13d1-416e-a6b8-4e0aaf6d3dbb.png",
+            "check1": "Maximum scrape-ability",
+            "check2": "Vented for water evaporation",
+            "check3": "Rubbery feel",
+            "check4": "Tough bristles",
+            "link_text": "",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_wcQHYU",
+        "block_pgGtGT",
+        "block_pdi6Ua"
+      ],
+      "settings": {
+        "title": "Shop our other collections",
+        "subtitle": ""
       }
     },
     "logo-marquee": {
@@ -141,27 +219,8 @@
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
       }
     },
-    "17180852712e9dff0e": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_JikdwE": {
-          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_JikdwE"
-      ],
-      "settings": {
-        "include_margins": true,
-        "heading": "",
-        "section_reviews": true
-      }
-    },
     "reviews": {
       "type": "reviews",
-      "disabled": true,
       "settings": {
         "heading": ""
       }
@@ -255,13 +314,13 @@
   "order": [
     "main",
     "other-sizes",
+    "lp_custom_collections_2_ABDk4m",
     "logo-marquee",
     "design-details",
     "see-in-action",
     "styling-tips",
     "see-the-difference",
     "faq",
-    "17180852712e9dff0e",
     "reviews",
     "168172537899ce8b94",
     "you-may-like",
