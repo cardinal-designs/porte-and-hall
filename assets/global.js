@@ -1077,7 +1077,7 @@ var accordionToggle = class extends HTMLElement {
     let id = event.target.parentNode.getAttribute("data-id");
     let currentToggle = document.querySelector(`.accordion-content[data-id='${id}']`)
     let currentTitle = document.querySelector(`.accordion-title[data-id='${id}'] svg`)
-    console.log(currentTitle)
+    currentTitle.style.transition = 'transform .3s ease';
     currentToggle.classList.contains('active') ? currentToggle.classList.remove('active') : currentToggle.classList.add('active');
   }
 }
