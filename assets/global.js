@@ -1063,3 +1063,9 @@ function offsetAnchor() {
 		window.scrollTo(window.scrollX, window.scrollY - 130);
 	}
 }
+
+// PDP accordion
+
+document.getElementById("myBtn").addEventListener("click", function() {
+  console.log('ff')
+});
