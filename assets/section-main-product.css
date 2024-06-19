@@ -1050,6 +1050,10 @@ variant-selects {
   display: block;
 }
 
+.accordion-title:first-of-type svg {
+  transform: rotate(-180deg);
+}
+
 .accordion-title svg.rotate {
   transform: rotate(-180deg);
   transition: 0.3s ease;
