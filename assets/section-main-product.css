@@ -1058,3 +1058,7 @@ variant-selects {
   transform: rotate(-180deg);
   transition: 0.3s ease;
 }
+
+.accordion-title[data-id='1'] svg {
+  transform: rotate(-180deg);
+}
