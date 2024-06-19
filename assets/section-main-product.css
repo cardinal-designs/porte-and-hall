@@ -1013,6 +1013,10 @@ variant-selects {
   border-bottom: 2px solid var(--blue);
 }
 
+.accordion h3 {
+  text-transform: unset;
+}
+
 .accordion-content {
   display: none;
 }
