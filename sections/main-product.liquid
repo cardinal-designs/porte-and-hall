@@ -721,13 +721,17 @@
            </div>
          </div>
         {% endif %}
-        {% if grouped_collection.metafields.custom.product_features != blank %}
+        {% if section.settings.materials != blank %}
          <div class="accordion">
            <div data-id="2" class="accordion-title">
              <h3>Materials</h3>
            </div>
            <div data-id="2" class="accordion-content">
-             <p>some content</p>
+            <div class="swiper-slide">
+              <div class="product__tabs-item body-sm">
+                {{ section.settings.materials }}
+              </div>
+            </div>
            </div>
          </div>
         {% endif %}
