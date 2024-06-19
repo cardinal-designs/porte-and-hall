@@ -1015,6 +1015,8 @@ variant-selects {
 
 .accordion h3 {
   text-transform: unset;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .accordion-content {
