@@ -1078,7 +1078,7 @@ var accordionToggle = class extends HTMLElement {
   }
 
   onToggleClick(event) {
-    console.log('afwfwaf', event.target)
+    console.log('afwfwaf', event.target.getAttribute("data-id"))
   }
 }
 
