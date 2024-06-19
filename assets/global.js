@@ -1074,7 +1074,7 @@ var accordionToggle = class extends HTMLElement {
   constructor() {
     super();
 
-    this.accordionTitles = this.getElementsByClassName('accordion-title')
+    this.accordionTitles = this.querySelectorAll('.accordion-title')
     // this.accordionTitles.addEventListener('click', this.onButtonClick.bind(this));
 
     this.accordionTitles.forEach(function(elem) {
