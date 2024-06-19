@@ -1087,5 +1087,5 @@ var accordionToggle = class extends HTMLElement {
   }
 }
 
-customElements.define('accordion', accordionToggle);
+customElements.define('pdp-accordion', accordionToggle);
 
