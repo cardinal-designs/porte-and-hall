@@ -1008,3 +1008,7 @@ variant-selects {
   font-weight: 450 !important;
   line-height: 22px;
 }
+
+.accordion-content {
+  display: none;
+}
