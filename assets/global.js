@@ -1078,6 +1078,7 @@ var accordionToggle = class extends HTMLElement {
     // this.accordionTitles.addEventListener('click', this.onButtonClick.bind(this));
 
     this.accordionTitles.forEach(function(elem) {
+      console.log(elem)
         elem.addEventListener("click", this.onToggleClick.bind(this));
     });
   }
