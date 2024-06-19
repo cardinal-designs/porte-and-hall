@@ -1011,13 +1011,16 @@ variant-selects {
 
 .accordion {
   border-bottom: 2px solid var(--blue);
-  cursor: pointer;
 }
 
 .accordion h3 {
   text-transform: unset;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.accordion-title {
+  cursor: pointer;
 }
 
 .accordion-content {
