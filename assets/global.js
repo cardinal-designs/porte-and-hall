@@ -1089,8 +1089,3 @@ var accordionToggle = class extends HTMLElement {
 
 customElements.define('accordion', accordionToggle);
 
-elementsArray.forEach(function(elem) {
-    elem.addEventListener("input", function() {
-        // This function does stuff
-    });
-});
