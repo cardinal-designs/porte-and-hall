@@ -1009,6 +1009,10 @@ variant-selects {
   line-height: 22px;
 }
 
+.accordion {
+  border-bottom: 2px solid var(--blue);
+}
+
 .accordion-content {
   display: none;
 }
