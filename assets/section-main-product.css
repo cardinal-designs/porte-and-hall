@@ -1049,6 +1049,11 @@ variant-selects {
   display: block;
 }
 
+.accordion-title svg {
+  transform: rotate(-180deg);
+  transition: 0.3s ease;
+}
+
 .accordion-title svg.rotate {
   transform: rotate(-180deg);
   transition: 0.3s ease;
