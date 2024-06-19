@@ -1078,11 +1078,11 @@ var accordionToggle = class extends HTMLElement {
     // this.accordionTitles.addEventListener('click', this.onButtonClick.bind(this));
 
     this.accordionTitles.forEach(function(elem) {
-        elem.addEventListener("click", this.onButtonClick.bind(this));
+        elem.addEventListener("click", this.onToggleClick.bind(this));
     });
   }
 
-  onButtonClick(event) {
+  onToggleClick(event) {
     console.log('afwfwaf')
   }
 }
