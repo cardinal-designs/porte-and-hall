@@ -1074,8 +1074,12 @@ var accordionToggle = class extends HTMLElement {
   constructor() {
     super();
 
-    this.accordionTitle = this.getElementsByClassName('accordion-title')
-    this.accordionTitle.addEventListener('click', this.onButtonClick.bind(this));
+    this.accordionTitles = this.getElementsByClassName('accordion-title')
+    // this.accordionTitles.addEventListener('click', this.onButtonClick.bind(this));
+
+    this.accordionTitles.forEach(function(elem) {
+        elem.addEventListener("click", this.onButtonClick.bind(this));
+    });
   }
 
   onButtonClick(event) {
@@ -1084,3 +1088,9 @@ var accordionToggle = class extends HTMLElement {
 }
 
 customElements.define('accordion', accordionToggle);
+
+elementsArray.forEach(function(elem) {
+    elem.addEventListener("input", function() {
+        // This function does stuff
+    });
+});
