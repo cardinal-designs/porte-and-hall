@@ -1050,6 +1050,16 @@ variant-selects {
   display: block;
 }
 
+.accordion-title svg {
+  transform: rotate(0deg);
+  transition: 0.3s ease;
+}
+
+.accordion-title svg.rotate {
+  transform: rotate(-180deg);
+  transition: 0.3s ease;
+}
+
 .accordion-title[data-id='1'] svg {
   transform: rotate(-180deg);
 }
@@ -1058,8 +1068,4 @@ variant-selects {
   transform: rotate(0deg);
 }
 
-.accordion-title svg.rotate {
-  transform: rotate(-180deg);
-  transition: 0.3s ease;
-}
 
