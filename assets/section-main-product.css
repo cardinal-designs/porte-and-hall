@@ -1050,7 +1050,7 @@ variant-selects {
   display: block;
 }
 
-.accordion:first-child > svg {
+.product-accordion__container:first-child > svg {
   transform: rotate(-180deg);
 }
 
