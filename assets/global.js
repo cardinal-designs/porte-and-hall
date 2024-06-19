@@ -1066,10 +1066,6 @@ function offsetAnchor() {
 
 // PDP accordion
 
-// document.getElementsByClassName('accordion-title').addEventListener("click", function() {
-//   console.log('ff')
-// });
-
 var accordionToggle = class extends HTMLElement {
   constructor() {
     super();
@@ -1080,12 +1076,7 @@ var accordionToggle = class extends HTMLElement {
   onToggleClick(event) {
     let id = event.target.parentNode.getAttribute("data-id");
     let currentToggle = document.querySelector(`.accordion-content[data-id='${id}']`)
-
-    if(currentToggle.classList.contains('active')) {
-      currentToggle.classList.remove('active')
-    } else {
-      currentToggle.classList.add('active')
-    }   
+    currentToggle.classList.contains('active') ? currentToggle.classList.remove('active') : currentToggle.classList.add('active');
   }
 }
 
