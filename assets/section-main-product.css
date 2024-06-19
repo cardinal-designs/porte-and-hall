@@ -1010,13 +1010,13 @@ variant-selects {
 }
 
 .accordion {
-  border-bottom: 1px solid var(--blue);
+  border-bottom: 2px solid var(--blue);
 }
 
 .accordion h3 {
   text-transform: unset;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .accordion-title {
