@@ -1035,6 +1035,10 @@ variant-selects {
   padding: 0 0 20px;
 }
 
+.accordion-content ul {
+  padding-left: 20px;
+}
+
 .accordion-content.active {
   display: block;
   transition: all 2s ease-in-out;
