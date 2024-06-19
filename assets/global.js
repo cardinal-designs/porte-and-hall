@@ -1078,7 +1078,7 @@ var accordionToggle = class extends HTMLElement {
   }
 
   onToggleClick(event) {
-    console.log('afwfwaf', event)
+    console.log('afwfwaf', elem)
   }
 }
 
