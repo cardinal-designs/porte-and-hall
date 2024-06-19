@@ -1066,6 +1066,6 @@ function offsetAnchor() {
 
 // PDP accordion
 
-document.getElementById("myBtn").addEventListener("click", function() {
+document.getElementsByClassName('accordion-title').addEventListener("click", function() {
   console.log('ff')
 });
