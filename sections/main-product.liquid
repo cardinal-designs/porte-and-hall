@@ -736,25 +736,43 @@
            </div>
          </div>
         {% endif %}
-        {% if grouped_collection.metafields.custom.product_features != blank %}
+        {% if grouped_collection.metafields.custom.dimensions != blank %}
          <div class="accordion">
            <div data-id="3" class="accordion-title">
              <h3>Dimensions</h3>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="3" class="accordion-content">
-             <p>some content</p>
+            <div class="swiper-slide">
+              <div class="product__tabs-item">
+                <p class="body-sm">
+                  Dimensions: {{ grouped_collection.metafields.custom.dimensions | newline_to_br }}
+                  {% if grouped_collection.metafields.custom.additional_dimensions != blank %}
+                    <br>
+                    {{ grouped_collection.metafields.custom.additional_dimensions | newline_to_br }}
+                  {% endif %}
+                  {% if grouped_collection.metafields.custom.weight != blank %}
+                  <br>
+                  Weight: {{ grouped_collection.metafields.custom.weight }}
+                  {% endif %}
+                </p>
+              </div>
+            </div>
            </div>
          </div>
         {% endif %}
-        {% if grouped_collection.metafields.custom.product_features != blank %}
+        {% if section.settings.care != blank %}
          <div class="accordion">
            <div data-id="4" class="accordion-title">
              <h3>Care</h3>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="4" class="accordion-content">
-             <p>some content</p>
+            <div class="swiper-slide">
+              <div class="product__tabs-item body-sm">
+                {{ section.settings.care }}
+              </div>
+            </div>
            </div>
          </div>
         {% endif %}
