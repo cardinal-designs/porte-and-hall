@@ -1073,20 +1073,12 @@ function offsetAnchor() {
 var accordionToggle = class extends HTMLElement {
   constructor() {
     super();
-
     this.accordionTitles = this.querySelectorAll('.accordion-title')
-    // this.accordionTitles.addEventListener('click', this.onButtonClick.bind(this));
-    console.log(this.accordionTitles)
-    // this.accordionTitles.forEach(function(elem) {
-    //   console.log(elem)
-    //     elem.addEventListener("click", this.onToggleClick.bind(this));
-    // });
-
     this.accordionTitles.forEach(elem => elem.addEventListener('click', this.onToggleClick.bind(this)));
   }
 
   onToggleClick(event) {
-    console.log('afwfwaf')
+    console.log('afwfwaf', this)
   }
 }
 
