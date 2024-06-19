@@ -1048,3 +1048,8 @@ variant-selects {
   margin-top: 50px;
   display: block;
 }
+
+.accordion-title svg.rotate {
+  transform: rotate(-180deg) translateX(0.25em);
+  transition: 0.6s ease;
+}
