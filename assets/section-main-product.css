@@ -1012,3 +1012,8 @@ variant-selects {
 .accordion-content {
   display: none;
 }
+
+.accordion-content.active {
+  display: block;
+  transition: all 2s ease-in-out;
+}
