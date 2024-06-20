@@ -30,6 +30,19 @@
   fill: var(--gold);
 }
 
+.text-link-2 {
+  font-family: brandon;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 120%;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding: 0;
+}
+
 @media screen and (max-width: 768px) {
 
   .product-carousel__container .swiper-wrapper {
