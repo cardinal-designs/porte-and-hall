@@ -535,6 +535,47 @@
       };
   
       setupObserver();
+
+      const setupObserver1 = () => {
+        const target1 = document.body;
+        if (target1) {
+          console.log('Target element found.');
+          const observer1 = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+              if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                const searchATCButton = document.querySelector('#gfqv-btn');
+                if (searchATCButton) {
+                
+                    if (!searchATCButton.hasAttribute('data-listener-attached')) {
+                      searchATCButton.setAttribute('data-listener-attached', 'true');
+                      searchATCButton.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        console.log("clicked atc");
+                        let productForm = searchATCButton.closest('form');
+                        if(productForm){
+                          addToCartListener(productForm)
+                        }
+                      });
+                    }
+       
+                }
+              }
+            });
+          });
+  
+          const config1 = {
+            childList: true,
+            subtree: true,
+          };
+  
+          observer1.observe(target1, config1);
+        } else {
+          console.log('Target element not found. Retrying in 100ms...');
+          setTimeout(setupObserver1, 100);
+        }
+      };
+  
+      setupObserver1();
     }
   });
 
