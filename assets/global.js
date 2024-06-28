@@ -905,11 +905,15 @@ var ProductCarouselNew = class extends HTMLElement {
     }
 
     // if (!this.classList.contains("swiper-initialized")){
-      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+      // this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
     // }
 
     window.addEventListener('resize', function(event) {
-    console.log('ee', window.innerWidth)
+      if(window.innerWidth > 900 && !this.classList.contains("swiper-initialized") {
+        this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+      } else {
+        swiper.destroy()
+      }
     }, true);
 
   }
