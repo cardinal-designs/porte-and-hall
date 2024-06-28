@@ -476,8 +476,6 @@
           })
           .then(response => response.json())
           .then(data => {
-              console.log("data", data);
-  
               atcGetSectionsToRenderBubble().forEach((section => {
                   const elementToReplace =
                       document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
