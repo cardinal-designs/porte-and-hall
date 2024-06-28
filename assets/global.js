@@ -905,10 +905,10 @@ var ProductCarouselNew = class extends HTMLElement {
       on: {
         resize: function () {
           console.log('swiper resized');
-           if(window.innerWidth > 900 && !document.querySelector('.product-carousel__container-new').classList.contains("swiper-initialized")) {
+           if(window.innerWidth >= 768 && !document.querySelector('.product-carousel__container-new').classList.contains("swiper-initialized")) {
              new Swiper(this.initializeCarousel(document.querySelector(`.product-carousel__container-new`), swiper_options));
-           } else {
-             productSwiper.destroy()
+           } else if() {
+             document.querySelector(`.product-carousel__container-new`).destroy()
            }
         },
       },
