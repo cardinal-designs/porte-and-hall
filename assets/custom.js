@@ -36,58 +36,58 @@ customElements.define('form-validation',class formValidation extends HTMLElement
   }
 })
 
-function atcGetSectionsToRenderBubble() {
-    return [{
-            id: 'cart-drawer__content',
-            section: document.getElementById('cart-drawer__content').dataset.id,
-            selector: '.cart-drawer__content',
-        },
-        {
-            id: 'cart-icon-bubble',
-            section: 'cart-icon-bubble',
-            selector: '.shopify-section'
-        }
-    ];
-}
+// function atcGetSectionsToRenderBubble() {
+//     return [{
+//             id: 'cart-drawer__content',
+//             section: document.getElementById('cart-drawer__content').dataset.id,
+//             selector: '.cart-drawer__content',
+//         },
+//         {
+//             id: 'cart-icon-bubble',
+//             section: 'cart-icon-bubble',
+//             selector: '.shopify-section'
+//         }
+//     ];
+// }
 
-function addToCartListener(productForm) {
-    const formData = new FormData(productForm);
-    const formJSON = Object.fromEntries(formData.entries());
+// function addToCartListener(productForm) {
+//     const formData = new FormData(productForm);
+//     const formJSON = Object.fromEntries(formData.entries());
 
-    formJSON.sections = ["cart-drawer", "cart-icon-bubble"];
+//     formJSON.sections = ["cart-drawer", "cart-icon-bubble"];
 
-    fetch('/cart/add.js', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(formJSON)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("data", data);
+//     fetch('/cart/add.js', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Accept': 'application/json'
+//             },
+//             body: JSON.stringify(formJSON)
+//         })
+//         .then(response => response.json())
+//         .then(data => {
+//             console.log("data", data);
 
-            atcGetSectionsToRenderBubble().forEach((section => {
-                const elementToReplace =
-                    document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
+//             atcGetSectionsToRenderBubble().forEach((section => {
+//                 const elementToReplace =
+//                     document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
 
-                elementToReplace.innerHTML =
-                    getSectionInnerHTML(data.sections[section.section], section.selector);
-            }));
-        })
-        .catch(error => {
-            console.error('Error adding product to cart:', error);
-        });
-}
-document.addEventListener('DOMContentLoaded', function() {
-  const searchATCButtons = document.querySelectorAll('.spf-product__form-btn-addtocart');
-  if(searchATCButtons){
-      searchATCButtons.forEach(function (searchATCButton) {
-          searchATCButton.addEventListener('click', function (event) {
-              event.preventDefault();
-              console.log("clicked atc")
-          })
-      })
-  }
-});
+//                 elementToReplace.innerHTML =
+//                     getSectionInnerHTML(data.sections[section.section], section.selector);
+//             }));
+//         })
+//         .catch(error => {
+//             console.error('Error adding product to cart:', error);
+//         });
+// }
+// document.addEventListener('DOMContentLoaded', function() {
+//   const searchATCButtons = document.querySelectorAll('.spf-product__form-btn-addtocart');
+//   if(searchATCButtons){
+//       searchATCButtons.forEach(function (searchATCButton) {
+//           searchATCButton.addEventListener('click', function (event) {
+//               event.preventDefault();
+//               console.log("clicked atc")
+//           })
+//       })
+//   }
+// });
