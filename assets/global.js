@@ -904,6 +904,7 @@ var ProductCarouselNew = class extends HTMLElement {
       },
       on: {
         resize: function () {
+          const productSwiper =  new Swiper(this.initializeCarousel(document.querySelector(`.product-carousel__container-new`), swiper_options));
           console.log('swiper resized');
            if(window.innerWidth <= 768 && !document.querySelector('.product-carousel__container-new').classList.contains("swiper-initialized")) {
              const productSwiper =  new Swiper(this.initializeCarousel(document.querySelector(`.product-carousel__container-new`), swiper_options));
