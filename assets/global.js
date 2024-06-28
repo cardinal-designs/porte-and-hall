@@ -907,6 +907,11 @@ var ProductCarouselNew = class extends HTMLElement {
     // if (!this.classList.contains("swiper-initialized")){
       this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
     // }
+
+    window.addEventListener('resize', function(event) {
+    console.log('ee', event)
+    }, true);
+
   }
 
   initializeCarousel(swipe, options) {
