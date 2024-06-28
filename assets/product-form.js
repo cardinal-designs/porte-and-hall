@@ -1,4 +1,6 @@
-customElements.define('product-form', class ProductForm extends HTMLElement {
+
+class ProductForm extends HTMLElement {
+// customElements.define('product-form', class ProductForm extends HTMLElement {
   constructor() {
     super();   
 
@@ -113,6 +115,9 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
     }
   }
 });
+
+customElements.define('product-form', ProductForm);
+export default ProductForm;
 
 customElements.define('sticky-atc', class StickyATC extends HTMLElement {
   constructor(){
