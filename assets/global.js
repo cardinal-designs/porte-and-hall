@@ -889,8 +889,10 @@ var ProductCarouselNew = class extends HTMLElement {
         el: this.pagination,
         clickable: true,
         enabled: true,
-        768: {
-          enabled: false
+        breakpoints: {
+          768: {
+            enabled: false
+          }
         }
       },
       navigation: {
