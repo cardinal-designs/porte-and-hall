@@ -921,6 +921,12 @@ var ProductCarouselNew = class extends HTMLElement {
   initializeCarousel(swipe, options) {
     const productSwiper = new Swiper(swipe, options);
   }
+
+  getScreenWidth() {
+    window.addEventListener('resize', function(event) {
+      return window.innerWidth
+    })
+  }
 }
 
 customElements.define('product-carousel-new', ProductCarouselNew)
