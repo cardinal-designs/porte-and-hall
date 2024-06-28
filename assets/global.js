@@ -930,9 +930,9 @@ var ProductCarouselNew = class extends HTMLElement {
   //    console.log(window.innerWidth)
   // }, true);
 
-  // initializeCarousel(swipe, options) {
-  //   const productSwiper = new Swiper(swipe, options);
-  // }
+  initializeCarousel(swipe, options) {
+    const productSwiper = new Swiper(swipe, options);
+  }
 }
 
 customElements.define('product-carousel-new', ProductCarouselNew)
