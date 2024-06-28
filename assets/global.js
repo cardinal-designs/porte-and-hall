@@ -908,24 +908,19 @@ var ProductCarouselNew = class extends HTMLElement {
       this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
     }
 
-    window.addEventListener('resize', function(event) {
-      if(window.innerWidth > 900 && !document.querySelector('.product-carousel__container-new').classList.contains("swiper-initialized")) {
-        this.initializeCarousel(document.querySelector(`.product-carousel__container-new`), swiper_options);
-      } else {
-        productSwiper.destroy()
-      }
-    }, true);
-
   }
+
+  window.addEventListener('resize', function(event) {
+      // if(window.innerWidth > 900 && !document.querySelector('.product-carousel__container-new').classList.contains("swiper-initialized")) {
+      //   this.initializeCarousel(document.querySelector(`.product-carousel__container-new`), swiper_options);
+      // } else {
+      //   productSwiper.destroy()
+      // }
+     console.log(window.innerWidth)
+  }, true);
 
   initializeCarousel(swipe, options) {
     const productSwiper = new Swiper(swipe, options);
-  }
-
-  getScreenWidth() {
-    window.addEventListener('resize', function(event) {
-      return window.innerWidth
-    })
   }
 }
 
