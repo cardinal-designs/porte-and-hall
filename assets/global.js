@@ -905,7 +905,7 @@ var ProductCarouselNew = class extends HTMLElement {
     }
 
     // if (!this.classList.contains("swiper-initialized")){
-    //   this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
     // }
   }
 
