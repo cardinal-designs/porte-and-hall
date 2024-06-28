@@ -904,15 +904,15 @@ var ProductCarouselNew = class extends HTMLElement {
       },
     }
 
-    // if (!this.classList.contains("swiper-initialized")){
-    //   this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
-    // }
+    if (!this.classList.contains("swiper-initialized")){
+      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+    }
 
     window.addEventListener('resize', function(event) {
       if(window.innerWidth > 900 && !document.querySelector('.product-carousel__container-new').classList.contains("swiper-initialized")) {
-        new Swiper(document.querySelector(`.product-carousel__container-new`), swiper_options);
+        this.initializeCarousel(document.querySelector(`.product-carousel__container-new`), swiper_options);
       } else {
-        swiper.destroy()
+        productSwiper.destroy()
       }
     }, true);
 
