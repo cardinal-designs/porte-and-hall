@@ -910,7 +910,7 @@ var ProductCarouselNew = class extends HTMLElement {
 
     window.addEventListener('resize', function(event) {
       if(window.innerWidth > 900 && !document.querySelector('.product-carousel__container-new').classList.contains("swiper-initialized")) {
-        new Swiper(this.querySelector(`.swiper`), swiper_options);
+        new Swiper(document.querySelector(`.product-carousel__container-new`), swiper_options);
       } else {
         swiper.destroy()
       }
