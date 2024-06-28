@@ -888,6 +888,10 @@ var ProductCarouselNew = class extends HTMLElement {
       pagination: {
         el: this.pagination,
         clickable: true,
+        enabled: true,
+        768: {
+          enabled: false
+        }
       },
       navigation: {
         nextEl: '.swiper-button-next',
