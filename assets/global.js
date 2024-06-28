@@ -904,17 +904,17 @@ var ProductCarouselNew = class extends HTMLElement {
       },
     }
 
-    // if (!this.classList.contains("swiper-initialized")){
-      // this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
-    // }
+    if (!this.classList.contains("swiper-initialized")){
+      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+    }
 
-    window.addEventListener('resize', function(event) {
-      if(window.innerWidth > 900 && !this.classList.contains("swiper-initialized")) {
-        new Swiper(this.querySelector(`.swiper`), swiper_options);
-      } else {
-        swiper.destroy()
-      }
-    }, true);
+    // window.addEventListener('resize', function(event) {
+    //   if(window.innerWidth > 900 && !this.classList.contains("swiper-initialized")) {
+    //     new Swiper(this.querySelector(`.swiper`), swiper_options);
+    //   } else {
+    //     swiper.destroy()
+    //   }
+    // }, true);
 
   }
 
