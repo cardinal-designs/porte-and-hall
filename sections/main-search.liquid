@@ -372,41 +372,42 @@
 {% endschema %}
 
 
-<!-- <script>
+<script>
 
-  function fetchPage(url) {
-    fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.text();
-      })
-      .then(html => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const paginationWrapper = doc.querySelector('#pagination-wrapper');
-        const gf_pagination_wrap = document.querySelector('#gf_pagination_wrap');
-        if(gf_pagination_wrap){
-          const childLength = gf_pagination_wrap.children?.length;
-          const searchListWrapper = document.querySelector('.search--list-wrapper');
-          if(searchListWrapper){
-            console.log("child", searchListWrapper.children?.length)
-            if(searchListWrapper.children?.length > 0){
-              if(childLength < 1){
-                gf_pagination_wrap.innerHTML = paginationWrapper.innerHTML;
-              }
-            }
-          }
+  // function fetchPage(url) {
+  //   fetch(url)
+  //     .then(response => {
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //       return response.text();
+  //     })
+  //     .then(html => {
+  //       const parser = new DOMParser();
+  //       const doc = parser.parseFromString(html, 'text/html');
+  //       const paginationWrapper = doc.querySelector('#pagination-wrapper');
+  //       const gf_pagination_wrap = document.querySelector('#gf_pagination_wrap');
+  //       if(gf_pagination_wrap){
+  //         const childLength = gf_pagination_wrap.children?.length;
+  //         const searchListWrapper = document.querySelector('.search--list-wrapper');
+  //         if(searchListWrapper){
+  //           console.log("child", searchListWrapper.children?.length)
+  //           if(searchListWrapper.children?.length > 0){
+  //             if(childLength < 1){
+  //               gf_pagination_wrap.innerHTML = paginationWrapper.innerHTML;
+  //             }
+  //           }
+  //         }
           
-          gf_pagination_wrap.id = 'pagination-wrapper';
-        }
-      })
-      .catch(error => {
-        console.error('Fetch error:', error);
-      });
-  }
+  //         gf_pagination_wrap.id = 'pagination-wrapper';
+  //       }
+  //     })
+  //     .catch(error => {
+  //       console.error('Fetch error:', error);
+  //     });
+  // }
 
+  
   
   document.addEventListener("DOMContentLoaded", () => {
     if(window.location.href?.includes('search')){
@@ -414,7 +415,16 @@
           mutations.forEach((mutation) => {
               if (mutation.type === 'childList') {
                   console.log('Child nodes have been added or removed.');
-                  fetchPage(window.location.href)
+                  // fetchPage(window.location.href)
+                const searchATCButtons = document.querySelectorAll('.spf-product__form-btn-addtocart');
+                if(searchATCButtons){
+                    searchATCButtons.forEach(function (searchATCButton) {
+                        searchATCButton.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            console.log("clicked atc")
+                        })
+                    })
+                }
               }
           });
       });
@@ -435,4 +445,4 @@
     }
   });
 
-</script> -->
+</script>
