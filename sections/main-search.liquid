@@ -490,9 +490,10 @@
           })
           .finally(() => {
               document.querySelector('cart-drawer').open();
-              const gfqvModal = document.querySelector('#gfqv-modal');
-              if(gfqvModal){
-                gfqvModal.click();
+              const gfqvCloseModal = document.querySelector('.gfqv-close-modal');
+              console.log("gfqvCloseModal", gfqvCloseModal)
+              if(gfqvCloseModal){
+                gfqvCloseModal.click();
               }
           });
   }
