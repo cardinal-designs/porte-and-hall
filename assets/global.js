@@ -909,7 +909,7 @@ var ProductCarouselNew = class extends HTMLElement {
     // }
 
     window.addEventListener('resize', function(event) {
-    console.log('ee', event)
+    console.log('ee', window.width())
     }, true);
 
   }
