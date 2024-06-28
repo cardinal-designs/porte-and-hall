@@ -99,4 +99,8 @@
     margin-right: 20px;
     width: calc(100% - 40px) !important;
   }
+
+  .product-carousel__new .product-carousel__container .swiper-wrapper {
+    padding-bottom: 50px;
+  }
 }
