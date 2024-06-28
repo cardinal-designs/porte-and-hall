@@ -36,7 +36,8 @@
 }
 
 .product-carousel__new .product-carousel__pagination.swiper-pagination {
- display: none;
+ top: unset;
+ bottom: 35px;
 }
 
 .product-carousel__item {
@@ -67,12 +68,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .product-carousel__new .product-carousel__pagination.swiper-pagination {
-   top: unset;
-   bottom: 35px;
-   display: block;
-  }
-  
+
   .product-carousel__container .swiper-wrapper {
     padding-top: 50px;
     padding-left: 20px;
