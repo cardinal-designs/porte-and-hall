@@ -905,10 +905,10 @@ var ProductCarouselNew = class extends HTMLElement {
       on: {
         resize: function () {
           console.log('swiper resized');
-          
+           const productSwiper;
            if(window.innerWidth <= 768 && !document.querySelector(`.product-carousel__container-new`).classList.contains("swiper-initialized")) {
-             const productSwiper =  new Swiper(document.querySelector(`.product-carousel__container-new`), swiper_options);
-           } else if(window.innerWidth > 768) {
+             productSwiper =  new Swiper(document.querySelector(`.product-carousel__container-new`), swiper_options);
+           } else if(window.innerWidth > 768 && document.querySelector(`.product-carousel__container-new`).classList.contains("swiper-initialized")) {
              productSwiper.destroy()
            }
         },
@@ -930,9 +930,9 @@ var ProductCarouselNew = class extends HTMLElement {
   //    console.log(window.innerWidth)
   // }, true);
 
-  initializeCarousel(swipe, options) {
-    const productSwiper = new Swiper(swipe, options);
-  }
+  // initializeCarousel(swipe, options) {
+  //   const productSwiper = new Swiper(swipe, options);
+  // }
 }
 
 customElements.define('product-carousel-new', ProductCarouselNew)
