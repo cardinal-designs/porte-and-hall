@@ -904,9 +904,9 @@ var ProductCarouselNew = class extends HTMLElement {
       },
     }
 
-    if (!this.classList.contains("swiper-initialized")){
-      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
-    }
+    // if (!this.classList.contains("swiper-initialized")){
+    //   this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+    // }
   }
 
   initializeCarousel(swipe, options) {
