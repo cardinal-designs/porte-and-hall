@@ -905,6 +905,11 @@ var ProductCarouselNew = class extends HTMLElement {
       on: {
         resize: function () {
           console.log('swiper resized');
+           if(window.innerWidth > 900 && !this.querySelector('.product-carousel__container-new').classList.contains("swiper-initialized")) {
+             this.initializeCarousel(this.querySelector(`.product-carousel__container-new`), swiper_options);
+           } else {
+             productSwiper.destroy()
+           }
         },
       },
     }
@@ -916,11 +921,11 @@ var ProductCarouselNew = class extends HTMLElement {
   }
 
   // window.addEventListener('resize', function(event) {
-  //     // if(window.innerWidth > 900 && !document.querySelector('.product-carousel__container-new').classList.contains("swiper-initialized")) {
-  //     //   this.initializeCarousel(document.querySelector(`.product-carousel__container-new`), swiper_options);
-  //     // } else {
-  //     //   productSwiper.destroy()
-  //     // }
+  //      if(window.innerWidth > 900 && !document.querySelector('.product-carousel__container-new').classList.contains("swiper-initialized")) {
+  //        this.initializeCarousel(document.querySelector(`.product-carousel__container-new`), swiper_options);
+  //      } else {
+  //        productSwiper.destroy()
+  //     }
   //    console.log(window.innerWidth)
   // }, true);
 
