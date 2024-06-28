@@ -429,7 +429,6 @@
       const setupObserver = () => {
         const target = document.body;
         if (target) {
-          console.log('Target element found.');
           const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
               if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
@@ -440,7 +439,6 @@
                       searchATCButton.setAttribute('data-listener-attached', 'true');
                       searchATCButton.addEventListener('click', (event) => {
                         event.preventDefault();
-                        console.log("clicked atc");
                         let productForm = searchATCButton.closest('form');
                         if(productForm){
                           addToCartListener(productForm)
@@ -481,7 +479,6 @@
                       searchATCButton.setAttribute('data-listener-attached', 'true');
                       searchATCButton.addEventListener('click', (event) => {
                         event.preventDefault();
-                        console.log("clicked atc");
                         let productForm = searchATCButton.closest('form');
                         if(productForm){
                           addToCartListener(productForm)
@@ -501,7 +498,6 @@
   
           observer1.observe(target1, config1);
         } else {
-          console.log('Target element not found. Retrying in 100ms...');
           setTimeout(setupObserver1, 100);
         }
       };
