@@ -485,6 +485,13 @@
                   elementToReplace.innerHTML =
                       getSectionInnerHTML(data.sections[section.section], section.selector);
               }));
+
+              const productFormElement = document.querySelector('product-form');
+              if (productFormElement) {
+                productFormElement.cartDrawer.open();
+              } else {
+                console.log('ProductForm element not found');
+              }
           })
           .catch(error => {
               console.error('Error adding product to cart:', error);
