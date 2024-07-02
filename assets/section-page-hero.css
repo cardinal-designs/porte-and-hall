@@ -37,8 +37,11 @@
 }
 
 .page-hero__swap-fonts .best-seller-header.page-hero__heading {
-  font-family: louize !important;
   text-transform: capitalize !important;
+  font-size: 42px;
+  line-height: 130%;
+  font-family: louize;
+  font-weight: 500;
 }
 
 .page-hero__swap-fonts .page-hero__text {
