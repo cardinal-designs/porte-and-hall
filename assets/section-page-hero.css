@@ -36,6 +36,11 @@
   font-weight: 600;
 }
 
+.page-hero__swap-fonts .best-seller-header.page-hero__heading {
+  font-family: louize !important;
+  text-transform: capitalize !important;
+}
+
 .page-hero__swap-fonts .page-hero__text {
   font-family: louize;
   font-weight: 500;
