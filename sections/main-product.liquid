@@ -402,7 +402,7 @@
 
                   {%- if match != blank -%}
                     <a 
-                      data-prod="{{ block | json}}"
+                      data-dd="{{ grouped_collection.title }}"
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL-Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% endif %} ;"
                       class="33 other-sizes__button" 
                       href="{{ match.first.url }}"
