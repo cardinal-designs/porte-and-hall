@@ -63,7 +63,7 @@
 %}
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-<section data-prod="{{ grouped_collection | json }}" class="page-width">
+<section data-prod="{{ grouped_collection.products | json }}" class="page-width">
   <div class="product">
     <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
       {{ 'accessibility.skip_to_product_info' | t }}
