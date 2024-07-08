@@ -402,7 +402,7 @@
                   {%- if match != blank -%}
                     <a 
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'Area Mat'  %}3{% endif %} ;"
-                      class="other-sizes__button" 
+                      class="33 other-sizes__button" 
                       href="{{ match.first.url }}"
                     >
                       <span>{{ current_size.last }}</span>
@@ -448,7 +448,7 @@
             {%- elsif product.type == 'Outlier' and section.settings.shop_more_below == true  -%}  
                {%- capture other_size_links -%}
                 <a 
-                  class="other-sizes__button active" 
+                  class="44 other-sizes__button active" 
                   href="{{ product.url }}"
                 >
                   <span>{{ product_size }}</span>
