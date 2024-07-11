@@ -390,10 +390,13 @@
                     {% endif %}               
                   {% endif %}
                 </a>
-
-                {%- comment -%} Other Sizes {%- endcomment -%}
+                {% assign number_blocks = 0 %}    
                 {%- for block in other_sizes -%}
-                  {%- assign number_blocks = other_sizes.size -%}
+                    {% assign number_blocks = number_blocks | plus: 1 %}
+                {%- endfor -%}  
+                {%- comment -%} Other Sizes {%- endcomment -%}
+               
+                {%- for block in other_sizes -%}            
                   {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
                   {%- assign current_size = block.title | split: " | " -%}
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
