@@ -1068,6 +1068,10 @@ variant-selects {
   transform: rotate(0deg);
 }
 
+.small_button_text {
+  padding: 14px;
+}
+
 .small_button_text span:first-of-type {
   font-size: 16px;
 }
