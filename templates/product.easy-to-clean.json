@@ -165,6 +165,9 @@
     },
     "video_with_text_2_wJwPkz": {
       "type": "video-with-text-2",
+      "custom_css": [
+        ".hero.video-with-text {margin-top: 80px !important;}"
+      ],
       "settings": {
         "outlier_video": "shopify:\/\/files\/videos\/outlierclean (1).mp4",
         "innerweave_video": "shopify:\/\/files\/videos\/innerweaveclean_1 (1).mp4",
