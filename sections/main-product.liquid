@@ -350,6 +350,11 @@
               <p class="product__restock-note body">{{ product.metafields.custom.restock_date }}</p>
             {% endif %}
 
+            {% assign number_blocks = 0 %}    
+            {%- for block in other_sizes -%}
+              {% assign number_blocks = number_blocks | plus: 1 %}
+            {%- endfor -%}  
+
             {%- if other_sizes != blank and section.settings.shop_more_below == true -%}
               {%- capture other_size_links -%}
                 {%- comment -%} Current Product Size {%- endcomment -%}
@@ -366,7 +371,7 @@
 
                 <a 
                   style="order: {{ active_order }};"
-                  class="other-sizes__button active" 
+                  class="{% if number_blocks == 2 %}small_button_text{% endif %} other-sizes__button active" 
                   href="{{ product.url }}"
                 >
                   <span>{{ product_size }}</span>
@@ -390,10 +395,7 @@
                     {% endif %}               
                   {% endif %}
                 </a>
-                {% assign number_blocks = 0 %}    
-                {%- for block in other_sizes -%}
-                    {% assign number_blocks = number_blocks | plus: 1 %}
-                {%- endfor -%}  
+
                 {%- comment -%} Other Sizes {%- endcomment -%}
                
                 {%- for block in other_sizes -%}            
@@ -407,7 +409,7 @@
                     <a 
                       data-dd="{{ grouped_collection.title }}"
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL-Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% endif %} ;"
-                      class="33e {% if number_blocks == 2 %}small_button_text{% endif %} other-sizes__button" 
+                      class="{% if number_blocks == 2 %}small_button_text{% endif %} other-sizes__button" 
                       href="{{ match.first.url }}"
                     >
                       <span>{{ current_size.last }}</span>
