@@ -374,7 +374,6 @@
                   class="{% if number_blocks == 2 %}small_button_text{% endif %} other-sizes__button active" 
                   href="{{ product.url }}"
                 >
-                  a {{  product_size }}
                   <span>{{ product_size }}</span>
                   {% if product_size == 'Doormat' %}
                     {% if product.handle contains 'innerweave' %}
@@ -383,7 +382,7 @@
                       <span class="other-sizes__dimension">2' 3" x 3'</span>
                     {% endif %}
                     2’ 3” x 8’ 6”
-                    {% elsif product_size == 'XL-Runner' %}
+                    {% elsif product_size == 'XL Runner' %}
                       <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
                   {% elsif product_size == 'Runner' %}
                     {% if product.handle contains 'innerweave' %}
@@ -423,7 +422,7 @@
                         {% else %}
                           <span class="other-sizes__dimension">2' 3" x 3'</span>
                         {% endif %}
-                      {% elsif product_size == 'XL-Runner' %}
+                      {% elsif product_size == 'XL Runner' %}
                         <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
                       {% elsif current_size.last == 'Runner' %}
                         {% if current_size.first == 'The Innerweave' %}
