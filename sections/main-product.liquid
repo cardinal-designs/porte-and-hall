@@ -393,7 +393,7 @@
 
                 {%- comment -%} Other Sizes {%- endcomment -%}
                 {%- for block in other_sizes -%}
-                
+                  {%- assign numberBlocks = other_sizes.size -%}
                   {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
                   {%- assign current_size = block.title | split: " | " -%}
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
@@ -404,7 +404,7 @@
                     <a 
                       data-dd="{{ grouped_collection.title }}"
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL-Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% endif %} ;"
-                      class="33 {{ other_sizes | json }}  other-sizes__button" 
+                      class="33 {{ numberBlocks}}  other-sizes__button" 
                       href="{{ match.first.url }}"
                     >
                       <span>{{ current_size.last }}</span>
