@@ -1,3 +1,20 @@
+{%- liquid
+  assign imgWidth = image.width
+  if widthI != blank
+    assign imgWidth = widthI
+  endif
+
+  assign imgHeight = image.height
+  if heightI != blank
+    assign imgHeight = heightI
+  endif
+
+  assign ariaLabel = "image"
+  if aria-label != blank
+    assign ariaLabel = aria-label
+  endif
+-%}
+{% comment %} <p>{{ imgWidth }}</p> {% endcomment %}
 <div
   class="aspect-ratio{% if fill %} img-fill{% endif %} {{ classes }}"
   style="max-width: 100%; width: 100%; --aspect-ratio: {{ image.aspect_ratio }}"
@@ -14,9 +31,10 @@
       src="{{ image | img_url: '1500x' }}"
       sizes="100vw"
       alt="{{ image.alt | escape }}"
-      height="{{ image.height }}"
-      width="{{ image.width }}"
+      height="{{ imgHeight }}"
+      width="{{ imgWidth }}"
       loading="lazy"
+      aria-label="{{ ariaLabel }}"
       class="lazyload{% if blur %} lazyload--blur{% endif %}{% if fade %} lazyload--fade{% endif %}"
     >
 </div>

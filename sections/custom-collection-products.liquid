@@ -12,7 +12,7 @@
 
       {%- for block in section.blocks -%}
         <div class="collection-col">
-          <h6>{{ block.settings.title }}</h6>
+          <h2 class="collection-col__title">{{ block.settings.title }}</h2>
           
           <div class="collection-row-inner">
             {% for product in block.settings.collection1.products limit: 1 %}
@@ -205,7 +205,7 @@
     display:none;
   }
 
-  .collection-row .collection-col h6{
+  .collection-row .collection-col .collection-col__title{
     color: #30383D;
     text-align: center;
     font-size: 32px;
@@ -214,6 +214,7 @@
     letter-spacing: 0.64px;
     margin:0 0 12px;
     position:relative;
+    font-family: brandon, sans-serif;
   }
   .collection-row .collection-col .badge{
     border-radius: 34px;
@@ -429,7 +430,7 @@
   }
 
   @media (max-width:768px){
-     .collection-row .collection-col h6{
+     .collection-row .collection-col .collection-col__title{
        font-size:20px !important;
        margin: 0px 0 0px;
     }

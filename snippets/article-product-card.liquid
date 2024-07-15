@@ -37,7 +37,7 @@
             echo "'"
             echo "style='background-image: url("
             echo swatch_file_name | asset_img_url
-            echo ")' data-tooltip='"
+            echo ")' aria-label='Color swatch' data-tooltip='"
             echo value | escape
             echo "'></a>"
             assign swatch_count = swatch_count | plus: 1
@@ -58,9 +58,9 @@
 <grouped-product-card data-collection-id="{{collection.id}}">
   <div class="product-card{% if product_card_product.media[1] != nil %} has-animation{% endif %} {% if simple_card == true %}product-card-simple{% endif %}">
     <div class="product-card__image">
-      {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill' %}
+      {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "img" %}
       {% if product_card_product.media[1] != null %}
-        {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill' %}
+        {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill', aria-label: "img" %}
       {% endif %}
 
       {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}

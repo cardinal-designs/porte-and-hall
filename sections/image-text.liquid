@@ -171,7 +171,7 @@
     {%- if section.settings.image != blank -%}
       <div class="FeatureText__ImageWrapper">
         
-          {% render 'lazy-image', image: section.settings.image, fade: true, classes: 'img-fill' %}
+          {% render 'lazy-image', image: section.settings.image, fade: true, classes: 'img-fill', aria-label: "hero image", heightI: 570, widthI: 900 %}
       
       </div>
     {%- endif -%}

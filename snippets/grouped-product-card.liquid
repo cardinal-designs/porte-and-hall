@@ -89,9 +89,9 @@
     {% endcomment %}
     <div class="product-card__image">
       <a href="{{ product_card_product.url }}">
-        {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill' %}
+        {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image" %}
         {% if product_card_product.media[1] != null %}
-          {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill' %}
+          {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill', aria-label: "image" %}
         {% endif %}
 
         {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
@@ -164,7 +164,7 @@
     {% unless template.suffix == 'last-chance' %}
     <div class="product-card__swatches">
       {% if active_swatch != blank %}
-        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | asset_url }})"></a>
+        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" aria-label="Product color swatch" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | asset_url }})"></a>
       {% endif %}
       {{ color_swatch_list }}
     </div>
