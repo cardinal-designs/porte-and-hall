@@ -3,11 +3,19 @@
 <div class="hero video-with-text">
   <div class="hero__content">
     <div class="hero__container">
-      <h4 class="hero__title">{{ section.settings.title }}</h4>
-      <p>{{ section.settings.sub-text }}</p>
-      <div class="content-section">
-        {{ section.settings.content }}
-      </div>
+      {% if product.handle contains 'outlier' %}
+        <h4 class="hero__title">{{ section.settings.outlier_title }}</h4>
+        <p>{{ section.settings.outlier_sub-text }}</p>
+        <div class="content-section">
+          {{ section.settings.outlier_content }}
+        </div>
+      {% else %}
+        <h4 class="hero__title">{{ section.settings.title }}</h4>
+        <p>{{ section.settings.sub-text }}</p>
+        <div class="content-section">
+          {{ section.settings.content }}
+        </div>
+      {% endif %}
     </div>
   </div>
 
@@ -124,6 +132,21 @@
     {
       "type": "header",
       "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "outlier_title",
+      "label": "Outlier Title"
+    },
+    {
+      "type": "textarea",
+      "id": "outlier_sub-text",
+      "label": "Outlier Content"
+    },
+    {
+      "type": "textarea",
+      "id": "outlier_content",
+      "label": "Outlier List Section"
     },
     {
       "type": "text",
