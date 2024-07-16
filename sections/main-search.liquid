@@ -128,15 +128,15 @@
   {% if search.performed %}
 
     <div class="collection-grid__inner page-width">
-      {% if section.settings.enable_filtering or section.settings.enable_sorting %}
-      {% render 'search-collection-filters' %}
-      <script>
-        function clearAll(e) {
-          e.preventDefault();
-          console.log("clear all")
-          document.querySelector('collection-filters').clearAllFilters()
-        }
-      </script>
+      {% if section.settings.enable_filtering %}
+          {% render 'search-collection-filters' %}
+          <script>
+            function clearAll(e) {
+              e.preventDefault();
+              console.log("clear all")
+              document.querySelector('collection-filters').clearAllFilters()
+            }
+          </script>
       {% endif %}
       
       <div id="ProductGridContainer">
