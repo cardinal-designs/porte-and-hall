@@ -159,7 +159,6 @@
                     {% when 'product' %}
                       {% capture product_settings %}{% if section.settings.product_show_vendor %}vendor,{% endif %}title,price{% endcapture %}
                       
-
                       {% render 'grouped-product-card',
                         product_card_product: item,
                         button_text: 'Shop Now',
