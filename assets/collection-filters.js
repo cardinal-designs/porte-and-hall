@@ -196,23 +196,19 @@ class collectionFilters extends HTMLElement {
   }
 
   reloadSections(newUrl) {
-    console.log("newUrl", newUrl)
     let url = '';
 
     let formData = new FormData(this.form);
 
-    console.log("before", ...formData)
+    // console.log("before", ...formData)
 
     let emptyValues = []
 
     for (let pair of formData.entries()) {
-      console.log("pair", pair)
       if(pair[1] == "" || pair[1] == " "){
         emptyValues.push(pair[0])
       }
     }
-
-    console.log("emptyValues", emptyValues, typeof(formData))
 
     if (window.location.href.includes('/search')) {
       let searchInput = document.querySelector('#Search-In-Template');
@@ -232,16 +228,14 @@ class collectionFilters extends HTMLElement {
       formData.delete(val)
     })
 
-    console.log("after", ...formData)
+    // console.log("after", ...formData)
 
     const searchParams = new URLSearchParams(formData).toString();
-    console.log("searchParams", searchParams)
     
     url = location.pathname + '?' + searchParams;
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
     }
-    console.log("url", url)
     // Fetch and replace sections
     this.enableLoading();
     fetch(url)
