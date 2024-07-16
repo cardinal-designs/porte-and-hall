@@ -164,6 +164,13 @@
                         show_image_outline: section.settings.show_image_outline,
                         show_rating: section.settings.show_rating
                       %}
+
+                      {% render 'grouped-product-card',
+                        product_card_product: product,
+                        collection: grouped_collection,
+                        title: grouped_collection.title,
+                        button_text: 'Shop Now'
+                      %}
                     {% when 'article' %}
                       <a href="{{ item.url }}" class="card-wrapper">
                         <div class="card card--search card--soft{% unless item.image %} card--text-only{% endunless %}">
