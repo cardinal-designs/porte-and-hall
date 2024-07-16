@@ -196,6 +196,7 @@ class collectionFilters extends HTMLElement {
   }
 
   reloadSections(newUrl) {
+    console.log("newUrl", newUrl)
     let url = '';
 
     let formData = new FormData(this.form);
@@ -217,11 +218,13 @@ class collectionFilters extends HTMLElement {
     console.log("after", ...formData)
 
     const searchParams = new URLSearchParams(formData).toString();
+    console.log("searchParams", searchParams)
+    
     url = location.pathname + '?' + searchParams;
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
     }
-
+    console.log("url", url)
     // Fetch and replace sections
     this.enableLoading();
     fetch(url)
