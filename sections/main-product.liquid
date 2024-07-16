@@ -1138,6 +1138,12 @@
         "shippingDetails": [
         {
           "@type": "OfferShippingDetails",
+        "shippingDestination": [
+            {
+              "@type": "DefinedRegion",
+              "addressCountry": "US"
+            }
+          ],
           "deliveryTime": [
             {
               "@type": "ShippingDeliveryTime",
@@ -1157,6 +1163,11 @@
                 "maxValue": "2",
                 "unitCode": "d"
               },
+              "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "10",
+                "currency": "USD"
+              }
               "transitTime": {
                 "@type": "QuantitativeValue",
                 "minValue": "1",
@@ -1179,9 +1190,9 @@
           "returnShippingFeesAmount": [
             {
               "@type": "MonetaryAmount",
-              "value": "20",
+              "value": "10",
               "minValue": "10",
-              "maxValue": "100",
+              "maxValue": "50",
               "currency": "USD"
             }
           ]
