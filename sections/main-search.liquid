@@ -127,16 +127,17 @@
   </div>
   {% if search.performed %}
 
-    {% render 'collection-filters' %}
-    <script>
-      function clearAll(e) {
-        e.preventDefault();
-        console.log("clear all")
-        document.querySelector('collection-filters').clearAllFilters()
-      }
-    </script>
-    
-    <div id="ProductGridContainer">
+    <div class="collection-grid__inner">
+      {% render 'collection-filters' %}
+      <script>
+        function clearAll(e) {
+          e.preventDefault();
+          console.log("clear all")
+          document.querySelector('collection-filters').clearAllFilters()
+        }
+      </script>
+      
+      <div id="ProductGridContainer">
       {% if search.results.size == 0 and search.filters != empty %}
         <div class="template-search__results collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
           <div class="loading-overlay gradient"></div>
@@ -225,6 +226,7 @@
         {% endpaginate %}    
       {% endif %}
     </div> 
+    </div>
   {% endif %}
 </div>
 
