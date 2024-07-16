@@ -212,6 +212,14 @@ class collectionFilters extends HTMLElement {
       }
     }
 
+    console.log("emptyValues", emptyValues)
+
+    if (window.location.href.includes('/search')) {
+      // Code to execute if URL contains '/search'
+      console.log('This is a search page');
+    }
+
+
     emptyValues.forEach(val => {
       formData.delete(val)
     })
