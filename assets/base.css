@@ -3528,6 +3528,10 @@ iframe#preview-bar-iframe {
   text-align: center;
 }
 
+.template-search.template-search--empty .collection-grid__inner {
+  display: none;
+}
+
 @media (max-width: 767px){
   
   .template-search__results #gf_pagination_wrap {
