@@ -159,7 +159,7 @@
                     {% when 'product' %}
                       {% capture product_settings %}{% if section.settings.product_show_vendor %}vendor,{% endif %}title,price{% endcapture %}
                       
-                      {% render 'grouped-product-card',
+                      {% render 'grouped-product-card-4',
                         product_card_product: item,
                         media_size: section.settings.image_ratio,
                         show_secondary_image: section.settings.show_secondary_image,
