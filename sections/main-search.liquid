@@ -147,6 +147,14 @@
                 <li class="grid__item{% unless item.object_type == 'product' %} grid__item--small{% endunless %}">
                   {% case item.object_type %}
                     {% when 'product' %}
+                    {% render 'collection-filters' %}
+                      <script>
+                        function clearAll(e) {
+                          e.preventDefault();
+                          console.log("clear all")
+                          document.querySelector('collection-filters').clearAllFilters()
+                        }
+                      </script>
                       {% capture product_settings %}{% if section.settings.product_show_vendor %}vendor,{% endif %}title,price{% endcapture %}
                       
 
