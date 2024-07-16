@@ -3524,6 +3524,10 @@ iframe#preview-bar-iframe {
   font-size: 16px !important;
 }
 
+.template-search__header p[role="status"] {
+  text-align: center;
+}
+
 @media (max-width: 767px){
   
   .template-search__results #gf_pagination_wrap {
@@ -3531,7 +3535,7 @@ iframe#preview-bar-iframe {
   }
 
   .template-search__header {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
   } 
 
   .template-search__search {
