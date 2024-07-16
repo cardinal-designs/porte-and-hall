@@ -54,6 +54,8 @@
   assign search_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
 %}
 
+
+
 <div class="template-search spaced-section{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %}">
   <div class="template-search__header page-width center">
     {% if search.performed %}
@@ -126,7 +128,6 @@
     {% endif %}
   </div>
   {% if search.performed %}
-    {% if search.results_count == 0 and search.filters == empty %}  
     <div class="collection-grid__inner page-width {% if section.settings.enable_filtering == false %}filter__disabled{% endif %}">
       {% if section.settings.enable_filtering %}
           {% render 'search-collection-filters' %}
@@ -233,7 +234,6 @@
       {% endif %}
     </div> 
     </div>
-    {% endif %}
   {% endif %}
 </div>
 
