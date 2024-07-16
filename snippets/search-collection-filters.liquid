@@ -17,7 +17,7 @@
 %}
 
 {% for filter in current_collection.filters %}
-  {{ filter }}--filter
+  {{ filter.active_values }}--filter
   {% if filter.type == 'list' %}
     {% assign total_active_values = total_active_values | plus: filter.active_values.size %}
   {% elsif filter.type == 'price_range' and filter.min_value.value or filter.max_value.value %}
