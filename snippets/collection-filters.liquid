@@ -9,6 +9,8 @@
   endif
 %}
 
+{{ collection.filters }}===collection.filters
+
 {% for filter in collection.filters %}
   {% if filter.type == 'list' %}
     {% assign total_active_values = total_active_values | plus: filter.active_values.size %}
