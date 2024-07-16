@@ -127,6 +127,7 @@
   </div>
   {% if search.performed %}
 
+    {% if search.performed %}
     {% if search.results_count == 0 and search.filters == empty %} 
     <div class="collection-grid__inner page-width {% if section.settings.enable_filtering == false %}filter__disabled{% endif %}">
       {% if section.settings.enable_filtering %}
@@ -235,6 +236,7 @@
     </div> 
     </div>
     {% endif %}
+      {% endif %}
   {% endif %}
 </div>
 
