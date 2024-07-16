@@ -3524,7 +3524,7 @@ iframe#preview-bar-iframe {
   font-size: 16px !important;
 }
 
-.template-search__header p[role="status"] {
+.template-search__header p.result_text {
   text-align: center;
 }
 
