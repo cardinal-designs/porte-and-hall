@@ -212,11 +212,14 @@ class collectionFilters extends HTMLElement {
       }
     }
 
-    console.log("emptyValues", emptyValues)
+    console.log("emptyValues", emptyValues, typeof(formData))
 
     if (window.location.href.includes('/search')) {
-      // Code to execute if URL contains '/search'
-      console.log('This is a search page');
+      let searchInput = document.querySelector('#Search-In-Template');
+      if(searchInput){
+        let searchInputValue = searchInput.value;
+        
+      }
     }
 
 
