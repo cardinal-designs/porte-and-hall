@@ -3517,6 +3517,12 @@ iframe#preview-bar-iframe {
   margin-bottom: 50px;
 }
 
+#gf_pagination_wrap .pagination > span.current, 
+#gf_pagination_wrap .pagination > span.deco, 
+#gf_pagination_wrap .pagination > span > a {
+  color: var(--blue);
+}
+
 @media (max-width: 767px){
   
   .template-search__results #gf_pagination_wrap {
