@@ -3529,5 +3529,13 @@ iframe#preview-bar-iframe {
   .template-search__results #gf_pagination_wrap {
     margin-top: 0;
   }
+
+  .template-search__search {
+    margin: 0 auto 0;
+  }
+
+  .template-search__search .field {
+    margin-bottom: 0;
+  }
 }
 /* Search page css End */
