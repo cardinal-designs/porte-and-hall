@@ -218,7 +218,12 @@ class collectionFilters extends HTMLElement {
       let searchInput = document.querySelector('#Search-In-Template');
       if(searchInput){
         let searchInputValue = searchInput.value;
-        
+        if(searchInputValue){
+          let additionalArray = [['q', searchInputValue]];
+          additionalArray.forEach(item => {
+            formData.append(item[0], item[1]);
+          });
+        }
       }
     }
 
