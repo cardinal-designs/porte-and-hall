@@ -3517,9 +3517,9 @@ iframe#preview-bar-iframe {
   margin-bottom: 50px;
 }
 
-#gf_pagination_wrap .pagination > span.current, 
-#gf_pagination_wrap .pagination > span.deco, 
-#gf_pagination_wrap .pagination > span > a {
+.template-search__results #gf_pagination_wrap .pagination > span.current, 
+.template-search__results #gf_pagination_wrap .pagination > span.deco, 
+.template-search__results #gf_pagination_wrap .pagination > span > a {
   color: var(--blue) !important;
   font-size: 16px !important;
 }
