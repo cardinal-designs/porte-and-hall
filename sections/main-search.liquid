@@ -136,20 +136,18 @@
       {% endif %}
     {% endif %}
 
-    <div class="search__filter--wrap">
-      {% render 'collection-filters',
-        results: search,
-        enable_filtering: section.settings.enable_filtering, 
-        enable_sorting: section.settings.enable_sorting,
-      %}
-      <script>
-        function clearAll(e) {
-          e.preventDefault();
-          console.log("clear all")
-          document.querySelector('collection-filters').clearAllFilters()
-        }
-      </script>
-    </div>
+    {% render 'collection-filters',
+      results: search,
+      enable_filtering: section.settings.enable_filtering, 
+      enable_sorting: section.settings.enable_sorting,
+    %}
+    <script>
+      function clearAll(e) {
+        e.preventDefault();
+        console.log("clear all")
+        document.querySelector('collection-filters').clearAllFilters()
+      }
+    </script>
     
     <div id="ProductGridContainer">
       {% if search.results.size == 0 and search.filters != empty %}
