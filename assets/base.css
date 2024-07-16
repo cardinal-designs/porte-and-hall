@@ -3513,6 +3513,13 @@ iframe#preview-bar-iframe {
 }
 
 .template-search__results #gf_pagination_wrap {
-  margin-top: 0;
+  margin-top: 20px;
+}
+
+@media (max-width: 767px){
+  
+  .template-search__results #gf_pagination_wrap {
+    margin-top: 0;
+  }
 }
 /* Search page css End */
