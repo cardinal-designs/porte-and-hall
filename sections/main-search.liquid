@@ -134,6 +134,8 @@
         </div>
       {% endif %}
     {% endif %}
+
+    
     <div id="ProductGridContainer">
       {% if search.results.size == 0 and search.filters != empty %}
         <div class="template-search__results collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
@@ -149,20 +151,18 @@
         {% paginate search.results by 24 %}
           <div class="template-search__results collection page-width" id="product-grid" data-id="{{ section.id }}">
             <div class="loading-overlay gradient"></div>
-            <ul class="search__product product-grid product-grid-4 list-unstyled" role="list">
-              {% for item in search.results %}
-                {% if item.object_type == 'product' %}
-                  {% render 'grouped-product-card',
-                    product_card_product: item,
-                    button_text: 'Shop Now'
-                  %}
-                {% endif %}
-              {% endfor %}
-            </ul>
             <ul class="product-grid product-grid-4 list-unstyled" role="list">
               {% for item in search.results %}
                 <li class="product-grid__item grid__item{% unless item.object_type == 'product' %} grid__item--small{% endunless %}">
                   {% case item.object_type %}
+                    {% when 'product' %}
+                      {% capture product_settings %}{% if section.settings.product_show_vendor %}vendor,{% endif %}title,price{% endcapture %}
+                      
+
+                      {% render 'grouped-product-card',
+                        product_card_product: item,
+                        button_text: 'Shop Now'
+                      %}
                     {% when 'article' %}
                       <a href="{{ item.url }}" class="card-wrapper">
                         <div class="card card--search card--soft{% unless item.image %} card--text-only{% endunless %}">
