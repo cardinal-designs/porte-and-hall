@@ -2,7 +2,7 @@
 {% if collection %}
   {% assign collection = collection %}
 {% else %}
-  {% assign collection = collections['all'] %}
+  {% assign all_products_collection = collections['all'] %}
 {% endif %}
 
 {% liquid
@@ -16,7 +16,7 @@
   endif
 %}
 
-{{ collection }}--collection
+{{ all_products_collection }}--collection
 {% for filter in collection.filters %}
   {% if filter.type == 'list' %}
     {% assign total_active_values = total_active_values | plus: filter.active_values.size %}
