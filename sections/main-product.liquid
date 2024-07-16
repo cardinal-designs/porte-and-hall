@@ -1138,6 +1138,11 @@
         "shippingDetails": [
         {
           "@type": "OfferShippingDetails",
+        "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "10",
+                "currency": "USD"
+              },
         "shippingDestination": [
             {
               "@type": "DefinedRegion",
@@ -1162,11 +1167,6 @@
                 "minValue": "1",
                 "maxValue": "2",
                 "unitCode": "d"
-              },
-              "shippingRate": {
-                "@type": "MonetaryAmount",
-                "value": "10",
-                "currency": "USD"
               },
               "transitTime": {
                 "@type": "QuantitativeValue",
