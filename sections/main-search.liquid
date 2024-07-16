@@ -157,8 +157,6 @@
                 <li class="product-grid__item grid__item{% unless item.object_type == 'product' %} grid__item--small{% endunless %}">
                   {% case item.object_type %}
                     {% when 'product' %}
-                      {% capture product_settings %}{% if section.settings.product_show_vendor %}vendor,{% endif %}title,price{% endcapture %}
-                      
                       {% render 'search-product-card',
                         product_card_product: item,
                         media_size: section.settings.image_ratio,
