@@ -135,14 +135,16 @@
       {% endif %}
     {% endif %}
 
-    {% render 'collection-filters' %}
-    <script>
-      function clearAll(e) {
-        e.preventDefault();
-        console.log("clear all")
-        document.querySelector('collection-filters').clearAllFilters()
-      }
-    </script>
+    <div class="search__filter--wrap">
+      {% render 'collection-filters' %}
+      <script>
+        function clearAll(e) {
+          e.preventDefault();
+          console.log("clear all")
+          document.querySelector('collection-filters').clearAllFilters()
+        }
+      </script>
+    </div>
     
     <div id="ProductGridContainer">
       {% if search.results.size == 0 and search.filters != empty %}
