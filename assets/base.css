@@ -3520,8 +3520,8 @@ iframe#preview-bar-iframe {
 #gf_pagination_wrap .pagination > span.current, 
 #gf_pagination_wrap .pagination > span.deco, 
 #gf_pagination_wrap .pagination > span > a {
-  color: var(--blue);
-  font-size: 16px;
+  color: var(--blue) !important;
+  font-size: 16px !important;
 }
 
 @media (max-width: 767px){
