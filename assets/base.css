@@ -3521,6 +3521,7 @@ iframe#preview-bar-iframe {
 #gf_pagination_wrap .pagination > span.deco, 
 #gf_pagination_wrap .pagination > span > a {
   color: var(--blue);
+  font-size: 16px;
 }
 
 @media (max-width: 767px){
