@@ -136,7 +136,11 @@
     {% endif %}
 
     <div class="search__filter--wrap">
-      {% render 'collection-filters' %}
+      {% render 'collection-filters',
+        results: search,
+        enable_filtering: section.settings.enable_filtering, 
+
+      %}
       <script>
         function clearAll(e) {
           e.preventDefault();
