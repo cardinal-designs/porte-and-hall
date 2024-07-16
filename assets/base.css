@@ -3531,11 +3531,11 @@ iframe#preview-bar-iframe {
   }
 
   .template-search__search {
-    margin: 0 auto 0;
+    margin: 0 auto 0 !important;
   }
 
   .template-search__search .field {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
   }
 }
 /* Search page css End */
