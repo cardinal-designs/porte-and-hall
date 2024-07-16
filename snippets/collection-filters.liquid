@@ -10,7 +10,7 @@
 %}
 
 {% for filter in collection.filters %}
-  {{ filter.type }}--filter.type
+  {{ filter | json }}---filter.type
   {% if filter.type == 'list' %}
     {{ filter.active_values }}--filter
     {% assign total_active_values = total_active_values | plus: filter.active_values.size %}
