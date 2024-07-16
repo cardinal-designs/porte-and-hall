@@ -21,6 +21,14 @@
   position: relative;
 }
 
+.collection-grid__inner.filter__disabled {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 40.5px;
+  grid-template-areas: 'grid';
+  position: relative;
+}
+
 .collection-grid__inner .loading-overlay {
   display: none;
   position: absolute;
