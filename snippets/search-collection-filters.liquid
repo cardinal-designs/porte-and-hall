@@ -1,9 +1,14 @@
-{% assign collection = '' %}
-{% if collection %}
-  {% assign collection = collection %}
+{% assign current_collection = collection %}
+{% if current_collection %}
+  <p>Collection is defined</p>
+  <p>{{ current_collection }} === {{ current_collection.filters }}</p>
 {% else %}
+  <p>Using all products collection</p>
   {% assign all_products_collection = collections['all'] %}
+  <p>{{ all_products_collection }} === {{ all_products_collection.filters }}</p>
 {% endif %}
+
+
 
 {% liquid
   assign sort_by = collection.sort_by | default: collection.default_sort_by
