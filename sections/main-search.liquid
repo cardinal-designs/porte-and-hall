@@ -157,8 +157,16 @@
                 <li class="product-grid__item grid__item{% unless item.object_type == 'product' %} grid__item--small{% endunless %}">
                   {% case item.object_type %}
                     {% when 'product' %}
+
+                      {% for collection in item.collections %}
+                        {% if collection.title contains ' |' %}
+                          {% assign grouped_collection = collection %}
+                        {% endif %}
+                      {% endfor %}
+                    
                       {% render 'search-product-card',
                         product_card_product: item,
+                        title: grouped_collection.title,
                         media_size: section.settings.image_ratio,
                         show_secondary_image: section.settings.show_secondary_image,
                         add_image_padding: section.settings.add_image_padding,
