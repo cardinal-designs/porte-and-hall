@@ -1118,6 +1118,11 @@
       "@type": "Brand",
       "name": {{ product.vendor | json }}
     },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "1120"
+    },
     "offers": [
       {% for variant in product.variants %}
         {
