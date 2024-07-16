@@ -15,10 +15,8 @@
     assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
   endif
 %}
-{{ current_collection.filters | json }}
+
 {% for filter in current_collection.filters %}
-  {{ filter.values }}---filter.type
-  {{ filter.active_values }}--filter
   {% if filter.type == 'list' %}
     {% assign total_active_values = total_active_values | plus: filter.active_values.size %}
   {% elsif filter.type == 'price_range' and filter.min_value.value or filter.max_value.value %}
@@ -26,7 +24,6 @@
   {% endif %}
 {% endfor %}
 
-{{ total_active_values }}==total_active_values
 
 <div class="collection-filters__button hide-desktop">
   <button class="collection-filters__open js-open-filters h3">
