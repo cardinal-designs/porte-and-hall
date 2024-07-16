@@ -12,8 +12,7 @@
     "main": {
       "type": "main-search",
       "settings": {
-        "enable_filtering": true,
-        "enable_sorting": true,
+        "enable_filtering": false,
         "article_show_date": true,
         "article_show_author": false
       }
