@@ -9,7 +9,7 @@
   endif
 %}
 
-{{ collection.filters }}===collection.filters
+{{ collection.filters | json }}===collection.filters
 
 {% for filter in collection.filters %}
   {% if filter.type == 'list' %}
