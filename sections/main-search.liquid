@@ -150,7 +150,7 @@
         </div>
       {% else %}
         {% paginate search.results by 24 %}
-          <div class="template-search__results collection page-width" id="product-grid" data-id="{{ section.id }}">
+          <div class="template-search__results collection" id="product-grid" data-id="{{ section.id }}">
             <div class="loading-overlay gradient"></div>
             <ul class="product-grid product-grid-4 list-unstyled" role="list">
               {% for item in search.results %}
