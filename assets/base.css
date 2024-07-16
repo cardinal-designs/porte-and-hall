@@ -3508,6 +3508,8 @@ iframe#preview-bar-iframe {
 
 /* Search page css Start */
 
-
+.template-search__search .search .field__label {
+  display: none;
+}
 
 /* Search page css End */
