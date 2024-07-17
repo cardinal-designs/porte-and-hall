@@ -14,7 +14,6 @@ function updateCheckedInput() {
     if(allSizeInput){
       allSizeInput.checked = true;
     }
-      console.log('At least one size filter is checked.');
   }else{
     if(allSizeInput){
       allSizeInput.checked = false;
@@ -32,7 +31,6 @@ function updateCheckedInput() {
     if(allUseInput){
       allUseInput.checked = true;
     }
-      console.log('At least one size filter is checked.');
   }else{
     if(allUseInput){
       allUseInput.checked = false;
@@ -50,7 +48,6 @@ function updateCheckedInput() {
     if(allColorInput){
       allColorInput.checked = true;
     }
-      console.log('At least one size filter is checked.');
   }else{
     if(allColorInput){
       allColorInput.checked = false;
@@ -68,16 +65,12 @@ function updateCheckedInput() {
     if(allFilterInput){
       allFilterInput.checked = true;
     }
-      console.log('At least one size filter is checked.');
   }else{
     if(allFilterInput){
       allFilterInput.checked = false;
     }
   }
   
-  
-  
-
 }
 
 async function updatePagination() {
