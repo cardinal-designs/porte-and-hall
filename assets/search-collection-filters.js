@@ -34,6 +34,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
       filterValues[key].forEach(function(value) {
         console.log("value", value)
+        let activeInput = document.querySelectorAll(`.collection-filters__filter-button[value="${value}"]`);
+        if(activeInput){
+          activeInput.checked = true;
+        }
+
         let buttonHtml = `<button
                             class="remove-filter active-filter body-xs body-bold"
                             data-url="/search"
