@@ -24,17 +24,14 @@
 
     var filterValues = {};
     params.forEach(function(value, key) {
-      if (!filterValues[key]) {
-        filterValues[key] = [];
+      if (key !== 'sort_by' && key !== 'q') {
+        if (!filterValues[key]) {
+          filterValues[key] = [];
+        }
+        filterValues[key].push(value);
       }
-      filterValues[key].push(value);
     });
     console.log("filterValues", filterValues)
-    var filterValuesInput = document.createElement('input');
-    filterValuesInput.type = 'hidden';
-    filterValuesInput.id = 'filterValues';
-    filterValuesInput.value = JSON.stringify(filterValues);
-    document.body.appendChild(filterValuesInput);
   });
 </script>
 
