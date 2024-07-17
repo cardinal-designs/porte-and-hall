@@ -39,7 +39,7 @@ function adjustActiveFilters() {
         let activeInput = document.querySelectorAll(`.collection-filters__filter-button[value="${value}"]`);
         if(activeInput){
           console.log("activeInput", activeInput)
-          activeInput.checked = true;
+          activeInput?.[0].checked = true;
         }
 
         let buttonHtml = `<button
