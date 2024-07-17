@@ -340,6 +340,7 @@ class collectionFilters extends HTMLElement {
   }
 
   apply() {
+    console.log("6666")
     this.reloadSections();
   }
 
