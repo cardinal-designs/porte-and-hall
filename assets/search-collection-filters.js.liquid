@@ -1,3 +1,46 @@
+// Select the node that will be observed for mutations
+const targetNode = document.querySelector('.pagination-wrapper');
+
+// Ensure the targetNode exists before setting up the observer
+if (targetNode) {
+    // Options for the observer (which mutations to observe)
+    const config = { attributes: true, childList: true, subtree: true };
+
+    // Callback function to execute when mutations are observed
+    const callback = function(mutationsList, observer) {
+        for (const mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                // Check if a new element with the class 'pagination' has been added
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('pagination')) {
+                        console.log('A new .pagination element was added:', node);
+                    }
+                });
+
+                // Check if an element with the class 'pagination' has been removed
+                mutation.removedNodes.forEach(node => {
+                    if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('pagination')) {
+                        console.log('A .pagination element was removed:', node);
+                    }
+                });
+            } else if (mutation.type === 'attributes') {
+                if (mutation.target.classList.contains('pagination') && mutation.attributeName === 'id') {
+                    console.log('The id of a .pagination element has changed:', mutation.target);
+                }
+            }
+        }
+    };
+
+    // Create an observer instance linked to the callback function
+    const observer = new MutationObserver(callback);
+
+    // Start observing the target node for configured mutations
+    observer.observe(targetNode, config);
+} else {
+    console.error('The target node .pagination-wrapper was not found.');
+}
+
+
 function adjustActiveFilters() {
   var currentUrl = window.location.href;
   var url = new URL(currentUrl);
