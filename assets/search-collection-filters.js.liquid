@@ -213,6 +213,7 @@ class collectionFilters extends HTMLElement {
   }
 
   removeSelectedFilter(filter) {
+    console.log("ass", document.querySelector(`.collection-filters__filter-button[data-filter*="${filter}"]:checked`))
     document.querySelector(`.collection-filters__filter-button[data-filter*="${filter}"]:checked`).checked = false;
   }
 
