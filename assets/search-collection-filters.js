@@ -5,7 +5,6 @@ function updateCheckedInput() {
   let filterInputs = document.querySelectorAll('input[name="filter.v.m.custom.filters"]');
   let isSizeChecked = false;
   sizeInputs.forEach(input => {
-    console.log("input.checked", input)
       if (input.checked && input.value.trim() !== '') {
           isSizeChecked = true;
       }
@@ -443,16 +442,11 @@ class collectionFilters extends HTMLElement {
     // });
     
     let emptyValues = []
-    console.log("formData.entries()", formData.entries())
     for (let pair of formData.entries()) {
-      console.log('pair[0]', pair[0])
-      console.log('pair[1]', pair[1])
       if(pair[1] == "" || pair[1] == " "){
         emptyValues.push(pair[0])
       }
     }
-
-    console.log("emptyValues", emptyValues)
 
     if (window.location.href.includes('/search')) {
       let searchInput = document.querySelector('#Search-In-Template');
@@ -496,6 +490,8 @@ class collectionFilters extends HTMLElement {
       }
       url = location.pathname + '?' + searchParams;
     }
+
+    console.log("url", url)
     
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
@@ -506,6 +502,7 @@ class collectionFilters extends HTMLElement {
     fetch(url)
       .then(response => response.text())
       .then((responseText) => {
+        console.log("responseText", responseText)
         const html = responseText;
         const htmlContent = new DOMParser().parseFromString(html, 'text/html');
 
