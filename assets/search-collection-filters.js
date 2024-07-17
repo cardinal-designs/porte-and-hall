@@ -135,6 +135,7 @@ function adjustActiveFilters() {
 
 document.addEventListener("DOMContentLoaded", function() {
     adjustActiveFilters();
+    updatePagination();
   // clearAllFilterListener();
 });
 
