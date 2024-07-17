@@ -304,6 +304,8 @@ class collectionFilters extends HTMLElement {
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
     }
+    console.log("searchParams", searchParams)
+    console.log("url", url)
     // Fetch and replace sections
     this.enableLoading();
     fetch(url)
