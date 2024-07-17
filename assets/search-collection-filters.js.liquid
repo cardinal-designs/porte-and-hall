@@ -5,12 +5,12 @@ function adjustActiveFilters() {
 
   var filterValues = {};
   params.forEach(function(value, key) {
-    // if (key !== 'sort_by' && key !== 'q') {
+    if (key !== 'sort_by' && key !== 'q') {
       if (!filterValues[key]) {
         filterValues[key] = [];
       }
       filterValues[key].push(value);
-    // }
+    }
   });
 
   let activeFilters = document.querySelector('.collection-filters__active-filters');
@@ -265,7 +265,6 @@ class collectionFilters extends HTMLElement {
   }
 
   reloadSections(newUrl) {
-    
     let url = '';
     console.log("this", this)
     console.log("this.form", this.form)
@@ -301,14 +300,14 @@ class collectionFilters extends HTMLElement {
     console.log("newFormData", newFormData)
     
     // Log the new FormData for verification
-    for (let pair of formData.entries()) {
+    for (let pair of newFormData.entries()) {
       console.log(pair[0] + ': ' + pair[1]);
     }
 
 
     let emptyValues = []
 
-    for (let pair of newFormData.entries()) {
+    for (let pair of formData.entries()) {
       console.log("pair[0]", pair[0])
       console.log("pair[1]", pair[1])
       if(pair[1] == "" || pair[1] == " "){
@@ -316,44 +315,30 @@ class collectionFilters extends HTMLElement {
       }
     }
 
-    // if (window.location.href.includes('/search')) {
-    //   let searchInput = document.querySelector('#Search-In-Template');
-    //   if(searchInput){
-    //     let searchInputValue = searchInput.value;
-    //     if(searchInputValue){
-    //       let additionalArray = [['q', searchInputValue]];
-    //       additionalArray.forEach(item => {
-    //         newFormData.append(item[0], item[1]);
-    //       });
-    //     }
-    //   }
-    // }
-
-    console.log("emptyValues", emptyValues)
-
-    emptyValues.forEach(val => {
-      newFormData.delete(val)
-    })
-
-    // console.log("after", ...formData)
-
-    const searchParams = new URLSearchParams(newFormData).toString();
     if (window.location.href.includes('/search')) {
       let searchInput = document.querySelector('#Search-In-Template');
       if(searchInput){
         let searchInputValue = searchInput.value;
-        console.log("searchInputValue", searchInputValue)
-        if (searchInputValue) {
-          let queryQ = `q=${encodeURIComponent(searchInputValue)}`;
-          url = `${location.pathname}?${queryQ}&${searchParams}`;
-        } else {
-          url = `${location.pathname}?${searchParams}`;
+        if(searchInputValue){
+          let additionalArray = [['q', searchInputValue]];
+          additionalArray.forEach(item => {
+            formData.append(item[0], item[1]);
+          });
         }
       }
-    }else{
-      url = location.pathname + '?' + searchParams;
     }
+
+    console.log("emptyValues", emptyValues)
+
+    emptyValues.forEach(val => {
+      formData.delete(val)
+    })
+
+    // console.log("after", ...formData)
+
+    const searchParams = new URLSearchParams(formData).toString();
     
+    url = location.pathname + '?' + searchParams;
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
     }
