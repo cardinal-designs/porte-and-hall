@@ -272,6 +272,39 @@ class collectionFilters extends HTMLElement {
     console.log("formData", formData)
     console.log("before", ...formData)
 
+
+    // Create a map to store the filtered form data
+    let filteredData = new Map();
+    
+    // Iterate through the form data
+    formData.forEach((value, key) => {
+      if (value !== "") {
+        // If the value is not empty, add it to the map
+        filteredData.set(key, value);
+      } else if (!filteredData.has(key)) {
+        // If the value is empty but the key does not exist in the map, add it
+        filteredData.set(key, value);
+      }
+    });
+
+    console.log("filteredData", filteredData)
+    
+    // Create a new FormData object from the filtered data
+    let newFormData = new FormData();
+    
+    // Append the filtered data back to the new FormData object
+    filteredData.forEach((value, key) => {
+      newFormData.append(key, value);
+    });
+
+    console.log("newFormData", newFormData)
+    
+    // Log the new FormData for verification
+    for (let pair of newFormData.entries()) {
+      console.log(pair[0] + ': ' + pair[1]);
+    }
+
+
     let emptyValues = []
 
     for (let pair of formData.entries()) {
