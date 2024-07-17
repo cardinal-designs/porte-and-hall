@@ -71,8 +71,6 @@
                           {% for value in filter.active_values %}
                             <button
                               class="remove-filter active-filter body-xs body-bold"
-                              data-test="{{ filter.url_to_remove }}"
-                              data-test-q="%2F%3Fsection_id%3Dproduct-grid"
                               data-url="{{ filter.url_to_remove | remove: '%2F%3Fsection_id%3Dproduct-grid' }}"
                               data-filter="{{ value.param_name }}-{{ value.value }}"
                             >
