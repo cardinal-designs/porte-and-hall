@@ -201,6 +201,7 @@ function adjustActiveFilters() {
 
 document.addEventListener("DOMContentLoaded", function() {
     adjustActiveFilters();
+    updateCheckedInput();
     updatePagination();
   // clearAllFilterListener();
 });
@@ -519,6 +520,8 @@ class collectionFilters extends HTMLElement {
       .finally(() => {
         document.querySelectorAll('.product-grid__item.fade-in').forEach(item => item.style.opacity = 1);
         adjustActiveFilters();
+        updateCheckedInput();
+        
       });
 
     
