@@ -34,7 +34,7 @@ if (targetNode) {
                         let searchSelectionId = document.querySelector('[data-section-id]');
                         console.log("routes.cart_url", routes.cart_url)
                         async function updatePagination() {
-                          fetch(⁠ ${routes.cart_url}?section_id=template--15509523529791__main )
+                          fetch(⁠`${routes.cart_url}?section_id=template--15509523529791__main`)
                             .then((response) => response.text())
                             .then((responseText) => {
                               const html = new DOMParser().parseFromString(responseText, 'text/html');
