@@ -359,7 +359,10 @@ class collectionFilters extends HTMLElement {
   
     let queryString = queryParams.join('&');
     console.log("queryString", queryString)
-  
+
+    let url = `${window.location.origin}${window.location.pathname}?${queryString}`;
+    
+    this.reloadSections('', url);
   }
   loadDataOnDomLoad() {
     document.addEventListener('DOMContentLoaded', this.loadData.bind(this));
@@ -552,6 +555,10 @@ class collectionFilters extends HTMLElement {
     }
 
     console.log("url", url)
+
+    if(loadUrl){
+      url = loadUrl
+    }
     
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
