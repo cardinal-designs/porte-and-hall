@@ -56,7 +56,7 @@
 
 
 
-<div class="template-search spaced-section{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %}">
+<div class="template-search spaced-section{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %}" data-section-id="{{ section.id }}">
   <div class="template-search__header page-width center">
     {% if search.performed %}
       <h1 class="h2">{{ 'templates.search.title' | t }}</h1>
