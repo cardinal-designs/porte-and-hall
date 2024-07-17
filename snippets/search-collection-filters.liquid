@@ -16,6 +16,15 @@
   endif
 %}
 
+{% if current_tags %}
+  {% for tag in current_tags %}
+    {% if tag contains 'size=' %}
+      {% assign size_value = tag | split: '=' | last %}
+      Size: {{ size_value }}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
 {% for filter in current_collection.filters %}
   {% if filter.type == 'list' %}
     {% assign total_active_values = total_active_values | plus: filter.active_values.size %}
