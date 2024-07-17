@@ -3544,6 +3544,11 @@ iframe#preview-bar-iframe {
   height: 2rem;
 }
 
+.template-search__results .pagination__item--current:after, 
+.template-search__results .pagination__item:hover:after {
+  bottom: 0;
+}
+
 @media (max-width: 767px){
   
   .template-search__results #gf_pagination_wrap {
