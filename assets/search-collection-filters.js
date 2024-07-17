@@ -13,6 +13,29 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
   console.log("filterValues", filterValues)
+  for (var key in filterValues) {
+    if (filterValues.hasOwnProperty(key)) {
+      filterValues[key].forEach(function(value) {
+        let buttonHtml = `<button
+                              class="remove-filter active-filter body-xs body-bold"
+                              data-url="{{ filter.url_to_remove | remove: '%2F%3Fsection_id%3Dproduct-grid' }}"
+                              data-filter="{{ value.param_name }}-{{ value.value }}"
+                            >
+                              {{ filter.label }}:
+                              {{ value.label | escape }}
+                              <svg width="11" height="11" viewBox="0 0 11 11" fill="none" class="icon icon-close">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 4.65393L10.1539 0L11 0.846074L6.34607 5.5L11 10.1539L10.1539 11L5.5 6.34607L0.846074 11L0 10.1539L4.65393 5.5L0 0.846074L0.846074 0L5.5 4.65393Z" fill="currentColor"/>
+                              </svg>
+                            </button>`;
+
+        let  activeFilters = document.querySelector('#active-filters');
+        if(activeFilters){
+          activeFilters.appendChild(buttonHtml);
+        }
+      });
+    }
+  }
+
 });
 
 
