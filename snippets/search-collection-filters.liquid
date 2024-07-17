@@ -69,8 +69,9 @@
             </div>
             <div class="collection-filters__slideout-content">
               <div id="active-filters" class="hide-desktop">
-                {% if total_active_values > 0 %}
+                
                   <div class="collection-filters__active-filters">
+                    {% if total_active_values > 0 %}
                     {% for filter in current_collection.filters %}
                       
                       {% case filter.type %}
@@ -108,8 +109,9 @@
                     {% endfor %}
 
                     <button class="text-link js-clear-all-filters js-clear-all-filters--close blue">Clear All</button>
+                    {% endif %}
                   </div>
-                {% endif %}
+                
               </div>
 
               <div class="collection-filters__filters" id="filter-dropdowns">
