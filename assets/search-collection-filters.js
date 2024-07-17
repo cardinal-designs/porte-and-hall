@@ -12,7 +12,8 @@ function clearAllFilterListener() {
   });
 
 }
-document.addEventListener("DOMContentLoaded", function() {
+
+function adjustActiveFilters() {
   var currentUrl = window.location.href;
   var url = new URL(currentUrl);
   var params = new URLSearchParams(url.search);
@@ -64,6 +65,11 @@ document.addEventListener("DOMContentLoaded", function() {
       activeFilters.insertAdjacentHTML('beforeend', buttonHtml);
     }
   }
+  
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    adjustActiveFilters();
   // clearAllFilterListener();
 });
 
