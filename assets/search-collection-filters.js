@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
   console.log("filterValues", filterValues);
-
+  let activeFilters = document.querySelector('.collection-filters__active-filters');
   for (var key in filterValues) {
     if (filterValues.hasOwnProperty(key)) {
       filterValues[key].forEach(function(value) {
@@ -28,11 +28,16 @@ document.addEventListener("DOMContentLoaded", function() {
                             </svg>
                           </button>`;
 
-        let activeFilters = document.querySelector('.collection-filters__active-filters');
         if(activeFilters){
           activeFilters.insertAdjacentHTML('beforeend', buttonHtml);
         }
       });
+    }
+  }
+  if (Object.keys(filterValues)?.length > 0) {
+    let buttonHtml = `<button class="text-link js-clear-all-filters js-clear-all-filters--close blue">Clear All</button>`;
+    if(activeFilters){
+      activeFilters.insertAdjacentHTML('beforeend', buttonHtml);
     }
   }
 });
