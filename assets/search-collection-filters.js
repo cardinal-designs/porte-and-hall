@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
       let shortKey = key?.replace('filter.v.m.custom.', '');
 
       filterValues[key].forEach(function(value) {
+        console.log("value", value)
         let buttonHtml = `<button
                             class="remove-filter active-filter body-xs body-bold"
                             data-url="/search"
