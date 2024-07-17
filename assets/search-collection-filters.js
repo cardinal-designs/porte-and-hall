@@ -179,6 +179,7 @@ class collectionFilters extends HTMLElement {
       overlay.classList.remove('is-visible');
       document.body.classList.remove('scroll-lock');
     });
+    adjustActiveFilters();
   }
 
   close(event) {
