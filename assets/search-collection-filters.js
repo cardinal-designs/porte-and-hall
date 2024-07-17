@@ -1,18 +1,3 @@
-function clearAllFilterListener() {
-  document.addEventListener('click', function(event) {
-    const button = event.target.closest('.js-clear-all-filters');
-    if (button) {
-      event.preventDefault();
-      // Your logic for handling the clear all filters button click
-      console.log('Clear All Filters button clicked');
-      // Dispatch the custom event
-      const clearAllFiltersEvent = new CustomEvent('clearAllFilters');
-      document.dispatchEvent(clearAllFiltersEvent);
-    }
-  });
-
-}
-
 function adjustActiveFilters() {
   var currentUrl = window.location.href;
   var url = new URL(currentUrl);
@@ -27,18 +12,15 @@ function adjustActiveFilters() {
       filterValues[key].push(value);
     }
   });
-  console.log("filterValues", filterValues);
+
   let activeFilters = document.querySelector('.collection-filters__active-filters');
   activeFilters.innerHtml = '';
   for (var key in filterValues) {
     if (filterValues.hasOwnProperty(key)) {
       let shortKey = key?.replace('filter.v.m.custom.', '');
-
       filterValues[key].forEach(function(value) {
-        console.log("value", value)
         let activeInput = document.querySelectorAll(`.collection-filters__filter-button[value="${value}"]`);
         if(activeInput){
-          console.log("activeInput", activeInput)
           activeInput[0].checked = true;
         }
 
@@ -211,8 +193,6 @@ class collectionFilters extends HTMLElement {
   }
 
   handleFilterClick(target) {
-    console.log("target", target)
-    console.log("target.value", target.value)
     if(target.value == ""){
       target.closest(".collection-filters__dropdown-container").querySelectorAll('.collection-filters__filter-button').forEach(item => {
         item.removeAttribute('checked');
