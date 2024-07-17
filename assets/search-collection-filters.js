@@ -264,7 +264,8 @@ class collectionFilters extends HTMLElement {
 
   reloadSections(newUrl) {
     let url = '';
-
+    console.log("this", this)
+    console.log("this.form", this.form)
     let formData = new FormData(this.form);
 
     console.log("before", ...formData)
