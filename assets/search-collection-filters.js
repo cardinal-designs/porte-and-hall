@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
       activeFilters.insertAdjacentHTML('beforeend', buttonHtml);
     }
   }
-  clearAllFilterListener();
+  // clearAllFilterListener();
 });
 
 
