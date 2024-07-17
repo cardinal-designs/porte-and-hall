@@ -112,10 +112,6 @@ class collectionFilters extends HTMLElement {
         const filter = button.dataset.filter;
         const initial = button.dataset.url;
         const newUrl = window.location.protocol + '//' + window.location.host + initial;
-        console.log("filter", filter)
-        console.log("initial", initial)
-        console.log("newUrl", newUrl)
-        console.log("this", this)
         if (filter) this.removeSelectedFilter(filter);
         this.reloadSections(newUrl);
       }
@@ -267,12 +263,7 @@ class collectionFilters extends HTMLElement {
 
   reloadSections(newUrl) {
     let url = '';
-    console.log("this", this)
-    console.log("this.form", this.form)
     let formData = new FormData(this.form);
-    console.log("formData", formData)
-    console.log("before", ...formData)
-
 
     // Create a map to store the filtered form data
     let filteredData = new Map();
@@ -280,37 +271,21 @@ class collectionFilters extends HTMLElement {
     // Iterate through the form data
     formData.forEach((value, key) => {
       if (value !== "") {
-        // If the value is not empty, add it to the map
         filteredData.set(key, value);
       } else if (!filteredData.has(key)) {
-        // If the value is empty but the key does not exist in the map, add it
         filteredData.set(key, value);
       }
     });
 
-    console.log("filteredData", filteredData)
-    
-    // Create a new FormData object from the filtered data
     let newFormData = new FormData();
     
-    // Append the filtered data back to the new FormData object
     filteredData.forEach((value, key) => {
       newFormData.append(key, value);
     });
-
-    console.log("newFormData", newFormData)
     
-    // Log the new FormData for verification
-    for (let pair of newFormData.entries()) {
-      console.log(pair[0] + ': ' + pair[1]);
-    }
-
-
     let emptyValues = []
 
     for (let pair of newFormData.entries()) {
-      console.log("pair[0]", pair[0])
-      console.log("pair[1]", pair[1])
       if(pair[1] == "" || pair[1] == " "){
         emptyValues.push(pair[0])
       }
@@ -329,8 +304,6 @@ class collectionFilters extends HTMLElement {
       }
     }
 
-    console.log("emptyValues", emptyValues)
-
     emptyValues.forEach(val => {
       formData.delete(val)
     })
@@ -345,7 +318,6 @@ class collectionFilters extends HTMLElement {
         cleanedSearchParams.delete(key);
       }
     }
-    console.log("cleanedSearchParams", cleanedSearchParams)
     const params = new URLSearchParams(cleanedSearchParams?.toString());
 
     if (params.has('q')) {
@@ -362,11 +334,9 @@ class collectionFilters extends HTMLElement {
       url = location.pathname + '?' + searchParams;
     }
     
-    console.log("url", url)
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
     }
-    console.log("searchParams", searchParams)
     
     // Fetch and replace sections
     this.enableLoading();
