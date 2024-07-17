@@ -350,6 +350,8 @@ class collectionFilters extends HTMLElement {
       .finally(() => {
         document.querySelectorAll('.product-grid__item.fade-in').forEach(item => item.style.opacity = 1);
       });
+
+    adjustActiveFilters();
   }
 
   getSectionsToRender() {
