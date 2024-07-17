@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   console.log("filterValues", filterValues);
   let activeFilters = document.querySelector('.collection-filters__active-filters');
+  activeFilters.innerHtml = '';
   for (var key in filterValues) {
     if (filterValues.hasOwnProperty(key)) {
       let shortKey = key?.replace('filter.v.m.custom.', '');
