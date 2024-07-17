@@ -569,7 +569,6 @@ class collectionFilters extends HTMLElement {
     fetch(url)
       .then(response => response.text())
       .then((responseText) => {
-        console.log("responseText", responseText)
         const html = responseText;
         const htmlContent = new DOMParser().parseFromString(html, 'text/html');
 
