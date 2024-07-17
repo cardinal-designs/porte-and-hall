@@ -1,28 +1,3 @@
-// function loadData() {
-//   const checkedInputs = document.querySelectorAll('.collection-filters__filter-button:checked[value]');
-//   const nonBlankCheckedInputs = Array.from(checkedInputs).filter(input => input.value.trim() !== '');
-  
-//   console.log('nonBlankCheckedInputs', nonBlankCheckedInputs);
-  
-//   let queryParams = [];
-  
-//   nonBlankCheckedInputs.forEach(input => {
-//       console.log('input', input);
-//       let inputName = input.getAttribute('name');
-//       queryParams.push(`${inputName}=${encodeURIComponent(input.value)}`);
-//   });
-//   let searchInput = document.querySelector('#Search-In-Template');
-//   if(searchInput){
-//       let searchInputValue = searchInput.value;
-//       if(searchInputValue){
-//         queryParams.push(`q=${searchInputValue}`);
-//       }
-//   }
-
-//   let queryString = queryParams.join('&');
-
-// }
-
 function updateCheckedInput() {
   let sizeInputs = document.querySelectorAll('input[name="filter.v.m.custom.size"]');
   let useInputs = document.querySelectorAll('input[name="filter.v.m.filters.use"]');
@@ -270,7 +245,6 @@ class collectionFilters extends HTMLElement {
     const onHistoryChange = (event) => {
       this.searchParams = event.state ? event.state.searchParams : "";
       if (searchParams === collectionFilters.searchParamsPrev) return;
-      console.log("11")
       this.reloadSections();
       window.addEventListener('popstate', onHistoryChange);
     }
@@ -298,7 +272,6 @@ class collectionFilters extends HTMLElement {
         const initial = button.dataset.url;
         const newUrl = window.location.protocol + '//' + window.location.host + initial;
         if (filter) this.removeSelectedFilter(filter);
-        console.log("22")
         this.reloadSections(newUrl);
       }
     });
@@ -328,24 +301,14 @@ class collectionFilters extends HTMLElement {
         this.close(event);
       });
     });
-
-    // this.applyFilters.addEventListener("click", function(e){
-    //   e.preventDefault();
-    //   this.reloadSections();
-    //   this.close();
-    // }.bind(this))
   }
 
   loadData() {
     const checkedInputs = document.querySelectorAll('.collection-filters__filter-button:checked[value]');
     const nonBlankCheckedInputs = Array.from(checkedInputs).filter(input => input.value.trim() !== '');
-    
-    console.log('nonBlankCheckedInputs', nonBlankCheckedInputs);
-    
     let queryParams = [];
     
     nonBlankCheckedInputs.forEach(input => {
-        console.log('input', input);
         let inputName = input.getAttribute('name');
         queryParams.push(`${inputName}=${encodeURIComponent(input.value)}`);
     });
@@ -363,7 +326,6 @@ class collectionFilters extends HTMLElement {
     }
   
     let queryString = queryParams.join('&');
-    console.log("queryString", queryString)
 
     let url = `${window.location.origin}${window.location.pathname}?${queryString}`;
     
@@ -384,7 +346,6 @@ class collectionFilters extends HTMLElement {
       overlay.classList.remove('is-visible');
       document.body.classList.remove('scroll-lock');
     });
-    // adjustActiveFilters();
   }
 
   close(event) {
@@ -397,12 +358,9 @@ class collectionFilters extends HTMLElement {
     document.querySelector('.collection-filters__slideout').classList.remove('active');
     document.body.classList.remove('scroll-lock');
     overlay?.classList.remove('is-visible');
-  
-    // this.closeAllDropdowns();
   }
 
   apply() {
-    console.log("6666")
     this.reloadSections();
   }
 
@@ -429,8 +387,7 @@ class collectionFilters extends HTMLElement {
       target.closest(".collection-filters__dropdown-container").querySelector('.collection-filters__filter-button[remove-filter]').checked = false
 
     }
-      console.log("333")
-      this.reloadSections();
+    this.reloadSections();
   
   }
 
@@ -447,7 +404,6 @@ class collectionFilters extends HTMLElement {
     sortTextDestination.innerHTML = sortText;
     
     this.closeAllDropdowns();
-    console.log("44")
     this.reloadSections();
   }
 
@@ -476,12 +432,6 @@ class collectionFilters extends HTMLElement {
       }
     });
 
-    // Clear price range
-    // this.querySelector('.price-range__input-field--min')?.value =  '';
-    // this.querySelector('.price-range__input-field--max')?.value =  '';
-
-    // this.closeAllDropdowns();
-    console.log("55")
     this.reloadSections();
 
     this.close();
@@ -558,8 +508,6 @@ class collectionFilters extends HTMLElement {
       }
       url = location.pathname + '?' + searchParams;
     }
-
-    console.log("url", url)
 
     if(loadUrl){
       url = loadUrl
