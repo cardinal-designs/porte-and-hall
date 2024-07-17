@@ -1,3 +1,28 @@
+// function loadData() {
+//   const checkedInputs = document.querySelectorAll('.collection-filters__filter-button:checked[value]');
+//   const nonBlankCheckedInputs = Array.from(checkedInputs).filter(input => input.value.trim() !== '');
+  
+//   console.log('nonBlankCheckedInputs', nonBlankCheckedInputs);
+  
+//   let queryParams = [];
+  
+//   nonBlankCheckedInputs.forEach(input => {
+//       console.log('input', input);
+//       let inputName = input.getAttribute('name');
+//       queryParams.push(`${inputName}=${encodeURIComponent(input.value)}`);
+//   });
+//   let searchInput = document.querySelector('#Search-In-Template');
+//   if(searchInput){
+//       let searchInputValue = searchInput.value;
+//       if(searchInputValue){
+//         queryParams.push(`q=${searchInputValue}`);
+//       }
+//   }
+
+//   let queryString = queryParams.join('&');
+
+// }
+
 function updateCheckedInput() {
   let sizeInputs = document.querySelectorAll('input[name="filter.v.m.custom.size"]');
   let useInputs = document.querySelectorAll('input[name="filter.v.m.filters.use"]');
@@ -236,6 +261,7 @@ class collectionFilters extends HTMLElement {
     this.clearFilterButtons = document.querySelectorAll('.js-clear-all-filters')
 
     this.setListeners();
+    this.loadDataOnDomLoad();
   }
 
   
@@ -310,6 +336,34 @@ class collectionFilters extends HTMLElement {
     // }.bind(this))
   }
 
+  loadData() {
+    const checkedInputs = document.querySelectorAll('.collection-filters__filter-button:checked[value]');
+    const nonBlankCheckedInputs = Array.from(checkedInputs).filter(input => input.value.trim() !== '');
+    
+    console.log('nonBlankCheckedInputs', nonBlankCheckedInputs);
+    
+    let queryParams = [];
+    
+    nonBlankCheckedInputs.forEach(input => {
+        console.log('input', input);
+        let inputName = input.getAttribute('name');
+        queryParams.push(`${inputName}=${encodeURIComponent(input.value)}`);
+    });
+    let searchInput = document.querySelector('#Search-In-Template');
+    if(searchInput){
+        let searchInputValue = searchInput.value;
+        if(searchInputValue){
+          queryParams.push(`q=${searchInputValue}`);
+        }
+    }
+  
+    let queryString = queryParams.join('&');
+    console.log("queryString", queryString)
+  
+  }
+  loadDataOnDomLoad() {
+    document.addEventListener('DOMContentLoaded', this.loadData.bind(this));
+  }
   open(event) {
     event.preventDefault();
     const overlay = this.getOverlayElement();
@@ -425,7 +479,7 @@ class collectionFilters extends HTMLElement {
     this.close();
   }
 
-  reloadSections(newUrl) {
+  reloadSections(newUrl, loadUrl) {
     let url = '';
     let formData = new FormData(this.form);
 
