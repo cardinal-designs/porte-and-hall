@@ -556,9 +556,9 @@ class collectionFilters extends HTMLElement {
 
     console.log("url", url)
 
-    if(loadUrl){
-      url = loadUrl
-    }
+    // if(loadUrl){
+    //   url = loadUrl
+    // }
     
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
