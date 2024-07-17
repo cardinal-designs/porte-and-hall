@@ -572,7 +572,7 @@ class collectionFilters extends HTMLElement {
     }
   }
 }
-
+console.log("collectionFilters", collectionFilters)
 collectionFilters.searchParamsInitial = window.location.search.slice(1);
 collectionFilters.searchParamsPrev = window.location.search.slice(1);
 customElements.define('collection-filters', collectionFilters);
