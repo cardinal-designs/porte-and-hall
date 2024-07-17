@@ -210,18 +210,18 @@ class collectionFilters extends HTMLElement {
       }
     }
 
-    if (window.location.href.includes('/search')) {
-      let searchInput = document.querySelector('#Search-In-Template');
-      if(searchInput){
-        let searchInputValue = searchInput.value;
-        if(searchInputValue){
-          let additionalArray = [['q', searchInputValue]];
-          additionalArray.forEach(item => {
-            formData.append(item[0], item[1]);
-          });
-        }
-      }
-    }
+    // if (window.location.href.includes('/search')) {
+    //   let searchInput = document.querySelector('#Search-In-Template');
+    //   if(searchInput){
+    //     let searchInputValue = searchInput.value;
+    //     if(searchInputValue){
+    //       let additionalArray = [['q', searchInputValue]];
+    //       additionalArray.forEach(item => {
+    //         formData.append(item[0], item[1]);
+    //       });
+    //     }
+    //   }
+    // }
 
 
     emptyValues.forEach(val => {
