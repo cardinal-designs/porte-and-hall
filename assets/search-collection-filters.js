@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function() {
       filterValues[key].forEach(function(value) {
         let buttonHtml = `<button
                             class="remove-filter active-filter body-xs body-bold"
-                            data-url="{{ filter.url_to_remove | remove: '%2F%3Fsection_id%3Dproduct-grid' }}"
-                            data-filter="${shortKey}-${value}"
+                            data-url="/search"
+                            data-filter="${key}-${value}"
                           >
                             ${shortKey}:${value}
                             <svg width="11" height="11" viewBox="0 0 11 11" fill="none" class="icon icon-close">
