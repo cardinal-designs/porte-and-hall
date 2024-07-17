@@ -26,10 +26,10 @@ if (targetNode) {
                         console.log("paginationContent", paginationContent)
                         console.log("paginationWrapper", paginationWrapper)
                         paginationWrapper.setAttribute('id', 'pagination-wrapper')
-                        paginationWrapper.innerHTML = '';
+                        // paginationWrapper.innerHTML = '';
 
-                        // Add the removed node back into pagination-wrapper
-                        paginationWrapper.appendChild(node);
+                        // // Add the removed node back into pagination-wrapper
+                        // paginationWrapper.appendChild(node);
                     }
                 });
             } else if (mutation.type === 'attributes') {
