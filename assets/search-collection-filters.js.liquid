@@ -337,7 +337,9 @@ class collectionFilters extends HTMLElement {
     // console.log("after", ...formData)
 
     const searchParams = new URLSearchParams(formData).toString();
-    if (!searchParams.has('q')) {
+    const params = new URLSearchParams(searchParams);
+
+    if (!params.has('q')) {
       let searchInput = document.querySelector('#Search-In-Template');
       if(searchInput){
         let searchInputValue = searchInput.value;
