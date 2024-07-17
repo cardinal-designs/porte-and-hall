@@ -63,6 +63,7 @@
                 {% if total_active_values > 0 %}
                   <div class="collection-filters__active-filters">
                     {% for filter in collection.filters %}
+                      {{ filter.url_to_remove }}---filter.url_to_remove
                       {% case filter.type %}
                         {% when 'list' %}
                           {% comment %} {% if filter.label == 'Size' %}
