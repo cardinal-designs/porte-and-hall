@@ -24,7 +24,7 @@ function adjustActiveFilters() {
       filterValues[key].forEach(function(value) {
         if(value){
           let activeInput = document.querySelectorAll(`.collection-filters__filter-button[value="${value}"]`);
-          if(activeInput){
+          if(activeInput[0]){
             activeInput[0].checked = true;
           }
   
