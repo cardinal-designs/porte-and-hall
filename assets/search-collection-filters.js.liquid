@@ -338,7 +338,7 @@ class collectionFilters extends HTMLElement {
 
     const searchParams = new URLSearchParams(formData).toString();
     const cleanedSearchParams = new URLSearchParams(formData);
-    for (const [key, value] of searchParams.entries()) {
+    for (const [key, value] of cleanedSearchParams.entries()) {
       // Check if the key is 'filter.v.m.custom.size' and the value is blank
       if (value === '') {
         cleanedSearchParams.delete(key);
