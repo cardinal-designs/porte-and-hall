@@ -265,7 +265,7 @@ class collectionFilters extends HTMLElement {
   }
 
   reloadSections(newUrl) {
-    console.log("newUrl", newUrl)
+    
     let url = '';
     console.log("this", this)
     console.log("this.form", this.form)
@@ -308,7 +308,7 @@ class collectionFilters extends HTMLElement {
 
     let emptyValues = []
 
-    for (let pair of newFormData.entries()) {
+    for (let pair of formData.entries()) {
       console.log("pair[0]", pair[0])
       console.log("pair[1]", pair[1])
       if(pair[1] == "" || pair[1] == " "){
@@ -323,7 +323,7 @@ class collectionFilters extends HTMLElement {
         if(searchInputValue){
           let additionalArray = [['q', searchInputValue]];
           additionalArray.forEach(item => {
-            newFormData.append(item[0], item[1]);
+            formData.append(item[0], item[1]);
           });
         }
       }
