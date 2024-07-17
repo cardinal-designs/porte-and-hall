@@ -337,8 +337,20 @@ class collectionFilters extends HTMLElement {
     // console.log("after", ...formData)
 
     const searchParams = new URLSearchParams(formData).toString();
+    if (!searchParams.has('q')) {
+      let searchInput = document.querySelector('#Search-In-Template');
+      if(searchInput){
+        let searchInputValue = searchInput.value;
+        if(searchInputValue){
+          let queryQ = `q=${encodeURIComponent(searchInputValue)}`;
+          url = `${location.pathname}?${queryQ}&${searchParams}`;
+        }
+      }
+      url = location.pathname + '?' + searchParams;
+    }else{
+      url = location.pathname + '?' + searchParams;
+    }
     
-    url = location.pathname + '?' + searchParams;
     console.log("url", url)
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
