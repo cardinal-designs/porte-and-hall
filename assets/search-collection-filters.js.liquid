@@ -114,8 +114,8 @@ class collectionFilters extends HTMLElement {
         console.log("initial", initial)
         console.log("newUrl", newUrl)
         console.log("this", this)
-        // if (filter) this.removeSelectedFilter(filter);
-        // this.reloadSections(newUrl);
+        if (filter) this.removeSelectedFilter(filter);
+        this.reloadSections(newUrl);
       }
     });
 
@@ -275,6 +275,8 @@ class collectionFilters extends HTMLElement {
     let emptyValues = []
 
     for (let pair of formData.entries()) {
+      console.log("pair[1]", pair[1])
+      console.log("pair[1]", pair[1])
       if(pair[1] == "" || pair[1] == " "){
         emptyValues.push(pair[0])
       }
