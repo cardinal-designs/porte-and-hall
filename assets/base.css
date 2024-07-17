@@ -3540,6 +3540,10 @@ iframe#preview-bar-iframe {
   max-width: 2rem;
 }
 
+.template-search__results .pagination__list > li .pagination__item {
+  height: 2rem;
+}
+
 @media (max-width: 767px){
   
   .template-search__results #gf_pagination_wrap {
