@@ -1,3 +1,69 @@
+function updateCheckedInput() {
+  let sizeInputs = document.querySelectorAll('input[name="filter.v.m.custom.size"]');
+  let useInputs = document.querySelectorAll('input[name="name="filter.v.m.filters.use""]');
+  let colorInputs = document.querySelectorAll('input[name="filter.v.m.custom.color"]');
+  let filterInputs = document.querySelectorAll('input[name="name="filter.v.m.custom.filters""]');
+  let isSizeChecked = false;
+  sizeInputs.forEach(input => {
+      if (input.checked) {
+          isSizeChecked = true;
+      }
+  });
+  if (!isSizeChecked) {
+    let allSizeInput = document.querySelector('input[name="filter.v.m.custom.size"][value=""]');
+    if(allSizeInput){
+      allSizeInput.checked = true;
+    }
+      console.log('At least one size filter is checked.');
+  }
+
+  let isUseChecked = false;
+  useInputs.forEach(input => {
+      if (input.checked) {
+          isUseChecked = true;
+      }
+  });
+  if (!isUseChecked) {
+    let allUseInput = document.querySelector('input[name="filter.v.m.filters.use"][value=""]');
+    if(allUseInput){
+      allUseInput.checked = true;
+    }
+      console.log('At least one size filter is checked.');
+  }
+
+  let isColorChecked = false;
+  colorInputs.forEach(input => {
+      if (input.checked) {
+          isColorChecked = true;
+      }
+  });
+  if (!isColorChecked) {
+    let allColorInput = document.querySelector('input[name="filter.v.m.custom.color"][value=""]');
+    if(allColorInput){
+      allColorInput.checked = true;
+    }
+      console.log('At least one size filter is checked.');
+  }
+
+  let isFilterChecked = false;
+  filterInputs.forEach(input => {
+      if (input.checked) {
+          isFilterChecked = true;
+      }
+  });
+  if (!isFilterChecked) {
+    let allFilterInput = document.querySelector('input[name="filter.v.m.custom.filters"][value=""]');
+    if(allFilterInput){
+      allFilterInput.checked = true;
+    }
+      console.log('At least one size filter is checked.');
+  }
+  
+  
+  
+
+}
+
 async function updatePagination() {
   fetch(`${window.location.href}&section_id=template--15509523529791__main`)
     .then((response) => response.text())
