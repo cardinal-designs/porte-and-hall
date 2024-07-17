@@ -15,7 +15,7 @@
     {% assign total_active_values = total_active_values | plus: filter.active_values.size %}
     <ul>
         {% for active_value in filter.active_values %}
-          <li>Active Value: {{ active_value.label }} - {{ active_value.value }}-- {{ active_value }}</li>
+          <li>Active Value: {{ active_value.label }} - {{ active_value.value }}--==== {{ active_value }}</li>
         {% endfor %}
       </ul>
   {% elsif filter.type == 'price_range' and filter.min_value.value or filter.max_value.value %}
