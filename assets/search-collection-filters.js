@@ -17,7 +17,6 @@ class collectionFilters extends HTMLElement {
     this.clearFilterButtons = document.querySelectorAll('.js-clear-all-filters')
 
     this.setListeners();
-    console.log("hghghghg")
   }
 
   
