@@ -339,7 +339,9 @@ class collectionFilters extends HTMLElement {
     const searchParams = new URLSearchParams(formData).toString();
     const params = new URLSearchParams(searchParams);
 
-    if (!params.has('q')) {
+    if (params.has('q')) {
+      url = location.pathname + '?' + searchParams;
+    }else{
       let searchInput = document.querySelector('#Search-In-Template');
       if(searchInput){
         let searchInputValue = searchInput.value;
@@ -348,8 +350,6 @@ class collectionFilters extends HTMLElement {
           url = `${location.pathname}?${queryQ}&${searchParams}`;
         }
       }
-      url = location.pathname + '?' + searchParams;
-    }else{
       url = location.pathname + '?' + searchParams;
     }
     
