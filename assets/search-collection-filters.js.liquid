@@ -316,18 +316,18 @@ class collectionFilters extends HTMLElement {
       }
     }
 
-    if (window.location.href.includes('/search')) {
-      let searchInput = document.querySelector('#Search-In-Template');
-      if(searchInput){
-        let searchInputValue = searchInput.value;
-        if(searchInputValue){
-          let additionalArray = [['q', searchInputValue]];
-          additionalArray.forEach(item => {
-            newFormData.append(item[0], item[1]);
-          });
-        }
-      }
-    }
+    // if (window.location.href.includes('/search')) {
+    //   let searchInput = document.querySelector('#Search-In-Template');
+    //   if(searchInput){
+    //     let searchInputValue = searchInput.value;
+    //     if(searchInputValue){
+    //       let additionalArray = [['q', searchInputValue]];
+    //       additionalArray.forEach(item => {
+    //         newFormData.append(item[0], item[1]);
+    //       });
+    //     }
+    //   }
+    // }
 
     console.log("emptyValues", emptyValues)
 
@@ -338,8 +338,23 @@ class collectionFilters extends HTMLElement {
     // console.log("after", ...formData)
 
     const searchParams = new URLSearchParams(newFormData).toString();
+    if (window.location.href.includes('/search')) {
+      let searchInput = document.querySelector('#Search-In-Template');
+      if(searchInput){
+        let searchInputValue = searchInput.value;
+        if(searchInputValue){
+          // let additionalArray = [['q', searchInputValue]];
+          // additionalArray.forEach(item => {
+          //   newFormData.append(item[0], item[1]);
+          // });
+          let queryQ = `q=${searchInputValue}`?.toString();
+          url = location.pathname + '?' queryQ + searchParams;
+        }
+      }
+    }else{
+      url = location.pathname + '?' + searchParams;
+    }
     
-    url = location.pathname + '?' + searchParams;
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
     }
