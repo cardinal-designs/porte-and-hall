@@ -595,9 +595,9 @@ class collectionFilters extends HTMLElement {
         document.querySelectorAll('.product-grid__item.fade-in').forEach(item => item.style.opacity = 1);
         adjustActiveFilters();
         updateCheckedInput();
-        if(loadUrl){
-          window.history.pushState({ path: loadUrl }, '', loadUrl);
-        }
+        // if(loadUrl){
+        //   window.history.pushState({ path: loadUrl }, '', loadUrl);
+        // }
       });
 
     
