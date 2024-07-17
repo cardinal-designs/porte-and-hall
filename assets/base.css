@@ -3535,6 +3535,11 @@ iframe#preview-bar-iframe {
   display: none;
 }
 
+.template-search__results .pagination__list > li {
+  flex: 1 0 2rem;
+  max-width: 2rem;
+}
+
 @media (max-width: 767px){
   
   .template-search__results #gf_pagination_wrap {
