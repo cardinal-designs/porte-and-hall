@@ -17,19 +17,6 @@
 %}
 
 {% for filter in current_collection.filters %}
-  {{ filter.label }}==filter.label
-  {{ filter.active_values }}==filter.active_values
-  {% for value in filter.active_values %}
-    <button
-      class="remove-filter active-filter body-xs body-bold"
-      data-url="{{ filter.url_to_remove | remove: '%2F%3Fsection_id%3Dproduct-grid' }}"
-      data-filter="{{ value.param_name }}-{{ value.value }}"
-    >
-      {{ filter.label }}:
-      {{ value.label | escape }}
-      {% render 'icon', icon: 'close' %}
-    </button>
-  {% endfor %}
   {% if filter.type == 'list' %}
     {% assign total_active_values = total_active_values | plus: filter.active_values.size %}
   {% elsif filter.type == 'price_range' and filter.min_value.value or filter.max_value.value %}
