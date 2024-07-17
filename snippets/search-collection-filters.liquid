@@ -68,11 +68,11 @@
               </button>
             </div>
             <div class="collection-filters__slideout-content">
-              <div id="active-filterss" class="hide-desktop">
+              <div id="active-filters" class="hide-desktop">
                 {% if total_active_values > 0 %}
                   <div class="collection-filters__active-filters">
                     {% for filter in current_collection.filters %}
-                      {{ filter.url_to_remove }}
+                      
                       {% case filter.type %}
                         {% when 'list' %}
                           {% for value in filter.active_values %}
@@ -112,8 +112,6 @@
                 {% endif %}
               </div>
 
-
-              <div id="active-filters" class="hide-desktop"></div>
               <div class="collection-filters__filters" id="filter-dropdowns">
                 <div class="collection-filters__dropdowns">
                   {% for filter in current_collection.filters %}
