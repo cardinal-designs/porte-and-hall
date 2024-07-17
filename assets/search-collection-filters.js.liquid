@@ -35,7 +35,8 @@ if (targetNode) {
                         console.log("routes.cart_url", routes.cart_url)
                         async function updatePagination() {
                           console.log("fetching")
-                          fetch(⁠`${window.location.href}&section_id=template--15509523529791__main`)
+                          fetch(`${window.location.href}&section_id=template--15509523529791__main`)
+
                             .then((response) => response.text())
                             .then((responseText) => {
                               const html = new DOMParser().parseFromString(responseText, 'text/html');
