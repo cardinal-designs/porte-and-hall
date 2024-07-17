@@ -143,7 +143,7 @@ function adjustActiveFilters() {
   var currentUrl = window.location.href;
   var url = new URL(currentUrl);
   var params = new URLSearchParams(url.search);
-
+  console.log("params", params)
   var filterValues = {};
   params.forEach(function(value, key) {
     if (key !== 'sort_by' && key !== 'q') {
