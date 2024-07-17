@@ -261,7 +261,7 @@ class collectionFilters extends HTMLElement {
     this.clearFilterButtons = document.querySelectorAll('.js-clear-all-filters')
 
     this.setListeners();
-    this.loadDataOnDomLoad();
+    // this.loadDataOnDomLoad();
   }
 
   
@@ -364,9 +364,9 @@ class collectionFilters extends HTMLElement {
     
     this.reloadSections('', url);
   }
-  loadDataOnDomLoad() {
-    document.addEventListener('DOMContentLoaded', this.loadData.bind(this));
-  }
+  // loadDataOnDomLoad() {
+  //   document.addEventListener('DOMContentLoaded', this.loadData.bind(this));
+  // }
   open(event) {
     event.preventDefault();
     const overlay = this.getOverlayElement();
