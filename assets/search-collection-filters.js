@@ -212,7 +212,6 @@ class collectionFilters extends HTMLElement {
   }
 
   removeSelectedFilter(filter) {
-    console.log("filter", filter)
     document.querySelector(`.collection-filters__filter-button[data-filter*="${filter}"]:checked`).checked = false;
   }
 
@@ -268,7 +267,7 @@ class collectionFilters extends HTMLElement {
 
     let formData = new FormData(this.form);
 
-    // console.log("before", ...formData)
+    console.log("before", ...formData)
 
     let emptyValues = []
 
@@ -291,6 +290,7 @@ class collectionFilters extends HTMLElement {
       }
     }
 
+    console.log("emptyValues", emptyValues)
 
     emptyValues.forEach(val => {
       formData.delete(val)
