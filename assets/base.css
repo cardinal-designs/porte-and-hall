@@ -3547,6 +3547,7 @@ iframe#preview-bar-iframe {
 .template-search__results .pagination__item--current:after, 
 .template-search__results .pagination__item:hover:after {
   bottom: 0;
+  width: 1rem;
 }
 
 @media (max-width: 767px){
