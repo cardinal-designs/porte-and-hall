@@ -16,13 +16,15 @@ document.addEventListener("DOMContentLoaded", function() {
   let activeFilters = document.querySelector('.collection-filters__active-filters');
   for (var key in filterValues) {
     if (filterValues.hasOwnProperty(key)) {
+      let shortKey = key?.replace('filter.v.m.custom.', '');
+
       filterValues[key].forEach(function(value) {
         let buttonHtml = `<button
                             class="remove-filter active-filter body-xs body-bold"
                             data-url="{{ filter.url_to_remove | remove: '%2F%3Fsection_id%3Dproduct-grid' }}"
-                            data-filter="${key}-${value}"
+                            data-filter="${shortKey}-${value}"
                           >
-                            ${key}:${value}
+                            ${shortKey}:${value}
                             <svg width="11" height="11" viewBox="0 0 11 11" fill="none" class="icon icon-close">
                               <path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 4.65393L10.1539 0L11 0.846074L6.34607 5.5L11 10.1539L10.1539 11L5.5 6.34607L0.846074 11L0 10.1539L4.65393 5.5L0 0.846074L0.846074 0L5.5 4.65393Z" fill="currentColor"/>
                             </svg>
