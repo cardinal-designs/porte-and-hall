@@ -6,7 +6,7 @@ function updateCheckedInput() {
   let isSizeChecked = false;
   sizeInputs.forEach(input => {
     console.log("input.checked", input)
-      if (input.checked) {
+      if (input.checked && input.value.trim() !== '') {
           isSizeChecked = true;
       }
   });
@@ -23,7 +23,7 @@ function updateCheckedInput() {
 
   let isUseChecked = false;
   useInputs.forEach(input => {
-      if (input.checked) {
+      if (input.checked && input.value.trim() !== '') {
           isUseChecked = true;
       }
   });
@@ -40,7 +40,7 @@ function updateCheckedInput() {
 
   let isColorChecked = false;
   colorInputs.forEach(input => {
-      if (input.checked) {
+      if (input.checked && input.value.trim() !== '') {
           isColorChecked = true;
       }
   });
@@ -57,7 +57,7 @@ function updateCheckedInput() {
 
   let isFilterChecked = false;
   filterInputs.forEach(input => {
-      if (input.checked) {
+      if (input.checked && input.value.trim() !== '') {
           isFilterChecked = true;
       }
   });
