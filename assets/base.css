@@ -3550,6 +3550,10 @@ iframe#preview-bar-iframe {
   width: 1rem;
 }
 
+.template-search__results .pagination-wrapper {
+  margin-bottom: 3rem;
+}
+
 @media (max-width: 767px){
   
   .template-search__results #gf_pagination_wrap {
