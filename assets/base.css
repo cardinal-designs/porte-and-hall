@@ -3566,6 +3566,11 @@ iframe#preview-bar-iframe {
   .template-search__search .field {
     margin-bottom: 0 !important;
   }
+
+  .template-search__results .pagination-wrapper {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 
 /* ========== Search page css End ======= */
