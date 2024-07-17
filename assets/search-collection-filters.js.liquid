@@ -16,11 +16,15 @@ if (targetNode) {
                         console.log('A new .pagination element was added:', node);
                     }
                 });
-
+                let paginationContent = "";
                 // Check if an element with the class 'pagination' has been removed
                 mutation.removedNodes.forEach(node => {
                     if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('pagination')) {
                         console.log('A .pagination element was removed:', node);
+                        paginationContent = node;
+                        let paginationWrapper = document.querySelector('.pagination-wrapper');
+                        console.log("paginationContent", paginationContent)
+                        console.log("paginationWrapper", paginationWrapper)
                     }
                 });
             } else if (mutation.type === 'attributes') {
