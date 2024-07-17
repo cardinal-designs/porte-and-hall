@@ -130,6 +130,8 @@ class collectionFilters extends HTMLElement {
   }
 
   handleFilterClick(target) {
+    console.log("target", target)
+    console.log("target.value", target.value)
     if(target.value == ""){
       target.closest(".collection-filters__dropdown-container").querySelectorAll('.collection-filters__filter-button').forEach(item => {
         item.removeAttribute('checked');
