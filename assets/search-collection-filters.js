@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             </svg>
                           </button>`;
 
-        let activeFilters = document.querySelector('#active-filters');
+        let activeFilters = document.querySelector('.collection-filters__active-filters');
         if(activeFilters){
           activeFilters.insertAdjacentHTML('beforeend', buttonHtml);
         }
