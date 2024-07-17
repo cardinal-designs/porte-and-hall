@@ -5,12 +5,12 @@ function adjustActiveFilters() {
 
   var filterValues = {};
   params.forEach(function(value, key) {
-    if (key !== 'sort_by' && key !== 'q') {
+    // if (key !== 'sort_by' && key !== 'q') {
       if (!filterValues[key]) {
         filterValues[key] = [];
       }
       filterValues[key].push(value);
-    }
+    // }
   });
 
   let activeFilters = document.querySelector('.collection-filters__active-filters');
