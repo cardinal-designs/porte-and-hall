@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("value", value)
         let activeInput = document.querySelectorAll(`.collection-filters__filter-button[value="${value}"]`);
         if(activeInput){
+          console.log("activeInput", activeInput)
           activeInput.checked = true;
         }
 
