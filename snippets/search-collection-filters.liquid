@@ -18,6 +18,7 @@
 
 {% for filter in current_collection.filters %}
   {{ filter.label }}==filter.label
+  {{ filter.active_values }}==filter.active_values
   {% for value in filter.active_values %}
     <button
       class="remove-filter active-filter body-xs body-bold"
