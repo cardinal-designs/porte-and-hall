@@ -1,3 +1,21 @@
+document.addEventListener("DOMContentLoaded", function() {
+  var currentUrl = window.location.href;
+  var url = new URL(currentUrl);
+  var params = new URLSearchParams(url.search);
+
+  var filterValues = {};
+  params.forEach(function(value, key) {
+    if (key !== 'sort_by' && key !== 'q') {
+      if (!filterValues[key]) {
+        filterValues[key] = [];
+      }
+      filterValues[key].push(value);
+    }
+  });
+  console.log("filterValues", filterValues)
+});
+
+
 class collectionFilters extends HTMLElement {
   constructor() {
     super();
