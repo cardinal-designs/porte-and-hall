@@ -19,6 +19,8 @@ class collectionFilters extends HTMLElement {
     this.setListeners();
   }
 
+  console.log("hghghghg")
+
   setListeners() {
     const onHistoryChange = (event) => {
       this.searchParams = event.state ? event.state.searchParams : "";
