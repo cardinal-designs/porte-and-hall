@@ -153,7 +153,6 @@ function adjustActiveFilters() {
       filterValues[key].push(value);
     }
   });
-  console.log("filterValues", filterValues)
   let activeFilters = document.querySelector('.collection-filters__active-filters');
   if(activeFilters){
     activeFilters.innerHtml = '';
