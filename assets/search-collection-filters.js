@@ -261,7 +261,7 @@ class collectionFilters extends HTMLElement {
     this.clearFilterButtons = document.querySelectorAll('.js-clear-all-filters')
 
     this.setListeners();
-    // this.loadDataOnDomLoad();
+    this.loadDataOnDomLoad();
   }
 
   
@@ -356,6 +356,11 @@ class collectionFilters extends HTMLElement {
           queryParams.push(`q=${searchInputValue}`);
         }
     }
+    let urlParams = new URLSearchParams(window.location.search);
+    let page = urlParams.get('page');
+    if(page){
+      queryParams.push(`page=${page}`);
+    }
   
     let queryString = queryParams.join('&');
     console.log("queryString", queryString)
@@ -364,9 +369,9 @@ class collectionFilters extends HTMLElement {
     
     this.reloadSections('', url);
   }
-  // loadDataOnDomLoad() {
-  //   document.addEventListener('DOMContentLoaded', this.loadData.bind(this));
-  // }
+  loadDataOnDomLoad() {
+    document.addEventListener('DOMContentLoaded', this.loadData.bind(this));
+  }
   open(event) {
     event.preventDefault();
     const overlay = this.getOverlayElement();
@@ -556,9 +561,9 @@ class collectionFilters extends HTMLElement {
 
     console.log("url", url)
 
-    // if(loadUrl){
-    //   url = loadUrl
-    // }
+    if(loadUrl){
+      url = loadUrl
+    }
     
     if (history.replaceState) {
       window.history.pushState({ path: url }, '', url);
@@ -594,9 +599,9 @@ class collectionFilters extends HTMLElement {
         document.querySelectorAll('.product-grid__item.fade-in').forEach(item => item.style.opacity = 1);
         adjustActiveFilters();
         updateCheckedInput();
-        // if(loadUrl){
-        //   window.history.pushState({ path: loadUrl }, '', loadUrl);
-        // }
+        if(loadUrl){
+          window.history.pushState({ path: loadUrl }, '', loadUrl);
+        }
       });
 
     
