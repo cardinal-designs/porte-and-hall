@@ -3507,6 +3507,10 @@ iframe#preview-bar-iframe {
 
 /* ========== Search page css Start ======= */
 
+.template-search .collection-grid__inner {
+  padding-bottom: 50px;
+}
+
 .template-search__search .search .field__label {
   display: none;
 }
