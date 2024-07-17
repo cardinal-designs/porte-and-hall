@@ -342,6 +342,7 @@ class collectionFilters extends HTMLElement {
       let searchInput = document.querySelector('#Search-In-Template');
       if(searchInput){
         let searchInputValue = searchInput.value;
+        console.log("searchInputValue", searchInputValue)
         if (searchInputValue) {
           let queryQ = `q=${encodeURIComponent(searchInputValue)}`;
           url = `${location.pathname}?${queryQ}&${searchParams}`;
