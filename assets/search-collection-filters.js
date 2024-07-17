@@ -9,12 +9,16 @@ function updateCheckedInput() {
           isSizeChecked = true;
       }
   });
+  let allSizeInput = document.querySelector('input[name="filter.v.m.custom.size"][value=""]');
   if (!isSizeChecked) {
-    let allSizeInput = document.querySelector('input[name="filter.v.m.custom.size"][value=""]');
     if(allSizeInput){
       allSizeInput.checked = true;
     }
       console.log('At least one size filter is checked.');
+  }else{
+    if(allSizeInput){
+      allSizeInput.checked = false;
+    }
   }
 
   let isUseChecked = false;
