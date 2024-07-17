@@ -49,11 +49,6 @@ class collectionFilters extends HTMLElement {
         const filter = button.dataset.filter;
         const initial = button.dataset.url;
         const newUrl = window.location.protocol + '//' + window.location.host + initial;
-
-        console.log("filter", filter)
-        console.log("initial", initial)
-        console.log("newUrl", newUrl)
-  
         if (filter) this.removeSelectedFilter(filter);
         this.reloadSections(newUrl);
       }
@@ -149,6 +144,7 @@ class collectionFilters extends HTMLElement {
   }
 
   removeSelectedFilter(filter) {
+    console.log("filter", filter)
     document.querySelector(`.collection-filters__filter-button[data-filter*="${filter}"]:checked`).checked = false;
   }
 
