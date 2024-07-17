@@ -331,12 +331,12 @@ class collectionFilters extends HTMLElement {
     console.log("emptyValues", emptyValues)
 
     emptyValues.forEach(val => {
-      newFormData.delete(val)
+      formData.delete(val)
     })
 
     // console.log("after", ...formData)
 
-    const searchParams = new URLSearchParams(newFormData).toString();
+    const searchParams = new URLSearchParams(formData).toString();
     
     url = location.pathname + '?' + searchParams;
     if (history.replaceState) {
