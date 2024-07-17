@@ -22,7 +22,7 @@ function adjustActiveFilters() {
     if (filterValues.hasOwnProperty(key)) {
       let shortKey = key?.replace('filter.v.m.custom.', '');
       filterValues[key].forEach(function(value) {
-        if(value){
+        if(key != 'page' && value){
           let activeInput = document.querySelectorAll(`.collection-filters__filter-button[value="${value}"]`);
           if(activeInput[0]){
             activeInput[0].checked = true;
