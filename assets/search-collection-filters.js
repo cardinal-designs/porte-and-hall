@@ -143,7 +143,7 @@ function adjustActiveFilters() {
   var currentUrl = window.location.href;
   var url = new URL(currentUrl);
   var params = new URLSearchParams(url.search);
-  console.log("params", params)
+
   var filterValues = {};
   params.forEach(function(value, key) {
     if (key !== 'sort_by' && key !== 'q') {
@@ -153,7 +153,7 @@ function adjustActiveFilters() {
       filterValues[key].push(value);
     }
   });
-
+  console.log("filterValues", filterValues)
   let activeFilters = document.querySelector('.collection-filters__active-filters');
   if(activeFilters){
     activeFilters.innerHtml = '';
