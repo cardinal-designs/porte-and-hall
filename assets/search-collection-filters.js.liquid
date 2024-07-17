@@ -364,7 +364,7 @@ class collectionFilters extends HTMLElement {
     });
     
     let emptyValues = []
-
+    console.log("formData.entries()", formData.entries())
     for (let pair of formData.entries()) {
       if(pair[1] == "" || pair[1] == " "){
         emptyValues.push(pair[0])
