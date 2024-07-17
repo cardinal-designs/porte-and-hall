@@ -30,7 +30,9 @@ function adjustActiveFilters() {
       if(key?.includes('filter.v.m.filters.')){
         shortKey = key?.replace('filter.v.m.filters.', '');
       }
-      
+      if(shortKey?.trim() == 'filters'){
+        shortKey = 'Collection';
+      }
       filterValues[key].forEach(function(value) {
         if(key != 'page' && value){
           let activeInput = document.querySelectorAll(`.collection-filters__filter-button[value="${value}"]`);
