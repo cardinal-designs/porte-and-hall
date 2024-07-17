@@ -27,12 +27,16 @@ function updateCheckedInput() {
           isUseChecked = true;
       }
   });
+  let allUseInput = document.querySelector('input[name="filter.v.m.filters.use"][value=""]');
   if (!isUseChecked) {
-    let allUseInput = document.querySelector('input[name="filter.v.m.filters.use"][value=""]');
     if(allUseInput){
       allUseInput.checked = true;
     }
       console.log('At least one size filter is checked.');
+  }else{
+    if(allUseInput){
+      allUseInput.checked = false;
+    }
   }
 
   let isColorChecked = false;
@@ -41,12 +45,16 @@ function updateCheckedInput() {
           isColorChecked = true;
       }
   });
+  let allColorInput = document.querySelector('input[name="filter.v.m.custom.color"][value=""]');
   if (!isColorChecked) {
-    let allColorInput = document.querySelector('input[name="filter.v.m.custom.color"][value=""]');
     if(allColorInput){
       allColorInput.checked = true;
     }
       console.log('At least one size filter is checked.');
+  }else{
+    if(allColorInput){
+      allColorInput.checked = false;
+    }
   }
 
   let isFilterChecked = false;
@@ -55,12 +63,16 @@ function updateCheckedInput() {
           isFilterChecked = true;
       }
   });
+  let allFilterInput = document.querySelector('input[name="filter.v.m.custom.filters"][value=""]');
   if (!isFilterChecked) {
-    let allFilterInput = document.querySelector('input[name="filter.v.m.custom.filters"][value=""]');
     if(allFilterInput){
       allFilterInput.checked = true;
     }
       console.log('At least one size filter is checked.');
+  }else{
+    if(allFilterInput){
+      allFilterInput.checked = false;
+    }
   }
   
   
