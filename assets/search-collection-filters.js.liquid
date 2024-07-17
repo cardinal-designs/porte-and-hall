@@ -322,7 +322,7 @@ class collectionFilters extends HTMLElement {
         if(searchInputValue){
           let additionalArray = [['q', searchInputValue]];
           additionalArray.forEach(item => {
-            formData.append(item[0], item[1]);
+            newFormData.append(item[0], item[1]);
           });
         }
       }
@@ -331,12 +331,12 @@ class collectionFilters extends HTMLElement {
     console.log("emptyValues", emptyValues)
 
     emptyValues.forEach(val => {
-      formData.delete(val)
+      newFormData.delete(val)
     })
 
     // console.log("after", ...formData)
 
-    const searchParams = new URLSearchParams(formData).toString();
+    const searchParams = new URLSearchParams(newFormData).toString();
     
     url = location.pathname + '?' + searchParams;
     if (history.replaceState) {
