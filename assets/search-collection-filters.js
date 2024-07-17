@@ -1,3 +1,17 @@
+function clearAllFilterListener() {
+  document.addEventListener('click', function(event) {
+    const button = event.target.closest('.js-clear-all-filters');
+    if (button) {
+      event.preventDefault();
+      // Your logic for handling the clear all filters button click
+      console.log('Clear All Filters button clicked');
+      // Dispatch the custom event
+      const clearAllFiltersEvent = new CustomEvent('clearAllFilters');
+      document.dispatchEvent(clearAllFiltersEvent);
+    }
+  });
+
+}
 document.addEventListener("DOMContentLoaded", function() {
   var currentUrl = window.location.href;
   var url = new URL(currentUrl);
@@ -42,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
       activeFilters.insertAdjacentHTML('beforeend', buttonHtml);
     }
   }
+  clearAllFilterListener();
 });
 
 
@@ -111,6 +126,9 @@ class collectionFilters extends HTMLElement {
       if (button) {
         event.preventDefault();
         this.clearAllFilters(event);
+        const clearAllFiltersEvent = new CustomEvent('clearAllFilters');
+        document.dispatchEvent(clearAllFiltersEvent);
+
       }
     });
 
