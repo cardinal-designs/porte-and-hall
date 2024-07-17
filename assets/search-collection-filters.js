@@ -5,7 +5,7 @@ function updateCheckedInput() {
   let filterInputs = document.querySelectorAll('input[name="filter.v.m.custom.filters"]');
   let isSizeChecked = false;
   sizeInputs.forEach(input => {
-    console.log("input.checked", input.checked)
+    console.log("input.checked", input)
       if (input.checked) {
           isSizeChecked = true;
       }
