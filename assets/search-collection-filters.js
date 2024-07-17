@@ -241,13 +241,13 @@ class collectionFilters extends HTMLElement {
   
 
   setListeners() {
-    const onHistoryChange = (event) => {
-      this.searchParams = event.state ? event.state.searchParams : "";
-      if (searchParams === collectionFilters.searchParamsPrev) return;
-      console.log("11")
-      this.reloadSections();
-      window.addEventListener('popstate', onHistoryChange);
-    }
+    // const onHistoryChange = (event) => {
+    //   this.searchParams = event.state ? event.state.searchParams : "";
+    //   if (searchParams === collectionFilters.searchParamsPrev) return;
+    //   console.log("11")
+    //   this.reloadSections();
+    //   window.addEventListener('popstate', onHistoryChange);
+    // }
 
     // Handle Dropdown Click
     this.dropdownButtons.forEach(item => {
@@ -499,9 +499,9 @@ class collectionFilters extends HTMLElement {
 
     console.log("url", url)
     
-    // if (history.replaceState) {
-    //   window.history.pushState({ path: url }, '', url);
-    // }
+    if (history.replaceState) {
+      window.history.pushState({ path: url }, '', url);
+    }
     
     // Fetch and replace sections
     this.enableLoading();
