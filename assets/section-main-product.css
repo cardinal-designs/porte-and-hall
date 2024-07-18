@@ -30,6 +30,9 @@
   grid-template-areas: 'thumbnails images';
   column-gap: 10px;
 }
+.product__media-wrapper .aspect-ratio:before{
+  z-index: 0;
+}
 
 .product__media-thumbnails {
   display: flex;

@@ -61,7 +61,7 @@
                 </li>
                 {% endcomment %}
                  <li>
-                <a class="footer__menu-link optanon-show-settings">Cookie Settings</a>
+                <a href="/" class="footer__menu-link optanon-show-settings">Cookie Settings</a>
                 </li>
                 {% endif %}
               </ul>
@@ -140,6 +140,11 @@
   </div>
 </footer>
 
+<script>
+  const cookieLink = document.querySelector(".footer__menu-link.optanon-show-settings");
+
+  cookieLink?.addEventListener("click", e=>{e.preventDefault()})
+</script>
 {% schema %}
 {
   "name": "Footer",
