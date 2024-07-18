@@ -1104,3 +1104,9 @@ variant-selects {
     }
 }
 
+@media screen and (max-width: 768px) {
+    .pdp-optimized .price {
+      font-size: 18px !important;
+    }
+}
+
