@@ -1095,7 +1095,7 @@ variant-selects {
 }
 
 .pdp-optimized .price {
-  font-size: 18px;
+  font-size: 18px !important;
 }
 
 @media screen and (max-width: 900px) {
