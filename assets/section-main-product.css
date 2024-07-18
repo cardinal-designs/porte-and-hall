@@ -1089,6 +1089,11 @@ variant-selects {
   display: none;
 }
 
+.pdp-optimized .product__title.blue {
+  font-size: 32px;
+  padding-top: 8px;
+}
+
 @media screen and (max-width: 900px) {
    .pdp-optimized .product__media-list {
         padding-bottom: 42px;
