@@ -1110,7 +1110,7 @@ variant-selects {
   font-size: 18px;
 }
 
-.pdp-optimized .product__variant-name {
+.pdp-optimized .product__variant-name:first-of-type {
   margin-top: 22px !important;
 }
 
