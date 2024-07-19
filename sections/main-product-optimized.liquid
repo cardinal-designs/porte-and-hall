@@ -131,12 +131,19 @@
           {% comment %} End of Judge.me code {% endcomment %}
           
         </div>
-
+        {% comment %}
         {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
-          <div class="product__description 123 body blue">
+          <div class="product__description body blue">
             {{ grouped_collection.metafields.custom.short_description | default: product.description }}
           </div>
         {% endif %}
+        {% endcomment %}
+          <div class="product__description body blue">
+            <ul>
+              <li>Indoor or outdoor</li>
+              <li>Natural look with technical fibers</li>
+            </ul>
+          </div>
         {% unless section.settings.hide_dimensions == true %}
         <div class="product__dimensions--wrapper">
           <div class="dimensions__button">
