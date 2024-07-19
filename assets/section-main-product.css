@@ -1094,19 +1094,13 @@ variant-selects {
   padding-top: 8px;
 }
 
-.pdp-optimized .price {
+.pdp-optimized .h3 .price {
   font-size: 18px !important;
 }
 
 @media screen and (max-width: 900px) {
    .pdp-optimized .product__media-list {
         padding-bottom: 42px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .pdp-optimized h3.price {
-      font-size: 18px !important;
     }
 }
 
