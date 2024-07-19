@@ -1098,6 +1098,10 @@ variant-selects {
   font-size: 18px !important;
 }
 
+.pdp-optimized .other-sizes__label {
+  font-size: 18px;
+}
+
 @media screen and (max-width: 900px) {
    .pdp-optimized .product__media-list {
         padding-bottom: 42px;
