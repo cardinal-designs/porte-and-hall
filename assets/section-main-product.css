@@ -1110,6 +1110,10 @@ variant-selects {
   font-size: 18px;
 }
 
+.pdp-optimized .product__variant-name {
+  margin-top: 22px !important;
+}
+
 @media screen and (max-width: 900px) {
    .pdp-optimized .product__media-list {
         padding-bottom: 42px;
