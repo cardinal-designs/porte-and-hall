@@ -1114,6 +1114,10 @@ variant-selects {
   margin-top: 22px !important;
 }
 
+.pdp-optimized .product__description.body.blue ul {
+  padding-left: 18px;
+}
+
 @media screen and (max-width: 900px) {
    .pdp-optimized .product__media-list {
         padding-bottom: 42px;
