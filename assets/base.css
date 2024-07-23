@@ -2852,12 +2852,12 @@ select#notify_id {
   #onetrust-banner-sdk.otFlat {
     z-index: 11 !important;
   }
-  #onetrust-banner-sdk.otFlat {
+  /* #onetrust-banner-sdk.otFlat {
     display: flex;
     align-items: flex-end;
     height: 100vh;
     max-height: 100%;
-  }
+  } */
   #onetrust-consent-sdk #onetrust-banner-sdk {
     background-color: transparent;
   }
