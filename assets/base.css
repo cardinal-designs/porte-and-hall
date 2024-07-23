@@ -2861,7 +2861,7 @@ select#notify_id {
   #onetrust-consent-sdk #onetrust-banner-sdk {
     background-color: transparent;
   }
-  #onetrust-banner-sdk:after {
+  /* #onetrust-banner-sdk:after {
     content: "";
     background: rgba(0, 0, 0, 0.8);
     z-index: 1;
@@ -2872,7 +2872,7 @@ select#notify_id {
     top: 0;
     bottom: 0;
     left: 0;
-  }
+  } */
   #onetrust-banner-sdk > div {
     position: relative;
     z-index: 2;
