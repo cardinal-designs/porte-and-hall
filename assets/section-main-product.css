@@ -1117,6 +1117,10 @@ variant-selects {
   padding-left: 18px;
 }
 
+.pdp-optimized .product__price-reviews-wrapper {
+  flex-direction: column;
+}
+
 @media screen and (max-width: 900px) {
    .pdp-optimized .product__media-list {
         padding-bottom: 36px;
