@@ -1125,6 +1125,9 @@ variant-selects {
   flex-direction: column;
 }
 
+.pdp-optimized .product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__text {
+  padding-left: 8px;
+}
 
 @media screen and (max-width: 900px) {
    .pdp-optimized .product__media-list {
