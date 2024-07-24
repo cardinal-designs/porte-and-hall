@@ -1113,6 +1113,10 @@ variant-selects {
   margin-top: 22px !important;
 }
 
+.pdp-optimized .product__description.body.blue {
+  margin-top: 16px;
+}
+
 .pdp-optimized .product__description.body.blue ul {
   padding-left: 18px;
 }
@@ -1120,6 +1124,7 @@ variant-selects {
 .pdp-optimized .product__price-reviews-wrapper {
   flex-direction: column;
 }
+
 
 @media screen and (max-width: 900px) {
    .pdp-optimized .product__media-list {
