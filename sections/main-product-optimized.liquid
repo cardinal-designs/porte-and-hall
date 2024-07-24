@@ -352,11 +352,6 @@
                 {% endunless %}
               {% endif %}
 
-
-            {% if product.metafields.custom.restock_date != blank %}
-              <p class="product__restock-note body">{{ product.metafields.custom.restock_date }}</p>
-            {% endif %}
-
             {%- if other_sizes != blank and section.settings.shop_more_below == true -%}
               {%- capture other_size_links -%}
                 {%- comment -%} Current Product Size {%- endcomment -%}
@@ -555,6 +550,9 @@
                 {% endif %}
               </div>
             </div>
+            {% if product.metafields.custom.restock_date != blank %}
+              <p class="product__restock-note body">{{ product.metafields.custom.restock_date }}</p>
+            {% endif %}
 
             <div id="afterpay-wrapper"></div>
           {% endform %}
