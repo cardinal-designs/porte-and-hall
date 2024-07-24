@@ -1122,5 +1122,10 @@ variant-selects {
    .pdp-optimized .product__media-list {
         padding-bottom: 36px;
     }
+
+   .pdp-optimized .swiper-pagination-bullet {
+     max-width: 10px;
+     max-height: 10px;
+   }
 }
 
