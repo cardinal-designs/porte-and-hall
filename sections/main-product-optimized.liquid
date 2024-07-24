@@ -138,8 +138,16 @@
         {% endcomment %}
           <div class="product__description body blue">
             <ul>
-              <li>Indoor or outdoor</li>
-              <li>Natural look with technical fibers</li>
+               {% if product.handle contains 'outlier' %}
+                <li>Outdoor mat proudly made in the USA.</li>
+                <li>Thousands of rubbery bristles that trap dirt and moisture</li>
+               {% elsif product.handle contains 'innerweave' %}
+                <li>Indoor or outdoor mat</li>
+                <li>Natural look with technical fibers</li>
+               {% elsif product.handle contains 'insider' %}
+                <li>Indoor mat</li>
+                <li>Ultra-thin so no bunch ups under your door</li>
+               {% endif %}
             </ul>
           </div>
         {% unless section.settings.hide_dimensions == true %}
