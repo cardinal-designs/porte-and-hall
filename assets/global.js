@@ -872,6 +872,49 @@ var ProductCarousel = class extends HTMLElement {
 
 customElements.define('product-carousel', ProductCarousel)
 
+var ProductCarouselNew = class extends HTMLElement {
+  constructor(){
+    super();
+
+    this.section_id = this.querySelector(`.swiper`).id
+    this.pagination = this.querySelector(`.swiper-pagination`)
+     const swiper_options = {  
+      spaceBetween: 10,
+      slidesPerView: 2.2,
+      loop: true,
+      draggable: true,
+      centeredSlides: false,
+      pagination: {
+        el: this.pagination,
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        768: {
+          spaceBetween: 20,
+          loop: false,
+          centeredSlides: false,
+          slidesPerView: 4,
+        },
+      },
+    }
+
+    if (!this.classList.contains("swiper-initialized")){
+      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+    }
+
+  }
+
+  initializeCarousel(swipe, options) {
+    const productSwiper = new Swiper(swipe, options);
+  }
+}
+
+customElements.define('product-carousel-new', ProductCarouselNew)
+
 var ImageCarousel = class extends HTMLElement {
   constructor(){
     super();
