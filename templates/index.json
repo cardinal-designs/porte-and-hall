@@ -1,3 +1,12 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
 {
   "sections": {
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62": {
@@ -99,6 +108,16 @@
       "disabled": true,
       "settings": {
         "title": "Meet our collections"
+      }
+    },
+    "main_product_carousel_kUqDxE": {
+      "type": "main-product-carousel",
+      "settings": {
+        "heading": "Shop our best sellers",
+        "background": "",
+        "show_metafield_style": false,
+        "collection": "best-sellers",
+        "button_text": "Shop Now"
       }
     },
     "40919de2-f3c2-45da-99ff-c69ad3e95306": {
@@ -830,6 +849,7 @@
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62",
     "3726ddfa-f49e-4e18-a5f2-430400876ccd",
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",
+    "main_product_carousel_kUqDxE",
     "40919de2-f3c2-45da-99ff-c69ad3e95306",
     "fd8fd5d7-6d77-45a1-8718-85dc6bc781d2",
     "cb7443ea-2e0d-49d4-9b54-bb61eac621af",
