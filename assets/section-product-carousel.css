@@ -43,6 +43,14 @@
   padding: 0;
 }
 
+.carousel-bottom-button {
+  margin: 50px auto 0;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  padding: 18px;
+}
+
 @media screen and (max-width: 768px) {
 
   .product-carousel__container .swiper-wrapper {
