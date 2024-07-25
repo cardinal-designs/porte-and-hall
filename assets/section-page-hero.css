@@ -67,6 +67,14 @@
   width: 100%;
 }
 
+.page-hero__swap-fonts .best-seller-header.page-hero__heading {
+  text-transform: capitalize !important;
+  font-size: 42px;
+  line-height: 130%;
+  font-family: louize;
+  font-weight: 500;
+}
+
 @media screen and (max-width: 768px) {  
   .page-hero__inner .aspect-ratio {
     max-width: 500px !important;
