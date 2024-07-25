@@ -98,61 +98,11 @@
       "settings": {
         "background_color": "#d8d3c7"
       }
-    },
-    "2046a8d4-8126-4344-8df2-6dd5193e7293": {
-      "type": "featured-articles",
-      "blocks": {
-        "140e3c63-9b99-476d-9378-53fd1ce30b89": {
-          "type": "article",
-          "settings": {
-            "article": "news\/how-to-find-the-best-doormat-for-your-home"
-          }
-        },
-        "faf6f395-3915-4f58-b2c5-acd839476fc2": {
-          "type": "article",
-          "settings": {
-            "article": "news\/the-view-from-my-porch"
-          }
-        },
-        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23": {
-          "type": "article",
-          "settings": {
-            "article": "news\/why-pay-more-for-a-doormat"
-          }
-        }
-      },
-      "block_order": [
-        "140e3c63-9b99-476d-9378-53fd1ce30b89",
-        "faf6f395-3915-4f58-b2c5-acd839476fc2",
-        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23"
-      ],
-      "settings": {
-        "heading": "Style tips from the Porte + Hall Blog",
-        "background": "#eeefef",
-        "blog": "news",
-        "show_recent_articles": true
-      }
-    },
-    "6cba2d1c-ca6b-48b3-8672-d03b3b848c6e": {
-      "type": "fan-motif-section",
-      "settings": {
-        "hide_desktop": false,
-        "hide_mobile": false,
-        "color": "green",
-        "alignment": "left",
-        "heading": "First impressions matter.\nFor both you and your visitors.",
-        "text": "Just like a clean desk or freshly-made bed, coming home to a beautiful and functional entryway is restorative and uplifting. We aim to turn these often ovelooked areas of our homes into inspired areas that welcome and invite us home.",
-        "link": "shopify:\/\/pages\/about-us",
-        "link_text": "LEARN MORE ABOUT US",
-        "image": "shopify:\/\/shop_images\/door_illustration.png"
-      }
     }
   },
   "order": [
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
     "product-grid",
-    "82844bc9-ec6d-426a-9f52-a0a66dd5560e",
-    "2046a8d4-8126-4344-8df2-6dd5193e7293",
-    "6cba2d1c-ca6b-48b3-8672-d03b3b848c6e"
+    "82844bc9-ec6d-426a-9f52-a0a66dd5560e"
   ]
 }
