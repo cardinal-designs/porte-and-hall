@@ -45,6 +45,9 @@
       <div class="swiper-button-next"></div>
     </div>
   </product-carousel>
+  {% if section.settings.bottom_button_link != blank %}
+  <a class="carousel-bottom-button button" href="{{ section.settings.bottom_button_link }}">{{ section.settings.bottom_button_text }}</a>
+  {% endif %}
 </div>
 
 <style>
@@ -87,6 +90,16 @@
       "id": "button_text",
       "label": "Button text",
       "default": "Shop Now"
+    },
+    {
+      "type": "text",
+      "id": "bottom_button_text",
+      "label": "Buttom Button text"
+    },
+    {
+      "type": "url",
+      "id": "bottom_button_link",
+      "label": "Bottom Button URL"
     }
   ],
   "presets": [
