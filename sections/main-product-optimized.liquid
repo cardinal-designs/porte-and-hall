@@ -107,6 +107,11 @@
         <h3 class="product__tag gray">
           {{ product.variants.first.metafields.filters.use.value.first }}
         </h3>
+         {% comment %} Start of Judge.me code {% endcomment %}
+          <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'> 
+            {{ product.metafields.judgeme.badge }} 
+          </div> 
+          {% comment %} End of Judge.me code {% endcomment %}
 
         <h1 class="product__title blue">
           {{ grouped_collection.title | remove: ' |' | default: product.title }}
@@ -122,11 +127,7 @@
             {%  endif  %}
           </div>
 
-          {% comment %} Start of Judge.me code {% endcomment %}
-          <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'> 
-            {{ product.metafields.judgeme.badge }} 
-          </div> 
-          {% comment %} End of Judge.me code {% endcomment %}
+
           
         </div>
         {% comment %}
