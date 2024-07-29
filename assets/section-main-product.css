@@ -1115,6 +1115,7 @@ variant-selects {
 
 .pdp-optimized .product__description.body.blue {
   margin-top: 16px;
+  padding-right: unset;
 }
 
 .pdp-optimized .product__description.body.blue ul {
@@ -1126,7 +1127,7 @@ variant-selects {
 }
 
 .pdp-optimized .product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__text {
-  padding-left: 8px;
+  padding: 0 8px;
 }
 
 @media screen and (max-width: 900px) {
