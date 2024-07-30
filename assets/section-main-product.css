@@ -1131,6 +1131,11 @@ variant-selects {
   padding: 0 8px;
 }
 
+.pdp-optimized .product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__stars .jdgm-star {
+    color: var(--blue) !important;
+    font-size: 80%;
+}
+
 @media screen and (max-width: 900px) {
    .pdp-optimized .product__media-list {
         padding-bottom: 36px;
