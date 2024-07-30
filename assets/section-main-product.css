@@ -1127,16 +1127,16 @@ variant-selects {
   flex-direction: column;
 }
 
-.pdp-optimized .product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__text {
+.pdp-optimized .jdgm-widget .jdgm-prev-badge__text {
   padding: 0 8px;
 }
 
-.pdp-optimized .product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__stars .jdgm-star {
+.pdp-optimized .jdgm-widget .jdgm-prev-badge__stars .jdgm-star {
   color: var(--blue) !important;
   font-size: 80%;
 }
 
-.pdp-optimized .product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__text {
+.pdp-optimized .jdgm-widget .jdgm-prev-badge__text {
   color: var(--gold-secondary--dark);
   font-family: brandon;
   font-size: 14px;
