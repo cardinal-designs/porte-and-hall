@@ -632,9 +632,11 @@ cart-drawer-remove-button {
 }
 
 .rebuy-product-grid.flickity-enabled .flickity-button {
-  background: transparent;
+  background: #fff;
+  box-shadow: 0px 0px 5px 0px #a09e9e63;
   width: 25px;
   height: 25px;
+  border-radius: 0;
 }
 
 .rebuy-product-grid.flickity-enabled .flickity-button .flickity-button-icon {
