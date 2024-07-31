@@ -614,4 +614,8 @@ cart-drawer-remove-button {
   column-gap: 7.5px;
 }
 
+.rebuy-product-grid.flickity-enabled .powered-by-rebuy {
+  display: none;
+}
+
 /* Rebuy Block CSS [END] */
