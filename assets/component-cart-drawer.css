@@ -577,6 +577,10 @@ cart-drawer-remove-button {
 
 /* Rebuy Block CSS [START] */
 
+.single__product {
+  margin-bottom: 15px;
+}
+
 .rebuy-widget {
   padding: 0;
 }
