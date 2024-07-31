@@ -590,7 +590,7 @@ cart-drawer-remove-button {
 .rebuy-widget .rebuy-product-grid.large-columns-1 .rebuy-product-block, 
 .rebuy-recommended-products .rebuy-product-grid.large-columns-1 .rebuy-product-block {
   padding-top: 0;
-  padding-bottom: 10px;
+  padding-bottom: 0;
 }
 
 .rebuy-product-grid.flickity-enabled .flickity-page-dots {
@@ -602,7 +602,7 @@ cart-drawer-remove-button {
   row-gap: 15px;
   flex-wrap: wrap;
   column-gap: 7.5px;
-  position: unset;
+  bottom: 0;
 }
 
 .rebuy-product-grid.flickity-enabled .flickity-page-dots .dot {
