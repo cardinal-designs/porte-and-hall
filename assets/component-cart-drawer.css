@@ -581,6 +581,10 @@ cart-drawer-remove-button {
   margin-bottom: 15px;
 }
 
+.cart-drawer .cart-drawer__footer {
+  background: #fff;
+}
+
 .cart-drawer .cart-drawer__footer .cart-drawer__subtotal-wrapper {
   border-top: 1px solid var(--beige);
   margin-top: 15px;
