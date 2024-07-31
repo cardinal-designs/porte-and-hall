@@ -637,7 +637,7 @@ cart-drawer-remove-button {
   display: none;
 }
 
-.rebuy-button {
+.rebuy-product-grid.flickity-enabled .rebuy-button {
   background: #D1BD93;
   border-color: #D1BD93;
   font-size: 16px;
