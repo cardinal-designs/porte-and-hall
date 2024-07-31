@@ -627,6 +627,13 @@ cart-drawer-remove-button {
   font-family: louize;
 }
 
+.rebuy-money, 
+.rebuy-widget .rebuy-money {
+  color: var(--blue);
+  font-size: 18px;
+  font-weight: 600;
+}
+
 .rebuy-product-grid.flickity-enabled .flickity-page-dots {
   padding: 3px 20px;
   display: flex;
