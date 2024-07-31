@@ -81,7 +81,7 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
         console.log("Rebuy", Rebuy)
         if(Rebuy){
           console.log("Rebuy ready", Rebuy)
-          Rebuy.init();
+          Rebuy.reinit();
         }
       });
   }
