@@ -79,10 +79,12 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
         }
         this.cartDrawer.open();
         console.log("Rebuy", Rebuy)
-        if(Rebuy){
-          console.log("Rebuy ready", Rebuy)
-          Rebuy.reinit();
-        }
+        setTimeout(function(){
+          if(Rebuy){
+            console.log("Rebuy ready", Rebuy)
+            Rebuy.reinit();
+          }
+        }, 1000)
       });
   }
 
