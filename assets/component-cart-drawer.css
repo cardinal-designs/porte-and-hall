@@ -658,6 +658,10 @@ cart-drawer-remove-button {
   display: none;
 }
 
+.rebuy-product-actions .rebuy-button {
+  width: 90px;
+}
+
 .single__product .rebuy-product-grid .rebuy-button,
 .rebuy-product-grid.flickity-enabled .rebuy-button {
   background: #D1BD93;
@@ -668,6 +672,7 @@ cart-drawer-remove-button {
   letter-spacing: 1px;
   line-height: normal;
   font-family: brandon;
+  padding: 6px 10px;
 }
 
 
