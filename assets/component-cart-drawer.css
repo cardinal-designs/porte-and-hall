@@ -574,3 +574,21 @@ cart-drawer-remove-button {
   }
   
 }
+
+/* Rebuy Block CSS [START] */
+
+.rebuy-product-grid.flickity-enabled .flickity-page-dots .dot {
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: 0;
+  max-width: 12px;
+  max-height: 12px;
+  transform: rotate(45deg);
+  opacity: 1;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  margin: 0 2px !important;
+}
+
+/* Rebuy Block CSS [END] */
