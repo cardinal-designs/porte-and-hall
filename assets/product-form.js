@@ -78,6 +78,9 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
                   this.connectedForm.querySelector(".product__quantity-atc-wrapper").classList.remove('loading')
         }
         this.cartDrawer.open();
+        if(Rebuy){
+          Rebuy.init();
+        }
       });
   }
 
