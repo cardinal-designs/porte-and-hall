@@ -584,6 +584,9 @@ cart-drawer-remove-button {
 .rebuy-widget-content .primary-title {
   color: var(--blue);
   font-size: 16px;
+  text-align: left;
+  margin-bottom: 10px;
+  line-height: normal;
   font-family: louize;
 }
 
