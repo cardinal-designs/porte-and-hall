@@ -658,8 +658,8 @@ cart-drawer-remove-button {
   display: none;
 }
 
-.rebuy-product-block .rebuy-product-actions {
-  width: 90px;
+.rebuy-widget .rebuy-product-block .rebuy-product-actions {
+  width: 90px !imp[ortant];
 }
 
 .single__product .rebuy-product-grid .rebuy-button,
