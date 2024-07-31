@@ -78,7 +78,9 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
                   this.connectedForm.querySelector(".product__quantity-atc-wrapper").classList.remove('loading')
         }
         this.cartDrawer.open();
+        console.log("Rebuy", Rebuy)
         if(Rebuy){
+          console.log("Rebuy ready", Rebuy)
           Rebuy.init();
         }
       });
