@@ -591,4 +591,16 @@ cart-drawer-remove-button {
   margin: 0 2px !important;
 }
 
+.rebuy-product-grid.flickity-enabled .flickity-page-dots .dot.is-selected:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 0;
+  content: "";
+  background: var(--gold);
+  transform: translate(-50%, -50%);
+  width: 5.68px;
+  height: 5.68px;
+}
+
 /* Rebuy Block CSS [END] */
