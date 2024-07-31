@@ -685,8 +685,12 @@ cart-drawer-remove-button {
   padding: 6px 10px;
 }
 
-
-
+@media (min-width:769px) {
+  .rebuy-widget .rebuy-product-grid.large-style-line .rebuy-product-block .rebuy-product-media, 
+  .rebuy-recommended-products .rebuy-product-grid.large-style-line .rebuy-product-block .rebuy-product-media {
+    width: 120px;
+  }
+}
 
 
 /* Rebuy Block CSS [END] */
