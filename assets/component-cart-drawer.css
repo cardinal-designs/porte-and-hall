@@ -577,8 +577,12 @@ cart-drawer-remove-button {
 
 /* Rebuy Block CSS [START] */
 
-.single__product {
+.cart-drawer__footer .single__product {
   margin-bottom: 15px;
+}
+
+ {
+  
 }
 
 .rebuy-widget {
@@ -654,9 +658,11 @@ cart-drawer-remove-button {
   display: none;
 }
 
+.single__product .rebuy-product-grid .rebuy-button,
 .rebuy-product-grid.flickity-enabled .rebuy-button {
   background: #D1BD93;
   border-color: #D1BD93;
+  border-radius: 0;
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 1px;
