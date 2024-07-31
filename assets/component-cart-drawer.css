@@ -583,6 +583,17 @@ cart-drawer-remove-button {
   padding-right: 0;
 }
 
+.rebuy-product-grid.flickity-enabled .flickity-page-dots {
+  padding: 3px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  row-gap: 15px;
+  flex-wrap: wrap;
+  column-gap: 7.5px;
+}
+
 .rebuy-product-grid.flickity-enabled .flickity-page-dots .dot {
   background: transparent;
   border: 1px solid var(--gold);
@@ -609,15 +620,8 @@ cart-drawer-remove-button {
   height: 5.68px;
 }
 
-.rebuy-product-grid.flickity-enabled .flickity-page-dots {
-  padding: 3px 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: baseline;
-  row-gap: 15px;
-  flex-wrap: wrap;
-  column-gap: 7.5px;
+.rebuy-product-grid.flickity-enabled .flickity-button {
+  background: transparent;
 }
 
 .rebuy-widget-content .powered-by-rebuy {
