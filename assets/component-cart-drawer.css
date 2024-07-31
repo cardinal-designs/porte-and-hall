@@ -598,6 +598,7 @@ cart-drawer-remove-button {
   row-gap: 15px;
   flex-wrap: wrap;
   column-gap: 7.5px;
+  position: unset;
 }
 
 .rebuy-product-grid.flickity-enabled .flickity-page-dots .dot {
