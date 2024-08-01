@@ -354,7 +354,7 @@
             {%- for block in other_sizes -%}
               {% assign number_blocks = number_blocks | plus: 1 %}
             {%- endfor -%}  
-{{ number_blocks }}
+
             {%- if other_sizes != blank and section.settings.shop_more_below == true -%}
               {%- capture other_size_links -%}
                 {%- comment -%} Current Product Size {%- endcomment -%}
@@ -401,7 +401,6 @@
                 {%- comment -%} Other Sizes {%- endcomment -%}
                
                 {%- for block in other_sizes -%}  
-                  {{ forloop.index }}
                   {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
                   {%- assign current_size = block.title | split: " | " -%}
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
