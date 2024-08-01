@@ -1127,3 +1127,4 @@ var accordionToggle = class extends HTMLElement {
 
 customElements.define('pdp-accordion', accordionToggle);
 
+console.log("comming")
