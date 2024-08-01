@@ -136,37 +136,38 @@ class CartDrawer extends HTMLElement {
 
 customElements.define('cart-drawer', CartDrawer);
 
-const cartDrawerElement = document.querySelector('cart-drawer');
-if (cartDrawerElement) {
-  const cartDrawerInstance = new CartDrawer();
-  // cartDrawerInstance.open();
-  // cartDrawerInstance.getSectionsToRender().forEach((section => {
-  //   const elementToReplace =
-  //     document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-  //   elementToReplace.innerHTML =
-  //     cartDrawerInstance.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
 
-  // }));
+function updateMainCart(Rebuy) {
+  fetch('https://www.porteandhall.com//?section_id=cart-drawer')
+    .then((response) => response.text())
+    .then((responseText) => {
+      console.log("responseText", responseText);
+      const html = new DOMParser().parseFromString(responseText, 'text/html');
+      const selectors = ['.cart-drawer__content'];
+      for (const selector of selectors) {
+        const targetElement = document.querySelector(selector);
+        const sourceElement = html.querySelector(selector);
+        if (targetElement && sourceElement) {
+          targetElement.replaceWith(sourceElement);
+        }
+      }
+    })
+    .catch((e) => {
+      console.error(e);
+    })
+    .finally({
+      if(Rebuy) Rebuy.init();
+    });
+}
 
-  let sections = ['cart-icon-bubble', document.getElementById('cart-drawer__content').dataset.id]
-
-  document.addEventListener('rebuy:cart.ready', (event) => { 
-    console.log('rebuy:cart.ready event', event.detail); 
-    console.log("Rebuy1", Rebuy)
+document.addEventListener('rebuy:cart.ready', (event) => { 
     Rebuy.init();
-  });
-  document.addEventListener('rebuy:cart.add', (event) => { 
-    console.log('rebuy:cart.add event', event.detail); 
-    console.log("Rebuy2", Rebuy)
-    let parsedStates = event.detail?.cart?.cart;
-    cartDrawerInstance.getSectionsToRender().forEach((section => {
-      const elementToReplace =
-        document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-      elementToReplace.innerHTML =
-        cartDrawerInstance.getSectionInnerHTML(sections[section.section], section.selector);
-  
-    }));
-  });
+});
+document.addEventListener('rebuy:cart.add', (event) => { 
+  console.log('rebuy:cart.add event', event.detail); 
+  console.log("Rebuy2", Rebuy)
+  updateMainCart(Rebuy)
+});
   // document.addEventListener('rebuy:cart.change', (event) => { 
   //   console.log('rebuy:cart.change event', event.detail); 
   //   console.log("Rebuy3", Rebuy)
@@ -178,6 +179,40 @@ if (cartDrawerElement) {
   
   //   }));
   // });
-}
+
+
+// const cartDrawerElement = document.querySelector('cart-drawer');
+// if (cartDrawerElement) {
+//   const cartDrawerInstance = new CartDrawer();
+
+//   document.addEventListener('rebuy:cart.ready', (event) => { 
+//     console.log('rebuy:cart.ready event', event.detail); 
+//     console.log("Rebuy1", Rebuy)
+//     Rebuy.init();
+//   });
+//   document.addEventListener('rebuy:cart.add', (event) => { 
+//     console.log('rebuy:cart.add event', event.detail); 
+//     console.log("Rebuy2", Rebuy)
+//     let parsedStates = event.detail?.cart?.cart;
+//     cartDrawerInstance.getSectionsToRender().forEach((section => {
+//       const elementToReplace =
+//         document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
+//       elementToReplace.innerHTML =
+//         cartDrawerInstance.getSectionInnerHTML(sections[section.section], section.selector);
+  
+//     }));
+//   });
+//   // document.addEventListener('rebuy:cart.change', (event) => { 
+//   //   console.log('rebuy:cart.change event', event.detail); 
+//   //   console.log("Rebuy3", Rebuy)
+//   //   cartDrawerInstance.getSectionsToRender().forEach((section => {
+//   //     const elementToReplace =
+//   //       document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
+//   //     elementToReplace.innerHTML =
+//   //       cartDrawerInstance.getSectionInnerHTML(sections[section.section], section.selector);
+  
+//   //   }));
+//   // });
+// }
 
 
