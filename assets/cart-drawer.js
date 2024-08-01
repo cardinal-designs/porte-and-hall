@@ -155,7 +155,9 @@ function updateMainCart(Rebuy) {
       console.error(e);
     })
     .finally({
-      if(Rebuy){Rebuy.init()}
+      setTimeout(function(){
+        if(Rebuy){Rebuy.init()}
+      }, 1000)
     });
 }
 
