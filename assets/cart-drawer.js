@@ -153,6 +153,7 @@ if (cartDrawerElement) {
   document.addEventListener('rebuy:cart.ready', (event) => { 
     console.log('rebuy:cart.ready event', event.detail); 
     console.log("Rebuy1", Rebuy)
+    Rebuy.init();
   });
   document.addEventListener('rebuy:cart.add', (event) => { 
     console.log('rebuy:cart.add event', event.detail); 
