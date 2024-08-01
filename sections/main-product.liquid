@@ -373,7 +373,7 @@
                   style="order: {{ active_order }};"
                   class="{% if number_blocks == 3 %}small_button_text{% endif %} other-sizes__button active" 
                   href="{{ product.url }}"
-                >1
+                >
                   <span>{{ product_size }}</span>
                   {% if product_size == 'Doormat' %}
                     {% if product.handle contains 'innerweave' %}
@@ -413,7 +413,7 @@
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL-Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% endif %} ;"
                       class="{% if number_blocks == 3 %}small_button_text{% endif %} other-sizes__button" 
                       href="{{ match.first.url }}"
-                    >2
+                    >
                       <span>{{ current_size.last }}</span>
                       {% if current_size.last == 'Doormat' %}
                         {% if current_size.first == 'The Innerweave' %}
