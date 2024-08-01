@@ -139,7 +139,7 @@ customElements.define('cart-drawer', CartDrawer);
 const cartDrawerElement = document.querySelector('cart-drawer');
 if (cartDrawerElement) {
   const cartDrawerInstance = new CartDrawer();
-  cartDrawerInstance.open();
+  // cartDrawerInstance.open();
   // cartDrawerInstance.getSectionsToRender().forEach((section => {
   //   const elementToReplace =
   //     document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
