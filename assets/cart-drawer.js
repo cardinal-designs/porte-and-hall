@@ -138,7 +138,7 @@ customElements.define('cart-drawer', CartDrawer);
 
 
 function updateMainCart(Rebuy) {
-  fetch('https://www.porteandhall.com//?section_id=cart-drawer')
+  fetch(`${window.origin}/?section_id=cart-drawer`)
     .then((response) => response.text())
     .then((responseText) => {
       const html = new DOMParser().parseFromString(responseText, 'text/html');
