@@ -421,7 +421,7 @@
                         {% else %}
                           <span class="other-sizes__dimension">2' 3" x 3'</span>
                         {% endif %}
-                      {% elsif product_size == 'XL Runner' %}
+                      {% elsif current_size.last == 'XL Runner' %}
                         <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
                       {% elsif current_size.last == 'Runner' %}
                         {% if current_size.first == 'The Innerweave' %}
