@@ -356,12 +356,15 @@
               {% assign number_blocks = number_blocks | plus: 1 %}
             {%- endfor -%}  
             {% endcomment %}
-                {% assign small_text1 = 0 %}
+                {% assign small_text_1 = 0 %}
                 {% for block in other_sizes %} 
-                 {%- assign current_size = block.title | split: " | " -%}
-                  {{ current_size }}
-                  {% if current_size contains 'XL Runner' %}
-                    {% assign small_text1 = 1 %}
+                   {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
+                  {%- assign current_size = block.title | split: " | " -%}
+                  {%- assign format_color = "- " | append: active_style | append: " /" -%}
+                  {%- assign match_name = block.title | replace: "|",  format_color -%}
+                  {%- assign match = block.products | where: 'title', match_name -%}
+                  {% if match != blank %}
+                    {% assign small_text_1 = small_text_1 | plus: 1 %}
                   {% endif %}
                 {% endfor %}
 
@@ -378,7 +381,7 @@
                   {% elsif product.handle contains 'area-mat' %}
                     {% assign active_order = 4 %}
                   {% endif %}
-
+{{ small_text_1 }}
                 <a 
                   style="order: {{ active_order }};"
                   class="{% if small_text1 == 1 %}small_button_text{% endif %} other-sizes__button active" 
