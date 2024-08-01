@@ -158,25 +158,25 @@ if (cartDrawerElement) {
   document.addEventListener('rebuy:cart.add', (event) => { 
     console.log('rebuy:cart.add event', event.detail); 
     console.log("Rebuy2", Rebuy)
-    cartDrawerInstance.getSectionsToRender().forEach((section => {
-      const elementToReplace =
-        document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-      elementToReplace.innerHTML =
-        cartDrawerInstance.getSectionInnerHTML(sections[section.section], section.selector);
+    // cartDrawerInstance.getSectionsToRender().forEach((section => {
+    //   const elementToReplace =
+    //     document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
+    //   elementToReplace.innerHTML =
+    //     cartDrawerInstance.getSectionInnerHTML(sections[section.section], section.selector);
   
-    }));
+    // }));
   });
-  document.addEventListener('rebuy:cart.change', (event) => { 
-    console.log('rebuy:cart.change event', event.detail); 
-    console.log("Rebuy3", Rebuy)
-    cartDrawerInstance.getSectionsToRender().forEach((section => {
-      const elementToReplace =
-        document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-      elementToReplace.innerHTML =
-        cartDrawerInstance.getSectionInnerHTML(sections[section.section], section.selector);
+  // document.addEventListener('rebuy:cart.change', (event) => { 
+  //   console.log('rebuy:cart.change event', event.detail); 
+  //   console.log("Rebuy3", Rebuy)
+  //   cartDrawerInstance.getSectionsToRender().forEach((section => {
+  //     const elementToReplace =
+  //       document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
+  //     elementToReplace.innerHTML =
+  //       cartDrawerInstance.getSectionInnerHTML(sections[section.section], section.selector);
   
-    }));
-  });
+  //   }));
+  // });
 }
 
 
