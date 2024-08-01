@@ -158,7 +158,7 @@ if (cartDrawerElement) {
   document.addEventListener('rebuy:cart.add', (event) => { 
     console.log('rebuy:cart.add event', event.detail); 
     console.log("Rebuy2", Rebuy)
-    let parsedStates = JSON.parse(event.detail?.cart?.cart);
+    let parsedStates = event.detail?.cart?.cart;
     cartDrawerInstance.getSectionsToRender().forEach((section => {
       const elementToReplace =
         document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
