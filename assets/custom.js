@@ -36,7 +36,7 @@ customElements.define('form-validation',class formValidation extends HTMLElement
   }
 })
 
-console.log("comming")
+
 
 document.addEventListener('rebuy:cart.ready', (event) => { 
   console.log('rebuy:cart.ready event', event.detail); 
