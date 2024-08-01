@@ -141,7 +141,6 @@ function updateMainCart(Rebuy) {
   fetch('https://www.porteandhall.com//?section_id=cart-drawer')
     .then((response) => response.text())
     .then((responseText) => {
-      console.log("responseText", responseText);
       const html = new DOMParser().parseFromString(responseText, 'text/html');
       const selectors = ['.cart-drawer__content'];
       for (const selector of selectors) {
@@ -168,17 +167,11 @@ document.addEventListener('rebuy:cart.add', (event) => {
   console.log("Rebuy2", Rebuy)
   updateMainCart(Rebuy)
 });
-  // document.addEventListener('rebuy:cart.change', (event) => { 
-  //   console.log('rebuy:cart.change event', event.detail); 
-  //   console.log("Rebuy3", Rebuy)
-  //   cartDrawerInstance.getSectionsToRender().forEach((section => {
-  //     const elementToReplace =
-  //       document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-  //     elementToReplace.innerHTML =
-  //       cartDrawerInstance.getSectionInnerHTML(sections[section.section], section.selector);
-  
-  //   }));
-  // });
+  document.addEventListener('rebuy:cart.change', (event) => { 
+    console.log('rebuy:cart.change event', event.detail); 
+    console.log("Rebuy3", Rebuy)
+    updateMainCart(Rebuy)
+  });
 
 
 // const cartDrawerElement = document.querySelector('cart-drawer');
