@@ -74,6 +74,7 @@ class CartDrawer extends HTMLElement {
         return response.text();
       })
       .then((state) => {
+        console.log("state", state)
         const parsedState = JSON.parse(state);
 
         this.getSectionsToRender().forEach((section => {
