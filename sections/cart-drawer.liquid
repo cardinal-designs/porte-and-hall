@@ -66,69 +66,39 @@
 
 <script>
 
-// Function to calculate and set the total height as a CSS variable
-function setCartFooterHeight() {
-    // Select all elements with the class 'cart-drawer__footer' and attribute 'data-initialized="true"'
-    const footerElements = document.querySelectorAll('.cart-drawer__footer[data-initialized="true"]');
 
-    // Initialize a variable to keep track of the total height
-    let totalHeight = 0;
-
-    // Iterate through each footer element to calculate the total height
-    footerElements.forEach(element => {
-        // Get the computed style of the element
-        const style = window.getComputedStyle(element);
-        
-        // Get the element's height including margins
-        const height = element.offsetHeight;
-        const marginTop = parseFloat(style.marginTop);
-        const marginBottom = parseFloat(style.marginBottom);
-        
-        // Add the total height (including margins) to the totalHeight variable
-        totalHeight += height + marginTop + marginBottom;
-    });
-
-    // Select the cart-drawer element
-    const cartDrawer = document.querySelector('.cart-drawer');
-
-    // Set the CSS variable --cart-footer-height on the cart-drawer element
-    if (cartDrawer) {
-        cartDrawer.style.setProperty('--cart-footer-height', `${totalHeight}px`);
+document.addEventListener('DOMContentLoaded', function () {
+    // Function to check if the div with data-rebuy-id is properly loaded
+    function isRebuyLoaded() {
+        const rebuyDiv = document.querySelector('[data-rebuy-id]');
+        // Check if the div exists and has content
+        return rebuyDiv && rebuyDiv.offsetHeight > 0;
     }
 
-    // Optionally, log the result for debugging purposes
-    console.log(`Total height of cart-drawer__footer elements with data-initialized="true": ${totalHeight}px`);
-}
+    // Function to set the footer height variable
+    function setFooterHeight() {
+        const cartDrawerFooter = document.getElementById('cart-drawer__footer');
+        const footerHeight = cartDrawerFooter.offsetHeight;
 
-// Function to observe changes in the DOM
-function observeDOMChanges() {
-    const observer = new MutationObserver((mutationsList) => {
-        // Check each mutation record
-        for (let mutation of mutationsList) {
-            // Check if nodes were added to the cart-drawer__footer elements
-            if (mutation.type === 'childList') {
-                setCartFooterHeight();
-            }
+        // Set the CSS variable for footer height
+        const cartDrawer = document.getElementById('cart-drawer');
+        cartDrawer.style.setProperty('--cart-footer-height', `${footerHeight}px`);
+    }
+
+    // Function to execute when the rebuy div is loaded
+    function onRebuyLoaded() {
+        if (isRebuyLoaded()) {
+            setFooterHeight();
+        } else {
+            // If the rebuy div is not loaded yet, check again after a delay
+            setTimeout(onRebuyLoaded, 100); // 100 ms delay
         }
-    });
+    }
 
-    // Target nodes to observe
-    const footerElements = document.querySelectorAll('.cart-drawer__footer');
-
-    // Configuration of the observer
-    const config = { childList: true, subtree: true };
-
-    // Start observing each footer element for child additions
-    footerElements.forEach(element => {
-        observer.observe(element, config);
-    });
-}
-
-// Ensure the script runs after the DOM content is fully loaded
-window.addEventListener('load', () => {
-    setCartFooterHeight();
-    observeDOMChanges();
+    // Initial check
+    onRebuyLoaded();
 });
+
 
 
 </script>
