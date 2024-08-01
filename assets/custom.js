@@ -35,3 +35,13 @@ customElements.define('form-validation',class formValidation extends HTMLElement
     this.querySelector('.js-error-messages').innerHTML = this.errorMessage.join('');
   }
 })
+document.addEventListener('rebuy:cart.ready', (event) => { 
+  console.log('rebuy:cart.ready event', event.detail); 
+  console.log("Rebuy", Rebuy)
+});
+document.addEventListener('rebuy:cart.add', (event) => { 
+  console.log('rebuy:cart.add event', event.detail); 
+});
+document.addEventListener('rebuy:cart.change', (event) => { 
+  console.log('rebuy:cart.change event', event.detail); 
+});
