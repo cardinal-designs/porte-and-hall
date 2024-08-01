@@ -162,7 +162,7 @@ if (cartDrawerElement) {
       const elementToReplace =
         document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
       elementToReplace.innerHTML =
-        cartDrawerInstance.getSectionInnerHTML(parsedStates.sections[section.section], section.selector);
+        cartDrawerInstance.getSectionInnerHTML(sections[section.section], section.selector);
   
     }));
   });
