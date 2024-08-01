@@ -1127,16 +1127,3 @@ var accordionToggle = class extends HTMLElement {
 
 customElements.define('pdp-accordion', accordionToggle);
 
-console.log("comming")
-document.addEventListener('rebuy:cart.ready', (event) => { 
-  console.log('rebuy:cart.ready event', event.detail); 
-  console.log("Rebuy1", Rebuy)
-});
-document.addEventListener('rebuy:cart.add', (event) => { 
-  console.log('rebuy:cart.add event', event.detail); 
-  console.log("Rebuy2", Rebuy)
-});
-document.addEventListener('rebuy:cart.change', (event) => { 
-  console.log('rebuy:cart.change event', event.detail); 
-  console.log("Rebuy3", Rebuy)
-});
