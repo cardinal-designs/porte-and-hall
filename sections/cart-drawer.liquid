@@ -65,10 +65,11 @@
 </cart-drawer>
 
 <script>
+
   // Function to calculate and set the total height as a CSS variable
 function setCartFooterHeight() {
-    // Select all elements with the class 'cart-drawer__footer'
-    const footerElements = document.querySelectorAll('.cart-drawer__footer');
+    // Select all elements with the class 'cart-drawer__footer' and attribute 'data-initialized="true"'
+    const footerElements = document.querySelectorAll('.cart-drawer__footer[data-initialized="true"]');
 
     // Initialize a variable to keep track of the total height
     let totalHeight = 0;
@@ -96,7 +97,7 @@ function setCartFooterHeight() {
     }
 
     // Optionally, log the result for debugging purposes
-    console.log(`Total height of cart-drawer__footer elements: ${totalHeight}px`);
+    console.log(`Total height of cart-drawer__footer elements with data-initialized="true": ${totalHeight}px`);
 }
 
 // Use the load event to ensure all resources are loaded
