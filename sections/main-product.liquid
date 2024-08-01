@@ -359,6 +359,7 @@
                 {% assign small_text1 = 0 %}
                 {% for block in other_sizes %} 
                  {%- assign current_size = block.title | split: " | " -%}
+                  {{ current_size }}
                   {% if current_size contains 'XL Runner' %}
                     {% assign small_text1 = 1 %}
                   {% endif %}
