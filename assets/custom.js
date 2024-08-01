@@ -35,6 +35,9 @@ customElements.define('form-validation',class formValidation extends HTMLElement
     this.querySelector('.js-error-messages').innerHTML = this.errorMessage.join('');
   }
 })
+
+console.log("comming")
+
 document.addEventListener('rebuy:cart.ready', (event) => { 
   console.log('rebuy:cart.ready event', event.detail); 
   console.log("Rebuy1", Rebuy)
