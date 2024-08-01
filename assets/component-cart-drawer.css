@@ -599,6 +599,14 @@ cart-drawer-remove-button {
   margin-top: 15px;
 }
 
+/* REBUY */
+.cart-drawer .cart-drawer__items .rebuy-widget .rebuy__header {
+  text-align: center;
+  marign: 20px 0 10px;
+  font-weight: 500;
+  font-family: louize;
+}
+
 .cart-drawer .cart-drawer__items .rebuy-widget {
   padding: 15px 20px 15px 8px;
 }
