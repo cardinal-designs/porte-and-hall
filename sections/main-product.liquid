@@ -356,6 +356,13 @@
               {% assign number_blocks = number_blocks | plus: 1 %}
             {%- endfor -%}  
             {% endcomment %}
+                {% assign small_text1 = 0 %}
+                {% for block in other_sizes %} 
+                 {%- assign current_size = block.title | split: " | " -%}
+                  {% if current_size contains 'XL Runner' %}
+                    {% assign small_text1 = 1 %}
+                  {% endif %}
+                {% endfor %}
 
             {%- if other_sizes != blank and section.settings.shop_more_below == true -%}
               {%- capture other_size_links -%}
@@ -373,7 +380,7 @@
 
                 <a 
                   style="order: {{ active_order }};"
-                  class="{% if active_order == 3 %}small_button_text{% endif %} other-sizes__button active" 
+                  class="{% if small_text1 == 1 %}small_button_text{% endif %} other-sizes__button active" 
                   href="{{ product.url }}"
                 >
                   <span>{{ product_size }}</span>
