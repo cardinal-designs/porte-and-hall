@@ -66,7 +66,7 @@
 
 <script>
 
-  // Function to calculate and set the total height as a CSS variable
+// Function to calculate and set the total height as a CSS variable
 function setCartFooterHeight() {
     // Select all elements with the class 'cart-drawer__footer' and attribute 'data-initialized="true"'
     const footerElements = document.querySelectorAll('.cart-drawer__footer[data-initialized="true"]');
@@ -100,9 +100,34 @@ function setCartFooterHeight() {
     console.log(`Total height of cart-drawer__footer elements with data-initialized="true": ${totalHeight}px`);
 }
 
-// Use the load event to ensure all resources are loaded
+// Function to observe changes in the DOM
+function observeDOMChanges() {
+    const observer = new MutationObserver((mutationsList) => {
+        // Check each mutation record
+        for (let mutation of mutationsList) {
+            // Check if nodes were added to the cart-drawer__footer elements
+            if (mutation.type === 'childList') {
+                setCartFooterHeight();
+            }
+        }
+    });
+
+    // Target nodes to observe
+    const footerElements = document.querySelectorAll('.cart-drawer__footer');
+
+    // Configuration of the observer
+    const config = { childList: true, subtree: true };
+
+    // Start observing each footer element for child additions
+    footerElements.forEach(element => {
+        observer.observe(element, config);
+    });
+}
+
+// Ensure the script runs after the DOM content is fully loaded
 window.addEventListener('load', () => {
     setCartFooterHeight();
+    observeDOMChanges();
 });
 
 
