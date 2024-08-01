@@ -148,6 +148,8 @@ if (cartDrawerElement) {
 
   // }));
 
+  let sections = ['cart-icon-bubble', document.getElementById('cart-drawer__content').dataset.id]
+
   document.addEventListener('rebuy:cart.ready', (event) => { 
     console.log('rebuy:cart.ready event', event.detail); 
     console.log("Rebuy1", Rebuy)
@@ -159,7 +161,7 @@ if (cartDrawerElement) {
       const elementToReplace =
         document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
       elementToReplace.innerHTML =
-        cartDrawerInstance.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
+        cartDrawerInstance.getSectionInnerHTML(sections[section.section], section.selector);
   
     }));
   });
@@ -170,7 +172,7 @@ if (cartDrawerElement) {
       const elementToReplace =
         document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
       elementToReplace.innerHTML =
-        cartDrawerInstance.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
+        cartDrawerInstance.getSectionInnerHTML(sections[section.section], section.selector);
   
     }));
   });
