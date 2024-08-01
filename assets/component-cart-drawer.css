@@ -577,7 +577,7 @@ cart-drawer-remove-button {
 
 /* Rebuy Block CSS [START] */
 
-.cart-drawer__footer .single__product {
+.cart-drawer .cart-drawer__items .single__product {
   margin-bottom: 15px;
 }
 
@@ -590,11 +590,11 @@ cart-drawer-remove-button {
   font-family: louize;
 }
 
-.cart-drawer .cart-drawer__footer {
+.cart-drawer .cart-drawer__items {
   background: #fff;
 }
 
-.cart-drawer .cart-drawer__footer .cart-drawer__subtotal-wrapper {
+.cart-drawer .cart-drawer__items .cart-drawer__subtotal-wrapper {
   border-top: 1px solid var(--beige);
   margin-top: 15px;
 }
