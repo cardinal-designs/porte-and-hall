@@ -600,6 +600,10 @@ cart-drawer-remove-button {
 }
 
 /* REBUY */
+.cart-drawer__rebuy {
+  padding-top: 20px;
+}
+
 .cart-drawer__rebuy .rebuy__header {
   text-align: center;
   marign: 20px 0 10px;
