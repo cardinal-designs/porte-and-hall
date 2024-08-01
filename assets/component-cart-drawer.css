@@ -548,9 +548,9 @@ cart-drawer-remove-button {
  height: calc(100vh - 332px);
 }
 @media (max-width:769px){
-  /* .cart-drawer .cart-drawer__items{
+  .cart-drawer .cart-drawer__items{
     height: calc(100vh - 291px);
-  } */
+  }
   .template-cart .cart-text-with-icon{
     justify-content: center;
   }
