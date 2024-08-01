@@ -368,7 +368,7 @@
                   {% elsif product.handle contains 'area-mat' %}
                     {% assign active_order = 4 %}
                   {% endif %}
-
+{{ product.handle }}
                 <a 
                   style="order: {{ active_order }};"
                   class="{% if number_blocks == 3 %}small_button_text{% endif %} other-sizes__button active" 
