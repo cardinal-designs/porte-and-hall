@@ -1093,7 +1093,7 @@ variant-selects {
   }
   
   .small_button_text .other-sizes__dimension {
-    font-size: 12px;
+    font-size: 12px !important;
   }
 }
 
