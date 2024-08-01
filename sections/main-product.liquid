@@ -350,11 +350,7 @@
               <p class="product__restock-note body">{{ product.metafields.custom.restock_date }}</p>
             {% endif %}
 
-            {% assign number_blocks = 0 %}    
-            {%- for block in other_size_links -%}
-              {% assign number_blocks = number_blocks | plus: 1 %}
-            {%- endfor -%}  
-{{ number_blocks }}
+
             {%- if other_sizes != blank and section.settings.shop_more_below == true -%}
               {%- capture other_size_links -%}
                 {%- comment -%} Current Product Size {%- endcomment -%}
@@ -368,7 +364,11 @@
                   {% elsif product.handle contains 'area-mat' %}
                     {% assign active_order = 4 %}
                   {% endif %}
-
+            {% assign number_blocks = 0 %}    
+            {%- for block in other_size_links -%}
+              {% assign number_blocks = number_blocks | plus: 1 %}
+            {%- endfor -%}  
+{{ number_blocks }}
                 <a 
                   style="order: {{ active_order }};"
                   class="{% if number_blocks == 3 %}small_button_text{% endif %} other-sizes__button active" 
