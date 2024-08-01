@@ -65,33 +65,43 @@
 </cart-drawer>
 
 <script>
-  // Function to calculate and display the total height of elements with the class 'cart-drawer__footer'
-function calculateTotalHeight() {
+  // Function to calculate and set the total height as a CSS variable
+function setCartFooterHeight() {
     // Select all elements with the class 'cart-drawer__footer'
     const footerElements = document.querySelectorAll('.cart-drawer__footer');
 
     // Initialize a variable to keep track of the total height
     let totalHeight = 0;
 
-    // Iterate through each footer element
+    // Iterate through each footer element to calculate the total height
     footerElements.forEach(element => {
         // Get the computed style of the element
         const style = window.getComputedStyle(element);
         
-        // Get the element's height and convert it to a number
-        const height = parseFloat(style.height);
+        // Get the element's height including margins
+        const height = element.offsetHeight;
+        const marginTop = parseFloat(style.marginTop);
+        const marginBottom = parseFloat(style.marginBottom);
         
-        // Add the height to the totalHeight variable
-        totalHeight += height;
+        // Add the total height (including margins) to the totalHeight variable
+        totalHeight += height + marginTop + marginBottom;
     });
 
-    // Print the total height
+    // Select the cart-drawer element
+    const cartDrawer = document.querySelector('.cart-drawer');
+
+    // Set the CSS variable --cart-footer-height on the cart-drawer element
+    if (cartDrawer) {
+        cartDrawer.style.setProperty('--cart-footer-height', `${totalHeight}px`);
+    }
+
+    // Optionally, log the result for debugging purposes
     console.log(`Total height of cart-drawer__footer elements: ${totalHeight}px`);
 }
 
 // Ensure the script runs after the DOM content is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    calculateTotalHeight();
+    setCartFooterHeight();
 });
 
 </script>
