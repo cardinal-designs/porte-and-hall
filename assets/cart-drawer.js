@@ -140,18 +140,40 @@ const cartDrawerElement = document.querySelector('cart-drawer');
 if (cartDrawerElement) {
   const cartDrawerInstance = new CartDrawer();
   cartDrawerInstance.open();
-  console.log("comming", cartDrawerInstance)
+  // cartDrawerInstance.getSectionsToRender().forEach((section => {
+  //   const elementToReplace =
+  //     document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
+  //   elementToReplace.innerHTML =
+  //     cartDrawerInstance.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
+
+  // }));
+
+  document.addEventListener('rebuy:cart.ready', (event) => { 
+    console.log('rebuy:cart.ready event', event.detail); 
+    console.log("Rebuy1", Rebuy)
+  });
+  document.addEventListener('rebuy:cart.add', (event) => { 
+    console.log('rebuy:cart.add event', event.detail); 
+    console.log("Rebuy2", Rebuy)
+    cartDrawerInstance.getSectionsToRender().forEach((section => {
+      const elementToReplace =
+        document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
+      elementToReplace.innerHTML =
+        cartDrawerInstance.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
+  
+    }));
+  });
+  document.addEventListener('rebuy:cart.change', (event) => { 
+    console.log('rebuy:cart.change event', event.detail); 
+    console.log("Rebuy3", Rebuy)
+    cartDrawerInstance.getSectionsToRender().forEach((section => {
+      const elementToReplace =
+        document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
+      elementToReplace.innerHTML =
+        cartDrawerInstance.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
+  
+    }));
+  });
 }
 
-document.addEventListener('rebuy:cart.ready', (event) => { 
-  console.log('rebuy:cart.ready event', event.detail); 
-  console.log("Rebuy1", Rebuy)
-});
-document.addEventListener('rebuy:cart.add', (event) => { 
-  console.log('rebuy:cart.add event', event.detail); 
-  console.log("Rebuy2", Rebuy)
-});
-document.addEventListener('rebuy:cart.change', (event) => { 
-  console.log('rebuy:cart.change event', event.detail); 
-  console.log("Rebuy3", Rebuy)
-});
+
