@@ -19,10 +19,13 @@
               {% for item in cart.items %}
                 {% render 'cart-item' item: item, idx: forloop.index %}
               {% endfor %}
-              <div class="single__product">
-                <div data-rebuy-id="161287"></div>
+              <div class="cart-drawer__rebuy">
+                <h4>Upsell Products</h4>
+                <div class="single__product">
+                  <div data-rebuy-id="161287"></div>
+                </div>
+                <div data-rebuy-id="161289"></div>
               </div>
-              <div data-rebuy-id="161289"></div>
             </div>
             <div class="cart-drawer__footer">
               <div class="cart-drawer__subtotal-wrapper" id="cart-drawer-subtotal">
