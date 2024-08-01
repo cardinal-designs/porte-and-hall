@@ -156,7 +156,6 @@ function updateMainCart(Rebuy) {
     })
     .finally(() => {
       setTimeout(() => {
-        console.log('This message is displayed after 2 seconds');
         if (Rebuy) {
           Rebuy.init();
         }
@@ -168,49 +167,10 @@ document.addEventListener('rebuy:cart.ready', (event) => {
     Rebuy.init();
 });
 document.addEventListener('rebuy:cart.add', (event) => { 
-  console.log('rebuy:cart.add event', event.detail); 
-  console.log("Rebuy2", Rebuy)
   updateMainCart(Rebuy)
 });
-  document.addEventListener('rebuy:cart.change', (event) => { 
-    console.log('rebuy:cart.change event', event.detail); 
-    console.log("Rebuy3", Rebuy)
-    updateMainCart(Rebuy)
-  });
-
-
-// const cartDrawerElement = document.querySelector('cart-drawer');
-// if (cartDrawerElement) {
-//   const cartDrawerInstance = new CartDrawer();
-
-//   document.addEventListener('rebuy:cart.ready', (event) => { 
-//     console.log('rebuy:cart.ready event', event.detail); 
-//     console.log("Rebuy1", Rebuy)
-//     Rebuy.init();
-//   });
-//   document.addEventListener('rebuy:cart.add', (event) => { 
-//     console.log('rebuy:cart.add event', event.detail); 
-//     console.log("Rebuy2", Rebuy)
-//     let parsedStates = event.detail?.cart?.cart;
-//     cartDrawerInstance.getSectionsToRender().forEach((section => {
-//       const elementToReplace =
-//         document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-//       elementToReplace.innerHTML =
-//         cartDrawerInstance.getSectionInnerHTML(sections[section.section], section.selector);
-  
-//     }));
-//   });
-//   // document.addEventListener('rebuy:cart.change', (event) => { 
-//   //   console.log('rebuy:cart.change event', event.detail); 
-//   //   console.log("Rebuy3", Rebuy)
-//   //   cartDrawerInstance.getSectionsToRender().forEach((section => {
-//   //     const elementToReplace =
-//   //       document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-//   //     elementToReplace.innerHTML =
-//   //       cartDrawerInstance.getSectionInnerHTML(sections[section.section], section.selector);
-  
-//   //   }));
-//   // });
-// }
+document.addEventListener('rebuy:cart.change', (event) => { 
+  updateMainCart(Rebuy)
+});
 
 
