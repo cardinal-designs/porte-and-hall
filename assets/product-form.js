@@ -80,7 +80,7 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
         this.cartDrawer.open();
         setTimeout(function(){
           if(Rebuy){
-            Rebuy.reinit();
+            Rebuy.init();
           }
         }, 1000)
       });
