@@ -599,8 +599,8 @@ cart-drawer-remove-button {
   margin-top: 15px;
 }
 
-.rebuy-widget {
-  padding: 0;
+.cart-drawer .cart-drawer__items .rebuy-widget {
+  padding: 15px 20px 15px 8px;
 }
 
 .rebuy-widget .rebuy-product-grid.large-carousel, 
