@@ -156,7 +156,7 @@ function updateMainCart(Rebuy) {
       console.error(e);
     })
     .finally({
-      if(Rebuy) Rebuy.init();
+      if(Rebuy){Rebuy.init()}
     });
 }
 
