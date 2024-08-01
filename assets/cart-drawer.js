@@ -154,16 +154,13 @@ function updateMainCart(Rebuy) {
     .catch((e) => {
       console.error(e);
     })
-    .finally({
-      setTimeout(() => { console.log('This message is displayed after 2 seconds'); }, 2000);
-
-
-
-
-
-      // setTimeout(function (){
-      //   if(Rebuy){Rebuy.init()}
-      // }, 1000)
+    .finally(() => {
+      setTimeout(() => {
+        console.log('This message is displayed after 2 seconds');
+        if (Rebuy) {
+          Rebuy.init();
+        }
+      }, 2000);
     });
 }
 
