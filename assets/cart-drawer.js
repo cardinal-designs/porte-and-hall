@@ -136,8 +136,13 @@ class CartDrawer extends HTMLElement {
 
 customElements.define('cart-drawer', CartDrawer);
 
+const cartDrawerElement = document.querySelector('cart-drawer');
+if (cartDrawerElement) {
+  const cartDrawerInstance = new CartDrawer();
+  cartDrawerInstance.open();
+  console.log("comming", cartDrawerInstance)
+}
 
-console.log("comming", CartDrawer.open())
 document.addEventListener('rebuy:cart.ready', (event) => { 
   console.log('rebuy:cart.ready event', event.detail); 
   console.log("Rebuy1", Rebuy)
