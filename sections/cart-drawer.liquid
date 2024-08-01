@@ -64,6 +64,38 @@
   </div>
 </cart-drawer>
 
+<script>
+  // Function to calculate and display the total height of elements with the class 'cart-drawer__footer'
+function calculateTotalHeight() {
+    // Select all elements with the class 'cart-drawer__footer'
+    const footerElements = document.querySelectorAll('.cart-drawer__footer');
+
+    // Initialize a variable to keep track of the total height
+    let totalHeight = 0;
+
+    // Iterate through each footer element
+    footerElements.forEach(element => {
+        // Get the computed style of the element
+        const style = window.getComputedStyle(element);
+        
+        // Get the element's height and convert it to a number
+        const height = parseFloat(style.height);
+        
+        // Add the height to the totalHeight variable
+        totalHeight += height;
+    });
+
+    // Print the total height
+    console.log(`Total height of cart-drawer__footer elements: ${totalHeight}px`);
+}
+
+// Ensure the script runs after the DOM content is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    calculateTotalHeight();
+});
+
+</script>
+
 {% schema %}
 {
   "name": "Cart Drawer",
