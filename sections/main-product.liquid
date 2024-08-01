@@ -406,13 +406,6 @@
                 </a>
 
                 {%- comment -%} Other Sizes {%- endcomment -%}
-                {% assign small_text = 0 %}
-                {% for block in other_sizes %} 
-                 {%- assign current_size = block.title | split: " | " -%}
-                  {% if current_size contains 'XL Runner' %}
-                    {% assign small_text = 1 %}
-                  {% endif %}
-                {% endfor %}
                
                 {%- for block in other_sizes -%}  
                   {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
@@ -424,7 +417,7 @@
                     <a 
                       data-dd="{{ grouped_collection.title }}"
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% endif %} ;"
-                      class="{% if small_text == 1 %}small_button_text{% endif %} other-sizes__button" 
+                      class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
                       href="{{ match.first.url }}"
                     >
                       <span>{{ current_size.last }}</span>
