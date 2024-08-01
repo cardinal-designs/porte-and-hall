@@ -64,45 +64,6 @@
   </div>
 </cart-drawer>
 
-<script>
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Function to check if the div with data-rebuy-id is properly loaded
-    function isRebuyLoaded() {
-        const rebuyDiv = document.querySelector('[data-rebuy-id]');
-        // Check if the div exists and has content
-        return rebuyDiv && rebuyDiv.offsetHeight > 0;
-    }
-
-    // Function to set the footer height variable
-    function setFooterHeight() {
-        const cartDrawerFooter = document.getElementById('cart-drawer__footer');
-        const footerHeight = cartDrawerFooter.offsetHeight;
-
-        // Set the CSS variable for footer height
-        const cartDrawer = document.getElementById('cart-drawer');
-        cartDrawer.style.setProperty('--cart-footer-height', `${footerHeight}px`);
-    }
-
-    // Function to execute when the rebuy div is loaded
-    function onRebuyLoaded() {
-        if (isRebuyLoaded()) {
-            setFooterHeight();
-        } else {
-            // If the rebuy div is not loaded yet, check again after a delay
-            setTimeout(onRebuyLoaded, 100); // 100 ms delay
-        }
-    }
-
-    // Initial check
-    onRebuyLoaded();
-});
-
-
-
-</script>
-
 {% schema %}
 {
   "name": "Cart Drawer",
