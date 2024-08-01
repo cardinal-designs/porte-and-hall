@@ -99,10 +99,11 @@ function setCartFooterHeight() {
     console.log(`Total height of cart-drawer__footer elements: ${totalHeight}px`);
 }
 
-// Ensure the script runs after the DOM content is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
+// Use the load event to ensure all resources are loaded
+window.addEventListener('load', () => {
     setCartFooterHeight();
 });
+
 
 </script>
 
