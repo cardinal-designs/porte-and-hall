@@ -221,6 +221,7 @@
     },
     "reviews": {
       "type": "reviews",
+      "disabled": true,
       "settings": {
         "heading": ""
       }
@@ -239,7 +240,7 @@
       ],
       "settings": {
         "include_margins": true,
-        "heading": "Rave Reviews",
+        "heading": "",
         "section_reviews": true
       }
     },
