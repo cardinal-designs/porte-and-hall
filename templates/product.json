@@ -221,16 +221,26 @@
     },
     "reviews": {
       "type": "reviews",
+      "disabled": true,
       "settings": {
         "heading": ""
       }
     },
     "168172537899ce8b94": {
       "type": "apps",
-      "disabled": true,
+      "blocks": {
+        "judge_me_reviews_review_widget_GBTbQT": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_GBTbQT"
+      ],
       "settings": {
         "include_margins": true,
-        "heading": "Rave Reviews",
+        "heading": "",
         "section_reviews": true
       }
     },
@@ -241,7 +251,9 @@
         "background": "",
         "show_metafield_style": false,
         "collection": "shop-all",
-        "button_text": "Shop now"
+        "button_text": "Shop now",
+        "bottom_button_text": "",
+        "bottom_button_link": ""
       }
     },
     "fan-motif": {

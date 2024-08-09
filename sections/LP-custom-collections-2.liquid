@@ -4,10 +4,6 @@
     background: #eeefef;
   }
 
-  .stamped-badge-caption {
-    font-size: 12px;
-    line-height: 1.9;
-  }
 
   /* .collection-col.index-1 .collection-col-inner.product-1 {
     order: 2;
@@ -33,10 +29,6 @@
     order: 3;
   }  */
 
-  .stamped-product-reviews-badge {
-    margin-top: 2px;
-  }
-
   [data-hidden-swatches] {
     font-size: 14px;
     line-height: 1;
@@ -45,10 +37,6 @@
   .price_rating .blue {
     margin-left: 8px;
     margin-right: 8px;
-  }
-
-  .stamped-fa-star:before {
-    font-size: 16px;
   }
 
   .custom-collection .page-width{
@@ -280,10 +268,6 @@
     text-align: left;
   }
 
-  .stamped-fa-star:before {
-    font-size: 14px !important;
-  }
-
   @media (max-width:1200px){
     .custom-collection .page-width{
       padding: 0 40px;
@@ -463,23 +447,10 @@
     flex-wrap: wrap;
   }
 
-  .stamped-badge {
-    flex-wrap: wrap;
-    display: flex;
-  }
-
   .other-sizes__button {
     max-width: 137px;
   }
 
-  .stamped-badge-caption[data-reviews][data-label][data-version="2"]:after{
-    content: ")" !important;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-  }
-  
   @media (max-width:989px){
     .image_container {
       height: unset;
@@ -553,10 +524,6 @@
 
     .collection-col-inner .problem {
       gap: 8px;
-    }
-
-    .stamped-fa-star:before {
-      font-size: 20px !important;
     }
   }
 </style>
@@ -743,14 +710,9 @@
                 
                 <div class="rating-reviews">
                   <a href="{{currentProduct.url}}#rave-reviews-main">
-                  <span
-                    class="stamped-product-reviews-badge"
-                    data-id="{{ currentProduct.id }}"
-                    data-product-sku="{{currentProduct.selected_or_first_available_variant.sku}}"
-                    data-product-title="{{currentProduct.title}}"
-                    style="display: inline-block;">
-                    
-                  </span>
+                  <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'> 
+                    {{ product.metafields.judgeme.badge }} 
+                  </div> 
                   </a>
                 </div>
               
