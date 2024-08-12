@@ -816,23 +816,17 @@ cart-drawer-remove-button {
 }
 
 @media (min-width: 769px) {
-  
   .rebuy-widget .rebuy-product-grid.large-style-line .rebuy-product-block .rebuy-product-media, 
   .rebuy-recommended-products .rebuy-product-grid.large-style-line .rebuy-product-block .rebuy-product-media {
     width: 120px;
   }
-  
 }
 
-
 @media (max-width: 768px) {
-
   .slider__product .rebuy-product-block {
     width: 74% !important;
     margin-right: 2%;
-  }
-  
+  } 
 }
-
 
 /* Rebuy Block CSS [END] */
