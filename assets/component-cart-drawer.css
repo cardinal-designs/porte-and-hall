@@ -793,6 +793,20 @@ cart-drawer-remove-button {
   display: none;
 }
 
+.slider__product .rebuy-widget .super-title {
+  color: #546B82;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: louize;
+  text-transform: none;
+  letter-spacing: normal;
+  margin-bottom: -20px;
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+}
+
 @media (min-width: 769px) {
   
   .rebuy-widget .rebuy-product-grid.large-style-line .rebuy-product-block .rebuy-product-media, 
