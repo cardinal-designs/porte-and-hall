@@ -767,6 +767,10 @@ cart-drawer-remove-button {
   padding: 0 8px !important;
 }
 
+.slider__product .rebuy-widget .rebuy-product-price {
+  margin-top: 0;
+}
+
 .cart-drawer .cart-drawer__items .slider__product .rebuy-widget {
   padding-right: 0;
 }
