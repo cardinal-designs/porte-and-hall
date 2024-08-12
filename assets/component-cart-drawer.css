@@ -746,6 +746,13 @@ cart-drawer-remove-button {
   justify-content: center;
 }
 
+.slider__product .rebuy-widget .rebuy-product-title,
+.slider__product  .rebuy-widget .rebuy-money {
+  font-size: 12px;
+  line-height: 12px;
+  margin-top: 0 !important;
+}
+
 .slider__product .rebuy-widget .rebuy-product-grid.large-carousel {
   padding-bottom: 30px !important;
 }
