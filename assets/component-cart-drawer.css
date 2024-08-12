@@ -758,6 +758,7 @@ cart-drawer-remove-button {
 
 .slider__product .rebuy-widget .rebuy-product-grid.large-carousel {
   padding-bottom: 30px !important;
+  padding-top: 30px;
 }
 
 .slider__product .rebuy-widget .rebuy-product-grid.large-style-line .rebuy-product-block .rebuy-product-info {
@@ -774,9 +775,10 @@ cart-drawer-remove-button {
 
 .slider__product .rebuy-product-grid.flickity-enabled .flickity-button {
   display: flex;
-  top: 0;
+  top: 10px;
   background: transparent;
   width: 14px;
+  height: 14px;
 }
 
 @media (min-width: 769px) {
