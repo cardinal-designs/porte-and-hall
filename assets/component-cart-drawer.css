@@ -782,4 +782,14 @@ cart-drawer-remove-button {
 }
 
 
+@media (max-width: 768px) {
+
+  .slider__product .rebuy-product-block {
+    width: 74% !important;
+    margin-right: 2%;
+  }
+  
+}
+
+
 /* Rebuy Block CSS [END] */
