@@ -741,6 +741,9 @@ cart-drawer-remove-button {
 .slider__product .rebuy-widget .rebuy-product-block .rebuy-button {
   padding: 8px 12px !important;
   font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slider__product .rebuy-widget .rebuy-product-grid.large-carousel {
