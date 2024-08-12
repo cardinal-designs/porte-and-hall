@@ -722,6 +722,13 @@ cart-drawer-remove-button {
   border-top: 1px solid var(--beige);
 }
 
+.slider__product .rebuy-product-block {
+  padding: 8px;
+  border-radius: 10px;
+  border-top: 1px solid var(--beige);
+  background: var(--beige-secondary);
+}
+
 @media (min-width: 769px) {
   
   .rebuy-widget .rebuy-product-grid.large-style-line .rebuy-product-block .rebuy-product-media, 
