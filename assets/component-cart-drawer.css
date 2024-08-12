@@ -743,6 +743,10 @@ cart-drawer-remove-button {
   font-size: 12px;
 }
 
+.slider__product .rebuy-widget .rebuy-product-grid.large-carousel {
+  padding-bottom: 30px !important;
+}
+
 @media (min-width: 769px) {
   
   .rebuy-widget .rebuy-product-grid.large-style-line .rebuy-product-block .rebuy-product-media, 
