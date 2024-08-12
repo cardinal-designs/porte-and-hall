@@ -775,6 +775,8 @@ cart-drawer-remove-button {
 .slider__product .rebuy-product-grid.flickity-enabled .flickity-button {
   display: flex;
   top: 0;
+  background: transparent;
+  width: 14px;
 }
 
 @media (min-width: 769px) {
