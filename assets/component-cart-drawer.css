@@ -781,6 +781,15 @@ cart-drawer-remove-button {
   height: 14px;
 }
 
+.slider__product .rebuy-widget .flickity-button.previous {
+  right: 50px;
+  left: auto;
+}
+
+.slider__product .rebuy-widget .flickity-button.next {
+  right: 20px;
+}
+
 @media (min-width: 769px) {
   
   .rebuy-widget .rebuy-product-grid.large-style-line .rebuy-product-block .rebuy-product-media, 
