@@ -805,7 +805,7 @@ cart-drawer-remove-button {
   margin-bottom: -20px !important;
   position: relative;
   z-index: 2;
-  display: inline-block;
+  display: flex;
 }
 
 @media (min-width: 769px) {
