@@ -320,7 +320,6 @@ cart-drawer-remove-button {
   cursor: pointer;
 }
 
-
 .cart-upsell__container-right {
   text-align: right;
   display: flex;
@@ -395,7 +394,6 @@ cart-drawer-remove-button {
   -webkit-transform: translateX(100%);
   transition: .4s ease-in-out;
 }
-
 
 .cart-drawer__second-slide.show-second {
   transform: translateX(0);
