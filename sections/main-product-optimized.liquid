@@ -361,6 +361,18 @@
                 {% endunless %}
               {% endif %}
 
+             {% assign small_text_1 = 0 %}
+            {% for block in other_sizes %} 
+               {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
+              {%- assign current_size = block.title | split: " | " -%}
+              {%- assign format_color = "- " | append: active_style | append: " /" -%}
+              {%- assign match_name = block.title | replace: "|",  format_color -%}
+              {%- assign match = block.products | where: 'title', match_name -%}
+              {% if match != blank %}
+                {% assign small_text_1 = small_text_1 | plus: 1 %}
+              {% endif %}
+            {% endfor %}
+
             {%- if other_sizes != blank and section.settings.shop_more_below == true -%}
               {%- capture other_size_links -%}
                 {%- comment -%} Current Product Size {%- endcomment -%}
@@ -377,7 +389,7 @@
 
                 <a 
                   style="order: {{ active_order }};"
-                  class="2 other-sizes__button active" 
+                  class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button active" 
                   href="{{ product.url }}"
                 >
                   <span>{{ product_size }}</span>
@@ -387,6 +399,8 @@
                     {% else %}
                       <span class="other-sizes__dimension">2' 3" x 3'</span>
                     {% endif %}
+                  {% elsif product_size == 'XL Runner' %}
+                     <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
                   {% elsif product_size == 'Runner' %}
                     {% if product.handle contains 'innerweave' %}
                       <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
@@ -412,8 +426,8 @@
 
                   {%- if match != blank -%}
                     <a 
-                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'Area Mat'  %}3{% endif %} ;"
-                      class="other-sizes__button" 
+                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% endif %} ;"
+                      class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
                       href="{{ match.first.url }}"
                     >
                       <span>{{ current_size.last }}</span>
@@ -423,6 +437,8 @@
                         {% else %}
                           <span class="other-sizes__dimension">2' 3" x 3'</span>
                         {% endif %}
+                      {% elsif current_size.last == 'XL Runner' %}
+                        <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
                       {% elsif current_size.last == 'Runner' %}
                         {% if current_size.first == 'The Innerweave' %}
                           <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
