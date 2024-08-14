@@ -1071,31 +1071,6 @@ variant-selects {
   transform: rotate(0deg);
 }
 
-.small_button_text {
-  padding: 14px;
-}
-
-.small_button_text span:first-of-type {
-  font-size: 16px;
-}
-
-.small_button_text .other-sizes__dimension {
-  font-size: 14px;
-}
-
-@media screen and (max-width: 900px) {
-  .small_button_text {
-    padding: 8px 4px !important;
-  }
-  
-  .small_button_text span:first-of-type {
-    font-size: 14px;
-  }
-  
-  .small_button_text .other-sizes__dimension {
-    font-size: 12px !important;
-  }
-}
 
 /* ============ optimized-pdp-fold ============== */
 
@@ -1170,5 +1145,31 @@ variant-selects {
      max-width: 10px;
      max-height: 10px;
    }
+}
+
+.small_button_text {
+  padding: 14px;
+}
+
+.small_button_text span:first-of-type {
+  font-size: 16px;
+}
+
+.small_button_text .other-sizes__dimension {
+  font-size: 14px;
+}
+
+@media screen and (max-width: 900px) {
+  .small_button_text {
+    padding: 8px 4px !important;
+  }
+  
+  .small_button_text span:first-of-type {
+    font-size: 14px;
+  }
+  
+  .small_button_text .other-sizes__dimension {
+    font-size: 12px !important;
+  }
 }
 
