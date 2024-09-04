@@ -24,10 +24,16 @@
     <div class="product-carousel__container-new product-carousel__container">
       <div class="swiper-wrapper">
         {% for block in section.blocks %}
+          {% for collection in block.settings.collections %}
+            {% if collection.title contains ' |' %}
+              {% assign grouped_collection = collection %}
+            {% endif %}
+          {% endfor %}
           <div class="product-carousel__item">
             {% render 'grouped-product-card',
               product_card_product: all_products[block.settings.product],
-              title: all_products[block.settings.product].title
+              collection: grouped_collection,
+              title: grouped_collection.title
             %}
           </div>
         {% endfor %}
