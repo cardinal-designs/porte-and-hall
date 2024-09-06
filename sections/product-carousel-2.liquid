@@ -51,11 +51,18 @@
     line-height: 62px;
     letter-spacing: 0.96px;
   }
-  .collection-row, .collection-row-inner {
+  .collection-row-inner {
     display: grid;
     grid-template-columns: 1fr;
     gap: 56px;
   }
+
+  .collection-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  
   .collection-row .collection-col{
     /* background: #EEEFEF; */
     padding:36px 24px;
