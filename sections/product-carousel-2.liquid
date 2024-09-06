@@ -671,22 +671,21 @@
             
             <div class="collection-col-inner text">
               <div>
-              <div class="title-swatch_container">
-                <h6>{{ block.settings.title }}</h6>
-                 <div class="rating-reviews">
+                <div class="rating-reviews">
                   <a href="{{all_products[block.settings.product].url}}#rave-reviews-main">
                   <div class='jdgm-widget jdgm-preview-badge' data-id='{{ all_products[block.settings.product].id }}'> 
                     {{ all_products[block.settings.product].metafields.judgeme.badge }} 
                   </div> 
                   </a>
                 </div>
+              <div class="title-swatch_container">
+                <h6>{{ block.settings.title }}</h6>
+                <div class="price_rating">
+                  <p>{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
+                </div>
               </div>
               <div class="hide-large swatch_container">
                 {{ color_swatch_list }}
-              </div>
-
-              <div class="price_rating">
-                <p>{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
               </div>
               <div class="hide-medium swatch_container">
               {{ color_swatch_list }}
