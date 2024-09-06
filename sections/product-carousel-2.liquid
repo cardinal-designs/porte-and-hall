@@ -1,99 +1,870 @@
-{{ 'component-product-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'section-product-carousel.css' | asset_url | stylesheet_tag }}
-
-{% style %}
-  .product-card .product-card__metafield-style {
-    background: #546b82;
-    color: #fff;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 8px;
-    border-radius: 24px;
-    text-transform: uppercase;
-    margin-top: 4px;
-    margin-bottom: 4px;
-  }
-{% endstyle %}
-
-<div class="product-carousel__inner product-carousel__new">
-  <div class="product-carousel__heading">
-    <h2 class="blue">{{ section.settings.heading }}</h2>
-  </div>
-
-    <div class="product-carousel__container-new product-carousel__container">
-      <div class="swiper-wrapper">
-        {% for block in section.blocks %}
-          {% for collection in block.settings.collections %}
-            {% if collection.title contains ' |' %}
-              {% assign grouped_collection = collection %}
-            {% endif %}
-          {% endfor %}
-          <div class="product-carousel__item">
-            {% render 'product-card',
-              product_card_product: all_products[block.settings.product],
-              collection: grouped_collection,
-              title: grouped_collection.title
-            %}
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-</div>
-
 <style>
-  {% if section.settings.background != blank %}
-    #shopify-section-{{section.id }}.product-carousel {
-      background: {{ section.settings.background }};
+  .custom-collection{
+    padding: 56px 0;
+    background: #eeefef;
+  }
+
+
+  /* .collection-col.index-1 .collection-col-inner.product-1 {
+    order: 2;
+  }
+  
+  .collection-col.index-1 .collection-col-inner.text {
+    order: 1;
+  }
+  
+  .collection-col.index-1 .collection-col-inner.image {
+    order: 3;
+  }  
+
+  .collection-col.index-0 .collection-col-inner.product-1 {
+    order: 1;
+  }
+  
+  .collection-col.index-0 .collection-col-inner.text {
+    order: 2;
+  }
+  
+  .collection-col.index-0 .collection-col-inner.image {
+    order: 3;
+  }  */
+
+  [data-hidden-swatches] {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .price_rating .blue {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  .custom-collection .page-width{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .custom-collection header.SectionHeader .SectionHeader__Heading{
+    line-height: 62px;
+    letter-spacing: 0.96px;
+  }
+  .collection-row, .collection-row-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    width: 100%;
+    height: 100%;
+  }
+  .collection-row .collection-col{
+    /* background: #EEEFEF; */
+    padding:36px 24px;
+    position:relative;
+  }
+  .collection-row .collection-col:before {
+    content:"";
+    background: white;
+    width: 100%;
+    /* height: calc(100% - 34px); */
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .collection-row .collection-col .collection-col-inner:before{
+    display:none;
+  }
+
+  .collection-row .collection-col h6{
+    color: #30383D;
+    font-size: 32px;
+    line-height: 36px;
+    letter-spacing: 0.96px;
+    margin:0 0 8px;
+    position:relative;
+    font-weight: 500;
+    font-family: louize;
+  }
+  .collection-row .collection-col .badge{
+    border-radius: 34px;
+    background: #546B82;
+    display: inline-flex;
+    padding: 8px 20px;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 26px;
+    border: 0;
+    letter-spacing: .1px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    z-index: 1;
+    width: max-content;
+    margin-top: -15px;
+  }
+
+  .collection-row .collection-col .collection-row-inner {
+    gap: 0px;
+  }
+  .collection-row .collection-col .collection-row-inner .collection-col-inner {
+    background: transparent;
+    /* text-align: center; */
+    position: relative;
+  }
+
+  .custom-collection .product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    transition: opacity .4s ease-in-out;
+    height: 100%;
+    border-right: 1px solid #CAD2D3;
+    border-bottom: 1px solid #CAD2D3;
+    border-left: 1px solid #CAD2D3;
+    background: #f4f2ee;
+    padding-bottom:8px;
+    gap: 4px;
+  }
+  .custom-collection .product-card .product-card__image{
+    aspect-ratio: 1/1;
+    width: 100%;
+    position: relative;
+  }
+  .custom-collection .product-card .aspect-ratio{
+    transition: opacity .4s ease-in-out;
+  }
+  .custom-collection .product-card .product-card__swatches{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+    margin-bottom: 16px;
+    padding:0 6px;
+  }
+  .custom-collection .product-card *{
+    width:100%;
+  }
+  .custom-collection .product-card .product-card__swatches button{
+    width:auto;
+    color: #546B82;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.28px;
+     font-family: brandon;
+  }
+  .custom-collection .product-card .product-card__swatches .product-card__swatch{
+    width: 24px;
+    height: 24px;
+    aspect-ratio: 1/1;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    cursor: pointer;
+    opacity: 1;
+    transition: all .3s ease;
+    position: relative;
+  }
+
+  .custom-collection .product-card .product-card__title{
+    color: #30383D;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0.48px;
+    text-align:center;
+    text-transform: unset;
+    padding-top: 8px;
+  }
+  .custom-collection .product-card .product-card__title span{
+    display:none;
+  }
+  .custom-collection .product-card .product-content{
+    border: 1px solid #CAD2D3;
+    border-top:0px;
+    background:#FFF;
+    padding: 4px 10px 14px;
+  }
+  .custom-collection .product-card .text-link{
+    color: #A19377;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 2px solid #A19377;
+    text-underline-offset:0px;
+    text-decoration: none;
+    padding: 8px 20px 5.6px;
+    max-width: 180px;
+    margin: 0 auto;
+  }
+  .custom-collection .product-card .text-link *{
+    width:auto;
+  }
+  .custom-collection .product-card .text-link span{
+    position: relative;
+    top: 2px;
+    margin-left: 6px;
+  }
+
+  .problem svg {
+    width: 15px;
+  }
+
+  .swatch_container {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+    align-items: center;
+  }
+
+  .swatch-container a {
+    width: 24px;
+    height: 24px;
+  }
+
+  .price_rating {
+    display: flex;
+    margin-bottom: 16px;
+  }
+
+  .text-link {
+    border: 2px solid #A19377;
+    justify-content: center;
+    display: flex;
+    padding: 8px;
+    gap: 16px;
+    text-decoration: none;
+    margin-top: 24px !important;
+  }
+
+  .text-link span {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .price_rating p {
+    font-family: brandon;
+    font-size: 24px;
+    font-weight: 420;
+    line-height: 28px;
+    letter-spacing: 0.02em;
+    text-align: left;
+  }
+
+  @media (max-width:1200px){
+    .custom-collection .page-width{
+      padding: 0 40px;
     }
-  {% endif %}
+    .collection-row{
+      gap: 20px;
+    }
+    .custom-collection .product-card .product-content{
+      padding:6px 8px 12px;
+    }
+
+    .custom-collection .product-card .text-link{
+      padding: 6px 12px 5px;
+      font-size: 12px;
+    line-height: 20px;
+
+    }
+    .custom-collection .product-card .text-link svg{
+      width: 20px;
+    }
+  }
+
+  @media (max-width:989px){
+    .custom-collection{
+      padding:32px 0 40px;
+    }
+    .custom-collection .page-width{
+      padding:0 20px;
+      gap: 40px;
+    }
+    .custom-collection header.SectionHeader .SectionHeader__Heading{
+      font-size: 36px;
+      line-height: 32px;
+      letter-spacing: 0.48px;
+    }
+    .collection-row{
+      grid-template-columns:1fr;
+    }
+    .collection-row .collection-row{
+      grid-template-columns:1fr 1fr;
+    }
+    .collection-row .collection-col{
+      padding: 7px 20px 10px;
+    }
+
+   .custom-collection .product-card .product-card__title{
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      letter-spacing: 0.32px;
+    }
+    /* .custom-collection .product-card .product-card__swatches{
+      column-gap: 4px;
+      row-gap: 4px;
+    }
+    .custom-collection .product-card .product-card__swatches button{
+      font-size: 10px;
+      line-height: 12px;
+      color: #A19377;
+    }
+    .custom-collection .product-card .product-card__swatches .product-card__swatch{
+      width: 14px;
+      height: 14px;
+    } */
+    .custom-collection .product-card .text-link span {
+      top:3px;
+    }
+    /* .custom-collection .product-card .product-card__swatches {
+      margin-top: 6px;
+      margin-bottom: 16px;
+    } */
+  }
+
+  @media (max-width:768px){
+     .collection-row .collection-col h6 {
+       font-size:20px !important;
+       margin: 0px 0 0px;
+    }
+  }
+
+   @media (max-width:480px){
+     .custom-collection .product-card .text-link {
+       max-width: calc(100% - 8px);
+        margin: 0 4px;
+       text-align:center;
+     }
+   }
+
+  @media (max-width:400px){
+    .collection-row .collection-col .collection-row-inner {
+      gap:12px;
+    }
+
+  }
+
+  .custom-collection .product-card__image-label, 
+  .custom-collection .product-card__price {
+    display:none;
+  }
+
+
+  /* text section */
+  .collection-col-inner.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 32px;
+  }
+  
+  .collection-col-inner.text .title {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .collection-col-inner.text .the_problem_content {
+    font-size: 18px;
+    color: #30383d;
+    line-height: 32px;
+  }
+
+  .collection-col-inner.text .the_solution_content {
+    font-size: 14px;
+    color: #30383d;
+    margin-bottom: 8px;
+  }
+
+  .collection-col-inner.text .text-link {
+    font-size: 13px;
+  }
+
+  @media (min-width: 768px) {
+    .collection-col-inner.text .text-link {
+      font-size: 16px;
+    }    
+  }
+
+  @media (min-width: 1250px) {
+    .collection-col-inner.text .title {
+      font-size: 18px;
+    }
+
+    .collection-col-inner.text .the_problem_content {
+      font-size: 28px;
+    }
+
+    .collection-col-inner.text .the_solution_content {
+      font-size: 20px;
+    }    
+  }  
+
+  /* footer image block */
+  .collection-row .collection-col .collection-row-inner .collection-col-inner.image {
+    padding-top: 0;
+    grid-column: 1 / span 2;
+  }  
+
+  /* update columns order */
+  .collection-col-inner .problem {
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .collection-col-inner .problem .title {
+    font-size: 16px;
+  }
+
+  .image_container {
+    height: 300px;
+  }
+
+  .hide-large {
+    display: none;
+  }
+
+  .other-sizes__wrapper-links {
+    flex-wrap: wrap;
+  }
+
+  .other-sizes__button {
+    max-width: 137px;
+  }
+
+  @media (max-width:989px){
+    .image_container {
+      height: unset;
+    }
+
+    .collection-row .collection-col .collection-row-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .collection-row .collection-col {
+      padding: 0px 0px 17px;
+    }
+
+    .collection-row {
+      gap: 48px;
+    }
+
+    .text-link {
+      padding: 16px;
+      width: 100%;
+    }
+
+    .collection-col-inner.text .text-link {
+      font-size: 16px;
+      margin-top: 16px !important;
+    }
+
+    .collection-col-inner.text {
+      padding-top: 16px;
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+
+    .title-swatch_container {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .collection-row .collection-col h6 {
+      font-size: 32px !important;
+    }
+
+    .hide-medium {
+      display: none !important;
+    }
+
+    .hide-large {
+      display: block;
+    }
+
+    .swatch_container {
+      gap: 6px;
+      display: flex;
+      margin-bottom: 8px;
+    }
+
+    .swatch_container .product-card__swatch {
+      width: 24px;
+      height: 24px;
+      aspect-ratio: 1 / 1;
+      box-sizing: border-box;
+      border-radius: 50%;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      display: inline-block;
+      cursor: pointer;
+      opacity: 1;
+      transition: all .3s ease;
+    }
+
+    .collection-col-inner .problem {
+      gap: 8px;
+    }
+  }
 </style>
+
+<div class="custom-collection">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <header class="SectionHeader text-center">
+        {%- if section.settings.title != blank -%}
+          <h2 class="SectionHeader__Heading">{{ section.settings.title }}</h2>
+        {%- endif -%}
+
+        {% if section.settings.subtitle %}
+          <p>{{ section.settings.subtitle }}</p>
+        {% endif %}
+      </header>
+    {%- endif -%}
+
+    <div class="collection-row">
+      {% assign loopNum = 0 %}
+      {%- for block in section.blocks -%}
+
+        {% assign mainProduct = product %}
+        {% liquid
+          assign collection = block.settings.collection1
+          assign blockProduct = block.settings.product1
+          assign active_style = mainProduct.selected_or_first_available_variant.title
+          assign product_color = mainProduct.options_by_name['color'].values[0]
+          assign active_style = active_style | remove: product_color | remove: " / "
+
+          assign blockProductTitle = blockProduct.title | split: " / " | first
+          assign newProductTitle = blockProductTitle | append: " / " | append: active_style
+
+          assign match = collection.products | where: 'title', newProductTitle
+        %}
+
+        {% assign productUrl = block.settings.product1.url %}
+        {% if match != blank %}
+          {% assign productUrl = match.first.url %}
+        {% endif %}
+        
+
+        {% liquid
+          assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
+          capture color_swatch_list
+            assign swatch_count = 1
+            assign hidden_swatches = 0
+            for prod in block.settings.collection1.products
+               assign productType = '' 
+               if product.handle contains 'doormat' 
+                 assign productType = 'doormat' 
+               elsif product.handle contains 'runner' 
+                 assign productType = 'runner' 
+              elsif product.handle contains 'area-mat' 
+                 assign productType = 'area-mat' 
+              endif 
+            
+              if prod.handle contains productType or prod.handle contains 'outlier'
+              for option in prod.options_with_values
+                assign option_name = option.name | downcase
+                if color_label contains option_name or option_name == 'style'
+                  assign option_index = 'option' | append: forloop.index
+                  for value in option.values
+                    assign matched_variant = prod.variants | where: 'title', value
+                    
+                    if prod == product_card_product
+                      assign active_swatch = prod
+                      if matched_variant != blank
+                        assign active_swatch_link = matched_variant[0].url
+                      endif
+        
+                      assign element_classes = element_classes | append: ' product-card__active-swatch'
+                      assign active_swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
+                      assign active_swatch_tooltip_value = value
+                    else
+                      if matched_variant != blank
+                        assign swatch_link = matched_variant[0].url
+                      endif
+        
+                      if swatch_count > 3
+                        assign element_classes = 'product-card__swatch hidden'
+                        assign hidden_swatches = hidden_swatches | plus: 1
+                      else
+                        assign element_classes = 'product-card__swatch'
+                      endif
+        
+                      assign swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
+                      assign swatch_image = images[swatch_file_name]
+        
+                      echo "<a href='"
+                      echo swatch_link | default: prod.variants[0].url
+                      echo "' class='"
+                      echo element_classes
+                      echo "'"
+                      echo "style='background-image: url("
+                      echo swatch_file_name | asset_img_url
+                      echo ")' data-tooltip='"
+                      echo value | escape
+                      echo "'></a>"
+                      assign swatch_count = swatch_count | plus: 1
+                    endif
+                  endfor
+                endif
+              endfor
+             endif
+            endfor
+            
+            if hidden_swatches > 0
+              echo "<a href="
+              echo productUrl
+              echo " class='body-s blue'> "
+              echo '+'
+              echo hidden_swatches
+              echo '</a>'
+            endif
+          endcapture
+        %}
+        
+        {% unless product.title contains block.settings.title %}
+        
+        <div class="collection-col index-{{ loopNum }}">
+          <div class="collection-row-inner">
+            {% for product in block.settings.collection1.products limit: 1 %}
+              {% for collection in product.collections %}
+                {% if collection.title contains ' |' %}
+                  {% assign grouped_collection = collection %}
+                {% endif %}
+              {% endfor %}
+              
+              <div class="collection-col-inner product-1">
+                <p class="badge">
+                  {{- block.settings.badge1 -}}
+                </p>
+                {% comment %}
+                {% render 'product-card-custom',
+                  product_card_product: block.settings.product1,
+                  collection: grouped_collection,
+                  title: block.settings.product1_title,
+                  button_text: section.settings.button_text,
+                  custom_image: block.settings.product_image1
+                %}
+              {% endcomment %}
+                
+                <div class="image_container">
+                  <a href="{{ productUrl }}">
+                    {% render 'lazy-image', image: block.settings.product_image1, fade: true, classes: '' %}
+                  </a>
+                </div>
+              </div>
+            {% endfor %}
+
+            
+            
+            <div class="collection-col-inner text">
+              <div>
+              <div class="title-swatch_container">
+                <h6>{{ block.settings.title }}</h6>
+                <div class="hide-large swatch_container">
+                {{ color_swatch_list }}
+                </div>
+              </div>
+              {% assign productType = '' %}
+              {% assign currentProduct = '' %}
+              {% if product.handle contains 'doormat' %}
+                {% assign productType = 'doormat' %}
+              {% elsif product.handle contains 'runner' %}
+                {% assign productType = 'runner' %}
+              {% elsif product.handle contains 'area-mat' %}
+                {% assign productType = 'area-mat' %}
+              {% endif %}
+              {% for prod in block.settings.collection1.products %}
+                {% if prod.handle contains productType or prod.handle contains 'outlier' %}
+                  {% assign currentProduct = prod %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+
+              <div class="price_rating">
+                <p>{{ currentProduct.price | money_without_trailing_zeros }}</p>
+                
+                <span class="blue"> | </span>
+  
+                <!-- Rating code -->
+                
+                <div class="rating-reviews">
+                  <a href="{{currentProduct.url}}#rave-reviews-main">
+                  <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'> 
+                    {{ product.metafields.judgeme.badge }} 
+                  </div> 
+                  </a>
+                </div>
+              
+              </div>
+              <div class="hide-medium swatch_container">
+              {{ color_swatch_list }}
+              </div>
+              <div class="problem">              
+                {% if block.settings.check1 != blank %}
+                  <p class="title"><span>•</span> {{ block.settings.check1 }}</p>
+                {% endif %}
+                {% if block.settings.check2 != blank %}
+                  <p class="title"><span>•</span> {{ block.settings.check2 }}</p>
+                {% endif %}
+                {% if block.settings.check3 != blank %}
+                  <p class="title"><span>•</span> {{ block.settings.check3 }}</p>
+                {% endif %}
+                {% if block.settings.check4 != blank %}
+                  <p class="title"><span>•</span> {{ block.settings.check4 }}</p>
+                {% endif %}
+              </div>
+              </div>
+                <a href="{{ productUrl }}" class="text-link gold-secondary--dark product-card__link">
+                 {% if section.settings.button_text == blank %}Shop Now{% else %}{{ section.settings.button_text }}{% endif %} <span> <svg xmlns="http://www.w3.org/2000/svg" width="29" height="16" viewBox="0 0 29 16" fill="none">
+                  <path d="M28.7071 8.70711C29.0976 8.31658 29.0976 7.68342 28.7071 7.29289L22.3431 0.928932C21.9526 0.538408 21.3195 0.538408 20.9289 0.928932C20.5384 1.31946 20.5384 1.95262 20.9289 2.34315L26.5858 8L20.9289 13.6569C20.5384 14.0474 20.5384 14.6805 20.9289 15.0711C21.3195 15.4616 21.9526 15.4616 22.3431 15.0711L28.7071 8.70711ZM0 9H28V7H0V9Z" fill="#A19377"/>
+                  </svg>
+                  </span>
+                </a>
+            </div>
+            {% if block.settings.footer_image != blank %}
+            <div class="collection-col-inner image">
+              {{ block.settings.footer_image | image_url: width: 900 | image_tag: width: '100%' }}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% assign loopNum = loopNum | plus: 1 %}
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
 
 {% schema %}
 {
   "name": "Product Carousel 2",
-  "tag": "section",
-  "class": "product-carousel with-spacing",
+  "class": "LP-custom-collections",
   "settings": [
     {
-      "type": "textarea",
-      "id": "heading",
-      "label": "Heading"
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Title"
     },
     {
-      "type": "color",
-      "id": "background",
-      "label": "Background"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_metafield_style",
-      "label": "Show metafield style",
-      "default": false
-    },    
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    }
   ],
   "blocks": [
-    {
-      "type": "block",
-      "name": "Block",
-      "settings": [
-        {
-          "type": "product",
-          "id": "product",
-          "label": "Product"
-        },
-        {
-          "type": "collection",
-          "id": "collection",
-          "label": "Grouped Collection"
-        }
-      ]
-    }
-  ],
+  {
+   "type": "block",
+   "name": "Collection-col",
+   "limit":4,
+   "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Enter type"
+      },
+     {
+        "type": "header",
+        "content": "Image"
+      },
+       {
+        "type": "text",
+        "id": "badge1",
+        "label": "Enter Badge"
+      },
+      {
+        "type": "text",
+        "id": "product1_title",
+        "label": "Product title"
+      },
+      {
+        "type": "collection",
+        "id": "collection1",
+        "label": "Collection"
+      },
+      {
+        "type": "product",
+        "id": "product1",
+        "label": "Product"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image1",
+        "label": "Product image"
+      },
+     {
+        "type": "header",
+        "content": "Text"
+      },
+      {
+        "type": "text",
+        "id": "check1",
+        "label": "List Item 1"
+      },
+      {
+        "type": "text",
+        "id": "check2",
+        "label": "List Item 2"
+      },
+      {
+        "type": "text",
+        "id": "check3",
+        "label": "List Item 3"
+      },
+      {
+        "type": "text",
+        "id": "check4",
+        "label": "List Item 4"
+      },
+      {
+        "type": "text",
+        "id": "link_text",
+        "label": "Link text"
+      },
+      {
+        "type": "url",
+        "id": "link_url",
+        "label": "Link url"
+      },
+     {
+        "type": "header",
+        "content": "Footer image"
+      },
+      {
+        "type": "image_picker",
+        "id": "footer_image",
+        "label": "Footer image"
+      }     
+    ]
+  }
+
+],
   "presets": [
-    {
-      "name": "Product Carousel 2"
-    }
-  ]
+  {
+    "name": "Product Carousel 2",
+    "settings": {}
+  }
+]
 }
 {% endschema %}
