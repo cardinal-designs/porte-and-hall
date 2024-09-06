@@ -677,34 +677,18 @@
                 {{ color_swatch_list }}
                 </div>
               </div>
-              {% assign productType = '' %}
-              {% assign currentProduct = '' %}
-              {% if product.handle contains 'doormat' %}
-                {% assign productType = 'doormat' %}
-              {% elsif product.handle contains 'runner' %}
-                {% assign productType = 'runner' %}
-              {% elsif product.handle contains 'area-mat' %}
-                {% assign productType = 'area-mat' %}
-              {% endif %}
-                {{ productType }}
-              {% for prod in block.settings.collection1.products %}
-                {% if prod.handle contains productType or prod.handle contains 'outlier' %}
-                  {% assign currentProduct = prod %}
-                  {% break %}
-                {% endif %}
-              {% endfor %}
 
               <div class="price_rating">
-                <p>{{ currentProduct.price | money_without_trailing_zeros }}</p>
+                <p>{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
                 
                 <span class="blue"> | </span>
   
                 <!-- Rating code -->
                 
                 <div class="rating-reviews">
-                  <a href="{{currentProduct.url}}#rave-reviews-main">
-                  <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'> 
-                    {{ product.metafields.judgeme.badge }} 
+                  <a href="{{all_products[block.settings.product].url}}#rave-reviews-main">
+                  <div class='jdgm-widget jdgm-preview-badge' data-id='{{ all_products[block.settings.product].id }}'> 
+                    {{ all_products[block.settings.product].metafields.judgeme.badge }} 
                   </div> 
                   </a>
                 </div>
