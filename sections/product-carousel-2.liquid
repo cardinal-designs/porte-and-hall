@@ -654,19 +654,6 @@
               {% endfor %}
               
               <div class="collection-col-inner product-1">
-                <p class="badge">
-                  {{- block.settings.badge1 -}}
-                </p>
-                {% comment %}
-                {% render 'product-card-custom',
-                  product_card_product: block.settings.product1,
-                  collection: grouped_collection,
-                  title: block.settings.product1_title,
-                  button_text: section.settings.button_text,
-                  custom_image: block.settings.product_image1
-                %}
-              {% endcomment %}
-                
                 <div class="image_container">
                   <a href="{{ productUrl }}">
                     {% render 'lazy-image', image: block.settings.product_image1, fade: true, classes: '' %}
@@ -787,11 +774,6 @@
      {
         "type": "header",
         "content": "Image"
-      },
-       {
-        "type": "text",
-        "id": "badge1",
-        "label": "Enter Badge"
       },
       {
         "type": "text",
