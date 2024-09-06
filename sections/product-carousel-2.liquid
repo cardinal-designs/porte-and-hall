@@ -661,9 +661,7 @@
                 </div>
               <div class="title-swatch_container">
                 <h6>{{ block.settings.title }}</h6>
-                <div class="price_rating">
-                  <p>{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
-                </div>
+                <p>{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
               </div>
               <div class="hide-large swatch_container">
                 {{ color_swatch_list }}
