@@ -686,6 +686,7 @@
               {% elsif product.handle contains 'area-mat' %}
                 {% assign productType = 'area-mat' %}
               {% endif %}
+                {{ productType }}
               {% for prod in block.settings.collection1.products %}
                 {% if prod.handle contains productType or prod.handle contains 'outlier' %}
                   {% assign currentProduct = prod %}
