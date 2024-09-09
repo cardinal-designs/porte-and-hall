@@ -633,8 +633,7 @@
             endif
           endcapture
         %}
-        
-        {% unless product.title contains block.settings.title %}
+    
         
         <div class="collection-col index-{{ loopNum }}">
           <div class="collection-row-inner">
@@ -705,7 +704,7 @@
           </div>
         </div>
         {% assign loopNum = loopNum | plus: 1 %}
-        {% endunless %}
+
       {% endfor %}
     </div>
   </div>
