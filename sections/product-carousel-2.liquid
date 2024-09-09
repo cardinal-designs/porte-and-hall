@@ -707,8 +707,7 @@
                     {% render 'lazy-image', image: block.settings.product_image1, fade: true, classes: '' %}
                   </a>
                 </div>
-              </div>
-            {% endfor %}
+       
             <div class="collection-col-inner text">
                 <div class="rating-reviews">
                   <a href="{{all_products[block.settings.product].url}}#rave-reviews-main">
@@ -731,7 +730,8 @@
               {{ color_swatch_list }}
               </div>
             </div>
-            
+                   </div>
+            {% endfor %}
             
             <div class="collection-col-inner text list-button">
           
