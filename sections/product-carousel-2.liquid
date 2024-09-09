@@ -27,10 +27,12 @@
     letter-spacing: 0.96px;
   }
   .collection-row-inner {
-    height: 100%;
+    /* height: 100%;
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
+    flex-direction: column; */
+    display: grid;
+    grid-template-columns: 1fr;
   }
 
   .collection-row {
@@ -528,6 +530,21 @@
 
     .collection-col-inner .problem {
       gap: 8px;
+    }
+  }
+
+  @media (max-width: 768px) {
+     .image_container {
+       width: unset;
+     }
+
+    .collection-row-inner {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .collection-col-inner.text.list-button {
+      grid-column-start: 1;
+      grid-column-end: 3;
     }
   }
 </style>
