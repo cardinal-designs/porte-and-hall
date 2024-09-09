@@ -637,7 +637,7 @@
         
         <div class="collection-col index-{{ loopNum }}">
           <div class="collection-row-inner">
-            {{ block.settings.collection1.products | json }}
+            {{ block.settings.collection1.products.size }}
             {% for product in block.settings.collection1.products limit: 1 %}
               {% for collection in product.collections %}
                 {% if collection.title contains ' |' %}
