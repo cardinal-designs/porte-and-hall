@@ -637,14 +637,13 @@
         
         <div class="collection-col index-{{ loopNum }}">
           <div class="collection-row-inner">
+            {{ block.settings.collection1.products }}
             {% for product in block.settings.collection1.products limit: 1 %}
               {% for collection in product.collections %}
                 {% if collection.title contains ' |' %}
                   {% assign grouped_collection = collection %}
                 {% endif %}
               {% endfor %}
-              {{ grouped_collection }}
-              {{ block.settings.product_image1 }}
               <div class="collection-col-inner product-1">
                 <div class="image_container">
                   <a href="{{ productUrl }}">
