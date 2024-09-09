@@ -701,7 +701,7 @@
                 </div>
               <div class="title-swatch_container">
                 <h6>{{ block.settings.title }}</h6>
-                <p>{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
+                <p class="hide-mobile">{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
               </div>
               <div class="hide-large swatch_container">
                 {{ color_swatch_list }}
