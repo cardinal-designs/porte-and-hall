@@ -658,9 +658,6 @@
                 </div>
               </div>
             {% endfor %}
-
-            
-            
             <div class="collection-col-inner text">
                 <div class="rating-reviews">
                   <a href="{{all_products[block.settings.product].url}}#rave-reviews-main">
@@ -679,6 +676,11 @@
               <div class="hide-medium swatch_container">
               {{ color_swatch_list }}
               </div>
+            </div>
+            
+            
+            <div class="collection-col-inner text">
+
               <div class="problem">              
                 {% if block.settings.check1 != blank %}
                   <p class="title"><span>•</span> {{ block.settings.check1 }}</p>
