@@ -17,11 +17,15 @@
 
   {% if template.suffix == 'you-may-also-like-v1' %}
     .product-carousel__pagination.swiper-pagination {
-      bottom: 0 !importat;
+      bottom: 0 !important;
       top: unset !important;
     }
     .product-carousel__container {
       padding-bottom: 60px;
+    }
+
+    .product-carousel__container .swiper-wrapper {
+      margin-top: 0;
     }
   {% endif %}
 {% endstyle %}
