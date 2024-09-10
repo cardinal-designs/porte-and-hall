@@ -4,6 +4,7 @@
 {{ 'component-rte.css' | asset_url | stylesheet_tag }}
 
 {% liquid
+  assign product = section.settings.product
   for collection in product.collections
     if collection.title contains ' |'
       assign grouped_collection = collection
@@ -570,38 +571,7 @@
           {% endform %}
         </product-form>
       </div>
-      {% comment %}
-      {% if product.available == false %}
-        <div class="product__oos-notify-wrapper">
-          <p class="body">Notify me when THIS STYLE IS back in stock:</p>
-          <div id="NotifyMe_form" class="NotifyMe_form">
-            <input
-              class="notify-email-val"
-              type="email"
-              id="notify_email"
-              name="email"
-              placeholder="Email Address"
-              class="email"
-              required
-            >
-            <input
-              class="notify-me-var"
-              type="hidden"
-              id="notify_id"
-              name="variant"
-              value="{{ product.variants[0].id }}"
-            >
-            <button type="button" class="text-link" value="Submit" data-bis-button>Submit ></button>
-            <div class="notifyme_error"></div>
-          </div>
-        </div>
-      {% elsif oos_products.size > 0 %}
-      <div class="product__oos-notify-wrapper">
-        <p class="body"><button data-modal-trigger="notify-me" >Notify me</button> when out of stock styles are back in stock</p>
-      </div>
-      {% endif %}
-      {% endcomment %}
-             <div class="product__tabs-wrapper">
+      <div class="product__tabs-wrapper">
         <div class="product__tabs-buttons">
           {% assign tab_count = 0 %}
           {% if grouped_collection.metafields.custom.product_features != blank %}
@@ -710,174 +680,9 @@
           </div>
         </div>
       </div>         
-
-      {% comment %}ACCORDION BEGINS{% endcomment %}
-      {% comment %}
-      <pdp-accordion class="product-accordion__container">
-        {% if grouped_collection.metafields.custom.product_features != blank %}
-         <div class="accordion">
-           <div data-id="1" class="accordion-title">
-             <h3>Features</h3>
-             {% render 'icon', icon: 'caret' %}
-           </div>
-           <div data-id="1" class="accordion-content active">
-             <div class="swiper-slide">
-                  <div class="product__tabs-item">
-                    <div class="product__features">
-                      {% if product.handle contains 'outsider' %}
-                        <div class="product__features-item">
-                          <p class="body-sm">Have an Outsider mat but need a new insert? <a href="/products/outsider-insert-replacement">Click here</a> to shop!</p>
-                        </div>
-                      {% else %}
-                        {% for feature in grouped_collection.metafields.custom.product_features.value %}
-                          <div class="product__features-item">
-                            {% if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{% endif %}
-                            <p class="body-sm">{{ feature.label }}</p>
-                          </div>
-                        {% endfor %}
-                      {% endif %}
-                    </div>
-                  </div>
-                </div>
-           </div>
-         </div>
-        {% endif %}
-        {% if section.settings.materials != blank %}
-         <div class="accordion">
-           <div data-id="2" class="accordion-title">
-             <h3>Materials</h3>
-             {% render 'icon', icon: 'caret' %}
-           </div>
-           <div data-id="2" class="accordion-content">
-            <div class="swiper-slide">
-              <div class="product__tabs-item body-sm">
-                {{ section.settings.materials }}
-              </div>
-            </div>
-           </div>
-         </div>
-        {% endif %}
-        {% if grouped_collection.metafields.custom.dimensions != blank %}
-         <div class="accordion">
-           <div data-id="3" class="accordion-title">
-             <h3>Dimensions</h3>
-             {% render 'icon', icon: 'caret' %}
-           </div>
-           <div data-id="3" class="accordion-content">
-            <div class="swiper-slide">
-              <div class="product__tabs-item">
-                <p class="body-sm">
-                  Dimensions: {{ grouped_collection.metafields.custom.dimensions | newline_to_br }}
-                  {% if grouped_collection.metafields.custom.additional_dimensions != blank %}
-                    <br>
-                    {{ grouped_collection.metafields.custom.additional_dimensions | newline_to_br }}
-                  {% endif %}
-                  {% if grouped_collection.metafields.custom.weight != blank %}
-                  <br>
-                  Weight: {{ grouped_collection.metafields.custom.weight }}
-                  {% endif %}
-                </p>
-              </div>
-            </div>
-           </div>
-         </div>
-        {% endif %}
-        {% if section.settings.care != blank %}
-         <div class="accordion">
-           <div data-id="4" class="accordion-title">
-             <h3>Care</h3>
-             {% render 'icon', icon: 'caret' %}
-           </div>
-           <div data-id="4" class="accordion-content">
-            <div class="swiper-slide">
-              <div class="product__tabs-item body-sm">
-                {{ section.settings.care }}
-              </div>
-            </div>
-           </div>
-         </div>
-        {% endif %}
-      </pdp-accordion>
-      {% comment %}ACCORDION ENDS{% endcomment %}  
-     {% endcomment %}
     </div>
   </div>
 </section>
-
-<sticky-atc
-  class=""
-  data-main-form="{{product_form_id}}"
-  data-section-id="{{ section.id }}"
-  style="display: none"
->
-  <div class="product__quantity-atc-wrapper">
-    <div class="product-form__input product-form__quantity">
-      <label class="form__label visually-hidden" for="sticky-Quantity-{{ section.id }}">
-        {{ 'products.product.quantity.label' | t }}
-      </label>
-      <quantity-input class="quantity">
-        <button class="quantity__button no-js-hidden" name="minus" type="button">
-          <span class="visually-hidden">
-            {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
-          </span>
-          {% render 'icon', icon: 'minus' %}
-        </button>
-        <input
-          class="quantity__input"
-          type="number"
-          name="quantity"
-          id="sticky-Quantity-{{ section.id }}"
-          min="1"
-          value="1"
-          form="{{ product_form_id }}"
-        >
-        <button class="quantity__button no-js-hidden" name="plus" type="button">
-          <span class="visually-hidden">
-            {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
-          </span>
-          {% render 'icon', icon: 'plus' %}
-        </button>
-      </quantity-input>
-    </div>
-
-    <div class="product-form__buttons">
-      <button
-        name="add"
-        class="button button--full button--primary product-form__submit"
-        {% if product.selected_or_first_available_variant.available == false %}
-          disabled
-        {% endif %}
-      >
-        <span>
-           {% if product.selected_or_first_available_variant.inventory_policy == 'continue' and product.selected_or_first_available_variant.inventory_quantity <= 0 %}
-             PREORDER
-           {% else %}
-              {% if product.selected_or_first_available_variant.available %}
-                {{ 'products.product.add_to_cart' | t }}
-              {% else %}
-                {{ 'products.product.sold_out' | t }}
-              {% endif %}
-            {% endif %}
-        </span>
-        <span> | </span>
-        <span>
-          {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '' %}
-        </span>
-        <div class="loading-overlay__spinner">
-          <svg
-            focusable="false"
-            role="presentation"
-            class="spinner"
-            viewBox="0 0 66 66"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-          </svg>
-        </div>
-      </button>
-    </div>
-  </div>
-</sticky-atc>
 
 {% if oos_products.size > 0 and product.available != false %}
   {% render 'notify-me-modal', products: oos_products %}
@@ -1269,6 +1074,12 @@
       "id": "shop_more_below",
       "label": "Move Shop Other to Bottom",
       "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Product",
+      "settings": {}
     }
   ]
 }
