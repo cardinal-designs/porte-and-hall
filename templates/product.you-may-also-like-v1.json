@@ -26,12 +26,6 @@
         "shop_more_below": true
       }
     },
-    "other-sizes": {
-      "type": "product-shop-other-sizes",
-      "disabled": true,
-      "settings": {
-      }
-    },
     "lp_custom_collections_2_ABDk4m": {
       "type": "LP-custom-collections-2",
       "blocks": {
@@ -163,40 +157,6 @@
         "background_color": "#d8d3c7"
       }
     },
-    "design-details": {
-      "type": "design-detail-arrows",
-      "settings": {
-        "heading": ""
-      }
-    },
-    "see-in-action": {
-      "type": "see-it-in-action",
-      "settings": {
-        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
-        "heading": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_section_title | metafield_tag }}<\/p>",
-        "text": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_subhead | metafield_tag }}<\/p>",
-        "link": "shopify:\/\/pages\/ideas-inspiration",
-        "link_text": "Get more inspiration >",
-        "bg_color": "{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}"
-      }
-    },
-    "styling-tips": {
-      "type": "styling-tips",
-      "settings": {
-        "heading": "Our founder Stafford's styling tips",
-        "image": "shopify:\/\/shop_images\/Stafford_and_dog_1_2x_8d4ed32a-5883-4611-bf23-c1cc022cb717.png"
-      }
-    },
-    "see-the-difference": {
-      "type": "see-the-difference",
-      "settings": {
-        "colleciton": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
-        "heading": "Small mat, big difference",
-        "text": "{{ section.settings.colleciton.metafields.custom.see_the_difference_subhead.value }}",
-        "before-label": "Before",
-        "after-label": "After"
-      }
-    },
     "faq": {
       "type": "faq",
       "blocks": {
@@ -219,11 +179,16 @@
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
       }
     },
-    "reviews": {
-      "type": "reviews",
-      "disabled": true,
+    "you-may-like": {
+      "type": "main-product-carousel",
       "settings": {
-        "heading": ""
+        "heading": "You may also like",
+        "background": "",
+        "show_metafield_style": false,
+        "collection": "shop-all",
+        "button_text": "Shop now",
+        "bottom_button_text": "",
+        "bottom_button_link": ""
       }
     },
     "168172537899ce8b94": {
@@ -244,20 +209,60 @@
         "section_reviews": true
       }
     },
-    "you-may-like": {
-      "type": "main-product-carousel",
+    "design-details": {
+      "type": "design-detail-arrows",
+      "disabled": true,
       "settings": {
-        "heading": "Never miss a mat. There's more to see!",
-        "background": "",
-        "show_metafield_style": false,
-        "collection": "shop-all",
-        "button_text": "Shop now",
-        "bottom_button_text": "",
-        "bottom_button_link": ""
+        "heading": ""
+      }
+    },
+    "other-sizes": {
+      "type": "product-shop-other-sizes",
+      "disabled": true,
+      "settings": {
+      }
+    },
+    "see-in-action": {
+      "type": "see-it-in-action",
+      "disabled": true,
+      "settings": {
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
+        "heading": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_section_title | metafield_tag }}<\/p>",
+        "text": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_subhead | metafield_tag }}<\/p>",
+        "link": "shopify:\/\/pages\/ideas-inspiration",
+        "link_text": "Get more inspiration >",
+        "bg_color": "{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}"
+      }
+    },
+    "reviews": {
+      "type": "reviews",
+      "disabled": true,
+      "settings": {
+        "heading": ""
+      }
+    },
+    "styling-tips": {
+      "type": "styling-tips",
+      "disabled": true,
+      "settings": {
+        "heading": "Our founder Stafford's styling tips",
+        "image": "shopify:\/\/shop_images\/Stafford_and_dog_1_2x_8d4ed32a-5883-4611-bf23-c1cc022cb717.png"
+      }
+    },
+    "see-the-difference": {
+      "type": "see-the-difference",
+      "disabled": true,
+      "settings": {
+        "colleciton": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
+        "heading": "Small mat, big difference",
+        "text": "{{ section.settings.colleciton.metafields.custom.see_the_difference_subhead.value }}",
+        "before-label": "Before",
+        "after-label": "After"
       }
     },
     "fan-motif": {
       "type": "fan-motif-section",
+      "disabled": true,
       "settings": {
         "hide_desktop": false,
         "hide_mobile": false,
@@ -297,6 +302,7 @@
         "faf6f395-3915-4f58-b2c5-acd839476fc2",
         "cc9c34ec-5a8d-4a24-9b5f-20963c337e23"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Hit the ground stunning:\nThe Porte + Hall blog",
         "background": "",
@@ -307,17 +313,17 @@
   },
   "order": [
     "main",
-    "other-sizes",
     "lp_custom_collections_2_ABDk4m",
     "logo-marquee",
+    "faq",
+    "you-may-like",
+    "168172537899ce8b94",
     "design-details",
+    "other-sizes",
     "see-in-action",
+    "reviews",
     "styling-tips",
     "see-the-difference",
-    "faq",
-    "reviews",
-    "168172537899ce8b94",
-    "you-may-like",
     "fan-motif",
     "featured-articles"
   ]
