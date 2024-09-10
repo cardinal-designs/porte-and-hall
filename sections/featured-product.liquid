@@ -4,7 +4,7 @@
 {{ 'component-rte.css' | asset_url | stylesheet_tag }}
 
 {% liquid
-  assign product = section.settings.product
+
   for collection in product.collections
     if collection.title contains ' |'
       assign grouped_collection = collection
