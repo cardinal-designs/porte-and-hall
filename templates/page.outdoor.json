@@ -20,6 +20,21 @@
         "bg_color": "#f4f2ee"
       }
     },
+    "featured_product_kpPRYR": {
+      "type": "featured-product",
+      "settings": {
+        "collection": "the-outlier",
+        "product": "the-outlier-slate-doormat",
+        "materials": "",
+        "care": "",
+        "hide_pinterest": true,
+        "hide_dimensions": true,
+        "text_dimensions": false,
+        "hide_shop_other": false,
+        "hide_quantity": true,
+        "shop_more_below": true
+      }
+    },
     "17260069838c1333c1": {
       "type": "apps",
       "blocks": {
@@ -38,26 +53,11 @@
         "heading": "",
         "section_reviews": true
       }
-    },
-    "featured_product_kpPRYR": {
-      "type": "featured-product",
-      "settings": {
-        "collection": "the-outlier",
-        "product": "the-outlier-slate-doormat",
-        "materials": "",
-        "care": "",
-        "hide_pinterest": true,
-        "hide_dimensions": false,
-        "text_dimensions": false,
-        "hide_shop_other": false,
-        "hide_quantity": false,
-        "shop_more_below": false
-      }
     }
   },
   "order": [
     "main",
-    "17260069838c1333c1",
-    "featured_product_kpPRYR"
+    "featured_product_kpPRYR",
+    "17260069838c1333c1"
   ]
 }
