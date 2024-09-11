@@ -1,14 +1,6 @@
 {{ 'section-styling-tips.css' | asset_url | stylesheet_tag }}
 
-{% liquid
-  for collection in product.collections
-    if collection.title contains ' |'
-      assign grouped_collection = collection
-    endif
-  endfor
-%}
 
-{% if grouped_collection.metafields.custom.styling_tips != blank %}
   <section class="styling-tips">
     <div class="styling-tips__background">
       <div class="styling-tips__inner styling-tips__layout-right">
@@ -55,7 +47,7 @@
       </div>
     </div>
   </section>
-{% endif %}
+
 
 {% javascript %}
   const stylingTipsImages = new Swiper('.styling-tips__images', {
