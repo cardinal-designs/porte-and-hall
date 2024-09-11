@@ -5,24 +5,16 @@
     <div class="styling-tips__background">
       <div class="styling-tips__inner styling-tips__layout-right">
         <div class="styling-tips__content-wrapper">
-          <div class="styling-tips__signature-wrapper">
-            {% if section.settings.image != blank %}
-              <div class="styling-tips__image">
-                {% render 'lazy-image', image: section.settings.image, fade: true, fill: false %}
-              </div>
-            {% endif %}
-            <div class="signature-svg">{% render 'signature' %}</div>
-          </div>
           {% if section.settings.heading != blank %}
-            <h2 class="styling-tips__heading">{{ grouped_collection.metafields.custom.styling_tips_headline }}</h2>
+            <h2 class="styling-tips__heading">{{ section.settings.heading }}</h2>
           {% endif %}
 
           <div class="styling-tips__content swiper">
             <div class="swiper-wrapper">
-              {% for slide in grouped_collection.metafields.custom.styling_tips.value %}
+              {% for block in section.blocks %}
                 <div class="swiper-slide">
                   <div class="styling-tips__content-item">
-                    <p class="handwriting">{{ slide.tip }}</p>
+                    <p class="handwriting">{{ block.settings.text }}</p>
                   </div>
                 </div>
               {% endfor %}
