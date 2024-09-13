@@ -13,6 +13,10 @@
   position: relative;
 }
 
+.list__container {
+  gap: 40px;
+}
+
 .list__container-item {
   display: flex;
   gap: 16px;
@@ -25,4 +29,5 @@
   font-weight: 500;
   line-height: 48px;
   letter-spacing: 0.02em;
+  color: #D2B066;
 }
