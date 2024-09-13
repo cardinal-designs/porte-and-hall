@@ -38,7 +38,7 @@
   grid-template-columns: minmax(0, 500px) minmax(0, 1fr);
   grid-template-areas: 'text media';
   column-gap: 120px;
-  aling-items: center;
+  align-items: center;
 }
 
 .styling-tips__layout-right {
