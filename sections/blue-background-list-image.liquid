@@ -31,7 +31,7 @@
                 {% if block.type == 'image-item' %}
                 <div class="swiper-slide">
                   <div class="styling-tips__image-item">
-                    {% render 'lazy-image', image: block.settings.image, fade: false, fill: true %}
+                    {% render 'lazy-image', image: block.settings.image.media, fade: false, fill: true %}
                   </div>
                 </div>
                 {% endif %}
