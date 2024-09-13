@@ -29,6 +29,7 @@
             <div class="swiper-wrapper">
               {% for block in section.blocks %}
                 {% if block.type == 'image-item' %}
+                  {{ block.settings.image }}
                 <div class="swiper-slide">
                   <div class="styling-tips__image-item">
                     {% render 'lazy-image', image: block.settings.image, fade: false, fill: true %}
