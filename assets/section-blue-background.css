@@ -28,6 +28,10 @@
   padding-right: 0;
 }
 
+.styling-tips__layout-left {
+  column-gap: 40px;
+}
+
 .list__container-item .list-number {
   align-self: center;
   font-family: louize;
