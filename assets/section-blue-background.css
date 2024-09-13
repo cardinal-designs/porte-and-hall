@@ -12,3 +12,17 @@
 .slider-directional .swiper-button-prev {
   position: relative;
 }
+
+.list__container-item {
+  display: flex;
+  gap: 16px;
+}
+
+.list__container-item .list-number {
+  align-self: center;
+  font-family: louize;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: 0.02em;
+}
