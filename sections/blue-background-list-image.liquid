@@ -14,7 +14,7 @@
               {% for block in section.blocks %}
                 {% if block.type == 'list-item' %}
                 <div class="list__container-item">
-                  <p>{{ forloop.index }}</p>
+                  <p class="list-number">{{ forloop.index }}</p>
                   <div class="list__container-text">
                     <p class="title-text">{{ block.settings.title }}</p>
                     <p class="text">{{ block.settings.text }}</p>
