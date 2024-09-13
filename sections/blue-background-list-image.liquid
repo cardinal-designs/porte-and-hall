@@ -4,22 +4,21 @@
   <section class="styling-tips">
     <div class="styling-tips__background">
       <div class="styling-tips__inner styling-tips__layout-left">
-        <div class="styling-tips__content-wrapper">
+        <div class="">
           {% if section.settings.heading != blank %}
             <h2 class="styling-tips__heading">{{ section.settings.heading }}</h2>
           {% endif %}
 
-          <div class="styling-tips__content swiper">
-            <div class="swiper-wrapper">
+          <div class="list__container">
               {% for block in section.blocks %}
-                <div class="swiper-slide">
-                  <div class="styling-tips__content-item">
-                    <p class="handwriting">{{ block.settings.text }}</p>
+                <div class="list__container-item">
+                  <p>{{ forloop.index }}</p>
+                  <div class="list__container-text">
+                    <p class="title-text">{{ block.settings.title }}</p>
+                    <p class="text">{{ block.settings.text }}</p>
                   </div>
                 </div>
               {% endfor %}
-            </div>
-            <div class="swiper-pagination styling-tips__pagination"></div>
           </div>
         </div>
 
@@ -81,6 +80,35 @@
       "content": "Our founder Stafford's styling tips"
     }
   ],
+  "blocks": [
+  {
+   "type": "list-item",
+   "name": "list Item",
+   "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Enter type"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text"
+      }     
+    ]
+  },
+ {
+   "type": "image",
+   "name": "Image Item",
+   "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }     
+    ]
+  }  
+],
   "presets": [
     {
       "name": "Background List Image"
