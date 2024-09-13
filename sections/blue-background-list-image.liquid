@@ -48,20 +48,7 @@
 {% javascript %}
   const stylingTipsImages = new Swiper('.styling-tips__images', {
     slidesPerView: 1,
-    allowTouchMove: false,
-    loop: false,
-  });
-
-  const stylingTipsContent = new Swiper('.styling-tips__content', {
-    slidesPerView: 1,
-    spaceBetween: 10,
-    pagination: {
-      el: '.styling-tips__pagination',
-      clickable: true,
-    },
-    controller: {
-      control: stylingTipsImages,
-    },
+    loop: true,
   });
 {% endjavascript %}
 
