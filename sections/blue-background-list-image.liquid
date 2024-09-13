@@ -38,7 +38,7 @@
               {% endfor %}
             </div>
           </div>
-           <div class="swiper-pagination styling-tips__pagination"></div>
+           <div class="swiper-pagination"></div>
         </div>
       </div>
     </div>
@@ -52,6 +52,9 @@
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
     },
   });
 {% endjavascript %}
