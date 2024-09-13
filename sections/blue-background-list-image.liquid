@@ -11,6 +11,7 @@
 
           <div class="list__container">
               {% for block in section.blocks %}
+                {% if block.type == 'list-item' %}
                 <div class="list__container-item">
                   <p>{{ forloop.index }}</p>
                   <div class="list__container-text">
@@ -18,6 +19,7 @@
                     <p class="text">{{ block.settings.text }}</p>
                   </div>
                 </div>
+                {% endif %}
               {% endfor %}
           </div>
         </div>
@@ -25,12 +27,14 @@
         <div class="styling-tips__image-wrapper">
           <div class="styling-tips__images swiper">
             <div class="swiper-wrapper">
-              {% for slide in grouped_collection.metafields.custom.styling_tips.value %}
+              {% for block in section.blocks %}
+                {% if block.type == 'image-item' %}
                 <div class="swiper-slide">
                   <div class="styling-tips__image-item">
-                    {% render 'lazy-image', image: slide.image, fade: false, fill: true %}
+                    {% render 'lazy-image', image: block.settings.image, fade: false, fill: true %}
                   </div>
                 </div>
+                {% endif %}
               {% endfor %}
             </div>
           </div>
