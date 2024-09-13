@@ -15,6 +15,8 @@
 
 .list__container {
   gap: 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 .list__container-item {
