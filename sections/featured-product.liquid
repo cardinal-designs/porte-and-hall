@@ -3,6 +3,7 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-rte.css' | asset_url | stylesheet_tag }}
 
+
 {% liquid
   assign product = section.settings.product
   for collection in product.collections
@@ -65,7 +66,7 @@
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 <section class="page-width">
-  <div class="product">
+  <div class="featured-product product">
     <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
       {{ 'accessibility.skip_to_product_info' | t }}
     </a>
