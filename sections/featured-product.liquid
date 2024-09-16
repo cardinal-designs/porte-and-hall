@@ -571,6 +571,7 @@
           {% endform %}
         </product-form>
       </div>
+                
       <div class="product__tabs-wrapper">
         <div class="product__tabs-buttons">
           {% assign tab_count = 0 %}
@@ -618,7 +619,7 @@
             {% assign tab_count = tab_count | plus: 1 %}
           {% endif %}
         </div>
-
+      {% comment %}
         <div class="product__tabs-content">
           <div class="product__tabs swiper">
             <div class="swiper-wrapper">
@@ -679,7 +680,96 @@
             </div>
           </div>
         </div>
-      </div>         
+        {% endcomment %}
+      </div> 
+                      {% comment %}ACCORDION BEGINS{% endcomment %}
+      <pdp-accordion class="product-accordion__container">
+        {% if grouped_collection.metafields.custom.product_features != blank %}
+         <div class="accordion">
+           <div data-id="1" class="accordion-title">
+             <h3>Features</h3>
+             {% render 'icon', icon: 'caret' %}
+           </div>
+           <div data-id="1" class="accordion-content active">
+             <div class="swiper-slide">
+                  <div class="product__tabs-item">
+                    <div class="product__features">
+                      {% if product.handle contains 'outsider' %}
+                        <div class="product__features-item">
+                          <p class="body-sm">Have an Outsider mat but need a new insert? <a href="/products/outsider-insert-replacement">Click here</a> to shop!</p>
+                        </div>
+                      {% else %}
+                        {% for feature in grouped_collection.metafields.custom.product_features.value %}
+                          <div class="product__features-item">
+                            {% if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{% endif %}
+                            <p class="body-sm">{{ feature.label }}</p>
+                          </div>
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+           </div>
+         </div>
+        {% endif %}
+        {% if section.settings.materials != blank %}
+         <div class="accordion">
+           <div data-id="2" class="accordion-title">
+             <h3>Materials</h3>
+             {% render 'icon', icon: 'caret' %}
+           </div>
+           <div data-id="2" class="accordion-content">
+            <div class="swiper-slide">
+              <div class="product__tabs-item body-sm">
+                {{ section.settings.materials }}
+              </div>
+            </div>
+           </div>
+         </div>
+        {% endif %}
+        {% if grouped_collection.metafields.custom.dimensions != blank %}
+         <div class="accordion">
+           <div data-id="3" class="accordion-title">
+             <h3>Dimensions</h3>
+             {% render 'icon', icon: 'caret' %}
+           </div>
+           <div data-id="3" class="accordion-content">
+            <div class="swiper-slide">
+              <div class="product__tabs-item">
+                <p class="body-sm">
+                  Dimensions: {{ grouped_collection.metafields.custom.dimensions | newline_to_br }}
+                  {% if grouped_collection.metafields.custom.additional_dimensions != blank %}
+                    <br>
+                    {{ grouped_collection.metafields.custom.additional_dimensions | newline_to_br }}
+                  {% endif %}
+                  {% if grouped_collection.metafields.custom.weight != blank %}
+                  <br>
+                  Weight: {{ grouped_collection.metafields.custom.weight }}
+                  {% endif %}
+                </p>
+              </div>
+            </div>
+           </div>
+         </div>
+        {% endif %}
+        {% if section.settings.care != blank %}
+         <div class="accordion">
+           <div data-id="4" class="accordion-title">
+             <h3>Care</h3>
+             {% render 'icon', icon: 'caret' %}
+           </div>
+           <div data-id="4" class="accordion-content">
+            <div class="swiper-slide">
+              <div class="product__tabs-item body-sm">
+                {{ section.settings.care }}
+              </div>
+            </div>
+           </div>
+         </div>
+        {% endif %}
+      </pdp-accordion>
+      {% comment %}ACCORDION ENDS{% endcomment %} 
+     
     </div>
   </div>
 </section>
