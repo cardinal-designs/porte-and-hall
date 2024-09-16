@@ -114,3 +114,9 @@
   font-weight: 500;
   line-height: 40px;
 }
+
+@media screen and (max-width: 768px) {
+  .blue-background .styling-tips__inner {
+    padding: 16px;
+  }
+}
