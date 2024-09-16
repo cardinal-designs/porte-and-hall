@@ -1,11 +1,15 @@
 .swiper-pagination {
   position: relative;
   margin-top: 16px;
+  width: unset;
+  flex-wrap: unset;
 }
 
 .slider-directional {
   display: flex;
   justify-content: center;
+  width: max-content;
+  margin: 0 auto;
 }
 
 .slider-directional .swiper-button-next,
