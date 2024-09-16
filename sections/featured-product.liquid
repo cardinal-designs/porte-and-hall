@@ -571,7 +571,7 @@
           {% endform %}
         </product-form>
       </div>
-                
+       {% comment %}    
       <div class="product__tabs-wrapper">
         <div class="product__tabs-buttons">
           {% assign tab_count = 0 %}
@@ -619,7 +619,7 @@
             {% assign tab_count = tab_count | plus: 1 %}
           {% endif %}
         </div>
-      {% comment %}
+     
         <div class="product__tabs-content">
           <div class="product__tabs swiper">
             <div class="swiper-wrapper">
