@@ -59,6 +59,13 @@
   letter-spacing: 0.02em;
 }
 
+.blue-background .swiper-pagination-bullet-active {
+  border-radius: 25px;
+  transform: unset !important;
+  border: 1px solid white;
+} 
+
+
 .blue-background .swiper-pagination-bullet-active::after {
   height: 12px;
   width: 12px;
