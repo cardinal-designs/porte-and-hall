@@ -80,10 +80,14 @@
   border-radius: 25px;
 }
 
-.blue-background .swiper-button-prev:after {
+.swiper-button-next::after, .swiper-button-prev::after {
+    content: "";
+}
+
+.blue-background .swiper-button-prev {
   background-image: url("https://cdn.shopify.com/s/files/1/0084/8602/7327/files/arrow_left.svg?v=1726518538") !important;
 }
 
-.blue-background .swiper-button-next:after {
+.blue-background .swiper-button-next {
   background-image: url("https://cdn.shopify.com/s/files/1/0084/8602/7327/files/arrow_right.svg?v=1726518528") !important;
 }
