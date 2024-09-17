@@ -964,6 +964,7 @@ variant-selects {
   align-items: center;
   flex: 1;
   white-space: nowrap;
+  font-family: brandon;
 }
 
 @media screen and (max-width: 768px) {
@@ -1010,6 +1011,7 @@ variant-selects {
 .other-sizes__button span {
   font-weight: 450 !important;
   line-height: 22px;
+  pointer-events: none;
 }
 
 .accordion {

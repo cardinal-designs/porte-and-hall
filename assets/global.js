@@ -1127,3 +1127,336 @@ var accordionToggle = class extends HTMLElement {
 
 customElements.define('pdp-accordion', accordionToggle);
 
+customElements.define('product-form', class ProductForm extends HTMLElement {
+  constructor() {
+    super();   
+
+    this.form = this.querySelector('form');
+    this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
+    this.connectedForm = document.querySelector(`sticky-atc[data-main-form="${this.form.getAttribute("id")}"]`) || ""
+    this.cartDrawer = document.querySelector('cart-drawer');
+
+    const header = document.querySelector(".outer-header-wrapper")
+
+    if(this.connectedForm){
+          this.connectedForm.style.top = `${header.clientHeight}px`
+
+          window.addEventListener("resize", function(){
+            this.connectedForm.style.top = `${header.clientHeight}px`
+          }.bind(this))
+    }
+
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach( entry => {
+          console.log(entries)
+          entry.target.classList.toggle("show", entry.isIntersecting)
+          if(this.connectedForm){
+            this.connectedForm.classList.toggle("show", !entry.isIntersecting)
+          }
+        })
+      },
+      {
+        rootMargin: `-${(header.clientHeight - 20)}px`,
+        threshold: 0
+      }
+    )
+  
+    observer.observe(document.querySelector(".product-section"))
+  }
+
+  onSubmitHandler(evt) {
+    evt.preventDefault();
+    
+    const submitButton = this.querySelector('[type="submit"]');
+
+    submitButton.setAttribute('disabled', true);
+    submitButton.closest(".product__quantity-atc-wrapper").classList.add('loading');
+    if(this.connectedForm){
+          this.connectedForm.querySelector(".product__quantity-atc-wrapper").classList.add('loading');
+    }
+
+
+    const body = JSON.stringify({
+      ...JSON.parse(serializeForm(this.form)),
+      sections: this.getSectionsToRender().map((section) => section.section),
+      sections_url: window.location.pathname
+    });
+
+    fetch(`${routes.cart_add_url}`, { ...fetchConfig('javascript'), body })
+      .then((response) => response.json())
+      .then((parsedState) => {
+
+        this.getSectionsToRender().forEach((section => {
+          const elementToReplace =
+            document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
+
+          elementToReplace.innerHTML =
+            this.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
+
+        }));
+      })
+      .catch((e) => {
+        console.error(e);
+      })
+      .finally(() => {
+        submitButton.closest(".product__quantity-atc-wrapper").classList.remove('loading');
+        submitButton.removeAttribute('disabled');
+        if(this.connectedForm){
+                  this.connectedForm.querySelector(".product__quantity-atc-wrapper").classList.remove('loading')
+        }
+        this.cartDrawer.open();
+      });
+  }
+
+  getSectionsToRender() {
+    return [
+      {
+        id: 'cart-drawer__content',
+        section: document.getElementById('cart-drawer__content').dataset.id,
+        selector: '.cart-drawer__content',
+      },
+      {
+        id: 'cart-icon-bubble',
+        section: 'cart-icon-bubble',
+        selector: '.shopify-section'
+      }
+    ];
+  }
+
+  getSectionInnerHTML(html, selector) {
+    return new DOMParser()
+      .parseFromString(html, 'text/html')
+      .querySelector(selector).innerHTML;
+  }
+
+  handleErrorMessage(errorMessage = false) {
+    this.errorMessageWrapper = this.errorMessageWrapper || this.querySelector('.product-form__error-message-wrapper');
+    this.errorMessage = this.errorMessage || this.errorMessageWrapper.querySelector('.product-form__error-message');
+
+    this.errorMessageWrapper.toggleAttribute('hidden', !errorMessage);
+
+    if (errorMessage) {
+      this.errorMessage.textContent = errorMessage;
+    }
+  }
+});
+
+customElements.define('sticky-atc', class StickyATC extends HTMLElement {
+  constructor(){
+    super();
+
+    this.input = this.querySelector("input[name='quantity']")
+    this.submit = this.querySelector("button[name='add']")
+    this.mainForm = document.querySelector(`form#${this.dataset.mainForm}`)
+
+    this.submit.addEventListener('click', function(e){
+      e.preventDefault()
+      e.target.classList.add('loading')
+      this.mainForm.querySelector('button[type="submit"]').click()
+    }.bind(this))
+  }
+})
+
+
+var ProductFeature = class extends HTMLElement {
+  constructor() {
+    super();
+
+    this.swatches = this.querySelectorAll("button[data-url]")
+    this.swatches.forEach( swatch => {
+      swatch.addEventListener("click", this.updateSection.bind(this))
+    })
+
+    this.setupTabs()
+    this.setupMedia()
+    this.setupBackInStock()
+  }
+
+  updateSection(event) {
+    event && event.preventDefault()
+
+    let fetchUrl = event.target.dataset.url
+    if(fetchUrl.includes("?variant")) {
+      fetchUrl = fetchUrl + `&section_id=${this.dataset.section}`
+    } else {
+      fetchUrl = fetchUrl + `?section_id=${this.dataset.section}`
+    }
+
+    fetch(fetchUrl)
+    .then((response) => response.text())
+    .then((responseText) => {
+        const id = `product-feature-${this.dataset.section}`;
+        const html = new DOMParser().parseFromString(responseText, 'text/html')
+        const destination = document.getElementById(id).parentElement;
+        const source = html.getElementById(id).parentElement;
+
+        if (source && destination) destination.innerHTML = source.innerHTML;
+      })
+  }
+
+  setupTabs() {
+    this.tabs = this.querySelector(".product__tabs")
+    this.productTabs = new Swiper(this.tabs, {
+      slidesPerView: 1,
+      loop: false,
+      allowTouchMove: false,
+    });
+
+    this.productTabsButtons = this.querySelectorAll('[data-product-tabs]');
+    this.productTabsButtons.forEach((button) => {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+        Array.from(this.productTabsButtons)
+          .find((btn) => btn.classList.contains('active'))
+          .classList.remove('active');
+        e.target.classList.add('active');
+        this.productTabs.slideTo(e.target.dataset.productTabs);
+      });
+    });
+  }
+
+  setupMedia() {
+
+    this.thumbnails = this.querySelector('.product__media-thumbnails')
+    this.thumbnailSlider = new Swiper(this.thumbnails, {
+      slidesPerView: 'auto',
+      loop: false,
+      spaceBetween: 10,
+      direction: 'vertical',
+    });
+
+    this.thumbnailsZoom = this.querySelector('.product__media-thumbnails-zoom')
+    this.zoomThumbnailSlider = new Swiper(this.thumbnailsZoom, {
+      slidesPerView: 'auto',
+      loop: false,
+      spaceBetween: 10,
+      direction: 'vertical',
+    });
+
+    this.zoomSlider = this.querySelector('.product__zoom-slider')
+    this.productZoomSlider = new Swiper(this.zoomSlider, {
+      loop: false,
+      slidesPerView: 1,
+      allowTouchMove: true,
+      navigation: {
+        prevEl: '.product__zoom-button.swiper-button-prev',
+        nextEl: '.product__zoom-button.swiper-button-next',
+      },
+      breakpoints: {
+        769: {
+          allowTouchMove: false,
+        },
+      },
+      thumbs: {
+        swiper: this.zoomThumbnailSlider,
+      },
+    });
+
+    this.mediaList = this.querySelector('.product__media-list')
+    this.productSlider = new Swiper(this.mediaList, {
+      slidesPerView: 1,
+      loop: false,
+      spaceBetween: 20,
+      pagination: {
+        el: '.product__media-pagination',
+        clickable: true,
+      },
+      thumbs: {
+        swiper: this.thumbnailSlider,
+      },
+      navigation: {
+        prevEl: '.product__media-button.swiper-button-prev',
+        nextEl: '.product__media-button.swiper-button-next',
+      },
+      controller: {
+        control: this.productZoomSlider,
+      },
+    });
+
+    this.zoomContainer = this.querySelector('.product__zoom');
+    this.openZoom = this.querySelectorAll('[data-open-zoom]');
+    this.openZoom.forEach((zoom) => {
+      zoom.addEventListener('click', (event) => {
+        this.zoomContainer.classList.add('open');
+        document.body.classList.add('scroll-lock');
+      });
+
+      document.body.addEventListener(
+        'keyup',
+        (event) => {
+          this.closeZoomFunction(event.key);
+        },
+        true
+      );
+    });
+
+    this.closeZoom = this.querySelector('[data-close-zoom]');
+    this.closeZoom.addEventListener('click', (event) => {
+      console.log('close');
+      this.closeZoomFunction();
+      document.body.removeEventListener(
+        'keyup',
+        (event) => {
+          this.closeZoomFunction(event.key);
+        },
+        true
+      );
+    });
+  }
+
+  closeZoomFunction(eventType = '') {
+    if (eventType == '' || eventType == 'Escape') {
+      this.zoomContainer.classList.remove('open');
+      document.body.classList.remove('scroll-lock');
+    }
+  }
+
+  setupBackInStock() {
+    this.backInStock = document.querySelector('[data-bis-button]');
+    this.backInStock?.addEventListener('click', function (e) {
+      e.preventDefault();
+      const container = this.closest('.NotifyMe_form');
+      container.querySelector('.notifyme_error').innerHTML = '';
+      let variant_value = container.querySelector('.notify-me-var').value;
+      let email_value = container.querySelector('.notify-email-val').value;
+      let regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+      if (variant_value != '' && email_value != '') {
+        if (regex.test(email_value)) {
+          let formData = {
+            variant: variant_value,
+            email: email_value,
+          };
+
+          async function postData(url = '', data = {}) {
+            // Default options are marked with *
+            const response = await fetch(url, {
+              method: 'POST',
+              body: JSON.stringify(data),
+            });
+            return response.json();
+          }
+
+          postData('https://secureddatasystem.com/clients/porteandhall/porteandhall.php', { data: formData }).then(
+            (data) => {
+              console.log(data); // JSON data parsed by `data.json()` call
+              container.querySelector('.notifyme_error').innerHTML =
+                '<p class="success">Thank You!!! We will notify you once the product is available.</p>';
+              container.querySelector('.notify-email-val').value = '';
+            }
+          );
+        } else {
+          container.querySelector('.notify-email-val').focus();
+          container.querySelector('.notifyme_error').innerHTML = '<p class="success">Invalid Email</p>';
+        }
+      } else {
+        container.querySelector('.notify-email-val').focus();
+        container.querySelector('.notifyme_error').innerHTML = '<p class="success">Email is required</p>';
+      }
+    });
+  }
+}
+
+customElements.define('product-feature', ProductFeature);
