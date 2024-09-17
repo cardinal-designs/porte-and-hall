@@ -1,0 +1,24 @@
+.featured-product-headline {
+    text-align: center;
+    margin: 40px 0 0px;
+    font-size: 40px;
+    line-height: 48px;
+    letter-spacing: 0.02em;
+}
+
+.featured-product-headline br {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .featured-product-headline {
+        margin: 24px 0 16px;
+        font-size: 28px;
+        line-height: 36px;
+        letter-spacing: 0.02em;
+    }
+
+    .featured-product-headline br {
+        display: block;
+    }
+}

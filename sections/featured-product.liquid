@@ -7,7 +7,9 @@
 
 
 {% liquid
-  assign product = section.settings.product
+  if product == blank
+    assign product = section.settings.product
+  endif
   for collection in product.collections
     if collection.title contains ' |'
       assign grouped_collection = collection
@@ -46,7 +48,7 @@
                 echo ' | '
               endif
             endcomment
-            echo "<a href='"
+            echo "<button data-url='"
             echo swatch_link | default: swatch.variants[0].url
             echo "' class='"
             echo element_classes
@@ -57,7 +59,7 @@
             echo "style='background-image: url("
             echo swatch_file_name | asset_img_url
             echo ")'>"
-            echo '</span></a>'
+            echo '</span></button>'
             assign swatch_count = swatch_count | plus: 1
           endfor
         endif
@@ -66,9 +68,13 @@
   endcapture
 %}
 
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 <section class="page-width">
-  <div class="featured-product product">
+  {% if section.settings.heading != blank %}
+    <h2 class="featured-product-headline">{{ section.settings.heading | newline_to_br }}</h2>
+  {% endif %}
+
+  <product-feature data-section="{{ section.id }}" id="product-feature-{{ section.id }}" class="featured-product product">
     <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
       {{ 'accessibility.skip_to_product_info' | t }}
     </a>
@@ -151,16 +157,16 @@
         </div>
         {% endunless %}
         {% if section.settings.text_dimensions == true %}
-        <p id="btnhomeModal2" class="body"><span>Dimensions:</span> <u>view here</u></p>
+          <p id="btnhomeModal2" class="body"><span>Dimensions:</span> <u>view here</u></p>
         {% endif %}
-         <div id="myModal" class="dimension-modal-content dimension_modal">
+        <div id="myModal" class="dimension-modal-content dimension_modal">
               <div class="dimension-modal-header">
               <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
               <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %}</button></div>
               </div>
               <div class="dimension-modal-body">
-               <p>{{ product.metafields.custom.product_dimensions.value.dimension }}</p>
-               <img src="{{ product.metafields.custom.product_dimensions.value.dimension_image | img_url:'original' }}" alt="Dimension Image">
+              <p>{{ product.metafields.custom.product_dimensions.value.dimension }}</p>
+              <img src="{{ product.metafields.custom.product_dimensions.value.dimension_image | img_url:'original' }}" alt="Dimension Image">
               </div> 
           </div>
         {% for option in product.options_with_values %}
@@ -221,6 +227,7 @@
                   class="no-js-hidden visually-hidden"
                   data-section="{{ section.id }}"
                   data-url="{{ product.url }}"
+                  data-update-url="false"
                 >
                   {% for option in product.options_with_values %}
                     <fieldset class="js product-form__input">
@@ -316,7 +323,7 @@
             </noscript>
 
           
-               <!-- Shop Other Sizes -->
+              <!-- Shop Other Sizes -->
               {% liquid
                 assign product_type = grouped_collection.title | remove: 'The ' | split: ' | '
                 assign active_style = product.selected_or_first_available_variant.title
@@ -356,7 +363,7 @@
 
             {% assign small_text_1 = 0 %}
             {% for block in other_sizes %} 
-               {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
+              {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
               {%- assign current_size = block.title | split: " | " -%}
               {%- assign format_color = "- " | append: active_style | append: " /" -%}
               {%- assign match_name = block.title | replace: "|",  format_color -%}
@@ -393,7 +400,7 @@
                       <span class="other-sizes__dimension">2' 3" x 3'</span>
                     {% endif %}
                   {% elsif product_size == 'XL Runner' %}
-                     <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
+                    <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
                   {% elsif product_size == 'Runner' %}
                     {% if product.handle contains 'innerweave' %}
                       <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
@@ -410,7 +417,7 @@
                 </a>
 
                 {%- comment -%} Other Sizes {%- endcomment -%}
-               
+              
                 {%- for block in other_sizes -%}  
                   {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
                   {%- assign current_size = block.title | split: " | " -%}
@@ -418,11 +425,11 @@
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
                   {%- if match != blank -%}
-                    <a 
+                    <button 
                       data-dd="{{ grouped_collection.title }}"
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% endif %} ;"
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
-                      href="{{ match.first.url }}"
+                      data-url="{{ match.first.url }}"
                     >
                       <span>{{ current_size.last }}</span>
                       {% if current_size.last == 'Doormat' %}
@@ -450,7 +457,7 @@
                       {% comment %}
                       <span class="other-sizes__dimension">{{ dimension }}</span>
                       {% endcomment %}
-                    </a>                
+                    </button>                
                   {%- endif -%}
                 {%- endfor -%}
               {%- endcapture -%}
@@ -467,16 +474,16 @@
                 {%- endunless -%}
               {%- endunless -%}
             {%- elsif product.type == 'Outlier' and section.settings.shop_more_below == true  -%}  
-               {%- capture other_size_links -%}
-                <a 
+              {%- capture other_size_links -%}
+                <div 
                   class="44 other-sizes__button active" 
-                  href="{{ product.url }}"
+                  {% comment %} href="{{ product.url }}" {% endcomment %}
                 >
                   <span>{{ product_size }}</span>
                   <span class="other-sizes__dimension">1' 9" x 3'</span>
-                </a>
+                </div>
                 {%- endcapture -%}
-                 {%- unless other_size_links == blank -%}
+                {%- unless other_size_links == blank -%}
                   <div class="other-sizes__wrapper other-sizes__wrapper--other-collections">
                     <span class="other-sizes__label">Size</span> 
                     <div class="other-sizes__wrapper-links">
@@ -484,7 +491,7 @@
                     </div>
                   </div>
                 {%- endunless -%}
-     
+    
             {%- endif -%}
 
             
@@ -540,7 +547,7 @@
                       {{ 'products.product.sold_out' | t }}
                     {% endif %}
                     {% endif %}
-           
+          
                   </span>
                   <span> | </span>
                   <span>
@@ -574,127 +581,128 @@
           {% endform %}
         </product-form>
       </div>
-       {% comment %}    
-      <div class="product__tabs-wrapper">
-        <div class="product__tabs-buttons">
-          {% assign tab_count = 0 %}
-          {% if grouped_collection.metafields.custom.product_features != blank %}
-            <button
-              class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
-              data-product-tabs="{{ tab_count }}"
-            >
-              Features
-            </button>
+      {% comment %}    
+        <div class="product__tabs-wrapper">
+          <div class="product__tabs-buttons">
+            {% assign tab_count = 0 %}
+            {% if grouped_collection.metafields.custom.product_features != blank %}
+              <button
+                class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
+                data-product-tabs="{{ tab_count }}"
+              >
+                Features
+              </button>
 
-            {% assign tab_count = tab_count | plus: 1 %}
-          {% endif %}
+              {% assign tab_count = tab_count | plus: 1 %}
+            {% endif %}
 
-          {% if section.settings.materials != blank %}
-            <button
-              class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
-              data-product-tabs="{{ tab_count }}"
-            >
-              Materials
-            </button>
+            {% if section.settings.materials != blank %}
+              <button
+                class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
+                data-product-tabs="{{ tab_count }}"
+              >
+                Materials
+              </button>
 
-            {% assign tab_count = tab_count | plus: 1 %}
-          {% endif %}
+              {% assign tab_count = tab_count | plus: 1 %}
+            {% endif %}
 
-          {% if grouped_collection.metafields.custom.dimensions != blank %}
-            <button
-              class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
-              data-product-tabs="{{ tab_count }}"
-            >
-              Dimensions
-            </button>
+            {% if grouped_collection.metafields.custom.dimensions != blank %}
+              <button
+                class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
+                data-product-tabs="{{ tab_count }}"
+              >
+                Dimensions
+              </button>
 
-            {% assign tab_count = tab_count | plus: 1 %}
-          {% endif %}
+              {% assign tab_count = tab_count | plus: 1 %}
+            {% endif %}
 
-          {% if section.settings.care != blank %}
-            <button
-              class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
-              data-product-tabs="{{ tab_count }}"
-            >
-              Care
-            </button>
+            {% if section.settings.care != blank %}
+              <button
+                class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
+                data-product-tabs="{{ tab_count }}"
+              >
+                Care
+              </button>
 
-            {% assign tab_count = tab_count | plus: 1 %}
-          {% endif %}
-        </div>
-     
-        <div class="product__tabs-content">
-          <div class="product__tabs swiper">
-            <div class="swiper-wrapper">
-              {% if grouped_collection.metafields.custom.product_features != blank %}
-                <div class="swiper-slide">
-                  <div class="product__tabs-item">
-                    <div class="product__features">
-                      {% if product.handle contains 'outsider' %}
-                        <div class="product__features-item">
-                          <p class="body-sm">Have an Outsider mat but need a new insert? <a href="/products/outsider-insert-replacement">Click here</a> to shop!</p>
-                        </div>
-                      {% else %}
-                        {% for feature in grouped_collection.metafields.custom.product_features.value %}
+              {% assign tab_count = tab_count | plus: 1 %}
+            {% endif %}
+          </div>
+      
+          <div class="product__tabs-content">
+            <div class="product__tabs swiper">
+              <div class="swiper-wrapper">
+                {% if grouped_collection.metafields.custom.product_features != blank %}
+                  <div class="swiper-slide">
+                    <div class="product__tabs-item">
+                      <div class="product__features">
+                        {% if product.handle contains 'outsider' %}
                           <div class="product__features-item">
-                            {% if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{% endif %}
-                            <p class="body-sm">{{ feature.label }}</p>
+                            <p class="body-sm">Have an Outsider mat but need a new insert? <a href="/products/outsider-insert-replacement">Click here</a> to shop!</p>
                           </div>
-                        {% endfor %}
-                      {% endif %}
+                        {% else %}
+                          {% for feature in grouped_collection.metafields.custom.product_features.value %}
+                            <div class="product__features-item">
+                              {% if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{% endif %}
+                              <p class="body-sm">{{ feature.label }}</p>
+                            </div>
+                          {% endfor %}
+                        {% endif %}
+                      </div>
                     </div>
                   </div>
-                </div>
-              {% endif %}
+                {% endif %}
 
-              {% if section.settings.materials != blank %}
-                <div class="swiper-slide">
-                  <div class="product__tabs-item body-sm">
-                    {{ section.settings.materials }}
+                {% if section.settings.materials != blank %}
+                  <div class="swiper-slide">
+                    <div class="product__tabs-item body-sm">
+                      {{ section.settings.materials }}
+                    </div>
                   </div>
-                </div>
-              {% endif %}
+                {% endif %}
 
-              {% if grouped_collection.metafields.custom.dimensions != blank %}
-                <div class="swiper-slide">
-                  <div class="product__tabs-item">
-                    <p class="body-sm">
-                      Dimensions: {{ grouped_collection.metafields.custom.dimensions | newline_to_br }}
-                      {% if grouped_collection.metafields.custom.additional_dimensions != blank %}
+                {% if grouped_collection.metafields.custom.dimensions != blank %}
+                  <div class="swiper-slide">
+                    <div class="product__tabs-item">
+                      <p class="body-sm">
+                        Dimensions: {{ grouped_collection.metafields.custom.dimensions | newline_to_br }}
+                        {% if grouped_collection.metafields.custom.additional_dimensions != blank %}
+                          <br>
+                          {{ grouped_collection.metafields.custom.additional_dimensions | newline_to_br }}
+                        {% endif %}
+                        {% if grouped_collection.metafields.custom.weight != blank %}
                         <br>
-                        {{ grouped_collection.metafields.custom.additional_dimensions | newline_to_br }}
-                      {% endif %}
-                      {% if grouped_collection.metafields.custom.weight != blank %}
-                      <br>
-                      Weight: {{ grouped_collection.metafields.custom.weight }}
-                      {% endif %}
-                    </p>
+                        Weight: {{ grouped_collection.metafields.custom.weight }}
+                        {% endif %}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              {% endif %}
+                {% endif %}
 
-              {% if section.settings.care != blank %}
-                <div class="swiper-slide">
-                  <div class="product__tabs-item body-sm">
-                    {{ section.settings.care }}
+                {% if section.settings.care != blank %}
+                  <div class="swiper-slide">
+                    <div class="product__tabs-item body-sm">
+                      {{ section.settings.care }}
+                    </div>
                   </div>
-                </div>
-              {% endif %}
+                {% endif %}
+              </div>
             </div>
           </div>
-        </div>
+        </div> 
         {% endcomment %}
-      </div> 
-                      {% comment %}ACCORDION BEGINS{% endcomment %}
+      
+      {% comment %}ACCORDION BEGINS{% endcomment %}
       <pdp-accordion class="product-accordion__container">
         {% if grouped_collection.metafields.custom.product_features != blank %}
-         <div class="accordion">
-           <div data-id="1" class="accordion-title">
-             <h3>Features</h3>
-             {% render 'icon', icon: 'caret' %}
-           </div>
-           <div data-id="1" class="accordion-content active">
-             <div class="swiper-slide">
+        <div class="accordion">
+          <div data-id="1" class="accordion-title">
+            <h3>Features</h3>
+            {% render 'icon', icon: 'caret' %}
+          </div>
+          <div data-id="1" class="accordion-content active">
+            <div class="swiper-slide">
                   <div class="product__tabs-item">
                     <div class="product__features">
                       {% if product.handle contains 'outsider' %}
@@ -712,31 +720,31 @@
                     </div>
                   </div>
                 </div>
-           </div>
-         </div>
+          </div>
+        </div>
         {% endif %}
         {% if section.settings.materials != blank %}
-         <div class="accordion">
-           <div data-id="2" class="accordion-title">
-             <h3>Materials</h3>
-             {% render 'icon', icon: 'caret' %}
-           </div>
-           <div data-id="2" class="accordion-content">
+        <div class="accordion">
+          <div data-id="2" class="accordion-title">
+            <h3>Materials</h3>
+            {% render 'icon', icon: 'caret' %}
+          </div>
+          <div data-id="2" class="accordion-content">
             <div class="swiper-slide">
               <div class="product__tabs-item body-sm">
                 {{ section.settings.materials }}
               </div>
             </div>
-           </div>
-         </div>
+          </div>
+        </div>
         {% endif %}
         {% if grouped_collection.metafields.custom.dimensions != blank %}
-         <div class="accordion">
-           <div data-id="3" class="accordion-title">
-             <h3>Dimensions</h3>
-             {% render 'icon', icon: 'caret' %}
-           </div>
-           <div data-id="3" class="accordion-content">
+        <div class="accordion">
+          <div data-id="3" class="accordion-title">
+            <h3>Dimensions</h3>
+            {% render 'icon', icon: 'caret' %}
+          </div>
+          <div data-id="3" class="accordion-content">
             <div class="swiper-slide">
               <div class="product__tabs-item">
                 <p class="body-sm">
@@ -752,191 +760,36 @@
                 </p>
               </div>
             </div>
-           </div>
-         </div>
+          </div>
+        </div>
         {% endif %}
         {% if section.settings.care != blank %}
-         <div class="accordion">
-           <div data-id="4" class="accordion-title">
-             <h3>Care</h3>
-             {% render 'icon', icon: 'caret' %}
-           </div>
-           <div data-id="4" class="accordion-content">
+        <div class="accordion">
+          <div data-id="4" class="accordion-title">
+            <h3>Care</h3>
+            {% render 'icon', icon: 'caret' %}
+          </div>
+          <div data-id="4" class="accordion-content">
             <div class="swiper-slide">
               <div class="product__tabs-item body-sm">
                 {{ section.settings.care }}
               </div>
             </div>
-           </div>
-         </div>
+          </div>
+        </div>
         {% endif %}
       </pdp-accordion>
       {% comment %}ACCORDION ENDS{% endcomment %} 
-     
+    
     </div>
-  </div>
+
+    {% if oos_products.size > 0 and product.available != false %}
+      {% render 'notify-me-modal', products: oos_products %}
+    {% endif %}
+    
+    {% render 'product-zoom' %}
+  </product-feature>
 </section>
-
-{% if oos_products.size > 0 and product.available != false %}
-  {% render 'notify-me-modal', products: oos_products %}
-{% endif %}
-
-{% render 'product-zoom' %}
-
-{% javascript %}
-  const productTabs = new Swiper('.product__tabs', {
-    slidesPerView: 1,
-    loop: false,
-    allowTouchMove: false,
-  });
-
-  const productTabsButtons = document.querySelectorAll('[data-product-tabs]');
-  productTabsButtons.forEach((button) => {
-    button.addEventListener('click', function (e) {
-      e.preventDefault();
-      Array.from(productTabsButtons)
-        .find((btn) => btn.classList.contains('active'))
-        .classList.remove('active');
-      e.target.classList.add('active');
-      productTabs.slideTo(e.target.dataset.productTabs);
-    });
-  });
-
-  const thumbnailSlider = new Swiper('.product__media-thumbnails', {
-    slidesPerView: 'auto',
-    loop: false,
-    spaceBetween: 10,
-    direction: 'vertical',
-  });
-
-  const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
-    slidesPerView: 'auto',
-    loop: false,
-    spaceBetween: 10,
-    direction: 'vertical',
-  });
-
-  // Product zoom slider
-  const productZoomSlider = new Swiper('.product__zoom-slider', {
-    loop: false,
-    slidesPerView: 1,
-    allowTouchMove: true,
-    navigation: {
-      prevEl: '.product__zoom-button.swiper-button-prev',
-      nextEl: '.product__zoom-button.swiper-button-next',
-    },
-    breakpoints: {
-      769: {
-        allowTouchMove: false,
-      },
-    },
-    thumbs: {
-      swiper: zoomThumbnailSlider,
-    },
-  });
-
-  // Main product slider
-  const productSlider = new Swiper('.product__media-list', {
-    slidesPerView: 1,
-    loop: false,
-    spaceBetween: 20,
-    pagination: {
-      el: '.product__media-pagination',
-      clickable: true,
-    },
-    thumbs: {
-      swiper: thumbnailSlider,
-    },
-    navigation: {
-      prevEl: '.product__media-button.swiper-button-prev',
-      nextEl: '.product__media-button.swiper-button-next',
-    },
-    controller: {
-      control: productZoomSlider,
-    },
-  });
-
-  const zoomContainer = document.querySelector('.product__zoom');
-  const openZoom = document.querySelectorAll('[data-open-zoom]');
-  openZoom.forEach((zoom) => {
-    zoom.addEventListener('click', (event) => {
-      zoomContainer.classList.add('open');
-      document.body.classList.add('scroll-lock');
-    });
-
-    document.body.addEventListener(
-      'keyup',
-      (event) => {
-        closeZoomFunction(event.key);
-      },
-      true
-    );
-  });
-
-  const closeZoom = document.querySelector('[data-close-zoom]');
-  closeZoom.addEventListener('click', (event) => {
-    console.log('close');
-    closeZoomFunction();
-    document.body.removeEventListener(
-      'keyup',
-      (event) => {
-        closeZoomFunction(event.key);
-      },
-      true
-    );
-  });
-
-  function closeZoomFunction(eventType = '') {
-    if (eventType == '' || eventType == 'Escape') {
-      zoomContainer.classList.remove('open');
-      document.body.classList.remove('scroll-lock');
-    }
-  }
-
-  // Back in stock notifications
-  const backInStock = document.querySelector('[data-bis-button]');
-  backInStock?.addEventListener('click', function (e) {
-    e.preventDefault();
-    const container = this.closest('.NotifyMe_form');
-    container.querySelector('.notifyme_error').innerHTML = '';
-    let variant_value = container.querySelector('.notify-me-var').value;
-    let email_value = container.querySelector('.notify-email-val').value;
-    let regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-
-    if (variant_value != '' && email_value != '') {
-      if (regex.test(email_value)) {
-        let formData = {
-          variant: variant_value,
-          email: email_value,
-        };
-
-        async function postData(url = '', data = {}) {
-          // Default options are marked with *
-          const response = await fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(data),
-          });
-          return response.json();
-        }
-
-        postData('https://secureddatasystem.com/clients/porteandhall/porteandhall.php', { data: formData }).then(
-          (data) => {
-            console.log(data); // JSON data parsed by `data.json()` call
-            container.querySelector('.notifyme_error').innerHTML =
-              '<p class="success">Thank You!!! We will notify you once the product is available.</p>';
-            container.querySelector('.notify-email-val').value = '';
-          }
-        );
-      } else {
-        container.querySelector('.notify-email-val').focus();
-        container.querySelector('.notifyme_error').innerHTML = '<p class="success">Invalid Email</p>';
-      }
-    } else {
-      container.querySelector('.notify-email-val').focus();
-      container.querySelector('.notifyme_error').innerHTML = '<p class="success">Email is required</p>';
-    }
-  });
-{% endjavascript %}
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -1001,6 +854,11 @@
   "class": "product-section",
   "blocks": [],
   "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading"
+    },
     {
       "type": "collection",
       "id": "collection",
