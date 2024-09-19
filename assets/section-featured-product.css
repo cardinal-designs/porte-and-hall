@@ -17,18 +17,23 @@
 }
 
 @media screen and (max-width: 768px) {
-    .featured-product-headline {
-        margin: 24px 0 16px;
-        font-size: 28px;
-        line-height: 36px;
-        letter-spacing: 0.02em;
-    }
+  .featured-product-headline {
+      margin: 24px 0 16px;
+      font-size: 28px;
+      line-height: 36px;
+      letter-spacing: 0.02em;
+  }
 
-    .featured-product .swiper-pagination {
-      bottom: -5px;
-    }
+  .featured-product .swiper-pagination {
+    bottom: -5px;
+  }
 
-    .featured-product-headline br {
-        display: block;
-    }
+  .featured-product-headline br {
+      display: block;
+  }
+
+  .featured-product .product__quantity-atc-wrapper {
+    width: 100%;
+    justify-content: center;
+  }
 }
