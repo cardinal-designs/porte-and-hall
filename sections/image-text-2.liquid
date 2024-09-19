@@ -203,6 +203,18 @@
   </div>
 </section>
 
+<script>
+  document.getElementById("image-text-button").addEventListener('click', event => {
+    event.preventDefault();
+    const section = document.querySelector(`{{ section.settings.link_url }}`)
+
+    window.scrollTo({
+      top: section.offsetTop - 60,
+      behavior: "smooth"
+    });
+  });
+</script>
+
 {% schema %}
 {
   "name": "Image with text 2",
