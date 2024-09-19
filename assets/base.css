@@ -3098,6 +3098,10 @@ main#MainContent {
   .header--inner {
     padding: 19.45px 94px;
   }
+
+  .outdoor .header {
+    border-bottom: 2px solid #D9D3C4;
+  }
 }
 @media screen and (min-width: 989px) and (max-width: 1560px) {
   .header__menu-list {
