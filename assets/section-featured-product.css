@@ -32,6 +32,10 @@
       display: block;
   }
 
+  .featured-product .other-sizes__wrapper {
+    display: flex;
+  }
+
   .featured-product .product__quantity-atc-wrapper {
     width: 100%;
     justify-content: center;
