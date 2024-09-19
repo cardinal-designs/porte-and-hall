@@ -136,7 +136,7 @@
       </div>
     {% endif %}
   </div>
-
+{% unless page.handle == 'outdoor' %}
   <div class="header__navigation">
     <!-- Navigation -->
     {% if section.settings.menu != blank %}
@@ -245,6 +245,7 @@
       </nav>
     {% endif %}
   </div>
+  {% endunless %}
 </header>
 
 <script type="application/ld+json">
