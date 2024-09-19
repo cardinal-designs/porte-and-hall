@@ -3070,6 +3070,11 @@ body {
 main#MainContent {
   padding-top: 176px;
 }
+
+.outdoor main#MainContent {
+  padding-top: 0;
+}
+
 @media screen and (max-width: 989px) and (min-width: 769px) {
   main#MainContent {
     padding-top: 117.5px;
