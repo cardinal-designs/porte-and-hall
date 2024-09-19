@@ -3079,10 +3079,18 @@ main#MainContent {
   main#MainContent {
     padding-top: 117.5px;
   }
+
+  .outdoor main#MainContent {
+    padding-top: 70px;
+  }
 }
 @media screen and (max-width: 768px) {
   main#MainContent {
     padding-top: 69px;
+  }
+
+  .outdoor main#MainContent {
+    padding-top: 70px;
   }
 }
 
