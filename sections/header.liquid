@@ -52,6 +52,7 @@
       {% endif %}
 
       {% if shop.customer_accounts_enabled %}
+        {% unless page.handle == 'outdoor' %}
         <a
           href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
           class="header__icon header__icon--account hide-mobile"
@@ -67,6 +68,7 @@
             %}
           </span>
         </a>
+        {% endunless %}
       {% endif %}
 
       {% if template != 'cart' %}
