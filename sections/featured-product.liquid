@@ -711,10 +711,11 @@
                         </div>
                       {% else %}
                         {% for feature in grouped_collection.metafields.custom.product_features.value %}
-                          <div class="product__features-item">
-                            {% if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{% endif %}
+                          <ul>
+                          <li class="product__features-item">
                             <p class="body-sm">&#x2022;{{ feature.label }}</p>
-                          </div>
+                          </li>
+                          </ul>
                         {% endfor %}
                       {% endif %}
                     </div>
