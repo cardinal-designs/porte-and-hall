@@ -15,6 +15,10 @@
   align-items: unset;
 }
 
+.featured-product .product__features-item p {
+  padding: 0;
+}
+
 @media screen and (max-width: 900px) {
   .featured-product .product__media-list {
       padding-bottom: 20px;
