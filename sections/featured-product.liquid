@@ -710,13 +710,13 @@
                           <p class="body-sm">Have an Outsider mat but need a new insert? <a href="/products/outsider-insert-replacement">Click here</a> to shop!</p>
                         </div>
                       {% else %}
-                        {% for feature in grouped_collection.metafields.custom.product_features.value %}
-                          <ul>
+                        <ul>
+                        {% for feature in grouped_collection.metafields.custom.product_features.value %}                 
                           <li class="product__features-item">
                             <p class="body-sm">{{ feature.label }}</p>
-                          </li>
-                          </ul>
+                          </li>                       
                         {% endfor %}
+                        </ul>
                       {% endif %}
                     </div>
                   </div>
