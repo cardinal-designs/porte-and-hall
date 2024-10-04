@@ -456,7 +456,7 @@
                 {%- unless other_size_links == blank -%}
                   <div class="other-sizes__wrapper other-sizes__wrapper--other-collections">
                     <span class="other-sizes__label">Size</span> 
-                    <div class="other-sizes__wrapper-links">
+                    <div class="3 other-sizes__wrapper-links">
                       {{ other_size_links }}
                     </div>
                   </div>
@@ -465,7 +465,7 @@
             {%- elsif product.type == 'Outlier' and section.settings.shop_more_below == true  -%}  
                {%- capture other_size_links -%}
                 <a 
-                  class="44 other-sizes__button active" 
+                  class="44 other-sizes__button active"  
                   href="{{ product.url }}"
                 >
                   <span>{{ product_size }}</span>
@@ -475,7 +475,7 @@
                  {%- unless other_size_links == blank -%}
                   <div class="other-sizes__wrapper other-sizes__wrapper--other-collections">
                     <span class="other-sizes__label">Size</span> 
-                    <div class="other-sizes__wrapper-links">
+                    <div class="4 other-sizes__wrapper-links">
                       {{ other_size_links }}
                     </div>
                   </div>
