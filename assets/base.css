@@ -3659,3 +3659,9 @@ iframe#preview-bar-iframe {
   }
 }
 /* Judge.me Review css End */
+
+.collection-navigation-with-slider .product-card__image-label {
+  position: relative;
+  width: fit-content !important;
+  bottom: unset;
+}
