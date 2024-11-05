@@ -226,6 +226,10 @@ cart-drawer-remove-button {
   align-items: center;
 }
 
+square-placement {
+  margin-top: 0 !important;
+}
+
 .cart-drawer__loading-container {
   position: relative;
   display: flex;
