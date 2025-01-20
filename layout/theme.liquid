@@ -197,6 +197,13 @@
     </script>
 
     <script>
+      function uet_report_conversion() {
+        window.uetq = window.uetq || [];
+        window.uetq.push("event", "add_to_cart", {});
+      }
+    </script>
+
+    <script>
     window.uetq = window.uetq || [];
     window.uetq.push("event", "purchase", {"revenue_value":Replace_with_Variable_Revenue_Function(),"currency":"USD"});
     </script>
