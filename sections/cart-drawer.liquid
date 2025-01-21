@@ -19,8 +19,12 @@
               {% for item in cart.items %}
                 {% render 'cart-item' item: item, idx: forloop.index %}
               {% endfor %}
+              <div class="cart-drawer__rebuy">
+                <div class="slider__product">
+                  <div data-rebuy-id="{{ settings.rebuy_cart_widget_id }}"></div>
+                </div>
+              </div>
             </div>
-            
             <div class="cart-drawer__footer">
               <div class="cart-drawer__subtotal-wrapper" id="cart-drawer-subtotal">
                 <h4 class="body-sm">Subtotal</h4>
@@ -35,7 +39,6 @@
                   </div>
                 </div>
               </div>
-              
               <a href="/checkout" class="button button--full" name="checkout" form="cart">{{ 'sections.cart.checkout' | t }}</a>
               <h6 class="cart-drawer__taxes body-xs">{{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}</h6>
 

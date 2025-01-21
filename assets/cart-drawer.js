@@ -135,3 +135,42 @@ class CartDrawer extends HTMLElement {
 }
 
 customElements.define('cart-drawer', CartDrawer);
+
+
+function updateMainCart(Rebuy) {
+  fetch(`${window.origin}/?section_id=cart-drawer`)
+    .then((response) => response.text())
+    .then((responseText) => {
+      const html = new DOMParser().parseFromString(responseText, 'text/html');
+      const selectors = ['.cart-drawer__content'];
+      for (const selector of selectors) {
+        const targetElement = document.querySelector(selector);
+        const sourceElement = html.querySelector(selector);
+        if (targetElement && sourceElement) {
+          targetElement.replaceWith(sourceElement);
+        }
+      }
+    })
+    .catch((e) => {
+      console.error(e);
+    })
+    .finally(() => {
+      setTimeout(() => {
+        if (Rebuy) {
+          Rebuy.init();
+        }
+      }, 2000);
+    });
+}
+
+document.addEventListener('rebuy:cart.ready', (event) => { 
+    Rebuy.init();
+});
+document.addEventListener('rebuy:cart.add', (event) => { 
+  updateMainCart(Rebuy)
+});
+document.addEventListener('rebuy:cart.change', (event) => { 
+  updateMainCart(Rebuy)
+});
+
+

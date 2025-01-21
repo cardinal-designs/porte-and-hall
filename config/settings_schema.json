@@ -140,5 +140,20 @@
         "default": true
       }
     ]
+  },
+  {
+    "name": "Rebuy cart widget",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Set rebuy widget id"
+      },
+      {
+        "type": "text",
+        "id": "rebuy_cart_widget_id",
+        "label": "Widget id",
+        "default": "161289"
+      },
+    ]
   }
 ]
