@@ -29,8 +29,9 @@
           {% if section.settings.heading != blank %}
             <h2 class="hide-desktop styling-tips__heading">{{ section.settings.heading }}</h2>
           {% endif %}
-          <div class="styling-tips__images">
+          <div class="styling-tips__images swiper">
             <div class="swiper-wrapper">
+              {% assign number_video = 0 %}
               {% for block in section.blocks %}
                 {% if block.type == 'image-item' %}
                 <div class="swiper-slide">
@@ -39,6 +40,7 @@
                   </div>
                 </div>
                 {% elsif block.type == 'video-item' %}
+                  {% assign number_video = number_video | plus: 1 %}
                   <div style="align-self: center;" class="swiper-slide">
                       {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, style: 'width: 100%;', class: 'videos', id: 'video', image_size: '1x' }}
                   </div>
@@ -61,9 +63,9 @@
   const stylingTipsImages = new Swiper('.styling-tips__images', {
     slidesPerView: 1,
     loop: true,
-    // autoplay: {
-    //   delay: 3000,
-    // },
+    autoplay: {
+      delay: 3000,
+    },
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
@@ -73,6 +75,7 @@
     },
   });
 {% endjavascript %}
+
 
 {% schema %}
 {
