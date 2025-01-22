@@ -32,6 +32,7 @@
           <div class="styling-tips__images swiper">
             <div class="swiper-wrapper">
               {% assign number_video = 0 %}
+              {{ section.blocks.size }}
               {% for block in section.blocks %}
                 {% if block.type == 'image-item' %}
                 <div class="swiper-slide">
