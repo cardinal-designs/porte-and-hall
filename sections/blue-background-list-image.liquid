@@ -38,6 +38,12 @@
                     {% render 'lazy-image', image: block.settings.image, fade: false, fill: true %}
                   </div>
                 </div>
+                {% elsif block.type == 'video-item' %}
+                  <div class="swiper-slide">
+                    <div class="styling-tips__image-item">
+                      {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
+                    </div>
+                  </div>
                 {% endif %}
               {% endfor %}
             </div> 
@@ -117,7 +123,18 @@
         "label": "Image"
       }     
     ]
-  }  
+  },
+  {
+   "type": "video-item",
+   "name": "Video Item",
+   "settings": [
+      {
+        "type": "video",
+        "id": "video",
+        "label": "Video"
+      }     
+    ]
+  } 
 ],
   "presets": [
     {
