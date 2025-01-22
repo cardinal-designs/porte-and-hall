@@ -54,10 +54,6 @@
                     {% render 'lazy-image', image: block.settings.image, fade: false, fill: true %}
                   </div>
                 </div>
-                {% elsif block.type == 'video-item' %}
-                  <div style="align-self: center;" class="swiper-slide">
-                      {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, style: 'width: 100%;', class: 'videos', id: 'video', image_size: '1x' }}
-                  </div>
                 {% endif %}
               {% endfor %}
             </div> 
