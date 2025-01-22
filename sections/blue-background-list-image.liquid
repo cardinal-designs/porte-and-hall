@@ -60,9 +60,13 @@
             </div>
          </div>
          {% elsif image_slider == false %}
-          <div class="hero__media">
-              {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, style: 'width: 100%;', class: 'videos', id: 'video', image_size: '1x' }}
-          </div>
+          {% for block in section.blocks %}
+            {% if block.type == 'video-item' %}
+              <div style="align-self: center;" class="swiper-slide">
+                  {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, style: 'width: 100%;', class: 'videos', id: 'video', image_size: '1x' }}
+              </div>
+            {% endif %}
+          {% endfor %}
          {% endif %}
         </div>
       </div>
