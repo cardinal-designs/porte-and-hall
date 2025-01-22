@@ -614,6 +614,7 @@ cart-drawer-remove-button {
 }
 
 .cart-drawer__rebuy .super-title {
+  display: none;
   text-align: center;
   margin: 0 0 15px;
   font-weight: 500;
@@ -707,6 +708,7 @@ cart-drawer-remove-button {
   height: 90%;
   top: 5%;
   left: 5%;
+  fill: #546b82;
 }
 
 .rebuy-widget-content .powered-by-rebuy {
