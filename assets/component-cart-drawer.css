@@ -201,6 +201,7 @@ cart-drawer-remove-button {
   right: 0;
   bottom: 0;
   border-top: 1px solid var(--beige);
+  z-index: 4;
 }
 
 .cart-drawer__subtotal-wrapper {
