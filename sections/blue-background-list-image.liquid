@@ -41,7 +41,7 @@
                 {% elsif block.type == 'video-item' %}
                   <div class="swiper-slide">
                     <div class="styling-tips__image-item">
-                      {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
+                      {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '300x' }}
                     </div>
                   </div>
                 {% endif %}
@@ -63,9 +63,9 @@
   const stylingTipsImages = new Swiper('.styling-tips__images', {
     slidesPerView: 1,
     loop: true,
-    autoplay: {
-      delay: 3000,
-    },
+    // autoplay: {
+    //   delay: 3000,
+    // },
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
