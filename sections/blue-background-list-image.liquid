@@ -29,7 +29,7 @@
           {% if section.settings.heading != blank %}
             <h2 class="hide-desktop styling-tips__heading">{{ section.settings.heading }}</h2>
           {% endif %}
-          <div style="align-self: center;" class="styling-tips__images swiper">
+          <div class="styling-tips__images swiper">
             <div class="swiper-wrapper">
               {% for block in section.blocks %}
                 {% if block.type == 'image-item' %}
@@ -39,7 +39,7 @@
                   </div>
                 </div>
                 {% elsif block.type == 'video-item' %}
-                  <div class="swiper-slide">
+                  <div style="align-self: center;" class="swiper-slide">
                       {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, style: 'width: 100%;', class: 'videos', id: 'video', image_size: '1x' }}
                   </div>
                 {% endif %}
