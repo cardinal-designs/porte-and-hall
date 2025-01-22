@@ -40,9 +40,7 @@
                 </div>
                 {% elsif block.type == 'video-item' %}
                   <div class="swiper-slide">
-                    <div class="styling-tips__image-item">
                       {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '300x' }}
-                    </div>
                   </div>
                 {% endif %}
               {% endfor %}
