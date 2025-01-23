@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="hero__media">
+  <div class="hero__media 000">
     {% if section.settings.video != blank %}
         {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
     {% endif %}
