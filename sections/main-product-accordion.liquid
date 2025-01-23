@@ -43,17 +43,17 @@
               endif
             endcomment
             echo "<a href='"
-            echo swatch_link | default: swatch.variants[0].url
+            echo swatch_link | default: product.variants[0].url
             echo "' class='"
             echo element_classes
             echo "'"
-            echo "data-tooltip='"
-            echo value | escape
-            echo "' ><span "
             echo "style='background-image: url("
             echo swatch_file_name | asset_img_url
-            echo ")'>"
-            echo '</span></a>'
+            echo ")' data-tooltip='"
+            echo value | escape
+            echo "' aria-label='Product Color Swatch "
+            echo value | escape
+            echo "'></a>"
             assign swatch_count = swatch_count | plus: 1
           endfor
         endif
