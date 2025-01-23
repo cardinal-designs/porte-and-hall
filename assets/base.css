@@ -562,13 +562,13 @@ blockquote {
   gap: 20px;
 }
 
-.field__input:focus,
+/* .field__input:focus,
 .select__select:focus,
 .customer .field input:focus,
 .customer select:focus,
 .localization-form__select:focus {
   outline: transparent;
-}
+} */
 
 .field__input::-webkit-search-cancel-button,
 .customer .field input::-webkit-search-cancel-button {
