@@ -167,7 +167,7 @@
             {% if option.name == 'Size' %}
               {% continue %}
             {% endif %}
-            <span>
+            <strong>
               {%- if option.name == 'Color' or option.name == 'color' -%}
                 {%- if product.title contains 'Outlier' or product.title contains 'Outsider' -%}
                   {{ option.name }}
@@ -177,7 +177,7 @@
               {%- else -%}
                   {{ option.name }}
               {%- endif -%}
-            </span>
+            </strong>
             <span> — {{ option.selected_value }}</span>
           </div>
         {% endfor %}
