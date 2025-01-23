@@ -221,8 +221,8 @@
        // Add this script right after your base UET tag code
        window.uetq = window.uetq || [];
        window.uetq.push('set', { 'pid': { 
-          'em': 'contoso@example.com', // Replace with the variable that holds the user's email address. 
-          'ph': '+14250000000', // Replace with the variable that holds the user's phone number. 
+          'em': '{{customer.email}}', // Replace with the variable that holds the user's email address. 
+          'ph': '{{customer.phone}}', // Replace with the variable that holds the user's phone number. 
        } });
     </script>
   </head>
