@@ -758,7 +758,7 @@
                       echo "' aria-label='Product Color Swatch "
                       echo value | escape
                       echo " - "
-                      echo product_card_product.title | escape
+                      echo block.settings.product.title | escape
                       echo "'></a>"
                       assign swatch_count = swatch_count | plus: 1
                     endif
