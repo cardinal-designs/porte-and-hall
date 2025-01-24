@@ -790,7 +790,7 @@
               {% endfor %}
               <div class="collection-col-inner product-1">
                 <div class="image_container">
-                  <a href="{{ block.settings.product.url }}" aria-label="{{ block.settings.product.title }}">
+                  <a href="{{ block.settings.product.url }}" aria-label="{{ block.settings.product.title | replace: " / ", " - " }}">
                     {% render 'lazy-image', image: block.settings.product_image1, fade: true, classes: '' %}
                   </a>
                 </div>
