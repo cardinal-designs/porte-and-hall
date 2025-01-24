@@ -6,6 +6,7 @@
           <h2 class="cart-drawer__title">{{ section.settings.cart_title }}</h2>
           <button type="button" class="cart-drawer__close modal__close-button link link--text focus-inset" id="cart-drawer__close" aria-label="{{ 'accessibility.close' | t }}">
             {% render 'icon' icon: 'close' %}
+            <span class="visually-hidden">Close</span>
           </button>
         </div>
         <div class="cart-drawer__content" id="cart-drawer__content" data-id="{{ section.id }}">
