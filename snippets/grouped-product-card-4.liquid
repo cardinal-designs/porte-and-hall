@@ -92,7 +92,7 @@
       </div>
     {% endcomment %}
     <div class="product-card__image">
-      <a href="{{ product_card_product.url }}">
+      <a href="{{ product_card_product.url }}" aria-label="{{ product_card_product.title | replace: " / ", " - " }}">
         {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image" %}
         {% if product_card_product.media[1] != null %}
           {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill', aria-label: "image" %}
