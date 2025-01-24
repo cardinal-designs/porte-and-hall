@@ -622,7 +622,8 @@
                       echo swatch_file_name | asset_img_url
                       echo ")' data-tooltip='"
                       echo value | escape
-                      echo "' aria-label='Product Color Swatch "
+                      echo product.title | escape
+                      echo "' aria-label='"
                       echo value | escape
                       echo "'></a>"
                       assign swatch_count = swatch_count | plus: 1
