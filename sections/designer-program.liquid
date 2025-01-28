@@ -19,6 +19,9 @@
               <input type="hidden" name="contact[designer_program]" value="Designer Program">
               <div class="contact__fields">
                 <div class="field">
+                  <label for="firstName" class="visually-hidden">
+                    {{ 'templates.designer.form.first_name' | t }}
+                  </label>
                   <input class="field__input" type="text" id="firstName" name="contact[First Name]" required="true" data-error-message="Please Enter {{ 'templates.designer.form.first_name' | t }}" placeholder="{{ 'templates.designer.form.first_name' | t }}*"/>
                 </div>
                 <div class="field">
