@@ -254,6 +254,15 @@ square-placement {
 
 .cart-drawer__footer .button {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-drawer__footer .button img {
+  padding-right: 5px;
+  width: 27px;
+  padding-bottom: 3px;
 }
 
 .cart-drawer__taxes {
