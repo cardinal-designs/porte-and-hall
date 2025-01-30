@@ -505,14 +505,12 @@ square-placement {
     display: flex;
     align-items: center; 
 }
-.cart-text-with-icon .icon-text-box:first-child{
+/* .cart-text-with-icon .icon-text-box:first-child{
   padding-right:20px;
   justify-content: end;
     width: 35%;
-}
-.cart-text-with-icon .icon-text-box:last-child{
-  padding-left:20px;
-}
+} */
+
 .cart-text-with-icon .icon-text-box:before{
   content:"";
   position:absolute;
@@ -529,12 +527,8 @@ square-placement {
   font-size: 18px;
     margin: 0;
     line-height: 1.25;
-  max-width: 150px;
 }
-.cart-text-with-icon .icon-text-box:first-child h6{
 
-  max-width: 65px;
-}
 .cart-text-with-icon .icon-text-box span{
   padding-right: 14px;
 }
