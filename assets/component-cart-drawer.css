@@ -491,11 +491,6 @@ cart-drawer-remove-button {
   margin: 12px 0;
 }
 
-.cart-drawer .cart-drawer__items {
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
 .cart-text-with-icon {
   display:flex;
   justify-content: center;
@@ -558,7 +553,7 @@ cart-drawer-remove-button {
 .cart-drawer .cart-drawer__items {
   overflow: auto;
   overflow-x: hidden;
-  height: calc(100vh - 275px);
+  height: calc(100vh - 305px);
 }
 
 @media (max-width:769px) {
