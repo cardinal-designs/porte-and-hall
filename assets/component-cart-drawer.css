@@ -804,7 +804,7 @@ cart-drawer-remove-button {
 .slider__product .rebuy-widget .primary-title {
   color: #546B82;
   text-align: left;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   font-family: louize;
   text-transform: none;
@@ -818,6 +818,7 @@ cart-drawer-remove-button {
 .slider__product .rebuy-widget .flickity-button:focus{
   box-shadow: none;
 }
+
 @media (min-width: 769px) {
   .rebuy-widget .rebuy-product-grid.large-style-line .rebuy-product-block .rebuy-product-media, 
   .rebuy-recommended-products .rebuy-product-grid.large-style-line .rebuy-product-block .rebuy-product-media {
