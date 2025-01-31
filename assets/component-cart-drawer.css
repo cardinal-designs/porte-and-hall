@@ -52,6 +52,7 @@
   height: calc(100% - 60px);
   display: flex;
   flex-direction: column;
+  overflow: scroll;
   background: transparent linear-gradient(180deg,#fff 0,var(--beige-light) 100%) 0 0 no-repeat padding-box;
 }
 
