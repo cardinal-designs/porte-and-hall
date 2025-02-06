@@ -41,7 +41,8 @@
   text-transform: uppercase;
   padding: 8px;
   position: relative;
-  opacity: .6;
+  /* opacity: .6; */
+  opacity: .9;
   transition: all .3s ease;
 }
 
