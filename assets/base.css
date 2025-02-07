@@ -3689,7 +3689,9 @@ header.SectionHeader .Link {
   color: #ffffff;
 }
 
-
+.article-template .rte a {
+  color: var(--gold-secondary--dark);
+}
 
 
 /*========== ADA css End ==========*/
