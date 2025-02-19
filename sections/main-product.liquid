@@ -322,9 +322,6 @@
               %}
 
             <span data-active-style="{{ active_style }}"></span>
-                  {% for block in other_sizes %}
-                   ff {{ block }}
-                    {% endfor %}
               {% if other_sizes != blank and section.settings.shop_more_below != true %}
                 {% capture other_size_links %}
                   {% for block in other_sizes %}
