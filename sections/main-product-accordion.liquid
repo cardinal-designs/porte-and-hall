@@ -179,6 +179,10 @@
           </div>
         {% endfor %}
 
+        {% if product.metafields.custom.style_text != blank %}
+        <p>{{ product.metafields.custom.style_text }}</p>
+        {% endif %}
+
         <div class="product__swatches">
           {{ color_swatch_list }}
         </div>
