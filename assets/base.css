@@ -3674,3 +3674,8 @@ iframe#preview-bar-iframe {
   width: fit-content !important;
   bottom: unset;
 }
+
+.style-text__color {
+  font-size: 13px;
+  line-height: 1;
+}
