@@ -186,7 +186,7 @@
         <div>
           {% form 'product', product, id: 'product-form-installment', class: 'installment' %}
             <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-            {{ form | payment_terms }}
+            {% comment %}{{ form | payment_terms }}{% endcomment %}
           {% endform %}
         </div>
 
