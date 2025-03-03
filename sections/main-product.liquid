@@ -182,13 +182,16 @@
         <div class="product__swatches">
           {{ color_swatch_list }}
         </div>
-        
+
+        {% comment %}
         <div>
           {% form 'product', product, id: 'product-form-installment', class: 'installment' %}
             <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            {{ form | payment_terms }}
           {% endform %}
         </div>
-
+        {% endcomment %}
+        
         <product-form class="product-form">
           <div class="product-form__error-message-wrapper" role="alert" hidden>
             <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
