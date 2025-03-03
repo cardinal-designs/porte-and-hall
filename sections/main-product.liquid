@@ -322,7 +322,6 @@
               %}
 
             <span data-active-style="{{ active_style }}"></span>
-
               {% if other_sizes != blank and section.settings.shop_more_below != true %}
                 {% capture other_size_links %}
                   {% for block in other_sizes %}
@@ -414,6 +413,7 @@
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
                   {%- if match != blank -%}
+                  
                     <a 
                       data-dd="{{ grouped_collection.title }}"
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% endif %} ;"

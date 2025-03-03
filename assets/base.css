@@ -2988,6 +2988,15 @@ select#notify_id {
   background: url("https://cdn.shopify.com/s/files/1/0084/8602/7327/files/color-wheel_1.png?v=1694583299");
   background-repeat: no-repeat;
 }
+#filter-dropdowns
+  .collection-filters__dropdowns
+  .collection-filters__dropdown:nth-child(3)
+  .collection-filters__dropdown-wrapper
+  .collection-filters__dropdown-container
+  .collection-filters__input-wrapper
+  label[for="Filter-Color-9"]::before {
+  background: #FFC0CB;
+}
 
 @media only screen and (min-width: 768px) {
   #filter-dropdowns
@@ -3664,4 +3673,9 @@ iframe#preview-bar-iframe {
   position: relative;
   width: fit-content !important;
   bottom: unset;
+}
+
+.style-text__color {
+  font-size: 13px;
+  line-height: 1;
 }

@@ -1,6 +1,13 @@
 {{ 'section-styling-tips.css' | asset_url | stylesheet_tag }}
 {{ 'section-blue-background.css' | asset_url | stylesheet_tag }}
 
+{% style %}
+  @media screen and (max-width: 768px) {
+    .square-mobile-image {
+      height: 85vw;
+    }
+  }
+{% endstyle %}
 
   <section class="blue-background styling-tips">
     <div class="styling-tips__background">
@@ -29,6 +36,14 @@
           {% if section.settings.heading != blank %}
             <h2 class="hide-desktop styling-tips__heading">{{ section.settings.heading }}</h2>
           {% endif %}
+           {% assign image_slider = false %}
+           {% for block in section.blocks %}
+             {% if block.type == 'image-item' %}
+               {% assign image_slider = true %}
+               {% break %}
+             {% endif %}
+          {% endfor %}
+          {% if image_slider %}
           <div class="styling-tips__images swiper">
             <div class="swiper-wrapper">
               {% for block in section.blocks %}
@@ -47,6 +62,15 @@
               <div class="swiper-button-next"></div>
             </div>
          </div>
+         {% elsif image_slider == false %}
+          {% for block in section.blocks %}
+            {% if block.type == 'video-item' %}
+              <div style="align-self: center;" class="swiper-slide">
+                  {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, style: 'width: 100%; max-height: 750px; object-fit: cover;', class: 'videos square-mobile-image', id: 'video', image_size: '1x' }}
+              </div>
+            {% endif %}
+          {% endfor %}
+         {% endif %}
         </div>
       </div>
     </div>
@@ -69,6 +93,7 @@
     },
   });
 {% endjavascript %}
+
 
 {% schema %}
 {
@@ -117,7 +142,18 @@
         "label": "Image"
       }     
     ]
-  }  
+  },
+  {
+   "type": "video-item",
+   "name": "Video Item",
+   "settings": [
+      {
+        "type": "video",
+        "id": "video",
+        "label": "Video"
+      }     
+    ]
+  } 
 ],
   "presets": [
     {

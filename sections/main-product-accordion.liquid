@@ -179,6 +179,10 @@
           </div>
         {% endfor %}
 
+        {% if product.metafields.custom.style_text != blank %}
+        <p class="style-text__color">{{ product.metafields.custom.style_text }}</p>
+        {% endif %}
+
         <div class="product__swatches">
           {{ color_swatch_list }}
         </div>
@@ -412,7 +416,7 @@
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
-
+                 
                   {%- if match != blank -%}
                     <a 
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% endif %} ;"
