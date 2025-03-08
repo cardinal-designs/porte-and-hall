@@ -3680,6 +3680,6 @@ iframe#preview-bar-iframe {
   line-height: 1;
 }
 
-.afterpay-main-text {
-  font-size: 16px !important;
+.afterpay-wrapper > .afterpay-main-text {
+  text-align: center !important;
 }
