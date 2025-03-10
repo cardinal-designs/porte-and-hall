@@ -53,6 +53,7 @@
       </div>
     </div>
   </section>
+  {%- if section.settings.show_faq -%}
   <div class="fan__motif--faq">
     <div class="faq__column">
       {%- if section.settings.title_1 != blank or section.settings.title_richtext_1 != blank -%}
@@ -108,7 +109,9 @@
       {%- endif -%}
     </div>
   </div>
+  {%- endif -%}
 </div>
+
 
 {% schema %}
 {
@@ -193,6 +196,34 @@
       "id": "image",
       "label": "Image",
       "info": "Only for Left or Right layout alignments"
+    },
+    {
+      "type": "header",
+      "content": "FAQ"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_faq",
+      "label": "Show FAQ"
+    },
+    {
+      "type": "header",
+      "content": "FAQ 1"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Question"
+    },
+    {
+      "type": "richtext",
+      "id": "title_richtext",
+      "label": "Question richtext"
+    },        
+    {
+      "type": "richtext",
+      "id": "answer",
+      "label": "Answer"
     }
   ],
   "max_blocks": 3,
