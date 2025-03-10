@@ -124,6 +124,12 @@
   width: 50%;
 }
 
+.fan-motif__wrap .fan__motif--faq .faq__column {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .fan__motif--faq .faq__column > .faq__item:first-child {
   border-top: 1px solid var(--blue);
 }
