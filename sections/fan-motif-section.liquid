@@ -55,20 +55,54 @@
   </section>
   <div class="fan__motif--faq">
     <div class="faq__column">
-      {%- if section.settings.title != blank or section.settings.title_richtext != blank -%}
+      {%- if section.settings.title_1 != blank or section.settings.title_richtext_1 != blank -%}
       <div class="faq__item">
         <button class="faq__question body" data-faq="{{ forloop.index }}">
-          {% if section.settings.title != blank %}
-            <span>{{ section.settings.title }}</span>
+          {% if section.settings.title_1 != blank %}
+            <span>{{ section.settings.title_1 }}</span>
           {% endif %}
           
-          {% if section.settings.title_richtext != blank %}
-            {{ section.settings.title_richtext }}
+          {% if section.settings.title_richtext_1 != blank %}
+            {{ section.settings.title_richtext_1 }}
           {% endif %}
           <span>{% render 'icon', icon: 'accordion' %}</span>
         </button>
         <div class="faq__content body">
-          {{ section.settings.answer }}
+          {{ section.settings.answer_1 }}
+        </div>
+      </div>
+      {%- endif -%}
+      {%- if section.settings.title_2 != blank or section.settings.title_richtext_2 != blank -%}
+      <div class="faq__item">
+        <button class="faq__question body" data-faq="{{ forloop.index }}">
+          {% if section.settings.title_2 != blank %}
+            <span>{{ section.settings.title_2 }}</span>
+          {% endif %}
+          
+          {% if section.settings.title_richtext_2 != blank %}
+            {{ section.settings.title_richtext_2 }}
+          {% endif %}
+          <span>{% render 'icon', icon: 'accordion' %}</span>
+        </button>
+        <div class="faq__content body">
+          {{ section.settings.answer_2 }}
+        </div>
+      </div>
+      {%- endif -%}
+      {%- if section.settings.title_3 != blank or section.settings.title_richtext_3 != blank -%}
+      <div class="faq__item">
+        <button class="faq__question body" data-faq="{{ forloop.index }}">
+          {% if section.settings.title_3 != blank %}
+            <span>{{ section.settings.title_3 }}</span>
+          {% endif %}
+          
+          {% if section.settings.title_richtext_3 != blank %}
+            {{ section.settings.title_richtext_3 }}
+          {% endif %}
+          <span>{% render 'icon', icon: 'accordion' %}</span>
+        </button>
+        <div class="faq__content body">
+          {{ section.settings.answer_3 }}
         </div>
       </div>
       {%- endif -%}
