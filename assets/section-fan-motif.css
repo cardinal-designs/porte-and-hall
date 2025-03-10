@@ -118,6 +118,7 @@
 
 .fan-motif__wrap {
   display: flex;
+  flex-direction: row-reverse;
 }
 
 .fan-motif__wrap .fan__motif--faq {
