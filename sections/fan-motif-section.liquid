@@ -8,50 +8,55 @@
     assign background = 'fan-motif-background--green.jpg' | asset_url
   endif
 %}
-<section class="fan-motif {% if section.settings.hide_mobile == true %}Hide_Mobile{% endif %} {% if section.settings.hide_desktop == true %}Hide_Desktop{% endif %}" style="background: no-repeat center/cover url('{{ background }}')">
-  <div class="fan-motif__background">
-    <div class="fan-motif__inner fan-motif__layout-{{ section.settings.alignment }}">
-      <div class="fan-motif__content-wrapper">
-        <div class="fan-motif__motif">
-          <img src="{{ fan-motif }}" width="67" height="50" alt="Fan motif">
-        </div>
-
-        {% if section.settings.heading != blank %}
-          <h2 class="fan-motif__heading blue">{{ section.settings.heading | newline_to_br }}</h2>
-        {% endif %}
-
-        {% if section.settings.text != blank %}
-          <p class="body blue fan-motif__text">{{ section.settings.text }}</p>
-        {% endif %}
-
-        {% if section.settings.link != blank and section.settings.link_text != blank %}
-          <a href="{{ section.settings.link }}" class="text-link gold-secondary--dark fan-motif__link">
-            {{- section.settings.link_text }} ></a
-          >
-        {% endif %}
-
-        {% if section.blocks != blank and section.settings.alignment == 'center' %}
-          <div class="fan-motif__blocks">
-            {% for block in section.blocks %}
-              <div class="fan-motif__icon-wrapper">
-                <div class="fan-motif__icon-image">
-                  {{ block.settings.image | image_url: width: 328 | image_tag: width: 164, height: 120 }}
+<div class="fan-motif__wrap">
+  <section class="fan-motif {% if section.settings.hide_mobile == true %}Hide_Mobile{% endif %} {% if section.settings.hide_desktop == true %}Hide_Desktop{% endif %}" style="background: no-repeat center/cover url('{{ background }}')">
+    <div class="fan-motif__background">
+      <div class="fan-motif__inner fan-motif__layout-{{ section.settings.alignment }}">
+        <div class="fan-motif__content-wrapper">
+          <div class="fan-motif__motif">
+            <img src="{{ fan-motif }}" width="67" height="50" alt="Fan motif">
+          </div>
+  
+          {% if section.settings.heading != blank %}
+            <h2 class="fan-motif__heading blue">{{ section.settings.heading | newline_to_br }}</h2>
+          {% endif %}
+  
+          {% if section.settings.text != blank %}
+            <p class="body blue fan-motif__text">{{ section.settings.text }}</p>
+          {% endif %}
+  
+          {% if section.settings.link != blank and section.settings.link_text != blank %}
+            <a href="{{ section.settings.link }}" class="text-link gold-secondary--dark fan-motif__link">
+              {{- section.settings.link_text }} ></a
+            >
+          {% endif %}
+  
+          {% if section.blocks != blank and section.settings.alignment == 'center' %}
+            <div class="fan-motif__blocks">
+              {% for block in section.blocks %}
+                <div class="fan-motif__icon-wrapper">
+                  <div class="fan-motif__icon-image">
+                    {{ block.settings.image | image_url: width: 328 | image_tag: width: 164, height: 120 }}
+                  </div>
+                  <h3 class="fan-motif__icon-label blue">{{ block.settings.title }}</h3>
                 </div>
-                <h3 class="fan-motif__icon-label blue">{{ block.settings.title }}</h3>
-              </div>
-            {% endfor %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+  
+        {% if section.settings.image and section.settings.alignment != 'center' %}
+          <div class="fan-motif__image-wrapper">
+            {{ section.settings.image | image_url: width: 800 | image_tag: class: "lazyload" }}
           </div>
         {% endif %}
       </div>
-
-      {% if section.settings.image and section.settings.alignment != 'center' %}
-        <div class="fan-motif__image-wrapper">
-          {{ section.settings.image | image_url: width: 800 | image_tag: class: "lazyload" }}
-        </div>
-      {% endif %}
     </div>
+  </section>
+  <div class="fan__motif--faq">
+    
   </div>
-</section>
+</div>
 
 {% schema %}
 {
