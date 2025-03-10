@@ -9,7 +9,7 @@
   endif
 %}
 <div class="fan-motif__wrap">
-  <section class="fan-motif {% if section.settings.hide_mobile == true %}Hide_Mobile{% endif %} {% if section.settings.hide_desktop == true %}Hide_Desktop{% endif %}" style="background: no-repeat center/cover url('{{ background }}')">
+  <section class="fan-motif {% if section.settings.show_faq == false %}fan__motif--full{% endif %} {% if section.settings.hide_mobile == true %}Hide_Mobile{% endif %} {% if section.settings.hide_desktop == true %}Hide_Desktop{% endif %}" style="background: no-repeat center/cover url('{{ background }}')">
     <div class="fan-motif__background">
       <div class="fan-motif__inner fan-motif__layout-{{ section.settings.alignment }}">
         <div class="fan-motif__content-wrapper">
