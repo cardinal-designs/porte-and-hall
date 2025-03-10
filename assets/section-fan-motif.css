@@ -235,6 +235,10 @@
     display: none;
   }
 
+  .fan-motif__wrap {
+    flex-wrap: wrap;
+  }
+
   .fan-motif__wrap .fan__motif--faq {
     width: 100%;
     padding-left: 20px;
