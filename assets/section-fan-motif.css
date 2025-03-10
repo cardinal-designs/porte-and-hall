@@ -122,6 +122,10 @@
 
 .fan-motif__wrap .fan__motif--faq {
   width: 50%;
+  padding-left: 50px;
+  padding-right: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .fan-motif__wrap .fan__motif--faq .faq__column {
