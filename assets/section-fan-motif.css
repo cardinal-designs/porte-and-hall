@@ -116,6 +116,14 @@
   display: none;  
 }
 
+.fan-motif__wrap {
+  display: flex;
+}
+
+.fan__motif--full .fan-motif__wrap {
+  width: 50%;
+}
+
 @media screen and (max-width: 1024px) {
   .fan-motif__layout-left,
   .fan-motif__layout-right {
