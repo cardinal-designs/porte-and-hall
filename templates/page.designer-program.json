@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -5,7 +14,7 @@
       "settings": {
         "page_heading": "",
         "subhead": "From one designer to another, we love working with the trade!",
-        "image": "shopify:\/\/shop_images\/Rectangle_600_afdd9d4e-2ac5-4953-8125-1a557f66a497.jpg",
+        "image": "shopify://shop_images/Rectangle_600_afdd9d4e-2ac5-4953-8125-1a557f66a497.jpg",
         "section_height": "350",
         "bg_color": "#f4f2ee"
       }
@@ -14,7 +23,7 @@
       "type": "designer-program",
       "settings": {
         "heading": "Our designer program members receive exclusive pricing to interior designers and architects (20% off retail pricing).",
-        "top_text": "If you'd rather contact us directly, please email support@porteandhall.com with any questions.",
+        "top_text": "<p>If you'd rather contact us directly, please email support@porteandhall.com with any questions.<br/>Already a member? <span style=\"text-decoration:underline\">Sign in</span></p>",
         "thankyou_link": ""
       }
     },
@@ -26,7 +35,7 @@
         "color": "green",
         "alignment": "center",
         "heading": "“As an interior designer, I believe deeply in the importance of your home's ability to brighten your mood and outlook.”",
-        "text": "<b>— STAFFORD MEYER, FOUNDER OF PORTE + HALL<\/b>",
+        "text": "<b>— STAFFORD MEYER, FOUNDER OF PORTE + HALL</b>",
         "link": "",
         "link_text": ""
       }
@@ -45,7 +54,7 @@
         "text": "“In my 20 years as an interior designer, I struggled to source entry mats that were as well-designed and functional as the rest of the home. I was bewildered by the scarcity of options. Why was the first thing to greet you at your door not important? So I decided to design my own - because first impressions matter, for you and your guests.  Welcome to our collection and we hope you walk all over us!”",
         "link": "",
         "link_text": "",
-        "image": "shopify:\/\/shop_images\/web_collage_copy.png"
+        "image": "shopify://shop_images/web_collage_copy.png"
       }
     }
   },
