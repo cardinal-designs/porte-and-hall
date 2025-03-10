@@ -253,5 +253,9 @@
   .fan__motif--faq .faq__column > .faq__item:first-child {
     border-top: 0px solid var(--blue);
   }
+
+  .fan__motif--faq .faq__item:last-child {
+    border-bottom: 0px solid var(--blue);
+  }
   
 }
