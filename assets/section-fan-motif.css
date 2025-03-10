@@ -3,6 +3,10 @@
   width: 50%;
 }
 
+.fan-motif.fan__motif--full {
+  width: 100%;
+}
+
 .fan-motif__background {
   background: var(--beige-secondary);
 }
