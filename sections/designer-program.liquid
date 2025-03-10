@@ -9,7 +9,7 @@
           <h3>{{ section.settings.heading }}</h3>
         {% endif %}
         {% if section.settings.top_text != blank %}
-          <p class="body">{{ section.settings.top_text }}</p>
+          <div class="body">{{ section.settings.top_text }}</div>
         {% endif %}
       </div>
       <form-validation>
@@ -270,7 +270,7 @@
         "label":"Top Heading"
       },
       {
-        "type":"text",
+        "type":"richtext",
         "id":"top_text",
         "label":"Top Text"
       },
