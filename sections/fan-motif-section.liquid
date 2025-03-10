@@ -54,7 +54,25 @@
     </div>
   </section>
   <div class="fan__motif--faq">
-    
+    <div class="faq__column">
+      {%- if block.settings.title != blank or block.settings.title_richtext != blank -%}
+      <div class="faq__item">
+        <button class="faq__question body" data-faq="{{ forloop.index }}">
+          {% if block.settings.title != blank %}
+            <span>{{ block.settings.title }}</span>
+          {% endif %}
+          
+          {% if block.settings.title_richtext != blank %}
+            {{ block.settings.title_richtext }}
+          {% endif %}
+          <span>{% render 'icon', icon: 'accordion' %}</span>
+        </button>
+        <div class="faq__content body">
+          {{ block.settings.answer }}
+        </div>
+      </div>
+      {%- endif -%}
+    </div>
   </div>
 </div>
 
