@@ -1,6 +1,46 @@
+<div class="page-width">
+  <div class="categories-grid__container">
+    {% for block in blocks %}
+      <div>{{ block.settings.text }}</div>
+    {% endfor %}
+  </div>
+</div>
+
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Categories Grid",
+  "class": "image-with-text",
+  "settings": [],
+  "blocks": [
+    {
+     "type": "block",
+     "name": "block",
+     "settings": [ 
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "Categories Grid",
+      "settings": {}
+    }
+  ]
+}
 {% endschema %}
