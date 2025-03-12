@@ -21,6 +21,57 @@
         "custom-class": "home-banner"
       }
     },
+    "categories_image_text_LTWwph": {
+      "type": "categories-image-text",
+      "settings": {
+        "subheading": "Sub-heading",
+        "title": "<p>Add Title...</p>",
+        "content": "<p>Add your own custom content to give more information about your store, availability details...</p>",
+        "link_text": "",
+        "link_url": "",
+        "custom-class": ""
+      }
+    },
+    "categories_grid_gjJRPL": {
+      "type": "categories-grid",
+      "blocks": {
+        "block_EyYreN": {
+          "type": "block",
+          "settings": {
+            "text": "Best Sellers",
+            "url": "shopify://collections/best-sellers"
+          }
+        },
+        "block_kxkzh8": {
+          "type": "block",
+          "settings": {
+            "text": "Doormats",
+            "url": "shopify://collections/the-innerweave-doormat"
+          }
+        },
+        "block_mGGRHB": {
+          "type": "block",
+          "settings": {
+            "text": "Area Mats",
+            "url": "shopify://collections/the-insider-area-mat"
+          }
+        },
+        "block_xAQAQR": {
+          "type": "block",
+          "settings": {
+            "text": "Runners",
+            "url": "shopify://collections/the-insider-runner"
+          }
+        }
+      },
+      "block_order": [
+        "block_EyYreN",
+        "block_kxkzh8",
+        "block_mGGRHB",
+        "block_xAQAQR"
+      ],
+      "settings": {}
+    },
     "3726ddfa-f49e-4e18-a5f2-430400876ccd": {
       "type": "icon-with-text",
       "blocks": {
@@ -903,6 +954,8 @@
   },
   "order": [
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62",
+    "categories_image_text_LTWwph",
+    "categories_grid_gjJRPL",
     "3726ddfa-f49e-4e18-a5f2-430400876ccd",
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",
     "product_carousel_new_aKw9LG",
