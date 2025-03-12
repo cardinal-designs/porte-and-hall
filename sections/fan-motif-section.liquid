@@ -8,50 +8,127 @@
     assign background = 'fan-motif-background--green.jpg' | asset_url
   endif
 %}
-<section class="fan-motif {% if section.settings.hide_mobile == true %}Hide_Mobile{% endif %} {% if section.settings.hide_desktop == true %}Hide_Desktop{% endif %}" style="background: no-repeat center/cover url('{{ background }}')">
-  <div class="fan-motif__background">
-    <div class="fan-motif__inner fan-motif__layout-{{ section.settings.alignment }}">
-      <div class="fan-motif__content-wrapper">
-        <div class="fan-motif__motif">
-          <img src="{{ fan-motif }}" width="67" height="50" alt="Fan motif">
-        </div>
-
-        {% if section.settings.heading != blank %}
-          <h2 class="fan-motif__heading blue">{{ section.settings.heading | newline_to_br }}</h2>
-        {% endif %}
-
-        {% if section.settings.text != blank %}
-          <p class="body blue fan-motif__text">{{ section.settings.text }}</p>
-        {% endif %}
-
-        {% if section.settings.link != blank and section.settings.link_text != blank %}
-          <a href="{{ section.settings.link }}" class="text-link gold-secondary--dark fan-motif__link">
-            {{- section.settings.link_text }} ></a
-          >
-        {% endif %}
-
-        {% if section.blocks != blank and section.settings.alignment == 'center' %}
-          <div class="fan-motif__blocks">
-            {% for block in section.blocks %}
-              <div class="fan-motif__icon-wrapper">
-                <div class="fan-motif__icon-image">
-                  {{ block.settings.image | image_url: width: 328 | image_tag: width: 164, height: 120 }}
+<div class="fan-motif__wrap">
+  <section class="fan-motif {% if section.settings.show_faq == false %}fan__motif--full{% endif %} {% if section.settings.hide_mobile == true %}Hide_Mobile{% endif %} {% if section.settings.hide_desktop == true %}Hide_Desktop{% endif %}" style="background: no-repeat center/cover url('{{ background }}')">
+    <div class="fan-motif__background">
+      <div class="fan-motif__inner fan-motif__layout-{{ section.settings.alignment }}">
+        <div class="fan-motif__content-wrapper">
+          <div class="fan-motif__motif">
+            <img src="{{ fan-motif }}" width="67" height="50" alt="Fan motif">
+          </div>
+  
+          {% if section.settings.heading != blank %}
+            <h2 class="fan-motif__heading blue">{{ section.settings.heading | newline_to_br }}</h2>
+          {% endif %}
+  
+          {% if section.settings.text != blank %}
+            <p class="body blue fan-motif__text">{{ section.settings.text }}</p>
+          {% endif %}
+  
+          {% if section.settings.link != blank and section.settings.link_text != blank %}
+            <a href="{{ section.settings.link }}" class="text-link gold-secondary--dark fan-motif__link">
+              {{- section.settings.link_text }} ></a
+            >
+          {% endif %}
+  
+          {% if section.blocks != blank and section.settings.alignment == 'center' %}
+            <div class="fan-motif__blocks">
+              {% for block in section.blocks %}
+                <div class="fan-motif__icon-wrapper">
+                  <div class="fan-motif__icon-image">
+                    {{ block.settings.image | image_url: width: 328 | image_tag: width: 164, height: 120 }}
+                  </div>
+                  <h3 class="fan-motif__icon-label blue">{{ block.settings.title }}</h3>
                 </div>
-                <h3 class="fan-motif__icon-label blue">{{ block.settings.title }}</h3>
-              </div>
-            {% endfor %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+  
+        {% if section.settings.image and section.settings.alignment != 'center' %}
+          <div class="fan-motif__image-wrapper">
+            {{ section.settings.image | image_url: width: 800 | image_tag: class: "lazyload" }}
           </div>
         {% endif %}
       </div>
-
-      {% if section.settings.image and section.settings.alignment != 'center' %}
-        <div class="fan-motif__image-wrapper">
-          {{ section.settings.image | image_url: width: 800 | image_tag: class: "lazyload" }}
+    </div>
+  </section>
+  {%- if section.settings.show_faq -%}
+  <div class="fan__motif--faq">
+    <div class="faq__column">
+      {%- if section.settings.title_1 != blank or section.settings.title_richtext_1 != blank -%}
+      <div class="faq__item">
+        <button class="faq__question body" data-faq="{{ forloop.index }}">
+          {% if section.settings.title_1 != blank %}
+            <span>{{ section.settings.title_1 }}</span>
+          {% endif %}
+          
+          {% if section.settings.title_richtext_1 != blank %}
+            {{ section.settings.title_richtext_1 }}
+          {% endif %}
+          <span>{% render 'icon', icon: 'accordion' %}</span>
+        </button>
+        <div class="faq__content body">
+          {{ section.settings.answer_1 }}
         </div>
-      {% endif %}
+      </div>
+      {%- endif -%}
+      {%- if section.settings.title_2 != blank or section.settings.title_richtext_2 != blank -%}
+      <div class="faq__item">
+        <button class="faq__question body" data-faq="{{ forloop.index }}">
+          {% if section.settings.title_2 != blank %}
+            <span>{{ section.settings.title_2 }}</span>
+          {% endif %}
+          
+          {% if section.settings.title_richtext_2 != blank %}
+            {{ section.settings.title_richtext_2 }}
+          {% endif %}
+          <span>{% render 'icon', icon: 'accordion' %}</span>
+        </button>
+        <div class="faq__content body">
+          {{ section.settings.answer_2 }}
+        </div>
+      </div>
+      {%- endif -%}
+      {%- if section.settings.title_3 != blank or section.settings.title_richtext_3 != blank -%}
+      <div class="faq__item">
+        <button class="faq__question body" data-faq="{{ forloop.index }}">
+          {% if section.settings.title_3 != blank %}
+            <span>{{ section.settings.title_3 }}</span>
+          {% endif %}
+          
+          {% if section.settings.title_richtext_3 != blank %}
+            {{ section.settings.title_richtext_3 }}
+          {% endif %}
+          <span>{% render 'icon', icon: 'accordion' %}</span>
+        </button>
+        <div class="faq__content body">
+          {{ section.settings.answer_3 }}
+        </div>
+      </div>
+      {%- endif -%}
     </div>
   </div>
-</section>
+  {%- endif -%}
+</div>
+
+{% javascript %}
+  const accordionItems = document.querySelectorAll('.faq__question');
+  accordionItems.forEach((accordion) => {
+    accordion.addEventListener('click', (event) => {
+      const parent = accordion.parentElement;
+      const content = accordion.nextElementSibling;
+
+      if (!parent.classList.contains('active')) {
+        parent.classList.add('active');
+        slideDown(content, 400);
+      } else {
+        parent.classList.remove('active');
+        slideUp(content, 400);
+      }
+    });
+  });
+{% endjavascript %}
 
 {% schema %}
 {
@@ -136,6 +213,73 @@
       "id": "image",
       "label": "Image",
       "info": "Only for Left or Right layout alignments"
+    },
+    {
+      "type": "header",
+      "content": "FAQ"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_faq",
+      "label": "Show FAQ",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "FAQ 1"
+    },
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Question"
+    },
+    {
+      "type": "richtext",
+      "id": "title_richtext_1",
+      "label": "Question richtext"
+    },        
+    {
+      "type": "richtext",
+      "id": "answer_1",
+      "label": "Answer"
+    },
+    {
+      "type": "header",
+      "content": "FAQ 2"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Question"
+    },
+    {
+      "type": "richtext",
+      "id": "title_richtext_2",
+      "label": "Question richtext"
+    },        
+    {
+      "type": "richtext",
+      "id": "answer_2",
+      "label": "Answer"
+    },
+    {
+      "type": "header",
+      "content": "FAQ 3"
+    },
+    {
+      "type": "text",
+      "id": "title_3",
+      "label": "Question"
+    },
+    {
+      "type": "richtext",
+      "id": "title_richtext_3",
+      "label": "Question richtext"
+    },        
+    {
+      "type": "richtext",
+      "id": "answer_3",
+      "label": "Answer"
     }
   ],
   "max_blocks": 3,
