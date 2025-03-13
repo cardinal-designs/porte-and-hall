@@ -21,7 +21,7 @@
        min-height: 570px;
    }
 
-   .image-with-text.categories-hero .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
+   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
       padding: 56px 40px 72px;
     text-align: left;
     max-width: 572px;
@@ -30,15 +30,15 @@
 
    }
 
-     .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p{
-       color:#30383D;
-        font-size: 72px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 72px; /* 100% */
-        letter-spacing: 0.72px;
-        font-family: louize;
-     }
+   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p{
+     color:#30383D;
+      font-size: 72px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 72px; /* 100% */
+      letter-spacing: 0.72px;
+      font-family: louize;
+   }
   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description p{
        color:#546B82;
        font-size: 30px;
@@ -140,31 +140,28 @@
  
  <section class="categories-hero Section {{ section.settings.custom-class }}">
   {%- capture section_content -%}
-    <div class="FeatureText__ContentWrapper">
-      <div class="FeatureText__Content">
-        {%- if section.settings.subheading != blank or section.settings.title != blank or section.settings.content != blank -%}
-          <header class="SectionHeader">
-            {%- if section.settings.subheading != blank -%}
-              <h4 class="SectionHeader__SubHeading">{{ section.settings.subheading | escape }}</h4>
-            {%- endif -%}
+      {%- if section.settings.subheading != blank or section.settings.title != blank or section.settings.content != blank -%}
+        <header class="SectionHeader">
+          {%- if section.settings.subheading != blank -%}
+            <h4 class="SectionHeader__SubHeading">{{ section.settings.subheading | escape }}</h4>
+          {%- endif -%}
 
-            {%- if section.settings.title != blank -%}
-              <div class="SectionHeader__Heading">{{ section.settings.title }}</div>
-            {%- endif -%}
+          {%- if section.settings.title != blank -%}
+            <div class="SectionHeader__Heading">{{ section.settings.title }}</div>
+          {%- endif -%}
 
-            {%- if section.settings.content != blank -%}
-              <div class="SectionHeader__Description">
-                {{ section.settings.content }}
-              </div>
-            {%- endif -%}
+          {%- if section.settings.content != blank -%}
+            <div class="SectionHeader__Description">
+              {{ section.settings.content }}
+            </div>
+          {%- endif -%}
 
-            {%- if section.settings.link_text != blank -%}
-              <a href="{{ section.settings.link_url }}" class="Link Link--underline">{{ section.settings.link_text | escape }}</a>
-            {%- endif -%}
-          </header>
-        {%- endif -%}
-      </div>
-    </div>
+          {%- if section.settings.link_text != blank -%}
+            <a href="{{ section.settings.link_url }}" class="Link Link--underline">{{ section.settings.link_text | escape }}</a>
+          {%- endif -%}
+        </header>
+      {%- endif -%}
+
   {%- endcapture -%}
 
   {%- capture section_image -%}
