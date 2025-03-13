@@ -3,3 +3,7 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 8px;
 }
+
+.categories-grid__item img {
+  width: 100%;
+}
