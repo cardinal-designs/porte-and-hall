@@ -12,6 +12,10 @@
   position: relative;
 }
 
+.categories-grid__item:hover .categories-grid__text {
+  opacity: 1;
+}
+
 .categories-grid__text {
   position: absolute;
   background: #546B82;
