@@ -8,6 +8,16 @@
   width: 100%;
 }
 
+.categories-grid__item {
+  position: relative;
+}
+
+.categories-grid__text {
+  position: absolute;
+  background: #546B82;
+  width: 100%;
+}
+
 @media screen and (max-width:768px){
   .categories-grid__container {
     grid-template-columns: 1fr 1fr;
