@@ -24,6 +24,42 @@
     },
     "categories_image_text_LTWwph": {
       "type": "categories-image-text",
+      "blocks": {
+        "block_pQyNRk": {
+          "type": "block",
+          "settings": {
+            "text": "1,000+ Five-Star Reviews",
+            "image": "shopify://shop_images/Vector_6.png"
+          }
+        },
+        "block_ygtgAP": {
+          "type": "block",
+          "settings": {
+            "text": "30-Day Returns",
+            "image": "shopify://shop_images/Icon.png"
+          }
+        },
+        "block_RPz4y7": {
+          "type": "block",
+          "settings": {
+            "text": "Fast Shipping",
+            "image": "shopify://shop_images/Vector_7.png"
+          }
+        },
+        "block_RJzi8B": {
+          "type": "block",
+          "settings": {
+            "text": "Created by an Interior Designer",
+            "image": "shopify://shop_images/Frame_7.png"
+          }
+        }
+      },
+      "block_order": [
+        "block_pQyNRk",
+        "block_ygtgAP",
+        "block_RPz4y7",
+        "block_RJzi8B"
+      ],
       "settings": {
         "image": "shopify://shop_images/WildSideDove_Doormat_Lead_v1.jpg",
         "subheading": "",
