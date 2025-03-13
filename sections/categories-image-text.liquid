@@ -174,7 +174,7 @@
     width: fit-content;
   }
 
-  .category-blocks img {
+  .category-block img {
     height: 22px;
     width: auto;
   }
@@ -205,7 +205,7 @@
           {%- if section.blocks.size > 1 -%}
           <div class="category-blocks__container">
             {% for block in section.blocks %}
-              <div class="category-blocks">
+              <div class="category-block">
                 <img src="{{ block.settings.image | img_url: 'master' }}"/>
                 <p>{{ block.settings.text }}</p>
               </div>
