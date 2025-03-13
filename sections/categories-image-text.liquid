@@ -196,6 +196,17 @@
           {%- if section.settings.link_text != blank -%}
             <a href="{{ section.settings.link_url }}" class="Link Link--underline">{{ section.settings.link_text | escape }}</a>
           {%- endif -%}
+
+          {%- if section.blocks.size > 1 -%}
+          <div class="category-blocks__container">
+            {% for block in section.blocks %}
+              <div class="category-blocks">
+                <img src="{{ block.settings.image | img_url: 'master' }}"/>
+                <p>{{ block.settings.text }}</p>
+              </div>
+            {% endfor %}
+          </div>
+          {%- endif -%}
         </header>
       {%- endif -%}
 
@@ -263,6 +274,24 @@
       "type": "text",
       "id": "custom-class",
       "label": "custom-class"
+    }
+  ],
+  "blocks": [
+    {
+     "type": "block",
+     "name": "block",
+     "settings": [ 
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
     }
   ],
   "presets": [
