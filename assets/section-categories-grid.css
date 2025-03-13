@@ -35,4 +35,8 @@
     grid-template-columns: 1fr 1fr;
     gap: 8px 8px;
   }
+
+  .categories-grid__text {
+    font-size: 18px;
+  }
 }
