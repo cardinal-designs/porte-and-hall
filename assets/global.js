@@ -1460,3 +1460,19 @@ var ProductFeature = class extends HTMLElement {
 }
 
 customElements.define('product-feature', ProductFeature);
+
+const accordionItems = document.querySelectorAll('.faq__question');
+  accordionItems.forEach((accordion) => {
+    accordion.addEventListener('click', (event) => {
+      const parent = accordion.parentElement;
+      const content = accordion.nextElementSibling;
+
+      if (!parent.classList.contains('active')) {
+        parent.classList.add('active');
+        slideDown(content, 400);
+      } else {
+        parent.classList.remove('active');
+        slideUp(content, 400);
+      }
+    });
+  });
