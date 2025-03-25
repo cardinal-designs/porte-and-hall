@@ -37,9 +37,9 @@
   const accordionItems = document.querySelectorAll('.faq__question');
   accordionItems.forEach((accordion) => {
     accordion.addEventListener('click', (event) => {
-      console.log('click')
       const parent = accordion.parentElement;
       const content = accordion.nextElementSibling;
+      console.log(parent,content,slideDown)
 
       if (!parent.classList.contains('active')) {
         parent.classList.add('active');
