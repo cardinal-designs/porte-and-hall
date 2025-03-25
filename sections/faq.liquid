@@ -37,6 +37,7 @@
   const accordionItems = document.querySelectorAll('.faq__question');
   accordionItems.forEach((accordion) => {
     accordion.addEventListener('click', (event) => {
+      event.stopImmediatePropagation();
       const parent = accordion.parentElement;
       const content = accordion.nextElementSibling;
       console.log(parent.classList.contains('active'))
