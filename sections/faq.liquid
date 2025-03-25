@@ -33,6 +33,26 @@
   </div>
 </div>
 
+{% javascript %} 
+  console.log(accordionItems)
+  const accordionItems = document.querySelectorAll('.faq__question');
+  accordionItems.forEach((accordion) => {
+    accordion.addEventListener('click', (event) => {
+      const parent = accordion.parentElement;
+      const content = accordion.nextElementSibling;
+      console.log(parent.classList.contains('active'))
+
+      if (!parent.classList.contains('active')) {
+        parent.classList.add('active');
+        slideDown(content, 400);
+      } else {
+        parent.classList.remove('active');
+        slideUp(content, 400);
+      }
+    });
+  });
+{% endjavascript %}
+
 {% schema %}
 {
   "name": "FAQ",
