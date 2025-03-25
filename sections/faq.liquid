@@ -34,9 +34,9 @@
 </div>
 
 {% javascript %} 
-  console.log('test')
   const accordionItems = document.querySelectorAll('.faq__question');
   accordionItems.forEach((accordion) => {
+    console.log(accordion)
     accordion.addEventListener('click', (event) => {
       const parent = accordion.parentElement;
       const content = accordion.nextElementSibling;
