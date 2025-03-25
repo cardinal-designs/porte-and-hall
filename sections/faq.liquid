@@ -39,7 +39,7 @@
     accordion.addEventListener('click', (event) => {
       const parent = accordion.parentElement;
       const content = accordion.nextElementSibling;
-      console.log(parent,content,slideDown)
+      console.log(parent.classList.contains('active'))
 
       if (!parent.classList.contains('active')) {
         parent.classList.add('active');
