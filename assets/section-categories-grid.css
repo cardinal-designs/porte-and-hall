@@ -35,6 +35,7 @@
   .categories-grid__container {
     grid-template-columns: 1fr 1fr;
     gap: 8px 8px;
+    margin-top: 0px;
   }
 
   .categories-grid__text {
