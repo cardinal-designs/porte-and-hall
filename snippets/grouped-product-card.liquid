@@ -164,34 +164,27 @@
     {% endcomment %}
 
     <p class="product-card__price body blue">
+      {% assign product_price = product_card_product.price %}
       {% assign last_chance_price = product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
-      {% assign variant_price = product_card_product.selected_or_first_available_variant.price %}
-      {% assign final_price = variant_price %}
-
-      last-chance--{{ last_chance_price }}
-      main-price--{{ variant_price }}
-      final--price--{{ final_price }}
     
-      {% if last_chance_price != blank and variant_price > last_chance_price %}
-        {% assign final_price = last_chance_price %}
-      {% endif %}
-
-      {% if customer %}
-        {% if customer.tags contains 'B2B' or customer.tags contains 'b2b' %}
-          {% assign company_price = product_card_product.selected_or_first_available_variant.price %}
-          
-          {% if company_price < variant_price %}
-            <span class="old-price">{{ variant_price | money_without_trailing_zeros }}</span>
-            <span>{{ company_price | money_without_trailing_zeros }}</span>
-          {% else %}
-            <span>{{ final_price | money_without_trailing_zeros }}</span>
-          {% endif %}
-      
+      {% if customer and customer.price_list %}
+        {% assign b2b_price = product_card_product.selected_or_first_available_variant.price %} 
+    
+        {% if b2b_price < product_price %}
+          <span class="old-price">{{ product_price | money_without_trailing_zeros }}</span>
+          <span>{{ b2b_price | money_without_trailing_zeros }}</span>
         {% else %}
-          <span>{{ final_price | money_without_trailing_zeros }}</span>
+          <span>{{ product_price | money_without_trailing_zeros }}</span>
         {% endif %}
+    
+      {% elsif last_chance_price != blank and product_price > last_chance_price %}
+        <span class="old-price">{{ product_price | money_without_trailing_zeros }}</span>
+        <span>{{ last_chance_price | money_without_trailing_zeros }}</span>
+      {% else %}
+        <span>{{ product_price | money_without_trailing_zeros }}</span>
       {% endif %}
     </p>
+
 
 
 
