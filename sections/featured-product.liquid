@@ -155,11 +155,13 @@
           {% if original_price > 0 %}
             {% assign discountAmout = original_price | minus: price | times: 100 | divided_by: original_price | round %}
             <div class="product__trade--price">
-              <div class="price h3">
-                <div class="price__regular">
-                  <span class="price-item price-item--regular">
-                    {{ money_price }} Trade (save {{ discountAmout }}%)
-                  </span>
+              <div class="price">
+                <div class="h3">
+                  <div class="price__regular">
+                    <span class="price-item price-item--regular">
+                      {{ money_price }} Trade (save {{ discountAmout }}%)
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
