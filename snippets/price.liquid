@@ -33,16 +33,25 @@
 {% if customer and customer.b2b? %}
   <div class="price{% if price_class %} {{ price_class }}{% endif %}">
     {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
-    <div class="price__regular">
-      <span class="price-item price-item--regular">
-        {% if settings.currency_code_enabled %}
-          {{ original_price | money_with_currency }}
-        {% else %}
-          {{ original_price | money_without_trailing_zeros }}
-        {% endif %}
-          Retail
-      </span>
-    </div>
+    {% if original_price > 0 %}
+      <div class="price__regular">
+        <span class="price-item price-item--regular">
+          {% if settings.currency_code_enabled %}
+            {{ original_price | money_with_currency }}
+          {% else %}
+            {{ original_price | money_without_trailing_zeros }}
+          {% endif %}
+            Retail
+        </span>
+      </div>
+    {% else %}
+      <div class="price__regular">
+        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+        <span class="price-item price-item--regular">
+          {{ money_price }}
+        </span>
+      </div>
+    {% endif %}    
   </div>
 {% else %}
   <div
