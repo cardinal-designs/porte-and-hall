@@ -36,15 +36,19 @@
       {% assign original_price = target.metafields.custom.variant_original_sale_price | times: 100 %}
       <div class="price__regular">
         <span class="price-item price-item--regular">
-          {% if original_price > 0 %}
-            {% if settings.currency_code_enabled %}
-              {{ original_price | money_with_currency }}
-            {% else %}
-              {{ original_price | money_without_trailing_zeros }}
-            {% endif %}
-            <span>Retail</span>
-          {% else %}
+          {% if ATC_button %}
             {{ money_price }}
+          {% else %}
+            {% if original_price > 0 %}
+              {% if settings.currency_code_enabled %}
+                {{ original_price | money_with_currency }}
+              {% else %}
+                {{ original_price | money_without_trailing_zeros }}
+              {% endif %}
+              <span>Retail</span>
+            {% else %}
+              {{ money_price }}
+            {% endif %}
           {% endif %}
         </span>
       </div>
