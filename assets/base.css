@@ -3622,7 +3622,7 @@ iframe#preview-bar-iframe {
   font-size: 80%;
 }
 
-.product__price-reviews-wrapper .price .h3 {
+.product__price-reviews-wrapper .price .h3 .price-item--regular span {
   text-transform: capitalize;
   font-size: 20px;
   letter-spacing: 0.5px;
