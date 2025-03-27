@@ -167,6 +167,10 @@
       {% assign last_chance_price = product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
       {% assign variant_price = product_card_product.selected_or_first_available_variant.price %}
       {% assign final_price = variant_price %}
+
+      last-chance--{{ last_chance_price }}
+      main-price--{{ variant_price }}
+      final--price--{{ final_price }}
     
       {% if last_chance_price != blank and variant_price > last_chance_price %}
         {% assign final_price = last_chance_price %}
