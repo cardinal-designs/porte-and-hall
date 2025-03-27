@@ -85,12 +85,22 @@
         {%- endif -%}
       </h3>
       <div class="product-card__content">
-        <p class="product-card__price body blue">
-          {% if product_card_product.compare_at_price > product_card_product.price %}
-            <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
-          {% endif %}
-          {{ product_card_product.price | money_without_trailing_zeros }}
-        </p>
+        {% if customer and customer.b2b? %}
+          {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 1 %}
+          <p class="product-card__price body blue">
+            {% if original_price > 0 %}
+              <span class="old-price">{{ original_price }}</span>
+            {% endif %}
+            {{ product_card_product.price | money_without_trailing_zeros }}
+          </p>
+        {% else %}
+          <p class="product-card__price body blue">
+            {% if product_card_product.compare_at_price > product_card_product.price %}
+              <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
+            {% endif %}
+            {{ product_card_product.price | money_without_trailing_zeros }}
+          </p>
+        {% endif %}
 
         <div class="product-card__swatches">
           {{ color_swatch_list }}
