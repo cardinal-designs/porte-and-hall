@@ -86,10 +86,10 @@
       </h3>
       <div class="product-card__content">
         {% if customer and customer.b2b? %}
-          {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 1 %}
+          {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
           <p class="product-card__price body blue">
             {% if original_price > 0 %}
-              <span class="old-price">{{ original_price }}</span>
+              <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>
             {% endif %}
             {{ product_card_product.price | money_without_trailing_zeros }}
           </p>
