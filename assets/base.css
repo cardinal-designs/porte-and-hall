@@ -3628,6 +3628,11 @@ iframe#preview-bar-iframe {
   letter-spacing: 0.5px;
 }
 
+.product__trade--price .price .h3,
+.product__price-reviews-wrapper .price .h3 {
+  letter-spacing: 0;
+}
+
 .product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__text {
   color: var(--gold-secondary--dark);
   font-family: brandon;
