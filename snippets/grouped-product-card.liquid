@@ -159,7 +159,7 @@
         <span>{{ product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
       {% else %}
         <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
-      {%  endif  %}
+      {% endif %}
     </p>
     {% endcomment %}
 
@@ -167,17 +167,26 @@
       {% assign last_chance_price = product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
       {% assign variant_price = product_card_product.selected_or_first_available_variant.price %}
       {% assign final_price = variant_price %}
-      
+    
       {% if last_chance_price != blank and variant_price > last_chance_price %}
         {% assign final_price = last_chance_price %}
       {% endif %}
     
-      {% if customer %}
-        <span class="old-price">{{ variant_price | money_without_trailing_zeros }}</span>
+      {% if customer and customer.b2b? and customer.company %}
+        {% assign company_price = product_card_product.selected_or_first_available_variant.price %}
+        
+        {% if company_price < variant_price %}
+          <span class="old-price">{{ variant_price | money_without_trailing_zeros }}</span>
+          <span>{{ company_price | money_without_trailing_zeros }}</span>
+        {% else %}
+          <span>{{ final_price | money_without_trailing_zeros }}</span>
+        {% endif %}
+    
+      {% else %}
+        <span>{{ final_price | money_without_trailing_zeros }}</span>
       {% endif %}
-      
-      <span>{{ final_price | money_without_trailing_zeros }}</span>
     </p>
+
 
 
 
