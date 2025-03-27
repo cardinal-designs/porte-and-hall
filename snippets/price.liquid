@@ -32,7 +32,8 @@
 
 {% if customer and customer.b2b? %}
   <div class="price{% if price_class %} {{ price_class }}{% endif %}">
-    {% assign original_price = target.metafields.custom.variant_original_sale_price | times: 1 %}
+    {% assign original_price = target.metafields.custom.variant_original_sale_price | times: 1 %} 
+    {{ original_price }} Retail
   </div>
 {% else %}
   <div
