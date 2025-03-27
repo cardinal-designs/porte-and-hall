@@ -32,7 +32,7 @@
     <p class="product-card__title">{{ product_card_product.title }}</p>
     <div class="product-card__content">
       {% if customer and customer.b2b? %}
-        {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 1 %}
+        {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price %}
         <p class="product-card__price">
           {% if original_price > 0 %}
             <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>
