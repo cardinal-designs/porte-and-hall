@@ -33,7 +33,11 @@
 {% if customer and customer.b2b? %}
   <div class="price{% if price_class %} {{ price_class }}{% endif %}">
     {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
-    {{ original_price }} Retail
+    {% if settings.currency_code_enabled %}
+      {{ original_price | money_with_currency }}
+    {% else %}
+      {{ original_price | money }}
+    {% endif %}Retail
   </div>
 {% else %}
   <div
