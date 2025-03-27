@@ -172,11 +172,8 @@
         {% assign final_price = last_chance_price %}
       {% endif %}
 
-      ---{{ customer.tags }}
       {% if customer %}
-        
         {% if customer.tags contains 'B2B' or customer.tags contains 'b2b' %}
-          Login
           {% assign company_price = product_card_product.selected_or_first_available_variant.price %}
           
           {% if company_price < variant_price %}
