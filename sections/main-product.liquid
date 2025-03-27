@@ -145,6 +145,10 @@
           
         </div>
 
+        <div class="product__trade--price">
+          Trade Price
+        </div>
+
         {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
           <div class="product__description 123 body blue">
             {{ grouped_collection.metafields.custom.short_description | default: product.description }}
