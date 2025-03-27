@@ -163,6 +163,18 @@
     </p>
     {% endcomment %}
 
+      {% if customer %}
+        <p>Customer is logged in</p>
+        {% if customer.price_list %}
+          <p>Price List: {{ customer.price_list.title }}</p>
+        {% else %}
+          <p>No Price List Assigned</p>
+        {% endif %}
+      {% else %}
+        <p>Customer is NOT logged in</p>
+      {% endif %}
+
+
     <p class="product-card__price body blue">
       {% assign product_price = product_card_product.price %}
       {% assign last_chance_price = product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
