@@ -148,17 +148,10 @@
         {% if customer and customer.b2b? %}
           {% liquid
             assign target = product.selected_or_first_available_variant
-          
-            assign compare_at_price = target.compare_at_price
-            assign price = target.price | default: 1999
-            assign available = target.available | default: false
+            assign price = target.price
             assign money_price = price | money_without_trailing_zeros
             if settings.currency_code_enabled
               assign money_price = price | money_with_currency
-            endif
-          
-            if target == product and product.price_varies
-              assign money_price = 'products.product.price.from_price_html' | t: price: money_price
             endif
           %}
           {% assign original_price = product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
