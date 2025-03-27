@@ -173,19 +173,21 @@
         {% assign final_price = last_chance_price %}
       {% endif %}
       
-      {% if customer and customer.pricing.customer_group_id %}
-        {% assign customer_price = product_card_product.selected_or_first_available_variant.customer_price %}
-        {% if customer_price and customer_price < variant_price %}
-          {% assign final_price = customer_price %}
-        {% endif %}
+      {% if customer %}
+        {% for tag in customer.tags %}
+          {% if tag contains 'price_list_' %}
+            {% assign has_price_list = true %}
+          {% endif %}
+        {% endfor %}
       {% endif %}
     
-      {% if final_price < variant_price %}
+      {% if has_price_list and final_price < variant_price %}
         <span class="old-price">{{ variant_price | money_without_trailing_zeros }}</span>
       {% endif %}
       
       <span>{{ final_price | money_without_trailing_zeros }}</span>
     </p>
+
 
 
     {% unless template.suffix == 'last-chance' %}
