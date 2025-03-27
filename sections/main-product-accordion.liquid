@@ -147,11 +147,7 @@
 
         {% if customer and customer.b2b? %}
           {% liquid
-            if use_variant
-              assign target = product.selected_or_first_available_variant
-            else
-              assign target = product
-            endif
+            assign target = product.selected_or_first_available_variant
           
             assign compare_at_price = target.compare_at_price
             assign price = target.price | default: 1999
