@@ -3637,6 +3637,10 @@ iframe#preview-bar-iframe {
   letter-spacing: 0.5px;
 }
 
+.product__trade--price .price .h3 .price-item--regular span span {
+  text-transform: capitalize;
+}
+
 .product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__text {
   color: var(--gold-secondary--dark);
   font-family: brandon;
