@@ -165,7 +165,11 @@
           {% if original_price > 0 %}
             <div class="product__trade--price">
               <div class="price">
-                {{ money_price }}
+                <div class="price__regular">
+                  <span class="price-item price-item--regular">
+                    {{ money_price }} Trade
+                  </span>
+                </div>
               </div>
             </div>
           {% endif %}
