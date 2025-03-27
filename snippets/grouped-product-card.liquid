@@ -172,18 +172,20 @@
         {% assign final_price = last_chance_price %}
       {% endif %}
     
-      {% if customer and customer.b2b? and customer.company %}
-        {% assign company_price = product_card_product.selected_or_first_available_variant.price %}
-        
-        {% if company_price < variant_price %}
-          <span class="old-price">{{ variant_price | money_without_trailing_zeros }}</span>
-          <span>{{ company_price | money_without_trailing_zeros }}</span>
+      {% if customer %}
+        {% if customer.tags contains 'B2B' or customer.tags contains 'b2b' %}
+          {% assign company_price = product_card_product.selected_or_first_available_variant.price %}
+          
+          {% if company_price < variant_price %}
+            <span class="old-price">{{ variant_price | money_without_trailing_zeros }}</span>
+            <span>{{ company_price | money_without_trailing_zeros }}</span>
+          {% else %}
+            <span>{{ final_price | money_without_trailing_zeros }}</span>
+          {% endif %}
+      
         {% else %}
           <span>{{ final_price | money_without_trailing_zeros }}</span>
         {% endif %}
-    
-      {% else %}
-        <span>{{ final_price | money_without_trailing_zeros }}</span>
       {% endif %}
     </p>
 
