@@ -36,7 +36,7 @@
     {% if settings.currency_code_enabled %}
       {{ original_price | money_with_currency }}
     {% else %}
-      {{ original_price | money }}
+      {{ original_price | money_without_trailing_zeros }}
     {% endif %}Retail
   </div>
 {% else %}
