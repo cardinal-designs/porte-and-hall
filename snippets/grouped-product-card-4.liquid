@@ -153,7 +153,7 @@
     </a>
 
     {% if customer and customer.b2b? %}
-      <p class="product-card__price body blue">
+      <p class="product-card__price body blue" test>
         {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 1 %}
         <a href="{{ product_card_product.url }}">
           {% if original_price > 0 %}
