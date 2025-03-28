@@ -3665,6 +3665,12 @@ iframe#preview-bar-iframe {
   display: none !important;
 }
 
+@media (max-width: 768px) {
+  .product__price-reviews-wrapper .price .h3 .price-item--regular span {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 767px) {
   .jdgm-rev-widg
     .jdgm-rev-widg__summary-inner
@@ -3684,11 +3690,7 @@ iframe#preview-bar-iframe {
 
   .jdgm-rev-widg {
     padding: 24px 0;
-  }
   
-  .product__price-reviews-wrapper .price .h3 .price-item--regular span {
-    font-size: 14px;
-  }
 }
 /* Judge.me Review css End */
 
