@@ -33,7 +33,7 @@
 {% if customer and customer.b2b? %}
   <div class="price{% if price_class %} {{ price_class }}{% endif %}">
     <div class="h3">
-      {% assign original_price = target.metafields.custom.variant_original_sale_price | times: 100 %}
+      {% assign original_price = target.metafields.custom.variant_original_sale_price | times: 100 | money_with_currency %}
       <div class="price__regular">
         <span class="price-item price-item--regular">
           {% if ATC_button %}
