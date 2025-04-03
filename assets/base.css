@@ -3658,6 +3658,10 @@ iframe#preview-bar-iframe {
 
 .cart-item__trade-price .cart-item__old-price.price {
   color: var(--blue-secondary);
+  position: absolute;
+  right: 0;
+  top: auto;
+  bottom: 30px;
 }
 
 .cart-item__trade-price .price.price--end span{
