@@ -3656,6 +3656,12 @@ iframe#preview-bar-iframe {
   display: block;
 }
 
+.cart-item__trade-price .price.price--end span{
+  letter-spacing: 0;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
 .jdgm-carousel-wrapper .jdgm-carousel-item__review {
   height: auto !important;
 }
