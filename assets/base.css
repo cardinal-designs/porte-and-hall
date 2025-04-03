@@ -3656,6 +3656,10 @@ iframe#preview-bar-iframe {
   display: block;
 }
 
+.cart-item__trade-price .price.price--end {
+  color: var(--blue-secondary);
+}
+
 .cart-item__trade-price .price.price--end span{
   letter-spacing: 0;
   font-size: 14px;
