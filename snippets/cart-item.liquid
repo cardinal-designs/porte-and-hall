@@ -126,7 +126,23 @@
       <div class="cart-item__price">
         {% if customer and customer.b2b? %}
           {% assign original_price = item.variant.metafields.custom.variant_original_sale_price | times: 100 %}
-          original_price -- {{ original_price }}
+
+          <dl class="cart-item__discounted-prices">
+            <dt class="visually-hidden">
+              {{ 'products.product.price.regular_price' | t }}
+            </dt>
+            <dd>
+              <s class="cart-item__old-price price price--end">
+                {{ original_price | money_without_trailing_zeros }}
+              </s>
+            </dd>
+            <dt class="visually-hidden">
+              {{ 'products.product.price.sale_price' | t }}
+            </dt>
+            <dd class="price price--end">
+              {{ item.final_price | money_without_trailing_zeros }}
+            </dd>
+          </dl>
         {% else %}
           {% if item.original_price != item.final_price %}
             <dl class="cart-item__discounted-prices">
