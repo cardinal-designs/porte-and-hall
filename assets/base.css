@@ -3695,6 +3695,7 @@ iframe#preview-bar-iframe {
 }
 
 @media (max-width: 767px) {
+  
   .jdgm-rev-widg
     .jdgm-rev-widg__summary-inner
     .jdgm-rev-widg__summary-stars
@@ -3713,6 +3714,12 @@ iframe#preview-bar-iframe {
 
   .jdgm-rev-widg {
     padding: 24px 0;
+  }
+
+  .cart-item__trade-price .cart-item__old-price.price {
+    position: relative;
+    bottom: 0;
+  }
   
 }
 /* Judge.me Review css End */
