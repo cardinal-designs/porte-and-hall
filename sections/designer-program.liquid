@@ -153,15 +153,15 @@
 
               </div>
 
-              <div class="form__checkboxrow">
-                <label>Do you want to be tax exempt in a certain state? (Yes or No)</label><br>
-                <input type="checkbox" id="yes" name="tax_exempt" value="yes" onclick="toggleDocumentUpload()"> Yes
-                <input type="checkbox" id="no" name="tax_exempt" value="no" onclick="toggleDocumentUpload()"> No
-                
-                <div id="document-upload" style="display: none; margin-top: 10px;">
-                    <label for="document">Upload supporting document:</label>
-                    <input type="file" id="document" name="document">
-                </div>
+              <label for="tax_exempt">Do you want to be tax exempt in a certain state? (Yes or No)</label><br>
+              <input type="radio" id="yes" name="tax_exempt" value="yes" onclick="toggleDocumentUpload()"> 
+              <label for="yes">Yes</label>
+              <input type="radio" id="no" name="tax_exempt" value="no" onclick="toggleDocumentUpload()"> 
+              <label for="no">No</label>
+              
+              <div id="document-upload" style="display: none; margin-top: 10px;">
+                  <label for="document">Upload supporting document:</label>
+                  <input type="file" id="document" name="document">
               </div>
 
               <div class="contact__fields Instagram_Field">
@@ -275,10 +275,12 @@
 <script>
   function toggleDocumentUpload() {
       var yesCheckbox = document.getElementById("yes");
+      var noCheckbox = document.getElementById("no");
       var documentUpload = document.getElementById("document-upload");
       
       if (yesCheckbox.checked) {
           documentUpload.style.display = "block";
+          noCheckbox.checked = false; // Ensure only one checkbox is selected
       } else {
           documentUpload.style.display = "none";
       }
