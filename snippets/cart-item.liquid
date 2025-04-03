@@ -142,7 +142,7 @@
               {{ 'products.product.price.sale_price' | t }}
             </dt>
             <dd class="price price--end">
-              {{ price | money_without_trailing_zeros }}
+              <span>you save {{ discountAmout }}%</span>{{ price | money_without_trailing_zeros }}
             </dd>
           </dl>
         {% else %}
