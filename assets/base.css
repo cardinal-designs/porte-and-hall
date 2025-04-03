@@ -3725,6 +3725,7 @@ iframe#preview-bar-iframe {
 
   .cart-item__price.cart-item__trade-price .price {
     flex-direction: row-reverse;
+    font-size: 15px;
   }
 
   .cart-item__bottom.cart-item__trade-bottom {
