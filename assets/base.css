@@ -3652,6 +3652,10 @@ iframe#preview-bar-iframe {
   text-decoration: underline;
 }
 
+.cart-item__trade-price .cart-item__discounted-prices {
+  display: block;
+}
+
 .jdgm-carousel-wrapper .jdgm-carousel-item__review {
   height: auto !important;
 }
