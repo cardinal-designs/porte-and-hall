@@ -3723,6 +3723,10 @@ iframe#preview-bar-iframe {
     margin: 0;
   }
 
+  .cart-item__price.cart-item__trade-price .price {
+    flex-direction: row-reverse;
+  }
+
   .cart-item__bottom.cart-item__trade-bottom {
     flex-direction: column;
     align-items: start;
