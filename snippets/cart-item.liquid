@@ -126,8 +126,8 @@
       <div class="cart-item__price">
         {% if customer and customer.b2b? %}
           {% assign original_price = item.variant.metafields.custom.variant_original_sale_price | times: 100 %}
-          {% assign discountAmout = original_price | minus: price | times: 100 | divided_by: original_price | round %}
           {% assign price = item.final_price %}
+          {% assign discountAmout = original_price | minus: price | times: 100 | divided_by: original_price | round %}
 
           <dl class="cart-item__discounted-prices">
             <dt class="visually-hidden">
