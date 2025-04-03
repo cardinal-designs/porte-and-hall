@@ -123,7 +123,7 @@
         </quantity-input>
       </div>
 
-      <div class="cart-item__price">
+      <div class="cart-item__price {% if customer and customer.b2b? %}cart-item__trade-price{% endif %}">
         {% if customer and customer.b2b? %}
           {% assign original_price = item.variant.metafields.custom.variant_original_sale_price | times: 100 %}
           {% if original_price > 0 %}
