@@ -157,6 +157,19 @@ ul.js-error-messages {
   margin: 30px 0 50px;
 }
 
+.document__upload * {
+  font-size: 18px;
+  line-height: 1.3em;
+  color: var(--blue);
+  font-family: brandon;
+  font-weight: 400;
+}
+
+.document__upload {
+  margin-bottom: 40px;
+}
+
+
 @media screen and (max-width: 768px) {
 
   .form__checkboxrow label {
