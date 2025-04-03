@@ -3720,6 +3720,10 @@ iframe#preview-bar-iframe {
     position: relative;
     bottom: 0;
   }
+
+  .cart-item__bottom {
+    display: block;
+  }
   
 }
 /* Judge.me Review css End */
