@@ -3722,7 +3722,8 @@ iframe#preview-bar-iframe {
   }
 
   .cart-item__bottom.cart-item__trade-bottom {
-    display: block;
+    flex-direction: column;
+    align-items: start;
   }
   
 }
