@@ -129,7 +129,7 @@
           {% assign price = item.final_price %}
           {% assign discountAmout = original_price | minus: price | times: 100 | divided_by: original_price | round %}
 
-          <dl class="cart-item__discounted-prices">
+          <div class="cart-item__discounted-prices">
             <dt class="visually-hidden">
               {{ 'products.product.price.regular_price' | t }}
             </dt>
@@ -144,7 +144,7 @@
             <dd class="price price--end">
               <span>you save {{ discountAmout }}%</span>{{ price | money_without_trailing_zeros }}
             </dd>
-          </dl>
+          </div>
         {% else %}
           {% if item.original_price != item.final_price %}
             <dl class="cart-item__discounted-prices">
