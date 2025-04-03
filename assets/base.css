@@ -3719,6 +3719,8 @@ iframe#preview-bar-iframe {
   .cart-item__trade-price .cart-item__old-price.price {
     position: relative;
     bottom: 0;
+    display: block;
+    margin: 5px 0 0;
   }
 
   .cart-item__bottom.cart-item__trade-bottom {
