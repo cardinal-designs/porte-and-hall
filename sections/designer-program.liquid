@@ -154,8 +154,14 @@
               </div>
 
               <div class="form__checkboxrow">
-                <input type="checkbox" id="howSearch" name="contact[Search]" value="Search" /> 
-                <label for="howSearch">Do you want to be tax exempt in a certain state? (Yes or No)</label>
+                <label>Do you want to be tax exempt in a certain state? (Yes or No)</label><br>
+                <input type="checkbox" id="yes" name="tax_exempt" value="yes" onclick="toggleDocumentUpload()"> Yes
+                <input type="checkbox" id="no" name="tax_exempt" value="no" onclick="toggleDocumentUpload()"> No
+                
+                <div id="document-upload" style="display: none; margin-top: 10px;">
+                    <label for="document">Upload supporting document:</label>
+                    <input type="file" id="document" name="document">
+                </div>
               </div>
 
               <div class="contact__fields Instagram_Field">
@@ -265,6 +271,19 @@
     </div>
   </div>
 </div>
+
+<script>
+  function toggleDocumentUpload() {
+      var yesCheckbox = document.getElementById("yes");
+      var documentUpload = document.getElementById("document-upload");
+      
+      if (yesCheckbox.checked) {
+          documentUpload.style.display = "block";
+      } else {
+          documentUpload.style.display = "none";
+      }
+  }
+</script>
 
 {% schema %}
   {
