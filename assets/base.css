@@ -3663,7 +3663,7 @@ iframe#preview-bar-iframe {
 .cart-item__trade-price .price.price--end span{
   letter-spacing: 0;
   font-size: 14px;
-  text-transform: capitalize;
+  text-transform: uppercase;
   color: var(--blue-secondary);
 }
 
