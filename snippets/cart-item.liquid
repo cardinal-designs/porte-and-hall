@@ -124,40 +124,45 @@
       </div>
 
       <div class="cart-item__price">
-        {% if item.original_price != item.final_price %}
-          <dl class="cart-item__discounted-prices">
-            <dt class="visually-hidden">
-              {{ 'products.product.price.regular_price' | t }}
-            </dt>
-            <dd>
-              <s class="cart-item__old-price price price--end">
-                {{ item.original_price | money_without_trailing_zeros }}
-              </s>
-            </dd>
-            <dt class="visually-hidden">
-              {{ 'products.product.price.sale_price' | t }}
-            </dt>
-            <dd class="price price--end">
-              {{ item.final_price | money_without_trailing_zeros }}
-            </dd>
-          </dl>
-
-          {% if item.variant.available and item.unit_price_measurement %}
-            <div class="unit-price caption">
-              <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
-              {{ item.variant.unit_price | money }}
-              <span aria-hidden="true">/</span>
-              <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
-              {% if item.variant.unit_price_measurement.reference_value != 1 %}
-                {{- item.variant.unit_price_measurement.reference_value -}}
-              {% endif %}
-              {{ item.variant.unit_price_measurement.reference_unit }}
-            </div>
-          {% endif %}
+        {% if customer and customer.b2b? %}
+          {% assign original_price = item.metafields.custom.variant_original_sale_price | times: 100 %}
+          original_price -- {{ original_price }}
         {% else %}
-          <span class="price price--end">
-            {{ item.original_price | money_without_trailing_zeros }}
-          </span>
+          {% if item.original_price != item.final_price %}
+            <dl class="cart-item__discounted-prices">
+              <dt class="visually-hidden">
+                {{ 'products.product.price.regular_price' | t }}
+              </dt>
+              <dd>
+                <s class="cart-item__old-price price price--end">
+                  {{ item.original_price | money_without_trailing_zeros }}
+                </s>
+              </dd>
+              <dt class="visually-hidden">
+                {{ 'products.product.price.sale_price' | t }}
+              </dt>
+              <dd class="price price--end">
+                {{ item.final_price | money_without_trailing_zeros }}
+              </dd>
+            </dl>
+  
+            {% if item.variant.available and item.unit_price_measurement %}
+              <div class="unit-price caption">
+                <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+                {{ item.variant.unit_price | money }}
+                <span aria-hidden="true">/</span>
+                <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+                {% if item.variant.unit_price_measurement.reference_value != 1 %}
+                  {{- item.variant.unit_price_measurement.reference_value -}}
+                {% endif %}
+                {{ item.variant.unit_price_measurement.reference_unit }}
+              </div>
+            {% endif %}
+          {% else %}
+            <span class="price price--end">
+              {{ item.original_price | money_without_trailing_zeros }}
+            </span>
+          {% endif %}
         {% endif %}
       </div>
 
