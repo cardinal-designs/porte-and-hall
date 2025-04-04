@@ -1,3 +1,4 @@
-<!-- 2025-03-18T18:01:40.1810795Z -->
+<!-- 2025-04-04T05:00:32.4686395Z -->
 <style>.shoplift-hide { opacity: 0 !important; }</style>
-<script type="text/javascript">(function(rootPath, template, themeRole, themeId, isThemePreview){ {{ shop.metafields.shoplift.snippet.value }}{{ shop.metafields.shoplift.snippet1.value }} })("{{routes.root_url}}", { suffix: "{{ template.suffix }}", type: "{{ template.name }}" }, "{{theme.role}}", {{theme.id}}, {% if content_for_header contains "previewBarInjector.init();" %}true{% else %}false{% endif %})</script>
+<style id="sl-preview-bar-hide">#preview-bar-iframe, #PBarNextFrameWrapper { display: none !important; }</style>
+<script type="text/javascript">(function(rootPath, template, themeRole, themeId, isThemePreview){ {{ shop.metafields.shoplift.snippet.value }}{{ shop.metafields.shoplift.snippet1.value }} })("{{routes.root_url}}", { suffix: "{{ template.suffix }}", type: "{{ template.name }}" }, "{{theme.role}}", {{theme.id}}, {% if content_for_header contains "previewBarInjector.init();" or content_for_header contains "https://cdn.shopify.com/shopifycloud/preview-bar/preview-bar-modules.js" %}true{% else %}false{% endif %})</script>
