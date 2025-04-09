@@ -1,3 +1,4 @@
+{% unless section.settings.hide_bar %}
 <div class="announcement-bar">
   {% if section.settings.link != blank %}
     <a href="{{ section.settings.link }}" class="announcement-bar__item">
@@ -12,6 +13,7 @@
     </a>
   {% endif %}
 </div>
+{% endunless %}
 
 <style>
   .announcement-bar {
@@ -50,6 +52,11 @@
 {
   "name": "Announcement Bar",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_bar",
+      "label": "Hide announcement bar?"
+    },
     {
       "type": "textarea",
       "id": "text",
