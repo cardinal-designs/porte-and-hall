@@ -114,50 +114,6 @@
         "background": "#eeefef"
       }
     },
-    "categories_grid_gjJRPL": {
-      "type": "categories-grid",
-      "blocks": {
-        "block_EyYreN": {
-          "type": "block",
-          "settings": {
-            "text": "Best Sellers",
-            "image": "shopify://shop_images/0e425db70c615c6f7ad5db8581e2cf52.png",
-            "url": "shopify://collections/best-sellers"
-          }
-        },
-        "block_kxkzh8": {
-          "type": "block",
-          "settings": {
-            "text": "Doormats",
-            "image": "shopify://shop_images/c544df24b2ba8083f9870d3214ad6674.png",
-            "url": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Doormats"
-          }
-        },
-        "block_mGGRHB": {
-          "type": "block",
-          "settings": {
-            "text": "Area Mats",
-            "image": "shopify://shop_images/IMG_3892.jpg",
-            "url": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
-          }
-        },
-        "block_xAQAQR": {
-          "type": "block",
-          "settings": {
-            "text": "Runners",
-            "image": "shopify://shop_images/IMG_0768.jpg",
-            "url": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
-          }
-        }
-      },
-      "block_order": [
-        "block_EyYreN",
-        "block_kxkzh8",
-        "block_mGGRHB",
-        "block_xAQAQR"
-      ],
-      "settings": {}
-    },
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc": {
       "type": "custom-collection",
       "blocks": {
@@ -213,6 +169,50 @@
         "button_text": "Shop Now",
         "btn_link": "shopify://collections/best-sellers"
       }
+    },
+    "categories_grid_gjJRPL": {
+      "type": "categories-grid",
+      "blocks": {
+        "block_kxkzh8": {
+          "type": "block",
+          "settings": {
+            "text": "Doormats",
+            "image": "shopify://shop_images/c544df24b2ba8083f9870d3214ad6674.png",
+            "url": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Doormats"
+          }
+        },
+        "block_mGGRHB": {
+          "type": "block",
+          "settings": {
+            "text": "Area Mats",
+            "image": "shopify://shop_images/IMG_3892.jpg",
+            "url": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
+          }
+        },
+        "block_xAQAQR": {
+          "type": "block",
+          "settings": {
+            "text": "Runners",
+            "image": "shopify://shop_images/IMG_0768.jpg",
+            "url": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
+          }
+        },
+        "block_EyYreN": {
+          "type": "block",
+          "settings": {
+            "text": "Best Sellers",
+            "image": "shopify://shop_images/0e425db70c615c6f7ad5db8581e2cf52.png",
+            "url": "shopify://collections/best-sellers"
+          }
+        }
+      },
+      "block_order": [
+        "block_kxkzh8",
+        "block_mGGRHB",
+        "block_xAQAQR",
+        "block_EyYreN"
+      ],
+      "settings": {}
     },
     "product_carousel_2_nFt3hG": {
       "type": "product-carousel-2",
@@ -1018,9 +1018,9 @@
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62",
     "categories_image_text_LTWwph",
     "3726ddfa-f49e-4e18-a5f2-430400876ccd",
-    "categories_grid_gjJRPL",
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",
     "product_carousel_new_aKw9LG",
+    "categories_grid_gjJRPL",
     "product_carousel_2_nFt3hG",
     "40919de2-f3c2-45da-99ff-c69ad3e95306",
     "fd8fd5d7-6d77-45a1-8718-85dc6bc781d2",
