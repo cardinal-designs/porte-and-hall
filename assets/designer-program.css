@@ -307,6 +307,7 @@ ul.js-error-messages {
   border-radius: 0 !important;
   left: 0 !important;
   transition: none !important;
+  animation: none !important;
 }
 
 .Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-input + .checkbox-label:after {
@@ -327,6 +328,7 @@ ul.js-error-messages {
   display: block !important;
   background: transparent !important;
   transition: none !important;
+  animation: none !important;
 }
 
 .Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper {
