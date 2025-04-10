@@ -171,7 +171,11 @@ ul.js-error-messages {
 
 .Designer_Program_Form .globo-form-app .header,
 .Designer_Program_Form .globo-form-control label {
-  display: none;
+  display: none !important;
+}
+
+.Designer_Program_Form .globo-form-control {
+  margin-bottom: 50px !important;
 }
 
 .Designer_Program_Form input::-webkit-input-placeholder {
