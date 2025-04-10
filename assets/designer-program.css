@@ -175,7 +175,9 @@ ul.js-error-messages {
 }
 
 .gfb-style-material_filled .panels .panel {
-  gap: 22px !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  grid-column-gap: 22px !important;
 }
 
 .Designer_Program_Form .globo-form-app .header,
