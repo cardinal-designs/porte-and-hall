@@ -384,13 +384,14 @@ ul.js-error-messages {
 
   .Designer_Program_Form .material_filled-input,
   .Designer_Program_Form .How_Did_You_Hear .material_filled-label .label-content,
-  .Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper .radio-label {
+  .Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper .radio-label,
+  .Designer_Program_Form .Files__wrapper.globo-form-control .material_filled-label .label-content {
     font-size: 14px !important;
   }
 
   .Designer_Program_Form .globo-form-control.How_Did_You_Hear .globo-list-control {
-    flex: 0 0 100% !important
-    margin: 0 0 35px !important
+    flex: 0 0 100% !important;
+    margin: 0 0 35px !important;
   }
   
 }
