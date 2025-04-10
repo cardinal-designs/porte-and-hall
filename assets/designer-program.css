@@ -182,7 +182,18 @@ ul.js-error-messages {
 }
 
 .Designer_Program_Form .material_filled-input {
-  
+  padding: 7px 0;
+  border-bottom: 1px solid #546b82;
+  font-size: 18px;
+  line-height: 1.3em;
+  color: var(--blue);
+  font-family: brandon;
+  font-weight: 400;
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
 }
 
 
