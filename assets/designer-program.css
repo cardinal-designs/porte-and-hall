@@ -181,6 +181,11 @@ ul.js-error-messages {
   font-size: 18px;
 }
 
+.Designer_Program_Form .globo-form-control .globo-form-input {
+  background-color: transparent !important;
+  border-radius: 0 !important;
+}
+
 .Designer_Program_Form .material_filled-input {
   padding: 7px 0 !important;
   border-bottom: 1px solid #546b82 !important;
