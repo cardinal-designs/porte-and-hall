@@ -270,7 +270,7 @@ ul.js-error-messages {
   margin: 0 0 30px !important;
 }
 
-.Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper .radio-label {
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-label {
   font-size: 18px !important;
   line-height: 120% !important;
   font-family: brandon !important;
@@ -282,7 +282,7 @@ ul.js-error-messages {
   color: #546B82 !important;
 }
 
-.Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper .radio-input {
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-input {
   padding: 0 !important;
   height: initial !important;
   width: initial !important;
@@ -291,7 +291,7 @@ ul.js-error-messages {
   cursor: pointer !important;
 }
 
-.Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper .radio-label:before {
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-label:before {
   content: "";
   -webkit-appearance: none;
   background-color: transparent;
@@ -308,11 +308,11 @@ ul.js-error-messages {
   left: 0 !important;
 }
 
-.Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper .radio-input + .radio-label:after {
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-input + .checkbox-label:after {
   display: none !important;
 }
 
-.Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper .radio-input:checked + .radio-label:after {
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-input:checked + .checkbox-label:after {
   content: "";
   position: absolute !important;
   top: 6px !important;
@@ -326,7 +326,7 @@ ul.js-error-messages {
   display: block !important;
 }
 
-.Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper {
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper {
   padding-left: 0 !important;
 }
 
@@ -394,7 +394,7 @@ ul.js-error-messages {
 
   .Designer_Program_Form .material_filled-input,
   .Designer_Program_Form .How_Did_You_Hear .material_filled-label .label-content,
-  .Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper .radio-label,
+  .Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-label,
   .Designer_Program_Form .Files__wrapper.globo-form-control .material_filled-label .label-content,
   .Designer_Program_Form input::-webkit-input-placeholder {
     font-size: 14px !important;
