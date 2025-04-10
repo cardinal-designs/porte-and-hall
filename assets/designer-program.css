@@ -182,18 +182,20 @@ ul.js-error-messages {
 }
 
 .Designer_Program_Form .material_filled-input {
-  padding: 7px 0;
-  border-bottom: 1px solid #546b82;
-  font-size: 18px;
-  line-height: 1.3em;
-  color: var(--blue);
-  font-family: brandon;
-  font-weight: 400;
-  -webkit-appearance: none;
-  appearance: none;
-  box-sizing: border-box;
-  background-color: transparent;
-  border: none;
+  padding: 7px 0 !important;
+  border-bottom: 1px solid #546b82 !important;
+  font-size: 18px !important;
+  line-height: 1.3em !important;
+  color: var(--blue) !important;
+  font-family: brandon !important;
+  font-weight: 400 !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  box-sizing: border-box !important;
+  background-color: transparent !important;
+  border: none !important;
+  height: auto !important;
+  min-height: auto !important;
 }
 
 
