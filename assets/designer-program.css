@@ -384,6 +384,12 @@ ul.js-error-messages {
 
   .Designer_Program_Form .globo-form-control.Instagram__Field {
     margin-bottom: 0 !important;
+  }
+
+  .Designer_Program_Form .globo-form-control.Instagram__Field,
+  .Designer_Program_Form .globo-form-control.Interested__Field, 
+  .Designer_Program_Form .globo-form-control.Attributes__Field {
+    margin-bottom: 0 !important;
     width: 100% !important;
   }
 
