@@ -175,8 +175,6 @@ ul.js-error-messages {
 }
 
 .Designer_Program_Form .gfb-style-material_filled .panels .panel {
-  /* display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important; */
   grid-column-gap: 22px !important;
 }
 
