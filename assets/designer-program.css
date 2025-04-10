@@ -371,6 +371,8 @@ ul.js-error-messages {
   margin: 0 !important;
   border: 0 !important;
   margin-top: 50px !important;
+  width: auto !important;
+  border-radius: 0 !important;
 }
 
 .Designer_Program_Form .wizard__content .globo-form-control .globo-form-input select {
