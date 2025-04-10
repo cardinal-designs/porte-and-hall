@@ -195,6 +195,10 @@ ul.js-error-messages {
   width: calc(50% - 11px) !important;
 }
 
+.Designer_Program_Form .globo-form-control.layout-1-column {
+  width: 100% !important;
+}
+
 .Designer_Program_Form input::-webkit-input-placeholder {
   visibility: visible !important;
   color: var(--blue) !important;
