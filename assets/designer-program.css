@@ -353,6 +353,20 @@ ul.js-error-messages {
   margin-top: 10px !important;
 }
 
+.Designer_Program_Form .material_filled-button {
+  background: var(--gold);
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  font-family: brandon;
+  font-size: 18px;
+  line-height: 120%;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+  padding: 18px 84px;
+}
+
 @media screen and (max-width: 768px) {
   .document__upload * {
     font-size: 14px;
