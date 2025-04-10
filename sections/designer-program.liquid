@@ -12,6 +12,10 @@
           <div class="body">{{ section.settings.top_text }}</div>
         {% endif %}
       </div>
+
+      {% for block in section.blocks %}
+        {% render block %}
+      {% endfor %}
       
       {% comment %}
       <form-validation>
