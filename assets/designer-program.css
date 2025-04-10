@@ -169,6 +169,11 @@ ul.js-error-messages {
   margin-bottom: 40px;
 }
 
+.Designer_Program_Form .globo-form-app {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
 .Designer_Program_Form .globo-form-app .header,
 .Designer_Program_Form .globo-form-control label {
   display: none !important;
