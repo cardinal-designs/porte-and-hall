@@ -632,6 +632,7 @@
       {% comment %}ACCORDION BEGINS{% endcomment %}
       <pdp-accordion class="product-accordion__container">
         {% if grouped_collection.metafields.custom.product_features != blank %}
+          {% comment %}
          <div class="accordion">
            <div data-id="1" class="accordion-title">
              <h3>Features</h3>
@@ -656,6 +657,23 @@
                     </div>
                   </div>
                 </div>
+           </div>
+         </div>
+          {% endcomment %}
+
+         <div class="accordion">
+           <div data-id="1" class="accordion-title active">
+             <h3>Features</h3>
+             {% render 'icon', icon: 'caret' %}
+           </div>
+           <div data-id="2" class="accordion-content">
+            <div class="swiper-slide">
+              <div class="product__tabs-item body-sm">
+                {% for feature in grouped_collection.metafields.custom.product_features.value %}
+                  {{ feature.label }}
+                {% endfor %}
+              </div>
+            </div>
            </div>
          </div>
         {% endif %}
