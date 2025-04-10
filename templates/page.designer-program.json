@@ -21,6 +21,17 @@
     },
     "d6ffae26-0ed7-4647-a4f9-a65110b580f2": {
       "type": "designer-program",
+      "blocks": {
+        "powerful_form_builder_app_block_DLEhVa": {
+          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+          "settings": {
+            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"ODQ5Njc=\"></div>"
+          }
+        }
+      },
+      "block_order": [
+        "powerful_form_builder_app_block_DLEhVa"
+      ],
       "settings": {
         "heading": "Our trade program members receive exclusive pricing, 20% off retail.",
         "top_text": "<p>If you'd rather contact us directly, please email support@porteandhall.com with any questions.</p><p><br/>Already a member? <a href=\"/account/login\" title=\"/account/login\"><span style=\"text-decoration:underline\">Sign in</span></a></p>",
