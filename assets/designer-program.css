@@ -294,7 +294,7 @@ ul.js-error-messages {
 .Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-label:before {
   content: "";
   -webkit-appearance: none;
-  background-color: transparent;
+  background-color: transparent !important;
   display: inline-block;
   position: relative;
   vertical-align: middle;
