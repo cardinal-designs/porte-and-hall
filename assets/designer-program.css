@@ -270,6 +270,15 @@ ul.js-error-messages {
   color: #546B82 !important;
 }
 
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper .radio-input {
+  padding: 0 !important;
+  height: initial !important;
+  width: initial !important;
+  margin-bottom: 0 !important;
+  display: none !important;
+  cursor: pointer !important;
+}
+
 .Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper .radio-label:before {
   content: "";
   -webkit-appearance: none;
@@ -285,7 +294,7 @@ ul.js-error-messages {
   top: -3px;
 }
 
-.Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper  .radio-input:checked+radio-label:after {
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper .radio-input:checked+radio-label:after {
   content: "";
   display: block;
   position: absolute;
