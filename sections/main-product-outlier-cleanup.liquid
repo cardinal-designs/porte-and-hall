@@ -149,7 +149,11 @@
           
         </div>
 
-        {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
+        {% if product.type == 'Outlier' %}
+          <div class="product__description 123 body blue">
+            Get a doormat built to withstand the outdoors. Thousands of rubbery bristles trap dirt and moisture. Includes a <a href="#">5 year warranty</a> and made in the USA.
+          </div>
+        {% elsif grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
           <div class="product__description 123 body blue">
             {{ grouped_collection.metafields.custom.short_description | default: product.description }}
           </div>
