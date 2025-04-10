@@ -369,6 +369,10 @@ ul.js-error-messages {
   border: 0 !important;
 }
 
+.Designer_Program_Form .globo-form-control .select {
+  background-position-x: 100% !important;
+}
+
 @media screen and (max-width: 768px) {
   .document__upload * {
     font-size: 14px;
