@@ -66,31 +66,11 @@
         "link_text": "",
         "image": "shopify://shop_images/web_collage_copy.png"
       }
-    },
-    "174426803240847750": {
-      "type": "apps",
-      "blocks": {
-        "powerful_form_builder_app_block_LUxyxF": {
-          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
-          "settings": {
-            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"ODQ5Njc=\"></div>"
-          }
-        }
-      },
-      "block_order": [
-        "powerful_form_builder_app_block_LUxyxF"
-      ],
-      "settings": {
-        "include_margins": true,
-        "heading": "",
-        "section_reviews": true
-      }
     }
   },
   "order": [
     "main",
     "d6ffae26-0ed7-4647-a4f9-a65110b580f2",
-    "174426803240847750",
     "1c0d22eb-2fbd-421d-b48b-c0b1a1200dc2",
     "3d7a4cfe-b875-4374-902d-1552bb383737"
   ]
