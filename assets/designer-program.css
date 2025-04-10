@@ -247,20 +247,6 @@ ul.js-error-messages {
   width: 100% !important;
 }
 
-.Designer_Program_Form .Files__wrapper {
-  margin-bottom: 50px !important;
-}
-
-.Designer_Program_Form .Files__wrapper .material_filled-label .label-content {
-  font-size: 18px !important;
-  line-height: 120% !important;
-  font-family: brandon !important;
-  text-transform: uppercase !important;
-  font-weight: 600 !important;
-  letter-spacing: 2px !important;
-  color: #546B82 !important;
-}
-
 .Designer_Program_Form .How_Did_You_Hear .material_filled-label .label-content {
   font-size: 18px !important;
   line-height: 120% !important;
@@ -338,6 +324,20 @@ ul.js-error-messages {
   transform: rotate(45deg) !important;
   border-radius: 0 !important;
   display: block !important;
+}
+
+.Designer_Program_Form .Files__wrapper.globo-form-control {
+  margin-bottom: 50px !important;
+}
+
+.Designer_Program_Form .Files__wrapper.globo-form-control .material_filled-label .label-content {
+  font-size: 18px !important;
+  line-height: 120% !important;
+  font-family: brandon !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  color: #546B82 !important;
 }
 
 @media screen and (max-width: 768px) {
