@@ -16,12 +16,12 @@
       ],
       "settings": {
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
-        "materials": "{{ section.settings.collection.metafields.custom.materials | metafield_tag }}",
-        "care": "{{ section.settings.collection.metafields.custom.care | metafield_tag }}",
+        "materials": "<p>{{ section.settings.collection.metafields.custom.materials | metafield_tag }}</p>",
+        "care": "<p>{{ section.settings.collection.metafields.custom.care | metafield_tag }}</p>",
         "hide_pinterest": true,
         "hide_dimensions": true,
         "text_dimensions": false,
-        "hide_shop_other": false,
+        "hide_shop_other": true,
         "hide_quantity": true,
         "shop_more_below": true
       }
@@ -265,7 +265,17 @@
         "text": "Just like a clean desk or freshly-made bed, coming home to a beautiful and functional entryway is restorative and uplifting. We aim to turn these often ovelooked areas of our homes into inspired areas that welcome and invite us home.",
         "link": "shopify://pages/about-us",
         "link_text": "LEARN MORE ABOUT US",
-        "image": "shopify://shop_images/door_illustration.png"
+        "image": "shopify://shop_images/door_illustration.png",
+        "show_faq": true,
+        "title_1": "",
+        "title_richtext_1": "",
+        "answer_1": "",
+        "title_2": "",
+        "title_richtext_2": "",
+        "answer_2": "",
+        "title_3": "",
+        "title_richtext_3": "",
+        "answer_3": ""
       }
     },
     "featured-articles": {
