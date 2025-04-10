@@ -258,6 +258,18 @@ ul.js-error-messages {
   margin: 0 0 30px !important;
 }
 
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper .radio-label {
+  font-size: 18px !important;
+  line-height: 120% !important;
+  font-family: brandon !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  position: relative !important;
+  cursor: pointer !important;
+  color: #546B82 !important;
+}
+
 @media screen and (max-width: 768px) {
   .document__upload * {
     font-size: 14px;
