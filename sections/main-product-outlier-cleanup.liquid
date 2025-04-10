@@ -498,7 +498,8 @@
                     </div>
                   </div>
                 {%- endunless -%}
-     
+            {%- elsif product.type == 'Outlier'  -%} 
+              <p><span class="other-sizes__label">Size</span>: <span class="other-sizes__dimension">1' 9" x 3'</span></p>
             {%- endif -%}
 
             
