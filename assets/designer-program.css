@@ -285,6 +285,19 @@ ul.js-error-messages {
   top: -3px;
 }
 
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper  .radio-input:checked+radio-label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  width: 5px;
+  height: 10px;
+  border: solid #546B82;
+  border-width: 0 1px 1px 0;
+  transform: rotate(45deg);
+}
+
 @media screen and (max-width: 768px) {
   .document__upload * {
     font-size: 14px;
