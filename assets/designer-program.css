@@ -175,8 +175,8 @@ ul.js-error-messages {
 }
 
 .Designer_Program_Form input::-webkit-input-placeholder {
-  visibility: visible;
-  color: var(--blue);
+  visibility: visible !important;
+  color: var(--blue) !important;
   font-family: brandon;
   font-size: 18px;
 }
