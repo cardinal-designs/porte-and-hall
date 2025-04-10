@@ -348,6 +348,10 @@ ul.js-error-messages {
   color: #546B82 !important;
 }
 
+.Designer_Program_Form .Files__wrapper.globo-form-control .gfb__dropzone {
+  background: transparent !important;
+}
+
 @media screen and (max-width: 768px) {
   .document__upload * {
     font-size: 14px;
