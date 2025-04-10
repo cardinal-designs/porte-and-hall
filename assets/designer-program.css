@@ -233,10 +233,19 @@ ul.js-error-messages {
   border-radius: 0 !important;
 }
 
+.Designer_Program_Form .globo-paragraph * {
+  font-size: 11px !important;
+  color: var(--blue) !important;
+  font-weight: 500 !important;
+  letter-spacing: 1px !important;
+  line-height: 1.2em !important;
+}
+
 .Designer_Program_Form .How_Did_You_Hear {
   margin: 50px 0 70px !important;
   width: 100% !important;
 }
+
 
 .Designer_Program_Form .How_Did_You_Hear .material_filled-label .label-content {
   font-size: 18px !important;
