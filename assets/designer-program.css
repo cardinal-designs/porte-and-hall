@@ -191,8 +191,6 @@ ul.js-error-messages {
 }
 
 .Designer_Program_Form .material_filled-input {
-  padding: 7px 0 !important;
-  border-bottom: 1px solid #546b82 !important;
   font-size: 18px !important;
   line-height: 1.3em !important;
   color: var(--blue) !important;
@@ -205,6 +203,8 @@ ul.js-error-messages {
   border: none !important;
   height: auto !important;
   min-height: auto !important;
+  padding: 7px 0 !important;
+  border-bottom: 1px solid #546b82 !important;
 }
 
 
