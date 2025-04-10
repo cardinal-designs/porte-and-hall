@@ -325,6 +325,8 @@ ul.js-error-messages {
   transform: rotate(45deg) !important;
   border-radius: 0 !important;
   display: block !important;
+  background: transparent !important;
+  transition: none !important;
 }
 
 .Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper {
