@@ -245,6 +245,14 @@ ul.js-error-messages {
   letter-spacing: 2px !important;
 }
 
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .globo-form-input {
+  margin-top: 50px;
+  max-width: 570px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 @media screen and (max-width: 768px) {
   .document__upload * {
     font-size: 14px;
