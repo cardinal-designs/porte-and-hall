@@ -337,6 +337,7 @@ ul.js-error-messages {
   text-transform: uppercase !important;
   font-weight: 600 !important;
   letter-spacing: 2px !important;
+  display: block !important;
   color: #546B82 !important;
 }
 
@@ -372,6 +373,10 @@ ul.js-error-messages {
 
   .contact__button .button {
     padding: 14px 19px;
+  }
+
+  .Designer_Program_Form .material_filled-input {
+    font-size: 14px !important;
   }
   
 }
