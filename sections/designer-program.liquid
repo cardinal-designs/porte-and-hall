@@ -12,6 +12,7 @@
           <div class="body">{{ section.settings.top_text }}</div>
         {% endif %}
       </div>
+      {% comment %}
       <form-validation>
         <div class="program__form designer--form">
         <div class="form__wrapper">
@@ -272,10 +273,12 @@
         <ul class="js-error-messages"></ul>
       </div>
       </form-validation>
+      {% endcomment %}
     </div>
   </div>
 </div>
 
+{% comment %}
 <script>
   function toggleDocumentUpload() {
       var yesCheckbox = document.getElementById("yes");
@@ -290,6 +293,7 @@
       }
   }
 </script>
+{% endcomment %}
 
 {% schema %}
   {
