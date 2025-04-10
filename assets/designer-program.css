@@ -200,6 +200,10 @@ ul.js-error-messages {
   margin-bottom: 0 !important;
 }
 
+.Designer_Program_Form .How_Did_You_Hear.globo-form-control label {
+  display: block !important;
+}
+
 .Designer_Program_Form input::-webkit-input-placeholder {
   visibility: visible !important;
   color: var(--blue) !important;
