@@ -169,6 +169,10 @@ ul.js-error-messages {
   margin-bottom: 40px;
 }
 
+.Designer_Program_Form .globo-form-app .header {
+  display: none;
+}
+
 
 @media screen and (max-width: 768px) {
   .document__upload * {
