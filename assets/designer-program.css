@@ -354,17 +354,19 @@ ul.js-error-messages {
 }
 
 .Designer_Program_Form .material_filled-button {
-  background: var(--gold);
-  color: #fff;
-  text-align: center;
-  cursor: pointer;
-  font-family: brandon;
-  font-size: 18px;
-  line-height: 120%;
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 2px;
-  padding: 18px 84px;
+  background: var(--gold) !important;
+  color: #fff !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  font-family: brandon !important;
+  font-size: 18px !important;
+  line-height: 120% !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  padding: 18px 84px !important;
+  margin: 0 !important;
+  border: 0 !important;
 }
 
 @media screen and (max-width: 768px) {
