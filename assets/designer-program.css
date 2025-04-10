@@ -292,6 +292,8 @@ ul.js-error-messages {
   width: 18px;
   border: 1px solid #546B82;
   top: -3px;
+  border-radius: 0 !important;
+  left: 0 !important;
 }
 
 .Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper .radio-input:checked+radio-label:after {
