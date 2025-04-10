@@ -375,8 +375,15 @@ ul.js-error-messages {
     padding: 14px 19px;
   }
 
-  .Designer_Program_Form .material_filled-input {
+  .Designer_Program_Form .material_filled-input,
+  .Designer_Program_Form .How_Did_You_Hear .material_filled-label .label-content,
+  .Designer_Program_Form .globo-form-control.How_Did_You_Hear .radio-wrapper .radio-label {
     font-size: 14px !important;
+  }
+
+  .Designer_Program_Form .globo-form-control.How_Did_You_Hear .globo-list-control {
+    flex: 0 0 100% !important
+    margin: 0 0 35px !important
   }
   
 }
