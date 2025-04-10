@@ -246,11 +246,16 @@ ul.js-error-messages {
 }
 
 .Designer_Program_Form .globo-form-control.How_Did_You_Hear .globo-form-input {
-  margin-top: 50px;
-  max-width: 570px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  margin-top: 50px !important;
+  max-width: 570px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important;
+}
+
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .globo-list-control {
+  flex: 0 0 50% !important;
+  margin: 0 0 30px !important;
 }
 
 @media screen and (max-width: 768px) {
