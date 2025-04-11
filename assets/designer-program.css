@@ -389,6 +389,13 @@ ul.js-error-messages {
 
 .Designer_Program_Form [data-type="acceptTerms"] label.checkbox-label.globo-option {
   display: block !important;
+  font-size: 18px !important;
+  line-height: 120% !important;
+  font-family: brandon !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  color: #546b82 !important;
 }
 
 @media screen and (max-width: 768px) {
