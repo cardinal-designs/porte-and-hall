@@ -334,7 +334,8 @@ ul.js-error-messages {
   animation: none !important;
 }
 
-.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper {
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper,
+.Designer_Program_Form [data-type="acceptTerms"] .checkbox-wrapper {
   padding-left: 0 !important;
 }
 
