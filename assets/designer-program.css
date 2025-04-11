@@ -456,7 +456,8 @@ ul.js-error-messages {
   .Designer_Program_Form .How_Did_You_Hear .material_filled-label .label-content,
   .Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-label,
   .Designer_Program_Form .Files__wrapper.globo-form-control .material_filled-label .label-content,
-  .Designer_Program_Form input::-webkit-input-placeholder {
+  .Designer_Program_Form input::-webkit-input-placeholder,
+  .Designer_Program_Form [data-type=acceptTerms] label.checkbox-label.globo-option {
     font-size: 14px !important;
   }
 
