@@ -291,7 +291,8 @@ ul.js-error-messages {
   cursor: pointer !important;
 }
 
-.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-label:before {
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-label:before,
+.Designer_Program_Form [data-type="acceptTerms"] label.checkbox-label.globo-option:before {
   content: "";
   -webkit-appearance: none;
   background-color: transparent !important;
@@ -310,11 +311,13 @@ ul.js-error-messages {
   animation: none !important;
 }
 
-.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-input + .checkbox-label:after {
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-input + .checkbox-label:after,
+.Designer_Program_Form [data-type="acceptTerms"] .checkbox-input + label.checkbox-label.globo-option:after {
   display: none !important;
 }
 
-.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-input:checked + .checkbox-label:after {
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-input:checked + .checkbox-label:after,
+.Designer_Program_Form [data-type="acceptTerms"] .checkbox-input:checked + label.checkbox-label.globo-option:after{
   content: "";
   position: absolute !important;
   top: 3px !important;
@@ -397,6 +400,7 @@ ul.js-error-messages {
   letter-spacing: 2px !important;
   color: #546b82 !important;
 }
+
 
 @media screen and (max-width: 768px) {
   .document__upload * {
