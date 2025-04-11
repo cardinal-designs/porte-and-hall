@@ -387,6 +387,10 @@ ul.js-error-messages {
   background-position: 99% 60% !important;
 }
 
+.Designer_Program_Form [data-type="acceptTerms"] label.checkbox-label.globo-option {
+  display: block !important;
+}
+
 @media screen and (max-width: 768px) {
   .document__upload * {
     font-size: 14px;
