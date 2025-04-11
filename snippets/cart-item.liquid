@@ -138,7 +138,10 @@
                 </s>
               </p>
               <p class="price price--end">
+                {% comment %}
                 <span>you save {{ discountAmout }}% </span> {{ price | money_without_trailing_zeros }}
+                {% endcomment %}
+                <span>Member price: </span {{ price | money_without_trailing_zeros }}
               </p>
             </div>
           {% else %}
