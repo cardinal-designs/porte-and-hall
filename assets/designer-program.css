@@ -324,7 +324,7 @@ ul.js-error-messages {
 .Designer_Program_Form [data-type="acceptTerms"] .checkbox-input:checked + label.checkbox-label.globo-option:after{
   content: "";
   position: absolute !important;
-  top: 3px !important;
+  top: 2px !important;
   left: 7px !important;
   width: 5px !important;
   height: 10px !important;
