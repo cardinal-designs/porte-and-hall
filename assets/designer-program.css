@@ -339,6 +339,11 @@ ul.js-error-messages {
   padding-left: 0 !important;
 }
 
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .globo-list-control,
+.Designer_Program_Form [data-type="acceptTerms"] .globo-list-control {
+  padding: 0 !important;
+}
+
 .Designer_Program_Form .Files__wrapper.globo-form-control {
   margin-bottom: 50px !important;
 }
