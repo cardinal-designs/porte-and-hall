@@ -142,11 +142,12 @@
       {% endif %}
     {% endif %}
 
+    <a href="{{ product_card_product.url }}">
     <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product_card_product.id }}'> 
       {{ product_card_product.metafields.judgeme.badge }} 
     </div> 
       
-    <a href="{{ product_card_product.url }}">
+    
       <h3 class="product-card__title blue">
         {{ title | default: collection.title | replace: ' | ', ' ' }}
         <br><span class="body">{{ product_card_product.options_by_name['color'].values[0]  | capitalize }}</span>
