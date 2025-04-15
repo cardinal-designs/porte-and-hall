@@ -6,6 +6,13 @@
 
 <script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
 
+{% style %} 
+  .jdgm-preview-badge .jdgm-star {
+    color: var(--blue) !important;
+  }
+
+{% endstyle %}
+
 {% assign active_tags = '' %}
 
 {% for tag in current_tags %}
