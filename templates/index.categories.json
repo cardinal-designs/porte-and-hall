@@ -173,6 +173,14 @@
     "categories_grid_gjJRPL": {
       "type": "categories-grid",
       "blocks": {
+        "block_EyYreN": {
+          "type": "block",
+          "settings": {
+            "text": "Best Sellers",
+            "image": "shopify://shop_images/0e425db70c615c6f7ad5db8581e2cf52.png",
+            "url": "shopify://collections/best-sellers"
+          }
+        },
         "block_kxkzh8": {
           "type": "block",
           "settings": {
@@ -196,21 +204,13 @@
             "image": "shopify://shop_images/IMG_0768.jpg",
             "url": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
           }
-        },
-        "block_EyYreN": {
-          "type": "block",
-          "settings": {
-            "text": "Best Sellers",
-            "image": "shopify://shop_images/0e425db70c615c6f7ad5db8581e2cf52.png",
-            "url": "shopify://collections/best-sellers"
-          }
         }
       },
       "block_order": [
+        "block_EyYreN",
         "block_kxkzh8",
         "block_mGGRHB",
-        "block_xAQAQR",
-        "block_EyYreN"
+        "block_xAQAQR"
       ],
       "settings": {}
     },
