@@ -1,3 +1,13 @@
+{% style %}
+  .product-cart-4 .product-card__price {
+    margin-top: 0;
+  }
+
+  .product-card {
+    gap: 6px;
+  }
+
+{% endstyle %}
 {% liquid
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
   assign collection_title = collection.title | downcase
