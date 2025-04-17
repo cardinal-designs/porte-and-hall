@@ -1,7 +1,7 @@
 {{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
 {{ 'designer-program.css' | asset_url | stylesheet_tag }}
 
-<div class="Designer_Program_Main">
+<div class="Designer_Program_Main" id="section-{{ section.id }}">
   <div class="contact page-width spaced-section">
     <div class="Contact_Form">
       <div class="Designer_Program_Header text-center">
@@ -276,6 +276,12 @@
   </div>
 </div>
 
+{% style %}
+  #section-{{ section.id }} {
+    background-image: url('{{ section.settings.image | img_url }}')
+  }
+{% endstyle %}
+
 <script>
   function toggleDocumentUpload() {
       var yesCheckbox = document.getElementById("yes");
@@ -295,6 +301,11 @@
   {
     "name": "Designer Program",
     "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Background Image"
+      },
       {
         "type":"text",
         "id":"heading",
