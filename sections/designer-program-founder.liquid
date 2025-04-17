@@ -1,6 +1,102 @@
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Founder Quote",
+  "settings": [
+    {
+      "type": "text",
+      "id": "small_heading",
+      "label": "Small Heading",
+      "default": "From One Designer to Another"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Main Quote",
+      "default": "A beautiful space should make a beautiful first impression, and that’s what we’re here for: To support your creative vision with mats that’ll wow your clients from the start."
+    },
+    {
+      "type": "text",
+      "id": "author",
+      "label": "Author",
+      "default": "Stafford – Founder"
+    },
+    {
+      "type": "image_picker",
+      "id": "signature",
+      "label": "Signature Image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#4e667e"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Founder Quote Section"
+    }
+  ]
+}
 {% endschema %}
+
+<section class="founder-quote-section" style="background-color: {{ section.settings.background_color }};">
+  <div class="container">
+    <p class="small-heading">{{ section.settings.small_heading }}</p>
+    <blockquote>
+      {{ section.settings.quote }}
+    </blockquote>
+    <div class="author-line">
+      <span class="author">{{ section.settings.author }}</span>
+    </div>
+    {% if section.settings.signature %}
+      <div class="signature">
+        <img src="{{ section.settings.signature | image_url }}" alt="Signature" />
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+.founder-quote-section {
+  padding: 4rem 1rem;
+  text-align: center;
+  color: white;
+}
+
+.founder-quote-section .small-heading {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+
+.founder-quote-section blockquote {
+  font-size: 1.75rem;
+  font-family: "Georgia", serif;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.founder-quote-section .author-line {
+  border-top: 1px solid #c2b280;
+  margin: 2rem auto 1rem;
+  padding-top: 0.5rem;
+  max-width: 400px;
+}
+
+.founder-quote-section .author {
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f5d67a;
+}
+
+.founder-quote-section .signature img {
+  max-width: 160px;
+  margin: 1.5rem auto 0;
+  display: block;
+}
+</style>
