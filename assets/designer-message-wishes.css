@@ -113,8 +113,8 @@
   }
 
   .designer__message--text {
-    flex: 0 0 calc(35% - 16px);
-    max-width: calc(35% - 16px);
+    flex: 0 0 calc(100% - 16px);
+    max-width: calc(100% - 16px);
   }
   
   .designer__message--container {
