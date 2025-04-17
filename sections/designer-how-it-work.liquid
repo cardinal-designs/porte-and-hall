@@ -1,17 +1,23 @@
-
+<!-- sections/how-it-works.liquid -->
 <section class="how-it-works-section">
   <div class="how-it-works-container">
-    <!-- Image Section -->
+    
+    <!-- Left Image -->
     <div class="how-it-works-image">
       {% if section.settings.image != blank %}
-        <img 
-          src="{{ section.settings.image | img_url: '1024x' }}" 
-          alt="{{ section.settings.image_alt | escape }}" 
+        <img
+          src="{{ section.settings.image | img_url: '1024x' }}"
+          alt="{{ section.settings.image_alt | escape }}"
+        />
+      {% else %}
+        <img
+          src="//placehold.it/600x400"
+          alt="Placeholder Image"
         />
       {% endif %}
     </div>
     
-    <!-- Content Section -->
+    <!-- Right Content -->
     <div class="how-it-works-content">
       <div class="how-it-works-box">
         <h2 class="how-it-works-heading">{{ section.settings.heading }}</h2>
@@ -72,7 +78,8 @@
         {
           "type": "text",
           "id": "step_text",
-          "label": "Step Text"
+          "label": "Step Text",
+          "default": "Sample step text"
         }
       ]
     }
@@ -88,62 +95,80 @@
 
 {% stylesheet %}
 .how-it-works-section {
-  background-color: #fff;
-  padding: 40px 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 40px 20px;
+  background-color: #fff;
 }
 
 .how-it-works-container {
   max-width: 1200px;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  align-items: center;
+  gap: 40px;
 }
 
 .how-it-works-image img {
   width: 100%;
   max-width: 600px;
   object-fit: cover;
-  border-radius: 4px;
 }
 
 .how-it-works-content {
   flex: 1;
+  margin-left: auto;
+}
+
+.how-it-works-box {
+  border: 2px solid #d1a76d;
   padding: 20px;
+  border-radius: 8px;
 }
 
-.how-it-works-content h2 {
+.how-it-works-heading {
   font-size: 2rem;
-  color: #795548;
-  margin-bottom: 24px;
+  color: #6f4b37;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.steps {
+.how-it-works-steps {
   list-style: none;
   padding: 0;
-  margin: 0 0 24px;
+  margin: 0 0 30px;
 }
 
 .step {
   display: flex;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
+}
+
+.step-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #d1a76d;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  margin-right: 12px;
+  font-family: sans-serif;
+}
+
+.step-text {
   font-size: 1rem;
   line-height: 1.5;
+  color: #333;
 }
 
-.step .icon {
-  font-size: 1.5rem;
-  color: #795548;
-  margin-right: 10px;
-}
-
-.button {
-  display: inline-block;
-  padding: 12px 24px;
+.how-it-works-button {
+  display: block;
+  width: fit-content;
+  text-align: center;
+  margin: 0 auto;
+  padding: 12px 20px;
   background-color: #d1a76d;
   color: #fff;
   text-decoration: none;
