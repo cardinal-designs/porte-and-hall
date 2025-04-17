@@ -278,7 +278,7 @@
 
 {% style %}
   #section-{{ section.id }} {
-    background-image: url('{{ section.settings.image | img_url }}')
+    background-image: url('{{ section.settings.image | img_url: 'large' }}')
   }
 {% endstyle %}
 
