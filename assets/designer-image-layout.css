@@ -43,21 +43,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Badge on Right Image */
-.badge {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ff5722; /* Vibrant red color */
-  color: white;
-  padding: 8px 16px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 50px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .custom-image-layout-container {
