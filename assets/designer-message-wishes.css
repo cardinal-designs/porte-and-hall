@@ -44,9 +44,13 @@
 }
 
 .designer__message--text .description {
-  font-size: 16px;
-  line-height: 1.75;
   color: #555;
+  margin-top: 40px;
+  font-weight: 390;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 2%;
+
 }
 
 .designer__message--image-wrapper {
