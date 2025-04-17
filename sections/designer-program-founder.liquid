@@ -11,25 +11,19 @@
     {
       "type": "textarea",
       "id": "quote",
-      "label": "Main Quote",
+      "label": "Quote Text",
       "default": "A beautiful space should make a beautiful first impression, and that’s what we’re here for: To support your creative vision with mats that’ll wow your clients from the start."
     },
     {
       "type": "text",
       "id": "author",
-      "label": "Author",
-      "default": "Stafford – Founder"
+      "label": "Author Name",
+      "default": "STAFFORD – FOUNDER"
     },
     {
       "type": "image_picker",
-      "id": "signature",
+      "id": "signature_image",
       "label": "Signature Image"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#4e667e"
     }
   ],
   "presets": [
@@ -40,63 +34,76 @@
 }
 {% endschema %}
 
-<section class="founder-quote-section" style="background-color: {{ section.settings.background_color }};">
-  <div class="container">
+<section class="designer-quote-section">
+  <div class="quote-wrapper">
     <p class="small-heading">{{ section.settings.small_heading }}</p>
-    <blockquote>
-      {{ section.settings.quote }}
-    </blockquote>
-    <div class="author-line">
+    <p class="quote-text">{{ section.settings.quote }}</p>
+    <div class="divider-line">
       <span class="author">{{ section.settings.author }}</span>
     </div>
-    {% if section.settings.signature %}
-      <div class="signature">
-        <img src="{{ section.settings.signature | image_url }}" alt="Signature" />
+    {% if section.settings.signature_image %}
+      <div class="signature-image">
+        <img src="{{ section.settings.signature_image | image_url: width: 300 }}" alt="Stafford Signature">
       </div>
     {% endif %}
   </div>
 </section>
 
 <style>
-.founder-quote-section {
-  padding: 4rem 1rem;
+.designer-quote-section {
+  background-color: #4e667e;
+  padding: 80px 20px;
+  color: #fff;
   text-align: center;
-  color: white;
-}
-
-.founder-quote-section .small-heading {
-  font-size: 1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 1.5rem;
-}
-
-.founder-quote-section blockquote {
-  font-size: 1.75rem;
   font-family: "Georgia", serif;
-  line-height: 1.6;
-  max-width: 800px;
-  margin: 0 auto 2rem;
 }
 
-.founder-quote-section .author-line {
-  border-top: 1px solid #c2b280;
-  margin: 2rem auto 1rem;
-  padding-top: 0.5rem;
-  max-width: 400px;
+.quote-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.founder-quote-section .author {
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
+.small-heading {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #f5d67a;
+  margin-bottom: 30px;
 }
 
-.founder-quote-section .signature img {
-  max-width: 160px;
-  margin: 1.5rem auto 0;
-  display: block;
+.quote-text {
+  font-size: 28px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  font-family: "Georgia", serif;
+}
+
+.divider-line {
+  position: relative;
+  margin: 40px auto 20px;
+  width: 100%;
+  max-width: 600px;
+  border-top: 1px solid #d1b07f;
+}
+
+.divider-line .author {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4e667e;
+  padding: 0 10px;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  color: #f3d28b;
+  font-weight: 600;
+}
+
+.signature-image img {
+  margin-top: 20px;
+  max-width: 180px;
+  height: auto;
 }
 </style>
