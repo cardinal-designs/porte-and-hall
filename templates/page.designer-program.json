@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "designer_trade_program_zrdttM": {
+      "type": "designer-trade-program",
+      "name": "Trade Program Section",
+      "settings": {
+        "heading": "Trade Program",
+        "description": "Porte + Hall was founded by an interior designer, so we’re thrilled to roll out the red carpet (er, mat) for our trade community—with exclusive perks and personalized support.",
+        "right_image": "shopify://shop_images/hero.jpg",
+        "join_link": "",
+        "signin_link": ""
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -65,16 +76,6 @@
         "link": "",
         "link_text": "",
         "image": "shopify://shop_images/web_collage_copy.png"
-      }
-    },
-    "designer_trade_program_zrdttM": {
-      "type": "designer-trade-program",
-      "name": "Trade Program Section",
-      "settings": {
-        "heading": "Trade Program",
-        "description": "Porte + Hall was founded by an interior designer, so we’re thrilled to roll out the red carpet (er, mat) for our trade community—with exclusive perks and personalized support.",
-        "join_link": "",
-        "signin_link": ""
       }
     }
   },
