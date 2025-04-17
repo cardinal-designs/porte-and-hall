@@ -1,34 +1,39 @@
 <!-- sections/how-it-works.liquid -->
 <section class="how-it-works-section">
   <div class="how-it-works-container">
-    
-    <!-- Left Image -->
+    <!-- Left Image Section -->
     <div class="how-it-works-image">
       {% if section.settings.image != blank %}
-        <img
-          src="{{ section.settings.image | img_url: '1024x' }}"
-          alt="{{ section.settings.image_alt | escape }}"
+        <img 
+          src="{{ section.settings.image | img_url: '1024x' }}" 
+          alt="{{ section.settings.image_alt | escape }}" 
+          class="how-it-works-img"
         />
       {% else %}
-        <img
-          src="//placehold.it/600x400"
+        <img 
+          src="//placehold.it/600x400" 
           alt="Placeholder Image"
+          class="how-it-works-img"
         />
       {% endif %}
     </div>
-    
-    <!-- Right Content -->
+
+    <!-- Right Side Content Section -->
     <div class="how-it-works-content">
-      <div class="how-it-works-box">
-        <h2 class="how-it-works-heading">{{ section.settings.heading }}</h2>
+      <h2 class="how-it-works-title">{{ section.settings.heading }}</h2>
+      <div class="how-it-works-description">
         <ul class="how-it-works-steps">
           {% for step in section.blocks %}
-            <li class="step">
-              <span class="step-icon">*</span>
-              <span class="step-text">{{ step.settings.step_text }}</span>
-            </li>
+            {% if step.type == 'step' %}
+              <li class="step">
+                <span class="step-icon">✔</span>
+                <span class="step-text">{{ step.settings.step_text }}</span>
+              </li>
+            {% endif %}
           {% endfor %}
         </ul>
+      </div>
+      <div class="how-it-works-button-container">
         <a href="{{ section.settings.button_link }}" class="how-it-works-button">
           {{ section.settings.button_text }}
         </a>
@@ -67,7 +72,7 @@
       "type": "text",
       "id": "button_text",
       "label": "Button Text",
-      "default": "Become a member"
+      "default": "Become a Member"
     }
   ],
   "blocks": [
@@ -78,15 +83,15 @@
         {
           "type": "text",
           "id": "step_text",
-          "label": "Step Text",
-          "default": "Sample step text"
+          "label": "Step Description",
+          "default": "Explain this step."
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "How it Works Section",
+      "name": "How it Works with Image",
       "category": "Custom"
     }
   ]
@@ -97,45 +102,58 @@
 .how-it-works-section {
   display: flex;
   justify-content: center;
-  padding: 40px 20px;
-  background-color: #fff;
+  align-items: center;
+  padding: 60px 20px;
+  background-color: #f9f9f9;
 }
 
 .how-it-works-container {
   max-width: 1200px;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-wrap: wrap; /* Makes it responsive */
   gap: 40px;
 }
 
-.how-it-works-image img {
-  width: 100%;
-  max-width: 600px;
+.how-it-works-image {
+  flex: 1; /* Width adaptability for responsiveness */
+  text-align: center;
+}
+
+.how-it-works-img {
+  max-width: 100%;
+  height: auto;
   object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .how-it-works-content {
   flex: 1;
-  margin-left: auto;
-}
-
-.how-it-works-box {
-  border: 2px solid #d1a76d;
   padding: 20px;
-  border-radius: 8px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.how-it-works-heading {
+.how-it-works-title {
   font-size: 2rem;
-  color: #6f4b37;
+  font-weight: bold;
+  color: #4b4b4b;
   margin-bottom: 20px;
-  text-align: center;
+  text-align: left;
+  border-left: 5px solid #d1a76d; /* Accent color */
+  padding-left: 10px; /* Indent next to the border */
+}
+
+.how-it-works-description {
+  margin-bottom: 30px;
 }
 
 .how-it-works-steps {
   list-style: none;
+  margin: 0;
   padding: 0;
-  margin: 0 0 30px;
 }
 
 .step {
@@ -145,16 +163,18 @@
 }
 
 .step-icon {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   background-color: #d1a76d;
-  border-radius: 50%;
-  text-align: center;
   color: #fff;
-  font-size: 14px;
-  margin-right: 12px;
-  font-family: sans-serif;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-weight: bold;
+  margin-right: 15px;
 }
 
 .step-text {
@@ -163,17 +183,23 @@
   color: #333;
 }
 
+.how-it-works-button-container {
+  text-align: left;
+}
+
 .how-it-works-button {
-  display: block;
-  width: fit-content;
-  text-align: center;
-  margin: 0 auto;
-  padding: 12px 20px;
-  background-color: #d1a76d;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: bold;
+  display: inline-block;
+  padding: 12px 24px;
   font-size: 1rem;
+  font-weight: bold;
+  background-color: #d1a76d;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.how-it-works-button:hover {
+  background-color: #ac8d52;
 }
 {% endstylesheet %}
