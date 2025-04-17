@@ -26,12 +26,12 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.image-main {
+.designer__image--right {
   position: relative;
   flex: 2;
 }
 
-.image-main img {
+.designer__image--right img {
   width: 100%;
   border-radius: 6px;
   object-fit: cover;
@@ -49,7 +49,7 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .image-main img {
+  .designer__image--right img {
     width: 100%;
   }
   
