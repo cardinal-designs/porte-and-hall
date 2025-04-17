@@ -74,7 +74,7 @@
   border-radius: 4px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   
   .designer__message--container {
     flex-direction: column;
@@ -90,4 +90,5 @@
   .image__container {
     margin: 0 auto;
   }
+  
 }
