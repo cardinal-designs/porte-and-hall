@@ -1,6 +1,73 @@
+<section class="custom-image-layout-section">
+  <div class="custom-image-layout-container">
+    <!-- Left Image Grid -->
+    <div class="image-grid">
+      <div class="image-left-top">
+        <img src="{{ section.settings.image_left_top | img_url: '1024x' }}" alt="{{ section.settings.image_left_top_alt | escape }}">
+      </div>
+      <div class="image-left-bottom">
+        <img src="{{ section.settings.image_left_bottom | img_url: '1024x' }}" alt="{{ section.settings.image_left_bottom_alt | escape }}">
+      </div>
+    </div>
+
+    <!-- Right Image -->
+    <div class="image-main">
+      <img src="{{ section.settings.image_right | img_url: '1024x' }}" alt="{{ section.settings.image_right_alt | escape }}">
+      <div class="badge">
+        {{ section.settings.badge_text }}
+      </div>
+    </div>
+  </div>
+</section>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Designer Image Layout",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_left_top",
+      "label": "Left Top Image"
+    },
+    {
+      "type": "text",
+      "id": "image_left_top_alt",
+      "label": "Left Top Image Alt Text",
+      "default": "Left Top Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_left_bottom",
+      "label": "Left Bottom Image"
+    },
+    {
+      "type": "text",
+      "id": "image_left_bottom_alt",
+      "label": "Left Bottom Image Alt Text",
+      "default": "Left Bottom Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Right Image"
+    },
+    {
+      "type": "text",
+      "id": "image_right_alt",
+      "label": "Right Image Alt Text",
+      "default": "Right Main Image"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "JP"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Designer Image Layout"
+    }
+  ]
+}
 {% endschema %}
