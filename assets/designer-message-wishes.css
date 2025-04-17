@@ -115,8 +115,6 @@
   }
   
   .designer__message--container {
-    align-items: center;
-    text-align: center;
     gap: 0;
   }
 
@@ -135,6 +133,16 @@
 
   .image__container {
     margin: 0 auto;
+  }
+
+  .designer__message--text .title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .designer__message--text .description {
+    font-size: 18px;
+    line-height: 24px;
   }
   
 }
