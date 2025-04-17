@@ -92,6 +92,16 @@
   font-weight: 600;
 }
 
+@media (max-width: 1199px) {
+
+  .designer__message--image-wrapper,
+  .designer__message--text {
+    flex: 0 0 calc(50% - 24px);
+    max-width: calc(50% - 24px);
+  }
+  
+}
+
 @media (max-width: 767px) {
 
   .designer__message--image-wrapper {
