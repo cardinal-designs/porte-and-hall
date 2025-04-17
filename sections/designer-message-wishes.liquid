@@ -1,22 +1,24 @@
 {{ 'designer-message-wishes.css' | asset_url | stylesheet_tag: preload: true }}
 
 <section class="designer__message--thanks">
-  <div class="send-client-container">
-    <!-- Left Content -->
-    <div class="send-client-text">
-      <h2 class="title">{{ section.settings.title }}</h2>
-      <hr class="separator">
-      <p class="description">{{ section.settings.description }}</p>
-    </div>
-
-    <!-- Right Image -->
-    <div class="send-client-image-wrapper">
-      {% if section.settings.image != blank %}
-        <div class="image-container">
-          {{ section.settings.image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
-          <div class="overlay">{{ section.settings.overlay_text }}</div>
-        </div>
-      {% endif %}
+  <div class="page-width">
+    <div class="designer__message--container">
+      <!-- Left Content -->
+      <div class="send-client-text">
+        <h2 class="title">{{ section.settings.title }}</h2>
+        <hr class="separator">
+        <p class="description">{{ section.settings.description }}</p>
+      </div>
+  
+      <!-- Right Image -->
+      <div class="send-client-image-wrapper">
+        {% if section.settings.image != blank %}
+          <div class="image-container">
+            {{ section.settings.image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
+            <div class="overlay">{{ section.settings.overlay_text }}</div>
+          </div>
+        {% endif %}
+      </div>
     </div>
   </div>
 </section>

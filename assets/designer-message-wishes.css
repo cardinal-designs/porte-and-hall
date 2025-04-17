@@ -6,8 +6,13 @@
   align-items: center;
 }
 
-.send-client-container {
-  max-width: 1200px;
+.designer__message--thanks .page-width {
+  max-width: 1440px;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.designer__message--container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,7 +76,8 @@
 }
 
 @media (max-width: 768px) {
-  .send-client-container {
+  
+  .designer__message--container {
     flex-direction: column;
     align-items: center;
     text-align: center;
