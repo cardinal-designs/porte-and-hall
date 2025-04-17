@@ -13,11 +13,7 @@
     <div class="send-client-image-wrapper">
       {% if section.settings.image != blank %}
         <div class="image-container">
-          <img
-            src="{{ section.settings.image | img_url: '1024x' }}"
-            alt="{{ section.settings.image_alt | escape }}"
-            class="image"
-          >
+          {{ section.settings.image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
           <div class="overlay">{{ section.settings.overlay_text }}</div>
         </div>
       {% endif %}

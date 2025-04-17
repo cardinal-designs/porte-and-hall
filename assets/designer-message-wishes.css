@@ -1,7 +1,6 @@
-/* Section Layout */
 .send-client-thanks {
   padding: 80px 40px;
-  background-color: #f9f7f3; /* Subtle off-white background */
+  background-color: #f9f7f3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +14,6 @@
   flex-wrap: wrap;
 }
 
-/* Left Content */
 .send-client-text {
   flex: 1;
   padding: 20px;
@@ -26,7 +24,7 @@
 .send-client-text .title {
   font-size: 32px;
   font-family: 'Times New Roman', serif;
-  color: #7a5f37; /* Golden brown */
+  color: #7a5f37;
   margin-bottom: 20px;
 }
 
@@ -55,7 +53,7 @@
   max-width: 600px;
 }
 
-.image-container .image {
+.image-container img {
   width: 100%;
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
@@ -72,7 +70,6 @@
   border-radius: 4px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .send-client-container {
     flex-direction: column;
