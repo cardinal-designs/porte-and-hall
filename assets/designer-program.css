@@ -1,6 +1,9 @@
 .Designer_Program_Main {
   padding: 120px 0;
   position: relative;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .Designer_Program_Main::after {
