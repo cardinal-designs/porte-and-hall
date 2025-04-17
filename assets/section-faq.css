@@ -1,6 +1,7 @@
 .faq {
   background: var(--light-gray);
 }
+
 .faq + .faq.shopify-section.with-spacing > div:first-of-type {
   padding-top: 0;
 }
@@ -21,6 +22,7 @@
   padding: 30px 0;
   border-bottom: 1px solid var(--blue);
 }
+
 .faq__question {
   font-weight: 600;
   font-family: brandon;
@@ -37,6 +39,7 @@
   width: 16px;
   height: 16px;
 }
+
 .faq__item svg line {
   transform-origin: center;
   transition: all .3s ease;
