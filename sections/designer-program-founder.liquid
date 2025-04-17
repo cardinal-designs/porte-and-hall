@@ -1,3 +1,5 @@
+{{ 'designer-program-founder.css' | asset_url | stylesheet_tag: preload: true }}
+
 {% schema %}
 {
   "name": "Founder Quote",
@@ -48,62 +50,3 @@
     {% endif %}
   </div>
 </section>
-
-<style>
-.designer-quote-section {
-  background-color: #4e667e;
-  padding: 80px 20px;
-  color: #fff;
-  text-align: center;
-  font-family: "Georgia", serif;
-}
-
-.quote-wrapper {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.small-heading {
-  font-family: "Helvetica Neue", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-bottom: 30px;
-}
-
-.quote-text {
-  font-size: 28px;
-  line-height: 1.6;
-  margin-bottom: 40px;
-  font-family: "Georgia", serif;
-}
-
-.divider-line {
-  position: relative;
-  margin: 40px auto 20px;
-  width: 100%;
-  max-width: 600px;
-  border-top: 1px solid #d1b07f;
-}
-
-.divider-line .author {
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #4e667e;
-  padding: 0 10px;
-  font-family: "Helvetica Neue", sans-serif;
-  font-size: 14px;
-  letter-spacing: 0.1em;
-  color: #f3d28b;
-  font-weight: 600;
-}
-
-.signature-image img {
-  margin-top: 20px;
-  max-width: 180px;
-  height: auto;
-}
-</style>
