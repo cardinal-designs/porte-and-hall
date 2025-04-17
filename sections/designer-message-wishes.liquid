@@ -9,21 +9,21 @@
         {{ section.settings.icon_letter }}
       </div>
     </div>
+  </div>
 
-    <!-- Right Image Block -->
-    <div class="image-block">
-      {% if section.settings.image != blank %}
-        <div class="image-wrapper">
-          <img src="{{ section.settings.image | img_url: '1024x' }}" alt="{{ section.settings.image_alt | escape }}" class="section-image">
-          <div class="overlay">{{ section.settings.overlay_text }}</div>
-          <div class="badge-group">
-            <span class="badge">P</span>
-            <span class="badge">A</span>
-            <span class="badge">J</span>
-          </div>
+  <!-- Right Image Block (Outside the Container) -->
+  <div class="image-block">
+    {% if section.settings.image != blank %}
+      <div class="image-wrapper">
+        <img src="{{ section.settings.image | img_url: '1024x' }}" alt="{{ section.settings.image_alt | escape }}" class="section-image">
+        <div class="overlay">{{ section.settings.overlay_text }}</div>
+        <div class="badge-group">
+          <span class="badge">P</span>
+          <span class="badge">A</span>
+          <span class="badge">J</span>
         </div>
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
   </div>
 </section>
 
@@ -79,25 +79,25 @@
 {% stylesheet %}
 /* Section Wrapper */
 .send-client-thanks {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   padding: 80px 20px;
   background-color: #f9f7f3;
+  overflow: hidden; /* Prevent overflow for smaller screens */
 }
 
 .container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   gap: 50px;
   align-items: center;
-  max-width: 1200px;
+  position: relative; /* Keeps the text aligned properly */
+  z-index: 1;
 }
 
 /* Left Content Styling */
 .content-block {
   flex: 1;
-  background-color: #f9f7f3;
-  padding: 20px;
 }
 
 .section-title {
@@ -136,10 +136,13 @@
   margin-top: 20px;
 }
 
-/* Right Image Styling */
+/* Image Block Positioned Outside the Container */
 .image-block {
-  flex: 1;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  right: -150px; /* Push the image outside the container */
+  transform: translateY(-50%);
+  z-index: 0; /* Positioned behind the content */
 }
 
 .image-wrapper {
@@ -147,7 +150,7 @@
 }
 
 .section-image {
-  max-width: 100%;
+  max-width: 600px; /* Adjust size of the image */
   border-radius: 8px;
 }
 
@@ -175,7 +178,7 @@
   width: 30px;
   height: 30px;
   line-height: 30px;
-  background-color: #f28b2c;
+  background-color: #f28b2c; /* Orange for first badge */
   color: white;
   font-size: 14px;
   font-weight: 600;
@@ -202,7 +205,21 @@
     text-align: center;
   }
 
+  .image-block {
+    position: relative; /* Inside the container for smaller screens */
+    top: unset;
+    right: unset;
+    transform: none;
+    margin-top: 20px;
+    z-index: 1;
+  }
+
+  .section-image {
+    max-width: 100%; /* Full width on smaller screens */
+  }
+
   .badge-group {
+    bottom: 20px;
     right: 20px;
   }
 }
