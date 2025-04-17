@@ -113,8 +113,8 @@
   }
 
   .designer__message--text {
-    flex: 0 0 calc(100% - 8px);
-    max-width: calc(100% - 8px);
+    flex: 0 0 calc(100% - 16px);
+    max-width: calc(100% - 16px);
   }
   
   .designer__message--container {
@@ -126,7 +126,7 @@
   }
 
   .designer__message--thanks .page-width {
-    padding: 40px 16px 0;
+    padding: 40px 0 0;
   }
 
   .designer__message--text {
