@@ -29,10 +29,13 @@
 }
 
 .designer__message--text .title {
-  font-size: 32px;
-  font-family: 'Times New Roman', serif;
-  color: #7a5f37;
+  color: var(--gold-secondary--dark);
   margin-bottom: 20px;
+  font-family: Louize Display;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: 0.2px;
 }
 
 .separator {
