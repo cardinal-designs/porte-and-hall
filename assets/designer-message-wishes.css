@@ -95,18 +95,18 @@
 @media (max-width: 1199px) {
 
   .designer__message--image-wrapper {
-    flex: 0 0 calc(70% - 24px);
-    max-width: calc(70% - 24px);
+    flex: 0 0 calc(65% - 24px);
+    max-width: calc(65% - 24px);
   }
 
   .designer__message--text {
-    flex: 0 0 calc(30% - 24px);
-    max-width: calc(30% - 24px);
+    flex: 0 0 calc(35% - 24px);
+    max-width: calc(35% - 24px);
   }
   
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
 
   .designer__message--image-wrapper {
     flex: 0 0 100%;
