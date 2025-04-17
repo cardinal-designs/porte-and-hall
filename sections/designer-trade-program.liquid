@@ -1,6 +1,106 @@
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Trade Program",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Trade Program"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Porte + Hall was founded by an interior designer, so we’re thrilled to roll out the red carpet (er, mat) for our trade community—with exclusive perks and personalized support."
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Side Image"
+    },
+    {
+      "type": "url",
+      "id": "join_link",
+      "label": "Join Link"
+    },
+    {
+      "type": "url",
+      "id": "signin_link",
+      "label": "Sign-in Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trade Program Section"
+    }
+  ]
+}
 {% endschema %}
+
+<div class="trade-program-section">
+  <div class="content">
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.description }}</p>
+    <div class="buttons">
+      <a href="{{ section.settings.join_link }}" class="btn primary">Become a member</a>
+      <a href="{{ section.settings.signin_link }}" class="btn secondary">Sign in</a>
+    </div>
+  </div>
+  <div class="image">
+    {% if section.settings.right_image != blank %}
+      <img src="{{ section.settings.right_image | image_url }}" alt="Trade Program Image">
+    {% endif %}
+  </div>
+</div>
+
+<style>
+.trade-program-section {
+  display: flex;
+  flex-wrap: wrap;
+  background: #f0f4f8;
+  padding: 40px 20px;
+  align-items: center;
+  justify-content: center;
+}
+.trade-program-section .content {
+  flex: 1 1 40%;
+  padding: 20px;
+}
+.trade-program-section h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.trade-program-section p {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+.trade-program-section .buttons {
+  display: flex;
+  gap: 15px;
+}
+.trade-program-section .btn {
+  padding: 10px 20px;
+  border: 2px solid #333;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.trade-program-section .btn.primary {
+  background: #fff;
+  color: #333;
+}
+.trade-program-section .btn.secondary {
+  background: transparent;
+  color: #333;
+}
+.trade-program-section .image {
+  flex: 1 1 50%;
+  text-align: center;
+}
+.trade-program-section .image img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+</style>
