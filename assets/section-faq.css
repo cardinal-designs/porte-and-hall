@@ -85,6 +85,11 @@ Designer page faq css start
   background: var(--beige-secondary);
 }
 
+.template__designer-program .shopify-section.with-spacing>div:first-of-type {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
 /*******************************
 Designer page faq css end
 ********************************/
