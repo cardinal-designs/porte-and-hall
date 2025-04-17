@@ -1,8 +1,8 @@
 {{ 'designer-image-layout.css' | asset_url | stylesheet_tag: preload: true }}
 
-<section class="custom-image-layout-section">
-  <div class="custom-image-layout-container">
-    <div class="image-grid">
+<section class="designer__image--layout">
+  <div class="designer__image--layout-container">
+    <div class="designer__image--grid">
       <div class="image-left-top">
         <img src="{{ section.settings.image_left_top | img_url: '1024x' }}" alt="{{ section.settings.image_left_top.alt | escape }}">
       </div>
