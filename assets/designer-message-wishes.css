@@ -44,7 +44,7 @@
 }
 
 .designer__message--text .description {
-  color: #555;
+  color: var(--blue-secondary);
   margin-top: 40px;
   font-weight: 390;
   font-size: 24px;
