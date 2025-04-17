@@ -1,0 +1,66 @@
+.trade__program {
+  background-size: cover;
+  background-position: center;
+  min-height: 600px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.trade__overlay {
+  background: rgba(10, 40, 60, 0.7); /* navy transparent trade__overlay */
+  width: 50%;
+  height: 100%;
+  padding: 3rem 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.trade__content {
+  color: #fff;
+  max-width: 500px;
+}
+
+.trade__content h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.trade__content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.trade__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.join-btn {
+  background: #fff;
+  color: #000;
+  position: relative;
+  justify-content: center;
+  padding-left: 3.5rem;
+}
+
+.signin-btn {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
