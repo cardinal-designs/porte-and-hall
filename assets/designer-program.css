@@ -1,3 +1,8 @@
+.Designer_Program_Main {
+  padding: 120px 0;
+  position: relative;
+}
+
 .Designer_Program_Header h2 {
   margin-bottom: 50px;
 }
@@ -171,6 +176,11 @@ ul.js-error-messages {
 
 
 @media screen and (max-width: 768px) {
+
+  .Designer_Program_Main {
+    padding: 32px 0;
+  }
+  
   .document__upload * {
     font-size: 14px;
   }
