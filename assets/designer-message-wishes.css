@@ -46,8 +46,7 @@
   color: #555;
 }
 
-/* Right Content */
-.send-client-image-wrapper {
+.designer__message--image-wrapper {
   flex: 1;
   position: relative;
 }
@@ -83,7 +82,7 @@
     text-align: center;
   }
 
-  .designer__message--text, .send-client-image-wrapper {
+  .designer__message--text, .designer__message--image-wrapper {
     padding: 10px;
     margin-top: 20px;
   }
