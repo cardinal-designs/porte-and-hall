@@ -93,6 +93,11 @@
 }
 
 @media (max-width: 767px) {
+
+  .designer__message--image-wrapper {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
   
   .designer__message--container {
     flex-direction: column;
