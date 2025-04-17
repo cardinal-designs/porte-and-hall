@@ -180,6 +180,10 @@ ul.js-error-messages {
   .Designer_Program_Main {
     padding: 32px 0;
   }
+
+  .Designer_Program_Main .page-width {
+    padding: 0 16px;
+  }
   
   .document__upload * {
     font-size: 14px;
