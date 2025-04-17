@@ -76,8 +76,12 @@
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 10px 15px;
-  font-size: 14px;
   border-radius: 4px;
+  font-size: 19.43px;
+  line-height: 25.91px;
+  letter-spacing: 0.2px;
+  text-align: center;
+
 }
 
 @media (max-width: 767px) {
