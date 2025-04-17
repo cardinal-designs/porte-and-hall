@@ -1,6 +1,157 @@
+<!-- sections/how-we-support-you.liquid -->
+<section class="how-we-support-you-section">
+  <div class="container">
+    <!-- Left Content -->
+    <div class="content">
+      <h2 class="title">{{ section.settings.heading }}</h2>
+      <hr class="separator">
+      <ul class="features-list">
+        {% for feature in section.blocks %}
+          <li class="feature">
+            <span class="feature-icon">◆</span>
+            <div class="feature-details">
+              <h3 class="feature-title">{{ feature.settings.title }}</h3>
+              <p class="feature-description">{{ feature.settings.description }}</p>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Right Image -->
+    <div class="image">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | img_url: '1024x' }}" alt="{{ section.settings.image_alt | escape }}">
+      {% endif %}
+    </div>
+  </div>
+</section>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "How We Support You",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "How we support you"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Right Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image Alt Text",
+      "default": "How we support you image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Feature description goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How We Support You"
+    }
+  ]
+}
 {% endschema %}
+
+{% stylesheet %}
+.how-we-support-you-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background-color: #f7f2ec;
+}
+
+.container {
+  max-width: 1200px;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #6a4b2f;
+  margin-bottom: 10px;
+}
+
+.separator {
+  width: 20%;
+  height: 2px;
+  background-color: #c79f6e;
+  border: none;
+  margin: 0 auto 30px 0;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.feature-icon {
+  color: #c79f6e;
+  font-size: 1.5rem;
+  margin-right: 15px;
+  margin-top: 3px;
+}
+
+.feature-details {
+  flex: 1;
+}
+
+.feature-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #6a4b2f;
+  margin-bottom: 5px;
+}
+
+.feature-description {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.image img {
+  max-width: 100%;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+{% endstylesheet %}
