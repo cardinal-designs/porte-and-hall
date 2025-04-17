@@ -120,6 +120,14 @@
     gap: 0;
   }
 
+  .designer__message--thanks {
+    padding: 0;
+  }
+
+  .designer__message--thanks .page-width {
+    padding: 40 16px 0;
+  }
+
   .designer__message--text, .designer__message--image-wrapper {
     padding: 10px;
     margin-top: 20px;
