@@ -1,21 +1,31 @@
 {{ 'designer-image-layout.css' | asset_url | stylesheet_tag: preload: true }}
 
-<section class="designer__image--layout">
-  <div class="designer__image--layout-container">
-    <div class="designer__image--grid">
-      <div class="designer__image--left-top">
-        {{ section.settings.image_left_top | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_left_top.alt }}
+{% if section.settings.image_left_top != blank or section.settings.image_left_bottom != blank and section.settings.image_right != blank %}
+  <section class="designer__image--layout">
+    <div class="designer__image--layout-container">
+      {% if section.settings.image_left_top != blank or section.settings.image_left_bottom != blank %}
+      <div class="designer__image--grid">
+        {% if section.settings.image_left_top != blank %}
+          <div class="designer__image--left-top">
+            {{ section.settings.image_left_top | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_left_top.alt }}
+          </div>
+        {% endif %}
+        {% if section.settings.image_left_bottom != blank %}
+          <div class="designer__image--left-bottom">
+            {{ section.settings.image_left_bottom | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_left_bottom.alt }}
+          </div>
+        {% endif %}
       </div>
-      <div class="designer__image--left-bottom">
-        {{ section.settings.image_left_bottom | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_left_bottom.alt }}
-      </div>
+      {% endif %}
+  
+      {% if section.settings.image_right != blank %}
+        <div class="designer__image--right">
+          {{ section.settings.image_right | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_right.alt }}
+        </div>
+      {% endif %}
     </div>
-
-    <div class="designer__image--right">
-      {{ section.settings.image_right | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_right.alt }}
-    </div>
-  </div>
-</section>
+  </section>
+{% endif %}
 
 {% schema %}
 {
