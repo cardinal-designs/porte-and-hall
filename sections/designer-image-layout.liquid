@@ -4,15 +4,15 @@
   <div class="designer__image--layout-container">
     <div class="designer__image--grid">
       <div class="designer__image--left-top">
-        <img src="{{ section.settings.image_left_top | img_url: '1024x' }}" alt="{{ section.settings.image_left_top.alt | escape }}">
+        {{ section.settings.image_left_top | image_url: width: 1024 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_left_top.alt }}
       </div>
       <div class="designer__image--left-bottom">
-        <img src="{{ section.settings.image_left_bottom | img_url: '1024x' }}" alt="{{ section.settings.image_left_bottom.alt | escape }}">
+        {{ section.settings.image_left_bottom | image_url: width: 1024 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_left_bottom.alt }}
       </div>
     </div>
 
     <div class="designer__image--right">
-      <img src="{{ section.settings.image_right | img_url: '1024x' }}" alt="{{ section.settings.image_right.alt | escape }}">
+      {{ section.settings.image_right | image_url: width: 1024 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_right.alt }}
     </div>
   </div>
 </section>
