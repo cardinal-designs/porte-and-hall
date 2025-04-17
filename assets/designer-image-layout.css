@@ -13,10 +13,12 @@
   flex: 1;
 }
 
-.designer__image--grid img {
+.designer__image--layout-container img {
   width: 100%;
   object-fit: cover;
   max-width: 100%;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .designer__image--right {
