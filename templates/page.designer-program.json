@@ -142,10 +142,10 @@
       "settings": {
         "title": "Send Your Client a Special Thanks",
         "description": "The perfect way to wrap up that great project and show your client gratitude: With a beautiful mat—that we’ll send their way in pretty packaging, with a personalized note attached.",
-        "circle_text": "J",
+        "icon_letter": "J",
         "image": "shopify://shop_images/helixXLrunner_pdp_5_2x_26903435-d006-40ef-b8b9-b87b29414246.jpg",
         "image_alt": "Personalized mat image",
-        "image_overlay_text": "A personalized card & beautiful mat just for you"
+        "overlay_text": "A personalized card & beautiful mat just for you"
       }
     },
     "faq_rQ6PXB": {
@@ -195,6 +195,19 @@
         "heading": "",
         "anchor": "",
         "collection": ""
+      }
+    },
+    "designer_image_layout_NpVzKm": {
+      "type": "designer-image-layout",
+      "name": "Designer Image Layout",
+      "settings": {
+        "image_left_top": "shopify://shop_images/helixXLrunner_pdp_5_2x_26903435-d006-40ef-b8b9-b87b29414246.jpg",
+        "image_left_top_alt": "Left Top Image",
+        "image_left_bottom": "shopify://shop_images/helixrunner_pdp_2_2x_295fa915-1e59-46c7-8115-d0ca3734f74b.jpg",
+        "image_left_bottom_alt": "Left Bottom Image",
+        "image_right": "shopify://shop_images/436f47e6ac54cf42dc6bf5aec1614c36.jpg",
+        "image_right_alt": "Right Main Image",
+        "badge_text": "JP"
       }
     },
     "1c0d22eb-2fbd-421d-b48b-c0b1a1200dc2": {
@@ -248,6 +261,7 @@
     "d6ffae26-0ed7-4647-a4f9-a65110b580f2",
     "designer_message_wishes_iEN4xM",
     "faq_rQ6PXB",
+    "designer_image_layout_NpVzKm",
     "1c0d22eb-2fbd-421d-b48b-c0b1a1200dc2",
     "3d7a4cfe-b875-4374-902d-1552bb383737"
   ]
