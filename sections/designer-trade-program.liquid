@@ -1,3 +1,22 @@
+<div class="trade-program" style="background-image: url({{ section.settings.background_image | image_url: width: 2000 }});">
+  <div class="overlay">
+    <div class="content">
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.description }}</p>
+      <div class="buttons">
+        <a href="{{ section.settings.join_link }}" class="button join-btn">
+          <span class="avatars">
+            <span class="avatar red">J</span>
+            <span class="avatar blue">A</span>
+          </span>
+          <span class="btn-text">Become a member.</span>
+        </a>
+        <a href="{{ section.settings.signin_link }}" class="button signin-btn">Sign in</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% schema %}
 {
   "name": "Trade Program Section",
@@ -37,25 +56,6 @@
   ]
 }
 {% endschema %}
-
-<div class="trade-program" style="background-image: url({{ section.settings.background_image | image_url: width: 2000 }});">
-  <div class="overlay">
-    <div class="content">
-      <h2>{{ section.settings.heading }}</h2>
-      <p>{{ section.settings.description }}</p>
-      <div class="buttons">
-        <a href="{{ section.settings.join_link }}" class="button join-btn">
-          <span class="avatars">
-            <span class="avatar red">J</span>
-            <span class="avatar blue">A</span>
-          </span>
-          <span class="btn-text">Become a member.</span>
-        </a>
-        <a href="{{ section.settings.signin_link }}" class="button signin-btn">Sign in</a>
-      </div>
-    </div>
-  </div>
-</div>
 
 <style>
 .trade-program {
