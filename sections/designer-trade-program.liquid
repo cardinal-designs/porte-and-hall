@@ -7,11 +7,7 @@
       <p>{{ section.settings.description }}</p>
       <div class="buttons">
         <a href="{{ section.settings.join_link }}" class="button join-btn">
-          <span class="avatars">
-            <span class="avatar red">J</span>
-            <span class="avatar blue">A</span>
-          </span>
-          <span class="btn-text">Become a member.</span>
+          Become a member.
         </a>
         <a href="{{ section.settings.signin_link }}" class="button signin-btn">Sign in</a>
       </div>
@@ -119,36 +115,6 @@
   position: relative;
   justify-content: center;
   padding-left: 3.5rem;
-}
-
-.join-btn .avatars {
-  position: absolute;
-  left: 1rem;
-  display: flex;
-}
-
-.avatar {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  font-size: 0.75rem;
-  font-weight: bold;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: -5px;
-  border: 2px solid white;
-}
-
-.avatar.red {
-  background: #E74C3C;
-  z-index: 2;
-}
-
-.avatar.blue {
-  background: #3498DB;
-  z-index: 1;
 }
 
 .signin-btn {
