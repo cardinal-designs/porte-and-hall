@@ -96,6 +96,12 @@ Designer page faq css start
   margin-right: auto;
 }
 
+.faq__wrapper {
+  grid-template-columns: repeat(1, minmax(auto, 1fr));
+  column-gap: 0;
+  margin-top: 64px;
+}
+
 /*******************************
 Designer page faq css end
 ********************************/
