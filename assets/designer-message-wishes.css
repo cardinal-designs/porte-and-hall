@@ -117,6 +117,7 @@
   .designer__message--container {
     align-items: center;
     text-align: center;
+    gap: 0;
   }
 
   .designer__message--text, .designer__message--image-wrapper {
