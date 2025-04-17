@@ -13,20 +13,20 @@
     
     <!-- Content Section -->
     <div class="how-it-works-content">
-      <h2>{{ section.settings.heading }}</h2>
-      <ul class="steps">
-        {% for step in section.blocks %}
-          {% if step.type == 'step' %}
+      <div class="how-it-works-box">
+        <h2 class="how-it-works-heading">{{ section.settings.heading }}</h2>
+        <ul class="how-it-works-steps">
+          {% for step in section.blocks %}
             <li class="step">
-              <span class="icon">★</span> 
-              {{ step.settings.step_text }}
+              <span class="step-icon">*</span>
+              <span class="step-text">{{ step.settings.step_text }}</span>
             </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-      <a href="{{ section.settings.button_link }}" class="button">
-        {{ section.settings.button_text }}
-      </a>
+          {% endfor %}
+        </ul>
+        <a href="{{ section.settings.button_link }}" class="how-it-works-button">
+          {{ section.settings.button_text }}
+        </a>
+      </div>
     </div>
   </div>
 </section>
