@@ -26,20 +26,3 @@
   position: relative;
   flex: 2.236;
 }
-
-@media (max-width: 767px) {
-  
-  /* .designer__image--layout-container {
-    flex-direction: column;
-  } */
-
-  /* .designer__image--grid {
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .designer__image--right img {
-    width: 100%;
-  } */
-  
-}
