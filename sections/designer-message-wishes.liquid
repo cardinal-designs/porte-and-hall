@@ -7,7 +7,6 @@
       <h2 class="title">{{ section.settings.title }}</h2>
       <hr class="separator">
       <p class="description">{{ section.settings.description }}</p>
-      <div class="circle-icon">{{ section.settings.icon_letter }}</div>
     </div>
 
     <!-- Right Image -->
@@ -20,11 +19,6 @@
             class="image"
           >
           <div class="overlay">{{ section.settings.overlay_text }}</div>
-          <div class="badge-icons">
-            <div class="badge red">P</div>
-            <div class="badge blue">A</div>
-            <div class="badge orange">J</div>
-          </div>
         </div>
       {% endif %}
     </div>
@@ -46,12 +40,6 @@
       "id": "description",
       "label": "Description",
       "default": "The perfect way to wrap up that great project and show your client gratitude: With a beautiful mat— that we’ll send their way in pretty packaging, with a personalized note attached."
-    },
-    {
-      "type": "text",
-      "id": "icon_letter",
-      "label": "Circle Icon Letter",
-      "default": "J"
     },
     {
       "type": "image_picker",
