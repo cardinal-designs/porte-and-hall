@@ -43,26 +43,45 @@
     "designer_how_it_work_xgLzzt": {
       "type": "designer-how-it-work",
       "blocks": {
-        "text_block_UNnVTU": {
-          "type": "text_block",
-          "settings": {}
+        "step_freDPq": {
+          "type": "step",
+          "settings": {
+            "step_text": "Complete and submit the application form below."
+          }
         },
-        "text_block_NAYXwn": {
-          "type": "text_block",
-          "settings": {}
+        "step_pzriBw": {
+          "type": "step",
+          "settings": {
+            "step_text": "Complete and submit the application form below."
+          }
         },
-        "text_block_HQVmRb": {
-          "type": "text_block",
-          "settings": {}
+        "step_HVwHXU": {
+          "type": "step",
+          "settings": {
+            "step_text": "Complete and submit the application form below."
+          }
+        },
+        "step_XyPWia": {
+          "type": "step",
+          "settings": {
+            "step_text": "Complete and submit the application form below."
+          }
         }
       },
       "block_order": [
-        "text_block_UNnVTU",
-        "text_block_NAYXwn",
-        "text_block_HQVmRb"
+        "step_freDPq",
+        "step_pzriBw",
+        "step_HVwHXU",
+        "step_XyPWia"
       ],
       "name": "How it Works Section",
-      "settings": {}
+      "settings": {
+        "image": "shopify://shop_images/helixXLrunner_pdp_5_2x_26903435-d006-40ef-b8b9-b87b29414246.jpg",
+        "image_alt": "How it Works Image",
+        "heading": "How it works",
+        "button_link": "",
+        "button_text": "Become a member"
+      }
     },
     "d6ffae26-0ed7-4647-a4f9-a65110b580f2": {
       "type": "designer-program",
