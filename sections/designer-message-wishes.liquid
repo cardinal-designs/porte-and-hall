@@ -6,7 +6,6 @@
       <h2 class="title">{{ section.settings.title }}</h2>
       <hr class="separator">
       <p class="description">{{ section.settings.description }}</p>
-      <div class="circle-icon">{{ section.settings.circle_text }}</div>
     </div>
 
     <!-- Right Image Content -->
@@ -36,12 +35,6 @@
       "id": "description",
       "label": "Description",
       "default": "The perfect way to wrap up that great project and show your client gratitude: With a beautiful mat—that we’ll send their way in pretty packaging, with a personalized note attached."
-    },
-    {
-      "type": "text",
-      "id": "circle_text",
-      "label": "Circle Icon Text",
-      "default": "J"
     },
     {
       "type": "image_picker",
@@ -112,20 +105,6 @@
   line-height: 1.7em;
   color: #333;
   margin-bottom: 20px;
-}
-
-.circle-icon {
-  width: 50px;
-  height: 50px;
-  background-color: #f28b2c;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-top: 30px;
 }
 
 .image-content {
