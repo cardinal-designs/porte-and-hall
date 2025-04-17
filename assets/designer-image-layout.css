@@ -30,7 +30,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Right Image */
 .image-main {
   position: relative;
   flex: 2;
@@ -43,8 +42,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  
   .custom-image-layout-container {
     flex-direction: column;
   }
@@ -57,4 +56,5 @@
   .image-main img {
     width: 100%;
   }
+  
 }
