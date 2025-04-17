@@ -12,20 +12,15 @@
   flex: 1;
 }
 
-.designer__image--left-top img,
-.designer__image--left-bottom img {
+.designer__image--grid img {
   width: 100%;
   object-fit: cover;
+  max-width: 100%;
 }
 
 .designer__image--right {
   position: relative;
   flex: 2;
-}
-
-.designer__image--right img {
-  width: 100%;
-  object-fit: cover;
 }
 
 @media (max-width: 767px) {
