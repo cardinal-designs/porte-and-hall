@@ -1,8 +1,8 @@
 
 
-<div class="trade-program" style="background-image: url({{ section.settings.background_image | image_url: width: 2000 }});">
-  <div class="overlay">
-    <div class="content">
+<div class="trade__program" style="background-image: url({{ section.settings.background_image | image_url: width: 2000 }});">
+  <div class="trade__overlay">
+    <div class="trade__content">
       <h2>{{ section.settings.heading }}</h2>
       <p>{{ section.settings.description }}</p>
       <div class="buttons">
@@ -60,7 +60,7 @@
 {% endschema %}
 
 <style>
-.trade-program {
+.trade__program {
   background-size: cover;
   background-position: center;
   min-height: 600px;
@@ -69,8 +69,8 @@
   align-items: center;
 }
 
-.overlay {
-  background: rgba(10, 40, 60, 0.7); /* navy transparent overlay */
+.trade__overlay {
+  background: rgba(10, 40, 60, 0.7); /* navy transparent trade__overlay */
   width: 50%;
   height: 100%;
   padding: 3rem 2rem;
@@ -78,18 +78,18 @@
   align-items: center;
 }
 
-.content {
+.trade__content {
   color: #fff;
   max-width: 500px;
 }
 
-.content h2 {
+.trade__content h2 {
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
 
-.content p {
+.trade__content p {
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 2rem;
