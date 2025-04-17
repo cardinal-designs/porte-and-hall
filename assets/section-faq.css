@@ -106,7 +106,7 @@ Designer page faq css start
   border-bottom: none; 
 }
 
-.faq__heading {
+.template__designer-program .faq__heading {
   font-weight: 500;
   font-size: 48px;
   line-height: 56px;
@@ -114,7 +114,11 @@ Designer page faq css start
   text-align: center;
 }
 
-.faq__question {
+.template__designer-program .faq__item {
+  padding: 32px 0;
+}
+
+.template__designer-program .faq__question {
   font-weight: 450;
   line-height: 24px;
 }
