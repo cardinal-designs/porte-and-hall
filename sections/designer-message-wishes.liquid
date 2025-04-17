@@ -1,6 +1,156 @@
+<!-- sections/send-client-thanks.liquid -->
+<section class="send-client-thanks-section">
+  <div class="container">
+    <!-- Left Text Content -->
+    <div class="text-content">
+      <h2 class="title">{{ section.settings.title }}</h2>
+      <hr class="separator">
+      <p class="description">{{ section.settings.description }}</p>
+      <div class="circle-icon">{{ section.settings.circle_text }}</div>
+    </div>
+
+    <!-- Right Image Content -->
+    <div class="image-content">
+      {% if section.settings.image != blank %}
+        <div class="image-container">
+          <img src="{{ section.settings.image | img_url: '1024x' }}" alt="{{ section.settings.image_alt | escape }}">
+          <div class="image-overlay">{{ section.settings.image_overlay_text }}</div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Designer Message Wishes",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Send Your Client a Special Thanks"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "The perfect way to wrap up that great project and show your client gratitude: With a beautiful mat—that we’ll send their way in pretty packaging, with a personalized note attached."
+    },
+    {
+      "type": "text",
+      "id": "circle_text",
+      "label": "Circle Icon Text",
+      "default": "J"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image Alt Text",
+      "default": "Personalized mat image"
+    },
+    {
+      "type": "text",
+      "id": "image_overlay_text",
+      "label": "Image Overlay Text",
+      "default": "A personalized card & beautiful mat just for you"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Designer Message Wishes",
+      "category": "Custom Section"
+    }
+  ]
+}
 {% endschema %}
+
+{% stylesheet %}
+.send-client-thanks-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background-color: #f5f5ef;
+}
+
+.container {
+  max-width: 1200px;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.text-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #6a4b2f;
+  margin-bottom: 10px;
+  line-height: 1.2em;
+}
+
+.separator {
+  width: 15%;
+  height: 2px;
+  background-color: #c79f6e;
+  border: none;
+  margin: 0 auto 20px 0;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.7em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.circle-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #f28b2c;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.image-content {
+  flex: 1;
+  position: relative;
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-container img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #f28b2c;
+  padding: 8px 10px;
+  color: white;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  font-weight: bold;
+}
+{% endstylesheet %}
