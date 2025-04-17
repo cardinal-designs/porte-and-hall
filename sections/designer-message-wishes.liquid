@@ -6,17 +6,18 @@
       <h2 class="title">{{ section.settings.title }}</h2>
       <hr class="separator">
       <p class="description">{{ section.settings.description }}</p>
+      <div class="circle-icon">{{ section.settings.circle_text }}</div>
     </div>
 
     <!-- Right Image Content -->
-    <div class="image-content">
-      {% if section.settings.image != blank %}
+    {% if section.settings.image != blank %}
+      <div class="image-content">
         <div class="image-container">
           <img src="{{ section.settings.image | img_url: '1024x' }}" alt="{{ section.settings.image_alt | escape }}">
           <div class="image-overlay">{{ section.settings.image_overlay_text }}</div>
         </div>
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
   </div>
 </section>
 
@@ -35,6 +36,12 @@
       "id": "description",
       "label": "Description",
       "default": "The perfect way to wrap up that great project and show your client gratitude: With a beautiful mat—that we’ll send their way in pretty packaging, with a personalized note attached."
+    },
+    {
+      "type": "text",
+      "id": "circle_text",
+      "label": "Circle Icon Text",
+      "default": "J"
     },
     {
       "type": "image_picker",
@@ -56,8 +63,7 @@
   ],
   "presets": [
     {
-      "name": "Designer Message Wishes",
-      "category": "Custom Section"
+      "name": "Designer Message Wishes"
     }
   ]
 }
@@ -65,23 +71,29 @@
 
 {% stylesheet %}
 .send-client-thanks-section {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 60px 20px;
   background-color: #f5f5ef;
+  overflow: hidden; /* Ensures no unwanted content overflow */
 }
 
 .container {
   max-width: 1200px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 40px;
+  position: relative; /* Enables positioning elements inside */
+  z-index: 0; /* Ensures the text is on top of the layout */
 }
 
 .text-content {
   flex: 1;
   padding: 20px;
+  z-index: 2; /* Keeps text above the image */
+  background-color: white; /* Matches the mockup */
 }
 
 .title {
@@ -107,18 +119,37 @@
   margin-bottom: 20px;
 }
 
+.circle-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #f28b2c;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
 .image-content {
   flex: 1;
   position: relative;
 }
 
 .image-container {
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: -60px; /* Push the image slightly out of the container */
+  max-width: 600px;
+  z-index: 1;
 }
 
 .image-container img {
-  max-width: 100%;
+  max-width: 120%;
   border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .image-overlay {
