@@ -1,7 +1,7 @@
 .designer__image--layout {
 }
 
-.custom-image-layout-container {
+.designer__image--layout-container {
   display: flex;
   gap: 20px;
   justify-content: center;
@@ -11,7 +11,6 @@
   flex-wrap: wrap;
 }
 
-/* Left Image Grid */
 .image-grid {
   display: grid;
   grid-template-rows: 1fr 1fr;
