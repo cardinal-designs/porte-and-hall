@@ -1,50 +1,154 @@
+
 <section class="how-it-works-section">
   <div class="how-it-works-container">
+    <!-- Image Section -->
     <div class="how-it-works-image">
-      <img src="your-image-url-here.jpg" alt="How it works image">
+      {% if section.settings.image != blank %}
+        <img 
+          src="{{ section.settings.image | img_url: '1024x' }}" 
+          alt="{{ section.settings.image_alt | escape }}" 
+        />
+      {% endif %}
     </div>
+    
+    <!-- Content Section -->
     <div class="how-it-works-content">
-      <h2>How it works:</h2>
+      <h2>{{ section.settings.heading }}</h2>
       <ul class="steps">
-        <li class="step">
-          <span class="icon">★</span>
-          Complete and submit the application form below.
-        </li>
-        <li class="step">
-          <span class="icon">★</span>
-          Once approved, we’ll send you a confirmation email (within 24 hours) and ask you to create a Trade Program account.
-        </li>
-        <li class="step">
-          <span class="icon">★</span>
-          That’s it—you’re in and ready to start enjoying your members-only benefits.
-        </li>
-        <li class="step">
-          <span class="icon">★</span>
-          Need some mats while we review your application? Email trade@porteandhall.com to place an order now!
-        </li>
+        {% for step in section.blocks %}
+          {% if step.type == 'step' %}
+            <li class="step">
+              <span class="icon">★</span> 
+              {{ step.settings.step_text }}
+            </li>
+          {% endif %}
+        {% endfor %}
       </ul>
-      <a href="/account/register" class="button">Become a member</a>
+      <a href="{{ section.settings.button_link }}" class="button">
+        {{ section.settings.button_text }}
+      </a>
     </div>
   </div>
 </section>
 
-
 {% schema %}
-  {
-    "name": "How it works",
-    "settings": [],
-    "blocks": [
-      {
-        "type": "text_block",
-        "name": "Text Block",
-        "settings": []
-      }
-    ],
-    "presets": [
-      {
-        "name": "How it Works Section",
-        "category": "Custom Sections"
-      }
-    ]
-  }
+{
+  "name": "How it Works",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image Alt Text",
+      "default": "How it Works Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "How it works"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button URL"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Become a member"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_text",
+          "label": "Step Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How it Works Section",
+      "category": "Custom"
+    }
+  ]
+}
 {% endschema %}
+
+{% stylesheet %}
+.how-it-works-section {
+  background-color: #fff;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.how-it-works-container {
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.how-it-works-image img {
+  width: 100%;
+  max-width: 600px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.how-it-works-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.how-it-works-content h2 {
+  font-size: 2rem;
+  color: #795548;
+  margin-bottom: 24px;
+}
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.step .icon {
+  font-size: 1.5rem;
+  color: #795548;
+  margin-right: 10px;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #d1a76d;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+{% endstylesheet %}
