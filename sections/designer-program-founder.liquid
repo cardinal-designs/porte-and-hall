@@ -1,5 +1,20 @@
 {{ 'designer-program-founder.css' | asset_url | stylesheet_tag: preload: true }}
 
+<section class="designer-quote-section">
+  <div class="quote-wrapper">
+    <p class="small-heading">{{ section.settings.small_heading }}</p>
+    <p class="quote-text">{{ section.settings.quote }}</p>
+    <div class="divider-line">
+      <span class="author">{{ section.settings.author }}</span>
+    </div>
+    {% if section.settings.signature_image %}
+      <div class="signature-image">
+        <img src="{{ section.settings.signature_image | image_url: width: 300 }}" alt="Stafford Signature">
+      </div>
+    {% endif %}
+  </div>
+</section>
+
 {% schema %}
 {
   "name": "Founder Quote",
@@ -35,18 +50,3 @@
   ]
 }
 {% endschema %}
-
-<section class="designer-quote-section">
-  <div class="quote-wrapper">
-    <p class="small-heading">{{ section.settings.small_heading }}</p>
-    <p class="quote-text">{{ section.settings.quote }}</p>
-    <div class="divider-line">
-      <span class="author">{{ section.settings.author }}</span>
-    </div>
-    {% if section.settings.signature_image %}
-      <div class="signature-image">
-        <img src="{{ section.settings.signature_image | image_url: width: 300 }}" alt="Stafford Signature">
-      </div>
-    {% endif %}
-  </div>
-</section>
