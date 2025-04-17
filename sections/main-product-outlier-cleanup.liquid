@@ -821,6 +821,29 @@
 
 {% render 'product-zoom' %}
 
+<script>
+  document.addEventListener("DOMContentLoaded", async function () {
+    const variantId = "9183b2b7-05e5-447b-b18d-65b70e4de6fa"; // Variant B from Shoplift
+    const isOutlierProduct = window.location.href.toLowerCase().includes("outlier");
+    const isAlreadyUsingOutlierTemplate = window.location.href.includes("view=outlier-cleanup");
+
+    if (isOutlierProduct && !isAlreadyUsingOutlierTemplate) {
+      try {
+        const isVariant = await shoplift.isHypothesisActive(variantId);
+        if (isVariant) {
+          const url = new URL(window.location.href);
+          url.searchParams.set("view", "outlier-cleanup");
+          window.location.replace(url.toString());
+        } else {
+          console.log("Shoplift: Control group (A), staying on default product template.");
+        }
+      } catch (err) {
+        console.error("Shoplift error:", err);
+      }
+    }
+  });
+</script>
+
 {% javascript %}
   const productTabs = new Swiper('.product__tabs', {
     slidesPerView: 1,
