@@ -1,0 +1,138 @@
+/* Section Layout */
+.send-client-thanks {
+  padding: 80px 40px;
+  background-color: #f9f7f3; /* Subtle off-white background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.send-client-container {
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Left Content */
+.send-client-text {
+  flex: 1;
+  padding: 20px;
+  background-color: #faf6f1;
+  border-radius: 6px;
+}
+
+.send-client-text .title {
+  font-size: 32px;
+  font-family: 'Times New Roman', serif;
+  color: #7a5f37; /* Golden brown */
+  margin-bottom: 20px;
+}
+
+.separator {
+  width: 100px;
+  height: 2px;
+  background-color: #c79f6e;
+  margin-bottom: 20px;
+}
+
+.send-client-text .description {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #555;
+}
+
+.circle-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #d99156; /* Soft red */
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  margin-top: 15px;
+}
+
+/* Right Content */
+.send-client-image-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+}
+
+.image-container .image {
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.image-container .overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.badge-icons {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  display: flex;
+  gap: 5px;
+}
+
+.badge-icons .badge {
+  width: 30px;
+  height: 30px;
+  background-color: #7a5f37; /* Default: Golden brown */
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.red {
+  background-color: #d04949;
+}
+
+.blue {
+  background-color: #5367ce;
+}
+
+.orange {
+  background-color: #f28b2c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .send-client-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .send-client-text, .send-client-image-wrapper {
+    padding: 10px;
+    margin-top: 20px;
+  }
+
+  .image-container {
+    margin: 0 auto;
+  }
+}
