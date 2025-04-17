@@ -108,10 +108,14 @@
 
 @media (max-width: 991px) {
 
-  .designer__message--image-wrapper,
-  .designer__message--text {
+  .designer__message--image-wrapper {
     flex: 0 0 100%;
     max-width: 100%;
+  }
+
+  .designer__message--text {
+    flex: 0 0 calc(35% - 16px);
+    max-width: calc(35% - 16px);
   }
   
   .designer__message--container {
