@@ -21,9 +21,7 @@
 .designer__image--left-top img,
 .designer__image--left-bottom img {
   width: 100%;
-  border-radius: 6px;
   object-fit: cover;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .designer__image--right {
@@ -33,9 +31,7 @@
 
 .designer__image--right img {
   width: 100%;
-  border-radius: 6px;
   object-fit: cover;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 767px) {
