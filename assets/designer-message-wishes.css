@@ -94,10 +94,14 @@
 
 @media (max-width: 1199px) {
 
-  .designer__message--image-wrapper,
+  .designer__message--image-wrapper {
+    flex: 0 0 calc(70% - 24px);
+    max-width: calc(70% - 24px);
+  }
+
   .designer__message--text {
-    flex: 0 0 calc(50% - 24px);
-    max-width: calc(50% - 24px);
+    flex: 0 0 calc(30% - 24px);
+    max-width: calc(30% - 24px);
   }
   
 }
