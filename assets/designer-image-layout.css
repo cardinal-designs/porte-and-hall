@@ -4,6 +4,7 @@
 .designer__image--layout-container {
   display: flex;
   flex-wrap: wrap;
+  line-height: 0;
 }
 
 .designer__image--grid {
