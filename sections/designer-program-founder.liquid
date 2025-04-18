@@ -1,22 +1,22 @@
 {{ 'designer-program-founder.css' | asset_url | stylesheet_tag: preload: true }}
 
 {% if section.settings.quote != blank %}
-<section class="designer-quote-section">
+<section class="designer__quote--section">
   <div class="page-width">
-    <div class="quote-wrapper">
+    <div class="quote__wrapper">
       {% if section.settings.small_heading != blank %}
-        <p class="quote-heading">{{ section.settings.small_heading }}</p>
+        <p class="quote__heading">{{ section.settings.small_heading }}</p>
       {% endif %}
       {% if section.settings.quote != blank %}
-        <h3 class="quote-text">{{ section.settings.quote }}</h3>
+        <h3 class="quote__text">{{ section.settings.quote }}</h3>
       {% endif %}
       {% if section.settings.author != blank %}
-        <div class="author">
+        <div class="quote__author">
           <span>{{ section.settings.author }}</span>
         </div>
       {% endif %}
       {% if section.settings.signature_image != blank %}
-        <div class="signature-image">
+        <div class="signature__image">
           {{ section.settings.signature_image | image_url: width: 310 | image_tag: width: "100%", loading: "lazy", alt: section.settings.signature_image.alt }}
         </div>
       {% endif %}

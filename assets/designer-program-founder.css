@@ -60,11 +60,11 @@
   background: var(--blue);
 }
 
-.signature-image {
+.signature__image {
   margin-top: 24px;
 }
 
-.signature-image img {  
+.signature__image img {  
   max-width: 310px;
   height: auto;
   width: auto;
