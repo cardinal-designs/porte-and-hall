@@ -38,10 +38,13 @@
 }
 
 .how__it--works-title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #705335;
-  margin-bottom: 30px;
+  color: var(--gold-secondary--dark);
+  margin-bottom: 16px;  
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: 0.2px;
+  text-align: center;
 }
 
 .how__it--works-description {
