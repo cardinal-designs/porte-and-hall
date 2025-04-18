@@ -110,6 +110,10 @@
     display: none;
   }
 
+  .trade__image--item .desktop__hidden {
+    display: block;
+  }
+
   .trade__program {
     min-height: 772px;
   }
