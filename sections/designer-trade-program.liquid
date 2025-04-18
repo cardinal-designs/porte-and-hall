@@ -10,10 +10,16 @@
         <p>{{ section.settings.description }}</p>
       {% endif %}
       <div class="trade__buttons">
-        <a href="{{ section.settings.join_link }}" class="button join-btn">
-          Become a member.
-        </a>
-        <a href="{{ section.settings.signin_link }}" class="button signin-btn">Sign in</a>
+        {% if section.settings.button_1_text != blank and section.settings.button_1_url != blank %}
+          <a href="{{ section.settings.button_1_url }}" class="button join-btn">
+            {{ section.settings.button_1_text }}
+          </a>
+        {% endif %}
+        {% if section.settings.button_2_text != blank and section.settings.button_2_url != blank %}
+          <a href="{{ section.settings.button_2_url }}" class="button signin-btn">
+            {{ section.settings.button_2_text }}
+          </a>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -64,15 +70,33 @@
       "default": "Porte + Hall was founded by an interior designer, so we’re thrilled to roll out the red carpet (er, mat) for our trade community—with exclusive perks and personalized support."
     },
     {
-      "type": "url",
-      "id": "join_link",
-      "label": "Join Link"
+      "type": "header",
+      "content": "Button 1"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button Text"
     },
     {
       "type": "url",
-      "id": "signin_link",
-      "label": "Sign-in Link"
-    }
+      "id": "button_1_url",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Button 2"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button_2_url",
+      "label": "Button Link"
+    },
   ],
   "presets": [
     {
