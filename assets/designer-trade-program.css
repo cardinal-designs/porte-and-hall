@@ -20,9 +20,10 @@
 }
 
 .trade__content h2 {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
+  font-size: 64px;
+  line-height: 64px;
+  letter-spacing: .2px;
 }
 
 .trade__content p {
