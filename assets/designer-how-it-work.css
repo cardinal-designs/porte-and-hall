@@ -17,10 +17,15 @@
   max-width: 59.15%;
 }
 
-.how-it-works-img {
+
+.how__it--works-image figure {
+  margin: 0;
+}
+
+.how__it--works-image img {
   max-width: 100%;
-  height: auto;
-  border-radius: 8px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .how__it--works-content {
