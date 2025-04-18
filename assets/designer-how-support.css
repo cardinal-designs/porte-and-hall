@@ -8,6 +8,11 @@
   padding: 0 64px;
 }
 
+.designer__how--support-grid {
+  display: flex;
+  align-items: center;
+}
+
 .designer__how--support-content {
   flex: 1;
 }
