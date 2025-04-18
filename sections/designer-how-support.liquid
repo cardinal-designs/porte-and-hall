@@ -15,7 +15,7 @@
                 <li class="feature__item">
                   <div class="feature__details">
                     <h3 class="feature__title">{{ feature.settings.title }}</h3>
-                    <p class="feature__description">{{ feature.settings.description }}</p>
+                    <div class="feature__description">{{ feature.settings.description }}</div>
                   </div>
                 </li>
               {% endif %}
@@ -70,10 +70,10 @@
           "default": "Feature Title"
         },
         {
-          "type": "textarea",
+          "type": "richtext",
           "id": "description",
           "label": "Description",
-          "default": "Feature description goes here."
+          "default": "<p>Feature description goes here.</p>"
         }
       ]
     }
