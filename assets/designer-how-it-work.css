@@ -1,4 +1,4 @@
-.how-it-works-section {
+.how__it--works-section {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -12,7 +12,7 @@
   gap: 40px;
 }
 
-.how-it-works-section .page-width {
+.how__it--works-section .page-width {
   max-width: 1200px;
 }
 
