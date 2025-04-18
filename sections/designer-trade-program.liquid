@@ -55,14 +55,16 @@
 <script>
 
   $(document).ready(function() {
-    new Swiper('.trade__image--slider', {
-        loop: false,
-        slidesPerView: 1,
-        autoplay: {
-          delay: 2000,
-          disableOnInteraction: false,
-        },
-    });    
+
+    var tradeSwiper = new Swiper(".trade__image--slider", {
+      loop: false,
+      slidesPerView: 1,
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+      },
+    });
+       
   });
   
 </script>
