@@ -103,9 +103,10 @@
 }
 
 .designer__how--support-content .feature__description {
-  font-size: 1rem;
-  color: #333;
-  line-height: 1.6;
+  color: var(--blue-secondary);
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
 }
 
 .designer__how--support-content .feature__description * {
