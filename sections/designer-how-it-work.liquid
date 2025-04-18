@@ -32,7 +32,7 @@
                 </ul>
               </div>
             {% endif %}
-            {% if section.settings.button_link != blank and section.settings.button_text != blank %}
+            {% if section.settings.button_text != blank %}
               <div class="how__it--works-button-container">
                 <a href="{{ section.settings.button_link }}" class="how__it--works-button scroll__button">
                   {{ section.settings.button_text }}
@@ -67,11 +67,6 @@
       "id": "heading",
       "label": "Section Heading",
       "default": "How it works:"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button Link"
     },
     {
       "type": "text",
