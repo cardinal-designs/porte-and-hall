@@ -3687,3 +3687,11 @@ iframe#preview-bar-iframe {
 .template__designer-program main#MainContent {
   padding-top: 124px;
 }
+
+@media (max-width: 989px) {
+
+  .template__designer-program main#MainContent {
+    padding-top: 88px;
+  }
+  
+}
