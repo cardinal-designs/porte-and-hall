@@ -37,6 +37,10 @@
   text-align: center;
 }
 
+.designer__how--support .title span {
+  display: inline-block;
+}
+
 .designer__how--support .title span:after {
   content: '';
   position: absolute;
