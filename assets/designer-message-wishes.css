@@ -102,6 +102,11 @@
     flex: 0 0 calc(45% - 24px);
     max-width: calc(45% - 24px);
   }
+
+  .designer__message--text .title {
+    font-size: 38px;
+    line-height: 46px;
+  }
   
 }
 
