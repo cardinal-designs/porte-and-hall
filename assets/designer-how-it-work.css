@@ -6,11 +6,15 @@
   background-color: white;
 }
 
-.how-it-works-container {
-  max-width: 1200px;
+.how-it-works-grid {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 40px;
+}
+
+.how-it-works-section .page-width {
+  max-width: 1200px;
+  
 }
 
 .how-it-works-image {

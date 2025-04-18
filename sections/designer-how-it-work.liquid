@@ -1,33 +1,35 @@
 {{ 'designer-how-it-work.css' | asset_url | stylesheet_tag: preload: true }}
 
 <section class="how-it-works-section">
-  <div class="how-it-works-container">
-    <div class="how-it-works-image">
-      {% if section.settings.image != blank %}
-        <figure>
-          {{ section.settings.image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
-        </figure>
-      {% endif %}
-    </div>
-
-    <div class="how-it-works-content">
-      <h2 class="how-it-works-title">{{ section.settings.heading }}</h2>
-      <div class="how-it-works-description">
-        <ul class="how-it-works-steps">
-          {% for step in section.blocks %}
-            {% if step.type == 'step' %}
-              <li class="step">
-                <div class="step-icon"></div>
-                <p class="step-text">{{ step.settings.step_text }}</p>
-              </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
+  <div class="page-width">
+    <div class="how-it-works-grid">
+      <div class="how-it-works-image">
+        {% if section.settings.image != blank %}
+          <figure>
+            {{ section.settings.image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
+          </figure>
+        {% endif %}
       </div>
-      <div class="how-it-works-button-container">
-        <a href="{{ section.settings.button_link }}" class="how-it-works-button">
-          {{ section.settings.button_text }}
-        </a>
+  
+      <div class="how-it-works-content">
+        <h2 class="how-it-works-title">{{ section.settings.heading }}</h2>
+        <div class="how-it-works-description">
+          <ul class="how-it-works-steps">
+            {% for step in section.blocks %}
+              {% if step.type == 'step' %}
+                <li class="step">
+                  <div class="step-icon"></div>
+                  <p class="step-text">{{ step.settings.step_text }}</p>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="how-it-works-button-container">
+          <a href="{{ section.settings.button_link }}" class="how-it-works-button">
+            {{ section.settings.button_text }}
+          </a>
+        </div>
       </div>
     </div>
   </div>
