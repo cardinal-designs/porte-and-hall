@@ -55,7 +55,10 @@
 }
 
 .author span {
-  margin: 0 8px;
+  padding: 0 8px;
+  position: relative;
+  z-index: 1;
+  background: var(--blue);
 }
 
 .signature-image img {
