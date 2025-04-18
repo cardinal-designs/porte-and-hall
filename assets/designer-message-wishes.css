@@ -101,6 +101,7 @@
   .designer__message--text {
     flex: 0 0 calc(40% - 24px);
     max-width: calc(40% - 24px);
+    padding: 55px 35px;
   }
 
   .designer__message--text .title {
