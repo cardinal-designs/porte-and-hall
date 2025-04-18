@@ -75,6 +75,16 @@
   margin-bottom: 8px;
 }
 
+.how__it--works-steps .step:before {
+  content: '';
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-image: url('https://cdn.shopify.com/s/files/1/0084/8602/7327/files/icon.svg?v=1744966848'); 
+}
+
 .how__it--works-steps .step-text {
   font-size: 1rem;
   line-height: 1.6;
