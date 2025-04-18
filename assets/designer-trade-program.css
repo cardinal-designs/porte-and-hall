@@ -53,14 +53,30 @@
 
 .join-btn {
   background: #fff;
-  color: #000;
+  color: var(--blue-secondary);
   position: relative;
-  justify-content: center;
-  padding-left: 3.5rem;
+  font-family: Brandon;
+  font-weight: 450;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: .4px;
+  text-transform: unset;
+  padding: 20px;
+  border-radius: 0;
+  width: 100%;
 }
 
 .signin-btn {
   background: transparent;
-  border: 2px solid #fff;
-  color: #fff;
+  color: #FFF;
+  position: relative;
+  font-family: Brandon;
+  font-weight: 450;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: .4px;
+  text-transform: unset;
+  padding: 20px;
+  border-radius: 0;
+  width: 100%;
 }
