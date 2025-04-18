@@ -7,9 +7,9 @@
     <div class="divider-line">
       <span class="author">{{ section.settings.author }}</span>
     </div>
-    {% if section.settings.signature_image %}
+    {% if section.settings.signature_image != blank %}
       <div class="signature-image">
-        <img src="{{ section.settings.signature_image | image_url: width: 300 }}" alt="Stafford Signature">
+        {{ section.settings.signature_image | image_url: width: 310 | image_tag: width: "100%", loading: "lazy", alt: section.settings.signature_image.alt }}
       </div>
     {% endif %}
   </div>
