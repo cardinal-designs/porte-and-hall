@@ -14,27 +14,29 @@
 
       {% if section.settings.heading != blank or section.blocks.size > 0 %}
         <div class="how__it--works-content">
-          <h2 class="how__it--works-title">{{ section.settings.heading }}</h2>
-          {% if section.blocks.size > 0 %}
-            <div class="how__it--works-description">
-              <ul class="how__it--works-steps">
-                {% for step in section.blocks %}
-                  {% if step.type == 'step' %}
-                    <li class="step">
-                      <p class="step-text">{{ step.settings.step_text }}</p>
-                    </li>
-                  {% endif %}
-                {% endfor %}
-              </ul>
-            </div>
-          {% endif %}
-          {% if section.settings.button_link != blank and section.settings.button_text != blank %}
-            <div class="how__it--works-button-container">
-              <a href="{{ section.settings.button_link }}" class="how__it--works-button">
-                {{ section.settings.button_text }}
-              </a>
-            </div>
-          {% endif %}
+          <div class="how__it--works-content-wrapper">
+            <h2 class="how__it--works-title">{{ section.settings.heading }}</h2>
+            {% if section.blocks.size > 0 %}
+              <div class="how__it--works-description">
+                <ul class="how__it--works-steps">
+                  {% for step in section.blocks %}
+                    {% if step.type == 'step' %}
+                      <li class="step">
+                        <p class="step-text">{{ step.settings.step_text }}</p>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+            {% if section.settings.button_link != blank and section.settings.button_text != blank %}
+              <div class="how__it--works-button-container">
+                <a href="{{ section.settings.button_link }}" class="how__it--works-button">
+                  {{ section.settings.button_text }}
+                </a>
+              </div>
+            {% endif %}
+          </div>
         </div>
       {% endif %}
     </div>
