@@ -22,7 +22,7 @@
                   {% for step in section.blocks %}
                     {% if step.type == 'step' %}
                       <li class="step">
-                        <p class="step-text">{{ step.settings.step_text }}</p>
+                        <div class="step-text">{{ step.settings.step_text }}</div>
                       </li>
                     {% endif %}
                   {% endfor %}
@@ -83,10 +83,9 @@
       "name": "Step",
       "settings": [
         {
-          "type": "text",
+          "type": "richtext",
           "id": "step_text",
-          "label": "Step Description",
-          "default": "Write your step description here."
+          "label": "Step Description"
         }
       ]
     }
