@@ -1,16 +1,11 @@
 .designer__how--support {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 60px 20px;
+  padding: 64px 0;
   background-color: #f7f2ec;
 }
 
 .page-width {
-  max-width: 1200px;
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
+  max-width: 1440px;
+  padding: 0 64px;
 }
 
 .designer__how--support-content {
