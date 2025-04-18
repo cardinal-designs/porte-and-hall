@@ -5,6 +5,9 @@
     <div class="trade__image--slider"> 
       {% for block in section.blocks %}
         <div class="trade__image--item">
+          <figure>
+            {{ block.settings.image | image_url: width: 2560 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
+          </figure> 
         </div>
       {% endfor %}
     </div>
@@ -35,38 +38,10 @@
   </div>
 {% endif %}
 
-{% style %}
-
-  #section-{{ section.id }} {
-    background-image: url({{ section.settings.background_image | image_url: width: 2000 }});
-  }
-
-  {% if section.settings.background_image != blank %}
-    @media (max-width: 767px) {
-      
-      #section-{{ section.id }} {
-        background-image: url({{ section.settings.mobile_background_image | image_url: width: 2000 }});
-      }
-      
-    }
-  {% endif %}
-  
-{% endstyle %}
-
 {% schema %}
 {
   "name": "Trade Program Section",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Background Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "mobile_background_image",
-      "label": "Mobile Background Image"
-    },
     {
       "type": "text",
       "id": "heading",
@@ -107,6 +82,24 @@
       "id": "button_2_url",
       "label": "Button Link"
     },
+  ],
+  "blocks": [
+    {
+      "type": "image_slider",
+      "name": "Image Slider",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Image"
+        },
+      ]
+    }
   ],
   "presets": [
     {
