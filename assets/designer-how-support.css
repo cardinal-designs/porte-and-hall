@@ -64,7 +64,9 @@
 .designer__how--support-content .features__list {
   list-style: none;
   padding: 0;
-  margin: 40px 0 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
 }
 
 .designer__how--support-content .feature__item {
