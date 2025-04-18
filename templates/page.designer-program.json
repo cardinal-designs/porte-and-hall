@@ -29,10 +29,18 @@
             "image": "shopify://shop_images/hero.jpg",
             "mobile_image": "shopify://shop_images/hero_7ea5be57-d7f8-4f20-8c9f-c76df499b4da.jpg"
           }
+        },
+        "image_slider_MJiVda": {
+          "type": "image_slider",
+          "settings": {
+            "image": "shopify://shop_images/hero.jpg",
+            "mobile_image": "shopify://shop_images/hero_7ea5be57-d7f8-4f20-8c9f-c76df499b4da.jpg"
+          }
         }
       },
       "block_order": [
-        "image_slider_kY96Kq"
+        "image_slider_kY96Kq",
+        "image_slider_MJiVda"
       ],
       "settings": {
         "heading": "Trade Program",
