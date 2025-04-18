@@ -222,5 +222,9 @@
     height: 9px;
     width: 9px;
   }
+
+  .designer__how--support-content .feature__item:last-child {
+    margin-bottom: 0;
+  }
   
 }
