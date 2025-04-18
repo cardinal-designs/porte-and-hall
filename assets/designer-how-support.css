@@ -81,15 +81,16 @@
 }
 
 .designer__how--support-content .feature__item:before {
-  content: '';
+  content: "";
   position: absolute;
-  height: 16px;
-  width: 16px;
+  height: 12px;
+  width: 12px;
   background: var(--gold-secondary--dark);
   left: 0;
   right: auto;
   top: 0;
   bottom: auto;
+  transform: rotate(45deg);
 }
 
 .designer__how--support-content .feature__details {
