@@ -32,8 +32,7 @@
 }
 
 .author {
-  position: relative;
-  
+  position: relative;  
   color: #FADD9D;
   font-weight: 450;
   font-size: 18px;
@@ -41,6 +40,11 @@
   letter-spacing: 2px;
   vertical-align: middle;
   text-transform: uppercase;
+}
+
+.author:before {
+  content: '';
+  
 }
 
 .author span {
