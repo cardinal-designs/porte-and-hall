@@ -2,7 +2,7 @@
 
 <section class="how-we-support-you-section">
   <div class="container">
-    <!-- Left Content -->
+    
     <div class="content">
       <h2 class="title">{{ section.settings.heading }}</h2>
       <hr class="separator">
@@ -19,7 +19,6 @@
       </ul>
     </div>
 
-    <!-- Right Image -->
     <div class="image">
       {% if section.settings.image != blank %}
         <img src="{{ section.settings.image | img_url: '1024x' }}" alt="{{ section.settings.image_alt | escape }}">
