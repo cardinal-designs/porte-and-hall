@@ -3,7 +3,7 @@
   background-color: #f7f2ec;
 }
 
-.page-width {
+.designer__how--support .page-width {
   max-width: 1440px;
   padding: 0 64px;
 }
@@ -161,6 +161,10 @@
 
   .designer__how--support {
     padding: 40px 0;
+  }
+
+  .designer__how--support .page-width {
+    padding: 0 16px;
   }
   
 }
