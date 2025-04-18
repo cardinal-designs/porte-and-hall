@@ -1,14 +1,13 @@
 {{ 'designer-how-support.css' | asset_url | stylesheet_tag: preload: true }}
 
 <section class="designer__how--support" style="background: {{ section.settings.bg_color }}">
-  <div class="container">
+  <div class="page-width">
     <div class="content">
       <h2 class="title">{{ section.settings.heading }}</h2>
       <hr class="separator">
       <ul class="features-list">
         {% for feature in section.blocks %}
           <li class="feature">
-            <span class="feature-icon">◆</span>
             <div class="feature-details">
               <h3 class="feature-title">{{ feature.settings.title }}</h3>
               <p class="feature-description">{{ feature.settings.description }}</p>
