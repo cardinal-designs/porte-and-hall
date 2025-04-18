@@ -252,5 +252,9 @@ ul.js-error-messages {
   .Designer_Program_Main .Contact_Form {
     padding: 34px 12px;
   }
+
+  .Designer_Program_Main .contact__fields {
+    grid-column-gap: 38px;
+  }
   
 }
