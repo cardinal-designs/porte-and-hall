@@ -172,6 +172,10 @@
     padding-top: 8px;
     max-width: 328px;
   }
+
+  how__it--works-steps {
+    
+  }
   
   .how__it--works-section .page-width {
     padding: 0 16px;
@@ -208,6 +212,11 @@
 
   .how__it--works-steps .step:before {
     background-size: 24px 24px;
+  }
+
+  .how__it--works-content-wrapper {
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .how__it--works-button {
