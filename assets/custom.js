@@ -36,16 +36,3 @@ customElements.define('form-validation',class formValidation extends HTMLElement
   }
 })
 
-
-document.querySelectorAll(".scroll__button").forEach(function(button) {
-  console.log('button:: ',button);
-  button.addEventListener("click", function() {
-      const target = document.querySelector(".Designer_Program_Main");
-      if (target) {
-          window.scrollTo({
-              top: target.offsetTop,
-              behavior: "smooth"
-          });
-      }
-  });
-});
