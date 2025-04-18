@@ -85,13 +85,18 @@
 }
 
 .how__it--works-steps .step:before {
-  content: '';
-  left: 0;
+  content: "";
+  left: -6px;
   top: 0;
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 38px;
+  height: 38px;
   background-image: url('https://cdn.shopify.com/s/files/1/0084/8602/7327/files/icon.svg?v=1744966848'); 
+  z-index: 1;
+  background-color: #FFF;
+  background-repeat: no-repeat;
+  background-size: 28px 28px;
+  background-position: center;
 }
 
 .how__it--works-steps .step-text {
