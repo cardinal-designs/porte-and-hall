@@ -88,6 +88,10 @@
   line-height: 48px;
 }
 
+.trade__content p {
+  margin-bottom: 24px;
+}
+
 @media (max-width: 1024px) {
 
   .trade__overlay {
