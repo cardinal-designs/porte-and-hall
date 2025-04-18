@@ -94,13 +94,13 @@
 @media (max-width: 1199px) {
 
   .designer__message--image-wrapper {
-    flex: 0 0 calc(55% - 24px);
-    max-width: calc(55% - 24px);
+    flex: 0 0 calc(60% - 24px);
+    max-width: calc(60% - 24px);
   }
 
   .designer__message--text {
-    flex: 0 0 calc(45% - 24px);
-    max-width: calc(45% - 24px);
+    flex: 0 0 calc(40% - 24px);
+    max-width: calc(40% - 24px);
   }
 
   .designer__message--text .title {
