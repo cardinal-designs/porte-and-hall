@@ -2,6 +2,12 @@
 
 {% if section.settings.heading != blank or section.settings.button_1_text != blank or section.settings.button_2_text != blank %}
   <div class="trade__program" id="section-{{ section.id }}">
+    <div class="trade__image--slider"> 
+      {% for block in section.blocks %}
+        <div class="trade__image--item">
+        </div>
+      {% endfor %}
+    </div>
     <div class="trade__overlay">
       <div class="trade__content">
         {% if section.settings.heading != blank %}
