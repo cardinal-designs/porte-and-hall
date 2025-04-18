@@ -104,15 +104,6 @@
   line-height: 0;
 }
 
-@media (max-width: 1024px) {
-
-  .trade__overlay {
-    padding: 64px 64px;
-    max-width: 60%;
-  }
-  
-}
-
 @media (max-width: 767px) {
 
   .trade__image--item .mobile__hidden {
