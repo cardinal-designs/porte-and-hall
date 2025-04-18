@@ -56,6 +56,12 @@
   line-height: 1.6;
 }
 
+.designer__how--support-content .feature__description * {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+
 .designer__how--support-image img {
   max-width: 100%;
   display: inline-block;
