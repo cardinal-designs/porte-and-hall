@@ -177,6 +177,10 @@
     padding-top: 24px;
   }
 
+  .designer__how--support-content .title {
+    display: none;
+  }
+
   .designer__how--support .title {
     font-size: 32px;
     line-height: 40px;
