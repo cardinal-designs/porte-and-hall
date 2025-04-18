@@ -1,7 +1,7 @@
 {{ 'designer-how-it-work.css' | asset_url | stylesheet_tag: preload: true }}
 
 {% if section.settings.heading != blank and section.settings.image != blank %}
-<section class="how__it--works-section">
+<section class="how__it--works-section" style="background: {{ section.settings.bg_color }}">
   <div class="page-width">
     <div class="how__it--works-grid">
       {% if section.settings.image != blank %}
@@ -48,6 +48,11 @@
 {
   "name": "How it Works",
   "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color"
+    },
     {
       "type": "image_picker",
       "id": "image",
