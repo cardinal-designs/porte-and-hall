@@ -228,6 +228,10 @@ ul.js-error-messages {
     margin: 0 0 38px;
   }
 
+  .Checkbox_Wrapper .form__checkboxrow:last-child {
+    margin-bottom: 19px; 
+  }
+
   .contact__fields.Instagram_Field {
     display: block;
   }
