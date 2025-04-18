@@ -54,8 +54,7 @@
 
 <script>
 
-  $(document).ready(function() {
-
+  document.addEventListener("DOMContentLoaded", (event) => {
     var tradeSwiper = new Swiper(".trade__image--slider", {
       loop: false,
       slidesPerView: 1,
@@ -63,8 +62,7 @@
         delay: 2000,
         disableOnInteraction: false,
       },
-    });
-       
+    });       
   });
   
 </script>
