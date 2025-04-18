@@ -61,17 +61,13 @@
   letter-spacing: 2px;  
 }
 
-.Checkbox_Wrapper {
-  margin-top: 50px;
-}
-
 .Checkbox_Wrapper .form__checkboxrow {
   flex: 0 0 50%;
   margin: 0 0 30px;
 }
 
 .Checkbox_Wrapper {
-  margin-top: 50px;
+  margin-top: 48px;
   max-width: 570px;
   display: flex;
   flex-wrap: wrap;
