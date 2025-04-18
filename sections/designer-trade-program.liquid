@@ -20,6 +20,16 @@
   #section-{{ section.id }} {
     background-image: url({{ section.settings.background_image | image_url: width: 2000 }});
   }
+
+  {% if section.settings.background_image != blank %}
+    @media (max-width: 767px) {
+      
+      #section-{{ section.id }} {
+        background-image: url({{ section.settings.mobile_background_image | image_url: width: 2000 }});
+      }
+      
+    }
+  {% endif %}
   
 {% endstyle %}
 
