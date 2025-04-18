@@ -2,22 +2,23 @@
 
 <section class="designer__how--support" style="background: {{ section.settings.bg_color }}">
   <div class="page-width">
-    <div class="content">
+    <div class="designer__how--support-content">
       <h2 class="title">{{ section.settings.heading }}</h2>
       <hr class="separator">
-      <ul class="features-list">
+      <ul class="features__list">
         {% for feature in section.blocks %}
-          <li class="feature">
-            <div class="feature-details">
-              <h3 class="feature-title">{{ feature.settings.title }}</h3>
-              <p class="feature-description">{{ feature.settings.description }}</p>
+          <li class="feature__item">
+            <div class="feature__details">
+              <h3 class="feature__title">{{ feature.settings.title }}</h3>
+              <p class="feature__description">{{ feature.settings.description }}</p>
             </div>
           </li>
         {% endfor %}
       </ul>
     </div>
 
-    <div class="image">
+    <div class="designer__how--support-image">
+      <h2 class="title">{{ section.settings.heading }}</h2>
       {% if section.settings.image != blank %}
         <img src="{{ section.settings.image | img_url: '1024x' }}" alt="{{ section.settings.image_alt | escape }}">
       {% endif %}

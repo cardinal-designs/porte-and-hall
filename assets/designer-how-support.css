@@ -32,30 +32,30 @@
   margin: 0 auto 30px 0;
 }
 
-.features-list {
+.features__list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.feature {
+.feature__item {
   display: flex;
   align-items: flex-start;
   margin-bottom: 20px;
 }
 
-.feature-details {
+.feature__details {
   flex: 1;
 }
 
-.feature-title {
+.feature__title {
   font-size: 1.2rem;
   font-weight: bold;
   color: #6a4b2f;
   margin-bottom: 5px;
 }
 
-.feature-description {
+.feature__description {
   font-size: 1rem;
   color: #333;
   line-height: 1.6;
