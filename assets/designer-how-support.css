@@ -72,8 +72,6 @@
 }
 
 .designer__how--support-content .feature__item {
-  display: flex;
-  align-items: flex-start;
   margin-bottom: 16px;
   padding-left: 32px;
   position: relative;
@@ -92,10 +90,6 @@
   top: 8px;
   bottom: auto;
   transform: rotate(45deg);
-}
-
-.designer__how--support-content .feature__details {
-  flex: 1;
 }
 
 .designer__how--support-content .feature__title {
