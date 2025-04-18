@@ -1478,17 +1478,16 @@ const accordionItems = document.querySelectorAll('.faq__question');
   });
 
 
-document.addEventListener("DOMContentLoaded", (event) => {
-  document.querySelectorAll(".scroll__button").forEach(function(button) {
-    console.log('button:: ',button);
-    button.addEventListener("click", function() {
-        const target = document.querySelector(".Designer_Program_Main");
-        if (target) {
-            window.scrollTo({
-                top: target.offsetTop,
-                behavior: "smooth"
-            });
-        }
-    });
+
+document.querySelectorAll(".scroll__button").forEach(function(button) {
+  console.log('button:: ',button);
+  button.addEventListener("click", function() {
+      const target = document.querySelector(".Designer_Program_Main");
+      if (target) {
+          window.scrollTo({
+              top: target.offsetTop,
+              behavior: "smooth"
+          });
+      }
   });
 });
