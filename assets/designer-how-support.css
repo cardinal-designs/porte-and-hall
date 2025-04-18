@@ -159,6 +159,11 @@
     flex: 0 0 100%;
     max-width: 100%;
   }
+  
+  .designer__how--support-content {
+    padding-right: 0;
+    padding-top: 24px;
+  }
 
   .designer__how--support .title {
     font-size: 32px;
