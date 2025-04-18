@@ -40,16 +40,15 @@
 }
 
 .divider-line .author {
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #4e667e;
-  padding: 0 10px;
-  font-size: 14px;
-  letter-spacing: 0.1em;
-  color: #f3d28b;
-  font-weight: 600;
+  position: relative;
+  margin: 0 10px;
+  color: #FADD9D;
+  font-weight: 450;
+  font-size: 18px;
+  line-height: 21.6px;
+  letter-spacing: 2px;
+  vertical-align: middle;
+  text-transform: uppercase;
 }
 
 .signature-image img {
