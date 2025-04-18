@@ -91,6 +91,12 @@
   color: #333;
 }
 
+.how__it--works-steps .step-text * {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+
 .how__it--works-button-container {
   margin-top: 20px;
 }
