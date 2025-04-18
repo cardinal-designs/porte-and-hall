@@ -132,7 +132,7 @@
   vertical-align: middle;
 }
 
-@media (min-width: 1023px) {
+@media (max-width: 1023px) {
 
   .designer__how--support-content,
   .designer__how--support-image {
