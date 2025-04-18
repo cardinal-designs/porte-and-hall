@@ -1,6 +1,6 @@
 {{ 'designer-how-support.css' | asset_url | stylesheet_tag: preload: true }}
 
-{% if section.settings.heading != blank and section.blocks.size > 0 %}
+{% if section.settings.heading != blank or section.blocks.size > 0 and section.settings.image != blank %}
   <section class="designer__how--support" style="background: {{ section.settings.bg_color }}">
     <div class="page-width">
   
