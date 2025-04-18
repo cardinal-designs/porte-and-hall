@@ -30,7 +30,9 @@
             {% if section.settings.heading != blank %}
             <h2 class="title">{{ section.settings.heading }}</h2>
             {% endif %}
-            {{ section.settings.image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
+            <figure>
+              {{ section.settings.image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
+            </figure>
           </div>
         {% endif %}
       </div>
