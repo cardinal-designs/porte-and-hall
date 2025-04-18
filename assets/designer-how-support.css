@@ -134,7 +134,11 @@
 
 @media (min-width: 1023px) {
 
-  
+  .designer__how--support-content,
+  .designer__how--support-image {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
   
 }
 
