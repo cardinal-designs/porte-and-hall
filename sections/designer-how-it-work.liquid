@@ -1,15 +1,15 @@
 {{ 'designer-how-it-work.css' | asset_url | stylesheet_tag: preload: true }}
 
-<section class="how-it-works-section">
+<section class="how__it--works-section">
   <div class="page-width">
-    <div class="how-it-works-grid">
-      <div class="how-it-works-image">
-        {% if section.settings.image != blank %}
+    <div class="how__it--works-grid">
+      {% if section.settings.image != blank %}
+        <div class="how__it--works-image">          
           <figure>
             {{ section.settings.image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
-          </figure>
-        {% endif %}
-      </div>
+          </figure>          
+        </div>
+      {% endif %}
   
       <div class="how-it-works-content">
         <h2 class="how-it-works-title">{{ section.settings.heading }}</h2>
