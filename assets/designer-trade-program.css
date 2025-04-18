@@ -93,6 +93,10 @@
   display: none;
 }
 
+.trade__image--item figure {
+  margin: 0;
+}
+
 @media (max-width: 1024px) {
 
   .trade__overlay {
