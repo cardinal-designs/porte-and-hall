@@ -163,6 +163,10 @@
 
 @media (max-width: 767px) {
 
+  .how__it--works-section .page-width {
+    padding: 0 16px;
+  }
+
   .how__it--works-content-wrapper .how__it--works-title {
     display: none;
   }
