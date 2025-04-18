@@ -37,6 +37,12 @@
   justify-content: center;
 }
 
+.how__it--works-content-wrapper {
+  max-width: 488px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .how__it--works-title {
   color: var(--gold-secondary--dark);
   margin-bottom: 16px;  
