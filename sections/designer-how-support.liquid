@@ -30,7 +30,7 @@
           {% if section.settings.heading != blank %}
           <h2 class="title">{{ section.settings.heading }}</h2>
           {% endif %}
-          <img src="{{ section.settings.image | img_url: '1024x' }}" alt="{{ section.settings.image_alt | escape }}">
+          <img src="{{ section.settings.image | img_url: '1024x' }}" alt="{{ section.settings.image.alt | escape }}">
         </div>
       {% endif %}
     </div>
@@ -56,12 +56,6 @@
       "type": "image_picker",
       "id": "image",
       "label": "Right Image"
-    },
-    {
-      "type": "text",
-      "id": "image_alt",
-      "label": "Image Alt Text",
-      "default": "How we support you image"
     }
   ],
   "blocks": [
