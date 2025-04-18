@@ -147,11 +147,11 @@
     max-width: 50%;
   }
 
-  ..how__it--works-content {
+  .how__it--works-content {
     padding-right: 20px;
   }
 
-  ..how__it--works-title {
+  .how__it--works-title {
     font-size: 36px;
   }
 
@@ -163,6 +163,14 @@
 
 @media (max-width: 767px) {
 
-  
+  .how__it--works-image,
+  .how__it--works-content {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .how__it--works-content {
+    padding-right: 0;
+  }
   
 }
