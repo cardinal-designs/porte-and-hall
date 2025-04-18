@@ -16,6 +16,14 @@
 
 .designer__how--support-content {
   /* flex: 1; */
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+
+.designer__how--support-image {
+  /* flex: 1; */
+  flex: 0 0 70%;
+  max-width: 70%;
 }
 
 .designer__how--support .title {
