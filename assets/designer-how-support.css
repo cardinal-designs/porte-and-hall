@@ -11,6 +11,7 @@
 .designer__how--support-grid {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .designer__how--support-content {
