@@ -118,13 +118,14 @@
 
 .how__it--works-button {
   display: inline-block;
-  padding: 25px 24px;
+  padding: 25px 40px;
   background-color: var(--gold-secondary);
   text-decoration: none;
   transition: all 0.3s ease;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.4px;
+  color: #FFF;
 }
 
 .how__it--works-button:hover {
