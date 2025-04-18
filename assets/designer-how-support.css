@@ -68,6 +68,10 @@
   color: inherit;
 }
 
+.designer__how--support-image figure {
+  margin: 0;
+}
+
 .designer__how--support-image img {
   max-width: 100%;
   display: inline-block;
