@@ -9,7 +9,6 @@
 .how__it--works-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
 }
 
 .how__it--works-section .page-width {
@@ -28,7 +27,8 @@
 }
 
 .how-it-works-content {
-  flex: 1;
+  flex: 0 0 40.85%;
+  max-width: 40.85%;
   padding-left: 40px;
   display: flex;
   flex-direction: column;
