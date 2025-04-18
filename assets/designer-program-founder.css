@@ -31,15 +31,7 @@
   text-transform: unset;
 }
 
-.divider-line {
-  position: relative;
-  margin: 40px auto 20px;
-  width: 100%;
-  max-width: 600px;
-  border-top: 1px solid #d1b07f;
-}
-
-.divider-line .author {
+.author {
   position: relative;
   margin: 0 10px;
   color: #FADD9D;
