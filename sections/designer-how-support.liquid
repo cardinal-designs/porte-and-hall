@@ -1,25 +1,27 @@
 {{ 'designer-how-support.css' | asset_url | stylesheet_tag: preload: true }}
 
-{% if section.settings.heading != blank or section.blocks.size > 0 and section.settings.image != blank %}
+{% if section.settings.heading != blank and section.settings.image != blank %}
   <section class="designer__how--support" style="background: {{ section.settings.bg_color }}">
     <div class="page-width">
   
-      {% if section.settings.heading != blank and section.blocks.size > 0 %}
+      {% if section.settings.heading != blank or section.blocks.size > 0 %}
       <div class="designer__how--support-content">
         <h2 class="title">{{ section.settings.heading }}</h2>
         <hr class="separator">
-        <ul class="features__list">
-          {% for feature in section.blocks %}
-            {% if feature.settings.title != blank and feature.settings.description != blank %}
-              <li class="feature__item">
-                <div class="feature__details">
-                  <h3 class="feature__title">{{ feature.settings.title }}</h3>
-                  <p class="feature__description">{{ feature.settings.description }}</p>
-                </div>
-              </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
+        {% if section.blocks.size > 0 %}
+          <ul class="features__list">
+            {% for feature in section.blocks %}
+              {% if feature.settings.title != blank and feature.settings.description != blank %}
+                <li class="feature__item">
+                  <div class="feature__details">
+                    <h3 class="feature__title">{{ feature.settings.title }}</h3>
+                    <p class="feature__description">{{ feature.settings.description }}</p>
+                  </div>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
       </div>
       {% endif %}
   
