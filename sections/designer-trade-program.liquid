@@ -45,6 +45,19 @@
   </div>
 {% endif %}
 
+
+<script>
+
+  $(document).ready(function() {
+    new Swiper('.trade__image--slider', {
+        loop: true,
+        slidesPerView: 1,
+        paginationClickable: true,
+    });    
+  });
+  
+</script>
+
 {% schema %}
 {
   "name": "Trade Program Section",
