@@ -66,6 +66,16 @@
   border-left: 1px solid #D9D3C4; 
 }
 
+.how__it--works-steps:before {
+  content: '';
+  left: 0;
+  top: 0;
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  border-left: 1px solid #D9D3C4; 
+}
+
 .how__it--works-steps .step {
   display: flex;
   align-items: flex-start;
