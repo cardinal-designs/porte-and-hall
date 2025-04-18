@@ -116,7 +116,7 @@
 .how__it--works-button {
   display: inline-block;
   padding: 25px 40px;
-  font-weight: 450;
+  font-weight: 600;
   background-color: var(--gold);
   text-decoration: none;
   transition: all 0.3s ease;
@@ -124,7 +124,7 @@
   line-height: 24px;
   letter-spacing: 0.4px;
   color: #FFF;
-  font-family: brandon, sans-serif;
+  font-family: brandon;
 }
 
 .how__it--works-button:hover {
