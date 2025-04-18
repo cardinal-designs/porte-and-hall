@@ -115,7 +115,7 @@
 
 .how__it--works-button {
   display: inline-block;
-  padding: 25px 40px;
+  padding: 20px 43px;
   font-weight: 600;
   background-color: var(--gold);
   text-decoration: none;
@@ -208,6 +208,10 @@
 
   .how__it--works-steps .step:before {
     background-size: 24px 24px;
+  }
+
+  .how__it--works-button {
+    width: 100%;
   }
   
 }
