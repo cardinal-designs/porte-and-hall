@@ -53,10 +53,6 @@
   text-align: center;
 }
 
-.how__it--works-description {
-  margin-bottom: 16px;
-}
-
 .how__it--works-steps {
   max-width: 440px;
   list-style: none;
@@ -114,6 +110,7 @@
 
 .how__it--works-button-container {
   text-align: center;
+  margin-top: 16px;
 }
 
 .how__it--works-button {
