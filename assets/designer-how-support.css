@@ -75,6 +75,17 @@
   align-items: flex-start;
   margin-bottom: 20px;
   padding-left: 32px;
+  position: relative;
+}
+
+.designer__how--support-content .feature__item:before {
+  content: '';
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  background: var(--gold-secondary--dark);
+  left: 0;
+  right: auto;
 }
 
 .designer__how--support-content .feature__details {
