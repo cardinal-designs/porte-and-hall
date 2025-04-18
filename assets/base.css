@@ -3695,3 +3695,11 @@ iframe#preview-bar-iframe {
   }
   
 }
+
+@media (max-width: 768px) {
+
+  .template__designer-program main#MainContent {
+    padding-top: 66px;
+  }
+  
+}
