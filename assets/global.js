@@ -1481,13 +1481,12 @@ const accordionItems = document.querySelectorAll('.faq__question');
 
 document.querySelectorAll(".scroll__button").forEach(function(button) {
   button.addEventListener("click", function() {
-    console.log('button:: ',button);
-      const target = document.querySelector(".Designer_Program_Main");
-      if (target) {
-          window.scrollTo({
-              top: target.offsetTop,
-              behavior: "smooth"
-          });
-      }
+    const target = document.querySelector(".Designer_Program_Main");
+    if (target) {
+        window.scrollTo({
+            top: target.offsetTop,
+            behavior: "smooth"
+        });
+    }
   });
 });
