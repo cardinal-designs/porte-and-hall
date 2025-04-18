@@ -84,7 +84,10 @@
 
 @media (max-width: 1024px) {
 
-
+  .trade__overlay {
+    padding: 64px 64px;
+    max-width: 60%;
+  }
   
 }
 
