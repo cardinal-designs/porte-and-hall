@@ -1,5 +1,6 @@
 {{ 'designer-program-founder.css' | asset_url | stylesheet_tag: preload: true }}
 
+{% if section.settings.quote != blank %}
 <section class="designer-quote-section">
   <div class="page-width">
     <div class="quote-wrapper">
@@ -22,6 +23,7 @@
     </div>
   </div>
 </section>
+{% endif %}
 
 {% schema %}
 {
