@@ -8,12 +8,11 @@
 }
 
 .trade__overlay {
-  background: rgba(10, 40, 60, 0.7);
-  width: 50%;
+  background: rgb(84 107 130 / 80%);
+  width: 100%;
   height: 100%;
-  padding: 3rem 2rem;
-  display: flex;
-  align-items: center;
+  padding: 64px;
+  max-width: 555px;
 }
 
 .trade__content {
