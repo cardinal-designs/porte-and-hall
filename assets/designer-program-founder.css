@@ -33,7 +33,7 @@
 
 .author {
   position: relative;
-  margin: 0 8px;
+  
   color: #FADD9D;
   font-weight: 450;
   font-size: 18px;
@@ -41,6 +41,10 @@
   letter-spacing: 2px;
   vertical-align: middle;
   text-transform: uppercase;
+}
+
+.author span {
+  margin: 0 8px;
 }
 
 .signature-image img {
