@@ -95,23 +95,23 @@
   margin-bottom: 24px;
 }
 
-.trade__image--item .desktop__hidden {
-  display: none;
-}
-
 .trade__image--item figure {
   margin: 0;
   line-height: 0;
+}
+
+@media (min-width: 768px) {
+
+  .trade__image--item .desktop__hidden {
+    display: none;
+  }
+  
 }
 
 @media (max-width: 767px) {
 
   .trade__image--item .mobile__hidden {
     display: none;
-  }
-
-  .trade__image--item .desktop__hidden {
-    display: block;
   }
 
   .trade__program {
