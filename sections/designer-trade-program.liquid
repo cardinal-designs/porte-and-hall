@@ -1,6 +1,6 @@
 {{ 'designer-trade-program.css' | asset_url | stylesheet_tag: preload: true }}
 
-<div class="trade__program" style="background-image: url({{ section.settings.background_image | image_url: width: 2000 }});">
+<div class="trade__program" id="section-{{ section.id }}">
   <div class="trade__overlay">
     <div class="trade__content">
       <h2>{{ section.settings.heading }}</h2>
@@ -14,6 +14,14 @@
     </div>
   </div>
 </div>
+
+{% style %}
+
+  #section-{{ section.id }} {
+    background-image: url({{ section.settings.background_image | image_url: width: 2000 }});
+  }
+  
+{% endstyle %}
 
 {% schema %}
 {
