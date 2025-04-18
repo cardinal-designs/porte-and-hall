@@ -10,6 +10,9 @@
   height: 100%;
   padding: 172px 64px;
   max-width: 555px;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .trade__content {
