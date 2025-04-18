@@ -28,10 +28,12 @@
 }
 
 .designer__how--support .title {
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: #6a4b2f;
-  margin-bottom: 10px;
+  color: var(--gold-secondary--dark);
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: .2px;
+  margin: 0;
 }
 
 .designer__how--support .separator {
