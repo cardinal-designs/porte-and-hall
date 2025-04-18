@@ -181,6 +181,14 @@
     display: none;
   }
 
+  .designer__how--support-image {
+    order: 1;
+  }
+
+  .designer__how--support-content {
+    order: 2;
+  }
+
   .designer__how--support .title {
     font-size: 32px;
     line-height: 40px;
