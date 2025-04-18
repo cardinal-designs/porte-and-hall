@@ -82,6 +82,12 @@
   border: 1.5px solid #fff;
 }
 
+.trade__content h2 {
+  margin-bottom: 8px;
+  font-size: 40px;
+  line-height: 48px;
+}
+
 @media (max-width: 1024px) {
 
   .trade__overlay {
