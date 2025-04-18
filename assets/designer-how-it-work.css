@@ -26,7 +26,7 @@
   border-radius: 8px;
 }
 
-.how-it-works-content {
+.how__it--works-content {
   flex: 0 0 40.85%;
   max-width: 40.85%;
   padding-left: 40px;
@@ -35,18 +35,18 @@
   justify-content: center;
 }
 
-.how-it-works-title {
+.how__it--works-title {
   font-size: 2rem;
   font-weight: bold;
   color: #705335;
   margin-bottom: 30px;
 }
 
-.how-it-works-description {
+.how__it--works-description {
   margin-bottom: 30px;
 }
 
-.how-it-works-steps {
+.how__it--works-steps {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -54,7 +54,7 @@
   border-left: 2px dotted #c0c0c0; 
 }
 
-.step {
+.how__it--works-steps .step {
   display: flex;
   align-items: flex-start;
   margin-bottom: 25px;
@@ -62,7 +62,7 @@
   position: relative;
 }
 
-.step-icon {
+.how__it--works-steps .step-icon {
   width: 12px;
   height: 12px;
   background-color: #705335;
@@ -72,7 +72,7 @@
   top: 6px;
 }
 
-.step-text {
+.how__it--works-steps .step-text {
   font-size: 1rem;
   line-height: 1.6;
   color: #333;

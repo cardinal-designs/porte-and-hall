@@ -13,11 +13,11 @@
       {% endif %}
 
       {% if section.settings.heading != blank or section.blocks.size > 0 %}
-        <div class="how-it-works-content">
-          <h2 class="how-it-works-title">{{ section.settings.heading }}</h2>
+        <div class="how__it--works-content">
+          <h2 class="how__it--works-title">{{ section.settings.heading }}</h2>
           {% if section.blocks.size > 0 %}
-            <div class="how-it-works-description">
-              <ul class="how-it-works-steps">
+            <div class="how__it--works-description">
+              <ul class="how__it--works-steps">
                 {% for step in section.blocks %}
                   {% if step.type == 'step' %}
                     <li class="step">
@@ -29,11 +29,13 @@
               </ul>
             </div>
           {% endif %}
-          <div class="how-it-works-button-container">
-            <a href="{{ section.settings.button_link }}" class="how-it-works-button">
-              {{ section.settings.button_text }}
-            </a>
-          </div>
+          {% if section.settings.button_link != blank and section.settings.button_text != blank %}
+            <div class="how__it--works-button-container">
+              <a href="{{ section.settings.button_link }}" class="how__it--works-button">
+                {{ section.settings.button_text }}
+              </a>
+            </div>
+          {% endif %}
         </div>
       {% endif %}
     </div>
