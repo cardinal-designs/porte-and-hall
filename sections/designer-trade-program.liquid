@@ -34,7 +34,7 @@
         {% endif %}
         {% if section.settings.button_1_text != blank or section.settings.button_2_text != blank %}
           <div class="trade__buttons">
-            {% if section.settings.button_1_text != blank and section.settings.button_1_url != blank %}
+            {% if section.settings.button_1_text != blank %}
               <a href="javascript:void(0)" class="button join-btn scroll__button">
                 {{ section.settings.button_1_text }}
               </a>
@@ -91,11 +91,6 @@
       "type": "text",
       "id": "button_1_text",
       "label": "Button Text"
-    },
-    {
-      "type": "url",
-      "id": "button_1_url",
-      "label": "Button Link"
     },
     {
       "type": "header",
