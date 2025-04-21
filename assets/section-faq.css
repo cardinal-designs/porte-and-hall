@@ -125,6 +125,15 @@ Designer page faq css start
   line-height: 24px;
 }
 
+@media (max-width: 767px) {
+
+  .template__designer-program .shopify-section.with-spacing>div:first-of-type {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+}
+
 /*******************************
 Designer page faq css end
 ********************************/
