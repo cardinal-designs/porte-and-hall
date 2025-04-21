@@ -208,6 +208,10 @@
 
   .how__it--works-steps .step:before {
     background-size: 24px 24px;
+    width: 30px;
+    height: 30px;
+    left: -2px;
+    top: -4px;
   }
 
   .how__it--works-content-wrapper {
