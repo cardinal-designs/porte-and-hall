@@ -104,24 +104,28 @@
   
 }
 
-@media (max-width: 767px) {
-
-  .trade__image--item .mobile__hidden {
-    display: none;
-  }
+@media (max-width: 1023px) {
 
   .trade__content p {
     margin-bottom: 24px;
-  }
-
-  .trade__program {
-    min-height: 772px;
   }
 
   .trade__content h2 {
     margin-bottom: 8px;
     font-size: 40px;
     line-height: 48px;
+  }
+  
+}
+
+@media (max-width: 767px) {
+
+  .trade__image--item .mobile__hidden {
+    display: none;
+  }
+
+  .trade__program {
+    min-height: 772px;
   }
 
   .trade__overlay {
