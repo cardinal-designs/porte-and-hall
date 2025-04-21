@@ -80,6 +80,10 @@
     padding: 0 16px;
   }
 
+  .signature__image img {
+    max-width: 202px;
+  }
+
   .quote__heading {
     font-size: 20px;
     margin-bottom: 16px;
