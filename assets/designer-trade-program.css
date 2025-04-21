@@ -68,6 +68,13 @@
   padding: 20px;
   border-radius: 0;
   width: 100%;
+  border: 1.5px solid transparent;
+}
+
+.join-btn:hover {
+  background: transparent;
+  color: #FFF;
+  border: 1.5px solid #fff;
 }
 
 .signin-btn {
@@ -84,6 +91,11 @@
   border-radius: 0;
   width: 100%;
   border: 1.5px solid #fff;
+}
+
+.signin-btn:hover {
+  background: #fff;
+  color: var(--blue-secondary);
 }
 
 .trade__image--item figure {
