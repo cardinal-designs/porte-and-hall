@@ -55,9 +55,7 @@
   transition: all 0.3s ease;
 }
 
-.join-btn {
-  background: #fff;
-  color: var(--blue-secondary);
+.signin-btn, .join-btn {
   position: relative;
   font-family: Brandon;
   font-weight: 600;
@@ -68,6 +66,11 @@
   padding: 19px;
   border-radius: 0;
   width: 100%;
+}
+
+.join-btn {
+  background: #fff;
+  color: var(--blue-secondary);
   border: 1.5px solid transparent;
 }
 
@@ -80,16 +83,6 @@
 .signin-btn {
   background: transparent;
   color: #FFF;
-  position: relative;
-  font-family: Brandon;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 24px;
-  letter-spacing: .4px;
-  text-transform: unset;
-  padding: 19px;
-  border-radius: 0;
-  width: 100%;
   border: 1.5px solid #fff;
 }
 
