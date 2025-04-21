@@ -136,6 +136,10 @@ Designer page faq css start
     margin-top: 40px;
   }
 
+  .template__designer-program .faq__column:first-child .faq__item:last-child {
+    border-bottom: 1px solid var(--blue);
+  }
+
 }
 
 /*******************************
