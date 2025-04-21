@@ -86,10 +86,6 @@
   border: 1.5px solid #fff;
 }
 
-.trade__content p {
-  margin-bottom: 24px;
-}
-
 .trade__image--item figure {
   margin: 0;
   line-height: 0;
@@ -107,6 +103,10 @@
 
   .trade__image--item .mobile__hidden {
     display: none;
+  }
+
+  .trade__content p {
+    margin-bottom: 24px;
   }
 
   .trade__program {
