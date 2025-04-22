@@ -393,6 +393,10 @@
                     {% assign active_order = 2 %}
                   {% elsif product.handle contains 'area-mat' %}
                     {% assign active_order = 4 %}
+                   {% elsif product.handle contains 'standard' %}
+                    {% assign active_order = 5 %}
+                  {% elsif product.handle contains 'double' %}
+                    {% assign active_order = 6 %}
                   {% endif %}
 
                 <a 
@@ -431,7 +435,7 @@
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
-                aafafaf {{ current_size }}
+         
                   {%- if match != blank -%}
                     <a 
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% endif %} ;"
