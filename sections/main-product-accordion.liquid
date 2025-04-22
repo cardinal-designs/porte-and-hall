@@ -122,7 +122,11 @@
         </h3>
 
         <h1 class="product__title blue">
+          {% if product.title contains 'Porter' %}
+          The Porter Mat
+          {% else %}
           {{ grouped_collection.title | remove: ' |' | default: product.title }}
+          {% endif %}
         </h1>
 
         <div class="product__price-reviews-wrapper">
@@ -164,7 +168,6 @@
         {% endif %}
          <div id="myModal" class="dimension-modal-content dimension_modal">
               <div class="dimension-modal-header">
-                {{ product.title }}
               {% if product.title contains 'Porter' %}
                 <h6>The Porter Mat</h6>
               {% else %}
