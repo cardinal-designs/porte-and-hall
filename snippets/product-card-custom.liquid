@@ -92,7 +92,6 @@
         {% comment %}
         {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "Product image", widthI: 500, heightI: 500 %}
         {% endcomment %}
-       fafa {{ custom_image }}
         {% if custom_image != blank %}
           {% render 'lazy-image', image: custom_image, fade: true, classes: 'img-fill', aria-label: "Custom product image", widthI: 320, heightI: 320 %}
         {% elsif product_card_product.media[1] != null %}
