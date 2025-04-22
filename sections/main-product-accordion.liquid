@@ -424,7 +424,11 @@
                       <span class="other-sizes__dimension">4' x 6'</span>
                     {% else %}
                       <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
-                    {% endif %}               
+                    {% endif %}  
+                  {% elsif current_size.last == 'Standard' %}
+                    <span class="other-sizes__dimension">36” x 72”</span>
+                  {% elsif current_size.last == 'Double' %}
+                    <span class="other-sizes__dimension">30” x 48”</span>
                   {% endif %}
                 </a>
 
