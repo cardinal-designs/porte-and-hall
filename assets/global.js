@@ -1521,42 +1521,71 @@ const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust 
 
 
 
-document.addEventListener("DOMContentLoaded", (event) => {
+// document.addEventListener("DOMContentLoaded", (event) => {
 
-  document.querySelectorAll(".scroll__button").forEach(function(button) {
-    button.addEventListener("click", function() {
+//   document.querySelectorAll(".scroll__button").forEach(function(button) {
+//     button.addEventListener("click", function() {
+//       const target = document.querySelector(".Designer_Program_Main");
+//       setTimeout(function() {
+//         if (target) {
+//           target.scrollIntoView({ behavior: "smooth", block: "start" });
+//         }
+//       }, 500);
+//     });
+//   });
+  
+//   // document.querySelectorAll(".scroll__button").forEach(function(button) {
+//   //   button.addEventListener("click", function() {
+//   //     const scrollToTarget = () => {
+//   //       const target = document.querySelector(".Designer_Program_Main");
+//   //       if (target && target.offsetTop > 0) {
+//   //         // Adjust for fixed header if needed
+//   //         const offset = target.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT; 
+//   //         window.scrollTo({ top: offset, behavior: "smooth" });
+//   //         return true;
+//   //       }
+//   //       return false;
+//   //     };
+  
+//   //     // Try immediately, then retry a few times if needed (in case content is lazy-loaded)
+//   //     if (!scrollToTarget()) {
+//   //       let attempts = 0;
+//   //       const interval = setInterval(() => {
+//   //         attempts++;
+//   //         if (scrollToTarget() || attempts > 10) {
+//   //           clearInterval(interval);
+//   //         }
+//   //       }, 100);
+//   //     }
+//   //   });
+//   // });
+// });
+
+
+document.querySelectorAll(".scroll__button").forEach(function(button) {
+  button.addEventListener("click", function () {
+    const scrollToTarget = () => {
       const target = document.querySelector(".Designer_Program_Main");
-      setTimeout(function() {
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, 500);
-    });
+
+      if (target) {
+        const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+        const offset = 80; // Adjust this to match your header height
+        window.scrollTo({
+          top: targetTop - offset,
+          behavior: "smooth"
+        });
+        return true;
+      }
+
+      return false;
+    };
+
+    // Try scrolling immediately, and retry if the target isn’t ready
+    let attempts = 0;
+    const interval = setInterval(() => {
+      if (scrollToTarget() || attempts++ > 10) {
+        clearInterval(interval);
+      }
+    }, 100);
   });
-  
-  // document.querySelectorAll(".scroll__button").forEach(function(button) {
-  //   button.addEventListener("click", function() {
-  //     const scrollToTarget = () => {
-  //       const target = document.querySelector(".Designer_Program_Main");
-  //       if (target && target.offsetTop > 0) {
-  //         // Adjust for fixed header if needed
-  //         const offset = target.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT; 
-  //         window.scrollTo({ top: offset, behavior: "smooth" });
-  //         return true;
-  //       }
-  //       return false;
-  //     };
-  
-  //     // Try immediately, then retry a few times if needed (in case content is lazy-loaded)
-  //     if (!scrollToTarget()) {
-  //       let attempts = 0;
-  //       const interval = setInterval(() => {
-  //         attempts++;
-  //         if (scrollToTarget() || attempts > 10) {
-  //           clearInterval(interval);
-  //         }
-  //       }, 100);
-  //     }
-  //   });
-  // });
 });
