@@ -1562,67 +1562,67 @@ const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust 
 // });
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  // document.querySelectorAll(".section__scroll--button").forEach(function(button) {
-  //   button.addEventListener("click", function () {
-  //     const scrollToTarget = () => {
-  //       const target = document.querySelector(".Designer_Program_Main");
-  //       if (target) {
-  //         const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-  //         const offset = document.querySelector('.header').offsetHeight;     
-  //         window.scrollTo({
-  //           top: targetTop - offset,
-  //           behavior: "smooth"
-  //         });
-  //         return true;
-  //       }
-  //       return false;
-  //     };
-  
-  //     // Try scrolling immediately, and retry if the target isn’t ready
-  //     let attempts = 0;
-  //     const interval = setInterval(() => {
-  //       if (scrollToTarget() || attempts++ > 10) {
-  //         clearInterval(interval);
-  //       }
-  //     }, 500);
-  //   });
-  // });
-
-
-  const HEADER_OFFSET = document.querySelector('.header').offsetHeight; // Adjust this based on your header height
-
-  function scrollToDesignerSection() {
-    const target = document.querySelector(".Designer_Program_Main");
-    if (target) {
-      const offsetTop = target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
-      window.scrollTo({ top: offsetTop, behavior: "smooth" });
-      return true;
-    }
-    return false;
-  }
-  
-  document.querySelectorAll(".section__scroll--button").forEach(button => {
-    button.addEventListener("click", function (e) {
-      e.preventDefault();
-  
-      // First try immediately
-      if (scrollToDesignerSection()) return;
-  
-      // If not found or not rendered, wait for it using MutationObserver
-      const observer = new MutationObserver(() => {
-        if (scrollToDesignerSection()) {
-          observer.disconnect();
+  document.querySelectorAll(".section__scroll--button").forEach(function(button) {
+    button.addEventListener("click", function () {
+      const scrollToTarget = () => {
+        const target = document.querySelector(".Designer_Program_Main");
+        if (target) {
+          const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+          const offset = document.querySelector('.header').offsetHeight;     
+          window.scrollTo({
+            top: targetTop - offset,
+            behavior: "smooth"
+          });
+          return true;
         }
-      });
+        return false;
+      };
   
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-      });
-  
-      // Fallback timeout in case observer doesn’t trigger
-      setTimeout(() => observer.disconnect(), 2000);
+      // Try scrolling immediately, and retry if the target isn’t ready
+      let attempts = 0;
+      const interval = setInterval(() => {
+        if (scrollToTarget() || attempts++ > 10) {
+          clearInterval(interval);
+        }
+      }, 500);
     });
   });
+
+
+  // const HEADER_OFFSET = document.querySelector('.header').offsetHeight; // Adjust this based on your header height
+
+  // function scrollToDesignerSection() {
+  //   const target = document.querySelector(".Designer_Program_Main");
+  //   if (target) {
+  //     const offsetTop = target.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+  //     window.scrollTo({ top: offsetTop, behavior: "smooth" });
+  //     return true;
+  //   }
+  //   return false;
+  // }
+  
+  // document.querySelectorAll(".section__scroll--button").forEach(button => {
+  //   button.addEventListener("click", function (e) {
+  //     e.preventDefault();
+  
+  //     // First try immediately
+  //     if (scrollToDesignerSection()) return;
+  
+  //     // If not found or not rendered, wait for it using MutationObserver
+  //     const observer = new MutationObserver(() => {
+  //       if (scrollToDesignerSection()) {
+  //         observer.disconnect();
+  //       }
+  //     });
+  
+  //     observer.observe(document.body, {
+  //       childList: true,
+  //       subtree: true,
+  //     });
+  
+  //     // Fallback timeout in case observer doesn’t trigger
+  //     setTimeout(() => observer.disconnect(), 2000);
+  //   });
+  // });
   
 });
