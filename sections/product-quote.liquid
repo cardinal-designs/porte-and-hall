@@ -5,7 +5,7 @@
     endif
   endfor
 %}
-{{ grouped_collection.metafields.custom.product_quote }}
+{{ grouped_collection.metafields.custom.product_quote | json}}
 <div class="product-quote__container">
   <div class="page-width">
     <p>{{ grouped_collection.metafields.custom.product_quote.value }}</p>
