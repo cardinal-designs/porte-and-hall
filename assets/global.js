@@ -1568,16 +1568,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const target = document.querySelector(".Designer_Program_Main");
         if (target) {
           const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-          const offset = document.querySelector('.header').offsetHeight; // Adjust this to match your header height        
+          const offset = document.querySelector('.header').offsetHeight;     
           window.scrollTo({
             top: targetTop - offset,
             behavior: "smooth"
           });
-          // target.scrollIntoView({ behavior: "smooth", block: "start" });
-          // window.scrollTo({
-          //   top: target.offsetTop,
-          //   behavior: "smooth"
-          // });
           return true;
         }
         return false;
