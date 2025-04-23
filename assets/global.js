@@ -1567,7 +1567,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       let attempts = 0;
   
       const scrollToTarget = () => {
-        const target = document.querySelector(".Designer_Program_Main");
+        const target = document.querySelector('.Designer_Program_Main')?.getBoundingClientRect();
         const header = document.querySelector(".header");
   
         if (target && target.offsetTop > 0) {
