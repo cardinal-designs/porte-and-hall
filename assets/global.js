@@ -1584,7 +1584,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         if (scrollToTarget() || attempts++ > 10) {
           clearInterval(interval);
         }
-      }, 100);
+      }, 500);
     });
   });
 });
