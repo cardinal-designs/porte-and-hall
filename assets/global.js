@@ -1564,34 +1564,37 @@ const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust 
 document.addEventListener("DOMContentLoaded", (event) => {
   document.querySelectorAll(".section__scroll--button").forEach(function(button) {
     button.addEventListener("click", function () {
+      let attempts = 0;
+  
       const scrollToTarget = () => {
         const target = document.querySelector(".Designer_Program_Main");
-        if (target) {
-          window.scrollTo({
-            top: 1,
-            behavior: "smooth"
+        const header = document.querySelector(".header");
+  
+        if (target && target.offsetTop > 0) {
+          const headerHeight = header ? header.offsetHeight : 0;
+          const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+  
+          // Let iOS finish painting before scrolling
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              window.scrollTo({ top: targetTop, behavior: "smooth" });
+            }, 20); // tiny delay to ensure layout settles
           });
-          const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-          const offset = document.querySelector('.header').offsetHeight;     
-          window.scrollTo({
-            top: targetTop - offset,
-            behavior: "smooth"
-          });
+  
           return true;
         }
+  
         return false;
       };
   
-      // Try scrolling immediately, and retry if the target isn’t ready
-      let attempts = 0;
+      // Retry a few times if target isn't rendered yet
       const interval = setInterval(() => {
         if (scrollToTarget() || attempts++ > 10) {
           clearInterval(interval);
         }
-      }, 500);
+      }, 200);
     });
   });
-
 
   // const HEADER_OFFSET = document.querySelector('.header').offsetHeight; // Adjust this based on your header height
 
