@@ -1579,23 +1579,59 @@ document.querySelectorAll(".section__scroll--button").forEach((button) => {
     //   window.scrollTo({ top: targetTop, behavior: 'smooth' });
     // }
 
+    // const header = document.querySelector('#shopify-section-header');
+    
+    // const targetSection = document.querySelector('#shopify-section-template--16397857357887__d6ffae26-0ed7-4647-a4f9-a65110b580f2');
+    
+    // const headerHeight = header ? header.offsetHeight : 0;
+    // console.log("targetSection", targetSection)
+    // console.log("headerHeight", headerHeight)
+    
+    // if (header && header.offsetHeight > 0) {
+    //   let targetTop = targetSection.getBoundingClientRect().top + window.scrollY - headerHeight;
+    //     console.log("targetTop", targetTop)
+    //   window.scrollTo({ top: targetTop, behavior: 'smooth' });
+    // } else {
+    //   let targetTop = targetSection.offsetTop - headerHeight;
+    //     console.log("targetTop===", targetTop)
+    //   window.scrollTo({ top: targetTop, behavior: 'smooth' });
+    // }
+
     const header = document.querySelector('#shopify-section-header');
-    
-    const targetSection = document.querySelector('#shopify-section-template--16397857357887__d6ffae26-0ed7-4647-a4f9-a65110b580f2');
-    
-    const headerHeight = header ? header.offsetHeight : 0;
-    console.log("targetSection", targetSection)
-    console.log("headerHeight", headerHeight)
-    
-    if (header && header.offsetHeight > 0) {
-      let targetTop = targetSection.getBoundingClientRect().top + window.scrollY - headerHeight;
-        console.log("targetTop", targetTop)
-      window.scrollTo({ top: targetTop, behavior: 'smooth' });
-    } else {
-      let targetTop = targetSection.offsetTop - headerHeight;
-        console.log("targetTop===", targetTop)
-      window.scrollTo({ top: targetTop, behavior: 'smooth' });
-    }
+const targetSection = document.querySelector('#shopify-section-template--16397857357887__d6ffae26-0ed7-4647-a4f9-a65110b580f2');
+
+if (targetSection) {
+  const headerHeight = header ? header.offsetHeight : 0;
+  console.log("targetSection:", targetSection);
+  console.log("headerHeight:", headerHeight);
+
+  // Function to scroll to the target section
+  const scrollToSection = () => {
+    let targetTop = targetSection.getBoundingClientRect().top + window.scrollY - headerHeight;
+    console.log("Scrolling to targetTop:", targetTop);
+
+    window.scrollTo({ top: targetTop, behavior: 'smooth' });
+
+    // Validate if scrolled correctly and retry if necessary
+    setTimeout(() => {
+      const currentScrollPosition = Math.round(window.scrollY);
+      const expectedScrollPosition = Math.round(targetSection.getBoundingClientRect().top + window.scrollY - headerHeight);
+
+      // Check if the current scroll position matches the expected target scroll position
+      if (Math.abs(currentScrollPosition - expectedScrollPosition) > 5) {
+        console.log("Scroll did not reach the target. Retrying...");
+        scrollToSection(); // Retry if not scrolled properly
+      } else {
+        console.log("Scroll completed successfully.");
+      }
+    }, 500); // Wait for 500ms to allow time for the scroll to complete
+  };
+
+  // Initial Scroll
+  scrollToSection();
+} else {
+  console.error("Target section not found.");
+}
 
   });
 });
