@@ -1562,23 +1562,24 @@ const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust 
 // });
 
 document.addEventListener("DOMContentLoaded", (event) => {
+
   document.querySelectorAll(".section__scroll--button").forEach(function(button) {
     button.addEventListener("click", function () {
       let attempts = 0;
+      const maxAttempts = 15;
   
       const scrollToTarget = () => {
         const target = document.querySelector('.Designer_Program_Main');
         const header = document.querySelector(".header");
   
-        if (target && target.offsetTop > 0) {
+        if (target && target.offsetHeight > 0) {
           const headerHeight = header ? header.offsetHeight : 0;
           const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
   
-          // Let iOS finish painting before scrolling
           requestAnimationFrame(() => {
             setTimeout(() => {
               window.scrollTo({ top: targetTop, behavior: "smooth" });
-            }, 100); // tiny delay to ensure layout settles
+            }, 50);
           });
   
           return true;
@@ -1587,14 +1588,59 @@ document.addEventListener("DOMContentLoaded", (event) => {
         return false;
       };
   
-      // Retry a few times if target isn't rendered yet
-      const interval = setInterval(() => {
-        if (scrollToTarget() || attempts++ > 10) {
-          clearInterval(interval);
-        }
-      }, 200);
+      const retryScroll = () => {
+        if (scrollToTarget()) return;
+  
+        const interval = setInterval(() => {
+          if (scrollToTarget() || attempts++ >= maxAttempts) {
+            clearInterval(interval);
+          }
+        }, 200);
+      };
+  
+      // Use requestIdleCallback if available, or fallback
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(retryScroll, { timeout: 500 });
+      } else {
+        setTimeout(retryScroll, 200);
+      }
     });
   });
+  
+    
+  // document.querySelectorAll(".section__scroll--button").forEach(function(button) {
+  //   button.addEventListener("click", function () {
+  //     let attempts = 0;
+  
+  //     const scrollToTarget = () => {
+  //       const target = document.querySelector('.Designer_Program_Main');
+  //       const header = document.querySelector(".header");
+  
+  //       if (target && target.offsetTop > 0) {
+  //         const headerHeight = header ? header.offsetHeight : 0;
+  //         const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+  
+  //         // Let iOS finish painting before scrolling
+  //         requestAnimationFrame(() => {
+  //           setTimeout(() => {
+  //             window.scrollTo({ top: targetTop, behavior: "smooth" });
+  //           }, 100); // tiny delay to ensure layout settles
+  //         });
+  
+  //         return true;
+  //       }
+  
+  //       return false;
+  //     };
+  
+  //     // Retry a few times if target isn't rendered yet
+  //     const interval = setInterval(() => {
+  //       if (scrollToTarget() || attempts++ > 10) {
+  //         clearInterval(interval);
+  //       }
+  //     }, 200);
+  //   });
+  // });
 
   // const HEADER_OFFSET = document.querySelector('.header').offsetHeight; // Adjust this based on your header height
 
