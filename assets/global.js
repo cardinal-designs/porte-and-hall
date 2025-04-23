@@ -1563,51 +1563,44 @@ const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust 
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
-  document.querySelectorAll(".section__scroll--button").forEach(function(button) {
-    button.addEventListener("click", function () {
-      let attempts = 0;
-      const maxAttempts = 15;
-  
-      const scrollToTarget = () => {
-        const target = document.querySelector('.Designer_Program_Main');
-        const header = document.querySelector(".header");
-  
-        if (target && target.offsetHeight > 0) {
-          const headerHeight = header ? header.offsetHeight : 0;
-          const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
-  
-          requestAnimationFrame(() => {
-            setTimeout(() => {
-              window.scrollTo({ top: targetTop, behavior: "smooth" });
-            }, 50);
-          });
-  
-          return true;
-        }
-  
-        return false;
-      };
-  
-      const retryScroll = () => {
-        if (scrollToTarget()) return;
-  
-        const interval = setInterval(() => {
-          if (scrollToTarget() || attempts++ >= maxAttempts) {
-            clearInterval(interval);
-          }
-        }, 200);
-      };
-  
-      // Use requestIdleCallback if available, or fallback
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(retryScroll, { timeout: 500 });
-      } else {
-        setTimeout(retryScroll, 200);
+document.querySelectorAll(".section__scroll--button").forEach(function (button) {
+  button.addEventListener("click", function () {
+    const targetSelector = '.Designer_Program_Main';
+    const header = document.querySelector(".header");
+    const headerHeight = header ? header.offsetHeight : 0;
+
+    const scrollToTarget = () => {
+      const target = document.querySelector(targetSelector);
+
+      if (target && target.offsetHeight > 0) {
+        const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+        window.scrollTo({ top: targetTop, behavior: "smooth" });
+        return true;
+      }
+
+      return false;
+    };
+
+    if (scrollToTarget()) return;
+
+    // Watch the DOM for the target to appear or become visible
+    const observer = new MutationObserver(() => {
+      if (scrollToTarget()) {
+        observer.disconnect();
       }
     });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Optional fallback timeout in case it never appears
+    setTimeout(() => observer.disconnect(), 5000);
   });
+});
+
   
-    
   // document.querySelectorAll(".section__scroll--button").forEach(function(button) {
   //   button.addEventListener("click", function () {
   //     let attempts = 0;
