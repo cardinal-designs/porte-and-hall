@@ -20,46 +20,6 @@
         "bg_color": "#f4f2ee"
       }
     },
-    "designer_trade_program_zrdttM": {
-      "type": "designer-trade-program",
-      "blocks": {
-        "image_slider_kY96Kq": {
-          "type": "image_slider",
-          "settings": {
-            "image": "shopify://shop_images/image_1.jpg",
-            "mobile_image": "shopify://shop_images/hero_7ea5be57-d7f8-4f20-8c9f-c76df499b4da.jpg"
-          }
-        },
-        "image_slider_6AMaHg": {
-          "type": "image_slider",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/hero_1.jpg",
-            "mobile_image": "shopify://shop_images/hero_2.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "image_slider_kY96Kq",
-        "image_slider_6AMaHg"
-      ],
-      "settings": {
-        "heading": "Trade Program",
-        "description": "Porte + Hall was founded by an interior designer, so we’re thrilled to roll out the red carpet (er, mat) for our trade community—with exclusive perks and personalized support.",
-        "button_1_text": "Become a member",
-        "button_2_text": "Sign in",
-        "button_2_url": "/account/login"
-      }
-    },
-    "designer_program_founder_bKR69z": {
-      "type": "designer-program-founder",
-      "settings": {
-        "small_heading": "From One Designer to Another",
-        "quote": "A beautiful space should make a beautiful first impression, and that’s what we’re here for: To support your creative vision with mats that’ll wow your clients from the start.",
-        "author": "<b>Stafford</b> - Founder",
-        "signature_image": "shopify://shop_images/SVG.svg"
-      }
-    },
     "designer_how_it_work_xgLzzt": {
       "type": "designer-how-it-work",
       "blocks": {
@@ -99,6 +59,46 @@
         "image": "shopify://shop_images/BarkCreme_Runner_v4_1.jpg",
         "heading": "How it works",
         "button_text": "Become a member"
+      }
+    },
+    "designer_trade_program_zrdttM": {
+      "type": "designer-trade-program",
+      "blocks": {
+        "image_slider_kY96Kq": {
+          "type": "image_slider",
+          "settings": {
+            "image": "shopify://shop_images/image_1.jpg",
+            "mobile_image": "shopify://shop_images/hero_7ea5be57-d7f8-4f20-8c9f-c76df499b4da.jpg"
+          }
+        },
+        "image_slider_6AMaHg": {
+          "type": "image_slider",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/hero_1.jpg",
+            "mobile_image": "shopify://shop_images/hero_2.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_slider_kY96Kq",
+        "image_slider_6AMaHg"
+      ],
+      "settings": {
+        "heading": "Trade Program",
+        "description": "Porte + Hall was founded by an interior designer, so we’re thrilled to roll out the red carpet (er, mat) for our trade community—with exclusive perks and personalized support.",
+        "button_1_text": "Become a member",
+        "button_2_text": "Sign in",
+        "button_2_url": "/account/login"
+      }
+    },
+    "designer_program_founder_bKR69z": {
+      "type": "designer-program-founder",
+      "settings": {
+        "small_heading": "From One Designer to Another",
+        "quote": "A beautiful space should make a beautiful first impression, and that’s what we’re here for: To support your creative vision with mats that’ll wow your clients from the start.",
+        "author": "<b>Stafford</b> - Founder",
+        "signature_image": "shopify://shop_images/SVG.svg"
       }
     },
     "designer_how_support_c8WabR": {
@@ -257,9 +257,9 @@
   },
   "order": [
     "main",
+    "designer_how_it_work_xgLzzt",
     "designer_trade_program_zrdttM",
     "designer_program_founder_bKR69z",
-    "designer_how_it_work_xgLzzt",
     "designer_how_support_c8WabR",
     "d6ffae26-0ed7-4647-a4f9-a65110b580f2",
     "designer_message_wishes_iEN4xM",
