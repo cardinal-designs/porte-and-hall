@@ -1481,12 +1481,27 @@ const accordionItems = document.querySelectorAll('.faq__question');
 
 const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust based on your fixed header height
 
+// document.querySelectorAll(".scroll__button").forEach(function(button) {
+//   button.addEventListener("click", function() {
+//     const target = document.querySelector(".Designer_Program_Main");
+//     if (target) {
+//       const offsetTop = target.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT;
+//       window.scrollTo({ top: offsetTop, behavior: "smooth" });
+//     }
+//   });
+// });
+
 document.querySelectorAll(".scroll__button").forEach(function(button) {
   button.addEventListener("click", function() {
-    const target = document.querySelector(".Designer_Program_Main");
-    if (target) {
-      const offsetTop = target.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT;
-      window.scrollTo({ top: offsetTop, behavior: "smooth" });
-    }
+    setTimeout(function() {
+      const target = document.querySelector(".Designer_Program_Main");
+      if (target) {
+        const offsetTop = target.offsetTop - HEADER_HEIGHT;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth"
+        });
+      }
+    }, 100); // Adjust delay as needed (50-200ms is typical)
   });
 });
