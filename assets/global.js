@@ -1566,21 +1566,15 @@ document.querySelectorAll(".scroll__button").forEach(function(button) {
   button.addEventListener("click", function () {
     const scrollToTarget = () => {
       const target = document.querySelector(".Designer_Program_Main");
-
       if (target) {
         const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-        const offset = document.querySelector('.header').offsetHeight; // Adjust this to match your header height
-        
+        const offset = document.querySelector('.header').offsetHeight; // Adjust this to match your header height        
         window.scrollTo({
           top: targetTop - offset,
           behavior: "smooth"
         });
-        console.log('targetTop - offset,, ', targetTop - offset);
-        alert('targetTop - offset ', targetTop - offset);
         return true;
-        
       }
-
       return false;
     };
 
