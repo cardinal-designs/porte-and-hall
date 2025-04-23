@@ -177,7 +177,8 @@ ul.js-error-messages {
 }
 
 .field__input {
-  padding: 7px 0;  
+  padding: 7px 0; 
+  border-radius: 0;
 }
 
 .contact__button .button {
