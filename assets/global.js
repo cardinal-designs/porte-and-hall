@@ -1562,7 +1562,7 @@ const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust 
 // });
 
 
-document.querySelectorAll(".scroll__button").forEach(function(button) {
+document.querySelectorAll(".section__scroll--button").forEach(function(button) {
   button.addEventListener("click", function () {
     const scrollToTarget = () => {
       const target = document.querySelector(".Designer_Program_Main");
