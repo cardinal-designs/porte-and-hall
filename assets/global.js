@@ -1565,17 +1565,35 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 document.querySelectorAll(".section__scroll--button").forEach((button) => {
   button.addEventListener("click", () => {
+    // const header = document.querySelector('#shopify-section-header');
+    
+    // const targetSection = document.querySelector('#shopify-section-template--16397857357887__d6ffae26-0ed7-4647-a4f9-a65110b580f2');
+    
+    // const headerHeight = header ? header.offsetHeight : 0;
+    
+    // if (header && header.offsetHeight > 0) {
+    //   const targetTop = targetSection.getBoundingClientRect().top + window.scrollY - headerHeight;
+    //   window.scrollTo({ top: targetTop, behavior: 'smooth' });
+    // } else {
+    //   const targetTop = targetSection.offsetTop - headerHeight;
+    //   window.scrollTo({ top: targetTop, behavior: 'smooth' });
+    // }
+
     const header = document.querySelector('#shopify-section-header');
     
     const targetSection = document.querySelector('#shopify-section-template--16397857357887__d6ffae26-0ed7-4647-a4f9-a65110b580f2');
     
     const headerHeight = header ? header.offsetHeight : 0;
+    console.log("targetSection", targetSection)
+    console.log("headerHeight", headerHeight)
     
     if (header && header.offsetHeight > 0) {
-      const targetTop = targetSection.getBoundingClientRect().top + window.scrollY - headerHeight;
+      let targetTop = targetSection.getBoundingClientRect().top + window.scrollY - headerHeight;
+        console.log("targetTop", targetTop)
       window.scrollTo({ top: targetTop, behavior: 'smooth' });
     } else {
-      const targetTop = targetSection.offsetTop - headerHeight;
+      let targetTop = targetSection.offsetTop - headerHeight;
+        console.log("targetTop===", targetTop)
       window.scrollTo({ top: targetTop, behavior: 'smooth' });
     }
 
