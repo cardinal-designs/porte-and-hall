@@ -1575,8 +1575,9 @@ document.querySelectorAll(".scroll__button").forEach(function(button) {
           top: targetTop - offset,
           behavior: "smooth"
         });
-        alert('targetTop - offset,, ', targetTop - offset);
+        
         return true;
+        alert('targetTop - offset,, ', targetTop - offset);
       }
 
       return false;
