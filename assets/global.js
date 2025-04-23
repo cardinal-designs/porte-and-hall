@@ -1573,7 +1573,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
           //   top: targetTop - offset,
           //   behavior: "smooth"
           // });
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          // target.scrollIntoView({ behavior: "smooth", block: "start" });
+          window.scrollTo({
+            top: target.offsetTop,
+            behavior: "smooth"
+          });
           return true;
         }
         return false;
