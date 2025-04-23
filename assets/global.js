@@ -1567,17 +1567,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
       const scrollToTarget = () => {
         const target = document.querySelector(".Designer_Program_Main");
         if (target) {
-          const targetTop = target.getBoundingClientRect().top;
+          const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
           const offset = document.querySelector('.header').offsetHeight; // Adjust this to match your header height        
-          // window.scrollTo({
-          //   top: targetTop - offset,
-          //   behavior: "smooth"
-          // });
-          // target.scrollIntoView({ behavior: "smooth", block: "start" });
           window.scrollTo({
-            top: target.offsetTop,
+            top: targetTop - offset,
             behavior: "smooth"
           });
+          // target.scrollIntoView({ behavior: "smooth", block: "start" });
+          // window.scrollTo({
+          //   top: target.offsetTop,
+          //   behavior: "smooth"
+          // });
           return true;
         }
         return false;
