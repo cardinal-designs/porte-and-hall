@@ -35,9 +35,9 @@
         {% if section.settings.button_1_text != blank or section.settings.button_2_text != blank %}
           <div class="trade__buttons">
             {% if section.settings.button_1_text != blank %}
-              <a href="javascript:void(0);" class="join-btn section__scroll--button">
+              <div class="join-btn section__scroll--button">
                 {{ section.settings.button_1_text }}
-              </a>
+              </div>
             {% endif %}
             {% if section.settings.button_2_text != blank and section.settings.button_2_url != blank %}
               <a href="{{ section.settings.button_2_url }}" class="signin-btn">
