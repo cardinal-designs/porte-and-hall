@@ -1565,43 +1565,20 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 document.querySelectorAll(".section__scroll--button").forEach((button) => {
   button.addEventListener("click", () => {
-    const targetSelector = ".Designer_Program_Main";
-    const header = document.querySelector(".header");
+    const header = document.querySelector('#shopify-section-header');
+    
+    const targetSection = document.querySelector('#shopify-section-template--16397857357887__d6ffae26-0ed7-4647-a4f9-a65110b580f2');
+    
     const headerHeight = header ? header.offsetHeight : 0;
+    
+    if (header && header.offsetHeight > 0) {
+      const targetTop = targetSection.getBoundingClientRect().top + window.scrollY - headerHeight;
+      window.scrollTo({ top: targetTop, behavior: 'smooth' });
+    } else {
+      const targetTop = targetSection.offsetTop - headerHeight;
+      window.scrollTo({ top: targetTop, behavior: 'smooth' });
+    }
 
-    const scrollToTarget = () => {
-      const target = document.querySelector(targetSelector);
-      if (target && target.offsetHeight > 0) {
-        const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
-        window.scrollTo({ top: targetTop, behavior: "smooth" });
-        return true;
-      }
-      return false;
-    };
-
-    // Try scrolling immediately
-    if (scrollToTarget()) return;
-
-    // Set up MutationObserver to wait for form to render
-    const observer = new MutationObserver(() => {
-      if (scrollToTarget()) {
-        observer.disconnect();
-      }
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
-
-    // Add fallback retry loop in case observer misses it
-    let attempts = 0;
-    const retryInterval = setInterval(() => {
-      if (scrollToTarget() || attempts++ > 15) {
-        clearInterval(retryInterval);
-        observer.disconnect();
-      }
-    }, 200);
   });
 });
 
