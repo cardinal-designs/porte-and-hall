@@ -1570,6 +1570,7 @@ document.querySelectorAll(".scroll__button").forEach(function(button) {
       if (target) {
         const targetTop = target.getBoundingClientRect().top;
         const offset = document.querySelector('.header').offsetHeight; // Adjust this to match your header height
+        alert('targetTop - offset,, ', targetTop - offset);
         window.scrollTo({
           top: targetTop - offset,
           behavior: "smooth"
