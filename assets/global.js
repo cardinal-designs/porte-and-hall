@@ -1479,6 +1479,19 @@ const accordionItems = document.querySelectorAll('.faq__question');
 
 
 
+// document.querySelectorAll(".scroll__button").forEach(function(button) {
+//   button.addEventListener("click", function() {
+//     const target = document.querySelector(".Designer_Program_Main");
+//     if (target) {
+//       window.scrollTo({
+//         top: target.offsetTop,
+//         behavior: "smooth"
+//       });
+//     }
+//   });
+// });
+
+
 const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust based on your fixed header height
 
 // document.querySelectorAll(".scroll__button").forEach(function(button) {
@@ -1491,17 +1504,26 @@ const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust 
 //   });
 // });
 
+// document.querySelectorAll(".scroll__button").forEach(function(button) {
+//   button.addEventListener("click", function() {
+//     setTimeout(function() {
+//       const target = document.querySelector(".Designer_Program_Main");
+//       if (target) {
+//         const offsetTop = target.offsetTop - HEADER_HEIGHT;
+//         window.scrollTo({
+//           top: offsetTop,
+//           behavior: "smooth"
+//         });
+//       }
+//     }, 100); // Adjust delay as needed (50-200ms is typical)
+//   });
+// });
+
 document.querySelectorAll(".scroll__button").forEach(function(button) {
   button.addEventListener("click", function() {
-    setTimeout(function() {
-      const target = document.querySelector(".Designer_Program_Main");
-      if (target) {
-        const offsetTop = target.offsetTop - HEADER_HEIGHT;
-        window.scrollTo({
-          top: offsetTop,
-          behavior: "smooth"
-        });
-      }
-    }, 100); // Adjust delay as needed (50-200ms is typical)
+    const target = document.querySelector(".Designer_Program_Main");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   });
 });
