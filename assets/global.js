@@ -1567,6 +1567,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       const scrollToTarget = () => {
         const target = document.querySelector(".Designer_Program_Main");
         if (target) {
+          window.scrollTo({
+            top: 1,
+            behavior: "smooth"
+          });
           const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
           const offset = document.querySelector('.header').offsetHeight;     
           window.scrollTo({
