@@ -1479,14 +1479,14 @@ const accordionItems = document.querySelectorAll('.faq__question');
 
 
 
+const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust based on your fixed header height
+
 document.querySelectorAll(".scroll__button").forEach(function(button) {
   button.addEventListener("click", function() {
     const target = document.querySelector(".Designer_Program_Main");
     if (target) {
-      window.scrollTo({
-        top: target.offsetTop,
-        behavior: "smooth"
-      });
+      const offsetTop = target.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT;
+      window.scrollTo({ top: offsetTop, behavior: "smooth" });
     }
   });
 });
