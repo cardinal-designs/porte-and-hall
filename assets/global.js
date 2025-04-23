@@ -1578,7 +1578,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
           requestAnimationFrame(() => {
             setTimeout(() => {
               window.scrollTo({ top: targetTop, behavior: "smooth" });
-            }, 20); // tiny delay to ensure layout settles
+            }, 100); // tiny delay to ensure layout settles
           });
   
           return true;
