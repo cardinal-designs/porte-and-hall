@@ -1601,7 +1601,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     return false;
   }
   
-  document.querySelectorAll(".scroll__button").forEach(button => {
+  document.querySelectorAll(".section__scroll--button").forEach(button => {
     button.addEventListener("click", function (e) {
       e.preventDefault();
   
