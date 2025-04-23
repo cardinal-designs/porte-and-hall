@@ -1526,9 +1526,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
   document.querySelectorAll(".scroll__button").forEach(function(button) {
     button.addEventListener("click", function() {
       const target = document.querySelector(".Designer_Program_Main");
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      setTimeout(function() {
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 500);
     });
   });
   
