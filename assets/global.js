@@ -1528,28 +1528,30 @@ const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust 
 //   });
 // });
 
-document.querySelectorAll(".scroll__button").forEach(function(button) {
-  button.addEventListener("click", function() {
-    const scrollToTarget = () => {
-      const target = document.querySelector(".Designer_Program_Main");
-      if (target && target.offsetTop > 0) {
-        // Adjust for fixed header if needed
-        const offset = target.getBoundingClientRect().top + window.scrollY - 80; 
-        window.scrollTo({ top: offset, behavior: "smooth" });
-        return true;
-      }
-      return false;
-    };
-
-    // Try immediately, then retry a few times if needed (in case content is lazy-loaded)
-    if (!scrollToTarget()) {
-      let attempts = 0;
-      const interval = setInterval(() => {
-        attempts++;
-        if (scrollToTarget() || attempts > 10) {
-          clearInterval(interval);
+document.addEventListener("DOMContentLoaded", (event) => {
+  document.querySelectorAll(".scroll__button").forEach(function(button) {
+    button.addEventListener("click", function() {
+      const scrollToTarget = () => {
+        const target = document.querySelector(".Designer_Program_Main");
+        if (target && target.offsetTop > 0) {
+          // Adjust for fixed header if needed
+          const offset = target.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT; 
+          window.scrollTo({ top: offset, behavior: "smooth" });
+          return true;
         }
-      }, 100);
-    }
+        return false;
+      };
+  
+      // Try immediately, then retry a few times if needed (in case content is lazy-loaded)
+      if (!scrollToTarget()) {
+        let attempts = 0;
+        const interval = setInterval(() => {
+          attempts++;
+          if (scrollToTarget() || attempts > 10) {
+            clearInterval(interval);
+          }
+        }, 100);
+      }
+    });
   });
 });
