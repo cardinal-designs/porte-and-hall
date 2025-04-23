@@ -1563,27 +1563,26 @@ const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust 
 
 document.addEventListener("DOMContentLoaded", (event) => {
 
-document.querySelectorAll(".section__scroll--button").forEach(function (button) {
-  button.addEventListener("click", function () {
-    const targetSelector = '.Designer_Program_Main';
+document.querySelectorAll(".section__scroll--button").forEach((button) => {
+  button.addEventListener("click", () => {
+    const targetSelector = ".Designer_Program_Main";
     const header = document.querySelector(".header");
     const headerHeight = header ? header.offsetHeight : 0;
 
     const scrollToTarget = () => {
       const target = document.querySelector(targetSelector);
-
       if (target && target.offsetHeight > 0) {
         const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight;
         window.scrollTo({ top: targetTop, behavior: "smooth" });
         return true;
       }
-
       return false;
     };
 
+    // Try scrolling immediately
     if (scrollToTarget()) return;
 
-    // Watch the DOM for the target to appear or become visible
+    // Set up MutationObserver to wait for form to render
     const observer = new MutationObserver(() => {
       if (scrollToTarget()) {
         observer.disconnect();
@@ -1595,10 +1594,17 @@ document.querySelectorAll(".section__scroll--button").forEach(function (button) 
       subtree: true,
     });
 
-    // Optional fallback timeout in case it never appears
-    setTimeout(() => observer.disconnect(), 5000);
+    // Add fallback retry loop in case observer misses it
+    let attempts = 0;
+    const retryInterval = setInterval(() => {
+      if (scrollToTarget() || attempts++ > 15) {
+        clearInterval(retryInterval);
+        observer.disconnect();
+      }
+    }, 200);
   });
 });
+
 
   
   // document.querySelectorAll(".section__scroll--button").forEach(function(button) {
