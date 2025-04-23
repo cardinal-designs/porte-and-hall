@@ -1569,10 +1569,11 @@ document.querySelectorAll(".section__scroll--button").forEach(function(button) {
       if (target) {
         const targetTop = target.getBoundingClientRect().top;
         const offset = document.querySelector('.header').offsetHeight; // Adjust this to match your header height        
-        window.scrollTo({
-          top: targetTop - offset,
-          behavior: "smooth"
-        });
+        // window.scrollTo({
+        //   top: targetTop - offset,
+        //   behavior: "smooth"
+        // });
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
         return true;
       }
       return false;
