@@ -1477,6 +1477,40 @@ accordionItems.forEach((accordion) => {
   });
 });
 
+document.addEventListener("DOMContentLoaded", (event) => {
+  // Ensure GSAP and ScrollToPlugin are loaded
+  if (typeof gsap === "undefined" || !gsap.plugins.ScrollToPlugin) {
+    console.error("GSAP or ScrollToPlugin not loaded!");
+    return;
+  }
+
+  // Dynamically get the header height
+  const HEADER_HEIGHT = document.querySelector('.header')?.offsetHeight ?? 0; 
+
+  // Event listener for each scroll button
+  document.querySelectorAll(".scroll__button").forEach(function (button) {
+    button.addEventListener("click", function () {
+      // Find target section
+      const target = document.querySelector(".Designer_Program_Main");
+      if (target) {
+        console.log("Scrolling to section with GSAP...");
+        
+        // Using GSAP ScrollToPlugin
+        gsap.to(window, {
+          scrollTo: {
+            y: target, // Scroll to the target element
+            offsetY: HEADER_HEIGHT, // Account for header height
+          },
+          duration: 1, // Duration of animation
+          ease: "power2.out", // Smooth easing animation
+        });
+      } else {
+        console.error("Target section not found!");
+      }
+    });
+  });
+});
+
 // document.addEventListener("DOMContentLoaded", (event) => {
 //   const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust based on your fixed header height
 //   document.querySelectorAll(".scroll__button").forEach(function(button) {
