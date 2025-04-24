@@ -1500,6 +1500,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Use event delegation to handle clicks on buttons dynamically
   document.body.addEventListener("click", (event) => {
     if (event.target.classList.contains("scroll__button")) {
+      console.log('Great');
       const target = document.querySelector(".Designer_Program_Main");
       if (target) {
         const offsetTop = target.offsetTop - HEADER_HEIGHT;
