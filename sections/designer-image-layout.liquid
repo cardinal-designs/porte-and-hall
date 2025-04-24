@@ -7,7 +7,7 @@
       <div class="designer__image--grid">
         {% if section.settings.image_left_top != blank %}
           <div class="designer__image--left-top">
-            {{ section.settings.image_left_top | image_url: width: 1200 | image_tag: width: "100%", alt: section.settings.image_left_top.alt }}
+            <img src="{{ section.settings.image_left_top | image_url: width: 1200 }}" alt="{{ section.settings.image_left_top.alt }}" height="auto" width="auto">
           </div>
         {% endif %}
         {% if section.settings.image_left_bottom != blank %}
