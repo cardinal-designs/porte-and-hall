@@ -1499,7 +1499,6 @@ window.addEventListener("load", () => {
 
   let scrollInProgress = false; // Prevent overlapping scroll actions
 
-  // Attach event listener to all buttons
   document.querySelectorAll(".scroll__button").forEach((button) => {
     button.removeEventListener("click", handleScrollClick); // Ensures no duplicate listeners
     button.addEventListener("click", handleScrollClick);    // Attach listener
@@ -1510,30 +1509,8 @@ window.addEventListener("load", () => {
       console.log("Scroll already in progress. Ignoring this click event.");
       return;
     }
+    console.log('clicked ');
+    document.querySelector(".Designer_Program_Main").scrollIntoView({ behavior: 'smooth' });
 
-    console.log("Scroll button clicked. Starting scroll logic...");
-    scrollInProgress = true; // Set flag to prevent additional clicks
-
-    // Get target to scroll to
-    const target = document.querySelector(".Designer_Program_Main");
-
-    if (target) {
-      console.log("Target element found. Scrolling...");
-
-      // Scroll to the target using scrollIntoView
-      target.scrollIntoView({
-        behavior: "smooth", // Smooth scrolling animation
-        block: "start",     // Align to the top of the viewport
-      });
-
-      // Reset scroll lock after some delay to allow smooth scrolling to complete
-      setTimeout(() => {
-        console.log("Scroll complete. Ready for the next click.");
-        scrollInProgress = false; // Reset the flag for subsequent clicks
-      }, 1000); // Match this timeout to the animation duration
-    } else {
-      console.log("Error: Target element (.Designer_Program_Main) not found!");
-      scrollInProgress = false; // Reset flag if target is not found
-    }
   }
 });
