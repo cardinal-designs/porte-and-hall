@@ -1514,38 +1514,26 @@ window.addEventListener("load", () => {
     console.log("Scroll button clicked. Starting scroll logic...");
     scrollInProgress = true; // Set flag to prevent additional clicks
 
-    // Calculate the target scroll position
-    const HEADER_HEIGHT = document.querySelector('.header')?.offsetHeight || 0;
+    // Get target to scroll to
     const target = document.querySelector(".Designer_Program_Main");
 
     if (target) {
-      const offsetTop = target.offsetTop - HEADER_HEIGHT;
-      console.log("Calculated offsetTop:", offsetTop);
+      console.log("Target element found. Scrolling...");
 
-      // Smoothly scroll to the target element
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth',
+      // Scroll to the target using scrollIntoView
+      target.scrollIntoView({
+        behavior: "smooth", // Smooth scrolling animation
+        block: "start",     // Align to the top of the viewport
       });
 
-      // Wait for the scroll to complete by continuously checking the window's scroll position
-      const checkScrollCompletion = () => {
-        const currentScroll = window.scrollY || document.documentElement.scrollTop;
-
-        // Check if the scroll position is close to the target
-        if (Math.abs(currentScroll - offsetTop) <= 1) {
-          console.log("Scroll complete. Ready for the next click.");
-          scrollInProgress = false; // Reset the flag
-          window.removeEventListener("scroll", checkScrollCompletion); // Stop listening for scroll
-        }
-      };
-
-      // Add an event listener to monitor scrolling
-      window.addEventListener("scroll", checkScrollCompletion);
-
+      // Reset scroll lock after some delay to allow smooth scrolling to complete
+      setTimeout(() => {
+        console.log("Scroll complete. Ready for the next click.");
+        scrollInProgress = false; // Reset the flag for subsequent clicks
+      }, 1000); // Match this timeout to the animation duration
     } else {
       console.log("Error: Target element (.Designer_Program_Main) not found!");
-      scrollInProgress = false; // Reset flag
+      scrollInProgress = false; // Reset flag if target is not found
     }
   }
 });
