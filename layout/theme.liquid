@@ -125,10 +125,11 @@
 
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
     <script src="{{ 'micromodal.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'ScrollToPlugin.min.js' | asset_url }}" defer></script>
     <script src="{{ 'global.js' | asset_url }}" defer></script>
-    <script data-lazy-scr="{{ 'custom.js' | asset_url }}" defer></script>s
+    <script data-lazy-src="{{ 'custom.js' | asset_url }}" defer></script>s
 
-    <script data-lazy-src="{{ 'gsap.min.js' | asset_url }}"></script>
     <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
 
     {%- assign content_for_header = content_for_header | replace: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'" -%}
@@ -227,7 +228,7 @@
     </script>
   </head>
 
-  <body class="{{ page.handle }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
+  <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
     <script>
     if (window.location.pathname == '/collections') {
       window.location.href = '/collections/shop-all'

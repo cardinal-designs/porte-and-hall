@@ -3683,3 +3683,23 @@ iframe#preview-bar-iframe {
 .afterpay-wrapper ~ .afterpay-main-text {
   text-align: center !important;
 }
+
+.template__designer-program main#MainContent {
+  padding-top: 124px;
+}
+
+@media (max-width: 989px) {
+
+  .template__designer-program main#MainContent {
+    padding-top: 66px;
+  }
+  
+}
+
+@media (max-width: 768px) {
+
+  .template__designer-program main#MainContent {
+    padding-top: 66px;
+  }
+  
+}

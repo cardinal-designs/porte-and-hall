@@ -1,9 +1,48 @@
-.Designer_Program_Header h2 {
-  margin-bottom: 50px;
+.Designer_Program_Main {
+  padding: 120px 0;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.Designer_Program_Main::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(0 0 0 / 30%);
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.Designer_Program_Main .Contact_Form {
+  padding: 64px;
+  max-width: 948px;
+  margin: 0 auto;
+  background: #FFFFFF;
+}
+
+.Designer_Program_Header h3 {
+  margin-bottom: 12px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 24px;
+  line-height: 32px;
 }
 
 .Designer_Program_Header {
-  margin-bottom: 100px;
+  margin-bottom: 60px;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Designer_Program_Header p {
+  line-height: 24px;
 }
 
 .form__row-label {
@@ -28,17 +67,13 @@
   letter-spacing: 2px;  
 }
 
-.Checkbox_Wrapper {
-  margin-top: 50px;
-}
-
 .Checkbox_Wrapper .form__checkboxrow {
   flex: 0 0 50%;
-  margin: 0 0 30px;
+  margin: 0 0 27px;
 }
 
 .Checkbox_Wrapper {
-  margin-top: 50px;
+  margin-top: 48px;
   max-width: 570px;
   display: flex;
   flex-wrap: wrap;
@@ -141,12 +176,19 @@ ul.js-error-messages {
   font-family: brandon;
 }
 
-.field__input {
-  padding: 7px 0;  
+.Contact_Form .field__input {
+  padding: 7px 0; 
+  border-radius: 0;
 }
 
 .contact__button .button {
   padding: 18px 84px;
+  font-size: 18px;
+  line-height: 21.6px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 0;
+  margin: 0 auto;
 }
 
 .fan-motif__text {
@@ -170,7 +212,21 @@ ul.js-error-messages {
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
+
+  .Designer_Program_Header h3 {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .Designer_Program_Main {
+    padding: 32px 0;
+  }
+
+  .Designer_Program_Main .page-width {
+    padding: 0 16px;
+  }
+  
   .document__upload * {
     font-size: 14px;
   }
@@ -181,7 +237,11 @@ ul.js-error-messages {
 
   .Checkbox_Wrapper .form__checkboxrow {
     flex: 0 0 100%;
-    margin: 0 0 35px;
+    margin: 0 0 38px;
+  }
+
+  .Checkbox_Wrapper .form__checkboxrow:last-child {
+    margin-bottom: 19px; 
   }
 
   .contact__fields.Instagram_Field {
@@ -193,15 +253,34 @@ ul.js-error-messages {
   }
 
   .Designer_Program_Header {
-    margin-bottom: 50px;
+    margin-bottom: 34px;
   }
 
   .contact .field.How_Did_You_Hear {
-    margin-bottom: 10px;
+    margin-bottom: 0;
+  }
+
+  .contact__button {
+    margin-top: 20px;
   }
 
   .contact__button .button {
     padding: 14px 19px;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .Designer_Program_Main .Contact_Form {
+    padding: 34px 12px;
+  }
+
+  .Designer_Program_Main .contact__fields {
+    grid-column-gap: 38px;
+  }
+
+  .Checkbox_Wrapper {
+    margin-top: 28px;
+    margin-left: 14px; 
   }
   
 }
