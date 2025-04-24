@@ -1495,28 +1495,54 @@ const accordionItems = document.querySelectorAll('.faq__question');
 // });
 
 window.addEventListener("load", () => {
-  const HEADER_HEIGHT = document.querySelector('.header')?.offsetHeight || 0;
+  console.log('Window loaded. Adding event listeners to buttons.');
 
-  document.body.addEventListener("click", (event) => {
-    if (event.target.classList.contains("scroll__button")) {
-      console.log('Dynamic scroll button clicked.');
+  // Using a flag to prevent duplicate parallel scroll actions
+  let scrollInProgress = false;
 
-      const target = document.querySelector(".Designer_Program_Main");
-      if (target) {
-        console.log('Target element found. Scrolling now...');
+  // Attach event listener to all buttons
+  document.querySelectorAll(".scroll__button").forEach((button) => {
+    // Remove any pre-existing event listeners (good for debugging edge cases)
+    button.removeEventListener("click", handleScrollClick);
 
-        // Using requestAnimationFrame to ensure proper layout calculations
-        requestAnimationFrame(() => {
-          const offsetTop = target.offsetTop - HEADER_HEIGHT;
-          console.log(`Calculated offsetTop: ${offsetTop}`);
-          window.scrollTo({
-            top: offsetTop,
-            behavior: "smooth",
-          });
-        });
-      } else {
-        console.log('Error: Target element (.Designer_Program_Main) not found!');
-      }
-    }
+    // Attach the event listener properly
+    button.addEventListener("click", handleScrollClick);
   });
+
+  function handleScrollClick(event) {
+    // Prevent other clicks when one scroll is in progress
+    if (scrollInProgress) {
+      console.log("Scroll already in progress. Ignoring this click event.");
+      return;
+    }
+
+    console.log("Scroll button clicked. Starting scroll logic...");
+    scrollInProgress = true; // Set flag to prevent additional clicks
+
+    // Perform dynamic layout calculations
+    const HEADER_HEIGHT = document.querySelector(".header")?.offsetHeight || 0;
+    const target = document.querySelector(".Designer_Program_Main");
+
+    if (target) {
+      console.log("Target element found. Calculating scroll position...");
+      const offsetTop = target.offsetTop - HEADER_HEIGHT;
+
+      console.log("Calculated offsetTop:", offsetTop);
+
+      // Perform scrolling with smooth behavior
+      window.scrollTo({
+        top: offsetTop,
+        behavior: "smooth",
+      });
+
+      // Reset the scroll flag after a short delay (when scroll is completed)
+      setTimeout(() => {
+        scrollInProgress = false;
+        console.log("Scroll complete. Ready for the next click.");
+      }, 1000); // Delay to match scroll duration
+    } else {
+      console.log("Error: Target element (.Designer_Program_Main) not found!");
+      scrollInProgress = false; // Reset flag if target is not found
+    }
+  }
 });
