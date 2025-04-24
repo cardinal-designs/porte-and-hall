@@ -12,7 +12,7 @@
       {% if section.settings.image != blank %}
         <div class="designer__message--image-wrapper">          
           <div class="image__container"> 
-            {{ section.settings.image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
+            {{ section.settings.image | image_url: width: 1200 | image_tag: width: "100%", alt: section.settings.image.alt }}
             <div class="overlay">{{ section.settings.overlay_text }}</div>
           </div>          
         </div>

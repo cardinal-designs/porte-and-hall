@@ -17,7 +17,7 @@
       {% endif %}
       {% if section.settings.signature_image != blank %}
         <div class="signature__image">
-          {{ section.settings.signature_image | image_url: width: 310 | image_tag: width: "100%", loading: "lazy", alt: section.settings.signature_image.alt }}
+          {{ section.settings.signature_image | image_url: width: 310 | image_tag: width: "100%", alt: section.settings.signature_image.alt }}
         </div>
       {% endif %}
     </div>
