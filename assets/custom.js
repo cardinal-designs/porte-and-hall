@@ -1,3 +1,4 @@
+console.log('YES LOADING')
 customElements.define('form-validation',class formValidation extends HTMLElement {
   constructor(params) {
     super();
