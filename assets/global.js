@@ -1494,21 +1494,28 @@ const accordionItems = document.querySelectorAll('.faq__question');
 //   });
 // });
 
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
   const HEADER_HEIGHT = document.querySelector('.header')?.offsetHeight || 0;
 
-  // Use event delegation to handle clicks on buttons dynamically
   document.body.addEventListener("click", (event) => {
     if (event.target.classList.contains("scroll__button")) {
-      console.log('Great');
+      console.log('Dynamic scroll button clicked.');
+
       const target = document.querySelector(".Designer_Program_Main");
       if (target) {
-        const offsetTop = target.offsetTop - HEADER_HEIGHT;
-        // Smooth scroll to the target position
-        window.scrollTo({
-          top: offsetTop,
-          behavior: "smooth",
+        console.log('Target element found. Scrolling now...');
+
+        // Using requestAnimationFrame to ensure proper layout calculations
+        requestAnimationFrame(() => {
+          const offsetTop = target.offsetTop - HEADER_HEIGHT;
+          console.log(`Calculated offsetTop: ${offsetTop}`);
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth",
+          });
         });
+      } else {
+        console.log('Error: Target element (.Designer_Program_Main) not found!');
       }
     }
   });
