@@ -1477,19 +1477,38 @@ const accordionItems = document.querySelectorAll('.faq__question');
     });
   });
 
-document.addEventListener("DOMContentLoaded", (event) => {
-  const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust based on your fixed header height
-  document.querySelectorAll(".scroll__button").forEach(function(button) {
-    button.addEventListener("click", function() {
-      console.log('Clicked');
+// document.addEventListener("DOMContentLoaded", (event) => {
+//   const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust based on your fixed header height
+//   document.querySelectorAll(".scroll__button").forEach(function(button) {
+//     button.addEventListener("click", function() {
+//       console.log('Clicked');
+//       const target = document.querySelector(".Designer_Program_Main");
+//       if (target) {
+//         const offsetTop = target.offsetTop - HEADER_HEIGHT;
+//         window.scrollTo({
+//           top: offsetTop,
+//           behavior: "smooth"
+//         });
+//       }
+//     });
+//   });
+// });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const HEADER_HEIGHT = document.querySelector('.header')?.offsetHeight || 0;
+
+  // Use event delegation to handle clicks on buttons dynamically
+  document.body.addEventListener("click", (event) => {
+    if (event.target.classList.contains("scroll__button")) {
       const target = document.querySelector(".Designer_Program_Main");
       if (target) {
         const offsetTop = target.offsetTop - HEADER_HEIGHT;
+        // Smooth scroll to the target position
         window.scrollTo({
           top: offsetTop,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       }
-    });
+    }
   });
 });
