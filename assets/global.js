@@ -1478,33 +1478,23 @@ accordionItems.forEach((accordion) => {
 });
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  // Ensure GSAP and ScrollToPlugin are loaded
   if (typeof gsap === "undefined" || !gsap.plugins.scrollTo) {
     console.error("GSAP or ScrollToPlugin not loaded!");
     return;
   }
 
-  // Dynamically get the header height
   const HEADER_HEIGHT = document.querySelector('.header')?.offsetHeight ?? 0; 
-
-  // Event listener for each scroll button
   document.querySelectorAll(".scroll__button").forEach(function (button) {
     button.addEventListener("click", function () {
-      // Find target section
       const target = document.querySelector(".Designer_Program_Main");
       if (target) {
-        console.log("Scrolling to section with GSAP...");
-
-        console.log('TAR',target);
-        console.log('HEADER_HEIGHT',HEADER_HEIGHT);
-        // Using GSAP ScrollToPlugin
         gsap.to(window, {
           scrollTo: {
-            y: target, // Scroll to the target element
-            offsetY: HEADER_HEIGHT, // Account for header height
+            y: target, 
+            offsetY: HEADER_HEIGHT,
           },
-          duration: 1, // Duration of animation
-          ease: "power2.out", // Smooth easing animation
+          duration: 1,
+          ease: "power2.out",
         });
       } else {
         console.error("Target section not found!");
@@ -1513,40 +1503,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 });
 
-// document.addEventListener("DOMContentLoaded", (event) => {
-//   const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust based on your fixed header height
-//   document.querySelectorAll(".scroll__button").forEach(function(button) {
-//     button.addEventListener("click", function() {
-//       console.log('Clicked');
-//       const target = document.querySelector(".Designer_Program_Main");
-//       if (target) {
-//         const offsetTop = target.offsetTop - HEADER_HEIGHT;
-//         window.scrollTo({
-//           top: offsetTop,
-//           behavior: "smooth"
-//         });
-//       }
-//     });
-//   });
-// });
-
-// window.addEventListener("load", () => {
-//   console.log('Window loaded. Adding event listeners to buttons.');
-
-//   let scrollInProgress = false; // Prevent overlapping scroll actions
-
-//   document.querySelectorAll(".scroll__button").forEach((button) => {
-//     button.removeEventListener("click", handleScrollClick); // Ensures no duplicate listeners
-//     button.addEventListener("click", handleScrollClick);    // Attach listener
-//   });
-
-//   function handleScrollClick(event) {
-//     if (scrollInProgress) {
-//       console.log("Scroll already in progress. Ignoring this click event.");
-//       return;
-//     }
-//     console.log('clicked ');
-//     document.querySelector(".Designer_Program_Main").scrollIntoView({ behavior: 'smooth' });
-
-//   }
-// });
+/* document.addEventListener("DOMContentLoaded", (event) => {
+  const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust based on your fixed header height
+  document.querySelectorAll(".scroll__button").forEach(function(button) {
+    button.addEventListener("click", function() {
+      console.log('Clicked');
+      const target = document.querySelector(".Designer_Program_Main");
+      if (target) {
+        const offsetTop = target.offsetTop - HEADER_HEIGHT;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth"
+        });
+      }
+    });
+  });
+}); */
