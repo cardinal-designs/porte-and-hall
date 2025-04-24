@@ -1462,20 +1462,20 @@ var ProductFeature = class extends HTMLElement {
 customElements.define('product-feature', ProductFeature);
 
 const accordionItems = document.querySelectorAll('.faq__question');
-  accordionItems.forEach((accordion) => {
-    accordion.addEventListener('click', (event) => {
-      const parent = accordion.parentElement;
-      const content = accordion.nextElementSibling;
+accordionItems.forEach((accordion) => {
+  accordion.addEventListener('click', (event) => {
+    const parent = accordion.parentElement;
+    const content = accordion.nextElementSibling;
 
-      if (!parent.classList.contains('active')) {
-        parent.classList.add('active');
-        slideDown(content, 400);
-      } else {
-        parent.classList.remove('active');
-        slideUp(content, 400);
-      }
-    });
+    if (!parent.classList.contains('active')) {
+      parent.classList.add('active');
+      slideDown(content, 400);
+    } else {
+      parent.classList.remove('active');
+      slideUp(content, 400);
+    }
   });
+});
 
 // document.addEventListener("DOMContentLoaded", (event) => {
 //   const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust based on your fixed header height
@@ -1494,23 +1494,23 @@ const accordionItems = document.querySelectorAll('.faq__question');
 //   });
 // });
 
-window.addEventListener("load", () => {
-  console.log('Window loaded. Adding event listeners to buttons.');
+// window.addEventListener("load", () => {
+//   console.log('Window loaded. Adding event listeners to buttons.');
 
-  let scrollInProgress = false; // Prevent overlapping scroll actions
+//   let scrollInProgress = false; // Prevent overlapping scroll actions
 
-  document.querySelectorAll(".scroll__button").forEach((button) => {
-    button.removeEventListener("click", handleScrollClick); // Ensures no duplicate listeners
-    button.addEventListener("click", handleScrollClick);    // Attach listener
-  });
+//   document.querySelectorAll(".scroll__button").forEach((button) => {
+//     button.removeEventListener("click", handleScrollClick); // Ensures no duplicate listeners
+//     button.addEventListener("click", handleScrollClick);    // Attach listener
+//   });
 
-  function handleScrollClick(event) {
-    if (scrollInProgress) {
-      console.log("Scroll already in progress. Ignoring this click event.");
-      return;
-    }
-    console.log('clicked ');
-    document.querySelector(".Designer_Program_Main").scrollIntoView({ behavior: 'smooth' });
+//   function handleScrollClick(event) {
+//     if (scrollInProgress) {
+//       console.log("Scroll already in progress. Ignoring this click event.");
+//       return;
+//     }
+//     console.log('clicked ');
+//     document.querySelector(".Designer_Program_Main").scrollIntoView({ behavior: 'smooth' });
 
-  }
-});
+//   }
+// });
