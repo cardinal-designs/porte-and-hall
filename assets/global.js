@@ -1494,7 +1494,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
       const target = document.querySelector(".Designer_Program_Main");
       if (target) {
         console.log("Scrolling to section with GSAP...");
-        
+
+        console.log('TAR',target);
+        console.log('HEADER_HEIGHT',HEADER_HEIGHT);
         // Using GSAP ScrollToPlugin
         gsap.to(window, {
           scrollTo: {
