@@ -1481,6 +1481,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust based on your fixed header height
   document.querySelectorAll(".scroll__button").forEach(function(button) {
     button.addEventListener("click", function() {
+      console.log('Clicked');
       const target = document.querySelector(".Designer_Program_Main");
       if (target) {
         const offsetTop = target.offsetTop - HEADER_HEIGHT;
