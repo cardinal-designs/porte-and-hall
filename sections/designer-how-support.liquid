@@ -32,7 +32,7 @@
               <h2 class="title"><span>{{ section.settings.heading }}</span></h2>
             {% endif %}
             <figure>
-              {{ section.settings.image | image_url: width: 1200 | image_tag: width: "100%", alt: section.settings.image.alt }}
+              <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt }}" height="auto" width="auto">
             </figure>
           </div>
         {% endif %}
