@@ -1497,20 +1497,15 @@ const accordionItems = document.querySelectorAll('.faq__question');
 window.addEventListener("load", () => {
   console.log('Window loaded. Adding event listeners to buttons.');
 
-  // Using a flag to prevent duplicate parallel scroll actions
-  let scrollInProgress = false;
+  let scrollInProgress = false; // Prevent overlapping scroll actions
 
   // Attach event listener to all buttons
   document.querySelectorAll(".scroll__button").forEach((button) => {
-    // Remove any pre-existing event listeners (good for debugging edge cases)
-    button.removeEventListener("click", handleScrollClick);
-
-    // Attach the event listener properly
-    button.addEventListener("click", handleScrollClick);
+    button.removeEventListener("click", handleScrollClick); // Ensures no duplicate listeners
+    button.addEventListener("click", handleScrollClick);    // Attach listener
   });
 
   function handleScrollClick(event) {
-    // Prevent other clicks when one scroll is in progress
     if (scrollInProgress) {
       console.log("Scroll already in progress. Ignoring this click event.");
       return;
@@ -1519,30 +1514,38 @@ window.addEventListener("load", () => {
     console.log("Scroll button clicked. Starting scroll logic...");
     scrollInProgress = true; // Set flag to prevent additional clicks
 
-    // Perform dynamic layout calculations
-    const HEADER_HEIGHT = document.querySelector(".header")?.offsetHeight || 0;
+    // Calculate the target scroll position
+    const HEADER_HEIGHT = document.querySelector('.header')?.offsetHeight || 0;
     const target = document.querySelector(".Designer_Program_Main");
 
     if (target) {
-      console.log("Target element found. Calculating scroll position...");
       const offsetTop = target.offsetTop - HEADER_HEIGHT;
-
       console.log("Calculated offsetTop:", offsetTop);
 
-      // Perform scrolling with smooth behavior
+      // Smoothly scroll to the target element
       window.scrollTo({
         top: offsetTop,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
 
-      // Reset the scroll flag after a short delay (when scroll is completed)
-      setTimeout(() => {
-        scrollInProgress = false;
-        console.log("Scroll complete. Ready for the next click.");
-      }, 1000); // Delay to match scroll duration
+      // Wait for the scroll to complete by continuously checking the window's scroll position
+      const checkScrollCompletion = () => {
+        const currentScroll = window.scrollY || document.documentElement.scrollTop;
+
+        // Check if the scroll position is close to the target
+        if (Math.abs(currentScroll - offsetTop) <= 1) {
+          console.log("Scroll complete. Ready for the next click.");
+          scrollInProgress = false; // Reset the flag
+          window.removeEventListener("scroll", checkScrollCompletion); // Stop listening for scroll
+        }
+      };
+
+      // Add an event listener to monitor scrolling
+      window.addEventListener("scroll", checkScrollCompletion);
+
     } else {
       console.log("Error: Target element (.Designer_Program_Main) not found!");
-      scrollInProgress = false; // Reset flag if target is not found
+      scrollInProgress = false; // Reset flag
     }
   }
 });
