@@ -1479,7 +1479,7 @@ accordionItems.forEach((accordion) => {
 
 document.addEventListener("DOMContentLoaded", (event) => {
   // Ensure GSAP and ScrollToPlugin are loaded
-  if (typeof gsap === "undefined" || !gsap.plugins.ScrollToPlugin) {
+  if (typeof gsap === "undefined" || !gsap.plugins.scrollTo) {
     console.error("GSAP or ScrollToPlugin not loaded!");
     return;
   }
