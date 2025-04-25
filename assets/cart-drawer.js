@@ -23,16 +23,12 @@ class CartDrawer extends HTMLElement {
     this.closeIcon = document.getElementById('cart-drawer__close');
     this.closeIcon.addEventListener('click', this.close.bind(this));
 
-    this.addGiftNoteBtn = document.getElementById('add-gift-note-btn');
-    if (this.addGiftNoteBtn) {
-      this.addGiftNoteBtn.addEventListener('click', this.addGiftWrapToCart.bind(this));
-    }
-    
     this.onBodyClick = this.handleBodyClick.bind(this);
     this.drawer.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
 
     this.pageOverlayElement = document.querySelector('.page-overlay');
     this.giftWrapCheckbox = document.getElementById('add-gift-wrap'); 
+    this.addGiftNoteBtn = document.getElementById('add-gift-note-btn');
     
     this.giftNoteText = document.getElementById('gift-note-text');
     this.closeGiftModal = document.getElementById('close-gift-note');
@@ -223,6 +219,12 @@ class CartDrawer extends HTMLElement {
         document.getElementById('gift-note-modal').classList.remove('is-visible');
       }
     }
+    if(this.addGiftNoteBtn){
+      if (target.matches('#add-gift-note-btn')){
+        this.addGiftWrapToCart();
+      }
+    }
+    
     if (target.classList.contains('page-overlay')) {
       this.close();
       this.pageOverlayElement.classList.remove('is-visible');
