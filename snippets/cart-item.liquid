@@ -1,4 +1,4 @@
-<div class="cart-item">
+<div class="cart-item" data-cart-item-id="{{ item.variant.id }}">
   {% if is_cart %}
     <cart-remove-button id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
       <a
