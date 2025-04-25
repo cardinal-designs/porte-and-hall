@@ -140,7 +140,7 @@ class CartDrawer extends HTMLElement {
     const cartItems = [...this.querySelectorAll('[data-cart-item-id]')];
     for (let i = 0; i < cartItems.length; i++) {
       if (cartItems[i].dataset.cartItemId == giftWrapProductId) {
-        return i + 1; // Shopify line items are 1-indexed
+        return i; // Shopify line items are 1-indexed
       }
     }
     return -1; // Not found
