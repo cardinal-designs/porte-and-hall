@@ -65,6 +65,7 @@ class CartDrawer extends HTMLElement {
   }
 
   onChange(event) {
+    console.log('changes');
     if (event.target.matches('#add-gift-wrap')) {
       this.handleGiftWrapChange(event);
     }else{
