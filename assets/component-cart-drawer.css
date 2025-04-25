@@ -923,5 +923,14 @@ square-placement {
   font-size: 0.8rem;
   color: #666;
   text-align: right;
+  text-transform: uppercase;
   margin-top: -0.5rem;
+}
+
+.gift-wrap-note {
+  font-size: 0.75rem;
+  color: #999;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
