@@ -919,6 +919,7 @@ square-placement {
 
 #add-gift-note-btn {
   background-color: var(--gold);
+  color: #fff;
   text-align: center;
   cursor: pointer;
   font-family: brandon;
@@ -927,7 +928,7 @@ square-placement {
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 2px;
-  padding: 5px 10px;
+  padding: 16px 50px;
 }
 .char-count {
   font-size: 0.8rem;
