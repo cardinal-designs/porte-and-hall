@@ -31,6 +31,7 @@
             </div>
             <div class="cart-drawer__footer">
 
+            {{ section.settings.enable_gift_note }} -- {{ porter_product_found }}
               {% if section.settings.enable_gift_note and porter_product_found %}
                 {% if porter_product_found %}
                   {% assign product = all_products[section.settings.gift_note_product] %}
