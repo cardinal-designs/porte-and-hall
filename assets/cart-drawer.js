@@ -28,7 +28,6 @@ class CartDrawer extends HTMLElement {
 
     this.pageOverlayElement = document.querySelector('.page-overlay');
     this.giftWrapCheckbox = document.getElementById('add-gift-wrap'); 
-    this.giftNoteModal = document.getElementById('gift-note-modal');
     this.addGiftNoteBtn = document.getElementById('add-gift-note-btn');
     this.giftNoteText = document.getElementById('gift-note-text');
     
@@ -74,6 +73,7 @@ class CartDrawer extends HTMLElement {
   handleGiftWrapChange(event) {
     if (event.target.checked) {
       console.log('IF',this.giftNoteModal);
+      this.giftNoteModal = document.getElementById('gift-note-modal');
       this.giftNoteModal.style.display = 'block';
     } else {
       console.log('else');
