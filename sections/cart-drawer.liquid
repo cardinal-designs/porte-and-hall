@@ -39,7 +39,6 @@
                       <input 
                         type="checkbox" 
                         id="add-gift-wrap" 
-                        data-variant-id="{{ product.first_available_variant.id }}"
                       /> 
                       Add Gift Wrap +$5
                     </label>
@@ -47,7 +46,7 @@
                 {% endif %}
                 <div id="gift-note-modal" style="display: none">
                   <div class="gift-note-content">
-                    <textarea id="gift-note-text" placeholder="Write your note here..."></textarea>
+                    <textarea id="gift-note-text" placeholder="Write your note here..." data-variant-id="{{ product.first_available_variant.id }}"></textarea>
                     <button id="add-gift-note-btn">Add to Cart</button>
                   </div>
                 </div>
