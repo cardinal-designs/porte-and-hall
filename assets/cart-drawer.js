@@ -47,7 +47,6 @@ class CartDrawer extends HTMLElement {
       this.addGiftNoteBtn.addEventListener('click', this.addGiftWrapToCart.bind(this));
     }
     this.addEventListener('input', (event) => {
-      console.log('Working');
       if (event.target && event.target.id === 'gift-note-text') {
         this.updateCharCount(event.target);
       }
@@ -55,12 +54,9 @@ class CartDrawer extends HTMLElement {
   }
   updateCharCount(textarea) {
     const currentLength = textarea.value.length;
-    console.log('currentLength',currentLength);
     const maxAttr = textarea.getAttribute('maxlength');
-    console.log('maxAttr',maxAttr);
     const maxLength = maxAttr ? parseInt(maxAttr, 10) : 250;
     const remainingChars = maxLength - currentLength;
-    console.log('remainingChars',remainingChars);
     const charCountElement = document.querySelector('.char-count span');
     charCountElement.textContent = `${remainingChars}`;
   }
