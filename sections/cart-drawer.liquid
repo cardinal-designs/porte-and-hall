@@ -38,7 +38,6 @@
 
               {% if section.settings.enable_gift_note and porter_product_found %}
                 {% if porter_product_found %}
-                  
                   <div id="gift-wrap-option">
                     <label>
                       <input 
@@ -61,7 +60,7 @@
                     id="gift-note-text" 
                     placeholder="ADD A PERSONAL NOTE" 
                     maxlength="250"
-                    data-variant-id="{{ product.first_available_variant.id }}"
+                    data-variant-id="{{ gift_wrap_product.first_available_variant.id }}"
                   ></textarea>
                   
                   <div class="char-count"><span>250</span> CHARACTERS LEFT</div>
