@@ -100,7 +100,6 @@ class CartDrawer extends HTMLElement {
     const variantId = this.giftNoteText.getAttribute('data-variant-id');
 
     console.log('variantId',variantId);
-    // Add the gift wrap product and note to the cart
     fetch('/cart/add.js', {
       method: 'POST',
       headers: {
@@ -109,11 +108,13 @@ class CartDrawer extends HTMLElement {
       body: JSON.stringify({
         items: [
           {
-            id: variantId, // Replace with your gift wrap product variant ID
+            id: variantId,
             quantity: 1,
+            properties: {
+              'Note': giftNoteValue
+            }
           },
-        ],
-        note: giftNoteValue, // Save the note for the order
+        ]
       }),
     })
       .then((response) => {
@@ -121,7 +122,7 @@ class CartDrawer extends HTMLElement {
         return response.json();
       })
       .then(() => {
-        updateMainCart(); // Reload the cart drawer to reflect the gift wrap addition
+        updateMainCart();
       })
       .catch((error) => console.error(error));
   }
@@ -129,8 +130,7 @@ class CartDrawer extends HTMLElement {
   removeGiftWrapFromCart() {
     const lineIndex = this.findGiftWrapLineItemIndex();
     if (lineIndex > -1) {
-      // Remove the gift wrap product from the cart
-      this.updateQuantity(lineIndex, 0, null); // Set quantity to 0 to remove.
+      this.updateQuantity(lineIndex, 0, null);
     }
   }
 
