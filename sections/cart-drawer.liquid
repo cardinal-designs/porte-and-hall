@@ -63,7 +63,7 @@
                     
                     <div class="char-count"><span>250</span> CHARACTERS LEFT</div>
                 
-                    <a id="add-gift-note-btn">ADD NOW</a>
+                    <a id="add-gift-note-btn">{{ section.settings.note_button_text }}</a>
                     
                     <p class="gift-wrap-note">Gift wrapping only available on eligible orders.</p>
                   </div>
@@ -156,6 +156,12 @@
       "default": "Add Gift Wrap +[price]",
       "info": "Use [price] for dynamic price"
     },
+    {
+      "type": "text",
+      "id": "note_button_text",
+      "label": "Button text",
+      "default": "ADD NOW"
+    }
   ]
 }
 {% endschema %}
