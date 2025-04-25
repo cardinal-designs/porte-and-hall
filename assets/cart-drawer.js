@@ -215,7 +215,8 @@ class CartDrawer extends HTMLElement {
     console.log('bodyclicked',target);
     if (this.closeGiftModal) {
       console.log('found',target,this.closeGiftModal);
-      if (target.matches('#close-gift-note') || document.getElementById('close-gift-note').contains(target)){
+    let giftCloseBtn = document.getElementById('close-gift-note');
+    if (target.matches('#close-gift-note') || (giftCloseBtn && giftCloseBtn.contains(target))) {
         if (document.getElementById('add-gift-wrap')) {
           document.getElementById('add-gift-wrap').checked = false;
         }
