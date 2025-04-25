@@ -13,7 +13,9 @@
         <div class="designer__message--image-wrapper">          
           <div class="image__container"> 
             <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt  }}" height="auto" width="auto">
-            <div class="overlay">{{ section.settings.overlay_text }}</div>
+            {% if section.settings.overlay_text != blank %}
+              <div class="overlay">{{ section.settings.overlay_text }}</div>
+            {% endif %}
           </div>          
         </div>
       {% endif %}
