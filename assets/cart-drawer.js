@@ -38,6 +38,10 @@ class CartDrawer extends HTMLElement {
     }, 300);
 
     this.addEventListener('change', this.debouncedOnChange.bind(this));
+
+    if (this.giftWrapCheckbox) {
+      this.giftWrapCheckbox.addEventListener('change', this.handleGiftWrapChange.bind(this));
+    }
   }
 
   open() {
