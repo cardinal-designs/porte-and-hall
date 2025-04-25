@@ -30,6 +30,7 @@ class CartDrawer extends HTMLElement {
     this.giftWrapCheckbox = document.getElementById('add-gift-wrap'); 
     this.giftNoteModal = document.getElementById('gift-note-modal');
     this.addGiftNoteBtn = document.getElementById('add-gift-note-btn');
+    this.giftNoteText = document.getElementById('gift-note-text');
     
     // Functionality
     this.currentItemCount = Array.from(this.querySelectorAll('[name="updates[]"]'))
@@ -80,8 +81,7 @@ class CartDrawer extends HTMLElement {
   }
 
   addGiftWrapToCart() {
-    const giftNoteText = document.getElementById('gift-note-text');
-    const giftNoteValue = giftNoteText ? giftNoteText.value : '';
+    const giftNoteValue = this.giftNoteText ? this.giftNoteText.value : '';
     const variantId = giftNoteText.getAttribute('data-variant-id');
 
     // Add the gift wrap product and note to the cart
@@ -119,8 +119,9 @@ class CartDrawer extends HTMLElement {
   }
 
   findGiftWrapLineItemIndex() {
-    // Finds the line index of the gift wrap product in the cart
-    const giftWrapProductId = variantId; // Replace with your gift wrap product variant ID
+    const giftNoteValue = this.giftNoteText ? this.giftNoteText.value : '';
+    const variantId = giftNoteText.getAttribute('data-variant-id');
+    const giftWrapProductId = variantId;
     const cartItems = [...this.querySelectorAll('[data-cart-item-id]')];
     for (let i = 0; i < cartItems.length; i++) {
       if (cartItems[i].dataset.cartItemId == giftWrapProductId) {
