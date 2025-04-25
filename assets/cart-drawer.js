@@ -32,9 +32,6 @@ class CartDrawer extends HTMLElement {
     this.addGiftNoteBtn = document.getElementById('add-gift-note-btn');
     this.giftNoteText = document.getElementById('gift-note-text');
     this.closeGiftModal = document.getElementById('close-gift-note');
-    this.charCountElement = document.querySelector('.char-count span');
-    this.maxLength = this.giftNoteText.getAttribute('maxlength');
-
     
     // Functionality
     this.currentItemCount = Array.from(this.querySelectorAll('[name="updates[]"]'))
@@ -52,16 +49,17 @@ class CartDrawer extends HTMLElement {
     this.addEventListener('input', (event) => {
       console.log('Working');
       if (event.target && event.target.id === 'gift-note-text') {
-        this.updateCharCount();
+        this.updateCharCount(event.target);
       }
     });
   }
-  updateCharCount() {
-    const currentLength = this.giftNoteText.value.length;
+  updateCharCount(textarea) {
+    const currentLength = textarea.value.length;
     console.log('currentLength',currentLength);
-    const remainingChars = this.maxLength - this.currentLength;
+    const remainingChars = textarea.getAttribute('maxlength') - this.currentLength;
     console.log('remainingChars',remainingChars);
-    this.charCountElement.textContent = `${remainingChars}`;
+    const charCountElement = document.querySelector('.char-count span');
+    charCountElement.textContent = `${remainingChars}`;
   }
 
   open() {
