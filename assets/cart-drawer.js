@@ -122,7 +122,7 @@ class CartDrawer extends HTMLElement {
         return response.json();
       })
       .then(() => {
-        // updateMainCart();
+        
       })
       .catch((error) => console.error(error));
   }
