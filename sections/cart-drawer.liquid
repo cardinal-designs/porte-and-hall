@@ -44,7 +44,8 @@
                         id="add-gift-wrap" 
                         {% if gift_wrap_product_found %}checked{% endif %}
                       /> 
-                      {{ section.settings.checkbox_label_text | replace: '[price]', gift_wrap_product.first_available_variant.price | money }}
+                      {% assign gift_note_price = gift_wrap_product.first_available_variant.price | money %}
+                      {{ section.settings.checkbox_label_text | replace: '[price]', gift_note_price }}
                     </label>
                   </div>
                 <div id="gift-note-modal">
