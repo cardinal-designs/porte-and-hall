@@ -200,7 +200,7 @@ class CartDrawer extends HTMLElement {
     console.log('bodyclicked');
     if (this.closeGiftModal) {
       console.log('found',target,this.closeGiftModal);
-      if (target === this.closeGiftModal) {
+      if (target.matches('#close-gift-note') || document.getElementById('close-gift-note').contains(target)){
         document.getElementById('gift-note-modal').classList.remove('is-visible');
       }
     }
