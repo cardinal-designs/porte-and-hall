@@ -96,8 +96,9 @@ class CartDrawer extends HTMLElement {
 
   addGiftWrapToCart() {
     console.log('Yeh add');
-    const giftNoteValue = this.giftNoteText ? this.giftNoteText.value : '';
-    const variantId = this.giftNoteText.getAttribute('data-variant-id');
+    const giftNoteField = document.getElementById('gift-note-text');
+    const giftNoteValue = giftNoteField ? giftNoteField.value : '';
+    const variantId = giftNoteValue.getAttribute('data-variant-id');
 
     console.log('variantId',variantId,giftNoteValue);
     fetch('/cart/add.js', {
@@ -222,6 +223,7 @@ class CartDrawer extends HTMLElement {
     }
     console.log('this.addGiftNoteBtn',this.addGiftNoteBtn);
     if(this.addGiftNoteBtn){
+      console.log('AA');
       if (target.matches('#add-gift-note-btn')){
         this.addGiftWrapToCart();
       }
