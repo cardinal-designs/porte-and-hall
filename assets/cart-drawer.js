@@ -28,6 +28,7 @@ class CartDrawer extends HTMLElement {
 
     this.pageOverlayElement = document.querySelector('.page-overlay');
     this.giftWrapCheckbox = document.getElementById('add-gift-wrap'); 
+    this.giftNoteModal = document.getElementById('gift-note-modal');
 
     // Functionality
     this.currentItemCount = Array.from(this.querySelectorAll('[name="updates[]"]'))
@@ -65,6 +66,11 @@ class CartDrawer extends HTMLElement {
   }
 
   handleGiftWrapChange() {
+    if (giftWrapCheckbox.checked) {
+      giftNoteModal.style.display = 'block';
+    } else {
+      giftNoteModal.style.display = 'none';
+    }
     if (this.giftWrapCheckbox.checked) {
       this.addGiftWrapToCart();
     } else {
