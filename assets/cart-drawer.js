@@ -22,13 +22,18 @@ class CartDrawer extends HTMLElement {
 
     this.closeIcon = document.getElementById('cart-drawer__close');
     this.closeIcon.addEventListener('click', this.close.bind(this));
+
+    this.addGiftNoteBtn = document.getElementById('add-gift-note-btn');
+    if (this.addGiftNoteBtn) {
+      this.addGiftNoteBtn.addEventListener('click', this.addGiftWrapToCart.bind(this));
+    }
     
     this.onBodyClick = this.handleBodyClick.bind(this);
     this.drawer.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
 
     this.pageOverlayElement = document.querySelector('.page-overlay');
     this.giftWrapCheckbox = document.getElementById('add-gift-wrap'); 
-    this.addGiftNoteBtn = document.getElementById('add-gift-note-btn');
+    
     this.giftNoteText = document.getElementById('gift-note-text');
     this.closeGiftModal = document.getElementById('close-gift-note');
     
@@ -42,9 +47,6 @@ class CartDrawer extends HTMLElement {
 
     this.addEventListener('change', this.debouncedOnChange.bind(this));
 
-    if (this.addGiftNoteBtn) {
-      this.addGiftNoteBtn.addEventListener('click', this.addGiftWrapToCart.bind(this));
-    }
     this.addEventListener('input', (event) => {
       if (event.target && event.target.id === 'gift-note-text') {
         this.updateCharCount(event.target);
