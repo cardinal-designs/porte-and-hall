@@ -73,7 +73,6 @@ class CartDrawer extends HTMLElement {
   }
 
   onChange(event) {
-    console.log('changes');
     if (event.target.matches('#add-gift-wrap')) {
       this.handleGiftWrapChange(event);
     }else if(event.target.dataset?.index){
@@ -83,23 +82,18 @@ class CartDrawer extends HTMLElement {
 
   handleGiftWrapChange(event) {
     if (event.target.checked) {
-      console.log('IF',this.giftNoteModal);
       const giftNoteModal = document.getElementById('gift-note-modal');
       giftNoteModal.classList.add('is-visible');
     } else {
-      console.log('else');
       this.removeGiftWrapFromCart();
     }
   }
 
   addGiftWrapToCart() {
-    console.log('Yeh add');
     let giftNoteField = document.getElementById('gift-note-text');
     let giftNoteValue = giftNoteField ? giftNoteField.value : '';
-    console.log('giftNoteValue',giftNoteValue,giftNoteField);
     let variantId = giftNoteField.getAttribute('data-variant-id');
 
-    console.log('variantId',variantId,giftNoteValue);
     fetch('/cart/add.js', {
       method: 'POST',
       headers: {
@@ -211,7 +205,6 @@ class CartDrawer extends HTMLElement {
 
   handleBodyClick(evt) {
     const target = evt.target;
-    console.log('bodyclicked',target);
     let closeGiftModal = document.getElementById('close-gift-note');
     if (closeGiftModal) {
       const giftCloseBtn = document.getElementById('close-gift-note');
