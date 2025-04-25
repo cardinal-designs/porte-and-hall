@@ -18,7 +18,7 @@
             <div class="cart-drawer__items" id="cart-drawer-items">
               {% assign porter_product_found = false %}
               {% for item in cart.items %}
-                {% if item.product.product_type == 'Porter' %}
+                {% if item.product.product_type == 'Insider Doormat' %}
                   {% assign porter_product_found = true %}
                 {% endif %}
                 {% render 'cart-item' item: item, idx: forloop.index %}
