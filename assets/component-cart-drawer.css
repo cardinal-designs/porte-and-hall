@@ -872,10 +872,24 @@ square-placement {
 }
 
 #gift-note-modal {
-  display: none;
-  margin-top: 1.5rem;
-  border-top: 1px solid #eaeaea;
-  padding-top: 1.5rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+#gift-note-modal.is-visible {
+  transform: translateX(0);
 }
 
 .gift-note-content {
