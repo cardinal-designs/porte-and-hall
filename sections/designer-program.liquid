@@ -12,6 +12,18 @@
           <div class="body">{{ section.settings.top_text }}</div>
         {% endif %}
       </div>
+
+      <div class="Designer_Program_Form">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              {% render block %}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+
+      
+      {% comment %}
       <form-validation>
         <div class="program__form designer--form">
         <div class="form__wrapper">
@@ -153,7 +165,7 @@
 
               </div>
 
-              {% comment %}
+              
               <div class="document__upload">
                 <label for="tax_exempt">Do you want to be tax exempt in a certain state? (Yes or No)</label><br>
                 <input type="radio" id="yes" name="contact[tax_exempt]" value="yes" onclick="toggleDocumentUpload()"> 
@@ -166,7 +178,6 @@
                     <input type="file" id="document" name="contact[document]">
                 </div>
               </div>
-              {% endcomment %}
 
               <div class="contact__fields Instagram_Field">
                 <div class="form__row">
@@ -272,6 +283,7 @@
         <ul class="js-error-messages"></ul>
       </div>
       </form-validation>
+      {% endcomment %}
     </div>
   </div>
 </div>
@@ -320,6 +332,11 @@
         "type" : "url",
         "id" : "thankyou_link",
         "label" : "Link Submit"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "@app"
       }
     ],
     "presets": [
