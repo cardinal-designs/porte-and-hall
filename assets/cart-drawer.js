@@ -61,6 +61,7 @@ class CartDrawer extends HTMLElement {
   }
 
   onChange(event) {
+    console.log('TAR',event.target)
     if (event.target === this.giftWrapCheckbox) {
       return;
     }
