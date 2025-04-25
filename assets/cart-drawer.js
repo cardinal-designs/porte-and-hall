@@ -210,7 +210,7 @@ class CartDrawer extends HTMLElement {
 
   handleBodyClick(evt) {
     const target = evt.target;
-    console.log('bodyclicked');
+    console.log('bodyclicked',target);
     if (this.closeGiftModal) {
       console.log('found',target,this.closeGiftModal);
       if (target.matches('#close-gift-note') || document.getElementById('close-gift-note').contains(target)){
