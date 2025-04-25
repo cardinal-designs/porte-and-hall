@@ -75,6 +75,56 @@ class CartDrawer extends HTMLElement {
     }
   }
 
+  addGiftWrapToCart() {
+    const giftNoteText = document.getElementById('gift-note-text'); // Adjust ID based on your modal textarea.
+    const giftNoteValue = giftNoteText ? giftNoteText.value : '';
+
+    // Add the gift wrap product and note to the cart
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        items: [
+          {
+            id: 7764867285055, // Replace with your gift wrap product variant ID
+            quantity: 1,
+          },
+        ],
+        note: giftNoteValue, // Save the note for the order
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error('Failed to add gift wrap product');
+        return response.json();
+      })
+      .then(() => {
+        updateMainCart(); // Reload the cart drawer to reflect the gift wrap addition
+      })
+      .catch((error) => console.error(error));
+  }
+
+  removeGiftWrapFromCart() {
+    const lineIndex = this.findGiftWrapLineItemIndex();
+    if (lineIndex > -1) {
+      // Remove the gift wrap product from the cart
+      this.updateQuantity(lineIndex, 0, null); // Set quantity to 0 to remove.
+    }
+  }
+
+  findGiftWrapLineItemIndex() {
+    // Finds the line index of the gift wrap product in the cart
+    const giftWrapProductId = 7764867285055; // Replace with your gift wrap product variant ID
+    const cartItems = [...this.querySelectorAll('[data-cart-item-id]')];
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].dataset.cartItemId == giftWrapProductId) {
+        return i + 1; // Shopify line items are 1-indexed
+      }
+    }
+    return -1; // Not found
+  }
+
   updateQuantity(line, quantity, name) {
     this.enableLoading(line);
 
