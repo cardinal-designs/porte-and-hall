@@ -80,8 +80,9 @@ class CartDrawer extends HTMLElement {
   }
 
   addGiftWrapToCart() {
-    const giftNoteText = document.getElementById('gift-note-text'); // Adjust ID based on your modal textarea.
+    const giftNoteText = document.getElementById('gift-note-text');
     const giftNoteValue = giftNoteText ? giftNoteText.value : '';
+    const variantId = giftNoteText.getAttribute('data-variant-id');
 
     // Add the gift wrap product and note to the cart
     fetch('/cart/add.js', {
@@ -92,7 +93,7 @@ class CartDrawer extends HTMLElement {
       body: JSON.stringify({
         items: [
           {
-            id: 7764867285055, // Replace with your gift wrap product variant ID
+            id: variantId, // Replace with your gift wrap product variant ID
             quantity: 1,
           },
         ],
@@ -119,7 +120,7 @@ class CartDrawer extends HTMLElement {
 
   findGiftWrapLineItemIndex() {
     // Finds the line index of the gift wrap product in the cart
-    const giftWrapProductId = 7764867285055; // Replace with your gift wrap product variant ID
+    const giftWrapProductId = variantId; // Replace with your gift wrap product variant ID
     const cartItems = [...this.querySelectorAll('[data-cart-item-id]')];
     for (let i = 0; i < cartItems.length; i++) {
       if (cartItems[i].dataset.cartItemId == giftWrapProductId) {
