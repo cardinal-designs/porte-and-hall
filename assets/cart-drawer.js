@@ -72,9 +72,12 @@ class CartDrawer extends HTMLElement {
   }
 
   handleGiftWrapChange() {
+    console.log('this.giftWrapCheckbox.checked',this.giftWrapCheckbox.checked);
     if (this.giftWrapCheckbox.checked) {
+      console.log('IF');
       this.giftNoteModal.style.display = 'block';
     } else {
+      console.log('else');
       this.removeGiftWrapFromCart();
       // this.giftNoteModal.style.display = 'none';
     }
