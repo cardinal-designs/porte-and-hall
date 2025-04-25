@@ -17,9 +17,14 @@
           {% else %}
             <div class="cart-drawer__items" id="cart-drawer-items">
               {% assign porter_product_found = false %}
+              {% assign gift_wrap_product_found = false %}
+              {% assign gift_wrap_product = all_products[section.settings.gift_note_product] %}
               {% for item in cart.items %}
                 {% if item.product.type == 'Insider Doormat' %}
                   {% assign porter_product_found = true %}
+                {% endif %}
+                {% if item.product.id == gift_wrap_product.id %}
+                  {% assign gift_wrap_product_found = true %}
                 {% endif %}
                 {% render 'cart-item' item: item, idx: forloop.index %}
               {% endfor %}
@@ -33,7 +38,7 @@
 
               {% if section.settings.enable_gift_note and porter_product_found %}
                 {% if porter_product_found %}
-                  {% assign product = all_products[section.settings.gift_note_product] %}
+                  
                   <div id="gift-wrap-option">
                     <label>
                       <input 
