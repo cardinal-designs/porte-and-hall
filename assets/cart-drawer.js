@@ -84,7 +84,6 @@ class CartDrawer extends HTMLElement {
     } else {
       console.log('else');
       this.removeGiftWrapFromCart();
-      // this.giftNoteModal.style.display = 'none';
     }
   }
 
