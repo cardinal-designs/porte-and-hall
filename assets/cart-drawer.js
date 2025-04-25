@@ -99,7 +99,7 @@ class CartDrawer extends HTMLElement {
     const giftNoteValue = this.giftNoteText ? this.giftNoteText.value : '';
     const variantId = this.giftNoteText.getAttribute('data-variant-id');
 
-    console.log('variantId',variantId);
+    console.log('variantId',variantId,giftNoteValue);
     fetch('/cart/add.js', {
       method: 'POST',
       headers: {
