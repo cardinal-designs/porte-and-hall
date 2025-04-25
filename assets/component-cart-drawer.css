@@ -928,6 +928,7 @@ square-placement {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-align: center;
 }
 
 #add-gift-note-btn:hover {
