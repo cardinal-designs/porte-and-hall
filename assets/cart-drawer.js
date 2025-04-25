@@ -51,7 +51,7 @@ class CartDrawer extends HTMLElement {
     }
     if (this.giftNoteText) {
       console.log('Found');
-      this.giftNoteText.addEventListener('input', updateCharCount);
+      this.giftNoteText.addEventListener('input', this.updateCharCount.bind(this));
     }
   }
   updateCharCount() {
