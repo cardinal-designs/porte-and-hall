@@ -63,7 +63,7 @@
                     
                     <div class="char-count"><span>250</span> CHARACTERS LEFT</div>
                 
-                    <a id="add-gift-note-btn">{{ section.settings.note_button_text }}</a>
+                    {% if section.settings.note_button_text != blank %}<a id="add-gift-note-btn">{{ section.settings.note_button_text }}</a>{% endif %}
                     
                     <p class="gift-wrap-note">Gift wrapping only available on eligible orders.</p>
                   </div>
