@@ -16,7 +16,11 @@
             </div>
           {% else %}
             <div class="cart-drawer__items" id="cart-drawer-items">
+              {% assign porter_product_found = false %}
               {% for item in cart.items %}
+                {% if item.product.product_type == 'Porter' %}
+                  {% assign porter_product_found = true %}
+                {% endif %}
                 {% render 'cart-item' item: item, idx: forloop.index %}
               {% endfor %}
               <div class="cart-drawer__rebuy">
@@ -27,7 +31,20 @@
             </div>
             <div class="cart-drawer__footer">
 
-              
+              {% if settings.enable_gift_note and porter_product_found %}
+                {% if porter_product_found %}
+                  <div id="gift-wrap-option">
+                    <label>
+                      <input 
+                        type="checkbox" 
+                        id="add-gift-wrap" 
+                        data-price="500"  <!-- This is $5 in cents -->
+                      /> 
+                      Add Gift Wrap +$5
+                    </label>
+                  </div>
+                {% endif %}
+              {% endif %}
               
               <div class="cart-drawer__subtotal-wrapper" id="cart-drawer-subtotal">
                 <h4 class="body-sm">Subtotal</h4>
