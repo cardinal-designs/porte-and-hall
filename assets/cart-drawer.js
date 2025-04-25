@@ -72,6 +72,7 @@ class CartDrawer extends HTMLElement {
   handleGiftWrapChange() {
     console.log('fine');
     if (this.giftWrapCheckbox.checked) {
+      console.log('Yes');
       this.addGiftWrapToCart();
     } else {
       this.removeGiftWrapFromCart();
