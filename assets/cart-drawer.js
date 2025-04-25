@@ -71,7 +71,7 @@ class CartDrawer extends HTMLElement {
   }
 
   handleGiftWrapChange() {
-    if (giftWrapCheckbox.checked) {
+    if (this.giftWrapCheckbox.checked) {
       this.giftNoteModal.style.display = 'block';
     } else {
       this.removeGiftWrapFromCart();
