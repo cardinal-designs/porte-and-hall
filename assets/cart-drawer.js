@@ -45,8 +45,9 @@ class CartDrawer extends HTMLElement {
     if (this.addGiftNoteBtn) {
       this.addGiftNoteBtn.addEventListener('click', this.addGiftWrapToCart.bind(this));
     }
-    if(this.closeGiftModal){
-      this.closeGiftModal.addEventListener('click', () => {
+    if (this.closeGiftModal) {
+      this.closeGiftModal.addEventListener('click', (event) => {
+        event.preventDefault();
         document.getElementById('gift-note-modal').classList.remove('is-visible');
       });
     }
