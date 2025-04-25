@@ -65,14 +65,14 @@ class CartDrawer extends HTMLElement {
 
   onChange(event) {
     if (event.target.matches('#add-gift-wrap')) {
-      this.handleGiftWrapChange();
+      this.handleGiftWrapChange(event);
     }else{
       this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
     }
   }
 
   handleGiftWrapChange() {
-    console.log('this.giftWrapCheckbox.checked',this.giftWrapCheckbox.checked);
+    console.log('this.giftWrapCheckbox.checked',this.giftWrapCheckbox.checked,event.target.checked);
     if (this.giftWrapCheckbox.checked) {
       console.log('IF');
       this.giftNoteModal.style.display = 'block';
