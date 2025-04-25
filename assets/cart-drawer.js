@@ -41,7 +41,7 @@ class CartDrawer extends HTMLElement {
 
     this.addEventListener('change', this.debouncedOnChange.bind(this));
 
-    if (addGiftNoteBtn) {
+    if (this.addGiftNoteBtn) {
       this.addGiftNoteBtn.addEventListener('click', this.addGiftWrapToCart());
     }
   }
