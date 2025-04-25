@@ -30,6 +30,7 @@ class CartDrawer extends HTMLElement {
     this.giftWrapCheckbox = document.getElementById('add-gift-wrap'); 
     this.addGiftNoteBtn = document.getElementById('add-gift-note-btn');
     this.giftNoteText = document.getElementById('gift-note-text');
+    this.closeGiftModal = document.getElementById('close-gift-note');
     
     // Functionality
     this.currentItemCount = Array.from(this.querySelectorAll('[name="updates[]"]'))
@@ -43,6 +44,11 @@ class CartDrawer extends HTMLElement {
 
     if (this.addGiftNoteBtn) {
       this.addGiftNoteBtn.addEventListener('click', this.addGiftWrapToCart.bind(this));
+    }
+    if(this.closeGiftModal){
+      this.closeGiftModal.addEventListener('click', () => {
+        document.getElementById('gift-note-modal').style.display = 'none';
+      });
     }
   }
 
