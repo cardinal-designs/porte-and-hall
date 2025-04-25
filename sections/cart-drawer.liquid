@@ -36,7 +36,7 @@
             </div>
             <div class="cart-drawer__footer">
 
-              {% if section.settings.enable_gift_note and porter_product_found and gift_wrap_product != blank %}
+              {% if section.settings.enable_gift_note and porter_product_found and gift_wrap_product != blank and gift_wrap_product_found == false %}
                   <div id="gift-wrap-option">
                     <label>
                       <input 
