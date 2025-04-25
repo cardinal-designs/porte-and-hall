@@ -139,6 +139,17 @@
     },
     "d6ffae26-0ed7-4647-a4f9-a65110b580f2": {
       "type": "designer-program",
+      "blocks": {
+        "powerful_form_builder_app_block_bqQHAA": {
+          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+          "settings": {
+            "shortcode": ""
+          }
+        }
+      },
+      "block_order": [
+        "powerful_form_builder_app_block_bqQHAA"
+      ],
       "settings": {
         "image": "shopify://shop_images/Frame_389.jpg",
         "heading": "Our trade program members receive exclusive pricing, 20% off retail.",
