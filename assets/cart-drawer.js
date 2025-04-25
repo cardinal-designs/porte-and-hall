@@ -96,9 +96,9 @@ class CartDrawer extends HTMLElement {
 
   addGiftWrapToCart() {
     console.log('Yeh add');
-    const giftNoteField = document.getElementById('gift-note-text');
-    const giftNoteValue = giftNoteField ? giftNoteField.value : '';
-    const variantId = giftNoteValue.getAttribute('data-variant-id');
+    let giftNoteField = document.getElementById('gift-note-text');
+    let giftNoteValue = giftNoteField ? giftNoteField.value : '';
+    let variantId = giftNoteValue.getAttribute('data-variant-id');
 
     console.log('variantId',variantId,giftNoteValue);
     fetch('/cart/add.js', {
@@ -136,10 +136,11 @@ class CartDrawer extends HTMLElement {
   }
 
   findGiftWrapLineItemIndex() {
-    const giftNoteValue = this.giftNoteText ? this.giftNoteText.value : '';
-    const variantId = this.giftNoteText.getAttribute('data-variant-id');
-    const giftWrapProductId = variantId;
-    const cartItems = [...this.querySelectorAll('[data-cart-item-id]')];
+    let giftNoteField = document.getElementById('gift-note-text');
+    let giftNoteValue = this.giftNoteText ? this.giftNoteText.value : '';
+    let variantId = this.giftNoteText.getAttribute('data-variant-id');
+    let giftWrapProductId = variantId;
+    let cartItems = [...this.querySelectorAll('[data-cart-item-id]')];
     for (let i = 0; i < cartItems.length; i++) {
       if (cartItems[i].dataset.cartItemId == giftWrapProductId) {
         return i; // Shopify line items are 1-indexed
