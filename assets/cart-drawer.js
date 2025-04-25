@@ -82,7 +82,7 @@ class CartDrawer extends HTMLElement {
 
   addGiftWrapToCart() {
     const giftNoteValue = this.giftNoteText ? this.giftNoteText.value : '';
-    const variantId = giftNoteText.getAttribute('data-variant-id');
+    const variantId = this.giftNoteText.getAttribute('data-variant-id');
 
     // Add the gift wrap product and note to the cart
     fetch('/cart/add.js', {
@@ -120,7 +120,7 @@ class CartDrawer extends HTMLElement {
 
   findGiftWrapLineItemIndex() {
     const giftNoteValue = this.giftNoteText ? this.giftNoteText.value : '';
-    const variantId = giftNoteText.getAttribute('data-variant-id');
+    const variantId = this.giftNoteText.getAttribute('data-variant-id');
     const giftWrapProductId = variantId;
     const cartItems = [...this.querySelectorAll('[data-cart-item-id]')];
     for (let i = 0; i < cartItems.length; i++) {
