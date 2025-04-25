@@ -59,7 +59,7 @@ class CartDrawer extends HTMLElement {
     const maxAttr = textarea.getAttribute('maxlength');
     console.log('maxAttr',maxAttr);
     const maxLength = maxAttr ? parseInt(maxAttr, 10) : 250;
-    const remainingChars = maxLength - this.currentLength;
+    const remainingChars = maxLength - currentLength;
     console.log('remainingChars',remainingChars);
     const charCountElement = document.querySelector('.char-count span');
     charCountElement.textContent = `${remainingChars}`;
