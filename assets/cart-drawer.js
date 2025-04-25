@@ -57,20 +57,15 @@ class CartDrawer extends HTMLElement {
   }
 
   onChange(event) {
-    console.log('TAR',event.target,this.giftWrapCheckbox,event.target === this.giftWrapCheckbox);
     if (event.target.matches('#add-gift-wrap')) {
-      console.log('IF');
       this.handleGiftWrapChange();
     }else{
-      console.log('called');
       this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
     }
   }
 
   handleGiftWrapChange() {
-    console.log('fine');
     if (this.giftWrapCheckbox.checked) {
-      console.log('Yes');
       this.addGiftWrapToCart();
     } else {
       this.removeGiftWrapFromCart();
