@@ -27,6 +27,7 @@ class CartDrawer extends HTMLElement {
     this.drawer.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
 
     this.pageOverlayElement = document.querySelector('.page-overlay');
+    this.giftWrapCheckbox = document.getElementById('add-gift-wrap'); 
 
     // Functionality
     this.currentItemCount = Array.from(this.querySelectorAll('[name="updates[]"]'))
@@ -56,6 +57,9 @@ class CartDrawer extends HTMLElement {
   }
 
   onChange(event) {
+    if (event.target === this.giftWrapCheckbox) {
+      return;
+    }
     this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
   }
 
