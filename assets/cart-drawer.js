@@ -47,7 +47,7 @@ class CartDrawer extends HTMLElement {
     }
     if(this.closeGiftModal){
       this.closeGiftModal.addEventListener('click', () => {
-        document.getElementById('gift-note-modal').style.display = 'none';
+        document.getElementById('gift-note-modal').classList.remove('is-visible');
       });
     }
   }
@@ -80,7 +80,7 @@ class CartDrawer extends HTMLElement {
     if (event.target.checked) {
       console.log('IF',this.giftNoteModal);
       const giftNoteModal = document.getElementById('gift-note-modal');
-      giftNoteModal.style.display = 'block';
+      giftNoteModal.classList.add('is-visible');
     } else {
       console.log('else');
       this.removeGiftWrapFromCart();
