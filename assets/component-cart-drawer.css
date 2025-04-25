@@ -956,8 +956,9 @@ square-placement {
   justify-content: flex-start;
 }
 #gift-wrap-option {
-    text-transform: uppercase;
-    font-size: 16px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--beige);
+  text-transform: uppercase;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--beige);
+  margin: 0 -20px;
 }
