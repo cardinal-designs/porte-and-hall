@@ -918,7 +918,7 @@ square-placement {
 }
 
 #add-gift-note-btn {
-  background-color: #444c39; /* dark olive green */
+  background-color: var(--gold);
   color: white;
   text-transform: uppercase;
   letter-spacing: 1px;
