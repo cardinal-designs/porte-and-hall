@@ -38,10 +38,6 @@ class CartDrawer extends HTMLElement {
     }, 300);
 
     this.addEventListener('change', this.debouncedOnChange.bind(this));
-
-    if (this.giftWrapCheckbox) {
-      this.giftWrapCheckbox.addEventListener('change', this.handleGiftWrapChange.bind(this));
-    }
   }
 
   open() {
@@ -63,10 +59,12 @@ class CartDrawer extends HTMLElement {
   onChange(event) {
     console.log('TAR',event.target);
     if (event.target === this.giftWrapCheckbox) {
-      return;
+      console.log('IF');
+      this.handleGiftWrapChange();
+    }else{
+      console.log('called');
+      this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
     }
-    console.log('called');
-    this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
   }
 
   handleGiftWrapChange() {
