@@ -45,11 +45,22 @@
                   </div>
                 {% endif %}
                 <div id="gift-note-modal" style="display: none">
-                  <div class="gift-note-content">
-                    <textarea id="gift-note-text" placeholder="Write your note here..." data-variant-id="{{ product.first_available_variant.id }}"></textarea>
-                    <button id="add-gift-note-btn">Add to Cart</button>
-                  </div>
+                <div class="gift-note-content">
+                  <textarea 
+                    id="gift-note-text" 
+                    placeholder="ADD A PERSONAL NOTE" 
+                    maxlength="250"
+                    data-variant-id="{{ product.first_available_variant.id }}"
+                  ></textarea>
+                  
+                  <div class="char-count">250 CHARACTERS LEFT</div>
+              
+                  <button id="add-gift-note-btn">ADD NOW</button>
+                  
+                  <p class="gift-wrap-note">Gift wrapping only available on eligible orders.</p>
                 </div>
+              </div>
+
               {% endif %}
               
               <div class="cart-drawer__subtotal-wrapper" id="cart-drawer-subtotal">
