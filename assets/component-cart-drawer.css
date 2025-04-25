@@ -919,16 +919,15 @@ square-placement {
 
 #add-gift-note-btn {
   background-color: var(--gold);
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 1rem;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
   text-align: center;
+  cursor: pointer;
+  font-family: brandon;
+  font-size: 18px;
+  line-height: 120%;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+  padding: 5px 10px;
 }
 
 #add-gift-note-btn:hover {
