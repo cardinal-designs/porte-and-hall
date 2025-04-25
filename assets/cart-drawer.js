@@ -220,6 +220,7 @@ class CartDrawer extends HTMLElement {
         document.getElementById('gift-note-modal').classList.remove('is-visible');
       }
     }
+    console.log('this.addGiftNoteBtn',this.addGiftNoteBtn);
     if(this.addGiftNoteBtn){
       if (target.matches('#add-gift-note-btn')){
         this.addGiftWrapToCart();
