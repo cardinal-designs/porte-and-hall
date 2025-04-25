@@ -137,16 +137,16 @@ class CartDrawer extends HTMLElement {
 
   findGiftWrapLineItemIndex() {
     let giftNoteField = document.getElementById('gift-note-text');
-    let giftNoteValue = this.giftNoteText ? this.giftNoteText.value : '';
-    let variantId = this.giftNoteText.getAttribute('data-variant-id');
+    let giftNoteValue = giftNoteField ? giftNoteField.value : '';
+    let variantId = giftNoteField.getAttribute('data-variant-id');
     let giftWrapProductId = variantId;
     let cartItems = [...this.querySelectorAll('[data-cart-item-id]')];
     for (let i = 0; i < cartItems.length; i++) {
       if (cartItems[i].dataset.cartItemId == giftWrapProductId) {
-        return i; // Shopify line items are 1-indexed
+        return i;
       }
     }
-    return -1; // Not found
+    return -1;
   }
 
   updateQuantity(line, quantity, name) {
