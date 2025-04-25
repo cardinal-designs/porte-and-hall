@@ -30,8 +30,7 @@ class CartDrawer extends HTMLElement {
     this.giftWrapCheckbox = document.getElementById('add-gift-wrap'); 
     this.giftNoteModal = document.getElementById('gift-note-modal');
     this.addGiftNoteBtn = document.getElementById('add-gift-note-btn');
-    this.giftNoteTextarea = document.getElementById('gift-note-text');
-
+    
     // Functionality
     this.currentItemCount = Array.from(this.querySelectorAll('[name="updates[]"]'))
       .reduce((total, quantityInput) => total + parseInt(quantityInput.value), 0);
