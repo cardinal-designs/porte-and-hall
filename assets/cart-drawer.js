@@ -78,7 +78,7 @@ class CartDrawer extends HTMLElement {
     console.log('changes');
     if (event.target.matches('#add-gift-wrap')) {
       this.handleGiftWrapChange(event);
-    }else if(event.target.dataset.index != blank){
+    }else if(event.target.dataset?.index){
       this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
     }
   }
