@@ -50,6 +50,7 @@ class CartDrawer extends HTMLElement {
       this.addGiftNoteBtn.addEventListener('click', this.addGiftWrapToCart.bind(this));
     }
     if (this.giftNoteText) {
+      console.log('Found');
       this.giftNoteText.addEventListener('input', updateCharCount);
     }
   }
