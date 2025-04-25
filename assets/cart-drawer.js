@@ -99,6 +99,7 @@ class CartDrawer extends HTMLElement {
   }
 
   addGiftWrapToCart() {
+    console.log('Yeh add');
     const giftNoteValue = this.giftNoteText ? this.giftNoteText.value : '';
     const variantId = this.giftNoteText.getAttribute('data-variant-id');
 
