@@ -61,14 +61,16 @@ class CartDrawer extends HTMLElement {
   }
 
   onChange(event) {
-    console.log('TAR',event.target)
+    console.log('TAR',event.target);
     if (event.target === this.giftWrapCheckbox) {
       return;
     }
+    console.log('called');
     this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
   }
 
   handleGiftWrapChange() {
+    console.log('fine');
     if (this.giftWrapCheckbox.checked) {
       this.addGiftWrapToCart();
     } else {
