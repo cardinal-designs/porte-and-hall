@@ -71,7 +71,7 @@ class CartDrawer extends HTMLElement {
     }
   }
 
-  handleGiftWrapChange() {
+  handleGiftWrapChange(event) {
     console.log('this.giftWrapCheckbox.checked',this.giftWrapCheckbox.checked,event.target.checked);
     if (this.giftWrapCheckbox.checked) {
       console.log('IF');
