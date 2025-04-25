@@ -207,6 +207,7 @@ class CartDrawer extends HTMLElement {
 
   handleBodyClick(evt) {
     const target = evt.target;
+    console.log('bodyclicked');
     if (target.classList.contains('page-overlay')) {
       this.close();
       this.pageOverlayElement.classList.remove('is-visible');
