@@ -30,7 +30,6 @@ class CartDrawer extends HTMLElement {
     this.giftWrapCheckbox = document.getElementById('add-gift-wrap'); 
     
     this.giftNoteText = document.getElementById('gift-note-text');
-    this.closeGiftModal = document.getElementById('close-gift-note');
     
     // Functionality
     this.currentItemCount = Array.from(this.querySelectorAll('[name="updates[]"]'))
@@ -213,23 +212,24 @@ class CartDrawer extends HTMLElement {
   handleBodyClick(evt) {
     const target = evt.target;
     console.log('bodyclicked',target);
-    if (this.closeGiftModal) {
-      console.log('found',target,this.closeGiftModal);
-    let giftCloseBtn = document.getElementById('close-gift-note');
-    if (target.matches('#close-gift-note') || (giftCloseBtn && giftCloseBtn.contains(target))) {
-        if (document.getElementById('add-gift-wrap')) {
-          document.getElementById('add-gift-wrap').checked = false;
+    let closeGiftModal = document.getElementById('close-gift-note');
+    if (closeGiftModal) {
+      const giftCloseBtn = document.getElementById('close-gift-note');
+      const giftNoteModal = document.getElementById('gift-note-modal');
+      const giftWrapCheckbox = document.getElementById('add-gift-wrap');
+  
+      if (giftCloseBtn && (target.matches('#close-gift-note') || giftCloseBtn.contains(target))) {
+        if (giftWrapCheckbox) {
+          giftWrapCheckbox.checked = false;
         }
-        document.getElementById('gift-note-modal').classList.remove('is-visible');
+        if (giftNoteModal) {
+          giftNoteModal.classList.remove('is-visible');
+        }
       }
     }
-    let addGiftNoteBtn = document.getElementById('add-gift-note-btn');
-    console.log('addGiftNoteBtn',addGiftNoteBtn);
-    if(addGiftNoteBtn){
-      console.log('AA');
-      if (target.matches('#add-gift-note-btn')){
-        this.addGiftWrapToCart();
-      }
+    const addGiftNoteBtn = document.getElementById('add-gift-note-btn');
+    if (addGiftNoteBtn && target.matches('#add-gift-note-btn')) {
+      this.addGiftWrapToCart();
     }
     
     if (target.classList.contains('page-overlay')) {
