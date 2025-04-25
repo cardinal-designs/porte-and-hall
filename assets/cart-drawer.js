@@ -41,6 +41,10 @@ class CartDrawer extends HTMLElement {
     }, 300);
 
     this.addEventListener('change', this.debouncedOnChange.bind(this));
+
+    if (addGiftNoteBtn) {
+      this.addGiftNoteBtn.addEventListener('click', this.addGiftWrapToCart());
+    }
   }
 
   open() {
@@ -71,12 +75,8 @@ class CartDrawer extends HTMLElement {
     if (giftWrapCheckbox.checked) {
       this.giftNoteModal.style.display = 'block';
     } else {
-      this.giftNoteModal.style.display = 'none';
-    }
-    if (this.giftWrapCheckbox.checked) {
-      this.addGiftWrapToCart();
-    } else {
       this.removeGiftWrapFromCart();
+      // this.giftNoteModal.style.display = 'none';
     }
   }
 
