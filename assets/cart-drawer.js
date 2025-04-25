@@ -46,16 +46,6 @@ class CartDrawer extends HTMLElement {
     if (this.addGiftNoteBtn) {
       this.addGiftNoteBtn.addEventListener('click', this.addGiftWrapToCart.bind(this));
     }
-    if (this.closeGiftModal) {
-      console.log('Yes');
-      this.closeGiftModal.addEventListener('click', (event) => {
-        event.preventDefault();
-        event.stopPropagation(); // 🔑 Prevent any higher click handlers
-        console.log('close clicked');
-        document.getElementById('gift-note-modal').classList.remove('is-visible');
-      });
-    }
-
   }
 
   open() {
@@ -208,6 +198,11 @@ class CartDrawer extends HTMLElement {
   handleBodyClick(evt) {
     const target = evt.target;
     console.log('bodyclicked');
+    if (this.closeGiftModal) {
+      if (target === this.closeGiftModal) {
+        document.getElementById('gift-note-modal').classList.remove('is-visible');
+      }
+    }
     if (target.classList.contains('page-overlay')) {
       this.close();
       this.pageOverlayElement.classList.remove('is-visible');
