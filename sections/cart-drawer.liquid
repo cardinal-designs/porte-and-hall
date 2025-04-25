@@ -44,7 +44,7 @@
                         id="add-gift-wrap" 
                         {% if gift_wrap_product_found %}checked{% endif %}
                       /> 
-                      Add Gift Wrap +$5
+                      Add Gift Wrap +{{ gift_wrap_product.price | money }}
                     </label>
                   </div>
                 <div id="gift-note-modal">
