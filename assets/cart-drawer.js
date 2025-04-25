@@ -57,9 +57,10 @@ class CartDrawer extends HTMLElement {
     });
   }
   updateCharCount() {
-    console.log('enter')
     const currentLength = this.giftNoteText.value.length;
+    console.log('currentLength',currentLength);
     const remainingChars = this.maxLength - this.currentLength;
+    console.log('remainingChars',remainingChars);
     this.charCountElement.textContent = `${remainingChars}`;
   }
 
