@@ -123,7 +123,7 @@ class CartDrawer extends HTMLElement {
         return response.json();
       })
       .then(() => {
-        updateMainCart();
+        // updateMainCart();
       })
       .catch((error) => console.error(error));
   }
