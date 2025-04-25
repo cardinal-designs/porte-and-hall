@@ -32,8 +32,8 @@ class CartDrawer extends HTMLElement {
     this.addGiftNoteBtn = document.getElementById('add-gift-note-btn');
     this.giftNoteText = document.getElementById('gift-note-text');
     this.closeGiftModal = document.getElementById('close-gift-note');
-    const charCountElement = document.querySelector('.char-count span');
-    const maxLength = this.giftNoteText.getAttribute('maxlength');
+    this.charCountElement = document.querySelector('.char-count span');
+    this.maxLength = this.giftNoteText.getAttribute('maxlength');
 
     
     // Functionality
@@ -59,7 +59,7 @@ class CartDrawer extends HTMLElement {
   updateCharCount() {
     console.log('enter')
     const currentLength = this.giftNoteText.value.length;
-    const remainingChars = maxLength - currentLength;
+    const remainingChars = this.maxLength - this.currentLength;
     charCountElement.textContent = `${remainingChars}`;
   }
 
