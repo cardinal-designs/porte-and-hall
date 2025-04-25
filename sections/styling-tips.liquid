@@ -13,6 +13,7 @@
     <div class="styling-tips__background">
       <div class="styling-tips__inner styling-tips__layout-right">
         <div class="styling-tips__content-wrapper">
+          {% unless grouped_collection.handle contains 'porter' %}
           <div class="styling-tips__signature-wrapper">
             {% if section.settings.image != blank %}
               <div class="styling-tips__image">
@@ -21,6 +22,7 @@
             {% endif %}
             <div class="signature-svg">{% render 'signature' %}</div>
           </div>
+          {% endunless %}
           {% if section.settings.heading != blank %}
             <h2 class="styling-tips__heading">{{ grouped_collection.metafields.custom.styling_tips_headline }}</h2>
           {% endif %}
