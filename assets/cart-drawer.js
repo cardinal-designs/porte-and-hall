@@ -73,7 +73,7 @@ class CartDrawer extends HTMLElement {
 
   handleGiftWrapChange(event) {
     if (event.target.checked) {
-      console.log('IF');
+      console.log('IF',this.giftNoteModal);
       this.giftNoteModal.style.display = 'block';
     } else {
       console.log('else');
