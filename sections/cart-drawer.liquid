@@ -33,6 +33,7 @@
 
               {% if settings.enable_gift_note and porter_product_found %}
                 {% if porter_product_found %}
+                  {% assign product = all_products[section.settings.gift_note_product] %}
                   <div id="gift-wrap-option">
                     <label>
                       <input 
