@@ -67,6 +67,14 @@ class CartDrawer extends HTMLElement {
     this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
   }
 
+  handleGiftWrapChange() {
+    if (this.giftWrapCheckbox.checked) {
+      this.addGiftWrapToCart();
+    } else {
+      this.removeGiftWrapFromCart();
+    }
+  }
+
   updateQuantity(line, quantity, name) {
     this.enableLoading(line);
 
