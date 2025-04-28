@@ -31,10 +31,12 @@
 }
 
 .section__step--right .box__content .text {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #333;
   margin-bottom: 40px;
+  font-weight: 390;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.2px;
+  color: var(--blue-secondary);
 }
 
 .section__step--right .box__content .text strong {
