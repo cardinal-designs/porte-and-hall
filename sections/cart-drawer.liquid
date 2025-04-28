@@ -51,12 +51,14 @@
                {% capture noteModal %}
                 <div id="gift-note-modal">
                   <div class="gift-note-content">
+                    <div class="gift-note__header"
                      <a id="close-gift-note" aria-label="Close">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 6L9 12L15 18" stroke="#444c39" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                     </a>
-                    <h3 class="">{{ section.settings.main_note_title }}</h3>      
+                    <h3>{{ section.settings.main_note_title }}</h3>      
+                    </div>
                     <textarea 
                       id="gift-note-text" 
                       placeholder="ADD A GIFT NOTE" 
