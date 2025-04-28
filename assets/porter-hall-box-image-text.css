@@ -3,7 +3,7 @@
 }
 
 .section__step--right .page-width {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
@@ -49,7 +49,7 @@
 
 .section__step--right .button {
   display: inline-block;
-  background-color: #d3a852;
+  background-color: var(--gold);
   color: #1a1a1a;
   padding: 12px 24px;
   font-weight: bold;
