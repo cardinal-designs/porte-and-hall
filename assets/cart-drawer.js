@@ -205,6 +205,7 @@ class CartDrawer extends HTMLElement {
   }
 
   handleBodyClick(evt) {
+    console.log('EVE',event.target);
     const target = evt.target;
     let closeGiftModal = document.getElementById('close-gift-note');
     if (closeGiftModal) {
