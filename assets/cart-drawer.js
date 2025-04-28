@@ -73,29 +73,23 @@ class CartDrawer extends HTMLElement {
   }
 
   onChange(event) {
-    console.log('CHange Ev');
-    if(event.target.dataset?.index){
+    console.log('FIRED',event.target);
+    if (event.target.matches('#gift-wrap-option') || event.target.contains('#gift-wrap-option label')) {
+      this.handleGiftWrapChange(event);
+    }else if(event.target.dataset?.index){
       this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
     }
   }
 
-  handleGiftWrapChange(target) {
-    if (!target) return;
-  
-    const giftCheckbox = document.getElementById('add-gift-wrap');
-    console.log('checkbox',giftCheckbox);
-  
-    if (!giftCheckbox) return;
-
-    console.log('checked',giftCheckbox.checked);
-    if (giftCheckbox.checked) {
+  handleGiftWrapChange(event) {
+    if (event.target.checked) {
       const giftNoteModal = document.getElementById('gift-note-modal');
       giftNoteModal.classList.add('is-visible');
     } else {
       this.removeGiftWrapFromCart();
     }
   }
-  
+
   addGiftWrapToCart() {
     let giftNoteField = document.getElementById('gift-note-text');
     let giftNoteValue = giftNoteField ? giftNoteField.value : '';
@@ -211,12 +205,7 @@ class CartDrawer extends HTMLElement {
   }
 
   handleBodyClick(evt) {
-    console.log('Great',evt.target);
     const target = evt.target;
-    if (target.matches('#gift-wrap-option label')) {
-      this.handleGiftWrapChange(target);
-      return;
-    }
     let closeGiftModal = document.getElementById('close-gift-note');
     if (closeGiftModal) {
       const giftCloseBtn = document.getElementById('close-gift-note');
@@ -231,7 +220,6 @@ class CartDrawer extends HTMLElement {
           giftNoteModal.classList.remove('is-visible');
         }
       }
-      return;
     }
     const addGiftNoteBtn = document.getElementById('add-gift-note-btn');
     if (addGiftNoteBtn && target.matches('#add-gift-note-btn')) {
