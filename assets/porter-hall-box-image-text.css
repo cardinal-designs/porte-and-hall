@@ -3,7 +3,7 @@
   padding: 60px 20px;
 }
 
-.step-right-section .container {
+.step-right-section .page-width {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -12,27 +12,26 @@
   background: #fff;
 }
 
-.step-right-section .content {
+.step-right-section .box__content {
   flex: 1 1 50%;
   padding: 40px;
 }
 
-.step-right-section .content h2 {
+.step-right-section .box__content h2 {
   font-size: 32px;
   line-height: 1.2;
   color: #1a1a1a;
   margin-bottom: 20px;
-  font-family: 'Georgia', serif;
 }
 
-.step-right-section .content .text {
+.step-right-section .box__content .text {
   font-size: 16px;
   line-height: 1.6;
   color: #333;
   margin-bottom: 30px;
 }
 
-.step-right-section .content .text strong {
+.step-right-section .box__content .text strong {
   font-weight: 700;
 }
 
@@ -56,11 +55,11 @@
   margin-left: 8px;
 }
 
-.step-right-section .image {
+.step-right-section .box__image {
   flex: 1 1 50%;
 }
 
-.step-right-section .image img {
+.step-right-section .box__image img {
   width: 100%;
   height: auto;
   display: block;
@@ -72,7 +71,7 @@
     flex-direction: column;
   }
   
-  .step-right-section .content, .step-right-section .image {
+  .step-right-section .box__content, .step-right-section .box__image {
     flex: 1 1 100%;
     padding: 20px;
   }
