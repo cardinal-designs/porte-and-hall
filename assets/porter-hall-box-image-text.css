@@ -72,13 +72,14 @@
 
 @media (max-width: 768px) {
   
-  .section__step--right .container {
+  .section__step--right .section__step--right-wrapper {
     flex-direction: column;
+    gap: 24px;
   }
   
   .section__step--right .box__content, .section__step--right .box__image {
-    flex: 1 1 100%;
-    padding: 20px;
+    flex: 0 0 100%;
+    max-width: 100%;
   }
   
 }
