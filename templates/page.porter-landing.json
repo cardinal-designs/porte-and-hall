@@ -19,9 +19,24 @@
         "section_height": "350",
         "bg_color": "#f4f2ee"
       }
+    },
+    "hero_porter_hall_FeqBxV": {
+      "type": "hero-porter-hall",
+      "name": "Hero - Porter Hall",
+      "settings": {
+        "logo_text": "PORTE+HALL",
+        "heading": "Designed to impress. Built to last. Welcome to The Porter.",
+        "subheading": "",
+        "feature_1": "Luxury look & Feel",
+        "feature_2": "For Outdoor Use",
+        "feature_3": "Ultra-Durable Design",
+        "button_text": "Shop Now",
+        "button_link": ""
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "hero_porter_hall_FeqBxV"
   ]
 }
