@@ -1,19 +1,19 @@
 {{ 'porter-hall-box-image-text.css' | asset_url | stylesheet_tag: preload: true }}
 
 <section class="step-right-section">
-  <div class="container">
-    <div class="content">
+  <div class="page-width">
+    <div class="box__content">
       <h2>{{ section.settings.heading }}</h2>
       <div class="text">{{ section.settings.text }}</div>
       <a href="{{ section.settings.button_link }}" class="button">
         {{ section.settings.button_label }} <span class="arrow">→</span>
       </a>
     </div>
-    <div class="image">
-      {% if section.settings.image %}
-        <img src="{{ section.settings.image | img_url: '800x' }}" alt="Step Image">
-      {% endif %}
-    </div>
+    {% if section.settings.image %}
+      <div class="box__image">
+        {{ section.settings.image | image_url: width: 800 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
+      </div>
+    {% endif %}
   </div>
 </section>
 
