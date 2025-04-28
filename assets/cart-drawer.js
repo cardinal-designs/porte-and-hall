@@ -81,12 +81,13 @@ class CartDrawer extends HTMLElement {
   handleGiftWrapChange(target) {
     if (!target) return;
   
-    let checkbox = target;
-    console.log('checkbox',checkbox);
+    let clickedElement = target;
+    let checkbox;
+    console.log('checkbox',clickedElement);
   
 
     if (target.tagName && target.tagName.toLowerCase() === 'label') {
-      const inputId = checkbox.getAttribute('for');
+      const inputId = clickedElement.getAttribute('for');
       if (inputId) {
         checkbox = document.getElementById(inputId);
       }
