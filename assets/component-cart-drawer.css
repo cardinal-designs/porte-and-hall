@@ -945,6 +945,13 @@ square-placement {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+.gift-note__header {
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
 #close-gift-note {
   background: none;
   border: none;
