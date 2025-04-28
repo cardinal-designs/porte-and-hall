@@ -22,10 +22,12 @@
 }
 
 .section__step--right .box__content h2 {
-  font-size: 32px;
-  line-height: 1.2;
-  color: #1a1a1a;
+  color: var(--blue-secondary);
   margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: 0.2px;
 }
 
 .section__step--right .box__content .text {
