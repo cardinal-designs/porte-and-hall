@@ -79,16 +79,21 @@ class CartDrawer extends HTMLElement {
   }
 
   handleGiftWrapChange(event) {
-    let checkbox = event.target;
+    if (!event || !event.target) return; // 🛡️ Protect against undefined
   
-    if (checkbox.tagName.toLowerCase() === 'label') {
-      const inputId = checkbox.getAttribute('for');
+    let clickedElement = event.target;
+    let checkbox = clickedElement;
+    console.log('clickedElement',clickedElement);
+  
+    // If clicked element is a label, find its associated input
+    if (clickedElement.tagName && clickedElement.tagName.toLowerCase() === 'label') {
+      const inputId = clickedElement.getAttribute('for');
       if (inputId) {
         checkbox = document.getElementById(inputId);
       }
     }
   
-    if (!checkbox) return;
+    if (!checkbox) return; // 🛡️ Protect again if still no checkbox
   
     if (checkbox.checked) {
       const giftNoteModal = document.getElementById('gift-note-modal');
@@ -97,7 +102,7 @@ class CartDrawer extends HTMLElement {
       this.removeGiftWrapFromCart();
     }
   }
-
+  
   addGiftWrapToCart() {
     let giftNoteField = document.getElementById('gift-note-text');
     let giftNoteValue = giftNoteField ? giftNoteField.value : '';
