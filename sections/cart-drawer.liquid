@@ -20,7 +20,7 @@
               {% assign gift_wrap_product_found = false %}
               {% assign gift_wrap_product = all_products[section.settings.gift_note_product] %}
               {% for item in cart.items %}
-                {% if item.product.type == 'Insert Replacement' %}
+                {% if item.product.type == 'Porter' %}
                   {% assign porter_product_found = true %}
                 {% endif %}
                 {% if item.product.id == gift_wrap_product.id %}
