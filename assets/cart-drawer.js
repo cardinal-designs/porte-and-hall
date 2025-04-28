@@ -204,6 +204,9 @@ class CartDrawer extends HTMLElement {
   handleBodyClick(evt) {
     console.log('EVE',event.target);
     const target = evt.target;
+    if (target.matches('#gift-wrap-option') || target.contains('#gift-wrap-option label')) {
+      this.handleGiftWrapChange(event);
+    }
     let closeGiftModal = document.getElementById('close-gift-note');
     if (closeGiftModal) {
       const giftCloseBtn = document.getElementById('close-gift-note');
