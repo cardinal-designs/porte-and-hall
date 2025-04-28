@@ -825,9 +825,9 @@
   document.addEventListener("DOMContentLoaded", async function () {
     const variantId = "a2c420ad-c283-45f2-86eb-e1244e931ad9"; // Variant B from Shoplift
     const isOutlierProduct = window.location.href.toLowerCase().includes("outlier");
-    // const isAlreadyUsingOutlierTemplate = window.location.href.includes("view=outlier-cleanup");
+    const isAlreadyUsingOutlierTemplate = window.location.href.includes("view=outlier-cleanup");
 
-    if (isOutlierProduct) {
+    if (isOutlierProduct && !isAlreadyUsingOutlierTemplate) {
       try {
         const isVariant = await shoplift.isHypothesisActive(variantId);
         if (isVariant) {
