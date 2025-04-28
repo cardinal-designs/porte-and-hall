@@ -974,7 +974,7 @@ square-placement {
     padding-bottom: 30px;
     border-bottom: 1px solid rgba(99, 102, 106, .1);
 }
-.gift-wrap-option input {
+#gift-wrap-option input {
     padding: 0;
     height: initial;
     width: initial;
@@ -982,11 +982,11 @@ square-placement {
     display: none;
     cursor: pointer;
 }
-.gift-wrap-option label {
+#gift-wrap-option label {
     position: relative;
     cursor: pointer;
 }
-.gift-wrap-option label:before {
+#gift-wrap-option label:before {
     content: "";
     -webkit-appearance: none;
     background-color: transparent;
