@@ -63,7 +63,8 @@
 }
 
 .section__step--right .button:hover {
-  background-color: #b99045;
+  color: var(--gold);
+  background-color: var(--blue-secondary);
 }
 
 .section__step--right .button .arrow {
