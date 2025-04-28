@@ -1,0 +1,73 @@
+/* Grand Entrance Section */
+.grand-entrance-section {
+  padding: 60px 20px;
+  background-color: #f8f5f0;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.grand-entrance-section .content-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.grand-entrance-section .heading {
+  font-size: 36px;
+  font-weight: bold;
+  color: #1b3a57;
+  margin-bottom: 15px;
+}
+
+.grand-entrance-section .description {
+  font-size: 16px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.grand-entrance-section .sub-heading {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1b3a57;
+  margin-bottom: 40px;
+}
+
+.grand-entrance-section .divider {
+  width: 60%;
+  border: 0;
+  height: 1px;
+  background-color: #ccc;
+  margin: 0 auto 40px auto;
+}
+
+.image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.image-item {
+  width: 30%;
+  text-align: left;
+}
+
+.image-item img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.image-item .caption {
+  font-size: 14px;
+  margin-top: 10px;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .image-grid {
+    flex-direction: column;
+  }
+  .image-item {
+    width: 100%;
+  }
+}
