@@ -83,18 +83,18 @@ class CartDrawer extends HTMLElement {
   
     let clickedElement = target;
     let checkbox;
-    console.log('checkbox',clickedElement);
-  
-
+    
     if (target.tagName && target.tagName.toLowerCase() === 'label') {
       const inputId = clickedElement.getAttribute('for');
       if (inputId) {
         checkbox = document.getElementById(inputId);
       }
     }
+    console.log('checkbox',checkbox);
   
     if (!checkbox) return;
-  
+
+    console.log('checked',checkbox.checked);
     if (checkbox.checked) {
       const giftNoteModal = document.getElementById('gift-note-modal');
       giftNoteModal.classList.add('is-visible');
