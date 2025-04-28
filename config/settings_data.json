@@ -110,6 +110,16 @@
         "settings": {
           "menu": "2024-best-seller-mobile"
         }
+      },
+      "porter-landing-header": {
+        "type": "porter-landing-header",
+        "settings": {
+          "svg_logo": "",
+          "logo": "shopify://shop_images/Frame.png",
+          "logo_width": 150,
+          "mobile_logo_width": 100,
+          "logo_position": "left"
+        }
       }
     },
     "content_for_index": [],
