@@ -45,6 +45,7 @@
 
     <!-- Icons -->
     <div class="header__icons">
+      {% unless template.suffix == 'porter-landing' %}
       {% if section.settings.enable_search %}
         <button class="js-open-search header__icon header__icon--search hide-mobile" aria-label="Open Search Bar">
           {% render 'icon', icon: 'search' %}
@@ -70,6 +71,7 @@
         </a>
         {% endunless %}
       {% endif %}
+      {% endunless %}
 
       {% if template != 'cart' %}
         <button
