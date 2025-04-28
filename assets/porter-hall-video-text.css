@@ -1,0 +1,87 @@
+/* The Finer Details Section */
+.finer-details-section {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+  background-color: #e0e6e6;
+}
+
+.content-wrapper {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.left {
+  flex: 1;
+  position: relative;
+}
+
+.left video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #3e4c59;
+}
+
+.main-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #283f5b;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #627d98;
+}
+
+.feature-list {
+  margin-top: 20px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.icon {
+  font-size: 16px;
+  color: #2c698d;
+}
+
+.feature-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #283f5b;
+  margin-bottom: 8px;
+}
+
+.feature-description {
+  font-size: 14px;
+  color: #3e4c59;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .left,
+  .right {
+    flex: none;
+    width: 100%;
+  }
+}
