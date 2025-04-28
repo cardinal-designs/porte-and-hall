@@ -5,6 +5,9 @@
 .section__step--right .page-width {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.section__step--right-wrapper {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
