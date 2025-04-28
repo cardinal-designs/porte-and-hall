@@ -1,6 +1,119 @@
+<section class="grand-entrance-section">
+  <div class="content-wrapper">
+    <!-- Heading Section -->
+    <h2 class="heading">
+      {{ section.settings.title }}
+    </h2>
+    <p class="description">
+      {{ section.settings.description }}
+    </p>
+    <p class="sub-heading">
+      {{ section.settings.subheading }}
+    </p>
+    <hr class="divider" />
+
+    <!-- Image Grid -->
+    <div class="image-grid">
+      <!-- Image 1 -->
+      <div class="image-item">
+        <img src="{{ section.settings.image_1 | image_url }}" alt="{{ section.settings.image_1_alt }}" />
+        <p class="caption">{{ section.settings.image_1_caption }}</p>
+      </div>
+
+      <!-- Image 2 -->
+      <div class="image-item">
+        <img src="{{ section.settings.image_2 | image_url }}" alt="{{ section.settings.image_2_alt }}" />
+        <p class="caption">{{ section.settings.image_2_caption }}</p>
+      </div>
+
+      <!-- Image 3 -->
+      <div class="image-item">
+        <img src="{{ section.settings.image_3 | image_url }}" alt="{{ section.settings.image_3_alt }}" />
+        <p class="caption">{{ section.settings.image_3_caption }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Grand Entrance Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Make a Grand Entrance"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "If you’re invested in your home’s style, any old doormat won’t do. Crafted from the finest Italian yarns, and knotted by hand in India, The Porter is a luxury outdoor mat like no other. Not only does it greet you (and your guests) with stunning depth and visual interest, but it's built to brave the elements and hold up over time."
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Form and function? A beautiful thing."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "text",
+      "id": "image_1_alt",
+      "label": "Image 1 Alt Text",
+      "default": "Image showing hand-knotted design."
+    },
+    {
+      "type": "text",
+      "id": "image_1_caption",
+      "label": "Image 1 Caption",
+      "default": "Hand-knotted design creates open space - looks great and traps dirt, too."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "text",
+      "id": "image_2_alt",
+      "label": "Image 2 Alt Text",
+      "default": "Image showing mat rolled and flexible."
+    },
+    {
+      "type": "text",
+      "id": "image_2_caption",
+      "label": "Image 2 Caption",
+      "default": "Flexible and easy to roll out and shake clean."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "text",
+      "id": "image_3_alt",
+      "label": "Image 3 Alt Text",
+      "default": "Close-up image showing soft texture."
+    },
+    {
+      "type": "text",
+      "id": "image_3_caption",
+      "label": "Image 3 Caption",
+      "default": "Soft on feet (and paws)."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Grand Entrance Section",
+      "category": "Custom Sections"
+    }
+  ]
+}
 {% endschema %}
