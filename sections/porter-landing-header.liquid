@@ -66,7 +66,7 @@
         </button>
       {% else %}
         <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart" id="cart-icon-bubble">
-          {% render 'icon', icon: 'cart' %}
+          {% render 'icon', icon: 'white-cart' %}
           <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
           {% if cart != empty %}
             <div class="cart-count-bubble">
