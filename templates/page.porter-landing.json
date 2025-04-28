@@ -69,12 +69,26 @@
         "button_text": "Shop Now",
         "button_link": "/"
       }
+    },
+    "porter_hall_material_type_GEYDmB": {
+      "type": "porter-hall-material-type",
+      "name": "Two of a Kind",
+      "settings": {
+        "title": "Two of a Kind",
+        "image_doublewide_alt": "Doublewide mat dimensions",
+        "doublewide_title": "Doublewide",
+        "doublewide_description": "Have a huge front door (or more than one)? We designed this big(ger) boy with you in mind.",
+        "image_standard_alt": "Standard mat dimensions",
+        "standard_title": "Standard",
+        "standard_description": "Perfectly oversized and anything but ordinary, this mat was made to make a statement at most doors."
+      }
     }
   },
   "order": [
     "main",
     "hero_porter_hall_FeqBxV",
     "porter_hall_image_grid_7BTqhf",
-    "porter_hall_colorways_xHj4Bh"
+    "porter_hall_colorways_xHj4Bh",
+    "porter_hall_material_type_GEYDmB"
   ]
 }
