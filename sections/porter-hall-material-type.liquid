@@ -1,6 +1,102 @@
+
+<section class="two-of-a-kind-section">
+  <div class="section-container">
+    <!-- Section Title -->
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+
+    <!-- Two Columns -->
+    <div class="two-columns">
+      <!-- Column 1 -->
+      <div class="column">
+        <img
+          src="{{ section.settings.image_doublewide | image_url }}"
+          alt="{{ section.settings.image_doublewide_alt }}"
+          class="column-image"
+        />
+        <div class="dimension-text-vertical">3'6"</div>
+        <div class="dimension-text-horizontal">6'</div>
+        <h3 class="column-title">{{ section.settings.doublewide_title }}</h3>
+        <p class="column-description">{{ section.settings.doublewide_description }}</p>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="column">
+        <img
+          src="{{ section.settings.image_standard | image_url }}"
+          alt="{{ section.settings.image_standard_alt }}"
+          class="column-image"
+        />
+        <div class="dimension-text-vertical">2'6"</div>
+        <div class="dimension-text-horizontal">4'</div>
+        <h3 class="column-title">{{ section.settings.standard_title }}</h3>
+        <p class="column-description">{{ section.settings.standard_description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Two of a Kind",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Two of a Kind"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_doublewide",
+      "label": "Image for Doublewide"
+    },
+    {
+      "type": "text",
+      "id": "image_doublewide_alt",
+      "label": "Alt Text for Doublewide Image",
+      "default": "Doublewide mat dimensions"
+    },
+    {
+      "type": "text",
+      "id": "doublewide_title",
+      "label": "Title for Doublewide",
+      "default": "Doublewide"
+    },
+    {
+      "type": "textarea",
+      "id": "doublewide_description",
+      "label": "Description for Doublewide",
+      "default": "Have a huge front door (or more than one)? We designed this big(ger) boy with you in mind."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_standard",
+      "label": "Image for Standard"
+    },
+    {
+      "type": "text",
+      "id": "image_standard_alt",
+      "label": "Alt Text for Standard Image",
+      "default": "Standard mat dimensions"
+    },
+    {
+      "type": "text",
+      "id": "standard_title",
+      "label": "Title for Standard",
+      "default": "Standard"
+    },
+    {
+      "type": "textarea",
+      "id": "standard_description",
+      "label": "Description for Standard",
+      "default": "Perfectly oversized and anything but ordinary, this mat was made to make a statement at most doors."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two of a Kind",
+      "category": "Custom Sections"
+    }
+  ]
+}
 {% endschema %}
