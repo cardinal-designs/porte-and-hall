@@ -967,3 +967,7 @@ square-placement {
   border-bottom: 1px solid var(--beige);
   margin: 0 -20px;
 }
+.gift-note__image {
+    text-align: center;
+    margin: 15px 0;
+}
