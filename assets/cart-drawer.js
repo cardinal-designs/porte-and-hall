@@ -81,21 +81,13 @@ class CartDrawer extends HTMLElement {
   handleGiftWrapChange(target) {
     if (!target) return;
   
-    let clickedElement = target;
-    let checkbox;
-    
-    if (target.tagName && target.tagName.toLowerCase() === 'label') {
-      const inputId = clickedElement.getAttribute('for');
-      if (inputId) {
-        checkbox = document.getElementById(inputId);
-      }
-    }
-    console.log('checkbox',checkbox);
+    const giftWrapCheckbox = document.getElementById('add-gift-wrap');
+    console.log('checkbox',giftWrapCheckbox);
   
-    if (!checkbox) return;
+    if (!giftWrapCheckbox) return;
 
-    console.log('checked',checkbox.checked);
-    if (checkbox.checked) {
+    console.log('checked',giftWrapCheckbox.checked);
+    if (giftWrapCheckbox.checked) {
       const giftNoteModal = document.getElementById('gift-note-modal');
       giftNoteModal.classList.add('is-visible');
     } else {
