@@ -1,6 +1,87 @@
+<section class="hero-porter-hall">
+  <div class="hero-container">
+    <!-- Header Logo -->
+    <div class="header-logo">
+      <span>{{ section.settings.logo_text }}</span>
+    </div>
+
+    <!-- Main Hero Text -->
+    <div class="hero-text">
+      <h1 class="hero-title">{{ section.settings.heading }}</h1>
+      <p class="hero-subtitle">{{ section.settings.subheading }}</p>
+
+      <!-- Decorative Line and Features -->
+      <div class="hero-features">
+        <hr class="feature-line">
+        <span>{{ section.settings.feature_1 }}</span>
+        <span class="bullet">•</span>
+        <span>{{ section.settings.feature_2 }}</span>
+        <span class="bullet">•</span>
+        <span>{{ section.settings.feature_3 }}</span>
+      </div>
+
+      <!-- Call-to-Action Button -->
+      <a href="{{ section.settings.button_link }}" class="cta-button">{{ section.settings.button_text }}</a>
+    </div>
+  </div>
+</section>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Hero - Porter Hall",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo Text",
+      "default": "PORTE+HALL"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Designed to impress. Built to last. Welcome to The Porter."
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+    },
+    {
+      "type": "text",
+      "id": "feature_1",
+      "label": "Feature 1",
+      "default": "Luxury look & Feel"
+    },
+    {
+      "type": "text",
+      "id": "feature_2",
+      "label": "Feature 2",
+      "default": "For Outdoor Use"
+    },
+    {
+      "type": "text",
+      "id": "feature_3",
+      "label": "Feature 3",
+      "default": "Ultra-Durable Design"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero - Porter Hall",
+      "category": "Hero Sections"
+    }
+  ]
+}
 {% endschema %}
