@@ -39,6 +39,10 @@
   color: var(--blue-secondary);
 }
 
+.section__step--right .box__content .text p + p {
+  margin: 24px 0 0; 
+}
+
 .section__step--right .box__content .text strong {
   font-weight: 450;
 }
