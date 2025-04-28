@@ -73,6 +73,7 @@ class CartDrawer extends HTMLElement {
   }
 
   onChange(event) {
+    console.log('CHange Ev');
     if(event.target.dataset?.index){
       this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
     }
