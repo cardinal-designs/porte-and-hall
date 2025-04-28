@@ -34,6 +34,10 @@
   #section--{{ section.id }} {
     background-color: {{ section.settings.bg_color }};
   }
+
+  #section--{{ section.id }} .section__step--right-wrapper {
+    background-color: {{ section.settings.box_bg_color }};
+  }
   
 </style>
 
@@ -45,6 +49,11 @@
       "type": "color",
       "id": "bg_color",
       "label": "Background"
+    },
+    {
+      "type": "color",
+      "id": "box_bg_color",
+      "label": "Inner Box Background"
     },
     {
       "type": "text",
