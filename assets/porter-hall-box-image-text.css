@@ -17,7 +17,8 @@
 }
 
 .section__step--right .box__content {
-  flex: 1 1 50%;
+  flex: 0 0 calc(50% - 24px);
+  max-width: calc(50% - 24px);
 }
 
 .section__step--right .box__content h2 {
@@ -59,7 +60,8 @@
 }
 
 .section__step--right .box__image {
-  flex: 1 1 50%;
+  flex: 0 0 calc(50% - 24px);
+  max-width: calc(50% - 24px);
 }
 
 .section__step--right .box__image img {
