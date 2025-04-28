@@ -974,3 +974,29 @@ square-placement {
     padding-bottom: 30px;
     border-bottom: 1px solid rgba(99, 102, 106, .1);
 }
+.gift-wrap-option input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+}
+.gift-wrap-option label {
+    position: relative;
+    cursor: pointer;
+}
+.gift-wrap-option label:before {
+    content: "";
+    -webkit-appearance: none;
+    background-color: transparent;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 9px;
+    height: 18px;
+    width: 18px;
+    border: 1px solid #546B82;
+    top: -3px;
+}

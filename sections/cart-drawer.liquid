@@ -38,12 +38,12 @@
 
               {% if section.settings.enable_gift_note and porter_product_found and gift_wrap_product != blank and gift_wrap_product_found == false %}
                   <div id="gift-wrap-option">
+                    <input 
+                      type="checkbox" 
+                      id="add-gift-wrap" 
+                      {% if gift_wrap_product_found %}checked{% endif %}
+                    /> 
                     <label>
-                      <input 
-                        type="checkbox" 
-                        id="add-gift-wrap" 
-                        {% if gift_wrap_product_found %}checked{% endif %}
-                      /> 
                       {% assign gift_note_price = gift_wrap_product.first_available_variant.price | money_without_trailing_zeros %}
                       {{ section.settings.checkbox_label_text | replace: '[price]', gift_note_price }}
                     </label>
