@@ -60,7 +60,7 @@
                     <h3>{{ section.settings.main_note_title }}</h3>      
                     </div>
                     <div class="gift-note__image">
-                      <img src="{{ gift_wrap_product.featured_image | image_url }}" alt="{{ gift_wrap_product.featured_image.alt }}">
+                      <img src="{{ gift_wrap_product.featured_image | image_url: width: 100 }}" alt="{{ gift_wrap_product.featured_image.alt }}" height="auto" width="auto">
                     </div>
                     <textarea 
                       id="gift-note-text" 
