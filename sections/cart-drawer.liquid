@@ -48,6 +48,29 @@
                       {{ section.settings.checkbox_label_text | replace: '[price]', gift_note_price }}
                     </label>
                   </div>
+               {% capture noteModal %}
+                <div id="gift-note-modal">
+                  <div class="gift-note-content">
+                     <a id="close-gift-note" aria-label="Close">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 6L9 12L15 18" stroke="#444c39" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                    <textarea 
+                      id="gift-note-text" 
+                      placeholder="ADD A GIFT NOTE" 
+                      maxlength="250"
+                      data-variant-id="{{ gift_wrap_product.first_available_variant.id }}"
+                    ></textarea>
+                    
+                    <div class="char-count"><span>250</span> CHARACTERS LEFT</div>
+                
+                    {% if section.settings.note_button_text != blank %}<a id="add-gift-note-btn">{{ section.settings.note_button_text }}</a>{% endif %}
+                    
+                    {% if section.settings.gift_note != blank %}<p class="gift-wrap-note">{{ section.settings.gift_note }}</p>{% endif %}
+                  </div>
+                </div>
+               {% endcapture %}           
               {% endif %}
               
               <div class="cart-drawer__subtotal-wrapper" id="cart-drawer-subtotal">
@@ -82,29 +105,7 @@
                   </div>
               </div>
             </div>
-            {% if section.settings.enable_gift_note and porter_product_found and gift_wrap_product != blank and gift_wrap_product_found == false %}
-              <div id="gift-note-modal">
-                <div class="gift-note-content">
-                   <a id="close-gift-note" aria-label="Close">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M15 6L9 12L15 18" stroke="#444c39" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </a>
-                  <textarea 
-                    id="gift-note-text" 
-                    placeholder="ADD A GIFT NOTE" 
-                    maxlength="250"
-                    data-variant-id="{{ gift_wrap_product.first_available_variant.id }}"
-                  ></textarea>
-                  
-                  <div class="char-count"><span>250</span> CHARACTERS LEFT</div>
-              
-                  {% if section.settings.note_button_text != blank %}<a id="add-gift-note-btn">{{ section.settings.note_button_text }}</a>{% endif %}
-                  
-                  {% if section.settings.gift_note != blank %}<p class="gift-wrap-note">{{ section.settings.gift_note }}</p>{% endif %}
-                </div>
-              </div>
-            {% endif %}  
+            {{ noteModal }}
           {% endif %}
         </div>
       </div>
