@@ -206,6 +206,7 @@ class CartDrawer extends HTMLElement {
     const target = evt.target;
     if (target.matches('#gift-wrap-option label')) {
       this.handleGiftWrapChange(event);
+      return;
     }
     let closeGiftModal = document.getElementById('close-gift-note');
     if (closeGiftModal) {
@@ -221,6 +222,7 @@ class CartDrawer extends HTMLElement {
           giftNoteModal.classList.remove('is-visible');
         }
       }
+      return;
     }
     const addGiftNoteBtn = document.getElementById('add-gift-note-btn');
     if (addGiftNoteBtn && target.matches('#add-gift-note-btn')) {
