@@ -205,7 +205,7 @@ class CartDrawer extends HTMLElement {
     console.log('Great',evt.target);
     const target = evt.target;
     if (target.matches('#gift-wrap-option label')) {
-      this.handleGiftWrapChange(event);
+      this.handleGiftWrapChange(target);
       return;
     }
     let closeGiftModal = document.getElementById('close-gift-note');
