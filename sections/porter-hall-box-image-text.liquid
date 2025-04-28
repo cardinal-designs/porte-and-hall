@@ -1,6 +1,59 @@
+<!-- sections/step-in-right-direction.liquid -->
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Step in Right Direction",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A Step in the Right Direction"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>The Porter's polypropylene yarns are <strong>produced without water</strong> (a win for Mother Earth) and they’re also durable enough to weather plenty of storms and stand up to daily foot traffic.<br><br>It’s <strong>fully recyclable</strong>–send it back and we’ll handle the rest.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Step in Right Direction"
+    }
+  ]
+}
 {% endschema %}
+
+<section class="step-right-section">
+  <div class="container">
+    <div class="content">
+      <h2>{{ section.settings.heading }}</h2>
+      <div class="text">{{ section.settings.text }}</div>
+      <a href="{{ section.settings.button_link }}" class="button">
+        {{ section.settings.button_label }} <span class="arrow">→</span>
+      </a>
+    </div>
+    <div class="image">
+      {% if section.settings.image %}
+        <img src="{{ section.settings.image | img_url: '800x' }}" alt="Step Image">
+      {% endif %}
+    </div>
+  </div>
+</section>
