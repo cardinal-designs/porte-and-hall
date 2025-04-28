@@ -1,26 +1,31 @@
 {{ 'porter-hall-box-image-text.css' | asset_url | stylesheet_tag: preload: true }}
 
-<section class="section__step--right" id="section--{{ section.id }}">
-  <div class="page-width">
-    <div class="box__content">
-      <h2>{{ section.settings.heading }}</h2>
-      <div class="text">{{ section.settings.text }}</div>
-      <a href="{{ section.settings.button_link }}" class="button">
-        {{ section.settings.button_label }} 
-        <span class="arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" width="29" height="16" viewBox="0 0 29 16" fill="none">
-            <path d="M28.7071 8.5076C29.0976 8.11706 29.0976 7.4839 28.7071 7.09337L22.3431 0.729416C21.9526 0.338892 21.3195 0.338892 20.9289 0.729416C20.5384 1.11994 20.5384 1.7531 20.9289 2.14363L26.5858 7.80048L20.9289 13.4574C20.5384 13.8479 20.5384 14.481 20.9289 14.8716C21.3195 15.2621 21.9526 15.2621 22.3431 14.8716L28.7071 8.5076ZM0 8.80048H28V6.80048H0V8.80048Z" fill="currentColor"/>
-          </svg>
-        </span>
-      </a>
-    </div>
-    {% if section.settings.image %}
+
+{% if section.settings.image != blank and section.settings.heading != blank %}
+  <section class="section__step--right" id="section--{{ section.id }}">
+    <div class="page-width">
+      <div class="box__content">
+          <h2>{{ section.settings.heading }}</h2>
+        {% if section.settings.text != blank %}
+          <div class="text">{{ section.settings.text }}</div>
+        {% endif %}
+        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+          <a href="{{ section.settings.button_link }}" class="button">
+            {{ section.settings.button_label }} 
+            <span class="arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="29" height="16" viewBox="0 0 29 16" fill="none">
+                <path d="M28.7071 8.5076C29.0976 8.11706 29.0976 7.4839 28.7071 7.09337L22.3431 0.729416C21.9526 0.338892 21.3195 0.338892 20.9289 0.729416C20.5384 1.11994 20.5384 1.7531 20.9289 2.14363L26.5858 7.80048L20.9289 13.4574C20.5384 13.8479 20.5384 14.481 20.9289 14.8716C21.3195 15.2621 21.9526 15.2621 22.3431 14.8716L28.7071 8.5076ZM0 8.80048H28V6.80048H0V8.80048Z" fill="currentColor"/>
+              </svg>
+            </span>
+          </a>
+        {% endif %}
+      </div>
       <div class="box__image">
         {{ section.settings.image | image_url: width: 800 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
       </div>
-    {% endif %}
-  </div>
-</section>
+    </div>
+  </section>
+{% endif %}
 
 <style>
   
