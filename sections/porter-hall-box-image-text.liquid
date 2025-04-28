@@ -1,6 +1,6 @@
 {{ 'porter-hall-box-image-text.css' | asset_url | stylesheet_tag: preload: true }}
 
-<section class="section__step--right">
+<section class="section__step--right" id="section--{{ section.id }}">
   <div class="page-width">
     <div class="box__content">
       <h2>{{ section.settings.heading }}</h2>
@@ -17,10 +17,23 @@
   </div>
 </section>
 
+<style>
+  
+  #section--{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+  }
+  
+</style>
+
 {% schema %}
 {
   "name": "Step in Right Direction",
   "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background"
+    },
     {
       "type": "text",
       "id": "heading",
