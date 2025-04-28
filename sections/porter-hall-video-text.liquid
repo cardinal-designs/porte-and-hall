@@ -1,6 +1,90 @@
+<section class="finer-details-section">
+  <div class="content-wrapper">
+    <!-- Left Side: Video -->
+    <div class="left">
+      <video autoplay muted loop playsinline>
+        <source src="{{ section.settings.video_url }}" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Right Side: Details -->
+    <div class="right">
+      <h2 class="main-title">{{ section.settings.title }}</h2>
+      <p class="subtitle">{{ section.settings.subtitle }}</p>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <span class="icon">◆</span>
+          <div class="feature-content">
+            <h3 class="feature-title">{{ section.settings.feature_1_title }}</h3>
+            <p class="feature-description">{{ section.settings.feature_1_description }}</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <span class="icon">◆</span>
+          <div class="feature-content">
+            <h3 class="feature-title">{{ section.settings.feature_2_title }}</h3>
+            <p class="feature-description">{{ section.settings.feature_2_description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "The Finer Details",
+  "settings": [
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL (MP4)"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title",
+      "default": "The Finer Details"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "What makes The Porter so unique? It’s the little things."
+    },
+    {
+      "type": "text",
+      "id": "feature_1_title",
+      "label": "Feature 1 Title",
+      "default": "Premium durable material"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_1_description",
+      "label": "Feature 1 Description",
+      "default": "Our water-repellant rope is made of premium, all-weather Italian yarns and solution-dyed with a special blend of UV protectors, so your mat will look luxe (and resist sun fading) for years to come."
+    },
+    {
+      "type": "text",
+      "id": "feature_2_title",
+      "label": "Feature 2 Title",
+      "default": "Complex colors"
+    },
+    {
+      "type": "textarea",
+      "id": "feature_2_description",
+      "label": "Feature 2 Description",
+      "default": "We twisted two different yarn colors together to create a level of dimension that solid rope simply can’t match."
+    }
+  ],
+  "presets": [
+    {
+      "name": "The Finer Details",
+      "category": "Custom Sections"
+    }
+  ]
+}
 {% endschema %}
