@@ -86,7 +86,7 @@ class CartDrawer extends HTMLElement {
   
 
     if (target.tagName && target.tagName.toLowerCase() === 'label') {
-      const inputId = clickedElement.getAttribute('for');
+      const inputId = checkbox.getAttribute('for');
       if (inputId) {
         checkbox = document.getElementById(inputId);
       }
