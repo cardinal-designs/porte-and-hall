@@ -2,6 +2,10 @@
   background: transparent;
 }
 
+#shopify-section-porter-landing-header.animate {
+  transition: transform 0.15s ease-out;
+}
+
 .template__porter-landing main#MainContent {
   padding-top: 0;
 }
