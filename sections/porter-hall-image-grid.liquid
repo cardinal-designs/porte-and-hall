@@ -19,22 +19,22 @@
     {% endif %}
     <hr class="divider" />
 
-    <div class="image-grid">
+    <div class="grand__entrance--image-grid">
       {% if section.settings.image_1 != blank %}
-        <div class="image-item">
+        <div class="grand__entrance--image-item">
           {{ section.settings.image_1 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_1.alt }}
           <p class="caption">{{ section.settings.image_1_caption }}</p>
         </div>
       {% endif %}
 
       {% if section.settings.image_2 != blank or section.settings.image_3 != blank %}
-      <div class="grand__entrance--image-grid">
-        <div class="image-item">
+      <div class="grand__entrance--image-grid-right">
+        <div class="grand__entrance--image-item">
           {{ section.settings.image_2 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_2.alt }}
           <p class="caption">{{ section.settings.image_2_caption }}</p>
         </div>
   
-        <div class="image-item">
+        <div class="grand__entrance--image-item">
           {{ section.settings.image_3 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_3.alt }}
           <p class="caption">{{ section.settings.image_3_caption }}</p>
         </div>
