@@ -46,6 +46,7 @@
   height: 1px;
   background-color: var(--blue);
   margin: 0;
+  padding: 0;
 }
 
 .grand__entrance--image-grid {
@@ -185,6 +186,10 @@
 }
 
 @media (max-width: 767px) {
+
+  .grand__entrance--section {
+    padding: 40px 0;
+  }
 
   .grand__entrance--section .page-width {
     padding: 0 16px;
