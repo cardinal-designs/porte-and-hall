@@ -89,8 +89,8 @@
 .feature-list .feature-title:before {
   content: "";
   position: absolute;
-  height: 12px;
-  width: 12px;
+  height: 9px;
+  width: 9px;
   background: var(--blue);
   left: 0;
   right: auto;
