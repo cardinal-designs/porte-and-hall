@@ -5,7 +5,15 @@
   <div class="page-width">
     <div class="finer__details--content-wrapper">
       <div class="finer__details--left">
-        {{ section.settings.video | video_tag: autoplay: true, loop: false, muted: true, controls: false, playsinline:true, class: 'videos', id: 'video', image_size: '1000x' }}
+        <div class="finer__details--left-header">
+          <h2 class="finer__details--main-title">{{ section.settings.title }}</h2>
+          {% if section.settings.subtitle != blank %}
+            <p class="finer__details--subtitle">{{ section.settings.subtitle }}</p>  
+          {% endif %}
+        </div>
+        <div class="finer__details--video-wrapper">
+          {{ section.settings.video | video_tag: autoplay: true, loop: false, muted: true, controls: false, playsinline:true, class: 'videos', id: 'video', image_size: '1000x' }}
+        </div>
       </div>  
       <div class="finer__details--right">
         <h2 class="finer__details--main-title">{{ section.settings.title }}</h2>
