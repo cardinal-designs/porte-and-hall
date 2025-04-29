@@ -17,6 +17,7 @@
   font-weight: 500;
   color: var(--blue-secondary);
   margin-bottom: 32px;
+  letter-spacing: 0.2px;
 }
 
 .grand__entrance--section .heading span {
@@ -24,10 +25,11 @@
 }
 
 .grand__entrance--section .description {
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 40px;
+  line-height: 48px;
   margin-bottom: 48px;
   color: var(--blue-secondary);
+  letter-spacing: 0.2px;
 }
 
 .grand__entrance--section .sub-heading {
@@ -35,6 +37,7 @@
   font-weight: bold;
   color: #1b3a57;
   margin-bottom: 40px;
+  letter-spacing: 0.2px;
 }
 
 .grand__entrance--section .divider {
