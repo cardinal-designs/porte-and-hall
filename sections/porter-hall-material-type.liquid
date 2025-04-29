@@ -1,11 +1,11 @@
 {{ 'porter-hall-material-type.css' | asset_url | stylesheet_tag: preload: true }}
 
-<section class="two-of-a-kind-section">
-  <div class="section-container">
-    <!-- Section Title -->
+<section class="two-of-a-kind-section" id="section--{{ section.id }}">
+  <div class="page-width">
+    
     <h2 class="section-title">{{ section.settings.title }}</h2>
 
-    <!-- Two Columns -->
+    
     <div class="two-columns">
       <!-- Column 1 -->
       <div class="column">
@@ -20,7 +20,7 @@
         <p class="column-description">{{ section.settings.doublewide_description }}</p>
       </div>
 
-      <!-- Column 2 -->
+      
       <div class="column">
         <img
           src="{{ section.settings.image_standard | image_url }}"
@@ -35,6 +35,12 @@
     </div>
   </div>
 </section>
+
+<style>
+  #section--{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+  }
+</style>
 
 {% schema %}
 {
