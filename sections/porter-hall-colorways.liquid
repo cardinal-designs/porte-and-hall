@@ -38,7 +38,6 @@
 
 {% if section.settings.mobile_slider %}
 <script>
-
   document.addEventListener("DOMContentLoaded", (event) => {
     if(window.innerWidth < 768){
       var tradeSwiper = new Swiper(".trade__image--slider", {
@@ -49,8 +48,7 @@
         },
       });       
     }
-  });
-  
+  });  
 </script>
 {% endif %}
 
