@@ -1,12 +1,9 @@
 .porter__hall--material-section {
-  padding: 60px 20px;
-  background-color: #f8f5f0;
-  font-family: 'Arial', sans-serif;
-  color: #333;
+  padding: 64px 0;
 }
 
-.page-width {
-  max-width: 1200px;
+.porter__hall--material-section .page-width {
+  max-width: 1264px;
   margin: 0 auto;
   text-align: center;
 }
