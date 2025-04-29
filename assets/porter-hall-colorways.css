@@ -56,13 +56,13 @@
 }
 
 .colorway__size {
-  font-size: 14px;
-  font-weight: normal;
-  color: #666;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--blue-secondary);
+  font-family: louize;
 }
 
-.colorway__size span {
-  font-family: louize;
+.colorway__size span {  
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
