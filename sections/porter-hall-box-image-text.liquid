@@ -6,7 +6,7 @@
     <div class="page-width">
       <div class="section__step--right-wrapper">
         <div class="box__content">
-            <h2>{{ section.settings.heading }}</h2>
+          <h2>{{ section.settings.heading }}</h2>
           {% if section.settings.text != blank %}
             <div class="text">{{ section.settings.text }}</div>
           {% endif %}
@@ -22,7 +22,10 @@
           {% endif %}
         </div>
         <div class="box__image">
+          <h2>{{ section.settings.heading }}</h2>
+          <figure>
           {{ section.settings.image | image_url: width: 800 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
+          </figure>
         </div>
       </div>
     </div>
