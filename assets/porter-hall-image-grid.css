@@ -42,6 +42,12 @@
   justify-content: center;
 }
 
+.grand__entrance--image-grid-right {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  flex: 1;
+}
+
 .grand__entrance--image-item {
   width: 30%;
   text-align: left;
