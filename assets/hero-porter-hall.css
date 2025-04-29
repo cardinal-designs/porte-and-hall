@@ -12,6 +12,12 @@
   position: relative;
 }
 
+.hero__image--item img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
 .hero__title {
   font-size: 48px;
   font-weight: 600;
