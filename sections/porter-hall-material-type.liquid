@@ -14,8 +14,10 @@
             <figure>
               {{ section.settings.image_doublewide | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_doublewide.alt }}
             </figure>
-            <div class="dimension-text-vertical">{{ section.settings.image_doublewide_vertical }}3'6"</div>
-            <div class="dimension-text-horizontal">{{ section.settings.image_doublewide_horizontal }}6'</div>
+            {% if section.settings.image_doublewide_vertical != blank and section.settings.image_doublewide_horizontal != blank %}
+              <div class="dimension-text-vertical">{{ section.settings.image_doublewide_vertical }}</div>
+              <div class="dimension-text-horizontal">{{ section.settings.image_doublewide_horizontal }}</div>
+            {% endif %}
           </div>
           <div class="material__column--content">
             <h3 class="material__column--title">{{ section.settings.doublewide_title }}</h3>
@@ -30,8 +32,10 @@
             <figure>
               {{ section.settings.image_standard | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_standard.alt }}
             </figure>
-            <div class="dimension-text-vertical">{{ section.settings.image_standard_vertical }}2'6"</div>
-            <div class="dimension-text-horizontal">{{ section.settings.image_standard_horizontal }}4'</div>
+            {% if section.settings.image_standard_vertical != blank and section.settings.image_standard_horizontal != blank %}
+              <div class="dimension-text-vertical">{{ section.settings.image_standard_vertical }}</div>
+              <div class="dimension-text-horizontal">{{ section.settings.image_standard_horizontal }}</div>
+            {% endif %}
           </div>
           <div class="material__column--content">
             <h3 class="material__column--title">{{ section.settings.standard_title }}</h3>
