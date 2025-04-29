@@ -46,6 +46,9 @@
 .material__column--image-wrapper figure:before {
   content: '';
   position: absolute;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .material__column--image-wrapper figure:after {
