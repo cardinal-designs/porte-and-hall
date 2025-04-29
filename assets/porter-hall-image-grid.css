@@ -19,10 +19,15 @@
   margin-bottom: 32px;
 }
 
+.grand__entrance--section .heading span {
+  color: var(--blue);
+}
+
 .grand__entrance--section .description {
-  font-size: 16px;
-  margin-bottom: 30px;
-  line-height: 1.6;
+  font-size: 24px;
+  line-height: 32px;
+  margin-bottom: 48px;
+  color: var(--blue-secondary);
 }
 
 .grand__entrance--section .sub-heading {
