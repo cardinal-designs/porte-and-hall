@@ -8,10 +8,13 @@
 }
 
 .material__section--title {
-  font-size: 32px;
-  font-weight: bold;
-  color: #1b3a57;
-  margin-bottom: 40px;
+  color: var(--blue-secondary);
+  margin-bottom: 32px;
+  font-weight: 500;
+  font-size: 58px;
+  line-height: 64px;
+  letter-spacing: 0.2px;
+  text-align: center;
 }
 
 .material__columns {
