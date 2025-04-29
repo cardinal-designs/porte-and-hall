@@ -30,7 +30,9 @@
               <p class="colorway-size">size: {{ block.settings.color_size }}</p>
             {% endif %}
           </div>
+          {% if block.settings.color_note != blank %}
           <p class="colorway-note">{{ block.settings.color_note }}</p>
+          {% endif %}
         </div>
       {% endfor %}
       {% if section.settings.mobile_slider %}
