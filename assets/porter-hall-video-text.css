@@ -101,15 +101,19 @@
   letter-spacing: 0.2px;
 }
 
+@media (min-width: 767px) {
+  
+  .finer__details--left-header,
+  .mobile__image--layout {
+    display: none;
+  }
+  
+}
+
 @media (min-width: 992px) {
   
   .finer__details--content-wrapper.content__image--second {
     flex-direction: row-reverse;
-  }
-
-  .finer__details--left-header,
-  .mobile__image--layout {
-    display: none;
   }
   
 }
