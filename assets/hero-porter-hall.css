@@ -276,5 +276,9 @@
   .hero__title br {
     display: none;
   }
+
+  .hero__text .page-width {
+    padding: 0 16px;
+  }
   
 }
