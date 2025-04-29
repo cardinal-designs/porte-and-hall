@@ -23,7 +23,7 @@
               <h2 class="hero__title">{{ block.settings.heading }}</h2>
               <p class="hero__subtitle">{{ block.settings.subheading }}</p>
         
-              <div class="hero-features">
+              <div class="hero__features">
                 {% if block.settings.feature_text != blank %}
                   {% assign feature_text = block.settings.feature_text | split: ', ' %}
                   {% for text in feature_text %}
