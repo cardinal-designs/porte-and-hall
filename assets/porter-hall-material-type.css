@@ -32,7 +32,9 @@
 }
 
 .material__column.material__column--standard {
-  width: calc(41.6% - 30px);
+  width: 41.6%;
+  padding-left: 30px;
+  padding-right: 0;
 }
 
 .material__column--image-wrapper {
