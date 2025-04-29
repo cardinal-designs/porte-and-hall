@@ -48,17 +48,26 @@
   color: var(--blue-secondary);
 }
 
+.colorway__name .color__image {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .colorway__size {
   font-size: 14px;
   font-weight: normal;
   color: #666;
 }
 
-.colorway__name .color__image {
-  width: 40px;
-  height: 40px;
-  display: inline-block;
-  vertical-align: middle;
+.colorway__size span {
+  font-family: louize;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
 }
 
 .colorway__note {
