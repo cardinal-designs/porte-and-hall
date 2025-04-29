@@ -6,33 +6,35 @@
   
     <h2 class="colorways__section--title">{{ section.settings.title }}</h2>
 
-    <div class="colorways-grid {% if section.settings.mobile_slider %} colorways__slider swiper{% endif %}">
+    <div class="colorways__grid {% if section.settings.mobile_slider %} colorways__slider swiper{% endif %}">
       {% if section.settings.mobile_slider %}
       <div class="swiper-wrapper">
       {% endif %}
       {% for block in section.blocks %}
-        <div class="colorway-item{% if section.settings.mobile_slider %} swiper-slide{% endif %}">
+        <div class="colorway__item{% if section.settings.mobile_slider %} swiper-slide{% endif %}">
           <figure>
             {{ block.settings.image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: block.settings.image.alt }}
           </figure>
-          <div class="color__size--wrapper">
-            {% if block.settings.color_name != blank %}
-              <h3 class="colorway-name">
-                {% if block.settings.color_image != blank %}
-                  <span class="color__image">
-                    {{ block.settings.color_image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: block.settings.color_image.alt }}
-                  </span>
-                {% endif %}
-                {{ block.settings.color_name }}
-              </h3>
-            {% endif %}
-            {% if block.settings.color_size != blank %}
-              <p class="colorway-size">size: {{ block.settings.color_size }}</p>
+          <div class="colorway__item--content">
+            <div class="color__size--wrapper">
+              {% if block.settings.color_name != blank %}
+                <h3 class="colorway__name">
+                  {% if block.settings.color_image != blank %}
+                    <span class="color__image">
+                      {{ block.settings.color_image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: block.settings.color_image.alt }}
+                    </span>
+                  {% endif %}
+                  {{ block.settings.color_name }}
+                </h3>
+              {% endif %}
+              {% if block.settings.color_size != blank %}
+                <p class="colorway__size">size: {{ block.settings.color_size }}</p>
+              {% endif %}
+            </div>
+            {% if block.settings.color_note != blank %}
+            <p class="colorway__note">{{ block.settings.color_note }}</p>
             {% endif %}
           </div>
-          {% if block.settings.color_note != blank %}
-          <p class="colorway-note">{{ block.settings.color_note }}</p>
-          {% endif %}
         </div>
       {% endfor %}
       {% if section.settings.mobile_slider %}

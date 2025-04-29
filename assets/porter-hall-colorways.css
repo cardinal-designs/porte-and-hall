@@ -17,18 +17,18 @@
   color: var(--blue-secondary);
 }
 
-.colorways-grid {
+.colorways__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
   margin-bottom: 24px;
 }
 
-.colorway-item {
+.colorway__item {
   text-align: center;
 }
 
-.colorway-item figure {
+.colorway__item figure {
   margin: 0;
 }
 
@@ -37,20 +37,20 @@
   border-radius: 8px;
 }
 
-.colorway-name {
+.colorway__name {
   font-size: 18px;
   font-weight: bold;
   color: #333;
   margin-top: 10px;
 }
 
-.colorway-size {
+.colorway__size {
   font-size: 14px;
   font-weight: normal;
   color: #666;
 }
 
-.colorway-note {
+.colorway__note {
   font-size: 13px;
   font-style: italic;
   color: #888;
@@ -79,7 +79,7 @@
 
 @media screen and (max-width: 768px) {
   
-  .colorways-grid {
+  .colorways__grid {
     flex-direction: column;
     gap: 40px;
   }
