@@ -83,7 +83,15 @@
   display: block;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
+
+  .box__image h2 {
+    display: none;
+  }
+  
+}
+
+@media (max-width: 767px) {
   
   .section__step--right .section__step--right-wrapper {
     flex-direction: column;
