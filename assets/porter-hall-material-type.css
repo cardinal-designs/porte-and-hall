@@ -5,7 +5,6 @@
 .porter__hall--material-section .page-width {
   max-width: 1264px;
   margin: 0 auto;
-  text-align: center;
 }
 
 .material__section--title {
@@ -23,9 +22,13 @@
 }
 
 .material__column {
-  max-width: 300px;
+  width: calc(58.4% - 30px);
   text-align: center;
   position: relative;
+}
+
+.material__column.material__column--standard {
+  width: calc(41.6% - 30px);
 }
 
 .material__columns img {
