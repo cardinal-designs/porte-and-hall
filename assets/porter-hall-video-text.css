@@ -159,6 +159,10 @@
   .finer__details--section {
     padding: 40px 0;
   }
+
+  .finer__details--content-wrapper.content__image--second {
+    flex-direction: column;
+  }
   
   .finer__details--content-wrapper {
     flex-direction: column;
