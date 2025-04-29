@@ -1,14 +1,10 @@
 .finer__details--section {
-  display: flex;
-  justify-content: center;
-  padding: 60px 20px;
-  background-color: #e0e6e6;
+  padding: 60px 0;
 }
 
 .finer__details--content-wrapper {
   display: flex;
   gap: 40px;
-  max-width: 1200px;
   width: 100%;
 }
 
