@@ -49,6 +49,11 @@
   position: absolute;
   right: 0;
   top: 35%;
+  
+}
+
+.dimension-text-vertical,
+.dimension-text-horizontal {
   color: var(--blue-secondary);
   font-family: 'louize';
   font-weight: 500;
@@ -57,12 +62,6 @@
   letter-spacing: 0.2px;
 }
 
-.dimension-text-horizontal {
-  margin-top: 10px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #666;
-}
 
 .material__column--title {
   font-size: 18px;
