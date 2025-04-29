@@ -119,17 +119,11 @@
   letter-spacing: 0.2px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   
   .material__columns {
     flex-direction: column;
     align-items: center;
-  }
-  
-  .dimension-text-vertical {
-    position: static;
-    transform: none;
-    margin-bottom: 10px;
-  }
+  }  
   
 }
