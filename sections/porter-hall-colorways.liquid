@@ -1,12 +1,11 @@
 {{ 'porter-hall-colorways.css' | asset_url | stylesheet_tag: preload: true }}
 
 {% if section.blocks.size > 0 %}
-<section class="colorways-section">
+<section class="colorways-section" id="section--{{ section.id }}">
   <div class="content-wrapper">
-    <!-- Section Title -->
+  
     <h2 class="section-title">{{ section.settings.title }}</h2>
 
-    <!-- Colorways Grid -->
     <div class="colorways-grid">
       {% for block in section.blocks %}
         <div class="colorway-item">
