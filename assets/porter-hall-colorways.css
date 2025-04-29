@@ -93,18 +93,19 @@
 
 .colorways__section--button {
   margin-top: 24px;
+  text-align: center;
 }
 
 .text__button {
-  padding: 24px 0;
+  padding: 19px 0;
   color: var(--blue-secondary);
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  letter-spacing: 0.4px;
+  letter-spacing: .4px;
   text-decoration: none;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   border-bottom: 1px solid var(--blue-secondary);
