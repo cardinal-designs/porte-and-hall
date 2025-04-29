@@ -174,7 +174,7 @@
     padding: 10px 0;
   }
 
-  .colorways__grid {
+  .colorways__grid:not(.colorways__slider) {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
