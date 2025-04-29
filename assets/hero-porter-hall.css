@@ -45,6 +45,15 @@
   text-align: center;
 }
 
+.hero__text.hero__text--top--right {
+  top: 56px;
+  bottom: auto;
+  left: auto;
+  right: 0;
+  margin-right: 0;
+  text-align: right;
+}
+
 .hero__image--item figure {
   margin: 0;
 }
