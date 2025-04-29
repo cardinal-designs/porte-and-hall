@@ -92,7 +92,7 @@
 }
 
 .colorways__section--button {
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
 .text__button {
@@ -155,6 +155,10 @@
 
   .colorway__note {
     display: none;
+  }
+
+  .colorways__section--button {
+    margin-top: 16px;
   }
   
 }
