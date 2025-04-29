@@ -15,8 +15,21 @@
           <figure>
             {{ block.settings.image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: block.settings.image.alt }}
           </figure>
-          <h3 class="colorway-name">{{ block.settings.color_name }}</h3>
-          <p class="colorway-size">size: {{ block.settings.color_size }}</p>
+          <div class="color__size--wrapper">
+            {% if block.settings.color_name != blank %}
+              <h3 class="colorway-name">
+                {% if block.settings.color_image != blank %}
+                  <span>
+                    {{ block.settings.color_image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: block.settings.color_image.alt }}
+                  </span>
+                {% endif %}
+                {{ block.settings.color_name }}
+              </h3>
+            {% endif %}
+            {% if block.settings.color_size != blank %}
+              <p class="colorway-size">size: {{ block.settings.color_size }}</p>
+            {% endif %}
+          </div>
           <p class="colorway-note">{{ block.settings.color_note }}</p>
         </div>
       {% endfor %}
@@ -89,6 +102,11 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "color_image",
+          "label": "Color Image"
         },
         {
           "type": "text",
