@@ -13,7 +13,7 @@
 }
 
 .finer__details--left {
-  flex: 1;
+  flex: 1 1 50%;
   position: relative;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .finer__details--right {
-  flex: 1;
+  flex: 1 1 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
