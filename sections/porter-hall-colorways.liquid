@@ -1,10 +1,10 @@
 {{ 'porter-hall-colorways.css' | asset_url | stylesheet_tag: preload: true }}
 
 {% if section.blocks.size > 0 %}
-<section class="colorways-section" id="section--{{ section.id }}">
-  <div class="content-wrapper">
+<section class="colorways__section" id="section--{{ section.id }}">
+  <div class="page-width">
   
-    <h2 class="section-title">{{ section.settings.title }}</h2>
+    <h2 class="colorways__section--title">{{ section.settings.title }}</h2>
 
     <div class="colorways-grid {% if section.settings.mobile_slider %} colorways__slider swiper{% endif %}">
       {% if section.settings.mobile_slider %}
@@ -26,7 +26,7 @@
     </div>
 
     {% if section.settings.button_link != blank and section.settings.button_text != blank %}
-      <div class="shop-now">
+      <div class="colorways__section--button">
         <a href="{{ section.settings.button_link }}" class="shop-now-button">{{ section.settings.button_text }}</a>
       </div>
     {% endif %}
