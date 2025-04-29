@@ -6,7 +6,9 @@
     <div class="finer__details--content-wrapper content__{{ section.settings.image_position }}">
       <div class="finer__details--left">
         <div class="finer__details--left-header">
+          {% if section.settings.title != blank %}
           <h2 class="finer__details--main-title">{{ section.settings.title }}</h2>
+          {% endif %}
           {% if section.settings.subtitle != blank %}
             <p class="finer__details--subtitle">{{ section.settings.subtitle }}</p>  
           {% endif %}
