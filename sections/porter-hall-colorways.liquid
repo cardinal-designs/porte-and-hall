@@ -25,7 +25,7 @@
                         {{ block.settings.color_image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: block.settings.color_image.alt }}
                       </span>
                     {% endif %}
-                    {{ block.settings.color_name }}
+                    <span>{{ block.settings.color_name }}</span>
                   </h3>
                 {% endif %}
                 {% if block.settings.color_size != blank %}
