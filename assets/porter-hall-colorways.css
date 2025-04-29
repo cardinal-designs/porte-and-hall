@@ -39,12 +39,13 @@
 
 .colorway__name {
   margin-top: 0;
-  font-family: Louize;
+  font-family: louize;
   font-weight: 500;
   font-size: 36px;
   line-height: 40px;
   letter-spacing: 0.2px;
   text-transform: capitalize;
+  color: var(--blue-secondary);
 }
 
 .colorway__size {
