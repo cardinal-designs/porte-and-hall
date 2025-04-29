@@ -51,14 +51,25 @@
   margin-bottom: 30px;
 }
 
-.hero-features {
-  font-size: 14px;
-  margin-bottom: 30px;
+.hero__features {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 15px;
-  color: #e9c98b;
+  justify-content: space-between;
+  max-width: 570px;
+  margin: 0 auto;
+  padding: 16px 0;
+  border-top: 1px solid #FFD67E;
+  border-bottom: 1px solid #FFD67E;
+}
+
+.hero__features span {
+  font-family: 'louize';
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+  color: #FFD67E;
+  position: relative;
 }
 
 .hero__button .button {
