@@ -19,6 +19,12 @@
   margin-bottom: 20px;
 }
 
+.hero__subtitle {
+  font-size: 16px;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
 .hero-features {
   font-size: 14px;
   margin-bottom: 30px;
@@ -29,7 +35,7 @@
   color: #e9c98b;
 }
 
-.cta-button {
+.hero__button .button {
   display: inline-block;
   background-color: #d9b06b;
   color: #000;
@@ -42,7 +48,7 @@
   transition: background-color 0.3s;
 }
 
-.cta-button:hover {
+.hero__button .button:hover {
   background-color: #b18a49;
 }
 
@@ -65,7 +71,7 @@
     gap: 10px;
   }
 
-  .cta-button {
+  .hero__button .button {
     padding: 12px 25px;
     font-size: 14px;
   }
@@ -82,7 +88,7 @@
     font-size: 12px;
   }
 
-  .cta-button {
+  .hero__button .button {
     padding: 10px 20px;
     font-size: 12px;
   }
