@@ -126,6 +126,15 @@
   .porter__hall--material-section {
     padding: 40px 0;
   }
+
+  .material__section--title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .material__column--image-wrapper figure {
+    margin: 0 33px 26px 0;
+  }
   
   .material__column {
     width: 100%;
