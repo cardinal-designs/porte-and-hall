@@ -135,6 +135,11 @@
   .colorways__grid {
     display: flex;
     flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .colorway__item {
+    width: 100%;
   }
 
   .colorway__name {
