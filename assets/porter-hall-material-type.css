@@ -177,6 +177,15 @@
     right: -7px;
   }
 
+  .dimension-text-horizontal {
+    max-width: 306px;
+    margin-top: -8px;
+  }
+  
+  .material__column.material__column--standard .dimension-text-horizontal {
+    max-width: 203px;
+  }
+
   .material__column--image-wrapper figure:after {
     bottom: -7px;
   }
