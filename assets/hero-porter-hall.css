@@ -81,7 +81,7 @@
 
 @media screen and (min-width: 768px) {
 
-  .hero__image--item .mobile__hidden {
+  .hero__image--item .desktop__hidden {
     display: none;
   }
   
@@ -89,7 +89,7 @@
 
 @media screen and (max-width: 767px) {
 
-  .hero__image--item .desktop__hidden {
+  .hero__image--item .mobile__hidden {
     display: none;
   }
   
