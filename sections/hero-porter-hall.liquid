@@ -21,14 +21,15 @@
 
             <div class="hero__text">
               <h2 class="hero__title">{{ block.settings.heading }}</h2> 
-              <div class="hero__features">
-                {% if block.settings.feature_text != blank %}
+              {% if block.settings.feature_text != blank %}
+                <div class="hero__features">
                   {% assign feature_text = block.settings.feature_text | split: ', ' %}
                   {% for text in feature_text %}
                     <span>{{ text }}</span>
                   {% endfor %}
-                {% endif %}
-              </div>
+                </div>
+              {% endif %}
+              {% if block.settings.button_link != blank and block.settings.button_text != blank %}
               <div class="hero__button">
                 <a href="{{ block.settings.button_link }}" class="button">
                   {{ block.settings.button_text }}
@@ -39,6 +40,7 @@
                   </span>
                 </a>
               </div>
+              {% endif %}
             </div>
             
           </div>
