@@ -18,7 +18,7 @@
               <div class="feature-item">
                 <div class="feature-content">
                   <h3 class="feature-title">{{ block.settings.feature_title }}</h3>
-                  <p class="feature-description">{{ block.settings.feature_description }}</p>
+                  <div class="feature-description">{{ block.settings.feature_description }}</div>
                 </div>
               </div>
             {% endfor %}
@@ -96,10 +96,10 @@
           "default": "Complex colors"
         },
         {
-          "type": "textarea",
+          "type": "richtext",
           "id": "feature_description",
           "label": "Feature Description",
-          "default": "We twisted two different yarn colors together to create a level of dimension that solid rope simply can’t match."
+          "default": "<p>We twisted two different yarn colors together to create a level of dimension that solid rope simply can’t match.</p>"
         }
       ]
     }
