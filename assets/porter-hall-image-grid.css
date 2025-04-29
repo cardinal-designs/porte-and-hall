@@ -77,9 +77,11 @@
 }
 
 .grand__entrance--image-item .caption {
-  font-size: 14px;
-  margin-top: 10px;
-  color: #555;
+  font-size: 24px;
+  line-height: 28px;
+  color: var(--blue-secondary);
+  letter-spacing: 0.2px;
+  padding: 24px;
 }
 
 @media (max-width: 768px) {
