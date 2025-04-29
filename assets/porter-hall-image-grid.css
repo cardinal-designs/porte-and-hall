@@ -39,7 +39,7 @@
   margin: 0 auto 40px auto;
 }
 
-.image-grid {
+.grand__entrance--image-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -64,7 +64,7 @@
 
 @media (max-width: 768px) {
   
-  .image-grid {
+  .grand__entrance--image-grid {
     flex-direction: column;
   }
   
