@@ -66,16 +66,26 @@
         "color_999pwx": {
           "type": "color",
           "settings": {
-            "image": "shopify://shop_images/L_Porte_Hall_Porter_2Well_Bown_1443_1_2_1.jpg",
-            "color_name": "Iron",
-            "color_size": "Standard 2’6” 4’",
-            "color_note": "*Color shown: Iron. Coming soon!"
+            "image": "shopify://shop_images/M_Porte_Hall_PorterDoube_2Well_1504_N_1_1_1_1.jpg",
+            "color_name": "Truffle",
+            "color_size": "Double 3’ 6’",
+            "color_note": ""
+          }
+        },
+        "color_Mczgik": {
+          "type": "color",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1968_1.jpg",
+            "color_name": "Greystone",
+            "color_size": "Double 3’ 6’",
+            "color_note": ""
           }
         }
       },
       "block_order": [
         "color_DNVFHG",
-        "color_999pwx"
+        "color_999pwx",
+        "color_Mczgik"
       ],
       "name": "Colorways",
       "settings": {
