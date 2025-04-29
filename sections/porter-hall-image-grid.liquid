@@ -4,7 +4,9 @@
   <div class="page-width">
     {% if section.settings.title != blank %}
       <h2 class="heading">
-        {{ section.settings.title }}
+      {% assign title = section.settings.title | split: '|' %}
+        {{ title.first }}
+        <span>{{ title.last }}</span>
       </h2>
     {% endif %}
     {% if section.settings.description != blank %}
