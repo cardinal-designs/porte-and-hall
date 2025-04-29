@@ -132,6 +132,11 @@
     padding: 10px 0;
   }
 
+  .colorways__grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .colorway__name {
     font-size: 32px;
     line-height: 40px;
