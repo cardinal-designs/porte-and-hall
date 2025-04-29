@@ -260,6 +260,8 @@
   .hero__features span:not(:last-child):before {
     height: 4px;
     width: 4px;
+    top: 6px;
+    left: 115%;
   }
   
 }
