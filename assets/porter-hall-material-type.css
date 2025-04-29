@@ -47,12 +47,14 @@
 
 .dimension-text-vertical {
   position: absolute;
-  left: -20px;
-  top: 50%;
-  transform: rotate(-90deg);
-  font-size: 14px;
+  right: 0;
+  top: 35%;
   color: #666;
-  font-weight: bold;
+  font-family: 'louize';
+  font-weight: 500;
+  font-size: 21.25px;
+  line-height: 22.18px;
+  letter-spacing: 0.2px;
 }
 
 .dimension-text-horizontal {
