@@ -276,26 +276,4 @@
     display: none;
   }
   
-  .hero__porter--hall {
-    padding: 100px 20px;
-  }
-
-  .hero__title {
-    font-size: 36px;
-  }
-
-  .hero__subtitle {
-    font-size: 14px;
-  }
-
-  .hero-features {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .hero__button .button {
-    padding: 12px 25px;
-    font-size: 14px;
-  }
-  
 }
