@@ -88,6 +88,10 @@
   max-width: 379px;
 }
 
+.grand__entrance--image-item .caption span {
+  display: block;
+}
+
 .grand__entrance--image-item .caption.caption__top--left {
   top: 0;
   bottom: auto;
