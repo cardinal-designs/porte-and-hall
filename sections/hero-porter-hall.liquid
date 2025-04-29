@@ -20,8 +20,7 @@
             {% endif %}
 
             <div class="hero__text">
-              <h2 class="hero__title">{{ block.settings.heading }}</h2>
-              <p class="hero__subtitle">{{ block.settings.subheading }}</p>        
+              <h2 class="hero__title">{{ block.settings.heading }}</h2> 
               <div class="hero__features">
                 {% if block.settings.feature_text != blank %}
                   {% assign feature_text = block.settings.feature_text | split: ', ' %}
@@ -94,11 +93,6 @@
           "id": "heading",
           "label": "Heading",
           "default": "Designed to impress. Built to last. Welcome to The Porter."
-        },
-        {
-          "type": "text",
-          "id": "subheading",
-          "label": "Subheading",
         },
         {
           "type": "textarea",
