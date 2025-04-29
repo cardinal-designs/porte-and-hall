@@ -109,10 +109,14 @@
 }
 
 @media screen and (max-width: 767px) {
-  
-  .colorways__grid {
-    flex-direction: column;
-    gap: 40px;
+
+  .colorways__section {
+    padding: 40px 0;
   }
+  
+  .colorways__section .page-width {
+    padding: 0 16px;
+  }
+
   
 }
