@@ -75,11 +75,14 @@
 }
 
 .feature-title {
-  font-size: 16px;
-  font-weight: bold;
-  color: #283f5b;
+  color: var(--blue-secondary);
   margin-bottom: 8px;
   position: relative;
+  font-family: Brandon Grotesque;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.2px;
 }
 
 .feature-list .feature-title:before {
