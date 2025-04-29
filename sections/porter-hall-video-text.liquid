@@ -39,6 +39,9 @@
 {% endif %}
 
 <style>
+  #section--{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+  }
   {% if section.settings.remove_top_space %}
     #section--{{ section.id }} {
       padding-top: 0
