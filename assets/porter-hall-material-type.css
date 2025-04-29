@@ -173,6 +173,10 @@
     line-height: 24px;
   }
 
+  .material__column--image-wrapper figure:before {
+    right: -7px;
+  }
+
   .material__column.material__column--standard .material__column--image-wrapper {
     max-width: 236px;
   }
