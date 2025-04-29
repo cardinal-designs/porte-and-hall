@@ -66,8 +66,10 @@
 <script>
   document.addEventListener("DOMContentLoaded", (event) => {
     if(window.innerWidth < 768){
-      var tradeSwiper = new Swiper(".trade__image--slider", {
+      var tradeSwiper = new Swiper(".colorways__slider", {
         loop: true,
+        spaceBetween: 16,
+        centeredSlides: true,
         slidesPerView: 3, 
         pagination: {
           el: ".colorway-swiper-pagination",
