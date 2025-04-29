@@ -58,7 +58,19 @@
   background-color: #b18a49;
 }
 
-@media (max-width: 768px) {
+@media screen and (min-width: 768px) {
+
+  .hero__image--item .mobile__hidden {
+    display: none;
+  }
+  
+}
+
+@media screen and (max-width: 767px) {
+
+  .hero__image--item .desktop__hidden {
+    display: none;
+  }
   
   .hero__porter--hall {
     padding: 100px 20px;
@@ -80,23 +92,6 @@
   .hero__button .button {
     padding: 12px 25px;
     font-size: 14px;
-  }
-  
-}
-
-@media (max-width: 480px) {
-  
-  .hero__title {
-    font-size: 28px;
-  }
-
-  .hero__subtitle {
-    font-size: 12px;
-  }
-
-  .hero__button .button {
-    padding: 10px 20px;
-    font-size: 12px;
   }
   
 }
