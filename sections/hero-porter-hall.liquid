@@ -25,12 +25,12 @@
         
               <!-- Decorative Line and Features -->
               <div class="hero-features">
-                <hr class="feature-line">
-                <span>{{ block.settings.feature_1 }}</span>
-                <span class="bullet">•</span>
-                <span>{{ block.settings.feature_2 }}</span>
-                <span class="bullet">•</span>
-                <span>{{ block.settings.feature_3 }}</span>
+                {% if block.settings.feature_text != blank %}
+                  {% assign feature_text = block.settings.feature_text | split: ', ' %}
+                  {% for text in feature_text %}
+                  <span>{{ text }}</span>
+                  {% endfor %}
+                {% endif %}
               </div>
               <a href="{{ block.settings.button_link }}" class="cta-button">{{ block.settings.button_text }}</a>
             </div>
