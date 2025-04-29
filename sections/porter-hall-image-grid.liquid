@@ -11,9 +11,9 @@
         </h2>
       {% endif %}
       {% if section.settings.description != blank %}
-      <p class="description">
+      <div class="description">
         {{ section.settings.description }}
-      </p>
+      </div>
       {% endif %}
       {% if section.settings.subheading != blank %}
       <p class="sub-heading">
@@ -83,10 +83,10 @@
       "info": "To change the title color, add the ‘|’ separator in the title text."
     },
     {
-      "type": "textarea",
+      "type": "richtext",
       "id": "description",
       "label": "Description",
-      "default": "If you’re invested in your home’s style, any old doormat won’t do. Crafted from the finest Italian yarns, and knotted by hand in India, The Porter is a luxury outdoor mat like no other. Not only does it greet you (and your guests) with stunning depth and visual interest, but it's built to brave the elements and hold up over time."
+      "default": "<p>If you’re invested in your home’s style, any old doormat won’t do. Crafted from the finest Italian yarns, and knotted by hand in India, The Porter is a luxury outdoor mat like no other. Not only does it greet you (and your guests) with stunning depth and visual interest, but it's built to brave the elements and hold up over time.</p>"
     },
     {
       "type": "text",
