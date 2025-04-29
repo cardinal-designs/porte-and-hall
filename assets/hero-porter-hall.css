@@ -72,6 +72,19 @@
   position: relative;
 }
 
+.hero__features span:not(:last-child):before {
+  content: '';
+  position: absolute;
+  height: 9px;
+  width: 8px;
+  background: #FFD67E;
+  left: 122%;
+  right: auto;
+  top: 9px;
+  bottom: auto;
+  transform: rotate(45deg);
+}
+
 .hero__button .button {
   display: inline-block;
   background-color: var(--gold);
