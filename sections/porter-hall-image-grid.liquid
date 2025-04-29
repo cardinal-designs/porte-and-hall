@@ -62,7 +62,7 @@
             <figure>
               {{ section.settings.image_3 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_3.alt }}
             </figure>
-            <p class="caption caption__{{ section.settings.image_3_caption_position }}" style="color: {{ section.settings.text_3_color }}">
+            <p class="mobile__hidden caption caption__{{ section.settings.image_3_caption_position }}" style="color: {{ section.settings.text_3_color }}">
               {{ section.settings.image_3_caption }}
               {% if section.settings.image_3_note != blank %}<span>{{ section.settings.image_3_note }}</span>{% endif %}
             </p>
@@ -122,6 +122,11 @@
       "id": "image_1_caption",
       "label": "Image 1 Caption",
       "default": "Hand-knotted design creates open space - looks great and traps dirt, too."
+    },
+    {
+      "type": "text",
+      "id": "image_1_mobile_caption",
+      "label": "Image 1 Mobile Caption"
     },
     {
       "type": "text",
@@ -189,6 +194,11 @@
     },
     {
       "type": "text",
+      "id": "image_2_mobile_caption",
+      "label": "Image 2 Mobile Caption"
+    },
+    {
+      "type": "text",
       "id": "image_2_note",
       "label": "Image 2 Note",
     },
@@ -251,6 +261,11 @@
       "label": "Image 3 Caption",
       "default": "Soft on feet (and paws)."
     },
+    {
+      "type": "text",
+      "id": "image_3_mobile_caption",
+      "label": "Image 3 Mobile Caption"
+    },    
     {
       "type": "text",
       "id": "image_3_note",
