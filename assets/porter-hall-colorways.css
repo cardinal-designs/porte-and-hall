@@ -145,6 +145,10 @@
   .colorway__item--content {
     padding: 10px 0;
   }
+
+  .colorways__grid:not(.colorways__slider) {
+    gap: 20px;
+  }
   
 }
 
