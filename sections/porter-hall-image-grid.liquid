@@ -29,14 +29,16 @@
           <figure>
             {{ section.settings.image_1 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_1.alt }}
           </figure>
-          <p class="mobile__hidden caption caption__{{ section.settings.image_1_caption_position }}" style="color: {{ section.settings.text_1_color }}" >
+          <p class="{% if section.settings.image_1_mobile_caption != blank %}mobile__hidden {% endif %} caption caption__{{ section.settings.image_1_caption_position }}" style="color: {{ section.settings.text_1_color }}" >
             {{ section.settings.image_1_caption }}
             {% if section.settings.image_1_note != blank %}<span>{{ section.settings.image_1_note }}</span>{% endif %}
           </p>
+          {% if section.settings.image_1_mobile_caption != blank %}
           <p class="desktop__hidden caption caption__{{ section.settings.image_1_caption_position }}" style="color: {{ section.settings.text_2_color }}">
             {{ section.settings.image_1_mobile_caption }}
             {% if section.settings.image_1_note != blank %}<span>{{ section.settings.image_1_note }}</span>{% endif %}
           </p>
+          {% endif %}
         </div>
       {% endif %}
 
@@ -47,14 +49,16 @@
             <figure>
               {{ section.settings.image_2 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_2.alt }}
             </figure>
-            <p class="mobile__hidden caption caption__{{ section.settings.image_2_caption_position }}" style="color: {{ section.settings.text_2_color }}">
+            <p class="{% if section.settings.image_2_mobile_caption != blank %}mobile__hidden {% endif %} caption caption__{{ section.settings.image_2_caption_position }}" style="color: {{ section.settings.text_2_color }}">
               {{ section.settings.image_2_caption }}
               {% if section.settings.image_2_note != blank %}<span>{{ section.settings.image_2_note }}</span>{% endif %}
             </p>
-            <p class="desktop__hidden caption caption__{{ section.settings.image_2_caption_position }}" style="color: {{ section.settings.text_2_color }}">
-              {{ section.settings.image_2_mobile_caption }}
-              {% if section.settings.image_2_note != blank %}<span>{{ section.settings.image_2_note }}</span>{% endif %}
-            </p>
+            {% if section.settings.image_2_mobile_caption != blank %}
+              <p class="desktop__hidden caption caption__{{ section.settings.image_2_caption_position }}" style="color: {{ section.settings.text_2_color }}">
+                {{ section.settings.image_2_mobile_caption }}
+                {% if section.settings.image_2_note != blank %}<span>{{ section.settings.image_2_note }}</span>{% endif %}
+              </p>
+            {% endif %}
           </div>
         {% endif %}
         {% if section.settings.image_3 != blank %}
@@ -62,14 +66,16 @@
             <figure>
               {{ section.settings.image_3 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_3.alt }}
             </figure>
-            <p class="mobile__hidden caption caption__{{ section.settings.image_3_caption_position }}" style="color: {{ section.settings.text_3_color }}">
+            <p class="{% if section.settings.image_3_mobile_caption != blank %}mobile__hidden {% endif %} caption caption__{{ section.settings.image_3_caption_position }}" style="color: {{ section.settings.text_3_color }}">
               {{ section.settings.image_3_caption }}
               {% if section.settings.image_3_note != blank %}<span>{{ section.settings.image_3_note }}</span>{% endif %}
             </p>
-            <p class="desktop__hidden caption caption__{{ section.settings.image_3_caption_position }}" style="color: {{ section.settings.text_2_color }}">
-              {{ section.settings.image_3_mobile_caption }}
-              {% if section.settings.image_3_note != blank %}<span>{{ section.settings.image_3_note }}</span>{% endif %}
-            </p>
+            {% if section.settings.image_3_mobile_caption != blank %}
+              <p class="desktop__hidden caption caption__{{ section.settings.image_3_caption_position }}" style="color: {{ section.settings.text_2_color }}">
+                {{ section.settings.image_3_mobile_caption }}
+                {% if section.settings.image_3_note != blank %}<span>{{ section.settings.image_3_note }}</span>{% endif %}
+              </p>
+            {% endif %}
           </div>
         {% endif %}
       </div>
