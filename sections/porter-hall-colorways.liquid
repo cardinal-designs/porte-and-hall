@@ -22,6 +22,7 @@
       {% endfor %}
       {% if section.settings.mobile_slider %}
       </div>
+      <div class="swiper-pagination"></div>
       {% endif %}
     </div>
 
@@ -43,6 +44,9 @@
       var tradeSwiper = new Swiper(".trade__image--slider", {
         loop: true,
         slidesPerView: 3, 
+        pagination: {
+          el: ".swiper-pagination",
+        },
       });       
     }
   });
