@@ -6,7 +6,7 @@
   
     <h2 class="section-title">{{ section.settings.title }}</h2>
 
-    <div class="colorways-grid">
+    <div class="colorways-grid {% if section.settings.mobile_slider %} colorways__slider{% endif %}">
       {% for block in section.blocks %}
         <div class="colorway-item">
           <figure>
@@ -37,6 +37,11 @@
       "id": "title",
       "label": "Section Title",
       "default": "3 Elegant Colorways"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_slider",
+      "label": "Mobile Slider"
     },
     {
       "type": "text",
