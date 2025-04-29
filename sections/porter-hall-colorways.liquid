@@ -15,9 +15,9 @@
           <figure>
             {{ block.settings.image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: block.settings.image.alt }}
           </figure>
-          <h3 class="colorway-name">{{ block.settings.color_name_1 }}</h3>
-          <p class="colorway-size">size: {{ block.settings.color_size_1 }}</p>
-          <p class="colorway-note">{{ block.settings.color_note_1 }}</p>
+          <h3 class="colorway-name">{{ block.settings.color_name }}</h3>
+          <p class="colorway-size">size: {{ block.settings.color_size }}</p>
+          <p class="colorway-note">{{ block.settings.color_note }}</p>
         </div>
       {% endfor %}
       {% if section.settings.mobile_slider %}
