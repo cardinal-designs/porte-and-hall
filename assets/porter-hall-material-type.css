@@ -18,20 +18,20 @@
   margin-bottom: 40px;
 }
 
-.two-columns {
+.material__columns {
   display: flex;
   justify-content: center;
   gap: 40px;
   flex-wrap: wrap;
 }
 
-.column {
+.material__column {
   max-width: 300px;
   text-align: center;
   position: relative;
 }
 
-img {
+.material__columns img {
   width: 100%;
 }
 
@@ -52,14 +52,14 @@ img {
   color: #666;
 }
 
-.column-title {
+.material__column--title {
   font-size: 18px;
   font-weight: bold;
   color: #1b3a57;
   margin-top: 20px;
 }
 
-.column-description {
+.material__column--description {
   font-size: 14px;
   color: #666;
   margin-top: 10px;
@@ -68,7 +68,7 @@ img {
 
 @media screen and (max-width: 768px) {
   
-  .two-columns {
+  .material__columns {
     flex-direction: column;
     align-items: center;
   }
