@@ -100,6 +100,7 @@
   .section__step--right .section__step--right-wrapper {
     flex-direction: column-reverse;
     gap: 24px;
+    padding: 24px;
   }
 
   .section__step--right .box__content h2 {
