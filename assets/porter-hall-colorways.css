@@ -137,6 +137,16 @@
     padding-bottom: 24px;
   }
 
+  .colorways__slider .swiper-pagination-bullet {
+    background: #AC9FA2;
+    border: none;
+    transform: none;
+    border-radius: 50%;
+    max-width: 8px;
+    max-height: 8px;
+    margin: 0 4px !important;
+  }
+
   .colorways__grid.colorways__slider .colorway__item--content {
     padding-left: 8px;
     padding-right: 8px;
