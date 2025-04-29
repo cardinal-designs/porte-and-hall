@@ -18,10 +18,17 @@
   position: relative;
 }
 
+.finer__details--video-wrapper {
+  padding-bottom: 100%;
+  position: relative;
+}
+
 .finer__details--left video {
   width: 100%;
-  height: auto;
-  border-radius: 8px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .finer__details--right {
