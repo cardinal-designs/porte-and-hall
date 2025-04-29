@@ -187,5 +187,11 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 8px;
   }
+
+  .finer__details--image img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
   
 }
