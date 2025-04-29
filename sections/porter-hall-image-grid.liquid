@@ -23,7 +23,7 @@
       {% if section.settings.image_1 != blank %}
         <div class="grand__entrance--image-item">
           {{ section.settings.image_1 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_1.alt }}
-          <p class="caption caption__{{ section.settings.image_1_caption_position }}" style="color: {{ section.settings.text_1_color }}">{{ section.settings.image_1_caption }}</p>
+          <p class="caption caption__{{ section.settings.image_1_caption_position }}"  >{{ section.settings.image_1_caption }}</p>
         </div>
       {% endif %}
 
@@ -31,12 +31,12 @@
       <div class="grand__entrance--image-grid-right">
         <div class="grand__entrance--image-item">
           {{ section.settings.image_2 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_2.alt }}
-          <p class="caption caption__{{ section.settings.image_2_caption_position }}">{{ section.settings.image_2_caption }}</p>
+          <p class="caption caption__{{ section.settings.image_2_caption_position }}" style="color: {{ section.settings.text_3_color }}">{{ section.settings.image_2_caption }}</p>
         </div>
   
         <div class="grand__entrance--image-item">
           {{ section.settings.image_3 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_3.alt }}
-          <p class="caption caption__{{ section.settings.image_3_caption_position }}">{{ section.settings.image_3_caption }}</p>
+          <p class="caption caption__{{ section.settings.image_3_caption_position }}" style="color: {{ section.settings.text_3_color }}">{{ section.settings.image_3_caption }}</p>
         </div>
       </div>
       {% endif %}
