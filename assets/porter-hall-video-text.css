@@ -101,7 +101,7 @@
   letter-spacing: 0.2px;
 }
 
-@media (min-width: 767px) {
+@media (min-width: 768px) {
   
   .finer__details--left-header,
   .mobile__image--layout {
@@ -177,5 +177,11 @@
   .finer__details--right .feature-item .feature-title {
     padding-left: 20px;
   }
+  
+}
+
+@media (max-width: 767px) {
+
+  
   
 }
