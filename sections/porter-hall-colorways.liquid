@@ -22,7 +22,7 @@
       {% endfor %}
       {% if section.settings.mobile_slider %}
       </div>
-      <div class="swiper-pagination"></div>
+      <div class="colorway-swiper-pagination swiper-pagination"></div>
       {% endif %}
     </div>
 
@@ -45,7 +45,7 @@
         loop: true,
         slidesPerView: 3, 
         pagination: {
-          el: ".swiper-pagination",
+          el: ".colorway-swiper-pagination",
         },
       });       
     }
