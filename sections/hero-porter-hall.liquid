@@ -27,7 +27,7 @@
                 {% if block.settings.feature_text != blank %}
                   {% assign feature_text = block.settings.feature_text | split: ', ' %}
                   {% for text in feature_text %}
-                  <span>{{ text }}</span>
+                    <span>{{ text }}</span>
                   {% endfor %}
                 {% endif %}
               </div>
