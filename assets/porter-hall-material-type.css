@@ -27,8 +27,10 @@
 }
 
 .material__column {
-  width: calc(58.4% - 30px);
+  width: 58.4%;
   position: relative;
+  margin-top: 0;
+  padding-right: 30px;
 }
 
 .material__column.material__column--standard {
