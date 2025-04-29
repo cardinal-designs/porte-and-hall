@@ -2,16 +2,10 @@
 
 <section class="finer-details-section">
   <div class="content-wrapper">
-    <!-- Left Side: Video -->
     <div class="left">
-      {{ section.settings.video | video_tag: autoplay: true, loop: false, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
-      <video autoplay muted loop playsinline>
-        <source src="{{ section.settings.video_url }}" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      {{ section.settings.video | video_tag: autoplay: true, loop: false, muted: true, controls: false, playsinline:true, class: 'videos', id: 'video', image_size: '1000x' }}
     </div>
 
-    <!-- Right Side: Details -->
     <div class="right">
       <h2 class="main-title">{{ section.settings.title }}</h2>
       <p class="subtitle">{{ section.settings.subtitle }}</p>
@@ -41,11 +35,6 @@
 {
   "name": "The Finer Details",
   "settings": [
-    {
-      "type": "text",
-      "id": "video_url",
-      "label": "Video URL (MP4)"
-    },
     {
       "type": "video",
       "id": "video",
