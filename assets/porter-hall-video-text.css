@@ -2,6 +2,10 @@
   padding: 60px 0;
 }
 
+.finer__details--section .page-width {
+  max-width: 1600px;
+}
+
 .finer__details--content-wrapper {
   display: flex;
   gap: 40px;
