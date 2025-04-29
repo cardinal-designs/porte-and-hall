@@ -52,6 +52,7 @@
   color: #627d98;
 }
 
+
 .feature-list {
   margin-top: 20px;
 }
@@ -68,6 +69,20 @@
   font-weight: bold;
   color: #283f5b;
   margin-bottom: 8px;
+  position: relative;
+}
+
+.feature-list .feature-title:before {
+  content: "";
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  background: var(--gold-secondary--dark);
+  left: 0;
+  right: auto;
+  top: 8px;
+  bottom: auto;
+  transform: rotate(45deg);
 }
 
 .feature-description {
