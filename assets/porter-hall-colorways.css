@@ -117,7 +117,7 @@
 
 @media screen and (min-width: 768px) {
 
-  .colorways__grid.colorways__slider {
+  .colorways__grid.colorways__slider .swiper-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
