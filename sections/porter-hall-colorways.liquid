@@ -1,5 +1,6 @@
 {{ 'porter-hall-colorways.css' | asset_url | stylesheet_tag: preload: true }}
 
+{% if section.blocks.size > 0 %}
 <section class="colorways-section">
   <div class="content-wrapper">
     <!-- Section Title -->
@@ -7,37 +8,26 @@
 
     <!-- Colorways Grid -->
     <div class="colorways-grid">
-      <!-- Colorway 1 -->
-      <div class="colorway-item">
-        <img src="{{ section.settings.image_1 | image_url }}" alt="{{ section.settings.image_1_alt }}" class="colorway-image" />
-        <h3 class="colorway-name">{{ section.settings.color_name_1 }}</h3>
-        <p class="colorway-size">size: {{ section.settings.color_size_1 }}</p>
-        <p class="colorway-note">{{ section.settings.color_note_1 }}</p>
-      </div>
-
-      <!-- Colorway 2 -->
-      <div class="colorway-item">
-        <img src="{{ section.settings.image_2 | image_url }}" alt="{{ section.settings.image_2_alt }}" class="colorway-image" />
-        <h3 class="colorway-name">{{ section.settings.color_name_2 }}</h3>
-        <p class="colorway-size">size: {{ section.settings.color_size_2 }}</p>
-        <p class="colorway-note">{{ section.settings.color_note_2 }}</p>
-      </div>
-
-      <!-- Colorway 3 -->
-      <div class="colorway-item">
-        <img src="{{ section.settings.image_3 | image_url }}" alt="{{ section.settings.image_3_alt }}" class="colorway-image" />
-        <h3 class="colorway-name">{{ section.settings.color_name_3 }}</h3>
-        <p class="colorway-size">size: {{ section.settings.color_size_3 }}</p>
-        <p class="colorway-note">{{ section.settings.color_note_3 }}</p>
-      </div>
+      {% for block in section.blocks %}
+        <div class="colorway-item">
+          <figure>
+            {{ section.settings.image_1 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_1.alt }}
+          </figure>
+          <h3 class="colorway-name">{{ section.settings.color_name_1 }}</h3>
+          <p class="colorway-size">size: {{ section.settings.color_size_1 }}</p>
+          <p class="colorway-note">{{ section.settings.color_note_1 }}</p>
+        </div>
+      {% endfor %}
     </div>
 
-    <!-- Shop Now Button -->
-    <div class="shop-now">
-      <a href="{{ section.settings.button_link }}" class="shop-now-button">{{ section.settings.button_text }}</a>
-    </div>
+    {% if section.settings.button_link != blank and section.settings.button_text != blank %}
+      <div class="shop-now">
+        <a href="{{ section.settings.button_link }}" class="shop-now-button">{{ section.settings.button_text }}</a>
+      </div>
+    {% endif %}
   </div>
 </section>
+{% endif %}
 
 {% schema %}
 {
