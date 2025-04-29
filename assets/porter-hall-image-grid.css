@@ -220,7 +220,8 @@
     line-height: 8.22px;
   }
 
-  .mobile__hidden.caption {
+  .mobile__hidden.caption,
+  .grand__entrance--image-item .caption span {
     display: none
   }
   
