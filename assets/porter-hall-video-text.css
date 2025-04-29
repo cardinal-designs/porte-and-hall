@@ -13,6 +13,10 @@
   width: 100%;
 }
 
+.finer__details--content-wrapper.content__image--second {
+  flex-direction: column-reverse;
+}
+
 .finer__details--left {
   flex: 1 1 50%;
   position: relative;
