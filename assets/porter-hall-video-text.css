@@ -107,7 +107,9 @@
 
 @media (max-width: 1199px) {
 
-  
+  .finer__details--content-wrapper {
+    gap: 40px;
+  }  
   
 }
 
