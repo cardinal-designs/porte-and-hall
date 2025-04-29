@@ -4,6 +4,7 @@
   <div class="content-wrapper">
     <!-- Left Side: Video -->
     <div class="left">
+      {{ section.settings.video | video_tag: autoplay: true, loop: false, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
       <video autoplay muted loop playsinline>
         <source src="{{ section.settings.video_url }}" type="video/mp4" />
         Your browser does not support the video tag.
@@ -44,6 +45,11 @@
       "type": "text",
       "id": "video_url",
       "label": "Video URL (MP4)"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video (default media if populated)"
     },
     {
       "type": "text",
