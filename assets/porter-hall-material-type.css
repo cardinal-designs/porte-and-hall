@@ -96,10 +96,11 @@
 
 
 .material__column--title {
-  font-size: 18px;
-  font-weight: bold;
-  color: #1b3a57;
-  margin-top: 20px;
+  color: var(--blue-secondary);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.2px;
 }
 
 .material__column--description {
