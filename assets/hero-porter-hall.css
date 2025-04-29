@@ -43,19 +43,22 @@
 
 .hero__button .button {
   display: inline-block;
-  background-color: #d9b06b;
-  color: #000;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 15px 30px;
-  border-radius: 4px;
+  background-color: var(--gold);
+  color: var(--blue-secondary);
+  padding: 20px 31px;
+  font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.3s;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  border: none;
+  transition: background-color .3s ease;
 }
 
 .hero__button .button:hover {
-  background-color: #b18a49;
+  color: var(--off-white);
+  background-color: var(--blue-secondary);
 }
 
 @media screen and (min-width: 768px) {
