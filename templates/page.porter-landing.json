@@ -94,12 +94,28 @@
           "type": "title_text",
           "settings": {
             "feature_title": "Hand Crafted",
-            "feature_description": ""
+            "feature_description": "<p>Hand-knotted by artisans in India, <strong>each mat is a one-of-a-kind piece.</strong> And a practical one, too: The space between the knots helps scrape dirt off your shoes.</p>"
+          }
+        },
+        "title_text_raATCt": {
+          "type": "title_text",
+          "settings": {
+            "feature_title": "Reversible",
+            "feature_description": "<p>Unlike the rest of us, The Porter doesn’t have a “good side”: It’s <strong>fully reversible</strong> so it looks great from all angles. </p>"
+          }
+        },
+        "title_text_iDkQY6": {
+          "type": "title_text",
+          "settings": {
+            "feature_title": "Easy to clean",
+            "feature_description": "<p>Oh, and did we mention that it’s <strong>super easy to clean</strong> and comes with care instructions? Not all beauties are high-maintenance. </p>"
           }
         }
       },
       "block_order": [
-        "title_text_8ebXtd"
+        "title_text_8ebXtd",
+        "title_text_raATCt",
+        "title_text_iDkQY6"
       ],
       "name": "The Finer Details",
       "settings": {
