@@ -27,18 +27,29 @@
         {% if section.blocks.size > 0 %}
           <div class="feature-list">
             {% for block in section.blocks %}
-              <div class="feature-item">
-                <div class="feature-content">
-                  <h3 class="feature-title">{{ block.settings.feature_title }}</h3>
-                  <div class="feature-description">{{ block.settings.feature_description }}</div>
+              {% if block.settings.feature_title != blank %}
+                <div class="feature-item">
+                  <div class="feature-content">
+                    <h3 class="feature-title">{{ block.settings.feature_title }}</h3>
+                    <div class="feature-description">{{ block.settings.feature_description }}</div>
+                  </div>
                 </div>
-              </div>
+              {% endif %}
             {% endfor %}
           </div>
         {% endif %}
       </div>
     </div>
     <div class="mobile__image--layout">
+      {% for block in section.blocks %}
+        {% if block.type == 'image' %}
+          {% if block.settings.image != blank %}
+            <div class="finer__details--image">
+              <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.image_right.alt  }}" height="auto" width="auto">
+            </div>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 </section>
