@@ -24,6 +24,7 @@
   top: 56px;
   bottom: auto;
   padding-top: 86px;
+  max-width: 900px;
 }
 
 .hero__text.hero__text--top--left {
@@ -68,7 +69,6 @@
   left: 0;
   right: auto;
   margin-left: 0;
-  padding-top: 0; 
   text-align: left;
 }
 
@@ -82,7 +82,6 @@
   bottom: auto;
   left: 0;
   right: 0;
-  padding-top: 0;
   margin: 0 auto;
   text-align: center;
 }
@@ -93,7 +92,6 @@
   bottom: auto;
   left: auto;
   right: 0;
-  padding-top: 0;
   margin-right: 0;
   text-align: right;
 }
