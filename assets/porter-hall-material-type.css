@@ -172,5 +172,9 @@
     font-size: 18px;
     line-height: 24px;
   }
+
+  .material__column.material__column--standard .material__column--image-wrapper {
+    max-width: 236px;
+  }
   
 }
