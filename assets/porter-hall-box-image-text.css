@@ -83,6 +83,10 @@
   display: block;
 }
 
+.section__step--right .box__image figure {
+  margin: 0;
+}
+
 @media (min-width: 768px) {
 
   .box__image h2 {
