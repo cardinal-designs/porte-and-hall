@@ -138,6 +138,10 @@
 
 @media (max-width: 991px) {
 
+  .finer__details--section .page-width {
+    padding: 0 16px;
+  }
+
   .finer__details--section {
     padding: 40px 0;
   }
