@@ -20,10 +20,9 @@
 }
 
 .material__columns {
-  display: flex;
-  align-items: flex-end;
-  gap: 60px;
-  flex-wrap: wrap;
+  float: left;
+  display: inline-block;
+  width: 100%;
 }
 
 .material__column {
