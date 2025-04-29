@@ -234,6 +234,11 @@
     padding-top: 72px;
   }
 
+  .hero__features span {
+    font-size: 13px;
+    line-height: 17px;
+  }
+
   .hero__text.hero__text--top--left,
   .hero__text.hero__text--top--center,
   .hero__text.hero__text--top--right {
