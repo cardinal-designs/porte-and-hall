@@ -239,6 +239,12 @@
   .hero__text.hero__text--top--right {
     top: 24px;
   }
+
+  .hero__text.hero__text--bottom--left,
+  .hero__text.hero__text--bottom--center,
+  .hero__text.hero__text--bottom--right {
+    bottom: 24px;
+  }
   
 }
 
