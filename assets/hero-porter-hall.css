@@ -256,6 +256,11 @@
   .hero__text.hero__text--bottom--right {
     bottom: 24px;
   }
+
+  .hero__features span:not(:last-child):before {
+    height: 4px;
+    width: 4px;
+  }
   
 }
 
