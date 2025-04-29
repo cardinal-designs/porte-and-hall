@@ -128,7 +128,7 @@
   
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
 
   .finer__details--left-header {
     display: none;
@@ -136,7 +136,7 @@
   
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   
   .finer__details--content-wrapper {
     flex-direction: column;
