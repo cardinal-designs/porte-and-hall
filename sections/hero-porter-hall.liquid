@@ -23,7 +23,6 @@
               <h2 class="hero-title">{{ block.settings.heading }}</h2>
               <p class="hero-subtitle">{{ block.settings.subheading }}</p>
         
-              <!-- Decorative Line and Features -->
               <div class="hero-features">
                 {% if block.settings.feature_text != blank %}
                   {% assign feature_text = block.settings.feature_text | split: ', ' %}
@@ -94,10 +93,10 @@
           "label": "Subheading",
         },
         {
-          "type": "text",
-          "id": "feature_1",
-          "label": "Feature 1",
-          "default": "Luxury look & Feel"
+          "type": "textarea",
+          "id": "feature_text",
+          "label": "Feature Text",
+          "info": "please add the ‘ ,’ separator in the feature text.",
         },
         {
           "type": "text",
