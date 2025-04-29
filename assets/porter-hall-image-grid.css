@@ -49,8 +49,8 @@
 }
 
 .grand__entrance--image-item {
-  width: 30%;
-  text-align: left;
+  position: relative;
+  flex: 2.236;
 }
 
 .grand__entrance--image-item img {
