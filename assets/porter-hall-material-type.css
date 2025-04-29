@@ -39,6 +39,21 @@
 .material__column--image-wrapper figure {
   margin: 0 60px 46px 0;
   line-height: 0;
+  position: relative;
+}
+
+.material__column--image-wrapper figure:after,
+.material__column--image-wrapper figure:before {
+  content: '';
+  position: absolute;
+}
+
+.material__column--image-wrapper figure:after {
+  
+}
+
+.material__column--image-wrapper figure:before {
+  
 }
 
 .material__columns img {
