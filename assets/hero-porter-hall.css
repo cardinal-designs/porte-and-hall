@@ -30,7 +30,7 @@
 .hero__text.hero__text--top--left {
   top: 56px;
   bottom: auto;
-  left: 56px;
+  left: 0;
   right: auto;
   margin-left: 0;
   text-align: left;
@@ -53,7 +53,7 @@
   top: 56px;
   bottom: auto;
   left: auto;
-  right: 56px;
+  right: 0;
   margin-right: 0;
   text-align: right;
 }
@@ -66,7 +66,7 @@
   top: 50%;
   transform: translateY(-50%);
   bottom: auto;
-  left: 56px;
+  left: 0;
   right: auto;
   margin-left: 0;
   text-align: left;
