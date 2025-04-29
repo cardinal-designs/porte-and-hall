@@ -141,6 +141,10 @@
     width: 32px;
     height: 32px;
   }
+
+  .colorway__item--content {
+    padding: 10px 0;
+  }
   
 }
 
@@ -186,10 +190,6 @@
     font-size: 32px;
     line-height: 40px;
     margin-bottom: 16px;
-  }
-
-  .colorway__item--content {
-    padding: 10px 0;
   }
 
   .colorways__grid:not(.colorways__slider) {
