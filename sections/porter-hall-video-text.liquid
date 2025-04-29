@@ -1,37 +1,34 @@
 {{ 'porter-hall-video-text.css' | asset_url | stylesheet_tag: preload: true }}
 
+{% if section.settings.video != blank and section.settings.title != blank %}
 <section class="finer-details-section">
   <div class="page-width">
     <div class="content-wrapper">
       <div class="left">
         {{ section.settings.video | video_tag: autoplay: true, loop: false, muted: true, controls: false, playsinline:true, class: 'videos', id: 'video', image_size: '1000x' }}
-      </div>
-  
+      </div>  
       <div class="right">
         <h2 class="main-title">{{ section.settings.title }}</h2>
-        <p class="subtitle">{{ section.settings.subtitle }}</p>
-  
-        <div class="feature-list">
-          <div class="feature-item">
-            <span class="icon">◆</span>
-            <div class="feature-content">
-              <h3 class="feature-title">{{ section.settings.feature_1_title }}</h3>
-              <p class="feature-description">{{ section.settings.feature_1_description }}</p>
-            </div>
+        {% if section.settings.subtitle != blank %}
+          <p class="subtitle">{{ section.settings.subtitle }}</p>  
+        {% endif %}
+        {% if section.blocks.size > 0 %}
+          <div class="feature-list">
+            {% for block in section.blocks %}
+              <div class="feature-item">
+                <div class="feature-content">
+                  <h3 class="feature-title">{{ block.settings.feature_title }}</h3>
+                  <p class="feature-description">{{ block.settings.feature_description }}</p>
+                </div>
+              </div>
+            {% endfor %}
           </div>
-  
-          <div class="feature-item">
-            <span class="icon">◆</span>
-            <div class="feature-content">
-              <h3 class="feature-title">{{ section.settings.feature_2_title }}</h3>
-              <p class="feature-description">{{ section.settings.feature_2_description }}</p>
-            </div>
-          </div>
-        </div>
+        {% endif %}
       </div>
     </div>
   </div>
 </section>
+{% endif %}
 
 {% schema %}
 {
