@@ -27,6 +27,24 @@
   max-width: 900px;
 }
 
+.hero__text.hero__text--top--center {
+  top: 56px;
+  bottom: auto;
+  left: 0;
+  right: auto;
+  margin-left: 0;
+  text-align: left;
+}
+
+.hero__text.hero__text--top--center {
+  top: 56px;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .hero__image--item figure {
   margin: 0;
 }
