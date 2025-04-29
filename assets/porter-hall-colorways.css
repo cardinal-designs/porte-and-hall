@@ -147,6 +147,10 @@
     margin: 0 4px !important;
   }
 
+  .colorways__slider .swiper-pagination-bullet-active {
+    background: #30383D;
+  }
+
   .colorways__grid.colorways__slider .colorway__item--content {
     padding-left: 8px;
     padding-right: 8px;
