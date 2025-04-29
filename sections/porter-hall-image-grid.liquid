@@ -25,25 +25,31 @@
           {{ section.settings.image_1 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_1.alt }}
           <p class="caption caption__{{ section.settings.image_1_caption_position }}" style="color: {{ section.settings.text_1_color }}" >
             {{ section.settings.image_1_caption }}
-            <span>{{ section.settings.image_1_note }}</span>
+            {% if section.settings.image_1_note != blank %}<span>{{ section.settings.image_1_note }}</span>{% endif %}
           </p>
         </div>
       {% endif %}
 
       {% if section.settings.image_2 != blank or section.settings.image_3 != blank %}
       <div class="grand__entrance--image-grid-right">
-        <div class="grand__entrance--image-item">
-          {{ section.settings.image_2 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_2.alt }}
-          <p class="caption caption__{{ section.settings.image_2_caption_position }}" style="color: {{ section.settings.text_2_color }}">
-            {{ section.settings.image_2_caption }}
-            <span>{{ section.settings.image_2_note }}</span>
-          </p>
-        </div>
-  
-        <div class="grand__entrance--image-item">
-          {{ section.settings.image_3 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_3.alt }}
-          <p class="caption caption__{{ section.settings.image_3_caption_position }}" style="color: {{ section.settings.text_3_color }}">{{ section.settings.image_3_caption }}</p>
-        </div>
+        {% if section.settings.image_2 != blank %}
+          <div class="grand__entrance--image-item">
+            {{ section.settings.image_2 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_2.alt }}
+            <p class="caption caption__{{ section.settings.image_2_caption_position }}" style="color: {{ section.settings.text_2_color }}">
+              {{ section.settings.image_2_caption }}
+              {% if section.settings.image_2_note != blank %}<span>{{ section.settings.image_2_note }}</span>{% endif %}
+            </p>
+          </div>
+        {% endif %}
+        {% if section.settings.image_3 != blank %}
+          <div class="grand__entrance--image-item">
+            {{ section.settings.image_3 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_3.alt }}
+            <p class="caption caption__{{ section.settings.image_3_caption_position }}" style="color: {{ section.settings.text_3_color }}">
+              {{ section.settings.image_3_caption }}
+              {% if section.settings.image_3_note != blank %}<span>{{ section.settings.image_3_note }}</span>{% endif %}
+            </p>
+          </div>
+        {% endif %}
       </div>
       {% endif %}
     </div>
@@ -94,6 +100,11 @@
       "label": "Image 1 Caption",
       "default": "Hand-knotted design creates open space - looks great and traps dirt, too."
     },
+    {
+      "type": "text",
+      "id": "image_1_note",
+      "label": "Image 1 Note",
+    },    
     {
       "type": "select",
       "id": "image_1_caption_position",
@@ -154,6 +165,11 @@
       "default": "Flexible and easy to roll out and shake clean."
     },
     {
+      "type": "text",
+      "id": "image_2_note",
+      "label": "Image 2 Note",
+    },
+    {
       "type": "select",
       "id": "image_2_caption_position",
       "label": "Image 2 Caption Position",
@@ -211,6 +227,11 @@
       "id": "image_3_caption",
       "label": "Image 3 Caption",
       "default": "Soft on feet (and paws)."
+    },
+    {
+      "type": "text",
+      "id": "image_3_note",
+      "label": "Image 3 Note",
     },
     {
       "type": "select",
