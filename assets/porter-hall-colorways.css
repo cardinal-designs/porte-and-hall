@@ -129,6 +129,21 @@
   
 }
 
+@media screen and (max-width: 1023px) {
+
+  .colorway__name {
+    font-size: 32px;
+    line-height: 40px;
+    gap: 8px;
+  }
+
+  .colorway__name .color__image {
+    width: 32px;
+    height: 32px;
+  }
+  
+}
+
 @media screen and (max-width: 767px) {
 
   .colorways__section {
@@ -187,16 +202,7 @@
     width: 100%;
   }
 
-  .colorway__name {
-    font-size: 32px;
-    line-height: 40px;
-    gap: 8px;
-  }
-
-  .colorway__name .color__image {
-    width: 32px;
-    height: 32px;
-  }
+  
 
   .colorway__note {
     display: none;
