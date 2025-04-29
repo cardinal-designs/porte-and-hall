@@ -96,6 +96,10 @@
 }
 
 @media (max-width: 767px) {
+
+  .section__step--right .page-width {
+    padding: 0 24px;
+  }
   
   .section__step--right .section__step--right-wrapper {
     flex-direction: column-reverse;
