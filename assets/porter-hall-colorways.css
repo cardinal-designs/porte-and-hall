@@ -135,6 +135,11 @@
   .colorways__grid.colorways__slider {
     margin: 0 -16px;
   }
+
+  .colorways__grid.colorways__slider .colorway__item--content {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
   
   .colorways__section .page-width {
     padding: 0 16px;
