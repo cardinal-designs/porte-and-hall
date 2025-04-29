@@ -89,15 +89,25 @@
     },
     "porter_hall_video_text_zDhyEj": {
       "type": "porter-hall-video-text",
+      "blocks": {
+        "title_text_8ebXtd": {
+          "type": "title_text",
+          "settings": {
+            "feature_title": "Hand Crafted",
+            "feature_description": "Hand-knotted by artisans in India, each mat is a one-of-a-kind piece. And a practical one, too: The space between the knots helps scrape dirt off your shoes."
+          }
+        }
+      },
+      "block_order": [
+        "title_text_8ebXtd"
+      ],
       "name": "The Finer Details",
       "settings": {
-        "video_url": "",
+        "bg_color": "",
         "title": "The Finer Details",
         "subtitle": "What makes The Porter so unique? It’s the little things.",
-        "feature_1_title": "Premium durable material",
-        "feature_1_description": "Our water-repellant rope is made of premium, all-weather Italian yarns and solution-dyed with a special blend of UV protectors, so your mat will look luxe (and resist sun fading) for years to come.",
-        "feature_2_title": "Complex colors",
-        "feature_2_description": "We twisted two different yarn colors together to create a level of dimension that solid rope simply can’t match."
+        "remove_top_space": false,
+        "remove_bottom_space": false
       }
     },
     "porter_hall_box_image_text_NWHbjw": {
