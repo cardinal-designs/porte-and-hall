@@ -102,6 +102,7 @@
   left: 0;
   right: 0;
   text-align: center;
+  margin: 0 auto;
 }
 
 .grand__entrance--image-item .caption.caption__top--right {
@@ -110,6 +111,7 @@
   left: auto;
   right: 0;
   text-align: right;
+  margin-right: 0;
 }
 
 .grand__entrance--image-item .caption.caption__middle--left {
@@ -128,6 +130,7 @@
   left: 0;
   right: 0;
   text-align: center;
+  margin: 0 auto;
 }
 
 .grand__entrance--image-item .caption.caption__middle--right {
@@ -137,6 +140,7 @@
   left: auto;
   right: 0;
   text-align: right;
+  margin-right: 0;
 }
 
 .grand__entrance--image-item .caption.caption__bottom--left {
@@ -153,6 +157,7 @@
   left: 0;
   right: 0;
   text-align: center;
+  margin: 0 auto;
 }
 
 .grand__entrance--image-item .caption.caption__bottom--right {
@@ -161,6 +166,7 @@
   left: auto;
   right: 0;
   text-align: right;
+  margin-right: 0;
 }
 
 @media (min-width: 768px) {
