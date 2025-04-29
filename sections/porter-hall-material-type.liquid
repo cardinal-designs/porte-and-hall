@@ -1,40 +1,39 @@
 {{ 'porter-hall-material-type.css' | asset_url | stylesheet_tag: preload: true }}
 
+{% if section.settings.image_doublewide != blank or section.settings.image_standard != blank %}
 <section class="two-of-a-kind-section" id="section--{{ section.id }}">
   <div class="page-width">
     
     <h2 class="section-title">{{ section.settings.title }}</h2>
-
     
     <div class="two-columns">
-      <!-- Column 1 -->
-      <div class="column">
-        <img
-          src="{{ section.settings.image_doublewide | image_url }}"
-          alt="{{ section.settings.image_doublewide_alt }}"
-          class="column-image"
-        />
-        <div class="dimension-text-vertical">3'6"</div>
-        <div class="dimension-text-horizontal">6'</div>
-        <h3 class="column-title">{{ section.settings.doublewide_title }}</h3>
-        <p class="column-description">{{ section.settings.doublewide_description }}</p>
-      </div>
+      {% if section.settings.image_doublewide != blank %}
+        <div class="column">
+          <figure>
+            {{ section.settings.image_doublewide | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_doublewide.alt }}
+          </figure>
+          <div class="dimension-text-vertical">3'6"</div>
+          <div class="dimension-text-horizontal">6'</div>
+          <h3 class="column-title">{{ section.settings.doublewide_title }}</h3>
+          <div class="column-description">{{ section.settings.doublewide_description }}</div>
+        </div>
+      {% endif %}
 
-      
-      <div class="column">
-        <img
-          src="{{ section.settings.image_standard | image_url }}"
-          alt="{{ section.settings.image_standard_alt }}"
-          class="column-image"
-        />
-        <div class="dimension-text-vertical">2'6"</div>
-        <div class="dimension-text-horizontal">4'</div>
-        <h3 class="column-title">{{ section.settings.standard_title }}</h3>
-        <p class="column-description">{{ section.settings.standard_description }}</p>
-      </div>
+      {% if section.settings.image_standard != blank %}
+        <div class="column">=
+          <figure>
+            {{ section.settings.image_standard | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_standard.alt }}
+          </figure>
+          <div class="dimension-text-vertical">2'6"</div>
+          <div class="dimension-text-horizontal">4'</div>
+          <h3 class="column-title">{{ section.settings.standard_title }}</h3>
+          <div class="column-description">{{ section.settings.standard_description }}</div>
+        </div>
+      {% endif %}
     </div>
   </div>
 </section>
+{% endif %}
 
 <style>
   #section--{{ section.id }} {
