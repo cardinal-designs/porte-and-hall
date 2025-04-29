@@ -53,21 +53,34 @@
     },
     "porter_hall_colorways_xHj4Bh": {
       "type": "porter-hall-colorways",
+      "blocks": {
+        "color_DNVFHG": {
+          "type": "color",
+          "settings": {
+            "image": "shopify://shop_images/L_Porte_Hall_Porter_2Well_Bown_1443_1_2_1.jpg",
+            "color_name": "Iron",
+            "color_size": "Standard 2’6” 4’",
+            "color_note": "*Color shown: Iron. Coming soon!"
+          }
+        },
+        "color_999pwx": {
+          "type": "color",
+          "settings": {
+            "image": "shopify://shop_images/L_Porte_Hall_Porter_2Well_Bown_1443_1_2_1.jpg",
+            "color_name": "Iron",
+            "color_size": "Standard 2’6” 4’",
+            "color_note": "*Color shown: Iron. Coming soon!"
+          }
+        }
+      },
+      "block_order": [
+        "color_DNVFHG",
+        "color_999pwx"
+      ],
       "name": "Colorways",
       "settings": {
         "title": "3 Elegant Colorways",
-        "image_1_alt": "Iron Colorway",
-        "color_name_1": "Iron",
-        "color_size_1": "Standard 2'6\" 4'",
-        "color_note_1": "*Color shown: Iron. Coming soon!",
-        "image_2_alt": "Truffle Colorway",
-        "color_name_2": "Truffle",
-        "color_size_2": "Double 3' 6'",
-        "color_note_2": "",
-        "image_3_alt": "Greystone Colorway",
-        "color_name_3": "Greystone",
-        "color_size_3": "Double 3' 6'",
-        "color_note_3": "",
+        "mobile_slider": false,
         "button_text": "Shop Now",
         "button_link": "/"
       }

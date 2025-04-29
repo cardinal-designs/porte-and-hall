@@ -13,11 +13,11 @@
       {% for block in section.blocks %}
         <div class="colorway-item{% if section.settings.mobile_slider %} swiper-slide{% endif %}">
           <figure>
-            {{ section.settings.image_1 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_1.alt }}
+            {{ block.settings.image_1 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: block.settings.image_1.alt }}
           </figure>
-          <h3 class="colorway-name">{{ section.settings.color_name_1 }}</h3>
-          <p class="colorway-size">size: {{ section.settings.color_size_1 }}</p>
-          <p class="colorway-note">{{ section.settings.color_note_1 }}</p>
+          <h3 class="colorway-name">{{ block.settings.color_name_1 }}</h3>
+          <p class="colorway-size">size: {{ block.settings.color_size_1 }}</p>
+          <p class="colorway-note">{{ block.settings.color_note_1 }}</p>
         </div>
       {% endfor %}
       {% if section.settings.mobile_slider %}
