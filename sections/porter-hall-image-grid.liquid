@@ -23,7 +23,7 @@
       {% if section.settings.image_1 != blank %}
         <div class="grand__entrance--image-item">
           {{ section.settings.image_1 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_1.alt }}
-          <p class="caption">{{ section.settings.image_1_caption }}</p>
+          <p class="caption caption__{{ section.settings.image_1_caption_position }}" style="color: {{ section.settings.text_1_color }}">{{ section.settings.image_1_caption }}</p>
         </div>
       {% endif %}
 
@@ -31,12 +31,12 @@
       <div class="grand__entrance--image-grid-right">
         <div class="grand__entrance--image-item">
           {{ section.settings.image_2 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_2.alt }}
-          <p class="caption">{{ section.settings.image_2_caption }}</p>
+          <p class="caption caption__{{ section.settings.image_2_caption_position }}">{{ section.settings.image_2_caption }}</p>
         </div>
   
         <div class="grand__entrance--image-item">
           {{ section.settings.image_3 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_3.alt }}
-          <p class="caption">{{ section.settings.image_3_caption }}</p>
+          <p class="caption caption__{{ section.settings.image_3_caption_position }}">{{ section.settings.image_3_caption }}</p>
         </div>
       </div>
       {% endif %}
@@ -132,6 +132,11 @@
       ]
     },
     {
+      "type": "color",
+      "id": "text_1_color",
+      "label": "Text Color"
+    },
+    {
       "type": "image_picker",
       "id": "image_2",
       "label": "Image 2"
@@ -143,6 +148,54 @@
       "default": "Flexible and easy to roll out and shake clean."
     },
     {
+      "type": "select",
+      "id": "image_2_caption_position",
+      "label": "Image 2 Caption Position",
+      "options": [
+        {
+          "label": "Top Left",
+          "value": "top--left"
+        },
+        {
+          "label": "Top Center",
+          "value": "top--center"
+        },
+        {
+          "label": "Top Right",
+          "value": "top--right"
+        },
+        {
+          "label": "Middle Left",
+          "value": "middle--left"
+        },
+        {
+          "label": "Middle Center",
+          "value": "middle--center"
+        },
+        {
+          "label": "Middle Right",
+          "value": "middle--right"
+        },
+        {
+          "label": "Bottom Left",
+          "value": "bottom--left"
+        },
+        {
+          "label": "Bottom Center",
+          "value": "bottom--center"
+        },
+        {
+          "label": "Bottom Right",
+          "value": "bottom--right"
+        },
+      ]
+    },
+    {
+      "type": "color",
+      "id": "text_2_color",
+      "label": "Text Color"
+    },
+    {
       "type": "image_picker",
       "id": "image_3",
       "label": "Image 3"
@@ -152,7 +205,55 @@
       "id": "image_3_caption",
       "label": "Image 3 Caption",
       "default": "Soft on feet (and paws)."
-    }
+    },
+    {
+      "type": "select",
+      "id": "image_3_caption_position",
+      "label": "Image 3 Caption Position",
+      "options": [
+        {
+          "label": "Top Left",
+          "value": "top--left"
+        },
+        {
+          "label": "Top Center",
+          "value": "top--center"
+        },
+        {
+          "label": "Top Right",
+          "value": "top--right"
+        },
+        {
+          "label": "Middle Left",
+          "value": "middle--left"
+        },
+        {
+          "label": "Middle Center",
+          "value": "middle--center"
+        },
+        {
+          "label": "Middle Right",
+          "value": "middle--right"
+        },
+        {
+          "label": "Bottom Left",
+          "value": "bottom--left"
+        },
+        {
+          "label": "Bottom Center",
+          "value": "bottom--center"
+        },
+        {
+          "label": "Bottom Right",
+          "value": "bottom--right"
+        },
+      ]
+    },
+    {
+      "type": "color",
+      "id": "text_3_color",
+      "label": "Text Color"
+    },
   ]
 }
 {% endschema %}
