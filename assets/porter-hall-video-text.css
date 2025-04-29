@@ -45,7 +45,7 @@
 }
 
 .finer__details--main-title {
-  color: #283f5b;
+  color: var(--blue-secondary);
   margin-bottom: 16px;
   font-weight: 500;
   font-size: 58px;
