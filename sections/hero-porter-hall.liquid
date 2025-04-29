@@ -1,7 +1,7 @@
 {{ 'hero-porter-hall.css' | asset_url | stylesheet_tag: preload: true }}
 
-<section class="hero-porter-hall">
-  <div class="hero-container">
+<section class="hero__porter--hall">
+  <div class="hero__container">
 
     <div class="hero__image--wrapper{% if section.blocks.size > 1 %} hero__image--slider swiper{% endif %}"> 
       {% if section.blocks.size > 1 %}
