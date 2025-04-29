@@ -19,19 +19,19 @@
       <div class="image-grid">
         <!-- Image 1 -->
         <div class="image-item">
-          <img src="{{ section.settings.image_1 | image_url }}" alt="{{ section.settings.image_1_alt }}" />
+          {{ section.settings.image_1 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_1.alt }}
           <p class="caption">{{ section.settings.image_1_caption }}</p>
         </div>
   
         <!-- Image 2 -->
         <div class="image-item">
-          <img src="{{ section.settings.image_2 | image_url }}" alt="{{ section.settings.image_2_alt }}" />
+          {{ section.settings.image_2 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_2.alt }}
           <p class="caption">{{ section.settings.image_2_caption }}</p>
         </div>
   
         <!-- Image 3 -->
         <div class="image-item">
-          <img src="{{ section.settings.image_3 | image_url }}" alt="{{ section.settings.image_3_alt }}" />
+          {{ section.settings.image_3 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_3.alt }}
           <p class="caption">{{ section.settings.image_3_caption }}</p>
         </div>
       </div>
