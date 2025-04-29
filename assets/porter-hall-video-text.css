@@ -12,18 +12,18 @@
   width: 100%;
 }
 
-.left {
+.finer__details--left {
   flex: 1;
   position: relative;
 }
 
-.left video {
+.finer__details--left video {
   width: 100%;
   height: auto;
   border-radius: 8px;
 }
 
-.right {
+.finer__details--right {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -79,8 +79,8 @@
     flex-direction: column;
   }
 
-  .left,
-  .right {
+  .finer__details--left,
+  .finer__details--right {
     flex: none;
     width: 100%;
   }
