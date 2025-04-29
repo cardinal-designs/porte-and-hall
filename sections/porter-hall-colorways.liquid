@@ -6,9 +6,12 @@
   
     <h2 class="section-title">{{ section.settings.title }}</h2>
 
-    <div class="colorways-grid {% if section.settings.mobile_slider %} colorways__slider{% endif %}">
+    <div class="colorways-grid {% if section.settings.mobile_slider %} colorways__slider swiper{% endif %}">
+      {% if section.settings.mobile_slider %}
+      <div class="swiper-wrapper">
+      {% endif %}
       {% for block in section.blocks %}
-        <div class="colorway-item">
+        <div class="colorway-item{% if section.settings.mobile_slider %} swiper-slide{% endif %}">
           <figure>
             {{ section.settings.image_1 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_1.alt }}
           </figure>
@@ -17,6 +20,9 @@
           <p class="colorway-note">{{ section.settings.color_note_1 }}</p>
         </div>
       {% endfor %}
+      {% if section.settings.mobile_slider %}
+      </div>
+      {% endif %}
     </div>
 
     {% if section.settings.button_link != blank and section.settings.button_text != blank %}
@@ -26,6 +32,24 @@
     {% endif %}
   </div>
 </section>
+{% endif %}
+
+
+{% if section.settings.mobile_slider %}
+<script>
+
+  document.addEventListener("DOMContentLoaded", (event) => {
+    var tradeSwiper = new Swiper(".trade__image--slider", {
+      loop: true,
+      slidesPerView: 1, 
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+      },
+    });       
+  });
+  
+</script>
 {% endif %}
 
 {% schema %}
