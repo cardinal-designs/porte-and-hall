@@ -24,10 +24,6 @@
   margin-bottom: 24px;
 }
 
-.colorway__item {
-  text-align: center;
-}
-
 .colorway__item figure {
   margin: 0;
 }
@@ -36,8 +32,14 @@
   width: 100%;
 }
 
-.color__size--wrapper {
+.colorway__item--content {
   padding: 16px;
+}
+
+.color__size--wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .colorway__name {
