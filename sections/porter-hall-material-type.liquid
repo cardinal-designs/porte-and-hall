@@ -3,8 +3,9 @@
 {% if section.settings.image_doublewide != blank or section.settings.image_standard != blank %}
 <section class="porter__hall--material-section" id="section--{{ section.id }}">
   <div class="page-width">
-    
-    <h2 class="material__section--title">{{ section.settings.title }}</h2>
+    {% if section.settings.title != blank %}
+      <h2 class="material__section--title">{{ section.settings.title }}</h2>
+    {% endif %}
     
     <div class="material__columns">
       {% if section.settings.image_doublewide != blank %}
