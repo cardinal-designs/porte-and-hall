@@ -177,6 +177,10 @@
     right: -7px;
   }
 
+  .material__column--image-wrapper figure:after {
+    bottom: -7px;
+  }
+
   .material__column.material__column--standard .material__column--image-wrapper {
     max-width: 236px;
   }
