@@ -107,7 +107,8 @@
     flex-direction: row-reverse;
   }
 
-  .finer__details--left-header {
+  .finer__details--left-header,
+  .mobile__image--layout {
     display: none;
   }
   
