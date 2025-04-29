@@ -2,6 +2,7 @@
   padding: 64px 0;
   display: inline-block;
   width: 100%;
+  text-align: center;
 }
 
 .porter__hall--material-section .page-width {
@@ -32,6 +33,10 @@
   margin-top: 0;
   padding-right: 30px;
   float: left;
+}
+
+.material__column--content {
+  text-align: left;
 }
 
 .material__column.material__column--standard {
