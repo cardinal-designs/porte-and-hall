@@ -46,17 +46,18 @@
   justify-content: center;
 }
 
-.image-item {
+.grand__entrance--image-item {
   width: 30%;
   text-align: left;
 }
 
-.image-item img {
+.grand__entrance--image-item img {
   width: 100%;
-  border-radius: 6px;
+  max-width: 100%;
+  height: auto;
 }
 
-.image-item .caption {
+.grand__entrance--image-item .caption {
   font-size: 14px;
   margin-top: 10px;
   color: #555;
@@ -68,7 +69,7 @@
     flex-direction: column;
   }
   
-  .image-item {
+  .grand__entrance--image-item {
     width: 100%;
   }
   
