@@ -162,8 +162,19 @@
   text-align: right;
 }
 
+@media (min-width: 768px) {
 
-@media (max-width: 768px) {
+  .desktop__hidden.caption {
+    display: none
+  }
+  
+}
+
+@media (max-width: 767px) {
+
+  .mobile__hidden.caption {
+    display: none
+  }
   
   .grand__entrance--image-grid {
     flex-direction: column;
