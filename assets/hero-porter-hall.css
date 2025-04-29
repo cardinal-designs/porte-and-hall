@@ -272,7 +272,8 @@
 
 @media screen and (max-width: 767px) {
 
-  .hero__image--item .mobile__hidden {
+  .hero__image--item .mobile__hidden,
+  .hero__title br {
     display: none;
   }
   
