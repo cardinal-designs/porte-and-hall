@@ -2,23 +2,32 @@
 
 <section class="grand-entrance-section" id="section--{{ section.id }}">
   <div class="page-width">
-    <h2 class="heading">
-      {{ section.settings.title }}
-    </h2>
+    {% if section.settings.title != blank %}
+      <h2 class="heading">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+    {% if section.settings.description != blank %}
     <p class="description">
       {{ section.settings.description }}
     </p>
+    {% endif %}
+    {% if section.settings.subheading != blank %}
     <p class="sub-heading">
       {{ section.settings.subheading }}
     </p>
+    {% endif %}
     <hr class="divider" />
 
     <div class="image-grid">
-      <div class="image-item">
-        {{ section.settings.image_1 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_1.alt }}
-        <p class="caption">{{ section.settings.image_1_caption }}</p>
-      </div>
+      {% if section.settings.image_1 != blank %}
+        <div class="image-item">
+          {{ section.settings.image_1 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_1.alt }}
+          <p class="caption">{{ section.settings.image_1_caption }}</p>
+        </div>
+      {% endif %}
 
+      {% if section.settings.image_2 != blank or section.settings.image_3 != blank %}
       <div class="grand__entrance--image-grid">
         <div class="image-item">
           {{ section.settings.image_2 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_2.alt }}
@@ -30,6 +39,7 @@
           <p class="caption">{{ section.settings.image_3_caption }}</p>
         </div>
       </div>
+      {% endif %}
     </div>
   </div>
 </section>
