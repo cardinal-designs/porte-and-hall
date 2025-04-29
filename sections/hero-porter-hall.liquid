@@ -20,19 +20,19 @@
             {% endif %}
 
             <div class="hero-text">
-              <h2 class="hero-title">{{ section.settings.heading }}</h2>
-              <p class="hero-subtitle">{{ section.settings.subheading }}</p>
+              <h2 class="hero-title">{{ block.settings.heading }}</h2>
+              <p class="hero-subtitle">{{ block.settings.subheading }}</p>
         
               <!-- Decorative Line and Features -->
               <div class="hero-features">
                 <hr class="feature-line">
-                <span>{{ section.settings.feature_1 }}</span>
+                <span>{{ block.settings.feature_1 }}</span>
                 <span class="bullet">•</span>
-                <span>{{ section.settings.feature_2 }}</span>
+                <span>{{ block.settings.feature_2 }}</span>
                 <span class="bullet">•</span>
-                <span>{{ section.settings.feature_3 }}</span>
+                <span>{{ block.settings.feature_3 }}</span>
               </div>
-              <a href="{{ section.settings.button_link }}" class="cta-button">{{ section.settings.button_text }}</a>
+              <a href="{{ block.settings.button_link }}" class="cta-button">{{ block.settings.button_text }}</a>
             </div>
             
           </div>
