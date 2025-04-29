@@ -97,12 +97,12 @@
 
 .text__button {
   padding: 12px 24px;
-  background-color: black;
-  color: #fff;
+  color: var(--blue-secondary);
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 14px;
-  border-radius: 4px;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.4px;
   text-decoration: none;
   display: inline-block;
 }
