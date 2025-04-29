@@ -36,7 +36,8 @@
 }
 
 .material__column--image-wrapper figure {
-  margin: 0;
+  margin: 0 60px 54px 0;
+  line-height: 0;
 }
 
 .material__columns img {
