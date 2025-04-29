@@ -1,16 +1,16 @@
 {{ 'porter-hall-video-text.css' | asset_url | stylesheet_tag: preload: true }}
 
 {% if section.settings.video != blank and section.settings.title != blank %}
-<section class="finer-details-section" id="section--{{ section.id }}">
+<section class="finer__details--section" id="section--{{ section.id }}">
   <div class="page-width">
-    <div class="content-wrapper">
-      <div class="left">
+    <div class="finer__details--content-wrapper">
+      <div class="finer__details--left">
         {{ section.settings.video | video_tag: autoplay: true, loop: false, muted: true, controls: false, playsinline:true, class: 'videos', id: 'video', image_size: '1000x' }}
       </div>  
-      <div class="right">
-        <h2 class="main-title">{{ section.settings.title }}</h2>
+      <div class="finer__details--right">
+        <h2 class="finer__details--main-title">{{ section.settings.title }}</h2>
         {% if section.settings.subtitle != blank %}
-          <p class="subtitle">{{ section.settings.subtitle }}</p>  
+          <p class="finer__details--subtitle">{{ section.settings.subtitle }}</p>  
         {% endif %}
         {% if section.blocks.size > 0 %}
           <div class="feature-list">
