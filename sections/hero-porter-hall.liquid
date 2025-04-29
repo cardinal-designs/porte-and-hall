@@ -20,7 +20,9 @@
             {% endif %}
 
             <div class="hero__text">
-              <h2 class="hero__title">{{ block.settings.heading }}</h2> 
+              {% if block.settings.heading != blank %}
+                <h2 class="hero__title">{{ block.settings.heading }}</h2> 
+              {% endif %}
               {% if block.settings.feature_text != blank %}
                 <div class="hero__features">
                   {% assign feature_text = block.settings.feature_text | split: ', ' %}
