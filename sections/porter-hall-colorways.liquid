@@ -19,7 +19,7 @@
             {% if block.settings.color_name != blank %}
               <h3 class="colorway-name">
                 {% if block.settings.color_image != blank %}
-                  <span>
+                  <span class="color__image">
                     {{ block.settings.color_image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: block.settings.color_image.alt }}
                   </span>
                 {% endif %}
