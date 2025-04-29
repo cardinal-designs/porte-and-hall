@@ -199,6 +199,12 @@
     top: 24px;
     padding-top: 72px;
   }
+
+  .hero__text.hero__text--top--left,
+  .hero__text.hero__text--top--center,
+  .hero__text.hero__text--top--right {
+    top: 24px;
+  }
   
 }
 
