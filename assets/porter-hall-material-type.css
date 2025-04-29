@@ -125,5 +125,10 @@
     width: 100%;
     padding-right: 0;
   }  
+
+  .material__column.material__column--standard {
+    width: 100%;
+    padding: 0;
+  }
   
 }
