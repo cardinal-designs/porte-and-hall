@@ -121,7 +121,9 @@
 
 @media screen and (max-width: 767px) {
   
-  .material__columns {
+  .material__column {
+    width: 100%;
+    padding-right: 0;
   }  
   
 }
