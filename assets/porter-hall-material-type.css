@@ -110,6 +110,7 @@
   font-size: 24px;
   line-height: 32px;
   letter-spacing: 0.2px;
+  text-transform: capitalize;
 }
 
 .material__column--description {
@@ -159,6 +160,11 @@
 
   .porter__hall--material-section .page-width {
     padding: 0 18px;
+  }
+
+  .material__column--title {
+    font-size: 18px;
+    line-height: 24px;
   }
   
 }
