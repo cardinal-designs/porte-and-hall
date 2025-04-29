@@ -132,8 +132,8 @@
 @media screen and (max-width: 1023px) {
 
   .colorway__name {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 26px;
+    line-height: 34px;
     gap: 8px;
   }
 
@@ -202,7 +202,10 @@
     width: 100%;
   }
 
-  
+  .colorway__name {
+    font-size: 32px;
+    line-height: 40px;
+  }
 
   .colorway__note {
     display: none;
