@@ -98,7 +98,7 @@
 @media (max-width: 767px) {
   
   .section__step--right .section__step--right-wrapper {
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 24px;
   }
 
