@@ -1,29 +1,31 @@
 {{ 'porter-hall-video-text.css' | asset_url | stylesheet_tag: preload: true }}
 
 <section class="finer-details-section">
-  <div class="content-wrapper">
-    <div class="left">
-      {{ section.settings.video | video_tag: autoplay: true, loop: false, muted: true, controls: false, playsinline:true, class: 'videos', id: 'video', image_size: '1000x' }}
-    </div>
-
-    <div class="right">
-      <h2 class="main-title">{{ section.settings.title }}</h2>
-      <p class="subtitle">{{ section.settings.subtitle }}</p>
-
-      <div class="feature-list">
-        <div class="feature-item">
-          <span class="icon">◆</span>
-          <div class="feature-content">
-            <h3 class="feature-title">{{ section.settings.feature_1_title }}</h3>
-            <p class="feature-description">{{ section.settings.feature_1_description }}</p>
+  <div class="page-width">
+    <div class="content-wrapper">
+      <div class="left">
+        {{ section.settings.video | video_tag: autoplay: true, loop: false, muted: true, controls: false, playsinline:true, class: 'videos', id: 'video', image_size: '1000x' }}
+      </div>
+  
+      <div class="right">
+        <h2 class="main-title">{{ section.settings.title }}</h2>
+        <p class="subtitle">{{ section.settings.subtitle }}</p>
+  
+        <div class="feature-list">
+          <div class="feature-item">
+            <span class="icon">◆</span>
+            <div class="feature-content">
+              <h3 class="feature-title">{{ section.settings.feature_1_title }}</h3>
+              <p class="feature-description">{{ section.settings.feature_1_description }}</p>
+            </div>
           </div>
-        </div>
-
-        <div class="feature-item">
-          <span class="icon">◆</span>
-          <div class="feature-content">
-            <h3 class="feature-title">{{ section.settings.feature_2_title }}</h3>
-            <p class="feature-description">{{ section.settings.feature_2_description }}</p>
+  
+          <div class="feature-item">
+            <span class="icon">◆</span>
+            <div class="feature-content">
+              <h3 class="feature-title">{{ section.settings.feature_2_title }}</h3>
+              <p class="feature-description">{{ section.settings.feature_2_description }}</p>
+            </div>
           </div>
         </div>
       </div>
