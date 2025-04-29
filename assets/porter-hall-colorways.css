@@ -52,6 +52,8 @@
   letter-spacing: 0.2px;
   text-transform: capitalize;
   color: var(--blue-secondary);
+  display: flex;
+  align-items: center;
 }
 
 .colorway__name .color__image {
