@@ -193,5 +193,9 @@
     display: block;
     object-fit: cover;
   }
+
+  .finer__details--image:nth-last-child(1):nth-child(odd) {
+    grid-column: span 2;
+  }
   
 }
