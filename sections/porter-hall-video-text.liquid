@@ -1,7 +1,7 @@
 {{ 'porter-hall-video-text.css' | asset_url | stylesheet_tag: preload: true }}
 
 {% if section.settings.video != blank and section.settings.title != blank %}
-<section class="finer-details-section">
+<section class="finer-details-section" id="section--{{ section.id }}">
   <div class="page-width">
     <div class="content-wrapper">
       <div class="left">
@@ -30,10 +30,28 @@
 </section>
 {% endif %}
 
+<style>
+  {% if section.settings.remove_top_space %}
+    #section--{{ section.id }} {
+      padding-top: 0
+    }
+  {% endif %}
+  {% if section.settings.remove_bottom_space %}
+    #section--{{ section.id }} {
+      padding-bottom: 0
+    }
+  {% endif %}
+</style>
+
 {% schema %}
 {
   "name": "The Finer Details",
   "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background"
+    },
     {
       "type": "video",
       "id": "video",
@@ -50,6 +68,20 @@
       "id": "subtitle",
       "label": "Subtitle",
       "default": "What makes The Porter so unique? It’s the little things."
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_top_space",
+      "label": "Remove Top Space"
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_bottom_space",
+      "label": "Remove Bottom Space"
     }
   ],
   "blocks": [
