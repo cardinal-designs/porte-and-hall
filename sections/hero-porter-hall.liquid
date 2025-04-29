@@ -3,22 +3,48 @@
 <section class="hero-porter-hall">
   <div class="hero-container">
 
-    
-    <div class="hero-text">
-      <h1 class="hero-title">{{ section.settings.heading }}</h1>
-      <p class="hero-subtitle">{{ section.settings.subheading }}</p>
+    <div class="trade__image--wrapper{% if section.blocks.size > 1 %} trade__image--slider swiper{% endif %}"> 
+      {% if section.blocks.size > 1 %}
+      <div class="swiper-wrapper">
+      {% endif %}
+        {% for block in section.blocks %}
+          {% if block.settings.image != blank %}
+          <div class="trade__image--item{% if section.blocks.size > 1 %} swiper-slide{% endif %}">
+            <figure {% if block.settings.mobile_image != blank %}class="mobile__hidden"{% endif %}>
+              {{ block.settings.image | image_url: width: 2560 | image_tag: width: "100%", alt: section.settings.image.alt }}
+            </figure> 
+            {% if block.settings.mobile_image != blank %}
+              <figure class="desktop__hidden">
+                {{ block.settings.mobile_image | image_url: width: 2560 | image_tag: width: "100%", alt: section.settings.mobile_image.alt }}
+              </figure>
+            {% endif %}
 
-      <!-- Decorative Line and Features -->
-      <div class="hero-features">
-        <hr class="feature-line">
-        <span>{{ section.settings.feature_1 }}</span>
-        <span class="bullet">•</span>
-        <span>{{ section.settings.feature_2 }}</span>
-        <span class="bullet">•</span>
-        <span>{{ section.settings.feature_3 }}</span>
+            <div class="hero-text">
+              <h2 class="hero-title">{{ section.settings.heading }}</h2>
+              <p class="hero-subtitle">{{ section.settings.subheading }}</p>
+        
+              <!-- Decorative Line and Features -->
+              <div class="hero-features">
+                <hr class="feature-line">
+                <span>{{ section.settings.feature_1 }}</span>
+                <span class="bullet">•</span>
+                <span>{{ section.settings.feature_2 }}</span>
+                <span class="bullet">•</span>
+                <span>{{ section.settings.feature_3 }}</span>
+              </div>
+              <a href="{{ section.settings.button_link }}" class="cta-button">{{ section.settings.button_text }}</a>
+            </div>
+            
+          </div>
+          {% endif %}
+        {% endfor %}
+      {% if section.blocks.size > 1 %}
       </div>
-      <a href="{{ section.settings.button_link }}" class="cta-button">{{ section.settings.button_text }}</a>
+      {% endif %}
     </div>
+
+    
+    
   </div>
 </section>
 
