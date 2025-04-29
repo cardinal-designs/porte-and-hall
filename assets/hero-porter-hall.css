@@ -236,6 +236,8 @@
 
   .hero__features {
     padding: 8px 0;
+    gap: 25px;
+    max-width: 344px;
   }
 
   .hero__features span {
