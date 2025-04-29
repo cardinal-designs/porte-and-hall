@@ -111,6 +111,10 @@
   border-bottom: 1px solid var(--blue-secondary);
 }
 
+.text__button span + span {
+  line-height: 0;
+}
+
 @media screen and (max-width: 767px) {
 
   .colorways__section {
