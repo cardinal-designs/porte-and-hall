@@ -97,6 +97,10 @@
 
 @media (max-width: 767px) {
 
+  .section__step--right {
+    padding: 40px 0;
+  }
+
   .section__step--right .page-width {
     padding: 0 24px;
   }
