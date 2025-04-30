@@ -121,6 +121,10 @@
   border-bottom: 1px solid var(--blue-secondary);
 }
 
+.text__button:hover {
+ color: var(--blue); 
+}
+
 .text__button span + span {
   line-height: 0;
 }
