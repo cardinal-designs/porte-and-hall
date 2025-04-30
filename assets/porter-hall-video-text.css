@@ -197,5 +197,9 @@
   .finer__details--image:nth-last-child(1):nth-child(odd) {
     grid-column: span 2;
   }
+
+  .finer__details--right .feature-item .feature-description {
+    line-height: 26px;
+  }
   
 }
