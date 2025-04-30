@@ -9,100 +9,6 @@
  */
 {
   "sections": {
-    "g5vyLf4Z39MPzp9pY4AboN": {
-      "type": "sl-quick-nav-1-1",
-      "blocks": {
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-1": {
-          "type": "collection_block",
-          "settings": {
-            "show_on": "all_devices",
-            "collection": "",
-            "title": "Best Sellers",
-            "image": "shopify://shop_images/3_Indoor-Mat-Insider-Minuet-Midnight-Runner.jpg",
-            "overlay_opacity": 10
-          }
-        },
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-2": {
-          "type": "collection_block",
-          "settings": {
-            "show_on": "all_devices",
-            "collection": "",
-            "title": "Doormats",
-            "image": "shopify://shop_images/Homepage_porterthumbnail.jpg",
-            "overlay_opacity": 10
-          }
-        },
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-3": {
-          "type": "collection_block",
-          "settings": {
-            "show_on": "all_devices",
-            "collection": "",
-            "title": "Area Mats",
-            "image": "shopify://shop_images/Copy_of_Upside_Down_Brown_Area_v4_copy.jpg",
-            "overlay_opacity": 10
-          }
-        },
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-4": {
-          "type": "collection_block",
-          "settings": {
-            "show_on": "all_devices",
-            "collection": "",
-            "title": "Runners",
-            "image": "shopify://shop_images/WildSideDove_Runner_v3.jpg",
-            "overlay_opacity": 10
-          }
-        },
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-5": {
-          "type": "collection_block",
-          "settings": {
-            "show_on": "all_devices",
-            "collection": "",
-            "title": "",
-            "overlay_opacity": 10
-          }
-        },
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-6": {
-          "type": "collection_block",
-          "settings": {
-            "show_on": "all_devices",
-            "collection": "",
-            "title": "",
-            "overlay_opacity": 10
-          }
-        }
-      },
-      "block_order": [
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-1",
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-2",
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-3",
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-4",
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-5",
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-6"
-      ],
-      "settings": {
-        "devices": "mobile",
-        "card_format": "image",
-        "show_card_border": false,
-        "show_card_bg": false,
-        "image_rounding": "semi_rounded",
-        "card_ratio": "square",
-        "use_padding": false,
-        "hover_effect": "border",
-        "selected_state": "border",
-        "title_font_style": "button",
-        "text_align": "center",
-        "section_border": "brand_style",
-        "mobile_card_format": "image",
-        "pattern_select": "1059c2cc-7aa1-4cb9-9224-1d0295545677",
-        "title_color": "transparent",
-        "border_color": "#E7E7E7",
-        "background_color": "#E7E7E7",
-        "hover_color": "transparent",
-        "selected_color": "transparent",
-        "section_background_color": "transparent",
-        "section_border_color": "transparent"
-      }
-    },
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62": {
       "type": "image-text",
       "settings": {
@@ -110,7 +16,7 @@
         "subheading": "",
         "title": "<p>Worthy of Your </p><p>Welcome</p>",
         "content": "<p>Premium indoor and outdoor mats to elevate your entry and your everyday.</p>",
-        "link_text": "Shop All",
+        "link_text": "explore more",
         "link_url": "shopify://collections/shop-all",
         "custom-class": "home-banner"
       }
@@ -1007,10 +913,70 @@
       "settings": {
         "title": "<p>@<a href=\"https://www.instagram.com/porteandhall/\" target=\"_blank\" title=\"https://www.instagram.com/porteandhall/\">porteandhall</a></p>"
       }
+    },
+    "s6oBtCVGXpY9amkByC4mh7": {
+      "type": "sl-image-hero-1-2",
+      "blocks": {
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-1": {
+          "type": "reviews",
+          "settings": {
+            "stars": 5,
+            "reviews_text": "15,000+ 5 Star Reviews"
+          }
+        },
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-2": {
+          "type": "headline",
+          "settings": {
+            "text": "<p>Explain the unique value you provide</p>"
+          }
+        },
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-3": {
+          "type": "subheadline",
+          "settings": {
+            "text": "<p>Explain how you provide this value</p>"
+          }
+        },
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-4": {
+          "type": "benefits",
+          "settings": {
+            "first_text": "Free shipping",
+            "first_icon_name": "check-circle",
+            "second_text": "Free returns",
+            "second_icon_name": "check-circle",
+            "third_text": "Satisfaction guaranteed",
+            "third_icon_name": "check-circle"
+          }
+        },
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-5": {
+          "type": "button",
+          "settings": {
+            "button_text": "Shop Now",
+            "button_link": "",
+            "icon_name": "arrow-right",
+            "button_subtext": "",
+            "second_button_text": "",
+            "anchor_bottom": false
+          }
+        }
+      },
+      "block_order": [
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-1",
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-2",
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-3",
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-4",
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-5"
+      ],
+      "settings": {
+        "devices": "all",
+        "image_position": "left",
+        "section_height": "large",
+        "section_width": "large",
+        "content_position": "middle_left"
+      }
     }
   },
   "order": [
-    "g5vyLf4Z39MPzp9pY4AboN",
+    "s6oBtCVGXpY9amkByC4mh7",
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62",
     "3726ddfa-f49e-4e18-a5f2-430400876ccd",
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",
