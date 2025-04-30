@@ -22,12 +22,15 @@ class CartDrawer extends HTMLElement {
 
     this.closeIcon = document.getElementById('cart-drawer__close');
     this.closeIcon.addEventListener('click', this.close.bind(this));
-    
+
     this.onBodyClick = this.handleBodyClick.bind(this);
     this.drawer.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
 
     this.pageOverlayElement = document.querySelector('.page-overlay');
-
+    this.giftWrapCheckbox = document.getElementById('add-gift-wrap'); 
+    
+    this.giftNoteText = document.getElementById('gift-note-text');
+    
     // Functionality
     this.currentItemCount = Array.from(this.querySelectorAll('[name="updates[]"]'))
       .reduce((total, quantityInput) => total + parseInt(quantityInput.value), 0);
@@ -37,6 +40,20 @@ class CartDrawer extends HTMLElement {
     }, 300);
 
     this.addEventListener('change', this.debouncedOnChange.bind(this));
+
+    this.addEventListener('input', (event) => {
+      if (event.target && event.target.id === 'gift-note-text') {
+        this.updateCharCount(event.target);
+      }
+    });
+  }
+  updateCharCount(textarea) {
+    const currentLength = textarea.value.length;
+    const maxAttr = textarea.getAttribute('maxlength');
+    const maxLength = maxAttr ? parseInt(maxAttr, 10) : 250;
+    const remainingChars = maxLength - currentLength;
+    const charCountElement = document.querySelector('.char-count span');
+    charCountElement.textContent = `${remainingChars}`;
   }
 
   open() {
@@ -56,7 +73,73 @@ class CartDrawer extends HTMLElement {
   }
 
   onChange(event) {
-    this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
+    if (event.target.matches('#add-gift-wrap')) {
+      this.handleGiftWrapChange(event);
+    }else if(event.target.dataset?.index){
+      this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
+    }
+  }
+
+  handleGiftWrapChange(event) {
+    if (event.target.checked) {
+      const giftNoteModal = document.getElementById('gift-note-modal');
+      giftNoteModal.classList.add('is-visible');
+    } else {
+      this.removeGiftWrapFromCart();
+    }
+  }
+
+  addGiftWrapToCart() {
+    let giftNoteField = document.getElementById('gift-note-text');
+    let giftNoteValue = giftNoteField ? giftNoteField.value : '';
+    let variantId = giftNoteField.getAttribute('data-variant-id');
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        items: [
+          {
+            id: variantId,
+            quantity: 1,
+            properties: {
+              'Note': giftNoteValue
+            }
+          },
+        ]
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error('Failed to add gift wrap product');
+        return response.json();
+      })
+      .then(() => {
+        
+      })
+      .catch((error) => console.error(error));
+  }
+
+  removeGiftWrapFromCart() {
+    const lineIndex = this.findGiftWrapLineItemIndex();
+    if (lineIndex > -1) {
+      this.updateQuantity(lineIndex, 0, null);
+    }
+  }
+
+  findGiftWrapLineItemIndex() {
+    let giftNoteField = document.getElementById('gift-note-text');
+    let giftNoteValue = giftNoteField ? giftNoteField.value : '';
+    let variantId = giftNoteField.getAttribute('data-variant-id');
+    let giftWrapProductId = variantId;
+    let cartItems = [...this.querySelectorAll('[data-cart-item-id]')];
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].dataset.cartItemId == giftWrapProductId) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   updateQuantity(line, quantity, name) {
@@ -122,6 +205,26 @@ class CartDrawer extends HTMLElement {
 
   handleBodyClick(evt) {
     const target = evt.target;
+    let closeGiftModal = document.getElementById('close-gift-note');
+    if (closeGiftModal) {
+      const giftCloseBtn = document.getElementById('close-gift-note');
+      const giftNoteModal = document.getElementById('gift-note-modal');
+      const giftWrapCheckbox = document.getElementById('add-gift-wrap');
+  
+      if (giftCloseBtn && (target.matches('#close-gift-note') || giftCloseBtn.contains(target))) {
+        if (giftWrapCheckbox) {
+          giftWrapCheckbox.checked = false;
+        }
+        if (giftNoteModal) {
+          giftNoteModal.classList.remove('is-visible');
+        }
+      }
+    }
+    const addGiftNoteBtn = document.getElementById('add-gift-note-btn');
+    if (addGiftNoteBtn && target.matches('#add-gift-note-btn')) {
+      this.addGiftWrapToCart();
+    }
+    
     if (target.classList.contains('page-overlay')) {
       this.close();
       this.pageOverlayElement.classList.remove('is-visible');

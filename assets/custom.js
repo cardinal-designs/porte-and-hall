@@ -35,5 +35,5 @@ customElements.define('form-validation',class formValidation extends HTMLElement
     } 
     this.querySelector('.js-error-messages').innerHTML = this.errorMessage.join('');
   }
-})
 
+});
