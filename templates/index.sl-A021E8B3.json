@@ -16,10 +16,10 @@
           "type": "collection_block",
           "settings": {
             "show_on": "all_devices",
-            "collection": "",
+            "collection": "best-sellers",
             "title": "Best Sellers",
-            "image": "shopify://shop_images/3_Indoor-Mat-Insider-Minuet-Midnight-Runner.jpg",
-            "overlay_opacity": 10
+            "image": "shopify://shop_images/Best_Seller_thumbnail.png",
+            "overlay_opacity": 40
           }
         },
         "0859508e-8894-4a16-ae91-94a1e52c8acb-2": {
@@ -28,7 +28,7 @@
             "show_on": "all_devices",
             "collection": "",
             "title": "Doormats",
-            "image": "shopify://shop_images/Homepage_porterthumbnail.jpg",
+            "image": "shopify://shop_images/Doormat_thumbnail.png",
             "overlay_opacity": 10
           }
         },
@@ -51,40 +51,23 @@
             "image": "shopify://shop_images/WildSideDove_Runner_v3.jpg",
             "overlay_opacity": 10
           }
-        },
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-5": {
-          "type": "collection_block",
-          "settings": {
-            "show_on": "all_devices",
-            "collection": "",
-            "title": "",
-            "overlay_opacity": 10
-          }
-        },
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-6": {
-          "type": "collection_block",
-          "settings": {
-            "show_on": "all_devices",
-            "collection": "",
-            "title": "",
-            "overlay_opacity": 10
-          }
         }
       },
       "block_order": [
         "0859508e-8894-4a16-ae91-94a1e52c8acb-1",
         "0859508e-8894-4a16-ae91-94a1e52c8acb-2",
         "0859508e-8894-4a16-ae91-94a1e52c8acb-3",
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-4",
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-5",
-        "0859508e-8894-4a16-ae91-94a1e52c8acb-6"
+        "0859508e-8894-4a16-ae91-94a1e52c8acb-4"
+      ],
+      "custom_css": [
+        "{border-top: 1px solid #556b81; margin-top: -20px; margin-bottom: -12px; gap: 1px;}"
       ],
       "settings": {
         "devices": "mobile",
         "card_format": "image",
         "show_card_border": false,
         "show_card_bg": false,
-        "image_rounding": "semi_rounded",
+        "image_rounding": "no_rounding",
         "card_ratio": "square",
         "use_padding": false,
         "hover_effect": "border",
@@ -94,17 +77,18 @@
         "section_border": "brand_style",
         "mobile_card_format": "image",
         "pattern_select": "1059c2cc-7aa1-4cb9-9224-1d0295545677",
-        "title_color": "transparent",
-        "border_color": "#E7E7E7",
-        "background_color": "#E7E7E7",
-        "hover_color": "transparent",
-        "selected_color": "transparent",
-        "section_background_color": "transparent",
-        "section_border_color": "transparent"
+        "title_color": "rgba(0,0,0,0)",
+        "border_color": "#e7e7e7",
+        "background_color": "#e7e7e7",
+        "hover_color": "rgba(0,0,0,0)",
+        "selected_color": "rgba(0,0,0,0)",
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_border_color": "rgba(0,0,0,0)"
       }
     },
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62": {
       "type": "image-text",
+      "custom_css": [],
       "settings": {
         "image": "shopify://shop_images/WildSideDove_Doormat_Lead_v1.jpg",
         "subheading": "",
