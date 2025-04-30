@@ -19,37 +19,41 @@
             "collection": "best-sellers",
             "title": "Best Sellers",
             "image": "shopify://shop_images/Best_Seller_thumbnail.png",
-            "overlay_opacity": 40
+            "overlay_opacity": 40,
+            "custom_url": ""
           }
         },
         "0859508e-8894-4a16-ae91-94a1e52c8acb-2": {
           "type": "collection_block",
           "settings": {
             "show_on": "all_devices",
-            "collection": "",
+            "collection": "shop-all",
             "title": "Doormats",
             "image": "shopify://shop_images/Doormat_thumbnail.png",
-            "overlay_opacity": 10
+            "overlay_opacity": 10,
+            "custom_url": "/collections/shop-all?filter.v.m.custom.size=Doormats"
           }
         },
         "0859508e-8894-4a16-ae91-94a1e52c8acb-3": {
           "type": "collection_block",
           "settings": {
             "show_on": "all_devices",
-            "collection": "",
+            "collection": "shop-all",
             "title": "Area Mats",
             "image": "shopify://shop_images/Copy_of_Upside_Down_Brown_Area_v4_copy.jpg",
-            "overlay_opacity": 10
+            "overlay_opacity": 10,
+            "custom_url": "/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
           }
         },
         "0859508e-8894-4a16-ae91-94a1e52c8acb-4": {
           "type": "collection_block",
           "settings": {
             "show_on": "all_devices",
-            "collection": "",
+            "collection": "shop-all",
             "title": "Runners",
             "image": "shopify://shop_images/WildSideDove_Runner_v3.jpg",
-            "overlay_opacity": 10
+            "overlay_opacity": 10,
+            "custom_url": "/collections/shop-all/?filter.v.m.custom.size=Runners"
           }
         }
       },
