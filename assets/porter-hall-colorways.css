@@ -122,7 +122,8 @@
 }
 
 .text__button:hover {
- color: var(--blue); 
+  color: var(--blue); 
+  border-bottom-color: var(--blue);
 }
 
 .text__button span + span {
