@@ -122,7 +122,11 @@
         </h3>
 
         <h1 class="product__title blue">
+          {% if product.title contains 'Porter' %}
+          The Porter Mat
+          {% else %}
           {{ grouped_collection.title | remove: ' |' | default: product.title }}
+          {% endif %}
         </h1>
 
         <div class="product__price-reviews-wrapper">
@@ -164,7 +168,11 @@
         {% endif %}
          <div id="myModal" class="dimension-modal-content dimension_modal">
               <div class="dimension-modal-header">
-              <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
+              {% if product.title contains 'Porter' %}
+                <h6>The Porter Mat</h6>
+              {% else %}
+                <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
+              {% endif %}
               <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %}</button></div>
               </div>
               <div class="dimension-modal-body">
@@ -393,6 +401,10 @@
                     {% assign active_order = 2 %}
                   {% elsif product.handle contains 'area-mat' %}
                     {% assign active_order = 4 %}
+                   {% elsif product.handle contains 'standard' %}
+                    {% assign active_order = 5 %}
+                  {% elsif product.handle contains 'double' %}
+                    {% assign active_order = 6 %}
                   {% endif %}
 
                 <a 
@@ -420,7 +432,11 @@
                       <span class="other-sizes__dimension">4' x 6'</span>
                     {% else %}
                       <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
-                    {% endif %}               
+                    {% endif %}  
+                  {% elsif current_size.last == 'Standard' %}
+                    <span class="other-sizes__dimension">36” x 72”</span>
+                  {% elsif current_size.last == 'Double' %}
+                    <span class="other-sizes__dimension">30” x 48”</span>
                   {% endif %}
                 </a>
 
@@ -431,10 +447,10 @@
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
-                 
+         
                   {%- if match != blank -%}
                     <a 
-                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% endif %} ;"
+                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% endif %} ;"
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
                       href="{{ match.first.url }}"
                     >
@@ -459,6 +475,10 @@
                         {% else %}
                           <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
                         {% endif %}
+                      {% elsif current_size.last == 'Standard' %}
+                        <span class="other-sizes__dimension">30” x 48”</span>
+                      {% elsif current_size.last == 'Double' %}
+                        <span class="other-sizes__dimension">36” x 72”</span>
                       {% endif %}
 
                       {% comment %}
@@ -650,7 +670,7 @@
            </div>
          </div>
         {% endif %}
-        {% if section.settings.materials != blank %}
+       
          <div class="accordion">
            <div data-id="2" class="accordion-title">
              <h3>Materials</h3>
@@ -664,7 +684,7 @@
             </div>
            </div>
          </div>
-        {% endif %}
+       
         {% if grouped_collection.metafields.custom.dimensions != blank %}
          <div class="accordion">
            <div data-id="3" class="accordion-title">

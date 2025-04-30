@@ -3077,7 +3077,7 @@ body {
   position: fixed;
 }
 main#MainContent {
-  padding-top: 176px;
+  padding-top: 124px;
 }
 
 .outdoor main#MainContent {
@@ -3090,7 +3090,7 @@ main#MainContent {
 
 @media screen and (max-width: 989px) and (min-width: 769px) {
   main#MainContent {
-    padding-top: 117.5px;
+    padding-top: 66px;
   }
 
   .outdoor main#MainContent {
@@ -3099,7 +3099,7 @@ main#MainContent {
 }
 @media screen and (max-width: 768px) {
   main#MainContent {
-    padding-top: 69px;
+    padding-top: 38px;
   }
 
   .outdoor main#MainContent {
@@ -3682,4 +3682,24 @@ iframe#preview-bar-iframe {
 
 .afterpay-wrapper ~ .afterpay-main-text {
   text-align: center !important;
+}
+
+.template__designer-program main#MainContent {
+  padding-top: 124px;
+}
+
+@media (max-width: 989px) {
+
+  .template__designer-program main#MainContent {
+    padding-top: 66px;
+  }
+  
+}
+
+@media (max-width: 768px) {
+
+  .template__designer-program main#MainContent {
+    padding-top: 66px;
+  }
+  
 }

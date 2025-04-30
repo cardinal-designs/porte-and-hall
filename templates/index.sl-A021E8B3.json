@@ -9,14 +9,92 @@
  */
 {
   "sections": {
+    "g5vyLf4Z39MPzp9pY4AboN": {
+      "type": "sl-quick-nav-1-1",
+      "blocks": {
+        "0859508e-8894-4a16-ae91-94a1e52c8acb-1": {
+          "type": "collection_block",
+          "settings": {
+            "show_on": "all_devices",
+            "collection": "best-sellers",
+            "title": "Best Sellers",
+            "image": "shopify://shop_images/Best_Seller_thumbnail.png",
+            "overlay_opacity": 40
+          }
+        },
+        "0859508e-8894-4a16-ae91-94a1e52c8acb-2": {
+          "type": "collection_block",
+          "settings": {
+            "show_on": "all_devices",
+            "collection": "",
+            "title": "Doormats",
+            "image": "shopify://shop_images/Doormat_thumbnail.png",
+            "overlay_opacity": 10
+          }
+        },
+        "0859508e-8894-4a16-ae91-94a1e52c8acb-3": {
+          "type": "collection_block",
+          "settings": {
+            "show_on": "all_devices",
+            "collection": "",
+            "title": "Area Mats",
+            "image": "shopify://shop_images/Copy_of_Upside_Down_Brown_Area_v4_copy.jpg",
+            "overlay_opacity": 10
+          }
+        },
+        "0859508e-8894-4a16-ae91-94a1e52c8acb-4": {
+          "type": "collection_block",
+          "settings": {
+            "show_on": "all_devices",
+            "collection": "",
+            "title": "Runners",
+            "image": "shopify://shop_images/WildSideDove_Runner_v3.jpg",
+            "overlay_opacity": 10
+          }
+        }
+      },
+      "block_order": [
+        "0859508e-8894-4a16-ae91-94a1e52c8acb-1",
+        "0859508e-8894-4a16-ae91-94a1e52c8acb-2",
+        "0859508e-8894-4a16-ae91-94a1e52c8acb-3",
+        "0859508e-8894-4a16-ae91-94a1e52c8acb-4"
+      ],
+      "custom_css": [
+        "{border-top: 1px solid #556b81; margin-top: -20px; margin-bottom: -12px; gap: 1px;}"
+      ],
+      "settings": {
+        "devices": "mobile",
+        "card_format": "image",
+        "show_card_border": false,
+        "show_card_bg": false,
+        "image_rounding": "no_rounding",
+        "card_ratio": "square",
+        "use_padding": false,
+        "hover_effect": "border",
+        "selected_state": "border",
+        "title_font_style": "button",
+        "text_align": "center",
+        "section_border": "brand_style",
+        "mobile_card_format": "image",
+        "pattern_select": "1059c2cc-7aa1-4cb9-9224-1d0295545677",
+        "title_color": "rgba(0,0,0,0)",
+        "border_color": "#e7e7e7",
+        "background_color": "#e7e7e7",
+        "hover_color": "rgba(0,0,0,0)",
+        "selected_color": "rgba(0,0,0,0)",
+        "section_background_color": "rgba(0,0,0,0)",
+        "section_border_color": "rgba(0,0,0,0)"
+      }
+    },
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62": {
       "type": "image-text",
+      "custom_css": [],
       "settings": {
         "image": "shopify://shop_images/WildSideDove_Doormat_Lead_v1.jpg",
         "subheading": "",
         "title": "<p>Worthy of Your </p><p>Welcome</p>",
         "content": "<p>Premium indoor and outdoor mats to elevate your entry and your everyday.</p>",
-        "link_text": "explore more",
+        "link_text": "Shop All",
         "link_url": "shopify://collections/shop-all",
         "custom-class": "home-banner"
       }
@@ -486,9 +564,6 @@
         "c093d8f7-3955-49c8-a9ae-fdd9a04a9815"
       ],
       "disabled": true,
-      "custom_css": [
-        ".image-slideshow__text {padding-top: 10%;}"
-      ],
       "settings": {
         "title": "Finally.\nA mat worthy of your welcome.",
         "page_width": true,
@@ -861,9 +936,6 @@
         "f8d7b732-ca20-4ed9-9329-58073296b8d3"
       ],
       "disabled": true,
-      "custom_css": [
-        ".heading-with-accents a {color: inherit;}"
-      ],
       "settings": {
         "heading": "<p>@<a href=\"https://www.instagram.com/porteandhall/\" target=\"_blank\" title=\"https://www.instagram.com/porteandhall/\">porteandhall</a></p>"
       }
@@ -922,6 +994,7 @@
     }
   },
   "order": [
+    "g5vyLf4Z39MPzp9pY4AboN",
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62",
     "3726ddfa-f49e-4e18-a5f2-430400876ccd",
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",

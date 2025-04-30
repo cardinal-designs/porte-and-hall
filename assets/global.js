@@ -1462,17 +1462,60 @@ var ProductFeature = class extends HTMLElement {
 customElements.define('product-feature', ProductFeature);
 
 const accordionItems = document.querySelectorAll('.faq__question');
-  accordionItems.forEach((accordion) => {
-    accordion.addEventListener('click', (event) => {
-      const parent = accordion.parentElement;
-      const content = accordion.nextElementSibling;
+accordionItems.forEach((accordion) => {
+  accordion.addEventListener('click', (event) => {
+    const parent = accordion.parentElement;
+    const content = accordion.nextElementSibling;
 
-      if (!parent.classList.contains('active')) {
-        parent.classList.add('active');
-        slideDown(content, 400);
+    if (!parent.classList.contains('active')) {
+      parent.classList.add('active');
+      slideDown(content, 400);
+    } else {
+      parent.classList.remove('active');
+      slideUp(content, 400);
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  if (typeof gsap === "undefined" || !gsap.plugins.scrollTo) {
+    console.error("GSAP or ScrollToPlugin not loaded!");
+    return;
+  }
+
+  const HEADER_HEIGHT = document.querySelector('.header')?.offsetHeight ?? 0; 
+  document.querySelectorAll(".scroll__button").forEach(function (button) {
+    button.addEventListener("click", function () {
+      const target = document.querySelector(".Designer_Program_Main");
+      if (target) {
+        gsap.to(window, {
+          scrollTo: {
+            y: target, 
+            offsetY: HEADER_HEIGHT,
+          },
+          duration: 1,
+          ease: "power2.out",
+        });
       } else {
-        parent.classList.remove('active');
-        slideUp(content, 400);
+        console.error("Target section not found!");
       }
     });
   });
+});
+
+/* document.addEventListener("DOMContentLoaded", (event) => {
+  const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust based on your fixed header height
+  document.querySelectorAll(".scroll__button").forEach(function(button) {
+    button.addEventListener("click", function() {
+      console.log('Clicked');
+      const target = document.querySelector(".Designer_Program_Main");
+      if (target) {
+        const offsetTop = target.offsetTop - HEADER_HEIGHT;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth"
+        });
+      }
+    });
+  });
+}); */

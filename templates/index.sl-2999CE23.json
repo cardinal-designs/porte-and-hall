@@ -486,9 +486,6 @@
         "c093d8f7-3955-49c8-a9ae-fdd9a04a9815"
       ],
       "disabled": true,
-      "custom_css": [
-        ".image-slideshow__text {padding-top: 10%;}"
-      ],
       "settings": {
         "title": "Finally.\nA mat worthy of your welcome.",
         "page_width": true,
@@ -861,9 +858,6 @@
         "f8d7b732-ca20-4ed9-9329-58073296b8d3"
       ],
       "disabled": true,
-      "custom_css": [
-        ".heading-with-accents a {color: inherit;}"
-      ],
       "settings": {
         "heading": "<p>@<a href=\"https://www.instagram.com/porteandhall/\" target=\"_blank\" title=\"https://www.instagram.com/porteandhall/\">porteandhall</a></p>"
       }
@@ -919,9 +913,70 @@
       "settings": {
         "title": "<p>@<a href=\"https://www.instagram.com/porteandhall/\" target=\"_blank\" title=\"https://www.instagram.com/porteandhall/\">porteandhall</a></p>"
       }
+    },
+    "s6oBtCVGXpY9amkByC4mh7": {
+      "type": "sl-image-hero-1-2",
+      "blocks": {
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-1": {
+          "type": "reviews",
+          "settings": {
+            "stars": 5,
+            "reviews_text": "15,000+ 5 Star Reviews"
+          }
+        },
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-2": {
+          "type": "headline",
+          "settings": {
+            "text": "<p>Explain the unique value you provide</p>"
+          }
+        },
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-3": {
+          "type": "subheadline",
+          "settings": {
+            "text": "<p>Explain how you provide this value</p>"
+          }
+        },
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-4": {
+          "type": "benefits",
+          "settings": {
+            "first_text": "Free shipping",
+            "first_icon_name": "check-circle",
+            "second_text": "Free returns",
+            "second_icon_name": "check-circle",
+            "third_text": "Satisfaction guaranteed",
+            "third_icon_name": "check-circle"
+          }
+        },
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-5": {
+          "type": "button",
+          "settings": {
+            "button_text": "Shop Now",
+            "button_link": "",
+            "icon_name": "arrow-right",
+            "button_subtext": "",
+            "second_button_text": "",
+            "anchor_bottom": false
+          }
+        }
+      },
+      "block_order": [
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-1",
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-2",
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-3",
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-4",
+        "template--16758221046003__0bc93ccc-e8e0-4c63-95b5-34b4ba03d40c-1682623246232db56c-5"
+      ],
+      "settings": {
+        "devices": "all",
+        "image_position": "left",
+        "section_height": "large",
+        "section_width": "large",
+        "content_position": "middle_left"
+      }
     }
   },
   "order": [
+    "s6oBtCVGXpY9amkByC4mh7",
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62",
     "3726ddfa-f49e-4e18-a5f2-430400876ccd",
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",

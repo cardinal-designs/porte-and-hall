@@ -12,7 +12,11 @@
   <div class="page-width">
     <div class="see-the-difference__inner">
       <div class="see-the-difference__header">
+        {% if grouped_collection.handle contains 'porter' %}
+        <h2 class="see-the-difference__heading blue">Now We’re Walkin’!</h2>
+        {% else %}
         <h2 class="see-the-difference__heading blue">{{ section.settings.heading | default: 'See the difference' }}</h2>
+        {% endif %}
         {% if section.settings.text != blank %}
           <p class="see-the-difference__text body blue">{{ section.settings.text }}</p>
         {% endif %}
