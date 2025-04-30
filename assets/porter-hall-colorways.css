@@ -175,6 +175,10 @@
     padding-bottom: 24px;
   }
 
+  .colorways__slider .swiper-pagination {
+    bottom: 0;
+  }
+
   .colorways__slider .swiper-pagination-bullet {
     background: #AC9FA2;
     border: none;
