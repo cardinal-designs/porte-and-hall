@@ -52,7 +52,7 @@
 }
 
 .material__column--image-wrapper figure {
-  margin: 0 60px 46px 0;
+  margin: 0;
   line-height: 0;
   position: relative;
 }
@@ -92,7 +92,7 @@
   }
 
   .material__column--image-wrapper figure {
-    margin: 0 33px 26px 0;
+    margin: 0;
   }
   
   .material__column {
@@ -104,16 +104,6 @@
     width: 100%;
     padding: 0;
     margin-top: 32px;
-  }
-
-  .dimension-text-vertical {
-    top: 40%;
-  }
-
-  .dimension-text-vertical, 
-  .dimension-text-horizontal {
-    font-size: 11.7px;
-    line-height: 12.21px;
   }
 
   .porter__hall--material-section .page-width {
@@ -130,24 +120,7 @@
     font-size: 18px;
     line-height: 24px;
   }
-
-  .material__column--image-wrapper figure:before {
-    right: -8px;
-  }
-
-  .dimension-text-horizontal {
-    max-width: 306px;
-    margin-top: -8px;
-  }
   
-  .material__column.material__column--standard .dimension-text-horizontal {
-    max-width: 203px;
-  }
-
-  .material__column--image-wrapper figure:after {
-    bottom: -8px;
-  }
-
   .material__column.material__column--standard .material__column--image-wrapper {
     max-width: 236px;
   }
