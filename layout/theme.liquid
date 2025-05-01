@@ -256,7 +256,11 @@
       {% endif %}
     </div>
 
-    {% section 'mobile-menu' %}
+    {% if template.suffix == 'porter-landing' %}
+      {% section 'porter-mobile-menu' %}
+    {% else %}
+      {% section 'mobile-menu' %}
+    {% endif %}
 
     {% if template != 'cart' %}
       {% section 'cart-drawer' %}
