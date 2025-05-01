@@ -3,7 +3,7 @@
 {{ 'porter-landing-header.css' | asset_url | stylesheet_tag }}
 
 <header class="header">
-  <div class="header--{{ section.settings.logo_position }} header--inner page-width">
+  <div class="header--center header--inner page-width">
     <!-- Logo -->
     <div class="header__logo">
       <a href="{{ shop.url }}" class="header__logo-link" aria-label="Header logo">
@@ -191,22 +191,6 @@
       "default": 100,
       "unit": "px",
       "label": "Mobile Logo Width"
-    },
-    {
-      "type": "select",
-      "id": "logo_position",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        }
-      ],
-      "default": "left",
-      "label": "Logo Position"
     },
   ]
 }
