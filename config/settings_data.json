@@ -119,6 +119,12 @@
           "mobile_logo_width": 190,
           "menu": "porter-theme-footer"
         }
+      },
+      "porter-mobile-menu": {
+        "type": "porter-mobile-menu",
+        "settings": {
+          "menu": "porter-theme-main-nav"
+        }
       }
     },
     "content_for_index": [],
