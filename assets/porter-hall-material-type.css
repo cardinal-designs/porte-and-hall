@@ -57,56 +57,10 @@
   position: relative;
 }
 
-.material__column--image-wrapper figure:after,
-.material__column--image-wrapper figure:before {
-  content: '';
-  position: absolute;
-  background-position: center;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-}
-
-.material__column--image-wrapper figure:after {
-  background-image: url('https://cdn.shopify.com/s/files/1/0084/8602/7327/files/Horizontal_Line.svg');
-  width: 100%;
-  height: 6px;
-  bottom: -13px;
-  top: auto;
-  left: 0;
-  right: 0;
-}
-
-.material__column--image-wrapper figure:before {
-  background-image: url('https://cdn.shopify.com/s/files/1/0084/8602/7327/files/Vertical_Line.svg');
-  height: 100%;
-  width: 6px;
-  right: -13px;
-  left: auto;
-}
-
 .material__columns img {
   width: 100%;
   border-radius: 4px;
 }
-
-.dimension-text-vertical {
-  position: absolute;
-  right: 0;
-  top: 35%;
-  
-}
-
-.dimension-text-vertical,
-.dimension-text-horizontal {
-  color: var(--blue-secondary);
-  font-family: 'louize';
-  font-weight: 500;
-  font-size: 21.25px;
-  line-height: 22.18px;
-  letter-spacing: 0.2px;
-  text-align: center;
-}
-
 
 .material__column--title {
   color: var(--blue-secondary);
