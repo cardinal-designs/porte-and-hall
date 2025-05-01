@@ -11,12 +11,14 @@
       {% if section.settings.image_doublewide != blank %}
         <div class="material__column">
           <div class="material__column--image-wrapper">
-            <figure class="mobile__hide">
+            <figure {% if section.settings.mobile_image_doublewide != blank %}class="mobile__hide"{% endif %}>
               {{ section.settings.image_doublewide | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_doublewide.alt }}
             </figure>
+            {% if section.settings.mobile_image_doublewide != blank %}
             <figure class="desktop__hide">
-              {{ section.settings.image_doublewide | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_doublewide.alt }}
+              {{ section.settings.mobile_image_doublewide | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.mobile_image_doublewide.alt }}
             </figure>
+            {% endif %}
             {% if section.settings.image_doublewide_vertical != blank and section.settings.image_doublewide_horizontal != blank %}
               <div class="dimension-text-vertical">{{ section.settings.image_doublewide_vertical }}</div>
               <div class="dimension-text-horizontal">{{ section.settings.image_doublewide_horizontal }}</div>
@@ -32,9 +34,14 @@
       {% if section.settings.image_standard != blank %}
         <div class="material__column material__column--standard">
           <div class="material__column--image-wrapper">
-            <figure>
+            <figure {% if section.settings.mobile_image_standard != blank %}class="mobile__hide"{% endif %}>
               {{ section.settings.image_standard | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_standard.alt }}
             </figure>
+            {% if section.settings.mobile_image_standard != blank %}
+              <figure class="desktop__hide">
+                {{ section.settings.mobile_image_standard | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.mobile_image_standard.alt }}
+              </figure>
+            {% endif %}
             {% if section.settings.image_standard_vertical != blank and section.settings.image_standard_horizontal != blank %}
               <div class="dimension-text-vertical">{{ section.settings.image_standard_vertical }}</div>
               <div class="dimension-text-horizontal">{{ section.settings.image_standard_horizontal }}</div>
