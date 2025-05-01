@@ -80,7 +80,19 @@
   letter-spacing: 0.2px;
 }
 
+@media screen and (min-width: 768px) {
+
+  .material__column--image-wrapper .desktop__hide {
+    display: none;
+  }
+  
+}
+
 @media screen and (max-width: 767px) {
+
+  .material__column--image-wrapper .mobile__hide {
+    display: none;
+  }
 
   .porter__hall--material-section {
     padding: 40px 0;
