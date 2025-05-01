@@ -55,10 +55,11 @@
   margin: 0;
   line-height: 0;
   position: relative;
+  text-align: left;
 }
 
 .material__columns img {
-  width: 100%;
+  width: auto;
   max-width: 100%;
 }
 
