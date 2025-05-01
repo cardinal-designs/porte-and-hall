@@ -11,7 +11,10 @@
       {% if section.settings.image_doublewide != blank %}
         <div class="material__column">
           <div class="material__column--image-wrapper">
-            <figure>
+            <figure class="mobile__hide">
+              {{ section.settings.image_doublewide | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_doublewide.alt }}
+            </figure>
+            <figure class="desktop__hide">
               {{ section.settings.image_doublewide | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_doublewide.alt }}
             </figure>
             {% if section.settings.image_doublewide_vertical != blank and section.settings.image_doublewide_horizontal != blank %}
@@ -80,16 +83,6 @@
     },
     {
       "type": "text",
-      "id": "image_doublewide_vertical",
-      "label": "Image Vertical dimensions"
-    },
-    {
-      "type": "text",
-      "id": "image_doublewide_horizontal",
-      "label": "Image Horizontal dimensions"
-    },
-    {
-      "type": "text",
       "id": "doublewide_title",
       "label": "Title",
       "default": "Doublewide"
@@ -108,16 +101,6 @@
       "type": "image_picker",
       "id": "image_standard",
       "label": "Image"
-    },
-    {
-      "type": "text",
-      "id": "image_standard_vertical",
-      "label": "Image Vertical dimensions"
-    },
-    {
-      "type": "text",
-      "id": "image_standard_horizontal",
-      "label": "Image Horizontal dimensions"
     },
     {
       "type": "text",
