@@ -14,7 +14,7 @@
           {% endif %}
         </div>
         <div class="finer__details--video-wrapper">
-          {{ section.settings.video | video_tag: autoplay: true, loop: false, muted: true, controls: false, playsinline:true, class: 'videos', id: 'video', image_size: '1000x' }}
+          {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline:true, class: 'videos', id: 'video', image_size: '1000x' }}
         </div>
       </div>  
       <div class="finer__details--right">
