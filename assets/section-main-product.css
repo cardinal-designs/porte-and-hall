@@ -1163,7 +1163,7 @@ variant-selects {
 
 .bis-new {
   background: var(--gold);
-  margin-top: 20px;
+  margin-top: 20px !important;
   padding: 21px 40px;
 }
 
