@@ -1167,6 +1167,11 @@ variant-selects {
   padding: 21px 40px;
 }
 
+product-form form {
+  display: flex;
+  flex-direction: column;
+}
+
 @media screen and (max-width: 900px) {
   .small_button_text {
     padding: 8px 4px !important;
