@@ -1161,6 +1161,12 @@ variant-selects {
   font-size: 14px;
 }
 
+.bis-new {
+  background: var(--gold);
+  margin-top: 20px;
+  padding: 21px 40px;
+}
+
 @media screen and (max-width: 900px) {
   .small_button_text {
     padding: 8px 4px !important;
