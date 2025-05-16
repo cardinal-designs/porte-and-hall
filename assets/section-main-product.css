@@ -1184,6 +1184,10 @@ product-form form {
   .small_button_text .other-sizes__dimension {
     font-size: 12px !important;
   }
+
+  .bis-new {
+    width: fit-content;
+  }
 }
 
 @media screen and (max-width: 768px) {
