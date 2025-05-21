@@ -726,6 +726,7 @@
          </div>
         {% endif %}
 
+        {% if product.handle contains "outlier" %}
         <div class="accordion">
            <div data-id="5" class="accordion-title">
              <h3>Warranty</h3>
@@ -738,7 +739,8 @@
               </div>
             </div>
            </div>
-         </div>
+        </div>
+        {% endif %}
       </pdp-accordion>
       {% comment %}ACCORDION ENDS{% endcomment %}         
     </div>
