@@ -1162,9 +1162,9 @@ variant-selects {
 }
 
 .bis-new {
-  background: var(--gold);
-  margin-top: 10px !important;
-  padding: 21px 40px;
+  display: block;
+  margin: 0;
+  padding: 0;
 }
 
 product-form form {
