@@ -161,15 +161,6 @@
       {%  endif  %}
     </p>
 
-    {% unless template.suffix == 'last-chance' %}
-    <div class="product-card__swatches">
-      {% if active_swatch != blank %}
-        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" aria-label="Product color swatch" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | asset_url }})"></a>
-      {% endif %}
-      {{ color_swatch_list }}
-    </div>
-    {% endunless %}
-
     {% if collection.metafields.custom.short_description != blank %}
       {% unless simple_card == true %}
         <div class="product-card__description body" {% unless template.suffix == "last-chance" %}style="display: none;{% endunless %}">
