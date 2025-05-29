@@ -173,38 +173,6 @@
       {% endunless %}
     {% endif %}
 
-    {% if template.suffix == 'last-chance' %}
-      <div>
-        {% comment %}<div class="product-card__urgency">Only {{ product_card_product.selected_or_first_available_variant.inventory_quantity }} products left!</div>{% endcomment %}
-      {% assign isSoldOut = false %}
-      {% unless product_card_product.selected_or_first_available_variant.available and product_card_product.selected_or_first_available_variant.inventory_policy != 'continue' %}
-        {% assign isSoldOut = true %}
-      {% endunless %}
-        
-      <button {% unless isSoldOut %}data-quick-add{% endunless %} class="product-card__quick-add button" data-variant="{{ product_card_product.selected_or_first_available_variant.id }}" {% if isSoldOut %}disabled="disabled"{% endif %}>
-        {% if isSoldOut %}
-          <span>Sold Out</span>
-        {% else %}
-          <span>Add to Cart</span>
-        {% endif %}
-        <div class="loading-overlay__spinner">
-          <svg
-            aria-hidden="true"
-            focusable="false"
-            role="presentation"
-            class="spinner"
-            viewBox="0 0 66 66"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-          </svg>
-        </div>
-      </button>
-      </div>
-    {% else %}
-      <a href="{{ product_card_product.url }}" class="text-link-2 gold-secondary--dark product-card__link">
-      {{- button_text }} <span class="btn-arrow"> > </span> </a>
-    {% endif %}
   {% if simple_card == true %}</div>{% endif %}
   </div>
 </grouped-product-card>
