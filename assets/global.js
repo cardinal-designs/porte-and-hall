@@ -956,7 +956,7 @@ var ProductCarouselNew2 = class extends HTMLElement {
   }
 }
 
-customElements.define('product-carousel-new-2', ProductCarouselNew2)
+customElements.define('product-carousel-new-two', ProductCarouselNew2)
 
 var ImageCarousel = class extends HTMLElement {
   constructor(){
