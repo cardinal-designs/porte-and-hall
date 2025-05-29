@@ -934,6 +934,8 @@ var ProductCarouselNew2 = class extends HTMLElement {
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
+        el: '.swiper-pagination',
+        type: 'bullets',
       },
       breakpoints: {
         768: {
