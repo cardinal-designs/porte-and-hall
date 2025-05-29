@@ -41,7 +41,7 @@
     <h2 class="blue">{{ section.settings.heading }}</h2>
   </div>
 
-  <product-carousel-new-2>
+  <product-carousel-new-two>
     <div class="product-carousel__container-new product-carousel__container-new-2 product-carousel__container swiper">
       <div class="swiper-wrapper">
         {% for product in section.settings.collection.products limit: 4 %}
@@ -60,14 +60,12 @@
           </div>
         {% endfor %}
       </div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
       <div class="swiper-pagination product-carousel__pagination"></div>
     </div>
     {% if section.settings.btn_link != blank %}
     <a class="shop-all-btn" href="{{ section.settings.btn_link }}">SHOP ALL BEST SELLERS</a>
     {% endif %}
-  </product-carousel-new>
+  </product-carousel-new-two>
 </div>
 
 <style>
