@@ -388,6 +388,8 @@
                     {% assign active_order = 2 %}
                   {% elsif product.handle contains 'area-mat' %}
                     {% assign active_order = 4 %}
+                  {% elsif product.handle contains 'area-mat-xl' %}
+                    {% assign active_order = 5 %}
                   {% endif %}
 
                 <a 
@@ -415,7 +417,9 @@
                       <span class="other-sizes__dimension">4' x 6'</span>
                     {% else %}
                       <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
-                    {% endif %}               
+                    {% endif %}  
+                  {% elsif product_size == 'XL Area Mat' %}
+                    <span class="other-sizes__dimension">5' x 7'</span>
                   {% endif %}
                 </a>
 
@@ -456,6 +460,8 @@
                         {% else %}
                           <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
                         {% endif %}
+                      {% elsif current_size.last == 'XL Area Mat' %}
+                        <span class="other-sizes__dimension">5' x 7'</span>
                       {% endif %}
 
                       {% comment %}
