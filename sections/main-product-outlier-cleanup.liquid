@@ -149,11 +149,7 @@
           
         </div>
 
-        {% if product.type == 'Outlier' %}
-          <div class="product__description 123 body blue">
-            Thousands of rubbery bristles trap dirt before it hits your floors. Proudly made in the USA and backed by a 5-year warranty.
-          </div>
-        {% elsif grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
+        {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
           <div class="product__description 123 body blue">
             {{ grouped_collection.metafields.custom.short_description | default: product.description }}
           </div>
