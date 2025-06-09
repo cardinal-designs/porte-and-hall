@@ -386,10 +386,10 @@
                     {% assign active_order = 3 %}
                   {% elsif product.handle contains 'runner' %}
                     {% assign active_order = 2 %}
-                  {% elsif product.handle contains 'area-mat' %}
-                    {% assign active_order = 4 %}
                   {% elsif product.handle contains 'area-mat-xl' %}
                     {% assign active_order = 5 %}
+                  {% elsif product.handle contains 'area-mat' %}
+                    {% assign active_order = 4 %}
                   {% endif %}
 
                 <a 
