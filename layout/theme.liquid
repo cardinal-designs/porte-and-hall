@@ -217,6 +217,7 @@
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
 
+    <!-- Intelligems -->
     <script type="text/javascript"> (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "l8zzeeqfni"); </script>
     <script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"97168087", enableAutoSpaTracking: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
     <script>
@@ -227,6 +228,16 @@
           'ph': '{{customer.phone}}', // Replace with the variable that holds the user's phone number. 
        } });
     </script>
+
+    <script>
+      window.Shopify = window.Shopify || {theme: {id: {{ theme.id }}, role: '{{ theme.role }}' } };
+      window._template = {
+          directory: "{{ template.directory }}",
+          name: "{{ template.name }}",
+          suffix: "{{ template.suffix }}"
+      };
+    </script>
+    <script type="module" blocking="render" fetchpriority="high" src="https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js" async></script>
   </head>
 
   <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
