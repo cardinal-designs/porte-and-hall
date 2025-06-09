@@ -429,9 +429,9 @@
                     {% else %}
                       <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
                     {% endif %}
-                  {% elsif product_size == 'Area Mat' %}
-                    <span class="other-sizes__dimension">5' x 7'</span>
                   {% elsif product_size == 'XL Area Mat' %}
+                    <span class="other-sizes__dimension">5' x 7'</span>
+                  {% elsif product_size == 'Area Mat' %}
                     {% if product.handle contains 'innerweave' %}
                       <span class="other-sizes__dimension">4' x 6'</span>
                     {% else %}
