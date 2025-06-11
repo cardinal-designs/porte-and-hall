@@ -379,6 +379,7 @@
 
              {% assign small_text_1 = 0 %}
             {% for block in other_sizes %} 
+              {{ block.title }}
                {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
               {%- assign current_size = block.title | split: " | " -%}
               {%- assign format_color = "- " | append: active_style | append: " /" -%}
