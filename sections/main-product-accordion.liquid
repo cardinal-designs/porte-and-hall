@@ -123,7 +123,9 @@
 
         <h1 class="product__title blue">
           {% if product.title contains 'Porter' %}
-          The Porter Mat
+            The Porter Mat
+          {% elsif grouped_collection.title contains 'XL Area Mat' %}
+            The Innerweave Area Mat
           {% else %}
           {{ grouped_collection.title | remove: ' |' | default: product.title }}
           {% endif %}
