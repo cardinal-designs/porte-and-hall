@@ -414,7 +414,11 @@
                   class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button active" 
                   href="{{ product.url }}"
                 >
+                  {% if product_size == 'XL Area Mat' %}
+                    <span>Area Mat</span>
+                  {% else %}
                   <span>{{ product_size }}</span>
+                  {% endif %}
                   {% if product_size == 'Doormat' %}
                     {% if product.handle contains 'innerweave' %}
                       <span class="other-sizes__dimension">2' x 3'</span>
