@@ -187,7 +187,7 @@
   {%- capture section_image -%}
     {%- if section.settings.video != blank -%}
       <div class="FeatureText__ImageWrapper">
-        {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
+        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
       </div>
     {%- endif -%}
   {%- endcapture -%}
