@@ -185,11 +185,9 @@
   {%- endcapture -%}
 
   {%- capture section_image -%}
-    {%- if section.settings.image != blank -%}
+    {%- if section.settings.video != blank -%}
       <div class="FeatureText__ImageWrapper">
-        
-          {% render 'lazy-image', image: section.settings.image, fade: true, classes: 'img-fill', aria-label: "hero image", heightI: 570, widthI: 900 %}
-      
+        {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
       </div>
     {%- endif -%}
   {%- endcapture -%}
