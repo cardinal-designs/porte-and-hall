@@ -79,6 +79,18 @@
   .template__social-proof.template-index .image-with-text .SectionHeader__SubHeading span {
     color: #A19377;
   }
+
+  .FeatureText__ImageWrapper.video-wrapper {
+    width: 100%; 
+    aspect-ratio: 1 / 1; 
+    overflow: hidden;
+  }
+
+  .FeatureText__ImageWrapper.video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+  }
   
   @media screen and (max-width:1100px){
     .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
@@ -186,7 +198,7 @@
 
   {%- capture section_image -%}
     {%- if section.settings.video != blank -%}
-      <div class="FeatureText__ImageWrapper">
+      <div class="FeatureText__ImageWrapper video-wrapper">
         {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
       </div>
     {%- endif -%}
