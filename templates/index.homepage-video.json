@@ -21,6 +21,18 @@
         "custom-class": "home-banner"
       }
     },
+    "video_text_hTPBAL": {
+      "type": "video-text",
+      "name": "Video with text",
+      "settings": {
+        "subheading": "",
+        "title": "<p>Add Title...</p>",
+        "content": "<p>Add your own custom content to give more information about your store, availability details...</p>",
+        "link_text": "",
+        "link_url": "",
+        "custom-class": ""
+      }
+    },
     "3726ddfa-f49e-4e18-a5f2-430400876ccd": {
       "type": "icon-with-text",
       "blocks": {
@@ -935,6 +947,7 @@
   },
   "order": [
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62",
+    "video_text_hTPBAL",
     "3726ddfa-f49e-4e18-a5f2-430400876ccd",
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",
     "product_carousel_new_aKw9LG",
