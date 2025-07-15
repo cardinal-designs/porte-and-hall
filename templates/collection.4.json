@@ -9,11 +9,12 @@
  */
 {
   "sections": {
-    "custom_collection_AgRixj": {
-      "type": "custom-collection",
-      "name": "Custom Collection",
+    "main_collection_banner_caVBPR": {
+      "type": "main-collection-banner",
+      "name": "t:sections.main-collection-banner.name",
       "settings": {
-        "title": "{{ collection.title }}"
+        "show_collection_description": true,
+        "show_collection_image": false
       }
     },
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c": {
@@ -247,7 +248,7 @@
     }
   },
   "order": [
-    "custom_collection_AgRixj",
+    "main_collection_banner_caVBPR",
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
     "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a",
     "product-grid",
