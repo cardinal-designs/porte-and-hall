@@ -1,6 +1,8 @@
 {% style %}
   .breadcrumbs__main {
     background-color: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
   }
   .breadcrumbs__list {
     list-style-type: none;
@@ -38,6 +40,13 @@
   .breadcrumbs__link[aria-current="page"]:hover,
   .breadcrumbs__link[aria-current="page"]:focus {
     text-decoration: underline;
+  }
+
+  @media (min-width: 900px) {
+    .breadcrumbs__main {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
   }
 {% endstyle %}
 
@@ -116,6 +125,54 @@
         "type": "color",
         "id": "background_color",
         "label": "Background color"
+      },
+      {
+        "type": "header",
+        "content": "Desktop Padding"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 50
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 50
+      },
+      {
+        "type": "header",
+        "content": "Mobile Padding"
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 30
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 30
       }
     ],
     "presets": [
