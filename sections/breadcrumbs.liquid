@@ -55,6 +55,9 @@
     <li class="breadcrumbs__item">
       <a class="breadcrumbs__link" href="/">Home</a>
     </li>
+    <li class="breadcrumbs__item">
+      {% render 'icon', icon: 'caret' %}
+    </li>
     {%- case t -%}
       {%- when 'page' -%}
         <li class="breadcrumbs__item">
@@ -64,9 +67,6 @@
         {%- if collection.url -%}
           <li class="breadcrumbs__item">
             {{ collection.title | link_to: collection.url }}
-          </li>
-          <li class="breadcrumbs__item">
-            {% render 'icon', icon: 'caret' %}
           </li>
         {%- endif -%}
         <li class="breadcrumbs__item">
