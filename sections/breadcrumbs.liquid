@@ -1,4 +1,7 @@
-<style>
+{% style %}
+  .breadcrumbs__main {
+    background-color: {{ section.settings.background_color }};
+  }
   .breadcrumbs {
     margin: 0 0 2em;
   }
@@ -40,7 +43,7 @@
   .breadcrumbs__link[aria-current="page"]:focus {
     text-decoration: underline;
   }
-</style>
+{% endstyle %}
 
 {%- unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' -%}
 {%- assign t = template | split: '.' | first -%}
@@ -111,7 +114,14 @@
 {% schema %}
   {
     "name": "Breadcrumbs",
-    "settings": [],
+    "class": "breadcrumbs__main",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background color"
+      }
+    ],
     "presets": [
       {
         "name": "Breadcrumbs",
