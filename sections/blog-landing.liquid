@@ -8,8 +8,9 @@
     <div class="main-blog-heading">
       <h1 class="blue">{{ section.settings.section_heading }}</h1>
     </div>
-    {% endif %}  
-    <h1 class="visually-hidden">{{ blog.title }}</h1>
+    {% else %}
+      <h1 class="visually-hidden">{{ blog.title }}</h1>
+    {% endif %}
 
     <div class="page-width">
       <div class="Blog_Landing_Articles js-articles--wrapper">
