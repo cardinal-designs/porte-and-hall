@@ -3688,6 +3688,10 @@ iframe#preview-bar-iframe {
   padding-top: 124px;
 }
 
+.cart-item__error-text {
+  color: var(--error);
+}
+
 @media (max-width: 989px) {
 
   .template__designer-program main#MainContent {
