@@ -546,9 +546,16 @@ var QuantityInput = class extends HTMLElement {
   }
 
   onInputChange(event) {
-      // update connected form
-      this.connectedForm.querySelector("input[name='quantity']").value = event.target.value
+    if (this.connectedForm) {
+      const quantityInput = this.connectedForm.querySelector("input[name='quantity']");
+      if (quantityInput) {
+        quantityInput.value = event.target.value;
+      }
+    } else {
+      console.warn("connectedForm is not defined");
+    }
   }
+
 }
 
 customElements.define('quantity-input', QuantityInput);
