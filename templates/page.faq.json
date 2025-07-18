@@ -68,7 +68,7 @@
           "settings": {
             "title": "{{ block.repeater.question.value }}",
             "title_richtext": "",
-            "answer": "{{ block.repeater.answer | metafield_tag }}"
+            "answer": "<p>{{ block.repeater.answer | metafield_tag }}</p>"
           }
         }
       },
@@ -262,7 +262,7 @@
           "settings": {
             "title": "How do I join your email list?",
             "title_richtext": "",
-            "answer": "<p>We’d love to have you on our email list to share new product information. Please<a href=\"https://porteandhall.com/account/login?return_url=%2Faccount\" title=\"https://porteandhall.com/account/login?return_url=%2Faccount\"> <span style=\"text-decoration:underline\">click here to join!</span></a></p>"
+            "answer": "<p>We’d love to have you on our email list to share new product information. Please<a href=\"https://www.porteandhall.com/pages/faqs#shopify-section-footer\" title=\"https://www.porteandhall.com/pages/faqs#shopify-section-footer\"> <span style=\"text-decoration:underline\">click here to join!</span></a></p>"
           }
         },
         "7002bd10-349b-453d-99e9-a91feb930902": {
