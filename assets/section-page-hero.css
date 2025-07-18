@@ -73,6 +73,8 @@
   line-height: 130%;
   font-family: louize;
   font-weight: 500;
+  max-width: 100%;
+  text-align: left;
 }
 
 @media screen and (max-width: 768px) {  
