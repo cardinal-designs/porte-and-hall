@@ -68,7 +68,7 @@
           "settings": {
             "title": "{{ block.repeater.question.value }}",
             "title_richtext": "",
-            "answer": "<p>{{ block.repeater.answer | metafield_tag }}</p>"
+            "answer": "{{ block.repeater.answer | metafield_tag }}"
           }
         }
       },
@@ -294,7 +294,7 @@
           "settings": {
             "title": "Do you have gift cards?",
             "title_richtext": "",
-            "answer": "<p>Yes we do! Check out our virtual gift cards <a href=\"https://porteandhall.com/products/rise-ai-giftcard\" title=\"https://porteandhall.com/products/rise-ai-giftcard\">here.</a></p>"
+            "answer": "<p>Yes we do! Check out our virtual gift cards <a href=\"https://porteandhall.com/products/porte-hall-giftcard\" title=\"https://porteandhall.com/products/porte-hall-giftcard\">here.</a></p>"
           }
         },
         "75c59ecf-9d5c-46eb-93b9-f99c80521bae": {
