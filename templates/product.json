@@ -9,6 +9,13 @@
  */
 {
   "sections": {
+    "breadcrumbs_yDykEc": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "#f4f2ee"
+      }
+    },
     "main": {
       "type": "main-product-accordion",
       "custom_css": [
@@ -318,6 +325,7 @@
     }
   },
   "order": [
+    "breadcrumbs_yDykEc",
     "main",
     "other-sizes",
     "lp_custom_collections_2_ABDk4m",
