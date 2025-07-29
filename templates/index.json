@@ -11,10 +11,24 @@
   "sections": {
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62": {
       "type": "image-text",
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/WildSideDove_Doormat_Lead_v1.jpg",
         "subheading": "",
-        "title": "<h1>Worthy of Your </h1><h1>Welcome</h1>",
+        "title": "<p>Worthy of Your </p><p>Welcome</p>",
+        "content": "<p>Premium indoor and outdoor mats to elevate your entry and your everyday.</p>",
+        "link_text": "explore more",
+        "link_url": "shopify://collections/shop-all",
+        "custom-class": "home-banner"
+      }
+    },
+    "video_text_hTPBAL": {
+      "type": "video-text",
+      "name": "Video with text",
+      "settings": {
+        "video": "shopify://files/videos/CRO w-porter.mp4",
+        "subheading": "",
+        "title": "<p>Worthy of Your </p><p>Welcome</p>",
         "content": "<p>Premium indoor and outdoor mats to elevate your entry and your everyday.</p>",
         "link_text": "explore more",
         "link_url": "shopify://collections/shop-all",
@@ -212,12 +226,12 @@
             "badge1": "Dirt trapper",
             "product1_title": "The Outlier",
             "collection1": "the-outlier",
-            "product1": "the-outlier-charcoal-doormat",
+            "product1": "the-outlier-slate-doormat",
             "product_image1": "shopify://shop_images/the_outlier_df24f4b8-d6b9-4b52-a5d7-660359294000.jpg",
             "badge2": "Eye-catcher",
-            "product2_title": "The Porter",
-            "collection2": "the-porter-standard",
-            "product2": "the-porter-truffle-standard",
+            "product2_title": "The Outlier",
+            "collection2": "the-outlier",
+            "product2": "the-outlier-chestnut-doormat",
             "product_image2": "shopify://shop_images/Homepage_porterthumbnail.jpg"
           }
         }
@@ -823,7 +837,7 @@
         "text": "“In my 20 years as an interior designer, I struggled to source entry mats that were as well-designed and functional as the rest of the home. I was bewildered by the scarcity of options. Why was the first thing to greet you at your door not important? So I decided to design my own - because first impressions matter, for you and your guests.  Welcome to our collection and we hope you walk all over us!”",
         "link": "",
         "link_text": "",
-        "image": "shopify://shop_images/staffordphotos_1.png"
+        "image": "shopify://shop_images/web_collage_copy_e9265146-9599-46fa-8ded-64abafcbd373.png"
       }
     },
     "401485ce-1e85-48de-9a73-3a8fb67a190f": {
@@ -935,6 +949,7 @@
   },
   "order": [
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62",
+    "video_text_hTPBAL",
     "3726ddfa-f49e-4e18-a5f2-430400876ccd",
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",
     "product_carousel_new_aKw9LG",
