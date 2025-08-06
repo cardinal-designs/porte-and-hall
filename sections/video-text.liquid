@@ -1,0 +1,318 @@
+{% style %}
+  .image-with-text .home-banner .FeatureText{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    margin:0 auto;
+    position:relative;
+    align-items: center;  
+  }
+
+  .hero-video-section {
+    max-width: 1440px;
+  }
+  
+  .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper{
+  margin-right: -40px;
+  padding-left: 40px;
+  }
+  
+  .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .FeatureText__Content{
+  position: relative;
+    z-index: 1;
+  }
+
+ .image-with-text .home-banner .FeatureText .FeatureText__ImageWrapper{
+       position:relative;
+       min-height: 570px;
+   }
+
+   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
+      padding: 56px 40px 72px;
+    text-align: left;
+    max-width: 572px;
+    margin-left: auto;
+  background: #F4F2EE;
+
+   }
+
+     .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p{
+       color:#30383D;
+        font-size: 72px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 72px; /* 100% */
+        letter-spacing: 0.72px;
+        font-family: louize;
+     }
+  .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description p{
+       color:#546B82;
+       font-size: 30px;
+       font-style: normal;
+       font-weight: 400;
+      line-height: 36px; /* 112.5% */
+       letter-spacing: 0.64px;
+       font-family: brandon;
+
+    }
+
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader  .Link--underline{
+       background-color: #A19377;
+       padding:16px 40px;
+       color: #FFF;
+     font-family: brandon;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px; /* 150% */
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-decoration:none;
+    }
+
+   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description{
+       margin-bottom: 52px;
+      margin-top:10px;
+   }
+
+  .template__social-proof.template-index .image-with-text .SectionHeader__SubHeading {
+    /* color: #30383D; */
+    color: black;
+    font-size: 21px;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+
+  .template__social-proof.template-index .image-with-text .SectionHeader__SubHeading span {
+    color: #A19377;
+  }
+
+  .FeatureText__ImageWrapper.video-wrapper {
+    width: 100%; 
+    aspect-ratio: 1 / 1; 
+    overflow: hidden;
+  }
+
+  .FeatureText__ImageWrapper.video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+  }
+
+  .video-text .FeatureText__ContentWrapper {
+    margin-right: 50px !important;
+    padding-left: 0 !important;
+  }
+
+  .video-text .FeatureText__ContentWrapper .SectionHeader {
+    max-width: unset !important;
+    padding-left: 72px !important;
+  }
+
+  .video-text .SectionHeader__Description {
+    max-width: 700px;
+  }
+
+ @media screen and  (min-width: 1700px) {
+    .image-with-text .home-banner .FeatureText {
+        grid-template-columns: 35% 65%;
+    }
+
+    .image-with-text .video-text.home-banner .FeatureText {
+        grid-template-columns: 1fr 1fr;
+    }
+ }
+  
+  @media screen and (max-width:1100px){
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
+      padding: 32px 32px 47px;
+    }
+  }
+  @media screen and (max-width:990px){
+    .image-with-text .home-banner .FeatureText{
+        grid-template-columns: 1fr;
+
+    }
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper{
+      order:2;
+      margin-right: 0px;
+    padding: 0 20px;
+    }
+    .image-with-text .home-banner .FeatureText .FeatureText__ImageWrapper{
+      order:1;
+      min-height: unset;
+    }
+    .image-with-text .home-banner .FeatureText .FeatureText__ImageWrapper .aspect-ratio{
+      position: relative;
+    }
+    
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
+      padding:24px 50px 34px;
+      text-align: center;
+      max-width: 500px;
+    margin: 0 auto;
+      margin-top: -90px;
+    }
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p{
+      font-size: 40px;
+      font-weight: 500;
+      line-height: 44px;
+      letter-spacing: 0.4px;
+    }
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description p{
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .Link--underline{
+      padding: 10px 34px;
+    }
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description{
+      margin-bottom:38px;
+    }
+
+    .template__social-proof.template-index .image-with-text .SectionHeader__SubHeading {
+      font-size: 14px;
+    }
+
+    .video-text .FeatureText__ContentWrapper .SectionHeader {
+      max-width: 500px !important;
+      padding-left: 50px !important;
+    }
+
+    .video-text .FeatureText__ContentWrapper {
+      order: 2;
+      margin-right: 0px !important;
+      padding: 0 20px !important;
+    }
+
+    .video-text .FeatureText {
+      background: unset;
+    }
+  }
+  
+  @media screen and (max-width:380px){
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
+          padding: 24px 20px 34px;
+    }
+
+    .video-text .FeatureText__ContentWrapper .SectionHeader {
+      padding-left: 20px !important;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .indoor-mats-2 .FeatureText__Content a {
+      width: 75%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  
+{% endstyle %}
+ 
+ <section class="Section {{ section.settings.custom-class }} video-text">
+  {%- capture section_content -%}
+    <div class="FeatureText__ContentWrapper">
+      <div class="FeatureText__Content">
+        {%- if section.settings.subheading != blank or section.settings.title != blank or section.settings.content != blank -%}
+          <header class="SectionHeader">
+            {%- if section.settings.subheading != blank -%}
+              <h4 class="SectionHeader__SubHeading">{{ section.settings.subheading }}</h4>
+            {%- endif -%}
+
+            {%- if section.settings.title != blank -%}
+              <div class="SectionHeader__Heading">{{ section.settings.title }}</div>
+            {%- endif -%}
+
+            {%- if section.settings.content != blank -%}
+              <div class="SectionHeader__Description">
+                {{ section.settings.content }}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.link_text != blank -%}
+              <a href="{{ section.settings.link_url }}" class="Link Link--underline">{{ section.settings.link_text | escape }}</a>
+            {%- endif -%}
+          </header>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endcapture -%}
+
+  {%- capture section_image -%}
+    {%- if section.settings.video != blank -%}
+      <div class="FeatureText__ImageWrapper video-wrapper">
+        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
+      </div>
+    {%- endif -%}
+  {%- endcapture -%}
+
+  <div class="FeatureText hero-video-section">
+       {{- section_content -}}
+      {{- section_image -}}
+      
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Video with text",
+  "class": "image-with-text",
+  "settings": [
+     {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Sub-heading"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "<p>Add Title...</p>"
+    },
+   
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Text",
+      "default": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "text",
+      "id": "custom-class",
+      "label": "custom-class"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "Video with text",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+

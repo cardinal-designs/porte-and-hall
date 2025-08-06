@@ -1,0 +1,11 @@
+.shop-all__inner {
+  display: grid;
+  grid-template-columns: 276px minmax(auto, 1fr);
+  column-gap: 40.5px;
+}
+.shop-all__products {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(auto, 1fr));
+  column-gap: 20px;
+  row-gap: 60px;
+}

@@ -1,0 +1,128 @@
+<div class="head-slide-wrap">
+  <ul class="head-slide">
+{%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+  {%- assign pageUrl = contentForQuerystring
+    | split: '"pageurl":"'
+    | last
+    | split: '"'
+    | first
+    | split: '.myshopify.com'
+    | last
+    | replace: '\/', '/'
+    | replace: '%20', ' '
+    | replace: '\u0026', '&'
+  -%}
+  {% capture finalurl %}https://{{ pageUrl }}{% endcapture %}
+
+{%- assign key_and_value = pageUrl | split:'?' -%}
+
+    {% for block in section.blocks %}
+     <li {% if block.settings.link contains key_and_value[1] %} class="active" {% endif %}><a href="{{ block.settings.link }}">{{ block.settings.title }}</a></li> 
+    {% endfor %}
+  </ul>
+</div>
+
+{% schema %}
+  {
+    "name": "Collection Header Slider",
+    "tag": "section",
+    "class": "title-carousel with-spacing",
+    "settings": [],
+    "blocks": [
+     {
+        "type": "category",
+        "name": "Category",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+           {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection Header Slider"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+<style>
+  .title-carousel{
+    display:none;
+  }
+  .head-slide-wrap{
+    width: 95%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 !important;
+  }
+  .head-slide-wrap .head-slide{
+    list-style-type: none;
+    overflow-y: auto;
+    width: 100%;
+    white-space: nowrap;
+    padding: 0 0 15px 0;
+    column-gap: 14px;
+    display: flex;
+
+  }
+  .head-slide-wrap .head-slide li{
+    padding: 7px 10px;
+    margin: 0 0px;
+    border: 1px solid #546A82;
+    width: auto;
+    height: 40px;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .head-slide-wrap .head-slide li a{
+    color: #546A82;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .head-slide-wrap .head-slide li.active{
+  background:#546A82;
+  }
+  .head-slide-wrap .head-slide li.active a{
+    color: #fff;
+}
+  .head-slide-wrap .head-slide::-webkit-scrollbar {
+   
+    height: 2px;
+  }
+  .head-slide-wrap .head-slide::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #546A82;
+  }
+  .PH3-category-shortcut{
+      display:none;
+    }
+  @media (max-width:767px){
+    
+    .template-collection .page-hero h1.page-hero__heading{
+      display:none;
+    }
+    .template-collection .page-hero{
+      background: var(--beige-secondary);
+    }
+    .title-carousel{
+      display:block;
+    }
+  }
+  
+</style>

@@ -1,0 +1,563 @@
+.Designer_Program_Main {
+  padding: 120px 0;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.Designer_Program_Main::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(0 0 0 / 30%);
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.Designer_Program_Main .Contact_Form {
+  padding: 64px;
+  max-width: 948px;
+  margin: 0 auto;
+  background: #FFFFFF;
+}
+
+.Designer_Program_Header h3 {
+  margin-bottom: 12px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.Designer_Program_Header {
+  margin-bottom: 60px;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Designer_Program_Header p {
+  line-height: 24px;
+}
+
+.form__row-label {
+  font-size: 18px;
+  line-height: 120%;
+  font-family: brandon;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.contact .field.How_Did_You_Hear {
+  margin: 50px 0 70px;
+}
+
+.form__checkboxrow label {
+  font-size: 18px;
+  line-height: 120%;
+  font-family: brandon;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;  
+}
+
+.Checkbox_Wrapper .form__checkboxrow {
+  flex: 0 0 50%;
+  margin: 0 0 27px;
+}
+
+.Checkbox_Wrapper {
+  margin-top: 48px;
+  max-width: 570px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.select::after {
+  display:none;
+}
+
+
+.form__checkboxrow label {
+  position: relative;
+  cursor: pointer;
+}
+
+.form__checkboxrow label::before {
+  content: "";
+  -webkit-appearance: none;
+  background-color: transparent;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 9px;
+  height: 18px;
+  width: 18px;
+  border: 1px solid #546B82;
+  top: -3px;
+}
+
+.form__checkboxrow input:checked + label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  width: 5px;
+  height: 10px;
+  border: solid #546B82;
+  border-width: 0 1px 1px 0;
+  transform: rotate(45deg);
+}
+
+.form__checkboxrow input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.customPopup {
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #546b82b8;
+}
+
+.customPopup .customPopup-content {
+  max-width: 480px;
+  width: 90%;
+  background: #fff;
+  margin: 0 auto;
+  padding: 30px 30px;
+  text-align: center;
+  margin-top: 40vh;
+  position: relative;
+  font-family: 'Brandon';
+  font-size: 20px;
+}
+
+.customPopupclose svg {
+  height: 15px;
+  width: 15px;
+}
+
+.customPopupclose {
+  position: absolute;
+  right: -10px;
+  top: -20px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 10px;
+  width: 40px;
+  height: 39px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+ul.js-error-messages {
+  color: red;
+  list-style-type: none;
+  margin: 0;
+  font-size: 14px;
+  font-family: brandon;
+}
+
+.Contact_Form .field__input {
+  padding: 7px 0; 
+  border-radius: 0;
+}
+
+.contact__button .button {
+  padding: 18px 84px;
+  font-size: 18px;
+  line-height: 21.6px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 0;
+  margin: 0 auto;
+}
+
+.fan-motif__text {
+  letter-spacing: 2px;
+}
+
+.fan-motif__heading {
+  margin: 30px 0 50px;
+}
+
+.document__upload * {
+  font-size: 18px;
+  line-height: 1.3em;
+  color: var(--blue);
+  font-family: brandon;
+  font-weight: 400;
+}
+
+.document__upload {
+  margin-bottom: 40px;
+}
+
+.Designer_Program_Form .globo-form-app {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.Designer_Program_Form .gfb-style-material_filled .panels .panel {
+  grid-column-gap: 22px !important;
+}
+
+.Designer_Program_Form .globo-form-app .panels {
+  z-index: unset !important;
+}
+
+.Designer_Program_Form .globo-form-app .header,
+.Designer_Program_Form .globo-form-control label {
+  display: none !important;
+}
+
+.Designer_Program_Form .globo-form-control {
+  margin-bottom: 50px !important;
+  padding: 0 !important;
+  width: calc(50% - 11px) !important;
+}
+
+.Designer_Program_Form .globo-form-control.layout-1-column {
+  width: 100% !important;
+  margin-bottom: 0 !important;
+}
+
+.Designer_Program_Form .How_Did_You_Hear.globo-form-control label {
+  display: block !important;
+  width: 100% !important;
+}
+
+.Designer_Program_Form input::-webkit-input-placeholder {
+  visibility: visible !important;
+  color: var(--blue) !important;
+  font-family: brandon;
+  font-size: 18px;
+}
+
+.Designer_Program_Form .globo-form-control .globo-form-input {
+  background-color: transparent !important;
+  border-radius: 0 !important;
+}
+
+.Designer_Program_Form .material_filled-input {
+  font-size: 18px !important;
+  line-height: 1.3em !important;
+  color: var(--blue) !important;
+  font-family: brandon !important;
+  font-weight: 400 !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  box-sizing: border-box !important;
+  background-color: transparent !important;
+  border: none !important;
+  height: auto !important;
+  min-height: auto !important;
+  padding: 7px 0 !important;
+  border-bottom: 1px solid #546b82 !important;
+  border-radius: 0 !important;
+}
+
+.Designer_Program_Form .globo-paragraph {
+  margin-top: 50px !important;
+}
+
+.Designer_Program_Form .globo-paragraph * {
+  font-size: 11px !important;
+  color: var(--blue) !important;
+  font-weight: 500 !important;
+  letter-spacing: 1px !important;
+  line-height: 1.2em !important;
+  font-family: brandon, sans-serif !important;
+}
+
+.Designer_Program_Form .How_Did_You_Hear {
+  margin: 50px 0 30px !important;
+  width: 100% !important;
+}
+
+.Designer_Program_Form .How_Did_You_Hear .material_filled-label .label-content {
+  font-size: 18px !important;
+  line-height: 120% !important;
+  font-family: brandon !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  color: #546B82 !important;
+}
+
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .globo-form-input {
+  margin-top: 50px !important;
+  max-width: 570px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important;
+}
+
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .globo-list-control {
+  flex: 0 0 50% !important;
+  margin: 0 0 30px !important;
+}
+
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-label {
+  font-size: 18px !important;
+  line-height: 120% !important;
+  font-family: brandon !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  position: relative !important;
+  cursor: pointer !important;
+  color: #546B82 !important;
+}
+
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-input {
+  padding: 0 !important;
+  height: initial !important;
+  width: initial !important;
+  margin-bottom: 0 !important;
+  display: none !important;
+  cursor: pointer !important;
+}
+
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-label:before,
+.Designer_Program_Form [data-type="acceptTerms"] label.checkbox-label.globo-option:before {
+  content: "";
+  -webkit-appearance: none;
+  background-color: transparent !important;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 9px;
+  height: 18px !important;
+  width: 18px !important;
+  border: 1px solid #546B82 !important;
+  top: -3px !important;
+  border-radius: 0 !important;
+  left: 0 !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-input + .checkbox-label:after,
+.Designer_Program_Form [data-type="acceptTerms"] .checkbox-input + label.checkbox-label.globo-option:after {
+  display: none !important;
+}
+
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-input:checked + .checkbox-label:after,
+.Designer_Program_Form [data-type="acceptTerms"] .checkbox-input:checked + label.checkbox-label.globo-option:after{
+  content: "";
+  position: absolute !important;
+  top: 2px !important;
+  left: 7px !important;
+  width: 5px !important;
+  height: 10px !important;
+  border: solid #546B82 !important;
+  border-width: 0 1px 1px 0 !important;
+  transform: rotate(45deg) !important;
+  border-radius: 0 !important;
+  display: block !important;
+  background: transparent !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper,
+.Designer_Program_Form [data-type="acceptTerms"] .checkbox-wrapper {
+  padding-left: 0 !important;
+}
+
+.Designer_Program_Form .globo-form-control.How_Did_You_Hear .globo-list-control,
+.Designer_Program_Form [data-type="acceptTerms"] .globo-list-control {
+  padding: 0 !important;
+}
+
+.Designer_Program_Form .Files__wrapper.globo-form-control .material_filled-label {
+  display: block !important;
+  margin-top: 10px !important;
+}
+
+.Designer_Program_Form .Files__wrapper.globo-form-control .material_filled-label .label-content {
+  font-size: 18px !important;
+  line-height: 120% !important;
+  font-family: brandon !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;  
+  color: #546B82 !important;
+}
+
+.Designer_Program_Form .Files__wrapper.globo-form-control .gfb__dropzone {
+  background: transparent !important;
+  margin-top: 10px !important;
+}
+
+.Designer_Program_Form .material_filled-button {
+  background: var(--gold) !important;
+  color: #fff !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  font-family: brandon !important;
+  font-size: 18px !important;
+  line-height: 120% !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  padding: 18px 84px !important;
+  margin: 0 !important;
+  border: 0 !important;
+  margin-top: 42px !important;
+  width: auto !important;
+  border-radius: 0 !important;
+}
+
+.Designer_Program_Form .globo-form-app .gfb__footer {
+  text-align: center !important;
+}
+
+.Designer_Program_Form .wizard__content .globo-form-control .globo-form-input select {
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.6801 5.36588C4.86018 5.54471 5.15002 5.54471 5.31994 5.36588L9.35 1.36386C9.55 1.16525 9.55 0.847562 9.35 0.648955C9.15 0.450349 8.83008 0.450349 8.63009 0.648955L5.31992 3.93609C5.13984 4.11492 4.85 4.11492 4.68008 3.93609L1.36991 0.648955C1.16991 0.450348 0.849996 0.450348 0.649998 0.648955C0.449999 0.847561 0.449999 1.16525 0.649997 1.36386L4.6801 5.36588Z' fill='%23546B82'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M4.68008 3.93609C4.85 4.11492 5.13984 4.11492 5.31992 3.93609L8.63009 0.648955C8.83008 0.450349 9.15 0.450349 9.35 0.648955C9.55 0.847562 9.55 1.16525 9.35 1.36386L5.31994 5.36588C5.15002 5.54471 4.86018 5.54471 4.6801 5.36588L0.649997 1.36386C0.449999 1.16525 0.449999 0.847561 0.649998 0.648955C0.849996 0.450348 1.16991 0.450348 1.36991 0.648955L4.68008 3.93609ZM4.32778 5.72067L0.297682 1.71865C-0.0992262 1.3245 -0.0992281 0.688317 0.297681 0.294169C0.692655 -0.0980564 1.32725 -0.0980565 1.72223 0.294169L5 3.54913L8.27777 0.29417C8.67274 -0.0980561 9.30734 -0.0980561 9.70232 0.29417C10.0992 0.688317 10.0992 1.3245 9.70232 1.71865L5.67648 5.71647C5.30337 6.10222 4.69503 6.08536 4.32778 5.72067Z' fill='%23546B82'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: 99% 60% !important;
+}
+
+.Designer_Program_Form [data-type="acceptTerms"] label.checkbox-label.globo-option {
+  display: block !important;
+  font-size: 18px !important;
+  line-height: 120% !important;
+  font-family: brandon !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  color: #546b82 !important;
+}
+
+@media screen and (max-width: 767px) {
+
+  .Designer_Program_Header h3 {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .Designer_Program_Main {
+    padding: 32px 0;
+  }
+
+  .Designer_Program_Main .page-width {
+    padding: 0 16px;
+  }
+  
+  .document__upload * {
+    font-size: 14px;
+  }
+  
+  .form__checkboxrow label {
+    font-size: 14px;
+  }
+
+  .Checkbox_Wrapper .form__checkboxrow {
+    flex: 0 0 100%;
+    margin: 0 0 38px;
+  }
+
+  .Checkbox_Wrapper .form__checkboxrow:last-child {
+    margin-bottom: 19px; 
+  }
+
+  .contact__fields.Instagram_Field {
+    display: block;
+  }
+
+  .Designer_Program_Header h2 {
+    margin-bottom: 20px;
+  }
+
+  .Designer_Program_Header {
+    margin-bottom: 34px;
+  }
+
+  .contact .field.How_Did_You_Hear {
+    margin-bottom: 0;
+  }
+
+  .contact__button {
+    margin-top: 20px;
+  }
+
+  .contact__button .button {
+    padding: 14px 19px;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .Designer_Program_Main .Contact_Form {
+    padding: 34px 12px;
+  }
+
+  .Designer_Program_Main .contact__fields {
+    grid-column-gap: 38px;
+  }
+
+  .Checkbox_Wrapper {
+    margin-top: 28px;
+    margin-left: 14px; 
+  }
+
+  .Designer_Program_Form .globo-form-control.Instagram__Field {
+    margin-bottom: 0 !important;
+  }
+
+  .Designer_Program_Form .globo-form-control.Instagram__Field,
+  .Designer_Program_Form .globo-form-control.Interested__Field, 
+  .Designer_Program_Form .globo-form-control.Attributes__Field {
+    width: 100% !important;
+  }
+
+  .Designer_Program_Form .material_filled-input,
+  .Designer_Program_Form .How_Did_You_Hear .material_filled-label .label-content,
+  .Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-label,
+  .Designer_Program_Form .Files__wrapper.globo-form-control .material_filled-label .label-content,
+  .Designer_Program_Form input::-webkit-input-placeholder,
+  .Designer_Program_Form [data-type=acceptTerms] label.checkbox-label.globo-option {
+    font-size: 14px !important;
+  }
+
+  .Designer_Program_Form .globo-paragraph {
+    margin-top: 30px !important;
+  }
+
+  .Designer_Program_Form .globo-form-control.How_Did_You_Hear .globo-list-control {
+    flex: 0 0 100% !important;
+    margin: 0 0 35px !important;
+  }
+
+  .Designer_Program_Form .How_Did_You_Hear {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .Designer_Program_Form .material_filled-button {
+    padding: 14px 19px !important;
+    font-size: 16px !important;
+    margin: 10px 0 0 !important;
+  }
+  
+}

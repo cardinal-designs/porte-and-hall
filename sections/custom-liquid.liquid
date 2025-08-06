@@ -1,0 +1,27 @@
+{{ section.settings.custom_html }}
+
+{% schema %}
+  {
+    "name": "Liquid",
+    "settings": [
+      {
+        "type": "liquid",
+        "id": "custom_html",
+        "label": "Custom html/liquid",
+        "default": "{% if product.tags contains 'battery' %}This product can only be shipped by ground.{% else %}This product can be shipped by ground or air.{% endif %}"
+      }      
+    ],
+  "presets": [
+      {
+        "name": "Liquid",
+        "settings": {}
+      }
+    ]    
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

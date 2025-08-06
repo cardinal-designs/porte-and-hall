@@ -1,0 +1,40 @@
+{%- liquid
+  assign imgWidth = image.width
+  if widthI != blank
+    assign imgWidth = widthI
+  endif
+
+  assign imgHeight = image.height
+  if heightI != blank
+    assign imgHeight = heightI
+  endif
+
+  assign ariaLabel = "image"
+  if aria-label != blank
+    assign ariaLabel = aria-label
+  endif
+-%}
+{% comment %} <p>{{ imgWidth }}</p> {% endcomment %}
+<div
+  class="aspect-ratio{% if fill %} img-fill{% endif %} {{ classes }}"
+  style="max-width: 100%; width: 100%; --aspect-ratio: {{ image.aspect_ratio }}"
+>
+  
+    <img
+      srcset="{% if image.width >= 165 %}{{ image | image_url: width: 165 }} 165w,{% endif %}
+        {% if image.width >= 535 %}{{ image | image_url: width: 535 }} 535w,{% endif %}
+        {% if image.width >= 750 %}{{ image | image_url: width: 750 }} 750w,{% endif %}
+        {% if image.width >= 1000 %}{{ image | image_url: width: 1000 }} 1000w,{% endif %}
+        {% if image.width >= 1500 %}{{ image | image_url: width: 1500 }} 1500w,{% endif %}
+        {% if image.width >= 3000 %}{{ image | image_url: width: 3000 }} 3000w,{% endif %}
+        {{ image | img_url: 'master' }} {{ image.width }}w"
+      src="{{ image | img_url: '1500x' }}"
+      sizes="100vw"
+      alt="{{ image.alt | escape }}"
+      height="{{ imgHeight }}"
+      width="{{ imgWidth }}"
+      {% if forloop_index > 1 %}loading="lazy"{%endif %}
+      aria-label="{{ ariaLabel }}"
+      class="lazyload{% if blur %} lazyload--blur{% endif %}{% if fade %} lazyload--fade{% endif %}"
+    >
+</div>

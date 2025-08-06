@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "page_heading": "",
+        "subhead": "",
+        "image": "shopify:\/\/shop_images\/Rectangle_600_afdd9d4e-2ac5-4953-8125-1a557f66a497.jpg",
+        "section_height": "350",
+        "bg_color": "#f4f2ee"
+      }
+    },
+    "3b4a5bb9-7404-4765-a4c5-6bedd3de487f": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_html": "<div class=\"hide-mobile\">\n<div class=\"klaviyo-form-Xurxiv\"><\/div><\/div>\n\n<div class=\"hide-desktop\">\n<div class=\"klaviyo-form-RA2hvS\"><\/div>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "3b4a5bb9-7404-4765-a4c5-6bedd3de487f"
+  ]
+}

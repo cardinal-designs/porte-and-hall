@@ -1,0 +1,77 @@
+{{ 'section-sms-social.css' | asset_url | stylesheet_tag }}
+<div class="SMS_Section" style="background-image: url('{{ section.settings.image | img_url: 'master' }}')">
+  <div class="SMS_Inr_Block">
+    <div class="SMS_Inr_Block_inner">
+      {% if section.settings.logo_image != blank %}
+        <div class="Site_Logo">
+          <img src="{{ section.settings.logo_image | img_url: '248x' }}">
+        </div>
+      {% endif %}
+      {% if section.settings.title != blank %}
+        <h2 class="h2 SMS_Section_Heading">{{ section.settings.title }}</h2>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+        <h3 class="SMS_Section_Subheading">{{ section.settings.subtitle }}</h3>
+      {% endif %}
+      {% if section.settings.middle_content != blank %}
+        <h5 class="SMS_Section_Middle_Desc">{{ section.settings.middle_content }}</h5>
+      {% endif %}
+      {% if section.settings.bottom_content != blank %}
+        <div class="SMS_Section_Bottom_Desc">{{ section.settings.bottom_content }}</div>
+      {% endif %}
+      {% if section.settings.klaviyo_code != blank %}
+        <div class="Widget_Code">
+          {{ section.settings.klaviyo_code }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "SMS Social",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_image",
+        "label": "Site Logo"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "subtitle",
+        "label": "Sub Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "middle_content",
+        "label": "Middle Content"
+      },
+      {
+        "type": "richtext",
+        "id": "bottom_content",
+        "label": "Bottom Content"
+      },
+      {
+        "type": "textarea",
+        "id": "klaviyo_code",
+        "label": "Klaviyo Code"
+      }
+    ],
+    "presets": [
+      {
+        "name": "SMS Social"
+      }
+    ]
+  }
+{% endschema %}

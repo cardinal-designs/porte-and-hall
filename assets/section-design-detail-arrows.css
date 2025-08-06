@@ -1,0 +1,138 @@
+.details__inner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.details__content-wrapper {
+  background: var(--blue);
+  padding: 20px;
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+.details__content {
+  border: 1px solid white;
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.details__content-heading {
+  max-width: 330px;
+  margin: 20px auto;
+}
+
+.details__media-wrapper {
+  position: relative; 
+}
+
+.details__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.28/1;
+  display: block;
+  overflow: hidden;
+}
+
+.details__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.details__arrow {
+  position: absolute;
+  transition: opacity .3s ease;
+  transform-origin: bottom left;
+  transform: translateX(0%) translateY(-100%) scaleX(1);
+}
+
+.details__arrow.details__arrow-downward-right {
+  transform: translateX(0%) translateY(-100%) scaleX(-1);
+  transform-origin: bottom left;
+}
+
+.details__arrow.details__arrow-right {
+  transform: translateX(0%) translateY(-100%) scaleX(-1);
+  transform-origin: bottom left;
+}
+
+.details__arrow svg {
+  display: block;
+}
+
+.details__arrow-label {
+  position: absolute;
+  color: white;
+  width: max-content;
+  top: 0;
+  left: 0;
+  padding: 0 10px;
+  transform: translateY(-10%);
+  display: block;
+  font-size: 3vw;
+  filter: drop-shadow(0px 1px 2px var(--gray))
+}
+
+.details__arrow.details__arrow-downward-right + .details__arrow-label {
+  transform: translateX(-50%) translateY(-10%);
+}
+
+.details__arrow.details__arrow-right + .details__arrow-label {
+  transform: translateX(0%) translateY(-10%);
+}
+
+@media screen and (max-width: 768px) {
+  .details__arrow-label  {
+    font-size: 20px;
+  }
+}
+
+/* .details__arrow-flipped .details__arrow-label {
+  transform: translate(100%, -50%) scaleX(-1);
+} */
+
+.details__image-label {
+  position: absolute;
+  bottom: 20px;
+  left: 0px;
+  background: var(--blue);
+  color: white;
+  text-transform: uppercase;
+  display: object;
+  padding: 9px 10px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .details__inner {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .details__media-wrapper {
+    width: 100%;
+  }
+
+  .details__image-container {
+    aspect-ratio: 1/1;
+    width: 100%;
+  }
+
+  .details__content-heading {
+    text-align: center;
+    align-self: center;
+  }
+
+  .details__point {
+    transform: translate(-50%, -50%) scale(.5);
+  }
+}

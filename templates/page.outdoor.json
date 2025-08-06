@@ -1,0 +1,149 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "page_heading": "",
+        "subhead": "",
+        "image": "shopify://shop_images/Rectangle_600_afdd9d4e-2ac5-4953-8125-1a557f66a497.jpg",
+        "section_height": "350",
+        "bg_color": "#f4f2ee"
+      }
+    },
+    "image_text_2_9rrqH8": {
+      "type": "image-text-2",
+      "settings": {
+        "image": "shopify://shop_images/IMG_1227_1.png",
+        "subheading": "",
+        "title": "<p>Made to get dirty. </p><p>Easy to clean.</p>",
+        "content": "<p>The doormat with thousands of flexible bristles that trap dirt and moisture, keeping your home clean.</p>",
+        "link_text": "Shop Now",
+        "link_url": "#shopify-section-template--15685230428223__featured_product_kpPRYR",
+        "custom-class": "home-banner"
+      }
+    },
+    "featured_product_kpPRYR": {
+      "type": "featured-product",
+      "settings": {
+        "heading": "True to its name, \nThe Outlier is like no other.",
+        "collection": "the-outlier",
+        "product": "the-outlier-slate-doormat",
+        "materials": "{{ section.settings.collection.metafields.custom.materials | metafield_tag }}",
+        "care": "{{ section.settings.collection.metafields.custom.care | metafield_tag }}",
+        "hide_pinterest": true,
+        "hide_dimensions": true,
+        "text_dimensions": false,
+        "hide_shop_other": false,
+        "hide_quantity": true,
+        "shop_more_below": true
+      }
+    },
+    "blue_background_list_image_3giCnb": {
+      "type": "blue-background-list-image",
+      "blocks": {
+        "list_item_gzfkht": {
+          "type": "list-item",
+          "settings": {
+            "title": "ALL-WEATHER POWERHOUSE",
+            "text": "Featuring over 10,000 itty-bitty, <strong>flexible bristles</strong> that scrape off shoes (and paws) to keep the dirt outside."
+          }
+        },
+        "list_item_pfWYx6": {
+          "type": "list-item",
+          "settings": {
+            "title": "EASY CLEAN-UP",
+            "text": "Just give it a quick shake and sweep. For a deeper clean, hose it down. The hidden vents <strong>easily drain water</strong> so your mat won't be soggy"
+          }
+        },
+        "list_item_ddgXc3": {
+          "type": "list-item",
+          "settings": {
+            "title": "MADE TO MATCH",
+            "text": "We poured ourselves into <strong>perfecting these colors</strong>. All six were made to match your porch, door, floor, and more. Hue knew?"
+          }
+        },
+        "list_item_Mdj6J6": {
+          "type": "list-item",
+          "settings": {
+            "title": "BUILT TO LAST",
+            "text": "The Outlier <strong>stands the test of time</strong> and outlasts the competition. Plus, it’s 100% recyclable. After its long life, we’ll turn it into a new mat!"
+          }
+        },
+        "image_item_PbAMhb": {
+          "type": "image-item",
+          "settings": {
+            "image": "shopify://shop_images/outlierclean_1_1.png"
+          }
+        },
+        "image_item_c6pfQi": {
+          "type": "image-item",
+          "settings": {
+            "image": "shopify://shop_images/vents.png"
+          }
+        },
+        "image_item_7hVgNG": {
+          "type": "image-item",
+          "settings": {
+            "image": "shopify://shop_images/doorway.png"
+          }
+        },
+        "image_item_BPTNAT": {
+          "type": "image-item",
+          "settings": {
+            "image": "shopify://shop_images/dirt.png"
+          }
+        }
+      },
+      "block_order": [
+        "list_item_gzfkht",
+        "list_item_pfWYx6",
+        "list_item_ddgXc3",
+        "list_item_Mdj6J6",
+        "image_item_PbAMhb",
+        "image_item_c6pfQi",
+        "image_item_7hVgNG",
+        "image_item_BPTNAT"
+      ],
+      "settings": {
+        "heading": "The hardworking hero for your doorway",
+        "image": "shopify://shop_images/outlierclean_1_1.png"
+      }
+    },
+    "17260069838c1333c1": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_homepage_exkTmc": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget_homepage/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "product": "the-outlier-slate-doormat"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_homepage_exkTmc"
+      ],
+      "settings": {
+        "include_margins": true,
+        "heading": "",
+        "section_reviews": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_text_2_9rrqH8",
+    "featured_product_kpPRYR",
+    "blue_background_list_image_3giCnb",
+    "17260069838c1333c1"
+  ]
+}

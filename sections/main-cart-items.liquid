@@ -1,0 +1,104 @@
+{{ 'component-cart.css' | asset_url | stylesheet_tag }}
+  {{ 'component-totals.css' | asset_url | stylesheet_tag }}
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+  {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+
+  <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+
+  <div class="page-width">
+  <cart-items class="{% if cart == empty %} is-empty{% endif %}">
+    <div class="title-wrapper-with-link">
+      <h1 class="title title--primary">{{ section.settings.cart_text | default: "Your cart" }}</h1>
+      <a href="{{ section.settings.button | default: "/" }}" class="text-link">{{ section.settigns.button_text | default: "Continue Shopping" }}</a>
+    </div>
+
+    <div class="cart__warnings">
+      <h1 class="cart__empty-text">{{ section.settings.empty_text | default: "Your cart is empty" }}</h1>
+      <a href="{{ section.settings.button | default: "/" }}" class="button">
+        {{ seciton.settings.button_text | default: "Continue Shopping" }}
+      </a>
+
+      {% if shop.customer_accounts_enabled %}
+        <h2 class="cart__login-title">{{ 'sections.cart.login.title' | t }}</h2>
+        <p class="cart__login-paragraph">
+          {{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
+        </p>
+      {% endif %}
+    </div>
+
+    <form
+      action="{{ routes.cart_url }}"
+      class="cart__contents critical-hidden"
+      method="post"
+      id="cart">
+      <div
+        class="cart__items"
+        id="main-cart-items"
+        data-id="{{ section.id }}">
+        <div class="js-contents">
+          {% if cart != empty %}
+            {% for item in cart.items %}
+              {% render 'cart-item' item: item, idx: forloop.index, is_cart: true %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+      <p
+        class="visually-hidden"
+        id="cart-live-region-text"
+        aria-live="polite"
+        role="status"></p>
+      <p
+        class="visually-hidden"
+        id="shopping-cart-line-item-status"
+        aria-live="polite"
+        aria-hidden="true"
+        role="status">{{ 'accessibility.loading' | t }}</p>
+    </form>
+  </cart-items>
+</div>
+
+  {% schema %}
+    {
+      "name": "t:sections.main-cart-items.name",
+      "tag": "section",
+      "class": "shopify-section cart-items with-spacing",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_vendor",
+          "default": false,
+          "label": "t:sections.main-cart-items.settings.show_vendor.label"
+        },
+        {
+          "type": "text",
+          "id": "cart_text",
+          "label": "Cart title"
+        },
+        {
+          "type": "header",
+          "content": "Empty Cart"
+        },
+        {
+          "type": "text",
+          "id": "empty_text",
+          "label": "Empty cart message"
+        },
+        {
+          "type": "header",
+          "content": "Continue shopping"
+        },
+        {
+          "type": "url",
+          "id": "button",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Link text"
+        }
+      ]
+    }
+  {% endschema %}

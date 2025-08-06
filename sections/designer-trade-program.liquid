@@ -1,0 +1,135 @@
+{{ 'designer-trade-program.css' | asset_url | stylesheet_tag: preload: true }}
+
+{% if section.settings.heading != blank or section.settings.button_1_text != blank or section.settings.button_2_text != blank %}
+  <div class="trade__program" id="section-{{ section.id }}">
+    <div class="trade__image--wrapper{% if section.blocks.size > 1 %} trade__image--slider swiper{% endif %}"> 
+      {% if section.blocks.size > 1 %}
+      <div class="swiper-wrapper">
+      {% endif %}
+        {% for block in section.blocks %}
+          {% if block.settings.image != blank %}
+          <div class="trade__image--item{% if section.blocks.size > 1 %} swiper-slide{% endif %}">
+            <figure {% if block.settings.mobile_image != blank %}class="mobile__hidden"{% endif %}>
+              {{ block.settings.image | image_url: width: 2560 | image_tag: width: "100%", alt: section.settings.image.alt }}
+            </figure> 
+            {% if block.settings.mobile_image != blank %}
+              <figure class="desktop__hidden">
+                {{ block.settings.mobile_image | image_url: width: 2560 | image_tag: width: "100%", alt: section.settings.mobile_image.alt }}
+              </figure>
+            {% endif %}
+          </div>
+          {% endif %}
+        {% endfor %}
+      {% if section.blocks.size > 1 %}
+      </div>
+      {% endif %}
+    </div>
+    <div class="trade__overlay">
+      <div class="trade__content">
+        {% if section.settings.heading != blank %}
+          <h1>{{ section.settings.heading }}</h1>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <p>{{ section.settings.description }}</p>
+        {% endif %}
+
+        {% if section.settings.button_1_text != blank or section.settings.button_2_text != blank %}
+          <div class="trade__buttons">
+            {% if section.settings.button_1_text != blank %}
+              <div class="join-btn scroll__button">
+                {{ section.settings.button_1_text }}
+              </div>
+            {% endif %}
+            {% if section.settings.button_2_text != blank and section.settings.button_2_url != blank %}
+              <a href="{{ section.settings.button_2_url }}" class="signin-btn">
+                {{ section.settings.button_2_text }}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", (event) => {
+    var tradeSwiper = new Swiper(".trade__image--slider", {
+      loop: true,
+      slidesPerView: 1, 
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+      },
+    });       
+  });
+  
+</script>
+
+{% schema %}
+{
+  "name": "Trade Program Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Trade Program"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Porte + Hall was founded by an interior designer, so we’re thrilled to roll out the red carpet (er, mat) for our trade community—with exclusive perks and personalized support."
+    },
+    {
+      "type": "header",
+      "content": "Button 1"
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "header",
+      "content": "Button 2"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button_2_url",
+      "label": "Button Link"
+    },
+  ],
+  "blocks": [
+    {
+      "type": "image_slider",
+      "name": "Image Slider",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Image"
+        },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trade Program Section"
+    }
+  ]
+}
+{% endschema %}

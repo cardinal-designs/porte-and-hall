@@ -1,0 +1,90 @@
+{{ 'section-page-hero.css' | asset_url | stylesheet_tag }}
+
+<div class="page-hero__inner {% if section.settings.swap-fonts == true %}page-hero__swap-fonts{% endif %}">
+  {% if section.settings.bg_image != blank %}
+    {% render 'lazy-image', image: section.settings.bg_image %}
+  {% endif %}
+  <div class="page-width">
+    <h1 class="{% if collection.handle == 'best-sellers' %}best-seller-header {% endif %}page-hero__heading blue">{{ section.settings.heading }}</h1>
+    {% if section.settings.text != blank %}
+      <p class="page-hero__text blue">{{ section.settings.text }}</p>
+    {% endif %}
+    {% if section.settings.small_text != blank %}
+      <p class="page-hero__small-text blue">{{ section.settings.small_text }}</p>
+    {% endif %}
+
+    {% if section.blocks != blank %}
+      <div class="page-hero__blocks">
+        {% for block in section.blocks %}
+          <div class="page-hero__icon-wrapper">
+            <div class="page-hero__icon-image">
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | image_url: width: 172 | image_tag: width: 86 }}
+              {% endif %}
+            </div>
+            <h3 class="page-hero__icon-label blue">{{ block.settings.title }}</h3>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page Hero",
+  "class": "page-hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "textarea",
+      "id": "small_text",
+      "label": "Small Text"
+    },
+    {
+      "type": "checkbox",
+      "id": "swap-fonts",
+      "label": "Swap fonts",
+      "default": false
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "name": "Icon",
+      "type": "icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page Hero"
+    }
+  ]
+}
+{% endschema %}

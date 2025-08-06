@@ -1,0 +1,262 @@
+.fan-motif {
+  padding: 20px;
+  width: 50%;
+}
+
+.fan-motif.fan__motif--full {
+  width: 100%;
+}
+
+.fan-motif__background {
+  background: var(--beige-secondary);
+}
+
+.fan-motif__inner {
+  padding: 50px 20px;
+  max-width: 1067px;
+  margin: auto;
+}
+
+.fan-motif__layout-left{
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  grid-template-areas: 'text media';
+  column-gap: 120px;
+}
+
+.fan-motif__layout-right {
+  display: grid;
+  grid-template-columns: 1fr 500px;
+  grid-template-areas: 'text media';
+  column-gap: 120px;
+}
+
+.fan-motif__layout-left .fan-motif__content-wrapper {
+  grid-area: text;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.fan-mofit__image-wrapper {
+  grid-area: media;
+}
+
+.fan-motif__layout-right .fan-motif__content-wrapper {
+  grid-area: text;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.fan-motif__layout-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.fan-motif__layout-center .fan-motif__content-wrapper {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.fan-motif__content-wrapper {
+  padding: 50px 0;
+}
+
+.fan-motif__motif img {
+  display: inline-block;
+}
+
+.fan-motif__heading {
+  margin: 30px 0;
+}
+
+.fan-motif__link {
+  margin-top: 30px;
+}
+
+.fan-motif__image-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fan-motif__image-wrapper img {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.fan-motif__blocks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  column-gap: 30px;
+}
+
+.fan-motif__icon-wrapper {
+  text-align: center;
+}
+
+.fan-motif__icon-label {
+  padding: 0 20px;
+}
+
+.Hide_Desktop {
+  display: none;  
+}
+
+.fan-motif__wrap {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.fan-motif__wrap .fan__motif--faq {
+  width: 50%;
+  padding-left: 50px;
+  padding-right: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.fan-motif__wrap .fan__motif--faq .faq__column {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.fan__motif--faq .faq__column > .faq__item:first-child {
+  border-top: 1px solid var(--blue);
+}
+
+.fan__motif--faq .faq__item {
+  padding: 30px 0;
+  border-bottom: 1px solid var(--blue);
+}
+.fan__motif--faq .faq__question {
+  font-weight: 600;
+  font-family: brandon;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10%;
+  width: 100%;
+  text-align: left;
+}
+
+.fan__motif--faq .faq__item svg{
+  width: 16px;
+  height: 16px;
+}
+
+.fan__motif--faq .faq__item svg line {
+  transform-origin: center;
+  transition: all .3s ease;
+  stroke-width: 2px;
+}
+
+.fan__motif--faq .faq__item svg path {
+  stroke-width: 2px;
+}
+
+.fan__motif--faq .faq__item.active svg line {
+  transform: rotate(90deg);
+}
+
+.fan__motif--faq .faq__content {
+  display: none;
+  padding-top: 30px;
+}
+
+.fan__motif--faq .faq__content a {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 1024px) {
+  .fan-motif__layout-left,
+  .fan-motif__layout-right {
+    grid-template-columns: minmax(0, 1fr) 40%;
+    column-gap: 50px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  
+  .fan-motif__inner {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    text-align: center;
+    padding: 35px 20px;
+  }
+
+  .fan-motif__inner .fan-motif__content-wrapper {
+    text-align: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .fan-motif__text {
+    margin-bottom: 20px;
+  }
+
+  .fan-motif__text + .fan-motif__link {
+    margin-top: 10px;
+  }
+
+  .fan-motif__image-wrapper {
+    padding: 0 33px;
+  }
+
+  .fan-motif__blocks {
+    flex-direction: column;
+  }
+
+  .Hide_Mobile {
+    display: none;  
+  }
+
+  .Hide_Desktop {
+    display: block;  
+  }
+
+  #shopify-section-template--16866362032191__fan-motif {
+    display: none;
+  }
+
+  .fan-motif__wrap {
+    flex-wrap: wrap;
+  }
+
+  .fan-motif {
+    width: 100%;
+  }
+
+  .fan-motif__wrap .fan__motif--faq {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+  }
+
+  .fan__motif--faq .faq__column > .faq__item:first-child {
+    border-top: 0px solid var(--blue);
+  }
+
+  .fan__motif--faq .faq__item:last-child {
+    border-bottom: 0px solid var(--blue);
+  }
+  
+}

@@ -1,0 +1,241 @@
+{{ 'section-image-slideshow.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  {% if section.settings.padding_left_right %}
+    #shopify-section-{{ section.id }} .image-slideshow {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+  {% endif %}
+{% endstyle %}
+
+<div class="image-slideshow{% if section.settings.page_width %} add-margin{% endif %}">
+  {% if section.settings.page_width %}
+    <div class="page-width">
+  {% endif %}
+    <div class="image-slideshow__slider swiper">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% if block.settings.image_mobile != blank %}
+            <div class="image-slideshow__slide swiper-slide hide-desktop">
+              {% render 'lazy-image', image: block.settings.image_mobile, fade: true %}
+            </div>
+            <div class="image-slideshow__slide swiper-slide hide-mobile">
+              {% render 'lazy-image', image: block.settings.image, fade: true %}
+            </div>
+          {% else %}
+            <div class="image-slideshow__slide swiper-slide">
+              {% render 'lazy-image', image: block.settings.image, fade: true %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="image-slideshow__pagination swiper-pagination"></div>
+      
+      <div class="image-slideshow__text">
+        {% if section.settings.title != blank %}
+          <h2 class="image-slideshow__title h1">{{ section.settings.title | newline_to_br }}</h2>
+        {% endif %}
+
+        {% if section.settings.button_label != blank %}
+          <a href="{{ section.settings.button_link }}" class="button">{{ section.settings.button_label }}</a>
+        {% endif %}
+
+        {% for block in section.blocks %}
+          <div class="image-slideshow__block-content">
+            {% if block.settings.section_header != blank %}
+              <h2 class="image-slideshow__title h1">
+                {{ block.settings.section_header }}
+              </h2>
+            {% endif %}
+        
+            {% if block.settings.section_paragraph != blank %}
+              <div class="image-slideshow__paragraph">
+                {{ block.settings.section_paragraph }}
+              </div>
+            {% endif %}
+  
+            {% if block.settings.button_text != blank %}
+              <a class="button" href="{{ block.settings.button_url }}">
+                {{ block.settings.button_text }}
+              </a>
+            {% endif %}
+          </div>  
+
+          {% style %}
+            #shopify-section-{{ section.id }} .image-slideshow__block-content p {
+              color: {{ block.settings.text_color }};
+            }
+
+            {% if block.settings.block_align_left %}
+              #shopify-section-{{ section.id }} .image-slideshow__block-content {
+                text-align: left;
+              }
+
+              #shopify-section-{{ section.id }} .image-slideshow__block-content a {
+                margin-left: initial;
+              }
+            {% endif %}
+
+            {% if block.settings.section_align_left %}
+              #shopify-section-{{ section.id }} .image-slideshow__text {
+                flex-direction: row;
+              }
+
+              .indoor-mats-2 #shopify-section-{{ section.id }} .image-slideshow__text {
+                flex-direction: unset;
+                width: 100%;
+                display: block;
+              }
+
+
+              @media (min-width: 768px) {
+                #shopify-section-{{ section.id }} .image-slideshow__text {
+                   padding-left: 48px; 
+                }
+              }            
+            {% endif %}
+
+            {% if block.settings.section_align_top_mobile %}
+              @media (max-width: 768px) {
+                #shopify-section-{{ section.id }} .image-slideshow__text {
+                  bottom: inherit;
+                }
+              }
+            {% endif %}
+          {% endstyle %}        
+        {% endfor %}
+        
+      </div>
+    </div>
+  {% if section.settings.page_width %}
+    </div>
+  {% endif %}
+</div>
+
+{% javascript %}
+  const imageSlider = new Swiper('.image-slideshow__slider', {
+    slidesPerView: 1,
+    loop: false, 
+    spaceBetween: 0,
+    speed: 500,
+    centeredSlides: true,
+    autoplay: {
+      delay: 3000,
+    }, 
+    pagination: {
+      el: '.image-slideshow__pagination',
+      clickable: true
+    } 
+  });
+{% endjavascript %} 
+
+{% schema %}
+  {
+    "name": "Image Slideshow",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "textarea",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "page_width",
+        "label": "Add Page Width"
+      },
+      {
+        "type": "checkbox",
+        "id": "padding_left_right",
+        "label": "Add left/right padding",
+        "default": false
+      },       
+      {
+        "type": "header",
+        "content": "Button"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button Label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button Link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "(Optional) Mobile Image",
+            "info": "Leave blank if no mobile specific image"
+          },
+          {
+            "type": "richtext",
+            "id": "section_header",
+            "label": "Heading"
+          },
+          {
+            "type": "richtext",
+            "id": "section_paragraph",
+            "label": "Paragraph"
+          },
+          {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button text"
+          },
+          {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button URL"
+          },
+          {
+            "type": "checkbox",
+            "id": "block_align_left",
+            "label": "Block align left",
+            "default": false
+          },  
+          {
+            "type": "checkbox",
+            "id": "section_align_left",
+            "label": "Section align left",
+            "default": false
+          },            
+          {
+            "type": "checkbox",
+            "id": "section_align_top_mobile",
+            "label": "Section align top mobile",
+            "default": false
+          },            
+          {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text color",
+            "default": "#000000"
+          }          
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image Slideshow"
+      }
+    ]
+  }
+{% endschema %}

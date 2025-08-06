@@ -1,0 +1,101 @@
+{% unless section.settings.hide_bar %}
+<div class="announcement-bar">
+  {% if section.settings.link != blank %}
+    <a href="{{ section.settings.link }}" class="announcement-bar__item">
+  {% endif %}
+    <div class="hide-desktop page-width {% if section.settings.show_popup == true %}cursor_pointer {% endif %}" {% if section.settings.show_popup == true %} onClick="Privy('show', {{ section.settings.privy_mobile }});" {% endif %}>
+      {{ section.settings.text }}
+    </div>
+    <div class="hide-mobile page-width {% if section.settings.show_popup == true %}cursor_pointer {% endif %}" {% if section.settings.show_popup == true %} onClick="Privy('show', {{ section.settings.privy_desktop }});" {% endif %}>
+      {{ section.settings.text }}
+    </div>
+  {% if section.settings.link != blank %}
+    </a>
+  {% endif %}
+</div>
+{% endunless %}
+
+<style>
+  .announcement-bar {
+    color: {{ section.settings.text_color }};
+    background-color: {{ section.settings.background_color }};
+  }
+
+  .cursor_pointer {
+    cursor: pointer;
+    width: 100%;
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .announcement-bar a {
+    color: {{ section.settings.text_color }};
+  }
+  
+  :root {
+    --mobile-header-height: 96px;
+  }
+</style>
+
+{% comment %}
+{% javascript %}
+  const announcementBarSlider = new Swiper('.announcement-bar', {
+    slidesPerView: 1,
+    loop: true,
+    spaceBetween: 20
+  });
+{% endjavascript %}
+{% endcomment %}
+ 
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_bar",
+      "label": "Hide announcement bar?"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "default": "Welcome to our store",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#546B82"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_popup",
+      "label": "Show Privy Popup",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "privy_desktop",
+      "label": "Privy Desktop Popup ID"
+    },
+    {
+      "type": "text",
+      "id": "privy_mobile",
+      "label": "Privy Mobile Popup ID"
+    }
+  ]
+}
+{% endschema %}

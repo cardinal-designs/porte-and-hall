@@ -1,0 +1,86 @@
+{% style %}
+  #shopify-section-{{section.id}} .heading-with-accents a {
+    color: inherit;
+  }
+
+  #shopify-section-{{section.id}} .heading-with-accents p a {
+    text-decoration: underline;
+  }
+
+  #shopify-section-{{section.id}} .heading-with-accents .divider-line {
+    background: #D2B066;
+    height: 3px;
+  }  
+
+  .custom-image-gallery .page-width {
+    padding: 20px;
+  }  
+  
+  .image-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (min-width: 767px) {
+    .custom-image-gallery .page-width {
+      padding: 56px 40px;
+    }
+    
+    .image-gallery {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }    
+  }
+{% endstyle %}
+
+<div class="page-width">
+  <div class="heading-with-accents">
+    <span class="divider header-divider"><span class="divider-line"></span></span>
+    <div class="h2 blue">
+      {{ section.settings.title }}
+    </div>    
+    <span class="divider header-divider"> <span class="divider-line"></span></span>    
+  </div>
+  
+  <div class="image-gallery">
+    {% for block in section.blocks %}
+      {{ block.settings.image | image_url: width: 900 | image_tag: width: "100%", loading: "lazy" }}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image gallery",
+  "class": "custom-image-gallery",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Heading"
+    }
+  ],
+  "blocks": [
+  {
+   "type": "block",
+   "name": "Image",
+   "settings": [
+
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ]
+  }
+],
+"presets": [
+    {
+      "name": "Image gallery",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
