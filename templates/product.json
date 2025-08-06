@@ -13,7 +13,11 @@
       "type": "breadcrumbs",
       "name": "Breadcrumbs",
       "settings": {
-        "background_color": "#f4f2ee"
+        "background_color": "#f4f2ee",
+        "padding_top": 10,
+        "padding_bottom": 0,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 0
       }
     },
     "main": {
