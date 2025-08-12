@@ -357,9 +357,13 @@
                   {% for block in other_sizes %}
                
                     {% assign current_size = block.title | split: " | " %}
+                    {{ current_size }}--current_size
                     {% assign format_color = "- " | append: active_style | append: " /" %}
+                    {{ format_color }}--format_color
                     {%  assign match_name = block.title | replace: "|", format_color %}
+                    {{ match_name }}--match_name
                     {%  assign match = block.products | where: 'title', match_name %}
+                    {{ match }}--match
                     {% if match != blank %}
                       <a class="inline-link" href="{{ match.first.url }}">{{ current_size.last }}</a> <span class="other-size__divider">or</span>
                     {% endif %}
