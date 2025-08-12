@@ -22,6 +22,8 @@
       assign grouped_collection = collection
     endif
   endfor
+
+  echo grouped_collection | json
   
 
   assign oos_products = grouped_collection.products | where: 'available', false
