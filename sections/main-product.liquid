@@ -1,6 +1,3 @@
-----------
-<br><br><br><br><br>
-
 {% comment %}theme-check-disable TemplateLength{% endcomment %}
 {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
@@ -25,8 +22,6 @@
       assign grouped_collection = collection
     endif
   endfor
-
-  echo grouped_collection | json
   
 
   assign oos_products = grouped_collection.products | where: 'available', false
