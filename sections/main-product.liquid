@@ -30,6 +30,7 @@
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
   assign collection_title = grouped_collection.title | downcase
   capture color_swatch_list
+  echo "I am here"
     assign swatch_count = 1
     for swatch in grouped_collection.products
       for option in swatch.options_with_values
