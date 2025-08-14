@@ -95,12 +95,30 @@
             "link_text": "",
             "link_url": ""
           }
+        },
+        "block_WMzwR3": {
+          "type": "block",
+          "settings": {
+            "title": "The Porter",
+            "badge1": "",
+            "product1_title": "The Porter",
+            "collection1": "the-porter-standard",
+            "product1": "the-porter-greystone-standard",
+            "product_image1": "shopify://shop_images/Porter_Collections_mobile_2x_1f5f9730-4538-4c48-ae48-9f77e19a7552.jpg",
+            "check1": "Hand-knotted, one-of-a-kind design",
+            "check2": "Premium all-weather yarns ",
+            "check3": "Stain- and fade-resistant",
+            "check4": "Traps dirt, rinses clean",
+            "link_text": "",
+            "link_url": ""
+          }
         }
       },
       "block_order": [
         "block_wcQHYU",
         "block_pgGtGT",
-        "block_pdi6Ua"
+        "block_pdi6Ua",
+        "block_WMzwR3"
       ],
       "settings": {
         "title": "Shop our other collections",
@@ -245,7 +263,10 @@
       "blocks": {
         "judge_me_reviews_review_widget_GBTbQT": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200
+          }
         }
       },
       "block_order": [
