@@ -242,7 +242,37 @@
   {%- capture section_image -%}
     {%- if section.settings.video != blank -%}
       <div class="FeatureText__ImageWrapper video-wrapper">
-        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
+          {% assign v = section.settings.video %}
+          {% if v %}
+            {%- comment -%} Make the poster image the LCP {%- endcomment -%}
+            {% if v.preview_image %}
+              {{ v.preview_image
+                | image_url: width: 2000
+                | image_tag:
+                  class: 'HeroPoster',
+                  widths: '800,1200,1600,2000',
+                  sizes: '(min-width: 990px) 50vw, 100vw',
+                  loading: 'eager',
+                  fetchpriority: 'high',
+                  decoding: 'async',
+                  alt: section.settings.hero_alt | default: shop.name,
+                  width: '1600',
+                  height: '900' }}
+            {% endif %}
+
+            {%- comment -%} Keep using video_tag, but don’t preload data {%- endcomment -%}
+            {{ v | video_tag:
+              autoplay: true,
+              loop: true,
+              muted: true,
+              playsinline: true,
+              controls: false,
+              preload: 'none',
+              class: 'videos HeroVideo',
+              id: 'video',
+              image_size: '1600x' }}
+          {% endif %}
+        {% comment %} {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }} {% endcomment %}
       </div>
     {%- endif -%}
   {%- endcapture -%}
