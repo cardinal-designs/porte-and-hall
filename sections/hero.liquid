@@ -8,7 +8,7 @@
     </div>
   </div>
 
-  <div class="hero__media">
+  <div class="hero__media 1">
     {% if section.settings.video != blank %}
       {% if section.settings.mobile_video != blank %}
         {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "hide-mobile" }}
