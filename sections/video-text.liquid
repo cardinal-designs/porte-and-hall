@@ -59,8 +59,9 @@
 
     }
 
-    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader  .Link--underline{
-       background-color: #A19377;
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .Link--underline {
+       /* background-color: #A19377; */
+       background-color: #5A553F;
        padding:16px 40px;
        color: #FFF;
      font-family: brandon;
@@ -276,9 +277,6 @@
         poster="{{ poster_url }}"
         style="background: #000; width: 100%; height: auto; display: block;"
       >
-
-        {{ section.settings.video | json }}
-
         <source src="{{ section.settings.video | video_url }}" type="video/mp4">
 
         <track
