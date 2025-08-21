@@ -276,7 +276,10 @@
         poster="{{ poster_url }}"
         style="background: #000; width: 100%; height: auto; display: block;"
       >
-        <source src="{{ section.settings.video.value | video_url }}" type="video/mp4">
+
+        {{ section.settings.video | json }}
+
+        <source src="{{ section.settings.video | video_url }}" type="video/mp4">
 
         <track
           kind="captions"
