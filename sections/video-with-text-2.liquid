@@ -37,7 +37,7 @@
 
 <script>
   const video = document.querySelector("#{{ section.id }} .hero__media video");
-  const circlePlayButton = document.getElementById("#{{ section.id }} circle-play");
+  const circlePlayButton = document.querySelector("#{{ section.id }} #circle-play");
   
   function togglePlay() {
   	if (video.paused || video.ended) {
