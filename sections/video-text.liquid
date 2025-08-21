@@ -277,7 +277,10 @@
         style="background: #000; width: 100%; height: auto; display: block;"
       >
 
-        {{ section.settings.video.sources[0].url | json }}
+        {{ section.settings.video.sources[0].url | json }}<br>
+        {{ section.settings.video.sources[1].url | json }}<br>
+        {{ section.settings.video.sources[2].url | json }}<br>
+        {{ section.settings.video.sources[3].url | json }}<br>
 
         <source src="{{ section.settings.video.sources[0] }}" type="video/mp4">
 
