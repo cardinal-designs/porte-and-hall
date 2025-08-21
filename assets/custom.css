@@ -21,3 +21,10 @@
 }
 
 /*========== Color Contrast End ==========*/
+
+.hero-video-section video::-webkit-media-text-track-display {
+  display: none !important;
+}
+.hero-video-section video::cue {
+  display: none;
+}
