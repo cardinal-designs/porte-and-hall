@@ -59,7 +59,7 @@
 
     }
 
-    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .Link--underline {
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader  .Link--underline{
        background-color: #A19377;
        padding:16px 40px;
        color: #FFF;
@@ -276,7 +276,7 @@
         poster="{{ poster_url }}"
         style="background: #000; width: 100%; height: auto; display: block;"
       >
-        <source src="{{ section.settings.video | video_url }}" type="video/mp4">
+        <source src="{{ section.settings.video.sources[0].url }}" type="video/mp4">
 
         <track
           kind="captions"
