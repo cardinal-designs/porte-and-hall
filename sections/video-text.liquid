@@ -1,3 +1,7 @@
+{% if section.settings.video and section.settings.video.preview_image %}
+  <link rel="preload" as="image" href="{{ section.settings.video.preview_image | img_url: '1000x' }}">
+{% endif %}
+
 {% style %}
   .image-with-text .home-banner .FeatureText{
     display:grid;
@@ -241,7 +245,7 @@
 
   {%- capture section_image -%}
     {%- if section.settings.video != blank -%}
-      <div class="FeatureText__ImageWrapper video-wrapper">
+      {% comment %} <div class="FeatureText__ImageWrapper video-wrapper">
         {% capture track_el %}
           <track
             kind="captions"
@@ -256,7 +260,37 @@
         {% endcapture %}
 
         {{ video_el | replace: "</video>", track_el }}
-      </div>
+      </div> {% endcomment %}
+
+      <div class="FeatureText__ImageWrapper video-wrapper">
+      {% assign poster_url = section.settings.video.preview_image | img_url: '1000x' %}
+      
+      <video
+        playsinline
+        autoplay
+        loop
+        muted
+        class="videos"
+        id="video"
+        preload="metadata"
+        poster="{{ poster_url }}"
+        style="background: #000; width: 100%; height: auto; display: block;"
+      >
+        <source src="{{ section.settings.video | video_url }}" type="video/mp4">
+
+        <track
+          kind="captions"
+          label="English"
+          srclang="en"
+          src="{{ 'captions-en.vtt' | asset_url }}"
+          default
+        >
+
+        <!-- fallback text -->
+        Sorry, your browser doesn't support embedded videos.
+      </video>
+    </div>
+
     {%- endif -%}
   {%- endcapture -%}
 
