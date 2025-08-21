@@ -30,7 +30,10 @@
                 echo ' | '
               endif
             endcomment
-            echo "<a href='"
+            
+            echo "<a aria-label='"
+            echo swatch_file_name | split: "." | first | replace: "_", " " | replace: "-", " "
+            echo "' href='"
             echo swatch_link | default: product.variants[0].url
             echo "' class='"
             echo element_classes
