@@ -250,7 +250,15 @@
             src="{{ 'captions-en.vtt' | asset_url }}"
             default>
         {% endcapture %}
-        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' | replace: '<img ', '<img alt="Hero video image" ' }}
+
+        {% capture video_el %}
+          {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' | replace: '<img ', '<img alt="Hero video image" ' }}
+        {% endcapture %}
+
+        
+
+
+
       </div>
     {%- endif -%}
   {%- endcapture -%}
