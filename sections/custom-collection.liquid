@@ -349,7 +349,8 @@
                   </a>
                 </div>
               
-                <a href="{{ block.settings.collection1.url }}">
+                {% assign anchor_tag_aria_label = block.settings.collection1.url | split: "?" | first | split: "/" | last | split: "." | first | replace: "_", " " | replace: "-", " " %}
+                <a href="{{ block.settings.collection1.url }}" aria-label="{{ anchor_tag_aria_label }}">
                   <h3 class="product-card__title blue">
                     {{ block.settings.collection1_title | default: block.settings.collection1.title }}
                   </h3>
