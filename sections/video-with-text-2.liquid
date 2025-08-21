@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <div class="hero__media 2">
+  <div class="hero__media">
     {% if product.handle contains 'outlier' %}
       {{ section.settings.outlier_video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
     {% elsif product.handle contains 'innerweave' %}
