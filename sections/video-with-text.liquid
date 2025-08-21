@@ -37,56 +37,9 @@
   </div>
 </div>
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 <script>
- //   $('.videos').parent().click(function () {
- //    if($(this).children(".videos").get(0).paused){
- //   $(this).children(".videos").get(0).play();   
- //  $(this).children(".hero__element").fadeOut();
- //  }else{       
- //  $(this).children(".videos").get(0).pause();
-     
- //    $(this).children(".hero__element").fadeIn();
- //  }
-      
- // });
-
- //  $('.videos').parent().click(function () {
- //    if($(this).children(".videos").get(0).paused){
- //          $(this).children(".videos").get(0).play();   
- //          $(this).children(".hero__element").fadeOut();
- //    }else{
- //        $(this).children(".videos").get(0).stop();
- //        $(this).children(".hero__element").fadeIn();
- //    }
-    
-      
- // });
-
-
-  
-  {% comment %} const video = document.getElementsByClassName("videos");
-  const circlePlayButton = document.getElementsByClassName("hero__element");
-  
-  function togglePlay() {
-  	if (video.paused || video.ended) {
-  		video.play();
-  	} else {
-  		video.pause();
-  	}
-  }
-  
-  circlePlayButton.addEventListener("click", togglePlay);
-  video.addEventListener("playing", function () {
-  	circlePlayButton.style.opacity = 0;
-  });
-  video.addEventListener("pause", function () {
-  	circlePlayButton.style.opacity = 1;
-  }); {% endcomment %}
-
-
-  const video = document.getElementById("video");
-  const circlePlayButton = document.getElementById("circle-play");
+  const video = document.querySelector("#{{ section.id }} .hero__media video");
+  const circlePlayButton = document.getElementById("#{{ section.id }} circle-play");
   
   function togglePlay() {
   	if (video.paused || video.ended) {
@@ -103,8 +56,6 @@
   video.addEventListener("pause", function () {
   	circlePlayButton.style.opacity = 1;
   });
-
-  
 </script>
 
 {% schema %}
