@@ -1,6 +1,6 @@
 {{ 'section-hero.css' | asset_url | stylesheet_tag }}
 
-<div class="hero video-with-text">
+<div class="hero video-with-text {{ section.id }}">
   <div class="hero__content">
     <div class="hero__container">
       {% if product.handle contains 'outlier' %}
