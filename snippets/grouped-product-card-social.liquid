@@ -76,29 +76,6 @@
 
 <grouped-product-card data-collection-id="{{collection.id}}">
   <div class="product-card product-cart-4 {% if simple_card == true %}product-card-simple{% endif %}">
-    {% comment %}
-      <div class="product-card__image">
-        <div class="swiper product-card__image-swiper">
-          <div class="swiper-wrapper">
-            {% for i in product_card_product.images %}
-              <div class="swiper-slide">
-                {% render 'lazy-image', image: i, fill: true %}
-              </div>
-            {% endfor %}
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-        {% if product_card_product.compare_at_price > product_card_product.price %}
-          {% assign price_change = product_card_product.compare_at_price | minus: product_card_product.price %}
-          {% assign percent_discount = price_change | times: 100 | divided_by: product_card_product.compare_at_price %}
-        <div class="product-card__discount-flag">
-          <div class="product-card__discount-amount">{{ percent_discount }} <span>%</span></div>
-          <span>off</span>
-        </div>
-        {% endif %}
-      </div>
-    {% endcomment %}
     <div class="product-card__image">
       <a href="{{ product_card_product.url }}">
         {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image" %}
