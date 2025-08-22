@@ -1,8 +1,8 @@
-{{ 'template-collection.css' | asset_url | stylesheet_tag }}
-{{ 'component-product-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
-{{ 'component-collection-filters.css' | asset_url | stylesheet_tag }}
+{{ 'template-collection.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'component-product-card.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'component-price.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'component-product-grid.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'component-collection-filters.css' | asset_url | stylesheet_tag: preload: true }}
 
 <script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
 
