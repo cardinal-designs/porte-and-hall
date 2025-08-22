@@ -252,7 +252,7 @@
         {% endcapture %} {% endcomment %}
 
         {% comment %} {% capture video_el %} {% endcomment %}
-          {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x', fetchpriority: 'high', preload: 'auto' | replace: '<img ', '<img fetchpriority="high" alt="Hero video image" ' }}
+          {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '100x' | replace: '<img ', '<img fetchpriority="high" alt="Hero video image" ' }}
         {% comment %} {% endcapture %} {% endcomment %}
 
         {% comment %} {{ video_el | replace: "</video>", track_el }} {% endcomment %}
