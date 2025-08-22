@@ -64,8 +64,12 @@ video::cue {
   background: #67501E;
 }
 
-.template__gift_card .product__quantity-atc-wrapper  .quantity__button svg path {
+.template__gift_card .product__quantity-atc-wrapper .quantity__button svg path {
   fill: #67501E;
+}
+
+.template__gift_card .product__quantity-atc-wrapper .quantity__input {
+  color: #5D5841;
 }
 
 .see-it-in-action__tabs-buttons button {
