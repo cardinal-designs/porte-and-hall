@@ -48,7 +48,9 @@
                 echo ' | '
               endif
             endcomment
-            echo "<button data-url='"
+            echo "<a aria-label='"
+            echo swatch_file_name | split: "." | first | replace: "_", " " | replace: "-", " "
+            echo "' href='"
             echo swatch_link | default: swatch.variants[0].url
             echo "' class='"
             echo element_classes
