@@ -1,3 +1,61 @@
+ <section class="Section {{ section.settings.custom-class }} video-text">
+  {%- capture section_content -%}
+    <div class="FeatureText__ContentWrapper">
+      <div class="FeatureText__Content">
+        {%- if section.settings.subheading != blank or section.settings.title != blank or section.settings.content != blank -%}
+          <header class="SectionHeader">
+            {%- if section.settings.subheading != blank -%}
+              <h4 class="SectionHeader__SubHeading">{{ section.settings.subheading }}</h4>
+            {%- endif -%}
+
+            {%- if section.settings.title != blank -%}
+              <div class="SectionHeader__Heading">{{ section.settings.title }}</div>
+            {%- endif -%}
+
+            {%- if section.settings.content != blank -%}
+              <div class="SectionHeader__Description">
+                {{ section.settings.content }}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.link_text != blank -%}
+              <a href="{{ section.settings.link_url }}" class="Link Link--underline">{{ section.settings.link_text | escape }}</a>
+            {%- endif -%}
+          </header>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endcapture -%}
+
+  {%- capture section_image -%}
+    {%- if section.settings.video != blank -%}
+      <div class="FeatureText__ImageWrapper video-wrapper">
+        {% comment %} {% capture track_el %}
+          <track
+            kind="captions"
+            label="English"
+            srclang="en"
+            src="{{ 'captions-en.vtt' | asset_url }}"
+            default> {%liquid echo '</video>' %}
+        {% endcapture %} {% endcomment %}
+
+        {% comment %} {% capture video_el %} {% endcomment %}
+          {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '100x' | replace: '<img ', '<img fetchpriority="high" alt="Hero video image" ' }}
+        {% comment %} {% endcapture %} {% endcomment %}
+
+        {% comment %} {{ video_el | replace: "</video>", track_el }} {% endcomment %}
+      </div>
+    {%- endif -%}
+  {%- endcapture -%}
+
+  <div class="FeatureText hero-video-section">
+       {{- section_content -}}
+      {{- section_image -}}
+      
+
+  </div>
+</section>
+
 {% style %}
   .image-with-text .home-banner .FeatureText{
     display:grid;
@@ -209,64 +267,6 @@
   }
   
 {% endstyle %}
- 
- <section class="Section {{ section.settings.custom-class }} video-text">
-  {%- capture section_content -%}
-    <div class="FeatureText__ContentWrapper">
-      <div class="FeatureText__Content">
-        {%- if section.settings.subheading != blank or section.settings.title != blank or section.settings.content != blank -%}
-          <header class="SectionHeader">
-            {%- if section.settings.subheading != blank -%}
-              <h4 class="SectionHeader__SubHeading">{{ section.settings.subheading }}</h4>
-            {%- endif -%}
-
-            {%- if section.settings.title != blank -%}
-              <div class="SectionHeader__Heading">{{ section.settings.title }}</div>
-            {%- endif -%}
-
-            {%- if section.settings.content != blank -%}
-              <div class="SectionHeader__Description">
-                {{ section.settings.content }}
-              </div>
-            {%- endif -%}
-
-            {%- if section.settings.link_text != blank -%}
-              <a href="{{ section.settings.link_url }}" class="Link Link--underline">{{ section.settings.link_text | escape }}</a>
-            {%- endif -%}
-          </header>
-        {%- endif -%}
-      </div>
-    </div>
-  {%- endcapture -%}
-
-  {%- capture section_image -%}
-    {%- if section.settings.video != blank -%}
-      <div class="FeatureText__ImageWrapper video-wrapper">
-        {% comment %} {% capture track_el %}
-          <track
-            kind="captions"
-            label="English"
-            srclang="en"
-            src="{{ 'captions-en.vtt' | asset_url }}"
-            default> {%liquid echo '</video>' %}
-        {% endcapture %} {% endcomment %}
-
-        {% comment %} {% capture video_el %} {% endcomment %}
-          {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '100x' | replace: '<img ', '<img fetchpriority="high" alt="Hero video image" ' }}
-        {% comment %} {% endcapture %} {% endcomment %}
-
-        {% comment %} {{ video_el | replace: "</video>", track_el }} {% endcomment %}
-      </div>
-    {%- endif -%}
-  {%- endcapture -%}
-
-  <div class="FeatureText hero-video-section">
-       {{- section_content -}}
-      {{- section_image -}}
-      
-
-  </div>
-</section>
 
 {% schema %}
 {
@@ -321,11 +321,3 @@
   ]
 }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
-
-
