@@ -173,9 +173,9 @@
          <div id="myModal" class="dimension-modal-content dimension_modal">
               <div class="dimension-modal-header">
               {% if product.title contains 'Porter' %}
-                <h3>The Porter Mat</h3>
+                <h2>The Porter Mat</h2>
               {% else %}
-                <h3>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h3>
+                <h2>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h2>
               {% endif %}
               <div class="cancel-button close" aria-label="Close Modal"><button class="cancel-icon"><span class="visually-hidden">Close Modal</span>{% render 'icon' with 'close-circle' %}</button></div>
               </div>
