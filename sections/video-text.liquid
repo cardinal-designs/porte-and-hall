@@ -30,7 +30,7 @@
   {%- capture section_image -%}
     {%- if section.settings.video != blank -%}
       <div class="FeatureText__ImageWrapper video-wrapper">
-        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '100x' | replace: '<img ', '<img loading="lazy" alt="Hero video image" ' }}  
+        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '100x' | replace: '<img ', '<img fetchpriority="high" alt="Hero video image" ' }}  
       </div>
     {%- endif -%}
   {%- endcapture -%}
