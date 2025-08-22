@@ -1,7 +1,3 @@
-{% if section.settings.video and section.settings.video.preview_image %}
-  <link rel="preload" as="image" href="{{ section.settings.video.preview_image | img_url: '1000x' }}">
-{% endif %}
-
 {% style %}
   .image-with-text .home-banner .FeatureText{
     display:grid;
@@ -245,7 +241,7 @@
 
   {%- capture section_image -%}
     {%- if section.settings.video != blank -%}
-      {% comment %} <div class="FeatureText__ImageWrapper video-wrapper">
+      <div class="FeatureText__ImageWrapper video-wrapper">
         {% capture track_el %}
           <track
             kind="captions"
@@ -260,45 +256,7 @@
         {% endcapture %}
 
         {{ video_el | replace: "</video>", track_el }}
-      </div> {% endcomment %}
-
-      <div class="FeatureText__ImageWrapper video-wrapper">
-        {% assign poster_url = section.settings.video.preview_image | img_url: '1000x' %}
-        
-        <!-- Show poster image initially -->
-        <img
-          id="feature-video-poster"
-          src="{{ poster_url }}"
-          alt="Video preview"
-          style="background: #000; width: 100%; height: auto; display: block;"
-          loading="eager"
-          fetchpriority="high"
-        >
-
-        <!-- Hidden video initially -->
-        <video
-          playsinline
-          autoplay
-          loop
-          muted
-          class="videos"
-          id="feature-video"
-          preload="none"  <!-- don't load video metadata right away-->
-          poster="{{ poster_url }}"
-          style="background: #000; width: 100%; height: auto; display: none;"
-        >
-          <source src="{{ section.settings.video.sources[1].url }}" type="video/mp4">
-          <track
-            kind="captions"
-            label="English"
-            srclang="en"
-            src="{{ 'captions-en.vtt' | asset_url }}"
-            default
-          >
-          Sorry, your browser doesn't support embedded videos.
-        </video>
       </div>
-
     {%- endif -%}
   {%- endcapture -%}
 
@@ -309,34 +267,6 @@
 
   </div>
 </section>
-
-<script>
-
-  document.addEventListener('DOMContentLoaded', function () {
-  // Swap video for poster after first user interaction or delay
-  var poster = document.getElementById('feature-video-poster');
-  var video = document.getElementById('feature-video');
-
-  function loadAndPlayVideo() {
-    if (video.style.display === 'block') return;
-    poster.style.display = 'none';
-    video.style.display = 'block';
-    video.load();
-    video.play();
-    // Remove listeners after first run
-    window.removeEventListener('scroll', loadAndPlayVideo);
-    window.removeEventListener('click', loadAndPlayVideo);
-    window.removeEventListener('touchstart', loadAndPlayVideo);
-  }
-
-  // Choose your trigger: on scroll/touch/click, or use setTimeout for a delay
-  window.addEventListener('scroll', loadAndPlayVideo, { once: true });
-  window.addEventListener('click', loadAndPlayVideo, { once: true });
-  window.addEventListener('touchstart', loadAndPlayVideo, { once: true });
-  // Or: setTimeout(loadAndPlayVideo, 2000); // Delayed auto-load, if desired
-});
-
-</script>
 
 {% schema %}
 {
