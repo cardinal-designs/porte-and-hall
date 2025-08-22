@@ -248,7 +248,7 @@
             label="English"
             srclang="en"
             src="{{ 'captions-en.vtt' | asset_url }}"
-            default> </video>
+            default> {%liquid echo '</video>' %}
         {% endcapture %}
 
         {% capture video_el %}
