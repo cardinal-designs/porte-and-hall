@@ -121,9 +121,15 @@
 
     {% render 'meta-tags' %}
 
-    <!-- Preload hero text fonts -->
-    <link rel="preload" as="font" href="{{ 'LouizeDisplayTrial-Medium.woff2' | asset_url }}" type="font/woff2" crossorigin>
-    <link rel="preload" as="font" href="{{ 'BrandonGrotesque-Regular.woff2' | asset_url }}" type="font/woff2" crossorigin>
+    <!-- Preload all fonts at highest priority -->
+    {{ 'LaBelleAurore-Regular.woff2' | asset_url | preload_tag: as: 'font', type: "font/woff2" }}
+    {{ 'LouizeDisplayTrial-Regular.woff2' | asset_url | preload_tag: as: 'font', type: "font/woff2" }}
+    {{ 'LouizeDisplayTrial-Medium.woff2' | asset_url | preload_tag: as: 'font', type: "font/woff2" }}
+    {{ 'BrandonGrotesque-Light.woff2' | asset_url | preload_tag: as: 'font', type: "font/woff2" }}
+    {{ 'BrandonGrotesque-Regular.woff2' | asset_url | preload_tag: as: 'font', type: "font/woff2" }}
+    {{ 'BrandonGrotesque-RegularItalic.woff2' | asset_url | preload_tag: as: 'font', type: "font/woff2" }}
+    {{ 'BrandonGrotesque-Medium.woff2' | asset_url | preload_tag: as: 'font', type: "font/woff2" }}
+    {{ 'BrandonGrotesque-Bold.woff2' | asset_url | preload_tag: as: 'font', type: "font/woff2" }}
 
 
     <link rel="preload" as="script" href="https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js" fetchpriority="high">
