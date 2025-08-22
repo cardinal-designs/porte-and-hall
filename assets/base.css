@@ -3104,6 +3104,10 @@ main#MainContent {
   .outdoor main#MainContent {
     padding-top: 70px;
   }
+  
+  .template--collection main#MainContent {
+    padding-top: 30px;
+  }
 }
 @media screen and (max-width: 768px) {
   main#MainContent {
