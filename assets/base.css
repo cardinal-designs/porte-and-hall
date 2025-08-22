@@ -3113,6 +3113,10 @@ main#MainContent {
   .outdoor main#MainContent {
     padding-top: 70px;
   }
+
+  .afterpay-pdp main#MainContent {
+    padding-top: 15px;
+  }
 }
 
 @media screen and (min-width: 769px) {
