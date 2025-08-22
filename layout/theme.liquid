@@ -1,7 +1,6 @@
 <!doctype html>
 <html class="no-js livetheme" lang="{{ request.locale.iso_code }}">
   <head>
-    <link rel="preload" as="script" href="https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js" fetchpriority="high">
     <script>
       window.Shopify = window.Shopify || {theme: {id: {{ theme.id }}, role: '{{ theme.role }}' } };
       window._template = {
@@ -10,7 +9,6 @@
           suffix: "{{ template.suffix }}"
       };
     </script>
-    <script type="module" blocking="render" fetchpriority="high" src="https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js" async></script>
     
     <style>
       .main_nav1 {
@@ -122,7 +120,7 @@
     {% endif %}
 
     {% render 'meta-tags' %}
-
+    <link rel="preload" as="script" href="https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js" fetchpriority="high">
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
     {% render 'css-variables' %}
@@ -224,6 +222,8 @@
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
+
+    <script type="module" fetchpriority="high" src="https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js" defer></script>
 
   </head>
 
