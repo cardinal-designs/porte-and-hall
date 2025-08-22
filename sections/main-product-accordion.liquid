@@ -55,9 +55,7 @@
                 echo ' | '
               endif
             endcomment
-            echo "<a aria-label='"
-            echo swatch_file_name | split: "." | first | replace: "_", " " | replace: "-", " "
-            echo "' href='"
+            echo "<a href='"
             echo swatch_link | default: swatch.variants[0].url
             echo "' class='"
             echo element_classes
@@ -173,11 +171,11 @@
          <div id="myModal" class="dimension-modal-content dimension_modal">
               <div class="dimension-modal-header">
               {% if product.title contains 'Porter' %}
-                <h6>The Porter Mat</h6>
+                <h3>The Porter Mat</h3>
               {% else %}
-                <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
+                <h3>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h3>
               {% endif %}
-              <div class="cancel-button close"><button aria-label="Cancel Button" class="cancel-icon">{% render 'icon' with 'close-circle' %}</button></div>
+              <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %}</button></div>
               </div>
               <div class="dimension-modal-body">
                <p>{{ product.metafields.custom.product_dimensions.value.dimension }}</p>
