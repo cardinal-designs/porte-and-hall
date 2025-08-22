@@ -711,11 +711,15 @@
                 <!-- Rating code -->
                 
                 <div class="rating-reviews">
+                  {% comment %}
                   <a href="{{currentProduct.url}}#rave-reviews-main">
+                  {% endcomment %}
                   <div class='jdgm-widget jdgm-preview-badge' data-id='{{ currentProduct.id }}'> 
                     {{ currentProduct.metafields.judgeme.badge }} 
                   </div> 
+                  {% comment %}
                   </a>
+                  {% endcomment %}
                 </div>
               
               </div>
