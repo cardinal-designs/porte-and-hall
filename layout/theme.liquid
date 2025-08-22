@@ -398,6 +398,18 @@
    {% style %}
      .ot-floating-button__front {visibility: hidden;}
    {% endstyle %}
+
+    <script>
+      if (window.location.pathname == '/collections') {
+        window.location.href = '/collections/shop-all'
+      }
+      if (window.location.pathname == '/Collections/the-innerweave') {
+        window.location.href = '/collections/the-innerweave'
+      }
+
+      (function(e,t,n){var r,i=e.getElementsByTagName(t)[0];if(e.getElementById(n))return;r=e.createElement(t);r.id=n;r.dataset.lazySrc="https://button.aftership.com/all.js";i.parentNode.insertBefore(r,i)})(document,"script","aftership-jssdk")
+    </script>
+    
    <script src="{{ 'optimization.js' | asset_url }}" defer></script>
   </body>
 </html>
