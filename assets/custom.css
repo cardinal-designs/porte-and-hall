@@ -57,3 +57,8 @@ video::cue {
 .product__info-container .product__tag.gray {
   color: #4D4D4D !important;
 }
+
+.product__quantity-atc-wrapper,
+.product__quantity-atc-wrapper .product-form__buttons .product-form__submit  {
+  background: #67501E;
+}
