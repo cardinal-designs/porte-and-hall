@@ -132,7 +132,7 @@
     {{ 'BrandonGrotesque-Bold.woff2' | asset_url | preload_tag: as: 'font', type: "font/woff2" }}
 
     {{ 'https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js' | preload_tag: as: 'script' }}
-    
+
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
     {% render 'css-variables' %}
@@ -240,6 +240,10 @@
   </head>
 
   <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
+    <svg width="1" height="1" style="position:absolute;top:0;left:0;opacity:0" aria-hidden="true">
+      <rect width="1" height="1" fill="transparent"></rect>
+    </svg>
+
     <script>
     if (window.location.pathname == '/collections') {
       window.location.href = '/collections/shop-all'
