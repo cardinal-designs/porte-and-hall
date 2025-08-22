@@ -59,9 +59,7 @@
                 echo ' | '
               endif
             endcomment
-            echo "<a aria-label='"
-            echo swatch_file_name | split: "." | first | replace: "_", " " | replace: "-", " "
-            echo "' href='"
+            echo "<a href='"
             echo swatch_link | default: swatch.variants[0].url
             echo "' class='"
             echo element_classes
@@ -170,8 +168,8 @@
         {% endif %}
          <div id="myModal" class="dimension-modal-content dimension_modal">
               <div class="dimension-modal-header">
-              <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
-              <div class="cancel-button close"><button aria-label="Cancel Button" class="cancel-icon">{% render 'icon' with 'close-circle' %}</button></div>
+              <h3>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h3>
+              <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %}</button></div>
               </div>
               <div class="dimension-modal-body">
                <p>{{ product.metafields.custom.product_dimensions.value.dimension }}</p>
