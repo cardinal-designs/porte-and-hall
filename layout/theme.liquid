@@ -120,6 +120,7 @@
     {% endif %}
 
     {% render 'meta-tags' %}
+    <link rel="preload" as="font" href="{{ 'LouizeDisplayTrial-Medium.woff2' | asset_url }}" type="font/woff2" crossorigin fetchpriority="high">
     <link rel="preload" as="script" href="https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js" fetchpriority="high">
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
