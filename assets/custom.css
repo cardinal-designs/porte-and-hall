@@ -58,7 +58,7 @@ video::cue {
   color: #4D4D4D !important;
 }
 
-.product__quantity-atc-wrapper,
-.product__quantity-atc-wrapper .product-form__buttons .product-form__submit  {
+.product__info-container .product__quantity-atc-wrapper,
+.product__info-container .product__quantity-atc-wrapper .product-form__buttons .product-form__submit  {
   background: #67501E;
 }
