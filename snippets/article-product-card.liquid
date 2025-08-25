@@ -85,7 +85,7 @@
         {%- endif -%}
       </div>
       <div class="product-card__content">
-        <p class="product-card__price body blue">
+        <p class="product-card__price body blue" data-product-id="{{ product_card_product.id }}">
           {% if product_card_product.compare_at_price > product_card_product.price %}
             <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
           {% endif %}
