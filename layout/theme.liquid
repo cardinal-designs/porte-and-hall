@@ -131,7 +131,7 @@
     {{ 'BrandonGrotesque-Medium.woff2' | asset_url | preload_tag: as: 'font', type: "font/woff2" }}
     {{ 'BrandonGrotesque-Bold.woff2' | asset_url | preload_tag: as: 'font', type: "font/woff2" }}
 
-    {{ 'https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js' | preload_tag: as: 'script' }}
+    <link rel="preload" href="https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js" as="script" />
     
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
