@@ -279,10 +279,6 @@ ul.js-error-messages {
   margin-top: 50px !important;
 }
 
-.Designer_Program_Form #paragraph-1 {
-  margin-top: 20px !important;
-}
-
 .Designer_Program_Form .globo-paragraph * {
   font-size: 11px !important;
   color: var(--blue) !important;
@@ -290,6 +286,14 @@ ul.js-error-messages {
   letter-spacing: 1px !important;
   line-height: 1.2em !important;
   font-family: brandon, sans-serif !important;
+}
+
+.Designer_Program_Form #paragraph-1 {
+  margin-top: 20px !important;
+}
+
+.Designer_Program_Form .globo-paragraph h4 strong {
+  font-size: 16px !important;
 }
 
 .Designer_Program_Form .How_Did_You_Hear {
