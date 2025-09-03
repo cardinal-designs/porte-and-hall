@@ -141,8 +141,9 @@
       "settings": {
         "heading": "Shop our best sellers",
         "background": "",
-        "show_metafield_style": false,
+        "show_metafield_style": true,
         "collection": "best-sellers-limited",
+        "product_card_type": "standard_card",
         "button_text": "Shop Now",
         "btn_link": "shopify://collections/best-sellers"
       }
