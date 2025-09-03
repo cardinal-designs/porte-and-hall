@@ -101,12 +101,21 @@
             {% endif %}
           {% endfor %}
           <div class="product-carousel__item swiper-slide">
+            {% if section.settings.product_card_type == 'standard_card' %}
             {% render 'grouped-product-card-2',
               product_card_product: product,
               collection: grouped_collection,
               title: grouped_collection.title,
               button_text: section.settings.button_text
             %}
+          {% else %}
+            {% render 'grouped-product-card-3',
+              product_card_product: product,
+              collection: grouped_collection,
+              title: grouped_collection.title,
+              button_text: section.settings.button_text
+            %}
+          {% endif %}
           </div>
         {% endfor %}
       </div>
