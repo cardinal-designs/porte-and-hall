@@ -24,7 +24,11 @@
         <div class="box__image">
           <h2>{{ section.settings.heading }}</h2>
           <figure>
+            {% if section.settings.video != blank %}
+            {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline:true, class: 'videos', id: 'video', image_size: '1000x' }}
+            {% else %}
             {{ section.settings.image | image_url: width: 800 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
+            {% endif %}
           </figure>
         </div>
       </div>
