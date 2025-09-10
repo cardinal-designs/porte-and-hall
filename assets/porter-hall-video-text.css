@@ -102,9 +102,21 @@
 
 @media (min-width: 768px) {
   
-  .finer__details--left-header,
-  .mobile__image--layout {
+  .finer__details--left-header {
     display: none;
+  }
+
+  .mobile__image--layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-top: 80px;
+  }
+
+  .mobile__image--layout img {  
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
   
 }
