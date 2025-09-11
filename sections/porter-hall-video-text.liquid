@@ -14,7 +14,11 @@
           {% endif %}
         </div>
         <div class="finer__details--video-wrapper">
+          {% if section.settings.video != blank %}
           {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline:true, class: 'videos', id: 'video', image_size: '1000x' }}
+          {% else %}
+          <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt  }}" height="auto" width="auto">
+          {% endif %}
         </div>
       </div>  
       <div class="finer__details--right">
@@ -84,6 +88,11 @@
       "type": "video",
       "id": "video",
       "label": "Video (default media if populated)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
     },
     {
       "type": "text",
