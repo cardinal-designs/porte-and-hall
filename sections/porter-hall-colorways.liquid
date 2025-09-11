@@ -14,7 +14,9 @@
         {% if block.settings.image != blank %}
           <div class="colorway__item{% if section.settings.mobile_slider %} swiper-slide{% endif %}">
             <figure>
+              <a href="{{ block.settings.link }}">
               {{ block.settings.image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: block.settings.image.alt }}
+              </a>
             </figure>
             <div class="colorway__item--content">
               <div class="color__size--wrapper">
@@ -122,6 +124,11 @@
           "type": "image_picker",
           "id": "color_image",
           "label": "Color Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Image Link"
         },
         {
           "type": "text",
