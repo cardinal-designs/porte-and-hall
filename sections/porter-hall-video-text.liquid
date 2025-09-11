@@ -13,13 +13,14 @@
             <p class="finer__details--subtitle">{{ section.settings.subtitle }}</p>  
           {% endif %}
         </div>
-        <div class="finer__details--video-wrapper">
-          {% if section.settings.video != blank %}
+        {% if section.settings.video != blank %}
+          <div class="finer__details--video-wrapper">       
           {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline:true, class: 'videos', id: 'video', image_size: '1000x' }}
-          {% else %}
-          <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt  }}" height="auto" width="auto">
-          {% endif %}
-        </div>
+          </div>
+        {% else %}
+        <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt  }}" height="auto" width="auto">
+        {% endif %}
+        
       </div>  
       <div class="finer__details--right">
         {% if section.settings.title != blank %}
