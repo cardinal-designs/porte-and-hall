@@ -1,6 +1,6 @@
 {{ 'porter-hall-video-text.css' | asset_url | stylesheet_tag: preload: true }}
 
-{% if section.settings.video != blank and section.blocks.size > 0 or section.settings.title != blank %}
+{% if section.settings.video != blank or section.settings.video != blank and section.blocks.size > 0 or section.settings.title != blank %}
 <section class="finer__details--section" id="section--{{ section.id }}">
   <div class="page-width">
     <div class="finer__details--content-wrapper content__{{ section.settings.image_position }}">
