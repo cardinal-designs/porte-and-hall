@@ -161,10 +161,6 @@
   .colorways__grid:not(.colorways__slider) {
     gap: 20px;
   }
-  
-  .colorway__size span {    
-    font-size: 14px;
-  }
 }
 
 @media screen and (max-width: 767px) {
@@ -236,6 +232,10 @@
 
   .colorways__section--button {
     margin-top: 16px;
+  }
+
+  .colorway__size span {    
+    font-size: 14px;
   }
   
 }
