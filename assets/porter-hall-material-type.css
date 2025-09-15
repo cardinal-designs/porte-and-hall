@@ -1,0 +1,142 @@
+.porter__hall--material-section {
+  padding: 64px 0;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.porter__hall--material-section .page-width {
+  max-width: 1264px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.material__section--title {
+  color: var(--blue-secondary);
+  margin-bottom: 32px;
+  font-weight: 500;
+  font-size: 58px;
+  line-height: 64px;
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+
+.material__columns {
+  float: left;
+  display: inline-block;
+  width: 100%;
+}
+
+.material__column {
+  width: 58.4%;
+  position: relative;
+  margin-top: 0;
+  padding-right: 30px;
+  float: left;
+}
+
+.material__column--content {
+  text-align: left;
+}
+
+.material__column.material__column--standard {
+  width: 41.6%;
+  padding-left: 30px;
+  padding-right: 0;
+  margin-top: 46px;
+}
+
+.material__column--image-wrapper {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.material__column--image-wrapper figure {
+  margin: 0;
+  line-height: 0;
+  position: relative;
+  text-align: left;
+}
+
+.material__columns img {
+  width: 100%;
+  max-width: 100%;
+}
+
+.material__column--title {
+  color: var(--blue-secondary);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
+}
+
+.material__column--description {
+  color: var(--blue-secondary);
+  margin-top: 8px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.2px;
+}
+
+@media screen and (min-width: 768px) {
+
+  .material__column--image-wrapper .desktop__hide {
+    display: none;
+  }
+  
+}
+
+@media screen and (max-width: 767px) {
+
+  .material__column--image-wrapper .mobile__hide {
+    display: none;
+  }
+
+  .porter__hall--material-section {
+    padding: 40px 0;
+  }
+
+  .material__section--title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .material__column--image-wrapper figure {
+    margin: 0;
+    max-width: 338px;
+  }
+  
+  .material__column {
+    width: 100%;
+    padding-right: 0;
+  }  
+
+  .material__column.material__column--standard {
+    width: 100%;
+    padding: 0;
+    margin-top: 32px;
+  }
+
+  .porter__hall--material-section .page-width {
+    padding: 0 18px;
+  }
+
+  .material__column--title {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .material__column--description {
+    margin: 0;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  
+  .material__column.material__column--standard .material__column--image-wrapper {
+    max-width: 238px;
+  }
+  
+}

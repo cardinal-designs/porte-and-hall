@@ -1,0 +1,139 @@
+.section__step--right {
+  padding: 48px 0;
+}
+
+.section__step--right .page-width {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section__step--right-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background: #fff;
+  padding: 40px;
+  gap: 48px;
+}
+
+.section__step--right .box__content {
+  flex: 0 0 calc(50% - 24px);
+  max-width: calc(50% - 24px);
+}
+
+.section__step--right h2 {
+  color: var(--blue-secondary);
+  margin-bottom: 40px;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: 0.2px;
+}
+
+.video-text__video {
+  width: 100%;
+}
+
+.section__step--right .box__content .text {
+  margin-bottom: 40px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.2px;
+  color: var(--blue-secondary);
+}
+
+.section__step--right .box__content .text p + p {
+  margin: 24px 0 0; 
+}
+
+.section__step--right .box__content .text strong {
+  font-weight: 700;
+}
+
+.section__step--right .button {
+  display: inline-block;
+  background-color: var(--gold);
+  color: var(--blue-secondary);
+  padding: 20px 31px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.section__step--right .button:hover {
+  color: var(--off-white);
+  background-color: var(--blue-secondary);
+}
+
+.section__step--right .button .arrow {
+  margin-left: 8px;
+  line-height: 0;
+}
+
+.section__step--right .box__image {
+  flex: 0 0 calc(50% - 24px);
+  max-width: calc(50% - 24px);
+}
+
+.section__step--right .box__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.section__step--right .box__image figure {
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+
+  .box__image h2 {
+    display: none;
+  }
+  
+}
+
+@media (max-width: 767px) {
+
+  .section__step--right {
+    padding: 40px 0;
+  }
+
+  .section__step--right .page-width {
+    padding: 0 24px;
+  }
+  
+  .section__step--right .section__step--right-wrapper {
+    flex-direction: column-reverse;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .section__step--right h2 {
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 24px;
+  }
+
+  .section__step--right .box__content .text {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 24px;
+  }
+
+  .section__step--right .box__content h2 {
+    display: none;
+  }
+  
+  .section__step--right .box__content, .section__step--right .box__image {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+}

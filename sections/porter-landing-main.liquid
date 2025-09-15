@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="Page_Wrapper" id="{{ section.id }}">
+  <div class="Page_Header" style="background-image:url({{ section.settings.image | img_url : '1920x' }});">
+    <div class="Page_Header_Inner" style="background-color:{{ section.settings.bg_color }}">
+
+      {%- if section.settings.page_heading != blank -%}
+        <h1 class="main-page-title page-title h0">
+          {{ section.settings.page_heading }}
+        </h1>
+      {%- else -%}
+        <h1 class="main-page-title page-title h0">
+          {{ page.title | escape }}
+        </h1>
+      {%- endif -%}
+
+      {% if section.settings.subhead != blank %}
+        <div class="h3 main-page-subhead">
+          {{ section.settings.subhead | newline_to_br }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {%- if page.content != blank -%}
+    <div class="page-width Page_Rte">
+      <div class="rte">
+        {{ page.content }}
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+<style>
+
+  #{{ section.id }} .Page_Header {
+    height: {{ section.settings.section_height }}px;
+  }
+
+  @media screen and (max-width: 767px) {
+  
+    #{{ section.id }} .Page_Header {
+      min-height: 186px;
+      height: auto;
+    }
+    
+  }
+  
+</style>
+
+{% schema %}
+{
+  "name": "t:sections.main-page.name",
+  "tag": "section",
+  "class": "spaced-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_heading",
+      "label": "Page Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "subhead",
+      "label": "Subhead"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "section_height",
+      "label": "Section Height",
+      "options": [
+        {
+          "label": "250",
+          "value": "250"
+        },
+        {
+          "label": "350",
+          "value": "350"
+        },
+        {
+          "label": "450",
+          "value": "450"
+        },
+        {
+          "label": "550",
+          "value": "550"
+        }
+      ],
+      "default": "350"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F4F2EE"
+    }
+  ]
+}
+{% endschema %}

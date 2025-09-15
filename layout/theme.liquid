@@ -136,7 +136,7 @@
     <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
     <script src="{{ 'ScrollToPlugin.min.js' | asset_url }}" defer></script>
     <script src="{{ 'global.js' | asset_url }}" defer></script>
-    <script data-lazy-src="{{ 'custom.js' | asset_url }}" defer></script>
+    <script data-lazy-scr="{{ 'custom.js' | asset_url }}" defer></script>
 
     <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
 
@@ -235,7 +235,7 @@
       window.location.href = '/collections/the-innerweave'
     }
     </script>
-        
+    
     <script>(function(e,t,n){var r,i=e.getElementsByTagName(t)[0];if(e.getElementById(n))return;r=e.createElement(t);r.id=n;r.dataset.lazySrc="https://button.aftership.com/all.js";i.parentNode.insertBefore(r,i)})(document,"script","aftership-jssdk")</script>
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
@@ -247,10 +247,18 @@
       {% unless collection.metafields.custom.hide_announcement_bar == true %}
         {% section 'announcement-bar' %}
       {% endunless %}
-      {% section 'header' %}
+      {% if template.suffix == 'porter-landing' %}
+        {% section 'porter-landing-header' %}
+      {% else %}
+        {% section 'header' %}
+      {% endif %}
     </div>
 
-    {% section 'mobile-menu' %}
+    {% if template.suffix == 'porter-landing' %}
+      {% section 'porter-mobile-menu' %}
+    {% else %}
+      {% section 'mobile-menu' %}
+    {% endif %}
 
     {% if template != 'cart' %}
       {% section 'cart-drawer' %}

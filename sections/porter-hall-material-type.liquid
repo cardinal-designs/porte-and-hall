@@ -1,0 +1,128 @@
+{{ 'porter-hall-material-type.css' | asset_url | stylesheet_tag: preload: true }}
+
+{% if section.settings.image_doublewide != blank or section.settings.image_standard != blank %}
+<section class="porter__hall--material-section" id="section--{{ section.id }}">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <h2 class="material__section--title">{{ section.settings.title }}</h2>
+    {% endif %}
+    
+    <div class="material__columns">
+      {% if section.settings.image_doublewide != blank %}
+        <div class="material__column">
+          <div class="material__column--image-wrapper">
+            <figure {% if section.settings.mobile_image_doublewide != blank %}class="mobile__hide"{% endif %}>
+              {{ section.settings.image_doublewide | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_doublewide.alt }}
+            </figure>
+            {% if section.settings.mobile_image_doublewide != blank %}
+            <figure class="desktop__hide">
+              {{ section.settings.mobile_image_doublewide | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.mobile_image_doublewide.alt }}
+            </figure>
+            {% endif %}
+          </div>
+          <div class="material__column--content">
+            <h3 class="material__column--title">{{ section.settings.doublewide_title }}</h3>
+            <div class="material__column--description">{{ section.settings.doublewide_description }}</div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if section.settings.image_standard != blank %}
+        <div class="material__column material__column--standard">
+          <div class="material__column--image-wrapper">
+            <figure {% if section.settings.mobile_image_standard != blank %}class="mobile__hide"{% endif %}>
+              {{ section.settings.image_standard | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_standard.alt }}
+            </figure>
+            {% if section.settings.mobile_image_standard != blank %}
+              <figure class="desktop__hide">
+                {{ section.settings.mobile_image_standard | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.mobile_image_standard.alt }}
+              </figure>
+            {% endif %}
+          </div>
+          <div class="material__column--content">
+            <h3 class="material__column--title">{{ section.settings.standard_title }}</h3>
+            <div class="material__column--description">{{ section.settings.standard_description }}</div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<style>
+  #section--{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Two of a Kind",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Two of a Kind"
+    },
+    {
+      "type": "header",
+      "content": "Doublewide"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_doublewide",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image_doublewide",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "text",
+      "id": "doublewide_title",
+      "label": "Title",
+      "default": "Doublewide"
+    },
+    {
+      "type": "richtext",
+      "id": "doublewide_description",
+      "label": "Description",
+      "default": "<p>Have a huge front door (or more than one)? We designed this big(ger) boy with you in mind.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Standard"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_standard",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image_standard",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "text",
+      "id": "standard_title",
+      "label": "Title",
+      "default": "Standard"
+    },
+    {
+      "type": "richtext",
+      "id": "standard_description",
+      "label": "Description",
+      "default": "<p>Perfectly oversized and anything but ordinary, this mat was made to make a statement at most doors.</p>"
+    }
+  ]
+}
+{% endschema %}

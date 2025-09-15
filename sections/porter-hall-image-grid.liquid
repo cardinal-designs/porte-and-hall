@@ -1,0 +1,336 @@
+{{ 'porter-hall-image-grid.css' | asset_url | stylesheet_tag: preload: true }}
+
+<section class="grand__entrance--section" id="section--{{ section.id }}">
+  <div class="page-width">
+    <div class="grand__entrance--section-header">
+      {% if section.settings.title != blank %}
+        <h2 class="heading">
+        {% assign title = section.settings.title | split: '|' %}
+          {{ title.first }}
+          <span>{{ title.last }}</span>
+        </h2>
+      {% endif %}
+      {% if section.settings.description != blank %}
+      <div class="description">
+        {{ section.settings.description }}
+      </div>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+      <p class="sub-heading">
+        {{ section.settings.subheading }}
+      </p>
+      {% endif %}
+    </div>
+    <hr class="divider" />
+
+    <div class="grand__entrance--image-grid">
+      {% if section.settings.image_1 != blank %}
+        <div class="grand__entrance--image-item">
+          <figure>
+            {{ section.settings.image_1 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_1.alt }}
+          </figure>
+          <p class="{% if section.settings.image_1_mobile_caption != blank %}mobile__hidden {% endif %} caption caption__{{ section.settings.image_1_caption_position }}" style="color: {{ section.settings.text_1_color }}" >
+            {{ section.settings.image_1_caption | replace: '|' , '<br>' }}
+            {% if section.settings.image_1_note != blank %}<span>{{ section.settings.image_1_note }}</span>{% endif %}
+          </p>
+          {% if section.settings.image_1_mobile_caption != blank %}
+          <p class="desktop__hidden caption caption__{{ section.settings.image_1_caption_position }}" style="color: {{ section.settings.text_1_color }}">
+            {{ section.settings.image_1_mobile_caption | replace: '|' , '<br>' }}
+            {% if section.settings.image_1_note != blank %}<span>{{ section.settings.image_1_note }}</span>{% endif %}
+          </p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.image_2 != blank or section.settings.image_3 != blank %}
+      <div class="grand__entrance--image-grid-right">
+        {% if section.settings.image_2 != blank %}
+          <div class="grand__entrance--image-item">
+            <figure>
+              {{ section.settings.image_2 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_2.alt }}
+            </figure>
+            <p class="{% if section.settings.image_2_mobile_caption != blank %}mobile__hidden {% endif %} caption caption__{{ section.settings.image_2_caption_position }}" style="color: {{ section.settings.text_2_color }}">
+              {{ section.settings.image_2_caption | replace: '|' , '<br>' }}
+              {% if section.settings.image_2_note != blank %}<span>{{ section.settings.image_2_note }}</span>{% endif %}
+            </p>
+            {% if section.settings.image_2_mobile_caption != blank %}
+              <p class="desktop__hidden caption caption__{{ section.settings.image_2_caption_position }}" style="color: {{ section.settings.text_2_color }}">
+                {{ section.settings.image_2_mobile_caption | replace: '|' , '<br>' }}
+                {% if section.settings.image_2_note != blank %}<span>{{ section.settings.image_2_note }}</span>{% endif %}
+              </p>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if section.settings.image_3 != blank %}
+          <div class="grand__entrance--image-item">
+            <figure>
+              {{ section.settings.image_3 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_3.alt }}
+            </figure>
+            <p class="{% if section.settings.image_3_mobile_caption != blank %}mobile__hidden {% endif %} caption caption__{{ section.settings.image_3_caption_position }}" style="color: {{ section.settings.text_3_color }}">
+              {{ section.settings.image_3_caption | replace: '|' , '<br>' }}
+              {% if section.settings.image_3_note != blank %}<span>{{ section.settings.image_3_note }}</span>{% endif %}
+            </p>
+            {% if section.settings.image_3_mobile_caption != blank %}
+              <p class="desktop__hidden caption caption__{{ section.settings.image_3_caption_position }}" style="color: {{ section.settings.text_3_color }}">
+                {{ section.settings.image_3_mobile_caption | replace: '|' , '<br>' }}
+                {% if section.settings.image_3_note != blank %}<span>{{ section.settings.image_3_note }}</span>{% endif %}
+              </p>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #section--{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Grand Entrance Section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Make a | Grand Entrance",
+      "info": "To change the title color, add the ‘|’ separator in the title text."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>If you’re invested in your home’s style, any old doormat won’t do. Crafted from the finest Italian yarns, and knotted by hand in India, The Porter is a luxury outdoor mat like no other. Not only does it greet you (and your guests) with stunning depth and visual interest, but it's built to brave the elements and hold up over time.</p>"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Form and function? A beautiful thing."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "text",
+      "id": "image_1_caption",
+      "label": "Image 1 Caption",
+      "default": "Hand-knotted design creates open space - looks great and traps dirt, too.",
+      "info": "To break the title, please add the ‘|’ separator in the title text."
+    },
+    {
+      "type": "text",
+      "id": "image_1_mobile_caption",
+      "label": "Image 1 Mobile Caption",
+      "info": "To break the title, please add the ‘|’ separator in the title text."
+    },
+    {
+      "type": "text",
+      "id": "image_1_note",
+      "label": "Image 1 Note",
+    },    
+    {
+      "type": "select",
+      "id": "image_1_caption_position",
+      "label": "Image 1 Caption Position",
+      "options": [
+        {
+          "label": "Top Left",
+          "value": "top--left"
+        },
+        {
+          "label": "Top Center",
+          "value": "top--center"
+        },
+        {
+          "label": "Top Right",
+          "value": "top--right"
+        },
+        {
+          "label": "Middle Left",
+          "value": "middle--left"
+        },
+        {
+          "label": "Middle Center",
+          "value": "middle--center"
+        },
+        {
+          "label": "Middle Right",
+          "value": "middle--right"
+        },
+        {
+          "label": "Bottom Left",
+          "value": "bottom--left"
+        },
+        {
+          "label": "Bottom Center",
+          "value": "bottom--center"
+        },
+        {
+          "label": "Bottom Right",
+          "value": "bottom--right"
+        },
+      ]
+    },
+    {
+      "type": "color",
+      "id": "text_1_color",
+      "label": "Text Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "text",
+      "id": "image_2_caption",
+      "label": "Image 2 Caption",
+      "default": "Flexible and easy to roll out and shake clean.",
+      "info": "To break the title, please add the ‘|’ separator in the title text."
+    },
+    {
+      "type": "text",
+      "id": "image_2_mobile_caption",
+      "label": "Image 2 Mobile Caption",
+      "info": "To break the title, please add the ‘|’ separator in the title text."
+    },
+    {
+      "type": "text",
+      "id": "image_2_note",
+      "label": "Image 2 Note",
+    },
+    {
+      "type": "select",
+      "id": "image_2_caption_position",
+      "label": "Image 2 Caption Position",
+      "options": [
+        {
+          "label": "Top Left",
+          "value": "top--left"
+        },
+        {
+          "label": "Top Center",
+          "value": "top--center"
+        },
+        {
+          "label": "Top Right",
+          "value": "top--right"
+        },
+        {
+          "label": "Middle Left",
+          "value": "middle--left"
+        },
+        {
+          "label": "Middle Center",
+          "value": "middle--center"
+        },
+        {
+          "label": "Middle Right",
+          "value": "middle--right"
+        },
+        {
+          "label": "Bottom Left",
+          "value": "bottom--left"
+        },
+        {
+          "label": "Bottom Center",
+          "value": "bottom--center"
+        },
+        {
+          "label": "Bottom Right",
+          "value": "bottom--right"
+        },
+      ]
+    },
+    {
+      "type": "color",
+      "id": "text_2_color",
+      "label": "Text Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "text",
+      "id": "image_3_caption",
+      "label": "Image 3 Caption",
+      "default": "Soft on feet (and paws).",
+      "info": "To break the title, please add the ‘|’ separator in the title text."
+    },
+    {
+      "type": "text",
+      "id": "image_3_mobile_caption",
+      "label": "Image 3 Mobile Caption",
+      "info": "To break the title, please add the ‘|’ separator in the title text."
+    },    
+    {
+      "type": "text",
+      "id": "image_3_note",
+      "label": "Image 3 Note",
+    },
+    {
+      "type": "select",
+      "id": "image_3_caption_position",
+      "label": "Image 3 Caption Position",
+      "options": [
+        {
+          "label": "Top Left",
+          "value": "top--left"
+        },
+        {
+          "label": "Top Center",
+          "value": "top--center"
+        },
+        {
+          "label": "Top Right",
+          "value": "top--right"
+        },
+        {
+          "label": "Middle Left",
+          "value": "middle--left"
+        },
+        {
+          "label": "Middle Center",
+          "value": "middle--center"
+        },
+        {
+          "label": "Middle Right",
+          "value": "middle--right"
+        },
+        {
+          "label": "Bottom Left",
+          "value": "bottom--left"
+        },
+        {
+          "label": "Bottom Center",
+          "value": "bottom--center"
+        },
+        {
+          "label": "Bottom Right",
+          "value": "bottom--right"
+        },
+      ]
+    },
+    {
+      "type": "color",
+      "id": "text_3_color",
+      "label": "Text Color"
+    },
+  ]
+}
+{% endschema %}

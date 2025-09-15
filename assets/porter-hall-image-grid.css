@@ -1,0 +1,236 @@
+.grand__entrance--section {
+  padding: 80px 0;
+}
+
+.grand__entrance--section .page-width {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.grand__entrance--section-header {
+  padding: 32px 0;
+}
+
+.grand__entrance--section .heading {
+  font-size: 64px;
+  line-height: 72px;
+  font-weight: 500;
+  color: var(--blue-secondary);
+  margin-bottom: 32px;
+  letter-spacing: 0.2px;
+}
+
+.grand__entrance--section .heading span {
+  color: var(--blue);
+}
+
+.grand__entrance--section .description {
+  font-size: 24px;
+  line-height: 32px;
+  margin-bottom: 48px;
+  color: var(--blue-secondary);
+  letter-spacing: 0.2px;
+}
+
+.grand__entrance--section .sub-heading {
+  font-size: 40px;
+  line-height: 48px;
+  color: var(--blue);
+  margin-bottom: 0;
+  letter-spacing: 0.2px;
+}
+
+.grand__entrance--section .divider {
+  width: 100%;
+  border: 0;
+  height: 1px;
+  background-color: var(--blue);
+  margin: 0;
+  padding: 0;
+}
+
+.grand__entrance--image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 64px;
+}
+
+.grand__entrance--image-grid-right {
+  display: grid;
+  flex: 1;
+}
+
+.grand__entrance--image-item {
+  position: relative;
+  flex: 1.274;
+}
+
+.grand__entrance--image-item figure {
+  margin: 0;
+  line-height: 0;
+}
+
+.grand__entrance--image-item img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.grand__entrance--image-item .caption {
+  font-family: louize;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+  color: var(--blue-secondary);
+  letter-spacing: 0.2px;
+  padding: 24px;
+  position: absolute;
+  /* max-width: 379px; */
+}
+
+.grand__entrance--image-item .caption span {
+  display: block;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+}
+
+.grand__entrance--image-item .caption.caption__top--left {
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: auto;
+  text-align: left;
+}
+
+.grand__entrance--image-item .caption.caption__top--center {
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.grand__entrance--image-item .caption.caption__top--right {
+  top: 0;
+  bottom: auto;
+  left: auto;
+  right: 0;
+  text-align: right;
+  margin-right: 0;
+}
+
+.grand__entrance--image-item .caption.caption__middle--left {
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: auto;
+  left: 0;
+  right: auto;
+  text-align: left;
+}
+
+.grand__entrance--image-item .caption.caption__middle--center {
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.grand__entrance--image-item .caption.caption__middle--right {
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: auto;
+  left: auto;
+  right: 0;
+  text-align: right;
+  margin-right: 0;
+}
+
+.grand__entrance--image-item .caption.caption__bottom--left {
+  top: auto;
+  bottom: 0;
+  left: 0;
+  right: auto;
+  text-align: left;
+}
+
+.grand__entrance--image-item .caption.caption__bottom--center {
+  top: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.grand__entrance--image-item .caption.caption__bottom--right {
+  top: auto;
+  bottom: 0;
+  left: auto;
+  right: 0;
+  text-align: right;
+  margin-right: 0;
+}
+
+@media (min-width: 768px) {
+
+  .desktop__hidden.caption {
+    display: none
+  }
+  
+}
+
+@media (max-width: 767px) {
+
+  .grand__entrance--section {
+    padding: 40px 0;
+  }
+
+  .grand__entrance--section .page-width {
+    padding: 0 16px;
+  }
+
+  .grand__entrance--section-header {
+    padding: 0 0 16px;
+  }
+
+  .grand__entrance--section .heading {
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 16px;
+  }
+
+  .grand__entrance--section .description {
+    font-size: 18px;
+    line-height: 26px;
+    margin-bottom: 32px;
+  }
+
+  .grand__entrance--section .sub-heading {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .grand__entrance--image-grid {
+    margin-top: 16px;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  .grand__entrance--image-item .caption {
+    font-size: 9.05px;
+    line-height: 8.22px;
+    padding: 8px 6px;
+  }
+
+  .mobile__hidden.caption,
+  .grand__entrance--image-item .caption span {
+    display: none
+  }
+  
+}
