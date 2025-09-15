@@ -11,8 +11,22 @@
   "sections": {
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62": {
       "type": "image-text",
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/WildSideDove_Doormat_Lead_v1.jpg",
+        "subheading": "",
+        "title": "<p>Worthy of Your </p><p>Welcome</p>",
+        "content": "<p>Premium indoor and outdoor mats to elevate your entry and your everyday.</p>",
+        "link_text": "explore more",
+        "link_url": "shopify://collections/shop-all",
+        "custom-class": "home-banner"
+      }
+    },
+    "video_text_hTPBAL": {
+      "type": "video-text",
+      "name": "Video with text",
+      "settings": {
+        "video": "shopify://files/videos/CRO w-porter.mp4",
         "subheading": "",
         "title": "<p>Worthy of Your </p><p>Welcome</p>",
         "content": "<p>Premium indoor and outdoor mats to elevate your entry and your everyday.</p>",
@@ -28,7 +42,7 @@
           "type": "block",
           "settings": {
             "icon_image": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"22\" viewbox=\"0 0 24 22\" fill=\"none\">\n<path d=\"M5.83483 22C5.65196 21.9987 5.4717 21.9565 5.30728 21.8764C5.14286 21.7964 4.99845 21.6805 4.88466 21.5374C4.77087 21.3942 4.69058 21.2274 4.64969 21.0491C4.60879 20.8709 4.60833 20.6858 4.64834 20.5073L6.12188 14.0008L1.11759 9.60889C0.939924 9.45095 0.812058 9.24473 0.749589 9.01537C0.68712 8.786 0.692748 8.54342 0.765787 8.3172C0.838826 8.09099 0.976118 7.89091 1.16092 7.74139C1.34572 7.59186 1.57004 7.49935 1.80652 7.47513L8.43744 6.87232L11.0592 0.738955C11.154 0.519495 11.311 0.332587 11.5108 0.201278C11.7106 0.0699685 11.9444 0 12.1835 0C12.4225 0 12.6564 0.0699685 12.8562 0.201278C13.056 0.332587 13.2129 0.519495 13.3078 0.738955L15.9295 6.87232L22.5604 7.47513C22.7969 7.49935 23.0212 7.59186 23.206 7.74139C23.3908 7.89091 23.5281 8.09099 23.6012 8.3172C23.6742 8.54342 23.6798 8.786 23.6174 9.01537C23.5549 9.24473 23.427 9.45095 23.2494 9.60889L18.2355 14.0008L19.709 20.5073C19.7562 20.7364 19.7368 20.9742 19.6531 21.1926C19.5694 21.411 19.4249 21.6009 19.2367 21.7398C19.0485 21.8787 18.8245 21.9608 18.5911 21.9764C18.3577 21.9919 18.1248 21.9404 17.9197 21.8278L12.1787 18.4118L6.43764 21.8278C6.25522 21.9369 6.04737 21.9963 5.83483 22ZM12.1787 16.9383C12.3977 16.9391 12.6125 16.9986 12.8006 17.1105L18.1972 20.3351L16.8002 14.1922C16.7509 13.9783 16.7605 13.755 16.8279 13.5461C16.8953 13.3372 17.018 13.1504 17.183 13.0057L21.9098 8.85298L15.652 8.28844C15.432 8.26941 15.2213 8.19076 15.0426 8.06094C14.8639 7.93113 14.7239 7.75506 14.6378 7.55167L12.1787 1.76278L9.71004 7.55167C9.6239 7.75506 9.48396 7.93113 9.30525 8.06094C9.12655 8.19076 8.91584 8.26941 8.69579 8.28844L2.43803 8.85298L7.16484 13.0057C7.32985 13.1504 7.45256 13.3372 7.51995 13.5461C7.58734 13.755 7.59689 13.9783 7.54757 14.1922L6.16015 20.3351L11.5567 17.1105C11.7449 16.9986 11.9597 16.9391 12.1787 16.9383Z\" fill=\"#A19377\"></path>\n</svg>",
-            "title": "1,000+ Five-Star Reviews"
+            "title": "2,500+ Five-Star Reviews"
           }
         },
         "b9ce6c39-a5ce-4c0d-a158-ec55859e285f": {
@@ -112,11 +126,24 @@
     },
     "product_carousel_new_aKw9LG": {
       "type": "product-carousel-new",
+      "disabled": true,
       "settings": {
         "heading": "Shop our best sellers",
         "background": "",
         "show_metafield_style": false,
         "collection": "best-sellers-limited",
+        "button_text": "Shop Now",
+        "btn_link": "shopify://collections/best-sellers"
+      }
+    },
+    "product_carousel_new_2_JLEKyQ": {
+      "type": "product-carousel-new-2",
+      "settings": {
+        "heading": "Shop our best sellers",
+        "background": "",
+        "show_metafield_style": false,
+        "collection": "best-sellers-limited",
+        "product_card_type": "standard_card",
         "button_text": "Shop Now",
         "btn_link": "shopify://collections/best-sellers"
       }
@@ -160,14 +187,28 @@
             "check1": "Indoor and outdoor",
             "check2": "Stain-resistant",
             "check3": "Soft, woven texture",
-            "check4": ""
+            "check4": "Doesn't shed"
+          }
+        },
+        "block_3NKqtR": {
+          "type": "block",
+          "settings": {
+            "title": "The Porter",
+            "collection1": "the-porter-standard",
+            "product": "the-porter-greystone-standard",
+            "product_image1": "shopify://shop_images/Porter_Collections_mobile_2x_1f5f9730-4538-4c48-ae48-9f77e19a7552.jpg",
+            "check1": "Hand-knotted, one-of-a-kind design",
+            "check2": "Premium all-weather yarns ",
+            "check3": "Stain- and fade-resistant",
+            "check4": "Traps dirt, rinses clean"
           }
         }
       },
       "block_order": [
         "block_iAMdwJ",
         "block_8hGeNH",
-        "block_cwxbKD"
+        "block_cwxbKD",
+        "block_3NKqtR"
       ],
       "settings": {
         "title": "Shop our collections",
@@ -203,9 +244,9 @@
             "product1": "the-outlier-slate-doormat",
             "product_image1": "shopify://shop_images/the_outlier_df24f4b8-d6b9-4b52-a5d7-660359294000.jpg",
             "badge2": "Eye-catcher",
-            "product2_title": "The Outlier",
-            "collection2": "the-outlier",
-            "product2": "the-outlier-chestnut-doormat",
+            "product2_title": "The Porter",
+            "collection2": "the-porter-standard",
+            "product2": "the-porter-truffle-standard",
             "product_image2": "shopify://shop_images/Homepage_porterthumbnail.jpg"
           }
         }
@@ -221,7 +262,7 @@
     "fd8fd5d7-6d77-45a1-8718-85dc6bc781d2": {
       "type": "video-with-text",
       "settings": {
-        "video": "shopify://files/videos/-ac6f-42e5-bcfd-ed1480562d97.mp4",
+        "video": "shopify://files/videos/-ac6f-42e5-bcfd-ed1480562d97_1f6bdcd7-c609-47fe-acf8-e0c27945452e.mp4",
         "title": "So Easy To Clean",
         "sub-text": "We fit right into your I-don't-have-time-for-that cleaning routine.",
         "content": "<ul>\n<li>Wash with a hose or at the sink with cold water (high pressure is your friend)</li>\n<li>Use OxiClean™ to tackle tough stains</li>\n<li>Hang to dry</li>\n</ul>"
@@ -923,9 +964,11 @@
   },
   "order": [
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62",
+    "video_text_hTPBAL",
     "3726ddfa-f49e-4e18-a5f2-430400876ccd",
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",
     "product_carousel_new_aKw9LG",
+    "product_carousel_new_2_JLEKyQ",
     "product_carousel_2_nFt3hG",
     "40919de2-f3c2-45da-99ff-c69ad3e95306",
     "fd8fd5d7-6d77-45a1-8718-85dc6bc781d2",

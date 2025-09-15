@@ -52,7 +52,7 @@
               echo element_classes
               echo "'"
               echo "style='background-image: url("
-              echo swatch_file_name | asset_img_url
+              echo swatch_file_name | file_url
               echo ")' data-tooltip='"
               echo value | escape
               echo "'></a>"
@@ -159,16 +159,16 @@
     </div> 
       
     
-      <h3 class="product-card__title blue">
+      <div class="product-card__title h3 blue">
         {{ title | default: collection.title | replace: ' | ', ' ' }}
         <br><span class="body">{{ product_card_product.options_by_name['color'].values[0]  | capitalize }}</span>
         {% comment %} {%- if collection.metafields.custom.dimensions != blank -%}
           <span class="body">({{ collection.metafields.custom.dimensions }})</span>
         {%- endif -%} {% endcomment %}
-      </h3>
+      </div>
     </a>
 
-    <p class="product-card__price body blue">
+    <p class="product-card__price body blue" data-product-id="{{ product_card_product.id }}">
       <a href="{{ product_card_product.url }}">
       {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
         <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
@@ -183,7 +183,7 @@
     
     <div class="product-card__swatches">
       {% if active_swatch != blank %}
-        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | asset_url }})"></a>
+        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | file_url }})"></a>
       {% endif %}
       {{ color_swatch_list }}
     </div>

@@ -64,7 +64,7 @@
             echo value | escape
             echo "' ><span "
             echo "style='background-image: url("
-            echo swatch_file_name | asset_img_url
+            echo swatch_file_name | file_url
             echo ")'>"
             echo '</span></a>'
             assign swatch_count = swatch_count | plus: 1
@@ -494,7 +494,7 @@
                   href="{{ product.url }}"
                 >
                   <span>{{ product_size }}</span>
-                  <span class="other-sizes__dimension">1' 9" x 3'</span>
+                  <span class="other-sizes__dimension">21" x 36"</span>
                 </a>
                 {%- endcapture -%}
                  {%- unless other_size_links == blank -%}
@@ -715,6 +715,7 @@
            </div>
          </div>
         {% endif %}
+        
       </pdp-accordion>
       {% comment %}ACCORDION ENDS{% endcomment %}         
     </div>

@@ -4,8 +4,7 @@
     grid-template-columns: 1fr 1fr;
     margin:0 auto;
     position:relative;
-  align-items: center;
-  
+  align-items: center;  
 }
   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper{
   margin-right: -40px;
@@ -30,7 +29,8 @@
 
    }
 
-     .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p{
+     .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p,
+     .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading h1{
        color:#30383D;
         font-size: 72px;
         font-style: normal;
@@ -68,6 +68,19 @@
        margin-bottom: 52px;
       margin-top:10px;
    }
+
+  .template__social-proof.template-index .image-with-text .SectionHeader__SubHeading {
+    /* color: #30383D; */
+    color: black;
+    font-size: 21px;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+
+  .template__social-proof.template-index .image-with-text .SectionHeader__SubHeading span {
+    color: #A19377;
+  }
+  
   @media screen and (max-width:1100px){
     .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
       padding: 32px 32px 47px;
@@ -98,7 +111,8 @@
     margin: 0 auto;
       margin-top: -90px;
     }
-    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p{
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p,
+    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading h1{
       font-size: 40px;
       font-weight: 500;
       line-height: 44px;
@@ -115,7 +129,12 @@
     .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description{
       margin-bottom:38px;
     }
+
+    .template__social-proof.template-index .image-with-text .SectionHeader__SubHeading {
+      font-size: 14px;
+    }
   }
+  
   @media screen and (max-width:380px){
     .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
           padding: 24px 20px 34px;
@@ -145,7 +164,7 @@
         {%- if section.settings.subheading != blank or section.settings.title != blank or section.settings.content != blank -%}
           <header class="SectionHeader">
             {%- if section.settings.subheading != blank -%}
-              <h4 class="SectionHeader__SubHeading">{{ section.settings.subheading | escape }}</h4>
+              <h4 class="SectionHeader__SubHeading">{{ section.settings.subheading }}</h4>
             {%- endif -%}
 
             {%- if section.settings.title != blank -%}
@@ -197,10 +216,9 @@
       "info": "1200 x 1200px .png recommended"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "subheading",
-      "label": "Sub-heading",
-      "default": "Sub-heading"
+      "label": "Sub-heading"
     },
     {
       "type": "richtext",

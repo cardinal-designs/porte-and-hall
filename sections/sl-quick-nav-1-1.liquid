@@ -585,8 +585,13 @@
                 {% assign image = block.settings.image %}
               {% endif %}
               
-              {% if collection.url != blank %}
-                <a href="{{ collection.url }}" class="tab-item__link">
+              {% assign custom_url = block.settings.custom_url %}
+              {% assign fallback_url = collection.url %}
+              
+              {% if custom_url != blank %}
+                <a href="{{ custom_url }}" class="tab-item__link">
+              {% elsif fallback_url != blank %}
+                <a href="{{ fallback_url }}" class="tab-item__link">
               {% endif %}
 
                   <div class="tab-item__inner">
@@ -996,6 +1001,11 @@
                     "label": "Custom overlay opacity",
                     "default": 10,
                     "info": "Used when collection title position is \"On image\". Custom overlay setting above must be checked."
+                },
+                {
+                    "type": "url",
+                    "id": "custom_url",
+                    "label": "Custom link (overrides collection link)"
                 }
             ]
         }

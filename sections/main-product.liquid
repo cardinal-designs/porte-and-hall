@@ -64,7 +64,7 @@
             echo value | escape
             echo "' ><span "
             echo "style='background-image: url("
-            echo swatch_file_name | asset_img_url
+            echo swatch_file_name | file_url
             echo ")'>"
             echo '</span></a>'
             assign swatch_count = swatch_count | plus: 1
@@ -386,6 +386,8 @@
                     {% assign active_order = 3 %}
                   {% elsif product.handle contains 'runner' %}
                     {% assign active_order = 2 %}
+                  {% elsif product.handle contains 'area-mat-xl' %}
+                    {% assign active_order = 5 %}
                   {% elsif product.handle contains 'area-mat' %}
                     {% assign active_order = 4 %}
                   {% endif %}
@@ -415,7 +417,9 @@
                       <span class="other-sizes__dimension">4' x 6'</span>
                     {% else %}
                       <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
-                    {% endif %}               
+                    {% endif %}  
+                  {% elsif product_size == 'XL Area Mat' %}
+                    <span class="other-sizes__dimension">5' x 7'</span>
                   {% endif %}
                 </a>
 
@@ -431,7 +435,7 @@
                   
                     <a 
                       data-dd="{{ grouped_collection.title }}"
-                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% endif %} ;"
+                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'XL Area Mat'  %}5{% endif %} ;"
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
                       href="{{ match.first.url }}"
                     >
@@ -456,6 +460,8 @@
                         {% else %}
                           <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
                         {% endif %}
+                      {% elsif current_size.last == 'XL Area Mat' %}
+                        <span class="other-sizes__dimension">5' x 7'</span>
                       {% endif %}
 
                       {% comment %}
@@ -484,7 +490,7 @@
                   href="{{ product.url }}"
                 >
                   <span>{{ product_size }}</span>
-                  <span class="other-sizes__dimension">1' 9" x 3'</span>
+                  <span class="other-sizes__dimension">21" x 36"</span>
                 </a>
                 {%- endcapture -%}
                  {%- unless other_size_links == blank -%}

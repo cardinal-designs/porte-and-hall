@@ -1,3 +1,7 @@
+body {
+  font-family: brandon, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
 /*============================================================================
   General
 ==============================================================================*/
@@ -3077,7 +3081,7 @@ body {
   position: fixed;
 }
 main#MainContent {
-  padding-top: 176px;
+  padding-top: 147px;
 }
 
 .outdoor main#MainContent {
@@ -3090,7 +3094,7 @@ main#MainContent {
 
 @media screen and (max-width: 989px) and (min-width: 769px) {
   main#MainContent {
-    padding-top: 117.5px;
+    padding-top: 89px;
   }
 
   .outdoor main#MainContent {
@@ -3099,7 +3103,7 @@ main#MainContent {
 }
 @media screen and (max-width: 768px) {
   main#MainContent {
-    padding-top: 69px;
+    padding-top: 61px;
   }
 
   .outdoor main#MainContent {
@@ -3682,4 +3686,28 @@ iframe#preview-bar-iframe {
 
 .afterpay-wrapper ~ .afterpay-main-text {
   text-align: center !important;
+}
+
+.template__designer-program main#MainContent {
+  padding-top: 124px;
+}
+
+.cart-item__error-text {
+  color: var(--error);
+}
+
+@media (max-width: 989px) {
+
+  .template__designer-program main#MainContent {
+    padding-top: 66px;
+  }
+  
+}
+
+@media (max-width: 768px) {
+
+  .template__designer-program main#MainContent {
+    padding-top: 66px;
+  }
+  
 }

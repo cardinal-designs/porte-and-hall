@@ -57,7 +57,7 @@
           "logo_width": 270,
           "mobile_logo_width": 180,
           "logo_position": "center",
-          "menu": "2023-theme-dev",
+          "menu": "2023-main-nav-new",
           "enable_search": false
         }
       },
@@ -67,7 +67,12 @@
           "cart_title": "Your Cart",
           "empty_text": "",
           "button": "shopify://collections/shop-all",
-          "button_text": ""
+          "button_text": "",
+          "enable_gift_note": true,
+          "gift_note_product": "gift-note",
+          "checkbox_label_text": "Include a personal gift note for [price]?",
+          "note_button_text": "ADD NOW",
+          "gift_note": "Gift Note Will be included within the package."
         }
       },
       "footer": {
@@ -77,7 +82,7 @@
             "type": "link_list",
             "settings": {
               "heading": "",
-              "menu": "porter-theme-footer"
+              "menu": "2023-theme-footer-new"
             }
           },
           "80e0641c-25ee-4aa9-a52f-d3c8f62ba7f8": {
@@ -108,7 +113,7 @@
       "mobile-menu": {
         "type": "mobile-menu",
         "settings": {
-          "menu": "2024-best-seller-mobile"
+          "menu": "2024-best-seller-mobile-new"
         }
       },
       "porter-landing-header": {
@@ -151,6 +156,11 @@
       },
       "12592085946906583873": {
         "type": "shopify://apps/wunderkind/blocks/tag/40b05e3b-2403-4814-8fab-e17e57e8b1aa",
+        "disabled": false,
+        "settings": {}
+      },
+      "6279071938380501511": {
+        "type": "shopify://apps/powerful-form-builder/blocks/app-embed/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
         "disabled": false,
         "settings": {}
       }

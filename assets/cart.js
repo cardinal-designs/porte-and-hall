@@ -55,6 +55,35 @@ class CartItems extends HTMLElement {
     ];
   }
 
+  showLineItemError(lineIndex, message) {
+    const quantityInput = document.querySelector(`input[data-index="${lineIndex}"]`);
+    if (!quantityInput) return;
+  
+    const quantityWrapper = quantityInput.closest('.cart-item__content');
+    
+    if (!quantityWrapper) return;
+  
+    let errorElement = quantityWrapper.querySelector('.cart-item__error');
+    
+    if (!errorElement) {
+      errorElement = document.createElement('div');
+      errorElement.className = 'cart-item__error';
+      errorElement.id = `Line-item-error-${lineIndex}`;
+      errorElement.setAttribute('role', 'alert');
+      errorElement.innerHTML = `<small class="cart-item__error-text">${message}</small>`;
+      quantityWrapper.appendChild(errorElement);
+    } else {
+      errorElement.querySelector('.cart-item__error-text').textContent = message;
+    }
+  
+    errorElement.style.display = 'block';
+  
+    clearTimeout(errorElement.dataset.timer);
+    errorElement.dataset.timer = setTimeout(() => {
+      errorElement.style.display = 'none';
+    }, 5000);
+  }
+
   updateQuantity(line, quantity, name) {
     this.enableLoading(line);
 
@@ -71,6 +100,17 @@ class CartItems extends HTMLElement {
       })
       .then((state) => {
         const parsedState = JSON.parse(state);
+
+        const quantityElement =
+          document.getElementById(`Quantity-${line}`) || document.getElementById(`Drawer-quantity-${line}`);
+
+        if (parsedState.errors) {
+          quantityElement.value = quantityElement.getAttribute('value');
+          this.showLineItemError(line, parsedState.errors);
+          this.disableLoading();
+          return;
+        }
+        
         this.classList.toggle('is-empty', parsedState.item_count === 0);
         const cartFooter = document.getElementById('main-cart-footer');
 

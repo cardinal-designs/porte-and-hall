@@ -1,0 +1,142 @@
+.trade__program {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.trade__overlay {
+  background: rgb(84 107 130 / 80%);
+  width: 100%;
+  height: 100%;
+  padding: 64px;
+  max-width: 555px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.trade__content {
+  color: #EEEFEF;
+  max-width: 500px;
+}
+
+.trade__content h1 {
+  margin-bottom: 16px;
+  font-size: 64px;
+  line-height: 64px;
+  letter-spacing: .2px;
+}
+
+.trade__content p {
+  margin-bottom: 40px;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+}
+
+.trade__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+} */
+
+.signin-btn, .join-btn {
+  position: relative;
+  font-family: Brandon;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: .4px;
+  text-transform: unset;
+  padding: 19px;
+  border-radius: 0;
+  width: 100%;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.join-btn {
+  background: #fff;
+  color: var(--blue-secondary);
+  border: 1.5px solid transparent;
+}
+
+.join-btn:hover {
+  background: transparent;
+  color: #FFF;
+  border: 1.5px solid #fff;
+}
+
+.signin-btn {
+  background: transparent;
+  color: #FFF;
+  border: 1.5px solid #fff;
+}
+
+.signin-btn:hover {
+  background: #fff;
+  color: var(--blue-secondary);
+}
+
+.trade__image--item figure {
+  margin: 0;
+  line-height: 0;
+}
+
+@media (min-width: 768px) {
+
+  .trade__image--item .desktop__hidden {
+    display: none;
+  }
+  
+}
+
+@media (max-width: 1023px) {
+
+  .trade__content p {
+    margin-bottom: 24px;
+  }
+
+  .trade__content h1 {
+    margin-bottom: 8px;
+    font-size: 40px;
+    line-height: 48px;
+  }
+  
+}
+
+@media (max-width: 767px) {
+
+  .trade__image--item .mobile__hidden {
+    display: none;
+  }
+
+  .trade__program {
+    min-height: 772px;
+  }
+
+  .trade__overlay {
+    padding: 24px 16px 40px;
+    max-width: 100%;
+    min-height: 428px;
+    height: auto;
+  }
+  
+}
+

@@ -220,6 +220,12 @@ grouped-product-card {
   margin-top: -10px;
 }
 
+.product-cart-4 .product-card__price a {
+  min-width: 40px;
+  min-height: 24px;
+  display: block;
+}
+
 .product-cart-4 .product-card__title {
   font-size: 16px;
 }

@@ -8,7 +8,7 @@
         {{- collection.title | escape -}}
       </h1>
 
-      {% if section.settings.show_collection_description %}
+      {% if section.settings.show_collection_description and collection.description != blank %}
         <div class="collection-hero__description rte">{{ collection.description }}</div>
       {% endif %}
     </div>
@@ -56,6 +56,13 @@
       "default": false,
       "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
       "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Banner",
+      "name": "t:sections.main-collection-banner.name",
+      "settings": {}
     }
   ]
 }

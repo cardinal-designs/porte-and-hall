@@ -22,12 +22,15 @@ class CartDrawer extends HTMLElement {
 
     this.closeIcon = document.getElementById('cart-drawer__close');
     this.closeIcon.addEventListener('click', this.close.bind(this));
-    
+
     this.onBodyClick = this.handleBodyClick.bind(this);
     this.drawer.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
 
     this.pageOverlayElement = document.querySelector('.page-overlay');
-
+    this.giftWrapCheckbox = document.getElementById('add-gift-wrap'); 
+    
+    this.giftNoteText = document.getElementById('gift-note-text');
+    
     // Functionality
     this.currentItemCount = Array.from(this.querySelectorAll('[name="updates[]"]'))
       .reduce((total, quantityInput) => total + parseInt(quantityInput.value), 0);
@@ -37,6 +40,20 @@ class CartDrawer extends HTMLElement {
     }, 300);
 
     this.addEventListener('change', this.debouncedOnChange.bind(this));
+
+    this.addEventListener('input', (event) => {
+      if (event.target && event.target.id === 'gift-note-text') {
+        this.updateCharCount(event.target);
+      }
+    });
+  }
+  updateCharCount(textarea) {
+    const currentLength = textarea.value.length;
+    const maxAttr = textarea.getAttribute('maxlength');
+    const maxLength = maxAttr ? parseInt(maxAttr, 10) : 250;
+    const remainingChars = maxLength - currentLength;
+    const charCountElement = document.querySelector('.char-count span');
+    charCountElement.textContent = `${remainingChars}`;
   }
 
   open() {
@@ -56,8 +73,103 @@ class CartDrawer extends HTMLElement {
   }
 
   onChange(event) {
-    this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
+    if (event.target.matches('#add-gift-wrap')) {
+      this.handleGiftWrapChange(event);
+    }else if(event.target.dataset?.index){
+      this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
+    }
   }
+
+  handleGiftWrapChange(event) {
+    if (event.target.checked) {
+      const giftNoteModal = document.getElementById('gift-note-modal');
+      giftNoteModal.classList.add('is-visible');
+    } else {
+      this.removeGiftWrapFromCart();
+    }
+  }
+
+  addGiftWrapToCart() {
+    let giftNoteField = document.getElementById('gift-note-text');
+    let giftNoteValue = giftNoteField ? giftNoteField.value : '';
+    let variantId = giftNoteField.getAttribute('data-variant-id');
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        items: [
+          {
+            id: variantId,
+            quantity: 1,
+            properties: {
+              'Note': giftNoteValue
+            }
+          },
+        ]
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error('Failed to add gift wrap product');
+        return response.json();
+      })
+      .then(() => {
+        
+      })
+      .catch((error) => console.error(error));
+  }
+
+  removeGiftWrapFromCart() {
+    const lineIndex = this.findGiftWrapLineItemIndex();
+    if (lineIndex > -1) {
+      this.updateQuantity(lineIndex, 0, null);
+    }
+  }
+
+  findGiftWrapLineItemIndex() {
+    let giftNoteField = document.getElementById('gift-note-text');
+    let giftNoteValue = giftNoteField ? giftNoteField.value : '';
+    let variantId = giftNoteField.getAttribute('data-variant-id');
+    let giftWrapProductId = variantId;
+    let cartItems = [...this.querySelectorAll('[data-cart-item-id]')];
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].dataset.cartItemId == giftWrapProductId) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  showLineItemError(lineIndex, message) {
+    const quantityInput = document.querySelector(`input[data-index="${lineIndex}"]`);
+    if (!quantityInput) return;
+  
+    const quantityWrapper = quantityInput.closest('.cart-item__content');
+    if (!quantityWrapper) return;
+  
+    let errorElement = quantityWrapper.querySelector('.cart-item__error');
+    
+    if (!errorElement) {
+      errorElement = document.createElement('div');
+      errorElement.className = 'cart-item__error';
+      errorElement.id = `Line-item-error-${lineIndex}`;
+      errorElement.setAttribute('role', 'alert');
+      errorElement.innerHTML = `<small class="cart-item__error-text">${message}</small>`;
+      quantityWrapper.appendChild(errorElement);
+    } else {
+      errorElement.querySelector('.cart-item__error-text').textContent = message;
+    }
+  
+    errorElement.style.display = 'block';
+  
+    clearTimeout(errorElement.dataset.timer);
+    errorElement.dataset.timer = setTimeout(() => {
+      errorElement.style.display = 'none';
+    }, 5000);
+  }
+
 
   updateQuantity(line, quantity, name) {
     this.enableLoading(line);
@@ -75,6 +187,16 @@ class CartDrawer extends HTMLElement {
       })
       .then((state) => {
         const parsedState = JSON.parse(state);
+        
+        const quantityElement =
+          document.getElementById(`Quantity-${line}`) || document.getElementById(`Drawer-quantity-${line}`);
+
+        if (parsedState.errors) {
+          quantityElement.value = quantityElement.getAttribute('value');
+          this.showLineItemError(line, parsedState.errors);
+          this.disableLoading();
+          return;
+        }
 
         this.getSectionsToRender().forEach((section => {
           const elementToReplace =
@@ -122,6 +244,26 @@ class CartDrawer extends HTMLElement {
 
   handleBodyClick(evt) {
     const target = evt.target;
+    let closeGiftModal = document.getElementById('close-gift-note');
+    if (closeGiftModal) {
+      const giftCloseBtn = document.getElementById('close-gift-note');
+      const giftNoteModal = document.getElementById('gift-note-modal');
+      const giftWrapCheckbox = document.getElementById('add-gift-wrap');
+  
+      if (giftCloseBtn && (target.matches('#close-gift-note') || giftCloseBtn.contains(target))) {
+        if (giftWrapCheckbox) {
+          giftWrapCheckbox.checked = false;
+        }
+        if (giftNoteModal) {
+          giftNoteModal.classList.remove('is-visible');
+        }
+      }
+    }
+    const addGiftNoteBtn = document.getElementById('add-gift-note-btn');
+    if (addGiftNoteBtn && target.matches('#add-gift-note-btn')) {
+      this.addGiftWrapToCart();
+    }
+    
     if (target.classList.contains('page-overlay')) {
       this.close();
       this.pageOverlayElement.classList.remove('is-visible');
@@ -172,5 +314,3 @@ document.addEventListener('rebuy:cart.add', (event) => {
 document.addEventListener('rebuy:cart.change', (event) => { 
   updateMainCart(Rebuy)
 });
-
-

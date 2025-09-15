@@ -1,4 +1,4 @@
-{{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
+{{ 'component-cart-drawer.css' | asset_url | stylesheet_tag: preload: true }}
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
 
 <header class="header">

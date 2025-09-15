@@ -1,6 +1,16 @@
 <!doctype html>
 <html class="no-js livetheme" lang="{{ request.locale.iso_code }}">
   <head>
+    <script>
+      window.Shopify = window.Shopify || {theme: {id: {{ theme.id }}, role: '{{ theme.role }}' } };
+      window._template = {
+          directory: "{{ template.directory }}",
+          name: "{{ template.name }}",
+          suffix: "{{ template.suffix }}"
+      };
+    </script>
+    <script type="module" blocking="render" fetchpriority="high" src="https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js" async></script>
+    
     <style>
       .main_nav1 {
         opacity: 0.1 !important;
@@ -10,6 +20,7 @@
 
     <!-- Start of Shoplift scripts -->
     {% render 'shoplift' %}
+    {% render 'shoplift-alt-template' %}
     <!-- End of Shoplift scripts -->
 
     <meta name="google-site-verification" content="IVpP462_ffIVedPbcCOwwr4v0yqczNWKVEY2XNhS4b4" />
@@ -21,14 +32,12 @@
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <meta name="google-site-verification" content="tjEDE8k9mNiV-8gqcHIAD9HLahL51PjgqHc0nFOpQLo" />
-	  <meta name="facebook-domain-verification" content="880tuton4kgymbs2q448hzydeyriqd" />
+	<meta name="facebook-domain-verification" content="880tuton4kgymbs2q448hzydeyriqd" />
 
     {% if settings.favicon != blank %}
       <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
     {% endif %}
-    
-    {% comment %} <img width="99999" alt="lcp-image" height="99999" style="pointer-events: none; position: absolute; top: 0; left: 0; width: 99vw; height: 99vh; max-width: 99vw; max-height: 99vh;"  src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHdpZHRoPSI5OTk5OXB4IiBoZWlnaHQ9Ijk5OTk5cHgiIHZpZXdCb3g9IjAgMCA5OTk5OSA5OTk5OSIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48ZyBzdHJva2U9Im5vbmUiIGZpbGw9Im5vbmUiIGZpbGwtb3BhY2l0eT0iMCI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9Ijk5OTk5IiBoZWlnaHQ9Ijk5OTk5Ij48L3JlY3Q+IDwvZz4gPC9zdmc+"> {% endcomment %}
-    
+        
     <title>
       {{ page_title }}
       {% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}
@@ -113,22 +122,22 @@
 
     {% render 'meta-tags' %}
 
-    <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}" as="style" />
-    <link rel="stylesheet" href="{{ 'base.css' | asset_url }}" as="style" />
+    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
     {% render 'css-variables' %}
+    {{ 'cro.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
 
-    {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{ 'cro.css' | asset_url | stylesheet_tag }}
-
-    {% comment %} {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }} {% endcomment %}
+    {% comment %} {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }} {% endcomment %}
     <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
 
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
     <script src="{{ 'micromodal.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'ScrollToPlugin.min.js' | asset_url }}" defer></script>
     <script src="{{ 'global.js' | asset_url }}" defer></script>
     <script data-lazy-scr="{{ 'custom.js' | asset_url }}" defer></script>
 
-    <script data-lazy-src="{{ 'gsap.min.js' | asset_url }}"></script>
     <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
 
     {%- assign content_for_header = content_for_header | replace: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'" -%}
@@ -202,29 +211,19 @@
         window.uetq.push("event", "add_to_cart", {});
       }
     </script>
-    
+
     <!-- Hotjar Tracking Code for https://www.porteandhall.com -->
     <script>
         (function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:2330939,hjsv:6};
+            h._hjSettings={hjid:6477450,hjsv:6};
             a=o.getElementsByTagName('head')[0];
             r=o.createElement('script');r.async=1;
-            r.dataset.lazySrc=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
 
-    <script type="text/javascript"> (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "l8zzeeqfni"); </script>
-    <script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"97168087", enableAutoSpaTracking: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
-    <script>
-       // Add this script right after your base UET tag code
-       window.uetq = window.uetq || [];
-       window.uetq.push('set', { 'pid': { 
-          'em': '{{customer.email}}', // Replace with the variable that holds the user's email address. 
-          'ph': '{{customer.phone}}', // Replace with the variable that holds the user's phone number. 
-       } });
-    </script>
   </head>
 
   <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
@@ -236,7 +235,6 @@
       window.location.href = '/collections/the-innerweave'
     }
     </script>
-
     
     <script>(function(e,t,n){var r,i=e.getElementsByTagName(t)[0];if(e.getElementById(n))return;r=e.createElement(t);r.id=n;r.dataset.lazySrc="https://button.aftership.com/all.js";i.parentNode.insertBefore(r,i)})(document,"script","aftership-jssdk")</script>
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
@@ -313,7 +311,7 @@
           klaviyo.enable("backinstock",{ 
           trigger: {
             product_page_text: "Notify Me When Available",
-            product_page_class: "btn",
+            product_page_class: "bis-new bis-styles btn",
             product_page_text_align: "center",
             product_page_margin: "0px",
             replace_anchor: true
@@ -406,7 +404,6 @@
      .ot-floating-button__front {visibility: hidden;}
    {% endstyle %}
    <script src="{{ 'optimization.js' | asset_url }}" defer></script>
-    
   </body>
 </html>
 

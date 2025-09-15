@@ -581,7 +581,7 @@
                  assign productType = 'area-mat' 
               endif 
             
-              if prod.handle contains productType or prod.handle contains 'outlier'
+              if prod.handle contains productType or prod.handle contains 'outlier' or prod.handle contains 'porter'
               for option in prod.options_with_values
                 assign option_name = option.name | downcase
                 if color_label contains option_name or option_name == 'style'
@@ -619,7 +619,7 @@
                       echo element_classes
                       echo "'"
                       echo "style='background-image: url("
-                      echo swatch_file_name | asset_img_url
+                      echo swatch_file_name | file_url
                       echo ")' data-tooltip='"
                       echo value | escape
                       echo "'></a>"
@@ -695,14 +695,14 @@
                 {% assign productType = 'area-mat' %}
               {% endif %}
               {% for prod in block.settings.collection1.products %}
-                {% if prod.handle contains productType or prod.handle contains 'outlier' %}
+                {% if prod.handle contains productType or prod.handle contains 'outlier' or prod.handle contains 'porter' %}
                   {% assign currentProduct = prod %}
                   {% break %}
                 {% endif %}
               {% endfor %}
 
               <div class="price_rating">
-                <p>{{ currentProduct.price | money_without_trailing_zeros }}</p>
+                <p class="igPrice" data-product-id="{{ currentProduct.id }}">{{ currentProduct.price | money_without_trailing_zeros }}</p>
                 
                 <span class="blue"> | </span>
   

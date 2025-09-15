@@ -298,9 +298,11 @@
     text-transform: uppercase;
   }
 
-  #shopify-section-template--14546745786431__product_carousel_2_nFt3hG, 
-  #shopify-section-template--16009850617919__product_carousel_2_nFt3hG,
-  #shopify-section-template--16240883793983__product_carousel_2_nFt3hG {
+  #shopify-section-template--16866356691007__product_carousel_2_nFt3hG,
+  #shopify-section-template--16866356691007__product_carousel_2_nFt3hG,
+  #shopify-section-template--16866358034495__product_carousel_2_nFt3hG,
+  #shopify-section-template--16905855270975__product_carousel_2_nFt3hG,
+  #shopify-section-template--16905854976063__product_carousel_2_nFt3hG {
     display: none !important;
   }
 
@@ -443,9 +445,11 @@
   }
 
   @media (max-width:989px){
-    #shopify-section-template--14546745786431__product_carousel_2_nFt3hG,
-    #shopify-section-template--16009850617919__product_carousel_2_nFt3hG,
-    #shopify-section-template--16240883793983__product_carousel_2_nFt3hG {
+    #shopify-section-template--16866356691007__product_carousel_2_nFt3hG,
+    #shopify-section-template--16866356691007__product_carousel_2_nFt3hG,
+    #shopify-section-template--16866358034495__product_carousel_2_nFt3hG,
+    #shopify-section-template--16905855270975__product_carousel_2_nFt3hG,
+    #shopify-section-template--16905854976063__product_carousel_2_nFt3hG {
       display: block !important;
     }
 
@@ -754,7 +758,7 @@
                       echo element_classes
                       echo "'"
                       echo "style='background-image: url("
-                      echo swatch_file_name | asset_img_url
+                      echo swatch_file_name | file_url
                       echo ")' data-tooltip='"
                       echo value | escape
                       echo "'></a>"
@@ -803,7 +807,7 @@
                 </div>
               <div class="title-swatch_container">
                 <h6>{{ block.settings.title }}</h6>
-                <p class="hide-mobile">{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
+                <p class="hide-mobile igPrice" data-product-id="{{ all_products[block.settings.product].id }}">{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
               </div>
               <div class="flex-swatch">
                 <div class="hide-large swatch_container">

@@ -546,9 +546,16 @@ var QuantityInput = class extends HTMLElement {
   }
 
   onInputChange(event) {
-      // update connected form
-      this.connectedForm.querySelector("input[name='quantity']").value = event.target.value
+    if (this.connectedForm) {
+      const quantityInput = this.connectedForm.querySelector("input[name='quantity']");
+      if (quantityInput) {
+        quantityInput.value = event.target.value;
+      }
+    } else {
+      console.warn("connectedForm is not defined");
+    }
   }
+
 }
 
 customElements.define('quantity-input', QuantityInput);
@@ -914,6 +921,49 @@ var ProductCarouselNew = class extends HTMLElement {
 }
 
 customElements.define('product-carousel-new', ProductCarouselNew)
+
+var ProductCarouselNew2 = class extends HTMLElement {
+  constructor(){
+    super();
+
+    this.section_id = this.querySelector(`.swiper`).id
+    this.pagination = this.querySelector(`.swiper-pagination`)
+     const swiper_options = {  
+      spaceBetween: 10,
+      slidesPerView: 2.2,
+      loop: true,
+      draggable: true,
+      centeredSlides: false,
+      pagination: {
+        el: this.pagination,
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        768: {
+          spaceBetween: 20,
+          loop: false,
+          centeredSlides: false,
+          slidesPerView: 4,
+        },
+      },
+    }
+
+    if (!this.classList.contains("swiper-initialized")){
+      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+    }
+
+  }
+
+  initializeCarousel(swipe, options) {
+    const productSwiper = new Swiper(swipe, options);
+  }
+}
+
+customElements.define('product-carousel-new-two', ProductCarouselNew2)
 
 var ImageCarousel = class extends HTMLElement {
   constructor(){
@@ -1462,17 +1512,60 @@ var ProductFeature = class extends HTMLElement {
 customElements.define('product-feature', ProductFeature);
 
 const accordionItems = document.querySelectorAll('.faq__question');
-  accordionItems.forEach((accordion) => {
-    accordion.addEventListener('click', (event) => {
-      const parent = accordion.parentElement;
-      const content = accordion.nextElementSibling;
+accordionItems.forEach((accordion) => {
+  accordion.addEventListener('click', (event) => {
+    const parent = accordion.parentElement;
+    const content = accordion.nextElementSibling;
 
-      if (!parent.classList.contains('active')) {
-        parent.classList.add('active');
-        slideDown(content, 400);
+    if (!parent.classList.contains('active')) {
+      parent.classList.add('active');
+      slideDown(content, 400);
+    } else {
+      parent.classList.remove('active');
+      slideUp(content, 400);
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  if (typeof gsap === "undefined" || !gsap.plugins.scrollTo) {
+    console.error("GSAP or ScrollToPlugin not loaded!");
+    return;
+  }
+
+  const HEADER_HEIGHT = document.querySelector('.header')?.offsetHeight ?? 0; 
+  document.querySelectorAll(".scroll__button").forEach(function (button) {
+    button.addEventListener("click", function () {
+      const target = document.querySelector(".Designer_Program_Main");
+      if (target) {
+        gsap.to(window, {
+          scrollTo: {
+            y: target, 
+            offsetY: HEADER_HEIGHT,
+          },
+          duration: 1,
+          ease: "power2.out",
+        });
       } else {
-        parent.classList.remove('active');
-        slideUp(content, 400);
+        console.error("Target section not found!");
       }
     });
   });
+});
+
+/* document.addEventListener("DOMContentLoaded", (event) => {
+  const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust based on your fixed header height
+  document.querySelectorAll(".scroll__button").forEach(function(button) {
+    button.addEventListener("click", function() {
+      console.log('Clicked');
+      const target = document.querySelector(".Designer_Program_Main");
+      if (target) {
+        const offsetTop = target.offsetTop - HEADER_HEIGHT;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth"
+        });
+      }
+    });
+  });
+}); */

@@ -33,7 +33,7 @@
       alt="{{ image.alt | escape }}"
       height="{{ imgHeight }}"
       width="{{ imgWidth }}"
-      loading="lazy"
+      {% if forloop_index > 1 %}loading="lazy"{%endif %}
       aria-label="{{ ariaLabel }}"
       class="lazyload{% if blur %} lazyload--blur{% endif %}{% if fade %} lazyload--fade{% endif %}"
     >

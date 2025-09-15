@@ -5,7 +5,7 @@
 .collection-hero__inner {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
 }
 
 .collection-hero--with-image .collection-hero__inner {
@@ -41,7 +41,7 @@
 }
 
 .collection-hero__title {
-  margin: 5rem 0 0;
+  margin: 4rem 0 0;
 }
 
 .collection-hero__title + .collection-hero__description {
@@ -75,6 +75,9 @@
 @media screen and (max-width: 768px) {
   .collection-hero__image-container {
     height: 20rem;
+  }
+  .collection-hero__title {
+    margin: 32px 0 0;
   }
 }
 

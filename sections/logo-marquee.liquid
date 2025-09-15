@@ -1,4 +1,4 @@
-{{ 'section-logo-marquee.css' | asset_url | stylesheet_tag }}
+{{ 'section-logo-marquee.css' | asset_url | stylesheet_tag: preload: true }}
 
 <section
   data-section-id="{{ section.id }}"

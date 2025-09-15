@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "breadcrumbs_yDykEc": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "#f4f2ee",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 0
+      }
+    },
     "main": {
       "type": "main-product-accordion",
       "custom_css": [
@@ -63,7 +74,7 @@
             "check1": "Indoor and outdoor",
             "check2": "Stain-resistant",
             "check3": "Soft, woven texture",
-            "check4": "",
+            "check4": "Doesn't shed",
             "link_text": "",
             "link_url": ""
           }
@@ -84,12 +95,30 @@
             "link_text": "",
             "link_url": ""
           }
+        },
+        "block_WMzwR3": {
+          "type": "block",
+          "settings": {
+            "title": "The Porter",
+            "badge1": "Outdoor",
+            "product1_title": "The Porter",
+            "collection1": "the-porter-standard",
+            "product1": "the-porter-greystone-standard",
+            "product_image1": "shopify://shop_images/Porter_Collections_mobile_2x_1f5f9730-4538-4c48-ae48-9f77e19a7552.jpg",
+            "check1": "Hand-knotted, one-of-a-kind design",
+            "check2": "Premium all-weather yarns ",
+            "check3": "Stain- and fade-resistant",
+            "check4": "Traps dirt, rinses clean",
+            "link_text": "",
+            "link_url": ""
+          }
         }
       },
       "block_order": [
         "block_wcQHYU",
         "block_pgGtGT",
-        "block_pdi6Ua"
+        "block_pdi6Ua",
+        "block_WMzwR3"
       ],
       "settings": {
         "title": "Shop our other collections",
@@ -234,7 +263,10 @@
       "blocks": {
         "judge_me_reviews_review_widget_GBTbQT": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200
+          }
         }
       },
       "block_order": [
@@ -256,30 +288,6 @@
         "button_text": "Shop now",
         "bottom_button_text": "",
         "bottom_button_link": ""
-      }
-    },
-    "fan-motif": {
-      "type": "fan-motif-section",
-      "settings": {
-        "hide_desktop": false,
-        "hide_mobile": false,
-        "color": "green",
-        "alignment": "left",
-        "heading": "First impressions matter.\nFor both you and your visitors.",
-        "text": "Just like a clean desk or freshly-made bed, coming home to a beautiful and functional entryway is restorative and uplifting. We aim to turn these often ovelooked areas of our homes into inspired areas that welcome and invite us home.",
-        "link": "shopify://pages/about-us",
-        "link_text": "LEARN MORE ABOUT US",
-        "image": "shopify://shop_images/door_illustration.png",
-        "show_faq": true,
-        "title_1": "",
-        "title_richtext_1": "",
-        "answer_1": "",
-        "title_2": "",
-        "title_richtext_2": "",
-        "answer_2": "",
-        "title_3": "",
-        "title_richtext_3": "",
-        "answer_3": ""
       }
     },
     "featured-articles": {
@@ -318,6 +326,7 @@
     }
   },
   "order": [
+    "breadcrumbs_yDykEc",
     "main",
     "other-sizes",
     "lp_custom_collections_2_ABDk4m",
@@ -331,7 +340,6 @@
     "reviews",
     "168172537899ce8b94",
     "you-may-like",
-    "fan-motif",
     "featured-articles"
   ]
 }
