@@ -125,6 +125,28 @@
         "collection": "the-outlier"
       }
     },
+    "faq_JL8LLC": {
+      "type": "faq",
+      "blocks": {
+        "faq_x7JUT7": {
+          "type": "faq",
+          "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
+          "settings": {
+            "title": "{{ block.repeater.question.value }}",
+            "title_richtext": "",
+            "answer": "{{ block.repeater.answer | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "faq_x7JUT7"
+      ],
+      "settings": {
+        "heading": "The Porter",
+        "anchor": "porter",
+        "collection": "the-porter-standard"
+      }
+    },
     "b20d4531-7798-44fa-bb09-292ee77ec20f": {
       "type": "faq",
       "blocks": {
@@ -339,6 +361,7 @@
     "30a17b90-f055-4dc2-b0f1-33ee82ab7faf",
     "eb2cc5d6-0330-47f5-ac0d-50ab29549fc4",
     "3c29aadf-96d8-4980-b0d6-b26e09356fe8",
+    "faq_JL8LLC",
     "b20d4531-7798-44fa-bb09-292ee77ec20f",
     "b580a5ec-04b2-46fb-9acf-feb6427ec1c7",
     "61ca12bd-ea14-4d79-ae73-033056129a3a"
