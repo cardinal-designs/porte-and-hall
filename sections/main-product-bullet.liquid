@@ -56,7 +56,7 @@
               endif
             endcomment
             echo "<a href='"
-            echo swatch_link | default: swatch.variants[0].url
+            echo swatch_link | default: swatch.variants[0].url | append: '?view=bullet-description'
             echo "' class='"
             echo element_classes
             echo "'"
