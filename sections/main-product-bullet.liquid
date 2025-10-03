@@ -414,7 +414,7 @@
                 <a 
                   style="order: {{ active_order }};"
                   class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button active" 
-                  href="{{ product.url }}"
+                  href="{{ product.url }}?view=bullet-description"
                 >
                   {% if product_size == 'XL Area Mat' %}
                     <span>Area Mat</span>
@@ -462,7 +462,7 @@
                     <a 
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == 'XL Area Mat'  %}7{% endif %} ;"
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
-                      href="{{ match.first.url }}"
+                      href="{{ match.first.url }}?view=bullet-description"
                     >
                       {% if current_size.last == 'XL Area Mat' %}
                         <span>Area Mat</span>
@@ -520,7 +520,7 @@
                {%- capture other_size_links -%}
                 <a 
                   class="other-sizes__button active" 
-                  href="{{ product.url }}"
+                  href="{{ product.url }}?view=bullet-description"
                 >
                   <span>{{ product_size }}</span>
                   <span class="other-sizes__dimension">21" x 36"</span>
