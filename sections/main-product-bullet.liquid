@@ -151,11 +151,11 @@
           
         </div>
 
-        {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
+        {% comment %} {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
           <div class="product__description 123 body blue">
             {{ grouped_collection.metafields.custom.short_description | default: product.description }}
           </div>
-        {% endif %}
+        {% endif %} {% endcomment %}
         {% unless section.settings.hide_dimensions == true %}
         <div class="product__dimensions--wrapper">
           <div class="dimensions__button">
@@ -657,6 +657,7 @@
       {% endcomment %}
 
       {% comment %}ACCORDION BEGINS{% endcomment %}
+       {{grouped_collection.title }}
       <pdp-accordion class="product-accordion__container">
         {% if grouped_collection.metafields.custom.product_bullet_description != blank %}
          <div class="accordion">
