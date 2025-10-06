@@ -3692,6 +3692,12 @@ iframe#preview-bar-iframe {
   display: none !important;
 }
 
+@media (max-width: 768px) {
+  .product__price-reviews-wrapper .price .h3 .price-item--regular span {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 767px) {
   .jdgm-rev-widg
     .jdgm-rev-widg__summary-inner
