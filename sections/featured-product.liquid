@@ -139,8 +139,10 @@
             {{ product.metafields.judgeme.badge }} 
           </div> 
           {% comment %} End of Judge.me code {% endcomment %}
+          
+        </div>
 
-          {% if customer and customer.b2b? %}
+        {% if customer and customer.b2b? %}
           {% liquid
             assign target = product.selected_or_first_available_variant
             assign price = target.price
@@ -165,8 +167,6 @@
             </div>
           {% endif %}
         {% endif %}
-          
-        </div>
 
         {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
           <div class="product__description 123 body blue">
