@@ -85,7 +85,7 @@
       <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
     {% endif %}
 
-    <div class="cart-item__bottom">
+    <div class="cart-item__bottom {% if customer and customer.b2b? %}cart-item__trade-bottom{% endif %}">
 
       <div class="cart-item__quantity">
         <quantity-input class="quantity">
