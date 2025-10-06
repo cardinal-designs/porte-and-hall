@@ -31,12 +31,22 @@
   <div class="product-card__container">
     <p class="product-card__title">{{ product_card_product.title }}</p>
     <div class="product-card__content">
-      <p class="product-card__price">
-        {% if product_card_product.compare_at_price > product_card_product.price %}
-          <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
-        {% endif %}
-        {{ product_card_product.price | money_without_trailing_zeros }}
-      </p>
+      {% if customer and customer.b2b? %}
+        {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
+        <p class="product-card__price">
+          {% if original_price > 0 %}
+            <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>
+          {% endif %}
+          {{ product_card_product.price | money_without_trailing_zeros }}
+        </p>
+      {% else %}
+        <p class="product-card__price">
+          {% if product_card_product.compare_at_price > product_card_product.price %}
+            <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
+          {% endif %}
+          {{ product_card_product.price | money_without_trailing_zeros }}
+        </p>
+      {% endif %}
     </div>
   </div>
 </div>
