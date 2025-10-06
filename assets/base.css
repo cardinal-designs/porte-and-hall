@@ -3656,6 +3656,29 @@ iframe#preview-bar-iframe {
   text-decoration: underline;
 }
 
+.cart-item__trade-price .cart-item__discounted-prices {
+  display: block;
+}
+
+.cart-item__trade-price {
+  position: relative;
+}
+
+.cart-item__trade-price .cart-item__old-price.price {
+  color: var(--blue-secondary);
+  position: absolute;
+  right: 0;
+  top: auto;
+  bottom: 35px;
+}
+
+.cart-item__trade-price .price.price--end span{
+  letter-spacing: 0;
+  color: var(--blue-secondary);
+  font-weight: 500;
+  margin-right: 5px;
+}
+
 .jdgm-carousel-wrapper .jdgm-carousel-item__review {
   height: auto !important;
 }
