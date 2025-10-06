@@ -151,11 +151,13 @@
           
         </div>
 
-        {% comment %} {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
+        
+
+        {% if grouped_collection.metafields.custom.product_bullet_description != blank %}
           <div class="product__description 123 body blue">
-            {{ grouped_collection.metafields.custom.short_description | default: product.description }}
+            {{ grouped_collection.metafields.custom.product_bullet_description| metafield_tag }}
           </div>
-        {% endif %} {% endcomment %}
+        {% endif %}
         {% unless section.settings.hide_dimensions == true %}
         <div class="product__dimensions--wrapper">
           <div class="dimensions__button">
@@ -658,7 +660,7 @@
 
       {% comment %}ACCORDION BEGINS{% endcomment %}
       <pdp-accordion class="product-accordion__container">
-        {% if grouped_collection.metafields.custom.product_bullet_description != blank %}
+        {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
          <div class="accordion">
            <div data-id="1" class="accordion-title">
              <h3>Description</h3>
@@ -667,7 +669,7 @@
            <div data-id="1" class="accordion-content">
             <div class="swiper-slide">
               <div class="product__tabs-item body-sm">
-                {{ grouped_collection.metafields.custom.product_bullet_description| metafield_tag }}
+                {{ grouped_collection.metafields.custom.short_description | default: product.description }}
               </div>
             </div>
            </div>
