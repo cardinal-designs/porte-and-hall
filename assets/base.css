@@ -3699,7 +3699,7 @@ iframe#preview-bar-iframe {
 }
 
 @media (max-width: 767px) {
-  
+
   .jdgm-rev-widg
     .jdgm-rev-widg__summary-inner
     .jdgm-rev-widg__summary-stars
@@ -3719,6 +3719,24 @@ iframe#preview-bar-iframe {
   .jdgm-rev-widg {
     padding: 24px 0;
   }
+
+  .cart-item__trade-price .cart-item__old-price.price {
+    position: relative;
+    bottom: 0;
+    display: block;
+    margin: 0;
+  }
+
+  .cart-item__price.cart-item__trade-price .price {
+    flex-direction: row-reverse;
+    font-size: 15px;
+  }
+
+  .cart-item__bottom.cart-item__trade-bottom {
+    flex-direction: column;
+    align-items: start;
+  }
+  
 }
 /* Judge.me Review css End */
 
