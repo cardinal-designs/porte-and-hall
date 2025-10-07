@@ -209,7 +209,8 @@
         "text": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_subhead | metafield_tag }}</p>",
         "link": "shopify://pages/ideas-inspiration",
         "link_text": "Get more inspiration >",
-        "bg_color": "{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}"
+        "bg_color": "{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}",
+        "hide_mobile": true
       }
     },
     "styling-tips": {
@@ -265,6 +266,8 @@
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "review_data": "sample_data",
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget",
             "max_width": 1200
           }
         }
