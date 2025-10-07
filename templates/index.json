@@ -143,7 +143,7 @@
         "background": "",
         "show_metafield_style": false,
         "collection": "best-sellers-limited",
-        "product_card_type": "standard_card",
+        "product_card_type": "video_card",
         "button_text": "Shop Now",
         "btn_link": "shopify://collections/best-sellers"
       }
@@ -212,7 +212,8 @@
       ],
       "settings": {
         "title": "Shop our collections",
-        "subtitle": ""
+        "subtitle": "",
+        "hide_desktop": true
       }
     },
     "40919de2-f3c2-45da-99ff-c69ad3e95306": {
@@ -256,7 +257,8 @@
         "84f650fc-6ea8-4c6e-b15b-4a27b75e7476"
       ],
       "settings": {
-        "title": "Meet our collections"
+        "title": "Meet our collections",
+        "hide_mobile": true
       }
     },
     "fd8fd5d7-6d77-45a1-8718-85dc6bc781d2": {
@@ -791,7 +793,8 @@
         "heading": "Hit the ground stunning:\nThe Porte + Hall blog",
         "background": "",
         "blog": "news",
-        "show_recent_articles": true
+        "show_recent_articles": true,
+        "hide_mobile": false
       }
     },
     "542bd631-99ef-452b-91d4-02d612f961a0": {
