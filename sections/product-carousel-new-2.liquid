@@ -143,69 +143,112 @@
 (function () {
   const section = document.getElementById('shopify-section-{{ section.id }}');
   if (!section) return;
-
   const videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
   if (!videos.length) return;
 
-  // ————— Utils —————
-  const isVisible = el =>
-    el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden';
+  // ---------- Helpers ----------
+  const isVisible = el => el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden';
 
-  // Try hard to get a usable image URL from the card for the poster
-  function getPosterURL(videoEl) {
-    const box = videoEl.closest('.product-card__image') || videoEl.parentElement;
+  function extractImageURL(box) {
     if (!box) return '';
-
-    // Prefer the featured image the snippet renders (any <img> inside the image box)
-    const img = box.querySelector('img');
-    if (!img) return '';
-
-    // Try currentSrc, else src, else data-* attributes, else first url from srcset
-    let url = img.currentSrc || img.src || img.getAttribute('data-src') || '';
-    if (!url) {
-      const ds = img.getAttribute('data-srcset') || img.getAttribute('srcset') || '';
-      if (ds) {
-        const first = ds.split(',')[0];
-        if (first) url = first.trim().split(' ')[0];
+    // Prefer the first <img> in the image box (works for lazy-image output, picture/img, etc.)
+    const img = box.querySelector('img') || box.querySelector('source') || null;
+    if (img) {
+      let url = img.currentSrc || img.src || img.getAttribute('data-src') || '';
+      if (!url) {
+        const ss = img.getAttribute('srcset') || img.getAttribute('data-srcset') || '';
+        if (ss) {
+          const first = ss.split(',')[0];
+          if (first) url = first.trim().split(' ')[0];
+        }
       }
+      if (url) return url;
     }
-    return url || '';
+    // Fallback: some themes set a background-image on a wrapper
+    const bgEl = box.querySelector('[style*="background-image"]');
+    if (bgEl) {
+      const m = getComputedStyle(bgEl).backgroundImage.match(/url\(["']?(.+?)["']?\)/);
+      if (m && m[1]) return m[1];
+    }
+    return '';
   }
 
-  function visibleVideos() {
-    return videos.filter(isVisible);
+  function ensureContainerStyles(box) {
+    const cs = getComputedStyle(box);
+    if (cs.position === 'static') box.style.position = 'relative';
   }
 
-  function pauseAndShowPoster(v) {
-    try { v.pause(); } catch (_) {}
-    // Force the poster to show again
-    // (load() resets the element to its poster state)
-    try { v.load(); } catch (_) {}
+  function makeOverlayFor(videoEl) {
+    const box = videoEl.closest('.product-card__image') || videoEl.parentElement;
+    if (!box) return null;
+    ensureContainerStyles(box);
+
+    // reuse if already exists
+    let ov = box.querySelector('.video-fallback');
+    if (!ov) {
+      ov = document.createElement('div');
+      ov.className = 'video-fallback';
+      ov.style.position = 'absolute';
+      ov.style.inset = '0';
+      ov.style.backgroundSize = 'cover';
+      ov.style.backgroundPosition = 'center';
+      ov.style.backgroundRepeat = 'no-repeat';
+      ov.style.transition = 'opacity 180ms ease';
+      ov.style.opacity = '1';
+      ov.style.zIndex = '2'; // ON TOP of the video
+      box.appendChild(ov);
+    }
+
+    const url = extractImageURL(box);
+    if (url) ov.style.backgroundImage = `url("${url}")`;
+
+    // Make sure the video sits underneath and covers
+    Object.assign(videoEl.style, {
+      position: 'absolute',
+      inset: '0',
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      zIndex: '1',
+      background: 'transparent'
+    });
+
+    return ov;
   }
 
-  // ————— Prep videos —————
+  function showOverlay(ov) { if (ov) { ov.style.opacity = '1'; ov.style.pointerEvents = 'none'; } }
+  function hideOverlay(ov) { if (ov) { ov.style.opacity = '0'; ov.style.pointerEvents = 'none'; } }
+
+  // ---------- Prep videos + overlays ----------
+  const overlayMap = new Map(); // video -> overlay
+
   videos.forEach(v => {
-    v.loop = false;            // we need 'ended'
+    // neutralize attributes we don't want but keep your Liquid output
+    v.removeAttribute('loop');     // MUST be off to get 'ended'
     v.muted = true;
-    v.autoplay = false;        // controlled by script
+    v.autoplay = false;            // we’ll control start
     v.playsInline = true;
     v.preload = v.preload || 'metadata';
-    v.style.objectFit = 'cover'; // keeps poster/video covered
 
-    // Attach poster (once)
-    const poster = getPosterURL(v);
-    if (poster) v.poster = poster;
+    const ov = makeOverlayFor(v);
+    overlayMap.set(v, ov);
+    showOverlay(ov);
 
-    // If user taps to play, keep only one playing and hide poster automatically
+    // User interactions (if they tap)
     v.addEventListener('play', () => {
-      videos.forEach(other => { if (other !== v) pauseAndShowPoster(other); });
+      videos.forEach(other => {
+        if (other !== v) { try { other.pause(); } catch(_) {}; showOverlay(overlayMap.get(other)); }
+      });
+      hideOverlay(overlayMap.get(v));
     }, { passive: true });
 
-    // If user pauses before end, revert to poster
-    v.addEventListener('pause', () => { if (!v.ended) pauseAndShowPoster(v); }, { passive: true });
+    v.addEventListener('pause', () => {
+      if (!v.ended) showOverlay(overlayMap.get(v));
+    }, { passive: true });
   });
 
-  // ————— Sequencing (mobile only since desktop videos are hidden) —————
+  // ---------- Sequencing ----------
+  const visibleVideos = () => videos.filter(isVisible);
   let seq = [], idx = 0;
 
   function rebuild() {
@@ -220,52 +263,47 @@
     idx = (i + seq.length) % seq.length;
     const current = seq[idx];
 
-    // Ensure all others show their poster
-    videos.forEach(v => { if (v !== current) pauseAndShowPoster(v); });
+    // others -> pause + overlay
+    videos.forEach(v => { if (v !== current) { try { v.pause(); } catch(_) {}; showOverlay(overlayMap.get(v)); } });
 
-    // Restart current at 0 and play
+    // this one -> hide overlay + play from 0
+    hideOverlay(overlayMap.get(current));
     try { if (current.ended || current.currentTime > 0) current.currentTime = 0; } catch(_) {}
     const p = current.play();
-    if (p && p.catch) p.catch(() => { /* autoplay block - ignore */ });
+    if (p && p.catch) p.catch(() => {}); // ignore autoplay promise errors
 
-    // Listen once, then advance
+    // listen once
     seq.forEach(v => v.removeEventListener('ended', handleEnded));
     current.addEventListener('ended', handleEnded, { once: true });
   }
 
   function handleEnded() {
-    // Show poster for the one that just finished
-    const v = seq[idx];
-    if (v) pauseAndShowPoster(v);
-    // Advance to next
-    // Small timeout helps browsers render poster before next play
-    setTimeout(() => playAt(idx + 1), 0);
+    const justEnded = seq[idx];
+    if (justEnded) showOverlay(overlayMap.get(justEnded));
+    playAt(idx + 1);
   }
 
-  // Recalculate when viewport changes (mobile/desktop swap)
+  // viewport changes (mobile vs desktop)
   const mq = window.matchMedia('(max-width: 575px)');
   const onChange = () => { rebuild(); if (seq.length) playAt(idx); };
   if (mq && mq.addEventListener) mq.addEventListener('change', onChange);
   else window.addEventListener('resize', () => requestAnimationFrame(onChange));
 
-  // Initial state: everyone shows their poster until it's their turn
-  videos.forEach(pauseAndShowPoster);
+  // ---------- Start ----------
+  // show overlays on all, then begin
+  videos.forEach(v => showOverlay(overlayMap.get(v)));
 
-  // Start once metadata is available so durations/states are sane
   const start = () => { rebuild(); if (seq.length) playAt(0); };
   if (videos.some(v => v.readyState < 1)) {
     let left = videos.length, started = false;
     const done = () => { if (!started && --left <= 0) { started = true; start(); } };
     videos.forEach(v => {
       if (v.readyState >= 1) done();
-      else { v.addEventListener('loadedmetadata', done, { once: true }); setTimeout(done, 1500); }
+      else { v.addEventListener('loadedmetadata', done, { once: true }); setTimeout(done, 1200); }
     });
   } else {
     start();
   }
-
-  // ——— Debug helper (optional): uncomment to verify posters are set ———
-  // videos.forEach((v,i) => console.log('video', i, 'poster:', v.poster));
 })();
 </script>
 
