@@ -88,13 +88,6 @@
     top: 19%;
   }
  }
-
- .product-card__image { position: relative; }
-.product-card__image video.carousel-new-2__video,
-.product-card__image img.img-fill {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-}
-.product-card__image img.img-fill { transition: opacity 0.25s ease; }
 {% endstyle %}
 
 <div class="product-carousel__inner product-carousel__new">
@@ -148,80 +141,57 @@
 
 <script>
 (function () {
+  // Scope to this section only
   const section = document.getElementById('shopify-section-{{ section.id }}');
   if (!section) return;
 
-  const allVideos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
-  if (!allVideos.length) return;
+  // Collect only the videos for this carousel section.
+  // NOTE: product card markup uses class `carousel-new-2__video` (and "hide-desktop" for desktop),
+  // and (unfortunately) repeats id="video" — we'll ignore ids and use the class.
+  const allVideos = Array.from(
+    section.querySelectorAll('video.carousel-new-2__video')
+  );
 
-  // Only sequence videos that are actually visible (mobile)
+  if (!allVideos.length) return; // nothing to do if there are no videos
+
+  // Helper: consider only *visible* videos (e.g., not hidden on desktop with .hide-desktop)
   const visibleVideos = () =>
-    allVideos.filter(v => v.offsetParent !== null && getComputedStyle(v).visibility !== 'hidden');
+    allVideos.filter(v => {
+      // If element or any ancestor is display:none, offsetParent will be null.
+      if (v.offsetParent === null) return false;
+      // Additionally guard against visibility:hidden
+      const cs = getComputedStyle(v);
+      return cs.visibility !== 'hidden' && cs.display !== 'none' && cs.opacity !== '0';
+    });
 
-  // Grab the mobile-hidden placeholder image from the same card
-  function getPlaceholderFor(videoEl) {
-    const wrap = videoEl.closest('.product-card__image');
-    if (!wrap) return null;
-    // Prefer the featured media image the snippet renders with classes 'img-fill hide-mobile'
-    // (works with <img> or <picture> -> <img>)
-    let img = wrap.querySelector('img.img-fill.hide-mobile');
-    if (!img) {
-      // fallback: any img with hide-mobile
-      img = wrap.querySelector('img.hide-mobile');
-    }
-    return img;
-  }
-
-  function reallyShow(el) {
-    // remove class-based hiding and hard-override display
-    el.classList.remove('hide-mobile');
-    el.style.opacity = '1';
-    el.style.removeProperty('display');
-    el.style.setProperty('display', 'block', 'important');
-    el.removeAttribute('aria-hidden');
-  }
-
-  function reallyHide(el) {
-    // add class back so CSS handles it; keep opacity for fade
-    el.classList.add('hide-mobile');
-    el.style.opacity = '0';
-    el.setAttribute('aria-hidden', 'true');
-  }
-
-  function showPlaceholder(imgEl) { if (imgEl) reallyShow(imgEl); }
-  function hidePlaceholder(imgEl) { if (imgEl) reallyHide(imgEl); }
-
+  // Ensure only one is ever playing
   function pauseOthers(except) {
     allVideos.forEach(v => {
       if (v !== except) {
         try { v.pause(); } catch (e) {}
-        showPlaceholder(getPlaceholderFor(v));
       }
     });
   }
 
-  // Prep videos
+  // Prepare videos: turn off loop (Liquid set loop:true), force muted/inline, and wire events
   allVideos.forEach(v => {
-    v.loop = false;
-    v.muted = true;
-    v.autoplay = false;
-    v.playsInline = true;
+    v.loop = false;         // critical: we need 'ended' to fire
+    v.muted = true;         // allow autoplay on most browsers
+    v.autoplay = false;     // we'll control autoplay manually
+    v.playsInline = true;   // iOS
     v.preload = v.preload || 'metadata';
 
-    v.addEventListener('play', () => {
-      pauseOthers(v);
-      hidePlaceholder(getPlaceholderFor(v));
-    }, { passive: true });
-
-    v.addEventListener('pause', () => {
-      if (!v.ended) showPlaceholder(getPlaceholderFor(v));
-    }, { passive: true });
+    // If user manually taps a video, still enforce "only one at a time"
+    v.addEventListener('play', () => pauseOthers(v), { passive: true });
   });
 
-  // Sequencing
-  let idx = 0, seq = [];
+  let idx = 0;         // current index into the *visible* list
+  let seq = [];        // cached list of visible videos in DOM order
+
   function rebuildSequence() {
+    // Refresh the visible set (e.g., viewport size changed between mobile/desktop)
     seq = visibleVideos();
+    // If current idx goes out of bounds after a resize, reset to 0
     if (idx >= seq.length) idx = 0;
   }
 
@@ -232,48 +202,87 @@
     idx = (i + seq.length) % seq.length;
     const current = seq[idx];
 
+    // Make sure others are paused
     pauseOthers(current);
-    hidePlaceholder(getPlaceholderFor(current));
 
-    try { if (current.ended || current.currentTime > 0) current.currentTime = 0; } catch(e) {}
+    try {
+      // Some browsers need a seek to 0 to ensure we replay after 'ended'
+      if (current.ended || current.currentTime > 0) current.currentTime = 0;
+    } catch (e) {}
 
+    // Try to play; ignore auto-play promise errors silently
     const p = current.play();
-    if (p && p.catch) p.catch(() => {});
+    if (p && typeof p.catch === 'function') p.catch(() => { /* ignore */ });
 
+    // To avoid stacking multiple listeners, remove old then add once
     seq.forEach(v => v.removeEventListener('ended', handleEnded));
     current.addEventListener('ended', handleEnded, { once: true });
   }
 
   function handleEnded() {
-    const endedVideo = seq[idx];
-    if (endedVideo) showPlaceholder(getPlaceholderFor(endedVideo));
+    // Advance to the next visible video, wrapping to the start
     playAt(idx + 1);
   }
 
-  // Viewport changes -> rebuild
+  // If the viewport changes (e.g., desktop ↔ mobile), the visible set changes
   const mq = window.matchMedia('(max-width: 575px)');
-  const onViewportChange = () => { rebuildSequence(); playAt(idx); };
-  if (mq && mq.addEventListener) {
-    mq.addEventListener('change', onViewportChange);
+  if (mq && typeof mq.addEventListener === 'function') {
+    mq.addEventListener('change', () => {
+      // Rebuild and restart the sequence gracefully on viewport change
+      rebuildSequence();
+      playAt(idx);
+    });
   } else {
+    // Fallback: rebuild on resize
     window.addEventListener('resize', () => {
-      if (onViewportChange._rAF) cancelAnimationFrame(onViewportChange._rAF);
-      onViewportChange._rAF = requestAnimationFrame(onViewportChange);
+      // Throttle via rAF
+      if (playAt._resizeTick) cancelAnimationFrame(playAt._resizeTick);
+      playAt._resizeTick = requestAnimationFrame(() => {
+        rebuildSequence();
+        playAt(idx);
+      });
     });
   }
 
-  // Initialize: make sure every card shows its image until it’s that card’s turn
-  allVideos.forEach(v => showPlaceholder(getPlaceholderFor(v)));
+  // Optional (nice-to-have): if your Swiper changes slides programmatically, keep enforcing single play
+  section.addEventListener('click', (e) => {
+    // If a user interacts with a visible video link/container, re-enforce "one playing"
+    const vid = e.target.closest && e.target.closest('video.carousel-new-2__video');
+    if (vid) pauseOthers(vid);
+  }, { capture: true });
 
-  // Start after metadata
-  const start = () => { rebuildSequence(); if (seq.length) playAt(0); };
+  // Kick it off on load: wait for metadata so durations are known
+  // Start at the first visible video; if none visible yet (e.g. fonts/CLS), retry once on next tick
+  const start = () => {
+    rebuildSequence();
+    if (!seq.length) {
+      requestAnimationFrame(start);
+      return;
+    }
+    // Ensure we listen for 'ended' from the very start
+    seq.forEach(v => v.removeEventListener('ended', handleEnded));
+    playAt(0);
+  };
+
+  // If all videos already have metadata, start immediately; otherwise wait
   const needMeta = allVideos.some(v => v.readyState < 1);
   if (needMeta) {
     let pending = allVideos.length, started = false;
-    const onMeta = () => { if (!started && --pending <= 0) { started = true; start(); } };
+    const onMeta = () => {
+      pending -= 1;
+      if (!started && pending <= 0) {
+        started = true;
+        start();
+      }
+    };
     allVideos.forEach(v => {
-      if (v.readyState >= 1) onMeta();
-      else { v.addEventListener('loadedmetadata', onMeta, { once: true }); setTimeout(onMeta, 1500); }
+      if (v.readyState >= 1) {
+        onMeta();
+      } else {
+        v.addEventListener('loadedmetadata', onMeta, { once: true });
+        // Safety timeout in case some never fire
+        setTimeout(onMeta, 1500);
+      }
     });
   } else {
     start();
