@@ -141,131 +141,152 @@
 
 <script>
 (function () {
+  // Scope to this section only
   const section = document.getElementById('shopify-section-{{ section.id }}');
   if (!section) return;
 
-  const videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
-  if (!videos.length) return;
+  // Collect only the videos for this carousel section.
+  // NOTE: product card markup uses class `carousel-new-2__video` (and "hide-desktop" for desktop),
+  // and (unfortunately) repeats id="video" — we'll ignore ids and use the class.
+  const allVideos = Array.from(
+    section.querySelectorAll('video.carousel-new-2__video')
+  );
 
-  // ————— Utils —————
-  const isVisible = el =>
-    el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden';
+  if (!allVideos.length) return; // nothing to do if there are no videos
 
-  // Try hard to get a usable image URL from the card for the poster
-  function getPosterURL(videoEl) {
-    const box = videoEl.closest('.product-card__image') || videoEl.parentElement;
-    if (!box) return '';
+  // Helper: consider only *visible* videos (e.g., not hidden on desktop with .hide-desktop)
+  const visibleVideos = () =>
+    allVideos.filter(v => {
+      // If element or any ancestor is display:none, offsetParent will be null.
+      if (v.offsetParent === null) return false;
+      // Additionally guard against visibility:hidden
+      const cs = getComputedStyle(v);
+      return cs.visibility !== 'hidden' && cs.display !== 'none' && cs.opacity !== '0';
+    });
 
-    // Prefer the featured image the snippet renders (any <img> inside the image box)
-    const img = box.querySelector('img');
-    if (!img) return '';
-
-    // Try currentSrc, else src, else data-* attributes, else first url from srcset
-    let url = img.currentSrc || img.src || img.getAttribute('data-src') || '';
-    if (!url) {
-      const ds = img.getAttribute('data-srcset') || img.getAttribute('srcset') || '';
-      if (ds) {
-        const first = ds.split(',')[0];
-        if (first) url = first.trim().split(' ')[0];
+  // Ensure only one is ever playing
+  function pauseOthers(except) {
+    allVideos.forEach(v => {
+      if (v !== except) {
+        try { v.pause(); } catch (e) {}
       }
-    }
-    return url || '';
+    });
   }
 
-  function visibleVideos() {
-    return videos.filter(isVisible);
-  }
-
-  function pauseAndShowPoster(v) {
-    try { v.pause(); } catch (_) {}
-    // Force the poster to show again
-    // (load() resets the element to its poster state)
-    try { v.load(); } catch (_) {}
-  }
-
-  // ————— Prep videos —————
-  videos.forEach(v => {
-    v.loop = false;            // we need 'ended'
-    v.muted = true;
-    v.autoplay = false;        // controlled by script
-    v.playsInline = true;
+  // Prepare videos: turn off loop (Liquid set loop:true), force muted/inline, and wire events
+  allVideos.forEach(v => {
+    v.loop = false;         // critical: we need 'ended' to fire
+    v.muted = true;         // allow autoplay on most browsers
+    v.autoplay = false;     // we'll control autoplay manually
+    v.playsInline = true;   // iOS
     v.preload = v.preload || 'metadata';
-    v.style.objectFit = 'cover'; // keeps poster/video covered
 
-    // Attach poster (once)
-    const poster = getPosterURL(v);
-    if (poster) v.poster = poster;
-
-    // If user taps to play, keep only one playing and hide poster automatically
-    v.addEventListener('play', () => {
-      videos.forEach(other => { if (other !== v) pauseAndShowPoster(other); });
-    }, { passive: true });
-
-    // If user pauses before end, revert to poster
-    v.addEventListener('pause', () => { if (!v.ended) pauseAndShowPoster(v); }, { passive: true });
+    // If user manually taps a video, still enforce "only one at a time"
+    v.addEventListener('play', () => pauseOthers(v), { passive: true });
   });
 
-  // ————— Sequencing (mobile only since desktop videos are hidden) —————
-  let seq = [], idx = 0;
+  let idx = 0;         // current index into the *visible* list
+  let seq = [];        // cached list of visible videos in DOM order
 
-  function rebuild() {
+  function rebuildSequence() {
+    // Refresh the visible set (e.g., viewport size changed between mobile/desktop)
     seq = visibleVideos();
+    // If current idx goes out of bounds after a resize, reset to 0
     if (idx >= seq.length) idx = 0;
   }
 
   function playAt(i) {
-    rebuild();
+    rebuildSequence();
     if (!seq.length) return;
 
     idx = (i + seq.length) % seq.length;
     const current = seq[idx];
 
-    // Ensure all others show their poster
-    videos.forEach(v => { if (v !== current) pauseAndShowPoster(v); });
+    // Make sure others are paused
+    pauseOthers(current);
 
-    // Restart current at 0 and play
-    try { if (current.ended || current.currentTime > 0) current.currentTime = 0; } catch(_) {}
+    try {
+      // Some browsers need a seek to 0 to ensure we replay after 'ended'
+      if (current.ended || current.currentTime > 0) current.currentTime = 0;
+    } catch (e) {}
+
+    // Try to play; ignore auto-play promise errors silently
     const p = current.play();
-    if (p && p.catch) p.catch(() => { /* autoplay block - ignore */ });
+    if (p && typeof p.catch === 'function') p.catch(() => { /* ignore */ });
 
-    // Listen once, then advance
+    // To avoid stacking multiple listeners, remove old then add once
     seq.forEach(v => v.removeEventListener('ended', handleEnded));
     current.addEventListener('ended', handleEnded, { once: true });
   }
 
   function handleEnded() {
-    // Show poster for the one that just finished
-    const v = seq[idx];
-    if (v) pauseAndShowPoster(v);
-    // Advance to next
-    // Small timeout helps browsers render poster before next play
-    setTimeout(() => playAt(idx + 1), 0);
+    // Advance to the next visible video, wrapping to the start
+    playAt(idx + 1);
   }
 
-  // Recalculate when viewport changes (mobile/desktop swap)
+  // If the viewport changes (e.g., desktop ↔ mobile), the visible set changes
   const mq = window.matchMedia('(max-width: 575px)');
-  const onChange = () => { rebuild(); if (seq.length) playAt(idx); };
-  if (mq && mq.addEventListener) mq.addEventListener('change', onChange);
-  else window.addEventListener('resize', () => requestAnimationFrame(onChange));
+  if (mq && typeof mq.addEventListener === 'function') {
+    mq.addEventListener('change', () => {
+      // Rebuild and restart the sequence gracefully on viewport change
+      rebuildSequence();
+      playAt(idx);
+    });
+  } else {
+    // Fallback: rebuild on resize
+    window.addEventListener('resize', () => {
+      // Throttle via rAF
+      if (playAt._resizeTick) cancelAnimationFrame(playAt._resizeTick);
+      playAt._resizeTick = requestAnimationFrame(() => {
+        rebuildSequence();
+        playAt(idx);
+      });
+    });
+  }
 
-  // Initial state: everyone shows their poster until it's their turn
-  videos.forEach(pauseAndShowPoster);
+  // Optional (nice-to-have): if your Swiper changes slides programmatically, keep enforcing single play
+  section.addEventListener('click', (e) => {
+    // If a user interacts with a visible video link/container, re-enforce "one playing"
+    const vid = e.target.closest && e.target.closest('video.carousel-new-2__video');
+    if (vid) pauseOthers(vid);
+  }, { capture: true });
 
-  // Start once metadata is available so durations/states are sane
-  const start = () => { rebuild(); if (seq.length) playAt(0); };
-  if (videos.some(v => v.readyState < 1)) {
-    let left = videos.length, started = false;
-    const done = () => { if (!started && --left <= 0) { started = true; start(); } };
-    videos.forEach(v => {
-      if (v.readyState >= 1) done();
-      else { v.addEventListener('loadedmetadata', done, { once: true }); setTimeout(done, 1500); }
+  // Kick it off on load: wait for metadata so durations are known
+  // Start at the first visible video; if none visible yet (e.g. fonts/CLS), retry once on next tick
+  const start = () => {
+    rebuildSequence();
+    if (!seq.length) {
+      requestAnimationFrame(start);
+      return;
+    }
+    // Ensure we listen for 'ended' from the very start
+    seq.forEach(v => v.removeEventListener('ended', handleEnded));
+    playAt(0);
+  };
+
+  // If all videos already have metadata, start immediately; otherwise wait
+  const needMeta = allVideos.some(v => v.readyState < 1);
+  if (needMeta) {
+    let pending = allVideos.length, started = false;
+    const onMeta = () => {
+      pending -= 1;
+      if (!started && pending <= 0) {
+        started = true;
+        start();
+      }
+    };
+    allVideos.forEach(v => {
+      if (v.readyState >= 1) {
+        onMeta();
+      } else {
+        v.addEventListener('loadedmetadata', onMeta, { once: true });
+        // Safety timeout in case some never fire
+        setTimeout(onMeta, 1500);
+      }
     });
   } else {
     start();
   }
-
-  // ——— Debug helper (optional): uncomment to verify posters are set ———
-  // videos.forEach((v,i) => console.log('video', i, 'poster:', v.poster));
 })();
 </script>
 
