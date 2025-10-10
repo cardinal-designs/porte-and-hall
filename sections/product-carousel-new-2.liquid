@@ -144,133 +144,128 @@
   const section = document.getElementById('shopify-section-{{ section.id }}');
   if (!section) return;
 
-  const allVideos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
-  if (!allVideos.length) return;
+  const videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
+  if (!videos.length) return;
 
-  // Only sequence videos that are actually visible (mobile)
-  const visibleVideos = () =>
-    allVideos.filter(v => v.offsetParent !== null && getComputedStyle(v).visibility !== 'hidden');
+  // ————— Utils —————
+  const isVisible = el =>
+    el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden';
 
-  // Grab the mobile-hidden placeholder image from the same card
-  function getPlaceholderFor(videoEl) {
-    const wrap = videoEl.closest('.product-card__image');
-    if (!wrap) return null;
-    // Prefer the featured media image the snippet renders with classes 'img-fill hide-mobile'
-    // (works with <img> or <picture> -> <img>)
-    let img = wrap.querySelector('img.img-fill.hide-mobile');
-    if (!img) {
-      // fallback: any img with hide-mobile
-      img = wrap.querySelector('img.hide-mobile');
-    }
-    return img;
-  }
+  // Try hard to get a usable image URL from the card for the poster
+  function getPosterURL(videoEl) {
+    const box = videoEl.closest('.product-card__image') || videoEl.parentElement;
+    if (!box) return '';
 
-  function reallyShow(el) {
-    // remove class-based hiding and hard-override display
-    el.classList.remove('hide-mobile');
-    el.style.opacity = '1';
-    el.style.removeProperty('display');
-    el.style.setProperty('display', 'block', 'important');
-    el.removeAttribute('aria-hidden');
-  }
+    // Prefer the featured image the snippet renders (any <img> inside the image box)
+    const img = box.querySelector('img');
+    if (!img) return '';
 
-  function reallyHide(el) {
-    // add class back so CSS handles it; keep opacity for fade
-    el.classList.add('hide-mobile');
-    el.style.opacity = '0';
-    el.setAttribute('aria-hidden', 'true');
-  }
-
-  function showPlaceholder(imgEl) { if (imgEl) reallyShow(imgEl); }
-  function hidePlaceholder(imgEl) { if (imgEl) reallyHide(imgEl); }
-
-  function pauseOthers(except) {
-    allVideos.forEach(v => {
-      if (v !== except) {
-        try { v.pause(); } catch (e) {}
-        showPlaceholder(getPlaceholderFor(v));
+    // Try currentSrc, else src, else data-* attributes, else first url from srcset
+    let url = img.currentSrc || img.src || img.getAttribute('data-src') || '';
+    if (!url) {
+      const ds = img.getAttribute('data-srcset') || img.getAttribute('srcset') || '';
+      if (ds) {
+        const first = ds.split(',')[0];
+        if (first) url = first.trim().split(' ')[0];
       }
-    });
+    }
+    return url || '';
   }
 
-  // Prep videos
-  allVideos.forEach(v => {
-    v.loop = false;
+  function visibleVideos() {
+    return videos.filter(isVisible);
+  }
+
+  function pauseAndShowPoster(v) {
+    try { v.pause(); } catch (_) {}
+    // Force the poster to show again
+    // (load() resets the element to its poster state)
+    try { v.load(); } catch (_) {}
+  }
+
+  // ————— Prep videos —————
+  videos.forEach(v => {
+    v.loop = false;            // we need 'ended'
     v.muted = true;
-    v.autoplay = false;
+    v.autoplay = false;        // controlled by script
     v.playsInline = true;
     v.preload = v.preload || 'metadata';
+    v.style.objectFit = 'cover'; // keeps poster/video covered
 
+    // Attach poster (once)
+    const poster = getPosterURL(v);
+    if (poster) v.poster = poster;
+
+    // If user taps to play, keep only one playing and hide poster automatically
     v.addEventListener('play', () => {
-      pauseOthers(v);
-      hidePlaceholder(getPlaceholderFor(v));
+      videos.forEach(other => { if (other !== v) pauseAndShowPoster(other); });
     }, { passive: true });
 
-    v.addEventListener('pause', () => {
-      if (!v.ended) showPlaceholder(getPlaceholderFor(v));
-    }, { passive: true });
+    // If user pauses before end, revert to poster
+    v.addEventListener('pause', () => { if (!v.ended) pauseAndShowPoster(v); }, { passive: true });
   });
 
-  // Sequencing
-  let idx = 0, seq = [];
-  function rebuildSequence() {
+  // ————— Sequencing (mobile only since desktop videos are hidden) —————
+  let seq = [], idx = 0;
+
+  function rebuild() {
     seq = visibleVideos();
     if (idx >= seq.length) idx = 0;
   }
 
   function playAt(i) {
-    rebuildSequence();
+    rebuild();
     if (!seq.length) return;
 
     idx = (i + seq.length) % seq.length;
     const current = seq[idx];
 
-    pauseOthers(current);
-    hidePlaceholder(getPlaceholderFor(current));
+    // Ensure all others show their poster
+    videos.forEach(v => { if (v !== current) pauseAndShowPoster(v); });
 
-    try { if (current.ended || current.currentTime > 0) current.currentTime = 0; } catch(e) {}
-
+    // Restart current at 0 and play
+    try { if (current.ended || current.currentTime > 0) current.currentTime = 0; } catch(_) {}
     const p = current.play();
-    if (p && p.catch) p.catch(() => {});
+    if (p && p.catch) p.catch(() => { /* autoplay block - ignore */ });
 
+    // Listen once, then advance
     seq.forEach(v => v.removeEventListener('ended', handleEnded));
     current.addEventListener('ended', handleEnded, { once: true });
   }
 
   function handleEnded() {
-    const endedVideo = seq[idx];
-    if (endedVideo) showPlaceholder(getPlaceholderFor(endedVideo));
-    playAt(idx + 1);
+    // Show poster for the one that just finished
+    const v = seq[idx];
+    if (v) pauseAndShowPoster(v);
+    // Advance to next
+    // Small timeout helps browsers render poster before next play
+    setTimeout(() => playAt(idx + 1), 0);
   }
 
-  // Viewport changes -> rebuild
+  // Recalculate when viewport changes (mobile/desktop swap)
   const mq = window.matchMedia('(max-width: 575px)');
-  const onViewportChange = () => { rebuildSequence(); playAt(idx); };
-  if (mq && mq.addEventListener) {
-    mq.addEventListener('change', onViewportChange);
-  } else {
-    window.addEventListener('resize', () => {
-      if (onViewportChange._rAF) cancelAnimationFrame(onViewportChange._rAF);
-      onViewportChange._rAF = requestAnimationFrame(onViewportChange);
-    });
-  }
+  const onChange = () => { rebuild(); if (seq.length) playAt(idx); };
+  if (mq && mq.addEventListener) mq.addEventListener('change', onChange);
+  else window.addEventListener('resize', () => requestAnimationFrame(onChange));
 
-  // Initialize: make sure every card shows its image until it’s that card’s turn
-  allVideos.forEach(v => showPlaceholder(getPlaceholderFor(v)));
+  // Initial state: everyone shows their poster until it's their turn
+  videos.forEach(pauseAndShowPoster);
 
-  // Start after metadata
-  const start = () => { rebuildSequence(); if (seq.length) playAt(0); };
-  const needMeta = allVideos.some(v => v.readyState < 1);
-  if (needMeta) {
-    let pending = allVideos.length, started = false;
-    const onMeta = () => { if (!started && --pending <= 0) { started = true; start(); } };
-    allVideos.forEach(v => {
-      if (v.readyState >= 1) onMeta();
-      else { v.addEventListener('loadedmetadata', onMeta, { once: true }); setTimeout(onMeta, 1500); }
+  // Start once metadata is available so durations/states are sane
+  const start = () => { rebuild(); if (seq.length) playAt(0); };
+  if (videos.some(v => v.readyState < 1)) {
+    let left = videos.length, started = false;
+    const done = () => { if (!started && --left <= 0) { started = true; start(); } };
+    videos.forEach(v => {
+      if (v.readyState >= 1) done();
+      else { v.addEventListener('loadedmetadata', done, { once: true }); setTimeout(done, 1500); }
     });
   } else {
     start();
   }
+
+  // ——— Debug helper (optional): uncomment to verify posters are set ———
+  // videos.forEach((v,i) => console.log('video', i, 'poster:', v.poster));
 })();
 </script>
 
