@@ -265,7 +265,7 @@
   };
 
   // If all videos already have metadata, start immediately; otherwise wait
-  const needMeta = allVideos.some(v => v.readyState < 1);
+  const needMeta = allVideos.some(v => v.readyState < 1); 
   if (needMeta) {
     let pending = allVideos.length, started = false;
     const onMeta = () => {
