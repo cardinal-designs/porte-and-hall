@@ -141,165 +141,148 @@
 
 <script>
 (function () {
+  // Scope to this section only
   const section = document.getElementById('shopify-section-{{ section.id }}');
   if (!section) return;
-  const videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
-  if (!videos.length) return;
 
-  // ---------- Helpers ----------
-  const isVisible = el => el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden';
+  // Collect only the videos for this carousel section.
+  // NOTE: product card markup uses class `carousel-new-2__video` (and "hide-desktop" for desktop),
+  // and (unfortunately) repeats id="video" — we'll ignore ids and use the class.
+  const allVideos = Array.from(
+    section.querySelectorAll('video.carousel-new-2__video')
+  );
 
-  function extractImageURL(box) {
-    if (!box) return '';
-    // Prefer the first <img> in the image box (works for lazy-image output, picture/img, etc.)
-    const img = box.querySelector('img') || box.querySelector('source') || null;
-    if (img) {
-      let url = img.currentSrc || img.src || img.getAttribute('data-src') || '';
-      if (!url) {
-        const ss = img.getAttribute('srcset') || img.getAttribute('data-srcset') || '';
-        if (ss) {
-          const first = ss.split(',')[0];
-          if (first) url = first.trim().split(' ')[0];
-        }
-      }
-      if (url) return url;
-    }
-    // Fallback: some themes set a background-image on a wrapper
-    const bgEl = box.querySelector('[style*="background-image"]');
-    if (bgEl) {
-      const m = getComputedStyle(bgEl).backgroundImage.match(/url\(["']?(.+?)["']?\)/);
-      if (m && m[1]) return m[1];
-    }
-    return '';
-  }
+  if (!allVideos.length) return; // nothing to do if there are no videos
 
-  function ensureContainerStyles(box) {
-    const cs = getComputedStyle(box);
-    if (cs.position === 'static') box.style.position = 'relative';
-  }
-
-  function makeOverlayFor(videoEl) {
-    const box = videoEl.closest('.product-card__image') || videoEl.parentElement;
-    if (!box) return null;
-    ensureContainerStyles(box);
-
-    // reuse if already exists
-    let ov = box.querySelector('.video-fallback');
-    if (!ov) {
-      ov = document.createElement('div');
-      ov.className = 'video-fallback';
-      ov.style.position = 'absolute';
-      ov.style.inset = '0';
-      ov.style.backgroundSize = 'cover';
-      ov.style.backgroundPosition = 'center';
-      ov.style.backgroundRepeat = 'no-repeat';
-      ov.style.transition = 'opacity 180ms ease';
-      ov.style.opacity = '1';
-      ov.style.zIndex = '2'; // ON TOP of the video
-      box.appendChild(ov);
-    }
-
-    const url = extractImageURL(box);
-    if (url) ov.style.backgroundImage = `url("${url}")`;
-
-    // Make sure the video sits underneath and covers
-    Object.assign(videoEl.style, {
-      position: 'absolute',
-      inset: '0',
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-      zIndex: '1',
-      background: 'transparent'
+  // Helper: consider only *visible* videos (e.g., not hidden on desktop with .hide-desktop)
+  const visibleVideos = () =>
+    allVideos.filter(v => {
+      // If element or any ancestor is display:none, offsetParent will be null.
+      if (v.offsetParent === null) return false;
+      // Additionally guard against visibility:hidden
+      const cs = getComputedStyle(v);
+      return cs.visibility !== 'hidden' && cs.display !== 'none' && cs.opacity !== '0';
     });
 
-    return ov;
+  // Ensure only one is ever playing
+  function pauseOthers(except) {
+    allVideos.forEach(v => {
+      if (v !== except) {
+        try { v.pause(); } catch (e) {}
+      }
+    });
   }
 
-  function showOverlay(ov) { if (ov) { ov.style.opacity = '1'; ov.style.pointerEvents = 'none'; } }
-  function hideOverlay(ov) { if (ov) { ov.style.opacity = '0'; ov.style.pointerEvents = 'none'; } }
-
-  // ---------- Prep videos + overlays ----------
-  const overlayMap = new Map(); // video -> overlay
-
-  videos.forEach(v => {
-    // neutralize attributes we don't want but keep your Liquid output
-    v.removeAttribute('loop');     // MUST be off to get 'ended'
-    v.muted = true;
-    v.autoplay = false;            // we’ll control start
-    v.playsInline = true;
+  // Prepare videos: turn off loop (Liquid set loop:true), force muted/inline, and wire events
+  allVideos.forEach(v => {
+    v.loop = false;         // critical: we need 'ended' to fire
+    v.muted = true;         // allow autoplay on most browsers
+    v.autoplay = false;     // we'll control autoplay manually
+    v.playsInline = true;   // iOS
     v.preload = v.preload || 'metadata';
 
-    const ov = makeOverlayFor(v);
-    overlayMap.set(v, ov);
-    showOverlay(ov);
-
-    // User interactions (if they tap)
-    v.addEventListener('play', () => {
-      videos.forEach(other => {
-        if (other !== v) { try { other.pause(); } catch(_) {}; showOverlay(overlayMap.get(other)); }
-      });
-      hideOverlay(overlayMap.get(v));
-    }, { passive: true });
-
-    v.addEventListener('pause', () => {
-      if (!v.ended) showOverlay(overlayMap.get(v));
-    }, { passive: true });
+    // If user manually taps a video, still enforce "only one at a time"
+    v.addEventListener('play', () => pauseOthers(v), { passive: true });
   });
 
-  // ---------- Sequencing ----------
-  const visibleVideos = () => videos.filter(isVisible);
-  let seq = [], idx = 0;
+  let idx = 0;         // current index into the *visible* list
+  let seq = [];        // cached list of visible videos in DOM order
 
-  function rebuild() {
+  function rebuildSequence() {
+    // Refresh the visible set (e.g., viewport size changed between mobile/desktop)
     seq = visibleVideos();
+    // If current idx goes out of bounds after a resize, reset to 0
     if (idx >= seq.length) idx = 0;
   }
 
   function playAt(i) {
-    rebuild();
+    rebuildSequence();
     if (!seq.length) return;
 
     idx = (i + seq.length) % seq.length;
     const current = seq[idx];
 
-    // others -> pause + overlay
-    videos.forEach(v => { if (v !== current) { try { v.pause(); } catch(_) {}; showOverlay(overlayMap.get(v)); } });
+    // Make sure others are paused
+    pauseOthers(current);
 
-    // this one -> hide overlay + play from 0
-    hideOverlay(overlayMap.get(current));
-    try { if (current.ended || current.currentTime > 0) current.currentTime = 0; } catch(_) {}
+    try {
+      // Some browsers need a seek to 0 to ensure we replay after 'ended'
+      if (current.ended || current.currentTime > 0) current.currentTime = 0;
+    } catch (e) {}
+
+    // Try to play; ignore auto-play promise errors silently
     const p = current.play();
-    if (p && p.catch) p.catch(() => {}); // ignore autoplay promise errors
+    if (p && typeof p.catch === 'function') p.catch(() => { /* ignore */ });
 
-    // listen once
+    // To avoid stacking multiple listeners, remove old then add once
     seq.forEach(v => v.removeEventListener('ended', handleEnded));
     current.addEventListener('ended', handleEnded, { once: true });
   }
 
   function handleEnded() {
-    const justEnded = seq[idx];
-    if (justEnded) showOverlay(overlayMap.get(justEnded));
+    // Advance to the next visible video, wrapping to the start
     playAt(idx + 1);
   }
 
-  // viewport changes (mobile vs desktop)
+  // If the viewport changes (e.g., desktop ↔ mobile), the visible set changes
   const mq = window.matchMedia('(max-width: 575px)');
-  const onChange = () => { rebuild(); if (seq.length) playAt(idx); };
-  if (mq && mq.addEventListener) mq.addEventListener('change', onChange);
-  else window.addEventListener('resize', () => requestAnimationFrame(onChange));
+  if (mq && typeof mq.addEventListener === 'function') {
+    mq.addEventListener('change', () => {
+      // Rebuild and restart the sequence gracefully on viewport change
+      rebuildSequence();
+      playAt(idx);
+    });
+  } else {
+    // Fallback: rebuild on resize
+    window.addEventListener('resize', () => {
+      // Throttle via rAF
+      if (playAt._resizeTick) cancelAnimationFrame(playAt._resizeTick);
+      playAt._resizeTick = requestAnimationFrame(() => {
+        rebuildSequence();
+        playAt(idx);
+      });
+    });
+  }
 
-  // ---------- Start ----------
-  // show overlays on all, then begin
-  videos.forEach(v => showOverlay(overlayMap.get(v)));
+  // Optional (nice-to-have): if your Swiper changes slides programmatically, keep enforcing single play
+  section.addEventListener('click', (e) => {
+    // If a user interacts with a visible video link/container, re-enforce "one playing"
+    const vid = e.target.closest && e.target.closest('video.carousel-new-2__video');
+    if (vid) pauseOthers(vid);
+  }, { capture: true });
 
-  const start = () => { rebuild(); if (seq.length) playAt(0); };
-  if (videos.some(v => v.readyState < 1)) {
-    let left = videos.length, started = false;
-    const done = () => { if (!started && --left <= 0) { started = true; start(); } };
-    videos.forEach(v => {
-      if (v.readyState >= 1) done();
-      else { v.addEventListener('loadedmetadata', done, { once: true }); setTimeout(done, 1200); }
+  // Kick it off on load: wait for metadata so durations are known
+  // Start at the first visible video; if none visible yet (e.g. fonts/CLS), retry once on next tick
+  const start = () => {
+    rebuildSequence();
+    if (!seq.length) {
+      requestAnimationFrame(start);
+      return;
+    }
+    // Ensure we listen for 'ended' from the very start
+    seq.forEach(v => v.removeEventListener('ended', handleEnded));
+    playAt(0);
+  };
+
+  // If all videos already have metadata, start immediately; otherwise wait
+  const needMeta = allVideos.some(v => v.readyState < 1);
+  if (needMeta) {
+    let pending = allVideos.length, started = false;
+    const onMeta = () => {
+      pending -= 1;
+      if (!started && pending <= 0) {
+        started = true;
+        start();
+      }
+    };
+    allVideos.forEach(v => {
+      if (v.readyState >= 1) {
+        onMeta();
+      } else {
+        v.addEventListener('loadedmetadata', onMeta, { once: true });
+        // Safety timeout in case some never fire
+        setTimeout(onMeta, 1500);
+      }
     });
   } else {
     start();
