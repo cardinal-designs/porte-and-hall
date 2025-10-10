@@ -88,6 +88,13 @@
     top: 19%;
   }
  }
+
+ .product-card__image { position: relative; }
+.product-card__image video.carousel-new-2__video,
+.product-card__image img.img-fill {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.product-card__image img.img-fill { transition: opacity 0.25s ease; }
 {% endstyle %}
 
 <div class="product-carousel__inner product-carousel__new">
