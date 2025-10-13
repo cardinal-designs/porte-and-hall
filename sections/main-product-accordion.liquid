@@ -86,7 +86,7 @@
       <ul class="hide-mobile product__media-thumbnails list-unstyled swiper" role="list">
         <div class="swiper-wrapper">
           {% for media in product.media %}
-            {% unless forloop.index == 6 %}
+            {% unless forloop.index == 8 %}
             <li class="e-{{forloop.index}} product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
               {% render 'product-media', media: media, position: forloop.index, width: '106' %}
             </li>
@@ -98,7 +98,7 @@
       <ul class="product__media-list list-unstyled swiper" role="list">
         <div class="swiper-wrapper">
           {% for media in product.media %}
-            {% unless forloop.index == 6 %}
+            {% unless forloop.index == 8 %}
             <li class="i-{{forloop.index}} product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
               {% render 'product-media', media: media, position: forloop.index %}
               <div class="product__media-buttons">
