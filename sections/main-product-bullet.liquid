@@ -102,6 +102,7 @@
       <ul class="product__media-list list-unstyled swiper" role="list">
         <div class="swiper-wrapper">
           {% for media in product.media %}
+            {% unless forloop.index == 6 %}
             <li class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
               {% render 'product-media', media: media, position: forloop.index %}
               <div class="product__media-buttons">
@@ -111,6 +112,7 @@
                 {% render 'zoom-button' %}
               </div>
             </li>
+            {% endunless %}
           {% endfor %}
         </div>
         <div class="product__media-pagination swiper-pagination hide-desktop"></div>
