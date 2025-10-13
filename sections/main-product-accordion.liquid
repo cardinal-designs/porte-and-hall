@@ -99,7 +99,7 @@
         <div class="swiper-wrapper">
           {% for media in product.media %}
             {% unless forloop.index == 6 %}
-            <li class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+            <li class="i-{{forloop.index}} product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
               {% render 'product-media', media: media, position: forloop.index %}
               <div class="product__media-buttons">
                 {% unless section.settings.hide_pinterest == true %}
