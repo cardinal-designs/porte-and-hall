@@ -87,7 +87,7 @@
         <div class="swiper-wrapper">
           {% for media in product.media %}
             {% unless forloop.index == 6 %}
-            <li class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+            <li class="{{forloop.index}} product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
               {% render 'product-media', media: media, position: forloop.index, width: '106' %}
             </li>
           {% endunless %}
