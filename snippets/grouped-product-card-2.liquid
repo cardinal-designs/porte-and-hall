@@ -41,6 +41,9 @@
               echo "' class='"
               echo element_classes
               echo "'"
+              echo " aria-label='"
+              echo value | escape
+              echo "'"
               echo "style='background-image: url("
               echo swatch_file_name | file_url
               echo ")' data-tooltip='"
@@ -174,7 +177,7 @@
 
     <div class="product-card__swatches hide-mobile">
       {% if active_swatch != blank %}
-        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" aria-label="Product color swatch" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | file_url }})"></a>
+        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" aria-label="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | file_url }})"></a>
       {% endif %}
       {{ color_swatch_list }}
     </div>

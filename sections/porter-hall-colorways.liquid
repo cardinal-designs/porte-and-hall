@@ -14,7 +14,7 @@
         {% if block.settings.image != blank %}
           <div class="colorway__item{% if section.settings.mobile_slider %} swiper-slide{% endif %}">
             <figure>
-              <a href="{{ block.settings.link }}">
+              <a href="{{ block.settings.link }}" aria-label="{% if block.settings.color_name != blank %}{{ block.settings.color_name }}{% else %}{{ block.settings.image.alt }}{% endif %}">
               {{ block.settings.image | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: block.settings.image.alt }}
               </a>
             </figure>

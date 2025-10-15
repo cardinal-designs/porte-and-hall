@@ -26,7 +26,7 @@
   <div class="page-width">
     <div class="footer__logo">
       {% if section.settings.svg_logo != blank %}
-        <a href="{{ shop.url }}">
+        <a href="{{ shop.url }}" aria-label="Footer logo - {{ shop.name }}">
           <div class="footer__svg-logo">
             {{ section.settings.svg_logo }}
           </div>
