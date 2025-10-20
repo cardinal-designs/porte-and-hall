@@ -15,6 +15,58 @@
       .main_nav1 {
         opacity: 0.1 !important;
       }
+
+
+
+  @media (min-width: 750px) {
+
+  /* 0) Header offset (fallbacks if your header changes height on scroll) */
+  :root {
+    --ph-header-offset: 96px; /* tweak to match your header + announcement bar on desktop */
+  }
+
+  /* 1) Make the filters bar sticky */
+  /* Your page uses a custom element for the filters area right above the grid. */
+  collection-filters,
+  .collection-grid__toolbar,              /* safety: some themes wrap filters in a toolbar */
+  .collection__toolbar,                   /* safety: alternate toolbar class */
+  .facets-toolbar,                        /* Shopify Search & Discovery common wrapper */
+  .facets-container {                     /* safety: common container */
+    position: sticky;
+    top: var(--ph-header-offset);
+    z-index: 30;                          /* above product cards but below your header */
+    background: #fff;                     /* prevent see-through when stuck */
+    display: block;                       /* custom elements sometimes render inline */
+    box-shadow: 0 1px 0 rgba(0,0,0,0.08); /* subtle divider when stuck */
+  }
+
+  /* 2) Sticky fails if ANY ancestor has overflow on the scroll axis.
+        Force those wrappers to allow sticky to work. */
+  .collection,
+  .collection-main,
+  .collection__inner,
+  .collection-grid,
+  .collection-grid__outer,
+  .collection-wrapper {
+    overflow: visible !important;
+  }
+
+  /* 3) Keep the grid from sliding under the stuck bar when jumping via anchors, etc. */
+  .collection-grid,
+  .collection-products,
+  .collection__products {
+    scroll-margin-top: var(--ph-header-offset);
+  }
+
+  /* 4) If your header is fixed and uses a higher stacking level, keep the filters under it */
+  header, .Header, .site-header {
+    z-index: 50; /* ensure header remains above the sticky filters */
+  }
+}
+
+
+
+
     </style>
     {%- render 'optimization' -%}
 
