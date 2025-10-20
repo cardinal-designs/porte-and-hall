@@ -4,45 +4,6 @@
 {{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
 {{ 'component-collection-filters.css' | asset_url | stylesheet_tag }}
 
-{% style %}
-  @media (min-width: 750px) {
-  /* 1) Offset for your header + announcement bar height */
-  :root {
-    --ph-sticky-offset-desktop: 96px; /* adjust to match actual header height */
-  }
-
-  /* 2) Make collection-filters sticky */
-  collection-filters {
-    position: sticky;
-    top: var(--ph-sticky-offset-desktop);
-    z-index: 30;              /* ensures it stays above the grid */
-    background: #fff;          /* keeps it from showing content behind it */
-    display: block;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.08);
-  }
-
-  /* 3) Ensure parent containers don’t break sticky behavior */
-  .collection,
-  .collection-main,
-  .collection__inner,
-  .collection-grid,
-  .collection-grid__toolbar,
-  .collection-wrapper {
-    overflow: visible !important;
-  }
-
-  /* 4) Prevent product grid from tucking under sticky bar */
-  .collection-grid,
-  .collection-products {
-    scroll-margin-top: var(--ph-sticky-offset-desktop);
-  }
-}
-
-{% endstyle %}
-
-
-
-
 <script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
 
 {% assign active_tags = '' %}
