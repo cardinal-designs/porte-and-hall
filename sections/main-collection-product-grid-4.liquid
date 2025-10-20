@@ -4,19 +4,6 @@
 {{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
 {{ 'component-collection-filters.css' | asset_url | stylesheet_tag }}
 
-
-
-{% style %}
-   .collection,
-  .collection-main,
-  .collection__inner,
-  .collection-grid,
-  .collection-grid__toolbar,
-  .collection-wrapper {
-    overflow: visible !important;
-  }
-{% endstyle %}
-
 <script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
 
 {% assign active_tags = '' %}
