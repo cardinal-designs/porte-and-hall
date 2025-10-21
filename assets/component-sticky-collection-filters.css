@@ -1,0 +1,37 @@
+:root {
+  --collection-sticky-offset: 0px;
+}
+
+/* The wrapper that becomes sticky */
+.sticky-filters {
+  position: sticky;
+  top: var(--collection-sticky-offset, 0px);
+  z-index: 30; /* above grid but below header menus */
+  background: var(--color-background, #fff);
+  /* Ensure it spans the grid width exactly like before */
+  margin-bottom: 0; /* no layout shift */
+}
+
+/* Inner keeps current spacing; adjust if your theme adds margins above/below */
+.sticky-filters__inner {
+  /* inherit typography/spacing from theme */
+}
+
+/* Add a tiny divider only while stuck so it looks intentional under the header */
+.sticky-filters.is-stuck {
+  box-shadow: 0 1px 0 0 rgba(0,0,0,.08);
+}
+
+/* If your theme has containers adding top margins around filters, neutralize them so sticky feels flush */
+.sticky-filters .collection-filters,
+.sticky-filters collection-filters {
+  margin-top: 0 !important;
+}
+
+/* Full width on mobile (keeps existing look) */
+@media (max-width: 749px) {
+  .sticky-filters {
+    /* iOS sticky quirk helper */
+    will-change: transform;
+  }
+}
