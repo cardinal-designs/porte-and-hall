@@ -1,29 +1,19 @@
-/* -------------------------------------------------------
-   Collection Sticky Filters — unified CSS (desktop + mobile)
-   Desktop uses your existing hybrid JS (with +100px buffer).
-   Mobile uses a small JS to set --mobile-sticky-offset.
--------------------------------------------------------- */
+/* === Sticky Filters (Desktop + Mobile) =============================== */
 
-/* Layer vars */
+/* Layers */
 :root{
-  --filters-z: 60;           /* desktop sidebar filter */
-  --filters-z-docked: 1;     /* when docked near footer */
-  --header-z: 200;           /* header + nav always above */
-  --drawer-z: 320;           /* mobile drawer above everything except header */
-  --drawer-overlay-z: 310;   /* optional overlay beneath drawer panel */
+  --filters-z: 60;          /* desktop sidebar filter */
+  --filters-z-docked: 1;    /* when docked near footer */
+  --header-z: 200;          /* header + nav above all */
 }
 
-/* Prevent wrappers from breaking sticky/fixed (overflow/transform) */
+/* Prevent wrappers from breaking sticky/fixed */
 .page-width,
 .collection-grid__inner { overflow: visible !important; }
 
-/* ---------- DESKTOP (left sidebar) ---------- */
-.sticky-filters-wrap {
-  position: relative; /* docking context */
-  width: 100%;
-  max-width: 100%;
-}
-.sticky-filters-placeholder { height: 0; } /* JS sets real value */
+/* ---------- Desktop (left sidebar) ---------- */
+.sticky-filters-wrap { position: relative; width: 100%; max-width: 100%; }
+.sticky-filters-placeholder { height: 0; } /* set via JS */
 
 .sticky-filters-bar{
   background: var(--color-background, #fff);
@@ -32,80 +22,37 @@
 }
 .sticky-filters-bar.is-fixed{
   box-shadow: 0 1px 0 rgba(0,0,0,.06);
-  z-index: var(--filters-z);
+  z-index: var(--filters-z); /* below header */
 }
 .sticky-filters-bar.is-docked{
-  position: absolute !important; /* top/left/width via JS */
-  right: 0;
+  position: absolute !important; right: 0;
   box-shadow: none;
   z-index: var(--filters-z-docked);
 }
 
-/* Header/Nav stacking above filters */
+/* Header/nav always above */
 #shopify-section-header,
 .header-wrapper,
 header[role="banner"],
 .header__navigation { z-index: var(--header-z) !important; }
 
-/* Remove odd margins from inner filter markup */
+/* Avoid margin jumps inside the bar */
 .sticky-filters-bar .collection-filters,
 .sticky-filters-bar collection-filters { margin: 0 !important; }
 
-/* ---------- MOBILE (stick two things + fix drawer) ---------- */
+/* ---------- Mobile (just stacking; JS handles pinning + drawer) ------ */
 @media (max-width: 989px){
-  /* Keep header/nav above sticky elements */
+  /* Keep header/nav above sticky elements and drawer */
   #shopify-section-header,
   .header-wrapper,
   header[role="banner"],
   .header__navigation { z-index: var(--header-z) !important; }
 
-  /* 1) Stick the “white buttons” section under header */
-  #shopify-section-template--17366421930047__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a{
-    position: sticky;
-    top: var(--mobile-sticky-offset, 0px);
-    z-index: 110; /* below header/nav */
-    background: var(--color-background, #fff);
-    will-change: transform;
-  }
+  /* Allow sticky/fixed elements to extend */
+  .page-width,
+  .collection-grid__inner { overflow: visible !important; }
 
-  /* 2) Stick the mobile Filter trigger button under header as well */
-  .collection-filters__button.hide-desktop{
-    position: sticky;
-    top: var(--mobile-sticky-offset, 0px);
-    z-index: 120; /* above section, below header/nav, below drawer */
-    display: block;
-    width: 100%;
-    background: var(--color-background, #fff);
-    pointer-events: auto;
-  }
-
-  /* 3) Drawer (the <collection-filters> slideout) — height & stacking
-         These selectors cover common implementations; your theme will match one. */
-  collection-filters[open],
-  collection-filters.is-open,
-  .collection-filters--drawer.is-open,
-  .filters-drawer.is-open,
-  [data-filters-drawer].is-open,
-  .drawer--filters.is-open,
-  .drawer.drawer--filters.is-open {
-    position: fixed !important;
-    top: var(--mobile-sticky-offset, 0px) !important;
-    right: 0; left: 0;
-    height: calc(100vh - var(--mobile-sticky-offset, 0px)) !important;
-    max-height: calc(100vh - var(--mobile-sticky-offset, 0px)) !important;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-    background: var(--color-background, #fff);
-    z-index: var(--drawer-z) !important;    /* ABOVE the sticky button */
-  }
-
-  /* Optional overlay/backdrop under the drawer but above page */
-  .drawer-overlay,
-  .filters-drawer__overlay,
-  .collection-filters__overlay {
-    position: fixed;
-    top: var(--mobile-sticky-offset, 0px);
-    right: 0; bottom: 0; left: 0;
-    z-index: var(--drawer-overlay-z);
-  }
+  /* No other mobile CSS needed; the JS sets:
+     - fixed positioning/z-index for the white section & button while stuck
+     - drawer inline top/height/z-index */
 }
