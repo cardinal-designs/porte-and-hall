@@ -1,0 +1,190 @@
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
+{{ 'component-collection-filters.css' | asset_url | stylesheet_tag }}
+{{ 'component-sticky-collection-filters.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
+
+{% assign active_tags = '' %}
+{% for tag in current_tags %}
+  {% assign tag_as_handle = tag | replace: '&#39;', '' | replace: '&#34;', '' | handle %}
+  {% assign active_tags = active_tags | append: tag_as_handle %}
+  {% unless forloop.last %}{% assign active_tags = active_tags | append: '+' %}{% endunless %}
+{% endfor %}
+
+<link
+  rel="preload"
+  href="{{ 'component-rte.css' | asset_url }}"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+>
+
+<div class="page-width">
+  <div class="collection-grid__inner">
+
+    {%- comment -%}
+      Sticky wrapper sits directly above the grid so it stays under header while the grid scrolls.
+      We do not alter your inner <collection-filters> markup (for visual parity).
+    {%- endcomment -%}
+    <div id="StickyFilters" class="sticky-filters" data-section-id="{{ section.id }}" aria-label="Collection filters">
+      <div class="sticky-filters__inner">
+        {% render 'collection-filters' %}
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        // Compute the offset so the sticky block sits just below the header (and announcement bar if present).
+        function calcOffset() {
+          var header = document.querySelector('#shopify-section-header, header.site-header, .header-wrapper');
+          var announce = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+          var headerH = header ? header.offsetHeight : 0;
+          var announceH = (announce && getComputedStyle(announce).display !== 'none') ? announce.offsetHeight : 0;
+
+          // If the announcement bar collapses when scrolling in your theme, this still keeps the filters under the header.
+          var offset = headerH + announceH;
+          document.documentElement.style.setProperty('--collection-sticky-offset', offset + 'px');
+        }
+
+        // Shadow toggle when stuck (purely cosmetic, does not change layout)
+        function setupShadowToggle() {
+          var el = document.getElementById('StickyFilters');
+          if (!('IntersectionObserver' in window) || !el) return;
+          var sent = document.createElement('div');
+          sent.setAttribute('aria-hidden', 'true');
+          sent.style.position = 'absolute';
+          sent.style.top = 'calc(var(--collection-sticky-offset, 0px) - 1px)';
+          sent.style.height = '1px';
+          sent.style.left = '0';
+          sent.style.right = '0';
+          el.parentNode.insertBefore(sent, el);
+
+          var io = new IntersectionObserver(function(entries){
+            entries.forEach(function(entry){
+              el.classList.toggle('is-stuck', entry.intersectionRatio === 0);
+            });
+          }, { rootMargin: '0px 0px 0px 0px', threshold: [0, 1]});
+          io.observe(sent);
+        }
+
+        calcOffset();
+        setupShadowToggle();
+        window.addEventListener('resize', calcOffset, { passive: true });
+        // If your header height changes on scroll (shrinks), re-calc occasionally:
+        var lastY = window.scrollY;
+        window.addEventListener('scroll', function(){
+          var y = window.scrollY;
+          // Only recalc if header likely changed size (cheap heuristic)
+          if (Math.abs(y - lastY) > 20) { calcOffset(); lastY = y; }
+        }, { passive: true });
+      })();
+
+      // Preserve your Clear All behavior
+      function clearAll(e) {
+        e.preventDefault();
+        document.querySelector('collection-filters')?.clearAllFilters?.();
+      }
+      window.clearAll = clearAll;
+    </script>
+
+    <div id="ProductGridContainer">
+      {% if collection.products.size == 0 %}
+        <div class="collection collection--empty" id="product-grid" data-id="{{ section.id }}">
+          <div class="loading-overlay gradient"></div>
+          <div class="title-wrapper center">
+            <h2 class="title title--primary">
+              {{ 'sections.collection_template.empty' | t -}}
+              <br>
+              {{ 'sections.collection_template.use_fewer_filters_html' | t }}
+              <button onclick="clearAll(event)" class="h2 collection-filter-clear-all">clear all</button>.
+            </h2>
+          </div>
+        </div>
+      {% else %}
+        <div class="collection">
+          {% paginate collection.products by 50 %}
+            <ul id="product-grid" data-id="{{ section.id }}" class="product-grid product-grid-4 list-unstyled">
+              {% for product in collection.products %}
+                {% for collection in product.collections %}
+                  {% if collection.title contains ' |' %}
+                    {% assign grouped_collection = collection %}
+                  {% endif %}
+                {% endfor %}
+                <li class="product-grid__item">
+                  {% render 'grouped-product-card-4',
+                    product_card_product: product,
+                    collection: grouped_collection,
+                    title: grouped_collection.title,
+                    button_text: 'Shop Now',
+                    forloop_index: forloop.index
+                  %}
+                </li>
+              {% endfor %}
+            </ul>
+
+            <div id="load-more-wrapper" class="load-more-wrapper">
+              {% if paginate.pages > 1 and paginate.next %}
+                <load-more role="button" class="button" data-load-more="{{ paginate.next.url }}">
+                  <span>Load more</span>
+                  <div class="loading-overlay__spinner">
+                    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                  </div>
+                </load-more>
+              {% endif %}
+            </div>
+          {% endpaginate %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="loading-overlay">
+      <div class="loading-overlay__spinner">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+          <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection sticky filters",
+  "tag": "section",
+  "class": "collection-grid-section with-spacing",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 24,
+      "step": 4,
+      "default": 16,
+      "label": "Products per page"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "adapt", "label": "Adapt" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" }
+      ],
+      "default": "adapt",
+      "label": "Image ratio"
+    },
+    { "type": "checkbox", "id": "show_secondary_image", "default": false, "label": "Show secondary image" },
+    { "type": "checkbox", "id": "add_image_padding", "default": false, "label": "Add image padding" },
+    { "type": "checkbox", "id": "show_image_outline", "default": true, "label": "Show image outline" },
+    { "type": "checkbox", "id": "show_vendor", "default": false, "label": "Show vendor" },
+    { "type": "checkbox", "id": "show_rating", "default": false, "label": "Show rating" },
+    { "type": "checkbox", "id": "enable_filtering", "default": true, "label": "Enable filtering" },
+    { "type": "checkbox", "id": "enable_sorting", "default": true, "label": "Enable sorting" },
+    { "type": "checkbox", "id": "collapse_on_larger_devices", "default": false, "label": "Collapse on larger devices" }
+  ]
+}
+{% endschema %}
