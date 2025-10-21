@@ -157,3 +157,39 @@ header[role="banner"],
     visibility: hidden !important;
   }
 }
+
+/* Mobile-only sticky button; keeps desktop unchanged */
+@media (max-width: 989px) {
+  /* Ensure containers don’t block sticky */
+  .page-width,
+  .collection-grid__inner { overflow: visible !important; }
+
+  /* Make the mobile filter button sticky under the header/nav */
+  .collection-filters__button.hide-desktop {
+    position: sticky;
+    top: var(--mobile-sticky-offset, 0px);
+    z-index: 120; /* below header/nav, above grid */
+    display: block;
+    width: 100%;  /* match current layout; remove if your theme sets width */
+    background: var(--color-background, #fff); /* avoids see-through during stick */
+  }
+
+  /* Keep header/nav above us */
+  #shopify-section-header,
+  .header-wrapper,
+  header[role="banner"],
+  .header__navigation {
+    z-index: 200 !important;
+  }
+
+  /* Optional: when any modal/drawer is open, hide the sticky button to avoid overlap.
+     If your drawer toggles a different class/attribute, adjust the selector. */
+  [aria-modal="true"],
+  [role="dialog"] {
+    /* no styles; just anchors the next rule via :has() if your browser supports it */
+  }
+  /* Progressive enhancement: hide button while a dialog/modal is shown (Chrome/Safari support) */
+  html:has([aria-modal="true"]), html:has([role="dialog"]) .collection-filters__button.hide-desktop {
+    visibility: hidden;
+  }
+}
