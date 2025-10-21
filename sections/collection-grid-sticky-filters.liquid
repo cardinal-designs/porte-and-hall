@@ -83,35 +83,56 @@
     var H      = 0;    // header+announcement
     var fixedLeft = 0; // left of the sidebar column
     var fixedWidth = 0;// width of the sidebar column
+    var stopY = 0;
 
-    function measure() {
-      // Reset to natural flow to measure correct rect for the SIDEBAR, not the page
-      bar.style.position = 'static';
-      bar.style.left = '';
-      bar.style.width = '';
-      bar.style.top = '';
-      bar.style.transform = '';
-      bar.classList.remove('is-fixed','is-docked');
+    function footerTop() {
+      // Try common footer containers first, then plain <footer>
+      var footer =
+        document.querySelector('#shopify-section-footer') ||
+        document.querySelector('.footer, .site-footer') ||
+        document.querySelector('footer');
 
-      setPlaceholderHeight();
-      H = headerHeight();
+      if (!footer) return Infinity; // if no footer found, don't clamp
 
-      var wrapBox = wrap.getBoundingClientRect();
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      startY = wrapBox.top + scrollTop; // when the top of wrap reaches header
-
-      var endBox = endSentinel.getBoundingClientRect();
-      endY = endBox.top + scrollTop;
-
-      // Capture the bar’s OWN column metrics (so fixed state matches sidebar, not full page)
-      var naturalRect = bar.getBoundingClientRect();
-      fixedLeft  = naturalRect.left + window.pageXOffset;
-      fixedWidth = naturalRect.width;
-
-      // Store to dataset for quick reads
-      bar.dataset.fixedLeft  = fixedLeft;
-      bar.dataset.fixedWidth = fixedWidth;
+      var r = footer.getBoundingClientRect();
+      return r.top + (window.pageYOffset || document.documentElement.scrollTop);
     }
+
+function measure() {
+  // Reset to natural flow to measure correct rect for the SIDEBAR, not the page
+  bar.style.position = 'static';
+  bar.style.left = '';
+  bar.style.width = '';
+  bar.style.top = '';
+  bar.style.transform = '';
+  bar.classList.remove('is-fixed','is-docked');
+
+  setPlaceholderHeight();
+  H = headerHeight();
+
+  var wrapBox = wrap.getBoundingClientRect();
+  var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  startY = wrapBox.top + scrollTop; // when the top of wrap reaches header
+
+  // Where the grid area ends (your existing sentinel just after ProductGridContainer)
+  var endBox = endSentinel.getBoundingClientRect();
+  endY = endBox.top + scrollTop;
+
+  // Footer clamp (ensures we never overlap footer)
+  var fTop = footerTop();
+
+  // Choose the earliest stopping point (just before the footer OR the sentinel)
+  // Subtract a tiny epsilon so it never touches the footer
+  stopY = Math.min(endY, fTop) - 1;
+
+  // Capture the bar’s OWN column metrics (so fixed state matches sidebar, not full page)
+  var naturalRect = bar.getBoundingClientRect();
+  fixedLeft  = naturalRect.left + window.pageXOffset;
+  fixedWidth = naturalRect.width;
+
+  bar.dataset.fixedLeft  = fixedLeft;
+  bar.dataset.fixedWidth = fixedWidth;
+}
 
     function applyState() {
       var y = window.pageYOffset || document.documentElement.scrollTop;
