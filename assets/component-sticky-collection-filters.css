@@ -90,3 +90,44 @@ header[role="banner"],
   z-index: 1 !important;         /* definitely under header/nav */
   box-shadow: none;
 }
+
+:root {
+  --mobile-filters-z: 60;   /* below header/nav */
+  --header-z: 200;          /* already defined earlier */
+}
+
+@media (max-width: 989px) {
+  /* Ensure the header/nav are above */
+  #shopify-section-header,
+  .header-wrapper,
+  header[role="banner"],
+  .header__navigation {
+    z-index: var(--header-z) !important;
+  }
+
+  /* The section we fix on mobile */
+  #shopify-section-template--16905854812223__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a {
+    z-index: var(--mobile-filters-z);
+    background: var(--color-background, #fff);
+    will-change: transform;
+  }
+
+  /* Placeholder occupies the section's original height during fix */
+  .mobile-filters-placeholder {
+    height: 0; /* set dynamically via JS */
+  }
+
+  /* Keep the existing mobile button visually above its own section content if needed,
+     but still *below* the header/nav */
+  .collection-filters__button.hide-desktop {
+    position: relative;
+    z-index: calc(var(--mobile-filters-z) + 1);
+  }
+}
+
+/* When docked at the bottom (before footer), push even lower in the stack so it scrolls under header */
+@media (max-width: 989px) {
+  #shopify-section-template--16905854812223__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a.is-docked {
+    z-index: 1 !important;
+  }
+}
