@@ -59,3 +59,34 @@
 
 /* Optional: subtle divider while fixed */
 .sticky-filters-bar.is-fixed { box-shadow: 0 1px 0 rgba(0,0,0,.06); }
+
+:root {
+  --header-z: 200;   /* header/navigation */
+  --filters-z: 60;   /* filter bar when fixed */
+}
+
+/* Header + desktop nav should always be above */
+#shopify-section-header,
+.header-wrapper,
+header[role="banner"],
+.header__navigation {
+  z-index: var(--header-z) !important;
+}
+
+/* Filter bar base */
+.sticky-filters-bar {
+  z-index: var(--filters-z);
+}
+
+/* While fixed under the header */
+.sticky-filters-bar.is-fixed {
+  z-index: var(--filters-z);     /* below header */
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
+}
+
+/* When docked at the bottom of the grid (before footer), let it be even lower
+   so it scrolls *behind* the header/navigation as you continue upward */
+.sticky-filters-bar.is-docked {
+  z-index: 1 !important;         /* definitely under header/nav */
+  box-shadow: none;
+}
