@@ -1,71 +1,60 @@
-:root { --collection-sticky-z: 80; }
+/* -------------------------------------------------------
+   Collection Sticky Filters — unified CSS (desktop + mobile)
+   Pairs with your current section JS:
+   - Desktop: hybrid fixed/dock logic (with +100px buffer from JS)
+   - Mobile: CSS sticky using --mobile-sticky-offset (set by small JS)
+-------------------------------------------------------- */
 
-/* Ensure upstream wrappers don’t kill sticky/fixed via overflow or transforms */
-.page-width, .collection-grid__inner {
+/* Layer vars */
+:root {
+  --filters-z: 60;            /* filter bar (desktop) */
+  --filters-z-docked: 1;      /* when docked near footer, sit under header */
+  --header-z: 200;            /* header + nav should always be above filters */
+}
+
+/* Make sure containers don’t break sticky/fixed with overflow/transform */
+.page-width,
+.collection-grid__inner {
   overflow: visible !important;
 }
 
-/* Wrap establishes the docking context */
+/* ---------- DESKTOP (sidebar) ---------- */
+
+/* The column wrapper that contains the filters (your sticky context) */
 .sticky-filters-wrap {
-  position: relative; /* used when docking at the end */
-}
-
-/* Placeholder maintains layout height when bar goes fixed */
-.sticky-filters-placeholder {
-  height: 0;
-}
-
-/* Bar styles – keep visual parity; we don’t alter inner markup */
-.sticky-filters-bar {
-  background: var(--color-background, #fff);
-  will-change: transform;
-  z-index: var(--collection-sticky-z);
-}
-
-/* Fixed state: width/left set via JS to match .page-width */
-.sticky-filters-bar.is-fixed {
-  box-shadow: 0 1px 0 rgba(0,0,0,.06);
-}
-
-/* Docked state (just before footer) */
-.sticky-filters-bar.is-docked {
-  position: absolute !important;  /* top/left/width handled by JS */
-  right: 0;
-}
-
-/* Make sure header is above us if it’s also sticky/fixed */
-#shopify-section-header, .header-wrapper, header[role="banner"] {
-  z-index: calc(var(--collection-sticky-z) + 10) !important;
-}
-
-/* Neutralize random margins that can cause visual jump */
-.sticky-filters-bar .collection-filters,
-.sticky-filters-bar collection-filters {
-  margin: 0 !important;
-}
-
-/* The wrap should be the sidebar column. Ensure it doesn’t expand unexpectedly. */
-.sticky-filters-wrap {
-  position: relative;
-  width: 100%;          /* 100% of the sidebar column only */
+  position: relative;        /* needed for docking (absolute) */
+  width: 100%;
   max-width: 100%;
 }
 
-/* When fixed, we set explicit width/left via JS; this prevents layout jumps */
+/* Placeholder keeps layout height when the bar becomes fixed */
+.sticky-filters-placeholder {
+  height: 0;                 /* JS sets the actual height */
+}
+
+/* The sticky bar (contains your {% render 'collection-filters' %}) */
 .sticky-filters-bar {
   background: var(--color-background, #fff);
-  z-index: 80;
+  will-change: transform;
+  z-index: var(--filters-z);
 }
 
-/* Optional: subtle divider while fixed */
-.sticky-filters-bar.is-fixed { box-shadow: 0 1px 0 rgba(0,0,0,.06); }
-
-:root {
-  --header-z: 200;   /* header/navigation */
-  --filters-z: 60;   /* filter bar when fixed */
+/* Fixed under header while scrolling grid */
+.sticky-filters-bar.is-fixed {
+  /* width/left/top are set via JS for perfect column alignment */
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
+  z-index: var(--filters-z); /* below the header */
 }
 
-/* Header + desktop nav should always be above */
+/* Docked at the bottom of the section so it never overlaps the footer */
+.sticky-filters-bar.is-docked {
+  position: absolute !important; /* top/left/width set via JS */
+  right: 0;
+  box-shadow: none;
+  z-index: var(--filters-z-docked);
+}
+
+/* Ensure the header layers sit above the filters */
 #shopify-section-header,
 .header-wrapper,
 header[role="banner"],
@@ -73,31 +62,17 @@ header[role="banner"],
   z-index: var(--header-z) !important;
 }
 
-/* Filter bar base */
-.sticky-filters-bar {
-  z-index: var(--filters-z);
+/* Neutralize random margins that can cause visual jumps */
+.sticky-filters-bar .collection-filters,
+.sticky-filters-bar collection-filters {
+  margin: 0 !important;
 }
 
-/* While fixed under the header */
-.sticky-filters-bar.is-fixed {
-  z-index: var(--filters-z);     /* below header */
-  box-shadow: 0 1px 0 rgba(0,0,0,.06);
-}
-
-/* When docked at the bottom of the grid (before footer), let it be even lower
-   so it scrolls *behind* the header/navigation as you continue upward */
-.sticky-filters-bar.is-docked {
-  z-index: 1 !important;         /* definitely under header/nav */
-  box-shadow: none;
-}
-
-:root {
-  --mobile-filters-z: 60;   /* below header/nav */
-  --header-z: 200;          /* already defined earlier */
-}
+/* ---------- MOBILE (button + section sticky) ---------- */
+/* Uses --mobile-sticky-offset computed by the small mobile script. */
 
 @media (max-width: 989px) {
-  /* Ensure the header/nav are above */
+  /* Keep header/nav above the sticky elements */
   #shopify-section-header,
   .header-wrapper,
   header[role="banner"],
@@ -105,92 +80,23 @@ header[role="banner"],
     z-index: var(--header-z) !important;
   }
 
-  /* The section we fix on mobile */
+  /* Stick the specified section under header/nav */
   #shopify-section-template--16905854812223__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a {
-    z-index: var(--mobile-filters-z);
+    position: sticky;
+    top: var(--mobile-sticky-offset, 0px);
+    z-index: calc(var(--filters-z) + 10);  /* below header, above content */
     background: var(--color-background, #fff);
     will-change: transform;
   }
 
-  /* Placeholder occupies the section's original height during fix */
-  .mobile-filters-placeholder {
-    height: 0; /* set dynamically via JS */
-  }
-
-  /* Keep the existing mobile button visually above its own section content if needed,
-     but still *below* the header/nav */
-  .collection-filters__button.hide-desktop {
-    position: relative;
-    z-index: calc(var(--mobile-filters-z) + 1);
-  }
-}
-
-/* When docked at the bottom (before footer), push even lower in the stack so it scrolls under header */
-@media (max-width: 989px) {
-  #shopify-section-template--16905854812223__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a.is-docked {
-    z-index: 1 !important;
-  }
-}
-
-/* MOBILE ONLY */
-@media (max-width: 989px) {
-  /* Keep header/nav above the sticky button */
-  #shopify-section-header,
-  .header-wrapper,
-  header[role="banner"],
-  .header__navigation { z-index: 200 !important; }
-
-  .collection-filters__button.hide-desktop {
-    z-index: 120;                 /* below header/nav */
-    background: var(--color-background, #fff);
-    will-change: transform;
-  }
-
-  /* Placeholder height is set via JS */
-  .mobile-filters-btn-placeholder { height: 0; }
-
-  /* While docked near the footer, push lower in stack so it scrolls under header/nav */
-  .collection-filters__button.hide-desktop.is-docked { z-index: 1 !important; }
-
-  /* When the drawer is open, hide the sticky button to avoid overlap with drawer UI */
-  .mobile-filters-drawer-open .collection-filters__button.hide-desktop {
-    visibility: hidden !important;
-  }
-}
-
-/* Mobile-only sticky button; keeps desktop unchanged */
-@media (max-width: 989px) {
-  /* Ensure containers don’t block sticky */
-  .page-width,
-  .collection-grid__inner { overflow: visible !important; }
-
-  /* Make the mobile filter button sticky under the header/nav */
+  /* Stick the mobile filter trigger button under header/nav as well */
   .collection-filters__button.hide-desktop {
     position: sticky;
     top: var(--mobile-sticky-offset, 0px);
-    z-index: 120; /* below header/nav, above grid */
+    z-index: calc(var(--filters-z) + 20);  /* above section, below header */
     display: block;
-    width: 100%;  /* match current layout; remove if your theme sets width */
-    background: var(--color-background, #fff); /* avoids see-through during stick */
+    width: 100%;
+    background: var(--color-background, #fff);
+    pointer-events: auto;
   }
-
-  /* Keep header/nav above us */
-  #shopify-section-header,
-  .header-wrapper,
-  header[role="banner"],
-  .header__navigation {
-    z-index: 200 !important;
-  }
-
-  /* Optional: when any modal/drawer is open, hide the sticky button to avoid overlap.
-     If your drawer toggles a different class/attribute, adjust the selector. */
-  [aria-modal="true"],
-  [role="dialog"] {
-    /* no styles; just anchors the next rule via :has() if your browser supports it */
-  }
-  /* Progressive enhancement: hide button while a dialog/modal is shown (Chrome/Safari support) */
-html:has([aria-modal="true"]) .collection-filters__button.hide-desktop,
-html:has([role="dialog"]) .collection-filters__button.hide-desktop {
-  visibility: hidden !important;
-}
 }
