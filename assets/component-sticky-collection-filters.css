@@ -1,102 +1,111 @@
 /* -------------------------------------------------------
    Collection Sticky Filters — unified CSS (desktop + mobile)
-   Pairs with your current section JS:
-   - Desktop: hybrid fixed/dock logic (with +100px buffer from JS)
-   - Mobile: CSS sticky using --mobile-sticky-offset (set by small JS)
+   Desktop uses your existing hybrid JS (with +100px buffer).
+   Mobile uses a small JS to set --mobile-sticky-offset.
 -------------------------------------------------------- */
 
 /* Layer vars */
-:root {
-  --filters-z: 60;            /* filter bar (desktop) */
-  --filters-z-docked: 1;      /* when docked near footer, sit under header */
-  --header-z: 200;            /* header + nav should always be above filters */
+:root{
+  --filters-z: 60;           /* desktop sidebar filter */
+  --filters-z-docked: 1;     /* when docked near footer */
+  --header-z: 200;           /* header + nav always above */
+  --drawer-z: 320;           /* mobile drawer above everything except header */
+  --drawer-overlay-z: 310;   /* optional overlay beneath drawer panel */
 }
 
-/* Make sure containers don’t break sticky/fixed with overflow/transform */
+/* Prevent wrappers from breaking sticky/fixed (overflow/transform) */
 .page-width,
-.collection-grid__inner {
-  overflow: visible !important;
-}
+.collection-grid__inner { overflow: visible !important; }
 
-/* ---------- DESKTOP (sidebar) ---------- */
-
-/* The column wrapper that contains the filters (your sticky context) */
+/* ---------- DESKTOP (left sidebar) ---------- */
 .sticky-filters-wrap {
-  position: relative;        /* needed for docking (absolute) */
+  position: relative; /* docking context */
   width: 100%;
   max-width: 100%;
 }
+.sticky-filters-placeholder { height: 0; } /* JS sets real value */
 
-/* Placeholder keeps layout height when the bar becomes fixed */
-.sticky-filters-placeholder {
-  height: 0;                 /* JS sets the actual height */
-}
-
-/* The sticky bar (contains your {% render 'collection-filters' %}) */
-.sticky-filters-bar {
+.sticky-filters-bar{
   background: var(--color-background, #fff);
   will-change: transform;
   z-index: var(--filters-z);
 }
-
-/* Fixed under header while scrolling grid */
-.sticky-filters-bar.is-fixed {
-  /* width/left/top are set via JS for perfect column alignment */
+.sticky-filters-bar.is-fixed{
   box-shadow: 0 1px 0 rgba(0,0,0,.06);
-  z-index: var(--filters-z); /* below the header */
+  z-index: var(--filters-z);
 }
-
-/* Docked at the bottom of the section so it never overlaps the footer */
-.sticky-filters-bar.is-docked {
-  position: absolute !important; /* top/left/width set via JS */
+.sticky-filters-bar.is-docked{
+  position: absolute !important; /* top/left/width via JS */
   right: 0;
   box-shadow: none;
   z-index: var(--filters-z-docked);
 }
 
-/* Ensure the header layers sit above the filters */
+/* Header/Nav stacking above filters */
 #shopify-section-header,
 .header-wrapper,
 header[role="banner"],
-.header__navigation {
-  z-index: var(--header-z) !important;
-}
+.header__navigation { z-index: var(--header-z) !important; }
 
-/* Neutralize random margins that can cause visual jumps */
+/* Remove odd margins from inner filter markup */
 .sticky-filters-bar .collection-filters,
-.sticky-filters-bar collection-filters {
-  margin: 0 !important;
-}
+.sticky-filters-bar collection-filters { margin: 0 !important; }
 
-/* ---------- MOBILE (button + section sticky) ---------- */
-/* Uses --mobile-sticky-offset computed by the small mobile script. */
-
-@media (max-width: 989px) {
-  /* Keep header/nav above the sticky elements */
+/* ---------- MOBILE (stick two things + fix drawer) ---------- */
+@media (max-width: 989px){
+  /* Keep header/nav above sticky elements */
   #shopify-section-header,
   .header-wrapper,
   header[role="banner"],
-  .header__navigation {
-    z-index: var(--header-z) !important;
-  }
+  .header__navigation { z-index: var(--header-z) !important; }
 
-  /* Stick the specified section under header/nav */
-  #shopify-section-template--16905854812223__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a {
+  /* 1) Stick the “white buttons” section under header */
+  #shopify-section-template--17366421930047__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a{
     position: sticky;
     top: var(--mobile-sticky-offset, 0px);
-    z-index: calc(var(--filters-z) + 10);  /* below header, above content */
+    z-index: 110; /* below header/nav */
     background: var(--color-background, #fff);
     will-change: transform;
   }
 
-  /* Stick the mobile filter trigger button under header/nav as well */
-  .collection-filters__button.hide-desktop {
+  /* 2) Stick the mobile Filter trigger button under header as well */
+  .collection-filters__button.hide-desktop{
     position: sticky;
     top: var(--mobile-sticky-offset, 0px);
-    z-index: calc(var(--filters-z) + 20);  /* above section, below header */
+    z-index: 120; /* above section, below header/nav, below drawer */
     display: block;
     width: 100%;
     background: var(--color-background, #fff);
     pointer-events: auto;
+  }
+
+  /* 3) Drawer (the <collection-filters> slideout) — height & stacking
+         These selectors cover common implementations; your theme will match one. */
+  collection-filters[open],
+  collection-filters.is-open,
+  .collection-filters--drawer.is-open,
+  .filters-drawer.is-open,
+  [data-filters-drawer].is-open,
+  .drawer--filters.is-open,
+  .drawer.drawer--filters.is-open {
+    position: fixed !important;
+    top: var(--mobile-sticky-offset, 0px) !important;
+    right: 0; left: 0;
+    height: calc(100vh - var(--mobile-sticky-offset, 0px)) !important;
+    max-height: calc(100vh - var(--mobile-sticky-offset, 0px)) !important;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    background: var(--color-background, #fff);
+    z-index: var(--drawer-z) !important;    /* ABOVE the sticky button */
+  }
+
+  /* Optional overlay/backdrop under the drawer but above page */
+  .drawer-overlay,
+  .filters-drawer__overlay,
+  .collection-filters__overlay {
+    position: fixed;
+    top: var(--mobile-sticky-offset, 0px);
+    right: 0; bottom: 0; left: 0;
+    z-index: var(--drawer-overlay-z);
   }
 }
