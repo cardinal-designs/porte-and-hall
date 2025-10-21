@@ -189,7 +189,8 @@ header[role="banner"],
     /* no styles; just anchors the next rule via :has() if your browser supports it */
   }
   /* Progressive enhancement: hide button while a dialog/modal is shown (Chrome/Safari support) */
-  html:has([aria-modal="true"]), html:has([role="dialog"]) .collection-filters__button.hide-desktop {
-    visibility: hidden;
-  }
+html:has([aria-modal="true"]) .collection-filters__button.hide-desktop,
+html:has([role="dialog"]) .collection-filters__button.hide-desktop {
+  visibility: hidden !important;
+}
 }
