@@ -33,140 +33,134 @@
       <div id="sticky-placeholder-{{ section.id }}" class="sticky-filters-placeholder" aria-hidden="true"></div>
     </div>
 
-    <script>
-      (function() {
-        var wrap = document.getElementById('sticky-wrap-{{ section.id }}');
-        var bar  = document.getElementById('sticky-bar-{{ section.id }}');
-        var ph   = document.getElementById('sticky-placeholder-{{ section.id }}');
+ <script>
+  (function() {
+    var wrap = document.getElementById('sticky-wrap-{{ section.id }}');
+    var bar  = document.getElementById('sticky-bar-{{ section.id }}');
+    var ph   = document.getElementById('sticky-placeholder-{{ section.id }}');
+    if (!wrap || !bar || !ph) return;
 
-        if (!wrap || !bar || !ph) return;
+    function headerHeight() {
+      var header = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+      var announce = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+      var h = header ? header.offsetHeight : 0;
+      var a = (announce && getComputedStyle(announce).display !== 'none') ? announce.offsetHeight : 0;
+      return h + a;
+    }
 
-        function headerHeight() {
-          // Try common Shopify header/announcement selectors used across themes
-          var header = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
-          var announce = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
-          var h = header ? header.offsetHeight : 0;
-          var a = (announce && getComputedStyle(announce).display !== 'none') ? announce.offsetHeight : 0;
-          return h + a;
-        }
+    // Create end sentinel (stop before footer)
+    var endSentinel = document.getElementById('sticky-end-sentinel-{{ section.id }}');
+    if (!endSentinel) {
+      endSentinel = document.createElement('div');
+      endSentinel.id = 'sticky-end-sentinel-{{ section.id }}';
+      endSentinel.style.height = '1px';
+      var gridEnd = document.getElementById('ProductGridContainer') || wrap.parentElement;
+      gridEnd.parentNode.insertBefore(endSentinel, gridEnd.nextSibling);
+    }
 
-        function containerRect() {
-          // Page container to align the bar’s left/width when fixed
-          var container = document.querySelector('.page-width') || wrap.parentElement;
-          return container.getBoundingClientRect();
-        }
+    function setPlaceholderHeight() {
+      ph.style.height = bar.offsetHeight + 'px';
+    }
 
-        function setPlaceholderHeight() {
-          ph.style.height = bar.offsetHeight + 'px';
-        }
+    var startY = 0;    // where we start fixing
+    var endY   = 0;    // where we dock
+    var H      = 0;    // header+announcement
+    var fixedLeft = 0; // left of the sidebar column
+    var fixedWidth = 0;// width of the sidebar column
 
-        var startY = 0;    // top Y at which we start fixing
-        var endY   = 0;    // bottom Y (sentinel) where we stop fixing
-        var H      = 0;    // header + announcement height buffer
+    function measure() {
+      // Reset to natural flow to measure correct rect for the SIDEBAR, not the page
+      bar.style.position = 'static';
+      bar.style.left = '';
+      bar.style.width = '';
+      bar.style.top = '';
+      bar.style.transform = '';
+      bar.classList.remove('is-fixed','is-docked');
 
-        // Sentinel at the end of the collection to stop before footer
-        var endSentinel = document.getElementById('sticky-end-sentinel-{{ section.id }}');
-        if (!endSentinel) {
-          endSentinel = document.createElement('div');
-          endSentinel.id = 'sticky-end-sentinel-{{ section.id }}';
-          endSentinel.style.height = '1px';
-          endSentinel.style.width = '100%';
-          // Insert right after the ProductGridContainer so we stop above blog/footer
-          var gridEnd = document.getElementById('ProductGridContainer') || wrap.parentElement;
-          gridEnd.parentNode.insertBefore(endSentinel, gridEnd.nextSibling);
-        }
+      setPlaceholderHeight();
+      H = headerHeight();
 
-        function measure() {
-          // Reset styles to measure correctly
+      var wrapBox = wrap.getBoundingClientRect();
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      startY = wrapBox.top + scrollTop; // when the top of wrap reaches header
+
+      var endBox = endSentinel.getBoundingClientRect();
+      endY = endBox.top + scrollTop;
+
+      // Capture the bar’s OWN column metrics (so fixed state matches sidebar, not full page)
+      var naturalRect = bar.getBoundingClientRect();
+      fixedLeft  = naturalRect.left + window.pageXOffset;
+      fixedWidth = naturalRect.width;
+
+      // Store to dataset for quick reads
+      bar.dataset.fixedLeft  = fixedLeft;
+      bar.dataset.fixedWidth = fixedWidth;
+    }
+
+    function applyState() {
+      var y = window.pageYOffset || document.documentElement.scrollTop;
+      var barH = bar.offsetHeight;
+
+      // If above start — normal flow
+      if (y + H <= startY) {
+        if (bar.classList.contains('is-fixed') || bar.classList.contains('is-docked')) {
           bar.style.position = 'static';
           bar.style.left = '';
           bar.style.width = '';
           bar.style.top = '';
           bar.style.transform = '';
           bar.classList.remove('is-fixed','is-docked');
-
-          setPlaceholderHeight();
-          H = headerHeight();
-
-          var wrapBox = wrap.getBoundingClientRect();
-          var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          startY = wrapBox.top + scrollTop; // when top of wrap reaches header
-          var endBox = endSentinel.getBoundingClientRect();
-          endY = endBox.top + scrollTop;    // when we hit sentinel we undock
-
-          // Precompute width/left for fixed mode
-          var c = containerRect();
-          bar.dataset.fixedWidth = c.width;
-          bar.dataset.fixedLeft  = c.left + window.pageXOffset;
         }
+        return;
+      }
 
-        function applyState() {
-          var y = window.pageYOffset || document.documentElement.scrollTop;
-          var barH = bar.offsetHeight;
+      // If we’ve reached (end - bar height - header), dock inside wrap so it scrolls away before footer
+      if (y + H + barH >= endY) {
+        var wrapTop = wrap.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop);
+        var dockTop = (endY - barH) - wrapTop; // position within wrap
+        bar.style.position = 'absolute';
+        bar.style.top = dockTop + 'px';
+        bar.style.left = '0';
+        bar.style.width = '100%'; // width of the sidebar column (wrap is the column)
+        bar.style.transform = '';
+        bar.classList.remove('is-fixed');
+        bar.classList.add('is-docked');
+        return;
+      }
 
-          // If above start — normal flow
-          if (y + H <= startY) {
-            if (bar.classList.contains('is-fixed') || bar.classList.contains('is-docked')) {
-              bar.style.position = 'static';
-              bar.style.left = '';
-              bar.style.width = '';
-              bar.style.top = '';
-              bar.style.transform = '';
-              bar.classList.remove('is-fixed','is-docked');
-            }
-            return;
-          }
+      // Fixed under header: pin to the sidebar column’s left/width (not the full page)
+      var w = parseFloat(bar.dataset.fixedWidth) || bar.getBoundingClientRect().width;
+      var l = parseFloat(bar.dataset.fixedLeft)  || (bar.getBoundingClientRect().left + window.pageXOffset);
+      bar.style.position = 'fixed';
+      bar.style.top = H + 'px';
+      bar.style.left = l + 'px';
+      bar.style.width = w + 'px';
+      bar.style.transform = 'translateZ(0)'; // mobile paint stability
+      bar.classList.add('is-fixed');
+      bar.classList.remove('is-docked');
+    }
 
-          // If we’ve reached (end - bar height - header), dock the bar at the end of the wrap
-          if (y + H + barH >= endY) {
-            // Dock inside the wrap so it scrolls away above the footer
-            var wrapTop = wrap.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop);
-            var dockTop = (endY - barH) - wrapTop; // position within wrap
-            bar.style.position = 'absolute';
-            bar.style.top = dockTop + 'px';
-            bar.style.left = '0';
-            bar.style.width = '100%';
-            bar.style.transform = '';
-            bar.classList.remove('is-fixed');
-            bar.classList.add('is-docked');
-            return;
-          }
+    var recalc = function(){ measure(); applyState(); };
+    window.addEventListener('load', recalc, { passive: true });
+    window.addEventListener('resize', recalc, { passive: true });
+    window.addEventListener('orientationchange', recalc, { passive: true });
+    window.addEventListener('scroll', function(){
+      var newH = headerHeight();
+      if (Math.abs(newH - H) > 2) measure(); // header may shrink/expand
+      applyState();
+    }, { passive: true });
 
-          // Fixed under the header (main state while scrolling)
-          var w = bar.dataset.fixedWidth || containerRect().width;
-          var l = bar.dataset.fixedLeft || (containerRect().left + window.pageXOffset);
-          bar.style.position = 'fixed';
-          bar.style.top = H + 'px';
-          bar.style.left = l + 'px';
-          bar.style.width = w + 'px';
-          bar.style.transform = 'translateZ(0)'; // mobile sticky quirk guard
-          bar.classList.add('is-fixed');
-          bar.classList.remove('is-docked');
-        }
+    // First paint
+    measure();
+    applyState();
 
-        // Recalculate on load / resize / orientation / font swap / theme header shrink
-        var recalc = function() { measure(); applyState(); };
-        window.addEventListener('load', recalc, { passive: true });
-        window.addEventListener('resize', recalc, { passive: true });
-        window.addEventListener('orientationchange', recalc, { passive: true });
-        window.addEventListener('scroll', function(){
-          // header may shrink; re-measure if it likely changed
-          var newH = headerHeight();
-          if (Math.abs(newH - H) > 2) measure();
-          applyState();
-        }, { passive: true });
-
-        // First paint
-        measure();
-        applyState();
-
-        // Expose your clearAll for empty-state button
-        window.clearAll = function(e) {
-          e && e.preventDefault();
-          document.querySelector('collection-filters')?.clearAllFilters?.();
-        };
-      })();
-    </script>
+    // Keep your Clear All exposed
+    window.clearAll = function(e) {
+      e && e.preventDefault();
+      document.querySelector('collection-filters')?.clearAllFilters?.();
+    };
+  })();
+</script>
 
     <div id="ProductGridContainer">
       {% if collection.products.size == 0 %}
