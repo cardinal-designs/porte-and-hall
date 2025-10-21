@@ -131,3 +131,29 @@ header[role="banner"],
     z-index: 1 !important;
   }
 }
+
+/* MOBILE ONLY */
+@media (max-width: 989px) {
+  /* Keep header/nav above the sticky button */
+  #shopify-section-header,
+  .header-wrapper,
+  header[role="banner"],
+  .header__navigation { z-index: 200 !important; }
+
+  .collection-filters__button.hide-desktop {
+    z-index: 120;                 /* below header/nav */
+    background: var(--color-background, #fff);
+    will-change: transform;
+  }
+
+  /* Placeholder height is set via JS */
+  .mobile-filters-btn-placeholder { height: 0; }
+
+  /* While docked near the footer, push lower in stack so it scrolls under header/nav */
+  .collection-filters__button.hide-desktop.is-docked { z-index: 1 !important; }
+
+  /* When the drawer is open, hide the sticky button to avoid overlap with drawer UI */
+  .mobile-filters-drawer-open .collection-filters__button.hide-desktop {
+    visibility: hidden !important;
+  }
+}
