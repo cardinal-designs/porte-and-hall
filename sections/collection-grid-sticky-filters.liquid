@@ -202,190 +202,42 @@
   })();
 </script>
 
+
 <script>
 (function(){
-  var MOBILE_BP = '(max-width: 989px)';  // match your theme breakpoint
-  var FOOTER_BUFFER = 12;                 // px above footer
-  var EXTRA_OFFSET = 0;                   // NO extra 100px on mobile
-
-  // Elements
-  var button = document.querySelector('.collection-filters__button.hide-desktop');
-  if (!button) return;
-
-  // The section you mentioned (used as the docking container)
-  var container = document.getElementById('shopify-section-template--16905854812223__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a') || button.parentElement;
-
-  // Placeholder to prevent layout jump when button goes fixed
-  var ph = document.createElement('div');
-  ph.className = 'mobile-filters-btn-placeholder';
-  button.insertAdjacentElement('afterend', ph);
-
-  // Sentinel to stop before footer / end of grid
-  var endSentinel = document.getElementById('sticky-end-sentinel-mobile');
-  if (!endSentinel) {
-    endSentinel = document.createElement('div');
-    endSentinel.id = 'sticky-end-sentinel-mobile';
-    endSentinel.style.height = '1px';
-    var gridEnd = document.getElementById('ProductGridContainer') || container;
-    gridEnd.parentNode.insertBefore(endSentinel, gridEnd.nextSibling);
-  }
+  var MQ = '(max-width: 989px)'; // match your theme breakpoint
 
   function headerOffset() {
-    var header = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+    var header   = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
     var announce = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
-    var nav = document.querySelector('.header__navigation');
+    var nav      = document.querySelector('.header__navigation');
 
     var h = header ? header.offsetHeight : 0;
     var a = (announce && getComputedStyle(announce).display !== 'none') ? announce.offsetHeight : 0;
     var n = 0;
+
     if (nav) {
       var cs = getComputedStyle(nav);
-      var isVisible = cs.display !== 'none' && nav.offsetHeight > 0;
-      var isOverlay = /(fixed|sticky)/.test(cs.position);
+      var isVisible   = cs.display !== 'none' && nav.offsetHeight > 0;
+      var isOverlay   = /(fixed|sticky)/.test(cs.position);
       if (isVisible && isOverlay) n = nav.offsetHeight;
     }
-    return h + a + n + EXTRA_OFFSET; // no extra 100px on mobile
+    // IMPORTANT: no extra +100 on mobile (per your earlier spec)
+    return h + a + n;
   }
 
-  function footerTop() {
-    var footer = document.querySelector('#shopify-section-footer') ||
-                 document.querySelector('.footer, .site-footer') ||
-                 document.querySelector('footer');
-    if (!footer) return Infinity;
-    var r = footer.getBoundingClientRect();
-    return r.top + (window.pageYOffset || document.documentElement.scrollTop);
+  function applyMobileStickyOffset() {
+    if (!window.matchMedia(MQ).matches) return;
+    var off = headerOffset();
+    document.documentElement.style.setProperty('--mobile-sticky-offset', off + 'px');
   }
 
-  var startY = 0, stopY = 0, H = 0, fixedLeft = 0, fixedWidth = 0;
+  window.addEventListener('load', applyMobileStickyOffset, { passive: true });
+  window.addEventListener('resize', applyMobileStickyOffset, { passive: true });
+  window.addEventListener('orientationchange', applyMobileStickyOffset, { passive: true });
+  window.addEventListener('scroll', applyMobileStickyOffset, { passive: true });
 
-  function measure() {
-    // Reset to natural to read correct rect
-    button.style.position = 'static';
-    button.style.left = '';
-    button.style.width = '';
-    button.style.top = '';
-    button.classList.remove('is-fixed','is-docked');
-
-    ph.style.height = button.offsetHeight + 'px';
-    H = headerOffset();
-
-    var box = button.getBoundingClientRect();
-    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    startY = box.top + scrollTop;
-
-    var endBox = endSentinel.getBoundingClientRect();
-    var endY = endBox.top + scrollTop;
-    var fTop = footerTop();
-    stopY = Math.min(endY, fTop) - FOOTER_BUFFER;
-
-    // Lock to its natural width/left (so it stays centered like now)
-    var rect = button.getBoundingClientRect();
-    fixedLeft  = rect.left + window.pageXOffset;
-    fixedWidth = rect.width;
-  }
-
-  function apply() {
-    if (!window.matchMedia(MOBILE_BP).matches) {
-      // desktop: no changes
-      button.style.position = 'static';
-      button.style.left = '';
-      button.style.width = '';
-      button.style.top = '';
-      button.classList.remove('is-fixed','is-docked');
-      ph.style.height = '0';
-      return;
-    }
-
-    // If drawer is open, keep button hidden (CSS will handle visibility; we still maintain layout)
-    var y = window.pageYOffset || document.documentElement.scrollTop;
-    var h = button.offsetHeight;
-
-    // Normal flow (above start)
-    if (y + H <= startY) {
-      if (button.classList.contains('is-fixed') || button.classList.contains('is-docked')) {
-        button.style.position = 'static';
-        button.style.left = '';
-        button.style.width = '';
-        button.style.top = '';
-        button.classList.remove('is-fixed','is-docked');
-      }
-      return;
-    }
-
-    // Dock before footer/grid end
-    if (y + H + h >= stopY) {
-      var parent = container;
-      var parentTop = parent.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop);
-      var dockTop = (stopY - h) - parentTop;
-      button.style.position = 'absolute';
-      button.style.top = dockTop + 'px';
-      button.style.left = '0';
-      button.style.width = '100%';
-      button.classList.remove('is-fixed');
-      button.classList.add('is-docked');
-      return;
-    }
-
-    // Fixed under header on mobile
-    button.style.position = 'fixed';
-    button.style.top = H + 'px';
-    button.style.left = fixedLeft + 'px';
-    button.style.width = fixedWidth + 'px';
-    button.classList.add('is-fixed');
-    button.classList.remove('is-docked');
-  }
-
-  // Hide the sticky button while the drawer is visible (non-invasive; keeps your existing click handler)
-  function isDrawerOpen() {
-    // Try common patterns: any element that looks like a filters drawer and is visible
-    var candidates = document.querySelectorAll(
-      '.drawer, .Drawer, .collection-drawer, .filters-drawer, [data-filters-drawer], [aria-modal="true"], [role="dialog"]'
-    );
-    for (var i = 0; i < candidates.length; i++) {
-      var el = candidates[i];
-      var cs = getComputedStyle(el);
-      if (/(block|flex|grid)/.test(cs.display) && cs.visibility !== 'hidden' && el.offsetHeight > 0) return true;
-      if (el.classList.contains('is-open') || el.classList.contains('open') || el.hasAttribute('open')) return true;
-    }
-    return false;
-  }
-
-  function updateVisibility() {
-    if (!window.matchMedia(MOBILE_BP).matches) {
-      document.documentElement.classList.remove('mobile-filters-drawer-open');
-      button.style.visibility = '';
-      return;
-    }
-    var open = isDrawerOpen();
-    document.documentElement.classList.toggle('mobile-filters-drawer-open', open);
-    button.style.visibility = open ? 'hidden' : 'visible';
-  }
-
-  // Observe DOM for drawer open/close changes
-  var mo = new MutationObserver(function(){ updateVisibility(); });
-  mo.observe(document.documentElement, { attributes: true, childList: true, subtree: true });
-
-  // Also react immediately when the button is clicked (theme will open drawer)
-  button.addEventListener('click', function(){ 
-    // Give the theme a tick to attach/open the drawer
-    setTimeout(updateVisibility, 0);
-  }, { passive: true });
-
-  // Wire scroll/resize
-  var recalc = function(){ measure(); apply(); updateVisibility(); };
-  window.addEventListener('load', recalc, { passive: true });
-  window.addEventListener('resize', recalc, { passive: true });
-  window.addEventListener('orientationchange', recalc, { passive: true });
-  window.addEventListener('scroll', function(){
-    var newH = headerOffset();
-    if (Math.abs(newH - H) > 2) measure();
-    apply();
-  }, { passive: true });
-
-  // First paint
-  measure();
-  apply();
-  updateVisibility();
+  applyMobileStickyOffset();
 })();
 </script>
 
