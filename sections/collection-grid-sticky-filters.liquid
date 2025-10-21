@@ -40,13 +40,29 @@
     var ph   = document.getElementById('sticky-placeholder-{{ section.id }}');
     if (!wrap || !bar || !ph) return;
 
-    function headerHeight() {
-      var header = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
-      var announce = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
-      var h = header ? header.offsetHeight : 0;
-      var a = (announce && getComputedStyle(announce).display !== 'none') ? announce.offsetHeight : 0;
-      return h + a;
+  function headerHeight() {
+    // Base header + announcement heights
+    var header = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+    var announce = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+
+    var h = header ? header.offsetHeight : 0;
+    var a = (announce && getComputedStyle(announce).display !== 'none') ? announce.offsetHeight : 0;
+
+    // Desktop navigation bar that sits under the header
+    // Only count it when it's visible AND positioned overlay-style (sticky/fixed)
+    var n = 0;
+    var nav = document.querySelector('.header__navigation');
+    if (nav) {
+      var cs = getComputedStyle(nav);
+      var isVisible = cs.display !== 'none' && nav.offsetHeight > 0;
+      var isOverlaying = /(fixed|sticky)/.test(cs.position);
+      if (isVisible && isOverlaying && window.matchMedia('(min-width: 990px)').matches) {
+        n = nav.offsetHeight;
+      }
     }
+
+    return h + a + n;
+  }
 
     // Create end sentinel (stop before footer)
     var endSentinel = document.getElementById('sticky-end-sentinel-{{ section.id }}');
