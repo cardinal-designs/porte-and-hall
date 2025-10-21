@@ -43,3 +43,19 @@
 .sticky-filters-bar collection-filters {
   margin: 0 !important;
 }
+
+/* The wrap should be the sidebar column. Ensure it doesn’t expand unexpectedly. */
+.sticky-filters-wrap {
+  position: relative;
+  width: 100%;          /* 100% of the sidebar column only */
+  max-width: 100%;
+}
+
+/* When fixed, we set explicit width/left via JS; this prevents layout jumps */
+.sticky-filters-bar {
+  background: var(--color-background, #fff);
+  z-index: 80;
+}
+
+/* Optional: subtle divider while fixed */
+.sticky-filters-bar.is-fixed { box-shadow: 0 1px 0 rgba(0,0,0,.06); }
