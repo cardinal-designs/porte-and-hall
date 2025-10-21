@@ -1,37 +1,45 @@
-:root {
-  --collection-sticky-offset: 0px;
+:root { --collection-sticky-z: 80; }
+
+/* Ensure upstream wrappers don’t kill sticky/fixed via overflow or transforms */
+.page-width, .collection-grid__inner {
+  overflow: visible !important;
 }
 
-/* The wrapper that becomes sticky */
-.sticky-filters {
-  position: sticky;
-  top: var(--collection-sticky-offset, 0px);
-  z-index: 30; /* above grid but below header menus */
+/* Wrap establishes the docking context */
+.sticky-filters-wrap {
+  position: relative; /* used when docking at the end */
+}
+
+/* Placeholder maintains layout height when bar goes fixed */
+.sticky-filters-placeholder {
+  height: 0;
+}
+
+/* Bar styles – keep visual parity; we don’t alter inner markup */
+.sticky-filters-bar {
   background: var(--color-background, #fff);
-  /* Ensure it spans the grid width exactly like before */
-  margin-bottom: 0; /* no layout shift */
+  will-change: transform;
+  z-index: var(--collection-sticky-z);
 }
 
-/* Inner keeps current spacing; adjust if your theme adds margins above/below */
-.sticky-filters__inner {
-  /* inherit typography/spacing from theme */
+/* Fixed state: width/left set via JS to match .page-width */
+.sticky-filters-bar.is-fixed {
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
 }
 
-/* Add a tiny divider only while stuck so it looks intentional under the header */
-.sticky-filters.is-stuck {
-  box-shadow: 0 1px 0 0 rgba(0,0,0,.08);
+/* Docked state (just before footer) */
+.sticky-filters-bar.is-docked {
+  position: absolute !important;  /* top/left/width handled by JS */
+  right: 0;
 }
 
-/* If your theme has containers adding top margins around filters, neutralize them so sticky feels flush */
-.sticky-filters .collection-filters,
-.sticky-filters collection-filters {
-  margin-top: 0 !important;
+/* Make sure header is above us if it’s also sticky/fixed */
+#shopify-section-header, .header-wrapper, header[role="banner"] {
+  z-index: calc(var(--collection-sticky-z) + 10) !important;
 }
 
-/* Full width on mobile (keeps existing look) */
-@media (max-width: 749px) {
-  .sticky-filters {
-    /* iOS sticky quirk helper */
-    will-change: transform;
-  }
+/* Neutralize random margins that can cause visual jump */
+.sticky-filters-bar .collection-filters,
+.sticky-filters-bar collection-filters {
+  margin: 0 !important;
 }
