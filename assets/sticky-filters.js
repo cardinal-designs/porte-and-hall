@@ -1,4 +1,4 @@
-
+<script>
   (function() {
     var wrap = document.getElementById('sticky-wrap-{{ section.id }}');
     var bar  = document.getElementById('sticky-bar-{{ section.id }}');
@@ -419,3 +419,4 @@
   // First paint
   recalc();
 })();
+</script>
