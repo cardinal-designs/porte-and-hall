@@ -1,422 +1,78 @@
-<script>
-  (function() {
-    var wrap = document.getElementById('sticky-wrap-{{ section.id }}');
-    var bar  = document.getElementById('sticky-bar-{{ section.id }}');
-    var ph   = document.getElementById('sticky-placeholder-{{ section.id }}');
-    if (!wrap || !bar || !ph) return;
+(function(){
+  var secId = '{{ section.id }}';
+  var wrap = document.getElementById(`sticky-wrap-${secId}`);
+  var bar  = document.getElementById(`sticky-bar-${secId}`);
+  var ph   = document.getElementById(`sticky-placeholder-${secId}`);
+  if (!wrap || !bar || !ph) return;
 
   function headerHeight() {
-    // Base header + announcement heights
-    var header = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
-    var announce = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
-
-    var h = header ? header.offsetHeight : 0;
-    var a = (announce && getComputedStyle(announce).display !== 'none') ? announce.offsetHeight : 0;
-
-    // Desktop navigation bar that sits under the header
-    // Only count it when it's visible AND positioned overlay-style (sticky/fixed)
-    var n = 0;
-    var nav = document.querySelector('.header__navigation');
-    if (nav) {
-      var cs = getComputedStyle(nav);
-      var isVisible = cs.display !== 'none' && nav.offsetHeight > 0;
-      var isOverlaying = /(fixed|sticky)/.test(cs.position);
-      if (isVisible && isOverlaying && window.matchMedia('(min-width: 990px)').matches) {
-        n = nav.offsetHeight;
-      }
+    var h = document.querySelector('#shopify-section-header');
+    var a = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+    var n = document.querySelector('.header__navigation');
+    var navH = 0;
+    if (n) {
+      var cs = getComputedStyle(n);
+      if (cs.display !== 'none' && /(fixed|sticky)/.test(cs.position) && window.matchMedia('(min-width:990px)').matches)
+        navH = n.offsetHeight;
     }
-
-    return h + a + n + 100;
+    return (h ? h.offsetHeight : 0) + (a && getComputedStyle(a).display !== 'none' ? a.offsetHeight : 0) + navH + 100;
   }
 
-    // Create end sentinel (stop before footer)
-    var endSentinel = document.getElementById('sticky-end-sentinel-{{ section.id }}');
-    if (!endSentinel) {
-      endSentinel = document.createElement('div');
-      endSentinel.id = 'sticky-end-sentinel-{{ section.id }}';
-      endSentinel.style.height = '1px';
-      var gridEnd = document.getElementById('ProductGridContainer') || wrap.parentElement;
-      gridEnd.parentNode.insertBefore(endSentinel, gridEnd.nextSibling);
-    }
-
-    function setPlaceholderHeight() {
-      ph.style.height = bar.offsetHeight + 'px';
-    }
-
-    var startY = 0;    // where we start fixing
-    var endY   = 0;    // where we dock
-    var H      = 0;    // header+announcement
-    var fixedLeft = 0; // left of the sidebar column
-    var fixedWidth = 0;// width of the sidebar column
-    var stopY = 0;
-
-    function footerTop() {
-      // Try common footer containers first, then plain <footer>
-      var footer =
-        document.querySelector('#shopify-section-footer') ||
-        document.querySelector('.footer, .site-footer') ||
-        document.querySelector('footer');
-
-      if (!footer) return Infinity; // if no footer found, don't clamp
-
-      var r = footer.getBoundingClientRect();
-      return r.top + (window.pageYOffset || document.documentElement.scrollTop);
-    }
-
-    function measure() {
-      // Reset to natural flow to measure correct rect for the SIDEBAR, not the page
-      bar.style.position = 'static';
-      bar.style.left = '';
-      bar.style.width = '';
-      bar.style.top = '';
-      bar.style.transform = '';
-      bar.classList.remove('is-fixed','is-docked');
-
-      setPlaceholderHeight();
-      H = headerHeight();
-
-      var wrapBox = wrap.getBoundingClientRect();
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      startY = wrapBox.top + scrollTop; // when the top of wrap reaches header
-
-      // Where the grid area ends (your existing sentinel just after ProductGridContainer)
-      var endBox = endSentinel.getBoundingClientRect();
-      endY = endBox.top + scrollTop;
-
-      // Footer clamp (ensures we never overlap footer)
-      var fTop = footerTop();
-
-      // Choose the earliest stopping point (just before the footer OR the sentinel)
-      // Subtract a tiny epsilon so it never touches the footer
-      stopY = Math.min(endY, fTop) - 1;
-
-      // Capture the bar’s OWN column metrics (so fixed state matches sidebar, not full page)
-      var naturalRect = bar.getBoundingClientRect();
-      fixedLeft  = naturalRect.left + window.pageXOffset;
-      fixedWidth = naturalRect.width;
-
-      bar.dataset.fixedLeft  = fixedLeft;
-      bar.dataset.fixedWidth = fixedWidth;
-    }
-
-    function applyState() {
-      var y = window.pageYOffset || document.documentElement.scrollTop;
-      var barH = bar.offsetHeight;
-
-      // If above start — normal flow
-      if (y + H <= startY) {
-        if (bar.classList.contains('is-fixed') || bar.classList.contains('is-docked')) {
-          bar.style.position = 'static';
-          bar.style.left = '';
-          bar.style.width = '';
-          bar.style.top = '';
-          bar.style.transform = '';
-          bar.classList.remove('is-fixed','is-docked');
-        }
-        return;
-      }
-
-      // If we’ve reached (end - bar height - header), dock inside wrap so it scrolls away before footer
-      if (y + H + barH >= stopY) {
-        var wrapTop = wrap.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop);
-
-        // Position within wrap so the bar's bottom sits exactly at stopY
-        var dockTop = (stopY - barH) - wrapTop;
-
-        bar.style.position = 'absolute';
-        bar.style.top = dockTop + 'px';
-        bar.style.left = '0';
-        bar.style.width = '100%'; // width of the sidebar column (wrap is the column)
-        bar.style.transform = '';
-        bar.classList.remove('is-fixed');
-        bar.classList.add('is-docked');
-        return;
-      }
-
-      // Fixed under header: pin to the sidebar column’s left/width (not the full page)
-      var w = parseFloat(bar.dataset.fixedWidth) || bar.getBoundingClientRect().width;
-      var l = parseFloat(bar.dataset.fixedLeft)  || (bar.getBoundingClientRect().left + window.pageXOffset);
-      bar.style.position = 'fixed';
-      bar.style.top = H + 'px';
-      bar.style.left = l + 'px';
-      bar.style.width = w + 'px';
-      bar.style.transform = 'translateZ(0)'; // mobile paint stability
-      bar.classList.add('is-fixed');
-      bar.classList.remove('is-docked');
-    }
-
-    var recalc = function(){ measure(); applyState(); };
-    window.addEventListener('load', recalc, { passive: true });
-    window.addEventListener('resize', recalc, { passive: true });
-    window.addEventListener('orientationchange', recalc, { passive: true });
-    window.addEventListener('scroll', function(){
-      var newH = headerHeight();
-      if (Math.abs(newH - H) > 2) measure(); // header may shrink/expand
-      applyState();
-    }, { passive: true });
-
-    // First paint
-    measure();
-    applyState();
-
-    // Keep your Clear All exposed
-    window.clearAll = function(e) {
-      e && e.preventDefault();
-      document.querySelector('collection-filters')?.clearAllFilters?.();
-    };
-  })();
-
-(function(){
-  var MOBILE_BP = '(max-width: 989px)';
-  var HEADER_Z  = 200;
-  var DRAWER_Z  = 190;
-  var BTN_Z     = 120;
-  var SEC_Z     = 110;
-
-  // Target only THIS collection section + its filter button/drawer
-  var section = document.querySelector('#shopify-section-template--17366421930047__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a');
-  if (!section) return;
-
-  var whiteSec = section; // “white buttons” section itself
-  var filterBtn = section.querySelector('.collection-filters__button.hide-desktop');
-  var filterDrawer = section.querySelector('collection-filters'); // scoped drawer component
-
-  if (!filterBtn || !filterDrawer) return;
-
-  // placeholders to avoid layout jumps
-  var phWhite = document.createElement('div'); phWhite.style.height = '0px';
-  var phBtn   = document.createElement('div'); phBtn.style.height   = '0px';
-  whiteSec.insertAdjacentElement('afterend', phWhite);
-  filterBtn.insertAdjacentElement('afterend', phBtn);
-
-  function headerOffset() {
-    var header   = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
-    var announce = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
-    var nav      = document.querySelector('.header__navigation');
-    var h = header ? header.offsetHeight : 0;
-    var a = (announce && getComputedStyle(announce).display !== 'none') ? announce.offsetHeight : 0;
-    var n = 0;
-    if (nav) {
-      var cs = getComputedStyle(nav);
-      if (cs.display !== 'none' && /(fixed|sticky)/.test(cs.position)) n = nav.offsetHeight;
-    }
-    return h + a + n;
-  }
-
-  var startWhite = 0, startBtn = 0, H = 0;
-
-  function measure() {
-    [whiteSec, filterBtn].forEach(el => { el.style.position=''; el.style.top=''; el.style.left=''; el.style.width=''; });
-    phWhite.style.height = whiteSec.offsetHeight + 'px';
-    phBtn.style.height   = filterBtn.offsetHeight + 'px';
-    H = headerOffset();
-
-    var st = window.pageYOffset || document.documentElement.scrollTop;
-    startWhite = whiteSec.getBoundingClientRect().top + st;
-    startBtn   = filterBtn.getBoundingClientRect().top + st;
-  }
-
-  function stick(el, start, z) {
-    var st = window.pageYOffset || document.documentElement.scrollTop;
-    if (st + H > start) {
-      el.style.position = 'fixed';
-      el.style.top = H + 'px';
-      el.style.left = 0;
-      el.style.right = 0;
-      el.style.width = '100%';
-      el.style.zIndex = z;
-      el.style.background = 'var(--color-background, #fff)';
-    } else {
-      el.style.position = '';
-      el.style.top = '';
-      el.style.left = '';
-      el.style.right = '';
-      el.style.width = '';
-      el.style.zIndex = '';
-      el.style.background = '';
-    }
-  }
-
-  // ✅ Only style THIS drawer
-  function styleDrawer() {
-    if (!window.matchMedia(MOBILE_BP).matches) return;
-    if (!filterDrawer) return;
-    // only run if this drawer is open
-    var isOpen = filterDrawer.hasAttribute('open') || filterDrawer.classList.contains('is-open');
-    if (!isOpen) return;
-
-    var off = headerOffset();
-    filterDrawer.style.position   = 'fixed';
-    filterDrawer.style.top        = off + 'px';
-    filterDrawer.style.left       = 0;
-    filterDrawer.style.right      = 0;
-    filterDrawer.style.height     = 'calc(100vh - ' + off + 'px)';
-    filterDrawer.style.maxHeight  = 'calc(100vh - ' + off + 'px)';
-    filterDrawer.style.overflow   = 'auto';
-    filterDrawer.style.webkitOverflowScrolling = 'touch';
-    filterDrawer.style.zIndex     = DRAWER_Z;
-
-    filterBtn.style.zIndex = BTN_Z; // keep below drawer
-  }
-
-  function tick() {
-    if (!window.matchMedia(MOBILE_BP).matches) {
-      [whiteSec, filterBtn].forEach(el => el.style = '');
-      phWhite.style.height = '0px';
-      phBtn.style.height = '0px';
-      return;
-    }
-    stick(whiteSec, startWhite, SEC_Z);
-    stick(filterBtn, startBtn, BTN_Z);
-    styleDrawer();
-  }
-
-  window.addEventListener('load', ()=>{ measure(); tick(); });
-  window.addEventListener('resize', ()=>{ measure(); tick(); });
-  window.addEventListener('scroll', tick, { passive:true });
-
-  // observe only this drawer element for open/close
-  new MutationObserver(styleDrawer).observe(filterDrawer, { attributes:true });
-
-})();
-
-(function(){
-  // Match your breakpoints/stacking
-  var MOBILE_BP = '(max-width: 989px)';
-  var HEADER_Z  = 200;  // keep header above
-  var TITLE_Z   = 150;  // keep title above filters, below drawer/header
-  var FOOTER_BUFFER = 1;
-
-  // Compute header height: header + announcement + (desktop) sticky nav (+100 desktop buffer)
-  function headerOffset() {
-    var header   = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
-    var announce = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
-    var nav      = document.querySelector('.header__navigation');
-    var h = header ? header.offsetHeight : 0;
-    var a = (announce && getComputedStyle(announce).display !== 'none') ? announce.offsetHeight : 0;
-    var n = 0;
-    if (nav) {
-      var cs = getComputedStyle(nav);
-      if (cs.display !== 'none' && /(fixed|sticky)/.test(cs.position)) n = nav.offsetHeight;
-    }
-    var isDesktop = window.matchMedia('(min-width: 990px)').matches;
-    return h + a + n + (isDesktop ? 100 : 0);
+  var end = document.getElementById(`sticky-end-sentinel-${secId}`);
+  if (!end) {
+    end = document.createElement('div');
+    end.id = `sticky-end-sentinel-${secId}`;
+    end.style.height = '1px';
+    (document.getElementById('ProductGridContainer') || wrap.parentElement)
+      .insertAdjacentElement('afterend', end);
   }
 
   function footerTop() {
-    var footer = document.querySelector('#shopify-section-footer') ||
-                 document.querySelector('.footer, .site-footer') ||
-                 document.querySelector('footer');
-    if (!footer) return Infinity;
-    var r = footer.getBoundingClientRect();
-    return r.top + (window.pageYOffset || document.documentElement.scrollTop);
+    var f = document.querySelector('#shopify-section-footer, .footer, footer');
+    if (!f) return Infinity;
+    var r = f.getBoundingClientRect();
+    return r.top + window.scrollY;
   }
 
-  // Get all title-carousel sections on the page
-  var titles = Array.prototype.slice.call(document.querySelectorAll('.shopify-section.title-carousel.with-spacing'));
-  if (!titles.length) return;
-
-  // Build per-section state
-  var models = titles.map(function(el){
-    var ph = document.createElement('div'); // placeholder to avoid layout jump
-    ph.style.height = '0px';
-    el.insertAdjacentElement('afterend', ph);
-    return {
-      el: el,
-      ph: ph,
-      startY: 0,
-      stopY: 0,
-      H: 0
-    };
-  });
-
-  function measureOne(m){
-    // reset to natural to measure
-    var el = m.el;
-    el.style.position = '';
-    el.style.top = '';
-    el.style.left = '';
-    el.style.right = '';
-    el.style.width = '';
-    el.style.zIndex = '';
-    el.style.background = '';
-
-    // placeholder height equals element height to prevent jump when fixed
-    m.ph.style.height = el.offsetHeight + 'px';
-
-    m.H = headerOffset();
-
-    var st = window.pageYOffset || document.documentElement.scrollTop;
-    var box = el.getBoundingClientRect();
-    m.startY = box.top + st; // when top reaches header
-
-    var fTop = footerTop();
-    // stop before footer starts
-    m.stopY = fTop - FOOTER_BUFFER;
+  var startY = 0, stopY = 0, H = 0, left = 0, width = 0;
+  function measure() {
+    bar.style.position = 'static';
+    ph.style.height = bar.offsetHeight + 'px';
+    H = headerHeight();
+    var st = window.scrollY;
+    startY = wrap.getBoundingClientRect().top + st;
+    stopY = Math.min(end.getBoundingClientRect().top + st, footerTop()) - 1;
+    var rect = bar.getBoundingClientRect();
+    left = rect.left + window.scrollX;
+    width = rect.width;
   }
 
-  function applyOne(m){
-    var el = m.el;
-    var y  = window.pageYOffset || document.documentElement.scrollTop;
-    var H  = m.H;
-    var h  = el.offsetHeight;
-
-    // Above start -> normal flow
-    if (y + H <= m.startY) {
-      if (el.style.position === 'fixed' || el.style.position === 'absolute') {
-        el.style.position = '';
-        el.style.top = '';
-        el.style.left = '';
-        el.style.right = '';
-        el.style.width = '';
-        el.style.zIndex = '';
-        el.style.background = '';
-      }
+  function apply() {
+    var y = window.scrollY, bh = bar.offsetHeight;
+    if (y + H <= startY) {
+      bar.style = ''; return;
+    }
+    if (y + H + bh >= stopY) {
+      var wrapTop = wrap.getBoundingClientRect().top + window.scrollY;
+      bar.style.position = 'absolute';
+      bar.style.top = `${(stopY - bh) - wrapTop}px`;
+      bar.style.left = '0'; bar.style.width = '100%';
       return;
     }
-
-    // Near footer -> dock (absolute) so bottom sits just before footer
-    if (y + H + h >= m.stopY) {
-      var parent = el.parentElement;
-      var parentTop = parent.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop);
-      var dockTop = (m.stopY - h) - parentTop;
-      el.style.position = 'absolute';
-      el.style.top = dockTop + 'px';
-      el.style.left = '0';
-      el.style.right = '0';
-      el.style.width = '100%';
-      el.style.zIndex = TITLE_Z;
-      el.style.background = 'var(--color-background, #fff)';
-      return;
-    }
-
-    // Fixed under header
-    el.style.position = 'fixed';
-    el.style.top = H + 'px';
-    el.style.left = '0';
-    el.style.right = '0';
-    el.style.width = '100%';
-    el.style.zIndex = TITLE_Z; // below header, above filters
-    el.style.background = 'var(--color-background, #fff)';
+    bar.style.position = 'fixed';
+    bar.style.top = `${H}px`;
+    bar.style.left = `${left}px`;
+    bar.style.width = `${width}px`;
+    bar.style.transform = 'translateZ(0)';
   }
 
-  function measureAll(){ models.forEach(measureOne); }
-  function applyAll(){ models.forEach(applyOne); }
+  function tick() {
+    var nh = headerHeight();
+    if (Math.abs(nh - H) > 2) measure();
+    apply();
+  }
 
-  // Wire events
-  function recalc(){ measureAll(); applyAll(); }
-  window.addEventListener('load', recalc, {passive:true});
-  window.addEventListener('resize', recalc, {passive:true});
-  window.addEventListener('orientationchange', recalc, {passive:true});
-  window.addEventListener('scroll', function(){
-    // header may change height on scroll (sticky/compact states)
-    var oldH = models[0].H;
-    var newH = headerOffset();
-    if (Math.abs(newH - oldH) > 2) measureAll();
-    applyAll();
-  }, {passive:true});
-
-  // First paint
-  recalc();
+  window.addEventListener('load', () => { measure(); apply(); });
+  window.addEventListener('resize', () => { measure(); apply(); });
+  window.addEventListener('scroll', tick, { passive: true });
 })();
-</script>
