@@ -87,12 +87,16 @@ header[role="banner"],
   --title-carousel-z: 150;  /* > filters (60), < drawer (190) and header (200) */
 }
 
-.shopify-section.title-carousel.with-spacing {
-  background: var(--color-background, #fff);
-  z-index: var(--title-carousel-z);
-}
 
 /* ensure ancestors don't kill sticky/fixed */
 main, .page-width, .collection-grid__inner {
   overflow: visible !important;
+}
+
+.shopify-section.title-carousel.with-spacing {
+  position: sticky;
+  top: calc(var(--mobile-sticky-offset, 0px) + 1px); /* directly below header/nav */
+  z-index: 80; /* below header/nav (200) but above filters (60) */
+  background: var(--color-background, #fff);
+  will-change: transform;
 }
