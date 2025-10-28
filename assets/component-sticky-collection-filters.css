@@ -80,3 +80,19 @@ header[role="banner"],
 [role="dialog"] {
   z-index: 9999 !important;
 }
+
+
+/* ---- Title Carousel sticky layer (above filters, below header/nav & drawers) ---- */
+:root{
+  --title-carousel-z: 150;  /* > filters (60), < drawer (190) and header (200) */
+}
+
+.shopify-section.title-carousel.with-spacing {
+  background: var(--color-background, #fff);
+  z-index: var(--title-carousel-z);
+}
+
+/* ensure ancestors don't kill sticky/fixed */
+main, .page-width, .collection-grid__inner {
+  overflow: visible !important;
+}
