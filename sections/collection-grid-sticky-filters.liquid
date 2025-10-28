@@ -5,8 +5,8 @@
 {{ 'component-collection-filters.css' | asset_url | stylesheet_tag }}
 {{ 'component-sticky-collection-filters.css' | asset_url | stylesheet_tag }}
 
-<script src="{{ 'collection-filters.js' | asset_url }}" defer></script>
-<script src="{{ 'sticky-filters.js' | asset_url }}" defer></script>
+<script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'sticky-filters.js' | asset_url }}" defer="defer"></script>
 
 {% assign active_tags = '' %}
 {% for tag in current_tags %}
@@ -19,33 +19,532 @@
 
 <div class="page-width">
   <div class="collection-grid__inner">
+
+    {%- comment -%}
+      Hybrid pinning:
+      - Placeholder keeps layout height when bar is fixed
+      - Wrap is relative; we can "dock" the bar at the bottom before the footer
+    {%- endcomment -%}
     <div id="sticky-wrap-{{ section.id }}" class="sticky-filters-wrap" data-section-id="{{ section.id }}">
-      <div id="sticky-bar-{{ section.id }}" class="sticky-filters-bar" role="region">
-        <div class="sticky-filters-bar__inner">{% render 'collection-filters' %}</div>
+      <div id="sticky-bar-{{ section.id }}" class="sticky-filters-bar" role="region" aria-label="Collection filters">
+        <div class="sticky-filters-bar__inner">
+          {% render 'collection-filters' %}
+        </div>
       </div>
-      <div id="sticky-placeholder-{{ section.id }}" class="sticky-filters-placeholder"></div>
+      <div id="sticky-placeholder-{{ section.id }}" class="sticky-filters-placeholder" aria-hidden="true"></div>
     </div>
+
+ <script>
+  (function() {
+    var wrap = document.getElementById('sticky-wrap-{{ section.id }}');
+    var bar  = document.getElementById('sticky-bar-{{ section.id }}');
+    var ph   = document.getElementById('sticky-placeholder-{{ section.id }}');
+    if (!wrap || !bar || !ph) return;
+
+  function headerHeight() {
+    // Base header + announcement heights
+    var header = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+    var announce = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+
+    var h = header ? header.offsetHeight : 0;
+    var a = (announce && getComputedStyle(announce).display !== 'none') ? announce.offsetHeight : 0;
+
+    // Desktop navigation bar that sits under the header
+    // Only count it when it's visible AND positioned overlay-style (sticky/fixed)
+    var n = 0;
+    var nav = document.querySelector('.header__navigation');
+    if (nav) {
+      var cs = getComputedStyle(nav);
+      var isVisible = cs.display !== 'none' && nav.offsetHeight > 0;
+      var isOverlaying = /(fixed|sticky)/.test(cs.position);
+      if (isVisible && isOverlaying && window.matchMedia('(min-width: 990px)').matches) {
+        n = nav.offsetHeight;
+      }
+    }
+
+    return h + a + n + 100;
+  }
+
+    // Create end sentinel (stop before footer)
+    var endSentinel = document.getElementById('sticky-end-sentinel-{{ section.id }}');
+    if (!endSentinel) {
+      endSentinel = document.createElement('div');
+      endSentinel.id = 'sticky-end-sentinel-{{ section.id }}';
+      endSentinel.style.height = '1px';
+      var gridEnd = document.getElementById('ProductGridContainer') || wrap.parentElement;
+      gridEnd.parentNode.insertBefore(endSentinel, gridEnd.nextSibling);
+    }
+
+    function setPlaceholderHeight() {
+      ph.style.height = bar.offsetHeight + 'px';
+    }
+
+    var startY = 0;    // where we start fixing
+    var endY   = 0;    // where we dock
+    var H      = 0;    // header+announcement
+    var fixedLeft = 0; // left of the sidebar column
+    var fixedWidth = 0;// width of the sidebar column
+    var stopY = 0;
+
+    function footerTop() {
+      // Try common footer containers first, then plain <footer>
+      var footer =
+        document.querySelector('#shopify-section-footer') ||
+        document.querySelector('.footer, .site-footer') ||
+        document.querySelector('footer');
+
+      if (!footer) return Infinity; // if no footer found, don't clamp
+
+      var r = footer.getBoundingClientRect();
+      return r.top + (window.pageYOffset || document.documentElement.scrollTop);
+    }
+
+    function measure() {
+      // Reset to natural flow to measure correct rect for the SIDEBAR, not the page
+      bar.style.position = 'static';
+      bar.style.left = '';
+      bar.style.width = '';
+      bar.style.top = '';
+      bar.style.transform = '';
+      bar.classList.remove('is-fixed','is-docked');
+
+      setPlaceholderHeight();
+      H = headerHeight();
+
+      var wrapBox = wrap.getBoundingClientRect();
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      startY = wrapBox.top + scrollTop; // when the top of wrap reaches header
+
+      // Where the grid area ends (your existing sentinel just after ProductGridContainer)
+      var endBox = endSentinel.getBoundingClientRect();
+      endY = endBox.top + scrollTop;
+
+      // Footer clamp (ensures we never overlap footer)
+      var fTop = footerTop();
+
+      // Choose the earliest stopping point (just before the footer OR the sentinel)
+      // Subtract a tiny epsilon so it never touches the footer
+      stopY = Math.min(endY, fTop) - 1;
+
+      // Capture the bar’s OWN column metrics (so fixed state matches sidebar, not full page)
+      var naturalRect = bar.getBoundingClientRect();
+      fixedLeft  = naturalRect.left + window.pageXOffset;
+      fixedWidth = naturalRect.width;
+
+      bar.dataset.fixedLeft  = fixedLeft;
+      bar.dataset.fixedWidth = fixedWidth;
+    }
+
+    function applyState() {
+      var y = window.pageYOffset || document.documentElement.scrollTop;
+      var barH = bar.offsetHeight;
+
+      // If above start — normal flow
+      if (y + H <= startY) {
+        if (bar.classList.contains('is-fixed') || bar.classList.contains('is-docked')) {
+          bar.style.position = 'static';
+          bar.style.left = '';
+          bar.style.width = '';
+          bar.style.top = '';
+          bar.style.transform = '';
+          bar.classList.remove('is-fixed','is-docked');
+        }
+        return;
+      }
+
+      // If we’ve reached (end - bar height - header), dock inside wrap so it scrolls away before footer
+      if (y + H + barH >= stopY) {
+        var wrapTop = wrap.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop);
+
+        // Position within wrap so the bar's bottom sits exactly at stopY
+        var dockTop = (stopY - barH) - wrapTop;
+
+        bar.style.position = 'absolute';
+        bar.style.top = dockTop + 'px';
+        bar.style.left = '0';
+        bar.style.width = '100%'; // width of the sidebar column (wrap is the column)
+        bar.style.transform = '';
+        bar.classList.remove('is-fixed');
+        bar.classList.add('is-docked');
+        return;
+      }
+
+      // Fixed under header: pin to the sidebar column’s left/width (not the full page)
+      var w = parseFloat(bar.dataset.fixedWidth) || bar.getBoundingClientRect().width;
+      var l = parseFloat(bar.dataset.fixedLeft)  || (bar.getBoundingClientRect().left + window.pageXOffset);
+      bar.style.position = 'fixed';
+      bar.style.top = H + 'px';
+      bar.style.left = l + 'px';
+      bar.style.width = w + 'px';
+      bar.style.transform = 'translateZ(0)'; // mobile paint stability
+      bar.classList.add('is-fixed');
+      bar.classList.remove('is-docked');
+    }
+
+    var recalc = function(){ measure(); applyState(); };
+    window.addEventListener('load', recalc, { passive: true });
+    window.addEventListener('resize', recalc, { passive: true });
+    window.addEventListener('orientationchange', recalc, { passive: true });
+    window.addEventListener('scroll', function(){
+      var newH = headerHeight();
+      if (Math.abs(newH - H) > 2) measure(); // header may shrink/expand
+      applyState();
+    }, { passive: true });
+
+    // First paint
+    measure();
+    applyState();
+
+    // Keep your Clear All exposed
+    window.clearAll = function(e) {
+      e && e.preventDefault();
+      document.querySelector('collection-filters')?.clearAllFilters?.();
+    };
+  })();
+</script>
+
 
 <script>
 (function(){
-  var wrap=document.getElementById('sticky-wrap-{{ section.id }}'),bar=document.getElementById('sticky-bar-{{ section.id }}'),ph=document.getElementById('sticky-placeholder-{{ section.id }}');if(!wrap||!bar||!ph)return;
-  function headerHeight(){var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]'),a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar'),n=document.querySelector('.header__navigation'),x=h?h.offsetHeight:0,y=a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0,z=0;if(n){var s=getComputedStyle(n);if(s.display!=='none'&&/(fixed|sticky)/.test(s.position)&&window.matchMedia('(min-width: 990px)').matches)z=n.offsetHeight;}return x+y+z+100;}
-  var end=document.getElementById('sticky-end-sentinel-{{ section.id }}');if(!end){end=document.createElement('div');end.id='sticky-end-sentinel-{{ section.id }}';end.style.height='1px';(document.getElementById('ProductGridContainer')||wrap.parentElement).parentNode.insertBefore(end,(document.getElementById('ProductGridContainer')||wrap.parentElement).nextSibling);}
-  var startY=0,endY=0,H=0,fixedLeft=0,fixedWidth=0,stopY=0;
-  function footerTop(){var f=document.querySelector('#shopify-section-footer')||document.querySelector('.footer, .site-footer')||document.querySelector('footer');if(!f)return Infinity;var r=f.getBoundingClientRect();return r.top+(window.pageYOffset||document.documentElement.scrollTop);}
-  function measure(){bar.style.position='static';bar.classList.remove('is-fixed','is-docked');ph.style.height=bar.offsetHeight+'px';H=headerHeight();var box=wrap.getBoundingClientRect(),st=window.pageYOffset||document.documentElement.scrollTop;startY=box.top+st;var ebox=end.getBoundingClientRect();endY=ebox.top+st;stopY=Math.min(endY,footerTop())-1;var rect=bar.getBoundingClientRect();fixedLeft=rect.left+window.pageXOffset;fixedWidth=rect.width;bar.dataset.fixedLeft=fixedLeft;bar.dataset.fixedWidth=fixedWidth;}
-  function apply(){var y=window.pageYOffset||document.documentElement.scrollTop,barH=bar.offsetHeight;if(y+H<=startY){bar.style.position='static';bar.classList.remove('is-fixed','is-docked');return;}
-    if(y+H+barH>=stopY){var wtop=wrap.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop),dock=(stopY-barH)-wtop;bar.style.position='absolute';bar.style.top=dock+'px';bar.classList.add('is-docked');bar.classList.remove('is-fixed');return;}
-    var w=parseFloat(bar.dataset.fixedWidth)||bar.getBoundingClientRect().width,l=parseFloat(bar.dataset.fixedLeft)||bar.getBoundingClientRect().left+window.pageXOffset;bar.style.position='fixed';bar.style.top=H+'px';bar.style.left=l+'px';bar.style.width=w+'px';bar.classList.add('is-fixed');bar.classList.remove('is-docked');}
-  function recalc(){measure();apply();}
-  window.addEventListener('load',recalc);window.addEventListener('resize',recalc);window.addEventListener('orientationchange',recalc);window.addEventListener('scroll',function(){var n=headerHeight();if(Math.abs(n-H)>2)measure();apply();});
-  measure();apply();
+  var MOBILE_BP = '(max-width: 989px)';
+  var HEADER_Z  = 200;
+  var DRAWER_Z  = 190;
+  var BTN_Z     = 120;
+  var SEC_Z     = 110;
+
+  // Target only THIS collection section + its filter button/drawer
+  var section = document.querySelector('#shopify-section-template--17366421930047__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a');
+  if (!section) return;
+
+  var whiteSec = section; // “white buttons” section itself
+  var filterBtn = section.querySelector('.collection-filters__button.hide-desktop');
+  var filterDrawer = section.querySelector('collection-filters'); // scoped drawer component
+
+  if (!filterBtn || !filterDrawer) return;
+
+  // placeholders to avoid layout jumps
+  var phWhite = document.createElement('div'); phWhite.style.height = '0px';
+  var phBtn   = document.createElement('div'); phBtn.style.height   = '0px';
+  whiteSec.insertAdjacentElement('afterend', phWhite);
+  filterBtn.insertAdjacentElement('afterend', phBtn);
+
+  function headerOffset() {
+    var header   = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+    var announce = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+    var nav      = document.querySelector('.header__navigation');
+    var h = header ? header.offsetHeight : 0;
+    var a = (announce && getComputedStyle(announce).display !== 'none') ? announce.offsetHeight : 0;
+    var n = 0;
+    if (nav) {
+      var cs = getComputedStyle(nav);
+      if (cs.display !== 'none' && /(fixed|sticky)/.test(cs.position)) n = nav.offsetHeight;
+    }
+    return h + a + n;
+  }
+
+  var startWhite = 0, startBtn = 0, H = 0;
+
+  function measure() {
+    [whiteSec, filterBtn].forEach(el => { el.style.position=''; el.style.top=''; el.style.left=''; el.style.width=''; });
+    phWhite.style.height = whiteSec.offsetHeight + 'px';
+    phBtn.style.height   = filterBtn.offsetHeight + 'px';
+    H = headerOffset();
+
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    startWhite = whiteSec.getBoundingClientRect().top + st;
+    startBtn   = filterBtn.getBoundingClientRect().top + st;
+  }
+
+  function stick(el, start, z) {
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st + H > start) {
+      el.style.position = 'fixed';
+      el.style.top = H + 'px';
+      el.style.left = 0;
+      el.style.right = 0;
+      el.style.width = '100%';
+      el.style.zIndex = z;
+      el.style.background = 'var(--color-background, #fff)';
+    } else {
+      el.style.position = '';
+      el.style.top = '';
+      el.style.left = '';
+      el.style.right = '';
+      el.style.width = '';
+      el.style.zIndex = '';
+      el.style.background = '';
+    }
+  }
+
+  // ✅ Only style THIS drawer
+  function styleDrawer() {
+    if (!window.matchMedia(MOBILE_BP).matches) return;
+    if (!filterDrawer) return;
+    // only run if this drawer is open
+    var isOpen = filterDrawer.hasAttribute('open') || filterDrawer.classList.contains('is-open');
+    if (!isOpen) return;
+
+    var off = headerOffset();
+    filterDrawer.style.position   = 'fixed';
+    filterDrawer.style.top        = off + 'px';
+    filterDrawer.style.left       = 0;
+    filterDrawer.style.right      = 0;
+    filterDrawer.style.height     = 'calc(100vh - ' + off + 'px)';
+    filterDrawer.style.maxHeight  = 'calc(100vh - ' + off + 'px)';
+    filterDrawer.style.overflow   = 'auto';
+    filterDrawer.style.webkitOverflowScrolling = 'touch';
+    filterDrawer.style.zIndex     = DRAWER_Z;
+
+    filterBtn.style.zIndex = BTN_Z; // keep below drawer
+  }
+
+  function tick() {
+    if (!window.matchMedia(MOBILE_BP).matches) {
+      [whiteSec, filterBtn].forEach(el => el.style = '');
+      phWhite.style.height = '0px';
+      phBtn.style.height = '0px';
+      return;
+    }
+    stick(whiteSec, startWhite, SEC_Z);
+    stick(filterBtn, startBtn, BTN_Z);
+    styleDrawer();
+  }
+
+  window.addEventListener('load', ()=>{ measure(); tick(); });
+  window.addEventListener('resize', ()=>{ measure(); tick(); });
+  window.addEventListener('scroll', tick, { passive:true });
+
+  // observe only this drawer element for open/close
+  new MutationObserver(styleDrawer).observe(filterDrawer, { attributes:true });
+
 })();
 </script>
 
 <script>
 (function(){
-  var bp='(max-width:989px)',section=document.querySelector('#shopify-section-template--17366421930047__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a');if(!section)return;
-  var white=section,btn=section.querySelector('.collection-filters__button.hide-desktop'),drawer=section.querySelector('collection-filters');if(!btn||!drawer)return;
-  var ph1=document.createElement('div'),ph2=document.createElement('div');white.after(ph1);btn.after(ph2);
-  function headerOffset(){var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]'),a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar'),n=document.querySelector('.header__navigation'),x=h?h.offsetHeight:0,y=a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0,z=0;if(n){var s=getComputedStyle(n);if(s.display!=='none'&&/(fixed|sticky)/.test(s.position))z=n
+  // Match your breakpoints/stacking
+  var MOBILE_BP = '(max-width: 989px)';
+  var HEADER_Z  = 200;  // keep header above
+  var TITLE_Z   = 150;  // keep title above filters, below drawer/header
+  var FOOTER_BUFFER = 1;
+
+  // Compute header height: header + announcement + (desktop) sticky nav (+100 desktop buffer)
+  function headerOffset() {
+    var header   = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+    var announce = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+    var nav      = document.querySelector('.header__navigation');
+    var h = header ? header.offsetHeight : 0;
+    var a = (announce && getComputedStyle(announce).display !== 'none') ? announce.offsetHeight : 0;
+    var n = 0;
+    if (nav) {
+      var cs = getComputedStyle(nav);
+      if (cs.display !== 'none' && /(fixed|sticky)/.test(cs.position)) n = nav.offsetHeight;
+    }
+    var isDesktop = window.matchMedia('(min-width: 990px)').matches;
+    return h + a + n + (isDesktop ? 100 : 0);
+  }
+
+  function footerTop() {
+    var footer = document.querySelector('#shopify-section-footer') ||
+                 document.querySelector('.footer, .site-footer') ||
+                 document.querySelector('footer');
+    if (!footer) return Infinity;
+    var r = footer.getBoundingClientRect();
+    return r.top + (window.pageYOffset || document.documentElement.scrollTop);
+  }
+
+  // Get all title-carousel sections on the page
+  var titles = Array.prototype.slice.call(document.querySelectorAll('.shopify-section.title-carousel.with-spacing'));
+  if (!titles.length) return;
+
+  // Build per-section state
+  var models = titles.map(function(el){
+    var ph = document.createElement('div'); // placeholder to avoid layout jump
+    ph.style.height = '0px';
+    el.insertAdjacentElement('afterend', ph);
+    return {
+      el: el,
+      ph: ph,
+      startY: 0,
+      stopY: 0,
+      H: 0
+    };
+  });
+
+  function measureOne(m){
+    // reset to natural to measure
+    var el = m.el;
+    el.style.position = '';
+    el.style.top = '';
+    el.style.left = '';
+    el.style.right = '';
+    el.style.width = '';
+    el.style.zIndex = '';
+    el.style.background = '';
+
+    // placeholder height equals element height to prevent jump when fixed
+    m.ph.style.height = el.offsetHeight + 'px';
+
+    m.H = headerOffset();
+
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    var box = el.getBoundingClientRect();
+    m.startY = box.top + st; // when top reaches header
+
+    var fTop = footerTop();
+    // stop before footer starts
+    m.stopY = fTop - FOOTER_BUFFER;
+  }
+
+  function applyOne(m){
+    var el = m.el;
+    var y  = window.pageYOffset || document.documentElement.scrollTop;
+    var H  = m.H;
+    var h  = el.offsetHeight;
+
+    // Above start -> normal flow
+    if (y + H <= m.startY) {
+      if (el.style.position === 'fixed' || el.style.position === 'absolute') {
+        el.style.position = '';
+        el.style.top = '';
+        el.style.left = '';
+        el.style.right = '';
+        el.style.width = '';
+        el.style.zIndex = '';
+        el.style.background = '';
+      }
+      return;
+    }
+
+    // Near footer -> dock (absolute) so bottom sits just before footer
+    if (y + H + h >= m.stopY) {
+      var parent = el.parentElement;
+      var parentTop = parent.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop);
+      var dockTop = (m.stopY - h) - parentTop;
+      el.style.position = 'absolute';
+      el.style.top = dockTop + 'px';
+      el.style.left = '0';
+      el.style.right = '0';
+      el.style.width = '100%';
+      el.style.zIndex = TITLE_Z;
+      el.style.background = 'var(--color-background, #fff)';
+      return;
+    }
+
+    // Fixed under header
+    el.style.position = 'fixed';
+    el.style.top = H + 'px';
+    el.style.left = '0';
+    el.style.right = '0';
+    el.style.width = '100%';
+    el.style.zIndex = TITLE_Z; // below header, above filters
+    el.style.background = 'var(--color-background, #fff)';
+  }
+
+  function measureAll(){ models.forEach(measureOne); }
+  function applyAll(){ models.forEach(applyOne); }
+
+  // Wire events
+  function recalc(){ measureAll(); applyAll(); }
+  window.addEventListener('load', recalc, {passive:true});
+  window.addEventListener('resize', recalc, {passive:true});
+  window.addEventListener('orientationchange', recalc, {passive:true});
+  window.addEventListener('scroll', function(){
+    // header may change height on scroll (sticky/compact states)
+    var oldH = models[0].H;
+    var newH = headerOffset();
+    if (Math.abs(newH - oldH) > 2) measureAll();
+    applyAll();
+  }, {passive:true});
+
+  // First paint
+  recalc();
+})();
+</script>
+
+    <div id="ProductGridContainer">
+      {% if collection.products.size == 0 %}
+        <div class="collection collection--empty" id="product-grid" data-id="{{ section.id }}">
+          <div class="loading-overlay gradient"></div>
+          <div class="title-wrapper center">
+            <h2 class="title title--primary">
+              {{ 'sections.collection_template.empty' | t -}}
+              <br>
+              {{ 'sections.collection_template.use_fewer_filters_html' | t }}
+              <button onclick="clearAll(event)" class="h2 collection-filter-clear-all">clear all</button>.
+            </h2>
+          </div>
+        </div>
+      {% else %}
+        <div class="collection">
+          {% paginate collection.products by 50 %}
+            <ul id="product-grid" data-id="{{ section.id }}" class="product-grid product-grid-4 list-unstyled">
+              {% for product in collection.products %}
+                {% for collection in product.collections %}
+                  {% if collection.title contains ' |' %}
+                    {% assign grouped_collection = collection %}
+                  {% endif %}
+                {% endfor %}
+                <li class="product-grid__item">
+                  {% render 'grouped-product-card-4',
+                    product_card_product: product,
+                    collection: grouped_collection,
+                    title: grouped_collection.title,
+                    button_text: 'Shop Now',
+                    forloop_index: forloop.index
+                  %}
+                </li>
+              {% endfor %}
+            </ul>
+
+            <div id="load-more-wrapper" class="load-more-wrapper">
+              {% if paginate.pages > 1 and paginate.next %}
+                <load-more role="button" class="button" data-load-more="{{ paginate.next.url }}">
+                  <span>Load more</span>
+                  <div class="loading-overlay__spinner">
+                    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                  </div>
+                </load-more>
+              {% endif %}
+            </div>
+          {% endpaginate %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="loading-overlay">
+      <div class="loading-overlay__spinner">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+          <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection sticky filters",
+  "tag": "section",
+  "class": "collection-grid-section with-spacing",
+  "settings": [
+    { "type": "range", "id": "products_per_page", "min": 8, "max": 24, "step": 4, "default": 16, "label": "Products per page" },
+    { "type": "select", "id": "image_ratio", "options": [
+      { "value": "adapt", "label": "Adapt" },
+      { "value": "portrait", "label": "Portrait" },
+      { "value": "square", "label": "Square" } ],
+      "default": "adapt", "label": "Image ratio" },
+    { "type": "checkbox", "id": "show_secondary_image", "default": false, "label": "Show secondary image" },
+    { "type": "checkbox", "id": "add_image_padding", "default": false, "label": "Add image padding" },
+    { "type": "checkbox", "id": "show_image_outline", "default": true, "label": "Show image outline" },
+    { "type": "checkbox", "id": "show_vendor", "default": false, "label": "Show vendor" },
+    { "type": "checkbox", "id": "show_rating", "default": false, "label": "Show rating" },
+    { "type": "checkbox", "id": "enable_filtering", "default": true, "label": "Enable filtering" },
+    { "type": "checkbox", "id": "enable_sorting", "default": true, "label": "Enable sorting" },
+    { "type": "checkbox", "id": "collapse_on_larger_devices", "default": false, "label": "Collapse on larger devices" }
+  ]
+}
+{% endschema %}
