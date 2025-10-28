@@ -23,11 +23,10 @@
     right: 0;
   }
 
- .product-card__price.body.blue {
+  .product-card__price.body.blue {
     margin-top: -12px;
   }
 
-  
   .product-carousel__container-new-2 .product-card__swatches {
     margin: 0;
   }
@@ -39,7 +38,7 @@
       width: 100% !important;
     }
   }
-  
+
   @media screen and (max-width: 575px) {
     .product-carousel .swiper-button-next {
       right: 18px;
@@ -64,7 +63,7 @@
       letter-spacing: 0;
     }
 
-     .product-card__title span {
+    .product-card__title span {
       font-size: 13px;
       letter-spacing: 0;
     }
@@ -72,7 +71,7 @@
     .product-carousel__container-new-2 {
       height: 300px !important;
     }
-  
+
     .product-carousel__container-new-2 .swiper-pagination {
       bottom: 20px !important;
     }
@@ -82,12 +81,12 @@
       height: 100%;
     }
   }
-  
- @media screen and (max-width: 500px) {
-  .product-carousel .swiper-button-next, .product-carousel .swiper-button-prev {
-    top: 19%;
+
+  @media screen and (max-width: 500px) {
+    .product-carousel .swiper-button-next, .product-carousel .swiper-button-prev {
+      top: 19%;
+    }
   }
- }
 {% endstyle %}
 
 <div class="product-carousel__inner product-carousel__new">
@@ -98,42 +97,100 @@
   <product-carousel-new-two>
     <div class="product-carousel__container-new product-carousel__container-new-2 product-carousel__container swiper">
       <div class="swiper-wrapper">
-        {% for product in section.settings.collection.products limit: 4 %}
-          {% for collection in product.collections %}
-            {% if collection.title contains ' |' %}
-              {% assign grouped_collection = collection %}
-            {% endif %}
-          {% endfor %}
-          <div class="product-carousel__item swiper-slide">
-            {% if section.settings.product_card_type == 'standard_card' %}
-            {% render 'grouped-product-card-2',
-              product_card_product: product,
-              collection: grouped_collection,
-              title: grouped_collection.title,
-              button_text: section.settings.button_text
-            %}
-          {% else %}
-            {% render 'grouped-product-card-3',
-              product_card_product: product,
-              collection: grouped_collection,
-              title: grouped_collection.title,
-              button_text: section.settings.button_text
-            %}
-          {% endif %}
-          </div>
-        {% endfor %}
+        {%- comment -%}
+          Two-pass render:
+            1) Render products WITH video metafield first
+            2) Then products WITHOUT video metafield
+          Preserves original relative order within each group and respects limit:4.
+        {%- endcomment -%}
+
+        {%- assign rendered_ids = '' -%}
+        {%- assign rendered_count = 0 -%}
+        {%- assign max_cards = 4 -%}
+        {%- assign products_all = section.settings.collection.products -%}
+
+        {%- comment -%} PASS 1: WITH VIDEO {%- endcomment -%}
+        {%- for product in products_all -%}
+          {%- if rendered_count >= max_cards -%}{% break %}{%- endif -%}
+          {%- if product.metafields.custom.carousel_new_2_video != blank -%}
+            {%- capture pid_key -%}|{{ product.id }}|{%- endcapture -%}
+            {%- unless rendered_ids contains pid_key -%}
+              {%- assign grouped_collection = blank -%}
+              {%- for c in product.collections -%}
+                {%- if c.title contains ' |' -%}{% assign grouped_collection = c %}{% break %}{%- endif -%}
+              {%- endfor -%}
+
+              <div class="product-carousel__item swiper-slide">
+                {%- if section.settings.product_card_type == 'standard_card' -%}
+                  {%- render 'grouped-product-card-2',
+                    product_card_product: product,
+                    collection: grouped_collection,
+                    title: grouped_collection.title,
+                    button_text: section.settings.button_text
+                  -%}
+                {%- else -%}
+                  {%- render 'grouped-product-card-3',
+                    product_card_product: product,
+                    collection: grouped_collection,
+                    title: grouped_collection.title,
+                    button_text: section.settings.button_text
+                  -%}
+                {%- endif -%}
+              </div>
+
+              {%- assign rendered_ids = rendered_ids | append: pid_key -%}
+              {%- assign rendered_count = rendered_count | plus: 1 -%}
+            {%- endunless -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- comment -%} PASS 2: WITHOUT VIDEO {%- endcomment -%}
+        {%- for product in products_all -%}
+          {%- if rendered_count >= max_cards -%}{% break %}{%- endif -%}
+          {%- if product.metafields.custom.carousel_new_2_video == blank -%}
+            {%- capture pid_key -%}|{{ product.id }}|{%- endcapture -%}
+            {%- unless rendered_ids contains pid_key -%}
+              {%- assign grouped_collection = blank -%}
+              {%- for c in product.collections -%}
+                {%- if c.title contains ' |' -%}{% assign grouped_collection = c %}{% break %}{%- endif -%}
+              {%- endfor -%}
+
+              <div class="product-carousel__item swiper-slide">
+                {%- if section.settings.product_card_type == 'standard_card' -%}
+                  {%- render 'grouped-product-card-2',
+                    product_card_product: product,
+                    collection: grouped_collection,
+                    title: grouped_collection.title,
+                    button_text: section.settings.button_text
+                  -%}
+                {%- else -%}
+                  {%- render 'grouped-product-card-3',
+                    product_card_product: product,
+                    collection: grouped_collection,
+                    title: grouped_collection.title,
+                    button_text: section.settings.button_text
+                  -%}
+                {%- endif -%}
+              </div>
+
+              {%- assign rendered_ids = rendered_ids | append: pid_key -%}
+              {%- assign rendered_count = rendered_count | plus: 1 -%}
+            {%- endunless -%}
+          {%- endif -%}
+        {%- endfor -%}
       </div>
       <div class="swiper-pagination product-carousel__pagination"></div>
     </div>
+
     {% if section.settings.btn_link != blank %}
-    <a class="shop-all-btn" href="{{ section.settings.btn_link }}">SHOP ALL BEST SELLERS</a>
+      <a class="shop-all-btn" href="{{ section.settings.btn_link }}">SHOP ALL BEST SELLERS</a>
     {% endif %}
   </product-carousel-new-two>
 </div>
 
 <style>
   {% if section.settings.background != blank %}
-    #shopify-section-{{section.id }}.product-carousel {
+    #shopify-section-{{ section.id }}.product-carousel {
       background: {{ section.settings.background }};
     }
   {% endif %}
@@ -342,7 +399,7 @@
       "id": "show_metafield_style",
       "label": "Show metafield style",
       "default": false
-    },    
+    },
     {
       "type": "collection",
       "id": "collection",
