@@ -6,7 +6,7 @@
 {{ 'component-sticky-collection-filters.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'sticky-filters.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'sticky-filters.js' | asset_url }}" defer="defer" data-section-id="{{ section.id }}"></script>
 
 {% assign active_tags = '' %}
 {% for tag in current_tags %}
