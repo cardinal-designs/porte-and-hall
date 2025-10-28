@@ -205,17 +205,23 @@
 
 <script>
 (function(){
-  var MOBILE_BP = '(max-width: 989px)';     // adjust if your theme breakpoint differs
-  var HEADER_Z  = 200;                      // matches your CSS
-  var DRAWER_Z  = 190;                      // below header, above sticky button
-  var BTN_Z     = 120;                      // sticky filter button
-  var SEC_Z     = 110;                      // sticky white-buttons section
+  var MOBILE_BP = '(max-width: 989px)';
+  var HEADER_Z  = 200;
+  var DRAWER_Z  = 190;
+  var BTN_Z     = 120;
+  var SEC_Z     = 110;
 
-  var whiteSec = document.getElementById('shopify-section-template--17366421930047__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a');
-  var filterBtn = document.querySelector('.collection-filters__button.hide-desktop');
-  if (!whiteSec || !filterBtn) return;
+  // Target only THIS collection section + its filter button/drawer
+  var section = document.querySelector('#shopify-section-template--17366421930047__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a');
+  if (!section) return;
 
-  // Placeholders to avoid layout jump while fixed
+  var whiteSec = section; // “white buttons” section itself
+  var filterBtn = section.querySelector('.collection-filters__button.hide-desktop');
+  var filterDrawer = section.querySelector('collection-filters'); // scoped drawer component
+
+  if (!filterBtn || !filterDrawer) return;
+
+  // placeholders to avoid layout jumps
   var phWhite = document.createElement('div'); phWhite.style.height = '0px';
   var phBtn   = document.createElement('div'); phBtn.style.height   = '0px';
   whiteSec.insertAdjacentElement('afterend', phWhite);
@@ -232,14 +238,13 @@
       var cs = getComputedStyle(nav);
       if (cs.display !== 'none' && /(fixed|sticky)/.test(cs.position)) n = nav.offsetHeight;
     }
-    return h + a + n; // no extra +100 on mobile
+    return h + a + n;
   }
 
   var startWhite = 0, startBtn = 0, H = 0;
 
   function measure() {
-    // reset to natural for measurement
-    [whiteSec, filterBtn].forEach(function(el){ el.style.position=''; el.style.top=''; el.style.left=''; el.style.width=''; });
+    [whiteSec, filterBtn].forEach(el => { el.style.position=''; el.style.top=''; el.style.left=''; el.style.width=''; });
     phWhite.style.height = whiteSec.offsetHeight + 'px';
     phBtn.style.height   = filterBtn.offsetHeight + 'px';
     H = headerOffset();
@@ -252,7 +257,6 @@
   function stick(el, start, z) {
     var st = window.pageYOffset || document.documentElement.scrollTop;
     if (st + H > start) {
-      var rect = el.getBoundingClientRect(); // after fixed this returns viewport rect; we’ll just set width to 100%
       el.style.position = 'fixed';
       el.style.top = H + 'px';
       el.style.left = 0;
@@ -260,7 +264,6 @@
       el.style.width = '100%';
       el.style.zIndex = z;
       el.style.background = 'var(--color-background, #fff)';
-      el.style.transform = 'translateZ(0)'; // iOS paint
     } else {
       el.style.position = '';
       el.style.top = '';
@@ -269,61 +272,36 @@
       el.style.width = '';
       el.style.zIndex = '';
       el.style.background = '';
-      el.style.transform = '';
     }
   }
 
-  // Find the drawer panel when the filter opens and force its height/stacking
-  function findOpenDrawer() {
-    // try the custom element first
-    var host = document.querySelector('collection-filters');
-    var cands = [];
-
-    if (host) cands.push(host);
-
-    // common patterns (theme-dependent)
-    cands = cands.concat([].slice.call(document.querySelectorAll(
-      '.drawer--filters, .filters-drawer, .collection-filters--drawer, .drawer, [role="dialog"], [aria-modal="true"]'
-    )));
-
-    // choose first visible candidate
-    for (var i=0;i<cands.length;i++){
-      var el = cands[i];
-      var cs = getComputedStyle(el);
-      if (/(block|flex|grid)/.test(cs.display) && cs.visibility !== 'hidden' && el.offsetHeight > 0) return el;
-      if (el.classList && (el.classList.contains('is-open') || el.classList.contains('open'))) return el;
-      if (el.hasAttribute && el.hasAttribute('open')) return el;
-    }
-    return null;
-  }
-
+  // ✅ Only style THIS drawer
   function styleDrawer() {
     if (!window.matchMedia(MOBILE_BP).matches) return;
-    var panel = findOpenDrawer();
-    if (!panel) return;
+    if (!filterDrawer) return;
+    // only run if this drawer is open
+    var isOpen = filterDrawer.hasAttribute('open') || filterDrawer.classList.contains('is-open');
+    if (!isOpen) return;
+
     var off = headerOffset();
+    filterDrawer.style.position   = 'fixed';
+    filterDrawer.style.top        = off + 'px';
+    filterDrawer.style.left       = 0;
+    filterDrawer.style.right      = 0;
+    filterDrawer.style.height     = 'calc(100vh - ' + off + 'px)';
+    filterDrawer.style.maxHeight  = 'calc(100vh - ' + off + 'px)';
+    filterDrawer.style.overflow   = 'auto';
+    filterDrawer.style.webkitOverflowScrolling = 'touch';
+    filterDrawer.style.zIndex     = DRAWER_Z;
 
-    // Inline styles to bypass shadow DOM and theme CSS
-    panel.style.position   = 'fixed';
-    panel.style.top        = off + 'px';
-    panel.style.left       = 0;
-    panel.style.right      = 0;
-    panel.style.height     = 'calc(100vh - ' + off + 'px)';
-    panel.style.maxHeight  = 'calc(100vh - ' + off + 'px)';
-    panel.style.overflow   = 'auto';
-    panel.style.webkitOverflowScrolling = 'touch';
-    panel.style.zIndex     = DRAWER_Z; // above sticky button, below header
-
-    // Ensure the sticky button doesn't sit over the drawer
-    filterBtn.style.zIndex = (panel ? (DRAWER_Z - 10) : BTN_Z);
+    filterBtn.style.zIndex = BTN_Z; // keep below drawer
   }
 
   function tick() {
     if (!window.matchMedia(MOBILE_BP).matches) {
-      // reset on desktop
-      [whiteSec, filterBtn].forEach(function(el){ el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; });
+      [whiteSec, filterBtn].forEach(el => el.style = '');
       phWhite.style.height = '0px';
-      phBtn.style.height   = '0px';
+      phBtn.style.height = '0px';
       return;
     }
     stick(whiteSec, startWhite, SEC_Z);
@@ -331,18 +309,13 @@
     styleDrawer();
   }
 
-  // Watch the DOM for drawer open/close and restyles
-  var mo = new MutationObserver(function(){ styleDrawer(); });
-  mo.observe(document.documentElement, {subtree:true, childList:true, attributes:true});
+  window.addEventListener('load', ()=>{ measure(); tick(); });
+  window.addEventListener('resize', ()=>{ measure(); tick(); });
+  window.addEventListener('scroll', tick, { passive:true });
 
-  window.addEventListener('load', function(){ measure(); tick(); }, {passive:true});
-  window.addEventListener('resize', function(){ measure(); tick(); }, {passive:true});
-  window.addEventListener('orientationchange', function(){ measure(); tick(); }, {passive:true});
-  window.addEventListener('scroll', tick, {passive:true});
+  // observe only this drawer element for open/close
+  new MutationObserver(styleDrawer).observe(filterDrawer, { attributes:true });
 
-  // First paint
-  measure();
-  tick();
 })();
 </script>
 
