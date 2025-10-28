@@ -205,18 +205,14 @@
   function hideImage(img) {
     if (!img) return;
     img.style.opacity = '0';
+    // after fade, allow it to hide (optional)
     setTimeout(() => {
       img.style.setProperty('display', 'none', 'important');
       img.setAttribute('aria-hidden', 'true');
     }, 200);
   }
-  function showVideo(v) {
-    v.style.opacity = '1';
-    v.style.setProperty('display', 'block', 'important');
-  }
-  function hideVideo(v) {
-    v.style.opacity = '0';
-  }
+  function showVideo(v) { v.style.opacity = '1'; }
+  function hideVideo(v) { v.style.opacity = '0'; }
 
   function pauseAndShowImage(v) {
     try { v.pause(); } catch(_) {}
@@ -229,11 +225,6 @@
   videos.forEach(v => {
     const img = getImg(v);
     prepLayering(v, img);
-
-    // Make sure videos are allowed to show on DESKTOP too.
-    // Your Liquid adds "hide-desktop" → remove it and force display.
-    v.classList.remove('hide-desktop');
-    v.style.setProperty('display', 'block', 'important');
 
     // Neutralize loop so 'ended' fires (Liquid set loop: true)
     v.removeAttribute('loop');
@@ -265,7 +256,6 @@
   });
 
   // --- sequencing (only one video plays; others show image) -----------
-  // Use visibility guard so we don’t try to play off-screen/hidden slides
   const visibleVideos = () => videos.filter(isVisible);
   let seq = [], idx = 0;
 
@@ -305,6 +295,12 @@
     }
     playAt(idx + 1);
   }
+
+  // keep in sync for mobile/desktop breakpoints
+  const mq = window.matchMedia('(max-width: 575px)');
+  const onChange = () => { rebuild(); if (seq.length) playAt(idx); };
+  if (mq && mq.addEventListener) mq.addEventListener('change', onChange);
+  else window.addEventListener('resize', () => requestAnimationFrame(onChange));
 
   // start after metadata so durations are known
   const start = () => { rebuild(); if (seq.length) playAt(0); };
