@@ -319,6 +319,148 @@
 })();
 </script>
 
+<script>
+(function(){
+  // Match your breakpoints/stacking
+  var MOBILE_BP = '(max-width: 989px)';
+  var HEADER_Z  = 200;  // keep header above
+  var TITLE_Z   = 150;  // keep title above filters, below drawer/header
+  var FOOTER_BUFFER = 1;
+
+  // Compute header height: header + announcement + (desktop) sticky nav (+100 desktop buffer)
+  function headerOffset() {
+    var header   = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+    var announce = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+    var nav      = document.querySelector('.header__navigation');
+    var h = header ? header.offsetHeight : 0;
+    var a = (announce && getComputedStyle(announce).display !== 'none') ? announce.offsetHeight : 0;
+    var n = 0;
+    if (nav) {
+      var cs = getComputedStyle(nav);
+      if (cs.display !== 'none' && /(fixed|sticky)/.test(cs.position)) n = nav.offsetHeight;
+    }
+    var isDesktop = window.matchMedia('(min-width: 990px)').matches;
+    return h + a + n + (isDesktop ? 100 : 0);
+  }
+
+  function footerTop() {
+    var footer = document.querySelector('#shopify-section-footer') ||
+                 document.querySelector('.footer, .site-footer') ||
+                 document.querySelector('footer');
+    if (!footer) return Infinity;
+    var r = footer.getBoundingClientRect();
+    return r.top + (window.pageYOffset || document.documentElement.scrollTop);
+  }
+
+  // Get all title-carousel sections on the page
+  var titles = Array.prototype.slice.call(document.querySelectorAll('.shopify-section.title-carousel.with-spacing'));
+  if (!titles.length) return;
+
+  // Build per-section state
+  var models = titles.map(function(el){
+    var ph = document.createElement('div'); // placeholder to avoid layout jump
+    ph.style.height = '0px';
+    el.insertAdjacentElement('afterend', ph);
+    return {
+      el: el,
+      ph: ph,
+      startY: 0,
+      stopY: 0,
+      H: 0
+    };
+  });
+
+  function measureOne(m){
+    // reset to natural to measure
+    var el = m.el;
+    el.style.position = '';
+    el.style.top = '';
+    el.style.left = '';
+    el.style.right = '';
+    el.style.width = '';
+    el.style.zIndex = '';
+    el.style.background = '';
+
+    // placeholder height equals element height to prevent jump when fixed
+    m.ph.style.height = el.offsetHeight + 'px';
+
+    m.H = headerOffset();
+
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    var box = el.getBoundingClientRect();
+    m.startY = box.top + st; // when top reaches header
+
+    var fTop = footerTop();
+    // stop before footer starts
+    m.stopY = fTop - FOOTER_BUFFER;
+  }
+
+  function applyOne(m){
+    var el = m.el;
+    var y  = window.pageYOffset || document.documentElement.scrollTop;
+    var H  = m.H;
+    var h  = el.offsetHeight;
+
+    // Above start -> normal flow
+    if (y + H <= m.startY) {
+      if (el.style.position === 'fixed' || el.style.position === 'absolute') {
+        el.style.position = '';
+        el.style.top = '';
+        el.style.left = '';
+        el.style.right = '';
+        el.style.width = '';
+        el.style.zIndex = '';
+        el.style.background = '';
+      }
+      return;
+    }
+
+    // Near footer -> dock (absolute) so bottom sits just before footer
+    if (y + H + h >= m.stopY) {
+      var parent = el.parentElement;
+      var parentTop = parent.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop);
+      var dockTop = (m.stopY - h) - parentTop;
+      el.style.position = 'absolute';
+      el.style.top = dockTop + 'px';
+      el.style.left = '0';
+      el.style.right = '0';
+      el.style.width = '100%';
+      el.style.zIndex = TITLE_Z;
+      el.style.background = 'var(--color-background, #fff)';
+      return;
+    }
+
+    // Fixed under header
+    el.style.position = 'fixed';
+    el.style.top = H + 'px';
+    el.style.left = '0';
+    el.style.right = '0';
+    el.style.width = '100%';
+    el.style.zIndex = TITLE_Z; // below header, above filters
+    el.style.background = 'var(--color-background, #fff)';
+  }
+
+  function measureAll(){ models.forEach(measureOne); }
+  function applyAll(){ models.forEach(applyOne); }
+
+  // Wire events
+  function recalc(){ measureAll(); applyAll(); }
+  window.addEventListener('load', recalc, {passive:true});
+  window.addEventListener('resize', recalc, {passive:true});
+  window.addEventListener('orientationchange', recalc, {passive:true});
+  window.addEventListener('scroll', function(){
+    // header may change height on scroll (sticky/compact states)
+    var oldH = models[0].H;
+    var newH = headerOffset();
+    if (Math.abs(newH - oldH) > 2) measureAll();
+    applyAll();
+  }, {passive:true});
+
+  // First paint
+  recalc();
+})();
+</script>
+
     <div id="ProductGridContainer">
       {% if collection.products.size == 0 %}
         <div class="collection collection--empty" id="product-grid" data-id="{{ section.id }}">
