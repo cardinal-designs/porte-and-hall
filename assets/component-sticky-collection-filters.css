@@ -56,3 +56,112 @@ header[role="banner"],
      - fixed positioning/z-index for the white section & button while stuck
      - drawer inline top/height/z-index */
 }
+
+
+/* ---------- DESKTOP ---------- */
+:root {
+  --filters-z: 60;
+  --filters-z-docked: 1;
+  --header-z: 200;
+}
+
+.page-width,
+.collection-grid__inner {
+  overflow: visible !important;
+}
+
+.sticky-filters-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.sticky-filters-placeholder { height: 0; }
+
+.sticky-filters-bar {
+  background: var(--color-background, #fff);
+  will-change: transform;
+  z-index: var(--filters-z);
+}
+
+.sticky-filters-bar.is-fixed {
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
+  z-index: var(--filters-z);
+}
+
+.sticky-filters-bar.is-docked {
+  position: absolute !important;
+  right: 0;
+  box-shadow: none;
+  z-index: var(--filters-z-docked);
+}
+
+#shopify-section-header,
+.header-wrapper,
+header[role="banner"],
+.header__navigation {
+  z-index: var(--header-z) !important;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 989px) {
+  #shopify-section-header,
+  .header-wrapper,
+  header[role="banner"],
+  .header__navigation {
+    z-index: var(--header-z) !important;
+  }
+
+  .page-width,
+  .collection-grid__inner {
+    overflow: visible !important;
+  }
+
+  /* Make any section with a collection-filters sticky below header */
+  [id^="shopify-section-template"][id*="__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a"],
+  [id^="shopify-section-template"][id*="__collection-filters"] {
+    position: sticky;
+    top: var(--mobile-sticky-offset, 0px);
+    z-index: calc(var(--filters-z) + 10);
+    background: var(--color-background, #fff);
+    will-change: transform;
+  }
+
+  .collection-filters__button.hide-desktop {
+    position: sticky;
+    top: var(--mobile-sticky-offset, 0px);
+    z-index: calc(var(--filters-z) + 20);
+    display: block;
+    width: 100%;
+    background: var(--color-background, #fff);
+    pointer-events: auto;
+  }
+
+  /* -----------------------------
+     FILTER DRAWER VISIBILITY FIX
+     (Hide until button click)
+  ----------------------------- */
+  [id^="shopify-section-template"][id*="__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a"] collection-filters,
+  [id^="shopify-section-template"][id*="__collection-filters"] collection-filters {
+    width: 0 !important;
+    max-width: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+    transition: none !important;
+  }
+
+  [id^="shopify-section-template"][id*="__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a"] collection-filters[open],
+  [id^="shopify-section-template"][id*="__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a"] collection-filters.is-open,
+  [id^="shopify-section-template"][id*="__collection-filters"] collection-filters[open],
+  [id^="shopify-section-template"][id*="__collection-filters"] collection-filters.is-open {
+    width: 100% !important;
+    max-width: 100% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    overflow: auto !important;
+    transition: opacity 0.3s ease;
+  }
+}
