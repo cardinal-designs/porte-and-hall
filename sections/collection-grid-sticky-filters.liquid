@@ -139,7 +139,7 @@
         }
         var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
         var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
-        b.style.position='fixed'; b.style.top=off+'px'; b.style.left=lv+'px'; b.style.width=wv+'px'; b.style.transform='translateZ(0)'; b.classList.add('is-fixed'); b.classList.remove('is-docked');
+        b.style.position='fixed'; b.style.zIndex='10'; b.style.top=off+'px'; b.style.left=lv+'px'; b.style.width=wv+'px'; b.classList.add('is-fixed'); b.classList.remove('is-docked');
       }
 
       function recalc(){ measure(); apply(); }
@@ -220,14 +220,14 @@
 
     <script>
     (function(){
-      var TITLE_Z=150, BUF=1;
+      var TITLE_Z=10, BUF=1;
       function hoff(){
         var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
         var a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
         var n=document.querySelector('.header__navigation'); var nh=0;
         if(n){var cs=getComputedStyle(n); if(cs.display!=='none'&&/(fixed|sticky)/.test(cs.position)) nh=n.offsetHeight;}
         var desk=window.matchMedia('(min-width: 990px)').matches;
-        return (h?h.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh+(desk?100:0);
+        // return (h?h.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh+(desk?100:0);
       }
       function fTop(){
         var f=document.querySelector('#shopify-section-footer, .footer, .site-footer, footer'); if(!f) return 1/0;
@@ -238,7 +238,7 @@
 
       function measure(m){
         var el=m.el; el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background='';
-        m.ph.style.height=el.offsetHeight+'px'; m.H=hoff();
+        // m.ph.style.height=el.offsetHeight+'px'; m.H=hoff();
         var st=window.pageYOffset||document.documentElement.scrollTop; var box=el.getBoundingClientRect();
         m.s=box.top+st; m.stop=fTop()-BUF;
       }
@@ -255,7 +255,7 @@
       window.addEventListener('scroll',function(){ var o=ms[0].H, n=hoff(); if(Math.abs(n-o)>2) ms.forEach(measure); ms.forEach(apply); },{passive:true});
       recalc();
     })();
-    </script>
+</script>
 
 {% schema %}
 {
