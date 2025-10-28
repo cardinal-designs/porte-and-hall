@@ -97,87 +97,30 @@
   <product-carousel-new-two>
     <div class="product-carousel__container-new product-carousel__container-new-2 product-carousel__container swiper">
       <div class="swiper-wrapper">
-        {%- comment -%}
-          Two-pass render:
-            1) Render products WITH video metafield first
-            2) Then products WITHOUT video metafield
-          Preserves original relative order within each group and respects limit:4.
-        {%- endcomment -%}
-
-        {%- assign rendered_ids = '' -%}
-        {%- assign rendered_count = 0 -%}
-        {%- assign max_cards = 4 -%}
-        {%- assign products_all = section.settings.collection.products -%}
-
-        {%- comment -%} PASS 1: WITH VIDEO {%- endcomment -%}
-        {%- for product in products_all -%}
-          {%- if rendered_count >= max_cards -%}{% break %}{%- endif -%}
-          {%- if product.metafields.custom.carousel_new_2_video != blank -%}
-            {%- capture pid_key -%}|{{ product.id }}|{%- endcapture -%}
-            {%- unless rendered_ids contains pid_key -%}
-              {%- assign grouped_collection = blank -%}
-              {%- for c in product.collections -%}
-                {%- if c.title contains ' |' -%}{% assign grouped_collection = c %}{% break %}{%- endif -%}
-              {%- endfor -%}
-
-              <div class="product-carousel__item swiper-slide">
-                {%- if section.settings.product_card_type == 'standard_card' -%}
-                  {%- render 'grouped-product-card-2',
-                    product_card_product: product,
-                    collection: grouped_collection,
-                    title: grouped_collection.title,
-                    button_text: section.settings.button_text
-                  -%}
-                {%- else -%}
-                  {%- render 'grouped-product-card-3',
-                    product_card_product: product,
-                    collection: grouped_collection,
-                    title: grouped_collection.title,
-                    button_text: section.settings.button_text
-                  -%}
-                {%- endif -%}
-              </div>
-
-              {%- assign rendered_ids = rendered_ids | append: pid_key -%}
-              {%- assign rendered_count = rendered_count | plus: 1 -%}
-            {%- endunless -%}
-          {%- endif -%}
-        {%- endfor -%}
-
-        {%- comment -%} PASS 2: WITHOUT VIDEO {%- endcomment -%}
-        {%- for product in products_all -%}
-          {%- if rendered_count >= max_cards -%}{% break %}{%- endif -%}
-          {%- if product.metafields.custom.carousel_new_2_video == blank -%}
-            {%- capture pid_key -%}|{{ product.id }}|{%- endcapture -%}
-            {%- unless rendered_ids contains pid_key -%}
-              {%- assign grouped_collection = blank -%}
-              {%- for c in product.collections -%}
-                {%- if c.title contains ' |' -%}{% assign grouped_collection = c %}{% break %}{%- endif -%}
-              {%- endfor -%}
-
-              <div class="product-carousel__item swiper-slide">
-                {%- if section.settings.product_card_type == 'standard_card' -%}
-                  {%- render 'grouped-product-card-2',
-                    product_card_product: product,
-                    collection: grouped_collection,
-                    title: grouped_collection.title,
-                    button_text: section.settings.button_text
-                  -%}
-                {%- else -%}
-                  {%- render 'grouped-product-card-3',
-                    product_card_product: product,
-                    collection: grouped_collection,
-                    title: grouped_collection.title,
-                    button_text: section.settings.button_text
-                  -%}
-                {%- endif -%}
-              </div>
-
-              {%- assign rendered_ids = rendered_ids | append: pid_key -%}
-              {%- assign rendered_count = rendered_count | plus: 1 -%}
-            {%- endunless -%}
-          {%- endif -%}
-        {%- endfor -%}
+        {% for product in section.settings.collection.products limit: 4 %}
+          {% for collection in product.collections %}
+            {% if collection.title contains ' |' %}
+              {% assign grouped_collection = collection %}
+            {% endif %}
+          {% endfor %}
+          <div class="product-carousel__item swiper-slide">
+            {% if section.settings.product_card_type == 'standard_card' %}
+              {% render 'grouped-product-card-2',
+                product_card_product: product,
+                collection: grouped_collection,
+                title: grouped_collection.title,
+                button_text: section.settings.button_text
+              %}
+            {% else %}
+              {% render 'grouped-product-card-3',
+                product_card_product: product,
+                collection: grouped_collection,
+                title: grouped_collection.title,
+                button_text: section.settings.button_text
+              %}
+            {% endif %}
+          </div>
+        {% endfor %}
       </div>
       <div class="swiper-pagination product-carousel__pagination"></div>
     </div>
@@ -201,35 +144,56 @@
   const section = document.getElementById('shopify-section-{{ section.id }}');
   if (!section) return;
 
-  // Grab all videos inside this section
+  // -------------------------------
+  // MOBILE-ONLY REORDERING LOGIC
+  // -------------------------------
+  function reorderCardsForMobile() {
+    const isMobile = window.matchMedia('(max-width: 575px)').matches;
+    const wrapper = section.querySelector('.swiper-wrapper');
+    if (!wrapper) return;
+
+    // Reset to original order if not mobile
+    if (!isMobile) return;
+
+    const slides = Array.from(wrapper.querySelectorAll('.swiper-slide'));
+    const withVideo = slides.filter(slide => slide.querySelector('video.carousel-new-2__video'));
+    const withoutVideo = slides.filter(slide => !slide.querySelector('video.carousel-new-2__video'));
+
+    // Only reorder if some but not all have videos
+    if (withVideo.length > 0 && withVideo.length < slides.length) {
+      const reordered = [...withVideo, ...withoutVideo];
+      reordered.forEach(slide => wrapper.appendChild(slide));
+    }
+  }
+
+  reorderCardsForMobile();
+  window.addEventListener('resize', reorderCardsForMobile);
+
+  // -------------------------------
+  // VIDEO SEQUENCING LOGIC
+  // -------------------------------
   const videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
   if (!videos.length) return;
 
-  // --- helpers ----------------------------------------------------
-  const isVisible = (el) =>
+  const isVisible = el =>
     el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden';
 
   function getCard(videoEl) {
     return videoEl.closest('.product-card__image') || videoEl.parentElement;
   }
 
-  // Find the placeholder image we want to fade with the video
   function getImg(videoEl) {
     const box = getCard(videoEl);
     if (!box) return null;
-    // Prefer your lazy-image with classes 'img-fill hide-mobile'
     let img = box.querySelector('img.img-fill.hide-mobile');
-    if (!img) img = box.querySelector('img.img-fill'); // fallback
-    if (!img) img = box.querySelector('img');          // last resort
+    if (!img) img = box.querySelector('img.img-fill');
+    if (!img) img = box.querySelector('img');
     return img;
   }
 
-  // Ensure both elements are layered & can fade
   function prepLayering(videoEl, imgEl) {
     const box = getCard(videoEl);
-    if (box && getComputedStyle(box).position === 'static') {
-      box.style.position = 'relative';
-    }
+    if (box && getComputedStyle(box).position === 'static') box.style.position = 'relative';
     Object.assign(videoEl.style, {
       position: 'absolute',
       inset: '0',
@@ -252,20 +216,15 @@
     }
   }
 
-  // Show/hide helpers (opacity swap). For the image, also force display so it defeats .hide-mobile.
   function showImage(img) {
     if (!img) return;
     img.style.setProperty('display', 'block', 'important');
     img.style.opacity = '1';
-    img.removeAttribute('aria-hidden');
   }
   function hideImage(img) {
     if (!img) return;
     img.style.opacity = '0';
-    setTimeout(() => {
-      img.style.setProperty('display', 'none', 'important');
-      img.setAttribute('aria-hidden', 'true');
-    }, 200);
+    setTimeout(() => img.style.setProperty('display', 'none', 'important'), 200);
   }
   function showVideo(v) {
     v.style.opacity = '1';
@@ -282,47 +241,33 @@
     showImage(img);
   }
 
-  // Prepare each card
   videos.forEach(v => {
     const img = getImg(v);
     prepLayering(v, img);
-
-    // Make sure videos are allowed to show on DESKTOP too.
-    // Your Liquid adds "hide-desktop" → remove it and force display.
     v.classList.remove('hide-desktop');
     v.style.setProperty('display', 'block', 'important');
-
-    // Neutralize loop so 'ended' fires (Liquid set loop: true)
     v.removeAttribute('loop');
     v.muted = true;
     v.autoplay = false;
     v.playsInline = true;
     v.preload = v.preload || 'metadata';
-
-    // Initial state: image visible, video hidden
     showImage(img);
     hideVideo(v);
 
-    // If user manually plays
     v.addEventListener('play', () => {
-      // Pause all others and show their images
       videos.forEach(o => { if (o !== v) pauseAndShowImage(o); });
-      // Hide this image, show this video
       hideImage(getImg(v));
       showVideo(v);
-    }, { passive: true });
+    });
 
-    // If user manually pauses (before end), show image again
     v.addEventListener('pause', () => {
       if (!v.ended) {
         hideVideo(v);
         showImage(getImg(v));
       }
-    }, { passive: true });
+    });
   });
 
-  // --- sequencing (only one video plays; others show image) -----------
-  // Use visibility guard so we don’t try to play off-screen/hidden slides
   const visibleVideos = () => videos.filter(isVisible);
   let seq = [], idx = 0;
 
@@ -334,22 +279,14 @@
   function playAt(i) {
     rebuild();
     if (!seq.length) return;
-
     idx = (i + seq.length) % seq.length;
     const current = seq[idx];
-
-    // Others: pause + image shown
     videos.forEach(v => { if (v !== current) pauseAndShowImage(v); });
-
-    // This one: hide image, show video, play from 0
     hideImage(getImg(current));
     showVideo(current);
     try { if (current.ended || current.currentTime > 0) current.currentTime = 0; } catch(_) {}
-
     const p = current.play();
-    if (p && p.catch) p.catch(() => {}); // ignore autoplay promise errors
-
-    // Advance when it ends
+    if (p && p.catch) p.catch(() => {});
     seq.forEach(v => v.removeEventListener('ended', handleEnded));
     current.addEventListener('ended', handleEnded, { once: true });
   }
@@ -363,7 +300,6 @@
     playAt(idx + 1);
   }
 
-  // start after metadata so durations are known
   const start = () => { rebuild(); if (seq.length) playAt(0); };
   if (videos.some(v => v.readyState < 1)) {
     let left = videos.length, started = false;
@@ -410,14 +346,8 @@
       "id": "product_card_type",
       "label": "Product Card Type",
       "options": [
-        {
-          "label": "Standard Card",
-          "value": "standard_card"
-        },
-        {
-          "label": "Video Card (metafield)",
-          "value": "video_card"
-        }
+        { "label": "Standard Card", "value": "standard_card" },
+        { "label": "Video Card (metafield)", "value": "video_card" }
       ],
       "default": "standard_card"
     },
@@ -434,9 +364,7 @@
     }
   ],
   "presets": [
-    {
-      "name": "Product Carousel New 2"
-    }
+    { "name": "Product Carousel New 2" }
   ]
 }
 {% endschema %}
