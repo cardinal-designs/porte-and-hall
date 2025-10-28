@@ -100,3 +100,8 @@ main, .page-width, .collection-grid__inner {
   background: var(--color-background, #fff);
   will-change: transform;
 }
+
+#shopify-section-header {
+  position: relative !important;  /* header may already be sticky; relative still works */
+  z-index: 999 !important;        /* well above anything we pin below */
+}
