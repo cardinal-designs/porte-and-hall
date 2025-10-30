@@ -222,7 +222,9 @@
 
       function measure(){
         b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked');
-        p.style.height=b.offsetHeight+'px';
+        if(document.querySelector('.collection-filters__button')){
+          p.style.height=document.querySelector('.collection-filters__button').offsetHeight+'px';
+        }
         off=H();
         // console.log('offset height:', off);
         var st=window.pageYOffset||document.documentElement.scrollTop;
