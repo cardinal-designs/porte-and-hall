@@ -74,11 +74,36 @@
             "title": "Outdoor Doormats",
             "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Outdoor"
           }
+        },
+        "category_TUtNNX": {
+          "type": "category",
+          "settings": {
+            "title": "Runners",
+            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
+          }
+        },
+        "category_DB8PtU": {
+          "type": "category",
+          "settings": {
+            "title": "Area Mats",
+            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
+          }
+        },
+        "category_Ed3rUr": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "title": "Shop all",
+            "link": "https://www.porteandhall.com/collections/shop-all"
+          }
         }
       },
       "block_order": [
         "category_rbdpyb",
-        "category_6DiQQ4"
+        "category_6DiQQ4",
+        "category_TUtNNX",
+        "category_DB8PtU",
+        "category_Ed3rUr"
       ],
       "settings": {}
     },
