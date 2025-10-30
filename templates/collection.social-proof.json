@@ -52,6 +52,51 @@
     },
     "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a": {
       "type": "collection-head-slider",
+      "blocks": {
+        "category_GzqVUX": {
+          "type": "category",
+          "settings": {
+            "title": "Indoor Doormats",
+            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Indoor"
+          }
+        },
+        "category_pRMUQJ": {
+          "type": "category",
+          "settings": {
+            "title": "Outdoor Doormats",
+            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Outdoor"
+          }
+        },
+        "category_MVAiU3": {
+          "type": "category",
+          "settings": {
+            "title": "Runners",
+            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
+          }
+        },
+        "category_twdp6A": {
+          "type": "category",
+          "settings": {
+            "title": "Area Mats",
+            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
+          }
+        },
+        "category_Wy7KEY": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "title": "Shop all",
+            "link": "https://www.porteandhall.com/collections/shop-all"
+          }
+        }
+      },
+      "block_order": [
+        "category_GzqVUX",
+        "category_pRMUQJ",
+        "category_MVAiU3",
+        "category_twdp6A",
+        "category_Wy7KEY"
+      ],
       "settings": {}
     },
     "product-grid": {
