@@ -113,7 +113,7 @@
         var a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
         var n=document.querySelector('.header__navigation'); var nh=0;
         if(n){var cs=getComputedStyle(n); if(cs.display!=='none'&&/(fixed|sticky)/.test(cs.position)&&window.matchMedia('(min-width: 990px)').matches) nh=n.offsetHeight;}
-        return (h?h.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh+88;
+        return (h?h.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh;
       }
 
       var end=document.getElementById('sticky-end-sentinel-{{ section.id }}');
