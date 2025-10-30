@@ -31,6 +31,29 @@
 
     <div id="sticky-wrap-{{ section.id }}" class="sticky-filters-wrap" data-section-id="{{ section.id }}">
       <div id="sticky-bar-{{ section.id }}" class="sticky-filters-bar" role="region" aria-label="Collection filters">
+        <div class="head-slide-wrap title-carousel" id="head-slide-wrap">
+          <ul class="head-slide">
+            {%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+              {%- assign pageUrl = contentForQuerystring
+                | split: '"pageurl":"'
+                | last
+                | split: '"'
+                | first
+                | split: '.myshopify.com'
+                | last
+                | replace: '\/', '/'
+                | replace: '%20', ' '
+                | replace: '\u0026', '&'
+            -%}
+            {% capture finalurl %}https://{{ pageUrl }}{% endcapture %}
+
+            {%- assign key_and_value = pageUrl | split:'?' -%}
+
+            {% for block in section.blocks %}
+              <li {% if block.settings.link contains key_and_value[1] %} class="active" {% endif %}><a href="{{ block.settings.link }}">{{ block.settings.title }}</a></li> 
+            {% endfor %}
+          </ul>
+        </div>
         <div class="sticky-filters-bar__inner">
           {% render 'collection-filters' %}
         </div>
