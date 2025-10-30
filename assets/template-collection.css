@@ -91,6 +91,10 @@
   padding: 0 0 0 20px !important;
   margin-right: -20px;
 }
+
+.sticky-filters-wrap .head-slide-wrap {
+  padding: 0 !important;
+}
 .head-slide-wrap .head-slide{
   list-style-type: none;
   overflow-y: auto;
