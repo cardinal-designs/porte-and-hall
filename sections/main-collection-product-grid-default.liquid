@@ -1,0 +1,236 @@
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
+{{ 'component-collection-filters.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
+
+{% assign active_tags = '' %}
+
+{% for tag in current_tags %}
+  {% assign tag_as_handle = tag | replace: '&#39;', '' | replace: '&#34;', '' | handle %}
+  {% assign active_tags = active_tags | append: tag_as_handle %}
+
+  {% unless forloop.last %}
+    {% assign active_tags = active_tags | append: '+' %}
+  {% endunless %}
+{% endfor %}
+
+<link
+  rel="preload"
+  href="{{ 'component-rte.css' | asset_url }}"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+>
+
+{% comment %} <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript> {% endcomment %}
+
+<div class="page-width">
+  <div class="collection-grid__inner">
+    {% comment %}
+      {% if section.settings.enable_filtering or section.settings.enable_sorting %}
+        {{ 'component-custom-filters.css' | asset_url | stylesheet_tag }}
+        <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+
+        <div id="main-collection-filters" data-id="{{ section.id }}">
+          {% render 'facets',
+            results: collection,
+            enable_filtering: section.settings.enable_filtering,
+            enable_sorting: false,
+            collapse_on_larger_devices: section.settings.collapse_on_larger_devices
+          %}
+        </div>
+      {% endif %}
+    {% endcomment %}
+
+    {% render 'collection-filters' %}
+    <script>
+      function clearAll(e) {
+        e.preventDefault();
+        console.log("clear all")
+        document.querySelector('collection-filters').clearAllFilters()
+      }
+    </script>
+
+    <div id="ProductGridContainer">
+      {% if collection.products.size == 0 %}
+        <div class="collection collection--empty" id="product-grid" data-id="{{ section.id }}">
+          <div class="loading-overlay gradient"></div>
+          <div class="title-wrapper center">
+            <h2 class="title title--primary">
+              {{ 'sections.collection_template.empty' | t -}}
+              <br>
+              
+              {{
+                'sections.collection_template.use_fewer_filters_html' | t
+              }}
+              <button onclick="clearAll(event)" class="h2 collection-filter-clear-all">clear all</button>.
+            </h2>
+          </div>
+        </div>
+      {% else %}
+        <div class="collection">
+          {% paginate collection.products by 50 %}
+          <ul id="product-grid" data-id="{{ section.id }}" class="product-grid list-unstyled">
+              {% for product in collection.products %}
+                {% comment %} {% render 'product-card', product_card_product: product %} {% endcomment %}
+                {% for collection in product.collections %}
+                  {% if collection.title contains ' |' %}
+                    {% assign grouped_collection = collection %}
+                  {% endif %}
+                {% endfor %}
+                <li class="product-grid__item">
+                  {% render 'grouped-product-card-5',
+                    product_card_product: product,
+                    collection: grouped_collection,
+                    title: grouped_collection.title,
+                    button_text: 'Shop Now',
+                    show_options: section.settings.show_options
+                  %}
+                </li>
+              {% endfor %}
+          </ul>
+            <div id="load-more-wrapper" class="load-more-wrapper">
+              {% if paginate.pages > 1 and paginate.next %}
+              <load-more role="button" class="button" data-load-more="{{ paginate.next.url }}">
+                <span>Load more</span>
+                <div class="loading-overlay__spinner">
+                  <svg
+                    aria-hidden="true"
+                    focusable="false"
+                    role="presentation"
+                    class="spinner"
+                    viewBox="0 0 66 66"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                  </svg>
+                </div>
+              </load-more>
+            {% endif %}
+            </div>
+        {% endpaginate %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="loading-overlay">
+      <div class="loading-overlay__spinner">
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          role="presentation"
+          class="spinner"
+          viewBox="0 0 66 66"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-collection-product-grid.name",
+  "tag": "section",
+  "class": "collection-grid-section with-spacing",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 24,
+      "step": 4,
+      "default": 16,
+      "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header__3.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "add_image_padding",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.add_image_padding.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image_outline",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.show_image_outline.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
+      "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_options",
+      "label": "Show color swatches",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-collection-product-grid.settings.header__1.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+      "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "default": true,
+      "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "collapse_on_larger_devices",
+      "default": false,
+      "label": "t:sections.main-collection-product-grid.settings.collapse_on_larger_devices.label"
+    }
+  ]
+}
+{% endschema %}
