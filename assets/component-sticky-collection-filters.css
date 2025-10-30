@@ -15,19 +15,21 @@
 .sticky-filters-wrap { position: relative; width: 100%; max-width: 100%; }
 .sticky-filters-placeholder { height: 0; } /* set via JS */
 
-.sticky-filters-bar{
-  background: var(--color-background, #fff);
-  will-change: transform;
-  z-index: var(--filters-z);
-}
 @media (min-width: 769px){
 
-  .sticky-filters-bar.is-fixed{
-    box-shadow: 0 1px 0 rgba(0,0,0,.06);
-    z-index: var(--filters-z); /* below header */
+  .sticky-filters-bar{
+    background: var(--color-background, #fff);
+    will-change: transform;
+    z-index: var(--filters-z);
   }
 
 }
+
+.sticky-filters-bar.is-fixed{
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
+  z-index: var(--filters-z); /* below header */
+}
+
 .sticky-filters-bar.is-docked{
   position: absolute !important; right: 0;
   box-shadow: none;
