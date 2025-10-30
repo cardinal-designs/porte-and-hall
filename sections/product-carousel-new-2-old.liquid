@@ -149,30 +149,73 @@
   const section = document.getElementById('shopify-section-{{ section.id }}');
   if (!section) return;
 
-  // Grab all videos inside this section
+  const wrapper = section.querySelector('.swiper-wrapper');
+  if (!wrapper) return;
+
+  // Capture original order once
+  const originalSlides = Array.from(wrapper.children);
+  originalSlides.forEach((slide, i) => (slide.dataset.originalIndex = i));
+
+  function restoreDesktopOrder() {
+    const ordered = Array.from(wrapper.children).sort(
+      (a, b) => +a.dataset.originalIndex - +b.dataset.originalIndex
+    );
+    ordered.forEach(node => wrapper.appendChild(node));
+    const swiper = section.querySelector('.swiper')?.swiper;
+    if (swiper) { swiper.updateSlides(); swiper.update(); }
+  }
+
+  function moveVideosToFront() {
+    const slides = Array.from(wrapper.children);
+    const withVideo = slides.filter(slide =>
+      slide.querySelector('video.carousel-new-2__video')
+    );
+    const withoutVideo = slides.filter(
+      slide => !slide.querySelector('video.carousel-new-2__video')
+    );
+    [...withVideo, ...withoutVideo].forEach(node => wrapper.appendChild(node));
+    const swiper = section.querySelector('.swiper')?.swiper;
+    if (swiper) { swiper.updateSlides(); swiper.update(); }
+  }
+
+  // Watch for mobile/desktop breakpoint
+  const mq = window.matchMedia('(max-width: 575px)');
+  let currentLayoutIsMobile = null;
+
+  function applyLayout(isMobile) {
+    if (currentLayoutIsMobile === isMobile) return;
+    currentLayoutIsMobile = isMobile;
+    if (isMobile) moveVideosToFront();
+    else restoreDesktopOrder();
+  }
+
+  // Initial + listener
+  applyLayout(mq.matches);
+  if (mq.addEventListener) mq.addEventListener('change', e => applyLayout(e.matches));
+  else mq.addListener(e => applyLayout(e.matches));
+
+  // ==============================
+  // EXISTING VIDEO LOGIC BELOW
+  // ==============================
+
   const videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
   if (!videos.length) return;
 
-  // --- helpers ----------------------------------------------------
-  const isVisible = (el) =>
-    el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden';
+  const isVisible = el => el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden';
 
   function getCard(videoEl) {
     return videoEl.closest('.product-card__image') || videoEl.parentElement;
   }
 
-  // Find the placeholder image we want to fade with the video
   function getImg(videoEl) {
     const box = getCard(videoEl);
     if (!box) return null;
-    // Prefer your lazy-image with classes 'img-fill hide-mobile'
     let img = box.querySelector('img.img-fill.hide-mobile');
-    if (!img) img = box.querySelector('img.img-fill'); // fallback
-    if (!img) img = box.querySelector('img');          // last resort
+    if (!img) img = box.querySelector('img.img-fill');
+    if (!img) img = box.querySelector('img');
     return img;
   }
 
-  // Ensure both elements are layered & can fade
   function prepLayering(videoEl, imgEl) {
     const box = getCard(videoEl);
     if (box && getComputedStyle(box).position === 'static') {
@@ -200,67 +243,59 @@
     }
   }
 
-  // Show/hide helpers (opacity swap). For the image, also force display so it defeats .hide-mobile.
   function showImage(img) {
     if (!img) return;
     img.style.setProperty('display', 'block', 'important');
     img.style.opacity = '1';
     img.removeAttribute('aria-hidden');
   }
+
   function hideImage(img) {
     if (!img) return;
     img.style.opacity = '0';
-    // after fade, allow it to hide (optional)
     setTimeout(() => {
       img.style.setProperty('display', 'none', 'important');
       img.setAttribute('aria-hidden', 'true');
     }, 200);
   }
+
   function showVideo(v) { v.style.opacity = '1'; }
   function hideVideo(v) { v.style.opacity = '0'; }
 
   function pauseAndShowImage(v) {
-    try { v.pause(); } catch(_) {}
+    try { v.pause(); } catch (_) {}
     hideVideo(v);
     const img = getImg(v);
     showImage(img);
   }
 
-  // Prepare each card
   videos.forEach(v => {
     const img = getImg(v);
     prepLayering(v, img);
 
-    // Neutralize loop so 'ended' fires (Liquid set loop: true)
     v.removeAttribute('loop');
     v.muted = true;
     v.autoplay = false;
     v.playsInline = true;
     v.preload = v.preload || 'metadata';
 
-    // Initial state: image visible, video hidden
     showImage(img);
     hideVideo(v);
 
-    // If user manually plays
     v.addEventListener('play', () => {
-      // Pause all others and show their images
       videos.forEach(o => { if (o !== v) pauseAndShowImage(o); });
-      // Hide this image, show this video
       hideImage(getImg(v));
       showVideo(v);
-    }, { passive: true });
+    });
 
-    // If user manually pauses (before end), show image again
     v.addEventListener('pause', () => {
       if (!v.ended) {
         hideVideo(v);
         showImage(getImg(v));
       }
-    }, { passive: true });
+    });
   });
 
-  // --- sequencing (only one video plays; others show image) -----------
   const visibleVideos = () => videos.filter(isVisible);
   let seq = [], idx = 0;
 
@@ -272,22 +307,14 @@
   function playAt(i) {
     rebuild();
     if (!seq.length) return;
-
     idx = (i + seq.length) % seq.length;
     const current = seq[idx];
-
-    // Others: pause + image shown
     videos.forEach(v => { if (v !== current) pauseAndShowImage(v); });
-
-    // This one: hide image, show video, play from 0
     hideImage(getImg(current));
     showVideo(current);
-    try { if (current.ended || current.currentTime > 0) current.currentTime = 0; } catch(_) {}
-
+    try { if (current.ended || current.currentTime > 0) current.currentTime = 0; } catch (_) {}
     const p = current.play();
-    if (p && p.catch) p.catch(() => {}); // ignore autoplay promise errors
-
-    // Advance when it ends
+    if (p && p.catch) p.catch(() => {});
     seq.forEach(v => v.removeEventListener('ended', handleEnded));
     current.addEventListener('ended', handleEnded, { once: true });
   }
@@ -301,13 +328,10 @@
     playAt(idx + 1);
   }
 
-  // keep in sync for mobile/desktop breakpoints
-  const mq = window.matchMedia('(max-width: 575px)');
   const onChange = () => { rebuild(); if (seq.length) playAt(idx); };
-  if (mq && mq.addEventListener) mq.addEventListener('change', onChange);
+  if (mq.addEventListener) mq.addEventListener('change', onChange);
   else window.addEventListener('resize', () => requestAnimationFrame(onChange));
 
-  // start after metadata so durations are known
   const start = () => { rebuild(); if (seq.length) playAt(0); };
   if (videos.some(v => v.readyState < 1)) {
     let left = videos.length, started = false;
