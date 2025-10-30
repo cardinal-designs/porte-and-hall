@@ -90,9 +90,9 @@
         {% endif %}
       </div>
     {% endcomment %}
-    <div class="{{ only_one }} product-card__image">
+    <div class="product-card__image">
       <a href="{{ product_card_product.url }}">
-        {% if product_card_product.metafields.custom.carousel_new_2_video != blank and only_one == true %}
+        {% if product_card_product.metafields.custom.carousel_new_2_video != blank and only_show_one == true %}
            {{ product_card_product.metafields.custom.carousel_new_2_video.value | video_tag: autoplay: true, loop: true, muted: true, controls: false, style: 'width: 100%; opacity: 1', class: 'videos carousel-new-2__video hide-desktop', id: 'video', image_size: '1x' }}
            {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', style: 'opacity: 0;', aria-label: "image" %}
             {% if product_card_product.media[0] != null %}
