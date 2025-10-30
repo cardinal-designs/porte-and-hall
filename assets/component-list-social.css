@@ -34,6 +34,7 @@
   display: flex;
   /* padding: 1.3rem; */
   color: rgb(var(--color-foreground));
+  min-height: 24px;
 }
 
 .list-social__icon {
