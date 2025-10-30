@@ -98,251 +98,133 @@
   const section = document.getElementById('shopify-section-{{ section.id }}');
   if (!section) return;
 
-  // ==============================
-  // MOBILE-ONLY REORDER (toggle)
-  // ==============================
   const wrapper = section.querySelector('.swiper-wrapper');
   const mq = window.matchMedia('(max-width: 575px)');
   if (!wrapper) return;
 
-  // Capture original order once
-  const originalSlides = Array.from(wrapper.querySelectorAll('.swiper-slide'));
-  originalSlides.forEach((slide, i) => { slide.dataset.originalIndex = i; });
+  // Save the original order of all slides
+  const originalSlides = Array.from(wrapper.children);
+  originalSlides.forEach((slide, i) => (slide.dataset.originalIndex = i));
 
+  // Swiper instance helper
   function getSwiperInstance() {
     const container = section.querySelector('.swiper');
     return container && container.swiper ? container.swiper : null;
   }
 
+  // Restore slides to their original order
   function restoreDesktopOrder() {
-    const ordered = Array.from(wrapper.children)
-      .sort((a, b) => (+a.dataset.originalIndex) - (+b.dataset.originalIndex));
+    const ordered = Array.from(wrapper.children).sort(
+      (a, b) => +a.dataset.originalIndex - +b.dataset.originalIndex
+    );
     ordered.forEach(node => wrapper.appendChild(node));
-
     const swiper = getSwiperInstance();
     if (swiper) { swiper.updateSlides(); swiper.update(); }
   }
 
+  // On mobile, move only the *first* product card with a video to the front
   function reorderForMobile() {
     const slides = Array.from(wrapper.children);
-    const withVideo = slides
-      .filter(s => s.querySelector('video.carousel-new-2__video'))
-      .sort((a, b) => (+a.dataset.originalIndex) - (+b.dataset.originalIndex));
-    const withoutVideo = slides
-      .filter(s => !s.querySelector('video.carousel-new-2__video'))
-      .sort((a, b) => (+a.dataset.originalIndex) - (+b.dataset.originalIndex));
+    const firstWithVideo = slides.find(s => s.querySelector('video.carousel-new-2__video'));
+    if (!firstWithVideo) return;
 
-    if (withVideo.length > 0 && withVideo.length < slides.length) {
-      [...withVideo, ...withoutVideo].forEach(node => wrapper.appendChild(node));
+    // Only move the first one if it's not already first
+    if (wrapper.firstElementChild !== firstWithVideo) {
+      wrapper.insertBefore(firstWithVideo, wrapper.firstElementChild);
       const swiper = getSwiperInstance();
       if (swiper) { swiper.updateSlides(); swiper.update(); }
     }
   }
 
-  // Initial + listener for reordering
+  // Handle layout switch (mobile vs desktop)
   let currentLayoutIsMobile = null;
   function applyLayout(isMobile) {
     if (currentLayoutIsMobile === isMobile) return;
     currentLayoutIsMobile = isMobile;
-    if (isMobile) reorderForMobile(); else restoreDesktopOrder();
-    // Also flip video behavior when breakpoint changes:
-    isMobile ? enableMobileMode() : enableDesktopMode();
+    if (isMobile) reorderForMobile();
+    else restoreDesktopOrder();
   }
+
+  // Initial layout + listener for window resize
+  applyLayout(mq.matches);
   if (mq.addEventListener) mq.addEventListener('change', e => applyLayout(e.matches));
   else mq.addListener(e => applyLayout(e.matches));
 
   // ==============================
-  // VIDEO SEQUENCING / PLAYBACK
+  // VIDEO PLAYBACK (All Play)
   // ==============================
-  const videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
-  if (!videos.length) { applyLayout(mq.matches); return; }
 
-  const isVisible = (el) => el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden';
+  const videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
+  if (!videos.length) return;
 
   function getCard(videoEl) {
     return videoEl.closest('.product-card__image') || videoEl.parentElement;
   }
-
   function getImg(videoEl) {
     const box = getCard(videoEl);
     if (!box) return null;
-    let img = box.querySelector('img.img-fill.hide-mobile');
-    if (!img) img = box.querySelector('img.img-fill');
-    if (!img) img = box.querySelector('img');
+    let img = box.querySelector('img.img-fill.hide-mobile') || box.querySelector('img.img-fill') || box.querySelector('img');
     return img;
   }
 
   function prepLayering(videoEl, imgEl) {
     const box = getCard(videoEl);
-    if (box && getComputedStyle(box).position === 'static') { box.style.position = 'relative'; }
+    if (box && getComputedStyle(box).position === 'static') box.style.position = 'relative';
     Object.assign(videoEl.style, {
-      position: 'absolute', inset: '0',
-      width: '100%', height: '100%',
-      objectFit: 'cover', zIndex: '2',
+      position: 'absolute',
+      inset: '0',
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      zIndex: '2',
       transition: 'opacity 200ms ease'
     });
     if (imgEl) {
       Object.assign(imgEl.style, {
-        position: 'absolute', inset: '0',
-        width: '100%', height: '100%',
-        objectFit: 'cover', zIndex: '1',
+        position: 'absolute',
+        inset: '0',
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        zIndex: '1',
         transition: 'opacity 200ms ease'
       });
     }
   }
 
-  function showImage(img) {
-    if (!img) return;
-    img.style.setProperty('display', 'block', 'important');
-    img.style.opacity = '1';
-    img.removeAttribute('aria-hidden');
-  }
-  function hideImage(img) {
-    if (!img) return;
-    img.style.opacity = '0';
-    setTimeout(() => {
-      img.style.setProperty('display', 'none', 'important');
-      img.setAttribute('aria-hidden', 'true');
-    }, 200);
-  }
+  function hideImage(img) { if (img) img.style.opacity = '0'; }
   function showVideo(v) {
     v.style.opacity = '1';
     v.style.setProperty('display', 'block', 'important');
   }
-  function hideVideo(v) { v.style.opacity = '0'; }
 
-  function pauseAndShowImage(v) {
-    try { v.pause(); } catch(_) {}
-    hideVideo(v);
-    const img = getImg(v);
-    showImage(img);
-  }
-
-  // Prepare each card once
+  // Prepare and auto-play all videos
   videos.forEach(v => {
     const img = getImg(v);
     prepLayering(v, img);
     v.classList.remove('hide-desktop');
     v.style.setProperty('display', 'block', 'important');
-
-    // Start with conservative defaults; mode functions will override
-    v.removeAttribute('loop');          // we'll set per-mode
     v.muted = true;
-    v.autoplay = false;                 // we'll call play() per-mode
+    v.loop = true;
     v.playsInline = true;
-    v.preload = v.preload || 'metadata';
+    v.autoplay = false;
+    v.preload = 'metadata';
+    if (img) hideImage(img);
 
-    // Initial: image visible, video hidden
-    showImage(img);
-    hideVideo(v);
-
-    // Play/Pause listeners adapt to mode at runtime
-    v.addEventListener('play', () => {
-      if (mq.matches) {
-        // Mobile: one-at-a-time
-        videos.forEach(o => { if (o !== v) pauseAndShowImage(o); });
-      }
-      hideImage(getImg(v));
+    // Play all simultaneously once metadata is ready
+    if (v.readyState >= 1) {
       showVideo(v);
-    });
-
-    v.addEventListener('pause', () => {
-      if (!v.ended) {
-        hideVideo(v);
-        showImage(getImg(v));
-      }
-    });
-  });
-
-  // -------- Mobile (one-at-a-time sequencing) --------
-  let seq = [], idx = 0;
-  function visibleVideos() { return videos.filter(isVisible); }
-  function rebuildSeq() {
-    seq = visibleVideos();
-    if (idx >= seq.length) idx = 0;
-  }
-  function handleEnded() {
-    const justEnded = seq[idx];
-    if (justEnded) {
-      hideVideo(justEnded);
-      showImage(getImg(justEnded));
-    }
-    playAt(idx + 1);
-  }
-  function playAt(i) {
-    if (!mq.matches) return;           // guard: only mobile
-    rebuildSeq();
-    if (!seq.length) return;
-
-    idx = (i + seq.length) % seq.length;
-    const current = seq[idx];
-
-    videos.forEach(v => { if (v !== current) pauseAndShowImage(v); });
-
-    hideImage(getImg(current));
-    showVideo(current);
-    try { if (current.ended || current.currentTime > 0) current.currentTime = 0; } catch(_) {}
-    const p = current.play();
-    if (p && p.catch) p.catch(() => {});
-
-    seq.forEach(v => v.removeEventListener('ended', handleEnded));
-    current.addEventListener('ended', handleEnded, { once: true });
-  }
-
-  // -------- Desktop (all play at once) --------
-  function playAllDesktop() {
-    // Loop all; hide images; play simultaneously
-    videos.forEach(v => {
-      v.setAttribute('loop', '');          // ensure looping on desktop
-      hideImage(getImg(v));
-      showVideo(v);
-      try { if (v.currentTime > 0) v.currentTime = 0; } catch(_) {}
-      const p = v.play();
-      if (p && p.catch) p.catch(() => {});
-    });
-  }
-  function stopAllDesktop() {
-    // Stop all & show images (used when switching to mobile)
-    videos.forEach(v => pauseAndShowImage(v));
-    videos.forEach(v => v.removeAttribute('loop'));
-  }
-
-  // -------- Mode switching --------
-  let mobileStarted = false;
-  function enableMobileMode() {
-    stopAllDesktop();              // ensure desktop loops are off
-    // Show images initially, hide videos
-    videos.forEach(v => { showImage(getImg(v)); hideVideo(v); });
-    // Start sequencing once metadata is ready
-    const start = () => { rebuildSeq(); if (seq.length) { mobileStarted = true; playAt(0); } };
-    if (videos.some(v => v.readyState < 1)) {
-      let left = videos.length, kicked = false;
-      const done = () => { if (!kicked && --left <= 0) { kicked = true; start(); } };
-      videos.forEach(v => {
-        if (v.readyState >= 1) done();
-        else { v.addEventListener('loadedmetadata', done, { once: true }); setTimeout(done, 1200); }
-      });
+      const p = v.play(); if (p && p.catch) p.catch(() => {});
     } else {
-      start();
+      v.addEventListener('loadedmetadata', () => {
+        showVideo(v);
+        const p = v.play(); if (p && p.catch) p.catch(() => {});
+      }, { once: true });
     }
-  }
-
-  function enableDesktopMode() {
-    // Restore desktop order (safety; reordering block also handles on breakpoint)
-    restoreDesktopOrder();
-    // Play all simultaneously
-    playAllDesktop();
-    mobileStarted = false;
-  }
-
-  // Initial apply after DOM ready
-  applyLayout(mq.matches);
-  // If we reached here without hitting applyLayout (e.g., no videos case), guard:
-  if (currentLayoutIsMobile === null) {
-    mq.matches ? enableMobileMode() : enableDesktopMode();
-  }
+  });
 })();
 </script>
+
 
 {% schema %}
 {
