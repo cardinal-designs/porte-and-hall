@@ -104,6 +104,10 @@
               {% assign grouped_collection = collection %}
             {% endif %}
           {% endfor %}
+          {% assign only_one = false %}
+          {% if product.title contains 'Wild side (dove)'%}
+            {% assign only_one = true %}
+          {% endif %}
           <div class="product-carousel__item swiper-slide">
             {% if section.settings.product_card_type == 'standard_card' %}
             {% render 'grouped-product-card-2',
@@ -118,7 +122,7 @@
               collection: grouped_collection,
               title: grouped_collection.title,
               button_text: section.settings.button_text,
-              only_show_one: true
+              only_show_one: only_one
             %}
           {% endif %}
           </div>
