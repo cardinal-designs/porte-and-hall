@@ -15,7 +15,7 @@
 .sticky-filters-wrap { position: relative; width: 100%; max-width: 100%; }
 .sticky-filters-placeholder { height: 0; } /* set via JS */
 
-.sticky-filters-bar{
+/* .sticky-filters-bar{
   background: var(--color-background, #fff);
   will-change: transform;
   z-index: var(--filters-z);
@@ -28,7 +28,7 @@
   position: absolute !important; right: 0;
   box-shadow: none;
   z-index: var(--filters-z-docked);
-}
+} */
 
 /* Header/nav always above */
 #shopify-section-header,
