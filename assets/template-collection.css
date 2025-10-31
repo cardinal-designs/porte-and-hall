@@ -95,6 +95,9 @@
 .sticky-filters-bar:not(.is-fixed) .head-slide-wrap {
   padding: 0 !important;
 }
+.sticky-filters-bar.is-fixed .head-slide-wrap {
+  margin-right: 0;
+}
 .head-slide-wrap .head-slide{
   list-style-type: none;
   overflow-y: auto;
