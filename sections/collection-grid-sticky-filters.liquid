@@ -165,6 +165,8 @@
         sY=w.getBoundingClientRect().top+st;
         eY=end.getBoundingClientRect().top+st;
         stop=Math.min(eY,footTop())-1;
+
+        console.log('sY::: ',sY);
         var r=b.getBoundingClientRect(); L=r.left+window.pageXOffset; W=r.width;
         b.dataset.fixedLeft=L; b.dataset.fixedWidth=W;
       }
