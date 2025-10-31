@@ -30,6 +30,14 @@
   z-index: var(--filters-z); /* below header */
 }
 
+@media (max-width: 768px) {
+
+  .sticky-filters-bar.is-fixed {
+    left: 0 !important;
+  }
+  
+}
+
 .sticky-filters-bar.is-docked{
   position: absolute !important; right: 0;
   box-shadow: none;
