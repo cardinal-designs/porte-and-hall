@@ -178,8 +178,8 @@
         }
         var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
         var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
-        {% comment %} b.style.position='fixed'; b.style.zIndex='9'; b.style.top=off+'px'; b.style.left=lv+'px'; b.style.width=wv+'px'; b.classList.add('is-fixed'); b.classList.remove('is-docked');
-        if(window.innerWidth < 769){
+        b.style.position='fixed'; b.style.zIndex='9'; b.style.top=off+'px'; b.style.left=lv+'px'; b.style.width=wv+'px'; b.classList.add('is-fixed'); b.classList.remove('is-docked');
+        {% comment %} if(window.innerWidth < 769){
           b.style.position='fixed'; b.style.zIndex='9'; b.style.top=(parseFloat(off) - 88) + 'px'; b.style.background='var(--color-background, #fff)';b.style.left=lv+'px'; b.style.width='100%'; b.classList.add('is-fixed'); b.classList.remove('is-docked');
         } {% endcomment %}
       }
