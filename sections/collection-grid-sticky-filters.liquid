@@ -32,7 +32,7 @@
     <div id="sticky-wrap-{{ section.id }}" class="sticky-filters-wrap" data-section-id="{{ section.id }}">
       <div id="sticky-bar-{{ section.id }}" class="sticky-filters-bar" role="region" aria-label="Collection filters">
         {% if section.blocks.size > 0 %}
-          <div class="head-slide-wrap title-carousel" id="head-slide-wrap">
+          {% comment %} <div class="head-slide-wrap title-carousel" id="head-slide-wrap">
             <ul class="head-slide">
               {%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
                 {%- assign pageUrl = contentForQuerystring
@@ -54,7 +54,7 @@
                 <li {% if block.settings.link contains key_and_value[1] %} class="active" {% endif %}><a href="{{ block.settings.link }}">{{ block.settings.title }}</a></li> 
               {% endfor %}
             </ul>
-          </div>
+          </div> {% endcomment %}
         {% endif %}
         <div class="sticky-filters-bar__inner">
           {% render 'collection-filters' %}
