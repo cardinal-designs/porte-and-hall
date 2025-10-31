@@ -175,7 +175,7 @@
       function apply(){
         var y=window.pageYOffset||document.documentElement.scrollTop, h=b.offsetHeight;
 
-        console.log('y+off:: ',y+off);
+        console.log('y+off:: ',yy+off<=sY);
         if(y+off<=sY){ if(b.classList.contains('is-fixed')||b.classList.contains('is-docked')){ b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked'); } return; }
         if(y+off+h>=stop){
           var wt=w.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop);
