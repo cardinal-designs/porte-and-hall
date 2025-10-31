@@ -162,7 +162,10 @@
         off=H();
         // console.log('offset height:', off);
         var st=window.pageYOffset||document.documentElement.scrollTop;
-        sY=w.getBoundingClientRect().top+st+88;
+        sY=w.getBoundingClientRect().top+st;
+        if(window.innerWidth < 769){
+          sY=w.getBoundingClientRect().top+st+88;
+        }
         eY=end.getBoundingClientRect().top+st;
         stop=Math.min(eY,footTop())-1;
         var r=b.getBoundingClientRect(); L=r.left+window.pageXOffset; W=r.width;
