@@ -102,9 +102,7 @@
   const mq = window.matchMedia('(max-width: 575px)');
   if (!wrapper) return;
 
-  // ---------------------------
-  // Save original order
-  // ---------------------------
+  // --- Save original order once ---
   const originalSlides = Array.from(wrapper.children);
   originalSlides.forEach((slide, i) => (slide.dataset.originalIndex = i));
 
@@ -116,14 +114,12 @@
   function restoreDesktopOrder() {
     const ordered = Array.from(wrapper.children)
       .sort((a, b) => +a.dataset.originalIndex - +b.dataset.originalIndex);
-    ordered.forEach(node => wrapper.appendChild(node));
+    ordered.forEach(n => wrapper.appendChild(n));
     const sw = getSwiper();
     if (sw) { sw.updateSlides(); sw.update(); }
   }
 
-  // ---------------------------
-  // Mobile: move ONLY the first slide that contains a video to the front
-  // ---------------------------
+  // Mobile: move ONLY the FIRST slide with a video to the front
   function reorderForMobile() {
     const slides = Array.from(wrapper.children);
     const firstWithVideo = slides.find(s => s.querySelector('video.carousel-new-2__video'));
@@ -135,33 +131,33 @@
     }
   }
 
-  // Toggle layout on breakpoint
+  // Toggle on breakpoint
   let currentIsMobile = null;
   function applyLayout(isMobile) {
     if (currentIsMobile === isMobile) return;
     currentIsMobile = isMobile;
     if (isMobile) reorderForMobile(); else restoreDesktopOrder();
-    // after DOM moves, re-bind + force playback
-    initVideos();
-    forcePlayAll();
+    prepAllVideos();     // DOM changed? re-prep
+    playAllVideos();     // and re-kick playback
   }
+
+  // Initial + on resize
   applyLayout(mq.matches);
   if (mq.addEventListener) mq.addEventListener('change', e => applyLayout(e.matches));
   else mq.addListener(e => applyLayout(e.matches));
 
-  // ---------------------------
-  // Video prep + forced autoplay
-  // ---------------------------
-  let videos = [];
+  // ==============================
+  // Video prep + force playback
+  // ==============================
   function getCard(videoEl) {
     return videoEl.closest('.product-card__image') || videoEl.parentElement;
   }
   function getImg(videoEl) {
     const box = getCard(videoEl);
     if (!box) return null;
-    return box.querySelector('img.img-fill.hide-mobile') ||
-           box.querySelector('img.img-fill') ||
-           box.querySelector('img');
+    return box.querySelector('img.img-fill.hide-mobile')
+        || box.querySelector('img.img-fill')
+        || box.querySelector('img');
   }
   function prepLayering(videoEl, imgEl) {
     const box = getCard(videoEl);
@@ -173,7 +169,9 @@
       height: '100%',
       objectFit: 'cover',
       zIndex: '2',
-      transition: 'opacity 200ms ease'
+      transition: 'opacity 200ms ease',
+      opacity: '1',
+      display: 'block'
     });
     if (imgEl) {
       Object.assign(imgEl.style, {
@@ -183,83 +181,90 @@
         height: '100%',
         objectFit: 'cover',
         zIndex: '1',
-        transition: 'opacity 200ms ease'
+        transition: 'opacity 200ms ease',
+        opacity: '0',
+        display: 'block'
       });
-      imgEl.style.opacity = '0'; // hide poster image permanently (we play all videos)
     }
-    // Ensure video shows
-    videoEl.style.opacity = '1';
-    videoEl.style.setProperty('display', 'block', 'important');
   }
 
-  function initVideos() {
-    videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
-    videos.forEach(v => {
+  function collectVideos() {
+    // Include clones created by Swiper (still within section)
+    return Array.from(section.querySelectorAll('video.carousel-new-2__video'));
+  }
+
+  function prepAllVideos() {
+    const vids = collectVideos();
+    vids.forEach(v => {
       const img = getImg(v);
       prepLayering(v, img);
 
-      // make sure attributes are friendly to continuous playback
+      // Critical for autoplay everywhere (esp. iOS Safari):
+      v.muted = true; v.setAttribute('muted', '');
+      v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+      v.loop = true; v.setAttribute('loop', '');
+      v.autoplay = false; // we call play() ourselves
+      v.preload = 'auto';
       v.classList.remove('hide-desktop');
-      v.muted = true;
-      v.loop = true;                 // loop so returning slides keep playing
-      v.playsInline = true;
-      v.autoplay = false;            // we'll call play() programmatically
-      v.preload = 'auto';            // eager load to avoid pausing on re-entry
-
-      // If browser pauses it, auto-resume (unless user explicitly paused; but here, not exposing controls)
-      v.onpause = () => {
-        // try to keep alive
-        const p = v.play();
-        if (p && p.catch) p.catch(() => {});
-      };
+      v.style.setProperty('display', 'block', 'important');
     });
   }
 
-  function forcePlayAll() {
-    // Play all, even off-screen; re-assert periodically after Swiper events
-    videos.forEach(v => {
-      try { if (v.currentTime === 0 && v.readyState >= 1) v.currentTime = 0.01; } catch(e) {}
-      const play = v.play();
-      if (play && play.catch) play.catch(() => {});
+  function ensurePlaying(v) {
+    // Nudge currentTime slightly helps some engines keep the decoder "hot"
+    try {
+      if (v.readyState >= 1 && v.currentTime === 0) v.currentTime = 0.01;
+    } catch (e) {}
+    const p = v.play();
+    if (p && p.catch) p.catch(() => {});
+  }
+
+  function playAllVideos() {
+    const vids = collectVideos();
+    vids.forEach(v => {
+      if (v.readyState >= 1) {
+        ensurePlaying(v);
+      } else {
+        v.addEventListener('loadeddata', () => ensurePlaying(v), { once: true });
+        // Fallback in case 'loadeddata' is throttled
+        setTimeout(() => ensurePlaying(v), 1000);
+      }
     });
   }
 
-  // Initialize now
-  initVideos();
-  forcePlayAll();
+  // Initial prep + play
+  prepAllVideos();
+  playAllVideos();
 
-  // ---------------------------
-  // Swiper hooks to keep videos alive after swipes/loops
-  // ---------------------------
+  // ==============================
+  // Swiper hooks: keep videos alive after swipes/loops/updates
+  // ==============================
   const sw = getSwiper();
+  function hookSwiper(s) {
+    ['init','slideChange','slideChangeTransitionEnd','transitionEnd','resize','update','reachBeginning','reachEnd']
+      .forEach(ev => s.on(ev, () => {
+        // Swiper may add/remove/clone nodes — re-collect and re-play
+        prepAllVideos();
+        // small delay lets Swiper finish DOM mutations
+        setTimeout(playAllVideos, 50);
+      }));
+  }
+
   if (sw) {
-    // When Swiper initializes (some themes init async)
-    if (!sw.initialized && sw.on) {
-      sw.on('init', () => { initVideos(); forcePlayAll(); });
-    }
-    // On any change/transition/update, re-assert playback
-    ['slideChange', 'slideChangeTransitionEnd', 'transitionEnd', 'resize', 'update', 'reachBeginning', 'reachEnd']
-      .forEach(ev => sw.on(ev, () => { initVideos(); forcePlayAll(); }));
+    hookSwiper(sw);
   } else {
-    // If swiper is initialized later, observe DOM mutations to catch it
+    // If Swiper initializes later, observe DOM to hook when ready
     const obs = new MutationObserver(() => {
       const s = getSwiper();
-      if (s) {
-        ['slideChange', 'slideChangeTransitionEnd', 'transitionEnd', 'resize', 'update', 'reachBeginning', 'reachEnd']
-          .forEach(ev => s.on(ev, () => { initVideos(); forcePlayAll(); }));
-        obs.disconnect();
-      }
+      if (s) { hookSwiper(s); obs.disconnect(); }
     });
     obs.observe(section, { childList: true, subtree: true });
   }
 
-  // If tab visibility changes, resume
+  // Resume after tab becomes visible (mobile browsers pause timers/decoders)
   document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) forcePlayAll();
+    if (!document.hidden) setTimeout(playAllVideos, 50);
   });
-
-  // Also nudge after a full swipe cycle (some mobile browsers throttle)
-  setInterval(forcePlayAll, 3000);
 })();
 </script>
 
