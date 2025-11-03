@@ -102,71 +102,67 @@
   const mq = window.matchMedia('(max-width: 575px)');
   if (!wrapper) return;
 
-  // Save the original order of all slides
+  // ---------------------------
+  // Save original order
+  // ---------------------------
   const originalSlides = Array.from(wrapper.children);
   originalSlides.forEach((slide, i) => (slide.dataset.originalIndex = i));
 
-  // Swiper instance helper
-  function getSwiperInstance() {
-    const container = section.querySelector('.swiper');
-    return container && container.swiper ? container.swiper : null;
+  function getSwiper() {
+    const el = section.querySelector('.swiper');
+    return el && el.swiper ? el.swiper : null;
   }
 
-  // Restore slides to their original order
   function restoreDesktopOrder() {
-    const ordered = Array.from(wrapper.children).sort(
-      (a, b) => +a.dataset.originalIndex - +b.dataset.originalIndex
-    );
+    const ordered = Array.from(wrapper.children)
+      .sort((a, b) => +a.dataset.originalIndex - +b.dataset.originalIndex);
     ordered.forEach(node => wrapper.appendChild(node));
-    const swiper = getSwiperInstance();
-    if (swiper) { swiper.updateSlides(); swiper.update(); }
+    const sw = getSwiper();
+    if (sw) { sw.updateSlides(); sw.update(); }
   }
 
-  // On mobile, move only the *first* product card with a video to the front
+  // ---------------------------
+  // Mobile: move ONLY the first slide that contains a video to the front
+  // ---------------------------
   function reorderForMobile() {
     const slides = Array.from(wrapper.children);
     const firstWithVideo = slides.find(s => s.querySelector('video.carousel-new-2__video'));
     if (!firstWithVideo) return;
-
-    // Only move the first one if it's not already first
     if (wrapper.firstElementChild !== firstWithVideo) {
       wrapper.insertBefore(firstWithVideo, wrapper.firstElementChild);
-      const swiper = getSwiperInstance();
-      if (swiper) { swiper.updateSlides(); swiper.update(); }
+      const sw = getSwiper();
+      if (sw) { sw.updateSlides(); sw.update(); }
     }
   }
 
-  // Handle layout switch (mobile vs desktop)
-  let currentLayoutIsMobile = null;
+  // Toggle layout on breakpoint
+  let currentIsMobile = null;
   function applyLayout(isMobile) {
-    if (currentLayoutIsMobile === isMobile) return;
-    currentLayoutIsMobile = isMobile;
-    if (isMobile) reorderForMobile();
-    else restoreDesktopOrder();
+    if (currentIsMobile === isMobile) return;
+    currentIsMobile = isMobile;
+    if (isMobile) reorderForMobile(); else restoreDesktopOrder();
+    // after DOM moves, re-bind + force playback
+    initVideos();
+    forcePlayAll();
   }
-
-  // Initial layout + listener for window resize
   applyLayout(mq.matches);
   if (mq.addEventListener) mq.addEventListener('change', e => applyLayout(e.matches));
   else mq.addListener(e => applyLayout(e.matches));
 
-  // ==============================
-  // VIDEO PLAYBACK (All Play)
-  // ==============================
-
-  const videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
-  if (!videos.length) return;
-
+  // ---------------------------
+  // Video prep + forced autoplay
+  // ---------------------------
+  let videos = [];
   function getCard(videoEl) {
     return videoEl.closest('.product-card__image') || videoEl.parentElement;
   }
   function getImg(videoEl) {
     const box = getCard(videoEl);
     if (!box) return null;
-    let img = box.querySelector('img.img-fill.hide-mobile') || box.querySelector('img.img-fill') || box.querySelector('img');
-    return img;
+    return box.querySelector('img.img-fill.hide-mobile') ||
+           box.querySelector('img.img-fill') ||
+           box.querySelector('img');
   }
-
   function prepLayering(videoEl, imgEl) {
     const box = getCard(videoEl);
     if (box && getComputedStyle(box).position === 'static') box.style.position = 'relative';
@@ -189,39 +185,81 @@
         zIndex: '1',
         transition: 'opacity 200ms ease'
       });
+      imgEl.style.opacity = '0'; // hide poster image permanently (we play all videos)
     }
+    // Ensure video shows
+    videoEl.style.opacity = '1';
+    videoEl.style.setProperty('display', 'block', 'important');
   }
 
-  function hideImage(img) { if (img) img.style.opacity = '0'; }
-  function showVideo(v) {
-    v.style.opacity = '1';
-    v.style.setProperty('display', 'block', 'important');
+  function initVideos() {
+    videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
+    videos.forEach(v => {
+      const img = getImg(v);
+      prepLayering(v, img);
+
+      // make sure attributes are friendly to continuous playback
+      v.classList.remove('hide-desktop');
+      v.muted = true;
+      v.loop = true;                 // loop so returning slides keep playing
+      v.playsInline = true;
+      v.autoplay = false;            // we'll call play() programmatically
+      v.preload = 'auto';            // eager load to avoid pausing on re-entry
+
+      // If browser pauses it, auto-resume (unless user explicitly paused; but here, not exposing controls)
+      v.onpause = () => {
+        // try to keep alive
+        const p = v.play();
+        if (p && p.catch) p.catch(() => {});
+      };
+    });
   }
 
-  // Prepare and auto-play all videos
-  videos.forEach(v => {
-    const img = getImg(v);
-    prepLayering(v, img);
-    v.classList.remove('hide-desktop');
-    v.style.setProperty('display', 'block', 'important');
-    v.muted = true;
-    v.loop = true;
-    v.playsInline = true;
-    v.autoplay = false;
-    v.preload = 'metadata';
-    if (img) hideImage(img);
+  function forcePlayAll() {
+    // Play all, even off-screen; re-assert periodically after Swiper events
+    videos.forEach(v => {
+      try { if (v.currentTime === 0 && v.readyState >= 1) v.currentTime = 0.01; } catch(e) {}
+      const play = v.play();
+      if (play && play.catch) play.catch(() => {});
+    });
+  }
 
-    // Play all simultaneously once metadata is ready
-    if (v.readyState >= 1) {
-      showVideo(v);
-      const p = v.play(); if (p && p.catch) p.catch(() => {});
-    } else {
-      v.addEventListener('loadedmetadata', () => {
-        showVideo(v);
-        const p = v.play(); if (p && p.catch) p.catch(() => {});
-      }, { once: true });
+  // Initialize now
+  initVideos();
+  forcePlayAll();
+
+  // ---------------------------
+  // Swiper hooks to keep videos alive after swipes/loops
+  // ---------------------------
+  const sw = getSwiper();
+  if (sw) {
+    // When Swiper initializes (some themes init async)
+    if (!sw.initialized && sw.on) {
+      sw.on('init', () => { initVideos(); forcePlayAll(); });
     }
+    // On any change/transition/update, re-assert playback
+    ['slideChange', 'slideChangeTransitionEnd', 'transitionEnd', 'resize', 'update', 'reachBeginning', 'reachEnd']
+      .forEach(ev => sw.on(ev, () => { initVideos(); forcePlayAll(); }));
+  } else {
+    // If swiper is initialized later, observe DOM mutations to catch it
+    const obs = new MutationObserver(() => {
+      const s = getSwiper();
+      if (s) {
+        ['slideChange', 'slideChangeTransitionEnd', 'transitionEnd', 'resize', 'update', 'reachBeginning', 'reachEnd']
+          .forEach(ev => s.on(ev, () => { initVideos(); forcePlayAll(); }));
+        obs.disconnect();
+      }
+    });
+    obs.observe(section, { childList: true, subtree: true });
+  }
+
+  // If tab visibility changes, resume
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) forcePlayAll();
   });
+
+  // Also nudge after a full swipe cycle (some mobile browsers throttle)
+  setInterval(forcePlayAll, 3000);
 })();
 </script>
 
