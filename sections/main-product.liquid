@@ -86,7 +86,7 @@
     </a>
 
     <div class="product__media-wrapper">
-      <div class="hide-mobile product__media-thumbnails list-unstyled swiper" role="list">
+      <div class="hide-mobile product__media-thumbnails list-unstyled swiper">
         <div class="swiper-wrapper">
           {% for media in product.media %}
             {% unless media.alt == 'hide-outlier' %}
@@ -98,7 +98,7 @@
         </div>
       </div>
 
-      <div class="product__media-list list-unstyled swiper" role="list">
+      <div class="product__media-list list-unstyled swiper">
         <div class="swiper-wrapper">
           {% for media in product.media %}
             {% unless media.alt == 'hide-outlier' %}
