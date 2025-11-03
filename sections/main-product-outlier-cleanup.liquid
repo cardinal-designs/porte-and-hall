@@ -90,7 +90,7 @@
     </a>
 
     <div class="product__media-wrapper">
-      <div class="hide-mobile product__media-thumbnails list-unstyled swiper" role="list">
+      <div class="hide-mobile product__media-thumbnails list-unstyled swiper">
         <div class="swiper-wrapper">
           {% for media in product.media %}
             <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
@@ -100,7 +100,7 @@
         </div>
       </div>
 
-      <div class="product__media-list list-unstyled swiper" role="list">
+      <div class="product__media-list list-unstyled swiper">
         <div class="swiper-wrapper">
           {% for media in product.media %}
             <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
@@ -172,7 +172,7 @@
          <div id="myModal" class="dimension-modal-content dimension_modal">
               <div class="dimension-modal-header">
               <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
-              <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %}</button></div>
+              <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %}<span class="sr-only">Close Button</span></button></div>
               </div>
               <div class="dimension-modal-body">
                <p>{{ product.metafields.custom.product_dimensions.value.dimension }}</p>
