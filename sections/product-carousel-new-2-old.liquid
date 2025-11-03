@@ -152,7 +152,7 @@
   const wrapper = section.querySelector('.swiper-wrapper');
   if (!wrapper) return;
 
-  // ----- Original order + move to front (unchanged) -----
+  // Capture original order once
   const originalSlides = Array.from(wrapper.children);
   originalSlides.forEach((slide, i) => (slide.dataset.originalIndex = i));
 
@@ -167,36 +167,68 @@
 
   function moveVideosToFront() {
     const slides = Array.from(wrapper.children);
-    const withVideo = slides.filter(slide => slide.querySelector('video.carousel-new-2__video'));
-    const withoutVideo = slides.filter(slide => !slide.querySelector('video.carousel-new-2__video'));
+    const withVideo = slides.filter(slide =>
+      slide.querySelector('video.carousel-new-2__video')
+    );
+    const withoutVideo = slides.filter(
+      slide => !slide.querySelector('video.carousel-new-2__video')
+    );
     [...withVideo, ...withoutVideo].forEach(node => wrapper.appendChild(node));
     const swiper = section.querySelector('.swiper')?.swiper;
     if (swiper) { swiper.updateSlides(); swiper.update(); }
   }
 
-  // ----- helpers -----
-  function getCard(el) {
-    return el.closest('.product-card__image') || el.parentElement;
+  // Watch for mobile/desktop breakpoint
+  const mq = window.matchMedia('(max-width: 575px)');
+  let currentLayoutIsMobile = null;
+
+  function applyLayout(isMobile) {
+    if (currentLayoutIsMobile === isMobile) return;
+    currentLayoutIsMobile = isMobile;
+    if (isMobile) moveVideosToFront();
+    else restoreDesktopOrder();
   }
+
+  // Initial + listener
+  applyLayout(mq.matches);
+  if (mq.addEventListener) mq.addEventListener('change', e => applyLayout(e.matches));
+  else mq.addListener(e => applyLayout(e.matches));
+
+  // ==============================
+  // EXISTING VIDEO LOGIC BELOW
+  // ==============================
+
+  const videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
+  if (!videos.length) return;
+
+  const isVisible = el => el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden';
+
+  function getCard(videoEl) {
+    return videoEl.closest('.product-card__image') || videoEl.parentElement;
+  }
+
   function getImg(videoEl) {
     const box = getCard(videoEl);
     if (!box) return null;
-    return (
-      box.querySelector('img.img-fill.hide-mobile') ||
-      box.querySelector('img.img-fill') ||
-      box.querySelector('img')
-    );
+    let img = box.querySelector('img.img-fill.hide-mobile');
+    if (!img) img = box.querySelector('img.img-fill');
+    if (!img) img = box.querySelector('img');
+    return img;
   }
+
   function prepLayering(videoEl, imgEl) {
     const box = getCard(videoEl);
-    if (box && getComputedStyle(box).position === 'static') box.style.position = 'relative';
+    if (box && getComputedStyle(box).position === 'static') {
+      box.style.position = 'relative';
+    }
     Object.assign(videoEl.style, {
       position: 'absolute',
       inset: '0',
       width: '100%',
       height: '100%',
       objectFit: 'cover',
-      zIndex: '2'
+      zIndex: '2',
+      transition: 'opacity 200ms ease'
     });
     if (imgEl) {
       Object.assign(imgEl.style, {
@@ -205,16 +237,12 @@
         width: '100%',
         height: '100%',
         objectFit: 'cover',
-        zIndex: '1'
+        zIndex: '1',
+        transition: 'opacity 200ms ease'
       });
     }
   }
-  function hideImage(img) {
-    if (!img) return;
-    img.style.setProperty('display', 'none', 'important');
-    img.style.opacity = '0';
-    img.setAttribute('aria-hidden', 'true');
-  }
+
   function showImage(img) {
     if (!img) return;
     img.style.setProperty('display', 'block', 'important');
@@ -222,156 +250,99 @@
     img.removeAttribute('aria-hidden');
   }
 
-  function collectRealVideos() {
-    // Avoid Swiper duplicates; only real slides
-    const realSlides = Array.from(wrapper.querySelectorAll('.swiper-slide:not(.swiper-slide-duplicate)'));
-    const vids = [];
-    realSlides.forEach(slide => {
-      const v = slide.querySelector('video.carousel-new-2__video');
-      if (v) vids.push(v);
-    });
-    return vids;
-  }
-  function getPrimaryMobileVideo() {
-    const vids = collectRealVideos();
-    return vids[0] || null;
+  function hideImage(img) {
+    if (!img) return;
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.style.setProperty('display', 'none', 'important');
+      img.setAttribute('aria-hidden', 'true');
+    }, 200);
   }
 
-  // ----- MOBILE keep-alive (first video only) -----
-  const mq = window.matchMedia('(max-width: 575px)');
-  let primary = null;
-  let keepAliveId = null;
+  function showVideo(v) { v.style.opacity = '1'; }
+  function hideVideo(v) { v.style.opacity = '0'; }
 
-  function tryPlay(v) {
-    if (!v) return;
+  function pauseAndShowImage(v) {
+    try { v.pause(); } catch (_) {}
+    hideVideo(v);
     const img = getImg(v);
-    if (img) hideImage(img);
-    v.style.setProperty('display', 'block', 'important');
-    v.style.opacity = '1';
-
-    // DO NOT touch loop/autoplay; let Liquid attrs stand.
-    // Ensure autoplay-friendly flags (safe to add)
-    v.muted = true; v.setAttribute('muted','');
-    v.playsInline = true; v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline','');
-
-    // If ended, restart
-    try { if (v.ended) v.currentTime = 0; } catch(_) {}
-
-    const p = v.play && v.play();
-    if (p && p.catch) {
-      // Quick retry to defeat race conditions during swipe
-      setTimeout(() => { v.play && v.play().catch(()=>{}); }, 120);
-    }
+    showImage(img);
   }
 
-  function prepPrimary(v) {
-    if (!v || v.dataset._prep === '1') return;
+  videos.forEach(v => {
     const img = getImg(v);
     prepLayering(v, img);
-    // Hide image to ensure we always see video on mobile
-    if (img) hideImage(img);
 
-    // If something pauses it (browser/swiper), immediately resume
-    v.addEventListener('pause', () => { if (mq.matches) tryPlay(v); });
-    v.addEventListener('ended', () => { if (mq.matches) tryPlay(v); });
+    v.removeAttribute('loop');
+    v.muted = true;
+    v.autoplay = false;
+    v.playsInline = true;
+    v.preload = v.preload || 'metadata';
 
-    v.dataset._prep = '1';
-  }
+    showImage(img);
+    hideVideo(v);
 
-  function ensurePrimaryMobileVideoPlaying() {
-    if (!mq.matches) return;
-
-    // Keep your original "move videos to front" behavior:
-    moveVideosToFront();
-
-    const next = getPrimaryMobileVideo();
-    if (!next) return;
-
-    primary = next;
-    prepPrimary(primary);
-
-    if (primary.readyState >= 1) {
-      tryPlay(primary);
-    } else {
-      primary.addEventListener('loadedmetadata', () => tryPlay(primary), { once: true });
-      setTimeout(() => { if (primary && primary.isConnected) tryPlay(primary); }, 600);
-    }
-
-    startKeepAlive();
-    hookSwiper();
-  }
-
-  function startKeepAlive() {
-    stopKeepAlive();
-    keepAliveId = setInterval(() => {
-      if (!mq.matches) return;
-      if (!primary || !primary.isConnected) {
-        // DOM changed (swiper cloned/looped) → find again & resume
-        ensurePrimaryMobileVideoPlaying();
-        return;
-      }
-      if (primary.paused) tryPlay(primary);
-    }, 500);
-  }
-  function stopKeepAlive() {
-    if (keepAliveId) { clearInterval(keepAliveId); keepAliveId = null; }
-  }
-
-  function hookSwiper() {
-    const getSwiper = () => section.querySelector('.swiper')?.swiper || null;
-    const refresh = () => { if (mq.matches) setTimeout(ensurePrimaryMobileVideoPlaying, 40); };
-
-    const sw = getSwiper();
-    if (sw && sw.on && !sw._videoKeepAliveHooked) {
-      ['init','slideChange','slideChangeTransitionStart','slideChangeTransitionEnd',
-       'transitionEnd','update','resize','reachBeginning','reachEnd']
-        .forEach(ev => sw.on(ev, refresh));
-      sw._videoKeepAliveHooked = true;
-    } else if (!sw) {
-      const obs = new MutationObserver(() => {
-        const s = getSwiper();
-        if (s && s.on && !s._videoKeepAliveHooked) {
-          ['init','slideChange','slideChangeTransitionStart','slideChangeTransitionEnd',
-           'transitionEnd','update','resize','reachBeginning','reachEnd']
-            .forEach(ev => s.on(ev, refresh));
-          s._videoKeepAliveHooked = true;
-          obs.disconnect();
-        }
-      });
-      obs.observe(section, { childList: true, subtree: true });
-    }
-  }
-
-  // Desktop: NEVER play (leave image showing)
-  function stopDesktop() {
-    stopKeepAlive();
-    const vids = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
-    vids.forEach(v => {
-      try { v.pause(); } catch(_) {}
-      const img = getImg(v);
-      if (img) showImage(img);
-      v.style.opacity = '0';
+    v.addEventListener('play', () => {
+      videos.forEach(o => { if (o !== v) pauseAndShowImage(o); });
+      hideImage(getImg(v));
+      showVideo(v);
     });
-    restoreDesktopOrder();
-  }
 
-  // Apply on load + on breakpoint changes
-  function applyLayout(isMobile) {
-    if (isMobile) {
-      ensurePrimaryMobileVideoPlaying();
-    } else {
-      stopDesktop();
-    }
-  }
-
-  applyLayout(mq.matches);
-  if (mq.addEventListener) mq.addEventListener('change', e => applyLayout(e.matches));
-  else mq.addListener(e => applyLayout(e.matches));
-
-  // Resume when returning to tab (mobile browsers sometimes pause media)
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden && mq.matches && primary) tryPlay(primary);
+    v.addEventListener('pause', () => {
+      if (!v.ended) {
+        hideVideo(v);
+        showImage(getImg(v));
+      }
+    });
   });
+
+  const visibleVideos = () => videos.filter(isVisible);
+  let seq = [], idx = 0;
+
+  function rebuild() {
+    seq = visibleVideos();
+    if (idx >= seq.length) idx = 0;
+  }
+
+  function playAt(i) {
+    rebuild();
+    if (!seq.length) return;
+    idx = (i + seq.length) % seq.length;
+    const current = seq[idx];
+    videos.forEach(v => { if (v !== current) pauseAndShowImage(v); });
+    hideImage(getImg(current));
+    showVideo(current);
+    try { if (current.ended || current.currentTime > 0) current.currentTime = 0; } catch (_) {}
+    const p = current.play();
+    if (p && p.catch) p.catch(() => {});
+    seq.forEach(v => v.removeEventListener('ended', handleEnded));
+    current.addEventListener('ended', handleEnded, { once: true });
+  }
+
+  function handleEnded() {
+    const justEnded = seq[idx];
+    if (justEnded) {
+      hideVideo(justEnded);
+      showImage(getImg(justEnded));
+    }
+    playAt(idx + 1);
+  }
+
+  const onChange = () => { rebuild(); if (seq.length) playAt(idx); };
+  if (mq.addEventListener) mq.addEventListener('change', onChange);
+  else window.addEventListener('resize', () => requestAnimationFrame(onChange));
+
+  const start = () => { rebuild(); if (seq.length) playAt(0); };
+  if (videos.some(v => v.readyState < 1)) {
+    let left = videos.length, started = false;
+    const done = () => { if (!started && --left <= 0) { started = true; start(); } };
+    videos.forEach(v => {
+      if (v.readyState >= 1) done();
+      else { v.addEventListener('loadedmetadata', done, { once: true }); setTimeout(done, 1200); }
+    });
+  } else {
+    start();
+  }
 })();
 </script>
 
