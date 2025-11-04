@@ -152,148 +152,197 @@
   const wrapper = section.querySelector('.swiper-wrapper');
   if (!wrapper) return;
 
-  // Save original order so we can restore on desktop
+  // Capture original order once
   const originalSlides = Array.from(wrapper.children);
-  originalSlides.forEach((slide, i) => slide.dataset.originalIndex = i);
+  originalSlides.forEach((slide, i) => (slide.dataset.originalIndex = i));
 
-  const mq = window.matchMedia('(max-width: 575px)');
-  let primaryVideo = null;
-  let keepAlive = null;
-  let swiperHooked = false;
-
-  function getSwiper() {
-    const el = section.querySelector('.swiper');
-    return el && el.swiper ? el.swiper : null;
-  }
-  function updateSwiper() {
-    const sw = getSwiper();
-    if (sw) { sw.updateSlides(); sw.update(); }
-  }
-
-  // -------- order handling --------
   function restoreDesktopOrder() {
-    const ordered = Array.from(wrapper.children)
-      .sort((a,b) => (+a.dataset.originalIndex) - (+b.dataset.originalIndex));
-    ordered.forEach(n => wrapper.appendChild(n));
-    updateSwiper();
+    const ordered = Array.from(wrapper.children).sort(
+      (a, b) => +a.dataset.originalIndex - +b.dataset.originalIndex
+    );
+    ordered.forEach(node => wrapper.appendChild(node));
+    const swiper = section.querySelector('.swiper')?.swiper;
+    if (swiper) { swiper.updateSlides(); swiper.update(); }
   }
-  function moveFirstVideoToFrontMobile() {
-    const realSlides = Array.from(wrapper.querySelectorAll('.swiper-slide:not(.swiper-slide-duplicate)'));
-    const firstVideoSlide = realSlides.find(s => s.querySelector('video.carousel-new-2__video'));
-    if (!firstVideoSlide) return;
-    if (wrapper.firstElementChild !== firstVideoSlide) {
-      wrapper.insertBefore(firstVideoSlide, wrapper.firstElementChild);
-      updateSwiper();
+
+  function moveVideosToFront() {
+    const slides = Array.from(wrapper.children);
+    const withVideo = slides.filter(slide =>
+      slide.querySelector('video.carousel-new-2__video')
+    );
+    const withoutVideo = slides.filter(
+      slide => !slide.querySelector('video.carousel-new-2__video')
+    );
+    [...withVideo, ...withoutVideo].forEach(node => wrapper.appendChild(node));
+    const swiper = section.querySelector('.swiper')?.swiper;
+    if (swiper) { swiper.updateSlides(); swiper.update(); }
+  }
+
+  // Watch for mobile/desktop breakpoint
+  const mq = window.matchMedia('(max-width: 575px)');
+  let currentLayoutIsMobile = null;
+
+  function applyLayout(isMobile) {
+    if (currentLayoutIsMobile === isMobile) return;
+    currentLayoutIsMobile = isMobile;
+    if (isMobile) moveVideosToFront();
+    else restoreDesktopOrder();
+  }
+
+  // Initial + listener
+  applyLayout(mq.matches);
+  if (mq.addEventListener) mq.addEventListener('change', e => applyLayout(e.matches));
+  else mq.addListener(e => applyLayout(e.matches));
+
+  // ==============================
+  // EXISTING VIDEO LOGIC BELOW
+  // ==============================
+
+  const videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
+  if (!videos.length) return;
+
+  const isVisible = el => el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden';
+
+  function getCard(videoEl) {
+    return videoEl.closest('.product-card__image') || videoEl.parentElement;
+  }
+
+  function getImg(videoEl) {
+    const box = getCard(videoEl);
+    if (!box) return null;
+    let img = box.querySelector('img.img-fill.hide-mobile');
+    if (!img) img = box.querySelector('img.img-fill');
+    if (!img) img = box.querySelector('img');
+    return img;
+  }
+
+  function prepLayering(videoEl, imgEl) {
+    const box = getCard(videoEl);
+    if (box && getComputedStyle(box).position === 'static') {
+      box.style.position = 'relative';
     }
-  }
-
-  // -------- choose/prepare the one mobile video --------
-  function pickPrimaryMobileVideo() {
-    const realSlides = Array.from(wrapper.querySelectorAll('.swiper-slide:not(.swiper-slide-duplicate)'));
-    const slide = realSlides.find(s => s.querySelector('video.carousel-new-2__video'));
-    return slide ? slide.querySelector('video.carousel-new-2__video') : null;
-  }
-  function ensureAttrs(v) {
-    // make mobile autoplay work
-    v.muted = true; v.setAttribute('muted','');
-    v.playsInline = true; v.setAttribute('playsinline',''); v.setAttribute('webkit-playsinline','');
-    v.loop = true; v.setAttribute('loop','');
-    v.autoplay = true; v.setAttribute('autoplay','');
-    v.preload = 'auto';
-    // ensure visible on mobile
-    v.style.setProperty('display', 'block', 'important');
-    v.style.opacity = '1';
-    // defensive: do NOT set poster; iOS may block first frame otherwise
-    v.removeAttribute('poster');
-  }
-  function forcePlay(v) {
-    if (!v) return;
-    try { if (v.ended) v.currentTime = 0; } catch(_) {}
-    const p = v.play && v.play();
-    if (p && p.catch) {
-      // retry quickly to defeat swipe/render races
-      setTimeout(() => { v.play && v.play().catch(()=>{}); }, 140);
-      setTimeout(() => { v.play && v.play().catch(()=>{}); }, 400);
-    }
-  }
-
-  // keep the one video playing forever on mobile
-  function startMobileVideo() {
-    // repick (swiper may clone/replace nodes)
-    const next = pickPrimaryMobileVideo();
-    if (!next) return;
-
-    if (primaryVideo !== next) {
-      primaryVideo = next;
-      ensureAttrs(primaryVideo);
-
-      // if anything pauses/stops, immediately resume
-      const resume = () => { if (mq.matches) forcePlay(primaryVideo); };
-      ['pause','ended','stalled','suspend','waiting','emptied','abort','error'].forEach(ev => {
-        primaryVideo.addEventListener(ev, resume);
+    Object.assign(videoEl.style, {
+      position: 'absolute',
+      inset: '0',
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      zIndex: '2',
+      transition: 'opacity 200ms ease'
+    });
+    if (imgEl) {
+      Object.assign(imgEl.style, {
+        position: 'absolute',
+        inset: '0',
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        zIndex: '1',
+        transition: 'opacity 200ms ease'
       });
     }
+  }
 
-    if (primaryVideo.readyState >= 1) forcePlay(primaryVideo);
-    else {
-      primaryVideo.addEventListener('loadedmetadata', () => forcePlay(primaryVideo), { once: true });
-      setTimeout(() => { if (primaryVideo && primaryVideo.isConnected) forcePlay(primaryVideo); }, 600);
-    }
+  function showImage(img) {
+    if (!img) return;
+    img.style.setProperty('display', 'block', 'important');
+    img.style.opacity = '1';
+    img.removeAttribute('aria-hidden');
+  }
 
-    // polling keep-alive as a safety net
-    if (keepAlive) clearInterval(keepAlive);
-    keepAlive = setInterval(() => {
-      if (!mq.matches) return;
-      if (!primaryVideo || !primaryVideo.isConnected) {
-        primaryVideo = pickPrimaryMobileVideo();
-        if (primaryVideo) { ensureAttrs(primaryVideo); forcePlay(primaryVideo); }
-        return;
+  function hideImage(img) {
+    if (!img) return;
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.style.setProperty('display', 'none', 'important');
+      img.setAttribute('aria-hidden', 'true');
+    }, 200);
+  }
+
+  function showVideo(v) { v.style.opacity = '1'; }
+  function hideVideo(v) { v.style.opacity = '0'; }
+
+  function pauseAndShowImage(v) {
+    try { v.pause(); } catch (_) {}
+    hideVideo(v);
+    const img = getImg(v);
+    showImage(img);
+  }
+
+  videos.forEach(v => {
+    const img = getImg(v);
+    prepLayering(v, img);
+
+    v.removeAttribute('loop');
+    v.muted = true;
+    v.autoplay = false;
+    v.playsInline = true;
+    v.preload = v.preload || 'metadata';
+
+    showImage(img);
+    hideVideo(v);
+
+    v.addEventListener('play', () => {
+      videos.forEach(o => { if (o !== v) pauseAndShowImage(o); });
+      hideImage(getImg(v));
+      showVideo(v);
+    });
+
+    v.addEventListener('pause', () => {
+      if (!v.ended) {
+        hideVideo(v);
+        showImage(getImg(v));
       }
-      if (primaryVideo.paused) forcePlay(primaryVideo);
-    }, 800);
-
-    // lightly hook into Swiper to re-assert after slide changes
-    const sw = getSwiper();
-    if (sw && sw.on && !swiperHooked) {
-      const refresh = () => { if (mq.matches) setTimeout(startMobileVideo, 30); };
-      ['init','slideChange','update','resize','setTranslate','setTransition','reachBeginning','reachEnd']
-        .forEach(ev => sw.on(ev, refresh));
-      swiperHooked = true;
-    }
-  }
-
-  function stopMobileVideo() {
-    if (keepAlive) { clearInterval(keepAlive); keepAlive = null; }
-    if (primaryVideo) { try { primaryVideo.pause(); } catch(_) {} }
-    primaryVideo = null;
-  }
-
-  // -------- apply per breakpoint --------
-  function apply() {
-    if (mq.matches) {
-      moveFirstVideoToFrontMobile();
-      startMobileVideo();
-    } else {
-      stopMobileVideo();
-      restoreDesktopOrder();
-      // ensure nothing plays on desktop
-      section.querySelectorAll('video.carousel-new-2__video').forEach(v => { try { v.pause(); } catch(_) {} });
-    }
-  }
-
-  apply();
-  if (mq.addEventListener) mq.addEventListener('change', apply);
-  else mq.addListener(apply);
-
-  // resume after tab returns to foreground
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden && mq.matches) startMobileVideo();
+    });
   });
 
-  // final nudge for strict autoplay devices (first user gesture)
-  section.addEventListener('touchstart', () => {
-    if (mq.matches && primaryVideo) forcePlay(primaryVideo);
-  }, { passive: true });
+  const visibleVideos = () => videos.filter(isVisible);
+  let seq = [], idx = 0;
+
+  function rebuild() {
+    seq = visibleVideos();
+    if (idx >= seq.length) idx = 0;
+  }
+
+  function playAt(i) {
+    rebuild();
+    if (!seq.length) return;
+    idx = (i + seq.length) % seq.length;
+    const current = seq[idx];
+    videos.forEach(v => { if (v !== current) pauseAndShowImage(v); });
+    hideImage(getImg(current));
+    showVideo(current);
+    try { if (current.ended || current.currentTime > 0) current.currentTime = 0; } catch (_) {}
+    const p = current.play();
+    if (p && p.catch) p.catch(() => {});
+    seq.forEach(v => v.removeEventListener('ended', handleEnded));
+    current.addEventListener('ended', handleEnded, { once: true });
+  }
+
+  function handleEnded() {
+    const justEnded = seq[idx];
+    if (justEnded) {
+      hideVideo(justEnded);
+      showImage(getImg(justEnded));
+    }
+    playAt(idx + 1);
+  }
+
+  const onChange = () => { rebuild(); if (seq.length) playAt(idx); };
+  if (mq.addEventListener) mq.addEventListener('change', onChange);
+  else window.addEventListener('resize', () => requestAnimationFrame(onChange));
+
+  const start = () => { rebuild(); if (seq.length) playAt(0); };
+  if (videos.some(v => v.readyState < 1)) {
+    let left = videos.length, started = false;
+    const done = () => { if (!started && --left <= 0) { started = true; start(); } };
+    videos.forEach(v => {
+      if (v.readyState >= 1) done();
+      else { v.addEventListener('loadedmetadata', done, { once: true }); setTimeout(done, 1200); }
+    });
+  } else {
+    start();
+  }
 })();
 </script>
 
