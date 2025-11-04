@@ -23,6 +23,22 @@
     z-index: var(--filters-z);
   }
 
+  .sticky-filters-bar.is-fixed{
+    top: 180px !important;
+  }
+
+  .collection-filters__filters .js-clear-all-filters {
+    margin-bottom: 30px;
+  }
+
+}
+
+@media (min-width: 1025px){
+
+  .sticky-filters-bar.is-fixed{
+    top: 210px !important;
+  }
+
 }
 
 .sticky-filters-bar.is-fixed{

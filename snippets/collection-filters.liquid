@@ -107,6 +107,7 @@
 
               <div class="collection-filters__filters" id="filter-dropdowns">
                 <div class="collection-filters__dropdowns">
+                  <button class="text-link js-clear-all-filters js-clear-all-filters--close blue hide-mobile">Clear All</button>
                   {% for filter in collection.filters %}
                     {% assign total_active_values = total_active_values | plus: filter.active_values.size %}
                     {% assign downcase_filter = filter.label | downcase %}
@@ -272,9 +273,6 @@
                       </div>
                     </div>
                   {% endfor %}
-
-
-                <button class="text-link js-clear-all-filters js-clear-all-filters--close blue hide-mobile">Clear All</button>
                 </div>
               </div>
 
