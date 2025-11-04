@@ -724,82 +724,78 @@
             assign swatch_count = 1
             assign hidden_swatches = 0
             for prod in block.settings.collection1.products
-              assign productType = '' 
-              if product.handle contains 'doormat' 
-                assign productType = 'doormat' 
-              elsif product.handle contains 'runner' 
-                assign productType = 'runner' 
+               assign productType = '' 
+               if product.handle contains 'doormat' 
+                 assign productType = 'doormat' 
+               elsif product.handle contains 'runner' 
+                 assign productType = 'runner' 
               elsif product.handle contains 'area-mat' 
-                assign productType = 'area-mat' 
+                 assign productType = 'area-mat' 
               endif 
-              
+            
               if prod.handle contains productType
-                for option in prod.options_with_values
-                  assign option_name = option.name | downcase
-                  if color_label contains option_name or option_name == 'style'
-                    assign option_index = 'option' | append: forloop.index
-                    for value in option.values
-                      assign matched_variant = prod.variants | where: 'title', value
-                      
-                      if prod == product_card_product
-                        assign active_swatch = prod
-                        if matched_variant != blank
-                          assign active_swatch_link = matched_variant[0].url
-                        endif
-                        assign element_classes = element_classes | append: ' product-card__active-swatch'
-                        assign active_swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
-                        assign active_swatch_tooltip_value = value
-                      else
-                        if matched_variant != blank
-                          assign swatch_link = matched_variant[0].url
-                        endif
-
-                        if swatch_count > 4
-                          assign element_classes = 'product-card__swatch hidden'
-                          assign hidden_swatches = hidden_swatches | plus: 1
-                        else
-                          assign element_classes = 'product-card__swatch'
-                        endif
-
-                        assign swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
-                        assign swatch_image = images[swatch_file_name]
-
-                        echo "<a href='"
-                        echo swatch_link | default: prod.variants[0].url
-                        echo "' class='"
-                        echo element_classes
-                        echo "'"
-                        echo " aria-label='"
-                        echo value | escape
-                        echo "' title='"
-                        echo value | escape
-                        echo "' style='background-image: url("
-                        echo swatch_file_name | file_url
-                        echo ")' data-tooltip='"
-                        echo value | escape
-                        echo "'>"
-                        echo "<span class='sr-only'>"
-                        echo value | escape
-                        echo "</span></a>"
-                        
-                        assign swatch_count = swatch_count | plus: 1
+              for option in prod.options_with_values
+                assign option_name = option.name | downcase
+                if color_label contains option_name or option_name == 'style'
+                  assign option_index = 'option' | append: forloop.index
+                  for value in option.values
+                    assign matched_variant = prod.variants | where: 'title', value
+                    
+                    if prod == product_card_product
+                      assign active_swatch = prod
+                      if matched_variant != blank
+                        assign active_swatch_link = matched_variant[0].url
                       endif
-                    endfor
-                  endif
-                endfor
-              endif
+        
+                      assign element_classes = element_classes | append: ' product-card__active-swatch'
+                      assign active_swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
+                      assign active_swatch_tooltip_value = value
+                    else
+                      if matched_variant != blank
+                        assign swatch_link = matched_variant[0].url
+                      endif
+        
+                      if swatch_count > 4
+                        assign element_classes = 'product-card__swatch hidden'
+                        assign hidden_swatches = hidden_swatches | plus: 1
+                      else
+                        assign element_classes = 'product-card__swatch'
+                      endif
+        
+                      assign swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
+                      assign swatch_image = images[swatch_file_name]
+        
+                      echo "<a href='"
+                      echo swatch_link | default: prod.variants[0].url
+                      echo "' class='"
+                      echo element_classes
+                      echo "'"
+                      echo " aria-label='"
+                      echo value | escape
+                      echo "'"
+                      echo "style='background-image: url("
+                      echo swatch_file_name | file_url
+                      echo ")' data-tooltip='"
+                      echo value | escape
+                      echo "'></a>"
+                      assign swatch_count = swatch_count | plus: 1
+                    endif
+                  endfor
+                endif
+              endfor
+             endif
             endfor
-
+            
             if hidden_swatches > 0
-              echo "<a href='"
+              echo "<a href="
               echo block.settings.product.url
-              echo "' class='body-s blue'>+"
+              echo " class='body-s blue'> "
+              echo '+'
               echo hidden_swatches
-              echo "</a>"
+              echo '</a>'
             endif
           endcapture
         %}
-
     
         
         <div class="collection-col index-{{ loopNum }}">
