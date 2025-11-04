@@ -187,9 +187,6 @@
     currentLayoutIsMobile = isMobile;
     if (isMobile) moveVideosToFront();
     else restoreDesktopOrder();
-    // When layout flips, rescan videos (important if Swiper rebuilt)
-    scanAndInit();
-    rebuild();
   }
 
   // Initial + listener
@@ -198,10 +195,11 @@
   else mq.addListener(e => applyLayout(e.matches));
 
   // ==============================
-  // VIDEO LOGIC (supports duplicates)
+  // EXISTING VIDEO LOGIC BELOW
   // ==============================
 
-  const videoSet = new Set(); // tracks all initialized videos (original + duplicates)
+  const videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
+  if (!videos.length) return;
 
   const isVisible = el => el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden';
 
@@ -271,12 +269,7 @@
     showImage(img);
   }
 
-  // Initialize a single video element if not already done
-  function initVideo(v) {
-    if (!v || v.dataset.videoInit === '1') return;
-    v.dataset.videoInit = '1';
-    videoSet.add(v);
-
+  videos.forEach(v => {
     const img = getImg(v);
     prepLayering(v, img);
 
@@ -290,7 +283,7 @@
     hideVideo(v);
 
     v.addEventListener('play', () => {
-      Array.from(videoSet).forEach(o => { if (o !== v) pauseAndShowImage(o); });
+      videos.forEach(o => { if (o !== v) pauseAndShowImage(o); });
       hideImage(getImg(v));
       showVideo(v);
     });
@@ -301,17 +294,9 @@
         showImage(getImg(v));
       }
     });
-  }
+  });
 
-  // Scan the DOM (original + duplicates) to init any new videos
-  function scanAndInit() {
-    section.querySelectorAll('video.carousel-new-2__video').forEach(initVideo);
-  }
-
-  scanAndInit(); // first pass
-
-  const visibleVideos = () => Array.from(videoSet).filter(isVisible);
-
+  const visibleVideos = () => videos.filter(isVisible);
   let seq = [], idx = 0;
 
   function rebuild() {
@@ -319,25 +304,12 @@
     if (idx >= seq.length) idx = 0;
   }
 
-  function playSpecific(targetVideo) {
-    // Ensure it's initialized and visible
-    initVideo(targetVideo);
-    rebuild();
-    const i = seq.indexOf(targetVideo);
-    if (i === -1) { // not visible yet (e.g., hidden slide)
-      // Still attempt to play; Swiper callback will retry after transition
-      try { targetVideo.play().catch(() => {}); } catch(_) {}
-      return;
-    }
-    playAt(i);
-  }
-
   function playAt(i) {
     rebuild();
     if (!seq.length) return;
     idx = (i + seq.length) % seq.length;
     const current = seq[idx];
-    Array.from(videoSet).forEach(v => { if (v !== current) pauseAndShowImage(v); });
+    videos.forEach(v => { if (v !== current) pauseAndShowImage(v); });
     hideImage(getImg(current));
     showVideo(current);
     try { if (current.ended || current.currentTime > 0) current.currentTime = 0; } catch (_) {}
@@ -353,70 +325,24 @@
       hideVideo(justEnded);
       showImage(getImg(justEnded));
     }
-    // If there's only one video, this effectively loops it
     playAt(idx + 1);
   }
 
-  const onChange = () => { scanAndInit(); rebuild(); if (seq.length) playAt(idx); };
+  const onChange = () => { rebuild(); if (seq.length) playAt(idx); };
   if (mq.addEventListener) mq.addEventListener('change', onChange);
   else window.addEventListener('resize', () => requestAnimationFrame(onChange));
 
-  // Start once metadata is ready for *all currently known* videos
-  function start() { rebuild(); if (seq.length) playAt(0); }
-
-  function startWhenReady() {
-    const vids = Array.from(videoSet);
-    if (!vids.length) return;
-    let left = vids.length, started = false;
+  const start = () => { rebuild(); if (seq.length) playAt(0); };
+  if (videos.some(v => v.readyState < 1)) {
+    let left = videos.length, started = false;
     const done = () => { if (!started && --left <= 0) { started = true; start(); } };
-    vids.forEach(v => {
+    videos.forEach(v => {
       if (v.readyState >= 1) done();
       else { v.addEventListener('loadedmetadata', done, { once: true }); setTimeout(done, 1200); }
     });
+  } else {
+    start();
   }
-
-  startWhenReady();
-
-  // ---- Swiper integration (handle duplicates + active slide) ----
-  const swiper = section.querySelector('.swiper')?.swiper;
-
-  if (swiper) {
-    // When Swiper fixes/creates loop duplicates, (re)initialize videos
-    const reinit = () => { scanAndInit(); rebuild(); };
-
-    swiper.on('loopFix', reinit);
-    swiper.on('slidesLengthChange', reinit);
-    swiper.on('resize', reinit);
-    swiper.on('update', reinit);
-
-    // On slide change, if mobile and active slide has a video (original or duplicate),
-    // force it to play so wrapping still shows a playing video.
-    swiper.on('slideChangeTransitionEnd', () => {
-      if (!mq.matches) return; // Only enforce on mobile
-      const active = swiper.slides[swiper.activeIndex];
-      if (!active) return;
-      const v = active.querySelector('video.carousel-new-2__video');
-      if (v) playSpecific(v);
-    });
-  }
-
-  // MutationObserver as a safety net (covers any DOM insertions of duplicated slides)
-  const mo = new MutationObserver(muts => {
-    let found = false;
-    for (const m of muts) {
-      m.addedNodes && m.addedNodes.forEach(n => {
-        if (n.nodeType === 1) {
-          n.querySelectorAll?.('video.carousel-new-2__video').forEach(el => {
-            initVideo(el);
-            found = true;
-          });
-          if (n.matches?.('video.carousel-new-2__video')) { initVideo(n); found = true; }
-        }
-      });
-    }
-    if (found) { rebuild(); }
-  });
-  mo.observe(wrapper, { childList: true, subtree: true });
 })();
 </script>
 
