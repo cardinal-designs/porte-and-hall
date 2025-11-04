@@ -60,7 +60,8 @@
 }
 
 .sticky-filters-bar.is-docked{
-  position: absolute !important; right: 0;
+  position: unset !important;
+  right: 0;
   box-shadow: none;
   z-index: var(--filters-z-docked);
 }
