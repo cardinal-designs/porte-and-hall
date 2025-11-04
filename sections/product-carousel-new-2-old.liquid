@@ -23,11 +23,10 @@
     right: 0;
   }
 
- .product-card__price.body.blue {
+  .product-card__price.body.blue {
     margin-top: -12px;
   }
 
-  
   .product-carousel__container-new-2 .product-card__swatches {
     margin: 0;
   }
@@ -39,19 +38,11 @@
       width: 100% !important;
     }
   }
-  
+
   @media screen and (max-width: 575px) {
-    .product-carousel .swiper-button-next {
-      right: 18px;
-    }
-
-    .product-card__image {
-      aspect-ratio: 0.9;
-    }
-
-    .product-card {
-      gap: 5px;
-    }
+    .product-carousel .swiper-button-next { right: 18px; }
+    .product-card__image { aspect-ratio: 0.9; }
+    .product-card { gap: 5px; }
 
     .product-card__price.body.blue {
       margin-top: -5px;
@@ -59,35 +50,33 @@
       letter-spacing: .3px;
     }
 
-    .product-card__title {
-      font-size: 13px;
-      letter-spacing: 0;
-    }
+    .product-card__title { font-size: 13px; letter-spacing: 0; }
+    .product-card__title span { font-size: 13px; letter-spacing: 0; }
 
-     .product-card__title span {
-      font-size: 13px;
-      letter-spacing: 0;
-    }
-
-    .product-carousel__container-new-2 {
-      height: 300px !important;
-    }
-  
-    .product-carousel__container-new-2 .swiper-pagination {
-      bottom: 20px !important;
-    }
+    .product-carousel__container-new-2 { height: 300px !important; }
+    .product-carousel__container-new-2 .swiper-pagination { bottom: 20px !important; }
 
     .carousel-new-2__video {
       object-fit: cover;
       height: 100%;
     }
   }
-  
- @media screen and (max-width: 500px) {
-  .product-carousel .swiper-button-next, .product-carousel .swiper-button-prev {
-    top: 19%;
+
+  @media screen and (max-width: 500px) {
+    .product-carousel .swiper-button-next, .product-carousel .swiper-button-prev {
+      top: 19%;
+    }
   }
- }
+
+  /* --- Ensure label always overlays video without flashing --- */
+  .product-card__image { position: relative; }
+  .product-card__image-label.body-xs {
+    position: absolute;
+    z-index: 10;              /* above video (video uses z-index:2) */
+    pointer-events: none;
+    transform: translateZ(0); /* prevent flicker during transitions */
+    will-change: transform;
+  }
 {% endstyle %}
 
 <div class="product-carousel__inner product-carousel__new">
@@ -104,41 +93,44 @@
               {% assign grouped_collection = collection %}
             {% endif %}
           {% endfor %}
+
           {% assign only_one = false %}
           {% if product.handle contains 'wild-side' %}
             {% assign only_one = true %}
           {% endif %}
+
           <div class="product-carousel__item swiper-slide">
             {% if section.settings.product_card_type == 'standard_card' %}
-            {% render 'grouped-product-card-2',
-              product_card_product: product,
-              collection: grouped_collection,
-              title: grouped_collection.title,
-              button_text: section.settings.button_text
-            %}
-          {% else %}
-            {% render 'grouped-product-card-3',
-              product_card_product: product,
-              collection: grouped_collection,
-              title: grouped_collection.title,
-              button_text: section.settings.button_text,
-              only_show_one: only_one
-            %}
-          {% endif %}
+              {% render 'grouped-product-card-2',
+                product_card_product: product,
+                collection: grouped_collection,
+                title: grouped_collection.title,
+                button_text: section.settings.button_text
+              %}
+            {% else %}
+              {% render 'grouped-product-card-3',
+                product_card_product: product,
+                collection: grouped_collection,
+                title: grouped_collection.title,
+                button_text: section.settings.button_text,
+                only_show_one: only_one
+              %}
+            {% endif %}
           </div>
         {% endfor %}
       </div>
       <div class="swiper-pagination product-carousel__pagination"></div>
     </div>
+
     {% if section.settings.btn_link != blank %}
-    <a class="shop-all-btn" href="{{ section.settings.btn_link }}">SHOP ALL BEST SELLERS</a>
+      <a class="shop-all-btn" href="{{ section.settings.btn_link }}">SHOP ALL BEST SELLERS</a>
     {% endif %}
   </product-carousel-new-two>
 </div>
 
 <style>
   {% if section.settings.background != blank %}
-    #shopify-section-{{section.id }}.product-carousel {
+    #shopify-section-{{ section.id }}.product-carousel {
       background: {{ section.settings.background }};
     }
   {% endif %}
@@ -152,7 +144,10 @@
   const wrapper = section.querySelector('.swiper-wrapper');
   if (!wrapper) return;
 
-  // --- Helpers to work only with ORIGINAL slides (ignore Swiper's duplicates)
+  const swiper = section.querySelector('.swiper')?.swiper;
+  const mq = window.matchMedia('(max-width: 575px)');
+
+  // Work only with ORIGINAL slides (ignore Swiper duplicates)
   const getOriginalSlides = () =>
     Array.from(wrapper.children).filter(slide => !slide.classList.contains('swiper-slide-duplicate'));
 
@@ -160,10 +155,7 @@
   const originalSlides = getOriginalSlides();
   originalSlides.forEach((slide, i) => { slide.dataset.originalIndex = i; });
 
-  const swiper = section.querySelector('.swiper')?.swiper;
-  const mq = window.matchMedia('(max-width: 575px)');
-
-  // --- Mobile: move originals with video to the front (keeping only-originals order changes)
+  // ----- Layout (mobile: move video-first, desktop: restore original order) -----
   function moveVideosToFront() {
     const originals = getOriginalSlides();
     const withVideo = originals.filter(s => s.querySelector('video.carousel-new-2__video'));
@@ -172,7 +164,6 @@
     if (swiper) { swiper.updateSlides(); swiper.update(); swiper.loopFix?.(); }
   }
 
-  // --- Desktop: restore the exact original order of originals
   function restoreDesktopOrder() {
     const originals = getOriginalSlides();
     originals
@@ -184,19 +175,34 @@
   function applyLayout(isMobile) {
     if (isMobile) {
       moveVideosToFront();
-      primeAllVideos(); // keep your mobile behavior
+      primeAllVideos();
     } else {
       restoreDesktopOrder();
-      // No video priming on desktop (keeps "no video on desktop")
+      // No priming on desktop to preserve "no video on desktop"
     }
   }
 
-  // Initial + breakpoint listeners
   applyLayout(mq.matches);
   if (mq.addEventListener) mq.addEventListener('change', e => applyLayout(e.matches));
   else mq.addListener(e => applyLayout(e.matches));
 
-  // ====== VIDEO PRIMING (same behavior you confirmed worked) ======
+  // ----- Label overlay insurance (prevents flicker and keeps label on top) -----
+  function ensureLabelOnTop(videoEl) {
+    const card = videoEl.closest('.product-card__image') || videoEl.parentElement;
+    if (!card) return;
+    const label = card.querySelector('.product-card__image-label.body-xs');
+    if (!label) return;
+    if (getComputedStyle(card).position === 'static') {
+      card.style.position = 'relative';
+    }
+    if (!label.style.position) label.style.position = 'absolute';
+    label.style.zIndex = '10';
+    label.style.pointerEvents = 'none';
+    label.style.transform = 'translateZ(0)';
+    label.style.willChange = 'transform';
+  }
+
+  // ----- VIDEO PRIMING (mobile only; works for originals & duplicates) -----
   function hideImageFor(videoEl) {
     const img =
       videoEl.closest('.product-card__image')?.querySelector('img') ||
@@ -207,13 +213,20 @@
   }
 
   function primeVideo(v) {
-    if (!v || v.dataset.primed === '1') return;
+    if (!v) return;
+    if (v.dataset.primed === '1') {
+      // ensure overlay styling persists
+      ensureLabelOnTop(v);
+      return;
+    }
+
     v.dataset.primed = '1';
     v.muted = true;
     v.playsInline = true;
     v.autoplay = true;
     v.loop = true;
     v.preload = v.preload || 'auto';
+
     v.style.opacity = '1';
     v.style.position = 'absolute';
     v.style.inset = '0';
@@ -223,6 +236,8 @@
     v.style.zIndex = '2';
 
     hideImageFor(v);
+    ensureLabelOnTop(v);
+
     try { v.play().catch(() => {}); } catch (_) {}
   }
 
@@ -240,8 +255,16 @@
     for (const m of muts) {
       m.addedNodes && m.addedNodes.forEach(n => {
         if (n.nodeType === 1) {
-          if (n.matches?.('video.carousel-new-2__video')) { primeVideo(n); found = true; }
-          n.querySelectorAll?.('video.carousel-new-2__video').forEach(el => { primeVideo(el); found = true; });
+          if (n.matches?.('video.carousel-new-2__video')) {
+            primeVideo(n);
+            ensureLabelOnTop(n);
+            found = true;
+          }
+          n.querySelectorAll?.('video.carousel-new-2__video').forEach(el => {
+            primeVideo(el);
+            ensureLabelOnTop(el);
+            found = true;
+          });
         }
       });
     }
@@ -249,7 +272,7 @@
   });
   mo.observe(wrapper, { childList: true, subtree: true });
 
-  // Swiper hooks: keep right-swipe loop video alive (original or duplicate)
+  // Swiper hooks: keep video alive on infinite loop (esp. right-swipe clone)
   if (swiper) {
     const rePrime = () => { if (mq.matches) primeAllVideos(); };
 
@@ -263,8 +286,9 @@
       const active = swiper.slides[swiper.activeIndex];
       const v = active?.querySelector('video.carousel-new-2__video');
       if (v) {
-        v.dataset.primed = ''; // allow re-prime if browser paused it
+        v.dataset.primed = ''; // allow re-prime if browser paused on transition
         primeVideo(v);
+        ensureLabelOnTop(v);
       }
     });
   }
@@ -292,7 +316,7 @@
       "id": "show_metafield_style",
       "label": "Show metafield style",
       "default": false
-    },    
+    },
     {
       "type": "collection",
       "id": "collection",
@@ -303,14 +327,8 @@
       "id": "product_card_type",
       "label": "Product Card Type",
       "options": [
-        {
-          "label": "Standard Card",
-          "value": "standard_card"
-        },
-        {
-          "label": "Video Card (metafield)",
-          "value": "video_card"
-        }
+        { "label": "Standard Card", "value": "standard_card" },
+        { "label": "Video Card (metafield)", "value": "video_card" }
       ],
       "default": "standard_card"
     },
@@ -327,9 +345,7 @@
     }
   ],
   "presets": [
-    {
-      "name": "ProductCarouselNew2 (old)"
-    }
+    { "name": "ProductCarouselNew2 (old)" }
   ]
 }
 {% endschema %}
