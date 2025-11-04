@@ -152,37 +152,51 @@
   const wrapper = section.querySelector('.swiper-wrapper');
   if (!wrapper) return;
 
-  // --- Mobile breakpoint
+  // --- Helpers to work only with ORIGINAL slides (ignore Swiper's duplicates)
+  const getOriginalSlides = () =>
+    Array.from(wrapper.children).filter(slide => !slide.classList.contains('swiper-slide-duplicate'));
+
+  // Snapshot original desktop order ONCE
+  const originalSlides = getOriginalSlides();
+  originalSlides.forEach((slide, i) => { slide.dataset.originalIndex = i; });
+
+  const swiper = section.querySelector('.swiper')?.swiper;
   const mq = window.matchMedia('(max-width: 575px)');
 
-  // --- Move any video slide(s) to the front on mobile (keeps your current behavior)
+  // --- Mobile: move originals with video to the front (keeping only-originals order changes)
   function moveVideosToFront() {
-    const slides = Array.from(wrapper.children);
-    const withVideo = slides.filter(s => s.querySelector('video.carousel-new-2__video'));
-    const withoutVideo = slides.filter(s => !s.querySelector('video.carousel-new-2__video'));
+    const originals = getOriginalSlides();
+    const withVideo = originals.filter(s => s.querySelector('video.carousel-new-2__video'));
+    const withoutVideo = originals.filter(s => !s.querySelector('video.carousel-new-2__video'));
     [...withVideo, ...withoutVideo].forEach(n => wrapper.appendChild(n));
-    const sw = section.querySelector('.swiper')?.swiper;
-    if (sw) { sw.updateSlides(); sw.update(); }
+    if (swiper) { swiper.updateSlides(); swiper.update(); swiper.loopFix?.(); }
   }
 
-  // --- Desktop order restore (no-op unless you added originalIndex earlier)
+  // --- Desktop: restore the exact original order of originals
   function restoreDesktopOrder() {
-    const sw = section.querySelector('.swiper')?.swiper;
-    if (sw) { sw.updateSlides(); sw.update(); }
+    const originals = getOriginalSlides();
+    originals
+      .sort((a, b) => (+a.dataset.originalIndex) - (+b.dataset.originalIndex))
+      .forEach(n => wrapper.appendChild(n));
+    if (swiper) { swiper.updateSlides(); swiper.update(); swiper.loopFix?.(); }
   }
 
   function applyLayout(isMobile) {
-    if (isMobile) moveVideosToFront();
-    else restoreDesktopOrder();
-    if (isMobile) primeAllVideos(); // ensure they’re started after any reorder
+    if (isMobile) {
+      moveVideosToFront();
+      primeAllVideos(); // keep your mobile behavior
+    } else {
+      restoreDesktopOrder();
+      // No video priming on desktop (keeps "no video on desktop")
+    }
   }
 
+  // Initial + breakpoint listeners
   applyLayout(mq.matches);
   if (mq.addEventListener) mq.addEventListener('change', e => applyLayout(e.matches));
   else mq.addListener(e => applyLayout(e.matches));
 
-  // ====== VIDEO PRIMING (original + duplicates) ======
-
+  // ====== VIDEO PRIMING (same behavior you confirmed worked) ======
   function hideImageFor(videoEl) {
     const img =
       videoEl.closest('.product-card__image')?.querySelector('img') ||
@@ -198,9 +212,8 @@
     v.muted = true;
     v.playsInline = true;
     v.autoplay = true;
-    v.loop = true;               // native loop so it never stops
+    v.loop = true;
     v.preload = v.preload || 'auto';
-    // make sure it’s visible
     v.style.opacity = '1';
     v.style.position = 'absolute';
     v.style.inset = '0';
@@ -210,52 +223,47 @@
     v.style.zIndex = '2';
 
     hideImageFor(v);
-
-    // kick playback; ignore promise rejections (iOS will start once allowed)
     try { v.play().catch(() => {}); } catch (_) {}
   }
 
   function primeAllVideos() {
-    if (!mq.matches) return; // only do this on mobile
+    if (!mq.matches) return; // only on mobile
     section.querySelectorAll('video.carousel-new-2__video').forEach(primeVideo);
   }
 
-  // initial prime
+  // Initial prime (mobile only)
   primeAllVideos();
 
-  // MutationObserver: if Swiper inserts duplicates, prime them too
+  // MutationObserver: catch Swiper duplicate insertions and prime them too
   const mo = new MutationObserver(muts => {
-    let added = false;
+    let found = false;
     for (const m of muts) {
       m.addedNodes && m.addedNodes.forEach(n => {
         if (n.nodeType === 1) {
-          if (n.matches?.('video.carousel-new-2__video')) { primeVideo(n); added = true; }
-          n.querySelectorAll?.('video.carousel-new-2__video').forEach(primeVideo);
+          if (n.matches?.('video.carousel-new-2__video')) { primeVideo(n); found = true; }
+          n.querySelectorAll?.('video.carousel-new-2__video').forEach(el => { primeVideo(el); found = true; });
         }
       });
     }
-    if (added && mq.matches) primeAllVideos();
+    if (found && mq.matches) primeAllVideos();
   });
   mo.observe(wrapper, { childList: true, subtree: true });
 
-  // Swiper hooks: handle loop wrap (right-swipe shows duplicate)
-  const swiper = section.querySelector('.swiper')?.swiper;
+  // Swiper hooks: keep right-swipe loop video alive (original or duplicate)
   if (swiper) {
     const rePrime = () => { if (mq.matches) primeAllVideos(); };
+
     swiper.on('loopFix', rePrime);
     swiper.on('slidesLengthChange', rePrime);
     swiper.on('update', rePrime);
     swiper.on('resize', rePrime);
 
-    // after slide settles, if active has a video (original OR duplicate), force-start it
     swiper.on('slideChangeTransitionEnd', () => {
       if (!mq.matches) return;
       const active = swiper.slides[swiper.activeIndex];
-      if (!active) return;
-      const v = active.querySelector('video.carousel-new-2__video');
+      const v = active?.querySelector('video.carousel-new-2__video');
       if (v) {
-        // allow duplicate to start even if original is already playing
-        v.dataset.primed = ''; // re-prime in case browser paused on visibility changes
+        v.dataset.primed = ''; // allow re-prime if browser paused it
         primeVideo(v);
       }
     });
