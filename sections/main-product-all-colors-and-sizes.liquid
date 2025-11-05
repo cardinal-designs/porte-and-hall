@@ -100,7 +100,7 @@
   
         {% if matched_product != blank %}
           <a 
-            href="{{ matched_product.url }}" 
+            href="{{ matched_product.url | append: '?view=all-colors-and-sizes' }}" 
             class="{{ element_classes }}" 
             data-tooltip="{{ color | escape }}"
             style="{% unless product_available %}cursor: pointer;{% endunless %}"
@@ -436,7 +436,7 @@
                   {%  assign match_name = block.title | replace: "|", format_color %}
                   {%  assign match = block.products | where: 'title', match_name %}
                   {% if match != blank %}
-                    <a class="inline-link" href="{{ match.first.url }}">{{ current_size.last }}</a> <span class="other-size__divider">or</span>
+                    <a class="inline-link" href="{{ match.first.url }}?view=all-colors-and-sizes">{{ current_size.last }}</a> <span class="other-size__divider">or</span>
                   {% endif %}
                 {% endfor %}
               {%  endcapture %}
@@ -484,7 +484,7 @@
                 <a 
                   style="order: {{ active_order }};"
                   class="small_button_text other-sizes__button active" 
-                  href="{{ product.url }}"
+                  href="{{ product.url }}?view=all-colors-and-sizes"
                 >
                   {% if product_size == 'XL Area Mat' %}
                     <span>Area Mat</span>
@@ -532,7 +532,7 @@
                       <a 
                         style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == 'XL Area Mat'  %}7{% endif %} ;"
                         class="small_button_text other-sizes__button {% if match == blank %}other-sizes__button--not-available{% endif %}"
-                        {% if match != blank %} href="{{ match.first.url }}" {% endif %}
+                        {% if match != blank %} href="{{ match.first.url }}?view=all-colors-and-sizes" {% endif %}
                         
                       >
                         {% if current_size.last == 'XL Area Mat' %}
@@ -582,7 +582,7 @@
                 {%- unless other_size_links == blank -%}
                   <div class="other-sizes__wrapper test other-sizes__wrapper--other-collections">
                     <span class="other-sizes__label">Size</span> 
-                    <div class="5 other-sizes__wrapper-links">
+                    <div class="5 other-sizes__wrapper-links 5 other-sizes__wrapper-links--inner">
                       {{ other_size_links }}
                     </div>
                   </div>
@@ -592,7 +592,7 @@
               {%- capture other_size_links -%}
                 <a 
                   class="other-sizes__button active" 
-                  href="{{ product.url }}"
+                  href="{{ product.url }}?view=all-colors-and-sizes"
                 >
                   <span>{{ product_size }}</span>
                   <span class="other-sizes__dimension">21" x 36"</span>

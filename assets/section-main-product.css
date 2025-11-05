@@ -378,6 +378,19 @@
   transform-origin: center;
 }
 
+.other-sizes__wrapper-links.other-sizes__wrapper-links--inner {
+  justify-content: space-between;
+  gap: 0;
+  width: 100%;
+}
+
+.other-sizes__wrapper-links.other-sizes__wrapper-links--inner
+.other-sizes__button {
+  width: 23%;
+  max-width: unset;
+  flex: unset;
+}
+
 .other-sizes__button.other-sizes__button--not-available {
   cursor: not-allowed;
   border: 1px dashed var(--blue);
