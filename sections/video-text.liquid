@@ -221,11 +221,7 @@
             {%- endif -%}
 
             {%- if section.settings.title != blank -%}
-              {%- if section.settings.title_as_h1 -%}
-              <h1 class="SectionHeader__Heading">{{ section.settings.title }}</h1>
-              {%- else -%}
               <div class="SectionHeader__Heading">{{ section.settings.title }}</div>
-              {%- endif -%}
             {%- endif -%}
 
             {%- if section.settings.content != blank -%}
@@ -279,12 +275,6 @@
       "id": "title",
       "label": "Heading",
       "default": "<p>Add Title...</p>"
-    },
-    {
-      "type": "checkbox",
-      "id": "title_as_h1",
-      "label": "Heading as H1",
-      "default": false
     },
     {
       "type": "richtext",
