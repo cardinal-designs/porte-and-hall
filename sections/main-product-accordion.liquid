@@ -23,7 +23,6 @@
     endif
   endfor
   
-
   assign oos_products = grouped_collection.products | where: 'available', false
   assign oos_products = ""
 
@@ -41,6 +40,7 @@
             if matched_variant != blank
               assign swatch_link = matched_variant[0].url
             endif
+
             assign element_classes = 'product__swatch'
             if swatch == product and option.selected_value == value
               assign element_classes = element_classes | append: ' product__active-swatch'
@@ -48,13 +48,10 @@
             if swatch.available == false
               assign element_classes = element_classes | append: ' product__oos-swatch'
             endif
+
             assign swatch_file_name = value | handle | append: '.png'
             assign swatch_image = images[swatch_file_name]
-            comment
-              if collection_title contains 'outsider' and swatch_count == 4
-                echo ' | '
-              endif
-            endcomment
+
             echo "<a href='"
             echo swatch_link | default: swatch.variants[0].url
             echo "' class='"
@@ -62,14 +59,18 @@
             echo "'"
             echo " aria-label='"
             echo value | escape
-            echo "'"
-            echo "data-tooltip='"
+            echo "' title='"
             echo value | escape
-            echo "' ><span "
-            echo "style='background-image: url("
+            echo "' data-tooltip='"
+            echo value | escape
+            echo "'>"
+            echo "<span style='background-image: url("
             echo swatch_file_name | file_url
-            echo ")'>"
-            echo '</span></a>'
+            echo ")'></span>"
+            echo "<span class='sr-only'>"
+            echo value | escape
+            echo "</span></a>"
+
             assign swatch_count = swatch_count | plus: 1
           endfor
         endif
@@ -77,6 +78,7 @@
     endfor
   endcapture
 %}
+
 
 {% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 <section class="page-width">
