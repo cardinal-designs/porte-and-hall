@@ -66,17 +66,17 @@
 
 }
 
-.collection-filters__dropdowns {
+.sticky-filters-bar.is-fixed .collection-filters__slideout-content {
   position: relative;
 }
 
-.collection-filters__dropdowns::after {
+.sticky-filters-bar.is-fixed .collection-filters__slideout-content::after {
   content: "";
-  position: absolute;
+  position: fixed;
   pointer-events: none;
   width: 100%;
   height: 50px;
-  bottom: -20px;
+  bottom: 0px;
   background: linear-gradient(to top, rgba(84, 107, 130, 0.2), transparent);
 }
 
