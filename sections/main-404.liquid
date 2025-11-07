@@ -6,6 +6,12 @@
   .template-404 {
     height: 60vh;
   }
+
+  .404-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
   .template-404 .template-404 {
     padding: 100px 0;
@@ -58,19 +64,19 @@
 <div id="{{ section.id }}" class="Page_Header" style="background-image:url({{ section.settings.image | img_url : '1920x' }});">
   <div class="template-404 page-margin center"style="background-color:{{ section.settings.bg_color }}">
     <div class="404_container">
-    <div class="fan-motif__motif">
-      <img src="{{ fan-motif }}" width="67" alt="Fan motif">
-    </div>   
-    <h1 class="h1 blue">
-      {{ 'templates.404.subtext' | t }}
-    </h1>
-    <h3 class="h3 title blue">
-      {{ 'templates.404.title' | t }}
-    </h3>
-    <a href="{{ routes.all_products_collection_url }}" class="button">
-      {{ 'general.continue_shopping' | t }}
-    </a>
-  </div>
+      <div class="fan-motif__motif">
+        <img src="{{ fan-motif }}" width="67" alt="Fan motif">
+      </div>   
+      <h1 class="h1 blue">
+        {{ 'templates.404.subtext' | t }}
+      </h1>
+      <h3 class="h3 title blue">
+        {{ 'templates.404.title' | t }}
+      </h3>
+      <a href="{{ routes.all_products_collection_url }}" class="button">
+        {{ 'general.continue_shopping' | t }}
+      </a>
+    </div>
   </div>
 </div>
 
