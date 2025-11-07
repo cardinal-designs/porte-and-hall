@@ -7,13 +7,13 @@
     height: 60vh;
   }
 
-  .404_container {
+  .error_container {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .404_container > * {
+  .error_container > * {
     width: fit-content;
   }
   
@@ -67,7 +67,7 @@
 
 <div id="{{ section.id }}" class="Page_Header" style="background-image:url({{ section.settings.image | img_url : '1920x' }});">
   <div class="template-404 page-margin center"style="background-color:{{ section.settings.bg_color }}">
-    <div class="404_container">
+    <div class="error_container">
       <div class="fan-motif__motif">
         <img src="{{ fan-motif }}" width="67" alt="Fan motif">
       </div>   
