@@ -21,7 +21,7 @@
     background: var(--color-background, #ffffff);
     will-change: transform;
     z-index: var(--filters-z);
-    background: var(--filter-bg-color), #ffffff;
+    background: var(--filter-bg-color);
     color: var(--filter-text-color), #546B82 !important;
     padding: 10px 0 10px 10px;
   }
@@ -37,7 +37,7 @@
     color: var(--filter-text-color) !important;
   }
 
-  /* .collection-filters__dropdown-container {
+  .collection-filters__dropdown-container {
     background: transparent;
   }
   
@@ -51,7 +51,7 @@
 
   .sticky-filters-bar__inner .collection-filters__filter-button[type=checkbox]:checked {
     background: var(--filter-text-color) !important;
-  } */
+  }
 
   .collection-filters__dropdown-button {
     font-size: 16px;
