@@ -23,6 +23,7 @@
     z-index: var(--filters-z);
     background: var(--filter-bg-color);
     color: var(--filter-text-color) !important;
+    padding: 10px;
   }
 
   .sticky-filters-bar__inner,
