@@ -155,7 +155,7 @@
     <a href="{{ product_card_product.url }}">
       <div class="product-card__title h3 blue">
         {{ title | default: collection.title | replace: ' | ', ' ' }}<br>
-        <span class="body test">{{ product_card_product.options_by_name['color'].values[0]  | capitalize }}</span>
+        <span class="body">{{ product_card_product.options_by_name['color'].values[0]  | capitalize }}</span>
       </div>
     </a>
 
