@@ -38,7 +38,7 @@
   }
 
   .collection-filters__filter-button[type=checkbox]:checked {
-    
+    background: var(--filter-text-color) !important;
   }
 
   .collection-filters__dropdown-button {
