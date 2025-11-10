@@ -37,7 +37,7 @@
     color: var(--filter-text-color) !important;
   }
 
-  .collection-filters__dropdown-container {
+  /* .collection-filters__dropdown-container {
     background: transparent;
   }
   
@@ -51,7 +51,7 @@
 
   .sticky-filters-bar__inner .collection-filters__filter-button[type=checkbox]:checked {
     background: var(--filter-text-color) !important;
-  }
+  } */
 
   .collection-filters__dropdown-button {
     font-size: 16px;
