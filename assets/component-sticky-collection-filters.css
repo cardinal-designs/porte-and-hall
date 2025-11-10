@@ -35,11 +35,15 @@
   .collection-filters__dropdown-button,
   .collection-filters__slideout .collection-filters__filter-label,
   .collection-filters__slideout-container {
-    background: var(--filter-bg-color) !important;
+    background: var(--filter-bg-color);
     color: var(--filter-text-color) !important;
   }
 
-  .collection-filters__filter-button[type=checkbox]:checked {
+  .collection-filters__filter-button[type=checkbox] {
+    border-color: var(--filter-text-color);
+  }
+
+  .sticky-filters-bar__inner .collection-filters__filter-button[type=checkbox]:checked {
     background: var(--filter-text-color) !important;
   }
 
