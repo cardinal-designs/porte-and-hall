@@ -35,6 +35,10 @@
     background: var(--filter-bg-color);
     color: var(--filter-text-color) !important;
   }
+  
+  .collection-filters__filter-button[type=checkbox] {
+    border-color: var(--filter-text-color);
+  }
 
   .sticky-filters-bar.is-fixed{
     top: 180px !important;
