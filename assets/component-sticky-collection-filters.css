@@ -36,6 +36,10 @@
     background: var(--filter-bg-color);
     color: var(--filter-text-color) !important;
   }
+
+  .collection-filters__dropdown-button {
+    font-size: 16px;
+  }
   
   .collection-filters__filter-button[type=checkbox] {
     border: 1px solid var(--filter-text-color);
