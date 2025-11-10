@@ -241,8 +241,17 @@
 
   {%- capture section_image -%}
     {%- if section.settings.video != blank -%}
+      {% liquid
+        assign classes = 'videos'
+        if section.settings.mobile_video != blank
+          assign classes = 'videos hide-mobile'
+        endif
+      %}
       <div class="FeatureText__ImageWrapper video-wrapper">
-        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
+        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: classes, id: 'video', image_size: '1000x' }}
+        {% if section.settings.mobile_video != blank %}
+          {{ section.settings.mobile_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos hide-desktop', id: 'video-mobile', image_size: '1000x' }}
+        {% endif %}
       </div>
     {%- endif -%}
   {%- endcapture -%}
