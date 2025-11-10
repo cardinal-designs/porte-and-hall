@@ -13,7 +13,16 @@
 
   <div class="hero__media">
     {% if section.settings.video != blank %}
-        {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos', id: 'video-with-text-vid', image_size: '1000x' }}
+      {% liquid
+        assign classes = 'videos'
+        if section.settings.mobile_video != blank
+          assign classes = 'videos hide-mobile'
+        endif
+      %}
+      {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: classes, id: 'video-with-text-vid', image_size: '1000x' }}
+      {% if section.settings.mobile_video != blank %}
+        {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos hide-desktop', id: 'video-with-text-vid', image_size: '1000x' }}
+      {% endif %}
     {% endif %}
     <div id="circle-play" class="hero__element">
       <svg xmlns="http://www.w3.org/2000/svg" width="45" height="50" viewBox="0 0 45 50" fill="none">
@@ -106,6 +115,11 @@
       "type": "video",
       "id": "video",
       "label": "Video (default media if populated)"
+    },
+    {
+      "type": "video",
+      "id": "mobile_video",
+      "label": "Mobile Video"
     },
     {
       "type": "header",
