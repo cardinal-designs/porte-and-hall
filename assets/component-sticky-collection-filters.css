@@ -29,6 +29,7 @@
   .collection-filters,
   .collection-filters__dropdown-container,
   .collection-filters__slideout,
+  .collection-filters__dropdown-button,
   .collection-filters__slideout-container {
     background: var(--filter-bg-color);
     color: var(--filter-text-color) !important;
