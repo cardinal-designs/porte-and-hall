@@ -25,16 +25,13 @@
     color: var(--filter-text-color);
   }
 
-  .sticky-filters-bar__inner {
-    background: var(--filter-bg-color);
-    color: var(--filter-text-color);
-  }
-
+  .sticky-filters-bar__inner,
   .collection-filters,
   .collection-filters__dropdown-container,
   .collection-filters__slideout,
   .collection-filters__slideout-container {
-    background: transparent;
+    background: var(--filter-bg-color);
+    color: var(--filter-text-color);
   }
 
   .sticky-filters-bar.is-fixed{
