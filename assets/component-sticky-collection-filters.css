@@ -21,6 +21,7 @@
     background: var(--color-background, #fff);
     will-change: transform;
     z-index: var(--filters-z);
+    background: var(--filter-bg-color);
   }
 
   .sticky-filters-bar.is-fixed{
