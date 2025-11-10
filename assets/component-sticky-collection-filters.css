@@ -30,6 +30,10 @@
     color: var(--filter-text-color);
   }
 
+  .collection-filters__slideout-container {
+    background: transparent;
+  }
+
   .sticky-filters-bar.is-fixed{
     top: 180px !important;
   }
