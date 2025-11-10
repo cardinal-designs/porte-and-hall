@@ -12,13 +12,13 @@
     margin: 0 0 24px;
   }
 
-  .sticky-filters-bar {
-    color: red;
-    --filter-bg-color: {{ section.settings.bg_color }};
-    --filter-text-color: {{ section.settings.text_color }};
-  }
-
 }
+
+.sticky-filters-bar {
+  --filter-bg-color: {{ section.settings.bg_color }};
+  --filter-text-color: {{ section.settings.text_color }};
+}
+
 </style>
 
 <script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
