@@ -18,11 +18,11 @@
 @media (min-width: 769px){
 
   .sticky-filters-bar{
-    background: var(--color-background, #fff);
+    background: var(--color-background, #ffffff);
     will-change: transform;
     z-index: var(--filters-z);
-    background: var(--filter-bg-color), #fff;
-    color: var(--filter-text-color), #fff !important;
+    background: var(--filter-bg-color), #ffffff;
+    color: var(--filter-text-color), #546B82 !important;
     padding: 10px 0 10px 10px;
   }
 
