@@ -21,8 +21,8 @@
     background: var(--color-background, #fff);
     will-change: transform;
     z-index: var(--filters-z);
-    background: var(--filter-bg-color);
-    color: var(--filter-text-color) !important;
+    background: var(--filter-bg-color), #fff;
+    color: var(--filter-text-color), #fff !important;
     padding: 10px 0 10px 10px;
   }
 
@@ -51,14 +51,6 @@
     margin-bottom: 30px;
   }
 
-}
-
-.collection-filters__filter-button[type=checkbox]:checked {
-  background: var(--filter-text-color) !important;
-}
-
-.collection-filters__filter-button[type=checkbox] {
-  border: 1px solid var(--filter-text-color) !important;
 }
 
 @media (min-width: 1025px){
