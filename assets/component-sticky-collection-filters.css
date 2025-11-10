@@ -38,7 +38,7 @@
   }
   
   .collection-filters__filter-button[type=checkbox] {
-    border-color: var(--filter-text-color);
+    border: 1px solid var(--filter-text-color);
   }
 
   .sticky-filters-bar.is-fixed{
