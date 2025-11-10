@@ -22,6 +22,7 @@
     will-change: transform;
     z-index: var(--filters-z);
     background: var(--filter-bg-color);
+    color: var(--filter-text-color);
   }
 
   .sticky-filters-bar.is-fixed{
