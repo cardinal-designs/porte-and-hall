@@ -39,16 +39,8 @@
     color: var(--filter-text-color) !important;
   }
 
-  .collection-filters__filter-button[type=checkbox]:checked {
-    background: var(--filter-text-color) !important;
-  }
-
   .collection-filters__dropdown-button {
     font-size: 16px;
-  }
-  
-  .collection-filters__filter-button[type=checkbox] {
-    border: 1px solid var(--filter-text-color) !important;
   }
 
   .sticky-filters-bar.is-fixed{
@@ -59,6 +51,14 @@
     margin-bottom: 30px;
   }
 
+}
+
+.collection-filters__filter-button[type=checkbox]:checked {
+  background: var(--filter-text-color) !important;
+}
+
+.collection-filters__filter-button[type=checkbox] {
+  border: 1px solid var(--filter-text-color) !important;
 }
 
 @media (min-width: 1025px){
