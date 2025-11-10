@@ -43,6 +43,7 @@
   
   .collection-filters__slideout .collection-filters__filter-label {
     color: var(--filter-text-color) !important;
+    font-size: 14px;
   }
 
   .collection-filters__filter-button[type=checkbox] {
