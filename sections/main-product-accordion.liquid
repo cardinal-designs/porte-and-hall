@@ -122,7 +122,7 @@
       </div>
     </div>
 
-    <div class="product__info-wrapper TEST">
+    <div class="product__info-wrapper">
       <div id="ProductInfo-{{ section.id }}" class="product__info-container">
         {% assign product_form_id = 'product-form-' | append: section.id %}
 
@@ -571,9 +571,6 @@
                 {%- endunless -%}
      
             {%- endif -%}
-
-            
-            
 
             <div class="product__quantity-atc-wrapper  {% if product.available == false %}bis-styles{% endif %} {% if section.settings.hide_quantity == true %}no-quant__button{% endif %}">
               <div class="product-form__input product-form__quantity {% if product.available == false or section.settings.hide_quantity == true %}visually-hidden{% endif%}">
