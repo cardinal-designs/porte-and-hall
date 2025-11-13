@@ -1527,7 +1527,7 @@ accordionItems.forEach((accordion) => {
   });
 });
 window.addEventListener("load", () => {
-  console.clear();
+  // console.clear();
   console.log("test");
 })
 document.addEventListener("DOMContentLoaded", (event) => {
