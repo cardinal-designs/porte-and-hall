@@ -376,14 +376,14 @@
             </noscript>
 
           
-               <!-- Shop Other Sizes -->
-              {% liquid
-                assign product_type = grouped_collection.title | remove: 'The ' | split: ' | '
-                assign active_style = product.selected_or_first_available_variant.title
-                assign product_size = product.options_by_name['size'].values[0]
-                assign active_style = active_style | remove: product_size | remove: " / " 
-                assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
-              %}
+            <!-- Shop Other Sizes -->
+            {% liquid
+              assign product_type = grouped_collection.title | remove: 'The ' | split: ' | '
+              assign active_style = product.selected_or_first_available_variant.title
+              assign product_size = product.options_by_name['size'].values[0]
+              assign active_style = active_style | remove: product_size | remove: " / " 
+              assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
+            %}
 
             <span data-active-style="{{ active_style }}"></span>
 
