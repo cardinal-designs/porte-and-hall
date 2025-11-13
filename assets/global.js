@@ -1527,7 +1527,7 @@ accordionItems.forEach((accordion) => {
   });
 });
 window.addEventListener("resize", () => {
-  const appStickyAnnouncement = document.querySelector("#bx-campaign-2961651-clone");
+  const appStickyAnnouncement = document.querySelector(".bx-creative");
   if(appStickyAnnouncement) {
     document.querySelector(".outer-header-wrapper").style.top = `${appStickyAnnouncement.clientHeight}px`;
   }
