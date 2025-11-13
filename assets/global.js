@@ -1526,7 +1526,9 @@ accordionItems.forEach((accordion) => {
     }
   });
 });
-
+window.addEventListener("resize", () => {
+  console.log("test");
+})
 document.addEventListener("DOMContentLoaded", (event) => {
   if (typeof gsap === "undefined" || !gsap.plugins.scrollTo) {
     console.error("GSAP or ScrollToPlugin not loaded!");
