@@ -1528,8 +1528,9 @@ accordionItems.forEach((accordion) => {
 });
 window.addEventListener("resize", () => {
   console.clear();
-  if(document.querySelector("#bx-campaign-2961651-clone")) {
-    console.log(`${document.querySelector("#bx-campaign-2961651-clone").clientHeight}px`)
+  const appStickyAnnouncement = document.querySelector("#bx-campaign-2961651-clone");
+  if(appStickyAnnouncement) {
+    document.querySelector(".outer-header-wrapper").style.top = `${appStickyAnnouncement.clientHeight}px`;
   }
 })
 document.addEventListener("DOMContentLoaded", (event) => {
