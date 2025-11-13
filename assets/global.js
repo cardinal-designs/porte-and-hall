@@ -1526,9 +1526,11 @@ accordionItems.forEach((accordion) => {
     }
   });
 });
-window.addEventListener("load", () => {
-  // console.clear();
-  console.log("test");
+window.addEventListener("resize", () => {
+  console.clear();
+  if(document.querySelector("#bx-campaign-2961651-clone")) {
+    console.log(`${document.querySelector("#bx-campaign-2961651-clone").clientHeight}px`)
+  }
 })
 document.addEventListener("DOMContentLoaded", (event) => {
   if (typeof gsap === "undefined" || !gsap.plugins.scrollTo) {
