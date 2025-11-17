@@ -210,7 +210,7 @@
   
 {% endstyle %}
  
- <section class="Section {{ section.settings.custom-class }} video-text">
+ <section class="Section {{ section.settings.custom-class }} video-text" id="VideoText-{{ section.id }}">
   {%- capture section_content -%}
     <div class="FeatureText__ContentWrapper">
       <div class="FeatureText__Content">
@@ -248,9 +248,15 @@
         endif
       %}
       <div class="FeatureText__ImageWrapper video-wrapper">
-        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: classes, id: 'video', image_size: '1000x' }}
+        {% capture desktop_video %}
+          {{ section.settings.video | video_tag: autoplay: true, muted: true, controls: false, playsinline: true, preload: 'auto', class: classes, id: 'video', image_size: '800x' }}
+        {% endcapture %}
+        {{ desktop_video | replace: '<video', '<video data-hero-video' }}
         {% if section.settings.mobile_video != blank %}
-          {{ section.settings.mobile_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'videos hide-desktop', id: 'video-mobile', image_size: '1000x' }}
+          {% capture mobile_video %}
+            {{ section.settings.mobile_video | video_tag: autoplay: true, muted: true, controls: false, playsinline: true, preload: 'auto', class: 'videos hide-desktop', id: 'video-mobile', image_size: '800x' }}
+          {% endcapture %}
+          {{ mobile_video | replace: '<video', '<video data-hero-video' }}
         {% endif %}
       </div>
     {%- endif -%}
@@ -326,6 +332,51 @@
 {% endstylesheet %}
 
 {% javascript %}
+(function () {
+  function prepareHeroVideos() {
+    var sections = document.querySelectorAll('section.video-text');
+    if (!sections.length) return;
+
+    sections.forEach(function (section) {
+      var videos = section.querySelectorAll('video[data-hero-video]');
+      if (!videos.length) return;
+
+      videos.forEach(function (video) {
+        if (!video.hasAttribute('preload')) {
+          video.setAttribute('preload', 'auto');
+        }
+
+        var enableLoopAndPlay = function () {
+          if (!video.hasAttribute('data-loop-applied')) {
+            video.loop = true;
+            video.setAttribute('data-loop-applied', 'true');
+          }
+
+          if (typeof video.play === 'function') {
+            var playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+              playPromise.catch(function () {
+                /* Ignore autoplay blocks; user gesture will resume */
+              });
+            }
+          }
+        };
+
+        if (video.readyState >= 2) {
+          enableLoopAndPlay();
+        } else {
+          video.addEventListener('loadeddata', enableLoopAndPlay, { once: true });
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', prepareHeroVideos);
+  } else {
+    prepareHeroVideos();
+  }
+})();
 {% endjavascript %}
 
 
