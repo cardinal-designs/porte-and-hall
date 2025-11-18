@@ -149,7 +149,7 @@ header[role="banner"],
     position: relative;
   }
 
-  .sticky-filters-bar.is-fixed .collection-filters__slideout-content::after {
+  /* .sticky-filters-bar.is-fixed .collection-filters__slideout-content::after {
     content: "";
     position: fixed;
     pointer-events: none;
@@ -157,7 +157,7 @@ header[role="banner"],
     height: 50px;
     bottom: 0px;
     background: linear-gradient(to top, rgba(84, 107, 130, 0.4), transparent);
-  }
+  } */
 
 }
 
