@@ -194,7 +194,8 @@
         if(y+off<=sY){ if(b.classList.contains('is-fixed')||b.classList.contains('is-docked')){ b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked'); } return; }
         if(y+off+h>=stop){
           var wt=w.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop);
-          if (isInViewport(nextEl)) {
+          var nextEl = document.querySelector('.collection-grid-section');
+          if (isNextSiblingInViewport(nextEl)) {
             b.style.position='static';
             b.classList.remove('is-fixed','is-docked');
             return;
@@ -203,12 +204,9 @@
         }
         var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
         var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
-        var nextEl = document.querySelector(".collection-grid-section")?.nextElementSibling;
-
-        console.log(isInViewport(nextEl));
 
         // Block fixing if next element is in viewport
-        if (isInViewport(nextEl)) {
+        if (isNextSiblingInViewport(nextEl)) {
           b.style.position = 'static';
           b.classList.remove('is-fixed', 'is-docked');
           return;
@@ -223,9 +221,9 @@
         b.classList.add('is-fixed');
         b.classList.remove('is-docked');
         if(window.innerWidth < 769){
-          var nextEl = document.querySelector(".collection-grid-section")?.nextElementSibling;
+          var nextEl = document.querySelector('.collection-grid-section');;
           
-          if (isInViewport(nextEl)) {
+          if (isNextSiblingInViewport(nextEl)) {
             b.style.position='static';
             b.classList.remove('is-fixed','is-docked');
             return;
@@ -343,11 +341,11 @@
       function apply(m){
 
         var el=m.el, y=window.pageYOffset||document.documentElement.scrollTop, H=m.H, h=el.offsetHeight;
-        var nextEl = document.querySelector(".collection-grid-section")?.nextElementSibling;
+        var nextEl = document.querySelector('.collection-grid-section');
           
         
         if(y+H<=m.s){ if(el.style.position==='fixed'||el.style.position==='absolute'){ el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background=''; } return; }
-        if (isInViewport(nextEl)) {
+        if (isNextSiblingInViewport(nextEl)) {
           b.style.position='static';
           b.classList.remove('is-fixed','is-docked');
           return;
