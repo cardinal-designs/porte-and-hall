@@ -216,7 +216,7 @@
             b.classList.remove('is-fixed','is-docked');
             return;
           }
-          b.style.position='absolute'; b.style.zIndex='5'; b.style.top=((stop-h)-wt)+'px'; b.style.left='0'; b.style.width='100%'; b.style.transform=''; b.classList.remove('is-fixed'); b.classList.add('is-docked'); return;
+          b.style.position='fixed'; b.style.zIndex='5'; b.style.top=((stop-h)-wt)+'px'; b.style.left='0'; b.style.width='100%'; b.style.transform=''; b.classList.remove('is-fixed'); b.classList.add('is-docked'); return;
         }
         var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
         var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
