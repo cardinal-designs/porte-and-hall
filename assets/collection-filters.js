@@ -216,23 +216,23 @@ class collectionFilters extends HTMLElement {
 
     console.log("after", ...formData)
 
-    // const searchParams = new URLSearchParams(formData).toString();
+    const searchParams = new URLSearchParams(formData).toString();
     
-    // url = location.pathname + '?' + searchParams;
-    // if (history.replaceState) {
-    //   window.history.pushState({ path: url }, '', url);
-    // }
-
-    // Build search params from form
-    const searchParams = new URLSearchParams(formData);
-
-    // Preserve existing "view" parameter if present
-    const currentParams = new URLSearchParams(window.location.search);
-    if (currentParams.has('view')) {
-      searchParams.set('view', currentParams.get('view'));
+    url = location.pathname + '?' + searchParams;
+    if (history.replaceState) {
+      window.history.pushState({ path: url }, '', url);
     }
 
-    url = location.pathname + '?' + searchParams.toString();
+    // Build search params from form
+    // const searchParams = new URLSearchParams(formData);
+
+    // // Preserve existing "view" parameter if present
+    // const currentParams = new URLSearchParams(window.location.search);
+    // if (currentParams.has('view')) {
+    //   searchParams.set('view', currentParams.get('view'));
+    // }
+
+    // url = location.pathname + '?' + searchParams.toString();
 
 
     // Fetch and replace sections
