@@ -131,672 +131,261 @@
 
   </div>
 </div>
-<script>
-  /**
-  * Sticky Element Utilities
-  * Reusable functions for creating sticky navigation, filters, and headers
-  */
 
-  window.StickyUtils = (function() {
-    'use strict';
 
-    // ========================================
-    // CORE UTILITIES
-    // ========================================
-
+  <script>
     /**
-    * Calculate the total offset from fixed header elements
-    * @param {Object} options - Configuration options
-    * @param {boolean} options.includeNav - Include navigation height
-    * @param {number} options.extraOffset - Additional offset to add
-    * @param {boolean} options.desktopOnly - Only apply to desktop viewports
-    * @returns {number} Total offset height in pixels
+    * Check if the next sibling(s) of a given element are in the viewport
+    * @param {Element} el - The reference element
+    * @param {number} offset - Optional offset to tweak visibility detection
+    * @returns {boolean} - true if any next sibling is in viewport
     */
-    function getHeaderOffset(options = {}) {
-      const {
-        includeNav = true,
-        extraOffset = 0,
-        desktopOnly = false
-      } = options;
+    function isNextSiblingInViewport(el, offset = 0) {
+      if (!el) return false;
+      let sibling = el.nextElementSibling;
 
-      const header = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
-      const announcement = document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
-      const nav = document.querySelector('.header__navigation');
-      const bxCreative = document.querySelector('.bx-creative');
-
-      let navHeight = 0;
-      if (includeNav && nav) {
-        const navStyles = getComputedStyle(nav);
-        const isFixed = /(fixed|sticky)/.test(navStyles.position);
-        const isDesktop = window.matchMedia('(min-width: 990px)').matches;
-        
-        if (navStyles.display !== 'none' && isFixed && (!desktopOnly || isDesktop)) {
-          navHeight = nav.offsetHeight;
+      while (sibling) {
+        const rect = sibling.getBoundingClientRect();
+        if (rect.top + offset < window.innerHeight && rect.bottom > 0) {
+          return true; // this sibling is in viewport
         }
+        sibling = sibling.nextElementSibling;
       }
 
-      const headerHeight = header ? header.offsetHeight : 0;
-      const bxHeight = bxCreative ? bxCreative.offsetHeight : 0;
-      const announcementHeight = announcement && getComputedStyle(announcement).display !== 'none' 
-        ? announcement.offsetHeight 
-        : 0;
-
-      return headerHeight + bxHeight + announcementHeight + navHeight + extraOffset;
+      return false; // no siblings in viewport
     }
-
-    /**
-    * Get the top position of the footer
-    * @returns {number} Footer top position relative to document
-    */
-    function getFooterTop() {
-      const footer = document.querySelector('#shopify-section-footer, .footer, .site-footer, footer');
-      if (!footer) return Infinity;
+    window.scrollUtils1 = function() {
+      var w=document.getElementById('sticky-wrap-{{ section.id }}');
+      var b=document.getElementById('sticky-bar-{{ section.id }}');
+      var p=document.getElementById('sticky-placeholder-{{ section.id }}');
+      var productGrid = document.getElementById('ProductGridContainer'), filterBar = document.querySelector('.sticky-filters-bar');
+      productGrid.style.minHeight = `${filterBar.clientHeight}px`;
       
-      const rect = footer.getBoundingClientRect();
-      return rect.top + (window.pageYOffset || document.documentElement.scrollTop);
-    }
+      if(!w||!b||!p) return;
 
-    /**
-    * Get current scroll position
-    * @returns {number} Current scroll position
-    */
-    function getScrollTop() {
-      return window.pageYOffset || document.documentElement.scrollTop;
-    }
-
-    // ========================================
-    // STICKY ELEMENT MANAGER
-    // ========================================
-
-    /**
-    * Create a sticky element controller
-    * @param {Object} config - Configuration object
-    * @returns {Object} Controller with methods to manage sticky behavior
-    */
-    function createStickyElement(config) {
-      const {
-        wrapperSelector,
-        barSelector,
-        endSentinelSelector,
-        placeholderSelector,
-        headerOffset = 88,
-        createEndSentinel = true,
-        mobileOffset = 80,
-        onMeasure = null,
-        onApply = null
-      } = config;
-
-      const wrapper = document.getElementById(wrapperSelector) || document.querySelector(wrapperSelector);
-      const bar = document.getElementById(barSelector) || document.querySelector(barSelector);
-      const placeholder = document.getElementById(placeholderSelector) || document.querySelector(placeholderSelector);
-      
-      if (!wrapper || !bar) {
-        console.warn('StickyElement: Required elements not found');
-        return null;
+      function H(){
+        var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+        var a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+        var n=document.querySelector('.header__navigation'); 
+        var bxc=document.querySelector(".bx-creative");
+        var nh=0;
+        if(n){var cs=getComputedStyle(n); if(cs.display!=='none'&&/(fixed|sticky)/.test(cs.position)&&window.matchMedia('(min-width: 990px)').matches) nh=n.offsetHeight;}
+        return (h?h.offsetHeight:0)+(bxc?bxc.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh+88;
       }
 
-      let endSentinel = document.getElementById(endSentinelSelector) || document.querySelector(endSentinelSelector);
-      
-      // Create end sentinel if needed
-      if (createEndSentinel && !endSentinel) {
-        endSentinel = document.createElement('div');
-        endSentinel.id = endSentinelSelector;
-        endSentinel.style.height = '1px';
-        
-        const container = document.getElementById('ProductGridContainer') || wrapper.parentElement;
-        container.parentNode.insertBefore(endSentinel, container.nextSibling);
+      var end=document.getElementById('sticky-end-sentinel-{{ section.id }}');
+      if(!end){ end=document.createElement('div'); end.id='sticky-end-sentinel-{{ section.id }}'; end.style.height='1px'; (document.getElementById('ProductGridContainer')||w.parentElement).parentNode.insertBefore(end,(document.getElementById('ProductGridContainer')||w.parentElement).nextSibling); }
+
+      var sY=0, eY=0, off=0, L=0, W=0, stop=0;
+
+      function footTop(){
+        var f=document.querySelector('#shopify-section-footer, .footer, .site-footer, footer');
+        if(!f) return 1/0;
+        var r=f.getBoundingClientRect();
+        return r.top+(window.pageYOffset||document.documentElement.scrollTop);
       }
 
-      const state = {
-        startY: 0,
-        endY: 0,
-        offset: 0,
-        left: 0,
-        width: 0,
-        stopY: 0
-      };
+      function measure(){
+        b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked');
+        if(document.querySelector('.collection-filters__button')){
+          p.style.height=document.querySelector('.collection-filters__button').offsetHeight+'px';
+        }
+        off=H();
+        // console.log('offset height:', off);
+        var st=window.pageYOffset||document.documentElement.scrollTop;
+        sY=w.getBoundingClientRect().top+st;
+        if(window.innerWidth < 769){
+          sY=w.getBoundingClientRect().top+st+80;
+        }
+        eY=end.getBoundingClientRect().top+st;
+        stop=Math.min(eY,footTop())-1;
+        var r=b.getBoundingClientRect(); L=r.left+window.pageXOffset; W=r.width;
+        b.dataset.fixedLeft=L; b.dataset.fixedWidth=W;
+      }
 
-      function measure() {
-        // Reset styles for measurement
-        bar.style.position = 'static';
-        bar.style.left = '';
-        bar.style.width = '';
-        bar.style.top = '';
-        bar.style.transform = '';
-        bar.classList.remove('is-fixed', 'is-docked');
-
-        // Set placeholder height if exists
-        if (placeholder) {
-          const buttonEl = document.querySelector('.collection-filters__button');
-          if (buttonEl) {
-            placeholder.style.height = buttonEl.offsetHeight + 'px';
+      function apply(){
+       
+        var y=window.pageYOffset||document.documentElement.scrollTop, h=b.offsetHeight;
+        if(y+off<=sY){ if(b.classList.contains('is-fixed')||b.classList.contains('is-docked')){ b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked'); } return; }
+        var nextEl = document.querySelector('.collection-grid-section');
+        if(y+off+h>=stop){
+          var wt=w.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop);
+          
+          if (isNextSiblingInViewport(nextEl)) {
+            b.style.position='static';
+            b.classList.remove('is-fixed','is-docked');
+            return;
           }
+          b.style.position='absolute'; b.style.zIndex='5'; b.style.top=((stop-h)-wt)+'px'; b.style.left='0'; b.style.width='100%'; b.style.transform=''; b.classList.remove('is-fixed'); b.classList.add('is-docked'); return;
         }
-
-        // Calculate offset
-        state.offset = getHeaderOffset({ extraOffset: headerOffset });
-
-        // Calculate positions
-        const scrollTop = getScrollTop();
-        const wrapperRect = wrapper.getBoundingClientRect();
-        state.startY = wrapperRect.top + scrollTop;
-
-        // Add mobile offset if needed
-        if (window.innerWidth < 769) {
-          state.startY += mobileOffset;
-        }
-
-        if (endSentinel) {
-          state.endY = endSentinel.getBoundingClientRect().top + scrollTop;
-        }
-
-        state.stopY = Math.min(state.endY || Infinity, getFooterTop()) - 1;
-
-        // Measure bar dimensions
-        const barRect = bar.getBoundingClientRect();
-        state.left = barRect.left + window.pageXOffset;
-        state.width = barRect.width;
-
-        // Store in dataset for later use
-        bar.dataset.fixedLeft = state.left;
-        bar.dataset.fixedWidth = state.width;
-
-        if (onMeasure) onMeasure(state);
-      }
-
-      function apply() {
-        const scrollY = getScrollTop();
-        const barHeight = bar.offsetHeight;
-
-        // Not scrolled past start point
-        if (scrollY + state.offset <= state.startY) {
-          if (bar.classList.contains('is-fixed') || bar.classList.contains('is-docked')) {
-            bar.style.position = 'static';
-            bar.style.left = '';
-            bar.style.width = '';
-            bar.style.top = '';
-            bar.style.transform = '';
-            bar.classList.remove('is-fixed', 'is-docked');
-          }
+        var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
+        var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
+        console.log(isNextSiblingInViewport(nextEl))
+        // Block fixing if next element is in viewport
+        if (isNextSiblingInViewport(nextEl)) {
+          b.style.position = 'static';
+          b.classList.remove('is-fixed', 'is-docked');
           return;
         }
 
-        // Reached end point - dock
-        if (scrollY + state.offset + barHeight >= state.stopY) {
-          const wrapperTop = wrapper.getBoundingClientRect().top + getScrollTop();
-          bar.style.position = 'absolute';
-          bar.style.zIndex = '5';
-          bar.style.top = ((state.stopY - barHeight) - wrapperTop) + 'px';
-          bar.style.left = '0';
-          bar.style.width = '100%';
-          bar.style.transform = '';
-          bar.classList.remove('is-fixed');
-          bar.classList.add('is-docked');
-          return;
-        }
+        console.log(isNextSiblingInViewport(nextEl));
 
-        // Fixed in viewport
-        const fixedWidth = parseFloat(bar.dataset.fixedWidth) || bar.getBoundingClientRect().width;
-        const fixedLeft = parseFloat(bar.dataset.fixedLeft) || (bar.getBoundingClientRect().left + window.pageXOffset);
-
-        bar.style.position = 'fixed';
-        bar.style.zIndex = '9';
-        bar.style.top = state.offset + 'px';
-        bar.style.left = fixedLeft + 'px';
-        bar.style.width = fixedWidth + 'px';
-        bar.classList.add('is-fixed');
-        bar.classList.remove('is-docked');
-
-        // Mobile adjustments
-        if (window.innerWidth < 769) {
-          bar.style.top = (parseFloat(state.offset) - 88) + 'px';
-          bar.style.background = 'var(--color-background, #fff)';
-          bar.style.width = '100%';
-        }
-
-        if (onApply) onApply(state);
-      }
-
-      function recalculate() {
-        measure();
-        apply();
-      }
-
-      function handleScroll() {
-        const newOffset = getHeaderOffset({ extraOffset: headerOffset });
-        if (Math.abs(newOffset - state.offset) > 2) {
-          measure();
-        }
-        apply();
-      }
-
-      // Initialize
-      function init() {
-        window.addEventListener('load', recalculate, { passive: true });
-        window.addEventListener('resize', recalculate, { passive: true });
-        window.addEventListener('orientationchange', recalculate, { passive: true });
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        
-        recalculate();
-      }
-
-      function destroy() {
-        window.removeEventListener('load', recalculate);
-        window.removeEventListener('resize', recalculate);
-        window.removeEventListener('orientationchange', recalculate);
-        window.removeEventListener('scroll', handleScroll);
-      }
-
-      return {
-        init,
-        destroy,
-        measure,
-        apply,
-        recalculate,
-        getState: () => ({ ...state })
-      };
-    }
-
-    // ========================================
-    // MOBILE DRAWER MANAGER
-    // ========================================
-
-    /**
-    * Create a mobile drawer controller with sticky button
-    * @param {Object} config - Configuration object
-    * @returns {Object} Controller with methods to manage drawer
-    */
-    function createMobileDrawer(config) {
-      const {
-        sectionSelector,
-        buttonSelector,
-        drawerSelector,
-        maxWidth = 989,
-        zIndices = { header: 200, drawer: 190, button: 120, section: 110 }
-      } = config;
-
-      const mediaQuery = window.matchMedia(`(max-width: ${maxWidth}px)`);
-      const section = document.querySelector(sectionSelector);
-      
-      if (!section) {
-        console.warn('MobileDrawer: Section not found');
-        return null;
-      }
-
-      const button = section.querySelector(buttonSelector);
-      const drawer = section.querySelector(drawerSelector);
-
-      if (!button || !drawer) {
-        console.warn('MobileDrawer: Button or drawer not found');
-        return null;
-      }
-
-      // Create placeholders
-      const sectionPlaceholder = document.createElement('div');
-      const buttonPlaceholder = document.createElement('div');
-      sectionPlaceholder.style.height = '0px';
-      buttonPlaceholder.style.height = '0px';
-      section.insertAdjacentElement('afterend', sectionPlaceholder);
-      button.insertAdjacentElement('afterend', buttonPlaceholder);
-
-      const state = {
-        sectionStartY: 0,
-        buttonStartY: 0,
-        headerOffset: 0
-      };
-
-      function measure() {
-        // Reset styles
-        [section, button].forEach(el => {
-          el.style.position = '';
-          el.style.top = '';
-          el.style.left = '';
-          el.style.right = '';
-          el.style.width = '';
-          el.style.zIndex = '';
-        });
-
-        sectionPlaceholder.style.height = section.offsetHeight + 'px';
-        buttonPlaceholder.style.height = button.offsetHeight + 'px';
-
-        state.headerOffset = getHeaderOffset();
-        const scrollTop = getScrollTop();
-        state.sectionStartY = section.getBoundingClientRect().top + scrollTop;
-        state.buttonStartY = button.getBoundingClientRect().top + scrollTop;
-      }
-
-      function makeSticky(element, startY, zIndex) {
-        const scrollTop = getScrollTop();
-        
-        if (scrollTop + state.headerOffset > startY) {
-          element.style.position = 'fixed';
-          element.style.top = state.headerOffset + 'px';
-          element.style.left = '0';
-          element.style.right = '0';
-          element.style.width = '100%';
-          element.style.zIndex = zIndex;
-          element.style.background = 'var(--color-background, #fff)';
-        } else {
-          element.style.position = '';
-          element.style.top = '';
-          element.style.left = '';
-          element.style.right = '';
-          element.style.width = '';
-          element.style.zIndex = '';
-          element.style.background = '';
-        }
-      }
-
-      function styleDrawer() {
-        if (!mediaQuery.matches) return;
-
-        const isOpen = drawer.hasAttribute('open') || drawer.classList.contains('is-open');
-        const offset = getHeaderOffset();
-
-        if (isOpen) {
-          drawer.style.position = 'fixed';
-          drawer.style.top = offset + 'px';
-          drawer.style.left = '0';
-          drawer.style.right = '0';
-          drawer.style.height = `calc(100vh - ${offset}px)`;
-          drawer.style.maxHeight = drawer.style.height;
-          drawer.style.overflow = 'auto';
-          drawer.style.webkitOverflowScrolling = 'touch';
-          drawer.style.zIndex = zIndices.drawer;
-          button.style.zIndex = zIndices.button;
-        } else {
-          drawer.style.position = 'fixed';
-          drawer.style.top = offset + 'px';
-          drawer.style.left = '0';
-          drawer.style.right = '0';
-          drawer.style.height = '0';
-          drawer.style.maxHeight = '0';
-          drawer.style.overflow = 'hidden';
-          drawer.style.width = '0';
-          drawer.style.opacity = '0';
-          drawer.style.visibility = 'hidden';
-          drawer.style.pointerEvents = 'none';
-          drawer.style.zIndex = zIndices.drawer;
-        }
-      }
-
-      function tick() {
-        if (!mediaQuery.matches) {
-          [section, button].forEach(el => { el.style = ''; });
-          sectionPlaceholder.style.height = '0px';
-          buttonPlaceholder.style.height = '0px';
-          return;
-        }
-
-        makeSticky(section, state.sectionStartY, zIndices.section);
-        makeSticky(button, state.buttonStartY, zIndices.button);
-        styleDrawer();
-      }
-
-      function init() {
-        window.addEventListener('load', () => { measure(); tick(); });
-        window.addEventListener('resize', () => { measure(); tick(); });
-        window.addEventListener('scroll', tick, { passive: true });
-        
-        const observer = new MutationObserver(styleDrawer);
-        observer.observe(drawer, { attributes: true });
-
-        measure();
-        tick();
-
-        return () => observer.disconnect();
-      }
-
-      return { init, measure, tick, getState: () => ({ ...state }) };
-    }
-
-    // ========================================
-    // STICKY TITLE CAROUSEL
-    // ========================================
-
-    /**
-    * Create sticky title carousel controllers
-    * @param {Object} config - Configuration object
-    * @returns {Array} Array of controllers
-    */
-    function createStickyTitles(config = {}) {
-      const {
-        selector = '.shopify-section.title-carousel.with-spacing',
-        zIndex = 9,
-        buffer = 1
-      } = config;
-
-      const elements = Array.from(document.querySelectorAll(selector));
-      if (!elements.length) return [];
-
-      const controllers = elements.map(element => {
-        const placeholder = document.createElement('div');
-        placeholder.style.height = '0px';
-        element.insertAdjacentElement('afterend', placeholder);
-
-        const state = {
-          element,
-          placeholder,
-          startY: 0,
-          stopY: 0,
-          headerOffset: 0
-        };
-
-        function measure() {
-          element.style.position = '';
-          element.style.top = '';
-          element.style.left = '';
-          element.style.right = '';
-          element.style.width = '';
-          element.style.zIndex = '';
-          element.style.background = '';
-
-          state.headerOffset = getHeaderOffset();
-          const scrollTop = getScrollTop();
-          const rect = element.getBoundingClientRect();
-          state.startY = rect.top + scrollTop;
-          state.stopY = getFooterTop() - buffer;
-        }
-
-        function apply() {
-          const scrollY = getScrollTop();
-          const height = element.offsetHeight;
-          const offset = state.headerOffset;
-
-          // Not scrolled past start
-          if (scrollY + offset <= state.startY) {
-            if (element.style.position === 'fixed' || element.style.position === 'absolute') {
-              element.style.position = '';
-              element.style.top = '';
-              element.style.left = '';
-              element.style.right = '';
-              element.style.width = '';
-              element.style.zIndex = '';
-              element.style.background = '';
-            }
+        // Allow sticky
+        b.style.position='fixed';
+        b.style.zIndex='9';
+        b.style.top=off+'px';
+        b.style.left=lv+'px';
+        b.style.width=wv+'px';
+        b.classList.add('is-fixed');
+        b.classList.remove('is-docked');
+        if(window.innerWidth < 769){
+          var nextEl = document.querySelector('.collection-grid-section');
+          
+          if (isNextSiblingInViewport(nextEl)) {
+            b.style.position='static';
+            b.classList.remove('is-fixed','is-docked');
             return;
           }
 
-          // Reached stop point
-          if (scrollY + offset + height >= state.stopY) {
-            const parentTop = element.parentElement.getBoundingClientRect().top + getScrollTop();
-            element.style.position = 'absolute';
-            element.style.top = ((state.stopY - height) - parentTop) + 'px';
-            element.style.left = '0';
-            element.style.right = '0';
-            element.style.width = '100%';
-            element.style.zIndex = zIndex;
-            element.style.background = 'var(--color-background, #fff)';
-            return;
-          }
-
-          // Fixed in viewport
-          element.style.position = 'fixed';
-          element.style.top = offset + '60px';
-          element.style.left = '0';
-          element.style.right = '0';
-          element.style.width = '100%';
-          element.style.zIndex = zIndex;
-          element.style.background = 'var(--color-background, #fff)';
+          b.style.position='fixed';
+          b.style.zIndex='9';
+          b.style.top=(parseFloat(off) - 88) + 'px';
+          b.style.background='var(--color-background, #fff)';
+          b.style.left=lv+'px';
+          b.style.width='100%';
+          b.classList.add('is-fixed');
+          b.classList.remove('is-docked');
         }
-
-        return { measure, apply, getState: () => ({ ...state }) };
-      });
-
-      function recalculateAll() {
-        controllers.forEach(c => c.measure());
-        controllers.forEach(c => c.apply());
       }
 
-      function handleScroll() {
-        const oldOffset = controllers[0]?.getState().headerOffset || 0;
-        const newOffset = getHeaderOffset();
-        if (Math.abs(newOffset - oldOffset) > 2) {
-          controllers.forEach(c => c.measure());
-        }
-        controllers.forEach(c => c.apply());
-      }
+      function recalc(){ measure(); apply(); }
+      window.addEventListener('load',recalc,{passive:true});
+      window.addEventListener('resize',recalc,{passive:true});
+      window.addEventListener('orientationchange',recalc,{passive:true});
+      window.addEventListener('scroll',function(){ var nh=H(); if(Math.abs(nh-off)>2) measure(); apply(); },{passive:true});
+      measure(); apply();
 
-      function init() {
-        window.addEventListener('load', recalculateAll, { passive: true });
-        window.addEventListener('resize', recalculateAll, { passive: true });
-        window.addEventListener('orientationchange', recalculateAll, { passive: true });
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        recalculateAll();
-      }
-
-      return { controllers, init };
-    }
-
-    // ========================================
-    // UTILITY FUNCTIONS
-    // ========================================
-
-    /**
-    * Clear all filters (utility function)
-    * @param {Event} event - Event object
-    */
-    window.clearAll = function(event) {
-      if (event) event.preventDefault();
-      const filters = document.querySelector('collection-filters');
-      if (filters && typeof filters.clearAllFilters === 'function') {
-        filters.clearAllFilters();
-      }
+      window.clearAll=function(e){ e&&e.preventDefault(); document.querySelector('collection-filters')?.clearAllFilters?.(); };
     };
+    window.scrollUtils1();
+  </script>
+  <script>
+    window.scrollUtils2 = function() {
+      var mq=window.matchMedia('(max-width: 989px)');
+      var HDR=200, DRZ=190, BTN=120, SEC=110;
+      var sec=document.querySelector('.head-slide-wrap--main');
+      if(!sec) return;
+      var btn=sec.querySelector('.collection-filters__button.hide-desktop');
+      var drawer=sec.querySelector('collection-filters');
+      if(!btn||!drawer) return;
 
-    // ========================================
-    // AUTO-INITIALIZE ALL COMPONENTS
-    // ========================================
+      var ph1=document.createElement('div');
+      var ph2=document.createElement('div');
+      ph1.style.height='0px';
+      ph2.style.height='0px';
+      sec.insertAdjacentElement('afterend',ph1);
+      btn.insertAdjacentElement('afterend',ph2);
 
-    const activeControllers = [];
+      function hoff(){
+        var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+        var a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+        var n=document.querySelector('.header__navigation'); var nh=0;
+        if(n){var cs=getComputedStyle(n); if(cs.display!=='none'&&/(fixed|sticky)/.test(cs.position)) nh=n.offsetHeight;}
+        return (h?h.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh;
+      }
 
-    function initAll() {
-      // Clean up existing controllers
-      destroyAll();
+      var s1=0, s2=0, H=0;
 
-      // Initialize sticky filter bars (data-sticky-bar)
-      document.querySelectorAll('[data-sticky-bar]').forEach(bar => {
-        const sectionId = bar.dataset.stickyBar;
-        const wrapper = document.querySelector(`[data-sticky-wrapper="${sectionId}"]`);
-        const placeholder = document.querySelector(`[data-sticky-placeholder="${sectionId}"]`);
-        
-        if (wrapper) {
-          const controller = createStickyElement({
-            wrapperSelector: `[data-sticky-wrapper="${sectionId}"]`,
-            barSelector: `[data-sticky-bar="${sectionId}"]`,
-            endSentinelSelector: `sticky-end-sentinel-${sectionId}`,
-            placeholderSelector: placeholder ? `[data-sticky-placeholder="${sectionId}"]` : null,
-            headerOffset: parseInt(bar.dataset.headerOffset || '88'),
-            mobileOffset: parseInt(bar.dataset.mobileOffset || '80')
-          });
-          if (controller) {
-            controller.init();
-            activeControllers.push(controller);
-          }
-        }
-      });
+      function measure(){
+        [sec,btn].forEach(function(el){ el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; });
+        ph1.style.height=sec.offsetHeight+'px'; ph2.style.height=btn.offsetHeight+'px';
+        H=hoff(); var st=window.pageYOffset||document.documentElement.scrollTop;
+        s1=sec.getBoundingClientRect().top+st; s2=btn.getBoundingClientRect().top+st;
+      }
 
-      // Initialize mobile drawers (data-mobile-drawer)
-      document.querySelectorAll('[data-mobile-drawer]').forEach(section => {
-        const drawerId = section.dataset.mobileDrawer;
-        const buttonSelector = section.dataset.buttonSelector || '.collection-filters__button.hide-desktop';
-        const drawerSelector = section.dataset.drawerSelector || 'collection-filters';
-        
-        const controller = createMobileDrawer({
-          sectionSelector: `[data-mobile-drawer="${drawerId}"]`,
-          buttonSelector,
-          drawerSelector,
-          maxWidth: parseInt(section.dataset.maxWidth || '989')
-        });
-        if (controller) {
-          controller.init();
-          activeControllers.push({ destroy: controller.init });
-        }
-      });
+      function stick(el,start,z){
+        var st=window.pageYOffset||document.documentElement.scrollTop;
+        if(st+H>start){ el.style.position='fixed'; el.style.top=H+'px'; el.style.left=0; el.style.right=0; el.style.width='100%'; el.style.zIndex=z; el.style.background='var(--color-background, #fff)'; }
+        else { el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background=''; }
+      }
 
-      // Initialize sticky titles (data-sticky-title or default selector)
-      const titleSelector = document.querySelector('[data-sticky-title]') 
-        ? '[data-sticky-title]' 
-        : '.shopify-section.title-carousel.with-spacing';
-      
-      const titleElements = document.querySelectorAll(titleSelector);
-      if (titleElements.length > 0) {
-        const controller = createStickyTitles({
-          selector: titleSelector,
-          zIndex: 9
-        });
-        if (controller) {
-          controller.init();
-          activeControllers.push(controller);
+      function styleDrawer(){
+        if(!mq.matches) return;
+        var open=drawer.hasAttribute('open')||drawer.classList.contains('is-open');
+        var off=hoff();
+        if(open){
+          drawer.style.position='fixed'; drawer.style.top=off+'px'; drawer.style.left=0; drawer.style.right=0;
+          drawer.style.height='calc(100vh - '+off+'px)'; drawer.style.maxHeight=drawer.style.height;
+          drawer.style.overflow='auto'; drawer.style.webkitOverflowScrolling='touch'; drawer.style.zIndex=DRZ;
+          btn.style.zIndex=BTN;
+        }else{
+          drawer.style.position='fixed'; drawer.style.top=off+'px'; drawer.style.left='0'; drawer.style.right='0';
+          drawer.style.height='0'; drawer.style.maxHeight='0'; drawer.style.overflow='hidden'; drawer.style.width='0';
+          drawer.style.opacity='0'; drawer.style.visibility='hidden'; drawer.style.pointerEvents='none'; drawer.style.zIndex=DRZ;
         }
       }
-    }
 
-    function destroyAll() {
-      activeControllers.forEach(controller => {
-        if (controller && typeof controller.destroy === 'function') {
-          controller.destroy();
-        }
-      });
-      activeControllers.length = 0;
-    }
-
-    function refresh() {
-      initAll();
-    }
-
-    // ========================================
-    // PUBLIC API
-    // ========================================
-
-    return function(action) {
-      if (action === 'destroy') {
-        destroyAll();
-      } else if (action === 'refresh' || !action) {
-        refresh();
+      function tick(){
+        if(!mq.matches){ [sec,btn].forEach(function(el){ el.style=''; }); ph1.style.height='0px'; ph2.style.height='0px'; return; }
+        stick(sec,s1,SEC); stick(btn,s2,BTN); styleDrawer();
       }
-      
-      // Return utility methods
-      return {
-        getHeaderOffset,
-        getFooterTop,
-        getScrollTop,
-        createStickyElement,
-        createMobileDrawer,
-        createStickyTitles,
-        destroy: destroyAll,
-        refresh
-      };
+
+      window.addEventListener('load',function(){ measure(); tick(); });
+      window.addEventListener('resize',function(){ measure(); tick(); });
+      window.addEventListener('scroll',tick,{passive:true});
+      new MutationObserver(styleDrawer).observe(drawer,{attributes:true});
     };
-  })();
+    window.scrollUtils2();
+  </script>
+  <script>
+    window.scrollUtils3 = function() {
+      var TITLE_Z=9, BUF=1;
+      function hoff(){
+        var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+        var a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+        var n=document.querySelector('.header__navigation'); var nh=0;
+        if(n){var cs=getComputedStyle(n); if(cs.display!=='none'&&/(fixed|sticky)/.test(cs.position)) nh=n.offsetHeight;}
+        var desk=window.matchMedia('(min-width: 990px)').matches;
+        // return (h?h.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh+(desk?100:0);
+      }
+      function fTop(){
+        var f=document.querySelector('#shopify-section-footer, .footer, .site-footer, footer'); if(!f) return 1/0;
+        var r=f.getBoundingClientRect(); return r.top+(window.pageYOffset||document.documentElement.scrollTop);
+      }
+      var els=[].slice.call(document.querySelectorAll('.shopify-section.title-carousel.with-spacing')); if(!els.length) return;
+      var ms=els.map(function(el){ var ph=document.createElement('div'); ph.style.height='0px'; el.insertAdjacentElement('afterend',ph); return {el:el, ph:ph, s:0, stop:0, H:0}; });
 
-  // Auto-initialize on load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => window.StickyUtils());
-  } else {
-    window.StickyUtils();
-  }
-</script>
+      function measure(m){
+        var el=m.el; el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background='';
+        // m.ph.style.height=el.offsetHeight+'px'; m.H=hoff();
+        var st=window.pageYOffset||document.documentElement.scrollTop; var box=el.getBoundingClientRect();
+        m.s=box.top+st; m.stop=fTop()-BUF;
+      }
+      function apply(m){
+
+        var el=m.el, y=window.pageYOffset||document.documentElement.scrollTop, H=m.H, h=el.offsetHeight;
+        var nextEl = document.querySelector('.collection-grid-section');
+          
+        if (isNextSiblingInViewport(nextEl)) {
+          b.style.position='static';
+          b.classList.remove('is-fixed','is-docked');
+          return;
+        }
+
+        if(y+H<=m.s){ if(el.style.position==='fixed'||el.style.position==='absolute'){ el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background=''; } return; }
+        
+        if(y+H+h>=m.stop){ var pt=el.parentElement.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop); el.style.position='absolute'; el.style.top=((m.stop-h)-pt)+'px'; el.style.left='0'; el.style.right='0'; el.style.width='100%'; el.style.zIndex=TITLE_Z; el.style.background='var(--color-background, #fff)'; return; }
+        el.style.position='fixed'; el.style.top=H+'60px'; el.style.left='0'; el.style.right='0'; el.style.width='100%'; el.style.zIndex=TITLE_Z; el.style.background='var(--color-background, #fff)';
+      }
+      function recalc(){ ms.forEach(measure); ms.forEach(apply); }
+      window.addEventListener('load',recalc,{passive:true});
+      window.addEventListener('resize',recalc,{passive:true});
+      window.addEventListener('orientationchange',recalc,{passive:true});
+      window.addEventListener('scroll',function(){ var o=ms[0].H, n=hoff(); if(Math.abs(n-o)>2) ms.forEach(measure); ms.forEach(apply); },{passive:true});
+      recalc();
+    };
+    window.scrollUtils3();
+  </script>
 {% schema %}
 {
   "name": "Collection sticky filters",
