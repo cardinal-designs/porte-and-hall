@@ -207,6 +207,7 @@
         var y=window.pageYOffset||document.documentElement.scrollTop, h=b.offsetHeight;
         if(y+off<=sY){ if(b.classList.contains('is-fixed')||b.classList.contains('is-docked')){ b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked'); } return; }
         var nextEl = document.querySelector('.collection-grid-section');
+        var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
         if(y+off+h>=stop){
           var wt=w.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop);
           
@@ -217,7 +218,7 @@
           }
           b.style.position='fixed'; b.style.zIndex='5'; b.style.top=off+'px'; b.style.left=lv+'px'; b.style.width=wv+'px'; b.style.transform=''; b.classList.remove('is-fixed'); b.classList.add('is-docked'); return;
         }
-        var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
+        
         var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
         console.log(isNextSiblingInViewport(nextEl))
         // Block fixing if next element is in viewport
