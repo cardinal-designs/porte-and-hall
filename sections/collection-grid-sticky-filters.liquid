@@ -200,6 +200,8 @@
         var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
         var nextEl = document.querySelector(".collection-grid-section")?.nextElementSibling;
 
+        console.log(isInViewport(nextEl));
+
         // Block fixing if next element is in viewport
         if (isInViewport(nextEl)) {
           b.style.position = 'static';
