@@ -207,6 +207,7 @@
         if(y+off+h>=stop){
           var wt=w.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop);
           var nextEl = document.querySelector('.collection-grid-section');
+          console.log(isNextSiblingInViewport(nextEl))
           if (isNextSiblingInViewport(nextEl)) {
             b.style.position='static';
             b.classList.remove('is-fixed','is-docked');
