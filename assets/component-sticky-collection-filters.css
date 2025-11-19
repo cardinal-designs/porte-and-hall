@@ -61,7 +61,7 @@
   }
 
   .sticky-filters-bar.is-fixed{
-    top: 180px !important;
+    /* top: 180px !important; */
     /* height: 100% !important;
     overflow: hidden !important; */
   }
@@ -75,7 +75,7 @@
 @media (min-width: 1025px){
 
   .sticky-filters-bar.is-fixed{
-    top: 210px !important;
+    /* top: 210px !important; */
   }
 
 }
