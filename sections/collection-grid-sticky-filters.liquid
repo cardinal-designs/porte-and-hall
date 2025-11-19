@@ -162,7 +162,7 @@
       
       if(!w||!b||!p) return;
 
-      productGrid.style.minHeight = `${filterBar.clientHeight}px`;
+      productGrid.style.minHeight = `${filterBar.clientHeight}`;
 
       function H(){
         var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
@@ -228,6 +228,8 @@
           b.classList.remove('is-fixed', 'is-docked');
           return;
         }
+
+        console.log(isNextSiblingInViewport(nextEl));
 
         // Allow sticky
         b.style.position='fixed';
