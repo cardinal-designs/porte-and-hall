@@ -146,7 +146,7 @@
 
       while (sibling) {
         const rect = sibling.getBoundingClientRect();
-        if (rect.top + offset < window.innerHeight && rect.bottom > 0) {
+        if ((rect.top + 40) + offset < window.innerHeight && rect.bottom > 0) {
           return true; // this sibling is in viewport
         }
         sibling = sibling.nextElementSibling;
