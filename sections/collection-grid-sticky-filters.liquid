@@ -133,7 +133,7 @@
 </div>
 
 
-  <script>
+  {% comment %} <script>
     (function(){
       var w=document.getElementById('sticky-wrap-{{ section.id }}');
       var b=document.getElementById('sticky-bar-{{ section.id }}');
@@ -213,7 +213,7 @@
 
       window.clearAll=function(e){ e&&e.preventDefault(); document.querySelector('collection-filters')?.clearAllFilters?.(); };
     })();
-    </script>
+    </script> {% endcomment %}
 
     <script>
     (function(){
