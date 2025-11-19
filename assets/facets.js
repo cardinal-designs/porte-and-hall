@@ -29,8 +29,6 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderPage(searchParams, event, updateURLHash = true) {
-    var productGrid = document.getElementById('ProductGridContainer'), w = document.querySelector('.sticky-filters-wrap');
-    productGrid.style.minHeight = `${w.clientHeight}px`;
     this.searchParams = searchParams
     FacetFiltersForm.searchParamsPrev = searchParams;
     const sections = FacetFiltersForm.getSections();
@@ -92,6 +90,8 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderFilters(html, event) {
+    var productGrid = document.getElementById('ProductGridContainer'), w = document.querySelector('.sticky-filters-wrap');
+    productGrid.style.minHeight = `${w.clientHeight}px`;
     const parsedHTML = new DOMParser().parseFromString(html, 'text/html');
 
     const facetDetailsElements =
