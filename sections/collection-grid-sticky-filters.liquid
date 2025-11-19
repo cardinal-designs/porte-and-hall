@@ -134,13 +134,25 @@
 
 
   <script>
-    function isInViewport(el) {
+    /**
+    * Check if the next sibling(s) of a given element are in the viewport
+    * @param {Element} el - The reference element
+    * @param {number} offset - Optional offset to tweak visibility detection
+    * @returns {boolean} - true if any next sibling is in viewport
+    */
+    function isNextSiblingInViewport(el, offset = 0) {
       if (!el) return false;
-      const r = el.getBoundingClientRect();
-      return (
-        r.top < window.innerHeight &&
-        r.bottom > 0
-      );
+      let sibling = el.nextElementSibling;
+
+      while (sibling) {
+        const rect = sibling.getBoundingClientRect();
+        if (rect.top + offset < window.innerHeight && rect.bottom > 0) {
+          return true; // this sibling is in viewport
+        }
+        sibling = sibling.nextElementSibling;
+      }
+
+      return false; // no siblings in viewport
     }
     (function(){
       var w=document.getElementById('sticky-wrap-{{ section.id }}');
@@ -221,7 +233,7 @@
         b.classList.add('is-fixed');
         b.classList.remove('is-docked');
         if(window.innerWidth < 769){
-          var nextEl = document.querySelector('.collection-grid-section');;
+          var nextEl = document.querySelector('.collection-grid-section');
           
           if (isNextSiblingInViewport(nextEl)) {
             b.style.position='static';
