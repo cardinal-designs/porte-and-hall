@@ -181,6 +181,15 @@
       }
 
       function apply(){
+        // Fix: If page is too short (few products), disable sticky to prevent layout break
+          const pageHeight = document.body.scrollHeight;
+          const viewportHeight = window.innerHeight;
+
+          if (pageHeight < viewportHeight + b.offsetHeight + 50) {
+            b.style.position = 'static';
+            b.classList.remove('is-fixed', 'is-docked');
+            return;
+          }
         var y=window.pageYOffset||document.documentElement.scrollTop, h=b.offsetHeight;
         if(y+off<=sY){ if(b.classList.contains('is-fixed')||b.classList.contains('is-docked')){ b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked'); } return; }
         if(y+off+h>=stop){
@@ -303,7 +312,7 @@
         var el=m.el, y=window.pageYOffset||document.documentElement.scrollTop, H=m.H, h=el.offsetHeight;
         if(y+H<=m.s){ if(el.style.position==='fixed'||el.style.position==='absolute'){ el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background=''; } return; }
         if(y+H+h>=m.stop){ var pt=el.parentElement.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop); el.style.position='absolute'; el.style.top=((m.stop-h)-pt)+'px'; el.style.left='0'; el.style.right='0'; el.style.width='100%'; el.style.zIndex=TITLE_Z; el.style.background='var(--color-background, #fff)'; return; }
-        {% comment %} el.style.position='fixed'; el.style.top=H+'60px'; el.style.left='0'; el.style.right='0'; el.style.width='100%';{% endcomment %} el.style.zIndex=TITLE_Z; el.style.background='var(--color-background, #fff)'; 
+        el.style.position='fixed'; el.style.top=H+'60px'; el.style.left='0'; el.style.right='0'; el.style.width='100%'; el.style.zIndex=TITLE_Z; el.style.background='var(--color-background, #fff)';
       }
       function recalc(){ ms.forEach(measure); ms.forEach(apply); }
       window.addEventListener('load',recalc,{passive:true});
