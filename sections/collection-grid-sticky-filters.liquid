@@ -195,7 +195,7 @@
           var canFix = true;
 
           if (collectionEl) {
-            canFix = collectionEl.clientHeight > b.clientHeight;
+            canFix = collectionEl.clientHeight > (b.clientHeight + 200);
           }
 
           console.log(collectionEl.clientHeight, b.clientHeight, canFix);
@@ -221,7 +221,7 @@
           var canFix = true;
 
           if (collectionEl) {
-            canFix = collectionEl.clientHeight > b.clientHeight;
+            canFix = collectionEl.clientHeight > (b.clientHeight + 200);
           }
 
           if (!canFix) {
