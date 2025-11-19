@@ -197,6 +197,9 @@
       }
 
       function recalc(){ measure(); apply(); }
+      window.recalc = function() {
+        measure(); apply();
+      }
       window.addEventListener('load',recalc,{passive:true});
       window.addEventListener('resize',recalc,{passive:true});
       window.addEventListener('orientationchange',recalc,{passive:true});
