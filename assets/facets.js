@@ -29,10 +29,7 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderPage(searchParams, event, updateURLHash = true) {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.dispatchEvent(new Event('resize'));
     this.searchParams = searchParams
     FacetFiltersForm.searchParamsPrev = searchParams;
     const sections = FacetFiltersForm.getSections();
