@@ -158,7 +158,10 @@
       var w=document.getElementById('sticky-wrap-{{ section.id }}');
       var b=document.getElementById('sticky-bar-{{ section.id }}');
       var p=document.getElementById('sticky-placeholder-{{ section.id }}');
+      var productGrid = document.getElementById('ProductGridContainer');
       if(!w||!b||!p) return;
+
+      productGrid.style.minHeight = `${w.clientHeight}px`;
 
       function H(){
         var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
