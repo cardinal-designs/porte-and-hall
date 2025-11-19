@@ -180,6 +180,15 @@
         b.dataset.fixedLeft=L; b.dataset.fixedWidth=W;
       }
 
+      function isInViewport(el) {
+        if (!el) return false;
+        const r = el.getBoundingClientRect();
+        return (
+          r.top < window.innerHeight &&
+          r.bottom > 0
+        );
+      }
+
       function apply(){
        
         var y=window.pageYOffset||document.documentElement.scrollTop, h=b.offsetHeight;
@@ -190,10 +199,41 @@
         }
         var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
         var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
-        b.style.position='fixed'; b.style.zIndex='9'; b.style.top=off+'px'; b.style.left=lv+'px'; b.style.width=wv+'px'; b.classList.add('is-fixed'); b.classList.remove('is-docked');
+        var nextEl = document.querySelector(".collection-grid-section")?.nextElementSibling;
+
+        // Block fixing if next element is in viewport
+        if (isInViewport(nextEl)) {
+          b.style.position = 'static';
+          b.classList.remove('is-fixed', 'is-docked');
+          return;
+        }
+
+        // Allow sticky
+        b.style.position='fixed';
+        b.style.zIndex='9';
+        b.style.top=off+'px';
+        b.style.left=lv+'px';
+        b.style.width=wv+'px';
+        b.classList.add('is-fixed');
+        b.classList.remove('is-docked');
         
         if(window.innerWidth < 769){
-          b.style.position='fixed'; b.style.zIndex='9'; b.style.top=(parseFloat(off) - 88) + 'px'; b.style.background='var(--color-background, #fff)';b.style.left=lv+'px'; b.style.width='100%'; b.classList.add('is-fixed'); b.classList.remove('is-docked');
+          var nextEl = document.querySelector(".collection-grid-section")?.nextElementSibling;
+          
+          if (isInViewport(nextEl)) {
+            b.style.position='static';
+            b.classList.remove('is-fixed','is-docked');
+            return;
+          }
+
+          b.style.position='fixed';
+          b.style.zIndex='9';
+          b.style.top=(parseFloat(off) - 88) + 'px';
+          b.style.background='var(--color-background, #fff)';
+          b.style.left=lv+'px';
+          b.style.width='100%';
+          b.classList.add('is-fixed');
+          b.classList.remove('is-docked');
         }
       }
 
