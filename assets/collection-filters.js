@@ -233,9 +233,9 @@ class collectionFilters extends HTMLElement {
     }
 
     url = location.pathname + '?' + searchParams.toString();
-
-    console.log("url", url)
-
+    if (history.replaceState) {
+    window.history.pushState({ path: url }, '', url);
+  }
 
     // Fetch and replace sections
     this.enableLoading();
