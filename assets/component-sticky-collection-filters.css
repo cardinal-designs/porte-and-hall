@@ -62,6 +62,8 @@
 
   .sticky-filters-bar.is-fixed{
     top: 180px !important;
+    height: 100% !important;
+    overflow: hidden !important;
   }
 
   .collection-filters__filters .js-clear-all-filters {
