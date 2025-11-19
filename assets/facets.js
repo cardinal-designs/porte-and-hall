@@ -29,7 +29,8 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderPage(searchParams, event, updateURLHash = true) {
-    window.dispatchEvent(new Event('resize'));
+    var productGrid = document.getElementById('ProductGridContainer'), w = document.querySelector('.sticky-filters-wrap');
+    productGrid.style.minHeight = `${w.clientHeight}px`;
     this.searchParams = searchParams
     FacetFiltersForm.searchParamsPrev = searchParams;
     const sections = FacetFiltersForm.getSections();
