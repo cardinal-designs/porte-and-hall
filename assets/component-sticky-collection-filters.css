@@ -12,7 +12,7 @@
 .collection-grid__inner { overflow: visible !important; }
 
 /* ---------- Desktop (left sidebar) ---------- */
-.sticky-filters-wrap { position: relative; width: 100%; max-width: 100%;  max-height: 900px; overflow: hidden; }
+.sticky-filters-wrap { position: relative; width: 100%; max-width: 100%;  max-height: 900px; overflow: auto; }
 .sticky-filters-placeholder { height: 0; } /* set via JS */
 
 @media (min-width: 769px){
