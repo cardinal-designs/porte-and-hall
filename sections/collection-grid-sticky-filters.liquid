@@ -181,15 +181,7 @@
       }
 
       function apply(){
-        // Fix: If page is too short (few products), disable sticky to prevent layout break
-          const pageHeight = document.body.scrollHeight;
-          const viewportHeight = window.innerHeight;
-
-          if (pageHeight < viewportHeight + b.offsetHeight + 50) {
-            b.style.position = 'static';
-            b.classList.remove('is-fixed', 'is-docked');
-            return;
-          }
+       
         var y=window.pageYOffset||document.documentElement.scrollTop, h=b.offsetHeight;
         if(y+off<=sY){ if(b.classList.contains('is-fixed')||b.classList.contains('is-docked')){ b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked'); } return; }
         if(y+off+h>=stop){
