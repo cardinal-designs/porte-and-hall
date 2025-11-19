@@ -214,7 +214,7 @@ class collectionFilters extends HTMLElement {
       formData.delete(val)
     })
 
-    console.log("after", ...formData)
+    // console.log("after", ...formData)
 
     // const searchParams = new URLSearchParams(formData).toString();
     
