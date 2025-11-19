@@ -259,7 +259,9 @@ class collectionFilters extends HTMLElement {
           content.innerHTML = newContent;
         });
         this.disableLoading();
-        window.StickyUtils();
+        window.scrollUtils1();
+        window.scrollUtils2();
+        window.scrollUtils3();
       })
       .catch(() => {
         this.disableLoading();
