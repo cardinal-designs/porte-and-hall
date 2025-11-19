@@ -134,6 +134,15 @@
 
 
   <script>
+    function isInViewport(el) {
+      if (!el) return false;
+      const r = el.getBoundingClientRect();
+      return (
+        r.top < window.innerHeight &&
+        r.bottom > 0
+      );
+    }
+
     (function(){
       var w=document.getElementById('sticky-wrap-{{ section.id }}');
       var b=document.getElementById('sticky-bar-{{ section.id }}');
@@ -180,22 +189,19 @@
         b.dataset.fixedLeft=L; b.dataset.fixedWidth=W;
       }
 
-      function isInViewport(el) {
-        if (!el) return false;
-        const r = el.getBoundingClientRect();
-        return (
-          r.top < window.innerHeight &&
-          r.bottom > 0
-        );
-      }
-
       function apply(){
-       
         var y=window.pageYOffset||document.documentElement.scrollTop, h=b.offsetHeight;
         if(y+off<=sY){ if(b.classList.contains('is-fixed')||b.classList.contains('is-docked')){ b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked'); } return; }
         if(y+off+h>=stop){
           var wt=w.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop);
-          console.log("test")
+          var nextEl = document.querySelector(".collection-grid-section")?.nextElementSibling;
+
+          // Block fixing if next element is in viewport
+          if (isInViewport(nextEl)) {
+            b.style.position = 'static';
+            b.classList.remove('is-fixed', 'is-docked');
+            return;
+          }
           b.style.position='absolute'; b.style.zIndex='5'; b.style.top=((stop-h)-wt)+'px'; b.style.left='0'; b.style.width='100%'; b.style.transform=''; b.classList.remove('is-fixed'); b.classList.add('is-docked'); return;
         }
         var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
