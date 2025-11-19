@@ -137,7 +137,7 @@
     function isInViewport(el) {
       if (!el) return false;
       const r = el.getBoundingClientRect();
-      console.log(r.top, window.innerHeight, r.bottom)
+      console.log((r.top - 100), window.innerHeight, r.bottom)
       return (
         (r.top - 100) < window.innerHeight &&
         r.bottom > 0
