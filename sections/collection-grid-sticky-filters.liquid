@@ -190,54 +190,10 @@
         }
         var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
         var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
-        // NEW CONDITION: Only allow is-fixed if bar height > .collection height
-          var collectionEl = document.querySelector('.collection');
-          var canFix = true;
-
-          if (collectionEl) {
-            canFix = collectionEl.clientHeight > (b.clientHeight + 200);
-          }
-
-          console.log(collectionEl.clientHeight, b.clientHeight, canFix);
-
-          if (!canFix) {
-            // If not allowed to fix, reset everything
-            b.style.position = 'static';
-            b.classList.remove('is-fixed', 'is-docked');
-            return;
-          }
-
-          // Original fixed behavior
-          b.style.position='fixed';
-          b.style.zIndex='9';
-          b.style.top=off+'px';
-          b.style.left=lv+'px';
-          b.style.width=wv+'px';
-          b.classList.add('is-fixed');
-          b.classList.remove('is-docked');
+        b.style.position='fixed'; b.style.zIndex='9'; b.style.top=off+'px'; b.style.left=lv+'px'; b.style.width=wv+'px'; b.classList.add('is-fixed'); b.classList.remove('is-docked');
         
         if(window.innerWidth < 769){
-          var collectionEl = document.querySelector('.collection');
-          var canFix = true;
-
-          if (collectionEl) {
-            canFix = collectionEl.clientHeight > (b.clientHeight + 200);
-          }
-
-          if (!canFix) {
-            b.style.position = 'static';
-            b.classList.remove('is-fixed', 'is-docked');
-            return;
-          }
-
-          b.style.position='fixed';
-          b.style.zIndex='9';
-          b.style.top=(parseFloat(off) - 88) + 'px';
-          b.style.background='var(--color-background, #fff)';
-          b.style.left=lv+'px';
-          b.style.width='100%';
-          b.classList.add('is-fixed');
-          b.classList.remove('is-docked');
+          b.style.position='fixed'; b.style.zIndex='9'; b.style.top=(parseFloat(off) - 88) + 'px'; b.style.background='var(--color-background, #fff)';b.style.left=lv+'px'; b.style.width='100%'; b.classList.add('is-fixed'); b.classList.remove('is-docked');
         }
       }
 
