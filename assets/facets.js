@@ -49,7 +49,7 @@ class FacetFiltersForm extends HTMLElement {
         FacetFiltersForm.renderSectionFromCache(filterDataUrl, event) :
         FacetFiltersForm.renderSectionFromFetch(url, event);
     });
-
+    window.recalc();
     if (updateURLHash) FacetFiltersForm.updateURLHash(searchParams);
   }
 
