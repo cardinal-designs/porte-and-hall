@@ -220,8 +220,6 @@
           b.style.position='fixed'; b.style.zIndex='5'; b.style.top=off+'px'; b.style.left=lv+'px'; b.style.width=wv+'px'; b.style.transform=''; b.classList.remove('is-fixed'); b.classList.add('is-docked'); return;
         }
         
-        
-        console.log(isNextSiblingInViewport(nextEl))
         // Block fixing if next element is in viewport
         if (isNextSiblingInViewport(nextEl)) {
           b.style.position = 'static';
