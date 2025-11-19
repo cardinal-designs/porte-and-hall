@@ -17,7 +17,7 @@
 .sticky-filters-bar {
   --filter-bg-color: {{ section.settings.bg_color }};
   --filter-text-color: {{ section.settings.text_color }};
-  min-height: 500px;
+  min-height: 900px;
 }
 
 </style>
@@ -192,7 +192,7 @@
         var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
         var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
         b.style.position='fixed'; b.style.zIndex='9'; b.style.top=off+'px'; b.style.left=lv+'px'; b.style.width=wv+'px'; b.classList.add('is-fixed'); b.classList.remove('is-docked');
-        console.clear(); document.querySelector(".sticky-filters-bar").style.height = `${document.querySelector(".collection").clientHeight}px`;
+        console.clear(); document.querySelector(".sticky-filters-bar").style.height = `${document.querySelector("#ProductGridContainer").clientHeight}px`;
         if(window.innerWidth < 769){
           b.style.position='fixed'; b.style.zIndex='9'; b.style.top=(parseFloat(off) - 88) + 'px'; b.style.background='var(--color-background, #fff)';b.style.left=lv+'px'; b.style.width='100%'; b.classList.add('is-fixed'); b.classList.remove('is-docked');
         }
