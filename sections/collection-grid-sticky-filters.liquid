@@ -139,7 +139,7 @@
       const r = el.getBoundingClientRect();
       console.log(r.top, window.innerHeight, r.bottom)
       return (
-        r.top < window.innerHeight &&
+        (r.top + 100) < window.innerHeight &&
         r.bottom > 0
       );
     }
