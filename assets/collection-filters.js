@@ -234,6 +234,8 @@ class collectionFilters extends HTMLElement {
 
     url = location.pathname + '?' + searchParams.toString();
 
+    console.log("url", url)
+
 
     // Fetch and replace sections
     this.enableLoading();
