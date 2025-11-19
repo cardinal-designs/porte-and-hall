@@ -162,25 +162,13 @@
         return r.top+(window.pageYOffset||document.documentElement.scrollTop);
       }
 
-      // NEW: Check if next sibling is in viewport
-      function isNextSiblingInViewport(){
-        var gridSection = document.querySelector(".collection-grid-section");
-        if(!gridSection || !gridSection.nextElementSibling) return false;
-        
-        var nextEl = gridSection.nextElementSibling;
-        var rect = nextEl.getBoundingClientRect();
-        var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-        
-        // Element is in viewport if any part of it is visible
-        return rect.top < viewportHeight && rect.bottom > 0;
-      }
-
       function measure(){
         b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked');
         if(document.querySelector('.collection-filters__button')){
           p.style.height=document.querySelector('.collection-filters__button').offsetHeight+'px';
         }
         off=H();
+        // console.log('offset height:', off);
         var st=window.pageYOffset||document.documentElement.scrollTop;
         sY=w.getBoundingClientRect().top+st;
         if(window.innerWidth < 769){
@@ -193,19 +181,6 @@
       }
 
       function apply(){
-        // NEW: Check if next sibling is in viewport
-        var nextSiblingVisible = isNextSiblingInViewport();
-        
-        // If next sibling is visible, remove fixed/docked positioning
-        if(nextSiblingVisible){
-          b.style.position='static'; 
-          b.style.left=''; 
-          b.style.width=''; 
-          b.style.top=''; 
-          b.style.transform=''; 
-          b.classList.remove('is-fixed','is-docked');
-          return;
-        }
        
         var y=window.pageYOffset||document.documentElement.scrollTop, h=b.offsetHeight;
         if(y+off<=sY){ if(b.classList.contains('is-fixed')||b.classList.contains('is-docked')){ b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked'); } return; }
