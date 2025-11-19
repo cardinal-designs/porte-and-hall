@@ -299,6 +299,16 @@
         m.s=box.top+st; m.stop=fTop()-BUF;
       }
       function apply(m){
+
+        const pageHeight = document.body.scrollHeight;
+        const viewportHeight = window.innerHeight;
+
+        if (pageHeight < viewportHeight + b.offsetHeight + 50) {
+          b.style.position = 'static';
+          b.classList.remove('is-fixed', 'is-docked');
+          return;
+        }
+        
         var el=m.el, y=window.pageYOffset||document.documentElement.scrollTop, H=m.H, h=el.offsetHeight;
         if(y+H<=m.s){ if(el.style.position==='fixed'||el.style.position==='absolute'){ el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background=''; } return; }
         if(y+H+h>=m.stop){ var pt=el.parentElement.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop); el.style.position='absolute'; el.style.top=((m.stop-h)-pt)+'px'; el.style.left='0'; el.style.right='0'; el.style.width='100%'; el.style.zIndex=TITLE_Z; el.style.background='var(--color-background, #fff)'; return; }
