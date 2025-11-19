@@ -198,6 +198,8 @@
             canFix = b.clientHeight > collectionEl.clientHeight;
           }
 
+          console.log(b.clientHeight, collectionEl.clientHeight);
+
           if (!canFix) {
             // If not allowed to fix, reset everything
             b.style.position = 'static';
