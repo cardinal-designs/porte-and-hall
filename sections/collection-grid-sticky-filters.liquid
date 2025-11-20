@@ -140,20 +140,20 @@
     * @param {number} offset - Optional offset to tweak visibility detection
     * @returns {boolean} - true if any next sibling is in viewport
     */
-    function isNextSiblingInViewport(el, offset = 0) {
-      if (!el) return false;
-      let sibling = el.nextElementSibling;
+    // function isNextSiblingInViewport(el, offset = 0) {
+    //   if (!el) return false;
+    //   let sibling = el.nextElementSibling;
 
-      while (sibling) {
-        const rect = sibling.getBoundingClientRect();
-        if ((rect.top + 100) + offset < window.innerHeight && rect.bottom > 0) {
-          return true; // this sibling is in viewport
-        }
-        sibling = sibling.nextElementSibling;
-      }
+    //   while (sibling) {
+    //     const rect = sibling.getBoundingClientRect();
+    //     if ((rect.top + 100) + offset < window.innerHeight && rect.bottom > 0) {
+    //       return true; // this sibling is in viewport
+    //     }
+    //     sibling = sibling.nextElementSibling;
+    //   }
 
-      return false; // no siblings in viewport
-    }
+    //   return false; // no siblings in viewport
+    // }
 
     /**
      * Manages sticky behavior for filter bar on desktop and tablet viewports
@@ -169,15 +169,32 @@
       if(!stickyWrapper||!stickyBar||!placeholder) return;
 
       // Calculate total header offset height including announcement bar and navigation
-      function calculateHeaderOffset(){
-        var header=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
-        var announcementBar=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
-        var navigation=document.querySelector('.header__navigation'); 
-        var bxCreative=document.querySelector(".bx-creative");
-        var navigationHeight=0;
-        if(navigation){var computedStyle=getComputedStyle(navigation); if(computedStyle.display!=='none'&&/(fixed|sticky)/.test(computedStyle.position)&&window.matchMedia('(min-width: 990px)').matches) navigationHeight=navigation.offsetHeight;}
-        return (header?header.offsetHeight:0)+(bxCreative?bxCreative.offsetHeight:0)+(announcementBar&&getComputedStyle(announcementBar).display!=='none'?announcementBar.offsetHeight:0)+navigationHeight+88;
+      function calculateHeaderOffset() {
+        var header = document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+        var announcementBar = document.querySelector("#shopify-section-announcement-bar, .announcement-bar");
+        var bxCreative = document.querySelector(".bx-creative");
+        var navigationHeight = 0;
+
+        // Determine if we're on mobile
+        var isMobile = window.matchMedia("(max-width: 989px)").matches;
+
+        var totalHeight =
+          (header ? header.offsetHeight : 0) +
+          (bxCreative ? bxCreative.offsetHeight : 0) +
+          (announcementBar && getComputedStyle(announcementBar).display !== "none"
+            ? announcementBar.offsetHeight
+            : 0) +
+          navigationHeight;
+
+        // Add 88 only on mobile
+        if (isMobile) {
+          totalHeight += 88;
+        }
+
+        return totalHeight;
       }
+
+      console.log("Header offset height:", calculateHeaderOffset());
 
       var endSentinel=document.getElementById('sticky-end-sentinel-{{ section.id }}');
       if(!endSentinel){ endSentinel=document.createElement('div'); endSentinel.id='sticky-end-sentinel-{{ section.id }}'; endSentinel.style.height='1px'; (document.getElementById('ProductGridContainer')||stickyWrapper.parentElement).parentNode.insertBefore(endSentinel,(document.getElementById('ProductGridContainer')||stickyWrapper.parentElement).nextSibling); }
@@ -221,23 +238,23 @@
         if(scrollY+headerOffset+barHeight>=stopPosition){
           var wrapperTop=stickyWrapper.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop);
           
-          if (isNextSiblingInViewport(nextElement)) {
-            stickyBar.style.position='static';
-            stickyBar.classList.remove('is-fixed','is-docked');
-            return;
-          }
-          stickyBar.style.position='fixed'; stickyBar.style.zIndex='5'; stickyBar.style.top=headerOffset+'px'; stickyBar.style.left=cachedLeft+'px'; stickyBar.style.width=cachedWidth+'px'; stickyBar.style.transform=''; stickyBar.classList.remove('is-fixed'); stickyBar.classList.add('is-docked'); return;
+          // if (isNextSiblingInViewport(nextElement)) {
+          //   stickyBar.style.position='static';
+          //   stickyBar.classList.remove('is-fixed','is-docked');
+          //   return;
+          // }
+          stickyBar.style.position='absolute'; stickyBar.style.zIndex='5'; stickyBar.style.top='auto'; stickyBar.style.bottom='0'; stickyBar.style.left='0px'; stickyBar.style.width=cachedWidth+'px'; stickyBar.style.transform=''; stickyBar.classList.remove('is-fixed'); stickyBar.classList.add('is-docked'); return;
         }
                 
         // Block fixing if next element is in viewport
-        if (isNextSiblingInViewport(nextElement)) {
-          stickyBar.style.position = 'static';
-          stickyBar.classList.remove('is-fixed', 'is-docked');
-          return;
-        }
+        // if (isNextSiblingInViewport(nextElement)) {
+        //   stickyBar.style.position = 'static';
+        //   stickyBar.classList.remove('is-fixed', 'is-docked');
+        //   return;
+        // }
 
         // Allow sticky
-        stickyBar.style.position='fixed';
+        // stickyBar.style.position='fixed';
         stickyBar.style.zIndex='9';
         stickyBar.style.top=headerOffset+'px';
         stickyBar.style.left=cachedLeft+'px';
@@ -247,15 +264,16 @@
         if(window.innerWidth < 769){
           var nextElement = document.querySelector('.collection-grid-section');
           
-          if (isNextSiblingInViewport(nextElement)) {
-            stickyBar.style.position='static';
-            stickyBar.classList.remove('is-fixed','is-docked');
-            return;
-          }
+          // if (isNextSiblingInViewport(nextElement)) {
+          //   stickyBar.style.position='static';
+          //   stickyBar.classList.remove('is-fixed','is-docked');
+          //   return;
+          // }
 
           stickyBar.style.position='fixed';
           stickyBar.style.zIndex='9';
           stickyBar.style.top=(parseFloat(headerOffset) - 88) + 'px';
+          stickyBar.style.bottom='auto';
           stickyBar.style.background='var(--color-background, #fff)';
           stickyBar.style.left=cachedLeft+'px';
           stickyBar.style.width='100%';
@@ -393,11 +411,11 @@
         var element=measurement.el, scrollY=window.pageYOffset||document.documentElement.scrollTop, headerHeight=measurement.H, elementHeight=element.offsetHeight;
         var nextElement = document.querySelector('.collection-grid-section');
           
-        if (isNextSiblingInViewport(nextElement)) {
-          b.style.position='static';
-          b.classList.remove('is-fixed','is-docked');
-          return;
-        }
+        // if (isNextSiblingInViewport(nextElement)) {
+        //   b.style.position='static';
+        //   b.classList.remove('is-fixed','is-docked');
+        //   return;
+        // }
 
         if(scrollY+headerHeight<=measurement.s){ if(element.style.position==='fixed'||element.style.position==='absolute'){ element.style.position=''; element.style.top=''; element.style.left=''; element.style.right=''; element.style.width=''; element.style.zIndex=''; element.style.background=''; } return; }
         
@@ -415,7 +433,7 @@
     };
     window.scrollUtils3();
   </script>
-  
+
 {% schema %}
 {
   "name": "Collection sticky filters",
