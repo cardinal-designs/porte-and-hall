@@ -1183,6 +1183,15 @@ product-form form {
   flex-direction: column;
 }
 
+@media screen and (min-width: 935px) and (max-width: 1348px) {
+
+  .other-sizes__button {
+    max-width: 137px;
+    width: 100%
+  }
+  
+}
+
 @media screen and (max-width: 900px) {
   .small_button_text {
     padding: 8px 4px !important;
