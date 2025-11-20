@@ -42,11 +42,14 @@
   padding: 8px;
   position: relative;
   opacity: .6;
+  opacity: 1;
+  color: #5B4D33;
   transition: all .3s ease;
 }
 
 .see-it-in-action__tabs-buttons button.active {
   opacity: 1;
+  color: var(--blue);
 }
 
 .see-it-in-action__tabs-buttons button.active:before {

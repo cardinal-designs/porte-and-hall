@@ -441,7 +441,7 @@ blockquote {
 .shopify-challenge__button {
   padding: 18px 70px 18px;
   background: var(--gold);
-  color: white;
+  color: black;
   text-align: center;
   cursor: pointer;
   font-family: brandon;
@@ -2262,6 +2262,7 @@ header.condensed .header__menu {
 
 .rte a {
   color: var(--gold-secondary);
+  color: #000;
 }
 
 .rte a:hover {
@@ -3142,7 +3143,7 @@ header.SectionHeader .SectionHeader__Heading {
   letter-spacing: 0.84px;
 }
 header.SectionHeader .Link {
-  color: #a19377;
+  color: #5B4D33;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
