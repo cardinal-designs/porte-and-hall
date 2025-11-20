@@ -29,6 +29,11 @@
     },
     "product-grid": {
       "type": "main-collection-product-grid",
+      "custom_css": [
+        ".collection-grid__inner {display: block;}",
+        ".collection-filters__button {display: none;}",
+        ".collection-filters {display: none;}"
+      ],
       "settings": {
         "products_per_page": 16,
         "image_ratio": "adapt",
