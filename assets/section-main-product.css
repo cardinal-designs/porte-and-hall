@@ -995,6 +995,11 @@ variant-selects {
   color: white;
 }
 
+.other-sizes__button.active .other-sizes__dimension {
+  font-size: 13px;
+  font-weight: 600;
+}
+
 .other-sizes__wrapper-links {
   display: flex;
   gap: 12px;
