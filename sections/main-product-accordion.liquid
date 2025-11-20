@@ -28,57 +28,192 @@
 
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
   assign collection_title = grouped_collection.title | downcase
+  
+  comment
+    Get the current product's size option value to filter swatches
+    This will be "Area Mat" for 4x6 or "XL Area Mat" for 5x7
+  endcomment
+  assign current_size = product.options_by_name['Size'].values[0]
+  
+  comment
+    For Area Mat products, determine if it's 4x6 or 5x7
+    Check product handle first, then fall back to size option
+  endcomment
+  if current_size == 'Area Mat' or current_size == 'XL Area Mat'
+    if product.handle contains '5x7' or product.handle contains 'area-mat-5x7'
+      assign current_size = 'XL Area Mat'
+    elsif product.handle contains '4x6' or product.handle contains 'area-mat-4x6'
+      assign current_size = 'Area Mat'
+    endif
+  endif
+  
   capture color_swatch_list
     assign swatch_count = 1
+    assign seen_styles = ''
+    comment
+      First pass: collect all unique style/color values that match the current size
+    endcomment
     for swatch in grouped_collection.products
-      for option in swatch.options_with_values
-        assign option_name = option.name | downcase
-        if color_label contains option_name or option_name == 'style'
-          assign option_index = 'option' | append: forloop.index
-          for value in option.values
-            assign matched_variant = swatch.variants | where: 'title', value
-            if matched_variant != blank
-              assign swatch_link = matched_variant[0].url
-            endif
-
-            assign element_classes = 'product__swatch'
-            if swatch == product and option.selected_value == value
-              assign element_classes = element_classes | append: ' product__active-swatch'
-            endif
-            if swatch.available == false
-              assign element_classes = element_classes | append: ' product__oos-swatch'
-            endif
-
-            assign swatch_file_name = value | handle | append: '.png'
-            assign swatch_image = images[swatch_file_name]
-
-            echo "<a href='"
-            echo swatch_link | default: swatch.variants[0].url
-            echo "' class='"
-            echo element_classes
-            echo "'"
-            echo " aria-label='"
-            echo value | escape
-            echo "' title='"
-            echo value | escape
-            echo "' data-tooltip='"
-            echo value | escape
-            echo "'>"
-            echo "<span style='background-image: url("
-            echo swatch_file_name | file_url
-            echo ")'></span>"
-            echo "<span class='sr-only'>"
-            echo value | escape
-            echo "</span></a>"
-
-            assign swatch_count = swatch_count | plus: 1
-          endfor
+      assign swatch_size = swatch.options_by_name['Size'].values[0]
+      
+      if current_size == 'Area Mat' or current_size == 'XL Area Mat'
+        if swatch.handle contains '5x7' or swatch.handle contains 'area-mat-5x7'
+          assign swatch_size = 'XL Area Mat'
+        elsif swatch.handle contains '4x6' or swatch.handle contains 'area-mat-4x6'
+          assign swatch_size = 'Area Mat'
         endif
-      endfor
+      endif
+      
+      if swatch_size == current_size
+        for option in swatch.options_with_values
+          assign option_name = option.name | downcase
+          if color_label contains option_name or option_name == 'style'
+            for value in option.values
+              assign value_handle = value | handle
+              assign value_key = value_handle | prepend: '|' | append: '|'
+              comment
+                Only process this style/color if we haven't seen it before
+              endcomment
+              unless seen_styles contains value_key
+                assign seen_styles = seen_styles | append: value_key
+                
+                comment
+                  Find the best variant for this style/color that matches the current size
+                  Search through all products to find a variant with this style and size
+                endcomment
+                assign matched_variant = blank
+                assign matched_product = blank
+                assign swatch_link = blank
+                
+                for search_product in grouped_collection.products
+                  assign search_size = search_product.options_by_name['Size'].values[0]
+                  
+                  if current_size == 'Area Mat' or current_size == 'XL Area Mat'
+                    if search_product.handle contains '5x7' or search_product.handle contains 'area-mat-5x7'
+                      assign search_size = 'XL Area Mat'
+                    elsif search_product.handle contains '4x6' or search_product.handle contains 'area-mat-4x6'
+                      assign search_size = 'Area Mat'
+                    endif
+                  endif
+                  
+                  if search_size == current_size
+                    for variant in search_product.variants
+                      assign variant_has_style = false
+                      if variant.title contains value
+                        assign variant_has_style = true
+                      endif
+                      
+                      assign variant_matches_size = false
+                      if variant.title contains current_size
+                        assign variant_matches_size = true
+                      elsif current_size == 'Area Mat' and variant.title contains 'Area Mat' and variant.title contains '4' and variant.title contains '6'
+                        assign variant_matches_size = true
+                      elsif current_size == 'XL Area Mat'
+                        if variant.title contains 'XL Area Mat'
+                          assign variant_matches_size = true
+                        elsif variant.title contains '5' and variant.title contains '7'
+                          assign variant_matches_size = true
+                        endif
+                      endif
+                      
+                      if variant_has_style and variant_matches_size
+                        assign matched_variant = variant
+                        assign matched_product = search_product
+                        break
+                      endif
+                    endfor
+                    if matched_variant != blank
+                      break
+                    endif
+                  endif
+                endfor
+                
+                if matched_variant != blank
+                  assign swatch_link = matched_variant.url
+                else
+                  comment
+                    Fallback: find any variant with matching size from any product
+                  endcomment
+                  for search_product in grouped_collection.products
+                    assign search_size = search_product.options_by_name['Size'].values[0]
+                    
+                    if current_size == 'Area Mat' or current_size == 'XL Area Mat'
+                      if search_product.handle contains '5x7' or search_product.handle contains 'area-mat-5x7'
+                        assign search_size = 'XL Area Mat'
+                      elsif search_product.handle contains '4x6' or search_product.handle contains 'area-mat-4x6'
+                        assign search_size = 'Area Mat'
+                      endif
+                    endif
+                    
+                    if search_size == current_size
+                      for variant in search_product.variants
+                        if variant.title contains value
+                          assign swatch_link = variant.url
+                          assign matched_product = search_product
+                          break
+                        endif
+                      endfor
+                      if swatch_link != blank
+                        break
+                      endif
+                    endif
+                  endfor
+                  if swatch_link == blank
+                    assign swatch_link = swatch.variants[0].url
+                    assign matched_product = swatch
+                  endif
+                endif
+                
+                assign element_classes = 'product__swatch'
+                if matched_product == product
+                  for option_check in matched_product.options_with_values
+                    assign option_name_check = option_check.name | downcase
+                    if color_label contains option_name_check or option_name_check == 'style'
+                      if option_check.selected_value == value
+                        assign element_classes = element_classes | append: ' product__active-swatch'
+                        break
+                      endif
+                    endif
+                  endfor
+                endif
+                if matched_product.available == false
+                  assign element_classes = element_classes | append: ' product__oos-swatch'
+                endif
+                
+                assign swatch_file_name = value | handle | append: '.png'
+                assign swatch_image = images[swatch_file_name]
+                comment
+                  if collection_title contains 'outsider' and swatch_count == 4
+                    echo ' | '
+                  endif
+                endcomment
+                echo "<a href='"
+                echo swatch_link
+                echo "' class='"
+                echo element_classes
+                echo "'"
+                echo " aria-label='"
+                echo value | escape
+                echo "' title='"
+                echo value | escape
+                echo "' data-tooltip='"
+                echo value | escape
+                echo "'>"
+                echo "<span style='background-image: url("
+                echo swatch_file_name | file_url
+                echo ")'></span>"
+                echo "<span class='sr-only'>"
+                echo value | escape
+                echo "</span></a>"
+                assign swatch_count = swatch_count | plus: 1
+              endunless
+            endfor
+          endif
+        endfor
+      endif
     endfor
   endcapture
 %}
-
 
 {% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 <section class="page-width">
