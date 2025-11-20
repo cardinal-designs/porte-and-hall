@@ -997,7 +997,7 @@ variant-selects {
 
 .other-sizes__button.active .other-sizes__dimension {
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 
 .other-sizes__wrapper-links {
