@@ -154,235 +154,268 @@
 
       return false; // no siblings in viewport
     }
+
+    /**
+     * Manages sticky behavior for filter bar on desktop and tablet viewports
+     * Handles positioning relative to header, footer, and viewport scroll
+     */
     window.scrollUtils1 = function() {
-      var w=document.getElementById('sticky-wrap-{{ section.id }}');
-      var b=document.getElementById('sticky-bar-{{ section.id }}');
-      var p=document.getElementById('sticky-placeholder-{{ section.id }}');
+      var stickyWrapper=document.getElementById('sticky-wrap-{{ section.id }}');
+      var stickyBar=document.getElementById('sticky-bar-{{ section.id }}');
+      var placeholder=document.getElementById('sticky-placeholder-{{ section.id }}');
       var productGrid = document.getElementById('ProductGridContainer'), filterBar = document.querySelector('.sticky-filters-bar');
       if(window.screen.availWidth > 768) productGrid.style.minHeight = `${filterBar.clientHeight}px`;
       
-      if(!w||!b||!p) return;
+      if(!stickyWrapper||!stickyBar||!placeholder) return;
 
-      function H(){
-        var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
-        var a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
-        var n=document.querySelector('.header__navigation'); 
-        var bxc=document.querySelector(".bx-creative");
-        var nh=0;
-        if(n){var cs=getComputedStyle(n); if(cs.display!=='none'&&/(fixed|sticky)/.test(cs.position)&&window.matchMedia('(min-width: 990px)').matches) nh=n.offsetHeight;}
-        return (h?h.offsetHeight:0)+(bxc?bxc.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh+88;
+      // Calculate total header offset height including announcement bar and navigation
+      function calculateHeaderOffset(){
+        var header=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+        var announcementBar=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+        var navigation=document.querySelector('.header__navigation'); 
+        var bxCreative=document.querySelector(".bx-creative");
+        var navigationHeight=0;
+        if(navigation){var computedStyle=getComputedStyle(navigation); if(computedStyle.display!=='none'&&/(fixed|sticky)/.test(computedStyle.position)&&window.matchMedia('(min-width: 990px)').matches) navigationHeight=navigation.offsetHeight;}
+        return (header?header.offsetHeight:0)+(bxCreative?bxCreative.offsetHeight:0)+(announcementBar&&getComputedStyle(announcementBar).display!=='none'?announcementBar.offsetHeight:0)+navigationHeight+88;
       }
 
-      var end=document.getElementById('sticky-end-sentinel-{{ section.id }}');
-      if(!end){ end=document.createElement('div'); end.id='sticky-end-sentinel-{{ section.id }}'; end.style.height='1px'; (document.getElementById('ProductGridContainer')||w.parentElement).parentNode.insertBefore(end,(document.getElementById('ProductGridContainer')||w.parentElement).nextSibling); }
+      var endSentinel=document.getElementById('sticky-end-sentinel-{{ section.id }}');
+      if(!endSentinel){ endSentinel=document.createElement('div'); endSentinel.id='sticky-end-sentinel-{{ section.id }}'; endSentinel.style.height='1px'; (document.getElementById('ProductGridContainer')||stickyWrapper.parentElement).parentNode.insertBefore(endSentinel,(document.getElementById('ProductGridContainer')||stickyWrapper.parentElement).nextSibling); }
 
-      var sY=0, eY=0, off=0, L=0, W=0, stop=0;
+      var startY=0, endY=0, headerOffset=0, fixedLeft=0, fixedWidth=0, stopPosition=0;
 
-      function footTop(){
-        var f=document.querySelector('#shopify-section-footer, .footer, .site-footer, footer');
-        if(!f) return 1/0;
-        var r=f.getBoundingClientRect();
-        return r.top+(window.pageYOffset||document.documentElement.scrollTop);
+      // Get footer top position for boundary calculation
+      function getFooterTop(){
+        var footer=document.querySelector('#shopify-section-footer, .footer, .site-footer, footer');
+        if(!footer) return 1/0;
+        var rect=footer.getBoundingClientRect();
+        return rect.top+(window.pageYOffset||document.documentElement.scrollTop);
       }
 
-      function measure(){
-        b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked');
+      // Measure and cache position values for sticky calculations
+      function measurePositions(){
+        stickyBar.style.position='static'; stickyBar.style.left=''; stickyBar.style.width=''; stickyBar.style.top=''; stickyBar.style.transform=''; stickyBar.classList.remove('is-fixed','is-docked');
         if(document.querySelector('.collection-filters__button')){
-          p.style.height=document.querySelector('.collection-filters__button').offsetHeight+'px';
+          placeholder.style.height=document.querySelector('.collection-filters__button').offsetHeight+'px';
         }
-        off=H();
-        // console.log('offset height:', off);
-        var st=window.pageYOffset||document.documentElement.scrollTop;
-        sY=w.getBoundingClientRect().top+st;
+        headerOffset=calculateHeaderOffset();
+        // console.log('offset height:', headerOffset);
+        var scrollTop=window.pageYOffset||document.documentElement.scrollTop;
+        startY=stickyWrapper.getBoundingClientRect().top+scrollTop;
         if(window.innerWidth < 769){
-          sY=w.getBoundingClientRect().top+st+80;
+          startY=stickyWrapper.getBoundingClientRect().top+scrollTop+80;
         }
-        eY=end.getBoundingClientRect().top+st;
-        stop=Math.min(eY,footTop())-1;
-        var r=b.getBoundingClientRect(); L=r.left+window.pageXOffset; W=r.width;
-        b.dataset.fixedLeft=L; b.dataset.fixedWidth=W;
+        endY=endSentinel.getBoundingClientRect().top+scrollTop;
+        stopPosition=Math.min(endY,getFooterTop())-1;
+        var rect=stickyBar.getBoundingClientRect(); fixedLeft=rect.left+window.pageXOffset; fixedWidth=rect.width;
+        stickyBar.dataset.fixedLeft=fixedLeft; stickyBar.dataset.fixedWidth=fixedWidth;
       }
 
-      function apply(){   
-        var y=window.pageYOffset||document.documentElement.scrollTop, h=b.offsetHeight;
-        if(y+off<=sY){ if(b.classList.contains('is-fixed')||b.classList.contains('is-docked')){ b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked'); } return; }
-        var nextEl = document.querySelector('.collection-grid-section');
-        var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
-        var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
-        if(y+off+h>=stop){
-          var wt=w.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop);
+      // Apply sticky positioning based on scroll position
+      function applyStickyBehavior(){   
+        var scrollY=window.pageYOffset||document.documentElement.scrollTop, barHeight=stickyBar.offsetHeight;
+        if(scrollY+headerOffset<=startY){ if(stickyBar.classList.contains('is-fixed')||stickyBar.classList.contains('is-docked')){ stickyBar.style.position='static'; stickyBar.style.left=''; stickyBar.style.width=''; stickyBar.style.top=''; stickyBar.style.transform=''; stickyBar.classList.remove('is-fixed','is-docked'); } return; }
+        var nextElement = document.querySelector('.collection-grid-section');
+        var cachedWidth=parseFloat(stickyBar.dataset.fixedWidth)||stickyBar.getBoundingClientRect().width;
+        var cachedLeft=parseFloat(stickyBar.dataset.fixedLeft)||(stickyBar.getBoundingClientRect().left+window.pageXOffset);
+        if(scrollY+headerOffset+barHeight>=stopPosition){
+          var wrapperTop=stickyWrapper.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop);
           
-          if (isNextSiblingInViewport(nextEl)) {
-            b.style.position='static';
-            b.classList.remove('is-fixed','is-docked');
+          if (isNextSiblingInViewport(nextElement)) {
+            stickyBar.style.position='static';
+            stickyBar.classList.remove('is-fixed','is-docked');
             return;
           }
-          b.style.position='fixed'; b.style.zIndex='5'; b.style.top=off+'px'; b.style.left=lv+'px'; b.style.width=wv+'px'; b.style.transform=''; b.classList.remove('is-fixed'); b.classList.add('is-docked'); return;
+          stickyBar.style.position='fixed'; stickyBar.style.zIndex='5'; stickyBar.style.top=headerOffset+'px'; stickyBar.style.left=cachedLeft+'px'; stickyBar.style.width=cachedWidth+'px'; stickyBar.style.transform=''; stickyBar.classList.remove('is-fixed'); stickyBar.classList.add('is-docked'); return;
         }
                 
         // Block fixing if next element is in viewport
-        if (isNextSiblingInViewport(nextEl)) {
-          b.style.position = 'static';
-          b.classList.remove('is-fixed', 'is-docked');
+        if (isNextSiblingInViewport(nextElement)) {
+          stickyBar.style.position = 'static';
+          stickyBar.classList.remove('is-fixed', 'is-docked');
           return;
         }
 
         // Allow sticky
-        b.style.position='fixed';
-        b.style.zIndex='9';
-        b.style.top=off+'px';
-        b.style.left=lv+'px';
-        b.style.width=wv+'px';
-        b.classList.add('is-fixed');
-        b.classList.remove('is-docked');
+        stickyBar.style.position='fixed';
+        stickyBar.style.zIndex='9';
+        stickyBar.style.top=headerOffset+'px';
+        stickyBar.style.left=cachedLeft+'px';
+        stickyBar.style.width=cachedWidth+'px';
+        stickyBar.classList.add('is-fixed');
+        stickyBar.classList.remove('is-docked');
         if(window.innerWidth < 769){
-          var nextEl = document.querySelector('.collection-grid-section');
+          var nextElement = document.querySelector('.collection-grid-section');
           
-          if (isNextSiblingInViewport(nextEl)) {
-            b.style.position='static';
-            b.classList.remove('is-fixed','is-docked');
+          if (isNextSiblingInViewport(nextElement)) {
+            stickyBar.style.position='static';
+            stickyBar.classList.remove('is-fixed','is-docked');
             return;
           }
 
-          b.style.position='fixed';
-          b.style.zIndex='9';
-          b.style.top=(parseFloat(off) - 88) + 'px';
-          b.style.background='var(--color-background, #fff)';
-          b.style.left=lv+'px';
-          b.style.width='100%';
-          b.classList.add('is-fixed');
-          b.classList.remove('is-docked');
+          stickyBar.style.position='fixed';
+          stickyBar.style.zIndex='9';
+          stickyBar.style.top=(parseFloat(headerOffset) - 88) + 'px';
+          stickyBar.style.background='var(--color-background, #fff)';
+          stickyBar.style.left=cachedLeft+'px';
+          stickyBar.style.width='100%';
+          stickyBar.classList.add('is-fixed');
+          stickyBar.classList.remove('is-docked');
         }
       }
 
-      function recalc(){ measure(); apply(); }
-      window.addEventListener('load',recalc,{passive:true});
-      window.addEventListener('resize',recalc,{passive:true});
-      window.addEventListener('orientationchange',recalc,{passive:true});
-      window.addEventListener('scroll',function(){ var nh=H(); if(Math.abs(nh-off)>2) measure(); apply(); },{passive:true});
-      measure(); apply();
+      // Recalculate measurements and apply positioning
+      function recalculateAndApply(){ measurePositions(); applyStickyBehavior(); }
+      window.addEventListener('load',recalculateAndApply,{passive:true});
+      window.addEventListener('resize',recalculateAndApply,{passive:true});
+      window.addEventListener('orientationchange',recalculateAndApply,{passive:true});
+      window.addEventListener('scroll',function(){ var newHeaderOffset=calculateHeaderOffset(); if(Math.abs(newHeaderOffset-headerOffset)>2) measurePositions(); applyStickyBehavior(); },{passive:true});
+      measurePositions(); applyStickyBehavior();
 
-      window.clearAll=function(e){ e&&e.preventDefault(); document.querySelector('collection-filters')?.clearAllFilters?.(); };
+      window.clearAll=function(event){ event&&event.preventDefault(); document.querySelector('collection-filters')?.clearAllFilters?.(); };
     };
     window.scrollUtils1();
   </script>
   <script>
+    /**
+     * Manages sticky behavior for mobile filter drawer and button
+     * Handles positioning and drawer open/close states on mobile viewports
+     */
     window.scrollUtils2 = function() {
-      var mq=window.matchMedia('(max-width: 989px)');
-      var HDR=200, DRZ=190, BTN=120, SEC=110;
-      var sec=document.querySelector('.head-slide-wrap--main');
-      if(!sec) return;
-      var btn=sec.querySelector('.collection-filters__button.hide-desktop');
-      var drawer=sec.querySelector('collection-filters');
-      if(!btn||!drawer) return;
+      var mobileMediaQuery=window.matchMedia('(max-width: 989px)');
+      var HEADER_Z=200, DRAWER_Z=190, BUTTON_Z=120, SECTION_Z=110;
+      var mainSection=document.querySelector('.head-slide-wrap--main');
+      if(!mainSection) return;
+      var filterButton=mainSection.querySelector('.collection-filters__button.hide-desktop');
+      var filterDrawer=mainSection.querySelector('collection-filters');
+      if(!filterButton||!filterDrawer) return;
 
-      var ph1=document.createElement('div');
-      var ph2=document.createElement('div');
-      ph1.style.height='0px';
-      ph2.style.height='0px';
-      sec.insertAdjacentElement('afterend',ph1);
-      btn.insertAdjacentElement('afterend',ph2);
+      var sectionPlaceholder=document.createElement('div');
+      var buttonPlaceholder=document.createElement('div');
+      sectionPlaceholder.style.height='0px';
+      buttonPlaceholder.style.height='0px';
+      mainSection.insertAdjacentElement('afterend',sectionPlaceholder);
+      filterButton.insertAdjacentElement('afterend',buttonPlaceholder);
 
-      function hoff(){
-        var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
-        var a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
-        var n=document.querySelector('.header__navigation'); var nh=0;
-        if(n){var cs=getComputedStyle(n); if(cs.display!=='none'&&/(fixed|sticky)/.test(cs.position)) nh=n.offsetHeight;}
-        return (h?h.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh;
+      // Calculate header offset for fixed positioning
+      function calculateHeaderOffset(){
+        var header=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+        var announcementBar=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+        var navigation=document.querySelector('.header__navigation'); var navigationHeight=0;
+        if(navigation){var computedStyle=getComputedStyle(navigation); if(computedStyle.display!=='none'&&/(fixed|sticky)/.test(computedStyle.position)) navigationHeight=navigation.offsetHeight;}
+        return (header?header.offsetHeight:0)+(announcementBar&&getComputedStyle(announcementBar).display!=='none'?announcementBar.offsetHeight:0)+navigationHeight;
       }
 
-      var s1=0, s2=0, H=0;
+      var sectionStartY=0, buttonStartY=0, headerOffset=0;
 
-      function measure(){
-        [sec,btn].forEach(function(el){ el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; });
-        ph1.style.height=sec.offsetHeight+'px'; ph2.style.height=btn.offsetHeight+'px';
-        H=hoff(); var st=window.pageYOffset||document.documentElement.scrollTop;
-        s1=sec.getBoundingClientRect().top+st; s2=btn.getBoundingClientRect().top+st;
+      // Measure element positions and set placeholder heights
+      function measurePositions(){
+        [mainSection,filterButton].forEach(function(element){ element.style.position=''; element.style.top=''; element.style.left=''; element.style.right=''; element.style.width=''; element.style.zIndex=''; });
+        sectionPlaceholder.style.height=mainSection.offsetHeight+'px'; buttonPlaceholder.style.height=filterButton.offsetHeight+'px';
+        headerOffset=calculateHeaderOffset(); var scrollTop=window.pageYOffset||document.documentElement.scrollTop;
+        sectionStartY=mainSection.getBoundingClientRect().top+scrollTop; buttonStartY=filterButton.getBoundingClientRect().top+scrollTop;
       }
 
-      function stick(el,start,z){
-        var st=window.pageYOffset||document.documentElement.scrollTop;
-        if(st+H>start){ el.style.position='fixed'; el.style.top=H+'px'; el.style.left=0; el.style.right=0; el.style.width='100%'; el.style.zIndex=z; el.style.background='var(--color-background, #fff)'; }
-        else { el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background=''; }
+      // Apply sticky positioning to element based on scroll
+      function applySticky(element,startPosition,zIndex){
+        var scrollTop=window.pageYOffset||document.documentElement.scrollTop;
+        if(scrollTop+headerOffset>startPosition){ element.style.position='fixed'; element.style.top=headerOffset+'px'; element.style.left=0; element.style.right=0; element.style.width='100%'; element.style.zIndex=zIndex; element.style.background='var(--color-background, #fff)'; }
+        else { element.style.position=''; element.style.top=''; element.style.left=''; element.style.right=''; element.style.width=''; element.style.zIndex=''; element.style.background=''; }
       }
 
-      function styleDrawer(){
-        if(!mq.matches) return;
-        var open=drawer.hasAttribute('open')||drawer.classList.contains('is-open');
-        var off=hoff();
-        if(open){
-          drawer.style.position='fixed'; drawer.style.top=off+'px'; drawer.style.left=0; drawer.style.right=0;
-          drawer.style.height='calc(100vh - '+off+'px)'; drawer.style.maxHeight=drawer.style.height;
-          drawer.style.overflow='auto'; drawer.style.webkitOverflowScrolling='touch'; drawer.style.zIndex=DRZ;
-          btn.style.zIndex=BTN;
+      // Style filter drawer based on open/close state
+      function styleDrawerState(){
+        if(!mobileMediaQuery.matches) return;
+        var isOpen=filterDrawer.hasAttribute('open')||filterDrawer.classList.contains('is-open');
+        var currentOffset=calculateHeaderOffset();
+        if(isOpen){
+          filterDrawer.style.position='fixed'; filterDrawer.style.top=currentOffset+'px'; filterDrawer.style.left=0; filterDrawer.style.right=0;
+          filterDrawer.style.height='calc(100vh - '+currentOffset+'px)'; filterDrawer.style.maxHeight=filterDrawer.style.height;
+          filterDrawer.style.overflow='auto'; filterDrawer.style.webkitOverflowScrolling='touch'; filterDrawer.style.zIndex=DRAWER_Z;
+          filterButton.style.zIndex=BUTTON_Z;
         }else{
-          drawer.style.position='fixed'; drawer.style.top=off+'px'; drawer.style.left='0'; drawer.style.right='0';
-          drawer.style.height='0'; drawer.style.maxHeight='0'; drawer.style.overflow='hidden'; drawer.style.width='0';
-          drawer.style.opacity='0'; drawer.style.visibility='hidden'; drawer.style.pointerEvents='none'; drawer.style.zIndex=DRZ;
+          filterDrawer.style.position='fixed'; filterDrawer.style.top=currentOffset+'px'; filterDrawer.style.left='0'; filterDrawer.style.right='0';
+          filterDrawer.style.height='0'; filterDrawer.style.maxHeight='0'; filterDrawer.style.overflow='hidden'; filterDrawer.style.width='0';
+          filterDrawer.style.opacity='0'; filterDrawer.style.visibility='hidden'; filterDrawer.style.pointerEvents='none'; filterDrawer.style.zIndex=DRAWER_Z;
         }
       }
 
-      function tick(){
-        if(!mq.matches){ [sec,btn].forEach(function(el){ el.style=''; }); ph1.style.height='0px'; ph2.style.height='0px'; return; }
-        stick(sec,s1,SEC); stick(btn,s2,BTN); styleDrawer();
+      // Update sticky states on scroll or resize
+      function updateStickyStates(){
+        if(!mobileMediaQuery.matches){ [mainSection,filterButton].forEach(function(element){ element.style=''; }); sectionPlaceholder.style.height='0px'; buttonPlaceholder.style.height='0px'; return; }
+        applySticky(mainSection,sectionStartY,SECTION_Z); applySticky(filterButton,buttonStartY,BUTTON_Z); styleDrawerState();
       }
 
-      window.addEventListener('load',function(){ measure(); tick(); });
-      window.addEventListener('resize',function(){ measure(); tick(); });
-      window.addEventListener('scroll',tick,{passive:true});
-      new MutationObserver(styleDrawer).observe(drawer,{attributes:true});
+      window.addEventListener('load',function(){ measurePositions(); updateStickyStates(); });
+      window.addEventListener('resize',function(){ measurePositions(); updateStickyStates(); });
+      window.addEventListener('scroll',updateStickyStates,{passive:true});
+      new MutationObserver(styleDrawerState).observe(filterDrawer,{attributes:true});
     };
     window.scrollUtils2();
   </script>
   <script>
+    /**
+     * Manages sticky behavior for title carousel sections
+     * Handles positioning relative to header and footer boundaries
+     */
     window.scrollUtils3 = function() {
-      var TITLE_Z=9, BUF=1;
-      function hoff(){
-        var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
-        var a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
-        var n=document.querySelector('.header__navigation'); var nh=0;
-        if(n){var cs=getComputedStyle(n); if(cs.display!=='none'&&/(fixed|sticky)/.test(cs.position)) nh=n.offsetHeight;}
-        var desk=window.matchMedia('(min-width: 990px)').matches;
-        // return (h?h.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh+(desk?100:0);
-      }
-      function fTop(){
-        var f=document.querySelector('#shopify-section-footer, .footer, .site-footer, footer'); if(!f) return 1/0;
-        var r=f.getBoundingClientRect(); return r.top+(window.pageYOffset||document.documentElement.scrollTop);
-      }
-      var els=[].slice.call(document.querySelectorAll('.shopify-section.title-carousel.with-spacing')); if(!els.length) return;
-      var ms=els.map(function(el){ var ph=document.createElement('div'); ph.style.height='0px'; el.insertAdjacentElement('afterend',ph); return {el:el, ph:ph, s:0, stop:0, H:0}; });
+      var TITLE_Z_INDEX=9, BOUNDARY_BUFFER=1;
 
-      function measure(m){
-        var el=m.el; el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background='';
-        // m.ph.style.height=el.offsetHeight+'px'; m.H=hoff();
-        var st=window.pageYOffset||document.documentElement.scrollTop; var box=el.getBoundingClientRect();
-        m.s=box.top+st; m.stop=fTop()-BUF;
+      // Calculate header offset height
+      function calculateHeaderOffset(){
+        var header=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+        var announcementBar=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+        var navigation=document.querySelector('.header__navigation'); var navigationHeight=0;
+        if(navigation){var computedStyle=getComputedStyle(navigation); if(computedStyle.display!=='none'&&/(fixed|sticky)/.test(computedStyle.position)) navigationHeight=navigation.offsetHeight;}
+        var isDesktop=window.matchMedia('(min-width: 990px)').matches;
+        // return (header?header.offsetHeight:0)+(announcementBar&&getComputedStyle(announcementBar).display!=='none'?announcementBar.offsetHeight:0)+navigationHeight+(isDesktop?100:0);
       }
-      function apply(m){
 
-        var el=m.el, y=window.pageYOffset||document.documentElement.scrollTop, H=m.H, h=el.offsetHeight;
-        var nextEl = document.querySelector('.collection-grid-section');
+      // Get footer top position
+      function getFooterTop(){
+        var footer=document.querySelector('#shopify-section-footer, .footer, .site-footer, footer'); if(!footer) return 1/0;
+        var rect=footer.getBoundingClientRect(); return rect.top+(window.pageYOffset||document.documentElement.scrollTop);
+      }
+
+      var titleElements=[].slice.call(document.querySelectorAll('.shopify-section.title-carousel.with-spacing')); if(!titleElements.length) return;
+      var measurements=titleElements.map(function(element){ var placeholder=document.createElement('div'); placeholder.style.height='0px'; element.insertAdjacentElement('afterend',placeholder); return {el:element, ph:placeholder, s:0, stop:0, H:0}; });
+
+      // Measure position values for each title element
+      function measureElement(measurement){
+        var element=measurement.el; element.style.position=''; element.style.top=''; element.style.left=''; element.style.right=''; element.style.width=''; element.style.zIndex=''; element.style.background='';
+        // measurement.ph.style.height=element.offsetHeight+'px'; measurement.H=calculateHeaderOffset();
+        var scrollTop=window.pageYOffset||document.documentElement.scrollTop; var boundingBox=element.getBoundingClientRect();
+        measurement.s=boundingBox.top+scrollTop; measurement.stop=getFooterTop()-BOUNDARY_BUFFER;
+      }
+
+      // Apply sticky positioning to title element
+      function applyTitleSticky(measurement){
+        var element=measurement.el, scrollY=window.pageYOffset||document.documentElement.scrollTop, headerHeight=measurement.H, elementHeight=element.offsetHeight;
+        var nextElement = document.querySelector('.collection-grid-section');
           
-        if (isNextSiblingInViewport(nextEl)) {
+        if (isNextSiblingInViewport(nextElement)) {
           b.style.position='static';
           b.classList.remove('is-fixed','is-docked');
           return;
         }
 
-        if(y+H<=m.s){ if(el.style.position==='fixed'||el.style.position==='absolute'){ el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background=''; } return; }
+        if(scrollY+headerHeight<=measurement.s){ if(element.style.position==='fixed'||element.style.position==='absolute'){ element.style.position=''; element.style.top=''; element.style.left=''; element.style.right=''; element.style.width=''; element.style.zIndex=''; element.style.background=''; } return; }
         
-        if(y+H+h>=m.stop){ var pt=el.parentElement.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop); el.style.position='absolute'; el.style.top=((m.stop-h)-pt)+'px'; el.style.left='0'; el.style.right='0'; el.style.width='100%'; el.style.zIndex=TITLE_Z; el.style.background='var(--color-background, #fff)'; return; }
-        el.style.position='fixed'; el.style.top=H+'60px'; el.style.left='0'; el.style.right='0'; el.style.width='100%'; el.style.zIndex=TITLE_Z; el.style.background='var(--color-background, #fff)';
+        if(scrollY+headerHeight+elementHeight>=measurement.stop){ var parentTop=element.parentElement.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop); element.style.position='absolute'; element.style.top=((measurement.stop-elementHeight)-parentTop)+'px'; element.style.left='0'; element.style.right='0'; element.style.width='100%'; element.style.zIndex=TITLE_Z_INDEX; element.style.background='var(--color-background, #fff)'; return; }
+        element.style.position='fixed'; element.style.top=headerHeight+'60px'; element.style.left='0'; element.style.right='0'; element.style.width='100%'; element.style.zIndex=TITLE_Z_INDEX; element.style.background='var(--color-background, #fff)';
       }
-      function recalc(){ ms.forEach(measure); ms.forEach(apply); }
-      window.addEventListener('load',recalc,{passive:true});
-      window.addEventListener('resize',recalc,{passive:true});
-      window.addEventListener('orientationchange',recalc,{passive:true});
-      window.addEventListener('scroll',function(){ var o=ms[0].H, n=hoff(); if(Math.abs(n-o)>2) ms.forEach(measure); ms.forEach(apply); },{passive:true});
-      recalc();
+
+      // Recalculate all measurements and apply positioning
+      function recalculateAll(){ measurements.forEach(measureElement); measurements.forEach(applyTitleSticky); }
+      window.addEventListener('load',recalculateAll,{passive:true});
+      window.addEventListener('resize',recalculateAll,{passive:true});
+      window.addEventListener('orientationchange',recalculateAll,{passive:true});
+      window.addEventListener('scroll',function(){ var oldOffset=measurements[0].H, newOffset=calculateHeaderOffset(); if(Math.abs(newOffset-oldOffset)>2) measurements.forEach(measureElement); measurements.forEach(applyTitleSticky); },{passive:true});
+      recalculateAll();
     };
     window.scrollUtils3();
   </script>
+  
 {% schema %}
 {
   "name": "Collection sticky filters",
