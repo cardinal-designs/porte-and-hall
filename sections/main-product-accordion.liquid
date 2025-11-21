@@ -18,10 +18,7 @@
 
 {% assign size_position = product.options_with_values | find_index: "name", "Size" | plus: 1 %}
 {% assign option_name = "option" | append: size_position %}
-
-{{product.selected_or_first_available_variant[option_name] | json }}
-
-{{ product.options_with_values[size_position] | json }}
+{% assign size_value = product.selected_or_first_available_variant[option_name]  %}
 
 {% liquid
   for collection in product.collections
@@ -38,8 +35,14 @@
   capture color_swatch_list
     assign swatch_count = 1
     for swatch in grouped_collection.products
-    echo swatch.options_with_values | find: "name", "Size" | json 
-    echo "<br>"
+      assign size_position_1 = swatch.options_with_values | find_index: "name", "Size" | plus: 1
+      assign option_name_1 = "option" | append: size_position_1
+      assign size_value_1 = swatch.selected_or_first_available_variant[option_name_1] 
+
+      unless size_value_1 == size_value
+        continue
+      endunless
+
       for option in swatch.options_with_values
         assign option_name = option.name | downcase
 
