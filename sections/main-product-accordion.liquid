@@ -506,7 +506,7 @@
                 </a>
 
                 {%- comment -%} Other Sizes {%- endcomment -%}
-                {% comment %} {%- for block in other_sizes -%}
+                {%- for block in other_sizes -%}
                   {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
                   {%- assign current_size = block.title | split: " | " -%}
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
@@ -524,16 +524,13 @@
                   {% comment %} {{ match }} -- {{ alternate_match }} <br> {% endcomment %}
 
                   {%- if match != blank or alternate_match != blank -%} 
-
-                    {% assign prod_url = match.first.url %}
-
+                    
+                    {% assign prod_url = match.first %}
                     {% if match == blank %}
                       {% assign match = alternate_match %}
-                      {% assign prod_url = match.url %}
-                      {% break %}
                     {% endif %}
 
-                    {{ match.title }} -- {{prod_url }} <br>
+                    {{ match.title }} <br>
 
 
                     <a 
@@ -580,85 +577,7 @@
                       {% endcomment %}
                     </a>
                   {%- endif -%}
-                {%- endfor -%} {% endcomment %}
-
-                {%- for block in other_sizes -%}
-  {%- assign current_size = block.title | split: " | " -%}
-  {%- assign format_color = "- " | append: active_style | append: " /" -%}
-  {%- assign match_name = block.title | replace: "|", format_color -%}
-  {%- assign alternate_match_name = match_name | split: "/" | first | strip -%}
-  
-  {%- comment %} Find matching product directly {% endcomment %}
-  {%- assign match = block.products | where: 'title', match_name | first -%}
-  {%- assign alternate_match = block.products | where: 'title_contains', alternate_match_name | first -%}
-
-  {%- comment %} Determine the product to use {% endcomment %}
-  {%- assign selected_product = match | default: alternate_match -%}
-
-  {%- if selected_product != blank -%} 
-    {%- assign prod_url = selected_product.url -%}
-
-    <a 
-      style="order: {% case current_size.last %}
-        {% when 'Doormat' %}1
-        {% when 'Runner' %}2
-        {% when 'XL Runner' %}3
-        {% when 'Area Mat' %}4
-        {% when 'Standard' %}5
-        {% when 'Double' %}6
-        {% when 'XL Area Mat' %}7
-        {% else %}8
-      {% endcase %};"
-      class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
-      href="{{ prod_url }}"
-    >
-      <span>
-        {% if current_size.last == 'XL Area Mat' %}
-          Area Mat
-        {% else %}
-          {{ current_size.last }}
-        {% endif %}
-      </span>
-
-      <span class="other-sizes__dimension">
-        {% case current_size.last %}
-          {% when 'Doormat' %}
-            {% if current_size.first == 'The Innerweave' %}
-              2' x 3'
-            {% else %}
-              2' 3" x 3'
-            {% endif %}
-          
-          {% when 'XL Runner' %}
-            2' 3" x 8' 6"
-          
-          {% when 'Runner' %}
-            {% if current_size.first == 'The Innerweave' %}
-              2' 5" x 6' 5"
-            {% else %}
-              2' 3" x 6' 7"
-            {% endif %}
-          
-          {% when 'XL Area Mat' %}
-            5' x 7'
-          
-          {% when 'Area Mat' %}
-            {% if current_size.first == 'The Innerweave' %}
-              4' x 6'
-            {% else %}
-              4' 6" x 6' 6"
-            {% endif %}
-          
-          {% when 'Standard' %}
-            30" x 48"
-          
-          {% when 'Double' %}
-            36" x 72"
-        {% endcase %}
-      </span>
-    </a>
-  {%- endif -%}
-{%- endfor -%}
+                {%- endfor -%}
               {%- endcapture -%}
 
 
