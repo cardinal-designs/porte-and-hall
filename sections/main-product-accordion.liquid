@@ -404,7 +404,7 @@
               assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
             %}
 
-            {{ grouped_collection | json }}
+            {{ grouped_collection | json }} -- {{other_sizes | json }}
 
             <span data-active-style="{{ active_style }}"></span>
 
