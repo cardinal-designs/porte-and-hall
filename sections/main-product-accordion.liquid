@@ -34,7 +34,7 @@
       for option in swatch.options_with_values
         assign option_name = option.name | downcase
 
-        echo "---" |append: option_name
+        echo "##---" | append: option["size"] | append: "---##"
 
         if option_name == "size"
           echo option | json
