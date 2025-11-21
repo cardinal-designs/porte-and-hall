@@ -34,10 +34,12 @@
       for option in swatch.options_with_values
         assign option_name = option.name | downcase
 
-        echo "##---" | append: option["size"] | append: "---##"
+        ## echo "##---" | append: option["size"] | append: "---##"
+
+        echo option | json
 
         if option_name == "size"
-          echo option | json
+          ## echo option | json
         endif
         if color_label contains option_name or option_name == 'style'
           assign option_index = 'option' | append: forloop.index
