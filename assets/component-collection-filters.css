@@ -582,13 +582,15 @@
   .sticky-filters-wrap {
     position: sticky !important;
     top: 60px;
+    top: 110px;
     z-index: 9;
     background: #ffffff;
     padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   body.scroll-lock .sticky-filters-wrap {
-    background: transparent;
+    background: #cecacc;
   }
 
   .collection-hero__inner {
@@ -681,4 +683,12 @@
     padding: 8px 5px;
     justify-content: center;
   }
+}
+
+@media screen and (max-width: 737px) {
+
+  .sticky-filters-wrap {
+    top: 120px !important;
+  }
+
 }
