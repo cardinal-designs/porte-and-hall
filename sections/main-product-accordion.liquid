@@ -507,7 +507,6 @@
 
                 {%- comment -%} Other Sizes {%- endcomment -%}
                 {%- for block in other_sizes -%}
-
                   {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
                   {%- assign current_size = block.title | split: " | " -%}
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
@@ -520,46 +519,39 @@
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
                       href="{{ match.first.url }}"
                     >
-                      {% if current_size.last == 'XL Area Mat' %}
+                      {% if current_size.last == 'Area Mat' %}
                         <span>Area Mat</span>
                       {% else %}
                       <span>{{ current_size.last }}</span>
                       {% endif %}
-
                       {% if current_size.last == 'Doormat' %}
                         {% if current_size.first == 'The Innerweave' %}
                           <span class="other-sizes__dimension">2' x 3'</span>
                         {% else %}
                           <span class="other-sizes__dimension">2' 3" x 3'</span>
-                        {% endif %} 
-                      {% endif %}
-
-                      {% if current_size.last == 'XL Runner' %}
+                        {% endif %}
+                      {% elsif current_size.last == 'XL Runner' %}
                         <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
-                      {% endif %}
-                      {% if current_size.last == 'Runner' %}
+                      {% elsif current_size.last == 'Runner' %}
                         {% if current_size.first == 'The Innerweave' %}
                           <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
                         {% else %}
                           <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
                         {% endif %}
-                      {% endif %}
-                      {% if current_size.last == 'XL Area Mat' %}
+                      {% elsif current_size.last == 'XL Area Mat' %}
                         <span class="other-sizes__dimension">5' x 7'</span>
-                      {% endif %}
-                      {% if current_size.last == 'Area Mat' %}
+                      {% elsif current_size.last == 'Area Mat' %}
                         {% if current_size.first == 'The Innerweave' %}
                           <span class="other-sizes__dimension">4' x 6'</span>
                         {% else %}
                           <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
                         {% endif %}
-                      {% endif %}
-                      {% if current_size.last == 'Standard' %}
+                      {% elsif current_size.last == 'Standard' %}
                         <span class="other-sizes__dimension">30” x 48”</span>
                       {% elsif current_size.last == 'Double' %}
                         <span class="other-sizes__dimension">36” x 72”</span>
                       {% endif %}
-                      
+
                       {% comment %}
                       <span class="other-sizes__dimension">{{ dimension }}</span>
                       {% endcomment %}
