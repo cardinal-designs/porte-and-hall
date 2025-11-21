@@ -519,11 +519,14 @@
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
                       href="{{ match.first.url }}"
                     >
-                      {% if current_size.last == 'Area Mat' %}
+                      {% if current_size.last == 'XL Area Mat' %}
                         <span>Area Mat</span>
                       {% else %}
                       <span>{{ current_size.last }}</span>
                       {% endif %}
+
+                      {{current_size | json }}
+
                       {% if current_size.last == 'Doormat' %}
                         {% if current_size.first == 'The Innerweave' %}
                           <span class="other-sizes__dimension">2' x 3'</span>
