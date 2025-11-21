@@ -506,15 +506,14 @@
                 </a>
 
                 {%- comment -%} Other Sizes {%- endcomment -%}
-                {%- for block in other_sizes -%} 
+                {%- for block in other_sizes -%}
                   {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
                   {%- assign current_size = block.title | split: " | " -%}
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
 
-                  {%- if match != blank -%} 
-                    inn if --  {{block.title | json }} <br>
+                  {% comment %} {%- if match != blank -%}  {% endcomment %}
                     <a 
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == 'XL Area Mat'  %}7{% endif %} ;"
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
@@ -525,8 +524,6 @@
                       {% else %}
                       <span>{{ current_size.last }}</span>
                       {% endif %}
-
-                      {{current_size | json }}
 
                       {% if current_size.last == 'Doormat' %}
                         {% if current_size.first == 'The Innerweave' %}
@@ -560,7 +557,7 @@
                       <span class="other-sizes__dimension">{{ dimension }}</span>
                       {% endcomment %}
                     </a>                
-                  {%- endif -%}
+                  {% comment %} {%- endif -%} {% endcomment %}
                 {%- endfor -%}
               {%- endcapture -%}
 
