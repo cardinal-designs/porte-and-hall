@@ -515,6 +515,8 @@
                   {%- assign match = block.products | where: 'title', match_name -%}
                   {%- assign alternate_match = block.products | where: 'title', alternate_match_name -%}
 
+                  {{alternate_match_name }}
+
                   {%- if match != blank or alternate_match != blank -%} 
 
                     {% if match == blank %}
