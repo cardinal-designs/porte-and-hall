@@ -16,7 +16,7 @@
   }
 {% endstyle %}
 
-{{ product.options_with_values | json}}
+{{ product.options_with_values | find: "name", "Size" }}
 
 {% liquid
   for collection in product.collections
