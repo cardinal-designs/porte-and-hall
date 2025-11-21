@@ -222,7 +222,6 @@
       // FIXED: Check if we're past the container bounds
       var containerRect = w.closest('section') ? w.closest('section').getBoundingClientRect() : w.parentElement.getBoundingClientRect();
       var containerBottom = containerRect.bottom + (window.pageYOffset || document.documentElement.scrollTop);
-      
       // Not scrolled enough - keep static
       if(y+off<=sY || b.clientHeight > document.querySelector(".collection").clientHeight){ 
         if(b.classList.contains('is-fixed')||b.classList.contains('is-docked')){ 
@@ -248,12 +247,11 @@
         b.classList.add('is-docked'); 
         return;
       }
-      
       // In the middle - keep fixed
       var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
       var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
       b.style.position='fixed'; 
-      b.style.top=off+'px'; 
+      b.style.top=(window.screen.availWidth > 768 ? off : (off - 27))+'px'; 
       b.style.left=lv+'px'; 
       b.style.width=wv+'px'; 
       b.style.transform='translateZ(0)'; 

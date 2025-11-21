@@ -87,6 +87,8 @@
 
   .sticky-filters-bar.is-fixed {
     left: 0 !important;
+    width: 100% !important;
+    background: #fff;
   }
 
   .sticky-filters-bar.is-docked{
