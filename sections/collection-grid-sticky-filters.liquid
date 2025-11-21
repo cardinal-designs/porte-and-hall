@@ -253,7 +253,7 @@
       var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
       var h2=document.querySelector('.bx-slab');
       b.style.position='fixed'; 
-      b.style.top=(window.screen.availWidth > 768 ? off : (h.clientHeight + h2.clientHeight))+'px'; 
+      b.style.top=(window.screen.availWidth > 768 ? off : (h.clientHeight + h2 ? h2.clientHeight : 0))+'px'; 
       b.style.left=lv+'px'; 
       b.style.width=wv+'px'; 
       b.style.transform=(window.screen.availWidth > 768 ? 'translateZ(0)' : ''); 
