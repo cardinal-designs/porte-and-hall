@@ -31,7 +31,7 @@
   capture color_swatch_list
     assign swatch_count = 1
     for swatch in grouped_collection.products
-      echo "<br>-----------" | append: swatch.title
+      echo "<br>## " | append: swatch.title
       for option in swatch.options_with_values
         echo "<br>-----------" | append: option.name
         assign option_name = option.name | downcase
