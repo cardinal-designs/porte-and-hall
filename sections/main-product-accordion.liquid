@@ -16,9 +16,10 @@
   }
 {% endstyle %}
 
-{% assign size_position = product.options_with_values | find_index: "name", "Size"  %}
+{% assign size_position = product.options_with_values | find_index: "name", "Size" | plus: 1 %}
+{% assign option_name = "option" | append: size_position %}
 
-{{product.selected_or_first_available_variant.option2 | json }}
+{{product.selected_or_first_available_variant[option_name] | json }}
 
 {{ product.options_with_values[size_position] | json }}
 
