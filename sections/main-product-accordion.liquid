@@ -525,11 +525,15 @@
 
                   {%- if match != blank or alternate_match != blank -%} 
 
+                    {% assign prod_url = match.first.url %}
+
                     {% if match == blank %}
                       {% assign match = alternate_match %}
+                      {% assign prod_url = match.url %}
+                      {% break %}
                     {% endif %}
 
-                    {{ match.title }} <br>
+                    {{ match.title }} -- {{prod_url }} <br>
 
 
                     <a 
