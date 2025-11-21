@@ -395,8 +395,6 @@
               </div>
             </noscript>
           
-            {{product.options_by_name['size'] | json }}
-
             <!-- Shop Other Sizes -->
             {% liquid
               assign product_type = grouped_collection.title | remove: 'The ' | split: ' | '
@@ -520,8 +518,6 @@
                       {%- assign alternate_match = p -%}
                     {% endif %}
                   {% endfor %}
-
-                  {% comment %} {{ match }} -- {{ alternate_match }} <br> {% endcomment %}
 
                   {%- if match != blank or alternate_match != blank -%} 
                     {% assign prod_url = "" %}
