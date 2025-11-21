@@ -511,7 +511,7 @@
                   {%- assign current_size = block.title | split: " | " -%}
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
-                  {{match_name | json }}
+                  {{match_name }}
                   {%- assign match = block.products | where: 'title', match_name -%}
 
                   {% comment %} {%- if match != blank -%}  {% endcomment %}
