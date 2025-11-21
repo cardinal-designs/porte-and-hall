@@ -31,6 +31,8 @@
   capture color_swatch_list
     assign swatch_count = 1
     for swatch in grouped_collection.products
+    echo swatch.options_with_values | json 
+    echo "<br>"
       for option in swatch.options_with_values
         assign option_name = option.name | downcase
 
