@@ -20,7 +20,6 @@
 {% assign option_name = "option" | append: size_position %}
 {% assign size_value = product.selected_or_first_available_variant[option_name]  %}
 
-
 {% liquid
   for collection in product.collections
     if collection.title contains ' |'
@@ -100,9 +99,6 @@
     endfor
   endcapture
 %}
-
-
-
 
 {% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 <section class="page-width">
