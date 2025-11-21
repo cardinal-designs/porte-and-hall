@@ -513,7 +513,13 @@
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
                   {%- assign alternate_match_name = match_name | split: "/" | first | strip -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
-                  {%- assign alternate_match = block.products | where: 'title', alternate_match_name -%}
+                  {%- assign alternate_match = "" -%}
+
+                  {% for p in block.products %}
+                    {% if p.title contains alternate_match_name %}
+                      {%- assign alternate_match = p -%}
+                    {% endif %}
+                  {% endfor %}
 
                   {{ match_name }} -- {{ alternate_match_name }} -- {{ alternate_match }} <br>
 
