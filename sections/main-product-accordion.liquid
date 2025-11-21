@@ -511,7 +511,7 @@
                   {%- assign current_size = block.title | split: " | " -%}
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
-                  {%- assign alternate_match_name = match_name | split: "/" | strip -%}
+                  {%- assign alternate_match_name = match_name | split: "/" | first | strip -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
                   {%- assign alternate_match = block.products | where: 'title', alternate_match_name -%}
 
