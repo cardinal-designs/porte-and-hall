@@ -16,7 +16,8 @@
   }
 {% endstyle %}
 
-{{ product.options_with_values | find_index: "name", "Size" }}
+{% assign size_position = product.options_with_values | find_index: "name", "Size"  %}
+{{ product.options_with_values[size_position] | json }}
 
 {% liquid
   for collection in product.collections
