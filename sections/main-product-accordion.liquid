@@ -525,34 +525,41 @@
                       {% else %}
                       <span>{{ current_size.last }}</span>
                       {% endif %}
+
                       {% if current_size.last == 'Doormat' %}
                         {% if current_size.first == 'The Innerweave' %}
                           <span class="other-sizes__dimension">2' x 3'</span>
                         {% else %}
                           <span class="other-sizes__dimension">2' 3" x 3'</span>
-                        {% endif %}
-                      {% elsif current_size.last == 'XL Runner' %}
+                        {% endif %} 
+                      {% endif %}
+
+                      {% if current_size.last == 'XL Runner' %}
                         <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
-                      {% elsif current_size.last == 'Runner' %}
+                      {% endif %}
+                      {% if current_size.last == 'Runner' %}
                         {% if current_size.first == 'The Innerweave' %}
                           <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
                         {% else %}
                           <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
                         {% endif %}
-                      {% elsif current_size.last == 'XL Area Mat' %}
+                      {% endif %}
+                      {% if current_size.last == 'XL Area Mat' %}
                         <span class="other-sizes__dimension">5' x 7'</span>
-                      {% elsif current_size.last == 'Area Mat' %}
+                      {% endif %}
+                      {% if current_size.last == 'Area Mat' %}
                         {% if current_size.first == 'The Innerweave' %}
                           <span class="other-sizes__dimension">4' x 6'</span>
                         {% else %}
                           <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
                         {% endif %}
-                      {% elsif current_size.last == 'Standard' %}
+                      {% endif %}
+                      {% if current_size.last == 'Standard' %}
                         <span class="other-sizes__dimension">30” x 48”</span>
                       {% elsif current_size.last == 'Double' %}
                         <span class="other-sizes__dimension">36” x 72”</span>
                       {% endif %}
-
+                      
                       {% comment %}
                       <span class="other-sizes__dimension">{{ dimension }}</span>
                       {% endcomment %}
