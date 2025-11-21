@@ -428,7 +428,7 @@
     setTimeout(function () {
       var banner = document.getElementById('onetrust-banner-sdk');
       if (banner) {
-        banner.style.display = 'block';
+        banner.style.setProperty('display', 'block', 'important'); 
       }
     }, 4000);
   }
