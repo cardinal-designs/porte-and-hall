@@ -1169,20 +1169,15 @@ var LoadMore = class extends HTMLElement {
           const newGrid = htmlContent.querySelector("#product-grid");
           const newLoadMoreWrapper = htmlContent.querySelector("#load-more-wrapper");
 
-          // Append new products
           if (newGrid) {
             productGrid.insertAdjacentHTML("beforeend", newGrid.innerHTML);
           }
 
-          // Update the load-more wrapper
           if (loadMoreWrapper) {
             if (newLoadMoreWrapper) {
-              // ✅ Use the HTML string, not the element object
               loadMoreWrapper.innerHTML = newLoadMoreWrapper.innerHTML;
             } else {
-              // No more pages
               loadMoreWrapper.innerHTML = "";
-              // Or: loadMoreWrapper.remove();
             }
           }
         })
