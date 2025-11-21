@@ -259,15 +259,15 @@ class collectionFilters extends HTMLElement {
           content.innerHTML = newContent;
         });
         this.disableLoading();
-        window.scrollUtils1();
-        window.scrollUtils2();
-        window.scrollUtils3();
       })
       .catch(() => {
         this.disableLoading();
       })
       .finally(() => {
         document.querySelectorAll('.product-grid__item.fade-in').forEach(item => item.style.opacity = 1);
+        window.scrollUtils1();
+        window.scrollUtils2();
+        window.scrollUtils3();
       });
   }
 

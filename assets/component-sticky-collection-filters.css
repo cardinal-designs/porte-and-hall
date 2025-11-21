@@ -20,7 +20,7 @@
   .sticky-filters-bar{
     background: var(--color-background, #ffffff);
     will-change: transform;
-    z-index: var(--filters-z);
+    z-index: 5;
     background: var(--filter-bg-color) !important;
     color: var(--filter-text-color), #546B82 !important;
     padding: 10px 0 10px 10px !important;
