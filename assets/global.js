@@ -1121,32 +1121,80 @@ customElements.define('article-carousel', ArticleCarousel)
 
 // customElements.define('shop-story-carousel', ShopStoryCarousel)
 
+// var LoadMore = class extends HTMLElement {
+//   constructor() {
+//     super();
+
+//     const dataUrl = this.dataset.loadMore
+//     const productGrid = this.closest(".collection").querySelector("#product-grid")
+//     const loadMoreWrapper = productGrid?.nextElementSibling
+
+//     this.addEventListener("click", function(e){
+//       e.preventDefault();
+
+//       this.classList.add("loading")
+
+//       fetch(dataUrl).then(response => response.text()).then((responseText) => {
+//         const html = responseText;
+//         const htmlContent = new DOMParser().parseFromString(html, 'text/html')
+
+//         productGrid.innerHTML = productGrid.innerHTML + htmlContent.querySelector("#product-grid").innerHTML;
+//         loadMoreWrapper.innerHTML = htmlContent.querySelector("load-more") || ""
+
+//       })
+//     }.bind(this))
+//   }
+// }
+
+// customElements.define('load-more', LoadMore)
+
 var LoadMore = class extends HTMLElement {
   constructor() {
     super();
 
-    const dataUrl = this.dataset.loadMore
-    const productGrid = this.closest(".collection").querySelector("#product-grid")
-    const loadMoreWrapper = productGrid?.nextElementSibling
+    const dataUrl = this.dataset.loadMore;
+    const productGrid = this.closest(".collection").querySelector("#product-grid");
+    const loadMoreWrapper = productGrid?.nextElementSibling;
 
-    this.addEventListener("click", function(e){
+    this.addEventListener("click", function (e) {
       e.preventDefault();
 
-      this.classList.add("loading")
+      this.classList.add("loading");
 
-      fetch(dataUrl).then(response => response.text()).then((responseText) => {
-        const html = responseText;
-        const htmlContent = new DOMParser().parseFromString(html, 'text/html')
+      fetch(dataUrl)
+        .then(response => response.text())
+        .then((responseText) => {
+          const htmlContent = new DOMParser().parseFromString(responseText, "text/html");
 
-        productGrid.innerHTML = productGrid.innerHTML + htmlContent.querySelector("#product-grid").innerHTML;
-        loadMoreWrapper.innerHTML = htmlContent.querySelector("load-more") || ""
+          const newGrid = htmlContent.querySelector("#product-grid");
+          const newLoadMoreWrapper = htmlContent.querySelector("#load-more-wrapper");
 
-      })
-    }.bind(this))
+          // Append new products
+          if (newGrid) {
+            productGrid.insertAdjacentHTML("beforeend", newGrid.innerHTML);
+          }
+
+          // Update the load-more wrapper
+          if (loadMoreWrapper) {
+            if (newLoadMoreWrapper) {
+              // ✅ Use the HTML string, not the element object
+              loadMoreWrapper.innerHTML = newLoadMoreWrapper.innerHTML;
+            } else {
+              // No more pages
+              loadMoreWrapper.innerHTML = "";
+              // Or: loadMoreWrapper.remove();
+            }
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          this.classList.remove("loading");
+        });
+    }.bind(this));
   }
-}
+};
 
-customElements.define('load-more', LoadMore)
+customElements.define("load-more", LoadMore);
 
 // offset anchor
 window.addEventListener('hashchange', offsetAnchor);
