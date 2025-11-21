@@ -20,6 +20,7 @@
 {% assign option_name = "option" | append: size_position %}
 {% assign size_value = product.selected_or_first_available_variant[option_name]  %}
 
+
 {% liquid
   for collection in product.collections
     if collection.title contains ' |'
@@ -43,14 +44,13 @@
         assign option_name = option.name | downcase
 
         if color_label contains option_name or option_name == 'style'
-
+          
           for value in option.values
             assign swatch_key = value | handle
 
             if printed_swatch_values contains swatch_key
               continue
             endif
-
             assign printed_swatch_values = printed_swatch_values | append: swatch_key | append: "|"
 
             assign matched_variant = swatch.variants | where: 'title', value
@@ -61,6 +61,7 @@
             endif
 
             assign element_classes = 'product__swatch'
+
             if swatch.id == product.id and option.selected_value == value
               assign element_classes = element_classes | append: ' product__active-swatch'
             endif
@@ -70,7 +71,6 @@
             endunless
 
             assign swatch_file_name = value | handle | append: '.png'
-            assign swatch_image = images[swatch_file_name]
 
             echo "<a href='"
             echo swatch_link
@@ -100,6 +100,7 @@
     endfor
   endcapture
 %}
+
 
 
 
