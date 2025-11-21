@@ -406,8 +406,6 @@
               assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
             %}
 
-            {{ grouped_collection | json }} -- {{other_sizes | json }}
-
             <span data-active-style="{{ active_style }}"></span>
 
               {% if other_sizes != blank and section.settings.shop_more_below != true %}
