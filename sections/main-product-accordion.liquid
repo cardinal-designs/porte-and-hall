@@ -16,6 +16,8 @@
   }
 {% endstyle %}
 
+{{ product.options_with_values | json}}
+
 {% liquid
   for collection in product.collections
     if collection.title contains ' |'
