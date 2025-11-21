@@ -16,7 +16,7 @@
   }
 {% endstyle %}
 
-{% comment %} {% liquid
+{% liquid
   for collection in product.collections
     if collection.title contains ' |'
       assign grouped_collection = collection
@@ -77,76 +77,9 @@
       endfor
     endfor
   endcapture
-%} {% endcomment %}
-{% liquid
-  for collection in product.collections
-    if collection.title contains ' |'
-      assign grouped_collection = collection
-    endif
-  endfor
-  
-  assign size_label = 'size,sizes,taille,größe,tamanho,サイズ' | split: ','
-  assign collection_title = grouped_collection.title | downcase
-
-  # Find the size option index
-  assign size_option_index = null
-  for option in product.options_with_values
-    assign option_name = option.name | downcase
-    if size_label contains option_name
-      assign size_option_index = forloop.index
-      break
-    endif
-  endfor
-
-  # Get the currently selected size value
-  assign temp_size_index = size_option_index | minus: 1
-  assign current_size_value = product.selected_or_first_available_variant.options[temp_size_index]
-
-  capture size_swatch_list
-    assign processed_values = ''
-    for swatch in grouped_collection.products
-      for option in swatch.options_with_values
-        assign option_name = option.name | downcase
-        if size_label contains option_name
-          for value in option.values
-            # Only show swatches for the current size
-            if value == current_size_value
-              assign variant = swatch.variants | where: 'option1', value | first
-
-              # Determine swatch link
-              assign swatch_link = variant.url | default: swatch.url
-
-              # Determine element classes
-              assign element_classes = 'product__size-swatch'
-              if swatch == product and option.selected_value == value
-                assign element_classes = element_classes | append: ' product__active-size-swatch'
-              endif
-              if swatch.available == false
-                assign element_classes = element_classes | append: ' product__oos-size-swatch'
-              endif
-
-              # Output size swatch HTML
-              echo "<a href='"
-              echo swatch_link
-              echo "' class='"
-              echo element_classes
-              echo "'"
-              echo " aria-label='"
-              echo value | escape
-              echo "' title='"
-              echo value | escape
-              echo "' data-tooltip='"
-              echo value | escape
-              echo "'>"
-              echo value | escape
-              echo "</a>"
-            endif
-          endfor
-        endif
-      endfor
-    endfor
-  endcapture
 %}
+
+
 {% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 <section class="page-width">
   <div class="product">
