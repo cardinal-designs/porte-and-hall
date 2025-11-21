@@ -16,7 +16,7 @@
   }
 {% endstyle %}
 
-{% liquid
+{% comment %} {% liquid
   for collection in product.collections
     if collection.title contains ' |'
       assign grouped_collection = collection
@@ -79,8 +79,83 @@
       endfor
     endfor
   endcapture
-%}
+%} {% endcomment %}
 
+{% liquid
+  # Find the collection with a specific marker (optional, can be modified)
+  for collection in product.collections
+    if collection.title contains ' |'
+      assign grouped_collection = collection
+    endif
+  endfor
+  
+  # Define color and size option names
+  assign color_option_name = 'Color'
+  assign size_option_name = 'Size'
+
+  # Find color and size option indices
+  assign color_option_index = null
+  assign size_option_index = null
+  
+  for option in product.options_with_values
+    if option.name == color_option_name
+      assign color_option_index = forloop.index0
+    endif
+    if option.name == size_option_name
+      assign size_option_index = forloop.index0
+    endif
+  endfor
+
+  # Get the currently selected color and size values
+  assign current_color_value = product.selected_or_first_available_variant.options[color_option_index]
+  assign current_size_value = product.selected_or_first_available_variant.options[size_option_index]
+
+  capture size_swatch_list
+    assign processed_values = ''
+    for swatch in grouped_collection.products
+      # Check if the swatch has the same color as the current product
+      assign swatch_color = swatch.options[color_option_index]
+      
+      if swatch_color == current_color_value
+        for option in swatch.options_with_values
+          if option.name == size_option_name
+            for value in option.values
+              assign variant = swatch.variants | where: 'option' | first
+
+              # Determine swatch link
+              assign swatch_link = variant.url | default: swatch.url
+
+              # Determine element classes
+              assign element_classes = 'product__size-swatch'
+              if swatch == product and value == current_size_value
+                assign element_classes = element_classes | append: ' product__active-size-swatch'
+              endif
+              if swatch.available == false
+                assign element_classes = element_classes | append: ' product__oos-size-swatch'
+              endif
+
+              # Output size swatch HTML
+              echo "<a href='"
+              echo swatch_link
+              echo "' class='"
+              echo element_classes
+              echo "'"
+              echo " aria-label='"
+              echo value | escape
+              echo "' title='"
+              echo value | escape
+              echo "' data-tooltip='"
+              echo value | escape
+              echo "'>"
+              echo value | escape
+              echo "</a>"
+            endfor
+          endif
+        endfor
+      endif
+    endfor
+  endcapture
+%}
 
 {% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 <section class="page-width">
