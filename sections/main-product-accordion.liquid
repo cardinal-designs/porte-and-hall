@@ -471,36 +471,36 @@
                   class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button active" 
                   href="{{ product.url }}"
                 >
-                  {% if product_size contains 'XL Area Mat' %}
+                  {% if product_size == 'XL Area Mat' %}
                     <span>Area Mat</span>
                   {% else %}
                   <span>{{ product_size }}</span>
                   {% endif %}
-                  {% if product_size contains 'Doormat' %}
+                  {% if product_size == 'Doormat' %}
                     {% if product.handle contains 'innerweave' %}
                       <span class="other-sizes__dimension">2' x 3'</span>
                     {% else %}
                       <span class="other-sizes__dimension">2' 3" x 3'</span>
                     {% endif %}
-                  {% elsif product_size contains 'XL Runner' %}
+                  {% elsif product_size == 'XL Runner' %}
                      <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
-                  {% elsif product_size contains 'Runner' %}
+                  {% elsif product_size == 'Runner' %}
                     {% if product.handle contains 'innerweave' %}
                       <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
                     {% else %}
                       <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
                     {% endif %}
-                  {% elsif product_size contains 'XL Area Mat' %}
+                  {% elsif product_size == 'XL Area Mat' %}
                     <span class="other-sizes__dimension">5' x 7'</span>
-                  {% elsif product_size contains 'Area Mat' %}
+                  {% elsif product_size == 'Area Mat' %}
                     {% if product.handle contains 'innerweave' %}
                       <span class="other-sizes__dimension">4' x 6'</span>
                     {% else %}
                       <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
                     {% endif %}  
-                  {% elsif current_size.last contains 'Standard' %}
+                  {% elsif current_size.last == 'Standard' %}
                     <span class="other-sizes__dimension">36” x 72”</span>
-                  {% elsif current_size.last contains 'Double' %}
+                  {% elsif current_size.last == 'Double' %}
                     <span class="other-sizes__dimension">30” x 48”</span>
                   {% endif %}
                 </a>
