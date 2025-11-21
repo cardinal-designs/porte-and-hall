@@ -33,6 +33,14 @@
     for swatch in grouped_collection.products
       for option in swatch.options_with_values
         assign option_name = option.name | downcase
+        if option_name == "Size"
+
+
+        echo option | json
+        
+          
+
+        endif
         if color_label contains option_name or option_name == 'style'
           assign option_index = 'option' | append: forloop.index
           for value in option.values
