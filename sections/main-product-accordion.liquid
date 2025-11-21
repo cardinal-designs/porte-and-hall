@@ -515,13 +515,13 @@
                   {%- assign match = block.products | where: 'title', match_name -%}
                   {%- assign alternate_match = block.products | where: 'title', alternate_match_name -%}
 
-                  {{match_name}} -- {{alternate_match_name }} <br>
-
                   {%- if match != blank or alternate_match != blank -%} 
 
                     {% if match == blank %}
                       {% assign match = alternate_match %}
-                    {% endif %}                    
+                    {% endif %}          
+                    
+                    {{match | json }}
 
                     <a 
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == 'XL Area Mat'  %}7{% endif %} ;"
