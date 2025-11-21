@@ -16,7 +16,7 @@
   }
 {% endstyle %}
 
-{{ product.options_with_values | find: "name", "Size" | find_index }}
+{{ product.options_with_values | find_index: "name", "Size" }}
 
 {% liquid
   for collection in product.collections
