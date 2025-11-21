@@ -33,7 +33,7 @@
     for swatch in grouped_collection.products
       for option in swatch.options_with_values
         assign option_name = option.name | downcase
-        if color_label contains option_name
+        if color_label contains option_name or option_name == 'style'
           assign option_index = 'option' | append: forloop.index
           for value in option.values
             assign matched_variant = swatch.variants | where: 'title', value
