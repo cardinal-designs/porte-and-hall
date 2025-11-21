@@ -35,7 +35,7 @@
       for option in swatch.options_with_values
         echo "<br>-----------" | append: option.name
         assign option_name = option.name | downcase
-        if color_label contains option_name or option_name == 'style'
+        if color_label contains option_name
           assign option_index = 'option' | append: forloop.index
           for value in option.values
             assign matched_variant = swatch.variants | where: 'title', value
