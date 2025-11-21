@@ -34,69 +34,66 @@
   assign collection_title = grouped_collection.title | downcase
   capture color_swatch_list
     assign swatch_count = 1
-    for swatch in grouped_collection.products
-      assign size_position_1 = swatch.options_with_values | find_index: "name", "Size" | plus: 1
-      assign option_name_1 = "option" | append: size_position_1
-      assign size_value_1 = swatch.selected_or_first_available_variant[option_name_1] 
 
-      unless size_value_1 == size_value
-        continue
-      endunless
+    for swatch in grouped_collection.products
 
       for option in swatch.options_with_values
         assign option_name = option.name | downcase
 
-        ## echo "##---" | append: option["size"] | append: "---##"
-
-        ## echo option | json
-
-        if option_name == "size"
-          ## echo option | json
-        endif
         if color_label contains option_name or option_name == 'style'
           assign option_index = 'option' | append: forloop.index
+
           for value in option.values
+
             assign matched_variant = swatch.variants | where: 'title', value
             if matched_variant != blank
               assign swatch_link = matched_variant[0].url
+            else
+              assign swatch_link = swatch.variants[0].url
             endif
 
             assign element_classes = 'product__swatch'
-            if swatch == product and option.selected_value == value
+
+            if swatch.id == product.id and option.selected_value == value
               assign element_classes = element_classes | append: ' product__active-swatch'
             endif
-            if swatch.available == false
+
+            unless swatch.available
               assign element_classes = element_classes | append: ' product__oos-swatch'
-            endif
+            endunless
 
             assign swatch_file_name = value | handle | append: '.png'
             assign swatch_image = images[swatch_file_name]
 
             echo "<a href='"
-            echo swatch_link | default: swatch.variants[0].url
+            echo swatch_link
             echo "' class='"
             echo element_classes
-            echo "'"
-            echo " aria-label='"
+            echo "' aria-label='"
             echo value | escape
             echo "' title='"
             echo value | escape
             echo "' data-tooltip='"
             echo value | escape
             echo "'>"
-            echo "<span style='background-image: url("
-            echo swatch_file_name | file_url
-            echo ")'></span>"
-            echo "<span class='sr-only'>"
-            echo value | escape
-            echo "</span></a>"
+              echo "<span style='background-image: url("
+              echo swatch_file_name | file_url
+              echo ")'></span>"
+              echo "<span class='sr-only'>"
+              echo value | escape
+              echo "</span>"
+            echo "</a>"
 
             assign swatch_count = swatch_count | plus: 1
+
           endfor
         endif
+
       endfor
+
     endfor
   endcapture
+
 %}
 
 
