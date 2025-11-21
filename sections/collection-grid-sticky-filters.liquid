@@ -251,9 +251,9 @@
       var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
       var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
       var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
-      var h2=document.querySelector('.bx-slab');
+      var h2=document.querySelector('.bx-slab'), h2Height = h2 ? h2.clientHeight : 73;
       b.style.position='fixed'; 
-      b.style.top=(window.screen.availWidth > 768 ? off : (h.clientHeight + h2 ? h2.clientHeight : 0))+'px'; 
+      b.style.top=(window.screen.availWidth > 768 ? off : (h.clientHeight + h2Height))+'px'; 
       b.style.left=lv+'px'; 
       b.style.width=wv+'px'; 
       b.style.transform=(window.screen.availWidth > 768 ? 'translateZ(0)' : ''); 
