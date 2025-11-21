@@ -584,13 +584,23 @@
     top: 60px;
     top: 110px;
     z-index: 9;
+    z-index: 5;
     background: #ffffff;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 20px;
+  }
+
+  .head-slide-wrap .head-slide li:last-child {
+    margin-right: 20px;
+  }
+
+  .collection-filters__button {
+    width: 100%;
+    margin: 0;
   }
 
   body.scroll-lock .sticky-filters-wrap {
     background: #cecacc;
+    z-index: 9;
   }
 
   .collection-hero__inner {
