@@ -1129,19 +1129,22 @@ var LoadMore = class extends HTMLElement {
     const productGrid = this.closest(".collection").querySelector("#product-grid")
     const loadMoreWrapper = productGrid?.nextElementSibling
 
-    this.addEventListener("click", function(e){
+    this.addEventListener("click", async function(e){
       e.preventDefault();
 
       this.classList.add("loading")
 
-      fetch(dataUrl).then(response => response.text()).then((responseText) => {
+      await fetch(dataUrl).then(response => response.text()).then((responseText) => {
         const html = responseText;
         const htmlContent = new DOMParser().parseFromString(html, 'text/html')
 
         productGrid.innerHTML = productGrid.innerHTML + htmlContent.querySelector("#product-grid").innerHTML;
-        loadMoreWrapper.innerHTML = htmlContent.querySelector("load-more") || ""
-
+        loadMoreWrapper.querySelector('load-more').innerHTML = htmlContent.querySelector("load-more").innerHTML || ""
+        this.classList.remove("loading")
       })
+      window.scrollUtils1();
+      window.scrollUtils2();
+      window.scrollUtils3();
     }.bind(this))
   }
 }
