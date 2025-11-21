@@ -20,7 +20,7 @@
 {% assign option_name = "option" | append: size_position %}
 {% assign size_value = product.selected_or_first_available_variant[option_name]  %}
 
-{% liquid
+{% comment %} {% liquid
   for collection in product.collections
     if collection.title contains ' |'
       assign grouped_collection = collection
@@ -97,7 +97,90 @@
       endfor
     endfor
   endcapture
+%} {% endcomment %}
+
+
+{% liquid
+  for collection in product.collections
+    if collection.title contains ' |'
+      assign grouped_collection = collection
+    endif
+  endfor
+  
+  assign oos_products = grouped_collection.products | where: 'available', false
+  assign oos_products = ""
+
+  assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
+  assign collection_title = grouped_collection.title | downcase
+
+  capture color_swatch_list
+    assign swatch_count = 1
+    assign printed_swatch_values = ""
+
+    for swatch in grouped_collection.products
+
+      for option in swatch.options_with_values
+        assign option_name = option.name | downcase
+
+        if color_label contains option_name or option_name == 'style'
+
+          for value in option.values
+            assign swatch_key = value | handle
+
+            if printed_swatch_values contains swatch_key
+              continue
+            endif
+
+            assign printed_swatch_values = printed_swatch_values | append: swatch_key | append: "|"
+
+            assign matched_variant = swatch.variants | where: 'title', value
+            if matched_variant != blank
+              assign swatch_link = matched_variant[0].url
+            else
+              assign swatch_link = swatch.variants[0].url
+            endif
+
+            assign element_classes = 'product__swatch'
+            if swatch.id == product.id and option.selected_value == value
+              assign element_classes = element_classes | append: ' product__active-swatch'
+            endif
+
+            unless swatch.available
+              assign element_classes = element_classes | append: ' product__oos-swatch'
+            endunless
+
+            assign swatch_file_name = value | handle | append: '.png'
+            assign swatch_image = images[swatch_file_name]
+
+            echo "<a href='"
+            echo swatch_link
+            echo "' class='"
+            echo element_classes
+            echo "' aria-label='"
+            echo value | escape
+            echo "' title='"
+            echo value | escape
+            echo "' data-tooltip='"
+            echo value | escape
+            echo "'>"
+              echo "<span style='background-image: url("
+              echo swatch_file_name | file_url
+              echo ")'></span>"
+              echo "<span class='sr-only'>"
+              echo value | escape
+              echo "</span>"
+            echo "</a>"
+
+            assign swatch_count = swatch_count | plus: 1
+          endfor
+
+        endif
+      endfor
+
+    endfor
+  endcapture
 %}
+
 
 
 {% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
