@@ -5,7 +5,7 @@
   position: sticky;
   top: 205px;
   display: block;
-  height: fit-content;
+  /* height: fit-content; */
 }
 
 .collection-filters__slideout-content::-webkit-scrollbar {
@@ -183,7 +183,7 @@
 
 @media screen and (min-width: 769px) {
   .collection-filters__slideout-content {
-    max-height: calc(100vh - 200px);
+    max-height: calc(100vh - 220px);
   }
 }
 
@@ -578,6 +578,23 @@
 }
 
 @media screen and (max-width: 768px) {
+
+  .sticky-filters-wrap {
+    position: sticky !important;
+    top: 60px;
+    z-index: 9;
+    background: #ffffff;
+    padding-top: 10px;
+  }
+
+  body.scroll-lock .sticky-filters-wrap {
+    background: transparent;
+  }
+
+  .collection-hero__inner {
+    margin-bottom: 0;
+  }
+
   collection-filters {
     position: unset;
   }

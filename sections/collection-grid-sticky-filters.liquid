@@ -37,6 +37,7 @@
 
     <div id="sticky-wrap-{{ section.id }}" class="sticky-filters-wrap" data-section-id="{{ section.id }}">
       <div id="sticky-bar-{{ section.id }}" class="sticky-filters-bar" role="region" aria-label="Collection filters">
+        <div class="page-overlay"></div>
         {% if section.blocks.size > 0 %}
           <div class="head-slide-wrap title-carousel" id="head-slide-wrap">
             <ul class="head-slide">
@@ -261,18 +262,18 @@
       b.classList.remove('is-docked');
     }
 
-    function recalc(){ measure(); apply(); }
+    function recalc(){ apply(); }
     
     window.addEventListener('load',recalc,{passive:true});
     window.addEventListener('resize',recalc,{passive:true});
     window.addEventListener('orientationchange',recalc,{passive:true});
     window.addEventListener('scroll',function(){ 
       var nh=H(); 
-      if(Math.abs(nh-off)>2) measure(); 
+      // if(Math.abs(nh-off)>2) measure(); 
       apply(); 
     },{passive:true});
     
-    measure(); 
+    // measure(); 
     apply();
 
     window.clearAll=function(e){ 
@@ -341,8 +342,8 @@
       stick(sec,s1,SEC); stick(btn,s2,BTN); styleDrawer();
     }
 
-    window.addEventListener('load',function(){ measure(); tick(); });
-    window.addEventListener('resize',function(){ measure(); tick(); });
+    window.addEventListener('load',function(){ tick(); });
+    window.addEventListener('resize',function(){ tick(); });
     window.addEventListener('scroll',tick,{passive:true});
     new MutationObserver(styleDrawer).observe(drawer,{attributes:true});
   };
@@ -379,11 +380,11 @@
       if(y+H+h>=m.stop){ var pt=el.parentElement.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop); el.style.position='absolute'; el.style.top=((m.stop-h)-pt)+'px'; el.style.left='0'; el.style.right='0'; el.style.width='100%'; el.style.zIndex=TITLE_Z; el.style.background='var(--color-background, #fff)'; return; }
       el.style.position='fixed'; el.style.top=H+'px'; el.style.left='0'; el.style.right='0'; el.style.width='100%'; el.style.zIndex=TITLE_Z; el.style.background='var(--color-background, #fff)';
     }
-    function recalc(){ ms.forEach(measure); ms.forEach(apply); }
+    function recalc(){ ms.forEach(apply); }
     window.addEventListener('load',recalc,{passive:true});
     window.addEventListener('resize',recalc,{passive:true});
     window.addEventListener('orientationchange',recalc,{passive:true});
-    window.addEventListener('scroll',function(){ var o=ms[0].H, n=hoff(); if(Math.abs(n-o)>2) ms.forEach(measure); ms.forEach(apply); },{passive:true});
+    window.addEventListener('scroll',function(){ var o=ms[0].H, n=hoff(); if(Math.abs(n-o)>2) ms.forEach(apply); },{passive:true});
     recalc();
   };
   window.scrollUtils3();

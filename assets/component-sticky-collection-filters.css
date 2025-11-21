@@ -26,6 +26,8 @@
     padding: 10px 0 10px 10px !important;
     /* height: 100% !important;
     overflow: hidden !important; */
+    position: sticky !important;
+    top: 197px !important;
   }
 
   .blue,
@@ -196,4 +198,12 @@ main, .page-width, .collection-grid__inner {
 #shopify-section-header {
   position: relative !important;  /* header may already be sticky; relative still works */
   z-index: 999 !important;        /* well above anything we pin below */
+}
+
+body.template__sticky-filters {
+  overflow: visible;
+}
+
+.collection-grid-section {
+  visibility: visible;
 }
