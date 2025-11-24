@@ -108,6 +108,8 @@
     endif
   endfor
 
+  echo grouped_collection | json
+
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
   assign printed_swatch_values = ""
 
