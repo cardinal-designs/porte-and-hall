@@ -37,6 +37,16 @@
     assign swatch_count = 1
     assign printed_swatch_values = ""
 
+    assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
+
+    for block in other_sizes
+
+    for collection in block.collections
+      if collection.title contains ' |'
+        assign grouped_collection = collection
+      endif
+    endfor
+
     for swatch in grouped_collection.products
 
       for option in swatch.options_with_values
@@ -95,6 +105,8 @@
 
         endif
       endfor
+
+    endfor
 
     endfor
   endcapture
