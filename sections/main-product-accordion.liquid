@@ -82,12 +82,12 @@
             echo "' data-tooltip='"
             echo value | escape
             echo "'>"
-              echo "<span style='background-image: url("
-              echo swatch_file_name | file_url
-              echo ")'></span>"
-              echo "<span class='sr-only'>"
-              echo value | escape
-              echo "</span>"
+            echo "<span style='background-image: url("
+            echo swatch_file_name | file_url
+            echo ")'></span>"
+            echo "<span class='sr-only'>"
+            echo value | escape
+            echo "</span>"
             echo "</a>"
 
             assign swatch_count = swatch_count | plus: 1
