@@ -394,50 +394,47 @@
       const header = document.querySelector('.outer-header-wrapper');
       const extra = document.querySelector('.bx-creative');
       const sticky = document.querySelector('.sticky-filters-wrap');
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const isMobile = window.innerWidth <= 768;
 
-      if (!sticky) return;
+      if (!sticky) {
+        console.log('Waiting for .sticky-filters-wrap...');
+        return;
+      }
 
+      // Only apply on mobile screens
       if (isMobile) {
-        // Wait for layout stabilization (fixes iOS Safari)
-        requestAnimationFrame(() => {
-          const headerHeight = header ? header.getBoundingClientRect().height : 0;
-          const extraHeight = extra ? extra.getBoundingClientRect().height : 0;
-          // Subtract 1px from total height
-          const totalHeight = Math.round(headerHeight + extraHeight) - 1;
+        const defaultTop = 140; // fallback default top value
+        const headerHeight = header ? header.offsetHeight : 0;
+        const extraHeight = extra ? extra.offsetHeight : 0;
+        const totalHeight = headerHeight + extraHeight;
 
-          // Safety cap for mobile Safari
-          const maxAllowed = 300; // Prevents weird Safari jumps (tweak if needed)
-          const safeHeight = totalHeight > maxAllowed ? maxAllowed : totalHeight;
+        // If the combined height is reasonable, use it; otherwise, use default
+        const safeTop = totalHeight > 0 && totalHeight < 400 ? totalHeight : defaultTop;
 
-          sticky.style.top = `${safeHeight}px`;
-          console.log(`[Sticky Mobile] top set to: ${safeHeight}px (raw ${totalHeight + 1}px - 1px)`);
-        });
+        sticky.style.top = `${safeTop}px`;
+        console.log('Mobile sticky top set to:', safeTop + 'px');
       } else {
-        // Reset for non-mobile view
+        // Reset on tablet/desktop
         sticky.style.top = '';
+        console.log('Sticky top reset (non-mobile view)');
       }
     }
 
-    // Run after page load (delayed for Safari toolbar animations)
-    window.addEventListener('load', () => {
-      setTimeout(updateStickyOffset, 300);
-    });
+    // Run when the page loads
+    window.addEventListener('load', updateStickyOffset);
 
-    // Re-run on resize or orientation change
-    window.addEventListener('resize', () => {
-      clearTimeout(window._stickyTimer);
-      window._stickyTimer = setTimeout(updateStickyOffset, 200);
-    });
+    // Update when window is resized
+    window.addEventListener('resize', updateStickyOffset);
 
-    // Fallback periodic check for async-loaded elements
+    // Continue checking periodically until all elements exist
     const checkInterval = setInterval(() => {
       const header = document.querySelector('.outer-header-wrapper');
       const extra = document.querySelector('.bx-creative');
       const sticky = document.querySelector('.sticky-filters-wrap');
+
       if ((header || extra) && sticky) {
         updateStickyOffset();
-        clearInterval(checkInterval);
+        clearInterval(checkInterval); // Stop once all elements are found
       }
     }, 500);
   
