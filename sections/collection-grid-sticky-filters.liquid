@@ -388,6 +388,52 @@
     recalc();
   };
   window.scrollUtils3();
+
+  // Update the sticky offset
+  function updateStickyOffset() {
+    const header = document.querySelector('.outer-header-wrapper');
+    const extra = document.querySelector('.bx-creative');
+    const sticky = document.querySelector('.sticky-filters-wrap');
+    const isMobile = window.innerWidth <= 768;
+
+    if (!sticky) {
+      console.log('Waiting for .sticky-filters-wrap...');
+      return;
+    }
+
+    // Only apply on mobile screens
+    if (isMobile) {
+      const headerHeight = header ? header.offsetHeight : 0;
+      const extraHeight = extra ? extra.offsetHeight : 0;
+      const totalHeight = headerHeight + extraHeight;
+
+      sticky.style.top = `${totalHeight}px`;
+      console.log('Mobile sticky top set to:', totalHeight + 'px');
+    } else {
+      // Reset on tablet/desktop
+      sticky.style.top = '';
+      console.log('Sticky top reset (non-mobile view)');
+    }
+  }
+
+  // Run when the page loads
+  window.addEventListener('load', updateStickyOffset);
+
+  // Update when window is resized
+  window.addEventListener('resize', updateStickyOffset);
+
+  // Continue checking periodically until all elements exist
+  const checkInterval = setInterval(() => {
+    const header = document.querySelector('.outer-header-wrapper');
+    const extra = document.querySelector('.bx-creative');
+    const sticky = document.querySelector('.sticky-filters-wrap');
+
+    if ((header || extra) && sticky) {
+      updateStickyOffset();
+      clearInterval(checkInterval); // Stop once all elements are found
+    }
+  }, 500);
+  
 </script>
 {% schema %}
 {

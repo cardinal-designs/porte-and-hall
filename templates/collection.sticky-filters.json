@@ -141,6 +141,7 @@
         },
         "category_3LXWjT": {
           "type": "category",
+          "disabled": true,
           "settings": {
             "title": "Shop all",
             "link": "https://www.porteandhall.com/collections/shop-all"
@@ -157,7 +158,7 @@
       "settings": {
         "products_per_page": 16,
         "image_ratio": "adapt",
-        "text_color": "#546B82",
+        "text_color": "#546b82",
         "bg_color": "#ffffff",
         "show_secondary_image": false,
         "add_image_padding": false,
