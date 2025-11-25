@@ -131,7 +131,8 @@
         "heading": "Style tips from the Porte + Hall Blog",
         "background": "#eeefef",
         "blog": "news",
-        "show_recent_articles": true
+        "show_recent_articles": true,
+        "hide_mobile": false
       }
     },
     "6cba2d1c-ca6b-48b3-8672-d03b3b848c6e": {
@@ -145,7 +146,17 @@
         "text": "Just like a clean desk or freshly-made bed, coming home to a beautiful and functional entryway is restorative and uplifting. We aim to turn these often ovelooked areas of our homes into inspired areas that welcome and invite us home.",
         "link": "shopify://pages/about-us",
         "link_text": "LEARN MORE ABOUT US",
-        "image": "shopify://shop_images/door_illustration.png"
+        "image": "shopify://shop_images/door_illustration.png",
+        "show_faq": false,
+        "title_1": "",
+        "title_richtext_1": "",
+        "answer_1": "",
+        "title_2": "",
+        "title_richtext_2": "",
+        "answer_2": "",
+        "title_3": "",
+        "title_richtext_3": "",
+        "answer_3": ""
       }
     }
   },
