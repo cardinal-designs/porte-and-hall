@@ -390,49 +390,56 @@
   window.scrollUtils3();
 
   // Update the sticky offset
-  function updateStickyOffset() {
-    const header = document.querySelector('.outer-header-wrapper');
-    const extra = document.querySelector('.bx-creative');
-    const sticky = document.querySelector('.sticky-filters-wrap');
-    const isMobile = window.innerWidth <= 768;
+    function updateStickyOffset() {
+      const header = document.querySelector('.outer-header-wrapper');
+      const extra = document.querySelector('.bx-creative');
+      const sticky = document.querySelector('.sticky-filters-wrap');
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-    if (!sticky) {
-      console.log('Waiting for .sticky-filters-wrap...');
-      return;
+      if (!sticky) return;
+
+      if (isMobile) {
+        // Wait for layout stabilization (fixes iOS Safari)
+        requestAnimationFrame(() => {
+          const headerHeight = header ? header.getBoundingClientRect().height : 0;
+          const extraHeight = extra ? extra.getBoundingClientRect().height : 0;
+          // Subtract 1px from total height
+          const totalHeight = Math.round(headerHeight + extraHeight) - 1;
+
+          // Safety cap for mobile Safari
+          const maxAllowed = 300; // Prevents weird Safari jumps (tweak if needed)
+          const safeHeight = totalHeight > maxAllowed ? maxAllowed : totalHeight;
+
+          sticky.style.top = `${safeHeight}px`;
+          console.log(`[Sticky Mobile] top set to: ${safeHeight}px (raw ${totalHeight + 1}px - 1px)`);
+        });
+      } else {
+        // Reset for non-mobile view
+        sticky.style.top = '';
+      }
     }
 
-    // Only apply on mobile screens
-    if (isMobile) {
-      const headerHeight = header ? header.offsetHeight : 0;
-      const extraHeight = extra ? extra.offsetHeight : 0;
-      const totalHeight = headerHeight + extraHeight;
+    // Run after page load (delayed for Safari toolbar animations)
+    window.addEventListener('load', () => {
+      setTimeout(updateStickyOffset, 300);
+    });
 
-      sticky.style.top = `${totalHeight}px`;
-      console.log('Mobile sticky top set to:', totalHeight + 'px');
-    } else {
-      // Reset on tablet/desktop
-      sticky.style.top = '';
-      console.log('Sticky top reset (non-mobile view)');
-    }
-  }
+    // Re-run on resize or orientation change
+    window.addEventListener('resize', () => {
+      clearTimeout(window._stickyTimer);
+      window._stickyTimer = setTimeout(updateStickyOffset, 200);
+    });
 
-  // Run when the page loads
-  window.addEventListener('load', updateStickyOffset);
-
-  // Update when window is resized
-  window.addEventListener('resize', updateStickyOffset);
-
-  // Continue checking periodically until all elements exist
-  const checkInterval = setInterval(() => {
-    const header = document.querySelector('.outer-header-wrapper');
-    const extra = document.querySelector('.bx-creative');
-    const sticky = document.querySelector('.sticky-filters-wrap');
-
-    if ((header || extra) && sticky) {
-      updateStickyOffset();
-      clearInterval(checkInterval); // Stop once all elements are found
-    }
-  }, 500);
+    // Fallback periodic check for async-loaded elements
+    const checkInterval = setInterval(() => {
+      const header = document.querySelector('.outer-header-wrapper');
+      const extra = document.querySelector('.bx-creative');
+      const sticky = document.querySelector('.sticky-filters-wrap');
+      if ((header || extra) && sticky) {
+        updateStickyOffset();
+        clearInterval(checkInterval);
+      }
+    }, 500);
   
 </script>
 {% schema %}

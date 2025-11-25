@@ -213,3 +213,11 @@ body.template__sticky-filters {
 .collection-grid-section {
   visibility: visible;
 }
+
+.template__sticky-filters .collection-filters__button {
+  padding: 0;
+}
+
+.template__sticky-filters .collection-filters__open {
+  padding: 11px 21px;
+}
