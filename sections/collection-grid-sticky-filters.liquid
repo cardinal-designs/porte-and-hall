@@ -410,7 +410,7 @@
 
         // If the combined height is reasonable, use it; otherwise, use default
         const safeTop = totalHeight > 0 && totalHeight < 400 ? totalHeight : defaultTop;
-        const safeTop = safeTop - 20;
+        const safeTop = safeTop - 10;
         sticky.style.top = `${safeTop}px`;
         console.log('Mobile sticky top set to:', safeTop + 'px');
       } else {
