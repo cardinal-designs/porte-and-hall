@@ -403,14 +403,14 @@
 
       // Only apply on mobile screens
       if (isMobile) {
-        const defaultTop = 100; // fallback default top value
+        const defaultTop = 140; // fallback default top value
         const headerHeight = header ? header.offsetHeight : 0;
         const extraHeight = extra ? extra.offsetHeight : 0;
         const totalHeight = headerHeight + extraHeight;
 
         // If the combined height is reasonable, use it; otherwise, use default
         const safeTop = totalHeight > 0 && totalHeight < 400 ? totalHeight : defaultTop;
-
+        const safeTop = safeTop - 20;
         sticky.style.top = `${safeTop}px`;
         console.log('Mobile sticky top set to:', safeTop + 'px');
       } else {
