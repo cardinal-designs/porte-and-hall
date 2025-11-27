@@ -29,7 +29,6 @@
     assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve,style' | split: ','
   %}
 
-  
   {% capture color_swatch_list %}
     {% assign all_colors_string = '' %}
     {% assign current_size = product.options_by_name['Size'].selected_value | default: product.options_by_name['size'].selected_value | downcase %}
@@ -100,7 +99,7 @@
   
         {% if matched_product != blank %}
           <a 
-            href="{{ matched_product.url | append: '?view=unavailable-size' }}" 
+            href="{{ matched_product.url | append: '?view=unavailable-sizes' }}" 
             class="{{ element_classes }}" 
             data-tooltip="{{ color | escape }}"
             style="{% unless product_available %}cursor: pointer;{% endunless %}"
@@ -111,6 +110,7 @@
           <span 
             class="{{ element_classes }} product__color-swatch--not-available" 
             data-tooltip="{{ color | escape }}"
+            data-color-handle="{{ color | handle }}"
           >
             <span style="background-image: url({{ swatch_file_name | file_url }});"></span>
           </span>
@@ -297,12 +297,7 @@
 
         <product-form class="product-form">
           <div class="product-form__error-message-wrapper" role="alert" hidden>
-            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
-              <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
-              <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
-              <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
-              <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
-            </svg>
+            {%- render 'icon', icon: 'error' -%}
             <span class="product-form__error-message"></span>
           </div>
 
@@ -436,7 +431,7 @@
                   {%  assign match_name = block.title | replace: "|", format_color %}
                   {%  assign match = block.products | where: 'title', match_name %}
                   {% if match != blank %}
-                    <a class="inline-link" href="{{ match.first.url }}?view=unavailable-size">{{ current_size.last }}</a> <span class="other-size__divider">or</span>
+                    <a class="inline-link" href="{{ match.first.url }}?view=unavailable-sizes">{{ current_size.last }}</a> <span class="other-size__divider">or</span>
                   {% endif %}
                 {% endfor %}
               {%  endcapture %}
@@ -455,7 +450,6 @@
             {% endif %}
 
             {% for block in other_sizes %} 
-               {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
               {%- assign current_size = block.title | split: " | " -%}
               {%- assign format_color = "- " | append: active_style | append: " /" -%}
               {%- assign match_name = block.title | replace: "|",  format_color -%}
@@ -466,7 +460,7 @@
               {%- capture other_size_links -%}
                 {%- comment -%} Current Product Size {%- endcomment -%}
                   {% assign active_order = '' %}
-                 {% if product.handle contains 'doormat' %}
+                  {% if product.handle contains 'doormat' %}
                     {% assign active_order = 1 %}
                   {% elsif product.handle contains 'xl-runner' %}
                     {% assign active_order = 3 %}
@@ -481,10 +475,11 @@
                   {% elsif product.handle contains 'double' %}
                     {% assign active_order = 6 %}
                   {% endif %}
+
                 <a 
                   style="order: {{ active_order }};"
-                  class="small_button_text other-sizes__button active" 
-                  href="{{ product.url }}?view=unavailable-size"
+                  class="small_button_text other-sizes__button active {% if product.available == false %} other-sizes__button--out-of-stock {% endif %}" 
+                  href="{{ product.url }}?view=unavailable-sizes"
                 >
                   {% if product_size == 'XL Area Mat' %}
                     <span>Area Mat</span>
@@ -519,6 +514,12 @@
                   {% elsif current_size.last == 'Double' %}
                     <span class="other-sizes__dimension">30” x 48”</span>
                   {% endif %}
+
+                  {%- if product.available == false -%}
+                    <svg class="slash" viewBox="0 0 100 100" preserveAspectRatio="none">
+                      <line x1="0" y1="100" x2="100" y2="0" />
+                    </svg>
+                  {%- endif -%}
                 </a>
 
                 {%- comment -%} Other Sizes {%- endcomment -%}
@@ -532,7 +533,8 @@
                       <a 
                         style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == 'XL Area Mat'  %}7{% endif %} ;"
                         class="small_button_text other-sizes__button {% if match == blank %}other-sizes__button--not-available{% endif %}{% if match.first.available == false %} other-sizes__button--out-of-stock {% endif %}"
-                        {% if match != blank %} href="{{ match.first.url }}?view=unavailable-size" {% endif %}
+                        data-size="{{ current_size.last }}" data-size-handle="{{ current_size.last | handle }}"
+                        {% if match != blank %} href="{{ match.first.url }}?view=unavailable-sizes" {% endif %}
                         
                       >
                         {% if current_size.last == 'XL Area Mat' %}
@@ -574,10 +576,7 @@
                             <line x1="0" y1="100" x2="100" y2="0" />
                           </svg>
                         {%- endif -%}
-                        
                       </a>      
-                              
-                     
                    {%- endunless -%}
 
                   
@@ -587,7 +586,7 @@
 
               {%- unless section.settings.hide_shop_other == true -%}
                 {%- unless other_size_links == blank -%}
-                  <div class="other-sizes__wrapper test other-sizes__wrapper--other-collections">
+                  <div class="other-sizes__wrapper other-sizes__wrapper--other-collections">
                     <span class="other-sizes__label">Size</span> 
                     <div class="5 other-sizes__wrapper-links 5 other-sizes__wrapper-links--inner">
                       {{ other_size_links }}
@@ -599,7 +598,7 @@
               {%- capture other_size_links -%}
                 <a 
                   class="other-sizes__button active" 
-                  href="{{ product.url }}?view=unavailable-size"
+                  href="{{ product.url }}?view=unavailable-sizes"
                 >
                   <span>{{ product_size }}</span>
                   <span class="other-sizes__dimension">21" x 36"</span>
@@ -616,7 +615,10 @@
             {%- endif -%}
 
             
-            <div class="product-error-message" id="product-error-message" data-color-message="{{section.settings.message_color }}" data-size-message="{{section.setting.message_size }}" style="--bg-color: {{section.settings.bg_color }}"></div>
+            <div class="product-error" id="product-error">
+              <span class="product-error__message"></span>
+              <a class="product-error__link"></a>
+            </div>
 
             <div class="product__quantity-atc-wrapper  {% if product.available == false %}bis-styles{% endif %} {% if section.settings.hide_quantity == true %}no-quant__button{% endif %}">
               <div class="product-form__input product-form__quantity {% if product.available == false or section.settings.hide_quantity == true %}visually-hidden{% endif%}">
@@ -788,24 +790,6 @@
            </div>
          </div>
         {% endif %}
-
-        {% comment %}
-        {% if product.handle contains "outlier" %}
-        <div class="accordion">
-           <div data-id="5" class="accordion-title">
-             <h3>Warranty</h3>
-             {% render 'icon', icon: 'caret' %}
-           </div>
-           <div data-id="5" class="accordion-content">
-            <div class="swiper-slide">
-              <div class="product__tabs-item body-sm">
-                <a href="/pages/outlier-warranty">Outlier Warranty</a>
-              </div>
-            </div>
-           </div>
-        </div>
-        {% endif %}
-        {% endcomment %}
       </pdp-accordion>
       {% comment %}ACCORDION ENDS{% endcomment %}         
     </div>
@@ -1048,44 +1032,102 @@
   });
 {% endjavascript %}
 
+{% paginate grouped_collection.products by 250 %}
+  {% assign product_handles = grouped_collection.products | map: 'handle' %}
+{% endpaginate %}
+<script>
+  window.PH_AVAILABILITY = {
+    products: {{ product_handles | json }},
+    sizes: {{ product.options_by_name['Size'].values | json }}
+  };
+</script>
+
+<div id="active-color" 
+  data-color="{{ product.options_by_name['Color'].selected_value | default: product.options_by_name['Style'].selected_value }}">
+</div>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const errorBox = document.querySelector('#product-error-message');
-    let errorTimeout;
-  
-    function showError(messageType) {
-      if (!errorBox) return;
-      let message = '';
-      if (messageType === 'color') {
-        message = errorBox.dataset.colorMessage || 'Color unavailable in this size';
-      } else if (messageType === 'size') {
-        message = errorBox.dataset.sizeMessage || 'Size unavailable in this color';
-      }
-  
-      errorBox.textContent = message;
-      errorBox.classList.add('active');
-      clearTimeout(errorTimeout);
-  
-      errorTimeout = setTimeout(() => {
-        errorBox.classList.remove('active');
-      }, 5000);
+    const errorBox = document.querySelector('#product-error');
+    const errorMsg = errorBox?.querySelector('.product-error__message');
+    const errorLink = errorBox?.querySelector('.product-error__link');
+    const activeColorElement = document.querySelector('#active-color');
+
+    function clearError() {
+      errorBox.classList.remove('active');
     }
-  
-    document.querySelectorAll('.product__color-swatch--not-available').forEach(el => {
-      el.addEventListener('click', (e) => {
+
+    function findAvailableColor(sizeHandle) {
+      const products = window.PH_AVAILABILITY.products;
+      return products.find(handle => handle.includes(sizeHandle)) || null;
+    }
+
+    function findAvailableSizeForColor(colorHandle) {
+      const products = window.PH_AVAILABILITY.products;
+      return products.find(handle => handle.includes(colorHandle)) || null;
+    }
+
+    document.querySelectorAll('.other-sizes__button--not-available').forEach(btn => {
+      btn.addEventListener('click', e => {
         e.preventDefault();
-        showError('color');
+
+        const sizeName = btn.dataset.size;
+        const sizeHandle = btn.dataset.sizeHandle;
+        const activeColor = activeColorElement?.dataset.color || 'this color';
+
+        errorMsg.textContent = `${sizeName} isn’t available in ${activeColor}.`;
+
+        const targetHandle = findAvailableColor(sizeHandle);
+
+        if (targetHandle) {
+          errorLink.textContent = 'See available colors here';
+          errorLink.href = `/products/${targetHandle}?view=unavailable-sizes`;
+        } else {
+          errorLink.textContent = '';
+          errorLink.removeAttribute('href');
+        }
+
+        errorBox.classList.add('active');
       });
     });
-  
-    document.querySelectorAll('.other-sizes__button--not-available').forEach(el => {
-      el.addEventListener('click', (e) => {
+
+    document.querySelectorAll('.product__color-swatch--not-available').forEach(swatch => {
+      swatch.addEventListener('click', e => {
         e.preventDefault();
-        showError('size');
+
+        const thisColor = swatch.dataset.tooltip || 'This color';
+        const colorHandle = swatch.dataset.colorHandle || thisColor.toLowerCase().replace(/ /g, '-');
+
+        const activeSize =
+          document.querySelector('.other-sizes__button.active span:first-child')?.textContent
+          || 'this size';
+
+        errorMsg.textContent = `${thisColor} isn't available in ${activeSize}.`;
+
+        const targetHandle = findAvailableSizeForColor(colorHandle);
+
+        if (targetHandle) {
+          errorLink.textContent = 'See available size here';
+          errorLink.href = `/products/${targetHandle}?view=unavailable-sizes`;
+        } else {
+          errorLink.textContent = '';
+          errorLink.removeAttribute('href');
+        }
+
+        errorBox.classList.add('active');
       });
     });
+
+    document.querySelectorAll(
+      '.other-sizes__button:not(.other-sizes__button--not-available)'
+    ).forEach(el => el.addEventListener('click', clearError));
+
+    document.querySelectorAll(
+      '.product__swatch:not(.product__color-swatch--not-available)'
+    ).forEach(el => el.addEventListener('click', clearError));
   });
 </script>
+
   
 
 <script>
@@ -1248,28 +1290,6 @@
       "id": "shop_more_below",
       "label": "Move Shop Other to Bottom",
       "default": false
-    },
-    {
-      "type": "header",
-      "content": "Error message"
-    },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background",
-      "default": "#ffd9d9"
-    },
-    {
-      "type": "text",
-      "id": "message_color",
-      "label": "Error message for color",
-      "default": "Color unavailable in this size"
-    },
-    {
-      "type": "text",
-      "id": "message_size",
-      "label": "Error message for size",
-      "default": "Size unavailable in this color"
     },
   ]
 }
