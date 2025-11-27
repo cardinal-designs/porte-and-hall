@@ -119,16 +119,27 @@
     if (sw) { sw.updateSlides(); sw.update(); }
   }
 
-  // Mobile: move ONLY the FIRST slide with a video to the front
+  /* ---------------------------
+     MOBILE REORDER UPDATED HERE
+     Move slide in position 3 → 2
+     --------------------------- */
   function reorderForMobile() {
     const slides = Array.from(wrapper.children);
-    const firstWithVideo = slides.find(s => s.querySelector('video.carousel-new-2__video'));
-    if (!firstWithVideo) return;
-    if (wrapper.firstElementChild !== firstWithVideo) {
-      wrapper.insertBefore(firstWithVideo, wrapper.firstElementChild);
-      const sw = getSwiper();
-      if (sw) { sw.updateSlides(); sw.update(); }
+
+    // Find slide that contains the video
+    const videoSlide = slides.find(s => s.querySelector('video.carousel-new-2__video'));
+    if (!videoSlide) return;
+
+    // Target: move from index 2 → index 1
+    const targetPosition = 1;
+    const currentIndex = slides.indexOf(videoSlide);
+
+    if (currentIndex === 2) {
+      wrapper.insertBefore(videoSlide, slides[targetPosition]);
     }
+
+    const sw = getSwiper();
+    if (sw) { sw.updateSlides(); sw.update(); }
   }
 
   // Toggle on breakpoint
@@ -137,8 +148,8 @@
     if (currentIsMobile === isMobile) return;
     currentIsMobile = isMobile;
     if (isMobile) reorderForMobile(); else restoreDesktopOrder();
-    prepAllVideos();     // DOM changed? re-prep
-    playAllVideos();     // and re-kick playback
+    prepAllVideos();
+    playAllVideos();
   }
 
   // Initial + on resize
@@ -189,7 +200,6 @@
   }
 
   function collectVideos() {
-    // Include clones created by Swiper (still within section)
     return Array.from(section.querySelectorAll('video.carousel-new-2__video'));
   }
 
@@ -199,11 +209,10 @@
       const img = getImg(v);
       prepLayering(v, img);
 
-      // Critical for autoplay everywhere (esp. iOS Safari):
       v.muted = true; v.setAttribute('muted', '');
       v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
       v.loop = true; v.setAttribute('loop', '');
-      v.autoplay = false; // we call play() ourselves
+      v.autoplay = false;
       v.preload = 'auto';
       v.classList.remove('hide-desktop');
       v.style.setProperty('display', 'block', 'important');
@@ -211,7 +220,6 @@
   }
 
   function ensurePlaying(v) {
-    // Nudge currentTime slightly helps some engines keep the decoder "hot"
     try {
       if (v.readyState >= 1 && v.currentTime === 0) v.currentTime = 0.01;
     } catch (e) {}
@@ -226,26 +234,19 @@
         ensurePlaying(v);
       } else {
         v.addEventListener('loadeddata', () => ensurePlaying(v), { once: true });
-        // Fallback in case 'loadeddata' is throttled
         setTimeout(() => ensurePlaying(v), 1000);
       }
     });
   }
 
-  // Initial prep + play
   prepAllVideos();
   playAllVideos();
 
-  // ==============================
-  // Swiper hooks: keep videos alive after swipes/loops/updates
-  // ==============================
   const sw = getSwiper();
   function hookSwiper(s) {
     ['init','slideChange','slideChangeTransitionEnd','transitionEnd','resize','update','reachBeginning','reachEnd']
       .forEach(ev => s.on(ev, () => {
-        // Swiper may add/remove/clone nodes — re-collect and re-play
         prepAllVideos();
-        // small delay lets Swiper finish DOM mutations
         setTimeout(playAllVideos, 50);
       }));
   }
@@ -253,7 +254,6 @@
   if (sw) {
     hookSwiper(sw);
   } else {
-    // If Swiper initializes later, observe DOM to hook when ready
     const obs = new MutationObserver(() => {
       const s = getSwiper();
       if (s) { hookSwiper(s); obs.disconnect(); }
@@ -261,12 +261,12 @@
     obs.observe(section, { childList: true, subtree: true });
   }
 
-  // Resume after tab becomes visible (mobile browsers pause timers/decoders)
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden) setTimeout(playAllVideos, 50);
   });
 })();
 </script>
+
 
 
 {% schema %}
