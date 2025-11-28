@@ -275,57 +275,16 @@
 </section>
 
 <style>
-  /* White placeholder for hero video */
-  .video-wrapper--loading {
-    background-color: #ffffff;
-    position: relative;
-    min-height: 400px;
-  }
+ .video-wrapper {
+  background-color: #ffffff;
+}
 
-  .video-wrapper--loading video {
-    opacity: 0;
-    transition: opacity 0.4s ease-in;
-  }
-
-  .video-wrapper--loading video.loaded {
-    opacity: 1;
-  }
-
-  /* Remove loading state after video loads */
-  .video-wrapper--loading.video-loaded {
-    background-color: transparent;
-  }
+video[data-hero-video] {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const videos = document.querySelectorAll('[data-hero-video]');
-    
-    videos.forEach(video => {
-      // Show video when it has loaded enough data
-      video.addEventListener('loadeddata', function() {
-        this.classList.add('loaded');
-        
-        // Remove loading class from wrapper
-        const wrapper = this.closest('.video-wrapper--loading');
-        if (wrapper) {
-          wrapper.classList.add('video-loaded');
-        }
-      });
-      
-      // Fallback: remove loading state after 3 seconds
-      setTimeout(() => {
-        if (!video.classList.contains('loaded')) {
-          video.classList.add('loaded');
-          const wrapper = video.closest('.video-wrapper--loading');
-          if (wrapper) {
-            wrapper.classList.add('video-loaded');
-          }
-        }
-      }, 3000);
-    });
-  });
-</script>
 
 {% schema %}
 {
