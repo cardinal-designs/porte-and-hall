@@ -248,7 +248,7 @@
         endif
         
         # White poster image URL - replace with your uploaded white image URL
-        assign poster_url = 'https://cdn.shopify.com/s/files/1/your-store/files/white-poster.jpg'
+        assign poster_url = section.settings.video_poster | image_url: width: 1920
       %}
       <div class="FeatureText__ImageWrapper video-wrapper">
         {% capture desktop_video %}
