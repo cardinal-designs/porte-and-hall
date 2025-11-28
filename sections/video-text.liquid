@@ -247,14 +247,15 @@
           assign classes = 'videos hide-mobile'
         endif
       %}
-      <div class="FeatureText__ImageWrapper video-wrapper">
+      <div class="FeatureText__ImageWrapper video-wrapper video-wrapper--loading">
         {% capture desktop_video %}
-          {{ section.settings.video | video_tag: autoplay: true, muted: true, controls: false, playsinline: true, preload: 'auto', class: classes, id: 'video', image_size: '800x' }}
+          {{ section.settings.video | video_tag: autoplay: true, muted: true, controls: false, playsinline: true, preload: 'metadata', class: classes, id: 'video', image_size: '800x' }}
         {% endcapture %}
         {{ desktop_video | replace: '<video', '<video data-hero-video' }}
+        
         {% if section.settings.mobile_video != blank %}
           {% capture mobile_video %}
-            {{ section.settings.mobile_video | video_tag: autoplay: true, muted: true, controls: false, playsinline: true, preload: 'auto', class: 'videos hide-desktop', id: 'video-mobile', image_size: '800x' }}
+            {{ section.settings.mobile_video | video_tag: autoplay: true, muted: true, controls: false, playsinline: true, preload: 'metadata', class: 'videos hide-desktop', id: 'video-mobile', image_size: '800x' }}
           {% endcapture %}
           {{ mobile_video | replace: '<video', '<video data-hero-video' }}
         {% endif %}
@@ -269,6 +270,59 @@
 
   </div>
 </section>
+
+<style>
+  /* White placeholder for hero video */
+  .video-wrapper--loading {
+    background-color: #ffffff;
+    position: relative;
+    min-height: 400px;
+  }
+
+  .video-wrapper--loading video {
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+  }
+
+  .video-wrapper--loading video.loaded {
+    opacity: 1;
+  }
+
+  /* Remove loading state after video loads */
+  .video-wrapper--loading.video-loaded {
+    background-color: transparent;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const videos = document.querySelectorAll('[data-hero-video]');
+    
+    videos.forEach(video => {
+      // Show video when it has loaded enough data
+      video.addEventListener('loadeddata', function() {
+        this.classList.add('loaded');
+        
+        // Remove loading class from wrapper
+        const wrapper = this.closest('.video-wrapper--loading');
+        if (wrapper) {
+          wrapper.classList.add('video-loaded');
+        }
+      });
+      
+      // Fallback: remove loading state after 3 seconds
+      setTimeout(() => {
+        if (!video.classList.contains('loaded')) {
+          video.classList.add('loaded');
+          const wrapper = video.closest('.video-wrapper--loading');
+          if (wrapper) {
+            wrapper.classList.add('video-loaded');
+          }
+        }
+      }, 3000);
+    });
+  });
+</script>
 
 {% schema %}
 {
