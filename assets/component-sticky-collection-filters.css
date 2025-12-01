@@ -12,22 +12,105 @@
 .collection-grid__inner { overflow: visible !important; }
 
 /* ---------- Desktop (left sidebar) ---------- */
-.sticky-filters-wrap { position: relative; width: 100%; max-width: 100%; }
+.sticky-filters-wrap { 
+  position: relative; 
+  /* width: 100%; */
+  width: calc(100% + 40px);
+  /* max-width: 100%; */
+  margin-left: -20px;
+}
 .sticky-filters-placeholder { height: 0; } /* set via JS */
 
-.sticky-filters-bar{
-  background: var(--color-background, #fff);
-  will-change: transform;
-  z-index: var(--filters-z);
+@media (min-width: 769px){
+
+  .sticky-filters-bar{
+    background: var(--color-background, #ffffff);
+    will-change: transform;
+    z-index: 5;
+    background: var(--filter-bg-color) !important;
+    color: var(--filter-text-color), #546B82 !important;
+    padding: 10px 0 10px 10px !important;
+    /* height: 100% !important;
+    overflow: hidden !important; */
+    position: sticky !important;
+    top: 197px !important;
+  }
+
+  .blue,
+  .sticky-filters-bar__inner,
+  .collection-filters,
+  .collection-filters__filters .js-clear-all-filters,
+  .collection-filters__slideout,
+  .collection-filters__dropdown-button,
+  .collection-filters__slideout-container {
+    background: var(--filter-bg-color);
+    color: var(--filter-text-color) !important;
+  }
+
+  .collection-filters__dropdown-container {
+    background: transparent;
+  }
+  
+  .collection-filters__slideout .collection-filters__filter-label {
+    color: var(--filter-text-color) !important;
+    font-size: 14px;
+  }
+
+  .collection-filters__filter-button[type=checkbox] {
+    border-color: var(--filter-text-color);
+  }
+
+  .sticky-filters-bar__inner .collection-filters__filter-button[type=checkbox]:checked {
+    background: var(--filter-text-color) !important;
+  }
+
+  .collection-filters__dropdown-button {
+    font-size: 16px;
+  }
+
+  .sticky-filters-bar.is-fixed{
+    position: fixed !important;
+  }
+
+  .collection-filters__filters .js-clear-all-filters {
+    margin-bottom: 60px;
+  }
+
 }
+
+@media (min-width: 1025px){
+
+  .sticky-filters-bar.is-fixed{
+    /* top: 210px !important; */
+  }
+
+}
+
 .sticky-filters-bar.is-fixed{
   box-shadow: 0 1px 0 rgba(0,0,0,.06);
   z-index: var(--filters-z); /* below header */
 }
-.sticky-filters-bar.is-docked{
-  position: absolute !important; right: 0;
-  box-shadow: none;
-  z-index: var(--filters-z-docked);
+
+@media (max-width: 768px) {
+
+  .sticky-filters-bar.is-fixed {
+    left: 0 !important;
+    width: 100% !important;
+    background: #fff;
+  }
+
+  .sticky-filters-bar.is-docked{
+    position: unset !important;
+    right: 0;
+    box-shadow: none;
+    z-index: var(--filters-z-docked);
+  }
+
+  /* .collection-filters__button {
+    width: 100%;
+    margin: 0;
+  } */
+
 }
 
 /* Header/nav always above */
@@ -73,6 +156,21 @@ header[role="banner"],
     top: calc(var(--header-height, 100px));
     z-index: 90;
   }
+
+  .sticky-filters-bar.is-fixed .collection-filters__slideout-content {
+    position: relative;
+  }
+
+  /* .sticky-filters-bar.is-fixed .collection-filters__slideout-content::after {
+    content: "";
+    position: fixed;
+    pointer-events: none;
+    width: 100%;
+    height: 50px;
+    bottom: 0px;
+    background: linear-gradient(to top, rgba(84, 107, 130, 0.4), transparent);
+  } */
+
 }
 
 /* Optional: ensure it doesn’t overlap drawers or modals */
@@ -106,4 +204,20 @@ main, .page-width, .collection-grid__inner {
 #shopify-section-header {
   position: relative !important;  /* header may already be sticky; relative still works */
   z-index: 999 !important;        /* well above anything we pin below */
+}
+
+body.template__sticky-filters {
+  overflow: visible;
+}
+
+.collection-grid-section {
+  visibility: visible;
+}
+
+.template__sticky-filters .collection-filters__button {
+  padding: 0;
+}
+
+.template__sticky-filters .collection-filters__open {
+  padding: 11px 21px;
 }

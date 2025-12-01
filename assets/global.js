@@ -1156,36 +1156,23 @@ var LoadMore = class extends HTMLElement {
     const productGrid = this.closest(".collection").querySelector("#product-grid");
     const loadMoreWrapper = productGrid?.nextElementSibling;
 
-    this.addEventListener("click", function (e) {
+    this.addEventListener("click", async function(e){
       e.preventDefault();
 
       this.classList.add("loading");
 
-      fetch(dataUrl)
-        .then(response => response.text())
-        .then((responseText) => {
-          const htmlContent = new DOMParser().parseFromString(responseText, "text/html");
+      await fetch(dataUrl).then(response => response.text()).then((responseText) => {
+        const html = responseText;
+        const htmlContent = new DOMParser().parseFromString(html, 'text/html')
 
-          const newGrid = htmlContent.querySelector("#product-grid");
-          const newLoadMoreWrapper = htmlContent.querySelector("#load-more-wrapper");
-
-          if (newGrid) {
-            productGrid.insertAdjacentHTML("beforeend", newGrid.innerHTML);
-          }
-
-          if (loadMoreWrapper) {
-            if (newLoadMoreWrapper) {
-              loadMoreWrapper.innerHTML = newLoadMoreWrapper.innerHTML;
-            } else {
-              loadMoreWrapper.innerHTML = "";
-            }
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-          this.classList.remove("loading");
-        });
-    }.bind(this));
+        productGrid.innerHTML = productGrid.innerHTML + htmlContent.querySelector("#product-grid").innerHTML;
+        loadMoreWrapper.querySelector('load-more').innerHTML = htmlContent.querySelector("load-more").innerHTML || ""
+        this.classList.remove("loading")
+      })
+      window.scrollUtils1();
+      window.scrollUtils2();
+      window.scrollUtils3();
+    }.bind(this))
   }
 };
 
@@ -1569,7 +1556,12 @@ accordionItems.forEach((accordion) => {
     }
   });
 });
-
+window.addEventListener("resize", () => {
+  const appStickyAnnouncement = document.querySelector(".bx-creative");
+  if(appStickyAnnouncement) {
+    document.querySelector(".outer-header-wrapper").style.top = `${appStickyAnnouncement.clientHeight}px`;
+  }
+})
 document.addEventListener("DOMContentLoaded", (event) => {
   if (typeof gsap === "undefined" || !gsap.plugins.scrollTo) {
     console.error("GSAP or ScrollToPlugin not loaded!");

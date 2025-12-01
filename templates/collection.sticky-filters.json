@@ -105,13 +105,61 @@
         "734337ac-bc92-4a53-ab3d-b09fa87f3bc6",
         "83d286bd-bd5b-4d18-81f1-068c88614c00"
       ],
+      "disabled": true,
       "settings": {}
     },
     "product-grid": {
       "type": "collection-grid-sticky-filters",
+      "blocks": {
+        "category_NL8tEe": {
+          "type": "category",
+          "settings": {
+            "title": "Indoor Doormats",
+            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Indoor"
+          }
+        },
+        "category_E3aMfi": {
+          "type": "category",
+          "settings": {
+            "title": "Outdoor Doormats",
+            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Outdoor"
+          }
+        },
+        "category_BFDb6N": {
+          "type": "category",
+          "settings": {
+            "title": "Runners",
+            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
+          }
+        },
+        "category_bCkCyB": {
+          "type": "category",
+          "settings": {
+            "title": "Area Mats",
+            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
+          }
+        },
+        "category_3LXWjT": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "title": "Shop all",
+            "link": "https://www.porteandhall.com/collections/shop-all"
+          }
+        }
+      },
+      "block_order": [
+        "category_NL8tEe",
+        "category_E3aMfi",
+        "category_BFDb6N",
+        "category_bCkCyB",
+        "category_3LXWjT"
+      ],
       "settings": {
         "products_per_page": 16,
         "image_ratio": "adapt",
+        "text_color": "#546b82",
+        "bg_color": "#ffffff",
         "show_secondary_image": false,
         "add_image_padding": false,
         "show_image_outline": true,
@@ -219,7 +267,8 @@
         "heading": "Style tips from the Porte + Hall Blog",
         "background": "#eeefef",
         "blog": "news",
-        "show_recent_articles": true
+        "show_recent_articles": true,
+        "hide_mobile": false
       }
     }
   },

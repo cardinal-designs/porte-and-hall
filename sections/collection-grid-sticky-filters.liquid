@@ -5,6 +5,22 @@
 {{ 'component-collection-filters.css' | asset_url | stylesheet_tag }}
 {{ 'component-sticky-collection-filters.css' | asset_url | stylesheet_tag }}
 
+<style>
+  @media screen and (max-width: 768px) {
+
+  #ProductGridContainer {
+    margin: 0 0 24px;
+  }
+
+}
+
+.sticky-filters-bar {
+  --filter-bg-color: {{ section.settings.bg_color }};
+  --filter-text-color: {{ section.settings.text_color }};
+}
+
+</style>
+
 <script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
 
 {% assign active_tags = '' %}
@@ -21,6 +37,32 @@
 
     <div id="sticky-wrap-{{ section.id }}" class="sticky-filters-wrap" data-section-id="{{ section.id }}">
       <div id="sticky-bar-{{ section.id }}" class="sticky-filters-bar" role="region" aria-label="Collection filters">
+        <div class="page-overlay"></div>
+        {% if section.blocks.size > 0 %}
+          <div class="head-slide-wrap title-carousel" id="head-slide-wrap">
+            <ul class="head-slide">
+              {%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+                {%- assign pageUrl = contentForQuerystring
+                  | split: '"pageurl":"'
+                  | last
+                  | split: '"'
+                  | first
+                  | split: '.myshopify.com'
+                  | last
+                  | replace: '\/', '/'
+                  | replace: '%20', ' '
+                  | replace: '\u0026', '&'
+              -%}
+              {% capture finalurl %}https://{{ pageUrl }}{% endcapture %}
+
+              {%- assign key_and_value = pageUrl | split:'?' -%}
+
+              {% for block in section.blocks %}
+                <li {% if block.settings.link contains key_and_value[1] %} class="active" {% endif %}><a href="{{ block.settings.link }}">{{ block.settings.title }}</a></li> 
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
         <div class="sticky-filters-bar__inner">
           {% render 'collection-filters' %}
         </div>
@@ -91,172 +133,312 @@
   </div>
 </div>
 
-  <script>
-    (function(){
-      var w=document.getElementById('sticky-wrap-{{ section.id }}');
-      var b=document.getElementById('sticky-bar-{{ section.id }}');
-      var p=document.getElementById('sticky-placeholder-{{ section.id }}');
-      if(!w||!b||!p) return;
+<script>
+  window.scrollUtils1 = function() {
+    var w=document.getElementById('sticky-wrap-{{ section.id }}');
+    var b=document.getElementById('sticky-bar-{{ section.id }}');
+    var p=document.getElementById('sticky-placeholder-{{ section.id }}');
+    if(!w||!b||!p) return;
 
-      function H(){
-        var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
-        var a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
-        var n=document.querySelector('.header__navigation'); var nh=0;
-        if(n){var cs=getComputedStyle(n); if(cs.display!=='none'&&/(fixed|sticky)/.test(cs.position)&&window.matchMedia('(min-width: 990px)').matches) nh=n.offsetHeight;}
-        return (h?h.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh+100;
+    function H(){
+      var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+      var a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+      var n=document.querySelector('.header__navigation'); var nh=0;
+      if(n){var cs=getComputedStyle(n); if(cs.display!=='none'&&/(fixed|sticky)/.test(cs.position)&&window.matchMedia('(min-width: 990px)').matches) nh=n.offsetHeight;}
+      return (h?h.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh+100;
+    }
+
+    // FIXED: Better end sentinel positioning
+    var end=document.getElementById('sticky-end-sentinel-{{ section.id }}');
+    if(!end){ 
+      end=document.createElement('div'); 
+      end.id='sticky-end-sentinel-{{ section.id }}'; 
+      end.style.height='1px';
+      end.style.clear='both';
+      
+      // Find the product grid container
+      var productGrid = document.getElementById('ProductGridContainer') || 
+                        document.querySelector('[id*="product-grid"]') ||
+                        document.querySelector('.collection-grid') ||
+                        w.closest('section');
+      
+      if(productGrid && productGrid.parentNode) {
+        productGrid.parentNode.insertBefore(end, productGrid.nextSibling);
       }
+    }
 
-      var end=document.getElementById('sticky-end-sentinel-{{ section.id }}');
-      if(!end){ end=document.createElement('div'); end.id='sticky-end-sentinel-{{ section.id }}'; end.style.height='1px'; (document.getElementById('ProductGridContainer')||w.parentElement).parentNode.insertBefore(end,(document.getElementById('ProductGridContainer')||w.parentElement).nextSibling); }
+    var sY=0, eY=0, off=0, L=0, W=0, stop=0;
 
-      var sY=0, eY=0, off=0, L=0, W=0, stop=0;
+    function footTop(){
+      var f=document.querySelector('#shopify-section-footer, .footer, .site-footer, footer');
+      if(!f) return 1/0;
+      var r=f.getBoundingClientRect();
+      return r.top+(window.pageYOffset||document.documentElement.scrollTop);
+    }
 
-      function footTop(){
-        var f=document.querySelector('#shopify-section-footer, .footer, .site-footer, footer');
-        if(!f) return 1/0;
-        var r=f.getBoundingClientRect();
-        return r.top+(window.pageYOffset||document.documentElement.scrollTop);
-      }
+    // FIXED: Better container bounds detection
+    function getContainerBottom() {
+      var container = w.closest('section') || w.parentElement;
+      if(!container) return footTop();
+      
+      var rect = container.getBoundingClientRect();
+      var containerBottom = rect.bottom + (window.pageYOffset || document.documentElement.scrollTop);
+      
+      return Math.min(containerBottom, footTop());
+    }
 
-      function measure(){
-        b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked');
-        p.style.height=b.offsetHeight+'px';
-        off=H();
-        var st=window.pageYOffset||document.documentElement.scrollTop;
-        sY=w.getBoundingClientRect().top+st;
+    function measure(){
+      b.style.position='static'; 
+      b.style.left=''; 
+      b.style.width=''; 
+      b.style.top=''; 
+      b.style.transform=''; 
+      b.classList.remove('is-fixed','is-docked');
+      b.clientHeight < document.querySelector(".collection").clientHeight ? p.style.height=b.offsetHeight+'px' : p.style.height='0px';
+      off=H();
+      
+      var st=window.pageYOffset||document.documentElement.scrollTop;
+      sY=w.getBoundingClientRect().top+st;
+      
+      // Use end sentinel if exists, otherwise use container bottom
+      if(end) {
         eY=end.getBoundingClientRect().top+st;
-        stop=Math.min(eY,footTop())-1;
-        var r=b.getBoundingClientRect(); L=r.left+window.pageXOffset; W=r.width;
-        b.dataset.fixedLeft=L; b.dataset.fixedWidth=W;
+      } else {
+        eY=getContainerBottom();
+      }
+      
+      stop=Math.min(eY, footTop())-1;
+      
+      var r=b.getBoundingClientRect(); 
+      L=r.left+window.pageXOffset; 
+      W=r.width;
+      b.dataset.fixedLeft=L; 
+      b.dataset.fixedWidth=W;
+    }
+
+    function apply(){
+      var y=window.pageYOffset||document.documentElement.scrollTop;
+      var h=b.offsetHeight;
+      
+      // FIXED: Check if we're past the container bounds
+      var containerRect = w.closest('section') ? w.closest('section').getBoundingClientRect() : w.parentElement.getBoundingClientRect();
+      var containerBottom = containerRect.bottom + (window.pageYOffset || document.documentElement.scrollTop);
+      // Not scrolled enough - keep static
+      if(y+off<=sY || b.clientHeight > document.querySelector(".collection").clientHeight){ 
+        if(b.classList.contains('is-fixed')||b.classList.contains('is-docked')){ 
+          b.style.position='static'; 
+          b.style.left=''; 
+          b.style.width=''; 
+          b.style.top=''; 
+          b.style.transform=''; 
+          b.classList.remove('is-fixed','is-docked');
+        } 
+        return; 
+      }
+      var extraSpace = b.clientHeight > document.querySelector(".collection").clientHeight ? 0 : 200;
+      // FIXED: Reached bottom - dock it
+      if(y+off+h>=stop || (y+h + extraSpace)>=containerBottom){
+        var wt=w.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop);
+        b.style.position='absolute'; 
+        b.style.top='0px'; 
+        b.style.left='0'; 
+        b.style.width='100%'; 
+        b.style.transform=''; 
+        b.classList.remove('is-fixed'); 
+        b.classList.add('is-docked'); 
+        return;
+      }
+      // In the middle - keep fixed
+      var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
+      var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
+      var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+      var h2=document.querySelector('.bx-slab'), h2Height = h2 ? h2.clientHeight : 73;
+      b.style.position='fixed'; 
+      b.style.top=(window.screen.availWidth > 768 ? off : (h.clientHeight + h2Height))+'px'; 
+      b.style.left=lv+'px'; 
+      b.style.width=wv+'px'; 
+      b.style.transform=(window.screen.availWidth > 768 ? 'translateZ(0)' : ''); 
+      b.classList.add('is-fixed'); 
+      b.classList.remove('is-docked');
+    }
+
+    function recalc(){ apply(); }
+    
+    window.addEventListener('load',recalc,{passive:true});
+    window.addEventListener('resize',recalc,{passive:true});
+    window.addEventListener('orientationchange',recalc,{passive:true});
+    window.addEventListener('scroll',function(){ 
+      var nh=H(); 
+      // if(Math.abs(nh-off)>2) measure(); 
+      apply(); 
+    },{passive:true});
+    
+    // measure(); 
+    apply();
+
+    window.clearAll=function(e){ 
+      e&&e.preventDefault(); 
+      document.querySelector('collection-filters')?.clearAllFilters?.(); 
+    };
+  };
+  window.scrollUtils1();
+</script>
+
+<script>
+  window.scrollUtils2 = function(){
+    var mq=window.matchMedia('(max-width: 989px)');
+    var HDR=200, DRZ=190, BTN=120, SEC=110;
+    var sec=document.querySelector('#shopify-section-template--17366421930047__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a');
+    if(!sec) return;
+    var btn=sec.querySelector('.collection-filters__button.hide-desktop');
+    var drawer=sec.querySelector('collection-filters');
+    if(!btn||!drawer) return;
+
+    var ph1=document.createElement('div'); var ph2=document.createElement('div');
+    ph1.style.height='0px'; ph2.style.height='0px';
+    sec.insertAdjacentElement('afterend',ph1); btn.insertAdjacentElement('afterend',ph2);
+
+    function hoff(){
+      var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+      var a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+      var n=document.querySelector('.header__navigation'); var nh=0;
+      if(n){var cs=getComputedStyle(n); if(cs.display!=='none'&&/(fixed|sticky)/.test(cs.position)) nh=n.offsetHeight;}
+      return (h?h.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh;
+    }
+
+    var s1=0, s2=0, H=0;
+
+    function measure(){
+      [sec,btn].forEach(function(el){ el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; });
+      ph1.style.height=sec.offsetHeight+'px'; ph2.style.height=btn.offsetHeight+'px';
+      H=hoff(); var st=window.pageYOffset||document.documentElement.scrollTop;
+      s1=sec.getBoundingClientRect().top+st; s2=btn.getBoundingClientRect().top+st;
+    }
+
+    function stick(el,start,z){
+      var st=window.pageYOffset||document.documentElement.scrollTop;
+      if(st+H>start){ el.style.position='fixed'; el.style.top=H+'px'; el.style.left=0; el.style.right=0; el.style.width='100%'; el.style.zIndex=z; el.style.background='var(--color-background, #fff)'; }
+      else { el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background=''; }
+    }
+
+    function styleDrawer(){
+      if(!mq.matches) return;
+      var open=drawer.hasAttribute('open')||drawer.classList.contains('is-open');
+      var off=hoff();
+      if(open){
+        drawer.style.position='fixed'; drawer.style.top=off+'px'; drawer.style.left=0; drawer.style.right=0;
+        drawer.style.height='calc(100vh - '+off+'px)'; drawer.style.maxHeight=drawer.style.height;
+        drawer.style.overflow='auto'; drawer.style.webkitOverflowScrolling='touch'; drawer.style.zIndex=DRZ;
+        btn.style.zIndex=BTN;
+      }else{
+        drawer.style.position='fixed'; drawer.style.top=off+'px'; drawer.style.left='0'; drawer.style.right='0';
+        drawer.style.height='0'; drawer.style.maxHeight='0'; drawer.style.overflow='hidden'; drawer.style.width='0';
+        drawer.style.opacity='0'; drawer.style.visibility='hidden'; drawer.style.pointerEvents='none'; drawer.style.zIndex=DRZ;
+      }
+    }
+
+    function tick(){
+      if(!mq.matches){ [sec,btn].forEach(function(el){ el.style=''; }); ph1.style.height='0px'; ph2.style.height='0px'; return; }
+      stick(sec,s1,SEC); stick(btn,s2,BTN); styleDrawer();
+    }
+
+    window.addEventListener('load',function(){ tick(); });
+    window.addEventListener('resize',function(){ tick(); });
+    window.addEventListener('scroll',tick,{passive:true});
+    new MutationObserver(styleDrawer).observe(drawer,{attributes:true});
+  };
+  window.scrollUtils2();
+</script>
+
+<script>
+  window.scrollUtils3 = function(){
+    var TITLE_Z=150, BUF=1;
+    function hoff(){
+      var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
+      var a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
+      var n=document.querySelector('.header__navigation'); var nh=0;
+      if(n){var cs=getComputedStyle(n); if(cs.display!=='none'&&/(fixed|sticky)/.test(cs.position)) nh=n.offsetHeight;}
+      var desk=window.matchMedia('(min-width: 990px)').matches;
+      return (h?h.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh+(desk?100:0);
+    }
+    function fTop(){
+      var f=document.querySelector('#shopify-section-footer, .footer, .site-footer, footer'); if(!f) return 1/0;
+      var r=f.getBoundingClientRect(); return r.top+(window.pageYOffset||document.documentElement.scrollTop);
+    }
+    var els=[].slice.call(document.querySelectorAll('.shopify-section.title-carousel.with-spacing')); if(!els.length) return;
+    var ms=els.map(function(el){ var ph=document.createElement('div'); ph.style.height='0px'; el.insertAdjacentElement('afterend',ph); return {el:el, ph:ph, s:0, stop:0, H:0}; });
+
+    function measure(m){
+      var el=m.el; el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background='';
+      m.ph.style.height=el.offsetHeight+'px'; m.H=hoff();
+      var st=window.pageYOffset||document.documentElement.scrollTop; var box=el.getBoundingClientRect();
+      m.s=box.top+st; m.stop=fTop()-BUF;
+    }
+    function apply(m){
+      var el=m.el, y=window.pageYOffset||document.documentElement.scrollTop, H=m.H, h=el.offsetHeight;
+      if(y+H<=m.s){ if(el.style.position==='fixed'||el.style.position==='absolute'){ el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background=''; } return; }
+      if(y+H+h>=m.stop){ var pt=el.parentElement.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop); el.style.position='absolute'; el.style.top=((m.stop-h)-pt)+'px'; el.style.left='0'; el.style.right='0'; el.style.width='100%'; el.style.zIndex=TITLE_Z; el.style.background='var(--color-background, #fff)'; return; }
+      el.style.position='fixed'; el.style.top=H+'px'; el.style.left='0'; el.style.right='0'; el.style.width='100%'; el.style.zIndex=TITLE_Z; el.style.background='var(--color-background, #fff)';
+    }
+    function recalc(){ ms.forEach(apply); }
+    window.addEventListener('load',recalc,{passive:true});
+    window.addEventListener('resize',recalc,{passive:true});
+    window.addEventListener('orientationchange',recalc,{passive:true});
+    window.addEventListener('scroll',function(){ var o=ms[0].H, n=hoff(); if(Math.abs(n-o)>2) ms.forEach(apply); },{passive:true});
+    recalc();
+  };
+  window.scrollUtils3();
+
+  // Update the sticky offset
+    function updateStickyOffset() {
+      const header = document.querySelector('.outer-header-wrapper');
+      const extra = document.querySelector('.bx-creative');
+      const sticky = document.querySelector('.sticky-filters-wrap');
+      const isMobile = window.innerWidth <= 768;
+
+      if (!sticky) {
+        console.log('Waiting for .sticky-filters-wrap...');
+        return;
       }
 
-      function apply(){
-        var y=window.pageYOffset||document.documentElement.scrollTop, h=b.offsetHeight;
-        if(y+off<=sY){ if(b.classList.contains('is-fixed')||b.classList.contains('is-docked')){ b.style.position='static'; b.style.left=''; b.style.width=''; b.style.top=''; b.style.transform=''; b.classList.remove('is-fixed','is-docked'); } return; }
-        if(y+off+h>=stop){
-          var wt=w.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop);
-          b.style.position='absolute'; b.style.top=((stop-h)-wt)+'px'; b.style.left='0'; b.style.width='100%'; b.style.transform=''; b.classList.remove('is-fixed'); b.classList.add('is-docked'); return;
-        }
-        var wv=parseFloat(b.dataset.fixedWidth)||b.getBoundingClientRect().width;
-        var lv=parseFloat(b.dataset.fixedLeft)||(b.getBoundingClientRect().left+window.pageXOffset);
-        b.style.position='fixed'; b.style.top=off+'px'; b.style.left=lv+'px'; b.style.width=wv+'px'; b.style.transform='translateZ(0)'; b.classList.add('is-fixed'); b.classList.remove('is-docked');
+      // Only apply on mobile screens
+      if (isMobile) {
+        const defaultTop = 140; // fallback default top value
+        const headerHeight = header ? header.offsetHeight : 0;
+        const extraHeight = extra ? extra.offsetHeight : 0;
+        const totalHeight = headerHeight + extraHeight;
+
+        // If the combined height is reasonable, use it; otherwise, use default
+        let safeTop = totalHeight > 0 && totalHeight < 400 ? totalHeight : defaultTop;
+        safeTop = safeTop - 10;
+        sticky.style.top = `${safeTop}px`;
+        console.log('Mobile sticky top set to:', safeTop + 'px');
+      } else {
+        // Reset on tablet/desktop
+        sticky.style.top = '';
+        console.log('Sticky top reset (non-mobile view)');
       }
+    }
 
-      function recalc(){ measure(); apply(); }
-      window.addEventListener('load',recalc,{passive:true});
-      window.addEventListener('resize',recalc,{passive:true});
-      window.addEventListener('orientationchange',recalc,{passive:true});
-      window.addEventListener('scroll',function(){ var nh=H(); if(Math.abs(nh-off)>2) measure(); apply(); },{passive:true});
-      measure(); apply();
+    // Run when the page loads
+    window.addEventListener('load', updateStickyOffset);
 
-      window.clearAll=function(e){ e&&e.preventDefault(); document.querySelector('collection-filters')?.clearAllFilters?.(); };
-    })();
-    </script>
+    // Update when window is resized
+    window.addEventListener('resize', updateStickyOffset);
 
-    <script>
-    (function(){
-      var mq=window.matchMedia('(max-width: 989px)');
-      var HDR=200, DRZ=190, BTN=120, SEC=110;
-      var sec=document.querySelector('#shopify-section-template--17366421930047__8fcbecee-c2bf-45f1-ab71-1a08ef2f909a');
-      if(!sec) return;
-      var btn=sec.querySelector('.collection-filters__button.hide-desktop');
-      var drawer=sec.querySelector('collection-filters');
-      if(!btn||!drawer) return;
+    // Continue checking periodically until all elements exist
+    const checkInterval = setInterval(() => {
+      const header = document.querySelector('.outer-header-wrapper');
+      const extra = document.querySelector('.bx-creative');
+      const sticky = document.querySelector('.sticky-filters-wrap');
 
-      var ph1=document.createElement('div'); var ph2=document.createElement('div');
-      ph1.style.height='0px'; ph2.style.height='0px';
-      sec.insertAdjacentElement('afterend',ph1); btn.insertAdjacentElement('afterend',ph2);
-
-      function hoff(){
-        var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
-        var a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
-        var n=document.querySelector('.header__navigation'); var nh=0;
-        if(n){var cs=getComputedStyle(n); if(cs.display!=='none'&&/(fixed|sticky)/.test(cs.position)) nh=n.offsetHeight;}
-        return (h?h.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh;
+      if ((header || extra) && sticky) {
+        updateStickyOffset();
+        clearInterval(checkInterval); // Stop once all elements are found
       }
-
-      var s1=0, s2=0, H=0;
-
-      function measure(){
-        [sec,btn].forEach(function(el){ el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; });
-        ph1.style.height=sec.offsetHeight+'px'; ph2.style.height=btn.offsetHeight+'px';
-        H=hoff(); var st=window.pageYOffset||document.documentElement.scrollTop;
-        s1=sec.getBoundingClientRect().top+st; s2=btn.getBoundingClientRect().top+st;
-      }
-
-      function stick(el,start,z){
-        var st=window.pageYOffset||document.documentElement.scrollTop;
-        if(st+H>start){ el.style.position='fixed'; el.style.top=H+'px'; el.style.left=0; el.style.right=0; el.style.width='100%'; el.style.zIndex=z; el.style.background='var(--color-background, #fff)'; }
-        else { el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background=''; }
-      }
-
-      function styleDrawer(){
-        if(!mq.matches) return;
-        var open=drawer.hasAttribute('open')||drawer.classList.contains('is-open');
-        var off=hoff();
-        if(open){
-          drawer.style.position='fixed'; drawer.style.top=off+'px'; drawer.style.left=0; drawer.style.right=0;
-          drawer.style.height='calc(100vh - '+off+'px)'; drawer.style.maxHeight=drawer.style.height;
-          drawer.style.overflow='auto'; drawer.style.webkitOverflowScrolling='touch'; drawer.style.zIndex=DRZ;
-          btn.style.zIndex=BTN;
-        }else{
-          drawer.style.position='fixed'; drawer.style.top=off+'px'; drawer.style.left='0'; drawer.style.right='0';
-          drawer.style.height='0'; drawer.style.maxHeight='0'; drawer.style.overflow='hidden'; drawer.style.width='0';
-          drawer.style.opacity='0'; drawer.style.visibility='hidden'; drawer.style.pointerEvents='none'; drawer.style.zIndex=DRZ;
-        }
-      }
-
-      function tick(){
-        if(!mq.matches){ [sec,btn].forEach(function(el){ el.style=''; }); ph1.style.height='0px'; ph2.style.height='0px'; return; }
-        stick(sec,s1,SEC); stick(btn,s2,BTN); styleDrawer();
-      }
-
-      window.addEventListener('load',function(){ measure(); tick(); });
-      window.addEventListener('resize',function(){ measure(); tick(); });
-      window.addEventListener('scroll',tick,{passive:true});
-      new MutationObserver(styleDrawer).observe(drawer,{attributes:true});
-    })();
-    </script>
-
-    <script>
-    (function(){
-      var TITLE_Z=150, BUF=1;
-      function hoff(){
-        var h=document.querySelector('#shopify-section-header, .header-wrapper, header[role="banner"]');
-        var a=document.querySelector('#shopify-section-announcement-bar, .announcement-bar');
-        var n=document.querySelector('.header__navigation'); var nh=0;
-        if(n){var cs=getComputedStyle(n); if(cs.display!=='none'&&/(fixed|sticky)/.test(cs.position)) nh=n.offsetHeight;}
-        var desk=window.matchMedia('(min-width: 990px)').matches;
-        return (h?h.offsetHeight:0)+(a&&getComputedStyle(a).display!=='none'?a.offsetHeight:0)+nh+(desk?100:0);
-      }
-      function fTop(){
-        var f=document.querySelector('#shopify-section-footer, .footer, .site-footer, footer'); if(!f) return 1/0;
-        var r=f.getBoundingClientRect(); return r.top+(window.pageYOffset||document.documentElement.scrollTop);
-      }
-      var els=[].slice.call(document.querySelectorAll('.shopify-section.title-carousel.with-spacing')); if(!els.length) return;
-      var ms=els.map(function(el){ var ph=document.createElement('div'); ph.style.height='0px'; el.insertAdjacentElement('afterend',ph); return {el:el, ph:ph, s:0, stop:0, H:0}; });
-
-      function measure(m){
-        var el=m.el; el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background='';
-        m.ph.style.height=el.offsetHeight+'px'; m.H=hoff();
-        var st=window.pageYOffset||document.documentElement.scrollTop; var box=el.getBoundingClientRect();
-        m.s=box.top+st; m.stop=fTop()-BUF;
-      }
-      function apply(m){
-        var el=m.el, y=window.pageYOffset||document.documentElement.scrollTop, H=m.H, h=el.offsetHeight;
-        if(y+H<=m.s){ if(el.style.position==='fixed'||el.style.position==='absolute'){ el.style.position=''; el.style.top=''; el.style.left=''; el.style.right=''; el.style.width=''; el.style.zIndex=''; el.style.background=''; } return; }
-        if(y+H+h>=m.stop){ var pt=el.parentElement.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop); el.style.position='absolute'; el.style.top=((m.stop-h)-pt)+'px'; el.style.left='0'; el.style.right='0'; el.style.width='100%'; el.style.zIndex=TITLE_Z; el.style.background='var(--color-background, #fff)'; return; }
-        el.style.position='fixed'; el.style.top=H+'px'; el.style.left='0'; el.style.right='0'; el.style.width='100%'; el.style.zIndex=TITLE_Z; el.style.background='var(--color-background, #fff)';
-      }
-      function recalc(){ ms.forEach(measure); ms.forEach(apply); }
-      window.addEventListener('load',recalc,{passive:true});
-      window.addEventListener('resize',recalc,{passive:true});
-      window.addEventListener('orientationchange',recalc,{passive:true});
-      window.addEventListener('scroll',function(){ var o=ms[0].H, n=hoff(); if(Math.abs(n-o)>2) ms.forEach(measure); ms.forEach(apply); },{passive:true});
-      recalc();
-    })();
-    </script>
-
+    }, 500);
+  
+</script>
 {% schema %}
 {
   "name": "Collection sticky filters",
@@ -269,6 +451,22 @@
       { "value": "portrait", "label": "Portrait" },
       { "value": "square", "label": "Square" } ],
       "default": "adapt", "label": "Image ratio" },
+    {
+      "type": "header",
+      "content": "Fiter colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#546B82"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
     { "type": "checkbox", "id": "show_secondary_image", "default": false, "label": "Show secondary image" },
     { "type": "checkbox", "id": "add_image_padding", "default": false, "label": "Add image padding" },
     { "type": "checkbox", "id": "show_image_outline", "default": true, "label": "Show image outline" },
@@ -277,6 +475,24 @@
     { "type": "checkbox", "id": "enable_filtering", "default": true, "label": "Enable filtering" },
     { "type": "checkbox", "id": "enable_sorting", "default": true, "label": "Enable sorting" },
     { "type": "checkbox", "id": "collapse_on_larger_devices", "default": false, "label": "Collapse on larger devices" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+          {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
   ]
 }
 {% endschema %}

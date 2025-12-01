@@ -1078,7 +1078,7 @@ deferred-media {
   .header--inner {
     grid-template-areas: "logo icons";
     grid-template-columns: auto 1fr;
-    padding: 14px;
+    padding: 14px 20px;
   }
 }
 
