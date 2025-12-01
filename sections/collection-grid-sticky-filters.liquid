@@ -58,7 +58,7 @@
               {%- assign key_and_value = pageUrl | split:'?' -%}
 
               {% for block in section.blocks %}
-                <li {% if block.settings.link contains key_and_value[1] %} class="active" {% endif %}><a href="{{ block.settings.link }}&view=sticky-filters">{{ block.settings.title }}</a></li> 
+                <li {% if block.settings.link contains key_and_value[1] %} class="active" {% endif %}><a href="{{ block.settings.link }}">{{ block.settings.title }}</a></li> 
               {% endfor %}
             </ul>
           </div>
