@@ -246,15 +246,19 @@
         if section.settings.mobile_video != blank
           assign classes = 'videos hide-mobile'
         endif
+        
+        # White poster image URL - replace with your uploaded white image URL
+        assign poster_url = section.settings.video_poster | image_url: width: 1920
       %}
       <div class="FeatureText__ImageWrapper video-wrapper">
         {% capture desktop_video %}
-          {{ section.settings.video | video_tag: autoplay: true, muted: true, controls: false, playsinline: true, preload: 'auto', class: classes, id: 'video', image_size: '800x' }}
+          {{ section.settings.video | video_tag: autoplay: true, muted: true, controls: false, playsinline: true, preload: 'auto', class: classes, id: 'video', image_size: '800x', poster: poster_url }}
         {% endcapture %}
         {{ desktop_video | replace: '<video', '<video data-hero-video' }}
+        
         {% if section.settings.mobile_video != blank %}
           {% capture mobile_video %}
-            {{ section.settings.mobile_video | video_tag: autoplay: true, muted: true, controls: false, playsinline: true, preload: 'auto', class: 'videos hide-desktop', id: 'video-mobile', image_size: '800x' }}
+            {{ section.settings.mobile_video | video_tag: autoplay: true, muted: true, controls: false, playsinline: true, preload: 'auto', class: 'videos hide-desktop', id: 'video-mobile', image_size: '800x', poster: poster_url }}
           {% endcapture %}
           {{ mobile_video | replace: '<video', '<video data-hero-video' }}
         {% endif %}
@@ -270,6 +274,18 @@
   </div>
 </section>
 
+<style>
+ .video-wrapper {
+  background-color: #ffffff;
+}
+
+video[data-hero-video] {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+</style>
+
 {% schema %}
 {
   "name": "Video with text",
@@ -284,6 +300,12 @@
       "type": "video",
       "id": "mobile_video",
       "label": "Mobile Video"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Video Poster Image",
+      "info": "Shows while video loads. Use a white image."
     },
     {
       "type": "textarea",
