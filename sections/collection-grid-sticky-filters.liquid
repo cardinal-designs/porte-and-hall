@@ -53,7 +53,7 @@
                   | replace: '%20', ' '
                   | replace: '\u0026', '&'
               -%}
-              {% capture finalurl %}https://{{ pageUrl }}{% endcapture %}
+              {% capture finalurl %}https://{{ pageUrl }}&view=sticky-filters{% endcapture %}
 
               {%- assign key_and_value = pageUrl | split:'?' -%}
 
