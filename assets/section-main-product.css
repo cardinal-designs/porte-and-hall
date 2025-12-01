@@ -959,8 +959,8 @@ variant-selects {
 
 .other-sizes__button {
   border: 2px solid var(--blue);
-  padding: 8px 24px;
-  font-size: 20px;
+  padding: 14px;
+  font-size: 16px;
   letter-spacing: 1px;
   line-height: 24px;
   font-weight: 500;
@@ -1155,17 +1155,17 @@ variant-selects {
    }
 }
 
-.small_button_text {
+/* .small_button_text {
   padding: 14px;
-}
+} */
 
-.small_button_text span:first-of-type {
+/* .small_button_text span:first-of-type {
   font-size: 16px;
 }
 
 .small_button_text .other-sizes__dimension {
   font-size: 14px;
-}
+} */
 
 .bis-new {
   display: block;
@@ -1176,6 +1176,15 @@ variant-selects {
 product-form form {
   display: flex;
   flex-direction: column;
+}
+
+@media screen and (min-width: 935px) and (max-width: 1348px) {
+
+  .other-sizes__button {
+    max-width: 100px !important;
+    width: 100%;
+  }
+
 }
 
 @media screen and (max-width: 900px) {

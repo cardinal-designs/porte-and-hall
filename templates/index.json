@@ -26,7 +26,9 @@
       "type": "video-text",
       "name": "Video with text",
       "settings": {
-        "video": "shopify://files/videos/CRO w-porter.mp4",
+        "video": "shopify://files/videos/cro3compressed.mp4",
+        "mobile_video": "shopify://files/videos/cro3compressed.mp4",
+        "video_poster": "shopify://shop_images/white-img.png",
         "subheading": "",
         "title": "<p>Worthy of Your </p><p>Welcome</p>",
         "content": "<p>Premium indoor and outdoor mats to elevate your entry and your everyday.</p>",
@@ -137,12 +139,12 @@
       }
     },
     "product_carousel_new_2_JLEKyQ": {
-      "type": "product-carousel-new-2",
+      "type": "product-carousel-new-2-old",
       "settings": {
         "heading": "Shop our best sellers",
         "background": "",
         "show_metafield_style": false,
-        "collection": "best-sellers-limited",
+        "collection": "best-sellers-limited-2",
         "product_card_type": "video_card",
         "button_text": "Shop Now",
         "btn_link": "shopify://collections/best-sellers"

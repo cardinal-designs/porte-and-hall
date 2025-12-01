@@ -11,29 +11,16 @@
   "sections": {
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c": {
       "type": "page-hero",
-      "disabled": true,
       "settings": {
-        "heading": "Best Sellers",
+        "bg_image": "shopify://shop_images/sale_copy_def02142-6277-416f-9361-6263608ee5a0.png",
+        "heading": "",
         "text": "",
         "small_text": "",
-        "swap-fonts": true
-      }
-    },
-    "main_collection_banner_3m9A4P": {
-      "type": "main-collection-banner",
-      "name": "t:sections.main-collection-banner.name",
-      "settings": {
-        "show_collection_description": true,
-        "show_collection_image": false
+        "swap-fonts": false
       }
     },
     "product-grid": {
       "type": "main-collection-product-grid",
-      "custom_css": [
-        ".collection-grid__inner {display: block;}",
-        ".collection-filters__button {display: none;}",
-        ".collection-filters {display: none;}"
-      ],
       "settings": {
         "products_per_page": 16,
         "image_ratio": "adapt",
@@ -42,7 +29,7 @@
         "show_image_outline": true,
         "show_vendor": false,
         "show_rating": false,
-        "enable_filtering": false,
+        "enable_filtering": true,
         "enable_sorting": true,
         "collapse_on_larger_devices": false
       }
@@ -112,12 +99,61 @@
       "settings": {
         "background_color": "#d8d3c7"
       }
+    },
+    "2046a8d4-8126-4344-8df2-6dd5193e7293": {
+      "type": "featured-articles",
+      "blocks": {
+        "140e3c63-9b99-476d-9378-53fd1ce30b89": {
+          "type": "article",
+          "settings": {
+            "article": "news/how-to-find-the-best-doormat-for-your-home"
+          }
+        },
+        "faf6f395-3915-4f58-b2c5-acd839476fc2": {
+          "type": "article",
+          "settings": {
+            "article": "news/the-view-from-my-porch"
+          }
+        },
+        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23": {
+          "type": "article",
+          "settings": {
+            "article": "news/why-pay-more-for-a-doormat"
+          }
+        }
+      },
+      "block_order": [
+        "140e3c63-9b99-476d-9378-53fd1ce30b89",
+        "faf6f395-3915-4f58-b2c5-acd839476fc2",
+        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23"
+      ],
+      "settings": {
+        "heading": "Style tips from the Porte + Hall Blog",
+        "background": "#eeefef",
+        "blog": "news",
+        "show_recent_articles": true
+      }
+    },
+    "6cba2d1c-ca6b-48b3-8672-d03b3b848c6e": {
+      "type": "fan-motif-section",
+      "settings": {
+        "hide_desktop": false,
+        "hide_mobile": false,
+        "color": "green",
+        "alignment": "left",
+        "heading": "First impressions matter.\nFor both you and your visitors.",
+        "text": "Just like a clean desk or freshly-made bed, coming home to a beautiful and functional entryway is restorative and uplifting. We aim to turn these often ovelooked areas of our homes into inspired areas that welcome and invite us home.",
+        "link": "shopify://pages/about-us",
+        "link_text": "LEARN MORE ABOUT US",
+        "image": "shopify://shop_images/door_illustration.png"
+      }
     }
   },
   "order": [
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
-    "main_collection_banner_3m9A4P",
     "product-grid",
-    "82844bc9-ec6d-426a-9f52-a0a66dd5560e"
+    "82844bc9-ec6d-426a-9f52-a0a66dd5560e",
+    "2046a8d4-8126-4344-8df2-6dd5193e7293",
+    "6cba2d1c-ca6b-48b3-8672-d03b3b848c6e"
   ]
 }

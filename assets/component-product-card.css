@@ -119,6 +119,10 @@ grouped-product-card {
   text-transform: capitalize;
 }
 
+.product-card__title > span.no-capitalize {
+  text-transform: none;
+}
+
 .product-card__price {
   /* margin: 10px 0 0;
   padding-top: 5px; */

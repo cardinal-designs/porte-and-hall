@@ -6,7 +6,7 @@
                {% if block.settings.icon_image %}
                   <div class="svg-img">{{ block.settings.icon_image }}</div>
                {%  endif %}
-               <h5 class="icon_text">{{ block.settings.title }}</h5>
+               <span class="icon_text">{{ block.settings.title }}</span>
             </div>
          {%  endfor %}
         </div>
@@ -95,7 +95,7 @@
     align-items: center;
     justify-content: center;
   }
-  .icons-with-text .icon-container .icon-text-content h5{
+  .icons-with-text .icon-container .icon-text-content span{
     padding-left:6px;
     font-size: 18px;
     font-style:normal;
@@ -122,7 +122,7 @@
        .icons-with-text .icon-text-content{
           display:block;
        }
-       .icons-with-text .icon-container .icon-text-content h5{
+       .icons-with-text .icon-container .icon-text-content span{
           padding-left:0px;
           font-size: 13px;
           font-style: normal;

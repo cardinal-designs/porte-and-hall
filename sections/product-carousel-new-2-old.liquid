@@ -18,19 +18,10 @@
   .product-carousel .swiper-button-next, .product-carousel .swiper-button-prev {
     top: 27%;
   }
+  .product-carousel .swiper-button-next { right: 0; }
 
-  .product-carousel .swiper-button-next {
-    right: 0;
-  }
-
- .product-card__price.body.blue {
-    margin-top: -12px;
-  }
-
-  
-  .product-carousel__container-new-2 .product-card__swatches {
-    margin: 0;
-  }
+  .product-card__price.body.blue { margin-top: -12px; }
+  .product-carousel__container-new-2 .product-card__swatches { margin: 0; }
 
   @media screen and (max-width: 768px) {
     .product-carousel__container-new-2 {
@@ -39,19 +30,11 @@
       width: 100% !important;
     }
   }
-  
+
   @media screen and (max-width: 575px) {
-    .product-carousel .swiper-button-next {
-      right: 18px;
-    }
-
-    .product-card__image {
-      aspect-ratio: 0.9;
-    }
-
-    .product-card {
-      gap: 5px;
-    }
+    .product-carousel .swiper-button-next { right: 18px; }
+    .product-card__image { aspect-ratio: 0.9; }
+    .product-card { gap: 5px; }
 
     .product-card__price.body.blue {
       margin-top: -5px;
@@ -59,35 +42,31 @@
       letter-spacing: .3px;
     }
 
-    .product-card__title {
-      font-size: 13px;
-      letter-spacing: 0;
-    }
+    .product-card__title { font-size: 13px; letter-spacing: 0; }
+    .product-card__title span { font-size: 13px; letter-spacing: 0; }
 
-     .product-card__title span {
-      font-size: 13px;
-      letter-spacing: 0;
-    }
-
-    .product-carousel__container-new-2 {
-      height: 300px !important;
-    }
-  
-    .product-carousel__container-new-2 .swiper-pagination {
-      bottom: 20px !important;
-    }
+    .product-carousel__container-new-2 { height: 300px !important; }
+    .product-carousel__container-new-2 .swiper-pagination { bottom: 20px !important; }
 
     .carousel-new-2__video {
       object-fit: cover;
       height: 100%;
     }
   }
-  
- @media screen and (max-width: 500px) {
-  .product-carousel .swiper-button-next, .product-carousel .swiper-button-prev {
-    top: 19%;
+
+  @media screen and (max-width: 500px) {
+    .product-carousel .swiper-button-next, .product-carousel .swiper-button-prev { top: 19%; }
   }
- }
+
+  /* Label overlay stays above video; prevent flash */
+  .product-card__image { position: relative; }
+  .product-card__image-label.body-xs {
+    position: absolute;
+    z-index: 10; /* above video (video uses z-index:2) */
+    pointer-events: none;
+    transform: translateZ(0);
+    will-change: transform;
+  }
 {% endstyle %}
 
 <div class="product-carousel__inner product-carousel__new">
@@ -104,36 +83,44 @@
               {% assign grouped_collection = collection %}
             {% endif %}
           {% endfor %}
+
+          {% assign only_one = false %}
+          {% if product.handle contains 'wild-side' %}
+            {% assign only_one = true %}
+          {% endif %}
+
           <div class="product-carousel__item swiper-slide">
             {% if section.settings.product_card_type == 'standard_card' %}
-            {% render 'grouped-product-card-2',
-              product_card_product: product,
-              collection: grouped_collection,
-              title: grouped_collection.title,
-              button_text: section.settings.button_text
-            %}
-          {% else %}
-            {% render 'grouped-product-card-3',
-              product_card_product: product,
-              collection: grouped_collection,
-              title: grouped_collection.title,
-              button_text: section.settings.button_text
-            %}
-          {% endif %}
+              {% render 'grouped-product-card-2',
+                product_card_product: product,
+                collection: grouped_collection,
+                title: grouped_collection.title,
+                button_text: section.settings.button_text
+              %}
+            {% else %}
+              {% render 'grouped-product-card-3',
+                product_card_product: product,
+                collection: grouped_collection,
+                title: grouped_collection.title,
+                button_text: section.settings.button_text,
+                only_show_one: only_one
+              %}
+            {% endif %}
           </div>
         {% endfor %}
       </div>
       <div class="swiper-pagination product-carousel__pagination"></div>
     </div>
+
     {% if section.settings.btn_link != blank %}
-    <a class="shop-all-btn" href="{{ section.settings.btn_link }}">SHOP ALL BEST SELLERS</a>
+      <a class="shop-all-btn" href="{{ section.settings.btn_link }}">SHOP ALL BEST SELLERS</a>
     {% endif %}
   </product-carousel-new-two>
 </div>
 
 <style>
   {% if section.settings.background != blank %}
-    #shopify-section-{{section.id }}.product-carousel {
+    #shopify-section-{{ section.id }}.product-carousel {
       background: {{ section.settings.background }};
     }
   {% endif %}
@@ -144,179 +131,170 @@
   const section = document.getElementById('shopify-section-{{ section.id }}');
   if (!section) return;
 
-  // Grab all videos inside this section
-  const videos = Array.from(section.querySelectorAll('video.carousel-new-2__video'));
-  if (!videos.length) return;
+  const wrapper = section.querySelector('.swiper-wrapper');
+  if (!wrapper) return;
 
-  // --- helpers ----------------------------------------------------
-  const isVisible = (el) =>
-    el.offsetParent !== null && getComputedStyle(el).visibility !== 'hidden';
+  const swiper = section.querySelector('.swiper')?.swiper;
+  const mq = window.matchMedia('(max-width: 575px)');
 
-  function getCard(videoEl) {
-    return videoEl.closest('.product-card__image') || videoEl.parentElement;
-  }
+  // Helpers: only ORIGINAL slides (ignore Swiper's duplicates)
+  const getOriginalSlides = () =>
+    Array.from(wrapper.children).filter(slide => !slide.classList.contains('swiper-slide-duplicate'));
 
-  // Find the placeholder image we want to fade with the video
-  function getImg(videoEl) {
-    const box = getCard(videoEl);
-    if (!box) return null;
-    // Prefer your lazy-image with classes 'img-fill hide-mobile'
-    let img = box.querySelector('img.img-fill.hide-mobile');
-    if (!img) img = box.querySelector('img.img-fill'); // fallback
-    if (!img) img = box.querySelector('img');          // last resort
-    return img;
-  }
+  // Snapshot original desktop order ONCE
+  const originalSlides = getOriginalSlides();
+  originalSlides.forEach((slide, i) => { slide.dataset.originalIndex = i; });
 
-  // Ensure both elements are layered & can fade
-  function prepLayering(videoEl, imgEl) {
-    const box = getCard(videoEl);
-    if (box && getComputedStyle(box).position === 'static') {
-      box.style.position = 'relative';
+  // Utility: safely reorder while loop is disabled to avoid duplicate interference
+  function withLoopRebuild(fn) {
+    if (swiper && swiper.params && swiper.params.loop) {
+      try { swiper.loopDestroy(); } catch(_) {}
+      fn();
+      try { swiper.loopCreate(); } catch(_) {}
+      swiper.updateSlides();
+      swiper.update();
+      // Keep current visual position reasonable; slideTo(0) is safe if order changed
+      swiper.slideTo(0, 0, false);
+    } else {
+      fn();
+      if (swiper) { swiper.updateSlides(); swiper.update(); }
     }
-    Object.assign(videoEl.style, {
-      position: 'absolute',
-      inset: '0',
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-      zIndex: '2',
-      transition: 'opacity 200ms ease'
+  }
+
+  // ----- Layout (mobile: move video-first, desktop: restore original order) -----
+  function moveVideosToFront() {
+    withLoopRebuild(() => {
+      const originals = getOriginalSlides();
+      const withVideo = originals.filter(s => s.querySelector('video.carousel-new-2__video'));
+      const withoutVideo = originals.filter(s => !s.querySelector('video.carousel-new-2__video'));
+      // Re-append in mobile order
+      [...withVideo, ...withoutVideo].forEach(n => wrapper.appendChild(n));
     });
-    if (imgEl) {
-      Object.assign(imgEl.style, {
-        position: 'absolute',
-        inset: '0',
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover',
-        zIndex: '1',
-        transition: 'opacity 200ms ease'
+  }
+
+  function restoreDesktopOrder() {
+    withLoopRebuild(() => {
+      const originals = getOriginalSlides();
+      originals.sort((a, b) => (+a.dataset.originalIndex) - (+b.dataset.originalIndex))
+               .forEach(n => wrapper.appendChild(n));
+    });
+  }
+
+  function applyLayout(isMobile) {
+    if (isMobile) {
+      moveVideosToFront();
+      primeAllVideos();
+    } else {
+      restoreDesktopOrder();
+      // Do NOT prime on desktop (keeps "no video on desktop")
+    }
+  }
+
+  applyLayout(mq.matches);
+  if (mq.addEventListener) mq.addEventListener('change', e => applyLayout(e.matches));
+  else mq.addListener(e => applyLayout(e.matches));
+
+  // ----- Label overlay insurance -----
+  function ensureLabelOnTop(videoEl) {
+    const card = videoEl.closest('.product-card__image') || videoEl.parentElement;
+    if (!card) return;
+    const label = card.querySelector('.product-card__image-label.body-xs');
+    if (!label) return;
+    if (getComputedStyle(card).position === 'static') {
+      card.style.position = 'relative';
+    }
+    if (!label.style.position) label.style.position = 'absolute';
+    label.style.zIndex = '10';
+    label.style.pointerEvents = 'none';
+    label.style.transform = 'translateZ(0)';
+    label.style.willChange = 'transform';
+  }
+
+  // ----- VIDEO PRIMING (mobile only; originals & duplicates) -----
+  function hideImageFor(videoEl) {
+    const img =
+      videoEl.closest('.product-card__image')?.querySelector('img') ||
+      videoEl.parentElement?.querySelector('img');
+    if (!img) return;
+    img.style.setProperty('display', 'none', 'important');
+    img.setAttribute('aria-hidden', 'true');
+  }
+
+  function primeVideo(v) {
+    if (!v) return;
+    if (v.dataset.primed === '1') { ensureLabelOnTop(v); return; }
+
+    v.dataset.primed = '1';
+    v.muted = true;
+    v.playsInline = true;
+    v.autoplay = true;
+    v.loop = true;
+    v.preload = v.preload || 'auto';
+
+    v.style.opacity = '1';
+    v.style.position = 'absolute';
+    v.style.inset = '0';
+    v.style.width = '100%';
+    v.style.height = '100%';
+    v.style.objectFit = 'cover';
+    v.style.zIndex = '2';
+
+    hideImageFor(v);
+    ensureLabelOnTop(v);
+
+    try { v.play().catch(() => {}); } catch (_) {}
+  }
+
+  function primeAllVideos() {
+    if (!mq.matches) return; // only on mobile
+    section.querySelectorAll('video.carousel-new-2__video').forEach(primeVideo);
+  }
+
+  // Initial prime (mobile only)
+  primeAllVideos();
+
+  // MutationObserver: prime videos in newly added duplicate slides
+  const mo = new MutationObserver(muts => {
+    let found = false;
+    for (const m of muts) {
+      m.addedNodes && m.addedNodes.forEach(n => {
+        if (n.nodeType === 1) {
+          if (n.matches?.('video.carousel-new-2__video')) {
+            primeVideo(n);
+            ensureLabelOnTop(n);
+            found = true;
+          }
+          n.querySelectorAll?.('video.carousel-new-2__video').forEach(el => {
+            primeVideo(el);
+            ensureLabelOnTop(el);
+            found = true;
+          });
+        }
       });
     }
-  }
-
-  // Show/hide helpers (opacity swap). For the image, also force display so it defeats .hide-mobile.
-  function showImage(img) {
-    if (!img) return;
-    img.style.setProperty('display', 'block', 'important');
-    img.style.opacity = '1';
-    img.removeAttribute('aria-hidden');
-  }
-  function hideImage(img) {
-    if (!img) return;
-    img.style.opacity = '0';
-    setTimeout(() => {
-      img.style.setProperty('display', 'none', 'important');
-      img.setAttribute('aria-hidden', 'true');
-    }, 200);
-  }
-  function showVideo(v) {
-    v.style.opacity = '1';
-    v.style.setProperty('display', 'block', 'important');
-  }
-  function hideVideo(v) {
-    v.style.opacity = '0';
-  }
-
-  function pauseAndShowImage(v) {
-    try { v.pause(); } catch(_) {}
-    hideVideo(v);
-    const img = getImg(v);
-    showImage(img);
-  }
-
-  // Prepare each card
-  videos.forEach(v => {
-    const img = getImg(v);
-    prepLayering(v, img);
-
-    // Make sure videos are allowed to show on DESKTOP too.
-    // Your Liquid adds "hide-desktop" → remove it and force display.
-    v.classList.remove('hide-desktop');
-    v.style.setProperty('display', 'block', 'important');
-
-    // Neutralize loop so 'ended' fires (Liquid set loop: true)
-    v.removeAttribute('loop');
-    v.muted = true;
-    v.autoplay = false;
-    v.playsInline = true;
-    v.preload = v.preload || 'metadata';
-
-    // Initial state: image visible, video hidden
-    showImage(img);
-    hideVideo(v);
-
-    // If user manually plays
-    v.addEventListener('play', () => {
-      // Pause all others and show their images
-      videos.forEach(o => { if (o !== v) pauseAndShowImage(o); });
-      // Hide this image, show this video
-      hideImage(getImg(v));
-      showVideo(v);
-    }, { passive: true });
-
-    // If user manually pauses (before end), show image again
-    v.addEventListener('pause', () => {
-      if (!v.ended) {
-        hideVideo(v);
-        showImage(getImg(v));
-      }
-    }, { passive: true });
+    if (found && mq.matches) primeAllVideos();
   });
+  mo.observe(wrapper, { childList: true, subtree: true });
 
-  // --- sequencing (only one video plays; others show image) -----------
-  // Use visibility guard so we don’t try to play off-screen/hidden slides
-  const visibleVideos = () => videos.filter(isVisible);
-  let seq = [], idx = 0;
+  // Swiper hooks: keep video alive on infinite loop (esp. right-swipe clone)
+  if (swiper) {
+    const rePrime = () => { if (mq.matches) primeAllVideos(); };
 
-  function rebuild() {
-    seq = visibleVideos();
-    if (idx >= seq.length) idx = 0;
-  }
+    swiper.on('loopFix', rePrime);
+    swiper.on('slidesLengthChange', rePrime);
+    swiper.on('update', rePrime);
+    swiper.on('resize', rePrime);
 
-  function playAt(i) {
-    rebuild();
-    if (!seq.length) return;
-
-    idx = (i + seq.length) % seq.length;
-    const current = seq[idx];
-
-    // Others: pause + image shown
-    videos.forEach(v => { if (v !== current) pauseAndShowImage(v); });
-
-    // This one: hide image, show video, play from 0
-    hideImage(getImg(current));
-    showVideo(current);
-    try { if (current.ended || current.currentTime > 0) current.currentTime = 0; } catch(_) {}
-
-    const p = current.play();
-    if (p && p.catch) p.catch(() => {}); // ignore autoplay promise errors
-
-    // Advance when it ends
-    seq.forEach(v => v.removeEventListener('ended', handleEnded));
-    current.addEventListener('ended', handleEnded, { once: true });
-  }
-
-  function handleEnded() {
-    const justEnded = seq[idx];
-    if (justEnded) {
-      hideVideo(justEnded);
-      showImage(getImg(justEnded));
-    }
-    playAt(idx + 1);
-  }
-
-  // start after metadata so durations are known
-  const start = () => { rebuild(); if (seq.length) playAt(0); };
-  if (videos.some(v => v.readyState < 1)) {
-    let left = videos.length, started = false;
-    const done = () => { if (!started && --left <= 0) { started = true; start(); } };
-    videos.forEach(v => {
-      if (v.readyState >= 1) done();
-      else { v.addEventListener('loadedmetadata', done, { once: true }); setTimeout(done, 1200); }
+    swiper.on('slideChangeTransitionEnd', () => {
+      if (!mq.matches) return;
+      const active = swiper.slides[swiper.activeIndex];
+      const v = active?.querySelector('video.carousel-new-2__video');
+      if (v) {
+        v.dataset.primed = ''; // allow re-prime if browser paused on transition
+        primeVideo(v);
+        ensureLabelOnTop(v);
+      }
     });
-  } else {
-    start();
   }
 })();
 </script>
@@ -327,59 +305,25 @@
   "tag": "section",
   "class": "product-carousel with-spacing",
   "settings": [
-    {
-      "type": "textarea",
-      "id": "heading",
-      "label": "Heading"
-    },
-    {
-      "type": "color",
-      "id": "background",
-      "label": "Background"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_metafield_style",
-      "label": "Show metafield style",
-      "default": false
-    },    
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
+    { "type": "textarea", "id": "heading", "label": "Heading" },
+    { "type": "color", "id": "background", "label": "Background" },
+    { "type": "checkbox", "id": "show_metafield_style", "label": "Show metafield style", "default": false },
+    { "type": "collection", "id": "collection", "label": "Collection" },
     {
       "type": "select",
       "id": "product_card_type",
       "label": "Product Card Type",
       "options": [
-        {
-          "label": "Standard Card",
-          "value": "standard_card"
-        },
-        {
-          "label": "Video Card (metafield)",
-          "value": "video_card"
-        }
+        { "label": "Standard Card", "value": "standard_card" },
+        { "label": "Video Card (metafield)", "value": "video_card" }
       ],
       "default": "standard_card"
     },
-    {
-      "type": "text",
-      "id": "button_text",
-      "label": "Button text",
-      "default": "Shop Now"
-    },
-    {
-      "type": "url",
-      "id": "btn_link",
-      "label": "Bottom Button Link"
-    }
+    { "type": "text", "id": "button_text", "label": "Button text", "default": "Shop Now" },
+    { "type": "url", "id": "btn_link", "label": "Bottom Button Link" }
   ],
   "presets": [
-    {
-      "name": "ProductCarouselNew2 (old)"
-    }
+    { "name": "ProductCarouselNew2 (old)" }
   ]
 }
 {% endschema %}
