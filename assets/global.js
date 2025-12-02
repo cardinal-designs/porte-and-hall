@@ -1556,22 +1556,22 @@ accordionItems.forEach((accordion) => {
     }
   });
 });
-window.addEventListener("resize", () => {
+
+window.headerSticky = function(){
   const appStickyAnnouncement = document.querySelector(".bx-creative");
   if(appStickyAnnouncement != null) {
     document.querySelector(".outer-header-wrapper").style.top = `${appStickyAnnouncement.clientHeight}px`;
   } else {
     document.querySelector(".outer-header-wrapper").style.top = "0px";
   }
+};
+
+window.addEventListener("resize", () => {
+  window.headerSticky();
 })
 document.addEventListener("DOMContentLoaded", (event) => {
 
-  const appStickyAnnouncement = document.querySelector(".bx-creative");
-  if(appStickyAnnouncement != null) {
-    document.querySelector(".outer-header-wrapper").style.top = `${appStickyAnnouncement.clientHeight}px`;
-  } else {
-    document.querySelector(".outer-header-wrapper").style.top = "0px";
-  }
+  window.headerSticky();
 
   if (typeof gsap === "undefined" || !gsap.plugins.scrollTo) {
     console.error("GSAP or ScrollToPlugin not loaded!");
