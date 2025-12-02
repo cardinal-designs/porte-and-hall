@@ -1556,13 +1556,23 @@ accordionItems.forEach((accordion) => {
     }
   });
 });
-window.addEventListener("resize", () => {
+
+window.headerSticky = function(){
   const appStickyAnnouncement = document.querySelector(".bx-creative");
-  if(appStickyAnnouncement) {
+  if(appStickyAnnouncement != null) {
     document.querySelector(".outer-header-wrapper").style.top = `${appStickyAnnouncement.clientHeight}px`;
+  } else {
+    document.querySelector(".outer-header-wrapper").style.top = "0px";
   }
+};
+
+window.addEventListener("resize", () => {
+  window.headerSticky();
 })
 document.addEventListener("DOMContentLoaded", (event) => {
+
+  window.headerSticky();
+
   if (typeof gsap === "undefined" || !gsap.plugins.scrollTo) {
     console.error("GSAP or ScrollToPlugin not loaded!");
     return;
