@@ -1000,7 +1000,7 @@ deferred-media {
 .outer-header-wrapper {
   width: 100%;
   position: sticky;
-  top: 0 !important;
+  top: 0;
   z-index: 6;
 }
 
