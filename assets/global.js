@@ -1558,7 +1558,6 @@ accordionItems.forEach((accordion) => {
 });
 window.addEventListener("resize", () => {
   const appStickyAnnouncement = document.querySelector(".bx-creative");
-  console.log("appStickyAnnouncement:: ",appStickyAnnouncement);
   if(appStickyAnnouncement != null) {
     document.querySelector(".outer-header-wrapper").style.top = `${appStickyAnnouncement.clientHeight}px`;
   } else {
@@ -1566,6 +1565,14 @@ window.addEventListener("resize", () => {
   }
 })
 document.addEventListener("DOMContentLoaded", (event) => {
+
+  const appStickyAnnouncement = document.querySelector(".bx-creative");
+  if(appStickyAnnouncement != null) {
+    document.querySelector(".outer-header-wrapper").style.top = `${appStickyAnnouncement.clientHeight}px`;
+  } else {
+    document.querySelector(".outer-header-wrapper").style.top = "0px";
+  }
+
   if (typeof gsap === "undefined" || !gsap.plugins.scrollTo) {
     console.error("GSAP or ScrollToPlugin not loaded!");
     return;
