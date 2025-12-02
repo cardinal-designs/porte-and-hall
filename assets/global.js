@@ -1558,6 +1558,7 @@ accordionItems.forEach((accordion) => {
 });
 window.addEventListener("resize", () => {
   const appStickyAnnouncement = document.querySelector(".bx-creative");
+  console.log("appStickyAnnouncement:: ",appStickyAnnouncement);
   if(appStickyAnnouncement) {
     document.querySelector(".outer-header-wrapper").style.top = `${appStickyAnnouncement.clientHeight}px`;
   }
