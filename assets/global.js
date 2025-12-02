@@ -1562,7 +1562,7 @@ window.addEventListener("resize", () => {
   if(appStickyAnnouncement != null) {
     document.querySelector(".outer-header-wrapper").style.top = `${appStickyAnnouncement.clientHeight}px`;
   } else {
-    document.querySelector(".outer-header-wrapper").style.top = "0px";
+    //document.querySelector(".outer-header-wrapper").style.top = "0px";
   }
 })
 document.addEventListener("DOMContentLoaded", (event) => {
