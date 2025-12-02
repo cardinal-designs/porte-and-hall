@@ -1561,6 +1561,8 @@ window.addEventListener("resize", () => {
   console.log("appStickyAnnouncement:: ",appStickyAnnouncement);
   if(appStickyAnnouncement != null) {
     document.querySelector(".outer-header-wrapper").style.top = `${appStickyAnnouncement.clientHeight}px`;
+  } else {
+    document.querySelector(".outer-header-wrapper").style.top = "0px";
   }
 })
 document.addEventListener("DOMContentLoaded", (event) => {
