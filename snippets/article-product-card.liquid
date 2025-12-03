@@ -81,12 +81,14 @@
       </div>
     </div>
     <div class="product-card__container">
-      <div class="product-card__title h3 blue">
-        {{ title | default: collection.title | replace: ' | ', '<br>' }}
-        {%- if collection.metafields.custom.dimensions != blank -%}
-          <span class="body">({{ collection.metafields.custom.dimensions }})</span>
-        {%- endif -%}
-      </div>
+      {% if title != blank %}
+        <div class="product-card__title h3 blue">
+          {{ title | default: collection.title | replace: ' | ', '<br>' }}
+          {%- if collection.metafields.custom.dimensions != blank -%}
+            <span class="body">({{ collection.metafields.custom.dimensions }})</span>
+          {%- endif -%}
+        </div>
+      {% endif %}
       <div class="product-card__content">
         {% if customer and customer.b2b? %}
           {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
