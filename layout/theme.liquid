@@ -261,7 +261,7 @@
 
     <div class="page-overlay"></div>
 
-    <div class="{% if content_for_header contains 'view=sticky-filters' %}outer-header-wrapper{% endif %} {% if page.metafields.custom.hide_header == true %}Hidden{% endif %}">
+    <div class="{% if page.metafields.custom.hide_header == true %}Hidden{% endif %}">
       {% unless collection.metafields.custom.hide_announcement_bar == true %}
         {% section 'announcement-bar' %}
       {% endunless %}
@@ -282,7 +282,7 @@
       {% section 'cart-drawer' %}
     {% endif %}
 
-    <main id="MainContent" class="{{collection.template_suffix}}  content-for-layout focus-none" role="main" tabindex="-1">
+    <main id="MainContent" class="{% if content_for_header contains 'view=sticky-filters' %}outer-header-wrapper{% endif %}  content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
