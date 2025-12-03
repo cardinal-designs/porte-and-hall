@@ -102,65 +102,94 @@
   const mq = window.matchMedia('(max-width: 575px)');
   if (!wrapper) return;
 
-  // --- Save original order once ---
-  const originalSlides = Array.from(wrapper.children);
-  originalSlides.forEach((slide, i) => (slide.dataset.originalIndex = i));
-
   function getSwiper() {
     const el = section.querySelector('.swiper');
     return el && el.swiper ? el.swiper : null;
   }
 
-  function restoreDesktopOrder() {
-    const ordered = Array.from(wrapper.children)
-      .sort((a, b) => +a.dataset.originalIndex - +b.dataset.originalIndex);
-    ordered.forEach(n => wrapper.appendChild(n));
-    const sw = getSwiper();
-    if (sw) { sw.updateSlides(); sw.update(); }
-  }
+  // Store original order with data attributes
+  let isReordered = false;
+  const allSlides = Array.from(wrapper.children);
+  allSlides.forEach((slide, idx) => {
+    slide.setAttribute('data-original-order', idx);
+  });
 
-  /* ---------------------------
-     MOBILE REORDER: Move 3rd slide (index 2) to 2nd position (index 1)
-     --------------------------- */
   function reorderForMobile() {
-    // First restore to original order
-    const ordered = Array.from(wrapper.children)
-      .sort((a, b) => +a.dataset.originalIndex - +b.dataset.originalIndex);
-    ordered.forEach(n => wrapper.appendChild(n));
+    if (isReordered) return;
+    
+    const slides = Array.from(wrapper.querySelectorAll('.swiper-slide'));
+    if (slides.length < 3) return;
 
-    // Now get fresh array and move 3rd to 2nd
-    const slides = Array.from(wrapper.children);
-    if (slides.length >= 3) {
-      // Remove the 3rd slide (index 2)
-      const thirdSlide = slides[2];
-      wrapper.removeChild(thirdSlide);
-      
-      // Insert it at position 1 (before the current 2nd slide)
-      wrapper.insertBefore(thirdSlide, slides[1]);
-    }
+    // Get slides by original order
+    const slide1 = slides.find(s => s.getAttribute('data-original-order') === '0');
+    const slide2 = slides.find(s => s.getAttribute('data-original-order') === '1');
+    const slide3 = slides.find(s => s.getAttribute('data-original-order') === '2');
+    const slide4 = slides.find(s => s.getAttribute('data-original-order') === '3');
+
+    // Clear wrapper
+    wrapper.innerHTML = '';
+
+    // Add in new order: 1, 3, 2, 4
+    if (slide1) wrapper.appendChild(slide1);
+    if (slide3) wrapper.appendChild(slide3);
+    if (slide2) wrapper.appendChild(slide2);
+    if (slide4) wrapper.appendChild(slide4);
+
+    isReordered = true;
 
     const sw = getSwiper();
-    if (sw) { 
-      sw.updateSlides(); 
-      sw.update(); 
-      sw.slideTo(0, 0); // Reset to first slide
+    if (sw) {
+      sw.update();
+      sw.updateSlides();
+      sw.slideTo(0, 0);
     }
   }
 
-  // Toggle on breakpoint
-  let currentIsMobile = null;
-  function applyLayout(isMobile) {
-    if (currentIsMobile === isMobile) return;
-    currentIsMobile = isMobile;
-    if (isMobile) reorderForMobile(); else restoreDesktopOrder();
-    prepAllVideos();
-    playAllVideos();
+  function restoreDesktopOrder() {
+    if (!isReordered) return;
+
+    const slides = Array.from(wrapper.querySelectorAll('.swiper-slide'));
+    
+    // Sort by original order
+    slides.sort((a, b) => {
+      return parseInt(a.getAttribute('data-original-order')) - parseInt(b.getAttribute('data-original-order'));
+    });
+
+    // Clear and re-add in original order
+    wrapper.innerHTML = '';
+    slides.forEach(slide => wrapper.appendChild(slide));
+
+    isReordered = false;
+
+    const sw = getSwiper();
+    if (sw) {
+      sw.update();
+      sw.updateSlides();
+      sw.slideTo(0, 0);
+    }
   }
 
-  // Initial + on resize
+  function applyLayout(isMobile) {
+    if (isMobile) {
+      reorderForMobile();
+    } else {
+      restoreDesktopOrder();
+    }
+    setTimeout(() => {
+      prepAllVideos();
+      playAllVideos();
+    }, 100);
+  }
+
+  // Initial layout
   applyLayout(mq.matches);
-  if (mq.addEventListener) mq.addEventListener('change', e => applyLayout(e.matches));
-  else mq.addListener(e => applyLayout(e.matches));
+
+  // Listen for screen size changes
+  if (mq.addEventListener) {
+    mq.addEventListener('change', (e) => applyLayout(e.matches));
+  } else {
+    mq.addListener((e) => applyLayout(e.matches));
+  }
 
   // ==============================
   // Video prep + force playback
@@ -168,6 +197,7 @@
   function getCard(videoEl) {
     return videoEl.closest('.product-card__image') || videoEl.parentElement;
   }
+  
   function getImg(videoEl) {
     const box = getCard(videoEl);
     if (!box) return null;
@@ -175,6 +205,7 @@
         || box.querySelector('img.img-fill')
         || box.querySelector('img');
   }
+  
   function prepLayering(videoEl, imgEl) {
     const box = getCard(videoEl);
     if (box && getComputedStyle(box).position === 'static') box.style.position = 'relative';
