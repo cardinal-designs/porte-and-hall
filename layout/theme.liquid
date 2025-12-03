@@ -261,7 +261,7 @@
 
     <div class="page-overlay"></div>
 
-    <div class="outer-header-wrapper {% if page.metafields.custom.hide_header == true %}Hidden{% endif %}">
+    <div class="{% if content_for_header contains 'view=sticky-filters' %}outer-header-wrapper{% endif %} {% if page.metafields.custom.hide_header == true %}Hidden{% endif %}">
       {% unless collection.metafields.custom.hide_announcement_bar == true %}
         {% section 'announcement-bar' %}
       {% endunless %}
