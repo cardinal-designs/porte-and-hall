@@ -239,11 +239,15 @@
         clip: rect(0 0 0 0) !important;
     }
 
+  
   {% if content_for_header contains 'view=sticky-filters' %}
-    .outer-header-wrapper {
-      top: 73px;
+    @media (max-width: 768px) {
+      .outer-header-wrapper {
+        top: 73px;
+      }
     }
   {% endif %}
+
     </style>
     <script>
     if (window.location.pathname == '/collections') {
