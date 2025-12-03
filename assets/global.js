@@ -1570,7 +1570,7 @@ window.addEventListener("resize", () => {
   window.headerSticky();
 })
 document.addEventListener("DOMContentLoaded", (event) => {
-
+setTimeout(function() {
   window.headerSticky();
 
   if (typeof gsap === "undefined" || !gsap.plugins.scrollTo) {
@@ -1596,6 +1596,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
     });
   });
+}, 2000);
 });
 
 /* document.addEventListener("DOMContentLoaded", (event) => {
