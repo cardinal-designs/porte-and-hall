@@ -238,6 +238,12 @@
         overflow: hidden !important;
         clip: rect(0 0 0 0) !important;
     }
+
+    {% comment %} {% if collection.template_suffix %}
+    .outer-header-wrapper {
+      top: 73px;
+    }
+  {% endif %} {% endcomment %}
     </style>
     <script>
     if (window.location.pathname == '/collections') {
@@ -276,7 +282,7 @@
       {% section 'cart-drawer' %}
     {% endif %}
 
-    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+    <main id="MainContent" class="{{collection.template_suffix}}  content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
