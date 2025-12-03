@@ -240,13 +240,13 @@
     }
 
   
-  {% if content_for_header contains 'view=sticky-filters' %}
+  {% comment %} {% if content_for_header contains 'view=sticky-filters' %}
     @media (max-width: 768px) {
       .outer-header-wrapper {
         top: 73px !important; 
       }
     }
-  {% endif %}
+  {% endif %} {% endcomment %}
 
     </style>
     <script>
