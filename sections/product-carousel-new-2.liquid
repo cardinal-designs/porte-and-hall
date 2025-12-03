@@ -123,16 +123,28 @@
      MOBILE REORDER: Move 3rd slide (index 2) to 2nd position (index 1)
      --------------------------- */
   function reorderForMobile() {
-    const slides = Array.from(wrapper.children);
+    // First restore to original order
+    const ordered = Array.from(wrapper.children)
+      .sort((a, b) => +a.dataset.originalIndex - +b.dataset.originalIndex);
+    ordered.forEach(n => wrapper.appendChild(n));
 
-    // If we have at least 3 slides, move the 3rd one to 2nd position
+    // Now get fresh array and move 3rd to 2nd
+    const slides = Array.from(wrapper.children);
     if (slides.length >= 3) {
-      const thirdSlide = slides[2]; // Get the 3rd slide (index 2)
-      wrapper.insertBefore(thirdSlide, slides[1]); // Insert before 2nd slide (index 1)
+      // Remove the 3rd slide (index 2)
+      const thirdSlide = slides[2];
+      wrapper.removeChild(thirdSlide);
+      
+      // Insert it at position 1 (before the current 2nd slide)
+      wrapper.insertBefore(thirdSlide, slides[1]);
     }
 
     const sw = getSwiper();
-    if (sw) { sw.updateSlides(); sw.update(); }
+    if (sw) { 
+      sw.updateSlides(); 
+      sw.update(); 
+      sw.slideTo(0, 0); // Reset to first slide
+    }
   }
 
   // Toggle on breakpoint
