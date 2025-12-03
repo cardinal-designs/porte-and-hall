@@ -50,8 +50,8 @@
   </div>
 
   <product-carousel-new-two>
-    <div class="product-carousel__container-new product-carousel__container-new-2 product-carousel__container swiper">
-      <div class="swiper-wrapper 000">
+    <div class="000 product-carousel__container-new product-carousel__container-new-2 product-carousel__container swiper">
+      <div class="swiper-wrapper">
         {% for product in section.settings.collection.products limit: 4 %}
           {% for collection in product.collections %}
             {% if collection.title contains ' |' %}
