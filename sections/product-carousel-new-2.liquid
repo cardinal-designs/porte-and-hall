@@ -99,77 +99,98 @@
   if (!section) return;
 
   const wrapper = section.querySelector('.swiper-wrapper');
-  if (!wrapper) return;
-
   const mq = window.matchMedia('(max-width: 575px)');
-  let currentOrder = 'desktop';
+  if (!wrapper) return;
 
   function getSwiper() {
     const el = section.querySelector('.swiper');
     return el && el.swiper ? el.swiper : null;
   }
 
-  function reorderSlides(isMobile) {
+  // Store original order with data attributes
+  let isReordered = false;
+  const allSlides = Array.from(wrapper.children);
+  allSlides.forEach((slide, idx) => {
+    slide.setAttribute('data-original-order', idx);
+  });
+
+  function reorderForMobile() {
+    if (isReordered) return;
+    
     const slides = Array.from(wrapper.querySelectorAll('.swiper-slide'));
     if (slides.length < 2) return;
 
-    // Sort slides by their original data-slide-index
-    slides.sort((a, b) => {
-      const indexA = parseInt(a.getAttribute('data-slide-index') || 0);
-      const indexB = parseInt(b.getAttribute('data-slide-index') || 0);
-      return indexA - indexB;
-    });
+    // Get slides by original order
+    const slide1 = slides.find(s => s.getAttribute('data-original-order') === '0');
+    const slide2 = slides.find(s => s.getAttribute('data-original-order') === '1');
+    const slide3 = slides.find(s => s.getAttribute('data-original-order') === '2');
+    const slide4 = slides.find(s => s.getAttribute('data-original-order') === '3');
 
-    if (isMobile && currentOrder !== 'mobile') {
-      console.log('Applying MOBILE order: 2, 1, 3, 4');
-      // Mobile: swap first two slides (2nd slide becomes 1st)
-      // Original order: [0, 1, 2, 3]
-      // New order: [1, 0, 2, 3]
-      const reordered = [slides[1], slides[0], ...slides.slice(2)];
-      
-      wrapper.innerHTML = '';
-      reordered.forEach(slide => {
-        if (slide) wrapper.appendChild(slide);
-      });
-      
-      currentOrder = 'mobile';
-      
-    } else if (!isMobile && currentOrder !== 'desktop') {
-      console.log('Applying DESKTOP order: 1, 2, 3, 4');
-      // Desktop: original order
-      wrapper.innerHTML = '';
-      slides.forEach(slide => wrapper.appendChild(slide));
-      
-      currentOrder = 'desktop';
-    }
+    // Clear wrapper
+    wrapper.innerHTML = '';
 
-    // Update Swiper
+    // Add in new order: 2nd becomes 1st (index 1 → index 0)
+    // New order: 2, 1, 3, 4
+    if (slide2) wrapper.appendChild(slide2);
+    if (slide1) wrapper.appendChild(slide1);
+    if (slide3) wrapper.appendChild(slide3);
+    if (slide4) wrapper.appendChild(slide4);
+
+    isReordered = true;
+
     const sw = getSwiper();
     if (sw) {
-      setTimeout(() => {
-        sw.update();
-        sw.updateSlides();
-        if (sw.params) sw.params.initialSlide = 0;
-        sw.slideTo(0, 0);
-      }, 50);
+      sw.update();
+      sw.updateSlides();
+      sw.slideTo(0, 0);
     }
+  }
 
-    // Reinitialize videos
+  function restoreDesktopOrder() {
+    if (!isReordered) return;
+
+    const slides = Array.from(wrapper.querySelectorAll('.swiper-slide'));
+    
+    // Sort by original order
+    slides.sort((a, b) => {
+      return parseInt(a.getAttribute('data-original-order')) - parseInt(b.getAttribute('data-original-order'));
+    });
+
+    // Clear and re-add in original order
+    wrapper.innerHTML = '';
+    slides.forEach(slide => wrapper.appendChild(slide));
+
+    isReordered = false;
+
+    const sw = getSwiper();
+    if (sw) {
+      sw.update();
+      sw.updateSlides();
+      sw.slideTo(0, 0);
+    }
+  }
+
+  function applyLayout(isMobile) {
+    if (isMobile) {
+      reorderForMobile();
+    } else {
+      restoreDesktopOrder();
+    }
     setTimeout(() => {
       prepAllVideos();
       playAllVideos();
     }, 100);
   }
 
-  // Apply initial layout
-  setTimeout(() => {
-    reorderSlides(mq.matches);
-  }, 100);
+  // Initial layout
+  applyLayout(mq.matches);
 
-  // Listen for screen resize
-  mq.addEventListener('change', (e) => {
-    reorderSlides(e.matches);
-  });
+  // Listen for screen size changes
+  if (mq.addEventListener) {
+    mq.addEventListener('change', (e) => applyLayout(e.matches));
+  } else {
+    mq.addListener((e) => applyLayout(e.matches));
+  }
 
   // ==============================
   // Video prep + force playback
