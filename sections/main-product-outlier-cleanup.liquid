@@ -440,6 +440,10 @@
                   {%- assign match = block.products | where: 'title', match_name -%}
                  
                   {%- if match != blank -%}
+                    {%- if match.first.url == product.url -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
                     <a 
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% endif %} ;"
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 

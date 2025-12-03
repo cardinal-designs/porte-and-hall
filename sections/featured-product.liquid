@@ -454,6 +454,10 @@
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
                   {%- if match != blank -%}
+                    {%- if match.first.url == product.url -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
                     <button 
                       data-dd="{{ grouped_collection.title }}"
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% endif %} ;"

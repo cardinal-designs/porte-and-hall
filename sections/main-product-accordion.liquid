@@ -525,9 +525,11 @@
                       {% assign prod_url = match.first.url %}
                     {% elsif alternate_match != blank %}
                       {% assign prod_url = alternate_match.url %}
-                    {% else %}
-                      {% assign prod_url = product.url %}
                     {% endif %}
+
+                    {%- if prod_url == product.url or prod_url == blank -%}
+                      {%- continue -%}
+                    {%- endif -%}
 
                     <a 
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == 'XL Area Mat'  %}7{% endif %} ;"

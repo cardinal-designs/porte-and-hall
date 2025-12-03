@@ -465,6 +465,10 @@
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
                   {%- if match != blank -%}
+                    {%- if match.first.url == product.url -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
                   
                     <a 
                       data-dd="{{ grouped_collection.title }}"
