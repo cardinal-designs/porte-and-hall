@@ -161,7 +161,7 @@
       {{ product_card_product.metafields.judgeme.badge }} 
     </div> 
       
-    
+      {% if title != blank or collection.title != blank %}
       <div class="product-card__title h3 blue">
         {{ title | default: collection.title | replace: ' | ', ' ' }}
         <br><span class="body">{{ product_card_product.options_by_name['color'].values[0]  | capitalize }}</span>
@@ -169,6 +169,7 @@
           <span class="body">({{ collection.metafields.custom.dimensions }})</span>
         {%- endif -%} {% endcomment %}
       </div>
+      {% endif %}
     </a>
 
     {% if customer and customer.b2b? %}
