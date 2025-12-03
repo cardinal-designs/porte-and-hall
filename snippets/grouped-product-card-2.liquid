@@ -145,7 +145,7 @@
       {% endif %}
     {% endif %}
       
-    {% if title != blank %}
+    {% if title != blank or collection.title != blank %}
       <a href="{{ product_card_product.url }}">
         <div class="product-card__title h3 blue">
           {{ title | default: collection.title | replace: ' | ', ' ' }}<br>
