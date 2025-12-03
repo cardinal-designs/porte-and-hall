@@ -120,22 +120,15 @@
   }
 
   /* ---------------------------
-     MOBILE REORDER UPDATED HERE
-     Move slide in position 3 → 2
+     MOBILE REORDER: Move 3rd slide (index 2) to 2nd position (index 1)
      --------------------------- */
   function reorderForMobile() {
     const slides = Array.from(wrapper.children);
 
-    // Find slide that contains the video
-    const videoSlide = slides.find(s => s.querySelector('video.carousel-new-2__video'));
-    if (!videoSlide) return;
-
-    // Target: move from index 2 → index 1
-    const targetPosition = 1;
-    const currentIndex = slides.indexOf(videoSlide);
-
-    if (currentIndex === 2) {
-      wrapper.insertBefore(videoSlide, slides[targetPosition]);
+    // If we have at least 3 slides, move the 3rd one to 2nd position
+    if (slides.length >= 3) {
+      const thirdSlide = slides[2]; // Get the 3rd slide (index 2)
+      wrapper.insertBefore(thirdSlide, slides[1]); // Insert before 2nd slide (index 1)
     }
 
     const sw = getSwiper();
