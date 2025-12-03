@@ -239,11 +239,11 @@
         clip: rect(0 0 0 0) !important;
     }
 
-    {% comment %} {% if collection.template_suffix %}
+  {% if content_for_header contains 'view=sticky-filters' %}
     .outer-header-wrapper {
       top: 73px;
     }
-  {% endif %} {% endcomment %}
+  {% endif %}
     </style>
     <script>
     if (window.location.pathname == '/collections') {
