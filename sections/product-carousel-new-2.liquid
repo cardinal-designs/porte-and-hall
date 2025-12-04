@@ -130,10 +130,10 @@
     wrapper.innerHTML = '';
 
     // Add in new order: 1, 3, 2, 4
-    {% comment %} if (slide1) wrapper.appendChild(slide1);
+    if (slide1) wrapper.appendChild(slide1);
     if (slide3) wrapper.appendChild(slide3);
     if (slide2) wrapper.appendChild(slide2);
-    if (slide4) wrapper.appendChild(slide4); {% endcomment %}
+    if (slide4) wrapper.appendChild(slide4);
 
     isReordered = true;
 
@@ -171,7 +171,7 @@
 
   function applyLayout(isMobile) {
     if (isMobile) {
-      reorderForMobile();
+      {% comment %} reorderForMobile(); {% endcomment %}
     } else {
       restoreDesktopOrder();
     }
