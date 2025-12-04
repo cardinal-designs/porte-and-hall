@@ -1557,14 +1557,38 @@ accordionItems.forEach((accordion) => {
   });
 });
 
+let appStickyAnnouncement;
+
+const getAppStickyAnnouncement = () => {
+  if (!appStickyAnnouncement) {
+    appStickyAnnouncement = document.querySelector(".bx-creative-2961651");
+    if (!appStickyAnnouncement) return;
+
+    const resizeObserver = new ResizeObserver(() => {
+      window.headerSticky();
+    });
+    resizeObserver.observe(appStickyAnnouncement);
+
+    // on appStickyAnnouncement remove
+    const mutationObserver = new MutationObserver(() => {
+      window.headerSticky();
+    });
+    mutationObserver.observe(document, { childList: true, subtree: true });
+  }
+}
+
 window.headerSticky = function(){
-  const appStickyAnnouncement = document.querySelector(".bx-creative");
-  if(appStickyAnnouncement != null) {
+  getAppStickyAnnouncement();
+  if(appStickyAnnouncement) {
     document.querySelector(".outer-header-wrapper").style.top = `${appStickyAnnouncement.clientHeight}px`;
   } else {
     document.querySelector(".outer-header-wrapper").style.top = "0px";
   }
 };
+
+window.addEventListener("pageshow", () => {
+  window.headerSticky();
+})
 
 window.addEventListener("resize", () => {
   window.headerSticky();

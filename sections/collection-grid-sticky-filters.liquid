@@ -392,7 +392,6 @@
   // Update the sticky offset
     function updateStickyOffset() {
       const header = document.querySelector('.outer-header-wrapper');
-      const extra = document.querySelector('.bx-creative');
       const sticky = document.querySelector('.sticky-filters-wrap');
       const isMobile = window.innerWidth <= 768;
 
@@ -403,20 +402,12 @@
 
       // Only apply on mobile screens
       if (isMobile) {
-        const defaultTop = 140; // fallback default top value
-        const headerHeight = header ? header.offsetHeight : 0;
-        const extraHeight = extra ? extra.offsetHeight : 0;
-        const totalHeight = headerHeight + extraHeight;
-
-        // If the combined height is reasonable, use it; otherwise, use default
-        let safeTop = totalHeight > 0 && totalHeight < 400 ? totalHeight : defaultTop;
-        safeTop = safeTop - 10;
+        const headerHeight = header.getBoundingClientRect().bottom;
+        const safeTop = headerHeight - 1;
         sticky.style.top = `${safeTop}px`;
-        console.log('Mobile sticky top set to:', safeTop + 'px');
       } else {
         // Reset on tablet/desktop
         sticky.style.top = '';
-        console.log('Sticky top reset (non-mobile view)');
       }
     }
 
@@ -429,12 +420,21 @@
     // Continue checking periodically until all elements exist
     const checkInterval = setInterval(() => {
       const header = document.querySelector('.outer-header-wrapper');
-      const extra = document.querySelector('.bx-creative');
       const sticky = document.querySelector('.sticky-filters-wrap');
 
-      if ((header || extra) && sticky) {
+      if (header && sticky) {
         updateStickyOffset();
         clearInterval(checkInterval); // Stop once all elements are found
+
+        const resizeObserver = new ResizeObserver(() => {
+          updateStickyOffset();
+        });
+        resizeObserver.observe(header);
+
+        const mutationObserver = new MutationObserver(() => {
+          updateStickyOffset();
+        });
+        mutationObserver.observe(header, { attributes: true });
       }
     }, 500);
   
