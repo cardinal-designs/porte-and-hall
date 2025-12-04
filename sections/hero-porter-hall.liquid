@@ -8,7 +8,7 @@
       {% endif %}
         {% for block in section.blocks %}
           {% if block.settings.image != blank %}
-            <div class="hero__image--item{% if section.blocks.size > 1 %} swiper-slide{% endif %}">
+            <div class="TEST hero__image--item{% if section.blocks.size > 1 %} swiper-slide{% endif %}">
               <figure {% if block.settings.mobile_image != blank %}class="mobile__hidden"{% endif %}>
                 {{ block.settings.image | image_url: width: 2560 | image_tag: alt: block.settings.image.alt }}
               </figure> 
