@@ -51,12 +51,12 @@ class ProductError extends HTMLElement {
     const sizeHandle = btn.dataset.sizeHandle;
     const activeColor = this.activeColorElement?.dataset.color || 'this color';
 
-    this.errorMsg.textContent = `${sizeName} isn’t available in ${activeColor}.`;
+    this.errorMsg.textContent = `${activeColor} is not available in ${sizeName}.`;
 
     const targetHandle = this.findAvailableColor(sizeHandle);
 
     if (targetHandle) {
-      this.errorLink.textContent = 'See available colors here';
+      this.errorLink.textContent = `See available ${sizeName} colors here`;
       this.errorLink.href = `/products/${targetHandle}?view=unavailable-sizes`;
     } else {
       this.errorLink.textContent = '';
@@ -74,12 +74,12 @@ class ProductError extends HTMLElement {
       document.querySelector('.other-sizes__button.active span:first-child')?.textContent ||
       'this size';
 
-    this.errorMsg.textContent = `${thisColor} isn't available in ${activeSize}.`;
+    this.errorMsg.textContent = `${thisColor} is not available in ${activeSize}.`;
 
     const targetHandle = this.findAvailableSizeForColor(colorHandle);
 
     if (targetHandle) {
-      this.errorLink.textContent = 'See available size here';
+      this.errorLink.textContent = `See available ${activeSize} colors here`;
       this.errorLink.href = `/products/${targetHandle}?view=unavailable-sizes`;
     } else {
       this.errorLink.textContent = '';

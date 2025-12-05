@@ -358,6 +358,7 @@
 }
 
 .product__swatch.product__color-swatch--not-available {
+  display: none;
   cursor: not-allowed;
   border: 2px solid var(--blue);
 }
@@ -447,6 +448,10 @@
     padding 0.25s ease;
 }
 
+.product-error--column {
+  flex-direction: column;
+}
+
 .product-error.active {
   padding-top: 16px;
   padding-bottom: 4px;
@@ -470,6 +475,7 @@
 .product__oos-swatch {
   border: 1px dashed var(--blue);
   cursor: not-allowed;
+  order: 1;
 }
 
 .product__oos-swatch > span {
