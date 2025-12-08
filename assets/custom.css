@@ -35,4 +35,9 @@ span.jdgm-prev-badge__stars {
   line-height: 24px !important;
 }
 
+.rating-reviews a {
+  min-height: 24px;
+  display: inline-block;
+}
+
 /*========== jdgm edits End ==========*/
