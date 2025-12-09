@@ -37,6 +37,11 @@
   min-height: 24px;
 }
 
+.list-social__link span {
+  display: inherit;
+  min-height: 24px;
+}
+
 .list-social__icon {
   position: absolute;
   top: 50%;
