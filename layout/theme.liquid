@@ -32,7 +32,7 @@
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <meta name="google-site-verification" content="tjEDE8k9mNiV-8gqcHIAD9HLahL51PjgqHc0nFOpQLo" />
-	<meta name="facebook-domain-verification" content="880tuton4kgymbs2q448hzydeyriqd" />
+	  <meta name="facebook-domain-verification" content="880tuton4kgymbs2q448hzydeyriqd" />
 
     {% if settings.favicon != blank %}
       <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
@@ -44,6 +44,12 @@
       {% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}
       {% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
     </title>
+
+    <script>
+    {% if collection.handle == 'all' %}
+      window.location.href = '/collections/shop-all'
+    {% endif %}
+    </script>
 
     <!-- begin Convert Experiences code-->
     <script type="text/javascript" src="//cdn-4.convertexperiments.com/js/10041621-10044581.js" defer="defer"></script>
