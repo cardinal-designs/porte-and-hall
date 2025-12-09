@@ -1677,6 +1677,7 @@ header.condensed .header__menu {
 }
 
 .footer__menu-link {
+  display: inherit;
   min-height: 24px;
 }
 
