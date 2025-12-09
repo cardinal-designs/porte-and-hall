@@ -1673,6 +1673,7 @@ header.condensed .header__menu {
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
+  min-height: 24px;
 }
 
 .footer__menu-link {
