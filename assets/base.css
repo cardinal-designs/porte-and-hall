@@ -1675,6 +1675,10 @@ header.condensed .header__menu {
   text-transform: uppercase;
 }
 
+.footer__menu-link {
+  min-height: 24px;
+}
+
 @media screen and (max-width: 768px) {
   .footer__menu li {
     font-size: 14px;
