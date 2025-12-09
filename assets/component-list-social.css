@@ -44,9 +44,8 @@
 
 .list-social__icon {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 0;
-  transform: translateY(-50%);
   width: 16px;
   height: 16px;
   background-color: white;
