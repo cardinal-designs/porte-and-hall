@@ -22,15 +22,6 @@
       <div class="contact__fields" aria-describedby="required-fields-text">
         <div class="field">
           <input class="field__input" required autocomplete="name" type="text" id="ContactForm-name" name="contact[{{ 'templates.contact.form.first_name' | t }}]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ 'templates.contact.form.first_name' | t }}*">
-          {% if form.errors contains 'first_name' %}
-            <span id="ContactForm-first-name-error" role="alert" class="visually-hidden">
-              First name is required
-            </span>
-          {% else %}
-            <span id="first-name-required-msg" class="visually-hidden">
-              First name is required
-            </span>
-          {% endif %}
         </div>
         <div class="field">
           <input class="field__input" required autocomplete="name" type="text" id="ContactForm-name" name="contact[{{ 'templates.contact.form.last_name' | t }}]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ 'templates.contact.form.last_name' | t }}*">
