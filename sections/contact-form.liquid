@@ -21,6 +21,9 @@
       {% endif %}
       <div class="contact__fields" aria-describedby="required-fields-text">
         <div class="field">
+          <label for="ContactForm-first-name" class="field__label sr-only">
+            {{ 'templates.contact.form.first_name' | t }} *
+          </label>
           <input class="field__input" required autocomplete="name" type="text" id="ContactForm-name" name="contact[{{ 'templates.contact.form.first_name' | t }}]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ 'templates.contact.form.first_name' | t }}*">
         </div>
         <div class="field">
