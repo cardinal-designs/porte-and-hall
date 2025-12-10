@@ -19,7 +19,7 @@
         </p></h2>
         </div>
       {% endif %}
-      <div class="contact__fields">
+      <div class="contact__fields" aria-describedby="required-fields-text">
         <div class="field">
           <input class="field__input" required autocomplete="name" type="text" id="ContactForm-name" name="contact[{{ 'templates.contact.form.first_name' | t }}]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ 'templates.contact.form.first_name' | t }}*">
         </div>
@@ -83,6 +83,7 @@
       </div>
   
       <label class="Optional_Field text-center">*Required form fields</label>
+      <span id="required-fields-text" class="sr-only">*Required form fields</span>
       <div class="contact__button text-center">
         <button type="submit" class="button">
           {{ 'templates.contact.form.send' | t }}
