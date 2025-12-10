@@ -59,15 +59,29 @@
       <input hidden class="field__input reason_for_inquiry" type="text" id="ContactForm-inquiry" name="contact[Reason for inquiry]" value="">
     
       <div class="select field">
-      	<div class="selectBtn field__input"><span class="Select_Button_Text" data-type="Reason for inquiry">Reason for inquiry</span></div>
-      	<div class="selectDropdown">
-          <div class="option body" data-type="General inquiry">General inquiry</div>
-          <div class="option body" data-type="Return to request">Request return</div>
-          <div class="option body" data-type="Question">Question</div>
-          <div class="option body" data-type="Business inquiry">Business inquiry</div>
-          <div class="option body" data-type="Media">Media</div>
-          <div class="option body" data-type="Other">Other</div>
-      	</div>
+        <button type="button"
+                class="selectBtn field__input"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+                aria-labelledby="ReasonForInquiryLabel"
+                id="ReasonForInquiryButton">
+          <span class="Select_Button_Text" data-type="Reason for inquiry">Reason for inquiry</span>
+        </button>
+
+        <ul class="selectDropdown"
+            role="listbox"
+            aria-labelledby="ReasonForInquiryLabel"
+            id="ReasonForInquiryList"
+            hidden>
+          <li class="option body" role="option" data-type="General inquiry">General inquiry</li>
+          <li class="option body" role="option" data-type="Return to request">Request return</li>
+          <li class="option body" role="option" data-type="Question">Question</li>
+          <li class="option body" role="option" data-type="Business inquiry">Business inquiry</li>
+          <li class="option body" role="option" data-type="Media">Media</li>
+          <li class="option body" role="option" data-type="Other">Other</li>
+        </ul>
+
+        <label id="ReasonForInquiryLabel" class="sr-only">Reason for inquiry</label>
       </div>
 
       <div class="field Text_Area">
