@@ -275,6 +275,9 @@
               {%- endif -%}
             </span>
             <span> — {{ option.selected_value }}</span>
+            <span class="sr-only">
+              Selected {{ option.name }}: {{ option.selected_value }}
+            </span>
           </div>
         {% endfor %}
 
