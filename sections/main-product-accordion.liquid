@@ -75,19 +75,40 @@
             echo swatch_link
             echo "' class='"
             echo element_classes
-            echo "' aria-label='"
+            echo "'"
+
+            # --- ADA Fix: Update ARIA label based on availability ---
+            echo " aria-label='"
             echo value | escape
-            echo "' title='"
+            unless swatch.available
+              echo " (Unavailable)"
+            endunless
+            echo "'"
+
+            # --- ADA Fix: Disable for screen readers when unavailable ---
+            unless swatch.available
+              echo " aria-disabled='true'"
+            endunless
+
+            echo " title='"
             echo value | escape
             echo "' data-tooltip='"
             echo value | escape
             echo "'>"
+
             echo "<span style='background-image: url("
             echo swatch_file_name | file_url
             echo ")'></span>"
+
+            # --- ADA Fix: Screen-reader-only text ---
             echo "<span class='sr-only'>"
-            echo value | escape
+            if swatch.available
+              echo value | escape
+            else
+              echo value | escape | append: " (Unavailable)"
+            endif
             echo "</span>"
+
             echo "</a>"
 
             assign swatch_count = swatch_count | plus: 1
