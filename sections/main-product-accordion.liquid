@@ -259,7 +259,7 @@
               </div> 
           </div>
         {% for option in product.options_with_values %}
-          <div class="product__variant-name body">
+          <div class="product__variant-name body" aria-label="Selected {{ option.name }}: {{ option.selected_value }}">
             {% if option.name == 'Size' %}
               {% continue %}
             {% endif %}
@@ -275,9 +275,6 @@
               {%- endif -%}
             </span>
             <span> — {{ option.selected_value }}</span>
-            <span class="sr-only">
-              Selected {{ option.name }}: {{ option.selected_value }}
-            </span>
           </div>
         {% endfor %}
 
