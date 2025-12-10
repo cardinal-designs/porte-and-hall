@@ -36,7 +36,7 @@
           <input class="field__input" autocomplete="name" type="text" id="ContactForm-name" name="contact[{{ 'templates.contact.form.organization_name' | t }}]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ 'templates.contact.form.organization_name' | t }}">
         </div>
         <div class="field field--with-error">
-          <label for="ContactForm-last-name" class="field__label sr-only">
+          <label for="ContactForm-email" class="field__label sr-only">
             {{ 'templates.contact.form.email' | t }} *
           </label>
           <input
@@ -80,7 +80,7 @@
       </div>
 
       <div class="field Text_Area">
-        <label for="ContactForm-last-name" class="field__label sr-only">
+        <label for="ContactForm-comment" class="field__label sr-only">
           {{ 'templates.contact.form.comment' | t }} *
         </label>
         <textarea
