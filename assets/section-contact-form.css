@@ -49,7 +49,7 @@ select {
   letter-spacing: 1px;
   line-height: 1.2em;
   width: 100%;
-  text-align: center;
+  display: block;
 }
 .contact__fields {
   display: grid;
