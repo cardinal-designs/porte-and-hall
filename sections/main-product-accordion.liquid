@@ -59,7 +59,7 @@
               assign swatch_link = swatch.variants[0].url
             endif
 
-            assign element_classes = 'product__swatch 333'
+            assign element_classes = 'product__swatch'
 
             if swatch.id == product.id and option.selected_value == value
               assign element_classes = element_classes | append: ' product__active-swatch'
@@ -261,7 +261,7 @@
         <p class="style-text__color">{{ product.metafields.custom.style_text }}</p>
         {% endif %}
 
-        <div class="product__swatches 000">
+        <div class="product__swatches">
           {{ color_swatch_list }}
         </div>
 
