@@ -21,24 +21,24 @@
       {% endif %}
       <div class="contact__fields" aria-describedby="required-fields-text">
         <div class="field">
-          <label for="ContactForm-first-name" class="field__label sr-only">
-            Required a {{ 'templates.contact.form.first_name' | t }} 
-          </label>
           <input class="field__input" required autocomplete="name" type="text" id="ContactForm-name" name="contact[{{ 'templates.contact.form.first_name' | t }}]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ 'templates.contact.form.first_name' | t }}*">
+          {% if form.errors contains 'first_name' %}
+            <span id="ContactForm-first-name-error" role="alert" class="visually-hidden">
+              First name is required
+            </span>
+          {% else %}
+            <span id="first-name-required-msg" class="visually-hidden">
+              First name is required
+            </span>
+          {% endif %}
         </div>
         <div class="field">
-          <label for="ContactForm-last-name" class="field__label sr-only">
-            Required a {{ 'templates.contact.form.last_name' | t }} 
-          </label>
           <input class="field__input" required autocomplete="name" type="text" id="ContactForm-name" name="contact[{{ 'templates.contact.form.last_name' | t }}]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ 'templates.contact.form.last_name' | t }}*">
         </div>
         <div class="field">
           <input class="field__input" autocomplete="name" type="text" id="ContactForm-name" name="contact[{{ 'templates.contact.form.organization_name' | t }}]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ 'templates.contact.form.organization_name' | t }}">
         </div>
         <div class="field field--with-error">
-          <label for="ContactForm-email" class="field__label sr-only">
-            Required a {{ 'templates.contact.form.email' | t }} 
-          </label>
           <input
             autocomplete="email"
             type="email"
@@ -80,9 +80,6 @@
       </div>
 
       <div class="field Text_Area">
-        <label for="ContactForm-comment" class="field__label sr-only">
-          Required a {{ 'templates.contact.form.comment' | t }} 
-        </label>
         <textarea
           rows="10"
           id="ContactForm-body"
