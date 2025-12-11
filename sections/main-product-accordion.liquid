@@ -1311,22 +1311,39 @@
             "returnFees": "https://schema.org/FreeReturn"
       }
   
-{% if product.metafields.reviews.rating_count > 0 %}
+{% assign jm_count = product.metafields.judgeme.rating_count %}
+{% assign jm_avg = product.metafields.judgeme.rating_average %}
+
+{% if jm_count and jm_count > 0 %}
+
+,
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": {{ canonical_url | append: '#product' | json }},
+  "name": {{ product.title | json }},
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": {{ jm_avg | json }},
+    "reviewCount": {{ jm_count | json }}
+  }
+}
+
 {% else %}
 
-  
-,{
-    "@context": "http://schema.org",
-    "@type": "Product",
-    "@id": {{ canonical_url | append: '#product' | json }},
-    "name": {{ product.title | json }},
-    "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.82",
-        "reviewCount": 544
-    }
-} 
-  
+,
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": {{ canonical_url | append: '#product' | json }},
+  "name": {{ product.title | json }},
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.82",
+    "reviewCount": 544
+  }
+}
+
 {% endif %}
   
   
