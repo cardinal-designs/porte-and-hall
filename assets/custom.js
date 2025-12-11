@@ -38,8 +38,46 @@ customElements.define('form-validation',class formValidation extends HTMLElement
 
 });
 
-document.addEventListener('keydown', (e) => {
-  if (e.altKey && e.key === 'c') {
-    document.getElementById('chat-button').focus();
+(function() {
+  'use strict';
+  
+  function focusChatButton() {
+    const chatIframe = document.getElementById('chat-button');
+    
+    if (!chatIframe) {
+      console.error('Chat button iframe not found');
+      return;
+    }
+    
+    // Make iframe focusable
+    chatIframe.setAttribute('tabindex', '0');
+    chatIframe.focus();
+    
+    // Optional: Add visual indicator
+    chatIframe.style.outline = '3px solid #0066cc';
+    setTimeout(() => {
+      chatIframe.style.outline = '';
+    }, 2000);
+    
+    // Announce to screen readers
+    const announcement = document.createElement('div');
+    announcement.setAttribute('role', 'status');
+    announcement.setAttribute('aria-live', 'polite');
+    announcement.textContent = 'Chat widget focused';
+    announcement.style.position = 'absolute';
+    announcement.style.left = '-10000px';
+    document.body.appendChild(announcement);
+    setTimeout(() => announcement.remove(), 1000);
   }
-});
+  
+  // Wait for DOM to load
+  document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('keydown', (e) => {
+      // Use Ctrl + Shift + C
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c') {
+        e.preventDefault();
+        focusChatButton();
+      }
+    });
+  });
+})();
