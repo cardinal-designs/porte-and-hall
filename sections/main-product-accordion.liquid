@@ -1237,11 +1237,16 @@
 	      {%- if variant.barcode.size == 14 -%}
 	        "gtin14": {{ variant.barcode | json }},
 	      {%- endif -%}
-        {%- if media -%}
-	      "image": [
-	        {{ media | image_url: width: media.width | prepend: "https:" | json }}
-	      ],
-	    {%- endif -%}
+
+        
+
+      {% if variant.image %}
+        "image": "{{ variant.image | image_url }}",
+      {% else %}
+        "image": "{{ product.featured_image | image_url }}",
+      {% endif %}
+
+
         "name": {{ product.title | json }},
         "description": {{ product.description | strip_html | json }},
         
