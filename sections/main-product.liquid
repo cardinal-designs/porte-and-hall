@@ -79,7 +79,7 @@
 %}
 
 {% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
-<section class="page-width xt-class">
+<section class="page-width">
   <div class="product">
     <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
       {{ 'accessibility.skip_to_product_info' | t }}
@@ -1159,8 +1159,6 @@
   endif
 %}
 
-{% comment %}
-
 <script type="application/ld+json">
   {
     "@context": "http://schema.org/",
@@ -1266,12 +1264,6 @@
     ]
   }
 </script>
-
-
-{% endcomment %}
-
-
-
 
 {% schema %}
 {
