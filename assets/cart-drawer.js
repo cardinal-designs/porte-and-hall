@@ -62,6 +62,18 @@ class CartDrawer extends HTMLElement {
 
     this.pageOverlayElement.classList.add('is-visible');
     document.body.addEventListener('click', this.onBodyClick);
+    this.enableDrawerFocus()
+  }
+
+  disableDrawerFocus() {
+    this.drawer.querySelectorAll('[tabindex], a, button, input, select, textarea')
+      .forEach(el => el.setAttribute('tabindex', '-1'));
+  }
+
+  // Call this when the drawer opens
+  enableDrawerFocus() {
+    this.drawer.querySelectorAll('[tabindex], a, button, input, select, textarea')
+      .forEach(el => el.removeAttribute('tabindex'));
   }
 
   close() {
@@ -70,6 +82,7 @@ class CartDrawer extends HTMLElement {
 
     this.pageOverlayElement.classList.remove('is-visible');
     document.body.removeEventListener('click', this.onBodyClick);
+    this.disableDrawerFocus();
   }
 
   onChange(event) {

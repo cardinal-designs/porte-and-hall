@@ -492,7 +492,7 @@ var MenuDrawer = class extends HTMLElement {
 
     this.pageOverlayElement.classList.add('is-visible');
     document.body.addEventListener('click', this.onBodyClick);
-    enableDrawerFocus()
+    this.enableDrawerFocus()
   }
 
   closeMenuDrawer() {
@@ -501,7 +501,7 @@ var MenuDrawer = class extends HTMLElement {
 
     this.pageOverlayElement.classList.remove('is-visible');
     document.body.removeEventListener('click', this.onBodyClick);
-    disableDrawerFocus()
+    this.disableDrawerFocus()
   }
 
   toggleMenuButtons() {
