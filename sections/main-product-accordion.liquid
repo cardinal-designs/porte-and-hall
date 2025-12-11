@@ -1133,6 +1133,8 @@
   endif
 %}
 
+
+{% comment %}
 <script type="application/ld+json">
   {
     "@context": "http://schema.org/",
@@ -1169,6 +1171,167 @@
     ]
   }
 </script>
+
+
+"priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": {{ variant.price | divided_by: 100.00 | json }},
+            "priceCurrency": {{ cart.currency.iso_code | json }},
+            "priceValidUntil": {{ 'now' | date: '%Y-%m-%d' | json  }},
+            "paymentOption": "Installments",
+            "installment": {
+              "@type": "MonetaryAmount",
+              "currency": {{ cart.currency.iso_code | json }},
+              "value": {{ variant.price | divided_by: 400.00 | json }}
+            },
+            "installmentFrequency": "https://schema.org/Monthly",
+            "totalPrice": {{ variant.price | divided_by: 100.00 | json }},
+            "installmentPaymentDueDate": {{ 'now' | date: '%Y-%m-%d' | json  }}
+          }
+
+{% endcomment %}
+
+<script type="application/ld+json">
+[
+  {
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "@id": {{ canonical_url | append: '#product' | json }},
+    "name": {{ product.title | json }},
+    "productGroupID": {{ product.variants.first.sku | json }},
+    "url": {{ request.origin | append: product.url | json }},
+
+    {%- for variant in product.variants -%}
+      {% if forloop.index == 1 %}
+        "price" : {{ variant.price | divided_by: 100.00 | json }},
+        "priceCurrency" : {{ cart.currency.iso_code | json }},
+      {% endif %}
+    {% endfor %}
+  
+    {%- if media -%}
+      "image": [
+        {{ media | image_url: width: media.width | prepend: "https:" | json }}
+      ],
+    {%- endif -%}
+    "description": {{ product.description | strip_html | json }},
+    {%- if current_variant.sku != blank -%}
+      
+    {%- endif -%}
+    "brand": {
+      "@type": "Brand",
+      "name": {{ product.vendor | json }}
+    },
+
+    "hasVariant": [
+    {%- for variant in product.variants -%}
+      {
+        "@type": "Product",
+        {%- if variant.sku != blank -%}
+	        "sku": {{ variant.sku | json }},
+	      {%- endif -%}
+	      {%- if variant.barcode.size == 12 -%}
+	        "gtin12": {{ variant.barcode | json }},
+	      {%- endif -%}
+	      {%- if variant.barcode.size == 13 -%}
+	        "gtin13": {{ variant.barcode | json }},
+	      {%- endif -%}
+	      {%- if variant.barcode.size == 14 -%}
+	        "gtin14": {{ variant.barcode | json }},
+	      {%- endif -%}
+        {%- if media -%}
+	      "image": [
+	        {{ media | image_url: width: media.width | prepend: "https:" | json }}
+	      ],
+	    {%- endif -%}
+        "name": {{ product.title | json }},
+        "description": {{ product.description | strip_html | json }},
+        
+        "offers": {
+          "@type": "Offer",
+          "price" : {{ variant.price | divided_by: 100.00 | json }},
+          "priceCurrency" : {{ cart.currency.iso_code | json }},
+          "priceValidUntil": {{ 'now' | date: '%Y-%m-%d' | json  }},
+          "url" : {{ request.origin | append: variant.url | json }},
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+          "shippingDetails": { "@id": "#shipping_policy" },
+          "hasMerchantReturnPolicy": { "@id": "#return_policy" },
+
+          "paymentAccepted": "CreditCard, PayPal"
+          
+        }
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+    ]
+  },
+  
+  {
+        "@context": "https://schema.org/",
+        "@type": "OfferShippingDetails",
+        "@id": "#shipping_policy",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": 0,
+          "currency": {{ cart.currency.iso_code | json }}
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "US",
+          "addressRegion": ["US"]
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 2,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 2,
+            "unitCode": "DAY"
+          }
+        }
+      },
+      {
+        "@context": "http://schema.org/",
+        "@type": "MerchantReturnPolicy",
+        "@id": "#return_policy",
+        "applicableCountry": ["US"],
+            "returnPolicyCountry": "US",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 30,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "returnFees": "https://schema.org/FreeReturn"
+      }
+  
+{% if product.metafields.reviews.rating_count > 0 %}
+{% else %}
+
+  
+,{
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "@id": {{ canonical_url | append: '#product' | json }},
+    "name": {{ product.title | json }},
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.82",
+        "reviewCount": 544
+    }
+} 
+  
+{% endif %}
+  
+  
+  
+] 
+</script>
+
+
+
 
 {% schema %}
 {
