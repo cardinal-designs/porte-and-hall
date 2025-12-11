@@ -83,7 +83,11 @@
                     {% assign grouped_collection = collection %}
                   {% endif %}
                 {% endfor %}
-                <li class="product-grid__item">
+                <li class="product-grid__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" >
+                  <meta itemprop="name" content="{{ product.title }}">
+                  <meta itemprop="url" content="{{ product.url }}">
+                  <meta itemprop="position" content="{{ forloop.index }}" />
+
                   {% render 'grouped-product-card-4',
                     product_card_product: product,
                     collection: grouped_collection,
