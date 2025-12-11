@@ -46,6 +46,7 @@ class CartDrawer extends HTMLElement {
         this.updateCharCount(event.target);
       }
     });
+    this.disableDrawerFocus();
   }
   updateCharCount(textarea) {
     const currentLength = textarea.value.length;
