@@ -37,3 +37,9 @@ customElements.define('form-validation',class formValidation extends HTMLElement
   }
 
 });
+
+document.addEventListener('keydown', (e) => {
+  if (e.altKey && e.key === 'c') {
+    document.getElementById('chat-button').focus();
+  }
+});
