@@ -36,13 +36,4 @@ customElements.define('form-validation',class formValidation extends HTMLElement
     this.querySelector('.js-error-messages').innerHTML = this.errorMessage.join('');
   }
 
-});
-
-document.querySelector('.skip-to-chat')?.addEventListener('click', (e) => {
-  e.preventDefault();
-  const chatButton = document.getElementById('chat-button');
-  if (chatButton) {
-    chatButton.tabIndex = 0;
-    chatButton.focus();
-  }
-});
+}); 
