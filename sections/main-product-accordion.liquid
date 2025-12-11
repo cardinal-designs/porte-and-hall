@@ -1208,11 +1208,10 @@
       {% endif %}
     {% endfor %}
   
-    {%- if media -%}
-      "image": [
-        {{ media | image_url: width: media.width | prepend: "https:" | json }}
-      ],
-    {%- endif -%}
+      "image": "{{ product.featured_image | image_url }}",
+    
+
+
     "description": {{ product.description | strip_html | json }},
     {%- if current_variant.sku != blank -%}
       
