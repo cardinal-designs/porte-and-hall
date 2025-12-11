@@ -70,7 +70,10 @@
           </div>
         </div>
       {% else %}
-        <div class="collection">
+        <div class="collection" itemscope itemtype="https://schema.org/ItemList" >
+          <meta itemprop="url" content="{{ collection.url }}" />
+          <meta itemprop="name" content="{{ collection.title }}" />
+
           {% paginate collection.products by 50 %}
           <ul id="product-grid" data-id="{{ section.id }}" class="product-grid product-grid-4 list-unstyled">
               {% for product in collection.products %}
