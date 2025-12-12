@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "breadcrumbs_UpdHQH": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "main": {
       "type": "main-product-accordion",
       "custom_css": [
@@ -177,7 +188,8 @@
         "text": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_subhead | metafield_tag }}</p>",
         "link": "shopify://pages/ideas-inspiration",
         "link_text": "Get more inspiration >",
-        "bg_color": "{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}"
+        "bg_color": "{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}",
+        "hide_mobile": false
       }
     },
     "see-the-difference": {
@@ -224,7 +236,12 @@
       "blocks": {
         "judge_me_reviews_review_widget_GBTbQT": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
         }
       },
       "block_order": [
@@ -250,6 +267,7 @@
     }
   },
   "order": [
+    "breadcrumbs_UpdHQH",
     "main",
     "other-sizes",
     "lp_custom_collections_2_ABDk4m",
