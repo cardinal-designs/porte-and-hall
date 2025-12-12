@@ -50,6 +50,17 @@
         "swap-fonts": false
       }
     },
+    "breadcrumbs_3xzGJ4": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "main_collection_banner_bQhCqC": {
       "type": "main-collection-banner",
       "name": "t:sections.main-collection-banner.name",
@@ -226,6 +237,7 @@
   },
   "order": [
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
+    "breadcrumbs_3xzGJ4",
     "main_collection_banner_bQhCqC",
     "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a",
     "product-grid",
