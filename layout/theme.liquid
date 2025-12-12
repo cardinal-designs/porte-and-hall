@@ -510,6 +510,42 @@
 </script>
 {% endif %}
 
+{% if template.name == 'article' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ shop.url }}{{ article.url }}"
+  },
+  "headline": "{{ article.title | escape }}",
+  "description": "{{ article.excerpt | strip_html | escape }}",
+  "image": [
+    {% if article.image %}
+      "{{ article.image | img_url: 'master' }}"
+    {% endif %}
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "{{ article.author.name | escape }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ shop.name | escape }}",
+    {% if shop.logo %}
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ shop.logo | img_url: 'master' }}"
+    }
+    {% endif %}
+  },
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}",
+  "dateModified": "{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}"
+}
+</script>
+{% endif %}
+
 
 
 
