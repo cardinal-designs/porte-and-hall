@@ -180,8 +180,14 @@
         {%  endif  %}
         </a>
       </p>
-      {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', product: product_card_product %}
-      {% include 'judgeme_widgets', widget_type: 'judgeme_preview_badge', product: product_card_product %}
+
+      <div
+  class="jdgm-preview-badge"
+  data-id="{{ product_card_product.id }}"
+  data-href="{{ product_card_product.url }}"
+>
+</div>
+
 
 
     {% endif %}
