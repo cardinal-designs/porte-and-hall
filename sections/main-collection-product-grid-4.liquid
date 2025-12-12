@@ -6,6 +6,11 @@
 
 <script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
 
+
+{{ shop.metafields.judgeme.settings | json }}
+<script src="https://cdn.judge.me/assets/installed.js"></script>
+
+
 {% assign active_tags = '' %}
 
 {% for tag in current_tags %}
