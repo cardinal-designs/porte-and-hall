@@ -1,12 +1,32 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "breadcrumbs_wb6GbA": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "main": {
       "type": "main-page",
       "disabled": true,
       "settings": {
         "page_heading": "",
         "subhead": "",
-        "image": "shopify:\/\/shop_images\/Rectangle_600_afdd9d4e-2ac5-4953-8125-1a557f66a497.jpg",
+        "image": "shopify://shop_images/Rectangle_600_afdd9d4e-2ac5-4953-8125-1a557f66a497.jpg",
         "section_height": "350",
         "bg_color": "#f4f2ee"
       }
@@ -14,11 +34,12 @@
     "custom_liquid_3pgAkU": {
       "type": "custom-liquid",
       "settings": {
-        "custom_html": "<div class=\"klaviyo-form__container\">\n<div class=\"hide-desktop klaviyo-form-VEEkwn\"><\/div>\n<div class=\"hide-mobile klaviyo-form-T3FTE5\"><\/div>\n<\/div>"
+        "custom_html": "<div class=\"klaviyo-form__container\">\n<div class=\"hide-desktop klaviyo-form-VEEkwn\"></div>\n<div class=\"hide-mobile klaviyo-form-T3FTE5\"></div>\n</div>"
       }
     }
   },
   "order": [
+    "breadcrumbs_wb6GbA",
     "main",
     "custom_liquid_3pgAkU"
   ]
