@@ -520,7 +520,7 @@
     "@id": "{{ shop.url }}{{ article.url }}"
   },
   "headline": "{{ article.title | escape }}",
-  "description": "{{ article.description | strip_html | escape }}",
+  "description": "{{ article.content | strip_html | escape }}",
   "image": [
     {% if article.image %}
       "{{ article.image | img_url: 'master' }}"
