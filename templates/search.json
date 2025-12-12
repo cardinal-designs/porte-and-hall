@@ -13,7 +13,8 @@
       "type": "main-search",
       "custom_css": [
         ".xtsearchproduct {list-style: none;}",
-        ".xtsearchproduct .product-card {display: block !important;}"
+        ".xtsearchproduct .product-card {display: block !important;}",
+        ".xtsearchproduct .product-card__title {font-size: 18px; font-weight: bold; padding-top: 12px;}"
       ],
       "settings": {
         "image_ratio": "square",
