@@ -1320,7 +1320,7 @@
     "name": {{ product.title | json }},
     "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.82",
+        "ratingValue": "{{ product.metafields.reviews.rating_value }}",
         "reviewCount": "{{ product.metafields.reviews.rating_count }}"
     }
 } 
