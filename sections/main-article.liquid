@@ -1,19 +1,19 @@
 {{ 'section-article.css' | asset_url | stylesheet_tag }}
 
-<article class="article-template" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="article-template">
   <header class="article-template__header page-width">
     <div class="Article_Header">
       <div class="Article_Title">
-        <h1 class="article-template__title h1" itemprop="headline">{{ article.title | escape }}</h1>
+        <h1 class="article-template__title h1" >{{ article.title | escape }}</h1>
       </div>
-      <div class="article-template__image" itemprop="image">
+      <div class="article-template__image">
         {% render 'lazy-image' image: article.image, fade: true, fill: true %}
       </div>
     </div>
   </header>
 
   <div class="page-width">
-    <div class="article-template__content rte" itemprop="articleBody" {{ block.shopify_attributes }}>
+    <div class="article-template__content rte" {{ block.shopify_attributes }}>
       {{ article.content }}
     </div>
   </div>
