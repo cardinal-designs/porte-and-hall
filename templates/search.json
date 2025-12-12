@@ -11,6 +11,10 @@
   "sections": {
     "main": {
       "type": "main-search",
+      "custom_css": [
+        ".xtsearchproduct {list-style: none;}",
+        ".xtsearchproduct .product-card {display: block !important;}"
+      ],
       "settings": {
         "image_ratio": "square",
         "show_secondary_image": false,
