@@ -532,13 +532,7 @@
   },
   "publisher": {
     "@type": "Organization",
-    "name": "{{ shop.name | escape }}",
-    {% if shop.logo %}
-    "logo": {
-      "@type": "ImageObject",
-      "url": "{{ shop.logo | img_url: 'master' }}"
-    }
-    {% endif %}
+    "name": "{{ shop.name | escape }}"
   },
   "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}",
   "dateModified": "{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}"
