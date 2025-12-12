@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "breadcrumbs_igpLPT": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "main": {
       "type": "main-giftcard",
       "settings": {}
@@ -178,6 +189,7 @@
     }
   },
   "order": [
+    "breadcrumbs_igpLPT",
     "main",
     "logo-marquee",
     "fan-motif",
