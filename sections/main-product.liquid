@@ -1194,7 +1194,8 @@
           "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
           "price" : {{ variant.price | divided_by: 100.00 | json }},
           "priceCurrency" : {{ cart.currency.iso_code | json }},
-          "priceValidUntil": "2030-12-31",
+          "priceValidUntil": "{{ 'now' | date: '%s' | plus: 2592000 | date: '%Y-%m-%d' }}",
+
           "url" : {{ shop.url | append: variant.url | json }},
         "shippingDetails": [
         {
