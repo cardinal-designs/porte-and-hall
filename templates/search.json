@@ -12,8 +12,8 @@
     "main": {
       "type": "main-search",
       "settings": {
-        "image_ratio": "adapt",
-        "show_secondary_image": true,
+        "image_ratio": "square",
+        "show_secondary_image": false,
         "add_image_padding": false,
         "show_image_outline": true,
         "show_vendor": false,
