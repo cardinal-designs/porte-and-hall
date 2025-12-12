@@ -180,6 +180,8 @@
         {%  endif  %}
         </a>
       </p>
+      {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', product: product_card_product %}
+
     {% endif %}
 {% comment %}
     {% unless template.suffix == 'last-chance' %}
