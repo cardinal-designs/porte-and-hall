@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "breadcrumbs_NcHjNY": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "main": {
       "type": "main-product-outlier-cleanup",
       "custom_css": [
@@ -176,14 +187,16 @@
         "text": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_subhead | metafield_tag }}</p>",
         "link": "shopify://pages/ideas-inspiration",
         "link_text": "Get more inspiration >",
-        "bg_color": "{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}"
+        "bg_color": "{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}",
+        "hide_mobile": false
       }
     },
     "styling-tips": {
       "type": "styling-tips",
       "settings": {
         "heading": "Our founder Stafford's styling tips",
-        "image": "shopify://shop_images/Stafford_and_dog_1_2x_8d4ed32a-5883-4611-bf23-c1cc022cb717.png"
+        "image": "shopify://shop_images/Stafford_and_dog_1_2x_8d4ed32a-5883-4611-bf23-c1cc022cb717.png",
+        "hide_mobile": false
       }
     },
     "see-the-difference": {
@@ -230,7 +243,12 @@
       "blocks": {
         "judge_me_reviews_review_widget_GBTbQT": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
         }
       },
       "block_order": [
@@ -309,11 +327,13 @@
         "heading": "Hit the ground stunning:\nThe Porte + Hall blog",
         "background": "",
         "blog": "news",
-        "show_recent_articles": true
+        "show_recent_articles": true,
+        "hide_mobile": false
       }
     }
   },
   "order": [
+    "breadcrumbs_NcHjNY",
     "main",
     "other-sizes",
     "lp_custom_collections_2_ABDk4m",
