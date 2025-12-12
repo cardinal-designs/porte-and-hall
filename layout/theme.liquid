@@ -544,6 +544,58 @@
 
 
 
+{% if template == 'index' %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": {{ shop.name | json }},
+  "image": {{ shop.brand.logo | img_url: '300x' | prepend: 'https:' | json }},
+  "@id": {{ shop.url | json }},
+  "url": {{ shop.url | json }},
+  "description": {{ shop.description | default: "Your trusted online store." | strip_html | json }},
+  "openingHours": "Mo-Su 00:00-23:59",
+  "telephone": {{ shop.phone | json }},
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ shop.address.street | json }},
+    "addressLocality": {{ shop.address.city | json }},
+    "addressRegion": {{ shop.address.province | json }},
+    "postalCode": {{ shop.address.zip | json }},
+    "addressCountry": {{ shop.address.country | json }}
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": {{ shop.phone | json }},
+    "contactType": "Customer Service",
+    "areaServed": "UK",
+    "availableLanguage": ["English"]
+  },
+  "sameAs": [
+    {% if settings.social_tiktok != blank %} {{ settings.social_tiktok | json }}{% endif %}{% if settings.social_instagram != blank %}, {{ settings.social_instagram | json }}{% endif %}{% if settings.social_facebook != blank %}, {{ settings.social_facebook | json }}{% endif %}
+  ],
+  "priceRange": "$$",
+  "paymentAccepted": "Visa, Master Card, PayPal",
+  "currenciesAccepted": {{ shop.currency | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ shop.url }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  {% if shop.metafields.reviews.rating_average and shop.metafields.reviews.rating_count %}
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": {{ shop.metafields.reviews.rating_average | json }},
+    "reviewCount": {{ shop.metafields.reviews.rating_count | json }}
+  }
+  {% endif %}
+}
+</script>
+
+
+{% endif %}
+
 
   </body>
 </html>
