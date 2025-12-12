@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "breadcrumbs_aNYPhq": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c": {
       "type": "page-hero",
       "blocks": {
@@ -273,6 +284,7 @@
     }
   },
   "order": [
+    "breadcrumbs_aNYPhq",
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
     "main_collection_banner_bQhCqC",
     "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a",
