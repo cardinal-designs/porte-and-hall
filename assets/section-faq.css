@@ -1,6 +1,7 @@
 .faq {
   background: var(--light-gray);
 }
+.faq__question > h3{text-transform: none;letter-spacing: 0.3px;}
 
 .faq + .faq.shopify-section.with-spacing > div:first-of-type {
   padding-top: 0;
