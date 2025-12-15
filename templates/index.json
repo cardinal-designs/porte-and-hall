@@ -24,6 +24,9 @@
     },
     "video_text_hTPBAL": {
       "type": "video-text",
+      "custom_css": [
+        ".SectionHeader__Heading h1 {color: #546b82; font-size: 60px;}"
+      ],
       "name": "Video with text",
       "settings": {
         "video": "shopify://files/videos/cro3compressed.mp4",
