@@ -11,7 +11,7 @@
         <div class="cart-drawer__content" id="cart-drawer__content" data-id="{{ section.id }}">
           {% if cart.items.size == 0 %}
             <div class="cart-drawer__empty">
-              <h3>{{ section.settings.empty_text | default: "Your cart is empty." }}</h3>
+              <p class="p">{{ section.settings.empty_text | default: "Your cart is empty." }}</p>
               <a href="{{ section.settings.button | default: "/>" }}" class="button">{{ section.settings.button_text | default: "Shop All" }}</a>
             </div>
           {% else %}
