@@ -3,7 +3,7 @@
     <form id="cart-drawer__form" action="{{ routes.cart_url }}" method="post" class="cart-drawer__form">
       <div class="cart-drawer__inner">
         <div class="cart-drawer__header">
-          <h2 class="cart-drawer__title">{{ section.settings.cart_title }}</h2>
+          <p class="cart-drawer__title h2">{{ section.settings.cart_title }}</p>
           <button type="button" class="cart-drawer__close modal__close-button link link--text focus-inset" id="cart-drawer__close" aria-label="{{ 'accessibility.close' | t }}">
             {% render 'icon' icon: 'close' %}
           </button>
