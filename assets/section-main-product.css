@@ -1024,7 +1024,7 @@ variant-selects {
   border-bottom: 2px solid var(--blue);
 }
 
-.accordion h3 {
+.accordion h3, .accordion h2 {
   text-transform: unset;
   padding-top: 15px;
   padding-bottom: 15px;
