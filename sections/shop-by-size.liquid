@@ -17,20 +17,13 @@
 </style>
 
 <div class="page-width">
-  <div class="shop-by-size__header">
    {%- if section.settings.title != blank -%}
-     <h4 class="shop-by-size__title">
-      {{ section.settings.title }}
-    </h4>
+    <div class="shop-by-size__header">
+      <h2 class="shop-by-size__title">
+        {{ section.settings.title }}
+      </h2>
+    </div>
    {%- endif -%}
-   {%- if section.settings.link_text != blank -%}
-     <div class="shop-by-size__link">
-        <a href="{{ section.settings.link_url }}" class="shop-by-size__link-link">
-          {{ section.settings.link_text | escape }}
-        </a>
-      </div>
-   {%- endif -%}
-  </div>
 
   <shop-by-size class="shop-by-size__section">
     <div class="shop-by-size__navigation">
@@ -85,6 +78,14 @@
       </div>
     {%  endfor %}
   </shop-by-size>
+
+  {%- if section.settings.link_text != blank -%}
+    <div class="shop-by-size__link">
+       <a href="{{ section.settings.link_url }}" class="shop-by-size__link-link">
+         {{ section.settings.link_text | escape }}
+       </a>
+     </div>
+  {%- endif -%}
 </div>
 
 

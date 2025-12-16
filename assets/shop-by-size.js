@@ -53,6 +53,7 @@ class ShopBySize extends HTMLElement {
         slidesPerView: 'auto',
         spaceBetween: 12,
         centeredSlides: true,
+        loop: true,
         navigation: {
           nextEl: nextBtn,
           prevEl: prevBtn,
@@ -66,10 +67,12 @@ class ShopBySize extends HTMLElement {
             slidesPerView: 3,
             spaceBetween: 24,
             centeredSlides: false,
+            loop: false,
           },
           1200: {
             slidesPerView: 4,
             centeredSlides: false,
+            loop: false,
           },
         },
       });

@@ -150,74 +150,6 @@
         "btn_link": "shopify://collections/best-sellers"
       }
     },
-    "product_carousel_2_nFt3hG": {
-      "type": "product-carousel-2",
-      "blocks": {
-        "block_iAMdwJ": {
-          "type": "block",
-          "settings": {
-            "title": "The Insider",
-            "collection1": "the-insider-doormat",
-            "product": "the-insider-bark-creme-doormat",
-            "product_image1": "shopify://shop_images/Frame_250.png",
-            "check1": "Ultra-thin to fit under your door",
-            "check2": "Slip resistant without marking",
-            "check3": "Water absorbent, protects  your floor",
-            "check4": "Doesn’t bunch up"
-          }
-        },
-        "block_8hGeNH": {
-          "type": "block",
-          "settings": {
-            "title": "The Outlier",
-            "collection1": "the-outlier",
-            "product": "the-outlier-slate-doormat",
-            "product_image1": "shopify://shop_images/Frame_250_1.png",
-            "check1": "Maximum scrape-ability",
-            "check2": "Vented for water evaporation",
-            "check3": "Rubbery feel",
-            "check4": "Tough bristles"
-          }
-        },
-        "block_cwxbKD": {
-          "type": "block",
-          "settings": {
-            "title": "The Innerweave",
-            "collection1": "the-innerweave-doormat",
-            "product": "the-innerweave-chevron-natural-doormat",
-            "product_image1": "shopify://shop_images/Frame_250_2.png",
-            "check1": "Indoor and outdoor",
-            "check2": "Stain-resistant",
-            "check3": "Soft, woven texture",
-            "check4": "Doesn't shed"
-          }
-        },
-        "block_3NKqtR": {
-          "type": "block",
-          "settings": {
-            "title": "The Porter",
-            "collection1": "the-porter-standard",
-            "product": "the-porter-greystone-standard",
-            "product_image1": "shopify://shop_images/Porter_Collections_mobile_2x_1f5f9730-4538-4c48-ae48-9f77e19a7552.jpg",
-            "check1": "Hand-knotted, one-of-a-kind design",
-            "check2": "Premium all-weather yarns ",
-            "check3": "Stain- and fade-resistant",
-            "check4": "Traps dirt, rinses clean"
-          }
-        }
-      },
-      "block_order": [
-        "block_iAMdwJ",
-        "block_8hGeNH",
-        "block_cwxbKD",
-        "block_3NKqtR"
-      ],
-      "settings": {
-        "title": "Shop our collections",
-        "subtitle": "",
-        "hide_desktop": true
-      }
-    },
     "shop_by_size_G4TezK": {
       "type": "shop-by-size",
       "blocks": {
@@ -293,15 +225,83 @@
       ],
       "name": "Shop by size",
       "settings": {
-        "padding_top": 80,
-        "padding_bottom": 80,
-        "mobile_padding_top": 60,
-        "mobile_padding_bottom": 60,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
         "bg_color": "#ffffff",
         "title": "Shop by size",
         "link_text": "SHOP ALL",
         "link_url": "",
         "show_product_badge": true
+      }
+    },
+    "product_carousel_2_nFt3hG": {
+      "type": "product-carousel-2",
+      "blocks": {
+        "block_iAMdwJ": {
+          "type": "block",
+          "settings": {
+            "title": "The Insider",
+            "collection1": "the-insider-doormat",
+            "product": "the-insider-bark-creme-doormat",
+            "product_image1": "shopify://shop_images/Frame_250.png",
+            "check1": "Ultra-thin to fit under your door",
+            "check2": "Slip resistant without marking",
+            "check3": "Water absorbent, protects  your floor",
+            "check4": "Doesn’t bunch up"
+          }
+        },
+        "block_8hGeNH": {
+          "type": "block",
+          "settings": {
+            "title": "The Outlier",
+            "collection1": "the-outlier",
+            "product": "the-outlier-slate-doormat",
+            "product_image1": "shopify://shop_images/Frame_250_1.png",
+            "check1": "Maximum scrape-ability",
+            "check2": "Vented for water evaporation",
+            "check3": "Rubbery feel",
+            "check4": "Tough bristles"
+          }
+        },
+        "block_cwxbKD": {
+          "type": "block",
+          "settings": {
+            "title": "The Innerweave",
+            "collection1": "the-innerweave-doormat",
+            "product": "the-innerweave-chevron-natural-doormat",
+            "product_image1": "shopify://shop_images/Frame_250_2.png",
+            "check1": "Indoor and outdoor",
+            "check2": "Stain-resistant",
+            "check3": "Soft, woven texture",
+            "check4": "Doesn't shed"
+          }
+        },
+        "block_3NKqtR": {
+          "type": "block",
+          "settings": {
+            "title": "The Porter",
+            "collection1": "the-porter-standard",
+            "product": "the-porter-greystone-standard",
+            "product_image1": "shopify://shop_images/Porter_Collections_mobile_2x_1f5f9730-4538-4c48-ae48-9f77e19a7552.jpg",
+            "check1": "Hand-knotted, one-of-a-kind design",
+            "check2": "Premium all-weather yarns ",
+            "check3": "Stain- and fade-resistant",
+            "check4": "Traps dirt, rinses clean"
+          }
+        }
+      },
+      "block_order": [
+        "block_iAMdwJ",
+        "block_8hGeNH",
+        "block_cwxbKD",
+        "block_3NKqtR"
+      ],
+      "settings": {
+        "title": "Shop our collections",
+        "subtitle": "",
+        "hide_desktop": true
       }
     },
     "40919de2-f3c2-45da-99ff-c69ad3e95306": {
@@ -454,7 +454,6 @@
         "a60ec8c4-7a7f-49b3-872b-15a009e8e7fc",
         "a3cec467-69ab-4f36-998a-c0f2ada85be5"
       ],
-      "disabled": true,
       "settings": {
         "custom-class": "home-size-section",
         "title": "Shop by size",
@@ -1061,8 +1060,8 @@
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",
     "product_carousel_new_aKw9LG",
     "product_carousel_new_2_JLEKyQ",
-    "product_carousel_2_nFt3hG",
     "shop_by_size_G4TezK",
+    "product_carousel_2_nFt3hG",
     "40919de2-f3c2-45da-99ff-c69ad3e95306",
     "fd8fd5d7-6d77-45a1-8718-85dc6bc781d2",
     "cb7443ea-2e0d-49d4-9b54-bb61eac621af",
