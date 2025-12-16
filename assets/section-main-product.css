@@ -283,6 +283,18 @@
 }
 
 /* SWATCHES */
+.product__swatches-group {
+  margin-top: 20px;
+}
+
+.product__swatches-group .product__swatches {
+  margin-top: 10px;
+}
+
+.product__swatches-group .product__swatches-selected {
+  font-weight: 600;
+}
+
 
 .product__swatches {
   display: flex;
@@ -296,12 +308,11 @@
   margin-top: 23px;
 }
 
-@media screen and (max-width: 768px) {
 
+@media screen and (max-width: 768px) {
   .product__swatches {
     margin-bottom: 20px;
   }
-  
 }
 
 .product__swatch {

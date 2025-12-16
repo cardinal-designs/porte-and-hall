@@ -1,0 +1,350 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
+  "sections": {
+    "breadcrumbs_yDykEc": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "#f4f2ee",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
+    "main": {
+      "type": "main-product-swatch-grouping",
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.product__quantity-atc-wrapper {justify-content: center; width: 100%; }}"
+      ],
+      "settings": {
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
+        "materials": "{{ section.settings.collection.metafields.custom.materials | metafield_tag }}",
+        "care": "{{ section.settings.collection.metafields.custom.care | metafield_tag }}",
+        "hide_pinterest": true,
+        "hide_dimensions": true,
+        "text_dimensions": false,
+        "hide_shop_other": false,
+        "hide_quantity": true,
+        "shop_more_below": true
+      }
+    },
+    "other-sizes": {
+      "type": "product-shop-other-sizes",
+      "disabled": true,
+      "settings": {}
+    },
+    "lp_custom_collections_2_ABDk4m": {
+      "type": "LP-custom-collections-2",
+      "blocks": {
+        "block_wcQHYU": {
+          "type": "block",
+          "settings": {
+            "title": "The Insider",
+            "badge1": "Ultra-thin",
+            "product1_title": "The Insider",
+            "collection1": "the-insider",
+            "product1": "the-insider-wild-side-dove-runner",
+            "product_image1": "shopify://shop_images/WildSideDove_Doormat_v2.jpg",
+            "check1": "Ultra-thin to fit under your door",
+            "check2": "Slip resistant without marking",
+            "check3": "Water absorbent, protects your floor",
+            "check4": "Doesn’t bunch up",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_pgGtGT": {
+          "type": "block",
+          "settings": {
+            "title": "The Innerweave",
+            "badge1": "Natural Look",
+            "product1_title": "The Innerweave",
+            "collection1": "the-innerweave",
+            "product1": "the-innerweave-chevron-stone-runner",
+            "product_image1": "shopify://shop_images/5_CHEVRON_STONE_BACKING_1copy.jpg",
+            "check1": "Indoor and outdoor",
+            "check2": "Stain-resistant",
+            "check3": "Soft, woven texture",
+            "check4": "Doesn't shed",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_pdi6Ua": {
+          "type": "block",
+          "settings": {
+            "title": "The Outlier",
+            "badge1": "Outdoor",
+            "product1_title": "The Outlier",
+            "collection1": "the-outlier",
+            "product1": "the-outlier-charcoal-doormat",
+            "product_image1": "shopify://shop_images/Screenshot_2024-05-20_at_3.11.04_PM_cc4f1ec4-13d1-416e-a6b8-4e0aaf6d3dbb.png",
+            "check1": "Maximum scrape-ability",
+            "check2": "Vented for water evaporation",
+            "check3": "Rubbery feel",
+            "check4": "Tough bristles",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_WMzwR3": {
+          "type": "block",
+          "settings": {
+            "title": "The Porter",
+            "badge1": "Outdoor",
+            "product1_title": "The Porter",
+            "collection1": "the-porter-standard",
+            "product1": "the-porter-greystone-standard",
+            "product_image1": "shopify://shop_images/Porter_Collections_mobile_2x_1f5f9730-4538-4c48-ae48-9f77e19a7552.jpg",
+            "check1": "Hand-knotted, one-of-a-kind design",
+            "check2": "Premium all-weather yarns ",
+            "check3": "Stain- and fade-resistant",
+            "check4": "Traps dirt, rinses clean",
+            "link_text": "",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_wcQHYU",
+        "block_pgGtGT",
+        "block_pdi6Ua",
+        "block_WMzwR3"
+      ],
+      "settings": {
+        "title": "Shop our other collections",
+        "subtitle": ""
+      }
+    },
+    "logo-marquee": {
+      "type": "logo-marquee",
+      "blocks": {
+        "50d28991-9949-425a-8be2-904babebbf3d": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"146\" height=\"30\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
+          }
+        },
+        "149c1817-ad42-4e33-9606-3fdd86617b59": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"242\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Better_homes.svg?v=1613389157\" alt=\"logo\">"
+          }
+        },
+        "c601b093-74e6-4c97-9b9f-e92dbbc1954b": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"143\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
+          }
+        },
+        "525c8d7f-3fd8-424a-9bb9-796fe7acd9b9": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"100\" height=\"25\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
+          }
+        },
+        "3a0ca646-6b8d-40f7-bad1-95beb0f48c38": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"146\" height=\"30\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
+          }
+        },
+        "7776a47e-3b45-4168-a62f-1ed5450e55e4": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"242\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Better_homes.svg?v=1613389157\" alt=\"logo\">"
+          }
+        },
+        "75cd2c0e-3721-428e-9a94-ab9ee0f2702a": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"143\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
+          }
+        },
+        "e94d2efd-9517-44b1-ae3f-3c3ce149ac5f": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"100\" height=\"25\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
+          }
+        }
+      },
+      "block_order": [
+        "50d28991-9949-425a-8be2-904babebbf3d",
+        "149c1817-ad42-4e33-9606-3fdd86617b59",
+        "c601b093-74e6-4c97-9b9f-e92dbbc1954b",
+        "525c8d7f-3fd8-424a-9bb9-796fe7acd9b9",
+        "3a0ca646-6b8d-40f7-bad1-95beb0f48c38",
+        "7776a47e-3b45-4168-a62f-1ed5450e55e4",
+        "75cd2c0e-3721-428e-9a94-ab9ee0f2702a",
+        "e94d2efd-9517-44b1-ae3f-3c3ce149ac5f"
+      ],
+      "settings": {
+        "background_color": "#d8d3c7"
+      }
+    },
+    "design-details": {
+      "type": "design-detail-arrows",
+      "settings": {
+        "heading": ""
+      }
+    },
+    "product_quote_KP6aXV": {
+      "type": "product-quote",
+      "settings": {}
+    },
+    "see-in-action": {
+      "type": "see-it-in-action",
+      "settings": {
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
+        "heading": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_section_title | metafield_tag }}</p>",
+        "text": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_subhead | metafield_tag }}</p>",
+        "link": "shopify://pages/ideas-inspiration",
+        "link_text": "Get more inspiration >",
+        "bg_color": "{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}",
+        "hide_mobile": true
+      }
+    },
+    "styling-tips": {
+      "type": "styling-tips",
+      "settings": {
+        "heading": "Our founder Stafford's styling tips",
+        "image": "shopify://shop_images/Stafford_and_dog_1_2x_8d4ed32a-5883-4611-bf23-c1cc022cb717.png",
+        "hide_mobile": true
+      }
+    },
+    "see-the-difference": {
+      "type": "see-the-difference",
+      "settings": {
+        "colleciton": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
+        "heading": "Small mat, big difference",
+        "text": "{{ section.settings.colleciton.metafields.custom.see_the_difference_subhead.value }}",
+        "before-label": "Before",
+        "after-label": "After"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "question_1": {
+          "type": "faq",
+          "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
+          "settings": {
+            "title": "{{ block.repeater.question.value }}",
+            "title_richtext": "",
+            "answer": "{{ block.repeater.answer | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "question_1"
+      ],
+      "settings": {
+        "heading": "",
+        "anchor": "",
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
+      }
+    },
+    "reviews": {
+      "type": "reviews",
+      "disabled": true,
+      "settings": {
+        "heading": ""
+      }
+    },
+    "168172537899ce8b94": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_GBTbQT": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_GBTbQT"
+      ],
+      "settings": {
+        "include_margins": true,
+        "heading": "",
+        "section_reviews": true
+      }
+    },
+    "you-may-like": {
+      "type": "main-product-carousel",
+      "settings": {
+        "heading": "Never miss a mat. There's more to see!",
+        "background": "",
+        "show_metafield_style": false,
+        "collection": "shop-all",
+        "button_text": "Shop now",
+        "bottom_button_text": "",
+        "bottom_button_link": ""
+      }
+    },
+    "featured-articles": {
+      "type": "featured-articles",
+      "blocks": {
+        "140e3c63-9b99-476d-9378-53fd1ce30b89": {
+          "type": "article",
+          "settings": {
+            "article": "news/best-doormat-for-your-home"
+          }
+        },
+        "faf6f395-3915-4f58-b2c5-acd839476fc2": {
+          "type": "article",
+          "settings": {
+            "article": "news/the-view-from-my-porch"
+          }
+        },
+        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23": {
+          "type": "article",
+          "settings": {
+            "article": "news/why-pay-more-for-a-doormat"
+          }
+        }
+      },
+      "block_order": [
+        "140e3c63-9b99-476d-9378-53fd1ce30b89",
+        "faf6f395-3915-4f58-b2c5-acd839476fc2",
+        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23"
+      ],
+      "settings": {
+        "heading": "Hit the ground stunning:\nThe Porte + Hall blog",
+        "background": "",
+        "blog": "news",
+        "show_recent_articles": true,
+        "hide_mobile": true
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs_yDykEc",
+    "main",
+    "other-sizes",
+    "lp_custom_collections_2_ABDk4m",
+    "logo-marquee",
+    "design-details",
+    "product_quote_KP6aXV",
+    "see-in-action",
+    "styling-tips",
+    "see-the-difference",
+    "faq",
+    "reviews",
+    "168172537899ce8b94",
+    "you-may-like",
+    "featured-articles"
+  ]
+}
