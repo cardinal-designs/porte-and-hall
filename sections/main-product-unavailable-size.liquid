@@ -485,11 +485,11 @@
                   style="order: {{ active_order }};"
                   class="small_button_text other-sizes__button active {% if product.available == false %} other-sizes__button--out-of-stock {% endif %}" 
                   href="{{ product.url }}?view=unavailable-sizes"
-                >a
+                >
                   {% if product_size == '5 x 7 Area Mat' %}
-                    <span>Area Mat</span>
+                    <span>affArea Mat</span>
                   {% else %}
-                    <span>{{ product_size }}</span>
+                    <span>af{{ product_size }}</span>
                   {% endif %}
 
                   {% if product_size == 'Doormat' %}
