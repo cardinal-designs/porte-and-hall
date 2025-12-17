@@ -485,7 +485,7 @@
                   style="order: {{ active_order }};"
                   class="small_button_text other-sizes__button active {% if product.available == false %} other-sizes__button--out-of-stock {% endif %}" 
                   href="{{ product.url }}?view=unavailable-sizes"
-                >
+                >a
                   {% if product_size == '5 x 7 Area Mat' %}
                     <span>Area Mat</span>
                   {% else %}
@@ -541,7 +541,7 @@
                         data-size="{{ current_size.last }}" data-size-handle="{{ current_size.last | handle }}"
                         {% if match != blank %} href="{{ match.first.url }}?view=unavailable-sizes" {% endif %}
                         
-                      >j
+                      >
                         {% if current_size.last == '5 x 7 Area Mat' %}
                           <span>Area Mat</span>
                         {% else %}
