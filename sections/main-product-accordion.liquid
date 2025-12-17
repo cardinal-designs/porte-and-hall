@@ -32,9 +32,8 @@
 
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
   assign collection_title = grouped_collection.title | downcase
-%}
 
-  {% comment %} capture color_swatch_list
+  capture color_swatch_list
     assign swatch_count = 1
     assign printed_swatch_values = ""
 
@@ -99,97 +98,7 @@
 
     endfor
   endcapture
-%} {% endcomment %}
-
-{% capture color_swatch_list %}
-  {% assign all_colors_string = '' %}
-  {% assign current_size = product.options_by_name['Size'].selected_value | default: product.options_by_name['size'].selected_value | downcase %}
-
-  {% assign size_handle = current_size | handle %}
-
-  {% paginate grouped_collection.products by 100 %}
-    {% for swatch in grouped_collection.products %}
-      {% for option in swatch.options_with_values %}
-        {% assign option_name = option.name | downcase %}
-        {% if color_label contains option_name or option_name == 'style' %}
-          {% for value in option.values %}
-            {% assign val_handle = value | handle %}
-            {% unless all_colors_string contains val_handle %}
-              {% assign all_colors_string = all_colors_string | append: value | append: ',' %}
-            {% endunless %}
-          {% endfor %}
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-  {% endpaginate %}
-  
-
-  {% assign all_colors = all_colors_string | split: ',' | uniq %}
-  {% for color in all_colors %}
-    {% if color != blank %}
-      {% assign color_handle = color | handle %}
-      {% assign matched_product = blank %}
-      {% assign product_available = false %}
-
-      {%- paginate grouped_collection.products by 100 -%}
-        {% for prod in grouped_collection.products %}
-          {% assign prod_handle = prod.handle %}
-          {% assign size_parts = size_handle | split: '-' %}
-          {% assign prod_parts = prod_handle | split: '-' %}
-          {% assign matched_size = true %}
-
-          {% for part in size_parts %}
-            {% unless prod_parts contains part %}
-              {% assign matched_size = false %}
-            {% endunless %}
-          {% endfor %}
-
-          {% if prod_handle contains color_handle and matched_size %}
-            {% assign matched_product = prod %}
-            {% if prod.available %}
-              {% assign product_available = true %}
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      {%- endpaginate -%}
-      
-
-      {% assign is_active = false %}
-      {% if product.handle contains color_handle %}
-        {% assign is_active = true %}
-      {% endif %}
-
-      {% assign element_classes = 'product__swatch' %}
-      {% if is_active %}
-        {% assign element_classes = element_classes | append: ' product__active-swatch' %}
-      {% endif %}
-      {% unless product_available %}
-        {% assign element_classes = element_classes | append: ' product__oos-swatch' %}
-      {% endunless %}
-
-      {% assign swatch_file_name = color | handle | append: '.png' %}
-
-      {% if matched_product != blank %}
-        <a 
-          href="{{ matched_product.url | append: '?view=unavailable-sizes' }}" 
-          class="{{ element_classes }}" 
-          data-tooltip="{{ color | escape }}"
-          style="{% unless product_available %}cursor: pointer;{% endunless %}"
-        >
-          <span style="background-image: url({{ swatch_file_name | file_url }});"></span>
-        </a>
-      {% else %}
-        <span 
-          class="{{ element_classes }} product__color-swatch--not-available" 
-          data-tooltip="{{ color | escape }}"
-          data-color-handle="{{ color | handle }}"
-        >
-          <span style="background-image: url({{ swatch_file_name | file_url }});"></span>
-        </span>
-      {% endif %}
-    {% endif %}
-  {% endfor %}
-{% endcapture %}
+%}
 
 {% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 <section class="page-width">
