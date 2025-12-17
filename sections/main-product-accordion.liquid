@@ -261,6 +261,10 @@
         <p class="style-text__color">{{ product.metafields.custom.style_text }}</p>
         {% endif %}
 
+        <div id="active-color" 
+          data-color="{{ product.options_by_name['Color'].selected_value | default: product.options_by_name['Style'].selected_value }}">
+        </div>
+
         <div class="product__swatches">
           {{ color_swatch_list }}
         </div>
