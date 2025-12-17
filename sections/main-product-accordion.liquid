@@ -153,7 +153,7 @@
         <h1 class="product__title blue">
           {% if product.title contains 'Porter' %}
             The Porter Mat
-          {% elsif grouped_collection.title contains 'XL Area Mat' %}
+          {% elsif grouped_collection.title contains '5 x 7 Area Mat' %}
             The Innerweave Area Mat
           {% else %}
           {{ grouped_collection.title | remove: ' |' | default: product.title }}
@@ -469,7 +469,7 @@
                   class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button active" 
                   href="{{ product.url }}"
                 >
-                  {% if product_size == 'XL Area Mat' %}
+                  {% if product_size == '5 x 7 Area Mat' %}
                     <span>Area Mat</span>
                   {% else %}
                   <span>{{ product_size }}</span>
@@ -488,7 +488,7 @@
                     {% else %}
                       <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
                     {% endif %}
-                  {% elsif product_size == 'XL Area Mat' %}
+                  {% elsif product_size == '5 x 7 Area Mat' %}
                     <span class="other-sizes__dimension">5' x 7'</span>
                   {% elsif product_size == 'Area Mat' %}
                     {% if product.handle contains 'innerweave' %}
@@ -530,11 +530,11 @@
                     {% endif %}
 
                     <a 
-                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == 'XL Area Mat'  %}7{% endif %} ;"
+                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == '5 x 7 Area Mat'  %}7{% endif %} ;"
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
                       href="{{ prod_url }}"
                     >
-                      {% if current_size.last == 'XL Area Mat' %}
+                      {% if current_size.last == '5 x 7 Area Mat' %}
                         <span>Area Mat</span>
                       {% else %}
                       <span>{{ current_size.last }}</span>
@@ -554,7 +554,7 @@
                         {% else %}
                           <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
                         {% endif %}
-                      {% elsif current_size.last == 'XL Area Mat' %}
+                      {% elsif current_size.last == '5 x 7 Area Mat' %}
                         <span class="other-sizes__dimension">5' x 7'</span>
                       {% elsif current_size.last == 'Area Mat' %}
                         {% if current_size.first == 'The Innerweave' %}
