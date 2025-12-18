@@ -518,21 +518,20 @@
                   {%- assign alternate_match = "" -%}
 
                   {% for p in block.products %}
-                    {% if p.title contains alternate_match_name %}
+                    {% if p.title == match_name %}
                       {%- assign alternate_match = p -%}
                     {% endif %}
                   {% endfor %}
 
                   {%- if match != blank or alternate_match != blank -%} 
-                    {% assign prod_url = "" %}
-                    {% if match != blank %}
-                      {% assign prod_url = match.first.url %}
-                    {% elsif alternate_match != blank %}
-                      {% assign prod_url = alternate_match.url %}
-                    {% else %}
-                      {% assign prod_url = product.url %}
-                    {% endif %}
+                  {% assign prod_url = blank %}
+                  {% if match != blank %}
+                    {% assign prod_url = match.first.url %}
+                  {% elsif alternate_match != blank %}
+                    {% assign prod_url = alternate_match.url %}
+                  {% endif %}
 
+                  {%- if prod_url != blank and prod_url != product.url -%}
                     <a 
                       style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == '5 x 7 Area Mat'  %}7{% endif %} ;"
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
@@ -576,6 +575,8 @@
                       <span class="other-sizes__dimension">{{ dimension }}</span>
                       {% endcomment %}
                     </a>
+                  {%- endif -%}
+                   
                   {%- endif -%}
                 {%- endfor -%}
               {%- endcapture -%}
