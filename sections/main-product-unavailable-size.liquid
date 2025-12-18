@@ -62,16 +62,18 @@
 
       {%- paginate grouped_collection.products by 100 -%}
         {% for prod in grouped_collection.products %}
+          {% assign prod_title = prod.title %}
           {% assign prod_handle = prod.handle %}
-          {% assign size_parts = size_handle | split: '-' %}
-          {% assign prod_parts = prod_handle | split: '-' %}
-          {% assign matched_size = true %}
+          {% assign prod_parts = prod_title | split: '/' | last | strip | downcase | replace: ' x ', 'x' | replace: ' ', '' %}
+          {% assign size_parts = size_handle
+            | downcase
+            | replace: '-', ''
+          %}
+          {% assign matched_size = false %}
 
-          {% for part in size_parts %}
-            {% unless prod_parts contains part %}
-              {% assign matched_size = false %}
-            {% endunless %}
-          {% endfor %}
+            {% if prod_parts == size_parts %}
+              {% assign matched_size = true %}
+            {% endif %}
 
           {% if prod_handle contains color_handle and matched_size %}
             {% assign matched_product = prod %}
