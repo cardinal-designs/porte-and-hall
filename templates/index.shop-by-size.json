@@ -142,7 +142,7 @@
       "type": "product-carousel-new-2-old",
       "settings": {
         "heading": "Shop our best sellers",
-        "background": "",
+        "background": "#eeefef",
         "show_metafield_style": false,
         "collection": "best-sellers-limited-2",
         "product_card_type": "video_card",
@@ -409,56 +409,6 @@
         "link_text": "shop all",
         "link_url": "shopify://collections/shop-all",
         "button_text": "View Details"
-      }
-    },
-    "44d27af1-3359-4920-b45f-a777de8eced5": {
-      "type": "size-section",
-      "blocks": {
-        "94ab4387-3a89-42b1-8c1e-5bcf90e0d3c2": {
-          "type": "block",
-          "disabled": true,
-          "settings": {
-            "icon_type": "left",
-            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Indoor",
-            "title": "INDOOR DOORMAT"
-          }
-        },
-        "bd92f877-456f-473c-8d14-cd312b5fe488": {
-          "type": "block",
-          "settings": {
-            "icon_type": "left",
-            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats",
-            "title": "DOORMAT"
-          }
-        },
-        "a60ec8c4-7a7f-49b3-872b-15a009e8e7fc": {
-          "type": "block",
-          "settings": {
-            "icon_type": "center",
-            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners",
-            "title": "RUNNER"
-          }
-        },
-        "a3cec467-69ab-4f36-998a-c0f2ada85be5": {
-          "type": "block",
-          "settings": {
-            "icon_type": "right",
-            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats",
-            "title": "AREA MAT"
-          }
-        }
-      },
-      "block_order": [
-        "94ab4387-3a89-42b1-8c1e-5bcf90e0d3c2",
-        "bd92f877-456f-473c-8d14-cd312b5fe488",
-        "a60ec8c4-7a7f-49b3-872b-15a009e8e7fc",
-        "a3cec467-69ab-4f36-998a-c0f2ada85be5"
-      ],
-      "settings": {
-        "custom-class": "home-size-section",
-        "title": "Shop by size",
-        "link_text": "shop all",
-        "link_url": "shopify://collections/shop-all"
       }
     },
     "339880a2-1845-4515-a00b-2483f17bb3c5": {
@@ -1065,7 +1015,6 @@
     "40919de2-f3c2-45da-99ff-c69ad3e95306",
     "fd8fd5d7-6d77-45a1-8718-85dc6bc781d2",
     "cb7443ea-2e0d-49d4-9b54-bb61eac621af",
-    "44d27af1-3359-4920-b45f-a777de8eced5",
     "339880a2-1845-4515-a00b-2483f17bb3c5",
     "16587824044cd3c400",
     "d6a4e5b3-bc8d-47c2-be4d-b259ce228429",

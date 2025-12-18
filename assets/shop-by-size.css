@@ -277,11 +277,6 @@
 }
 
 @media screen and (max-width: 990px){
-  .shop-by-size .page-width {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
   .shop-by-size .shop-by-size__header {
     flex-direction: column;
     margin-bottom: 20px;
@@ -299,15 +294,35 @@
 
   .shop-by-size__section .shop-by-size__navigation {
     margin-bottom: 24px;
+    position: relative;
+    height: 40px;
+    overflow: visible;
   }
 
   .shop-by-size__section .shop-by-size__navigation ul {
     justify-content: start;
     gap: 10px;
+    position: absolute;
+    width: 100vw;
+    overflow-x: auto;
+    margin-left: -20px;
+  }
+
+  .shop-by-size__section .shop-by-size__navigation ul::-webkit-scrollbar{
+    display: none;
+  }
+
+  .shop-by-size__section .shop-by-size__navigation ul li:first-of-type {
+    padding-left: 20px;
+  }
+
+  .shop-by-size__section .shop-by-size__navigation ul li:last-of-type {
+    padding-right: 20px;
+    display: block;
   }
 
   .shop-by-size__section .shop-by-size__navigation ul li a {
-    padding: 12px 20px;
+    padding: 12px;
     white-space: nowrap;
   }
 
