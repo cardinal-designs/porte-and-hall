@@ -1,8 +1,9 @@
 {% style %}
-  {% if true %}{% endif %}
+  {% if template.suffix == 'shop-by-size'%}
+    background-color: none !important;
+  {% endif %}
 {% endstyle %}
 
-{{ template.name }} - {{ template.suffix }}
 <section id="section-{{ section.id }}" class="section icons-with-text {{ section.settings.custom-class }}">
      <div class="icon-container">
         <div class="icon-wrapper">
