@@ -32,6 +32,9 @@
     },
     "main_collection_banner_3m9A4P": {
       "type": "main-collection-banner",
+      "custom_css": [
+        ".collection-hero__description{margin:0;padding:0;}"
+      ],
       "name": "t:sections.main-collection-banner.name",
       "settings": {
         "show_collection_description": true,
