@@ -136,17 +136,21 @@
     <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
     <script src="{{ 'ScrollToPlugin.min.js' | asset_url }}" defer></script>
     <script src="{{ 'global.js' | asset_url }}" defer></script>
-    <script data-lazy-scr="{{ 'custom.js' | asset_url }}" defer></script>
+    <script data-lazy-src="{{ 'custom.js' | asset_url }}" defer></script>
 
     <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
 
-    {%- assign content_for_header = content_for_header | replace: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'" -%}
-
+    {% # theme-check-disable %}
+    {%- liquid
+      assign content_for_header = content_for_header | replace_first: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'"
+      assign content_for_header = content_for_header | replace_first: "src='https://cdn.shopify.com/shopifycloud/preview-bar/preview-bar-modules.js'", "data-lazy-src='https://cdn.shopify.com/shopifycloud/preview-bar/preview-bar-modules.js'"
+    -%}
     {{ content_for_header }}
+    {% # theme-check-enable %}
     
     <!-- BEGIN PRIVY WIDGET CODE -->
 	<script type='text/javascript'> var _d_site = _d_site || 'C944B2C24A5E6353CEBE51B6'; </script>
-	<script src='https://widget.privy.com/assets/widget.js' defer="defer"></script>
+	<script data-lazy-src='https://widget.privy.com/assets/widget.js' defer="defer"></script>
 	<!-- END PRIVY WIDGET CODE -->
     <style>
     #privy-container #privy-inner-container [tabindex]:focus {
@@ -188,7 +192,7 @@
           var o={ti:"97168087", enableAutoSpaTracking: true};
           o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")
         },
-        n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function()
+        n=d.createElement(t),n.dataset.lazySrc=r,n.async=1,n.onload=n.onreadystatechange=function()
         {
           var s=this.readyState;
           s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)
@@ -219,11 +223,11 @@
             h._hjSettings={hjid:6477450,hjsv:6};
             a=o.getElementsByTagName('head')[0];
             r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            r.dataset.lazySrc=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
-
+    {%- render 'head-scripts-loader' -%}
   </head>
 
   <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
@@ -420,7 +424,7 @@
       }
     </style>
 
-    <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+    <script data-lazy-src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
         type="text/javascript"
         charset="UTF-8"
         data-domain-script="392ca035-48a4-413f-b3b6-5ee77c589497"

@@ -1,0 +1,33 @@
+<script>
+  (() => {
+    const scriptsToDefer = [
+      'bda62cc92w68dfea28pcf9825a4m392e00d0m.js',
+      '/gtag/js',
+      'gtm.js',
+      'cdn.attn.tv',
+    ];
+    let isScriptsLoaded = false;
+
+    window.addEventListener('third-party-scripts-loaded', () => {
+      isScriptsLoaded = true;
+    });
+
+    const originalAppendChild = document.head.appendChild;
+
+    document.head.appendChild = function (element) {
+      if (!isScriptsLoaded && element.tagName === 'SCRIPT') {
+        const src = element.getAttribute('src') || '';
+
+        for (const scriptName of scriptsToDefer) {
+          if (src.includes(scriptName)) {
+            element.dataset.lazySrc = src;
+            element.removeAttribute('src');
+            break;
+          }
+        }
+      }
+
+      return originalAppendChild.call(this, element);
+    };
+  })();
+</script>
