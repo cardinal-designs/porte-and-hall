@@ -45,7 +45,7 @@
               echo value | escape
               echo "'"
               echo "style='background-image: url("
-              echo swatch_file_name | file_url
+              echo swatch_file_name | file_img_url: '60x60'
               echo ")' data-tooltip='"
               echo value | escape
               echo "'></a>"
@@ -206,7 +206,7 @@
     {% unless template.suffix == 'last-chance' %}
     <div class="product-card__swatches">
       {% if active_swatch != blank %}
-        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" aria-label="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | file_url }})"></a>
+        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" aria-label="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | file_img_url: '60x60' }})"></a>
       {% endif %}
       {{ color_swatch_list }}
     </div>

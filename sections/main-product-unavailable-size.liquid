@@ -107,7 +107,7 @@
           data-tooltip="{{ color | escape }}"
           style="{% unless product_available %}cursor: pointer;{% endunless %}"
         >
-          <span style="background-image: url({{ swatch_file_name | file_url }});"></span>
+          <span style="background-image: url({{ swatch_file_name | file_img_url: '60x60' }});"></span>
         </a>
       {% else %}
         <span 
@@ -115,7 +115,7 @@
           data-tooltip="{{ color | escape }}"
           data-color-handle="{{ color | handle }}"
         >
-          <span style="background-image: url({{ swatch_file_name | file_url }});"></span>
+          <span style="background-image: url({{ swatch_file_name | file_img_url: '60x60' }});"></span>
         </span>
       {% endif %}
     {% endif %}
@@ -1087,9 +1087,11 @@
   
   var span = document.getElementsByClassName("close")[0];
   
-  btn.onclick = function() {
-    modal.classList.add("open");
-    body.classList.add("open");
+  if(btn) {
+    btn.onclick = function() {
+      modal.classList.add("open");
+      body.classList.add("open");
+    }
   }
   
   span.onclick = function() {

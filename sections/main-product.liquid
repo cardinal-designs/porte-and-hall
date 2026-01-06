@@ -1129,12 +1129,13 @@
   } else if (!!document.getElementById("btnhomeModal2")) {
     var btn = document.getElementById("btnhomeModal2");
   }
-  
   var span = document.getElementsByClassName("close")[0];
   
-  btn.onclick = function() {
-    modal.classList.add("open");
-    body.classList.add("open");
+  if(btn) {
+    btn.onclick = function() {
+      modal.classList.add("open");
+      body.classList.add("open");
+    }
   }
   
   span.onclick = function() {

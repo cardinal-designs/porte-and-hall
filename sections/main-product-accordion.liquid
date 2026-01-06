@@ -1111,10 +1111,13 @@
   
   var span = document.getElementsByClassName("close")[0];
   
-  btn.onclick = function() {
-    modal.classList.add("open");
-    body.classList.add("open");
+  if(btn) {
+    btn.onclick = function() {
+      modal.classList.add("open");
+      body.classList.add("open");
+    }
   }
+ 
   
   span.onclick = function() {
     modal.classList.remove("open");
