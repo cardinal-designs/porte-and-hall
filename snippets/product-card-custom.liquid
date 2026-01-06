@@ -111,7 +111,28 @@
         </div> -->
         {% endif %}
       </a>
+
+      {%- if show_product_badge -%}
+          {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
+            <div class="product-card__image-label body-xs visible-on-image">
+              {{ product_card_product.first_available_variant.metafields.custom.use }}
+            </div>
+          {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
+            <div class="product-card__image-label body-xs visible-on-image">
+              Indoor/Outdoor
+            </div>
+          {% elsif lowercase_tags contains 'indoor' %}
+            <div class="product-card__image-label body-xs visible-on-image">
+              Indoor
+            </div>
+          {% elsif lowercase_tags contains 'outdoor' %}
+            <div class="product-card__image-label body-xs visible-on-image">
+              Outdoor
+            </div>
+          {% endif %}
+      {%- endif -%}
     </div>
+
     {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
 
         <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">

@@ -1,3 +1,11 @@
+{% style %}
+  {% if template.suffix == 'shop-by-size'%}
+    .section.icons-with-text.home-icon-with-text {
+    background-color: unset !important;
+  }
+  {% endif %}
+{% endstyle %}
+
 <section id="section-{{ section.id }}" class="section icons-with-text {{ section.settings.custom-class }}">
      <div class="icon-container">
         <div class="icon-wrapper">
