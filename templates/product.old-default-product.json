@@ -1,1 +1,292 @@
-{"sections":{"main":{"type":"main-product","settings":{"collection":"{{ product.metafields.custom.collection_for_metafield_content.value }}","materials":"{{ section.settings.collection.metafields.custom.materials | metafield_tag }}","care":"{{ section.settings.collection.metafields.custom.care | metafield_tag }}","hide_pinterest":false,"hide_dimensions":false,"text_dimensions":false,"hide_shop_other":false,"hide_quantity":false,"shop_more_below":false}},"other-sizes":{"type":"product-shop-other-sizes","settings":{}},"logo-marquee":{"type":"logo-marquee","blocks":{"50d28991-9949-425a-8be2-904babebbf3d":{"type":"logo","settings":{"svg":"<img width=\"146\" height=\"30\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"}},"149c1817-ad42-4e33-9606-3fdd86617b59":{"type":"logo","settings":{"svg":"<img width=\"242\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Better_homes.svg?v=1613389157\" alt=\"logo\">"}},"c601b093-74e6-4c97-9b9f-e92dbbc1954b":{"type":"logo","settings":{"svg":"<img width=\"143\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"}},"525c8d7f-3fd8-424a-9bb9-796fe7acd9b9":{"type":"logo","settings":{"svg":"<img width=\"100\" height=\"25\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"}},"3a0ca646-6b8d-40f7-bad1-95beb0f48c38":{"type":"logo","settings":{"svg":"<img width=\"146\" height=\"30\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"}},"7776a47e-3b45-4168-a62f-1ed5450e55e4":{"type":"logo","settings":{"svg":"<img width=\"242\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Better_homes.svg?v=1613389157\" alt=\"logo\">"}},"75cd2c0e-3721-428e-9a94-ab9ee0f2702a":{"type":"logo","settings":{"svg":"<img width=\"143\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"}},"e94d2efd-9517-44b1-ae3f-3c3ce149ac5f":{"type":"logo","settings":{"svg":"<img width=\"100\" height=\"25\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"}}},"block_order":["50d28991-9949-425a-8be2-904babebbf3d","149c1817-ad42-4e33-9606-3fdd86617b59","c601b093-74e6-4c97-9b9f-e92dbbc1954b","525c8d7f-3fd8-424a-9bb9-796fe7acd9b9","3a0ca646-6b8d-40f7-bad1-95beb0f48c38","7776a47e-3b45-4168-a62f-1ed5450e55e4","75cd2c0e-3721-428e-9a94-ab9ee0f2702a","e94d2efd-9517-44b1-ae3f-3c3ce149ac5f"],"settings":{"background_color":"#d8d3c7"}},"design-details":{"type":"design-detail-arrows","settings":{"heading":""}},"see-in-action":{"type":"see-it-in-action","settings":{"collection":"{{ product.metafields.custom.collection_for_metafield_content.value }}","heading":"<p>{{ section.settings.collection.metafields.custom.collage_inspo_section_title | metafield_tag }}<\/p>","text":"<p>{{ section.settings.collection.metafields.custom.collage_inspo_subhead | metafield_tag }}<\/p>","link":"shopify:\/\/pages\/ideas-inspiration","link_text":"Get more inspiration >","bg_color":"{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}"}},"styling-tips":{"type":"styling-tips","settings":{"heading":"Our founder Stafford's styling tips","image":"shopify:\/\/shop_images\/Stafford_and_dog_1_2x_8d4ed32a-5883-4611-bf23-c1cc022cb717.png"}},"see-the-difference":{"type":"see-the-difference","settings":{"colleciton":"{{ product.metafields.custom.collection_for_metafield_content.value }}","heading":"Small mat, big difference","text":"{{ section.settings.colleciton.metafields.custom.see_the_difference_subhead.value }}","before-label":"Before","after-label":"After"}},"faq":{"type":"faq","blocks":{"question_1":{"type":"faq","repeater":"{{ section.settings.collection.metafields.custom.faqs.value }}","settings":{"title":"{{ block.repeater.question.value }}","title_richtext":"","answer":"{{ block.repeater.answer | metafield_tag }}"}}},"block_order":["question_1"],"settings":{"heading":"","anchor":"","collection":"{{ product.metafields.custom.collection_for_metafield_content.value }}"}},"17180852712e9dff0e":{"type":"apps","blocks":{"judge_me_reviews_review_widget_JikdwE":{"type":"shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8","settings":{}}},"block_order":["judge_me_reviews_review_widget_JikdwE"],"settings":{"include_margins":true,"heading":"","section_reviews":true}},"reviews":{"type":"reviews","disabled":true,"settings":{"heading":""}},"168172537899ce8b94":{"type":"apps","disabled":true,"settings":{"include_margins":true,"heading":"Rave Reviews","section_reviews":true}},"you-may-like":{"type":"main-product-carousel","settings":{"heading":"Never miss a mat. There's more to see!","background":"","show_metafield_style":false,"collection":"shop-all","button_text":"Shop now"}},"fan-motif":{"type":"fan-motif-section","settings":{"hide_desktop":false,"hide_mobile":false,"color":"green","alignment":"left","heading":"First impressions matter.\nFor both you and your visitors.","text":"Just like a clean desk or freshly-made bed, coming home to a beautiful and functional entryway is restorative and uplifting. We aim to turn these often ovelooked areas of our homes into inspired areas that welcome and invite us home.","link":"shopify:\/\/pages\/about-us","link_text":"LEARN MORE ABOUT US","image":"shopify:\/\/shop_images\/door_illustration.png"}},"featured-articles":{"type":"featured-articles","blocks":{"140e3c63-9b99-476d-9378-53fd1ce30b89":{"type":"article","settings":{"article":"news\/best-doormat-for-your-home"}},"faf6f395-3915-4f58-b2c5-acd839476fc2":{"type":"article","settings":{"article":"news\/the-view-from-my-porch"}},"cc9c34ec-5a8d-4a24-9b5f-20963c337e23":{"type":"article","settings":{"article":"news\/why-pay-more-for-a-doormat"}}},"block_order":["140e3c63-9b99-476d-9378-53fd1ce30b89","faf6f395-3915-4f58-b2c5-acd839476fc2","cc9c34ec-5a8d-4a24-9b5f-20963c337e23"],"settings":{"heading":"Hit the ground stunning:\nThe Porte + Hall blog","background":"","blog":"news","show_recent_articles":true}}},"order":["main","other-sizes","logo-marquee","design-details","see-in-action","styling-tips","see-the-difference","faq","17180852712e9dff0e","reviews","168172537899ce8b94","you-may-like","fan-motif","featured-articles"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs_CDHaxF": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "#f4f2ee",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
+        "materials": "{{ section.settings.collection.metafields.custom.materials | metafield_tag }}",
+        "care": "{{ section.settings.collection.metafields.custom.care | metafield_tag }}",
+        "hide_pinterest": false,
+        "hide_dimensions": false,
+        "text_dimensions": false,
+        "hide_shop_other": false,
+        "hide_quantity": false,
+        "shop_more_below": false
+      }
+    },
+    "other-sizes": {
+      "type": "product-shop-other-sizes",
+      "settings": {}
+    },
+    "logo-marquee": {
+      "type": "logo-marquee",
+      "blocks": {
+        "50d28991-9949-425a-8be2-904babebbf3d": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"146\" height=\"30\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
+          }
+        },
+        "149c1817-ad42-4e33-9606-3fdd86617b59": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"242\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Better_homes.svg?v=1613389157\" alt=\"logo\">"
+          }
+        },
+        "c601b093-74e6-4c97-9b9f-e92dbbc1954b": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"143\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
+          }
+        },
+        "525c8d7f-3fd8-424a-9bb9-796fe7acd9b9": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"100\" height=\"25\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
+          }
+        },
+        "3a0ca646-6b8d-40f7-bad1-95beb0f48c38": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"146\" height=\"30\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
+          }
+        },
+        "7776a47e-3b45-4168-a62f-1ed5450e55e4": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"242\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Better_homes.svg?v=1613389157\" alt=\"logo\">"
+          }
+        },
+        "75cd2c0e-3721-428e-9a94-ab9ee0f2702a": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"143\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
+          }
+        },
+        "e94d2efd-9517-44b1-ae3f-3c3ce149ac5f": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"100\" height=\"25\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
+          }
+        }
+      },
+      "block_order": [
+        "50d28991-9949-425a-8be2-904babebbf3d",
+        "149c1817-ad42-4e33-9606-3fdd86617b59",
+        "c601b093-74e6-4c97-9b9f-e92dbbc1954b",
+        "525c8d7f-3fd8-424a-9bb9-796fe7acd9b9",
+        "3a0ca646-6b8d-40f7-bad1-95beb0f48c38",
+        "7776a47e-3b45-4168-a62f-1ed5450e55e4",
+        "75cd2c0e-3721-428e-9a94-ab9ee0f2702a",
+        "e94d2efd-9517-44b1-ae3f-3c3ce149ac5f"
+      ],
+      "settings": {
+        "background_color": "#d8d3c7"
+      }
+    },
+    "design-details": {
+      "type": "design-detail-arrows",
+      "settings": {
+        "heading": ""
+      }
+    },
+    "see-in-action": {
+      "type": "see-it-in-action",
+      "settings": {
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
+        "heading": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_section_title | metafield_tag }}</p>",
+        "text": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_subhead | metafield_tag }}</p>",
+        "link": "shopify://pages/ideas-inspiration",
+        "link_text": "Get more inspiration >",
+        "bg_color": "{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}",
+        "hide_mobile": false
+      }
+    },
+    "styling-tips": {
+      "type": "styling-tips",
+      "settings": {
+        "heading": "Our founder Stafford's styling tips",
+        "image": "shopify://shop_images/Stafford_and_dog_1_2x_8d4ed32a-5883-4611-bf23-c1cc022cb717.png",
+        "hide_mobile": false
+      }
+    },
+    "see-the-difference": {
+      "type": "see-the-difference",
+      "settings": {
+        "colleciton": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
+        "heading": "Small mat, big difference",
+        "text": "{{ section.settings.colleciton.metafields.custom.see_the_difference_subhead.value }}",
+        "before-label": "Before",
+        "after-label": "After"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "question_1": {
+          "type": "faq",
+          "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
+          "settings": {
+            "title": "{{ block.repeater.question.value }}",
+            "title_richtext": "",
+            "answer": "{{ block.repeater.answer | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "question_1"
+      ],
+      "settings": {
+        "heading": "",
+        "anchor": "",
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
+      }
+    },
+    "17180852712e9dff0e": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_JikdwE": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_JikdwE"
+      ],
+      "settings": {
+        "include_margins": true,
+        "heading": "",
+        "section_reviews": true
+      }
+    },
+    "reviews": {
+      "type": "reviews",
+      "disabled": true,
+      "settings": {
+        "heading": ""
+      }
+    },
+    "168172537899ce8b94": {
+      "type": "apps",
+      "disabled": true,
+      "settings": {
+        "include_margins": true,
+        "heading": "Rave Reviews",
+        "section_reviews": true
+      }
+    },
+    "you-may-like": {
+      "type": "main-product-carousel",
+      "settings": {
+        "heading": "Never miss a mat. There's more to see!",
+        "background": "",
+        "show_metafield_style": false,
+        "collection": "shop-all",
+        "button_text": "Shop now",
+        "bottom_button_text": "",
+        "bottom_button_link": ""
+      }
+    },
+    "fan-motif": {
+      "type": "fan-motif-section",
+      "settings": {
+        "hide_desktop": false,
+        "hide_mobile": false,
+        "color": "green",
+        "alignment": "left",
+        "heading": "First impressions matter.\nFor both you and your visitors.",
+        "text": "Just like a clean desk or freshly-made bed, coming home to a beautiful and functional entryway is restorative and uplifting. We aim to turn these often ovelooked areas of our homes into inspired areas that welcome and invite us home.",
+        "link": "shopify://pages/about-us",
+        "link_text": "LEARN MORE ABOUT US",
+        "image": "shopify://shop_images/door_illustration.png",
+        "show_faq": true,
+        "title_1": "",
+        "title_richtext_1": "",
+        "answer_1": "",
+        "title_2": "",
+        "title_richtext_2": "",
+        "answer_2": "",
+        "title_3": "",
+        "title_richtext_3": "",
+        "answer_3": ""
+      }
+    },
+    "featured-articles": {
+      "type": "featured-articles",
+      "blocks": {
+        "140e3c63-9b99-476d-9378-53fd1ce30b89": {
+          "type": "article",
+          "settings": {
+            "article": "news/best-doormat-for-your-home"
+          }
+        },
+        "faf6f395-3915-4f58-b2c5-acd839476fc2": {
+          "type": "article",
+          "settings": {
+            "article": "news/the-view-from-my-porch"
+          }
+        },
+        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23": {
+          "type": "article",
+          "settings": {
+            "article": "news/why-pay-more-for-a-doormat"
+          }
+        }
+      },
+      "block_order": [
+        "140e3c63-9b99-476d-9378-53fd1ce30b89",
+        "faf6f395-3915-4f58-b2c5-acd839476fc2",
+        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23"
+      ],
+      "settings": {
+        "heading": "Hit the ground stunning:\nThe Porte + Hall blog",
+        "background": "",
+        "blog": "news",
+        "show_recent_articles": true,
+        "hide_mobile": false
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs_CDHaxF",
+    "main",
+    "other-sizes",
+    "logo-marquee",
+    "design-details",
+    "see-in-action",
+    "styling-tips",
+    "see-the-difference",
+    "faq",
+    "17180852712e9dff0e",
+    "reviews",
+    "168172537899ce8b94",
+    "you-may-like",
+    "fan-motif",
+    "featured-articles"
+  ]
+}

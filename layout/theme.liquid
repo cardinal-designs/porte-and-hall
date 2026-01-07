@@ -447,6 +447,156 @@
      .ot-floating-button__front {visibility: hidden;}
    {% endstyle %}
    <script src="{{ 'optimization.js' | asset_url }}" defer></script>
+
+{% if request.page_type != 'index' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ shop.url }}"
+    }
+    {% if request.page_type == 'collection' %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ collection.title }}",
+      "item": "{{ collection.url | prepend: shop.url }}"
+    }
+    {% elsif request.page_type == 'product' %}
+    {% if product.collections.size > 0 %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ product.collections.first.title }}",
+      "item": "{{ product.collections.first.url | prepend: shop.url }}"
+    }
+    {% endif %}
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ product.title }}",
+      "item": "{{ product.url | prepend: shop.url }}"
+    }
+    {% elsif request.page_type == 'page' %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ page.title }}",
+      "item": "{{ page.url | prepend: shop.url }}"
+    }
+    {% elsif request.page_type == 'article' %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ blog.title }}",
+      "item": "{{ blog.url | prepend: shop.url }}"
+    }
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ article.title }}",
+      "item": "{{ article.url | prepend: shop.url }}"
+    }
+    {% endif %}
+  ]
+}
+</script>
+{% endif %}
+
+{% if template.name == 'article' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ shop.url }}{{ article.url }}"
+  },
+  "headline": "{{ article.title | escape }}",
+  "description": "{{ article.content | strip_html | escape }}",
+  "image": [
+    {% if article.image %}
+      "{{ article.image | img_url: 'master' }}"
+    {% endif %}
+  ],
+  "author": {
+    "@type": "Person",
+    "name": {{ article.author | json }},
+    "url": "{{ article.url }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ shop.name | escape }}"
+  },
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}",
+  "dateModified": "{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}"
+}
+</script>
+{% endif %}
+
+
+
+
+{% if template == 'index' %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": {{ shop.name | json }},
+  "image": {{ shop.brand.logo | img_url: '300x' | prepend: 'https:' | json }},
+  "@id": {{ shop.url | json }},
+  "url": {{ shop.url | json }},
+  "description": {{ shop.description | default: "Your trusted online store." | strip_html | json }},
+  "openingHours": "Mo-Su 00:00-23:59",
+  "telephone": {{ shop.phone | json }},
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ shop.address.street | json }},
+    "addressLocality": {{ shop.address.city | json }},
+    "addressRegion": {{ shop.address.province | json }},
+    "postalCode": {{ shop.address.zip | json }},
+    "addressCountry": {{ shop.address.country | json }}
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": {{ shop.phone | json }},
+    "contactType": "Customer Service",
+    "areaServed": "US",
+    "availableLanguage": ["English"]
+  },
+  "sameAs": [
+    "https://www.instagram.com/porteandhall/",
+    "https://www.facebook.com/porteandhall",
+    "https://www.pinterest.com/porchandhall/_created/"
+  ],
+  "priceRange": "$$",
+  "paymentAccepted": "Visa, Master Card, PayPal",
+  "currenciesAccepted": {{ shop.currency | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ shop.url }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.81",
+    "reviewCount": "241"
+  }
+  
+}
+</script>
+
+
+{% endif %}
+
+
   </body>
 </html>
 

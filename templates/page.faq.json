@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "breadcrumbs_YaNTz7": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "main": {
       "type": "main-page",
       "settings": {
@@ -356,6 +367,7 @@
     }
   },
   "order": [
+    "breadcrumbs_YaNTz7",
     "main",
     "c2edffab-900a-444c-9814-5d168e3a79fa",
     "30a17b90-f055-4dc2-b0f1-33ee82ab7faf",

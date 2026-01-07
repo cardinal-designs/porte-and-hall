@@ -1,7 +1,7 @@
 <div class="page-width">
    <header class="SectionHeader">
     {%- if section.settings.title != blank -%}
-      <h4 class="SectionHeader__Heading">{{ section.settings.title }}</h4>
+      <h2 class="SectionHeader__Heading">{{ section.settings.title }}</h2>
     {%- endif -%}
     {%- if section.settings.link_text != blank -%}
       <div class="link-div"><a href="{{ section.settings.link_url }}" class="Link Link--underline">{{ section.settings.link_text | escape }}</a></div>

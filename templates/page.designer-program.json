@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "breadcrumbs_yG68eF": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -269,6 +280,7 @@
   "order": [
     "main",
     "designer_trade_program_zrdttM",
+    "breadcrumbs_yG68eF",
     "designer_how_it_work_xgLzzt",
     "designer_program_founder_bKR69z",
     "designer_how_support_c8WabR",
