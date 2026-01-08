@@ -965,8 +965,40 @@
         "9872b365-4195-4285-ad63-7b67295da6f8",
         "ab14687b-0e98-49dd-a2fb-cfcc6c9ce9f3"
       ],
+      "disabled": true,
       "settings": {
         "title": "<p>@<a href=\"https://www.instagram.com/porteandhall/\" target=\"_blank\" title=\"https://www.instagram.com/porteandhall/\">porteandhall</a></p>"
+      }
+    },
+    "17679084224c371b9a": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_Q8rTMK": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "@porteandhall",
+            "title_color": "#546B82",
+            "title_size_v2": 28,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_Q8rTMK"
+      ],
+      "settings": {
+        "include_margins": true,
+        "heading": "",
+        "section_reviews": true
       }
     }
   },
@@ -994,6 +1026,7 @@
     "16946940833216dae7",
     "0de7e396-a909-4e48-b29c-f16f301ca77b",
     "401485ce-1e85-48de-9a73-3a8fb67a190f",
-    "20c1feb9-4e08-4fa2-923e-830e36370086"
+    "20c1feb9-4e08-4fa2-923e-830e36370086",
+    "17679084224c371b9a"
   ]
 }
