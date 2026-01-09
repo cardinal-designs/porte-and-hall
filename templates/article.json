@@ -1,5 +1,25 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "breadcrumbs_FQwji8": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "#f4f2ee",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "main": {
       "type": "main-article",
       "blocks": {
@@ -24,8 +44,7 @@
         },
         "content": {
           "type": "content",
-          "settings": {
-          }
+          "settings": {}
         }
       },
       "block_order": [
@@ -34,31 +53,31 @@
         "share",
         "content"
       ],
-      "settings": {
-      }
+      "settings": {}
     },
     "871110c3-a031-42d2-b535-7fa826cfcd6d": {
       "type": "article-carousel",
       "settings": {
-        "heading": "<p>Gallery<\/p>"
+        "heading": "<p>Gallery</p>"
       }
     },
     "02771468-30cb-4ed0-a1fe-67d7222c60ff": {
       "type": "shop-the-story",
       "settings": {
-        "heading": "<p>Shop the story<\/p>",
+        "heading": "<p>Shop the story</p>",
         "show_color_swatch": true
       }
     },
     "412efa0f-cb99-4079-b7e3-0bb3c54c83bd": {
       "type": "related-article",
       "settings": {
-        "heading": "<p>Read more articles<\/p>",
+        "heading": "<p>Read more articles</p>",
         "show_color_swatch": true
       }
     }
   },
   "order": [
+    "breadcrumbs_FQwji8",
     "main",
     "871110c3-a031-42d2-b535-7fa826cfcd6d",
     "02771468-30cb-4ed0-a1fe-67d7222c60ff",

@@ -45,7 +45,7 @@
               echo value | escape
               echo "'"
               echo "style='background-image: url("
-              echo swatch_file_name | file_url
+              echo swatch_file_name | file_img_url: '60x60'
               echo ")' aria-label='Color swatcher' data-tooltip='"
               echo value | escape
               echo "'></a>"
@@ -96,7 +96,7 @@
         {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "Product image", widthI: 500, heightI: 500 %}
         {% endcomment %}
         {% if custom_image != blank %}
-          {% render 'lazy-image', image: custom_image, fade: true, classes: 'img-fill', aria-label: "Custom product image", widthI: 320, heightI: 320 %}
+          {% render 'lazy-image', image: custom_image, fade: true, classes: 'img-fill', aria-label: "Custom product image", widthI: 500, heightI: 500 %}
         {% elsif product_card_product.media[1] != null %}
           {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill', aria-label: "Product image", widthI: 500, heightI: 500 %}          
         {% endif %}
@@ -111,7 +111,28 @@
         </div> -->
         {% endif %}
       </a>
+
+      {%- if show_product_badge -%}
+          {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
+            <div class="product-card__image-label body-xs visible-on-image">
+              {{ product_card_product.first_available_variant.metafields.custom.use }}
+            </div>
+          {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
+            <div class="product-card__image-label body-xs visible-on-image">
+              Indoor/Outdoor
+            </div>
+          {% elsif lowercase_tags contains 'indoor' %}
+            <div class="product-card__image-label body-xs visible-on-image">
+              Indoor
+            </div>
+          {% elsif lowercase_tags contains 'outdoor' %}
+            <div class="product-card__image-label body-xs visible-on-image">
+              Outdoor
+            </div>
+          {% endif %}
+      {%- endif -%}
     </div>
+
     {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
 
         <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
@@ -176,7 +197,7 @@
     {% unless template.suffix == 'last-chance' %}
     <div class="product-card__swatches">
       {% if active_swatch != blank %}
-        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" aria-label="{{ active_swatch_tooltip_value }}" style="background-image: url({{ active_swatch_file_name | file_url }})"></a>
+        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" aria-label="{{ active_swatch_tooltip_value }}" style="background-image: url({{ active_swatch_file_name | file_img_url: '60x60' }})"></a>
       {% endif %}
       {{ color_swatch_list }}
     </div>

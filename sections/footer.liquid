@@ -90,7 +90,7 @@
 
       <div class="footer__newsletter">
         {% if section.settings.newsletter_heading != blank %}
-          <h3 class="footer__heading">{{ section.settings.newsletter_heading | escape }}</h3>
+          <p class="footer__heading h3">{{ section.settings.newsletter_heading | escape }}</p>
         {% endif %}
 
         {% if section.settings.newsletter_text != blank %}

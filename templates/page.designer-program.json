@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "breadcrumbs_yG68eF": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -162,7 +173,7 @@
       "settings": {
         "title": "Send Your Client a Special Thanks",
         "description": "The perfect way to wrap up that big project and show your client gratitude? With a mat from our most premium collection: The Porter. We’ll send it their way in pretty packaging, with a personalized note attached.",
-        "image": "shopify://shop_images/PDP_gifting_block_2x_7bfe6848-a029-49be-94ca-3b75e3a364da.png",
+        "image": "shopify://shop_images/Gift_Porter_Dusterbag.jpg",
         "image_alt": "Personalized mat image",
         "overlay_text": ""
       }
@@ -269,6 +280,7 @@
   "order": [
     "main",
     "designer_trade_program_zrdttM",
+    "breadcrumbs_yG68eF",
     "designer_how_it_work_xgLzzt",
     "designer_program_founder_bKR69z",
     "designer_how_support_c8WabR",

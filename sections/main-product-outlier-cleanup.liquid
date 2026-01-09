@@ -86,7 +86,7 @@
 %}
 
 {% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
-<section class="page-width">
+<section class="page-width xtcleanup">
   <div class="product">
     <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
       {{ 'accessibility.skip_to_product_info' | t }}
@@ -1030,9 +1030,11 @@
   
   var span = document.getElementsByClassName("close")[0];
   
-  btn.onclick = function() {
-    modal.classList.add("open");
-    body.classList.add("open");
+  if(btn) {
+    btn.onclick = function() {
+      modal.classList.add("open");
+      body.classList.add("open");
+    }
   }
   
   span.onclick = function() {

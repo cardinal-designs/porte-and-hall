@@ -30,6 +30,12 @@ html {
   -moz-osx-font-smoothing: antialiased;
 }
 
+html:not(.third-party-scripts-loaded) #onetrust-consent-sdk,
+html:not(.third-party-scripts-loaded) .bx-shroud,
+html:not(.third-party-scripts-loaded) .bx-slab {
+  display: none !important;
+}
+
 body.scroll-lock {
   overflow: hidden;
 }

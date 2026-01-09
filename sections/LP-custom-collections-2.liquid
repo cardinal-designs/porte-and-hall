@@ -78,7 +78,7 @@
     display:none;
   }
 
-  .collection-row .collection-col h6{
+  .collection-row .collection-col h6, .collection-row .collection-col h3{
     color: #30383D;
     font-size: 32px;
     line-height: 36px;
@@ -87,6 +87,7 @@
     position:relative;
     font-weight: 500;
     font-family: louize;
+    text-transform:none;
   }
   .collection-row .collection-col .badge{
     border-radius: 34px;
@@ -342,9 +343,10 @@
   }
 
   @media (max-width:768px){
-     .collection-row .collection-col h6 {
+     .collection-row .collection-col h6, .collection-row .collection-col h3 {
        font-size:20px !important;
        margin: 0px 0 0px;
+       text-transform:none;
     }
   }
 
@@ -490,8 +492,9 @@
       justify-content: space-between;
     }
 
-    .collection-row .collection-col h6 {
+    .collection-row .collection-col h6, .collection-row .collection-col h3 {
       font-size: 32px !important;
+      text-transform:none;
     }
 
     .hide-medium {
@@ -687,7 +690,7 @@
             <div class="collection-col-inner text">
               <div>
               <div class="title-swatch_container">
-                <h6>{{ block.settings.title }}</h6>
+                <h3>{{ block.settings.title }}</h3>
                 <div class="hide-large swatch_container">
                 {{ color_swatch_list }}
                 </div>

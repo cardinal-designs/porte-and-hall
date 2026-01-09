@@ -10,19 +10,13 @@
       };
     </script>
     <script type="module" blocking="render" fetchpriority="high" src="https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js" async></script>
-    
+   
     <style>
       .main_nav1 {
         opacity: 0.1 !important;
       }
     </style>
     {%- render 'optimization' -%}
-
-    <!-- Start of Shoplift scripts -->
-    {% render 'shoplift' %}
-    {% render 'shoplift-alt-template' %}
-    <!-- End of Shoplift scripts -->
-
     <meta name="google-site-verification" content="IVpP462_ffIVedPbcCOwwr4v0yqczNWKVEY2XNhS4b4" />
     <script data-lazy-src="https://www.googleoptimize.com/optimize.js?id=OPT-WV5FTMC" defer="defer"></script>
     <meta charset="utf-8">
@@ -142,17 +136,21 @@
     <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
     <script src="{{ 'ScrollToPlugin.min.js' | asset_url }}" defer></script>
     <script src="{{ 'global.js' | asset_url }}" defer></script>
-    <script data-lazy-scr="{{ 'custom.js' | asset_url }}" defer></script>
+    <script data-lazy-src="{{ 'custom.js' | asset_url }}" defer></script>
 
     <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
 
-    {%- assign content_for_header = content_for_header | replace: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'" -%}
-
+    {% # theme-check-disable %}
+    {%- liquid
+      assign content_for_header = content_for_header | replace_first: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'"
+      assign content_for_header = content_for_header | replace_first: "src='https://cdn.shopify.com/shopifycloud/preview-bar/preview-bar-modules.js'", "data-lazy-src='https://cdn.shopify.com/shopifycloud/preview-bar/preview-bar-modules.js'"
+    -%}
     {{ content_for_header }}
+    {% # theme-check-enable %}
     
     <!-- BEGIN PRIVY WIDGET CODE -->
 	<script type='text/javascript'> var _d_site = _d_site || 'C944B2C24A5E6353CEBE51B6'; </script>
-	<script src='https://widget.privy.com/assets/widget.js' defer="defer"></script>
+	<script data-lazy-src='https://widget.privy.com/assets/widget.js' defer="defer"></script>
 	<!-- END PRIVY WIDGET CODE -->
     <style>
     #privy-container #privy-inner-container [tabindex]:focus {
@@ -194,7 +192,7 @@
           var o={ti:"97168087", enableAutoSpaTracking: true};
           o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")
         },
-        n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function()
+        n=d.createElement(t),n.dataset.lazySrc=r,n.async=1,n.onload=n.onreadystatechange=function()
         {
           var s=this.readyState;
           s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)
@@ -225,11 +223,11 @@
             h._hjSettings={hjid:6477450,hjsv:6};
             a=o.getElementsByTagName('head')[0];
             r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            r.dataset.lazySrc=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
-
+    {%- render 'head-scripts-loader' -%}
   </head>
 
   <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
@@ -426,7 +424,7 @@
       }
     </style>
 
-    <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+    <script data-lazy-src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
         type="text/javascript"
         charset="UTF-8"
         data-domain-script="392ca035-48a4-413f-b3b6-5ee77c589497"
@@ -449,6 +447,156 @@
      .ot-floating-button__front {visibility: hidden;}
    {% endstyle %}
    <script src="{{ 'optimization.js' | asset_url }}" defer></script>
+
+{% if request.page_type != 'index' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ shop.url }}"
+    }
+    {% if request.page_type == 'collection' %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ collection.title }}",
+      "item": "{{ collection.url | prepend: shop.url }}"
+    }
+    {% elsif request.page_type == 'product' %}
+    {% if product.collections.size > 0 %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ product.collections.first.title }}",
+      "item": "{{ product.collections.first.url | prepend: shop.url }}"
+    }
+    {% endif %}
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ product.title }}",
+      "item": "{{ product.url | prepend: shop.url }}"
+    }
+    {% elsif request.page_type == 'page' %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ page.title }}",
+      "item": "{{ page.url | prepend: shop.url }}"
+    }
+    {% elsif request.page_type == 'article' %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ blog.title }}",
+      "item": "{{ blog.url | prepend: shop.url }}"
+    }
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ article.title }}",
+      "item": "{{ article.url | prepend: shop.url }}"
+    }
+    {% endif %}
+  ]
+}
+</script>
+{% endif %}
+
+{% if template.name == 'article' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ shop.url }}{{ article.url }}"
+  },
+  "headline": "{{ article.title | escape }}",
+  "description": "{{ article.content | strip_html | escape }}",
+  "image": [
+    {% if article.image %}
+      "{{ article.image | img_url: 'master' }}"
+    {% endif %}
+  ],
+  "author": {
+    "@type": "Person",
+    "name": {{ article.author | json }},
+    "url": "{{ article.url }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ shop.name | escape }}"
+  },
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}",
+  "dateModified": "{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}"
+}
+</script>
+{% endif %}
+
+
+
+
+{% if template == 'index' %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": {{ shop.name | json }},
+  "image": {{ shop.brand.logo | img_url: '300x' | prepend: 'https:' | json }},
+  "@id": {{ shop.url | json }},
+  "url": {{ shop.url | json }},
+  "description": {{ shop.description | default: "Your trusted online store." | strip_html | json }},
+  "openingHours": "Mo-Su 00:00-23:59",
+  "telephone": {{ shop.phone | json }},
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ shop.address.street | json }},
+    "addressLocality": {{ shop.address.city | json }},
+    "addressRegion": {{ shop.address.province | json }},
+    "postalCode": {{ shop.address.zip | json }},
+    "addressCountry": {{ shop.address.country | json }}
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": {{ shop.phone | json }},
+    "contactType": "Customer Service",
+    "areaServed": "US",
+    "availableLanguage": ["English"]
+  },
+  "sameAs": [
+    "https://www.instagram.com/porteandhall/",
+    "https://www.facebook.com/porteandhall",
+    "https://www.pinterest.com/porchandhall/_created/"
+  ],
+  "priceRange": "$$",
+  "paymentAccepted": "Visa, Master Card, PayPal",
+  "currenciesAccepted": {{ shop.currency | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ shop.url }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.81",
+    "reviewCount": "241"
+  }
+  
+}
+</script>
+
+
+{% endif %}
+
+
   </body>
 </html>
 

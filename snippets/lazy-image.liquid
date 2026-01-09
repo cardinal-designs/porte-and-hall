@@ -1,40 +1,70 @@
+{% doc %}
+  Renders a responsive, lazy-loaded image with an aspect ratio wrapper.
+
+  @param {object} image - The Shopify image object (required).
+  @param {number} [widthI] - Override for the image width.
+  @param {number} [heightI] - Override for the image height.
+  @param {string} [aria-label] - ARIA label for the image (defaults to "image").
+  @param {string} [classes] - Additional classes for the wrapper div.
+  @param {boolean} [fill] - If true, adds 'img-fill' class to the wrapper.
+  @param {boolean} [blur] - If true, adds 'lazyload--blur' class for a blur-up effect.
+  @param {boolean} [fade] - If true, adds 'lazyload--fade' class for a fade-in effect.
+  @param {number} [forloop_index] - Used to determine if the image should be lazy-loaded (lazy if index > 1).
+  @param {boolean} [prioritize_loading] - If true, sets loading="eager", fetchpriority="high", and preload=true.
+  @param {string} [sizes] - Sizes attribute for the img tag (defaults to "100vw").
+  @param {string} [widths] - Comma-separated list of widths for srcset (defaults to standard set).
+
+  @example
+  {% render 'lazy-image', image: product.featured_image, fade: true, fill: true %}
+{% enddoc %}
+
 {%- liquid
-  assign imgWidth = image.width
-  if widthI != blank
-    assign imgWidth = widthI
+  assign img_width = widthI | default: image.width
+  assign img_height = heightI | default: image.height
+  assign aria_label_val = aria-label | default: 'image'
+  assign sizes_val = sizes | default: '100vw'
+  assign widths_val = widths | default: '165, 360, 535, 750, 1000, 1500, 3000'
+
+  assign loading_val = 'lazy'
+  assign fetchpriority_val = 'auto'
+  assign preload_val = false
+
+  if forloop_index == 1
+    assign loading_val = 'eager'
   endif
 
-  assign imgHeight = image.height
-  if heightI != blank
-    assign imgHeight = heightI
+  if prioritize_loading
+    assign loading_val = 'eager'
+    assign fetchpriority_val = 'high'
+    assign preload_val = true
   endif
 
-  assign ariaLabel = "image"
-  if aria-label != blank
-    assign ariaLabel = aria-label
-  endif
+  capture img_classes
+    echo 'lazyload'
+    if blur
+      echo ' lazyload--blur'
+    endif
+    if fade
+      echo ' lazyload--fade'
+    endif
+  endcapture
 -%}
-{% comment %} <p>{{ imgWidth }}</p> {% endcomment %}
+
 <div
   class="aspect-ratio{% if fill %} img-fill{% endif %} {{ classes }}"
   style="max-width: 100%; width: 100%; --aspect-ratio: {{ image.aspect_ratio }}"
 >
-  
-    <img
-      srcset="{% if image.width >= 165 %}{{ image | image_url: width: 165 }} 165w,{% endif %}
-        {% if image.width >= 535 %}{{ image | image_url: width: 535 }} 535w,{% endif %}
-        {% if image.width >= 750 %}{{ image | image_url: width: 750 }} 750w,{% endif %}
-        {% if image.width >= 1000 %}{{ image | image_url: width: 1000 }} 1000w,{% endif %}
-        {% if image.width >= 1500 %}{{ image | image_url: width: 1500 }} 1500w,{% endif %}
-        {% if image.width >= 3000 %}{{ image | image_url: width: 3000 }} 3000w,{% endif %}
-        {{ image | img_url: 'master' }} {{ image.width }}w"
-      src="{{ image | img_url: '1500x' }}"
-      sizes="100vw"
-      alt="{{ image.alt | escape }}"
-      height="{{ imgHeight }}"
-      width="{{ imgWidth }}"
-      {% if forloop_index > 1 %}loading="lazy"{%endif %}
-      aria-label="{{ ariaLabel }}"
-      class="lazyload{% if blur %} lazyload--blur{% endif %}{% if fade %} lazyload--fade{% endif %}"
-    >
+  {{-
+    image
+    | image_url: width: img_width, height: img_height
+    | image_tag:
+      loading: loading_val,
+      fetchpriority: fetchpriority_val,
+      preload: preload_val,
+      class: img_classes,
+      sizes: sizes_val,
+      widths: widths_val,
+      aria-label: aria_label_val,
+      onload: "this.classList.add('lazyloaded')"
+  -}}
 </div>

@@ -11,7 +11,7 @@
         <div class="faq__item">
           <button class="faq__question body" data-faq="{{ forloop.index }}">
             {% if block.settings.title != blank %}
-              <span>{{ block.settings.title }}</span>
+              <h3>{{ block.settings.title }}</h3>
             {% endif %}
             
             {% if block.settings.title_richtext != blank %}
@@ -32,6 +32,42 @@
     </div>
   </div>
 </div>
+
+
+{% if content_for_header contains '"faq_schema_printed"' %}
+  {% assign faq_schema_already_printed = true %}
+{% else %}
+  {% assign faq_schema_already_printed = false %}
+{% endif %}
+
+{% unless faq_schema_already_printed %}
+  {% capture faq_schema %}"faq_schema_printed": true{% endcapture %}
+  <script>
+    window.faqSchemaPrinted = true;
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {% for block in section.blocks %}
+      {
+        "@type": "Question",
+        "name": {{ block.settings.title | default: block.settings.title_richtext | strip_html | json }},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": {{ block.settings.answer | strip_html | json }}
+        }
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }
+  </script>
+{% endunless %}
+
+
+
 
 
 {% schema %}

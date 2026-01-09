@@ -174,7 +174,7 @@
         <h1 class="product__title blue">
           {% if product.title contains 'Porter' %}
             The Porter Mat
-          {% elsif grouped_collection.title contains 'XL Area Mat' %}
+          {% elsif grouped_collection.title contains '5 x 7 Area Mat' %}
             The Innerweave Area Mat
           {% else %}
           {{ grouped_collection.title | remove: ' |' | default: product.title }}
@@ -281,6 +281,10 @@
         {% if product.metafields.custom.style_text != blank %}
         <p class="style-text__color">{{ product.metafields.custom.style_text }}</p>
         {% endif %}
+
+        <div id="active-color" 
+          data-color="{{ product.options_by_name['Color'].selected_value | default: product.options_by_name['Style'].selected_value }}">
+        </div>
 
         <div class="product__swatches">
           {{ color_swatch_list }}
@@ -490,7 +494,7 @@
                   class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button active" 
                   href="{{ product.url }}"
                 >
-                  {% if product_size == 'XL Area Mat' %}
+                  {% if product_size == '5 x 7 Area Mat' %}
                     <span>Area Mat</span>
                   {% else %}
                   <span>{{ product_size }}</span>
@@ -509,7 +513,7 @@
                     {% else %}
                       <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
                     {% endif %}
-                  {% elsif product_size == 'XL Area Mat' %}
+                  {% elsif product_size == '5 x 7 Area Mat' %}
                     <span class="other-sizes__dimension">5' x 7'</span>
                   {% elsif product_size == 'Area Mat' %}
                     {% if product.handle contains 'innerweave' %}
@@ -535,27 +539,26 @@
                   {%- assign alternate_match = "" -%}
 
                   {% for p in block.products %}
-                    {% if p.title contains alternate_match_name %}
+                    {% if p.title == match_name %}
                       {%- assign alternate_match = p -%}
                     {% endif %}
                   {% endfor %}
 
                   {%- if match != blank or alternate_match != blank -%} 
-                    {% assign prod_url = "" %}
-                    {% if match != blank %}
-                      {% assign prod_url = match.first.url %}
-                    {% elsif alternate_match != blank %}
-                      {% assign prod_url = alternate_match.url %}
-                    {% else %}
-                      {% assign prod_url = product.url %}
-                    {% endif %}
+                  {% assign prod_url = blank %}
+                  {% if match != blank %}
+                    {% assign prod_url = match.first.url %}
+                  {% elsif alternate_match != blank %}
+                    {% assign prod_url = alternate_match.url %}
+                  {% endif %}
 
+                  {%- if prod_url != blank and prod_url != product.url -%}
                     <a 
-                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == 'XL Area Mat'  %}7{% endif %} ;"
+                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == '5 x 7 Area Mat'  %}7{% endif %} ;"
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
                       href="{{ prod_url }}"
                     >
-                      {% if current_size.last == 'XL Area Mat' %}
+                      {% if current_size.last == '5 x 7 Area Mat' %}
                         <span>Area Mat</span>
                       {% else %}
                       <span>{{ current_size.last }}</span>
@@ -575,7 +578,7 @@
                         {% else %}
                           <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
                         {% endif %}
-                      {% elsif current_size.last == 'XL Area Mat' %}
+                      {% elsif current_size.last == '5 x 7 Area Mat' %}
                         <span class="other-sizes__dimension">5' x 7'</span>
                       {% elsif current_size.last == 'Area Mat' %}
                         {% if current_size.first == 'The Innerweave' %}
@@ -594,6 +597,8 @@
                       {% endcomment %}
                     </a>
                   {%- endif -%}
+                   
+                  {%- endif -%}
                 {%- endfor -%}
               {%- endcapture -%}
 
@@ -602,7 +607,7 @@
                 {%- unless other_size_links == blank -%}
                   <div class="other-sizes__wrapper other-sizes__wrapper--other-collections">
                     <span class="other-sizes__label">Size</span> 
-                    <div class="5 other-sizes__wrapper-links">
+                    <div class="other-sizes__wrapper-links">
                       {{ other_size_links }}
                     </div>
                   </div>
@@ -750,7 +755,7 @@
         {% if grouped_collection.metafields.custom.product_features != blank %}
          <div class="accordion">
            <div data-id="1" class="accordion-title">
-             <h3>Features</h3>
+             <h2 class="h3">Features</h2>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="1" class="accordion-content active">
@@ -778,7 +783,7 @@
        
          <div class="accordion">
            <div data-id="2" class="accordion-title">
-             <h3>Materials</h3>
+             <h2 class="h3">Materials</h2>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="2" class="accordion-content">
@@ -793,7 +798,7 @@
         {% if grouped_collection.metafields.custom.dimensions != blank %}
          <div class="accordion">
            <div data-id="3" class="accordion-title">
-             <h3>Dimensions</h3>
+             <h2 class="h3">Dimensions</h2>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="3" class="accordion-content">
@@ -818,7 +823,7 @@
         {% if section.settings.care != blank %}
          <div class="accordion">
            <div data-id="4" class="accordion-title">
-             <h3>Care</h3>
+             <h2 class="h3">Care</h2>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="4" class="accordion-content">
@@ -1127,10 +1132,13 @@
   
   var span = document.getElementsByClassName("close")[0];
   
-  btn.onclick = function() {
-    modal.classList.add("open");
-    body.classList.add("open");
+  if(btn) {
+    btn.onclick = function() {
+      modal.classList.add("open");
+      body.classList.add("open");
+    }
   }
+ 
   
   span.onclick = function() {
     modal.classList.remove("open");
@@ -1154,6 +1162,8 @@
   endif
 %}
 
+
+{% comment %}
 <script type="application/ld+json">
   {
     "@context": "http://schema.org/",
@@ -1190,6 +1200,184 @@
     ]
   }
 </script>
+
+
+"priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": {{ variant.price | divided_by: 100.00 | json }},
+            "priceCurrency": {{ cart.currency.iso_code | json }},
+            "priceValidUntil": {{ 'now' | date: '%Y-%m-%d' | json  }},
+            "paymentOption": "Installments",
+            "installment": {
+              "@type": "MonetaryAmount",
+              "currency": {{ cart.currency.iso_code | json }},
+              "value": {{ variant.price | divided_by: 400.00 | json }}
+            },
+            "installmentFrequency": "https://schema.org/Monthly",
+            "totalPrice": {{ variant.price | divided_by: 100.00 | json }},
+            "installmentPaymentDueDate": {{ 'now' | date: '%Y-%m-%d' | json  }}
+          }
+
+{% endcomment %}
+
+<script type="application/ld+json">
+[
+  {
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "@id": {{ canonical_url | append: '#product' | json }},
+    "name": {{ product.title | json }},
+    "productGroupID": {{ product.variants.first.sku | json }},
+    "url": {{ request.origin | append: product.url | json }},
+
+    {%- for variant in product.variants -%}
+      {% if forloop.index == 1 %}
+        "price" : {{ variant.price | divided_by: 100.00 | json }},
+        "priceCurrency" : {{ cart.currency.iso_code | json }},
+      {% endif %}
+    {% endfor %}
+  
+      "image": "{{ product.featured_image | image_url }}",
+    
+
+
+    "description": {{ product.description | strip_html | json }},
+    {%- if current_variant.sku != blank -%}
+      
+    {%- endif -%}
+    "brand": {
+      "@type": "Brand",
+      "name": {{ product.vendor | json }}
+    },
+
+    "hasVariant": [
+    {%- for variant in product.variants -%}
+      {
+        "@type": "Product",
+        {%- if variant.sku != blank -%}
+	        "sku": {{ variant.sku | json }},
+	      {%- endif -%}
+	      {%- if variant.barcode.size == 12 -%}
+	        "gtin12": {{ variant.barcode | json }},
+	      {%- endif -%}
+	      {%- if variant.barcode.size == 13 -%}
+	        "gtin13": {{ variant.barcode | json }},
+	      {%- endif -%}
+	      {%- if variant.barcode.size == 14 -%}
+	        "gtin14": {{ variant.barcode | json }},
+	      {%- endif -%}
+
+        
+
+      {% if variant.image %}
+        "image": "{{ variant.image | image_url }}",
+      {% else %}
+        "image": "{{ product.featured_image | image_url }}",
+      {% endif %}
+
+
+        "name": {{ product.title | json }},
+        "description": {{ product.description | strip_html | json }},
+        
+        "offers": {
+          "@type": "Offer",
+          "price" : {{ variant.price | divided_by: 100.00 | json }},
+          "priceCurrency" : {{ cart.currency.iso_code | json }},
+          "priceValidUntil": {{ 'now' | date: '%Y-%m-%d' | json  }},
+          "url" : {{ request.origin | append: variant.url | json }},
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+          "shippingDetails": { "@id": "#shipping_policy" },
+          "hasMerchantReturnPolicy": { "@id": "#return_policy" },
+
+          "paymentAccepted": "CreditCard, PayPal"
+          
+        }
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+    ]
+  },
+  
+  {
+        "@context": "https://schema.org/",
+        "@type": "OfferShippingDetails",
+        "@id": "#shipping_policy",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": 0,
+          "currency": {{ cart.currency.iso_code | json }}
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "US",
+          "addressRegion": ["US"]
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 2,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 2,
+            "unitCode": "DAY"
+          }
+        }
+      },
+      {
+        "@context": "http://schema.org/",
+        "@type": "MerchantReturnPolicy",
+        "@id": "#return_policy",
+        "applicableCountry": ["US"],
+            "returnPolicyCountry": "US",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 30,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "returnFees": "https://schema.org/FreeReturn"
+      }
+  
+{% if product.metafields.reviews.rating_count > 0 %}
+
+,{
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "@id": {{ canonical_url | append: '#product' | json }},
+    "name": {{ product.title | json }},
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ product.metafields.reviews.rating.value }}",
+        "reviewCount": "{{ product.metafields.reviews.rating_count }}"
+    }
+} 
+
+{% else %}
+
+  
+,{
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "@id": {{ canonical_url | append: '#product' | json }},
+    "name": {{ product.title | json }},
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.82",
+        "reviewCount": 544
+    }
+} 
+  
+{% endif %}
+  
+  
+  
+] 
+</script>
+
+
+
 
 {% schema %}
 {

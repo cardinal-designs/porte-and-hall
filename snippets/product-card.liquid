@@ -9,7 +9,7 @@
 {% endcomment %}
 
 <div class="product-card{% if product_card_product.media[1] != nil %} has-animation{% endif %}">
-  <a href="{{ product_card_product.url }}">
+  <a href="{{ product_card_product.url | split: '?' | first }}">
     <div class="product-card__image">
       {% render 'lazy-image', image: product_card_product.featured_media, fade: false, classes: 'img-fill',  aria-label:"Product image" %}
       {% if product_card_product.media[1] != null %}

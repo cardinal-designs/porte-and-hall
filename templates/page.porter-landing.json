@@ -56,6 +56,17 @@
       "name": "Hero - Porter Hall",
       "settings": {}
     },
+    "breadcrumbs_DMjzEK": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "#f4f2ee",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "porter_hall_image_grid_7BTqhf": {
       "type": "porter-hall-image-grid",
       "name": "Grand Entrance Section",
@@ -262,6 +273,7 @@
   "order": [
     "main",
     "hero_porter_hall_FeqBxV",
+    "breadcrumbs_DMjzEK",
     "porter_hall_image_grid_7BTqhf",
     "porter_hall_colorways_xHj4Bh",
     "porter_hall_material_type_GEYDmB",
