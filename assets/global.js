@@ -465,6 +465,7 @@ var MenuDrawer = class extends HTMLElement {
     
     this.drawer.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.closeMenuDrawer());
     this.bindEvents();
+    this.disableDrawerFocus()
   }
 
   bindEvents() {
@@ -474,12 +475,24 @@ var MenuDrawer = class extends HTMLElement {
     this.onBodyClick = this.handleBodyClick.bind(this);
   }
 
+  disableDrawerFocus() {
+    this.drawer.querySelectorAll('[tabindex], a, button, input, select, textarea')
+      .forEach(el => el.setAttribute('tabindex', '-1'));
+  }
+
+  // Call this when the drawer opens
+  enableDrawerFocus() {
+    this.drawer.querySelectorAll('[tabindex], a, button, input, select, textarea')
+      .forEach(el => el.removeAttribute('tabindex'));
+  }
+
   openMenuDrawer() {
     this.drawer.setAttribute('aria-hidden', false);
     this.drawer.setAttribute('aria-expanded', true);
 
     this.pageOverlayElement.classList.add('is-visible');
     document.body.addEventListener('click', this.onBodyClick);
+    this.enableDrawerFocus()
   }
 
   closeMenuDrawer() {
@@ -488,6 +501,7 @@ var MenuDrawer = class extends HTMLElement {
 
     this.pageOverlayElement.classList.remove('is-visible');
     document.body.removeEventListener('click', this.onBodyClick);
+    this.disableDrawerFocus()
   }
 
   toggleMenuButtons() {

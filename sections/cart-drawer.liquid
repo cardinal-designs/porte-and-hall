@@ -3,7 +3,7 @@
     <form id="cart-drawer__form" action="{{ routes.cart_url }}" method="post" class="cart-drawer__form">
       <div class="cart-drawer__inner">
         <div class="cart-drawer__header">
-          <p class="cart-drawer__title h2">{{ section.settings.cart_title }}</p>
+          <h2 class="cart-drawer__title" tabindex="0">{{ section.settings.cart_title }}</h2>
           <button type="button" class="cart-drawer__close modal__close-button link link--text focus-inset" id="cart-drawer__close" aria-label="{{ 'accessibility.close' | t }}">
             {% render 'icon' icon: 'close' %}
           </button>
@@ -92,7 +92,7 @@
                   </div>
                 </div>
               </div>
-              <a href="/checkout" class="button button--full" name="checkout" form="cart">{{ 'sections.cart.checkout' | t }}</a>
+              <a href="/checkout" class="button button--full" name="checkout" form="cart" tabindex="0">{{ 'sections.cart.checkout' | t }}</a>
               <h6 class="cart-drawer__taxes body-xs">{{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}</h6>
 
 

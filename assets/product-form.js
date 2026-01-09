@@ -83,6 +83,10 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
             Rebuy.init();
           }
         }, 1000)
+        const drawer = document.getElementById("cart-drawer");
+        setTimeout(() => {
+          drawer.focus();
+        }, 250);
       });
   }
 

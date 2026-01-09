@@ -66,6 +66,9 @@
             echo "'"
             echo " aria-label='"
             echo value | escape
+            unless swatch.available
+              echo " is Unavailable"
+            endunless
             echo "'"
             echo "data-tooltip='"
             echo value | escape

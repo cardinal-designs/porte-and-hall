@@ -48,6 +48,8 @@ select {
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 1.2em;
+  width: 100%;
+  display: block;
 }
 .contact__fields {
   display: grid;
