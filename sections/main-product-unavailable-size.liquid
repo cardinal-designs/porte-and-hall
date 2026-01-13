@@ -714,7 +714,7 @@
 
       {% comment %}ACCORDION BEGINS{% endcomment %}
       <pdp-accordion class="aaaaa product-accordion__container">
-        ff {{grouped_collection.title }}
+        ff {{grouped_collection.metafields | json }}
         {% if grouped_collection.metafields.custom.product_features != blank %}
          <div class="accordion">
            <div data-id="1" class="accordion-title">
@@ -768,7 +768,7 @@
             <div class="swiper-slide">
               <div class="product__tabs-item">
                 <p class="body-sm">
-                  fDimensions: {{ grouped_collection.metafields.custom.dimensions | newline_to_br }}
+                  Dimensions: {{ grouped_collection.metafields.custom.dimensions | newline_to_br }}
                   {% if grouped_collection.metafields.custom.additional_dimensions != blank %}
                     <br>
                     {{ grouped_collection.metafields.custom.additional_dimensions | newline_to_br }}
