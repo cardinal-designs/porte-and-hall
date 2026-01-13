@@ -714,7 +714,7 @@
 
       {% comment %}ACCORDION BEGINS{% endcomment %}
       <pdp-accordion class="product-accordion__container">
-        {% if grouped_collection.metafields.custom.product_features != blank %}
+        {% if grouped_size_collection.metafields.custom.product_features != blank %}
          <div class="accordion">
            <div data-id="1" class="accordion-title">
              <h3>Features</h3>
@@ -729,7 +729,7 @@
                           <p class="body-sm">Have an Outsider mat but need a new insert? <a href="/products/outsider-insert-replacement">Click here</a> to shop!</p>
                         </div>
                       {% else %}
-                        {% for feature in grouped_collection.metafields.custom.product_features.value %}
+                        {% for feature in grouped_size_collection.metafields.custom.product_features.value %}
                           <div class="product__features-item">
                             {% if feature.image != blank %}{{ feature.image | image_url: width: 206 | image_tag: width: 103 }}{% endif %}
                             <p class="body-sm">{{ feature.label }}</p>
