@@ -21,11 +21,11 @@
   assign product_prefix = product.title | split: '-' | first | strip
   for collection in product.collections
     if collection.title  == product_prefix
-      assign grouped_collection = collection
+      assign grouped_size_collection = collection
     endif
   endfor
 
-  assign oos_products = grouped_collection.products | where: 'available', false
+  assign oos_products = grouped_size_collection.products | where: 'available', false
   assign oos_products = ""
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve,style' | split: ','
 %}
@@ -36,8 +36,8 @@
 
   {% assign size_handle = current_size | handle %}
 
-  {% paginate grouped_collection.products by 100 %}
-    {% for swatch in grouped_collection.products %}
+  {% paginate grouped_size_collection.products by 100 %}
+    {% for swatch in grouped_size_collection.products %}
       {% for option in swatch.options_with_values %}
         {% assign option_name = option.name | downcase %}
         {% if color_label contains option_name or option_name == 'style' %}
@@ -60,8 +60,8 @@
       {% assign matched_product = blank %}
       {% assign product_available = false %}
 
-      {%- paginate grouped_collection.products by 100 -%}
-        {% for prod in grouped_collection.products %}
+      {%- paginate grouped_size_collection.products by 100 -%}
+        {% for prod in grouped_size_collection.products %}
           {% assign prod_title = prod.title %}
           {% assign prod_handle = prod.handle %}
           {% assign prod_parts = prod_title | split: '/' | last | strip | downcase | replace: ' x ', 'x' | replace: ' ', '' %}
@@ -421,11 +421,11 @@
           
                <!-- Shop Other Sizes -->
             {% liquid
-              assign product_type = grouped_collection.title | remove: 'The ' | split: ' | '
+              assign product_type = grouped_size_collection.title | remove: 'The ' | split: ' | '
               assign active_style = product.selected_or_first_available_variant.title
               assign product_size = product.options_by_name['size'].values[0]
               assign active_style = active_style | remove: product_size | remove: " / " 
-              assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
+              assign other_sizes = grouped_size_collection.metafields.custom.other_sizes.value
             %}
 
             <span data-active-style="{{ active_style }}"></span>
@@ -757,7 +757,7 @@
            </div>
          </div>
        
-        {% if grouped_collection.metafields.custom.dimensions != blank %}
+        {% if grouped_size_collection.metafields.custom.dimensions != blank %}
          <div class="accordion">
            <div data-id="3" class="accordion-title">
              <h3>Dimensions</h3>
@@ -767,14 +767,14 @@
             <div class="swiper-slide">
               <div class="product__tabs-item">
                 <p class="body-sm">
-                  Dimensions: {{ grouped_collection.metafields.custom.dimensions | newline_to_br }}
-                  {% if grouped_collection.metafields.custom.additional_dimensions != blank %}
+                  Dimensions: {{ grouped_size_collection.metafields.custom.dimensions | newline_to_br }}
+                  {% if grouped_size_collection.metafields.custom.additional_dimensions != blank %}
                     <br>
-                    {{ grouped_collection.metafields.custom.additional_dimensions | newline_to_br }}
+                    {{ grouped_size_collection.metafields.custom.additional_dimensions | newline_to_br }}
                   {% endif %}
-                  {% if grouped_collection.metafields.custom.weight != blank %}
+                  {% if grouped_size_collection.metafields.custom.weight != blank %}
                   <br>
-                  Weight: {{ grouped_collection.metafields.custom.weight }}
+                  Weight: {{ grouped_size_collection.metafields.custom.weight }}
                   {% endif %}
                 </p>
               </div>
@@ -1039,8 +1039,8 @@
   });
 {% endjavascript %}
 
-{% paginate grouped_collection.products by 250 %}
-  {% assign product_handles = grouped_collection.products | map: 'handle' %}
+{% paginate grouped_size_collection.products by 250 %}
+  {% assign product_handles = grouped_size_collection.products | map: 'handle' %}
 {% endpaginate %}
 <script>
   window.PH_AVAILABILITY = {
