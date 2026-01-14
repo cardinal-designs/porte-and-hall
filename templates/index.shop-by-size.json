@@ -165,7 +165,9 @@
               "the-innerweave-chevron-natural-runner",
               "the-insider-wild-side-dove-xl-runner",
               "the-insider-wild-side-dove-area-mat"
-            ]
+            ],
+            "link_text": "",
+            "link_url": ""
           }
         },
         "block_VFrPJY": {
@@ -177,7 +179,9 @@
               "the-outlier-charcoal-doormat",
               "the-innerweave-tigers-eye-natural-doormat",
               "the-porter-truffle-standard"
-            ]
+            ],
+            "link_text": "SHOP DOORMATS",
+            "link_url": "/collections/indoor-doormats?filter.v.m.custom.size=Doormats&sort_by=best-selling"
           }
         },
         "block_rNPAJ4": {
@@ -189,7 +193,9 @@
               "the-innerweave-chevron-stone-runner",
               "the-insider-wild-side-sable-runner",
               "the-innerweave-tigers-eye-stone-runner"
-            ]
+            ],
+            "link_text": "SHOP RUNNERS",
+            "link_url": "shopify://collections/runners"
           }
         },
         "block_aEYkG8": {
@@ -201,7 +207,9 @@
               "the-insider-dreamweaver-cloud-xl-runner",
               "the-insider-maze-navy-xl-runner",
               "the-insider-bark-creme-xl-runner"
-            ]
+            ],
+            "link_text": "SHOP XL RUNNERS",
+            "link_url": "shopify://collections/runners"
           }
         },
         "block_jwKQxc": {
@@ -213,7 +221,9 @@
               "the-innerweave-chevron-stone-area-mat",
               "the-innerweave-chevron-natural-area-mat",
               "the-insider-bark-graphite-area-mat"
-            ]
+            ],
+            "link_text": "SHOP AREA MATS",
+            "link_url": "shopify://collections/area-mats"
           }
         }
       },
@@ -232,8 +242,6 @@
         "mobile_padding_bottom": 40,
         "bg_color": "#ffffff",
         "title": "Shop by size",
-        "link_text": "SHOP ALL",
-        "link_url": "shopify://collections/shop-all",
         "show_product_badge": true
       }
     },
