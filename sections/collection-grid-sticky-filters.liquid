@@ -20,14 +20,23 @@
 
 <script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
 
+
 {% assign active_tags = '' %}
 {% for tag in current_tags %}
   {% assign tag_as_handle = tag | replace: '&#39;', '' | replace: '&#34;', '' | handle %}
   {% assign active_tags = active_tags | append: tag_as_handle %}
-  {% unless forloop.last %}{% assign active_tags = active_tags | append: '+' %}{% endunless %}
+  
+  {% unless forloop.last %}
+    {% assign active_tags = active_tags | append: '+' %}
+  {% endunless %}
 {% endfor %}
 
-<link rel="preload" href="{{ 'component-rte.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link
+   rel="preload" 
+   href="{{ 'component-rte.css' | asset_url }}" 
+   as="style" 
+   onload="this.onload=null;this.rel='stylesheet'"
+  >
 
 <div class="page-width">
   <div class="collection-grid__inner">
