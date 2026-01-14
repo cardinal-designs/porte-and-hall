@@ -121,44 +121,8 @@
       ],
       "settings": {}
     },
-       "product-grid": {
-      "type": "main-collection-sticky-filters-mobile",
-      "blocks": {
-        "category_QfnPTA": {
-          "type": "category",
-          "settings": {
-            "title": "Indoor Doormats",
-            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Indoor"
-          }
-        },
-        "category_AEAT8d": {
-          "type": "category",
-          "settings": {
-            "title": "Outdoor Doormats",
-            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Outdoor"
-          }
-        },
-        "category_3a9r6P": {
-          "type": "category",
-          "settings": {
-            "title": "Runners",
-            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
-          }
-        },
-        "category_m84LW4": {
-          "type": "category",
-          "settings": {
-            "title": "Area Mats",
-            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
-          }
-        }
-      },
-      "block_order": [
-        "category_QfnPTA",
-        "category_AEAT8d",
-        "category_3a9r6P",
-        "category_m84LW4"
-      ],
+    "product-grid": {
+      "type": "main-collection-product-grid-4",
       "settings": {
         "products_per_page": 16,
         "image_ratio": "adapt",
@@ -169,9 +133,7 @@
         "show_rating": false,
         "enable_filtering": true,
         "enable_sorting": true,
-        "collapse_on_larger_devices": false,
-        "text_color": "#546b82",
-        "bg_color": "#ffffff"
+        "collapse_on_larger_devices": false
       }
     },
     "82844bc9-ec6d-426a-9f52-a0a66dd5560e": {
