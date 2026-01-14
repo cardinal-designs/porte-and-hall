@@ -77,15 +77,24 @@
         </div>
       </div>
     {%  endfor %}
+
+    {%- if block.settings.link_text != blank -%}
+     <div class="shop-by-size__link">
+       <a href="{{ blcok.settings.link_url }}" class="shop-by-size__link-link">
+         {{ block.settings.link_text | escape }}
+       </a>
+     </div>
+     {%- endif -%}
   </shop-by-size>
 
+  {% comment %}
   {%- if section.settings.link_text != blank -%}
-    <div class="shop-by-size__link">
+   <div class="shop-by-size__link">
        <a href="{{ section.settings.link_url }}" class="shop-by-size__link-link">
          {{ section.settings.link_text | escape }}
        </a>
      </div>
-  {%- endif -%}
+  {%- endif -%} {% endcomment %}
 </div>
 
 
@@ -155,17 +164,6 @@
         "label": "Heading",
         "default": "Add Title..."
       },
-  
-      {
-        "type": "text",
-        "id": "link_text",
-        "label": "Link text"
-      },
-      {
-        "type": "url",
-        "id": "link_url",
-        "label": "Link URL"
-      },
       {
         "type": "header",
         "content": "Product settings"
@@ -194,6 +192,16 @@
             "type": "product_list",
             "id": "products",
             "label": "Products",
+          },
+          {
+            "type": "text",
+            "id": "link_text",
+            "label": "Link text"
+          },
+          {
+            "type": "url",
+            "id": "link_url",
+            "label": "Link URL"
           }
         ]
       }
