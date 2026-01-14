@@ -75,7 +75,7 @@
           </div>
           <div class="swiper-pagination"></div>
         </div>
-      </div>
+      
       {%- if block.settings.link_text != blank -%}
       <div class="shop-by-size__link">
         <a href="{{ block.settings.link_url }}" class="shop-by-size__link-link">
@@ -84,6 +84,7 @@
       </div>
       {%- endif -%}
     {%  endfor %}
+    </div>
   </shop-by-size>
 
   {% comment %}
