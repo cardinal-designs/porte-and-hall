@@ -206,18 +206,36 @@ main, .page-width, .collection-grid__inner {
   z-index: 999 !important;        /* well above anything we pin below */
 }
 
-body.template__sticky-filters {
+body.template__sticky-filters  {
   overflow: visible;
+}
+
+@media screen and (max-width: 768px) {
+  body.template__sticky-filters-mobile   {
+    overflow: visible;
+  }
 }
 
 .collection-grid-section {
   visibility: visible;
 }
 
-.template__sticky-filters .collection-filters__button {
+.template__sticky-filters .collection-filters__button, .template__sticky-filters-mobile .collection-filters__button {
   padding: 0;
 }
 
-.template__sticky-filters .collection-filters__open {
+.template__sticky-filters .collection-filters__open, .template__sticky-filters-mobile .collection-filters__open {
   padding: 11px 21px;
+}
+
+.template__sticky-filters-mobile .head-slide-wrap{
+  width: auto;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 0 0 20px !important;
+  margin-right: 0;
+}
+
+.template__sticky-filters-mobile .head-slide-wrap .head-slide li:last-child {
+  margin-right: 0;
 }
