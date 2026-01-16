@@ -1044,7 +1044,7 @@
 {% endpaginate %}
 <script>
   window.PH_AVAILABILITY = {
-    products: {{ collections['shop-all'].products | map: 'metafields' | map: 'custom' | map: 'size' }},
+    products: {{ collections['shop-all'].products | json }},
     prod: {{ collections['shop-all'].products.metafields.custom.size | json }},
     sizes: {{ product.options_by_name['Size'].values | json }}
   };
