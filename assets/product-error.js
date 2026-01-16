@@ -55,9 +55,9 @@ class ProductError extends HTMLElement {
 
     const targetHandle = this.findAvailableColor(sizeHandle);
     console.log('aa',sizeName, sizeHandle, activeColor, targetHandle)
-    if (sizeHandle) {
+    if (targetHandle) {
       this.errorLink.textContent = `See available ${sizeName} colors here`;
-      this.errorLink.href = `/products/${sizeHandle}?view=unavailable-sizes`;
+      this.errorLink.href = `/products/${targetHandle}?view=unavailable-sizes`;
     } else {
       this.errorLink.textContent = '';
       this.errorLink.removeAttribute('href');
