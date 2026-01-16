@@ -1045,7 +1045,7 @@
 <script>
   window.PH_AVAILABILITY = {
     products: {{ collections['shop-all'].products | map: 'handle' | json }},
-    prodType: {{ product.metafields.custom['size'] }},
+    prodType: {{ product.metafields.custom.size.values }},
     sizes: {{ product.options_by_name['Size'].values | json }}
   };
 </script>
