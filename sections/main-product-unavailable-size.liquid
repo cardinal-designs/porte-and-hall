@@ -1044,7 +1044,7 @@
 {% endpaginate %}
 <script>
   window.PH_AVAILABILITY = {
-    products: {{ product_handles | json }},
+    products: {{ collections['shop-all'].products | json }},
     sizes: {{ product.options_by_name['Size'].values | json }}
   };
 </script>
