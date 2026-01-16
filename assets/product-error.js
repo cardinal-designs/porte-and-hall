@@ -91,8 +91,8 @@ class ProductError extends HTMLElement {
 
   findAvailableColor(sizeHandle) {
     const products = window.PH_AVAILABILITY?.products || [];
-    console.log('prod',products)
-    return products.find(handle => handle.includes(sizeHandle)) || null;
+    const prodType = window.PH_AVAILABILITY?.prodType || [];
+    return products.find(handle => handle.includes(sizeHandle, prodType)) || null;
   }
 
   findAvailableSizeForColor(colorHandle) {
