@@ -96,7 +96,8 @@ class ProductError extends HTMLElement {
     const prodType = prodTypeArray.find(value => path.includes(value));
 
     console.log('afafa',prodType, sizeHandle)
-    return products.find(handle => handle.includes(sizeHandle)) || null;
+    // return products.find(handle => handle.includes(sizeHandle)) || null;
+    return products.find(handle => handle.includes(sizeHandle) && handle.includes(prodType)) || null;
   }
 
   findAvailableSizeForColor(colorHandle) {
