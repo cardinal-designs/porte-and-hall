@@ -54,7 +54,7 @@ class ProductError extends HTMLElement {
     this.errorMsg.textContent = `${activeColor} is not available in ${sizeName}.`;
 
     const targetHandle = this.findAvailableColor(sizeHandle);
-
+    console.log('aa',sizeName, sizeHandle, activeColor, targetHandle)
     if (targetHandle) {
       this.errorLink.textContent = `See available ${sizeName} colors here`;
       this.errorLink.href = `/products/${targetHandle}?view=unavailable-sizes`;
