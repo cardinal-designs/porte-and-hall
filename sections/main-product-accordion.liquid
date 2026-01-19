@@ -278,9 +278,9 @@
           </div>
         {% endfor %}
 
-        {% if product.metafields.custom.style_text != blank %}
+        {% comment %} {% if product.metafields.custom.style_text != blank %}
         <p class="style-text__color">{{ product.metafields.custom.style_text }}</p>
-        {% endif %} 
+        {% endif %} {% endcomment %}
 
         <div id="active-color" 
           data-color="{{ product.options_by_name['Color'].selected_value | default: product.options_by_name['Style'].selected_value }}">
