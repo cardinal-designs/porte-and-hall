@@ -4,17 +4,21 @@
   <div class="meet-founder__background">
     <div class="meet-founder__inner meet-founder__layout-{{ section.settings.alignment }}">
       <div class="meet-founder__content-wrapper">
-        {%  unless section.settings.show_signature == false %}
-        <div class="signature-svg">
-          {% render 'signature' %}
-        </div>
-          {%  endunless  %}
+
         {% if section.settings.heading != blank %}
           <h2 class="meet-founder__heading">{{ section.settings.heading | newline_to_br }}</h2>
         {% endif %}
 
         {% if section.settings.text != blank %}
           <p class="body">{{ section.settings.text }}</p>
+        {% endif %}
+
+        {% if section.settings.heading2 != blank %}
+          <h2 class="meet-founder__heading">{{ section.settings.heading2 | newline_to_br }}</h2>
+        {% endif %}
+
+        {% if section.settings.text2 != blank %}
+          <p class="body">{{ section.settings.text2 }}</p>
         {% endif %}
 
         {% if section.settings.link != blank and section.settings.link_text != blank %}
@@ -29,6 +33,7 @@
           {{ section.settings.image | image_url: width: 1000 | image_tag: class: "lazyload" }}
         </div>
       {% endif %}
+
     </div>
   </div>
 </section>
@@ -65,12 +70,6 @@
       "type": "checkbox",
       "id": "hide_mobile",
       "label": "Hide on Mobile"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_signature",
-      "label": "Show signature",
-      "default": true
     },
     {
       "type": "color",
@@ -121,6 +120,16 @@
       "type": "textarea",
       "id": "text",
       "label": "Text"
+    },
+    {
+      "type": "textarea",
+      "id": "heading2",
+      "label": "Heading 2"
+    },
+    {
+      "type": "textarea",
+      "id": "text2",
+      "label": "Text 2"
     },
     {
       "type": "url",
