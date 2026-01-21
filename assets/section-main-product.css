@@ -1141,9 +1141,10 @@ variant-selects {
 }
 
 .no-quant__button {
-  padding: 16px 50px;
+  padding: 16px 20px;
   max-width: 372px;
   width: 100%;
+  justify-content: center;
 }
 
 .other-sizes__button span {
