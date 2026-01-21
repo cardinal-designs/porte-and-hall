@@ -1142,6 +1142,8 @@ variant-selects {
 
 .no-quant__button {
   padding: 16px 50px;
+  max-width: 372px;
+  width: 100%;
 }
 
 .other-sizes__button span {
