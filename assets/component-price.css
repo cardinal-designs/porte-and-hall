@@ -85,3 +85,11 @@
   text-transform: uppercase;
   color: rgba(var(--color-foreground), 0.7);
 }
+
+@media only screen and (max-width: 768px) {
+
+  .price--on-sale .price-item--regular {
+    font-size: 14px;
+  }
+
+}
