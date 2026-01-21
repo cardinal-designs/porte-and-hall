@@ -269,6 +269,15 @@
     text-align: left;
   }
 
+  .discounted__price--rating {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .discounted__price--rating .igPrice {
+    order: 2;
+  }
+
   @media (max-width:1200px){
     .custom-collection .page-width{
       padding: 0 40px;
@@ -711,10 +720,31 @@
                 {% endif %}
               {% endfor %}
 
-              <div class="price_rating">
-                <p class="igPrice" data-product-id="{{ currentProduct.id }}">{{ currentProduct.price | money_without_trailing_zeros }}</p>
-                
-                <span class="blue"> | </span>
+
+              {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
+              {% assign auto_discount_price = currentProduct.metafields.custom.auto_discount_price %}
+              {% assign show_discounted_price = false %}
+              {% if enable_auto_discount_price and auto_discount_price > 0 %}
+                {% assign show_discounted_price = true %}
+                {% assign auto_discount_price = auto_discount_price | times: 100 |  money %}
+              {% endif %}
+
+              <div class="price_rating {% if show_discounted_price %}discounted__price--rating{% endif %}">
+                <p class="igPrice" data-product-id="{{ currentProduct.id }}">
+                  {% if show_discounted_price %}
+                    <span>
+                      <s class="price-item price-item--regular">
+                        {{currentProduct.price | money_without_trailing_zeros}}
+                      </s>
+                    </span>
+                    {{ auto_discount_price }}
+                  {% else %}
+                    {{ currentProduct.price | money_without_trailing_zeros }}
+                  {% endif %}
+                </p>
+                {% unless show_discounted_price %}
+                  <span class="blue"> | </span>
+                {% endunless %}
   
                 <!-- Rating code -->
                 
