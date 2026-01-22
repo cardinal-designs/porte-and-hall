@@ -228,6 +228,8 @@
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
     {%- render 'head-scripts-loader' -%}
+    
+    <script defer src="https://static.shopmy.us/Affiliates/sms_aff_clicktrack.js?domain=porteandhall.com&expires=30"></script>
   </head>
 
   <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
@@ -243,7 +245,6 @@
         clip: rect(0 0 0 0) !important;
     }
 
-  
   {% comment %} {% if content_for_header contains 'view=sticky-filters' %}
     @media (max-width: 768px) {
       .outer-header-wrapper {
