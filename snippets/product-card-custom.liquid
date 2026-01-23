@@ -173,6 +173,15 @@
         </div>
       </a>
     {% endif %}
+
+    {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
+    {% assign auto_discount_price = product_card_product.metafields.custom.auto_discount_price %}
+    {% assign show_discounted_price = false %}
+    {% if enable_auto_discount_price and auto_discount_price > 0 %}
+      {% assign show_discounted_price = true %}
+      {% assign auto_discount_price = auto_discount_price | times: 100 |  money %}
+    {% endif %}
+
     {% if customer and customer.b2b? %}
       <p class="product-card__price body blue">
         {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
@@ -184,14 +193,21 @@
         {% endif %}        
       </p>
     {% else %}
-      <p class="product-card__price body blue">
-        {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+      {% if show_discounted_price %}
+        <p class="product-card__price body blue">
           <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
-          <span>{{ product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
-        {% else %}
-          <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
-        {%  endif  %}
-      </p>
+          <span>{{ auto_discount_price }}</span>
+        </p>
+      {% else %}
+        <p class="product-card__price body blue">
+          {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+            <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
+            <span>{{ product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
+          {% else %}
+            <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
+          {%  endif  %}
+        </p>
+      {% endif %}
     {% endif %}
 
     {% unless template.suffix == 'last-chance' %}

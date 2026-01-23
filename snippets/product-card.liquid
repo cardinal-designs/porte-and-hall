@@ -31,6 +31,15 @@
   <div class="product-card__container">
     <p class="product-card__title">{{ product_card_product.title }}</p>
     <div class="product-card__content">
+
+      {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
+      {% assign auto_discount_price = product_card_product.metafields.custom.auto_discount_price %}
+      {% assign show_discounted_price = false %}
+      {% if enable_auto_discount_price and auto_discount_price > 0 %}
+        {% assign show_discounted_price = true %}
+        {% assign auto_discount_price = auto_discount_price | times: 100 |  money %}
+      {% endif %}
+
       {% if customer and customer.b2b? %}
         {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
         <p class="product-card__price">
@@ -40,12 +49,19 @@
           {{ product_card_product.price | money_without_trailing_zeros }}
         </p>
       {% else %}
-        <p class="product-card__price">
-          {% if product_card_product.compare_at_price > product_card_product.price %}
-            <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
-          {% endif %}
-          {{ product_card_product.price | money_without_trailing_zeros }}
-        </p>
+        {% if show_discounted_price %}
+          <p class="product-card__price">
+            <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
+            {{ auto_discount_price }}
+          </p>
+        {% else %}
+          <p class="product-card__price">
+            {% if product_card_product.compare_at_price > product_card_product.price %}
+              <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
+            {% endif %}
+            {{ product_card_product.price | money_without_trailing_zeros }}
+          </p>
+        {% endif %}
       {% endif %}
     </div>
   </div>

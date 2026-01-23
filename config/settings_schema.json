@@ -155,5 +155,25 @@
         "default": "161289"
       },
     ]
+  },
+  {
+    "name": "Pricing",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Pricing"
+      },
+      {
+        "type": "paragraph",
+        "content": "Auto Discount Price"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_auto_discount_price",
+        "label": "Enable auto discount price feature",
+        "default": false,
+        "info": "When enabled, auto discount prices from product meta fields will be displayed. Auto discount prices can be entered before going live without affecting the store."
+      }
+    ]
   }
 ]
