@@ -22,7 +22,7 @@
         {% endif %}
 
         {% if section.settings.link != blank and section.settings.link_text != blank %}
-          <a href="{{ section.settings.link }}" class="text-link button">
+          <a href="{{ section.settings.link }}" class="text-link gold-secondary--dark">
             {{- section.settings.link_text }}</a
           >
         {% endif %}
@@ -80,12 +80,6 @@
       "type": "color",
       "id": "text_color",
       "label": "Text Color"
-    },
-    {
-      "type": "checkbox",
-      "id": "border",
-      "label": "Show Border",
-      "default": true
     },
     {
       "type": "header",
