@@ -1,0 +1,15 @@
+.designer-spotlight-feature {
+  padding: 80px 0;
+  background-color: #546B82;
+}
+
+.designer-spotlight-feature__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.designer-spotlight-feature__image {
+  position: relative;
+  overflow: hidden;
+}
