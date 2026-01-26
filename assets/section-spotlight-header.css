@@ -24,6 +24,7 @@
 
 .designer-spotlight-header__title {
   margin: 0 0 20px;
+  font-size: 64px;
 }
 
 .designer-spotlight-header__subtitle {
@@ -52,5 +53,9 @@
     margin-top: 40px;
     grid-template-columns: 1fr;
     gap: 0;
+  }
+
+  .designer-spotlight-header__title {
+    font-size: 64px;
   }
 }
