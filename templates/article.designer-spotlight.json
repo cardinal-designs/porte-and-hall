@@ -9,78 +9,84 @@
  */
 {
   "sections": {
-    "breadcrumbs_FQwji8": {
+    "breadcrumbs_EPjR7L": {
       "type": "breadcrumbs",
       "name": "Breadcrumbs",
       "settings": {
         "background_color": "#f4f2ee",
-        "padding_top": 10,
-        "padding_bottom": 10,
-        "mobile_padding_top": 10,
-        "mobile_padding_bottom": 10
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 24
       }
     },
     "main": {
-      "type": "main-article",
+      "type": "designer-spotlight-header",
+      "settings": {
+        "image": "shopify://shop_images/Image_-_2026-01-26T092155.112.jpg",
+        "mobile_image": "shopify://shop_images/Image_-_2026-01-26T092202.816.jpg",
+        "title": "Designer Spotlight",
+        "subtitle": "A monthly series featuring the designers we admire most",
+        "text": "Each month, we highlight one interior designer with a favorite tip, a peek at their work, and a short Q&A. All spotlights live here so you can explore past features anytime."
+      }
+    },
+    "designer_spotlight_fFHtkW": {
+      "type": "designer-spotlight",
       "blocks": {
-        "featured_image": {
-          "type": "featured_image",
+        "block_36qNrr": {
+          "type": "block",
           "settings": {
-            "image_height": "adapt"
+            "image": "shopify://shop_images/Image_-_2026-01-26T090741.070_d4cd9d25-f40a-4d70-bf76-644b03f76bb2.jpg",
+            "title": "Elizabeth Pash",
+            "subtitle": "Founder of Elizabeth Pash Interiors & Antiques",
+            "text_header": "Words to Live By:",
+            "text": "“It was love at first sight with this mat. Not only is it great looking, but it is practical—the perfect finishing touch that adds instant curb appeal.”"
           }
         },
-        "title": {
-          "type": "title",
+        "block_f6MQGY": {
+          "type": "block",
           "settings": {
-            "blog_show_date": true,
-            "blog_show_author": false
+            "image": "shopify://shop_images/Image_-_2026-01-26T090741.070_d4cd9d25-f40a-4d70-bf76-644b03f76bb2.jpg",
+            "title": "Elizabeth Pash",
+            "subtitle": "Founder of Elizabeth Pash Interiors & Antiques",
+            "text_header": "Words to Live By:",
+            "text": "“It was love at first sight with this mat. Not only is it great looking, but it is practical—the perfect finishing touch that adds instant curb appeal.”"
           }
         },
-        "share": {
-          "type": "share",
+        "block_iQHxaT": {
+          "type": "block",
           "settings": {
-            "share_label": "Share"
+            "image": "shopify://shop_images/Image_-_2026-01-26T090741.070_d4cd9d25-f40a-4d70-bf76-644b03f76bb2.jpg",
+            "title": "Elizabeth Pash",
+            "subtitle": "Founder of Elizabeth Pash Interiors & Antiques",
+            "text_header": "Words to Live By:",
+            "text": "“It was love at first sight with this mat. Not only is it great looking, but it is practical—the perfect finishing touch that adds instant curb appeal.”"
           }
         },
-        "content": {
-          "type": "content",
-          "settings": {}
+        "block_FgerY4": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Image_-_2026-01-26T090741.070_d4cd9d25-f40a-4d70-bf76-644b03f76bb2.jpg",
+            "title": "Elizabeth Pash",
+            "subtitle": "Founder of Elizabeth Pash Interiors & Antiques",
+            "text_header": "Words to Live By:",
+            "text": "“It was love at first sight with this mat. Not only is it great looking, but it is practical—the perfect finishing touch that adds instant curb appeal.”"
+          }
         }
       },
       "block_order": [
-        "featured_image",
-        "title",
-        "share",
-        "content"
+        "block_36qNrr",
+        "block_f6MQGY",
+        "block_iQHxaT",
+        "block_FgerY4"
       ],
+      "name": "Designer Spotlight",
       "settings": {}
-    },
-    "871110c3-a031-42d2-b535-7fa826cfcd6d": {
-      "type": "article-carousel",
-      "settings": {
-        "heading": "<p>Gallery</p>"
-      }
-    },
-    "02771468-30cb-4ed0-a1fe-67d7222c60ff": {
-      "type": "shop-the-story",
-      "settings": {
-        "heading": "<p>Shop the story</p>",
-        "show_color_swatch": true
-      }
-    },
-    "412efa0f-cb99-4079-b7e3-0bb3c54c83bd": {
-      "type": "related-article",
-      "settings": {
-        "heading": "<p>Read more articles</p>",
-        "show_color_swatch": true
-      }
     }
   },
   "order": [
-    "breadcrumbs_FQwji8",
+    "breadcrumbs_EPjR7L",
     "main",
-    "871110c3-a031-42d2-b535-7fa826cfcd6d",
-    "02771468-30cb-4ed0-a1fe-67d7222c60ff",
-    "412efa0f-cb99-4079-b7e3-0bb3c54c83bd"
+    "designer_spotlight_fFHtkW"
   ]
 }

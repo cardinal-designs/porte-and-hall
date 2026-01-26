@@ -1,0 +1,70 @@
+{{ 'section-designer-spotlight.css' | asset_url | stylesheet_tag }}
+
+<div class="designer-spotlight">
+  <div class="page-width">
+    <div class="designer-spotlight__container">
+      {% for block in section.blocks %}
+        <div class="designer-spotlight__item {% cycle 'odd', 'even' %}" {{ block.shopify_attributes }}>
+          <div class="designer-spotlight__image">
+            {% render 'lazy-image' image: block.settings.image, fade: true, fill: true %}
+          </div>
+          <div class="designer-spotlight__content">
+            <h2 class="designer-spotlight__title h3">{{ block.settings.title }}</h2>
+            <p class="designer-spotlight__subtitle p1">{{ block.settings.subtitle }}</p>
+            <h3 class="designer-spotlight__text-header h3">{{ block.settings.text_header }}</h3>
+            <p class="designer-spotlight__text h4">{{ block.settings.text }}</p>
+          </div>
+        </div>
+        {% unless forloop.last %}
+          <div class="designer-spotlight__divider"></div>
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Designer Spotlight",
+    "settings": [
+    ],
+    "blocks": [
+      {
+        "type": "block",
+        "name": "Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Name"
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle"
+          },
+          {
+            "type": "text",
+            "id": "text_header",
+            "label": "Text Header"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Designer Spotlight"
+      }
+    ]
+  }
+{% endschema %}
