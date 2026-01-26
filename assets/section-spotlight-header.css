@@ -1,0 +1,16 @@
+.designer-spotlight-header {
+  padding: 80px 0;
+  background-color: #EEEFEF;
+}
+
+.designer-spotlight-header__container {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.designer-spotlight-header__image {
+  height: 0;
+  padding-bottom: 30%;
+  position: relative;
+  overflow: hidden;
+}
