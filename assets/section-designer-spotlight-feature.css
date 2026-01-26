@@ -13,3 +13,31 @@
   position: relative;
   overflow: hidden;
 }
+
+.designer-spotlight-feature__title {
+  margin: 0 0 20px;
+}
+
+.designer-spotlight-feature__designer {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.designer-spotlight-feature__designer-image {
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #D2B066;
+}
+
+.designer-spotlight-feature__designer-name {
+  margin: 0 0 5px;
+  font-size: 24px;
+}
+
+.designer-spotlight-feature__designer-title {
+  margin: 0;
+}
