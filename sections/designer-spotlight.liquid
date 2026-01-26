@@ -15,6 +15,9 @@
             <p class="designer-spotlight__text h4">{{ section.settings.text }}</p>
           </div>
         </div>
+        {% unless forloop.last %}
+          <div class="designer-spotlight__divider"></div>
+        {% endunless %}
       {% endfor %}
     </div>
   </div>
