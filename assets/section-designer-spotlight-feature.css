@@ -19,6 +19,7 @@
 }
 
 .designer-spotlight-feature__designer {
+  margin-bottom: 40px;
   display: grid;
   grid-template-columns: 100px 1fr;
   gap: 16px;
@@ -40,4 +41,14 @@
 
 .designer-spotlight-feature__designer-title {
   margin: 0;
+}
+
+.designer-spotlight-feature__text-header {
+  margin: 0 0 5px;
+  font-size: 24px;
+}
+
+.designer-spotlight-feature__text {
+  margin: 0 0 20px;
+  font-style: italic;
 }
