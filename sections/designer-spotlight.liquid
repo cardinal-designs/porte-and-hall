@@ -6,13 +6,13 @@
       {% for block in section.blocks %}
         <div class="designer-spotlight__item {% cycle 'odd', 'even' %}" {{ block.shopify_attributes }}>
           <div class="designer-spotlight__image">
-            {% render 'lazy-image' image: section.settings.image, fade: true, fill: true %}
+            {% render 'lazy-image' image: block.settings.image, fade: true, fill: true %}
           </div>
           <div class="designer-spotlight__content">
-            <h2 class="designer-spotlight__title h3">{{ section.settings.title }}</h2>
-            <p class="designer-spotlight__subtitle p1">{{ section.settings.subtitle }}</p>
-            <h3 class="designer-spotlight__text-header h3">{{ section.settings.text_header }}</h3>
-            <p class="designer-spotlight__text h4">{{ section.settings.text }}</p>
+            <h2 class="designer-spotlight__title h3">{{ block.settings.title }}</h2>
+            <p class="designer-spotlight__subtitle p1">{{ block.settings.subtitle }}</p>
+            <h3 class="designer-spotlight__text-header h3">{{ block.settings.text_header }}</h3>
+            <p class="designer-spotlight__text h4">{{ block.settings.text }}</p>
           </div>
         </div>
         {% unless forloop.last %}
