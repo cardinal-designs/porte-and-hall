@@ -1,17 +1,21 @@
+{{ 'section-spotlight-header.css' | asset_url | stylesheet_tag }}
+
 <div class="designer-spotlight-header">
   <div class="page-width">
-    <div class="designer-spotlight-header__image">
-      {% render 'lazy-image' image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile' %}
-      {% render 'lazy-image' image: section.settings.mobile_image, fade: true, fill: true, classes: 'hide-desktop' %}
-    </div>
-    <div class="designer-spotlight-header__content">
-      <div class="designer-spotlight-header__content-left">
-        <h1 class="designer-spotlight-header__title h1">{{ section.settings.title }}</h1>
-        <h2 class="designer-spotlight-header__subtitle h2">{{ section.settings.subtitle }}</h2>
+    <div class="designer-spotlight-header__container">
+      <div class="designer-spotlight-header__image">
+        {% render 'lazy-image' image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile' %}
+        {% render 'lazy-image' image: section.settings.mobile_image, fade: true, fill: true, classes: 'hide-desktop' %}
       </div>
-      <div class="designer-spotlight-header__content-right">
-        <div class="designer-spotlight-header__divider"></div>
-        <div class="designer-spotlight-header__text h5">{{ section.settings.text }}</div>
+      <div class="designer-spotlight-header__content">
+        <div class="designer-spotlight-header__content-left">
+          <h1 class="designer-spotlight-header__title h1">{{ section.settings.title }}</h1>
+          <h2 class="designer-spotlight-header__subtitle h2">{{ section.settings.subtitle }}</h2>
+        </div>
+        <div class="designer-spotlight-header__content-right">
+          <div class="designer-spotlight-header__divider"></div>
+          <div class="designer-spotlight-header__text h5">{{ section.settings.text }}</div>
+        </div>
       </div>
     </div>
   </div>
