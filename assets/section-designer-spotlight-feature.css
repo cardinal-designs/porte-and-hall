@@ -63,3 +63,14 @@
 .designer-spotlight-feature .button {
   display: inline-block;
 }
+
+@media screen and (max-width: 768px) { 
+  .designer-spotlight-feature__container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .designer-spotlight-feature__title {
+    font-size: 32px;
+  }
+}
