@@ -9,13 +9,30 @@
  */
 {
   "sections": {
+    "breadcrumbs_EPjR7L": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "#f4f2ee",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 24
+      }
+    },
     "main": {
       "type": "designer-spotlight-header",
       "settings": {
+        "image": "shopify://shop_images/Image_-_2026-01-26T092155.112.jpg",
+        "mobile_image": "shopify://shop_images/Image_-_2026-01-26T092202.816.jpg",
+        "title": "Designer Spotlight",
+        "subtitle": "A monthly series featuring the designers we admire most",
+        "text": "Each month, we highlight one interior designer with a favorite tip, a peek at their work, and a short Q&A. All spotlights live here so you can explore past features anytime."
       }
     }
   },
   "order": [
+    "breadcrumbs_EPjR7L",
     "main"
   ]
 }
