@@ -53,6 +53,10 @@
 }
 
 .designer-spotlight-feature__text {
-  margin: 0 0 20px;
+  margin: 0 0 25px;
   font-style: italic;
+}
+
+.designer-spotlight-feature .button {
+  display: inline-block;
 }
