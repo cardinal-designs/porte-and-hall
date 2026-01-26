@@ -22,6 +22,10 @@
   flex-direction: row-reverse;
 }
 
+.designer-spotlight__content {
+  width: 50%;
+}
+
 .designer-spotlight__image {
   width: 50%;
   padding-bottom: 50%;
