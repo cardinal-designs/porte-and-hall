@@ -10,3 +10,20 @@
   flex-direction: column;
   gap: 80px;
 }
+
+.designer-spotlight__item {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.designer-spotlight__item.even {
+  flex-direction: row-reverse;
+}
+
+.designer-spotlight__image {
+  width: 50%;
+  padding-bottom: 50%;
+  position: relative;
+  overflow: hidden;
+}
