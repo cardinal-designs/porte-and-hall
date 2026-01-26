@@ -21,3 +21,21 @@
   grid-template-columns: 1fr 1fr;
   gap: 80px;
 }
+
+.designer-spotlight-header__title {
+  margin: 0 0 40px;
+}
+
+.designer-spotlight-header__subtitle {
+  margin: 0;
+}
+
+.designer-spotlight-header__divider {
+  width: 140px;
+  margin: 60px 0 40px;
+  border-bottom: 2px solid #CAD2D3;
+}
+
+.designer-spotlight-header__text {
+  margin: 0;
+}
