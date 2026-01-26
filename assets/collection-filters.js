@@ -214,13 +214,28 @@ class collectionFilters extends HTMLElement {
       formData.delete(val)
     })
 
-    console.log("after", ...formData)
+    // console.log("after", ...formData)
 
-    const searchParams = new URLSearchParams(formData).toString();
-    url = location.pathname + '?' + searchParams;
-    if (history.replaceState) {
-      window.history.pushState({ path: url }, '', url);
+    // const searchParams = new URLSearchParams(formData).toString();
+    
+    // url = location.pathname + '?' + searchParams;
+    // if (history.replaceState) {
+    //   window.history.pushState({ path: url }, '', url);
+    // }
+
+    // Build search params from form
+    const searchParams = new URLSearchParams(formData);
+
+    // Preserve existing "view" parameter if present
+    const currentParams = new URLSearchParams(window.location.search);
+    if (currentParams.has('view')) {
+      searchParams.set('view', currentParams.get('view'));
     }
+
+    url = location.pathname + '?' + searchParams.toString();
+    if (history.replaceState) {
+    window.history.pushState({ path: url }, '', url);
+  }
 
     // Fetch and replace sections
     this.enableLoading();
@@ -250,6 +265,9 @@ class collectionFilters extends HTMLElement {
       })
       .finally(() => {
         document.querySelectorAll('.product-grid__item.fade-in').forEach(item => item.style.opacity = 1);
+        window.scrollUtils1();
+        window.scrollUtils2();
+        window.scrollUtils3();
       });
   }
 

@@ -78,7 +78,7 @@
     display:none;
   }
 
-  .collection-row .collection-col h6{
+  .collection-row .collection-col h6, .collection-row .collection-col h3{
     color: #30383D;
     font-size: 32px;
     line-height: 36px;
@@ -87,6 +87,7 @@
     position:relative;
     font-weight: 500;
     font-family: louize;
+    text-transform:none;
   }
   .collection-row .collection-col .badge{
     border-radius: 34px;
@@ -268,6 +269,15 @@
     text-align: left;
   }
 
+  .discounted__price--rating {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .discounted__price--rating .igPrice {
+    order: 2;
+  }
+
   @media (max-width:1200px){
     .custom-collection .page-width{
       padding: 0 40px;
@@ -342,9 +352,10 @@
   }
 
   @media (max-width:768px){
-     .collection-row .collection-col h6 {
+     .collection-row .collection-col h6, .collection-row .collection-col h3 {
        font-size:20px !important;
        margin: 0px 0 0px;
+       text-transform:none;
     }
   }
 
@@ -448,7 +459,7 @@
   }
 
   .other-sizes__button {
-    max-width: 137px;
+    max-width: 100px;
   }
 
   @media (max-width:989px){
@@ -490,8 +501,9 @@
       justify-content: space-between;
     }
 
-    .collection-row .collection-col h6 {
+    .collection-row .collection-col h6, .collection-row .collection-col h3 {
       font-size: 32px !important;
+      text-transform:none;
     }
 
     .hide-medium {
@@ -572,75 +584,82 @@
             assign swatch_count = 1
             assign hidden_swatches = 0
             for prod in block.settings.collection1.products
-               assign productType = '' 
-               if product.handle contains 'doormat' 
-                 assign productType = 'doormat' 
-               elsif product.handle contains 'runner' 
-                 assign productType = 'runner' 
+              assign productType = '' 
+              if product.handle contains 'doormat' 
+                assign productType = 'doormat' 
+              elsif product.handle contains 'runner' 
+                assign productType = 'runner' 
               elsif product.handle contains 'area-mat' 
-                 assign productType = 'area-mat' 
+                assign productType = 'area-mat' 
               endif 
-            
-              if prod.handle contains productType or prod.handle contains 'outlier'
-              for option in prod.options_with_values
-                assign option_name = option.name | downcase
-                if color_label contains option_name or option_name == 'style'
-                  assign option_index = 'option' | append: forloop.index
-                  for value in option.values
-                    assign matched_variant = prod.variants | where: 'title', value
-                    
-                    if prod == product_card_product
-                      assign active_swatch = prod
-                      if matched_variant != blank
-                        assign active_swatch_link = matched_variant[0].url
-                      endif
-        
-                      assign element_classes = element_classes | append: ' product-card__active-swatch'
-                      assign active_swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
-                      assign active_swatch_tooltip_value = value
-                    else
-                      if matched_variant != blank
-                        assign swatch_link = matched_variant[0].url
-                      endif
-        
-                      if swatch_count > 3
-                        assign element_classes = 'product-card__swatch hidden'
-                        assign hidden_swatches = hidden_swatches | plus: 1
+
+              if prod.handle contains productType or prod.handle contains 'outlier' or prod.handle contains 'porter'
+                for option in prod.options_with_values
+                  assign option_name = option.name | downcase
+                  if color_label contains option_name or option_name == 'style'
+                    assign option_index = 'option' | append: forloop.index
+                    for value in option.values
+                      assign matched_variant = prod.variants | where: 'title', value
+                      
+                      if prod == product_card_product
+                        assign active_swatch = prod
+                        if matched_variant != blank
+                          assign active_swatch_link = matched_variant[0].url
+                        endif
+                        assign element_classes = element_classes | append: ' product-card__active-swatch'
+                        assign active_swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
+                        assign active_swatch_tooltip_value = value
                       else
-                        assign element_classes = 'product-card__swatch'
+                        if matched_variant != blank
+                          assign swatch_link = matched_variant[0].url
+                        endif
+
+                        if swatch_count > 3
+                          assign element_classes = 'product-card__swatch hidden'
+                          assign hidden_swatches = hidden_swatches | plus: 1
+                        else
+                          assign element_classes = 'product-card__swatch'
+                        endif
+
+                        assign swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
+                        assign swatch_image = images[swatch_file_name]
+
+                        echo "<a href='"
+                        echo swatch_link | default: prod.variants[0].url
+                        echo "' class='"
+                        echo element_classes
+                        echo "'"
+                        echo " aria-label='"
+                        echo value | escape
+                        echo "' title='"
+                        echo value | escape
+                        echo "' style='background-image: url("
+                        echo swatch_file_name | file_url
+                        echo ")' data-tooltip='"
+                        echo value | escape
+                        echo "'>"
+                        echo "<span class='sr-only'>"
+                        echo value | escape
+                        echo "</span></a>"
+                        
+                        assign swatch_count = swatch_count | plus: 1
                       endif
-        
-                      assign swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
-                      assign swatch_image = images[swatch_file_name]
-        
-                      echo "<a href='"
-                      echo swatch_link | default: prod.variants[0].url
-                      echo "' class='"
-                      echo element_classes
-                      echo "'"
-                      echo "style='background-image: url("
-                      echo swatch_file_name | file_url
-                      echo ")' data-tooltip='"
-                      echo value | escape
-                      echo "'></a>"
-                      assign swatch_count = swatch_count | plus: 1
-                    endif
-                  endfor
-                endif
-              endfor
-             endif
+                    endfor
+                  endif
+                endfor
+              endif
             endfor
-            
+
             if hidden_swatches > 0
-              echo "<a href="
+              echo "<a href='"
               echo productUrl
-              echo " class='body-s blue'> "
-              echo '+'
+              echo "' class='body-s blue'>+"
               echo hidden_swatches
-              echo '</a>'
+              echo "</a>"
             endif
           endcapture
         %}
+
         
         {% unless product.title contains block.settings.title %}
         
@@ -680,7 +699,7 @@
             <div class="collection-col-inner text">
               <div>
               <div class="title-swatch_container">
-                <h6>{{ block.settings.title }}</h6>
+                <h3>{{ block.settings.title }}</h3>
                 <div class="hide-large swatch_container">
                 {{ color_swatch_list }}
                 </div>
@@ -695,16 +714,37 @@
                 {% assign productType = 'area-mat' %}
               {% endif %}
               {% for prod in block.settings.collection1.products %}
-                {% if prod.handle contains productType or prod.handle contains 'outlier' %}
+                {% if prod.handle contains productType or prod.handle contains 'outlier' or prod.handle contains 'porter' %}
                   {% assign currentProduct = prod %}
                   {% break %}
                 {% endif %}
               {% endfor %}
 
-              <div class="price_rating">
-                <p>{{ currentProduct.price | money_without_trailing_zeros }}</p>
-                
-                <span class="blue"> | </span>
+
+              {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
+              {% assign auto_discount_price = currentProduct.metafields.custom.auto_discount_price %}
+              {% assign show_discounted_price = false %}
+              {% if enable_auto_discount_price and auto_discount_price > 0 %}
+                {% assign show_discounted_price = true %}
+                {% assign auto_discount_price = auto_discount_price | times: 100 |  money %}
+              {% endif %}
+
+              <div class="price_rating {% if show_discounted_price %}discounted__price--rating{% endif %}">
+                <p class="igPrice" data-product-id="{{ currentProduct.id }}">
+                  {% if show_discounted_price %}
+                    <span>
+                      <s class="price-item price-item--regular">
+                        {{currentProduct.price | money_without_trailing_zeros}}
+                      </s>
+                    </span>
+                    {{ auto_discount_price }}
+                  {% else %}
+                    {{ currentProduct.price | money_without_trailing_zeros }}
+                  {% endif %}
+                </p>
+                {% unless show_discounted_price %}
+                  <span class="blue"> | </span>
+                {% endunless %}
   
                 <!-- Rating code -->
                 

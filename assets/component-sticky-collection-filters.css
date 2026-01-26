@@ -1,0 +1,241 @@
+/* === Sticky Filters (Desktop + Mobile) =============================== */
+
+/* Layers */
+:root{
+  --filters-z: 60;          /* desktop sidebar filter */
+  --filters-z-docked: 1;    /* when docked near footer */
+  --header-z: 200;          /* header + nav above all */
+}
+
+/* Prevent wrappers from breaking sticky/fixed */
+.page-width,
+.collection-grid__inner { overflow: visible !important; }
+
+/* ---------- Desktop (left sidebar) ---------- */
+.sticky-filters-wrap { 
+  position: relative; 
+  /* width: 100%; */
+  width: calc(100% + 40px);
+  /* max-width: 100%; */
+  margin-left: -20px;
+}
+.sticky-filters-placeholder { height: 0; } /* set via JS */
+
+@media (min-width: 769px){
+
+  .sticky-filters-bar{
+    background: var(--color-background, #ffffff);
+    will-change: transform;
+    z-index: 5;
+    background: var(--filter-bg-color) !important;
+    color: var(--filter-text-color), #546B82 !important;
+    padding: 10px 0 10px 10px !important;
+    /* height: 100% !important;
+    overflow: hidden !important; */
+    position: sticky !important;
+    top: 197px !important;
+  }
+
+  .blue,
+  .sticky-filters-bar__inner,
+  .collection-filters,
+  .collection-filters__filters .js-clear-all-filters,
+  .collection-filters__slideout,
+  .collection-filters__dropdown-button,
+  .collection-filters__slideout-container {
+    background: var(--filter-bg-color);
+    color: var(--filter-text-color) !important;
+  }
+
+  .collection-filters__dropdown-container {
+    background: transparent;
+  }
+  
+  .collection-filters__slideout .collection-filters__filter-label {
+    color: var(--filter-text-color) !important;
+    font-size: 14px;
+  }
+
+  .collection-filters__filter-button[type=checkbox] {
+    border-color: var(--filter-text-color);
+  }
+
+  .sticky-filters-bar__inner .collection-filters__filter-button[type=checkbox]:checked {
+    background: var(--filter-text-color) !important;
+  }
+
+  .collection-filters__dropdown-button {
+    font-size: 16px;
+  }
+
+  .sticky-filters-bar.is-fixed{
+    position: fixed !important;
+  }
+
+  .collection-filters__filters .js-clear-all-filters {
+    margin-bottom: 60px;
+  }
+
+}
+
+@media (min-width: 1025px){
+
+  .sticky-filters-bar.is-fixed{
+    /* top: 210px !important; */
+  }
+
+}
+
+.sticky-filters-bar.is-fixed{
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
+  z-index: var(--filters-z); /* below header */
+}
+
+@media (max-width: 768px) {
+
+  .sticky-filters-bar.is-fixed {
+    left: 0 !important;
+    width: 100% !important;
+    background: #fff;
+  }
+
+  .sticky-filters-bar.is-docked{
+    position: unset !important;
+    right: 0;
+    box-shadow: none;
+    z-index: var(--filters-z-docked);
+  }
+
+  /* .collection-filters__button {
+    width: 100%;
+    margin: 0;
+  } */
+
+}
+
+/* Header/nav always above */
+#shopify-section-header,
+.header-wrapper,
+header[role="banner"],
+.header__navigation { z-index: var(--header-z) !important; }
+
+/* Avoid margin jumps inside the bar */
+.sticky-filters-bar .collection-filters,
+.sticky-filters-bar collection-filters { margin: 0 !important; }
+
+/* ---------- Mobile (just stacking; JS handles pinning + drawer) ------ */
+@media (max-width: 989px){
+  /* Keep header/nav above sticky elements and drawer */
+  #shopify-section-header,
+  .header-wrapper,
+  header[role="banner"],
+  .header__navigation { z-index: var(--header-z) !important; }
+
+  /* Allow sticky/fixed elements to extend */
+  .page-width,
+  .collection-grid__inner { overflow: visible !important; }
+
+  /* No other mobile CSS needed; the JS sets:
+     - fixed positioning/z-index for the white section & button while stuck
+     - drawer inline top/height/z-index */
+}
+
+
+.shopify-section.title-carousel.with-spacing {
+  position: sticky;
+  top: calc(var(--mobile-sticky-offset, 0px) + 0px); /* below header/nav */
+  z-index: 90; /* below header (200), above filters (60) */
+  background: var(--color-background, #fff);
+  will-change: transform;
+}
+
+/* On desktop, it should remain normally positioned */
+@media (min-width: 990px) {
+  .shopify-section.title-carousel.with-spacing {
+    position: sticky;
+    top: calc(var(--header-height, 100px));
+    z-index: 90;
+  }
+
+  .sticky-filters-bar.is-fixed .collection-filters__slideout-content {
+    position: relative;
+  }
+
+  /* .sticky-filters-bar.is-fixed .collection-filters__slideout-content::after {
+    content: "";
+    position: fixed;
+    pointer-events: none;
+    width: 100%;
+    height: 50px;
+    bottom: 0px;
+    background: linear-gradient(to top, rgba(84, 107, 130, 0.4), transparent);
+  } */
+
+}
+
+/* Optional: ensure it doesn’t overlap drawers or modals */
+[aria-modal="true"],
+[role="dialog"] {
+  z-index: 9999 !important;
+}
+
+
+/* ---- Title Carousel sticky layer (above filters, below header/nav & drawers) ---- */
+:root{
+  --title-carousel-z: 150;  /* > filters (60), < drawer (190) and header (200) */
+}
+
+
+/* ensure ancestors don't kill sticky/fixed */
+main, .page-width, .collection-grid__inner {
+  overflow: visible !important;
+}
+
+.shopify-section.title-carousel.with-spacing {
+  position: sticky;
+  top: calc(var(--mobile-sticky-offset, 0px)); /* sits directly below header/nav */
+  z-index: 50;                                  /* << lower than header */
+  background: var(--color-background, #fff);
+  /* Avoid creating a new stacking context that could beat the header */
+  will-change: auto;        /* was transform; drop it to avoid new context */
+  transform: none !important;
+}
+
+#shopify-section-header {
+  position: relative !important;  /* header may already be sticky; relative still works */
+  z-index: 999 !important;        /* well above anything we pin below */
+}
+
+body.template__sticky-filters  {
+  overflow: visible;
+}
+
+@media screen and (max-width: 768px) {
+  body.template__sticky-filters-mobile   {
+    overflow: visible;
+  }
+}
+
+.collection-grid-section {
+  visibility: visible;
+}
+
+.template__sticky-filters .collection-filters__button, .template__sticky-filters-mobile .collection-filters__button {
+  padding: 0;
+}
+
+.template__sticky-filters .collection-filters__open, .template__sticky-filters-mobile .collection-filters__open {
+  padding: 11px 21px;
+}
+
+.template__sticky-filters-mobile .head-slide-wrap{
+  width: auto;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 0 0 20px !important;
+  margin-right: 0;
+}
+
+.template__sticky-filters-mobile .head-slide-wrap .head-slide li:last-child {
+  margin-right: 0;
+}

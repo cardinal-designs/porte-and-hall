@@ -1,0 +1,76 @@
+<menu-drawer>
+  <div
+    class="menu-drawer"
+    id="menu-drawer"
+    aria-hidden="true"
+    aria-modal="true"
+    aria-label="Menu Drawer"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div class="menu-drawer__inner">
+      <div class="menu-drawer__header">
+        <h2 class="menu-drawer__title h4 visually-hidden">Menu</h2>
+        <button class="js-close-menu menu-drawer__close">
+          {% render 'icon', icon: 'close' %}
+        </button>
+      </div>
+      <div class="menu-drawer__content">
+        <ul class="menu-drawer__menu list-unstyled" role="list">
+          {% for link in section.settings.menu.links %}
+            <li>
+              {% if link.links != blank %}
+                <button class="menu-drawer__menu-button menu-drawer__menu-button--has-menu body" href="{{ link.url }}">
+                  {{ link.title }}
+                  {% render 'icon', icon: 'caret' %}
+                </button>
+                <ul class="menu-drawer__secondary-menu list-unstyled" role="list">
+                  {% for child_link in link.links %}
+                    <li>
+                      <a class="menu-drawer__secondary-menu-button body" href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link.title }}</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+
+          <li>
+            {% if shop.customer_accounts_enabled %}
+              <a
+                href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+                class="header__icon header__icon--account"
+              >
+                {% render 'icon', icon: 'account' %}
+                <span class="visually-hidden">
+                  {% liquid
+                    if customer
+                      echo 'customer.account_fallback' | t
+                    else
+                      echo 'customer.log_in' | t
+                    endif
+                  %}
+                </span>
+              </a>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</menu-drawer>
+
+{% schema %}
+{
+  "name": "Mobile Menu",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    }
+  ]
+}
+{% endschema %}

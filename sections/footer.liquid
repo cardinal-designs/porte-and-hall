@@ -26,9 +26,11 @@
   <div class="page-width">
     <div class="footer__logo">
       {% if section.settings.svg_logo != blank %}
-        <div class="footer__svg-logo">
-          {{ section.settings.svg_logo }}
-        </div>
+        <a href="{{ shop.url }}" aria-label="Footer logo - {{ shop.name }}">
+          <div class="footer__svg-logo">
+            {{ section.settings.svg_logo }}
+          </div>
+        </a>
       {% endif %}
     </div>
     <div class="footer__top">
@@ -88,7 +90,7 @@
 
       <div class="footer__newsletter">
         {% if section.settings.newsletter_heading != blank %}
-          <h3 class="footer__heading">{{ section.settings.newsletter_heading | escape }}</h3>
+          <p class="footer__heading h3">{{ section.settings.newsletter_heading | escape }}</p>
         {% endif %}
 
         {% if section.settings.newsletter_text != blank %}

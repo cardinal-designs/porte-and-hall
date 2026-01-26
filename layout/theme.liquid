@@ -1,7 +1,6 @@
 <!doctype html>
 <html class="no-js livetheme" lang="{{ request.locale.iso_code }}">
   <head>
-    {% comment %}
     <script>
       window.Shopify = window.Shopify || {theme: {id: {{ theme.id }}, role: '{{ theme.role }}' } };
       window._template = {
@@ -11,20 +10,13 @@
       };
     </script>
     <script type="module" blocking="render" fetchpriority="high" src="https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js" async></script>
-    {% endcomment %}
-    
+   
     <style>
       .main_nav1 {
         opacity: 0.1 !important;
       }
     </style>
     {%- render 'optimization' -%}
-
-    <!-- Start of Shoplift scripts -->
-    {% render 'shoplift' %}
-    {% render 'shoplift-alt-template' %}
-    <!-- End of Shoplift scripts -->
-
     <meta name="google-site-verification" content="IVpP462_ffIVedPbcCOwwr4v0yqczNWKVEY2XNhS4b4" />
     <script data-lazy-src="https://www.googleoptimize.com/optimize.js?id=OPT-WV5FTMC" defer="defer"></script>
     <meta charset="utf-8">
@@ -34,7 +26,7 @@
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <meta name="google-site-verification" content="tjEDE8k9mNiV-8gqcHIAD9HLahL51PjgqHc0nFOpQLo" />
-	<meta name="facebook-domain-verification" content="880tuton4kgymbs2q448hzydeyriqd" />
+	  <meta name="facebook-domain-verification" content="880tuton4kgymbs2q448hzydeyriqd" />
 
     {% if settings.favicon != blank %}
       <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
@@ -46,6 +38,12 @@
       {% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}
       {% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
     </title>
+
+    <script>
+    {% if collection.handle == 'all' %}
+      window.location.href = '/collections/shop-all'
+    {% endif %}
+    </script>
 
     <!-- begin Convert Experiences code-->
     <script type="text/javascript" src="//cdn-4.convertexperiments.com/js/10041621-10044581.js" defer="defer"></script>
@@ -142,13 +140,17 @@
 
     <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
 
-    {%- assign content_for_header = content_for_header | replace: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'" -%}
-
+    {% # theme-check-disable %}
+    {%- liquid
+      assign content_for_header = content_for_header | replace_first: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'"
+      assign content_for_header = content_for_header | replace_first: "src='https://cdn.shopify.com/shopifycloud/preview-bar/preview-bar-modules.js'", "data-lazy-src='https://cdn.shopify.com/shopifycloud/preview-bar/preview-bar-modules.js'"
+    -%}
     {{ content_for_header }}
+    {% # theme-check-enable %}
     
     <!-- BEGIN PRIVY WIDGET CODE -->
 	<script type='text/javascript'> var _d_site = _d_site || 'C944B2C24A5E6353CEBE51B6'; </script>
-	<script src='https://widget.privy.com/assets/widget.js' defer="defer"></script>
+	<script data-lazy-src='https://widget.privy.com/assets/widget.js' defer="defer"></script>
 	<!-- END PRIVY WIDGET CODE -->
     <style>
     #privy-container #privy-inner-container [tabindex]:focus {
@@ -190,7 +192,7 @@
           var o={ti:"97168087", enableAutoSpaTracking: true};
           o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")
         },
-        n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function()
+        n=d.createElement(t),n.dataset.lazySrc=r,n.async=1,n.onload=n.onreadystatechange=function()
         {
           var s=this.readyState;
           s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)
@@ -221,14 +223,37 @@
             h._hjSettings={hjid:6477450,hjsv:6};
             a=o.getElementsByTagName('head')[0];
             r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            r.dataset.lazySrc=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
-
+    {%- render 'head-scripts-loader' -%}
+    
+    <script defer src="https://static.shopmy.us/Affiliates/sms_aff_clicktrack.js?domain=porteandhall.com&expires=30"></script>
   </head>
 
   <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
+    <style>
+      .sr-only {
+        position: absolute !important;
+        margin: -1px !important;
+        border: 0 !important;
+        padding: 0 !important;
+        width: 1px !important;
+        height: 1px !important;
+        overflow: hidden !important;
+        clip: rect(0 0 0 0) !important;
+    }
+
+  {% comment %} {% if content_for_header contains 'view=sticky-filters' %}
+    @media (max-width: 768px) {
+      .outer-header-wrapper {
+        top: 73px !important; 
+      }
+    }
+  {% endif %} {% endcomment %}
+
+    </style>
     <script>
     if (window.location.pathname == '/collections') {
       window.location.href = '/collections/shop-all'
@@ -237,7 +262,7 @@
       window.location.href = '/collections/the-innerweave'
     }
     </script>
-        
+    
     <script>(function(e,t,n){var r,i=e.getElementsByTagName(t)[0];if(e.getElementById(n))return;r=e.createElement(t);r.id=n;r.dataset.lazySrc="https://button.aftership.com/all.js";i.parentNode.insertBefore(r,i)})(document,"script","aftership-jssdk")</script>
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
@@ -249,16 +274,24 @@
       {% unless collection.metafields.custom.hide_announcement_bar == true %}
         {% section 'announcement-bar' %}
       {% endunless %}
-      {% section 'header' %}
+      {% if template.suffix == 'porter-landing' %}
+        {% section 'porter-landing-header' %}
+      {% else %}
+        {% section 'header' %}
+      {% endif %}
     </div>
 
-    {% section 'mobile-menu' %}
+    {% if template.suffix == 'porter-landing' %}
+      {% section 'porter-mobile-menu' %}
+    {% else %}
+      {% section 'mobile-menu' %}
+    {% endif %}
 
     {% if template != 'cart' %}
       {% section 'cart-drawer' %}
     {% endif %}
 
-    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+    <main id="MainContent" class="collection.template_suffix}}  content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
@@ -293,6 +326,7 @@
       };
     </script>
 
+    {% comment %} 
     <script data-lazy-src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
     <script>
         window.addEventListener('lazy-scripts-loaded', () => {
@@ -331,7 +365,8 @@
           }
         });
         });
-    </script>
+    </script> 
+    {% endcomment %}
 
     {% if product %}
       <script>
@@ -386,11 +421,28 @@
     <script> (function(){ var s = document.createElement('script'); var h = document.querySelector('head') || document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init({ statementLink : '', footerHtml : '', hideMobile : false, hideTrigger : false, disableBgProcess : false, language : 'en', position : 'left', leadColor : '#556b82', triggerColor : '#50657b', triggerRadius : '50%', triggerPositionX : 'left', triggerPositionY : 'bottom', triggerIcon : 'people', triggerSize : 'medium', triggerOffsetX : 20, triggerOffsetY : 20, mobile : { triggerSize : 'small', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerOffsetX : 10, triggerOffsetY : 10, triggerRadius : '50%' } }); }; h.appendChild(s); })(); </script>   
 
     <!-- OneTrust Cookies Consent Notice start for www.porteandhall.com -->
-    <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="392ca035-48a4-413f-b3b6-5ee77c589497" defer="defer"></script>
+    <style>
+      #onetrust-banner-sdk {
+        display: none !important;
+      }
+    </style>
+
+    <script data-lazy-src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+        type="text/javascript"
+        charset="UTF-8"
+        data-domain-script="392ca035-48a4-413f-b3b6-5ee77c589497"
+        defer="defer"></script>
+
     <script type="text/javascript">
-    function OptanonWrapper() {
-      
-    }
+      function OptanonWrapper() {
+        // Wait 4 seconds after OneTrust initializes, then show banner
+        setTimeout(function () {
+          var banner = document.getElementById('onetrust-banner-sdk');
+          if (banner) {
+            banner.style.setProperty('display', 'block', 'important'); 
+          }
+        }, 4000);
+      }
     </script>
     <!-- OneTrust Cookies Consent Notice end for www.porteandhall.com -->
     
@@ -398,6 +450,156 @@
      .ot-floating-button__front {visibility: hidden;}
    {% endstyle %}
    <script src="{{ 'optimization.js' | asset_url }}" defer></script>
+
+{% if request.page_type != 'index' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ shop.url }}"
+    }
+    {% if request.page_type == 'collection' %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ collection.title }}",
+      "item": "{{ collection.url | prepend: shop.url }}"
+    }
+    {% elsif request.page_type == 'product' %}
+    {% if product.collections.size > 0 %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ product.collections.first.title }}",
+      "item": "{{ product.collections.first.url | prepend: shop.url }}"
+    }
+    {% endif %}
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ product.title }}",
+      "item": "{{ product.url | prepend: shop.url }}"
+    }
+    {% elsif request.page_type == 'page' %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ page.title }}",
+      "item": "{{ page.url | prepend: shop.url }}"
+    }
+    {% elsif request.page_type == 'article' %}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ blog.title }}",
+      "item": "{{ blog.url | prepend: shop.url }}"
+    }
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ article.title }}",
+      "item": "{{ article.url | prepend: shop.url }}"
+    }
+    {% endif %}
+  ]
+}
+</script>
+{% endif %}
+
+{% if template.name == 'article' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ shop.url }}{{ article.url }}"
+  },
+  "headline": "{{ article.title | escape }}",
+  "description": "{{ article.content | strip_html | escape }}",
+  "image": [
+    {% if article.image %}
+      "{{ article.image | img_url: 'master' }}"
+    {% endif %}
+  ],
+  "author": {
+    "@type": "Person",
+    "name": {{ article.author | json }},
+    "url": "{{ article.url }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ shop.name | escape }}"
+  },
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}",
+  "dateModified": "{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}"
+}
+</script>
+{% endif %}
+
+
+
+
+{% if template == 'index' %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": {{ shop.name | json }},
+  "image": {{ shop.brand.logo | img_url: '300x' | prepend: 'https:' | json }},
+  "@id": {{ shop.url | json }},
+  "url": {{ shop.url | json }},
+  "description": {{ shop.description | default: "Your trusted online store." | strip_html | json }},
+  "openingHours": "Mo-Su 00:00-23:59",
+  "telephone": {{ shop.phone | json }},
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ shop.address.street | json }},
+    "addressLocality": {{ shop.address.city | json }},
+    "addressRegion": {{ shop.address.province | json }},
+    "postalCode": {{ shop.address.zip | json }},
+    "addressCountry": {{ shop.address.country | json }}
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": {{ shop.phone | json }},
+    "contactType": "Customer Service",
+    "areaServed": "US",
+    "availableLanguage": ["English"]
+  },
+  "sameAs": [
+    "https://www.instagram.com/porteandhall/",
+    "https://www.facebook.com/porteandhall",
+    "https://www.pinterest.com/porchandhall/_created/"
+  ],
+  "priceRange": "$$",
+  "paymentAccepted": "Visa, Master Card, PayPal",
+  "currenciesAccepted": {{ shop.currency | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ shop.url }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.81",
+    "reviewCount": "241"
+  }
+  
+}
+</script>
+
+
+{% endif %}
+
+
   </body>
 </html>
 

@@ -1,9 +1,28 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "breadcrumbs_igpLPT": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "#f4f2ee",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "main": {
       "type": "main-giftcard",
-      "settings": {
-      }
+      "settings": {}
     },
     "logo-marquee": {
       "type": "logo-marquee",
@@ -11,49 +30,49 @@
         "50d28991-9949-425a-8be2-904babebbf3d": {
           "type": "logo",
           "settings": {
-            "svg": "<img width=\"146\" height=\"30\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
+            "svg": "<img width=\"146\" height=\"30\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
           }
         },
         "149c1817-ad42-4e33-9606-3fdd86617b59": {
           "type": "logo",
           "settings": {
-            "svg": "<img width=\"242\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Better_homes.svg?v=1613389157\" alt=\"logo\">"
+            "svg": "<img width=\"242\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Better_homes.svg?v=1613389157\" alt=\"logo\">"
           }
         },
         "c601b093-74e6-4c97-9b9f-e92dbbc1954b": {
           "type": "logo",
           "settings": {
-            "svg": "<img width=\"143\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
+            "svg": "<img width=\"143\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
           }
         },
         "525c8d7f-3fd8-424a-9bb9-796fe7acd9b9": {
           "type": "logo",
           "settings": {
-            "svg": "<img width=\"100\" height=\"25\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
+            "svg": "<img width=\"100\" height=\"25\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
           }
         },
         "3a0ca646-6b8d-40f7-bad1-95beb0f48c38": {
           "type": "logo",
           "settings": {
-            "svg": "<img width=\"146\" height=\"30\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
+            "svg": "<img width=\"146\" height=\"30\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
           }
         },
         "7776a47e-3b45-4168-a62f-1ed5450e55e4": {
           "type": "logo",
           "settings": {
-            "svg": "<img width=\"242\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Better_homes.svg?v=1613389157\" alt=\"logo\">"
+            "svg": "<img width=\"242\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Better_homes.svg?v=1613389157\" alt=\"logo\">"
           }
         },
         "75cd2c0e-3721-428e-9a94-ab9ee0f2702a": {
           "type": "logo",
           "settings": {
-            "svg": "<img width=\"143\" height=\"17\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
+            "svg": "<img width=\"143\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
           }
         },
         "e94d2efd-9517-44b1-ae3f-3c3ce149ac5f": {
           "type": "logo",
           "settings": {
-            "svg": "<img width=\"100\" height=\"25\" src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0510\/2488\/7998\/files\/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
+            "svg": "<img width=\"100\" height=\"25\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
           }
         }
       },
@@ -79,9 +98,19 @@
         "color": "green",
         "alignment": "center",
         "heading": "“Porte + Hall gift cards make the perfect housewarming gift - something they may not get for themselves but is a livable luxury they will love.”",
-        "text": "<strong>— STAFFORD MEYER, FOUNDER OF PORTE + HALL<\/strong>",
+        "text": "<strong>— STAFFORD MEYER, FOUNDER OF PORTE + HALL</strong>",
         "link": "",
-        "link_text": ""
+        "link_text": "",
+        "show_faq": false,
+        "title_1": "",
+        "title_richtext_1": "",
+        "answer_1": "",
+        "title_2": "",
+        "title_richtext_2": "",
+        "answer_2": "",
+        "title_3": "",
+        "title_richtext_3": "",
+        "answer_3": ""
       }
     },
     "meet-the-founder": {
@@ -98,7 +127,7 @@
         "text": "Our mats are the perfect gift for new homeowners, college kids, newlyweds and new parents. Make their room, house, or space functional, beautiful, and endlessly inviting.",
         "link": "",
         "link_text": "",
-        "image": "shopify:\/\/shop_images\/web_collage_2x_c5fe1b5e-cb1b-43a3-bb6a-6b56d77aa66a.png"
+        "image": "shopify://shop_images/web_collage_2x_c5fe1b5e-cb1b-43a3-bb6a-6b56d77aa66a.png"
       }
     },
     "faq": {
@@ -109,6 +138,7 @@
           "repeater": "{{ product.metafields.custom.faqs.value }}",
           "settings": {
             "title": "{{ block.repeater.question.value }}",
+            "title_richtext": "",
             "answer": "{{ block.repeater.answer | metafield_tag }}"
           }
         }
@@ -128,19 +158,19 @@
         "140e3c63-9b99-476d-9378-53fd1ce30b89": {
           "type": "article",
           "settings": {
-            "article": "news\/best-doormat-for-your-home"
+            "article": "news/best-doormat-for-your-home"
           }
         },
         "faf6f395-3915-4f58-b2c5-acd839476fc2": {
           "type": "article",
           "settings": {
-            "article": "news\/view-from-the-porch"
+            "article": "news/view-from-the-porch"
           }
         },
         "cc9c34ec-5a8d-4a24-9b5f-20963c337e23": {
           "type": "article",
           "settings": {
-            "article": "news\/luxury-front-door-mats"
+            "article": "news/luxury-front-door-mats"
           }
         }
       },
@@ -153,11 +183,13 @@
         "heading": "Hit the ground stunning:\nThe Porte + Hall blog",
         "background": "",
         "blog": "",
-        "show_recent_articles": false
+        "show_recent_articles": false,
+        "hide_mobile": false
       }
     }
   },
   "order": [
+    "breadcrumbs_igpLPT",
     "main",
     "logo-marquee",
     "fan-motif",

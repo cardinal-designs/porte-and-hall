@@ -1,0 +1,284 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "porter-landing-main",
+      "disabled": true,
+      "settings": {
+        "page_heading": "",
+        "subhead": "",
+        "image": "shopify://shop_images/Rectangle_600_afdd9d4e-2ac5-4953-8125-1a557f66a497.jpg",
+        "section_height": "350",
+        "bg_color": "#f4f2ee"
+      }
+    },
+    "hero_porter_hall_FeqBxV": {
+      "type": "hero-porter-hall",
+      "blocks": {
+        "slider_fREmFc": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/hero_2.png",
+            "mobile_image": "shopify://shop_images/hero_3.png",
+            "heading": "Designed to impress. Built to last. | Welcome to The Porter.",
+            "feature_text": "Luxury Look & Feel, For Outdoor Use, Ultra-Durable Design",
+            "button_text": "Shop Now",
+            "button_link": "shopify://products/the-porter-truffle-standard",
+            "text_position": "top--center"
+          }
+        },
+        "slider_Vn3tEj": {
+          "type": "slider",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/hero.jpg",
+            "mobile_image": "shopify://shop_images/hero_1_9abcc4c5-454b-45bb-8fa5-abb34a233034.jpg",
+            "heading": "Designed to impress. Built to last. | Welcome to The Porter.",
+            "feature_text": "Luxury look & Feel, For Outdoor Use, Ultra-Durable Design",
+            "button_text": "Shop Now",
+            "button_link": "shopify://products/the-porter-truffle-standard",
+            "text_position": "top--center"
+          }
+        }
+      },
+      "block_order": [
+        "slider_fREmFc",
+        "slider_Vn3tEj"
+      ],
+      "name": "Hero - Porter Hall",
+      "settings": {}
+    },
+    "breadcrumbs_DMjzEK": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "#f4f2ee",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
+    "porter_hall_image_grid_7BTqhf": {
+      "type": "porter-hall-image-grid",
+      "name": "Grand Entrance Section",
+      "settings": {
+        "bg_color": "#f4f2ee",
+        "title": "Make a | Grand Entrance",
+        "description": "<p>A stylish home deserves more than any old doormat. Knotted by hand from the finest Italian yarns, The Porter is a luxury outdoor mat like no other. It not only welcomes you with stunning visual interest, but it’s also built to brave the elements and hold up for years to come.</p>",
+        "subheading": "Form and function? A beautiful thing.",
+        "image_1": "shopify://shop_images/outlierclean_1_2_615f6b06-6316-4952-9fe5-fc8b9a250247.png",
+        "image_1_caption": "Hand-knotted design creates open space |  —looks great and traps dirt, too.",
+        "image_1_mobile_caption": "Hand-knotted design creates |  open space -looks great and traps dirt, too.",
+        "image_1_note": "",
+        "image_1_caption_position": "bottom--left",
+        "text_1_color": "#ffffff",
+        "image_2": "shopify://shop_images/outlierclean_1_1_74c7f81f-46f1-4614-bf2b-5268f024fdab.png",
+        "image_2_caption": "Flexible and easy to roll out | — and shake clean.",
+        "image_2_mobile_caption": "Flexible and easy to roll out | — and shake clean.",
+        "image_2_note": "",
+        "image_2_caption_position": "top--right",
+        "text_2_color": "#30383d",
+        "image_3": "shopify://shop_images/outlierclean_1_2_bce045b1-afb3-42bc-81c8-c329ba1a5620.png",
+        "image_3_caption": "Soft on feet (and paws).",
+        "image_3_mobile_caption": "Soft on feet (and paws)",
+        "image_3_note": "",
+        "image_3_caption_position": "bottom--left",
+        "text_3_color": "#ffffff"
+      }
+    },
+    "porter_hall_colorways_xHj4Bh": {
+      "type": "porter-hall-colorways",
+      "blocks": {
+        "color_DNVFHG": {
+          "type": "color",
+          "settings": {
+            "image": "shopify://shop_images/L_Porte_Hall_Porter_2Well_Bown_1443_1_2_1_2fd8f0ea-4ed8-4e21-bf34-4abad85e84db.png",
+            "color_image": "shopify://shop_images/granite.png",
+            "link": "shopify://products/the-porter-granite-standard",
+            "color_name": "Granite",
+            "color_size": "Standard 30\" x 48\"",
+            "color_note": ""
+          }
+        },
+        "color_999pwx": {
+          "type": "color",
+          "settings": {
+            "image": "shopify://shop_images/M_Porte_Hall_PorterDoube_2Well_1504_N_1_1_1_1_1.jpg",
+            "color_image": "shopify://shop_images/truffle.png",
+            "link": "shopify://products/the-porter-truffle-double",
+            "color_name": "Truffle",
+            "color_size": "Double 36\" x 72\"",
+            "color_note": ""
+          }
+        },
+        "color_Mczgik": {
+          "type": "color",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1968_1.png",
+            "color_image": "shopify://shop_images/greystone.png",
+            "link": "shopify://products/the-porter-greystone-double",
+            "color_name": "Greystone",
+            "color_size": "Double 36\" x 72\"",
+            "color_note": ""
+          }
+        }
+      },
+      "block_order": [
+        "color_DNVFHG",
+        "color_999pwx",
+        "color_Mczgik"
+      ],
+      "name": "Colorways",
+      "settings": {
+        "title": "3 Elegant Colorways",
+        "mobile_slider": true,
+        "button_text": "Shop Now",
+        "button_link": "shopify://products/the-porter-truffle-standard"
+      }
+    },
+    "porter_hall_material_type_GEYDmB": {
+      "type": "porter-hall-material-type",
+      "name": "Two of a Kind",
+      "settings": {
+        "bg_color": "#eeefef",
+        "title": "Two of a Kind",
+        "image_doublewide": "shopify://shop_images/Group_2_57f06724-1fa3-42cf-b2b0-74d4dd909943.png",
+        "mobile_image_doublewide": "shopify://shop_images/Group_2_57f06724-1fa3-42cf-b2b0-74d4dd909943.png",
+        "doublewide_title": "Doublewide",
+        "doublewide_description": "<p>Have a huge front door (or more than one)? We designed this big(ger) boy with you in mind.</p>",
+        "image_standard": "shopify://shop_images/Group_1_740a77ef-5343-4beb-a5a2-e286947e11ed.png",
+        "mobile_image_standard": "shopify://shop_images/Group_1_740a77ef-5343-4beb-a5a2-e286947e11ed.png",
+        "standard_title": "Standard",
+        "standard_description": "<p>Perfectly oversized and anything but ordinary, this mat was made to make a statement at most doors.</p>"
+      }
+    },
+    "porter_hall_video_text_zDhyEj": {
+      "type": "porter-hall-video-text",
+      "blocks": {
+        "title_text_8ebXtd": {
+          "type": "title_text",
+          "settings": {
+            "feature_title": "Durable by design",
+            "feature_description": "<p>UV-resistant and water-repellent rope made from all-weather Italian yarns keeps your mat looking new for years—rain or shine.</p>"
+          }
+        },
+        "title_text_raATCt": {
+          "type": "title_text",
+          "settings": {
+            "feature_title": "Two-tone depth",
+            "feature_description": "<p>Twisting two different yarn colors together creates a level of dimension that solid rope simply can’t match.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "title_text_8ebXtd",
+        "title_text_raATCt"
+      ],
+      "name": "The Finer Details",
+      "settings": {
+        "bg_color": "#cad2d3",
+        "image": "shopify://shop_images/Frame_391.png",
+        "title": "The Finer Details",
+        "subtitle": "What makes The Porter so unique? It’s the little things.",
+        "image_position": "image--first",
+        "remove_top_space": false,
+        "remove_bottom_space": false
+      }
+    },
+    "porter_hall_video_text_hnGRDJ": {
+      "type": "porter-hall-video-text",
+      "blocks": {
+        "title_text_RWFTjT": {
+          "type": "title_text",
+          "settings": {
+            "feature_title": "Handmade quality",
+            "feature_description": "<p>Hand-knotting makes each mat one-of-a-kind and perfectly practical: The space between knots helps scrape dirt off shoes.</p>"
+          }
+        },
+        "title_text_fad9wk": {
+          "type": "title_text",
+          "settings": {
+            "feature_title": "Beautiful both ways",
+            "feature_description": "<p>The Porter doesn’t have a “good side”: It’s fully reversible and looks great from every angle.</p>"
+          }
+        },
+        "title_text_MKFDWz": {
+          "type": "title_text",
+          "settings": {
+            "feature_title": "Easy care",
+            "feature_description": "<p>It’s super simple to clean and comes with care instructions—not all beauties are high-maintenance.</p>"
+          }
+        },
+        "image_rXX3Mc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4179_1.png"
+          }
+        },
+        "image_KBiLWA": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_7279_1_1.png"
+          }
+        },
+        "image_neJjA9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4179_2.png"
+          }
+        }
+      },
+      "block_order": [
+        "title_text_RWFTjT",
+        "title_text_fad9wk",
+        "title_text_MKFDWz",
+        "image_rXX3Mc",
+        "image_KBiLWA",
+        "image_neJjA9"
+      ],
+      "name": "The Finer Details",
+      "settings": {
+        "bg_color": "#cad2d3",
+        "video": "shopify://files/videos/porterrollout.mp4",
+        "title": "",
+        "subtitle": "",
+        "image_position": "image--second",
+        "remove_top_space": true,
+        "remove_bottom_space": false
+      }
+    },
+    "porter_hall_box_image_text_NWHbjw": {
+      "type": "porter-hall-box-image-text",
+      "name": "Step in Right Direction",
+      "settings": {
+        "bg_color": "#546b82",
+        "box_bg_color": "",
+        "heading": "A Step in the Right Direction",
+        "text": "<p>The Porter's polypropylene yarns are <strong>produced without water</strong> (a win for Mother Earth) and they’re also durable enough to weather plenty of storms and stand up to daily foot traffic.</p><p>It’s <strong>fully recyclable</strong>–send it back and we’ll handle the rest.</p>",
+        "button_label": "Shop Now",
+        "button_link": "shopify://products/the-porter-truffle-standard",
+        "image": "shopify://shop_images/B_Porte_Hall_PorterTight_Truffle_1010_1_1_1_2.png"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "hero_porter_hall_FeqBxV",
+    "breadcrumbs_DMjzEK",
+    "porter_hall_image_grid_7BTqhf",
+    "porter_hall_colorways_xHj4Bh",
+    "porter_hall_material_type_GEYDmB",
+    "porter_hall_video_text_zDhyEj",
+    "porter_hall_video_text_hnGRDJ",
+    "porter_hall_box_image_text_NWHbjw"
+  ]
+}

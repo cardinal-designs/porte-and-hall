@@ -34,13 +34,18 @@
   display: flex;
   /* padding: 1.3rem; */
   color: rgb(var(--color-foreground));
+  min-height: 24px;
+}
+
+.list-social__link span {
+  display: inherit;
+  min-height: 24px;
 }
 
 .list-social__icon {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 0;
-  transform: translateY(-50%);
   width: 16px;
   height: 16px;
   background-color: white;

@@ -1,10 +1,17 @@
 {% style %}
 @media (max-width:989px){
+  {% if section.settings.hide_mobile == true %}
+    #shopify-section-{{ section.id }} {
+      display: none !important;
+    }
+  {% endif %}
+  /* #shopify-section-template--16866356691007__40919de2-f3c2-45da-99ff-c69ad3e95306,
   #shopify-section-template--16866356691007__40919de2-f3c2-45da-99ff-c69ad3e95306,
-  #shopify-section-template--16866356691007__40919de2-f3c2-45da-99ff-c69ad3e95306,
-  #shopify-section-template--16866358034495__40919de2-f3c2-45da-99ff-c69ad3e95306 {
+  #shopify-section-template--16866358034495__40919de2-f3c2-45da-99ff-c69ad3e95306,
+  #shopify-section-template--16905855270975__40919de2-f3c2-45da-99ff-c69ad3e95306, 
+  #shopify-section-template--16905854976063__40919de2-f3c2-45da-99ff-c69ad3e95306 {
     display: none !important;
-  }
+  } */
 }
 
   .custom-coll-home {
@@ -44,7 +51,7 @@
     {%- if section.settings.title != blank -%}
       <header class="SectionHeader">
         {%- if section.settings.title != blank -%}
-          <h4 class="SectionHeader__Heading">{{ section.settings.title }}</h4>
+          <h2 class="SectionHeader__Heading">{{ section.settings.title }}</h2>
         {%- endif -%}
       </header>
     {%- endif -%}
@@ -113,6 +120,12 @@
       "id": "title",
       "label": "Heading",
       "default": "Title"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_mobile",
+      "label": "Hide Mobile?",
+      "default": true
     }
   ],
   "blocks": [

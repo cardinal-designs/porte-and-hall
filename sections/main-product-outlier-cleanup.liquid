@@ -64,6 +64,12 @@
             echo "' class='"
             echo element_classes
             echo "'"
+            echo " aria-label='"
+            echo value | escape
+            unless swatch.available
+              echo " is Unavailable"
+            endunless
+            echo "'"
             echo "data-tooltip='"
             echo value | escape
             echo "' ><span "
@@ -80,27 +86,27 @@
 %}
 
 {% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
-<section class="page-width">
+<section class="page-width xtcleanup">
   <div class="product">
     <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
       {{ 'accessibility.skip_to_product_info' | t }}
     </a>
 
     <div class="product__media-wrapper">
-      <ul class="hide-mobile product__media-thumbnails list-unstyled swiper" role="list">
+      <div class="hide-mobile product__media-thumbnails list-unstyled swiper">
         <div class="swiper-wrapper">
           {% for media in product.media %}
-            <li class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+            <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
               {% render 'product-media', media: media, position: forloop.index, width: '106' %}
-            </li>
+            </div>
           {% endfor %}
         </div>
-      </ul>
+      </div>
 
-      <ul class="product__media-list list-unstyled swiper" role="list">
+      <div class="product__media-list list-unstyled swiper">
         <div class="swiper-wrapper">
           {% for media in product.media %}
-            <li class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+            <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
               {% render 'product-media', media: media, position: forloop.index %}
               <div class="product__media-buttons">
                 {% unless section.settings.hide_pinterest == true %}
@@ -108,13 +114,13 @@
                 {% endunless %}
                 {% render 'zoom-button' %}
               </div>
-            </li>
+            </div>
           {% endfor %}
         </div>
         <div class="product__media-pagination swiper-pagination hide-desktop"></div>
         <div class="product__media-button swiper-button-prev hide-desktop"></div>
         <div class="product__media-button swiper-button-next hide-desktop"></div>
-      </ul>
+      </div>
     </div>
 
     <div class="product__info-wrapper">
@@ -169,7 +175,7 @@
          <div id="myModal" class="dimension-modal-content dimension_modal">
               <div class="dimension-modal-header">
               <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
-              <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %}</button></div>
+              <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %}<span class="sr-only">Close Button</span></button></div>
               </div>
               <div class="dimension-modal-body">
                <p>{{ product.metafields.custom.product_dimensions.value.dimension }}</p>
@@ -1024,9 +1030,11 @@
   
   var span = document.getElementsByClassName("close")[0];
   
-  btn.onclick = function() {
-    modal.classList.add("open");
-    body.classList.add("open");
+  if(btn) {
+    btn.onclick = function() {
+      modal.classList.add("open");
+      body.classList.add("open");
+    }
   }
   
   span.onclick = function() {

@@ -1,0 +1,224 @@
+{% liquid
+  assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
+  assign collection_title = collection.title | downcase
+  capture color_swatch_list
+    assign swatch_count = 1
+    assign hidden_swatches = 0
+    for product in collection.products
+      for option in product.options_with_values
+        assign option_name = option.name | downcase
+        if color_label contains option_name or option_name == 'style'
+          assign option_index = 'option' | append: forloop.index
+          for value in option.values
+            assign matched_variant = product.variants | where: 'title', value
+            
+            if product == product_card_product
+              assign active_swatch = product
+              if matched_variant != blank
+                assign active_swatch_link = matched_variant[0].url
+              endif
+
+              assign element_classes = element_classes | append: ' product-card__active-swatch'
+              assign active_swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
+              assign active_swatch_tooltip_value = value
+            else
+              if matched_variant != blank
+                assign swatch_link = matched_variant[0].url
+              endif
+
+              if swatch_count > 3
+                assign element_classes = 'product-card__swatch hidden'
+                assign hidden_swatches = hidden_swatches | plus: 1
+              else
+                assign element_classes = 'product-card__swatch'
+              endif
+
+              assign swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
+              assign swatch_image = images[swatch_file_name]
+
+              echo "<a href='"
+              echo swatch_link | default: product.variants[0].url
+              echo "' class='"
+              echo element_classes
+              echo "'"
+              echo " aria-label='"
+              echo value | escape
+              echo "'"
+              echo "style='background-image: url("
+              echo swatch_file_name | file_img_url: '60x60'
+              echo ")' data-tooltip='"
+              echo value | escape
+              echo "'></a>"
+              assign swatch_count = swatch_count | plus: 1
+            endif
+          endfor
+        endif
+      endfor
+    endfor
+    if hidden_swatches > 0
+      echo '<button data-hidden-swatches class="body-xs blue">'
+      echo '+'
+      echo hidden_swatches
+      echo ' more'
+      echo '</button>'
+    endif
+  endcapture
+%}
+
+<grouped-product-card data-collection-id="{{collection.id}}">
+  <div class="product-card {% if simple_card == true %}product-card-simple{% endif %}">
+    {% comment %}
+      <div class="product-card__image">
+        <div class="swiper product-card__image-swiper">
+          <div class="swiper-wrapper">
+            {% for i in product_card_product.images %}
+              <div class="swiper-slide">
+                {% render 'lazy-image', image: i, fill: true %}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        {% if product_card_product.compare_at_price > product_card_product.price %}
+          {% assign price_change = product_card_product.compare_at_price | minus: product_card_product.price %}
+          {% assign percent_discount = price_change | times: 100 | divided_by: product_card_product.compare_at_price %}
+        <div class="product-card__discount-flag">
+          <div class="product-card__discount-amount">{{ percent_discount }} <span>%</span></div>
+          <span>off</span>
+        </div>
+        {% endif %}
+      </div>
+    {% endcomment %}
+    <div class="product-card__image">
+      <a href="{{ product_card_product.url }}">
+        {% if product_card_product.metafields.custom.carousel_new_2_video != blank and only_show_one == true %}
+           {{ product_card_product.metafields.custom.carousel_new_2_video.value | video_tag: autoplay: true, loop: true, muted: true, controls: false, style: 'width: 100%; opacity: 1', class: 'videos carousel-new-2__video hide-desktop', id: 'video', image_size: '1x' }}
+           {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', style: 'opacity: 0;', aria-label: "image" %}
+            {% if product_card_product.media[0] != null %}
+              {% render 'lazy-image', image: product_card_product.media[0], fade: true, classes: 'img-fill',style: 'opacity: 0;', aria-label: "image" %}
+            {% endif %}
+        {% else %}
+          {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image" %}
+          {% if product_card_product.media[1] != null %}
+            {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill', aria-label: "image" %}
+          {% endif %}
+        {% endif %}
+        {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
+
+        <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
+          {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
+            {{ product_card_product.first_available_variant.metafields.custom.use }}
+          {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
+            Indoor/Outdoor
+          {% elsif lowercase_tags contains 'indoor' %}
+            Indoor
+          {% elsif lowercase_tags contains 'outdoor' %}
+            Outdoor
+          {% endif %}
+        </div>
+
+        {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+          {% assign price_change = product_card_product.price | minus: product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+          {% assign percent_discount = price_change | times: 100 | divided_by: product_card_product.price %}
+        <div class="product-card__discount-flag">
+          <div class="product-card__discount-amount">{{ percent_discount }} <span>%</span></div>
+          <span>off</span>
+        </div>
+        {% endif %}
+      </a>
+    </div>
+    {% if simple_card == true %}<div>{% endif %}
+
+    {% if template.suffix == 'last-chance' %}
+      <div class="product-card__type-label body-xs">
+        {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
+          {{ product_card_product.first_available_variant.metafields.custom.use }}
+        {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
+          Indoor/Outdoor
+        {% elsif lowercase_tags contains 'indoor' %}
+          Indoor
+        {% elsif lowercase_tags contains 'outdoor' %}
+          Outdoor
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_metafield_style %}
+      {% if product_card_product.metafields.custom.product_card_style.value != blank %}
+        <div class="product-card__metafield-style">
+          {{ product_card_product.metafields.custom.product_card_style.value }}
+        </div>
+      {% endif %}
+    {% endif %}
+      
+    {% if title != blank or collection.title != blank %}
+      <a href="{{ product_card_product.url }}">
+        <div class="product-card__title h3 blue">
+          {{ title | default: collection.title | replace: ' | ', ' ' }}<br>
+          <span class="body {% if product_card_product.handle contains 'ii' %}no-capitalize{% endif %}">{{ product_card_product.options_by_name['color'].values[0] }}</span>
+        </div>
+      </a>
+    {% endif %}
+
+    {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
+    {% assign auto_discount_price = product_card_product.metafields.custom.auto_discount_price %}
+    {% assign show_discounted_price = false %}
+    {% if enable_auto_discount_price and auto_discount_price > 0 %}
+      {% assign show_discounted_price = true %}
+      {% assign auto_discount_price = auto_discount_price | times: 100 |  money %}
+    {% endif %}
+
+    {% if customer and customer.b2b? %}
+      <p class="product-card__price body blue">
+        {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
+        <a href="{{ product_card_product.url }}">
+          {% if original_price > 0 %}
+            <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>
+            <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
+          {% else %}
+            <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
+          {% endif %}
+        </a>
+      </p>
+    {% else %}
+      {% if show_discounted_price %}
+        <p class="product-card__price body blue" data-product-id="{{ product_card_product.id }}">
+            <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
+            <span>{{ auto_discount_price }}</span>
+        </p>
+      {% else %}
+        <p class="product-card__price body blue" data-product-id="{{ product_card_product.id }}">
+          {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+            <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
+            <span>{{ product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
+          {% else %}
+            <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
+          {%  endif  %}
+        </p>
+      {% endif %}
+    {% endif %}
+
+    <div class="product-card__swatches hide-mobile">
+      {% if active_swatch != blank %}
+        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" aria-label="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | file_img_url: '60x60' }})"></a>
+      {% endif %}
+      {{ color_swatch_list }}
+    </div>
+
+
+    {% if collection.metafields.custom.short_description != blank %}
+      {% unless simple_card == true %}
+        <div class="product-card__description body" {% unless template.suffix == "last-chance" %}style="display: none;{% endunless %}">
+          {{ collection.metafields.custom.short_description }}
+
+          {%- if collection.metafields.custom.dimensions != blank and template.suffix == 'last-chance' -%}
+            <div class="body product-card__dimensions">({{ collection.metafields.custom.dimensions }})</div>
+          {%- endif -%}
+        </div>
+      {% endunless %}
+    {% endif %}
+
+  {% if simple_card == true %}</div>{% endif %}
+  </div>
+</grouped-product-card>

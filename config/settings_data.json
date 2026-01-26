@@ -15,6 +15,7 @@
     "social_instagram_link": "https://www.instagram.com/porteandhall/",
     "favicon": "shopify://shop_images/favicon_96x_54c18160-1889-4d6e-90ce-7c7976c174c3.webp",
     "currency_code_enabled": false,
+    "enable_auto_discount_price": true,
     "colors_solid_button_labels": "#FFFFFF",
     "colors_accent_1": "#121212",
     "colors_accent_2": "#334FB4",
@@ -31,7 +32,7 @@
         "settings": {
           "hide_bar": true,
           "text": "<span style=\"text-decoration:underline;\">Sign up</span> for 15% off your first order",
-          "link": "",
+          "link": "#",
           "background_color": "#546b82",
           "text_color": "#ffffff",
           "show_popup": true,
@@ -82,7 +83,7 @@
             "type": "link_list",
             "settings": {
               "heading": "",
-              "menu": "2023-theme-footer-new"
+              "menu": "porter-theme-footer"
             }
           },
           "80e0641c-25ee-4aa9-a52f-d3c8f62ba7f8": {
@@ -115,6 +116,21 @@
         "settings": {
           "menu": "2024-best-seller-mobile-new"
         }
+      },
+      "porter-landing-header": {
+        "type": "porter-landing-header",
+        "settings": {
+          "svg_logo": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"230\" height=\"48\" viewbox=\"0 0 230 48\" fill=\"none\">\n<g clip-path=\"url(#clip0_2832_120)\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M169.467 11.2267L160.45 36.4115H161.967L164.478 29.3025H174.802L177.359 36.4115H178.923L169.927 11.2267H169.467ZM174.306 27.8144H165.025L169.661 14.8041L174.306 27.8144Z\" fill=\"white\"></path>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M47.5039 12.4803C44.6744 11.2163 41.513 11.2163 38.6835 12.4803C36.7321 13.3522 35.0451 14.8216 33.8194 16.7166C32.5938 18.6117 31.8804 20.8542 31.7623 23.182H31.7025V24.981H31.7577C31.8191 27.2179 32.4461 29.3908 33.5673 31.2521C34.6885 33.1135 36.2588 34.5886 38.0994 35.5095C38.1965 35.576 38.2998 35.6307 38.4076 35.6726C38.4765 35.7032 38.5455 35.7337 38.6283 35.7796C38.8306 35.8713 39.033 35.9528 39.2445 36.0293L39.6722 36.1975C40.7656 36.558 41.9025 36.7299 43.0431 36.7071C44.1806 36.7022 45.3125 36.5309 46.4094 36.1975C46.7559 36.0843 47.0953 35.9464 47.4258 35.7847C47.5754 35.739 47.7191 35.6722 47.8534 35.586L47.9776 35.5146C49.9532 34.4607 51.6134 32.7988 52.7595 30.7273C53.9056 28.6559 54.4893 26.2626 54.4408 23.8333C54.3923 21.4041 53.7137 19.0418 52.486 17.0286C51.2584 15.0153 49.5336 13.4363 47.5177 12.4803H47.5039ZM52.9029 24.1555C52.9029 29.6031 49.7665 33.9552 45.0849 34.9795C44.4113 35.1282 43.7253 35.1965 43.0385 35.1833C42.3518 35.1948 41.6659 35.1265 40.9921 34.9795C36.3197 33.9603 33.1742 29.6031 33.1742 24.1555C33.1742 18.7078 36.3105 14.3506 40.9921 13.3263C41.6643 13.1796 42.3488 13.1129 43.0339 13.1275C43.7219 13.1174 44.4091 13.1839 45.0849 13.3263C49.7665 14.3506 52.9029 18.7026 52.9029 24.1555Z\" fill=\"white\"></path>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M19.2445 11.8586H13.0637V36.4268H14.5445V25.9034H19.2445C23.4201 25.9034 26.1196 23.1515 26.1196 18.9014C26.1196 14.6513 23.4201 11.8586 19.2445 11.8586ZM24.6848 18.9676C24.6848 22.3667 22.5648 24.4816 19.1663 24.4816H14.5676V13.3874H19.1663C22.5648 13.3874 24.6848 15.5176 24.6848 18.9524V18.9676Z\" fill=\"white\"></path>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M67.9914 11.8433C71.4359 11.8433 74.8896 14.0245 74.8896 18.9014C74.8896 22.331 72.9765 24.8587 69.8907 25.5721L76.1128 36.4115H74.3837L68.2949 25.8015H63.1719V36.4115H61.6911V11.8433H67.9914ZM67.8719 13.3874H63.1259V24.3695H67.8719C71.2703 24.3695 73.3904 22.2953 73.3904 18.9575C73.3904 15.5226 71.2841 13.3874 67.8719 13.3874Z\" fill=\"white\"></path>\n<path d=\"M126.888 18.7027H125.453V23.3911H121.549V24.8791H125.453V29.6184H126.888V24.8791H130.792V23.3911H126.888V18.7027Z\" fill=\"white\"></path>\n<path d=\"M139.396 23.386H151.905V11.8484H153.386V36.4676H151.905V24.874H139.396V36.4676H137.911V11.8484H139.396V23.386Z\" fill=\"white\"></path>\n<path d=\"M185.936 11.8484H187.417V34.9235H197.925V36.4676H185.936V11.8484Z\" fill=\"white\"></path>\n<path d=\"M206.387 11.8484H204.901V36.4676H216.936V34.9235H206.387V11.8484Z\" fill=\"white\"></path>\n<path d=\"M86.9063 13.3874H80.261V11.8484H95.0275V13.3874H88.3826V36.4167H86.9063V13.3874Z\" fill=\"white\"></path>\n<path d=\"M103.402 24.874H114.379V23.386H103.402V13.3874H115.566V11.8433L101.931 12.0522V36.5899L115.993 36.4115V34.8725H103.402V24.874Z\" fill=\"white\"></path>\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0.647034 48V0H229.353V48H0.647034ZM3.65923 3.33286V44.6111H226.295V3.33286H3.65923Z\" fill=\"white\"></path>\n</g>\n<defs>\n<clippath id=\"clip0_2832_120\">\n<rect width=\"228.706\" height=\"48\" fill=\"white\" transform=\"translate(0.647034)\"></rect>\n</clippath>\n</defs>\n</svg>",
+          "logo_width": 230,
+          "mobile_logo_width": 190,
+          "menu": "porter-theme-footer"
+        }
+      },
+      "porter-mobile-menu": {
+        "type": "porter-mobile-menu",
+        "settings": {
+          "menu": "porter-theme-main-nav"
+        }
       }
     },
     "content_for_index": [],
@@ -139,13 +155,18 @@
         "disabled": true,
         "settings": {}
       },
+      "6279071938380501511": {
+        "type": "shopify://apps/powerful-form-builder/blocks/app-embed/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+        "disabled": false,
+        "settings": {}
+      },
       "12592085946906583873": {
         "type": "shopify://apps/wunderkind/blocks/tag/40b05e3b-2403-4814-8fab-e17e57e8b1aa",
         "disabled": false,
         "settings": {}
       },
-      "6279071938380501511": {
-        "type": "shopify://apps/powerful-form-builder/blocks/app-embed/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+      "1232542678405107163": {
+        "type": "shopify://apps/instafeed/blocks/head-block/c447db20-095d-4a10-9725-b5977662c9d5",
         "disabled": false,
         "settings": {}
       }

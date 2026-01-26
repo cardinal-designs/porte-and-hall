@@ -6,6 +6,8 @@
 
 <script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
 
+
+
 {% assign active_tags = '' %}
 
 {% for tag in current_tags %}
@@ -70,7 +72,10 @@
           </div>
         </div>
       {% else %}
-        <div class="collection">
+        <div class="collection" itemscope itemtype="https://schema.org/ItemList" >
+          <meta itemprop="url" content="{{ collection.url }}" />
+          <meta itemprop="name" content="{{ collection.title }}" />
+
           {% paginate collection.products by 50 %}
           <ul id="product-grid" data-id="{{ section.id }}" class="product-grid product-grid-4 list-unstyled">
               {% for product in collection.products %}
@@ -80,7 +85,11 @@
                     {% assign grouped_collection = collection %}
                   {% endif %}
                 {% endfor %}
-                <li class="product-grid__item">
+                <li class="product-grid__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" >
+                  <meta itemprop="name" content="{{ product.title }}">
+                  <meta itemprop="url" content="{{ product.url }}">
+                  <meta itemprop="position" content="{{ forloop.index }}" />
+
                   {% render 'grouped-product-card-4',
                     product_card_product: product,
                     collection: grouped_collection,

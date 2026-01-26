@@ -30,6 +30,12 @@ html {
   -moz-osx-font-smoothing: antialiased;
 }
 
+html:not(.third-party-scripts-loaded) #onetrust-consent-sdk,
+html:not(.third-party-scripts-loaded) .bx-shroud,
+html:not(.third-party-scripts-loaded) .bx-slab {
+  display: none !important;
+}
+
 body.scroll-lock {
   overflow: hidden;
 }
@@ -527,7 +533,7 @@ blockquote {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  line-height: 120%;
+  line-height: 24px;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-decoration: underline;
@@ -1078,7 +1084,7 @@ deferred-media {
   .header--inner {
     grid-template-areas: "logo icons";
     grid-template-columns: auto 1fr;
-    padding: 14px;
+    padding: 14px 20px;
   }
 }
 
@@ -1673,6 +1679,12 @@ header.condensed .header__menu {
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
+  min-height: 24px;
+}
+
+.footer__menu-link {
+  display: inherit;
+  min-height: 24px;
 }
 
 @media screen and (max-width: 768px) {
@@ -3626,6 +3638,25 @@ iframe#preview-bar-iframe {
   font-size: 80%;
 }
 
+.product__price-reviews-wrapper .price .h3 .price-item--regular span {
+  text-transform: capitalize;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+}
+
+.product__trade--price .price .h3 {
+  /* color: #30383D; */
+  margin-top: 5px;
+}
+
+.product__trade--price .price .h3 .price-item--regular span {
+  letter-spacing: 0.5px;
+}
+ 
+.product__trade--price .price .h3 .price-item--regular span span {
+  text-transform: capitalize;
+}
+
 .product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__text {
   color: var(--gold-secondary--dark);
   font-family: brandon;
@@ -3635,6 +3666,29 @@ iframe#preview-bar-iframe {
   padding: 0 6px;
   text-transform: uppercase;
   text-decoration: underline;
+}
+
+.cart-item__trade-price .cart-item__discounted-prices {
+  display: block;
+}
+
+.cart-item__trade-price {
+  position: relative;
+}
+
+.cart-item__trade-price .cart-item__old-price.price {
+  color: var(--blue-secondary);
+  position: absolute;
+  right: 0;
+  top: auto;
+  bottom: 35px;
+}
+
+.cart-item__trade-price .price.price--end span{
+  letter-spacing: 0;
+  color: var(--blue-secondary);
+  font-weight: 500;
+  margin-right: 5px;
 }
 
 .jdgm-carousel-wrapper .jdgm-carousel-item__review {
@@ -3650,7 +3704,14 @@ iframe#preview-bar-iframe {
   display: none !important;
 }
 
+@media (max-width: 768px) {
+  .product__price-reviews-wrapper .price .h3 .price-item--regular span {
+    font-size: 14px;
+  }
+}
+
 @media (max-width: 767px) {
+
   .jdgm-rev-widg
     .jdgm-rev-widg__summary-inner
     .jdgm-rev-widg__summary-stars
@@ -3670,6 +3731,24 @@ iframe#preview-bar-iframe {
   .jdgm-rev-widg {
     padding: 24px 0;
   }
+
+  .cart-item__trade-price .cart-item__old-price.price {
+    position: relative;
+    bottom: 0;
+    display: block;
+    margin: 0;
+  }
+
+  .cart-item__price.cart-item__trade-price .price {
+    flex-direction: row-reverse;
+    font-size: 15px;
+  }
+
+  .cart-item__bottom.cart-item__trade-bottom {
+    flex-direction: column;
+    align-items: start;
+  }
+  
 }
 /* Judge.me Review css End */
 

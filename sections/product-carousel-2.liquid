@@ -298,11 +298,19 @@
     text-transform: uppercase;
   }
 
+  {% if section.settings.hide_desktop == true %}
+    #shopify-section-{{ section.id }} {
+      display: none !important
+    } 
+  {% endif %}
+
+  {% comment %} #shopify-section-template--16866356691007__product_carousel_2_nFt3hG,
   #shopify-section-template--16866356691007__product_carousel_2_nFt3hG,
-  #shopify-section-template--16866356691007__product_carousel_2_nFt3hG,
-  #shopify-section-template--16866358034495__product_carousel_2_nFt3hG {
+  #shopify-section-template--16866358034495__product_carousel_2_nFt3hG,
+  #shopify-section-template--16905855270975__product_carousel_2_nFt3hG,
+  #shopify-section-template--16905854976063__product_carousel_2_nFt3hG {
     display: none !important;
-  }
+  } {% endcomment %}
 
 
   @media (max-width:1200px){
@@ -443,11 +451,20 @@
   }
 
   @media (max-width:989px){
+
+    {% if section.settings.hide_desktop == true %}
+      #shopify-section-{{ section.id }} {
+        display: block !important
+      } 
+    {% endif %}
+
+    {% comment %} #shopify-section-template--16866356691007__product_carousel_2_nFt3hG,
     #shopify-section-template--16866356691007__product_carousel_2_nFt3hG,
-    #shopify-section-template--16866356691007__product_carousel_2_nFt3hG,
-    #shopify-section-template--16866358034495__product_carousel_2_nFt3hG {
+    #shopify-section-template--16866358034495__product_carousel_2_nFt3hG,
+    #shopify-section-template--16905855270975__product_carousel_2_nFt3hG,
+    #shopify-section-template--16905854976063__product_carousel_2_nFt3hG {
       display: block !important;
-    }
+    } {% endcomment %}
 
     .template-index .collection-row .collection-col .collection-row-inner .collection-col-inner {
       padding: 0;
@@ -753,6 +770,9 @@
                       echo "' class='"
                       echo element_classes
                       echo "'"
+                      echo " aria-label='"
+                      echo value | escape
+                      echo "'"
                       echo "style='background-image: url("
                       echo swatch_file_name | file_url
                       echo ")' data-tooltip='"
@@ -802,8 +822,8 @@
                   </a>
                 </div>
               <div class="title-swatch_container">
-                <h6>{{ block.settings.title }}</h6>
-                <p class="hide-mobile">{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
+                <h3>{{ block.settings.title }}</h3>
+                <p class="hide-mobile igPrice" data-product-id="{{ all_products[block.settings.product].id }}">{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
               </div>
               <div class="flex-swatch">
                 <div class="hide-large swatch_container">
@@ -867,6 +887,12 @@
       "type": "text",
       "id": "subtitle",
       "label": "Subtitle"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_desktop",
+      "label": "Hide Desktop?",
+      "default": true
     }
   ],
   "blocks": [

@@ -53,6 +53,9 @@
             echo "' class='"
             echo element_classes
             echo "'"
+            echo " aria-label='"
+            echo value | escape
+            echo "'"
             echo "data-tooltip='"
             echo value | escape
             echo "' ><span "
@@ -80,20 +83,20 @@
     </a>
 
     <div class="product__media-wrapper">
-      <ul class="hide-mobile product__media-thumbnails list-unstyled swiper" role="list">
+      <div class="hide-mobile product__media-thumbnails list-unstyled swiper">
         <div class="swiper-wrapper">
           {% for media in product.media %}
-            <li class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+            <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
               {% render 'product-media', media: media, position: forloop.index, width: '106' %}
-            </li>
+            </div>
           {% endfor %}
         </div>
-      </ul>
+      </div>
 
-      <ul class="product__media-list list-unstyled swiper" role="list">
+      <div class="product__media-list list-unstyled swiper">
         <div class="swiper-wrapper">
           {% for media in product.media %}
-            <li class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+            <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
               {% render 'product-media', media: media, position: forloop.index %}
               <div class="product__media-buttons">
                 {% unless section.settings.hide_pinterest == true %}
@@ -101,13 +104,13 @@
                 {% endunless %}
                 {% render 'zoom-button' %}
               </div>
-            </li>
+            </div>
           {% endfor %}
         </div>
         <div class="product__media-pagination swiper-pagination hide-desktop"></div>
         <div class="product__media-button swiper-button-prev hide-desktop"></div>
         <div class="product__media-button swiper-button-next hide-desktop"></div>
-      </ul>
+      </div>
     </div>
 
     <div class="product__info-wrapper">
@@ -142,6 +145,32 @@
           
         </div>
 
+        {% if customer and customer.b2b? %}
+          {% liquid
+            assign target = product.selected_or_first_available_variant
+            assign price = target.price
+            assign money_price = price | money_without_trailing_zeros
+            if settings.currency_code_enabled
+              assign money_price = price | money_with_currency
+            endif
+          %}
+          {% assign original_price = product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
+          {% if original_price > 0 %}
+            {% assign discountAmout = original_price | minus: price | times: 100 | divided_by: original_price | round %}
+            <div class="product__trade--price">
+              <div class="price">
+                <div class="h3">
+                  <div class="price__regular">
+                    <span class="price-item price-item--regular">
+                      {{ money_price }} <span>Trade <span>(save {{ discountAmout }}%)</span></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endif %}
+
         {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
           <div class="product__description 123 body blue">
             {{ grouped_collection.metafields.custom.short_description | default: product.description }}
@@ -162,7 +191,7 @@
         <div id="myModal" class="dimension-modal-content dimension_modal">
               <div class="dimension-modal-header">
               <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
-              <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %}</button></div>
+              <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %} <span class="sr-only">Close Button</span></button></div>
               </div>
               <div class="dimension-modal-body">
               <p>{{ product.metafields.custom.product_dimensions.value.dimension }}</p>
@@ -555,7 +584,7 @@
                     {% if product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product.price > product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
                       <span>{{ product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
                     {% else %}
-                      {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '' %}
+                      {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '', ATC_button: true %}
                   {%  endif %}
                   </span>
                   <div class="loading-overlay__spinner">
@@ -829,9 +858,11 @@
   
   var span = document.getElementsByClassName("close")[0];
   
-  btn.onclick = function() {
-    modal.classList.add("open");
-    body.classList.add("open");
+  if(btn) {
+    btn.onclick = function() {
+      modal.classList.add("open");
+      body.classList.add("open");
+    }
   }
   
   span.onclick = function() {

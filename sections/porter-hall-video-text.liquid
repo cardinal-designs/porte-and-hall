@@ -1,0 +1,178 @@
+{{ 'porter-hall-video-text.css' | asset_url | stylesheet_tag: preload: true }}
+
+{% if section.settings.video != blank or section.settings.image != blank and section.blocks.size > 0 or section.settings.title != blank %}
+<section class="finer__details--section" id="section--{{ section.id }}">
+  <div class="page-width">
+    <div class="finer__details--content-wrapper content__{{ section.settings.image_position }}">
+      <div class="finer__details--left">
+        <div class="finer__details--left-header">
+          {% if section.settings.title != blank %}
+          <h2 class="finer__details--main-title">{{ section.settings.title }}</h2>
+          {% endif %}
+          {% if section.settings.subtitle != blank %}
+            <p class="finer__details--subtitle">{{ section.settings.subtitle }}</p>  
+          {% endif %}
+        </div>
+        {% if section.settings.video != blank %}
+          <div class="finer__details--video-wrapper">       
+          {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline:true, class: 'videos', id: 'video', image_size: '1000x' }}
+          </div>
+        {% else %}
+        <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt  }}" height="auto" width="100%">
+        {% endif %}
+        
+      </div>  
+      <div class="finer__details--right">
+        {% if section.settings.title != blank %}
+        <h2 class="finer__details--main-title">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.subtitle != blank %}
+          <p class="finer__details--subtitle">{{ section.settings.subtitle }}</p>  
+        {% endif %}
+        {% if section.blocks.size > 0 %}
+          <div class="feature-list">
+            {% for block in section.blocks %}
+              {% if block.settings.feature_title != blank %}
+                <div class="feature-item">
+                  <div class="feature-content">
+                    <h3 class="feature-title">{{ block.settings.feature_title }}</h3>
+                    <div class="feature-description">{{ block.settings.feature_description }}</div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="mobile__image--layout">
+      {% for block in section.blocks %}
+        {% if block.type == 'image' %}
+          {% if block.settings.image != blank %}
+            <div class="finer__details--image">
+              <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.image_right.alt  }}" height="auto" width="auto">
+            </div>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<style>
+  #section--{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+  }
+  {% if section.settings.remove_top_space %}
+    #section--{{ section.id }} {
+      padding-top: 0
+    }
+  {% endif %}
+  {% if section.settings.remove_bottom_space %}
+    #section--{{ section.id }} {
+      padding-bottom: 0
+    }
+  {% endif %}
+</style>
+
+{% schema %}
+{
+  "name": "The Finer Details",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video (default media if populated)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title",
+      "default": "The Finer Details"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "What makes The Porter so unique? It’s the little things."
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        {
+          "label": "Image First",
+          "value": "image--first"
+        },
+        {
+          "label": "Image Second",
+          "value": "image--second"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_top_space",
+      "label": "Remove Top Space"
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_bottom_space",
+      "label": "Remove Bottom Space"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "title_text",
+      "name": "Feature Content",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Feature Title",
+          "default": "Complex colors"
+        },
+        {
+          "type": "richtext",
+          "id": "feature_description",
+          "label": "Feature Description",
+          "default": "<p>We twisted two different yarn colors together to create a level of dimension that solid rope simply can’t match.</p>"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Mobile Image Grid",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "The Finer Details",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

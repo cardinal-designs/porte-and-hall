@@ -1,0 +1,39 @@
+#shopify-section-porter-landing-header {
+  background: transparent;
+}
+
+#shopify-section-porter-landing-header.animate {
+  transition: transform 0.15s ease-out;
+}
+
+.template__porter-landing main#MainContent {
+  padding-top: 0;
+}
+
+.outer-header-wrapper {
+  position: absolute;
+}
+
+/* .header {
+  border-bottom: 1px solid #FFF;
+} */
+
+.header--inner {
+  padding: 16px;  
+}
+
+.header__logo a.header__logo-link,
+.header__logo-wrapper {
+  width: 100%;
+  display: inline-block;
+}
+
+.header__logo-wrapper img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+.header__icon--cart {
+  width: auto;
+}

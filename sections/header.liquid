@@ -295,17 +295,22 @@
   const closeSearch = document.querySelector('.js-close-search');
   const search = document.querySelector('.header__search');
 
-  openSearch.addEventListener('click', () => {
+  if(openSearch) {
+    openSearch.addEventListener('click', () => {
     if (search.classList.contains('is-visible')) {
       search.classList.remove('is-visible');
     } else {
       search.classList.add('is-visible');
     }
   });
+  }
 
-  closeSearch.addEventListener('click', () => {
+  if(closeSearch) {
+    closeSearch.addEventListener('click', () => {
     search.classList.remove('is-visible');
   });
+  }
+
 {% endjavascript %}
 
 {% schema %}

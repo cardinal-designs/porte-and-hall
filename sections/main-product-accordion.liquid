@@ -16,6 +16,10 @@
   }
 {% endstyle %}
 
+{% assign size_position = product.options_with_values | find_index: "name", "Size" | plus: 1 %}
+{% assign option_name = "option" | append: size_position %}
+{% assign size_value = product.selected_or_first_available_variant[option_name]  %}
+
 {% liquid
   for collection in product.collections
     if collection.title contains ' |'
@@ -23,54 +27,96 @@
     endif
   endfor
   
-
   assign oos_products = grouped_collection.products | where: 'available', false
   assign oos_products = ""
 
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
   assign collection_title = grouped_collection.title | downcase
+
   capture color_swatch_list
     assign swatch_count = 1
+    assign printed_swatch_values = ""
+
     for swatch in grouped_collection.products
+
       for option in swatch.options_with_values
         assign option_name = option.name | downcase
+
         if color_label contains option_name or option_name == 'style'
-          assign option_index = 'option' | append: forloop.index
+          
           for value in option.values
+            assign swatch_key = value | handle
+
+            if printed_swatch_values contains swatch_key
+              continue
+            endif
+            assign printed_swatch_values = printed_swatch_values | append: swatch_key | append: "|"
+
             assign matched_variant = swatch.variants | where: 'title', value
             if matched_variant != blank
               assign swatch_link = matched_variant[0].url
+            else
+              assign swatch_link = swatch.variants[0].url
             endif
+
             assign element_classes = 'product__swatch'
-            if swatch == product and option.selected_value == value
+
+            if swatch.id == product.id and option.selected_value == value
               assign element_classes = element_classes | append: ' product__active-swatch'
             endif
-            if swatch.available == false
+
+            unless swatch.available
               assign element_classes = element_classes | append: ' product__oos-swatch'
-            endif
+            endunless
+
             assign swatch_file_name = value | handle | append: '.png'
-            assign swatch_image = images[swatch_file_name]
-            comment
-              if collection_title contains 'outsider' and swatch_count == 4
-                echo ' | '
-              endif
-            endcomment
+
             echo "<a href='"
-            echo swatch_link | default: swatch.variants[0].url
+            echo swatch_link
             echo "' class='"
             echo element_classes
             echo "'"
-            echo "data-tooltip='"
+
+            # --- ADA Fix: Update ARIA label based on availability ---
+            echo " aria-label='"
             echo value | escape
-            echo "' ><span "
-            echo "style='background-image: url("
+            unless swatch.available
+              echo " is Unavailable"
+            endunless
+            echo "'"
+
+            # --- ADA Fix: Disable for screen readers when unavailable ---
+            unless swatch.available
+              echo " aria-disabled='true'"
+            endunless
+
+            echo " title='"
+            echo value | escape
+            echo "' data-tooltip='"
+            echo value | escape
+            echo "'>"
+
+            echo "<span style='background-image: url("
             echo swatch_file_name | file_url
-            echo ")'>"
-            echo '</span></a>'
+            echo ")'></span>"
+
+            # --- ADA Fix: Screen-reader-only text ---
+            echo "<span class='sr-only'>"
+            if swatch.available
+              echo value | escape
+            else
+              echo value | escape | append: " (Unavailable)"
+            endif
+            echo "</span>"
+
+            echo "</a>"
+
             assign swatch_count = swatch_count | plus: 1
           endfor
+
         endif
       endfor
+
     endfor
   endcapture
 %}
@@ -83,20 +129,23 @@
     </a>
 
     <div class="product__media-wrapper">
-      <ul class="hide-mobile product__media-thumbnails list-unstyled swiper" role="list">
+      <div class="hide-mobile product__media-thumbnails list-unstyled swiper">
         <div class="swiper-wrapper">
           {% for media in product.media %}
-            <li class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+            {% unless media.alt == 'hide-outlier' %}
+            <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
               {% render 'product-media', media: media, position: forloop.index, width: '106' %}
-            </li>
+            </div>
+          {% endunless %}
           {% endfor %}
         </div>
-      </ul>
+      </div>
 
-      <ul class="product__media-list list-unstyled swiper" role="list">
+      <div class="product__media-list list-unstyled swiper">
         <div class="swiper-wrapper">
           {% for media in product.media %}
-            <li class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+            {% unless media.alt == 'hide-outlier' %}
+            <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
               {% render 'product-media', media: media, position: forloop.index %}
               <div class="product__media-buttons">
                 {% unless section.settings.hide_pinterest == true %}
@@ -104,13 +153,14 @@
                 {% endunless %}
                 {% render 'zoom-button' %}
               </div>
-            </li>
+            </div>
+            {% endunless %}
           {% endfor %}
         </div>
         <div class="product__media-pagination swiper-pagination hide-desktop"></div>
         <div class="product__media-button swiper-button-prev hide-desktop"></div>
         <div class="product__media-button swiper-button-next hide-desktop"></div>
-      </ul>
+      </div>
     </div>
 
     <div class="product__info-wrapper">
@@ -124,7 +174,7 @@
         <h1 class="product__title blue">
           {% if product.title contains 'Porter' %}
             The Porter Mat
-          {% elsif grouped_collection.title contains 'XL Area Mat' %}
+          {% elsif grouped_collection.title contains '5 x 7 Area Mat' %}
             The Innerweave Area Mat
           {% else %}
           {{ grouped_collection.title | remove: ' |' | default: product.title }}
@@ -151,6 +201,32 @@
           
         </div>
 
+        {% if customer and customer.b2b? %}
+          {% liquid
+            assign target = product.selected_or_first_available_variant
+            assign price = target.price
+            assign money_price = price | money_without_trailing_zeros
+            if settings.currency_code_enabled
+              assign money_price = price | money_with_currency
+            endif
+          %}
+          {% assign original_price = product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
+          {% if original_price > 0 %}
+            {% assign discountAmout = original_price | minus: price | times: 100 | divided_by: original_price | round %}
+            <div class="product__trade--price">
+              <div class="price">
+                <div class="h3">
+                  <div class="price__regular">
+                    <span class="price-item price-item--regular">
+                      {{ money_price }} <span>Trade <span>(save 20%)</span></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endif %}
+
         {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
           <div class="product__description 123 body blue">
             {{ grouped_collection.metafields.custom.short_description | default: product.description }}
@@ -175,7 +251,7 @@
               {% else %}
                 <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
               {% endif %}
-              <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %}</button></div>
+              <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %}<span class="sr-only">Close Button</span></button></div>
               </div>
               <div class="dimension-modal-body">
                <p>{{ product.metafields.custom.product_dimensions.value.dimension }}</p>
@@ -183,7 +259,7 @@
               </div> 
           </div>
         {% for option in product.options_with_values %}
-          <div class="product__variant-name body">
+          <div class="product__variant-name body" aria-label="Selected {{ option.name }}: {{ option.selected_value }}">
             {% if option.name == 'Size' %}
               {% continue %}
             {% endif %}
@@ -202,9 +278,13 @@
           </div>
         {% endfor %}
 
-        {% if product.metafields.custom.style_text != blank %}
+        {% comment %} {% if product.metafields.custom.style_text != blank %}
         <p class="style-text__color">{{ product.metafields.custom.style_text }}</p>
-        {% endif %}
+        {% endif %} {% endcomment %}
+
+        <div id="active-color" 
+          data-color="{{ product.options_by_name['Color'].selected_value | default: product.options_by_name['Style'].selected_value }}">
+        </div>
 
         <div class="product__swatches">
           {{ color_swatch_list }}
@@ -339,16 +419,15 @@
                 </div>
               </div>
             </noscript>
-
           
-               <!-- Shop Other Sizes -->
-              {% liquid
-                assign product_type = grouped_collection.title | remove: 'The ' | split: ' | '
-                assign active_style = product.selected_or_first_available_variant.title
-                assign product_size = product.options_by_name['size'].values[0]
-                assign active_style = active_style | remove: product_size | remove: " / " 
-                assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
-              %}
+            <!-- Shop Other Sizes -->
+            {% liquid
+              assign product_type = grouped_collection.title | remove: 'The ' | split: ' | '
+              assign active_style = product.selected_or_first_available_variant.title
+              assign product_size = product.options_by_name['size'].values[0]
+              assign active_style = active_style | remove: product_size | remove: " / " 
+              assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
+            %}
 
             <span data-active-style="{{ active_style }}"></span>
 
@@ -373,7 +452,6 @@
                   {% endunless %}
                 {% endunless %}
               {% endif %}
-
 
             {% if product.metafields.custom.restock_date != blank %}
               <p class="product__restock-note body">{{ product.metafields.custom.restock_date }}</p>
@@ -401,7 +479,7 @@
                     {% assign active_order = 3 %}
                   {% elsif product.handle contains 'runner' %}
                     {% assign active_order = 2 %}
-                  {% elsif product.handle contains 'area-mat-xl' %}
+                  {% elsif product.handle contains 'area-mat-5x7' %}
                     {% assign active_order = 7 %}
                   {% elsif product.handle contains 'area-mat' %}
                     {% assign active_order = 4 %}
@@ -416,7 +494,7 @@
                   class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button active" 
                   href="{{ product.url }}"
                 >
-                  {% if product_size == 'XL Area Mat' %}
+                  {% if product_size == '5 x 7 Area Mat' %}
                     <span>Area Mat</span>
                   {% else %}
                   <span>{{ product_size }}</span>
@@ -435,7 +513,7 @@
                     {% else %}
                       <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
                     {% endif %}
-                  {% elsif product_size == 'XL Area Mat' %}
+                  {% elsif product_size == '5 x 7 Area Mat' %}
                     <span class="other-sizes__dimension">5' x 7'</span>
                   {% elsif product_size == 'Area Mat' %}
                     {% if product.handle contains 'innerweave' %}
@@ -456,19 +534,36 @@
                   {%- assign current_size = block.title | split: " | " -%}
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
+                  {%- assign alternate_match_name = match_name | split: "/" | first | strip -%}
                   {%- assign match = block.products | where: 'title', match_name -%}
+                  {%- assign alternate_match = "" -%}
 
-                  {%- if match != blank -%} 
+                  {% for p in block.products %}
+                    {% if p.title == match_name %}
+                      {%- assign alternate_match = p -%}
+                    {% endif %}
+                  {% endfor %}
+
+                  {%- if match != blank or alternate_match != blank -%} 
+                  {% assign prod_url = blank %}
+                  {% if match != blank %}
+                    {% assign prod_url = match.first.url %}
+                  {% elsif alternate_match != blank %}
+                    {% assign prod_url = alternate_match.url %}
+                  {% endif %}
+
+                  {%- if prod_url != blank and prod_url != product.url -%}
                     <a 
-                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == 'XL Area Mat'  %}7{% endif %} ;"
+                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == '5 x 7 Area Mat'  %}7{% endif %} ;"
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
-                      href="{{ match.first.url }}"
+                      href="{{ prod_url }}"
                     >
-                      {% if current_size.last == 'XL Area Mat' %}
+                      {% if current_size.last == '5 x 7 Area Mat' %}
                         <span>Area Mat</span>
                       {% else %}
                       <span>{{ current_size.last }}</span>
                       {% endif %}
+
                       {% if current_size.last == 'Doormat' %}
                         {% if current_size.first == 'The Innerweave' %}
                           <span class="other-sizes__dimension">2' x 3'</span>
@@ -483,7 +578,7 @@
                         {% else %}
                           <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
                         {% endif %}
-                      {% elsif current_size.last == 'XL Area Mat' %}
+                      {% elsif current_size.last == '5 x 7 Area Mat' %}
                         <span class="other-sizes__dimension">5' x 7'</span>
                       {% elsif current_size.last == 'Area Mat' %}
                         {% if current_size.first == 'The Innerweave' %}
@@ -500,7 +595,9 @@
                       {% comment %}
                       <span class="other-sizes__dimension">{{ dimension }}</span>
                       {% endcomment %}
-                    </a>                
+                    </a>
+                  {%- endif -%}
+                   
                   {%- endif -%}
                 {%- endfor -%}
               {%- endcapture -%}
@@ -510,7 +607,7 @@
                 {%- unless other_size_links == blank -%}
                   <div class="other-sizes__wrapper other-sizes__wrapper--other-collections">
                     <span class="other-sizes__label">Size</span> 
-                    <div class="5 other-sizes__wrapper-links">
+                    <div class="other-sizes__wrapper-links">
                       {{ other_size_links }}
                     </div>
                   </div>
@@ -536,9 +633,6 @@
                 {%- endunless -%}
      
             {%- endif -%}
-
-            
-            
 
             <div class="product__quantity-atc-wrapper  {% if product.available == false %}bis-styles{% endif %} {% if section.settings.hide_quantity == true %}no-quant__button{% endif %}">
               <div class="product-form__input product-form__quantity {% if product.available == false or section.settings.hide_quantity == true %}visually-hidden{% endif%}">
@@ -598,7 +692,7 @@
                     {% if product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product.price > product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
                       <span>{{ product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
                     {% else %}
-                      {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '' %}
+                      {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '', ATC_button: true %}
                   {%  endif %}
                   </span>
                   <div class="loading-overlay__spinner">
@@ -661,7 +755,7 @@
         {% if grouped_collection.metafields.custom.product_features != blank %}
          <div class="accordion">
            <div data-id="1" class="accordion-title">
-             <h3>Features</h3>
+             <h2 class="h3">Features</h2>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="1" class="accordion-content active">
@@ -689,7 +783,7 @@
        
          <div class="accordion">
            <div data-id="2" class="accordion-title">
-             <h3>Materials</h3>
+             <h2 class="h3">Materials</h2>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="2" class="accordion-content">
@@ -704,7 +798,7 @@
         {% if grouped_collection.metafields.custom.dimensions != blank %}
          <div class="accordion">
            <div data-id="3" class="accordion-title">
-             <h3>Dimensions</h3>
+             <h2 class="h3">Dimensions</h2>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="3" class="accordion-content">
@@ -729,7 +823,7 @@
         {% if section.settings.care != blank %}
          <div class="accordion">
            <div data-id="4" class="accordion-title">
-             <h3>Care</h3>
+             <h2 class="h3">Care</h2>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="4" class="accordion-content">
@@ -1038,10 +1132,13 @@
   
   var span = document.getElementsByClassName("close")[0];
   
-  btn.onclick = function() {
-    modal.classList.add("open");
-    body.classList.add("open");
+  if(btn) {
+    btn.onclick = function() {
+      modal.classList.add("open");
+      body.classList.add("open");
+    }
   }
+ 
   
   span.onclick = function() {
     modal.classList.remove("open");
@@ -1065,6 +1162,8 @@
   endif
 %}
 
+
+{% comment %}
 <script type="application/ld+json">
   {
     "@context": "http://schema.org/",
@@ -1101,6 +1200,184 @@
     ]
   }
 </script>
+
+
+"priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": {{ variant.price | divided_by: 100.00 | json }},
+            "priceCurrency": {{ cart.currency.iso_code | json }},
+            "priceValidUntil": {{ 'now' | date: '%Y-%m-%d' | json  }},
+            "paymentOption": "Installments",
+            "installment": {
+              "@type": "MonetaryAmount",
+              "currency": {{ cart.currency.iso_code | json }},
+              "value": {{ variant.price | divided_by: 400.00 | json }}
+            },
+            "installmentFrequency": "https://schema.org/Monthly",
+            "totalPrice": {{ variant.price | divided_by: 100.00 | json }},
+            "installmentPaymentDueDate": {{ 'now' | date: '%Y-%m-%d' | json  }}
+          }
+
+{% endcomment %}
+
+<script type="application/ld+json">
+[
+  {
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "@id": {{ canonical_url | append: '#product' | json }},
+    "name": {{ product.title | json }},
+    "productGroupID": {{ product.variants.first.sku | json }},
+    "url": {{ request.origin | append: product.url | json }},
+
+    {%- for variant in product.variants -%}
+      {% if forloop.index == 1 %}
+        "price" : {{ variant.price | divided_by: 100.00 | json }},
+        "priceCurrency" : {{ cart.currency.iso_code | json }},
+      {% endif %}
+    {% endfor %}
+  
+      "image": "{{ product.featured_image | image_url }}",
+    
+
+
+    "description": {{ product.description | strip_html | json }},
+    {%- if current_variant.sku != blank -%}
+      
+    {%- endif -%}
+    "brand": {
+      "@type": "Brand",
+      "name": {{ product.vendor | json }}
+    },
+
+    "hasVariant": [
+    {%- for variant in product.variants -%}
+      {
+        "@type": "Product",
+        {%- if variant.sku != blank -%}
+	        "sku": {{ variant.sku | json }},
+	      {%- endif -%}
+	      {%- if variant.barcode.size == 12 -%}
+	        "gtin12": {{ variant.barcode | json }},
+	      {%- endif -%}
+	      {%- if variant.barcode.size == 13 -%}
+	        "gtin13": {{ variant.barcode | json }},
+	      {%- endif -%}
+	      {%- if variant.barcode.size == 14 -%}
+	        "gtin14": {{ variant.barcode | json }},
+	      {%- endif -%}
+
+        
+
+      {% if variant.image %}
+        "image": "{{ variant.image | image_url }}",
+      {% else %}
+        "image": "{{ product.featured_image | image_url }}",
+      {% endif %}
+
+
+        "name": {{ product.title | json }},
+        "description": {{ product.description | strip_html | json }},
+        
+        "offers": {
+          "@type": "Offer",
+          "price" : {{ variant.price | divided_by: 100.00 | json }},
+          "priceCurrency" : {{ cart.currency.iso_code | json }},
+          "priceValidUntil": {{ 'now' | date: '%Y-%m-%d' | json  }},
+          "url" : {{ request.origin | append: variant.url | json }},
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+          "shippingDetails": { "@id": "#shipping_policy" },
+          "hasMerchantReturnPolicy": { "@id": "#return_policy" },
+
+          "paymentAccepted": "CreditCard, PayPal"
+          
+        }
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+    ]
+  },
+  
+  {
+        "@context": "https://schema.org/",
+        "@type": "OfferShippingDetails",
+        "@id": "#shipping_policy",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": 0,
+          "currency": {{ cart.currency.iso_code | json }}
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "US",
+          "addressRegion": ["US"]
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 2,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 2,
+            "unitCode": "DAY"
+          }
+        }
+      },
+      {
+        "@context": "http://schema.org/",
+        "@type": "MerchantReturnPolicy",
+        "@id": "#return_policy",
+        "applicableCountry": ["US"],
+            "returnPolicyCountry": "US",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 30,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "returnFees": "https://schema.org/FreeReturn"
+      }
+  
+{% if product.metafields.reviews.rating_count > 0 %}
+
+,{
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "@id": {{ canonical_url | append: '#product' | json }},
+    "name": {{ product.title | json }},
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ product.metafields.reviews.rating.value }}",
+        "reviewCount": "{{ product.metafields.reviews.rating_count }}"
+    }
+} 
+
+{% else %}
+
+  
+,{
+    "@context": "http://schema.org",
+    "@type": "Product",
+    "@id": {{ canonical_url | append: '#product' | json }},
+    "name": {{ product.title | json }},
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.82",
+        "reviewCount": 544
+    }
+} 
+  
+{% endif %}
+  
+  
+  
+] 
+</script>
+
+
+
 
 {% schema %}
 {

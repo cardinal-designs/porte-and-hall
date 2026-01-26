@@ -1,6 +1,18 @@
 {{ 'section-featured-articles.css' | asset_url | stylesheet_tag }}
 {{ 'component-article-card.css' | asset_url | stylesheet_tag }}
 
+{% style %}
+{% unless product.handle contains 'porter' %}
+@media (max-width:989px){
+  {% if section.settings.hide_mobile == true %}
+    #shopify-section-{{ section.id }} {
+      display: none !important;
+    }
+  {% endif %}
+}
+{% endunless %}
+{% endstyle %}
+
 <div class="featured-articles__inner page-width">
   <div class="featured-articles__heading heading-with-accents">
     <span class="divider header-divider">
@@ -62,6 +74,12 @@
       "type": "checkbox",
       "id": "show_recent_articles",
       "label": "Show Most Recent Articles"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_mobile",
+      "label": "Hide Mobile?",
+      "default": false
     }
   ],
   "max_blocks": 3,

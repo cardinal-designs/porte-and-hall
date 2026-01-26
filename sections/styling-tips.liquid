@@ -8,6 +8,18 @@
   endfor
 %}
 
+{% style %}
+{% unless product.handle contains 'porter' %}
+@media (max-width:989px){
+  {% if section.settings.hide_mobile == true %}
+    #shopify-section-{{ section.id }} {
+      display: none !important;
+    }
+  {% endif %}
+}
+{% endunless %}
+{% endstyle %}
+
 {% if grouped_collection.metafields.custom.styling_tips != blank %}
   <section class="styling-tips">
     <div class="styling-tips__background">
@@ -97,6 +109,12 @@
     {
       "type": "paragraph",
       "content": "Our founder Stafford's styling tips"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_mobile",
+      "label": "Hide Mobile?",
+      "default": false
     }
   ],
   "presets": [

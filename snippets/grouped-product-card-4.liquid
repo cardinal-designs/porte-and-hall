@@ -41,8 +41,11 @@
               echo "' class='"
               echo element_classes
               echo "'"
+              echo " aria-label='"
+              echo value | escape
+              echo "'"
               echo "style='background-image: url("
-              echo swatch_file_name | file_url
+              echo swatch_file_name | file_img_url: '60x60'
               echo ")' data-tooltip='"
               echo value | escape
               echo "'></a>"
@@ -89,9 +92,9 @@
     {% endcomment %}
     <div class="product-card__image">
       <a href="{{ product_card_product.url }}">
-        {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image", forloop_index: forloop_index %}
+        {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image", forloop_index: forloop_index, sizes: '(min-width: 768px) 23vw, 40vw' %}
         {% if product_card_product.media[1] != null %}
-          {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill', aria-label: "image", forloop_index: forloop_index %}
+          {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill', aria-label: "image", forloop_index: 2, sizes: '(min-width: 768px) 23vw, 40vw' %}
         {% endif %}
 
         {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
@@ -142,32 +145,66 @@
       {% endif %}
     {% endif %}
       
-    <a href="{{ product_card_product.url }}">
-      <div class="product-card__title h3 blue">
-        {{ title | default: collection.title | replace: ' | ', ' ' }}
-        <br><span class="body">{{ product_card_product.options_by_name['color'].values[0]  | capitalize }}</span>
-        {% comment %} {%- if collection.metafields.custom.dimensions != blank -%}
-          <span class="body">({{ collection.metafields.custom.dimensions }})</span>
-        {%- endif -%} {% endcomment %}
-      </div>
-    </a>
-
-    <p class="product-card__price body blue">
+    {% if title != blank or collection.title != blank %}
       <a href="{{ product_card_product.url }}">
-      {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
-        <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
-        <span>{{ product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
-      {% else %}
-        <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
-      {%  endif  %}
+        <div class="product-card__title h3 blue">
+          {{ title | default: collection.title | replace: ' | ', ' ' }}
+          <br><span><h2 class="body {% if product_card_product.handle contains 'ii' %}no-capitalize{% endif %}" style="text-transform:none;"> {{ product_card_product.options_by_name['color'].values[0] }}</h2> </span>
+          {% comment %} {%- if collection.metafields.custom.dimensions != blank -%}
+            <span class="body">({{ collection.metafields.custom.dimensions }})</span>
+          {%- endif -%} {% endcomment %}
+        </div>
       </a>
-    </p>
+    {% endif %}
+
+    {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
+    {% assign auto_discount_price = product_card_product.metafields.custom.auto_discount_price %}
+    {% assign show_discounted_price = false %}
+    {% if enable_auto_discount_price and auto_discount_price > 0 %}
+      {% assign show_discounted_price = true %}
+      {% assign auto_discount_price = auto_discount_price | times: 100 |  money %}
+    {% endif %}
+
+    {% if customer and customer.b2b? %}
+      <p class="product-card__price body blue">
+        {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
+        <a href="{{ product_card_product.url }}">
+          {% if original_price > 0 %}
+            <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>
+            <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
+          {% else %}
+            <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
+          {% endif %}
+        </a>
+      </p>
+    {% else %}
+      {% if show_discounted_price %}
+        <p class="product-card__price body blue">
+          <a href="{{ product_card_product.url }}">
+            <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
+            <span>{{ auto_discount_price }}</span>
+          </a>
+        </p>
+      {% else %}
+        <p class="product-card__price body blue">
+          <a href="{{ product_card_product.url }}">
+          {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+            <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
+            <span>{{ product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
+          {% else %}
+            <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
+          {%  endif  %}
+          </a>
+        </p>
+      {% endif %}
+
+    {% endif %}
 {% comment %}
     {% unless template.suffix == 'last-chance' %}
     
     <div class="product-card__swatches">
       {% if active_swatch != blank %}
-        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | file_url }})"></a>
+        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | file_img_url: '60x60' }})"></a>
       {% endif %}
       {{ color_swatch_list }}
     </div>

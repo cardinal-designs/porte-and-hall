@@ -28,7 +28,10 @@
 
   <div class="text-media-carousel__content-wrapper">
     <div class="text-media-carousel__content-inner">
-      <h3 class="text-media-carousel__heading">{{ section.settings.heading }}</h3>
+      {% if section.settings.heading != blank %}
+        <h3 class="text-media-carousel__heading">{{ section.settings.heading }}</h3>
+      {% endif %}
+
       {% if section.settings.subhead != blank %}
       <p class="text-media-caorusel__subhead">{{ section.settings.subhead }}</p>
       {% endif %}

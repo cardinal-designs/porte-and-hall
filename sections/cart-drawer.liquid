@@ -3,7 +3,7 @@
     <form id="cart-drawer__form" action="{{ routes.cart_url }}" method="post" class="cart-drawer__form">
       <div class="cart-drawer__inner">
         <div class="cart-drawer__header">
-          <h2 class="cart-drawer__title">{{ section.settings.cart_title }}</h2>
+          <h2 class="cart-drawer__title" tabindex="0">{{ section.settings.cart_title }}</h2>
           <button type="button" class="cart-drawer__close modal__close-button link link--text focus-inset" id="cart-drawer__close" aria-label="{{ 'accessibility.close' | t }}">
             {% render 'icon' icon: 'close' %}
           </button>
@@ -11,7 +11,7 @@
         <div class="cart-drawer__content" id="cart-drawer__content" data-id="{{ section.id }}">
           {% if cart.items.size == 0 %}
             <div class="cart-drawer__empty">
-              <h3>{{ section.settings.empty_text | default: "Your cart is empty." }}</h3>
+              <p class="h3">{{ section.settings.empty_text | default: "Your cart is empty." }}</p>
               <a href="{{ section.settings.button | default: "/>" }}" class="button">{{ section.settings.button_text | default: "Shop All" }}</a>
             </div>
           {% else %}
@@ -92,7 +92,7 @@
                   </div>
                 </div>
               </div>
-              <a href="/checkout" class="button button--full" name="checkout" form="cart">{{ 'sections.cart.checkout' | t }}</a>
+              <a href="/checkout" class="button button--full" name="checkout" form="cart" tabindex="0">{{ 'sections.cart.checkout' | t }}</a>
               <h6 class="cart-drawer__taxes body-xs">{{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}</h6>
 
 

@@ -35,8 +35,11 @@
             echo "' class='"
             echo element_classes
             echo "'"
+            echo " aria-label='"
+            echo value | escape
+            echo "'"
             echo "style='background-image: url("
-            echo swatch_file_name | file_url
+            echo swatch_file_name | file_img_url: '60x60'
             echo ")' aria-label='Color swatch' data-tooltip='"
             echo value | escape
             echo "'></a>"
@@ -78,19 +81,45 @@
       </div>
     </div>
     <div class="product-card__container">
-      <div class="product-card__title h3 blue">
-        {{ title | default: collection.title | replace: ' | ', '<br>' }}
-        {%- if collection.metafields.custom.dimensions != blank -%}
-          <span class="body">({{ collection.metafields.custom.dimensions }})</span>
-        {%- endif -%}
-      </div>
+      {% if title != blank or collection.title != blank %}
+        <div class="product-card__title h3 blue">
+          {{ title | default: collection.title | replace: ' | ', '<br>' }}
+          {%- if collection.metafields.custom.dimensions != blank -%}
+            <span class="body">({{ collection.metafields.custom.dimensions }})</span>
+          {%- endif -%}
+        </div>
+      {% endif %}
+      {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
+      {% assign auto_discount_price = product_card_product.metafields.custom.auto_discount_price %}
+      {% assign show_discounted_price = false %}
+      {% if enable_auto_discount_price and auto_discount_price > 0 %}
+        {% assign show_discounted_price = true %}
+        {% assign auto_discount_price = auto_discount_price | times: 100 |  money %}
+      {% endif %}
       <div class="product-card__content">
-        <p class="product-card__price body blue">
-          {% if product_card_product.compare_at_price > product_card_product.price %}
-            <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
+        {% if customer and customer.b2b? %}
+          {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
+          <p class="product-card__price body blue">
+            {% if original_price > 0 %}
+              <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>
+            {% endif %}
+            {{ product_card_product.price | money_without_trailing_zeros }}
+          </p>
+        {% else %}
+          {% if show_discounted_price %}
+            <p class="product-card__price body blue">
+              <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
+              {{ auto_discount_price }}
+            </p>
+          {% else %}
+            <p class="product-card__price body blue">
+              {% if product_card_product.compare_at_price > product_card_product.price %}
+                <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
+              {% endif %}
+              {{ product_card_product.price | money_without_trailing_zeros }}
+            </p>
           {% endif %}
-          {{ product_card_product.price | money_without_trailing_zeros }}
-        </p>
+        {% endif %}
 
         <div class="product-card__swatches">
           {{ color_swatch_list }}

@@ -1,0 +1,329 @@
+{{ 'component-product-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'section-product-carousel.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  .product-card .product-card__metafield-style {
+    background: #546b82;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 24px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  .product-carousel .swiper-button-next, .product-carousel .swiper-button-prev {
+    top: 27%;
+  }
+  .product-carousel .swiper-button-next { right: 0; }
+
+  .product-card__price.body.blue { margin-top: -12px; }
+  .product-carousel__container-new-2 .product-card__swatches { margin: 0; }
+
+  @media screen and (max-width: 768px) {
+    .product-carousel__container-new-2 {
+      margin-left: 0;
+      margin-right: 0;
+      width: 100% !important;
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    .product-carousel .swiper-button-next { right: 18px; }
+    .product-card__image { aspect-ratio: 0.9; }
+    .product-card { gap: 5px; }
+
+    .product-card__price.body.blue {
+      margin-top: -5px;
+      font-size: 13px;
+      letter-spacing: .3px;
+    }
+
+    .product-card__title { font-size: 13px; letter-spacing: 0; }
+    .product-card__title span { font-size: 13px; letter-spacing: 0; }
+
+    .product-carousel__container-new-2 { height: 300px !important; }
+    .product-carousel__container-new-2 .swiper-pagination { bottom: 15px !important; }
+
+    .carousel-new-2__video {
+      object-fit: cover;
+      height: 100%;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .product-carousel .swiper-button-next, .product-carousel .swiper-button-prev { top: 19%; }
+  }
+
+  /* Label overlay stays above video; prevent flash */
+  .product-card__image { position: relative; }
+  .product-card__image-label.body-xs {
+    position: absolute;
+    z-index: 10; /* above video (video uses z-index:2) */
+    pointer-events: none;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+{% endstyle %}
+
+<div class="product-carousel__inner product-carousel__new">
+  <div class="product-carousel__heading">
+    <h2 class="blue">{{ section.settings.heading }}</h2>
+  </div>
+
+  <product-carousel-new-two>
+    <div class="product-carousel__container-new product-carousel__container-new-2 product-carousel__container swiper">
+      <div class="swiper-wrapper">
+        {% for product in section.settings.collection.products limit: 4 %}
+          {% for collection in product.collections %}
+            {% if collection.title contains ' |' %}
+              {% assign grouped_collection = collection %}
+            {% endif %}
+          {% endfor %}
+
+          {% assign only_one = false %}
+          {% if product.handle contains 'wild-side' %}
+            {% assign only_one = true %}
+          {% endif %}
+
+          <div class="product-carousel__item swiper-slide">
+            {% if section.settings.product_card_type == 'standard_card' %}
+              {% render 'grouped-product-card-2',
+                product_card_product: product,
+                collection: grouped_collection,
+                title: grouped_collection.title,
+                button_text: section.settings.button_text
+              %}
+            {% else %}
+              {% render 'grouped-product-card-3',
+                product_card_product: product,
+                collection: grouped_collection,
+                title: grouped_collection.title,
+                button_text: section.settings.button_text,
+                only_show_one: only_one
+              %}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination product-carousel__pagination"></div>
+    </div>
+
+    {% if section.settings.btn_link != blank %}
+      <a class="shop-all-btn" href="{{ section.settings.btn_link }}">SHOP ALL BEST SELLERS</a>
+    {% endif %}
+  </product-carousel-new-two>
+</div>
+
+<style>
+  {% if section.settings.background != blank %}
+    #shopify-section-{{ section.id }}.product-carousel {
+      background: {{ section.settings.background }};
+    }
+  {% endif %}
+</style>
+
+<script>
+(function () {
+  const section = document.getElementById('shopify-section-{{ section.id }}');
+  if (!section) return;
+
+  const wrapper = section.querySelector('.swiper-wrapper');
+  if (!wrapper) return;
+
+  const swiper = section.querySelector('.swiper')?.swiper;
+  const mq = window.matchMedia('(max-width: 575px)');
+
+  // Helpers: only ORIGINAL slides (ignore Swiper's duplicates)
+  const getOriginalSlides = () =>
+    Array.from(wrapper.children).filter(slide => !slide.classList.contains('swiper-slide-duplicate'));
+
+  // Snapshot original desktop order ONCE
+  const originalSlides = getOriginalSlides();
+  originalSlides.forEach((slide, i) => { slide.dataset.originalIndex = i; });
+
+  // Utility: safely reorder while loop is disabled to avoid duplicate interference
+  function withLoopRebuild(fn) {
+    if (swiper && swiper.params && swiper.params.loop) {
+      try { swiper.loopDestroy(); } catch(_) {}
+      fn();
+      try { swiper.loopCreate(); } catch(_) {}
+      swiper.updateSlides();
+      swiper.update();
+      // Keep current visual position reasonable; slideTo(0) is safe if order changed
+      swiper.slideTo(0, 0, false);
+    } else {
+      fn();
+      if (swiper) { swiper.updateSlides(); swiper.update(); }
+    }
+  }
+
+  // ----- Layout (mobile: move video-first, desktop: restore original order) -----
+  function moveVideosToFront() {
+    withLoopRebuild(() => {
+      const originals = getOriginalSlides();
+      const withVideo = originals.filter(s => s.querySelector('video.carousel-new-2__video'));
+      const withoutVideo = originals.filter(s => !s.querySelector('video.carousel-new-2__video'));
+      // Re-append in mobile order
+      [...withVideo, ...withoutVideo].forEach(n => wrapper.appendChild(n));
+    });
+  }
+
+  function restoreDesktopOrder() {
+    withLoopRebuild(() => {
+      const originals = getOriginalSlides();
+      originals.sort((a, b) => (+a.dataset.originalIndex) - (+b.dataset.originalIndex))
+               .forEach(n => wrapper.appendChild(n));
+    });
+  }
+
+  function applyLayout(isMobile) {
+    if (isMobile) {
+      moveVideosToFront();
+      primeAllVideos();
+    } else {
+      restoreDesktopOrder();
+      // Do NOT prime on desktop (keeps "no video on desktop")
+    }
+  }
+
+  applyLayout(mq.matches);
+  if (mq.addEventListener) mq.addEventListener('change', e => applyLayout(e.matches));
+  else mq.addListener(e => applyLayout(e.matches));
+
+  // ----- Label overlay insurance -----
+  function ensureLabelOnTop(videoEl) {
+    const card = videoEl.closest('.product-card__image') || videoEl.parentElement;
+    if (!card) return;
+    const label = card.querySelector('.product-card__image-label.body-xs');
+    if (!label) return;
+    if (getComputedStyle(card).position === 'static') {
+      card.style.position = 'relative';
+    }
+    if (!label.style.position) label.style.position = 'absolute';
+    label.style.zIndex = '10';
+    label.style.pointerEvents = 'none';
+    label.style.transform = 'translateZ(0)';
+    label.style.willChange = 'transform';
+  }
+
+  // ----- VIDEO PRIMING (mobile only; originals & duplicates) -----
+  function hideImageFor(videoEl) {
+    const img =
+      videoEl.closest('.product-card__image')?.querySelector('img') ||
+      videoEl.parentElement?.querySelector('img');
+    if (!img) return;
+    img.style.setProperty('display', 'none', 'important');
+    img.setAttribute('aria-hidden', 'true');
+  }
+
+  function primeVideo(v) {
+    if (!v) return;
+    if (v.dataset.primed === '1') { ensureLabelOnTop(v); return; }
+
+    v.dataset.primed = '1';
+    v.muted = true;
+    v.playsInline = true;
+    v.autoplay = true;
+    v.loop = true;
+    v.preload = v.preload || 'auto';
+
+    v.style.opacity = '1';
+    v.style.position = 'absolute';
+    v.style.inset = '0';
+    v.style.width = '100%';
+    v.style.height = '100%';
+    v.style.objectFit = 'cover';
+    v.style.zIndex = '2';
+
+    hideImageFor(v);
+    ensureLabelOnTop(v);
+
+    try { v.play().catch(() => {}); } catch (_) {}
+  }
+
+  function primeAllVideos() {
+    if (!mq.matches) return; // only on mobile
+    section.querySelectorAll('video.carousel-new-2__video').forEach(primeVideo);
+  }
+
+  // Initial prime (mobile only)
+  primeAllVideos();
+
+  // MutationObserver: prime videos in newly added duplicate slides
+  const mo = new MutationObserver(muts => {
+    let found = false;
+    for (const m of muts) {
+      m.addedNodes && m.addedNodes.forEach(n => {
+        if (n.nodeType === 1) {
+          if (n.matches?.('video.carousel-new-2__video')) {
+            primeVideo(n);
+            ensureLabelOnTop(n);
+            found = true;
+          }
+          n.querySelectorAll?.('video.carousel-new-2__video').forEach(el => {
+            primeVideo(el);
+            ensureLabelOnTop(el);
+            found = true;
+          });
+        }
+      });
+    }
+    if (found && mq.matches) primeAllVideos();
+  });
+  mo.observe(wrapper, { childList: true, subtree: true });
+
+  // Swiper hooks: keep video alive on infinite loop (esp. right-swipe clone)
+  if (swiper) {
+    const rePrime = () => { if (mq.matches) primeAllVideos(); };
+
+    swiper.on('loopFix', rePrime);
+    swiper.on('slidesLengthChange', rePrime);
+    swiper.on('update', rePrime);
+    swiper.on('resize', rePrime);
+
+    swiper.on('slideChangeTransitionEnd', () => {
+      if (!mq.matches) return;
+      const active = swiper.slides[swiper.activeIndex];
+      const v = active?.querySelector('video.carousel-new-2__video');
+      if (v) {
+        v.dataset.primed = ''; // allow re-prime if browser paused on transition
+        primeVideo(v);
+        ensureLabelOnTop(v);
+      }
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "ProductCarouselNew2 (old)",
+  "tag": "section",
+  "class": "product-carousel with-spacing",
+  "settings": [
+    { "type": "textarea", "id": "heading", "label": "Heading" },
+    { "type": "color", "id": "background", "label": "Background" },
+    { "type": "checkbox", "id": "show_metafield_style", "label": "Show metafield style", "default": false },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    {
+      "type": "select",
+      "id": "product_card_type",
+      "label": "Product Card Type",
+      "options": [
+        { "label": "Standard Card", "value": "standard_card" },
+        { "label": "Video Card (metafield)", "value": "video_card" }
+      ],
+      "default": "standard_card"
+    },
+    { "type": "text", "id": "button_text", "label": "Button text", "default": "Shop Now" },
+    { "type": "url", "id": "btn_link", "label": "Bottom Button Link" }
+  ],
+  "presets": [
+    { "name": "ProductCarouselNew2 (old)" }
+  ]
+}
+{% endschema %}

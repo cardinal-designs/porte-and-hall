@@ -14,19 +14,20 @@
   </div>
 
   <div class="product__zoom-thumbnails hide-mobile">
-    <ul class="product__media-thumbnails-zoom list-unstyled swiper" role="list">
+    <div class="product__media-thumbnails-zoom list-unstyled swiper" role="list">
       <div class="swiper-wrapper">
         {% for media in product.media %}
-          <li class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+          <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
             {% render 'product-media', media: media, position: forloop.index, width: '106' %}
-          </li>
+          </div>
         {% endfor %}
       </div>
-    </ul>
+    </div>
   </div>
 
-  <button class="close-zoom" data-close-zoom>
+  <button class="close-zoom" aria-label="zoom close" data-close-zoom>
     {% render 'icon', icon: 'close' %}
+    <span class="sr-only">zoom close</span>
   </button>
 </div>
 

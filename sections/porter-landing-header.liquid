@@ -1,0 +1,202 @@
+{{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+{{ 'porter-landing-header.css' | asset_url | stylesheet_tag }}
+
+<header class="header">
+  <div class="header--center header--inner page-width">
+    <!-- Logo -->
+    <div class="header__logo">
+      <a href="{{ shop.url }}" class="header__logo-link" aria-label="Header logo">
+        <div class="header__logo-wrapper">
+          {% if section.settings.svg_logo != blank %}
+            <div class="header__svg-logo">
+              {{ section.settings.svg_logo }}
+            </div>
+          {% else %}
+            {% if section.settings.logo != blank %}
+              {% assign image_size = section.settings.logo_width | append: 'x' %}
+              <img
+                srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                src="{{ section.settings.logo | img_url: image_size }}"
+                loading="lazy"
+                class="header__heading-logo"
+                width="{{ section.settings.logo.width }}"
+                height="{{ section.settings.logo.height }}"
+                alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
+              >
+            {% else %}
+              <span class="h2">{{ shop.name }}</span>
+            {% endif %}
+          {% endif %}
+        </div>
+      </a>
+    </div>
+
+    <style>
+      .header__logo {
+        width: {{ section.settings.logo_width }}px;
+      }
+
+      @media screen and (max-width: 768px) {
+        .header__logo {
+          width: {{ section.settings.mobile_logo_width }}px;
+        }
+      }
+    </style>
+
+    <!-- Icons -->
+    <div class="header__icons">
+
+      {% if template != 'cart' %}
+        <button
+          class="js-open-cart header__icon header__icon--cart"
+          id="cart-icon-bubble"
+          aria-label="Open Cart Drawer"
+        >
+          {% render 'icon', icon: 'white-cart' %}
+          <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+          {% if cart != empty %}
+            <div class="cart-count-bubble">
+              {% if cart.item_count < 100 %}
+                <span aria-hidden="true">{{ cart.item_count }}</span>
+              {% endif %}
+              <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+            </div>
+          {% endif %}
+        </button>
+      {% else %}
+        <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart" id="cart-icon-bubble">
+          {% render 'icon', icon: 'white-cart' %}
+          <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+          {% if cart != empty %}
+            <div class="cart-count-bubble">
+              {% if cart.item_count < 100 %}
+                <span aria-hidden="true">{{ cart.item_count }}</span>
+              {% endif %}
+              <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+            </div>
+          {% endif %}
+        </a>
+      {% endif %}
+
+      {% if section.settings.menu != blank %}
+        <button class="js-open-menu header__icon header__icon--menu" aria-label="Menu">
+          {% render 'icon', icon: 'white-hamburger' %}
+        </button>
+      {% endif %}
+    </div>
+
+    {% if section.settings.enable_search %}
+      <div class="header__search">
+        <div class="page-width">
+          <div class="header__search-container">
+            <form action="{{ routes.search_url }}" method="get" role="search" class="header__search-form">
+              <div class="header__search-group">
+                <input
+                  class="header__search-input"
+                  id="Search-In-Modal"
+                  type="search"
+                  name="q"
+                  value="{{ search.terms | escape }}"
+                  placeholder="Search..."
+                >
+                <input type="hidden" name="options[prefix]" value="last">
+                <button class="header__search-button" aria-label="{{ 'general.search.search' | t }}">
+                  {% render 'icon', icon: 'search' %}
+                </button>
+              </div>
+            </form>
+            <button class="js-close-search header__search-close">
+              {% render 'icon', icon: 'close' %}
+            </button>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</header>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {% if section.settings.logo %}
+      {% assign image_size = section.settings.logo.width | append: 'x' %}
+      "logo": {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},
+    {% endif %}
+    "sameAs": [
+      {{ settings.social_twitter_link | json }},
+      {{ settings.social_facebook_link | json }},
+      {{ settings.social_pinterest_link | json }},
+      {{ settings.social_instagram_link | json }},
+      {{ settings.social_tumblr_link | json }},
+      {{ settings.social_snapchat_link | json }},
+      {{ settings.social_youtube_link | json }},
+      {{ settings.social_vimeo_link | json }}
+    ],
+    "url": {{ shop.url | append: page.url | json }}
+  }
+</script>
+
+{% if request.page_type == 'index' %}
+  {% assign potential_action_target = shop.url | append: routes.search_url | append: '?q={search_term_string}' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      },
+      "url": {{ shop.url | append: page.url | json }}
+    }
+  </script>
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "svg_logo",
+      "label": "SVG Logo",
+      "info": "Optional. This will override logo image picker."
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:sections.header.settings.logo.label"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "default": 150,
+      "unit": "px",
+      "label": "Logo Width"
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_width",
+      "min": 50,
+      "max": 200,
+      "step": 5,
+      "default": 100,
+      "unit": "px",
+      "label": "Mobile Logo Width"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    },
+  ]
+}
+{% endschema %}

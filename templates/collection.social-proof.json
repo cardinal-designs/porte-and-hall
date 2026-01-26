@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "breadcrumbs_3RrBQq": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c": {
       "type": "page-hero",
       "blocks": {
@@ -53,35 +64,35 @@
     "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a": {
       "type": "collection-head-slider",
       "blocks": {
-        "8c506402-0d91-46d2-abe1-82a9b4b9a098": {
+        "category_GzqVUX": {
           "type": "category",
           "settings": {
             "title": "Indoor Doormats",
             "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Indoor"
           }
         },
-        "5010ae1b-009e-4f1e-9719-60e0b4292646": {
+        "category_pRMUQJ": {
           "type": "category",
           "settings": {
             "title": "Outdoor Doormats",
             "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Outdoor"
           }
         },
-        "752c47c5-bfd7-4741-9130-2a9959cdcee4": {
+        "category_MVAiU3": {
           "type": "category",
           "settings": {
             "title": "Runners",
             "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
           }
         },
-        "734337ac-bc92-4a53-ab3d-b09fa87f3bc6": {
+        "category_twdp6A": {
           "type": "category",
           "settings": {
             "title": "Area Mats",
             "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
           }
         },
-        "83d286bd-bd5b-4d18-81f1-068c88614c00": {
+        "category_Wy7KEY": {
           "type": "category",
           "disabled": true,
           "settings": {
@@ -91,11 +102,11 @@
         }
       },
       "block_order": [
-        "8c506402-0d91-46d2-abe1-82a9b4b9a098",
-        "5010ae1b-009e-4f1e-9719-60e0b4292646",
-        "752c47c5-bfd7-4741-9130-2a9959cdcee4",
-        "734337ac-bc92-4a53-ab3d-b09fa87f3bc6",
-        "83d286bd-bd5b-4d18-81f1-068c88614c00"
+        "category_GzqVUX",
+        "category_pRMUQJ",
+        "category_MVAiU3",
+        "category_twdp6A",
+        "category_Wy7KEY"
       ],
       "settings": {}
     },
@@ -211,7 +222,8 @@
         "heading": "Style tips from the Porte + Hall Blog",
         "background": "#eeefef",
         "blog": "news",
-        "show_recent_articles": true
+        "show_recent_articles": true,
+        "hide_mobile": false
       }
     },
     "6cba2d1c-ca6b-48b3-8672-d03b3b848c6e": {
@@ -225,11 +237,22 @@
         "text": "Just like a clean desk or freshly-made bed, coming home to a beautiful and functional entryway is restorative and uplifting. We aim to turn these often ovelooked areas of our homes into inspired areas that welcome and invite us home.",
         "link": "shopify://pages/about-us",
         "link_text": "LEARN MORE ABOUT US",
-        "image": "shopify://shop_images/door_illustration.png"
+        "image": "shopify://shop_images/door_illustration.png",
+        "show_faq": true,
+        "title_1": "",
+        "title_richtext_1": "",
+        "answer_1": "",
+        "title_2": "",
+        "title_richtext_2": "",
+        "answer_2": "",
+        "title_3": "",
+        "title_richtext_3": "",
+        "answer_3": ""
       }
     }
   },
   "order": [
+    "breadcrumbs_3RrBQq",
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
     "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a",
     "product-grid",

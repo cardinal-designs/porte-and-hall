@@ -15,75 +15,33 @@
     margin-bottom: 4px;
   }
 
-  .product-carousel .swiper-button-next, .product-carousel .swiper-button-prev {
-    top: 27%;
-  }
+  .product-carousel .swiper-button-next, .product-carousel .swiper-button-prev { top: 27%; }
+  .product-carousel .swiper-button-next { right: 0; }
 
-  .product-carousel .swiper-button-next {
-    right: 0;
-  }
-
- .product-card__price.body.blue {
-    margin-top: -12px;
-  }
-
-  
-  .product-carousel__container-new-2 .product-card__swatches {
-    margin: 0;
-  }
+  .product-card__price.body.blue { margin-top: -12px; }
+  .product-carousel__container-new-2 .product-card__swatches { margin: 0; }
 
   @media screen and (max-width: 768px) {
     .product-carousel__container-new-2 {
-      margin-left: 0;
-      margin-right: 0;
-      width: 100% !important;
+      margin-left: 0; margin-right: 0; width: 100% !important;
     }
   }
-  
+
   @media screen and (max-width: 575px) {
-    .product-carousel .swiper-button-next {
-      right: 18px;
-    }
-
-    .product-card__image {
-      aspect-ratio: 0.9;
-    }
-
-    .product-card {
-      gap: 5px;
-    }
-
-    .product-card__price.body.blue {
-      margin-top: -5px;
-      font-size: 13px;
-      letter-spacing: .3px;
-    }
-
-    .product-card__title {
-      font-size: 13px;
-      letter-spacing: 0;
-    }
-
-     .product-card__title span {
-      font-size: 13px;
-      letter-spacing: 0;
-    }
-
-    .product-carousel__container-new-2 {
-      height: 300px !important;
-    }
-  
-    .product-carousel__container-new-2 .swiper-pagination {
-      bottom: 20px !important;
-    }
-
+    .product-carousel .swiper-button-next { right: 18px; }
+    .product-card__image { aspect-ratio: 0.9; }
+    .product-card { gap: 5px; }
+    .product-card__price.body.blue { margin-top: -5px; font-size: 13px; letter-spacing: .3px; }
+    .product-card__title { font-size: 13px; letter-spacing: 0; }
+    .product-card__title span { font-size: 13px; letter-spacing: 0; }
+    .product-carousel__container-new-2 { height: 300px !important; }
+    .product-carousel__container-new-2 .swiper-pagination { bottom: 15px !important; }
+    .carousel-new-2__video { object-fit: cover; height: 100%; }
   }
-  
- @media screen and (max-width: 500px) {
-  .product-carousel .swiper-button-next, .product-carousel .swiper-button-prev {
-    top: 19%;
+
+  @media screen and (max-width: 500px) {
+    .product-carousel .swiper-button-next, .product-carousel .swiper-button-prev { top: 19%; }
   }
- }
 {% endstyle %}
 
 <div class="product-carousel__inner product-carousel__new">
@@ -101,30 +59,251 @@
             {% endif %}
           {% endfor %}
           <div class="product-carousel__item swiper-slide">
-            {% render 'grouped-product-card-2',
-              product_card_product: product,
-              collection: grouped_collection,
-              title: grouped_collection.title,
-              button_text: section.settings.button_text
-            %}
+            {% if section.settings.product_card_type == 'standard_card' %}
+              {% render 'grouped-product-card-2',
+                product_card_product: product,
+                collection: grouped_collection,
+                title: grouped_collection.title,
+                button_text: section.settings.button_text
+              %}
+            {% else %}
+              {% render 'grouped-product-card-3',
+                product_card_product: product,
+                collection: grouped_collection,
+                title: grouped_collection.title,
+                button_text: section.settings.button_text,
+                only_show_one: true
+              %}
+            {% endif %}
           </div>
         {% endfor %}
       </div>
       <div class="swiper-pagination product-carousel__pagination"></div>
     </div>
+
     {% if section.settings.btn_link != blank %}
-    <a class="shop-all-btn" href="{{ section.settings.btn_link }}">SHOP ALL BEST SELLERS</a>
+      <a class="shop-all-btn" href="{{ section.settings.btn_link }}">SHOP ALL BEST SELLERS</a>
     {% endif %}
   </product-carousel-new-two>
 </div>
 
 <style>
   {% if section.settings.background != blank %}
-    #shopify-section-{{section.id }}.product-carousel {
-      background: {{ section.settings.background }};
-    }
+    #shopify-section-{{ section.id }}.product-carousel { background: {{ section.settings.background }}; }
   {% endif %}
 </style>
+
+<script>
+(function () {
+  const section = document.getElementById('shopify-section-{{ section.id }}');
+  if (!section) return;
+
+  const wrapper = section.querySelector('.swiper-wrapper');
+  const mq = window.matchMedia('(max-width: 575px)');
+  if (!wrapper) return;
+
+  function getSwiper() {
+    const el = section.querySelector('.swiper');
+    return el && el.swiper ? el.swiper : null;
+  }
+
+  // Store original order with data attributes
+  let isReordered = false;
+  const allSlides = Array.from(wrapper.children);
+  allSlides.forEach((slide, idx) => {
+    slide.setAttribute('data-original-order', idx);
+  });
+
+  function reorderForMobile() {
+    if (isReordered) return;
+    
+    const slides = Array.from(wrapper.querySelectorAll('.swiper-slide'));
+    if (slides.length < 3) return;
+
+    // Get slides by original order
+    const slide1 = slides.find(s => s.getAttribute('data-original-order') === '0');
+    const slide2 = slides.find(s => s.getAttribute('data-original-order') === '1');
+    const slide3 = slides.find(s => s.getAttribute('data-original-order') === '2');
+    const slide4 = slides.find(s => s.getAttribute('data-original-order') === '3');
+
+    // Clear wrapper
+    wrapper.innerHTML = '';
+
+    // Add in new order: 1, 3, 2, 4
+    if (slide2) wrapper.appendChild(slide2);
+    if (slide3) wrapper.appendChild(slide3);
+    if (slide1) wrapper.appendChild(slide1);
+    if (slide4) wrapper.appendChild(slide4);
+
+    isReordered = true;
+
+    const sw = getSwiper();
+    if (sw) {
+      sw.update();
+      sw.updateSlides();
+      sw.slideTo(0, 0);
+    }
+  }
+
+  function restoreDesktopOrder() {
+    if (!isReordered) return;
+
+    const slides = Array.from(wrapper.querySelectorAll('.swiper-slide'));
+    
+    // Sort by original order
+    slides.sort((a, b) => {
+      return parseInt(a.getAttribute('data-original-order')) - parseInt(b.getAttribute('data-original-order'));
+    });
+
+    // Clear and re-add in original order
+    wrapper.innerHTML = '';
+    slides.forEach(slide => wrapper.appendChild(slide));
+
+    isReordered = false;
+
+    const sw = getSwiper();
+    if (sw) {
+      sw.update();
+      sw.updateSlides();
+      sw.slideTo(0, 0);
+    }
+  }
+
+  function applyLayout(isMobile) {
+    if (isMobile) {
+      reorderForMobile();
+    } else {
+      restoreDesktopOrder();
+    }
+    setTimeout(() => {
+      prepAllVideos();
+      playAllVideos();
+    }, 100);
+  }
+
+  // Initial layout
+  applyLayout(mq.matches);
+
+  // Listen for screen size changes
+  if (mq.addEventListener) {
+    mq.addEventListener('change', (e) => applyLayout(e.matches));
+  } else {
+    mq.addListener((e) => applyLayout(e.matches));
+  }
+
+  // ==============================
+  // Video prep + force playback
+  // ==============================
+  function getCard(videoEl) {
+    return videoEl.closest('.product-card__image') || videoEl.parentElement;
+  }
+  
+  function getImg(videoEl) {
+    const box = getCard(videoEl);
+    if (!box) return null;
+    return box.querySelector('img.img-fill.hide-mobile')
+        || box.querySelector('img.img-fill')
+        || box.querySelector('img');
+  }
+  
+  function prepLayering(videoEl, imgEl) {
+    const box = getCard(videoEl);
+    if (box && getComputedStyle(box).position === 'static') box.style.position = 'relative';
+    Object.assign(videoEl.style, {
+      position: 'absolute',
+      inset: '0',
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      zIndex: '2',
+      transition: 'opacity 200ms ease',
+      opacity: '1',
+      display: 'block'
+    });
+    if (imgEl) {
+      Object.assign(imgEl.style, {
+        position: 'absolute',
+        inset: '0',
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        zIndex: '1',
+        transition: 'opacity 200ms ease',
+        opacity: '0',
+        display: 'block'
+      });
+    }
+  }
+
+  function collectVideos() {
+    return Array.from(section.querySelectorAll('video.carousel-new-2__video'));
+  }
+
+  function prepAllVideos() {
+    const vids = collectVideos();
+    vids.forEach(v => {
+      const img = getImg(v);
+      prepLayering(v, img);
+
+      v.muted = true; v.setAttribute('muted', '');
+      v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+      v.loop = true; v.setAttribute('loop', '');
+      v.autoplay = false;
+      v.preload = 'auto';
+      v.classList.remove('hide-desktop');
+      v.style.setProperty('display', 'block', 'important');
+    });
+  }
+
+  function ensurePlaying(v) {
+    try {
+      if (v.readyState >= 1 && v.currentTime === 0) v.currentTime = 0.01;
+    } catch (e) {}
+    const p = v.play();
+    if (p && p.catch) p.catch(() => {});
+  }
+
+  function playAllVideos() {
+    const vids = collectVideos();
+    vids.forEach(v => {
+      if (v.readyState >= 1) {
+        ensurePlaying(v);
+      } else {
+        v.addEventListener('loadeddata', () => ensurePlaying(v), { once: true });
+        setTimeout(() => ensurePlaying(v), 1000);
+      }
+    });
+  }
+
+  prepAllVideos();
+  playAllVideos();
+
+  const sw = getSwiper();
+  function hookSwiper(s) {
+    ['init','slideChange','slideChangeTransitionEnd','transitionEnd','resize','update','reachBeginning','reachEnd']
+      .forEach(ev => s.on(ev, () => {
+        prepAllVideos();
+        setTimeout(playAllVideos, 50);
+      }));
+  }
+
+  if (sw) {
+    hookSwiper(sw);
+  } else {
+    const obs = new MutationObserver(() => {
+      const s = getSwiper();
+      if (s) { hookSwiper(s); obs.disconnect(); }
+    });
+    obs.observe(section, { childList: true, subtree: true });
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) setTimeout(playAllVideos, 50);
+  });
+})();
+</script>
+
+
 
 {% schema %}
 {
@@ -132,43 +311,23 @@
   "tag": "section",
   "class": "product-carousel with-spacing",
   "settings": [
+    { "type": "textarea", "id": "heading", "label": "Heading" },
+    { "type": "color", "id": "background", "label": "Background" },
+    { "type": "checkbox", "id": "show_metafield_style", "label": "Show metafield style", "default": false },
+    { "type": "collection", "id": "collection", "label": "Collection" },
     {
-      "type": "textarea",
-      "id": "heading",
-      "label": "Heading"
+      "type": "select",
+      "id": "product_card_type",
+      "label": "Product Card Type",
+      "options": [
+        { "label": "Standard Card", "value": "standard_card" },
+        { "label": "Video Card (metafield)", "value": "video_card" }
+      ],
+      "default": "standard_card"
     },
-    {
-      "type": "color",
-      "id": "background",
-      "label": "Background"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_metafield_style",
-      "label": "Show metafield style",
-      "default": false
-    },    
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "text",
-      "id": "button_text",
-      "label": "Button text",
-      "default": "Shop Now"
-    },
-    {
-      "type": "url",
-      "id": "btn_link",
-      "label": "Bottom Button Link"
-    }
+    { "type": "text", "id": "button_text", "label": "Button text", "default": "Shop Now" },
+    { "type": "url", "id": "btn_link", "label": "Bottom Button Link" }
   ],
-  "presets": [
-    {
-      "name": "Product Carousel New 2"
-    }
-  ]
+  "presets": [ { "name": "Product Carousel New 2" } ]
 }
 {% endschema %}

@@ -46,6 +46,7 @@ class CartDrawer extends HTMLElement {
         this.updateCharCount(event.target);
       }
     });
+    this.disableDrawerFocus();
   }
   updateCharCount(textarea) {
     const currentLength = textarea.value.length;
@@ -62,6 +63,18 @@ class CartDrawer extends HTMLElement {
 
     this.pageOverlayElement.classList.add('is-visible');
     document.body.addEventListener('click', this.onBodyClick);
+    this.enableDrawerFocus()
+  }
+
+  disableDrawerFocus() {
+    this.drawer.querySelectorAll('[tabindex], a, button, input, select, textarea')
+      .forEach(el => el.setAttribute('tabindex', '-1'));
+  }
+
+  // Call this when the drawer opens
+  enableDrawerFocus() {
+    this.drawer.querySelectorAll('[tabindex], a, button, input, select, textarea')
+      .forEach(el => el.removeAttribute('tabindex'));
   }
 
   close() {
@@ -70,6 +83,7 @@ class CartDrawer extends HTMLElement {
 
     this.pageOverlayElement.classList.remove('is-visible');
     document.body.removeEventListener('click', this.onBodyClick);
+    this.disableDrawerFocus();
   }
 
   onChange(event) {
@@ -119,6 +133,7 @@ class CartDrawer extends HTMLElement {
         
       })
       .catch((error) => console.error(error));
+      this.drawer.focus();
   }
 
   removeGiftWrapFromCart() {
@@ -208,6 +223,7 @@ class CartDrawer extends HTMLElement {
         }));
 
         this.disableLoading();
+        this.drawer.focus();
       }).catch(() => {
         this.disableLoading();
       });
@@ -306,11 +322,53 @@ function updateMainCart(Rebuy) {
 }
 
 document.addEventListener('rebuy:cart.ready', (event) => { 
-    Rebuy.init();
+  Rebuy.init();
+  const drawer = document.getElementById("cart-drawer");
+  setTimeout(() => {
+    drawer.focus();
+  }, 250);
 });
 document.addEventListener('rebuy:cart.add', (event) => { 
   updateMainCart(Rebuy)
+  const drawer = document.getElementById("cart-drawer");
+  setTimeout(() => {
+    drawer.focus();
+  }, 250);
 });
 document.addEventListener('rebuy:cart.change', (event) => { 
   updateMainCart(Rebuy)
+  const drawer = document.getElementById("cart-drawer");
+  setTimeout(() => {
+    drawer.focus();
+  }, 250);
+});
+
+function trapFocusinCart(modal) {  
+  modal.addEventListener('keydown', (e) => {
+    const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), [name="checkout"]');
+    const first = focusableElements[0];
+    const last = focusableElements[focusableElements.length - 1];
+    const newcheckout = document.querySelector(`[aria-label="CHECK OUT"]`);
+    const skipContent = document.querySelector(`main .skip-to-content-link`);
+    if (e.key !== 'Tab') return;
+
+    if (e.shiftKey) {
+      if (document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      }
+    } else {
+      if (document.activeElement === last || document.activeElement === newcheckout || document.activeElement === skipContent) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const drawer = document.getElementById("cart-drawer");
+  // Call this after opening the drawer
+  drawer.classList.add('aria-unhidden');
+  if(drawer.getAttribute("aria-hidden") == "false") drawer.focus();
+  trapFocusinCart(drawer);
 });

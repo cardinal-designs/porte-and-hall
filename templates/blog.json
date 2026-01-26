@@ -1,42 +1,62 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "breadcrumbs_tmybYw": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "#f4f2ee",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "a9c583da-befc-4ebc-9ffe-a04752044e42": {
       "type": "full-bleed-image-slider",
       "blocks": {
         "456a9baf-af7c-4453-8e15-e389cdbb3bb4": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Rectangle_597.jpg"
+            "image": "shopify://shop_images/Rectangle_597.jpg"
           }
         },
         "a8643782-415b-4675-858c-2e1546580064": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/magazine_1.jpg"
+            "image": "shopify://shop_images/magazine_1.jpg"
           }
         },
         "2e085456-2f88-462d-b882-b1d3c4a631bb": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Copy_of_10_1_copy_b0dbcf51-59da-40a0-8019-4ae8a5227c0c.jpg"
+            "image": "shopify://shop_images/Copy_of_10_1_copy_b0dbcf51-59da-40a0-8019-4ae8a5227c0c.jpg"
           }
         },
         "533e339b-359f-4049-93dd-a79cb7dc52d9": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/IMG_9230_copy.jpg"
+            "image": "shopify://shop_images/IMG_9230_copy.jpg"
           }
         },
         "a0f34d42-c357-4a08-8a6e-012e41a4cab7": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/230511_PORTEHALL_08_012_1_copy.jpg"
+            "image": "shopify://shop_images/230511_PORTEHALL_08_012_1_copy.jpg"
           }
         },
         "e9dde14e-d200-458d-bc33-605d56d55a65": {
           "type": "image",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Rectangle_605_846ecf1e-0871-4c10-8e63-c18ccffec81c.jpg"
+            "image": "shopify://shop_images/Rectangle_605_846ecf1e-0871-4c10-8e63-c18ccffec81c.jpg"
           }
         }
       },
@@ -48,8 +68,7 @@
         "a0f34d42-c357-4a08-8a6e-012e41a4cab7",
         "e9dde14e-d200-458d-bc33-605d56d55a65"
       ],
-      "settings": {
-      }
+      "settings": {}
     },
     "main": {
       "type": "blog-landing",
@@ -61,6 +80,7 @@
     }
   },
   "order": [
+    "breadcrumbs_tmybYw",
     "a9c583da-befc-4ebc-9ffe-a04752044e42",
     "main"
   ]

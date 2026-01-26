@@ -5,11 +5,6 @@
 {{ 'ScrollToPlugin.min.js' | asset_url | preload_tag: as: 'script' }}
 {{ 'global.js' | asset_url | preload_tag: as: 'script' }}
 {{ 'custom.js' | asset_url | preload_tag: as: 'script' }}
-{{ 'alpha.js' | asset_url | preload_tag: as: 'script' }}
-{{ 'preloader.js' | asset_url | preload_tag: as: 'script' }}
-{{ 'bootstrap.js' | asset_url | preload_tag: as: 'script' }}
-{{ 'preconnect_resources.js' | asset_url | preload_tag: as: 'script' }}
-{{ 'lazy.js' | asset_url | preload_tag: as: 'script' }}
 
 <!-- handwriting -->
 <link rel="preload" href="{{ 'LaBelleAurore-Regular.ttf' | asset_url }}" as="font" type="font/ttf" crossorigin>
@@ -37,13 +32,6 @@
 <!-- brandon bold -->
 <link rel="preload" href="{{ 'BrandonGrotesque-Bold.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ 'BrandonGrotesque-Bold.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
-
-
-<script src="{{ 'alpha.js' | asset_url }}"></script>
-<script src="{{ 'preloader.js' | asset_url }}"></script>
-<script src="{{ 'bootstrap.js' | asset_url }}"></script>
-<script src="{{ 'preconnect_resources.js' | asset_url }}"></script>
-<script src="{{ 'lazy.js' | asset_url }}"></script>
 
 {% if collection and collection.products.size > 0 %}
   <link rel="preload" as="image"

@@ -1,0 +1,182 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs_ejkaVn": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
+    "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c": {
+      "type": "page-hero",
+      "settings": {
+        "bg_image": "shopify://shop_images/warehouseeventbanner_2.png",
+        "heading": "",
+        "text": "",
+        "small_text": "",
+        "swap-fonts": false
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 16,
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "add_image_padding": false,
+        "show_image_outline": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "collapse_on_larger_devices": false
+      }
+    },
+    "82844bc9-ec6d-426a-9f52-a0a66dd5560e": {
+      "type": "logo-marquee",
+      "blocks": {
+        "50d28991-9949-425a-8be2-904babebbf3d": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"146\" height=\"30\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
+          }
+        },
+        "149c1817-ad42-4e33-9606-3fdd86617b59": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"242\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Better_homes.svg?v=1613389157\" alt=\"logo\">"
+          }
+        },
+        "c601b093-74e6-4c97-9b9f-e92dbbc1954b": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"143\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
+          }
+        },
+        "525c8d7f-3fd8-424a-9bb9-796fe7acd9b9": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"100\" height=\"25\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
+          }
+        },
+        "3a0ca646-6b8d-40f7-bad1-95beb0f48c38": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"146\" height=\"30\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
+          }
+        },
+        "7776a47e-3b45-4168-a62f-1ed5450e55e4": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"242\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Better_homes.svg?v=1613389157\" alt=\"logo\">"
+          }
+        },
+        "75cd2c0e-3721-428e-9a94-ab9ee0f2702a": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"143\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
+          }
+        },
+        "e94d2efd-9517-44b1-ae3f-3c3ce149ac5f": {
+          "type": "logo",
+          "settings": {
+            "svg": "<img width=\"100\" height=\"25\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
+          }
+        }
+      },
+      "block_order": [
+        "50d28991-9949-425a-8be2-904babebbf3d",
+        "149c1817-ad42-4e33-9606-3fdd86617b59",
+        "c601b093-74e6-4c97-9b9f-e92dbbc1954b",
+        "525c8d7f-3fd8-424a-9bb9-796fe7acd9b9",
+        "3a0ca646-6b8d-40f7-bad1-95beb0f48c38",
+        "7776a47e-3b45-4168-a62f-1ed5450e55e4",
+        "75cd2c0e-3721-428e-9a94-ab9ee0f2702a",
+        "e94d2efd-9517-44b1-ae3f-3c3ce149ac5f"
+      ],
+      "settings": {
+        "background_color": "#d8d3c7"
+      }
+    },
+    "2046a8d4-8126-4344-8df2-6dd5193e7293": {
+      "type": "featured-articles",
+      "blocks": {
+        "140e3c63-9b99-476d-9378-53fd1ce30b89": {
+          "type": "article",
+          "settings": {
+            "article": "news/how-to-find-the-best-doormat-for-your-home"
+          }
+        },
+        "faf6f395-3915-4f58-b2c5-acd839476fc2": {
+          "type": "article",
+          "settings": {
+            "article": "news/the-view-from-my-porch"
+          }
+        },
+        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23": {
+          "type": "article",
+          "settings": {
+            "article": "news/why-pay-more-for-a-doormat"
+          }
+        }
+      },
+      "block_order": [
+        "140e3c63-9b99-476d-9378-53fd1ce30b89",
+        "faf6f395-3915-4f58-b2c5-acd839476fc2",
+        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23"
+      ],
+      "settings": {
+        "heading": "Style tips from the Porte + Hall Blog",
+        "background": "#eeefef",
+        "blog": "news",
+        "show_recent_articles": true,
+        "hide_mobile": false
+      }
+    },
+    "6cba2d1c-ca6b-48b3-8672-d03b3b848c6e": {
+      "type": "fan-motif-section",
+      "settings": {
+        "hide_desktop": false,
+        "hide_mobile": false,
+        "color": "green",
+        "alignment": "left",
+        "heading": "First impressions matter.\nFor both you and your visitors.",
+        "text": "Just like a clean desk or freshly-made bed, coming home to a beautiful and functional entryway is restorative and uplifting. We aim to turn these often ovelooked areas of our homes into inspired areas that welcome and invite us home.",
+        "link": "shopify://pages/about-us",
+        "link_text": "LEARN MORE ABOUT US",
+        "image": "shopify://shop_images/door_illustration.png",
+        "show_faq": false,
+        "title_1": "",
+        "title_richtext_1": "",
+        "answer_1": "",
+        "title_2": "",
+        "title_richtext_2": "",
+        "answer_2": "",
+        "title_3": "",
+        "title_richtext_3": "",
+        "answer_3": ""
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs_ejkaVn",
+    "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
+    "product-grid",
+    "82844bc9-ec6d-426a-9f52-a0a66dd5560e",
+    "2046a8d4-8126-4344-8df2-6dd5193e7293",
+    "6cba2d1c-ca6b-48b3-8672-d03b3b848c6e"
+  ]
+}

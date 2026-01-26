@@ -1,13 +1,33 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "breadcrumbs_QFpqGq": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "#f4f2ee",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "16587824044cd3c400": {
       "type": "hero",
       "settings": {
-        "image": "shopify:\/\/shop_images\/aboutus1.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/aboutus1_053cf431-61f5-4f80-8678-456d725f3fb9.jpg",
+        "image": "shopify://shop_images/aboutus1.jpg",
+        "mobile_image": "shopify://shop_images/aboutus1_053cf431-61f5-4f80-8678-456d725f3fb9.jpg",
         "title": "First impressions matter.\nFor both you and your visitors.",
         "button_label": "Shop All",
-        "button_link": "shopify:\/\/collections\/shop-all"
+        "button_link": "shopify://collections/shop-all"
       }
     },
     "richtext-one": {
@@ -17,7 +37,7 @@
       ],
       "settings": {
         "heading": "Imagine your entry with a doormat that’s actually pretty.",
-        "text": "<p>Stafford created Porte + Hall with a passion for design and a deep desire to help others articulate their personal story. Our homes welcome friends, create memories, and give shelter to everyone and everything we hold dear. As an interior designer, Stafford found a lack of doormat options to create that sense of arrival. So, she decided to be the change she wanted to see.<\/p>"
+        "text": "<p>Stafford created Porte + Hall with a passion for design and a deep desire to help others articulate their personal story. Our homes welcome friends, create memories, and give shelter to everyone and everything we hold dear. As an interior designer, Stafford found a lack of doormat options to create that sense of arrival. So, she decided to be the change she wanted to see.</p>"
       }
     },
     "83b2c825-49b8-4019-a11c-30b637687747": {
@@ -39,7 +59,7 @@
           "type": "media",
           "settings": {
             "media_label": "",
-            "image": "shopify:\/\/shop_images\/108A1754_1__2x_2x_1f665141-ad4a-4b99-a3e9-7aa67c042643.jpg",
+            "image": "shopify://shop_images/108A1754_1__2x_2x_1f665141-ad4a-4b99-a3e9-7aa67c042643.jpg",
             "image_alignment": "top",
             "video_url": ""
           }
@@ -62,25 +82,25 @@
         "3a51b987-09be-4113-b173-7b59de677c61": {
           "type": "section",
           "settings": {
-            "image": "shopify:\/\/shop_images\/About-Us-Indoor-Mat-Insider-Maze-Navy-Doormat.jpg",
+            "image": "shopify://shop_images/About-Us-Indoor-Mat-Insider-Maze-Navy-Doormat.jpg",
             "label": "The Insider | Maze (Navy)",
             "heading": "We believe that form and function are not mutually exclusive",
-            "text": "Getting to the products that you see today was a long process. Our mats needed to perform and hold up to the elements, foot traffic, and hundreds of wipes and stomps. Our colors had to be vibrant. Our textures had to last. Our mats needed to be easy to maintain. We stand <em>on<\/em> our mats because they deliver."
+            "text": "Getting to the products that you see today was a long process. Our mats needed to perform and hold up to the elements, foot traffic, and hundreds of wipes and stomps. Our colors had to be vibrant. Our textures had to last. Our mats needed to be easy to maintain. We stand <em>on</em> our mats because they deliver."
           }
         },
         "cf63a171-6ade-4f26-a84e-a9dde3b49f28": {
           "type": "section",
           "settings": {
-            "image": "shopify:\/\/shop_images\/aboutus2.jpg",
+            "image": "shopify://shop_images/aboutus2.jpg",
             "label": "THE INSIDER | MAZE (NAVY)",
             "heading": "We believe that small updates can make big changes to your life",
-            "text": "Porte + Hall is inspired by all that brings us together. It celebrates the spirit of invitation and embodies the experience you get when you step inside your door, a feeling that whispers <em>you’re home. <\/em>Your front door is the first impression of the lives inside. What will your doorstep tell the world?"
+            "text": "Porte + Hall is inspired by all that brings us together. It celebrates the spirit of invitation and embodies the experience you get when you step inside your door, a feeling that whispers <em>you’re home. </em>Your front door is the first impression of the lives inside. What will your doorstep tell the world?"
           }
         },
         "981de907-6468-49e8-a86e-ec675d0f7114": {
           "type": "section",
           "settings": {
-            "image": "shopify:\/\/shop_images\/IMG_8651_2x_66696762-4d7d-4058-a387-c1cb1e17b96f.jpg",
+            "image": "shopify://shop_images/IMG_8651_2x_66696762-4d7d-4058-a387-c1cb1e17b96f.jpg",
             "label": "",
             "heading": "We believe in problem-solving through innovation",
             "text": "We're proud to launch our first 100% US-made and manufactured product in 2023. Every day is an opportunity to learn and grow, so check back with us as we continue to work towards adding even more people and planet-friendly materials to our collections."
@@ -92,8 +112,7 @@
         "cf63a171-6ade-4f26-a84e-a9dde3b49f28",
         "981de907-6468-49e8-a86e-ec675d0f7114"
       ],
-      "settings": {
-      }
+      "settings": {}
     },
     "0a69165e-8ae0-46b0-9ed4-6732d7ba88d1": {
       "type": "fan-motif-section",
@@ -103,9 +122,19 @@
         "color": "green",
         "alignment": "center",
         "heading": "\"I believe deeply in your home's ability to brighten your mood and outlook.”",
-        "text": "<strong>— STAFFORD MEYER, FOUNDER OF PORTE + HALL<\/strong>",
+        "text": "<strong>— STAFFORD MEYER, FOUNDER OF PORTE + HALL</strong>",
         "link": "",
-        "link_text": ""
+        "link_text": "",
+        "show_faq": false,
+        "title_1": "",
+        "title_richtext_1": "",
+        "answer_1": "",
+        "title_2": "",
+        "title_richtext_2": "",
+        "answer_2": "",
+        "title_3": "",
+        "title_richtext_3": "",
+        "answer_3": ""
       }
     },
     "richtext-two": {
@@ -115,7 +144,7 @@
       ],
       "settings": {
         "heading": "The Meaning Of Our Logo",
-        "text": "<p>Porte + Hall believes that sending out a beautiful first impression draws good people into your life. We were inspired by the intricate patterns created in the sand by the white-spotted puffer fish.  Their beautiful creations attract mates and later protect their offspring. Beauty meets functionality!<\/p>"
+        "text": "<p>Porte + Hall believes that sending out a beautiful first impression draws good people into your life. We were inspired by the intricate patterns created in the sand by the white-spotted puffer fish.  Their beautiful creations attract mates and later protect their offspring. Beauty meets functionality!</p>"
       }
     },
     "0de7e396-a909-4e48-b29c-f16f301ca77b": {
@@ -132,7 +161,7 @@
         "text": "“In my 20 years as an interior designer, I struggled to source entry mats that were as well-designed and functional as the rest of the home. I was bewildered by the scarcity of options. Why was the first thing to greet you at your door not important? So I decided to design my own - because first impressions matter, for you and your guests.  Welcome to our collection and we hope you walk all over us!”",
         "link": "",
         "link_text": "",
-        "image": "shopify:\/\/shop_images\/web_collage_copy.png"
+        "image": "shopify://shop_images/web_collage_copy.png"
       }
     },
     "ca7269e3-0e99-4b33-8ac5-b2cb1e4e8322": {
@@ -145,7 +174,7 @@
             "title": "",
             "text": "Porte + Hall believes in the power of supporting nonprofits near and dear to our hearts. We have developed a partnership with our friends at the One Love Foundation, committing 2% of all profits to the organization. One Love empowers young people to identify and avoid abuse and teaches them how to love better.",
             "handwriting": false,
-            "link": "https:\/\/www.joinonelove.org\/",
+            "link": "https://www.joinonelove.org/",
             "link_text": "Visit their website",
             "text_alignment": "left"
           }
@@ -154,7 +183,7 @@
           "type": "media",
           "settings": {
             "media_label": "",
-            "image": "shopify:\/\/shop_images\/Rectangle_602_1.jpg",
+            "image": "shopify://shop_images/Rectangle_602_1.jpg",
             "image_alignment": "top",
             "video_url": ""
           }
@@ -179,35 +208,35 @@
           "type": "post",
           "disabled": true,
           "settings": {
-            "image": "shopify:\/\/shop_images\/Rectangle_612.jpg"
+            "image": "shopify://shop_images/Rectangle_612.jpg"
           }
         },
         "83291b81-3b6f-4aa7-acfc-4cc171413cb5": {
           "type": "post",
           "disabled": true,
           "settings": {
-            "image": "shopify:\/\/shop_images\/Rectangle_611.jpg"
+            "image": "shopify://shop_images/Rectangle_611.jpg"
           }
         },
         "8eec6880-d0f3-40f1-bdd4-0925bf23ade7": {
           "type": "post",
           "disabled": true,
           "settings": {
-            "image": "shopify:\/\/shop_images\/Rectangle_610.jpg"
+            "image": "shopify://shop_images/Rectangle_610.jpg"
           }
         },
         "97ee38c2-45b8-4a58-be5f-d3186c2f9721": {
           "type": "post",
           "disabled": true,
           "settings": {
-            "image": "shopify:\/\/shop_images\/d30cb84ef190abc8c65a9c98c2c1fa05.png"
+            "image": "shopify://shop_images/d30cb84ef190abc8c65a9c98c2c1fa05.png"
           }
         },
         "f8d7b732-ca20-4ed9-9329-58073296b8d3": {
           "type": "post",
           "disabled": true,
           "settings": {
-            "image": "shopify:\/\/shop_images\/5dd3de17ab7faafe85287d31303971b5.png"
+            "image": "shopify://shop_images/5dd3de17ab7faafe85287d31303971b5.png"
           }
         }
       },
@@ -219,11 +248,12 @@
         "f8d7b732-ca20-4ed9-9329-58073296b8d3"
       ],
       "settings": {
-        "heading": "<p>Follow along with us <a href=\"https:\/\/www.instagram.com\/porteandhall\/\" target=\"_blank\" title=\"https:\/\/www.instagram.com\/porteandhall\/\">@Porteandhall<\/a><\/p>"
+        "heading": "<p>Follow along with us <a href=\"https://www.instagram.com/porteandhall/\" target=\"_blank\" title=\"https://www.instagram.com/porteandhall/\">@Porteandhall</a></p>"
       }
     }
   },
   "order": [
+    "breadcrumbs_QFpqGq",
     "16587824044cd3c400",
     "richtext-one",
     "83b2c825-49b8-4019-a11c-30b637687747",

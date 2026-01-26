@@ -465,6 +465,7 @@ var MenuDrawer = class extends HTMLElement {
     
     this.drawer.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.closeMenuDrawer());
     this.bindEvents();
+    this.disableDrawerFocus()
   }
 
   bindEvents() {
@@ -474,12 +475,24 @@ var MenuDrawer = class extends HTMLElement {
     this.onBodyClick = this.handleBodyClick.bind(this);
   }
 
+  disableDrawerFocus() {
+    this.drawer.querySelectorAll('[tabindex], a, button, input, select, textarea')
+      .forEach(el => el.setAttribute('tabindex', '-1'));
+  }
+
+  // Call this when the drawer opens
+  enableDrawerFocus() {
+    this.drawer.querySelectorAll('[tabindex], a, button, input, select, textarea')
+      .forEach(el => el.removeAttribute('tabindex'));
+  }
+
   openMenuDrawer() {
     this.drawer.setAttribute('aria-hidden', false);
     this.drawer.setAttribute('aria-expanded', true);
 
     this.pageOverlayElement.classList.add('is-visible');
     document.body.addEventListener('click', this.onBodyClick);
+    this.enableDrawerFocus()
   }
 
   closeMenuDrawer() {
@@ -488,6 +501,7 @@ var MenuDrawer = class extends HTMLElement {
 
     this.pageOverlayElement.classList.remove('is-visible');
     document.body.removeEventListener('click', this.onBodyClick);
+    this.disableDrawerFocus()
   }
 
   toggleMenuButtons() {
@@ -931,7 +945,7 @@ var ProductCarouselNew2 = class extends HTMLElement {
      const swiper_options = {  
       spaceBetween: 10,
       slidesPerView: 2.2,
-      loop: true,
+      loop: false,
       draggable: true,
       centeredSlides: false,
       pagination: {
@@ -1121,32 +1135,62 @@ customElements.define('article-carousel', ArticleCarousel)
 
 // customElements.define('shop-story-carousel', ShopStoryCarousel)
 
+// var LoadMore = class extends HTMLElement {
+//   constructor() {
+//     super();
+
+//     const dataUrl = this.dataset.loadMore
+//     const productGrid = this.closest(".collection").querySelector("#product-grid")
+//     const loadMoreWrapper = productGrid?.nextElementSibling
+
+//     this.addEventListener("click", function(e){
+//       e.preventDefault();
+
+//       this.classList.add("loading")
+
+//       fetch(dataUrl).then(response => response.text()).then((responseText) => {
+//         const html = responseText;
+//         const htmlContent = new DOMParser().parseFromString(html, 'text/html')
+
+//         productGrid.innerHTML = productGrid.innerHTML + htmlContent.querySelector("#product-grid").innerHTML;
+//         loadMoreWrapper.innerHTML = htmlContent.querySelector("load-more") || ""
+
+//       })
+//     }.bind(this))
+//   }
+// }
+
+// customElements.define('load-more', LoadMore)
+
 var LoadMore = class extends HTMLElement {
   constructor() {
     super();
 
-    const dataUrl = this.dataset.loadMore
-    const productGrid = this.closest(".collection").querySelector("#product-grid")
-    const loadMoreWrapper = productGrid?.nextElementSibling
+    const dataUrl = this.dataset.loadMore;
+    const productGrid = this.closest(".collection").querySelector("#product-grid");
+    const loadMoreWrapper = productGrid?.nextElementSibling;
 
-    this.addEventListener("click", function(e){
+    this.addEventListener("click", async function(e){
       e.preventDefault();
 
-      this.classList.add("loading")
+      this.classList.add("loading");
 
-      fetch(dataUrl).then(response => response.text()).then((responseText) => {
+      await fetch(dataUrl).then(response => response.text()).then((responseText) => {
         const html = responseText;
         const htmlContent = new DOMParser().parseFromString(html, 'text/html')
 
         productGrid.innerHTML = productGrid.innerHTML + htmlContent.querySelector("#product-grid").innerHTML;
-        loadMoreWrapper.innerHTML = htmlContent.querySelector("load-more") || ""
-
+        loadMoreWrapper.querySelector('load-more').innerHTML = htmlContent.querySelector("load-more").innerHTML || ""
+        this.classList.remove("loading")
       })
+      window.scrollUtils1();
+      window.scrollUtils2();
+      window.scrollUtils3();
     }.bind(this))
   }
-}
+};
 
-customElements.define('load-more', LoadMore)
+customElements.define("load-more", LoadMore);
 
 // offset anchor
 window.addEventListener('hashchange', offsetAnchor);
@@ -1527,7 +1571,46 @@ accordionItems.forEach((accordion) => {
   });
 });
 
+let appStickyAnnouncement;
+
+const getAppStickyAnnouncement = () => {
+  if (!appStickyAnnouncement) {
+    appStickyAnnouncement = document.querySelector(".bx-creative-2961651");
+    if (!appStickyAnnouncement) return;
+
+    const resizeObserver = new ResizeObserver(() => {
+      window.headerSticky();
+    });
+    resizeObserver.observe(appStickyAnnouncement);
+
+    // on appStickyAnnouncement remove
+    const mutationObserver = new MutationObserver(() => {
+      window.headerSticky();
+    });
+    mutationObserver.observe(document, { childList: true, subtree: true });
+  }
+}
+
+window.headerSticky = function(){
+  getAppStickyAnnouncement();
+  if(appStickyAnnouncement) {
+    document.querySelector(".outer-header-wrapper").style.top = `${appStickyAnnouncement.clientHeight}px`;
+  } else {
+    document.querySelector(".outer-header-wrapper").style.top = "0px";
+  }
+};
+
+window.addEventListener("pageshow", () => {
+  window.headerSticky();
+})
+
+window.addEventListener("resize", () => {
+  window.headerSticky();
+})
 document.addEventListener("DOMContentLoaded", (event) => {
+setTimeout(function() {
+  window.headerSticky();
+
   if (typeof gsap === "undefined" || !gsap.plugins.scrollTo) {
     console.error("GSAP or ScrollToPlugin not loaded!");
     return;
@@ -1551,6 +1634,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
     });
   });
+}, 2000);
 });
 
 /* document.addEventListener("DOMContentLoaded", (event) => {

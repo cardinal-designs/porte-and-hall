@@ -9,7 +9,7 @@
 {% endcomment %}
 
 <div class="product-card{% if product_card_product.media[1] != nil %} has-animation{% endif %}">
-  <a href="{{ product_card_product.url }}">
+  <a href="{{ product_card_product.url | split: '?' | first }}">
     <div class="product-card__image">
       {% render 'lazy-image', image: product_card_product.featured_media, fade: false, classes: 'img-fill',  aria-label:"Product image" %}
       {% if product_card_product.media[1] != null %}
@@ -31,12 +31,38 @@
   <div class="product-card__container">
     <p class="product-card__title">{{ product_card_product.title }}</p>
     <div class="product-card__content">
-      <p class="product-card__price">
-        {% if product_card_product.compare_at_price > product_card_product.price %}
-          <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
+
+      {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
+      {% assign auto_discount_price = product_card_product.metafields.custom.auto_discount_price %}
+      {% assign show_discounted_price = false %}
+      {% if enable_auto_discount_price and auto_discount_price > 0 %}
+        {% assign show_discounted_price = true %}
+        {% assign auto_discount_price = auto_discount_price | times: 100 |  money %}
+      {% endif %}
+
+      {% if customer and customer.b2b? %}
+        {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
+        <p class="product-card__price">
+          {% if original_price > 0 %}
+            <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>
+          {% endif %}
+          {{ product_card_product.price | money_without_trailing_zeros }}
+        </p>
+      {% else %}
+        {% if show_discounted_price %}
+          <p class="product-card__price">
+            <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
+            {{ auto_discount_price }}
+          </p>
+        {% else %}
+          <p class="product-card__price">
+            {% if product_card_product.compare_at_price > product_card_product.price %}
+              <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
+            {% endif %}
+            {{ product_card_product.price | money_without_trailing_zeros }}
+          </p>
         {% endif %}
-        {{ product_card_product.price | money_without_trailing_zeros }}
-      </p>
+      {% endif %}
     </div>
   </div>
 </div>

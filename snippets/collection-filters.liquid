@@ -53,7 +53,7 @@
         <div class="collection-filters__slideout">
           <div class="collection-filters__slideout-container no-scrollbar">
             <div class="collection-filters__slideout-header hide-desktop">
-              <h2 class="collection-filters__slideout-title h2 blue">Filter</h2>
+              <p class="collection-filters__slideout-title h2 blue">Filter</p>
               <button class="collection-filters__slideout-close js-close-filters" aria-label="close Filters">
                 {% render 'icon', icon: 'close' %}
               </button>
@@ -106,6 +106,7 @@
               </div>
 
               <div class="collection-filters__filters" id="filter-dropdowns">
+                <button class="text-link js-clear-all-filters js-clear-all-filters--close blue hide-mobile">Clear All</button>
                 <div class="collection-filters__dropdowns">
                   {% for filter in collection.filters %}
                     {% assign total_active_values = total_active_values | plus: filter.active_values.size %}
@@ -272,9 +273,6 @@
                       </div>
                     </div>
                   {% endfor %}
-
-
-                <button class="text-link js-clear-all-filters js-clear-all-filters--close blue hide-mobile">Clear All</button>
                 </div>
               </div>
 
