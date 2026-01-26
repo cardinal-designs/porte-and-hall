@@ -50,9 +50,25 @@
 
 .designer-spotlight__text {
   margin: 0;
+  font-size: 24px;
 }
 
 .designer-spotlight__divider {
   width: 100%;
   border-bottom: 2px solid #4E6377;
+}
+
+@media screen and (max-width: 768px) { 
+  .designer-spotlight__item {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .designer-spotlight__content {
+    width: 100%;
+  }
+  
+  .designer-spotlight__image {
+    width: 100%;
+  }
 }
