@@ -42,3 +42,14 @@
 .designer-spotlight-header__text {
   margin: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .designer-spotlight-header__image {
+    padding-bottom: 70%;
+  }
+
+  .designer-spotlight-header__content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
