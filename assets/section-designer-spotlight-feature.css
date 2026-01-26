@@ -10,6 +10,8 @@
 }
 
 .designer-spotlight-feature__image {
+  height: 0;
+  padding-bottom: 86%;
   position: relative;
   overflow: hidden;
 }
