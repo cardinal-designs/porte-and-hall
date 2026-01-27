@@ -1,0 +1,79 @@
+{{ 'section-designer-spotlight-feature.css' | asset_url | stylesheet_tag }}
+
+<div class="designer-spotlight-feature">
+  <div class="page-width">
+    <div class="designer-spotlight-feature__container">
+      <div class="designer-spotlight-feature__image">
+        {% render 'lazy-image' image: section.settings.image, fade: true, fill: true %}
+      </div>
+      <div class="designer-spotlight-feature__content">
+        <h2 class="designer-spotlight-feature__title h2">Designer Spotlight</h2>
+        <div class="designer-spotlight-feature__designer">
+          <div class="designer-spotlight-feature__designer-image">
+            {% render 'lazy-image' image: section.settings.designer_image, fade: true, fill: true %}
+          </div>
+          <div class="designer-spotlight-feature__designer-content">
+            <p class="designer-spotlight-feature__designer-name">{{ section.settings.designer_name }}</p>
+            <p class="designer-spotlight-feature__designer-title">{{ section.settings.designer_title }}</p>
+          </div>
+        </div>
+        <h3 class="designer-spotlight-feature__text-header">{{ section.settings.text_header }}</h3>
+        <p class="designer-spotlight-feature__text">{{ section.settings.text }}</p>
+        <a href="{{ section.settings.button_link }}" class="button">{{ section.settings.button_label }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "DesignerSpotlight Feature",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "designer_image",
+        "label": "Designer Image"
+      },
+      {
+        "type": "text",
+        "id": "designer_name",
+        "label": "Designer Name"
+      },
+      {
+        "type": "text",
+        "id": "designer_title",
+        "label": "Designer Title"
+      },
+      {
+        "type": "text",
+        "id": "text_header",
+        "label": "Text Header"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button Label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button Link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "DesignerSpotlight Feature"
+      }
+    ]
+  }
+{% endschema %}
