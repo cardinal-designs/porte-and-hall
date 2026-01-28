@@ -26,8 +26,8 @@
         "image": "shopify://shop_images/Image_-_2026-01-26T092155.112.jpg",
         "mobile_image": "shopify://shop_images/Image_-_2026-01-26T092202.816.jpg",
         "title": "Designer Spotlight",
-        "subtitle": "A monthly series featuring the designers we admire most",
-        "text": "Each month, we highlight one interior designer with a favorite tip, a peek at their work, and a short Q&A. All spotlights live here so you can explore past features anytime."
+        "subtitle": "A monthly look at the designers we admire—and the tips they live by.",
+        "text": "Each month, we showcase an interior designer we love, sharing their best advice for creating a welcoming home, plus a peek at their inspiring work. Past spotlights are archived here to spark your own ideas."
       }
     },
     "designer_spotlight_fFHtkW": {
@@ -80,13 +80,29 @@
         "block_iQHxaT",
         "block_FgerY4"
       ],
+      "disabled": true,
       "name": "Designer Spotlight",
       "settings": {}
+    },
+    "designer_spotlight_feature_JtPFQr": {
+      "type": "designer-spotlight-feature",
+      "name": "DesignerSpotlight Feature",
+      "settings": {
+        "image": "shopify://shop_images/251220_JACOBSNAVELY_018_2x_1_copy_1.jpg",
+        "designer_image": "shopify://shop_images/Rectangle_1_1.jpg",
+        "designer_name": "Tina Ramchandani",
+        "designer_title": "Founder of Tina Ramchandani Creative",
+        "text_header": "Choose a Statement Piece:",
+        "text": "“Think of the entry as an invitation to the home: it sets the mood for what’s to come. Focus on balanced proportions, warm lighting, and one strong focal point, like a statement mat, console, or piece of art—something that feels intentional and cohesive with the rest of the space.”",
+        "button_label": "Shop the Look",
+        "button_link": "shopify://products/the-innerweave-chevron-natural-area-mat-5x7"
+      }
     }
   },
   "order": [
     "breadcrumbs_EPjR7L",
     "main",
-    "designer_spotlight_fFHtkW"
+    "designer_spotlight_fFHtkW",
+    "designer_spotlight_feature_JtPFQr"
   ]
 }
