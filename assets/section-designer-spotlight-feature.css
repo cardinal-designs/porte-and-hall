@@ -47,6 +47,10 @@
   margin: 0;
 }
 
+.designer-spotlight-feature__designer-title a {
+  text-decoration: underline;
+}
+
 .designer-spotlight-feature__text-header {
   margin: 0 0 5px;
   font-family: louize;
