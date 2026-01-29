@@ -157,6 +157,14 @@
       </a>
     {% endif %}
 
+
+    <!-- Start of Judge.me code --> 
+<div class='jdgm-widget jdgm-preview-badge' data-id='{{ product_card_product.id }}'> 
+  {{ product_card_product.metafields.judgeme.badge }} 
+</div> 
+<!-- End of Judge.me code -->
+
+
     {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
     {% assign auto_discount_price = product_card_product.metafields.custom.auto_discount_price %}
     {% assign show_discounted_price = false %}
