@@ -49,14 +49,15 @@
   margin: 0 0 10px;
   font-family: louise;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: unset;
 }
 
 .designer-spotlight__text {
   margin: 0;
-  font-size: 24px;
+  font-size: 16px;
+  font-style: italic
 }
 
 .designer-spotlight__divider {
