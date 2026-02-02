@@ -7,6 +7,7 @@
       {% for block in section.blocks %}
         <div class="designer-spotlight__item {% cycle 'odd', 'even' %}" {{ block.shopify_attributes }}>
           <div class="designer-spotlight__image-container">
+            <h2 class="designer-spotlight__title h3">{{ block.settings.title }}</h2>
             <div class="designer-spotlight-feature__designer">
               <div class="designer-spotlight-feature__designer-image">
                 {% render 'lazy-image' image: section.settings.designer_image, fade: true, fill: true %}
@@ -21,10 +22,18 @@
             </div>
           </div>
           <div class="designer-spotlight__content">
-            <h2 class="designer-spotlight__title h3">{{ block.settings.title }}</h2>
-            <p class="designer-spotlight__subtitle p1">{{ block.settings.subtitle }}</p>
-            <h3 class="designer-spotlight__text-header h3">{{ block.settings.text_header }}</h3>
-            <p class="designer-spotlight__text h4">{{ block.settings.text }}</p>
+            <h3 class="designer-spotlight__text-header h3">{{ block.settings.text_header_1 }}</h3>
+            <p class="designer-spotlight__text h4">{{ block.settings.text_1 }}</p>
+            {% if block.settings.text_header_2 != blank %}
+              <h3 class="designer-spotlight__text-header h3">{{ block.settings.text_header_2 }}</h3>
+              <p class="designer-spotlight__text h4">{{ block.settings.text_2 }}</p>
+            {% endif %}
+
+            {% if block.settings.text_header_3 != blank %}
+              <h3 class="designer-spotlight__text-header h3">{{ block.settings.text_header_3 }}</h3>
+              <p class="designer-spotlight__text h4">{{ block.settings.text_3 }}</p>
+            {% endif %}
+            <a href="{{ block.settings.button_link }}" class="button">{{ block.settings.button_label }}</a>
           </div>
         </div>
         {% unless forloop.last %}
@@ -99,6 +108,16 @@
             "type": "textarea",
             "id": "text_3",
             "label": "Text 1"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
           }
         ]
       }
