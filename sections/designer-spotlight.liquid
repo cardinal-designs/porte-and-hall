@@ -1,3 +1,4 @@
+{{ 'section-spotlight-header.css' | asset_url | stylesheet_tag }}
 {{ 'section-designer-spotlight.css' | asset_url | stylesheet_tag }}
 
 <div class="designer-spotlight">
@@ -5,8 +6,11 @@
     <div class="designer-spotlight__container">
       {% for block in section.blocks %}
         <div class="designer-spotlight__item {% cycle 'odd', 'even' %}" {{ block.shopify_attributes }}>
-          <div class="designer-spotlight__image">
-            {% render 'lazy-image' image: block.settings.image, fade: true, fill: true %}
+          <div class="designer-spotlight__image-container">
+
+            <div class="designer-spotlight__image">
+              {% render 'lazy-image' image: block.settings.image, fade: true, fill: true %}
+            </div>
           </div>
           <div class="designer-spotlight__content">
             <h2 class="designer-spotlight__title h3">{{ block.settings.title }}</h2>
