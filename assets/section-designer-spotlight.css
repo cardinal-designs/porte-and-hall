@@ -65,6 +65,10 @@
   border-bottom: 2px solid #4E6377;
 }
 
+.designer-spotlight__button {
+  display: inline-block;
+}
+
 @media screen and (max-width: 768px) { 
   .designer-spotlight__item {
     flex-direction: column;
