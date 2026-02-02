@@ -1,4 +1,4 @@
-{{ 'section-spotlight-header.css' | asset_url | stylesheet_tag }}
+{{ 'section-designer-spotlight-feature.css' | asset_url | stylesheet_tag }}
 {{ 'section-designer-spotlight.css' | asset_url | stylesheet_tag }}
 
 <div class="designer-spotlight">
@@ -7,7 +7,15 @@
       {% for block in section.blocks %}
         <div class="designer-spotlight__item {% cycle 'odd', 'even' %}" {{ block.shopify_attributes }}>
           <div class="designer-spotlight__image-container">
-
+            <div class="designer-spotlight-feature__designer">
+              <div class="designer-spotlight-feature__designer-image">
+                {% render 'lazy-image' image: section.settings.designer_image, fade: true, fill: true %}
+              </div>
+              <div class="designer-spotlight-feature__designer-content">
+                <p class="designer-spotlight-feature__designer-name">{{ section.settings.designer_name }}</p>
+                <p class="designer-spotlight-feature__designer-title">{{ section.settings.designer_title }}</p>
+              </div>
+            </div>
             <div class="designer-spotlight__image">
               {% render 'lazy-image' image: block.settings.image, fade: true, fill: true %}
             </div>
@@ -41,6 +49,11 @@
             "type": "image_picker",
             "id": "image",
             "label": "Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "headshot",
+            "label": "Headshot"
           },
           {
             "type": "text",
