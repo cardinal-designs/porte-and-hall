@@ -10,11 +10,11 @@
             <h2 class="designer-spotlight__title h3">{{ block.settings.title }}</h2>
             <div class="designer-spotlight-feature__designer">
               <div class="designer-spotlight-feature__designer-image">
-                {% render 'lazy-image' image: section.settings.designer_image, fade: true, fill: true %}
+                {% render 'lazy-image' image: block.settings.designer_image, fade: true, fill: true %}
               </div>
               <div class="designer-spotlight-feature__designer-content">
-                <p class="designer-spotlight-feature__designer-name">{{ section.settings.designer_name }}</p>
-                <p class="designer-spotlight-feature__designer-title">{{ section.settings.designer_title }}</p>
+                <p class="designer-spotlight-feature__designer-name">{{ block.settings.designer_name }}</p>
+                <p class="designer-spotlight-feature__designer-title">{{ block.settings.designer_title }}</p>
               </div>
             </div>
             <div class="designer-spotlight__image">
