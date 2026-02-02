@@ -8,7 +8,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 80px;
 }
 
 .designer-spotlight__item {
@@ -23,6 +23,10 @@
 }
 
 .designer-spotlight__content {
+  width: 50%;
+}
+
+.designer-spotlight__image-container {
   width: 50%;
 }
 
@@ -76,6 +80,10 @@
   }
 
   .designer-spotlight__content {
+    width: 100%;
+  }
+
+  .designer-spotlight__image-container {
     width: 100%;
   }
   
