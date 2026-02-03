@@ -23,11 +23,11 @@
     "main": {
       "type": "designer-spotlight-header",
       "settings": {
-        "image": "shopify://shop_images/blogpost.jpg",
-        "mobile_image": "shopify://shop_images/blogpost_d14ad13b-d570-41c4-941d-7f2a47e68df1.jpg",
+        "image": "shopify://shop_images/Image_-_2026-02-01T180547.652.jpg",
+        "mobile_image": "shopify://shop_images/Image_-_2026-02-01T180547.652.jpg",
         "title": "Designer Spotlight",
-        "subtitle": "A monthly look at the designers we admire—and the tips they live by.",
-        "text": "Each month, we showcase an interior designer we love, sharing their best advice for creating a welcoming home, plus a peek at their inspiring work. Past spotlights are archived here to spark your own ideas."
+        "subtitle": "A monthly series featuring the designers we admire most",
+        "text": "Each month, we feature an interior designer we admire—sharing a favorite tip, a peek at their work, and a short Q&A. Browse past spotlights here anytime."
       }
     },
     "designer_spotlight_fFHtkW": {
@@ -36,49 +36,24 @@
         "block_36qNrr": {
           "type": "block",
           "settings": {
-            "image": "shopify://shop_images/Image_-_2026-01-26T090741.070_d4cd9d25-f40a-4d70-bf76-644b03f76bb2.jpg",
-            "title": "Elizabeth Pash",
-            "subtitle": "Founder of Elizabeth Pash Interiors & Antiques",
-            "text_header": "Words to Live By:",
-            "text": "“It was love at first sight with this mat. Not only is it great looking, but it is practical—the perfect finishing touch that adds instant curb appeal.”"
-          }
-        },
-        "block_f6MQGY": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/Image_-_2026-01-26T090741.070_d4cd9d25-f40a-4d70-bf76-644b03f76bb2.jpg",
-            "title": "Elizabeth Pash",
-            "subtitle": "Founder of Elizabeth Pash Interiors & Antiques",
-            "text_header": "Words to Live By:",
-            "text": "“It was love at first sight with this mat. Not only is it great looking, but it is practical—the perfect finishing touch that adds instant curb appeal.”"
-          }
-        },
-        "block_iQHxaT": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/Image_-_2026-01-26T090741.070_d4cd9d25-f40a-4d70-bf76-644b03f76bb2.jpg",
-            "title": "Elizabeth Pash",
-            "subtitle": "Founder of Elizabeth Pash Interiors & Antiques",
-            "text_header": "Words to Live By:",
-            "text": "“It was love at first sight with this mat. Not only is it great looking, but it is practical—the perfect finishing touch that adds instant curb appeal.”"
-          }
-        },
-        "block_FgerY4": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/Image_-_2026-01-26T090741.070_d4cd9d25-f40a-4d70-bf76-644b03f76bb2.jpg",
-            "title": "Elizabeth Pash",
-            "subtitle": "Founder of Elizabeth Pash Interiors & Antiques",
-            "text_header": "Words to Live By:",
-            "text": "“It was love at first sight with this mat. Not only is it great looking, but it is practical—the perfect finishing touch that adds instant curb appeal.”"
+            "image": "shopify://shop_images/Image_-_2026-01-26T161551.826.jpg",
+            "title": "Meet the Designer",
+            "designer_image": "shopify://shop_images/Rectangle_1_1.jpg",
+            "designer_name": "Tina Ramchandani",
+            "designer_title": "Founder of <a href=\"https://www.tinaramchandani.com/\" style=\"text-decoration:underline\">Tina Ramchandani Creative</a>",
+            "text_header_1": "What’s your top tip for creating a beautiful, welcoming entryway?",
+            "text_1": "Think of the entry as an invitation to the home: it sets the mood for what’s to come. I focus on balanced proportions, warm lighting, and one strong focal point, like a statement mat, sculptural console, or great piece of art—something that feels intentional and cohesive with the rest of the space.",
+            "text_header_2": "What’s the biggest design mistake you see people make in high-traffic spaces?",
+            "text_2": "They’re often treated as an afterthought. I see people either cram in too much or leave the space feeling bare and unfinished. Entryways and other high-traffic areas work hard, but that doesn’t mean they can’t be beautiful. Function is important—but without thoughtful design, it just turns into storage.",
+            "text_header_3": "What’s a design hill you’re willing to die on?",
+            "text_3": "Editing—removing anything that doesn’t belong. If a space needs to be explained, it’s probably doing too much. Luxury comes from restraint. When every piece has a purpose, the room feels calm, confident, and timeless.",
+            "button_label": "Shop the Look",
+            "button_link": "shopify://products/the-innerweave-chevron-natural-area-mat-5x7"
           }
         }
       },
       "block_order": [
-        "block_36qNrr",
-        "block_f6MQGY",
-        "block_iQHxaT",
-        "block_FgerY4"
+        "block_36qNrr"
       ],
       "disabled": true,
       "name": "Designer Spotlight",
