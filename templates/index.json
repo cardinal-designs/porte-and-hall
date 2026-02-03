@@ -24,9 +24,7 @@
     },
     "video_text_hTPBAL": {
       "type": "video-text",
-      "custom_css": [
-        ".SectionHeader__Heading h1 {color: #546b82; font-size: 60px;}"
-      ],
+      "custom_css": [],
       "name": "Video with text",
       "settings": {
         "video": "shopify://files/videos/cro3compressed.mp4",
@@ -747,49 +745,11 @@
         "section_reviews": true
       }
     },
-    "0de7e396-a909-4e48-b29c-f16f301ca77b": {
-      "type": "meet-founder",
-      "disabled": true,
-      "settings": {
-        "hide_desktop": false,
-        "hide_mobile": false,
-        "show_signature": true,
-        "bg_color": "",
-        "text_color": "",
-        "border": true,
-        "alignment": "right",
-        "heading": "Meet Stafford, founder of Porte + Hall",
-        "text": "“In my 20 years as an interior designer, I struggled to source entry mats that were as well-designed and functional as the rest of the home. I was bewildered by the scarcity of options. Why was the first thing to greet you at your door not important? So I decided to design my own - because first impressions matter, for you and your guests.  Welcome to our collection and we hope you walk all over us!”",
-        "link": "",
-        "link_text": "",
-        "image": "shopify://shop_images/web_collage_copy_e9265146-9599-46fa-8ded-64abafcbd373.png"
-      }
-    },
-    "featured_designer_9cz6zX": {
-      "type": "featured-designer",
-      "disabled": true,
-      "name": "Featured Designer",
-      "settings": {
-        "hide_desktop": false,
-        "hide_mobile": false,
-        "bg_color": "",
-        "text_color": "",
-        "border": true,
-        "alignment": "right",
-        "heading": "Designer Spotlight:",
-        "text": "Tina Ramchandani<br>\n<i><small>Founder of Tina Ramchandani Creative</small></i>",
-        "heading2": "Choose a Statement Piece:",
-        "text2": "“Think of the entry as an invitation to the home: it sets the mood for what’s to come. Focus on balanced proportions, warm lighting, and one strong focal point, like a statement mat, console, or piece of art—something that feels intentional and cohesive with the rest of the space.”",
-        "link": "",
-        "link_text": "",
-        "image": "shopify://shop_images/251220_JACOBSNAVELY_018_2x_1_copy.jpg"
-      }
-    },
     "designer_spotlight_feature_zzgH6k": {
       "type": "designer-spotlight-feature",
       "name": "DesignerSpotlight Feature",
       "settings": {
-        "image": "shopify://shop_images/Image_-_2026-01-26T161551.826.jpg",
+        "image": "shopify://shop_images/251220_JACOBSNAVELY_018_2x_1_copy_1.jpg",
         "designer_image": "shopify://shop_images/Rectangle_1_1.jpg",
         "designer_name": "Tina Ramchandani",
         "designer_title": "Founder of Tina Ramchandani Creative",
@@ -851,8 +811,6 @@
     "7337a49a-31a0-4e5d-9a53-968d18d1068e",
     "542bd631-99ef-452b-91d4-02d612f961a0",
     "16946940833216dae7",
-    "0de7e396-a909-4e48-b29c-f16f301ca77b",
-    "featured_designer_9cz6zX",
     "designer_spotlight_feature_zzgH6k",
     "17679084224c371b9a"
   ]
