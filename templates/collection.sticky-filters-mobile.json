@@ -178,6 +178,13 @@
     "82844bc9-ec6d-426a-9f52-a0a66dd5560e": {
       "type": "logo-marquee",
       "blocks": {
+        "logo_MGCCMw": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/peopleinc.png",
+            "svg": ""
+          }
+        },
         "logo_WkCDp8": {
           "type": "logo",
           "settings": {
@@ -264,6 +271,7 @@
         }
       },
       "block_order": [
+        "logo_MGCCMw",
         "logo_WkCDp8",
         "logo_4nFyUh",
         "logo_E3mbH8",
