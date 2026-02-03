@@ -178,6 +178,20 @@
     "82844bc9-ec6d-426a-9f52-a0a66dd5560e": {
       "type": "logo-marquee",
       "blocks": {
+        "logo_E7e7qQ": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/better-homes-and-gardens-seeklogo_22bca554-0a5a-4b04-91b8-e7c02448829d.png",
+            "svg": ""
+          }
+        },
+        "logo_P9j3fD": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/forbes.png",
+            "svg": ""
+          }
+        },
         "logo_MGCCMw": {
           "type": "logo",
           "settings": {
@@ -271,6 +285,8 @@
         }
       },
       "block_order": [
+        "logo_E7e7qQ",
+        "logo_P9j3fD",
         "logo_MGCCMw",
         "logo_WkCDp8",
         "logo_4nFyUh",
