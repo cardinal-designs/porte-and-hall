@@ -16,7 +16,7 @@
 }
 
 .designer-spotlight-header__content {
-  margin-top: 86px;
+  margin-top: 60px;
 }
 
 .designer-spotlight-header__title {
@@ -36,6 +36,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .designer-spotlight-header {
+    padding: 20px 0 40px;
+  }
+
   .designer-spotlight-header__image {
     padding-bottom: 70%;
   }
