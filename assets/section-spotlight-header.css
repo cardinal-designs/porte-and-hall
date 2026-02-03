@@ -1,5 +1,5 @@
 .designer-spotlight-header {
-  padding: 40px 0 60px;
+  padding: 60px 0;
   background-color: #EEEFEF;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .designer-spotlight-header__content {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .designer-spotlight-header__title {
@@ -26,7 +26,7 @@
 
 .designer-spotlight-header__divider {
   width: 140px;
-  margin: 20px 0;
+  margin: 40px 0;
   border-bottom: 2px solid #CAD2D3;
 }
 
@@ -45,7 +45,7 @@
   }
 
   .designer-spotlight-header__content {
-    margin-top: 20px;
+    margin-top: 30px;
     grid-template-columns: 1fr;
     gap: 0;
   }
