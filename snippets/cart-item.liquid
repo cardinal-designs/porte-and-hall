@@ -126,8 +126,8 @@
       <div class="cart-item__price {% if customer and customer.b2b? %}cart-item__trade-price{% endif %}">
         {% if customer and customer.b2b? %}
           {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
-          {% assign increase_amount = item.variant.price | times: trade_pricing_discount_percentage | divided_by: 100 %}
-          {% assign original_price = item.variant.price | plus: increase_amount %}
+          {% assign discount_factor = 100 | minus: trade_pricing_discount_percentage %}
+          {% assign original_price = item.variant.price | times: 100 | divided_by: discount_factor %}
           {% if original_price > 0 %}
             
             {% assign price = item.final_price %}

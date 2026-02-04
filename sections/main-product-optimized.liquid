@@ -162,8 +162,8 @@
             endif
           %}
           {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
-          {% assign increase_amount = target.price | times: trade_pricing_discount_percentage | divided_by: 100 %}
-          {% assign original_price = target.price | plus: increase_amount %}
+          {% assign discount_factor = 100 | minus: trade_pricing_discount_percentage %}
+          {% assign original_price = target.price | times: 100 | divided_by: discount_factor %}
           {% if original_price > 0 %}
             <div class="product__trade--price">
               <div class="price">
