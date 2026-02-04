@@ -178,6 +178,13 @@
     "82844bc9-ec6d-426a-9f52-a0a66dd5560e": {
       "type": "logo-marquee",
       "blocks": {
+        "logo_YW9DQq": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/featuredin.png",
+            "svg": ""
+          }
+        },
         "logo_E7e7qQ": {
           "type": "logo",
           "settings": {
@@ -285,6 +292,7 @@
         }
       },
       "block_order": [
+        "logo_YW9DQq",
         "logo_E7e7qQ",
         "logo_P9j3fD",
         "logo_4nFyUh",
