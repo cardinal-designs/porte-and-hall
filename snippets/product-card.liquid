@@ -41,7 +41,10 @@
       {% endif %}
 
       {% if customer and customer.b2b? %}
-        {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
+        {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
+        {% assign discount_factor = 100 | minus: trade_pricing_discount_percentage %}
+        {% assign original_price = product_card_product.price | times: 100 | divided_by: discount_factor %}
+
         <p class="product-card__price">
           {% if original_price > 0 %}
             <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>

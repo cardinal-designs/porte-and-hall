@@ -41,9 +41,13 @@
 {% if customer and customer.b2b? %}
   <div class="price{% if price_class %} {{ price_class }}{% endif %}">
     <div class="h3">
-      {% assign original_price = target.metafields.custom.variant_original_sale_price | times: 100 %}
+
+      {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
+      {% assign discount_factor = 100 | minus: trade_pricing_discount_percentage %}
+      {% assign original_price = target.price | times: 100 | divided_by: discount_factor %}
+
       <div class="price__regular">
-        <span class="price-item price-item--regular">
+        <span class="price-item price-item--regular price-item--regular-b2b">
           {% if ATC_button %}
             {{ money_price }}
           {% else %}
@@ -53,7 +57,6 @@
               {% else %}
                 {{ original_price | money_without_trailing_zeros }}
               {% endif %}
-              <span>Retail</span>
             {% else %}
               {{ money_price }}
             {% endif %}

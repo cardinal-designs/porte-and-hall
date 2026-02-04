@@ -166,9 +166,6 @@
 </div> 
 <!-- End of Judge.me code -->
 
-
-
-
     {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
     {% assign auto_discount_price = product_card_product.metafields.custom.auto_discount_price %}
     {% assign show_discounted_price = false %}
@@ -179,7 +176,10 @@
 
     {% if customer and customer.b2b? %}
       <p class="product-card__price body blue">
-        {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
+        {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
+        {% assign discount_factor = 100 | minus: trade_pricing_discount_percentage %}
+        {% assign original_price = product_card_product.price | times: 100 | divided_by: discount_factor %}
+
         {% if original_price > 0 %}
           <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>
           <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>

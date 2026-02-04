@@ -125,11 +125,12 @@
 
       <div class="cart-item__price {% if customer and customer.b2b? %}cart-item__trade-price{% endif %}">
         {% if customer and customer.b2b? %}
-          {% assign original_price = item.variant.metafields.custom.variant_original_sale_price | times: 100 %}
+          {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
+          {% assign discount_factor = 100 | minus: trade_pricing_discount_percentage %}
+          {% assign original_price = item.variant.price | times: 100 | divided_by: discount_factor %}
           {% if original_price > 0 %}
             
             {% assign price = item.final_price %}
-            {% assign discountAmout = original_price | minus: price | times: 100 | divided_by: original_price | round %}
   
             <div class="cart-item__discounted-prices">
               <p>
@@ -139,7 +140,7 @@
               </p>
               <p class="price price--end">
                 {% comment %}
-                <span>you save {{ discountAmout }}% </span> {{ price | money_without_trailing_zeros }}
+                <span>you save {{ trade_pricing_discount_percentage }}% </span> {{ price | money_without_trailing_zeros }}
                 {% endcomment %}
                 <span>Member price: </span> {{ price | money_without_trailing_zeros }}
               </p>

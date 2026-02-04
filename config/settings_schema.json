@@ -173,6 +173,13 @@
         "label": "Enable auto discount price feature",
         "default": false,
         "info": "When enabled, auto discount prices from product meta fields will be displayed. Auto discount prices can be entered before going live without affecting the store."
+      },
+      {
+        "type": "text",
+        "id": "trade_pricing_discount_percentage",
+        "label": "Trade Pricing Discount %",
+        "default": "20",
+        "info": "This is the discount percentage for trade pricing"
       }
     ]
   }
