@@ -22,6 +22,9 @@
 }
 
 .logo-marquee__header {
+  position: absolute;
+  top: 15px;
+  width: 100%;
   text-align: center;
 }
 
