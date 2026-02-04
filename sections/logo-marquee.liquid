@@ -5,10 +5,10 @@
   class="logo-marquee{% if section.settings.background_color == 'rgba(0,0,0,0)' %} no-bg{% endif %}"
   style="background-color: {{ section.settings.background_color }}"
 >
+  <div class="logo-marquee__header">
+    <p class="h3 blue">AS SEEN IN</p>
+  </div>
   <div class="logo-marquee__container">
-    <div class="logo-marquee__header">
-      <p class="h3 blue">AS SEEN IN</p>
-    </div>
     {% for block in section.blocks %}
       <div class="logo-marquee__item">
         <div class="logo-marquee__image">
