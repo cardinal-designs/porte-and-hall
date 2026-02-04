@@ -5,9 +5,11 @@
   class="logo-marquee{% if section.settings.background_color == 'rgba(0,0,0,0)' %} no-bg{% endif %}"
   style="background-color: {{ section.settings.background_color }}"
 >
+  {% comment %}
   <div class="logo-marquee__header">
     <p class="h3 blue">FEATURED IN</p>
   </div>
+  {% endcomment %}
   <div class="logo-marquee__container">
     {% for block in section.blocks %}
       <div class="logo-marquee__item">
