@@ -195,6 +195,13 @@
     "logo_marquee_NBafzW": {
       "type": "logo-marquee",
       "blocks": {
+        "logo_NRj7UK": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/featuredin.png",
+            "svg": ""
+          }
+        },
         "logo_46KQdF": {
           "type": "logo",
           "settings": {
@@ -302,6 +309,7 @@
         }
       },
       "block_order": [
+        "logo_NRj7UK",
         "logo_46KQdF",
         "logo_mED3g4",
         "logo_BG9xCr",
