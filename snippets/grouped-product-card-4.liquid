@@ -177,7 +177,9 @@
 
     {% if customer and customer.b2b? %}
       <p class="product-card__price body blue">
-        {% assign original_price = product_card_product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
+        {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
+        {% assign increase_amount = product_card_product.price | times: trade_pricing_discount_percentage | divided_by: 100 %}
+        {% assign original_price = product_card_product.price | plus: increase_amount %}
         <a href="{{ product_card_product.url }}">
           {% if original_price > 0 %}
             <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>

@@ -164,15 +164,16 @@
               assign money_price = price | money_with_currency
             endif
           %}
-          {% assign original_price = product.selected_or_first_available_variant.metafields.custom.variant_original_sale_price | times: 100 %}
+          {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
+          {% assign increase_amount = target.price | times: trade_pricing_discount_percentage | divided_by: 100 %}
+          {% assign original_price = target.price | plus: increase_amount %}
           {% if original_price > 0 %}
-            {% assign discountAmout = original_price | minus: price | times: 100 | divided_by: original_price | round %}
             <div class="product__trade--price">
               <div class="price">
                 <div class="h3">
                   <div class="price__regular">
                     <span class="price-item price-item--regular">
-                      {{ money_price }} <span>Trade <span>(save {{ discountAmout }}%)</span></span>
+                      {{ money_price }} <span>Trade <span>(save {{ trade_pricing_discount_percentage }}%)</span></span>
                     </span>
                   </div>
                 </div>
