@@ -2,37 +2,39 @@
 
 <section
   data-section-id="{{ section.id }}"
-  class="logo-marquee{% if section.settings.background_color == 'rgba(0,0,0,0)' %} no-bg{% endif %}"
+  class="{% if section.settings.background_color == 'rgba(0,0,0,0)' %} no-bg{% endif %}"
   style="background-color: {{ section.settings.background_color }}"
 >
   <div class="logo-marquee__header">
     <p class="h3 blue">AS SEEN IN</p>
   </div>
-  <div class="logo-marquee__container">
-    {% for block in section.blocks %}
-      <div class="logo-marquee__item">
-        <div class="logo-marquee__image">
-          {% if block.settings.svg != blank %}
-            {{ block.settings.svg }}
-          {% else %}
-            {% render 'lazy-image', image: block.settings.logo, fade: true, classes: 'img-fill' %}
-          {% endif %}
+  <div class="logo marquee">
+    <div class="logo-marquee__container">
+      {% for block in section.blocks %}
+        <div class="logo-marquee__item">
+          <div class="logo-marquee__image">
+            {% if block.settings.svg != blank %}
+              {{ block.settings.svg }}
+            {% else %}
+              {% render 'lazy-image', image: block.settings.logo, fade: true, classes: 'img-fill' %}
+            {% endif %}
+          </div>
         </div>
-      </div>
-    {% endfor %}
-  </div>
-  <div class="logo-marquee__container">
-    {% for block in section.blocks %}
-      <div class="logo-marquee__item">
-        <div class="logo-marquee__image">
-          {% if block.settings.svg != blank %}
-            {{ block.settings.svg }}
-          {% else %}
-            {% render 'lazy-image', image: block.settings.logo, fade: true, classes: 'img-fill' %}
-          {% endif %}
+      {% endfor %}
+    </div>
+    <div class="logo-marquee__container">
+      {% for block in section.blocks %}
+        <div class="logo-marquee__item">
+          <div class="logo-marquee__image">
+            {% if block.settings.svg != blank %}
+              {{ block.settings.svg }}
+            {% else %}
+              {% render 'lazy-image', image: block.settings.logo, fade: true, classes: 'img-fill' %}
+            {% endif %}
+          </div>
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
 </section>
 
