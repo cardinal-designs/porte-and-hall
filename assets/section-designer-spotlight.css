@@ -74,6 +74,10 @@
 }
 
 @media screen and (max-width: 768px) { 
+  .designer-spotlight {
+    padding: 20px 0;
+  }
+
   .designer-spotlight__item {
     flex-direction: column;
     gap: 20px;
