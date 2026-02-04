@@ -21,6 +21,10 @@
   animation: marquee 35s linear infinite;
 }
 
+.logo-marquee__header {
+  text-align: center;
+}
+
 .logo-marquee__item {
   padding-right: 100px;
   flex-shrink: 0;
