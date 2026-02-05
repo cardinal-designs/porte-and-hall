@@ -33,7 +33,7 @@
     "main_collection_banner_3m9A4P": {
       "type": "main-collection-banner",
       "custom_css": [
-        ".collection-hero__description{margin:0;padding:0;}"
+        ".collection-hero__description {margin: 0; padding: 0;}"
       ],
       "name": "t:sections.main-collection-banner.name",
       "settings": {
@@ -61,67 +61,139 @@
         "collapse_on_larger_devices": false
       }
     },
-    "82844bc9-ec6d-426a-9f52-a0a66dd5560e": {
+    "logo_marquee_YGeyfL": {
       "type": "logo-marquee",
       "blocks": {
-        "50d28991-9949-425a-8be2-904babebbf3d": {
+        "logo_RqHpVU": {
           "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/featuredin.png",
+            "svg": ""
+          }
+        },
+        "logo_hRtLyt": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/better-homes-and-gardens-seeklogo_22bca554-0a5a-4b04-91b8-e7c02448829d.png",
+            "svg": ""
+          }
+        },
+        "logo_wpg49w": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/forbes.png",
+            "svg": ""
+          }
+        },
+        "logo_xQprPd": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/southernliving.png",
+            "svg": ""
+          }
+        },
+        "logo_j3HTWX": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/realsimple.png",
+            "svg": ""
+          }
+        },
+        "logo_K7BreU": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/veranda.png",
+            "svg": ""
+          }
+        },
+        "logo_LzJWQ6": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/usatoday.png",
+            "svg": ""
+          }
+        },
+        "logo_tQ39hF": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/peopleinc.png",
+            "svg": ""
+          }
+        },
+        "logo_HUxddG": {
+          "type": "logo",
+          "disabled": true,
           "settings": {
             "svg": "<img width=\"146\" height=\"30\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
           }
         },
-        "149c1817-ad42-4e33-9606-3fdd86617b59": {
+        "logo_7qEXpx": {
           "type": "logo",
+          "disabled": true,
           "settings": {
             "svg": "<img width=\"242\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Better_homes.svg?v=1613389157\" alt=\"logo\">"
           }
         },
-        "c601b093-74e6-4c97-9b9f-e92dbbc1954b": {
+        "logo_98C8d3": {
           "type": "logo",
+          "disabled": true,
           "settings": {
             "svg": "<img width=\"143\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
           }
         },
-        "525c8d7f-3fd8-424a-9bb9-796fe7acd9b9": {
+        "logo_YEWDHH": {
           "type": "logo",
+          "disabled": true,
           "settings": {
             "svg": "<img width=\"100\" height=\"25\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
           }
         },
-        "3a0ca646-6b8d-40f7-bad1-95beb0f48c38": {
+        "logo_zCcznt": {
           "type": "logo",
+          "disabled": true,
           "settings": {
             "svg": "<img width=\"146\" height=\"30\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
           }
         },
-        "7776a47e-3b45-4168-a62f-1ed5450e55e4": {
+        "logo_bX93CQ": {
           "type": "logo",
+          "disabled": true,
           "settings": {
             "svg": "<img width=\"242\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Better_homes.svg?v=1613389157\" alt=\"logo\">"
           }
         },
-        "75cd2c0e-3721-428e-9a94-ab9ee0f2702a": {
+        "logo_BWn6Nt": {
           "type": "logo",
+          "disabled": true,
           "settings": {
             "svg": "<img width=\"143\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
           }
         },
-        "e94d2efd-9517-44b1-ae3f-3c3ce149ac5f": {
+        "logo_T78RkU": {
           "type": "logo",
+          "disabled": true,
           "settings": {
             "svg": "<img width=\"100\" height=\"25\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
           }
         }
       },
       "block_order": [
-        "50d28991-9949-425a-8be2-904babebbf3d",
-        "149c1817-ad42-4e33-9606-3fdd86617b59",
-        "c601b093-74e6-4c97-9b9f-e92dbbc1954b",
-        "525c8d7f-3fd8-424a-9bb9-796fe7acd9b9",
-        "3a0ca646-6b8d-40f7-bad1-95beb0f48c38",
-        "7776a47e-3b45-4168-a62f-1ed5450e55e4",
-        "75cd2c0e-3721-428e-9a94-ab9ee0f2702a",
-        "e94d2efd-9517-44b1-ae3f-3c3ce149ac5f"
+        "logo_RqHpVU",
+        "logo_hRtLyt",
+        "logo_wpg49w",
+        "logo_xQprPd",
+        "logo_j3HTWX",
+        "logo_K7BreU",
+        "logo_LzJWQ6",
+        "logo_tQ39hF",
+        "logo_HUxddG",
+        "logo_7qEXpx",
+        "logo_98C8d3",
+        "logo_YEWDHH",
+        "logo_zCcznt",
+        "logo_bX93CQ",
+        "logo_BWn6Nt",
+        "logo_T78RkU"
       ],
       "settings": {
         "background_color": "#d8d3c7"
@@ -133,6 +205,6 @@
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
     "main_collection_banner_3m9A4P",
     "product-grid",
-    "82844bc9-ec6d-426a-9f52-a0a66dd5560e"
+    "logo_marquee_YGeyfL"
   ]
 }
