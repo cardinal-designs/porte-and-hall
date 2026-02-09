@@ -227,3 +227,50 @@ cart-items {
     gap: 1rem;
   }
 }
+
+/* Cart page layout with gift note sidebar */
+.cart-page-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cart-page-layout__main {
+  flex: 1;
+}
+
+.cart-page-layout__sidebar {
+  width: 100%;
+}
+
+@media screen and (min-width: 990px) {
+  .cart-page-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+
+  .cart-page-layout__main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cart-page-layout__sidebar {
+    width: 340px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 160px;
+  }
+}
+
+.cart-page-gift-note {
+  background-color: var(--color-background, #fff);
+  border: 1px solid var(--color-border, #e5e5e5);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.cart-page-gift-note .gift-note-form__toggle {
+  padding: 0;
+}

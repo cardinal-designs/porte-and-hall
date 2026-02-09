@@ -26,36 +26,55 @@
       {% endif %}
     </div>
 
-    <form
-      action="{{ routes.cart_url }}"
-      class="cart__contents critical-hidden"
-      method="post"
-      id="cart">
-      <div
-        class="cart__items"
-        id="main-cart-items"
-        data-id="{{ section.id }}">
-        <div class="js-contents">
-          {% if cart != empty %}
-            {% for item in cart.items %}
-              {% render 'cart-item' item: item, idx: forloop.index, is_cart: true %}
-            {% endfor %}
-          {% endif %}
-        </div>
+    <div class="cart-page-layout">
+      <div class="cart-page-layout__main">
+        <form
+          action="{{ routes.cart_url }}"
+          class="cart__contents critical-hidden"
+          method="post"
+          id="cart">
+          <div
+            class="cart__items"
+            id="main-cart-items"
+            data-id="{{ section.id }}">
+            <div class="js-contents">
+              {% if cart != empty %}
+                {% for item in cart.items %}
+                  {% render 'cart-item' item: item, idx: forloop.index, is_cart: true %}
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+
+          <p
+            class="visually-hidden"
+            id="cart-live-region-text"
+            aria-live="polite"
+            role="status"></p>
+          <p
+            class="visually-hidden"
+            id="shopping-cart-line-item-status"
+            aria-live="polite"
+            aria-hidden="true"
+            role="status">{{ 'accessibility.loading' | t }}</p>
+        </form>
       </div>
 
-      <p
-        class="visually-hidden"
-        id="cart-live-region-text"
-        aria-live="polite"
-        role="status"></p>
-      <p
-        class="visually-hidden"
-        id="shopping-cart-line-item-status"
-        aria-live="polite"
-        aria-hidden="true"
-        role="status">{{ 'accessibility.loading' | t }}</p>
-    </form>
+      {% if section.settings.enable_greeting_message and cart != empty %}
+        <div class="cart-page-layout__sidebar">
+          <div class="cart-page-gift-note">
+            {% render 'gift-note-form',
+              checkbox_label: section.settings.greeting_checkbox_label,
+              max_chars_per_line: section.settings.greeting_max_chars_per_line,
+              max_lines: section.settings.greeting_max_lines,
+              message_placeholder: section.settings.greeting_message_placeholder,
+              from_placeholder: section.settings.greeting_from_placeholder,
+              form_id: 'cart-page-gift'
+            %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
   </cart-items>
 </div>
 
@@ -98,6 +117,52 @@
           "type": "text",
           "id": "button_text",
           "label": "Link text"
+        },
+        {
+          "type": "header",
+          "content": "Greeting Message"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_greeting_message",
+          "label": "Enable greeting message",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "greeting_checkbox_label",
+          "label": "Checkbox label",
+          "default": "Complimentary Greeting Message"
+        },
+        {
+          "type": "range",
+          "id": "greeting_max_chars_per_line",
+          "label": "Max characters per line",
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "default": 29
+        },
+        {
+          "type": "range",
+          "id": "greeting_max_lines",
+          "label": "Max lines",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 4
+        },
+        {
+          "type": "text",
+          "id": "greeting_message_placeholder",
+          "label": "Message placeholder",
+          "default": "Write your gift message here..."
+        },
+        {
+          "type": "text",
+          "id": "greeting_from_placeholder",
+          "label": "From field placeholder",
+          "default": "FROM:"
         }
       ]
     }

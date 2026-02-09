@@ -36,6 +36,17 @@
             </div>
             <div class="cart-drawer__footer">
 
+              {% if section.settings.enable_greeting_message %}
+                {% render 'gift-note-form',
+                  checkbox_label: section.settings.greeting_checkbox_label,
+                  max_chars_per_line: section.settings.greeting_max_chars_per_line,
+                  max_lines: section.settings.greeting_max_lines,
+                  message_placeholder: section.settings.greeting_message_placeholder,
+                  from_placeholder: section.settings.greeting_from_placeholder,
+                  form_id: 'cart-drawer-gift'
+                %}
+              {% endif %}
+
               {% if section.settings.enable_gift_note and porter_product_found and gift_wrap_product != blank and gift_wrap_product_found == false %}
                   <div id="gift-wrap-option">
                     <input 
@@ -48,7 +59,7 @@
                       {{ section.settings.checkbox_label_text | replace: '[price]', gift_note_price }}
                     </label>
                   </div>
-               {% capture noteModal %}
+               {% capture note_modal %}
                 <div id="gift-note-modal">
                   <div class="gift-note-content">
                     <div class="gift-note__header">
@@ -111,7 +122,7 @@
                   </div>
               </div>
             </div>
-            {{ noteModal }}
+            {{ note_modal }}
           {% endif %}
         </div>
       </div>
@@ -147,6 +158,52 @@
       "type": "text",
       "id": "button_text",
       "label": "Empty cart button text"
+    },
+    {
+      "type": "header",
+      "content": "Greeting Message Feature"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_greeting_message",
+      "label": "Enable greeting message",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "greeting_checkbox_label",
+      "label": "Checkbox label",
+      "default": "Complimentary Greeting Message"
+    },
+    {
+      "type": "range",
+      "id": "greeting_max_chars_per_line",
+      "label": "Max characters per line",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "default": 29
+    },
+    {
+      "type": "range",
+      "id": "greeting_max_lines",
+      "label": "Max lines",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "greeting_message_placeholder",
+      "label": "Message placeholder",
+      "default": "Write your gift message here..."
+    },
+    {
+      "type": "text",
+      "id": "greeting_from_placeholder",
+      "label": "From field placeholder",
+      "default": "FROM:"
     },
     {
       "type": "header",

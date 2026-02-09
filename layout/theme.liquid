@@ -127,6 +127,7 @@
     {% render 'css-variables' %}
     {{ 'cro.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'gift-note-form.css' | asset_url | stylesheet_tag }}
 
     {% comment %} {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }} {% endcomment %}
     <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
@@ -137,6 +138,7 @@
     <script src="{{ 'ScrollToPlugin.min.js' | asset_url }}" defer></script>
     <script src="{{ 'global.js' | asset_url }}" defer></script>
     <script data-lazy-src="{{ 'custom.js' | asset_url }}" defer></script>
+    <script src="{{ 'gift-note-form.js' | asset_url }}" defer></script>
 
     <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
 
@@ -232,7 +234,7 @@
     <script defer src="https://static.shopmy.us/Affiliates/sms_aff_clicktrack.js?domain=porteandhall.com&expires=30"></script>
   </head>
 
-  <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
+  <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %} template-name--{{ template.name }}">
     <style>
       .sr-only {
         position: absolute !important;

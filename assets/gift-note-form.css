@@ -1,0 +1,165 @@
+/* Gift Note Form */
+.gift-note-form {
+  width: 100%;
+  font-family: var(--font-body-family, inherit);
+}
+
+.gift-note-form__toggle {
+  padding: 12px 0;
+}
+
+.gift-note-form__checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.gift-note-form__checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.gift-note-form__checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--color-foreground, #333);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
+}
+
+.gift-note-form__checkbox:checked + .gift-note-form__checkbox-custom {
+  background-color: var(--color-foreground, #333);
+}
+
+.gift-note-form__checkbox:checked + .gift-note-form__checkbox-custom::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-background, #fff);
+  border-radius: 50%;
+}
+
+.gift-note-form__checkbox:focus-visible + .gift-note-form__checkbox-custom {
+  outline: 2px solid var(--color-foreground, #333);
+  outline-offset: 2px;
+}
+
+.gift-note-form__label {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.gift-note-form__content {
+  padding: 0;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows 0.3s ease-out,
+    padding 0.3s ease-out,
+    opacity 0.3s ease-out;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.gift-note-form__content:not([hidden]) {
+  padding: 16px 0;
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.gift-note-form__content-inner {
+  min-height: 0;
+}
+
+.gift-note-form__content[hidden] {
+  display: grid;
+}
+
+.gift-note-form__message-wrapper {
+  position: relative;
+  border: 1px solid var(--color-border, #ccc);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--color-background, #fff);
+}
+
+.gift-note-form__message {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 1.8;
+  resize: none;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  color: var(--color-foreground, #333);
+}
+
+.gift-note-form__message:focus {
+  outline: none;
+}
+
+.gift-note-form__message::placeholder {
+  color: var(--color-foreground-muted, #999);
+  font-style: italic;
+}
+
+.gift-note-form__lines {
+  position: absolute;
+  top: 16px;
+  left: 15px;
+  right: 15px;
+  bottom: 16px;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 22px;
+  gap: 24px;
+}
+
+.gift-note-form__line {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-border, #ccc);
+}
+
+.gift-note-form__char-count {
+  margin: 12px 0;
+  font-size: 12px;
+  color: var(--color-foreground-muted, #666);
+}
+
+.gift-note-form__from-wrapper {
+  margin-top: 12px;
+}
+
+.gift-note-form__from {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid var(--color-border, #ccc);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  background-color: var(--color-background, #fff);
+  color: var(--color-foreground, #333);
+}
+
+.gift-note-form__from:focus {
+  outline: 2px solid var(--color-foreground, #333);
+  outline-offset: -2px;
+}
+
+.gift-note-form__from::placeholder {
+  color: var(--color-foreground-muted, #999);
+}

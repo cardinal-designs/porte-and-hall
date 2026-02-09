@@ -1,0 +1,106 @@
+{% doc %}
+  Renders a gift note form with checkbox toggle and expandable form.
+  This component can be used in the cart drawer and cart page.
+
+  @param {string} [checkbox_label] - Label for the checkbox toggle
+  @param {number} [max_chars_per_line] - Maximum characters per line (default: 29)
+  @param {number} [max_lines] - Maximum number of lines (default: 4)
+  @param {string} [message_placeholder] - Placeholder for the gift message textarea
+  @param {string} [from_placeholder] - Placeholder for the "From" field
+  @param {string} [form_id] - Unique ID prefix for the form elements
+
+  @example
+  {% render 'gift-note-form',
+    checkbox_label: 'Complimentary Greeting Message',
+    max_chars_per_line: 29,
+    max_lines: 4,
+    message_placeholder: 'Write your gift message here...',
+    from_placeholder: 'FROM:',
+    form_id: 'cart-drawer'
+  %}
+{% enddoc %}
+
+{%- liquid
+  assign checkbox_label = checkbox_label | default: 'Complimentary Greeting Message'
+  assign max_chars_per_line = max_chars_per_line | default: 29
+  assign max_lines = max_lines | default: 4
+  assign message_placeholder = message_placeholder | default: 'Write your gift message here...'
+  assign from_placeholder = from_placeholder | default: 'FROM:'
+  assign form_id = form_id | default: 'gift-note'
+
+  assign saved_message = cart.attributes['Gift Message'] | default: ''
+  assign saved_from = cart.attributes['Gift From'] | default: ''
+  assign has_saved_data = false
+  if saved_message != blank or saved_from != blank
+    assign has_saved_data = true
+  endif
+-%}
+
+<gift-note-form
+  class="gift-note-form"
+  data-max-chars="{{ max_chars_per_line }}"
+  data-max-lines="{{ max_lines }}"
+>
+  <div class="gift-note-form__toggle">
+    <label class="gift-note-form__checkbox-wrapper">
+      <input
+        type="checkbox"
+        id="{{ form_id }}-checkbox"
+        class="gift-note-form__checkbox"
+        {% if has_saved_data %}
+          checked
+        {% endif %}
+        aria-expanded="{{ has_saved_data }}"
+        aria-controls="{{ form_id }}-content"
+      >
+      <span class="gift-note-form__checkbox-custom"></span>
+      <span class="gift-note-form__label">{{ checkbox_label }}</span>
+    </label>
+  </div>
+
+  <div
+    id="{{ form_id }}-content"
+    class="gift-note-form__content"
+    {% unless has_saved_data %}
+      hidden
+    {% endunless %}
+  >
+    <div class="gift-note-form__content-inner">
+      <div class="gift-note-form__message-wrapper">
+        <textarea
+          id="{{ form_id }}-message"
+          name="attributes[gift_message]"
+          class="gift-note-form__message"
+          placeholder="{{ message_placeholder }}"
+          aria-label="{{ message_placeholder }}"
+          rows="{{ max_lines }}"
+        >{{ saved_message }}</textarea>
+        <div class="gift-note-form__lines">
+          {%- for i in (1..max_lines) -%}
+            <div class="gift-note-form__line"></div>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <p class="gift-note-form__char-count">
+        <span class="gift-note-form__chars-remaining">{{ max_chars_per_line }}</span>
+        {{ 'gift_note.characters_left' | t | default: 'characters left in this line' }},
+        {{ 'gift_note.and' | t | default: 'and' }}
+        <span class="gift-note-form__lines-remaining">{{ max_lines | minus: 1 }}</span>
+        {{ 'gift_note.lines_left' | t | default: 'lines left' }}.
+      </p>
+
+      <div class="gift-note-form__from-wrapper">
+        <input
+          type="text"
+          id="{{ form_id }}-from"
+          name="attributes[gift_from]"
+          class="gift-note-form__from"
+          placeholder="{{ from_placeholder }}"
+          aria-label="{{ from_placeholder }}"
+          value="{{ saved_from }}"
+        >
+      </div>
+    </div>
+  </div>
+</gift-note-form>

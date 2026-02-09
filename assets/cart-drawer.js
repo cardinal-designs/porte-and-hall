@@ -329,6 +329,7 @@ document.addEventListener('rebuy:cart.ready', (event) => {
   }, 250);
 });
 document.addEventListener('rebuy:cart.add', (event) => { 
+  if (window.skipCartRerender) return;
   updateMainCart(Rebuy)
   const drawer = document.getElementById("cart-drawer");
   setTimeout(() => {
@@ -336,6 +337,7 @@ document.addEventListener('rebuy:cart.add', (event) => {
   }, 250);
 });
 document.addEventListener('rebuy:cart.change', (event) => { 
+  if (window.skipCartRerender) return;
   updateMainCart(Rebuy)
   const drawer = document.getElementById("cart-drawer");
   setTimeout(() => {

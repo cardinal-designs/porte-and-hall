@@ -3043,8 +3043,8 @@ select#notify_id {
 /* ============================ new home page ============================ */
 
 html,
-body {
-  overflow-x: hidden;
+body:not(.template-name--cart) {
+  overflow-x: hidden; 
 }
 
 /* announcementbar */
