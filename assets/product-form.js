@@ -47,10 +47,10 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
     if(this.connectedForm){
           this.connectedForm.querySelector(".product__quantity-atc-wrapper").classList.add('loading');
     }
- 
+
 
     const formData = new FormData(this.form);
-    formData.append('properties[FINALE SALE]', 'Nooooooo RETURNS, EXCHANGES OR ADDITIONAL DISCOUNTS APPLIED.');
+    formData.append('properties[FINAL SALE]', 'NO RETURNS, EXCHANGES OR ADDITIONAL DISCOUNTS APPLIED.');
     formData.append('sections', this.getSectionsToRender().map((section) => section.section).join(','));
     formData.append('sections_url', window.location.pathname);
 
