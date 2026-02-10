@@ -50,7 +50,7 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
 
 
     const formData = new FormData(this.form);
-    formData.append('properties[FINAL SALE]', 'No RETURNS, EXCHANGES OR ADDITIONAL DISCOUNTS APPLIED.');
+    formData.append('properties[FINAL SALE]', 'Nooooooo RETURNS, EXCHANGES OR ADDITIONAL DISCOUNTS APPLIED.');
     formData.append('sections', this.getSectionsToRender().map((section) => section.section).join(','));
     formData.append('sections_url', window.location.pathname);
 
