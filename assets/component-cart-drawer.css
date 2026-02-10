@@ -119,6 +119,10 @@ cart-drawer-remove-button {
   font-family: brandon;
 }
 
+.cart-item__option--final-sale {
+  color: #c00;
+}
+
 .cart-item__bottom {
   margin-top: 12px;
   display: flex;

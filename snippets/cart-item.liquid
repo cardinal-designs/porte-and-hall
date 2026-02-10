@@ -58,7 +58,7 @@
         {% for property in item.properties %}
           {% assign property_first_char = property.first | slice: 0 %}
           {% if property.last != blank and property_first_char != '_' %}
-            <h6 class="cart-item__option body-sm">
+            <h6 class="cart-item__option body-sm{% if property.first == settings.final_sale_property_key %} cart-item__option--final-sale{% endif %}">
               <b>{{ property.first }}</b> —
               {% if property.last contains '/uploads/' %}
                 <a href="{{ property.last }}" target="_blank">

@@ -1,0 +1,3 @@
+{% if product.tags contains settings.final_sale_tag %}
+  <input type="hidden" name="properties[{{ settings.final_sale_property_key | escape }}]" value="{{ settings.final_sale_property_value | escape }}">
+{% endif %}

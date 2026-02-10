@@ -182,5 +182,33 @@
         "info": "This is the discount percentage for trade pricing"
       }
     ]
+  },
+  {
+    "name": "FINAL SALE",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Applies to products that have the tag specified below. When a product has this tag, a notice is shown on the product page and a line item property is added to cart."
+      },
+      {
+        "type": "text",
+        "id": "final_sale_tag",
+        "label": "Product tag",
+        "default": "FINAL SALE",
+        "info": "Products with this tag will show the FINAL SALE notice and add the line item property to cart."
+      },
+      {
+        "type": "text",
+        "id": "final_sale_property_key",
+        "label": "Line item property key",
+        "default": "FINAL SALE"
+      },
+      {
+        "type": "text",
+        "id": "final_sale_property_value",
+        "label": "Line item property value",
+        "default": "NO RETURNS, EXCHANGES OR ADDITIONAL DISCOUNTS APPLIED."
+      }
+    ]
   }
 ]

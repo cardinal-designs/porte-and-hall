@@ -1271,14 +1271,16 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
           this.connectedForm.querySelector(".product__quantity-atc-wrapper").classList.add('loading');
     }
 
+    const formData = new FormData(this.form);
+    formData.append('properties[FINAL SALE]', 'NO RETURNS, EXCHANGES OR ADDITIONAL DISCOUNTS APPLIED.');
+    formData.append('sections', this.getSectionsToRender().map((section) => section.section).join(','));
+    formData.append('sections_url', window.location.pathname);
 
-    const body = JSON.stringify({
-      ...JSON.parse(serializeForm(this.form)),
-      sections: this.getSectionsToRender().map((section) => section.section),
-      sections_url: window.location.pathname
-    });
+    const config = fetchConfig('javascript');
+    config.headers['X-Requested-With'] = 'XMLHttpRequest';
+    delete config.headers['Content-Type'];
 
-    fetch(`${routes.cart_add_url}`, { ...fetchConfig('javascript'), body })
+    fetch(`${routes.cart_add_url}`, { ...config, body: formData })
       .then((response) => response.json())
       .then((parsedState) => {
 
