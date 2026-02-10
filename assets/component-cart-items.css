@@ -127,10 +127,6 @@
   text-transform: uppercase;
 }
 
-.cart-item__option--final-sale {
-  color: #c00;
-}
-
 @media screen and (min-width: 769px) and (max-width: 989px) {
   .cart-item cart-remove-button {
     width: 4.5rem;
