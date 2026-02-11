@@ -120,6 +120,7 @@ cart-drawer-remove-button {
 }
 
 .cart-item__option--final-sale {
+  display: none;
   font-size: 14px;
   line-height: 1.2;
   color: #546b82;
