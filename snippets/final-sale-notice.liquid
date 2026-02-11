@@ -1,0 +1,3 @@
+{% if product.tags contains settings.final_sale_tag %}
+  <p class="product__final-sale-notice"><b>{{ settings.final_sale_property_key }}</b> – {{ settings.final_sale_property_value }}</p>
+{% endif %}

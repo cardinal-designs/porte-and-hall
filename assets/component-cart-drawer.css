@@ -119,6 +119,13 @@ cart-drawer-remove-button {
   font-family: brandon;
 }
 
+.cart-item__option--final-sale {
+  font-size: 14px;
+  line-height: 1.2;
+  color: #546b82;
+  margin-top: 3px;
+}
+
 .cart-item__bottom {
   margin-top: 12px;
   display: flex;
@@ -262,6 +269,10 @@ cart-drawer-remove-button {
 }
 
 @media (max-width: 768px) {
+  .cart-item__option--final-sale {
+    font-size: 12px;
+  }
+  
   .cart-item__image {
     height: 100px;
     width: 100px;

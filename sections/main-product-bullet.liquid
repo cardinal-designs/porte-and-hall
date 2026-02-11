@@ -254,6 +254,7 @@
             data-type: 'add-to-cart-form'
           %}
             <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            {% render 'final-sale-property-input', product: product %}
 
             {% unless product.has_only_default_variant %}
               {% assign picker_type = 'button' %}
@@ -553,8 +554,7 @@
      
             {%- endif -%}
 
-            
-            
+            {% render 'final-sale-notice', product: product %}
 
             <div class="product__quantity-atc-wrapper  {% if product.available == false %}bis-styles{% endif %} {% if section.settings.hide_quantity == true %}no-quant__button{% endif %}">
               <div class="product-form__input product-form__quantity {% if product.available == false or section.settings.hide_quantity == true %}visually-hidden{% endif%}">
