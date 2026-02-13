@@ -3686,7 +3686,7 @@ iframe#preview-bar-iframe {
 
 .cart-item__trade-price .price.price--end span{
   letter-spacing: 0;
-  color: var(--blue-secondary);
+  /* color: var(--blue-secondary); */
   font-weight: 500;
   margin-right: 5px;
 }
