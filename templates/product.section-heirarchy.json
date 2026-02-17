@@ -42,6 +42,184 @@
       "disabled": true,
       "settings": {}
     },
+    "logo_marquee_FJtxKa": {
+      "type": "logo-marquee",
+      "blocks": {
+        "logo_WdBjM4": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/featuredin.png",
+            "svg": ""
+          }
+        },
+        "logo_QiMxVL": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/better-homes.png",
+            "svg": ""
+          }
+        },
+        "logo_hEEHDi": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/forbes_31a0686e-a850-4946-b594-06bc53e22eef.png",
+            "svg": ""
+          }
+        },
+        "logo_4YKN8e": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/southern-living.png",
+            "svg": ""
+          }
+        },
+        "logo_a44LQf": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/real-simple.png",
+            "svg": ""
+          }
+        },
+        "logo_HVYp4U": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/veranda_2e315f3b-d341-4431-8de6-e873af462a1b.png",
+            "svg": ""
+          }
+        },
+        "logo_W9KjXd": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/usa-today.png",
+            "svg": ""
+          }
+        },
+        "logo_kpjHgA": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/people-inc.png",
+            "svg": ""
+          }
+        },
+        "logo_VJkUJe": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/apartment-therapy.png",
+            "svg": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_WdBjM4",
+        "logo_QiMxVL",
+        "logo_hEEHDi",
+        "logo_4YKN8e",
+        "logo_a44LQf",
+        "logo_HVYp4U",
+        "logo_W9KjXd",
+        "logo_kpjHgA",
+        "logo_VJkUJe"
+      ],
+      "disabled": true,
+      "settings": {
+        "background_color": "#d8d3c7"
+      }
+    },
+    "design-details": {
+      "type": "design-detail-arrows",
+      "settings": {
+        "heading": ""
+      }
+    },
+    "product_quote_KP6aXV": {
+      "type": "product-quote",
+      "disabled": true,
+      "settings": {}
+    },
+    "see-in-action": {
+      "type": "see-it-in-action",
+      "disabled": true,
+      "settings": {
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
+        "heading": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_section_title | metafield_tag }}</p>",
+        "text": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_subhead | metafield_tag }}</p>",
+        "link": "shopify://pages/ideas-inspiration",
+        "link_text": "Get more inspiration >",
+        "bg_color": "{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}",
+        "hide_mobile": true
+      }
+    },
+    "styling-tips": {
+      "type": "styling-tips",
+      "disabled": true,
+      "settings": {
+        "heading": "Our founder Stafford's styling tips",
+        "image": "shopify://shop_images/Stafford_and_dog_1_2x_8d4ed32a-5883-4611-bf23-c1cc022cb717.png",
+        "hide_mobile": true
+      }
+    },
+    "see-the-difference": {
+      "type": "see-the-difference",
+      "disabled": true,
+      "settings": {
+        "colleciton": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
+        "heading": "Small mat, big difference",
+        "text": "{{ section.settings.colleciton.metafields.custom.see_the_difference_subhead.value }}",
+        "before-label": "Before",
+        "after-label": "After"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "question_1": {
+          "type": "faq",
+          "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
+          "settings": {
+            "title": "{{ block.repeater.question.value }}",
+            "title_richtext": "",
+            "answer": "{{ block.repeater.answer | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "question_1"
+      ],
+      "settings": {
+        "heading": "",
+        "anchor": "",
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
+      }
+    },
+    "reviews": {
+      "type": "reviews",
+      "disabled": true,
+      "settings": {
+        "heading": ""
+      }
+    },
+    "168172537899ce8b94": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_GBTbQT": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_GBTbQT"
+      ],
+      "settings": {
+        "include_margins": true,
+        "heading": "",
+        "section_reviews": true
+      }
+    },
     "lp_custom_collections_2_ABDk4m": {
       "type": "LP-custom-collections-2",
       "blocks": {
@@ -125,179 +303,6 @@
         "subtitle": ""
       }
     },
-    "logo_marquee_FJtxKa": {
-      "type": "logo-marquee",
-      "blocks": {
-        "logo_WdBjM4": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/featuredin.png",
-            "svg": ""
-          }
-        },
-        "logo_QiMxVL": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/better-homes.png",
-            "svg": ""
-          }
-        },
-        "logo_hEEHDi": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/forbes_31a0686e-a850-4946-b594-06bc53e22eef.png",
-            "svg": ""
-          }
-        },
-        "logo_4YKN8e": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/southern-living.png",
-            "svg": ""
-          }
-        },
-        "logo_a44LQf": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/real-simple.png",
-            "svg": ""
-          }
-        },
-        "logo_HVYp4U": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/veranda_2e315f3b-d341-4431-8de6-e873af462a1b.png",
-            "svg": ""
-          }
-        },
-        "logo_W9KjXd": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/usa-today.png",
-            "svg": ""
-          }
-        },
-        "logo_kpjHgA": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/people-inc.png",
-            "svg": ""
-          }
-        },
-        "logo_VJkUJe": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/apartment-therapy.png",
-            "svg": ""
-          }
-        }
-      },
-      "block_order": [
-        "logo_WdBjM4",
-        "logo_QiMxVL",
-        "logo_hEEHDi",
-        "logo_4YKN8e",
-        "logo_a44LQf",
-        "logo_HVYp4U",
-        "logo_W9KjXd",
-        "logo_kpjHgA",
-        "logo_VJkUJe"
-      ],
-      "settings": {
-        "background_color": "#d8d3c7"
-      }
-    },
-    "design-details": {
-      "type": "design-detail-arrows",
-      "settings": {
-        "heading": ""
-      }
-    },
-    "product_quote_KP6aXV": {
-      "type": "product-quote",
-      "settings": {}
-    },
-    "see-in-action": {
-      "type": "see-it-in-action",
-      "settings": {
-        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
-        "heading": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_section_title | metafield_tag }}</p>",
-        "text": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_subhead | metafield_tag }}</p>",
-        "link": "shopify://pages/ideas-inspiration",
-        "link_text": "Get more inspiration >",
-        "bg_color": "{{ section.settings.collection.metafields.custom.collage_inspo_background_color.value }}",
-        "hide_mobile": true
-      }
-    },
-    "styling-tips": {
-      "type": "styling-tips",
-      "settings": {
-        "heading": "Our founder Stafford's styling tips",
-        "image": "shopify://shop_images/Stafford_and_dog_1_2x_8d4ed32a-5883-4611-bf23-c1cc022cb717.png",
-        "hide_mobile": true
-      }
-    },
-    "see-the-difference": {
-      "type": "see-the-difference",
-      "settings": {
-        "colleciton": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
-        "heading": "Small mat, big difference",
-        "text": "{{ section.settings.colleciton.metafields.custom.see_the_difference_subhead.value }}",
-        "before-label": "Before",
-        "after-label": "After"
-      }
-    },
-    "faq": {
-      "type": "faq",
-      "blocks": {
-        "question_1": {
-          "type": "faq",
-          "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
-          "settings": {
-            "title": "{{ block.repeater.question.value }}",
-            "title_richtext": "",
-            "answer": "{{ block.repeater.answer | metafield_tag }}"
-          }
-        }
-      },
-      "block_order": [
-        "question_1"
-      ],
-      "settings": {
-        "heading": "",
-        "anchor": "",
-        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
-      }
-    },
-    "reviews": {
-      "type": "reviews",
-      "disabled": true,
-      "settings": {
-        "heading": ""
-      }
-    },
-    "168172537899ce8b94": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_GBTbQT": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "sample_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_GBTbQT"
-      ],
-      "settings": {
-        "include_margins": true,
-        "heading": "",
-        "section_reviews": true
-      }
-    },
     "you-may-like": {
       "type": "main-product-carousel",
       "settings": {
@@ -337,6 +342,7 @@
         "faf6f395-3915-4f58-b2c5-acd839476fc2",
         "cc9c34ec-5a8d-4a24-9b5f-20963c337e23"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Hit the ground stunning:\nThe Porte + Hall blog",
         "background": "",
@@ -350,16 +356,16 @@
     "breadcrumbs_yDykEc",
     "main",
     "other-sizes",
-    "lp_custom_collections_2_ABDk4m",
     "logo_marquee_FJtxKa",
     "design-details",
     "product_quote_KP6aXV",
     "see-in-action",
     "styling-tips",
     "see-the-difference",
-    "faq",
     "reviews",
     "168172537899ce8b94",
+    "faq",
+    "lp_custom_collections_2_ABDk4m",
     "you-may-like",
     "featured-articles"
   ]
