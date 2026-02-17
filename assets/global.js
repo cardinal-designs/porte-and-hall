@@ -1265,6 +1265,12 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
     
     const submitButton = this.querySelector('[type="submit"]');
 
+    const recipientForm = this.form.querySelector('recipient-form');
+    if (recipientForm && typeof recipientForm.validateOnSubmit === 'function') {
+      const ok = recipientForm.validateOnSubmit();
+      if (!ok) return;
+    }
+
     submitButton.setAttribute('disabled', true);
     submitButton.closest(".product__quantity-atc-wrapper").classList.add('loading');
     if(this.connectedForm){

@@ -1,0 +1,846 @@
+{% comment %}theme-check-disable TemplateLength{% endcomment %}
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  square-placement {
+    margin-bottom: 0 !important;
+    margin-top: 10px !important;
+  }
+
+  @media (max-width: 768px) {
+    square-placement {
+      text-align: center !important;
+    }
+  }
+{% endstyle %}
+
+{% liquid
+  for collection in product.collections
+    if collection.title contains ' |'
+      assign grouped_collection = collection
+    endif
+  endfor
+  
+
+  assign oos_products = grouped_collection.products | where: 'available', false
+  assign oos_products = ""
+
+  assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
+  assign collection_title = grouped_collection.title | downcase
+  capture color_swatch_list
+    assign swatch_count = 1
+    for swatch in grouped_collection.products
+      for option in swatch.options_with_values
+        assign option_name = option.name | downcase
+        if color_label contains option_name or option_name == 'style'
+          assign option_index = 'option' | append: forloop.index
+          for value in option.values
+            assign matched_variant = swatch.variants | where: 'title', value
+            if matched_variant != blank
+              assign swatch_link = matched_variant[0].url
+            endif
+            assign element_classes = 'product__swatch'
+            if swatch == product and option.selected_value == value
+              assign element_classes = element_classes | append: ' product__active-swatch'
+            endif
+            if swatch.available == false
+              assign element_classes = element_classes | append: ' product__oos-swatch'
+            endif
+            assign swatch_file_name = value | handle | append: '.png'
+            assign swatch_image = images[swatch_file_name]
+            comment
+              if collection_title contains 'outsider' and swatch_count == 4
+                echo ' | '
+              endif
+            endcomment
+            echo "<a href='"
+            echo swatch_link | default: swatch.variants[0].url
+            echo "' class='"
+            echo element_classes
+            echo "'"
+            echo " aria-label='"
+            echo value | escape
+            unless swatch.available
+              echo " is Unavailable"
+            endunless
+            echo "'"
+            echo "data-tooltip='"
+            echo value | escape
+            echo "' ><span "
+            echo "style='background-image: url("
+            echo swatch_file_name | file_url
+            echo ")'>"
+            echo '</span></a>'
+            assign swatch_count = swatch_count | plus: 1
+          endfor
+        endif
+      endfor
+    endfor
+  endcapture
+%}
+
+{% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
+<section class="page-width">
+  <div class="product">
+    <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
+      {{ 'accessibility.skip_to_product_info' | t }}
+    </a>
+
+    <div class="product__media-wrapper">
+      <div class="hide-mobile product__media-thumbnails list-unstyled swiper">
+        <div class="swiper-wrapper">
+          {% for media in product.media %}
+            {% unless media.alt == 'hide-outlier' %}
+            <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+              {% render 'product-media', media: media, position: forloop.index, width: '106' %}
+            </div>
+          {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="product__media-list list-unstyled swiper">
+        <div class="swiper-wrapper">
+          {% for media in product.media %}
+            {% unless media.alt == 'hide-outlier' %}
+            <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+              {% render 'product-media', media: media, position: forloop.index %}
+              <div class="product__media-buttons">
+                {% unless section.settings.hide_pinterest == true %}
+                  {% render 'pin-button', media: media %}
+                {% endunless %}
+                {% render 'zoom-button' %}
+              </div>
+            </div>
+          {% endunless %}
+          {% endfor %}
+        </div>
+        <div class="product__media-pagination swiper-pagination hide-desktop"></div>
+        <div class="product__media-button swiper-button-prev hide-desktop"></div>
+        <div class="product__media-button swiper-button-next hide-desktop"></div>
+      </div>
+    </div>
+
+    <div class="product__info-wrapper">
+      <div id="ProductInfo-{{ section.id }}" class="product__info-container">
+        {% assign product_form_id = 'product-form-' | append: section.id %}
+
+        <h3 class="product__tag gray">
+          {{ product.variants.first.metafields.filters.use.value.first }}
+        </h3>
+
+        <h1 class="product__title blue">
+          {{ grouped_collection.title | remove: ' |' | default: product.title }}
+        </h1>
+
+        {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
+          <div class="product__description body blue">
+            {{ grouped_collection.metafields.custom.short_description | default: product.description }}
+          </div>
+        {% endif %}
+
+        {% if customer and customer.b2b? %}
+          {% liquid
+            assign target = product.selected_or_first_available_variant
+            assign price = target.price
+            assign money_price = price | money_without_trailing_zeros
+            if settings.currency_code_enabled
+              assign money_price = price | money_with_currency
+            endif
+          %}
+          {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
+          {% assign discount_factor = 100 | minus: trade_pricing_discount_percentage %}
+          {% assign original_price = target.price | times: 100 | divided_by: discount_factor %}
+          {% if original_price > 0 %}
+            <div class="product__trade--price">
+              <div class="price">
+                <div class="h3">
+                  <div class="price__regular">
+                    <span class="price-item price-item--regular">
+                      {{ money_price }} <span>Trade Price</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endif %}
+
+        {% for option in product.options_with_values %}
+          <div class="product__option-name body">
+            <span>
+              {{ option.name }}
+            </span>
+            <span> — </span> 
+            <div class="no-js-hidden product__price" id="price-{{ section.id }}" role="status">
+              {% if product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product.price > product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+                <span class="old-price">{{ product.price | money_without_trailing_zeros }}</span>
+                <span>{{ product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
+              {% else %}
+                {% render 'price', product: product, use_variant: true, show_badges: true, price_class: '' %}
+              {%  endif  %}
+            </div>
+          </div>
+        {% endfor %}
+
+        <div class="product__swatches">
+          {{ color_swatch_list }}
+        </div>
+        
+        <product-form class="product-form">
+          <div class="product-form__error-message-wrapper" role="alert" hidden>
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
+              <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+              <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+              <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+              <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+            </svg>
+            <span class="product-form__error-message"></span>
+          </div>
+
+          {% form 'product',
+            product,
+            id: product_form_id,
+            class: 'form',
+            novalidate: 'novalidate',
+            data-type: 'add-to-cart-form'
+          %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            {% render 'final-sale-property-input', product: product %}
+
+            {% unless product.has_only_default_variant %}
+                <variant-selects
+                  class="no-js-hidden variant-selects"
+                  data-section="{{ section.id }}"
+                  data-url="{{ product.url }}"
+                >
+                  {% for option in product.options_with_values %}
+                    <div class="product-form__input product-form__input--dropdown">
+                      <label class="form__label visually-hidden" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+                        {% if option.name == "Title"%}
+                          Amount
+                        {% else %}
+                        {{ option.name }}
+                        {% endif %}
+                      </label>
+                      <div class="select">
+                        <select
+                          id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                          class="select__select field__input"
+                          name="options[{{ option.name | escape }}]"
+                          form="{{ product_form_id }}"
+                        >
+                          {% for value in option.values %}
+                            <option
+                              value="{{ value | escape }}"
+                              {% if option.selected_value == value %}
+                                selected="selected"
+                              {% endif %}
+                            >
+                              {{ value }}
+                            </option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                  {% endfor %}
+
+                  <script type="application/json">
+                    {{ product.variants | json }}
+                  </script>
+                </variant-selects>
+            {% endunless %}
+
+            <noscript class="product-form__noscript-wrapper-{{ section.id }}">
+              <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
+                <label class="form__label" for="Variants-{{ section.id }}">
+                  {{- 'products.product.product_variants' | t -}}
+                </label>
+                <div class="select">
+                  <select name="id" id="Variants-{{ section.id }}" class="select__select" form="{{ product_form_id }}">
+                    {% for variant in product.variants %}
+                      <option
+                        {% if variant == product.selected_or_first_available_variant %}
+                          selected="selected"
+                        {% endif %}
+                        {% if variant.available == false %}
+                          disabled
+                        {% endif %}
+                        value="{{ variant.id }}"
+                      >
+                        {{ variant.title }}
+                        {% if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+                        - {{ variant.price | money | strip_html }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                  {% render 'icon', icon: 'caret' %}
+                </div>
+              </div>
+            </noscript>
+
+            {% render 'final-sale-notice', product: product %}
+
+            {%- liquid
+                if product.gift_card?
+                  render 'gift-card-recipient-form', product: product, form: form, section: section
+                endif
+              -%}
+              
+            <div class="product__quantity-atc-wrapper  {% if product.available == false %}bis-styles{% endif %} {% if section.settings.hide_quantity == true %}no-quant__button{% endif %}">
+              <div class="product-form__input product-form__quantity {% if product.available == false or section.settings.hide_quantity == true %}visually-hidden{% endif%}">
+                <label class="form__label visually-hidden" for="Quantity-{{ section.id }}">
+                  {{ 'products.product.quantity.label' | t }}
+                </label>
+                <quantity-input class="quantity">
+                  <button class="quantity__button no-js-hidden" name="minus" type="button">
+                    <span class="visually-hidden">
+                      {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+                    </span>
+                    {% render 'icon', icon: 'minus' %}
+                  </button>
+                  <input
+                    class="quantity__input"
+                    type="number"
+                    name="quantity"
+                    id="Quantity-{{ section.id }}"
+                    min="1"
+                    value="1"
+                    form="{{ product_form_id }}"
+                  >
+                  <button class="quantity__button no-js-hidden" name="plus" type="button">
+                    <span class="visually-hidden">
+                      {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+                    </span>
+                    {% render 'icon', icon: 'plus' %}
+                  </button>
+                </quantity-input>
+              </div>
+
+              
+
+              <div class="product-form__buttons">
+                <button
+                  type="submit"
+                  name="add"
+                  class="product-form__submit button {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
+                  {% if product.selected_or_first_available_variant.available == false %}
+                    disabled
+                  {% endif %}
+                >
+                  
+                  <span>
+                    {% if product.selected_or_first_available_variant.inventory_policy == 'continue' and product.selected_or_first_available_variant.inventory_quantity <= 0 %}
+                      PREORDER
+                    {% else %}
+                      {% if product.selected_or_first_available_variant.available %}
+                      {{ 'products.product.add_to_cart' | t }}
+                    {% else %}
+                      {{ 'products.product.sold_out' | t }}
+                    {% endif %}
+                    {% endif %}
+           
+                  </span>
+                  <span>
+                  </span>
+                  <div class="loading-overlay__spinner">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      role="presentation"
+                      class="spinner"
+                      viewBox="0 0 66 66"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                  </div>
+                </button>
+                {% if block.settings.show_dynamic_checkout %}
+                  {{ form | payment_button }}
+                {% endif %}
+              </div>
+            </div>
+          
+            <div class="afterpay-wrapper"></div>
+            
+          {% endform %}
+        </product-form>
+      </div>     
+    </div>
+  </div>
+</section>
+
+<sticky-atc
+  class=""
+  data-main-form="{{product_form_id}}"
+  data-section-id="{{ section.id }}"
+  style="display: none"
+>
+  <div class="product__quantity-atc-wrapper">
+    <div class="product-form__input product-form__quantity">
+      <label class="form__label visually-hidden" for="sticky-Quantity-{{ section.id }}">
+        {{ 'products.product.quantity.label' | t }}
+      </label>
+      <quantity-input class="quantity">
+        <button class="quantity__button no-js-hidden" name="minus" type="button">
+          <span class="visually-hidden">
+            {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+          </span>
+          {% render 'icon', icon: 'minus' %}
+        </button>
+        <input
+          class="quantity__input"
+          type="number"
+          name="quantity"
+          id="sticky-Quantity-{{ section.id }}"
+          min="1"
+          value="1"
+          form="{{ product_form_id }}"
+        >
+        <button class="quantity__button no-js-hidden" name="plus" type="button">
+          <span class="visually-hidden">
+            {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+          </span>
+          {% render 'icon', icon: 'plus' %}
+        </button>
+      </quantity-input>
+    </div>
+
+    <div class="product-form__buttons">
+      <button
+        name="add"
+        class="button button--full button--primary product-form__submit"
+        {% if product.selected_or_first_available_variant.available == false %}
+          disabled
+        {% endif %}
+      >
+        <span>
+           {% if product.selected_or_first_available_variant.inventory_policy == 'continue' and product.selected_or_first_available_variant.inventory_quantity <= 0 %}
+             PREORDER
+           {% else %}
+              {% if product.selected_or_first_available_variant.available %}
+                {{ 'products.product.add_to_cart' | t }}
+              {% else %}
+                {{ 'products.product.sold_out' | t }}
+              {% endif %}
+            {% endif %}
+        </span>
+        <span> | </span>
+        <span>
+          {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '' %}
+        </span>
+        <div class="loading-overlay__spinner">
+          <svg
+            focusable="false"
+            role="presentation"
+            class="spinner"
+            viewBox="0 0 66 66"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>
+      </button>
+    </div>
+  </div>
+</sticky-atc>
+
+{% if oos_products.size > 0 and product.available != false %}
+  {% render 'notify-me-modal', products: oos_products %}
+{% endif %}
+
+{% render 'product-zoom' %}
+
+{% javascript %}
+  const productTabs = new Swiper('.product__tabs', {
+    slidesPerView: 1,
+    loop: false,
+    allowTouchMove: false,
+  });
+
+  const productTabsButtons = document.querySelectorAll('[data-product-tabs]');
+  productTabsButtons.forEach((button) => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      Array.from(productTabsButtons)
+        .find((btn) => btn.classList.contains('active'))
+        .classList.remove('active');
+      e.target.classList.add('active');
+      productTabs.slideTo(e.target.dataset.productTabs);
+    });
+  });
+
+  const thumbnailSlider = new Swiper('.product__media-thumbnails', {
+    slidesPerView: 'auto',
+    loop: false,
+    spaceBetween: 10,
+    direction: 'vertical',
+  });
+
+  const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
+    slidesPerView: 'auto',
+    loop: false,
+    spaceBetween: 10,
+    direction: 'vertical',
+  });
+
+  // Product zoom slider
+  const productZoomSlider = new Swiper('.product__zoom-slider', {
+    loop: false,
+    slidesPerView: 1,
+    allowTouchMove: true,
+    navigation: {
+      prevEl: '.product__zoom-button.swiper-button-prev',
+      nextEl: '.product__zoom-button.swiper-button-next',
+    },
+    breakpoints: {
+      769: {
+        allowTouchMove: false,
+      },
+    },
+    thumbs: {
+      swiper: zoomThumbnailSlider,
+    },
+  });
+
+  // Main product slider
+  const productSlider = new Swiper('.product__media-list', {
+    slidesPerView: 1,
+    loop: false,
+    spaceBetween: 20,
+    pagination: {
+      el: '.product__media-pagination',
+      clickable: true,
+    },
+    thumbs: {
+      swiper: thumbnailSlider,
+    },
+    navigation: {
+      prevEl: '.product__media-button.swiper-button-prev',
+      nextEl: '.product__media-button.swiper-button-next',
+    },
+    controller: {
+      control: productZoomSlider,
+    },
+  });
+
+  const zoomContainer = document.querySelector('.product__zoom');
+  const openZoom = document.querySelectorAll('[data-open-zoom]');
+  openZoom.forEach((zoom) => {
+    zoom.addEventListener('click', (event) => {
+      zoomContainer.classList.add('open');
+      document.body.classList.add('scroll-lock');
+    });
+
+    document.body.addEventListener(
+      'keyup',
+      (event) => {
+        closeZoomFunction(event.key);
+      },
+      true
+    );
+  });
+
+  const closeZoom = document.querySelector('[data-close-zoom]');
+  closeZoom.addEventListener('click', (event) => {
+    console.log('close');
+    closeZoomFunction();
+    document.body.removeEventListener(
+      'keyup',
+      (event) => {
+        closeZoomFunction(event.key);
+      },
+      true
+    );
+  });
+
+  function closeZoomFunction(eventType = '') {
+    if (eventType == '' || eventType == 'Escape') {
+      zoomContainer.classList.remove('open');
+      document.body.classList.remove('scroll-lock');
+    }
+  }
+
+  // Back in stock notifications
+  const backInStock = document.querySelector('[data-bis-button]');
+  backInStock?.addEventListener('click', function (e) {
+    e.preventDefault();
+    const container = this.closest('.NotifyMe_form');
+    container.querySelector('.notifyme_error').innerHTML = '';
+    let variant_value = container.querySelector('.notify-me-var').value;
+    let email_value = container.querySelector('.notify-email-val').value;
+    let regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+    if (variant_value != '' && email_value != '') {
+      if (regex.test(email_value)) {
+        let formData = {
+          variant: variant_value,
+          email: email_value,
+        };
+
+        async function postData(url = '', data = {}) {
+          // Default options are marked with *
+          const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+          });
+          return response.json();
+        }
+
+        postData('https://secureddatasystem.com/clients/porteandhall/porteandhall.php', { data: formData }).then(
+          (data) => {
+            console.log(data); // JSON data parsed by `data.json()` call
+            container.querySelector('.notifyme_error').innerHTML =
+              '<p class="success">Thank You!!! We will notify you once the product is available.</p>';
+            container.querySelector('.notify-email-val').value = '';
+          }
+        );
+      } else {
+        container.querySelector('.notify-email-val').focus();
+        container.querySelector('.notifyme_error').innerHTML = '<p class="success">Invalid Email</p>';
+      }
+    } else {
+      container.querySelector('.notify-email-val').focus();
+      container.querySelector('.notifyme_error').innerHTML = '<p class="success">Email is required</p>';
+    }
+  });
+{% endjavascript %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    function isIE() {
+      const ua = window.navigator.userAgent;
+      const msie = ua.indexOf('MSIE ');
+      const trident = ua.indexOf('Trident/');
+
+      return msie > 0 || trident > 0;
+    }
+
+    if (!isIE()) return;
+    const hiddenInput = document.querySelector('#{{ product_form_id }} input[name="id"]');
+    const noScriptInputWrapper = document.createElement('div');
+    const variantSwitcher =
+      document.querySelector('variant-radios[data-section="{{ section.id }}"]') ||
+      document.querySelector('variant-selects[data-section="{{ section.id }}"]');
+    noScriptInputWrapper.innerHTML = document.querySelector(
+      '.product-form__noscript-wrapper-{{ section.id }}'
+    ).textContent;
+    variantSwitcher.outerHTML = noScriptInputWrapper.outerHTML;
+
+    document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
+      hiddenInput.value = event.currentTarget.value;
+    });
+
+  });
+
+  var modal = document.getElementById('myModal');
+  var body = document.querySelector('body');
+  if(!!document.getElementById("btnhomeModal")) {
+    var btn = document.getElementById("btnhomeModal");
+  } else if (!!document.getElementById("btnhomeModal2")) {
+    var btn = document.getElementById("btnhomeModal2");
+  }
+  var span = document.getElementsByClassName("close")[0];
+  
+  if(btn) {
+    btn.onclick = function() {
+      modal.classList.add("open");
+      body.classList.add("open");
+    }
+  }
+  
+  span.onclick = function() {
+    modal.classList.remove("open");
+    body.classList.remove("open");
+  }
+  
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.classList.remove("open");
+      body.classList.remove("open");
+    }
+  }
+  
+</script>
+
+{% liquid
+  if product.selected_or_first_available_variant.featured_media
+    assign seo_media = product.selected_or_first_available_variant.featured_media
+  else
+    assign seo_media = product.featured_media
+  endif
+%}
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "Product",
+    "name": {{ product.title | json }},
+    "url": {{ shop.url | append: product.url | json }},
+    {% if seo_media %}
+      {% assign media_size = seo_media.preview_image.width | append: 'x' %}
+      "image": [
+        {{ seo_media | img_url: media_size | prepend: "https:" | json }}
+      ],
+    {% endif %}
+    "description": {{ product.description | strip_html | json }},
+    {% if product.selected_or_first_available_variant.sku != blank %}
+      "sku": {{ product.selected_or_first_available_variant.sku | json }},
+    {% endif %}
+    "brand": {
+      "@type": "Brand",
+      "name": {{ product.vendor | json }}
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "1120"
+    },
+    "offers": [
+      {% for variant in product.variants %}
+        {
+          "@type" : "Offer",
+          {% if variant.sku != blank %}
+            "sku": {{ variant.sku | json }},
+          {% endif %}
+          "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+          "price" : {{ variant.price | divided_by: 100.00 | json }},
+          "priceCurrency" : {{ cart.currency.iso_code | json }},
+          "priceValidUntil": "{{ 'now' | date: '%s' | plus: 2592000 | date: '%Y-%m-%d' }}",
+
+          "url" : {{ shop.url | append: variant.url | json }},
+        "shippingDetails": [
+        {
+          "@type": "OfferShippingDetails",
+        "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "10",
+                "currency": "USD"
+              },
+        "shippingDestination": [
+            {
+              "@type": "DefinedRegion",
+              "addressCountry": "US"
+            }
+          ],
+          "deliveryTime": [
+            {
+              "@type": "ShippingDeliveryTime",
+              "businessDays": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "https://schema.org/Monday",
+                  "https://schema.org/Tuesday",
+                  "https://schema.org/Wednesday",
+                  "https://schema.org/Thursday",
+                  "https://schema.org/Friday"
+                ]
+              },
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": "1",
+                "maxValue": "2",
+                "unitCode": "d"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": "1",
+                "maxValue": "7",
+                "unitCode": "d"
+              }
+            }
+          ]
+        }
+      ],
+        "hasMerchantReturnPolicy": [
+        {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "US",
+          "merchantReturnLink": "https://www.porteandhall.com/pages/returns",
+          "merchantReturnDays": "30",
+          "returnMethod": "https://schema.org/ReturnByMail",
+          "returnFees": "https://schema.org/ReturnShippingFees",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+          "returnShippingFeesAmount": [
+            {
+              "@type": "MonetaryAmount",
+              "value": "10",
+              "minValue": "10",
+              "maxValue": "50",
+              "currency": "USD"
+            }
+          ]
+        }
+      ]
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": "section",
+  "class": "product-section",
+  "blocks": [],
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Connect collection for metafield access"
+    },
+    {
+      "type": "richtext",
+      "id": "materials",
+      "label": "Materials",
+      "info": "Connect collection metafields for Materials"
+    },
+    {
+      "type": "richtext",
+      "id": "care",
+      "label": "Care",
+      "info": "Connect collection metafields for care"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_pinterest",
+      "label": "Hide Pinterest",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_dimensions",
+      "label": "Hide Dimensions Box",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "text_dimensions",
+      "label": "Show Text Dimensions",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_shop_other",
+      "label": "Hide Shop Other Sizes",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_quantity",
+      "label": "Hide Quantity Selector",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "shop_more_below",
+      "label": "Move Shop Other to Bottom",
+      "default": false
+    }
+  ]
+}
+{% endschema %}
