@@ -1,10 +1,12 @@
 <ul class="list list-social list-unstyled" role="list">
   {% if settings.social_instagram_link != blank %}
     <li class="list-social__item h3">
+      {% comment %}
       <span
         class="list-social__icon"
         style="background-image: url({{ 'instagram-icon-color.png' | asset_url }})"
       ></span>
+      {% endcomment %}
       <a
         href="{{ settings.social_instagram_link }}"
         target="_blank"
