@@ -9,17 +9,6 @@
  */
 {
   "sections": {
-    "breadcrumbs_yG68eF": {
-      "type": "breadcrumbs",
-      "name": "Breadcrumbs",
-      "settings": {
-        "background_color": "",
-        "padding_top": 10,
-        "padding_bottom": 10,
-        "mobile_padding_top": 10,
-        "mobile_padding_bottom": 10
-      }
-    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -60,6 +49,17 @@
         "button_1_text": "Become a member",
         "button_2_text": "Sign in",
         "button_2_url": "/account/login"
+      }
+    },
+    "breadcrumbs_yG68eF": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
       }
     },
     "designer_how_it_work_xgLzzt": {
@@ -202,7 +202,7 @@
           "settings": {
             "title": "How do I place an order as a member?",
             "title_richtext": "",
-            "answer": "<p>Once you <a href=\"https://shopify.com/authentication/8486027327/login?client_id=1aed94ab-99b9-4bb5-b148-556229ff8224&locale=en&redirect_uri=https%3A%2F%2Fshopify.com%2Fauthentication%2F8486027327%2Foauth%2Fauthorize%3Fclient_id%3D1aed94ab-99b9-4bb5-b148-556229ff8224%26locale%3Den%26nonce%3D15c81c06-8a28-4bbf-97f0-51e388e94f91%26redirect_uri%3Dhttps%253A%252F%252Faccount.porteandhall.com%252Fcallback%253Fsource%253Dcore%26response_type%3Dcode%26scope%3Dopenid%2Bemail%2Bcustomer-account-api%253Afull%26state%3D01JRJT064SWJFHWWF8HTWDQ0RJ\"><span style=\"text-decoration:underline\">set up your account</span></a>, you’ll be able to place orders online and enjoy the benefits of your Trade Program membership. And you don’t need a code: As long as you’re logged in when you’re placing your order, your trade discount will be automatically applied.</p>"
+            "answer": "<p>Once you <a href=\"https://account.porteandhall.com/\" title=\"https://account.porteandhall.com/\"><span style=\"text-decoration:underline\">set up your account</span></a>, you’ll be able to place orders online and enjoy the benefits of your Trade Program membership. And you don’t need a code: As long as you’re logged in when you’re placing your order, your trade discount will be automatically applied.</p>"
           }
         },
         "faq_GFqXWN": {
