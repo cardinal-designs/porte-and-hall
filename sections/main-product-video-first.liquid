@@ -128,40 +128,84 @@
       {{ 'accessibility.skip_to_product_info' | t }}
     </a>
 
-    <div class="product__media-wrapper">
-      <div class="hide-mobile product__media-thumbnails list-unstyled swiper">
-        <div class="swiper-wrapper">
-          {% for media in product.media %}
-            {% unless media.alt == 'hide-outlier' %}
-            <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
-              {% render 'product-media', media: media, position: forloop.index, width: '106' %}
-            </div>
-          {% endunless %}
-          {% endfor %}
-        </div>
-      </div>
+{%- comment -%} Video-first (PDP only) ordering: find first video/external_video, render it first, then the rest. {%- endcomment -%}
 
-      <div class="product__media-list list-unstyled swiper">
-        <div class="swiper-wrapper">
-          {% for media in product.media %}
-            {% unless media.alt == 'hide-outlier' %}
-            <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
-              {% render 'product-media', media: media, position: forloop.index %}
-              <div class="product__media-buttons">
-                {% unless section.settings.hide_pinterest == true %}
-                  {% render 'pin-button', media: media %}
-                {% endunless %}
-                {% render 'zoom-button' %}
-              </div>
-            </div>
-            {% endunless %}
-          {% endfor %}
+{%- assign first_video = nil -%}
+{%- for m in product.media -%}
+  {%- unless m.alt == 'hide-outlier' -%}
+    {%- if m.media_type == 'video' or m.media_type == 'external_video' -%}
+      {%- assign first_video = m -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endunless -%}
+{%- endfor -%}
+
+{%- assign position = 0 -%}
+
+<div class="product__media-wrapper">
+  <div class="hide-mobile product__media-thumbnails list-unstyled swiper">
+    <div class="swiper-wrapper">
+
+      {%- if first_video -%}
+        {%- assign position = position | plus: 1 -%}
+        <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ first_video.id }}">
+          {% render 'product-media', media: first_video, position: position, width: '106' %}
         </div>
-        <div class="product__media-pagination swiper-pagination hide-desktop"></div>
-        <div class="product__media-button swiper-button-prev hide-desktop"></div>
-        <div class="product__media-button swiper-button-next hide-desktop"></div>
-      </div>
+      {%- endif -%}
+
+      {%- for media in product.media -%}
+        {%- unless media.alt == 'hide-outlier' -%}
+          {%- if first_video and media.id == first_video.id -%}{%- continue -%}{%- endif -%}
+          {%- assign position = position | plus: 1 -%}
+          <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+            {% render 'product-media', media: media, position: position, width: '106' %}
+          </div>
+        {%- endunless -%}
+      {%- endfor -%}
+
     </div>
+  </div>
+
+  {%- assign position = 0 -%}
+
+  <div class="product__media-list list-unstyled swiper">
+    <div class="swiper-wrapper">
+
+      {%- if first_video -%}
+        {%- assign position = position | plus: 1 -%}
+        <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ first_video.id }}">
+          {% render 'product-media', media: first_video, position: position %}
+          <div class="product__media-buttons">
+            {% unless section.settings.hide_pinterest == true %}
+              {% render 'pin-button', media: first_video %}
+            {% endunless %}
+            {% render 'zoom-button' %}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- for media in product.media -%}
+        {%- unless media.alt == 'hide-outlier' -%}
+          {%- if first_video and media.id == first_video.id -%}{%- continue -%}{%- endif -%}
+          {%- assign position = position | plus: 1 -%}
+          <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+            {% render 'product-media', media: media, position: position %}
+            <div class="product__media-buttons">
+              {% unless section.settings.hide_pinterest == true %}
+                {% render 'pin-button', media: media %}
+              {% endunless %}
+              {% render 'zoom-button' %}
+            </div>
+          </div>
+        {%- endunless -%}
+      {%- endfor -%}
+
+    </div>
+    <div class="product__media-pagination swiper-pagination hide-desktop"></div>
+    <div class="product__media-button swiper-button-prev hide-desktop"></div>
+    <div class="product__media-button swiper-button-next hide-desktop"></div>
+  </div>
+</div>
 
     <div class="product__info-wrapper">
       <div id="ProductInfo-{{ section.id }}" class="product__info-container">
