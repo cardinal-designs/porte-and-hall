@@ -42,83 +42,92 @@
       "disabled": true,
       "settings": {}
     },
-    "logo_marquee_FJtxKa": {
+    "logo_marquee_iG63fw": {
       "type": "logo-marquee",
       "blocks": {
-        "logo_WdBjM4": {
+        "logo_z4yJTm": {
           "type": "logo",
+          "name": "Featured In",
           "settings": {
             "logo": "shopify://shop_images/featuredin.png",
             "svg": ""
           }
         },
-        "logo_QiMxVL": {
+        "logo_tM8xVy": {
           "type": "logo",
+          "name": "Better Homes and Garden",
           "settings": {
-            "logo": "shopify://shop_images/better-homes.png",
+            "logo": "shopify://shop_images/better-homes-and-gardens-seeklogo_copy_b7ad6b67-efaf-4408-b921-c51fea885314.png",
             "svg": ""
           }
         },
-        "logo_hEEHDi": {
+        "logo_ThTyXL": {
           "type": "logo",
+          "name": "Forbes",
           "settings": {
-            "logo": "shopify://shop_images/forbes_31a0686e-a850-4946-b594-06bc53e22eef.png",
+            "logo": "shopify://shop_images/Forbes-01_0f8e5020-ca8c-4799-bfdf-20323649e33a.png",
             "svg": ""
           }
         },
-        "logo_4YKN8e": {
+        "logo_WC4cLw": {
           "type": "logo",
+          "name": "Southern Living",
           "settings": {
-            "logo": "shopify://shop_images/southern-living.png",
+            "logo": "shopify://shop_images/Southern-Living-Logo_copy_81a6b959-9e38-4dc8-8fbc-22cd11990acf.png",
             "svg": ""
           }
         },
-        "logo_a44LQf": {
+        "logo_qeYcJe": {
           "type": "logo",
+          "name": "Real Simple",
           "settings": {
-            "logo": "shopify://shop_images/real-simple.png",
+            "logo": "shopify://shop_images/RealSimple.svg_copy_2_1_a4c57903-a665-48f7-a751-1f564040b71c.png",
             "svg": ""
           }
         },
-        "logo_HVYp4U": {
+        "logo_t4PtWc": {
           "type": "logo",
+          "name": "Veranda",
           "settings": {
-            "logo": "shopify://shop_images/veranda_2e315f3b-d341-4431-8de6-e873af462a1b.png",
+            "logo": "shopify://shop_images/Veranda-logo_copy.png",
             "svg": ""
           }
         },
-        "logo_W9KjXd": {
+        "logo_3JwFB8": {
           "type": "logo",
+          "name": "USA Today",
           "settings": {
-            "logo": "shopify://shop_images/usa-today.png",
+            "logo": "shopify://shop_images/USA-Today-logo_copy_cd5eca3a-a963-4717-9b53-40e078f1195b.png",
             "svg": ""
           }
         },
-        "logo_kpjHgA": {
+        "logo_Vcnnq9": {
           "type": "logo",
+          "name": "People Inc",
           "settings": {
             "logo": "shopify://shop_images/people-inc.png",
             "svg": ""
           }
         },
-        "logo_VJkUJe": {
+        "logo_VyCDhA": {
           "type": "logo",
+          "name": "Apartment Therapy",
           "settings": {
-            "logo": "shopify://shop_images/apartment-therapy.png",
+            "logo": "shopify://shop_images/apartment-therapy_1d580765-3cce-43d1-a704-a03b68af769a.png",
             "svg": ""
           }
         }
       },
       "block_order": [
-        "logo_WdBjM4",
-        "logo_QiMxVL",
-        "logo_hEEHDi",
-        "logo_4YKN8e",
-        "logo_a44LQf",
-        "logo_HVYp4U",
-        "logo_W9KjXd",
-        "logo_kpjHgA",
-        "logo_VJkUJe"
+        "logo_z4yJTm",
+        "logo_tM8xVy",
+        "logo_ThTyXL",
+        "logo_WC4cLw",
+        "logo_qeYcJe",
+        "logo_t4PtWc",
+        "logo_3JwFB8",
+        "logo_Vcnnq9",
+        "logo_VyCDhA"
       ],
       "disabled": true,
       "settings": {
@@ -161,6 +170,28 @@
         "heading": "",
         "anchor": "",
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
+      }
+    },
+    "168172537899ce8b94": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_GBTbQT": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_GBTbQT"
+      ],
+      "settings": {
+        "include_margins": true,
+        "heading": "",
+        "section_reviews": true
       }
     },
     "lp_custom_collections_2_ABDk4m": {
@@ -258,28 +289,6 @@
         "bottom_button_link": ""
       }
     },
-    "168172537899ce8b94": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_GBTbQT": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "sample_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_GBTbQT"
-      ],
-      "settings": {
-        "include_margins": true,
-        "heading": "",
-        "section_reviews": true
-      }
-    },
     "product_quote_KP6aXV": {
       "type": "product-quote",
       "disabled": true,
@@ -355,7 +364,7 @@
     "breadcrumbs_yDykEc",
     "main",
     "other-sizes",
-    "logo_marquee_FJtxKa",
+    "logo_marquee_iG63fw",
     "design-details",
     "see-the-difference",
     "faq",
