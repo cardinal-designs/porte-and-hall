@@ -160,35 +160,12 @@
     },
     "see-the-difference": {
       "type": "see-the-difference",
-      "disabled": true,
       "settings": {
         "colleciton": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
         "heading": "Small mat, big difference",
         "text": "{{ section.settings.colleciton.metafields.custom.see_the_difference_subhead.value }}",
         "before-label": "Before",
         "after-label": "After"
-      }
-    },
-    "faq": {
-      "type": "faq",
-      "blocks": {
-        "question_1": {
-          "type": "faq",
-          "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
-          "settings": {
-            "title": "{{ block.repeater.question.value }}",
-            "title_richtext": "",
-            "answer": "{{ block.repeater.answer | metafield_tag }}"
-          }
-        }
-      },
-      "block_order": [
-        "question_1"
-      ],
-      "settings": {
-        "heading": "",
-        "anchor": "",
-        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
       }
     },
     "reviews": {
@@ -218,6 +195,28 @@
         "include_margins": true,
         "heading": "",
         "section_reviews": true
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "question_1": {
+          "type": "faq",
+          "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
+          "settings": {
+            "title": "{{ block.repeater.question.value }}",
+            "title_richtext": "",
+            "answer": "{{ block.repeater.answer | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "question_1"
+      ],
+      "settings": {
+        "heading": "",
+        "anchor": "",
+        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
       }
     },
     "lp_custom_collections_2_ABDk4m": {
@@ -358,15 +357,15 @@
     "other-sizes",
     "logo_marquee_FJtxKa",
     "design-details",
+    "see-the-difference",
+    "faq",
+    "lp_custom_collections_2_ABDk4m",
+    "168172537899ce8b94",
+    "you-may-like",
     "product_quote_KP6aXV",
     "see-in-action",
     "styling-tips",
-    "see-the-difference",
     "reviews",
-    "168172537899ce8b94",
-    "faq",
-    "lp_custom_collections_2_ABDk4m",
-    "you-may-like",
     "featured-articles"
   ]
 }
