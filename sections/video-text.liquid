@@ -364,40 +364,16 @@ video[data-hero-video] {
 {% javascript %}
 (function () {
   function prepareHeroVideos() {
-    var sections = document.querySelectorAll('section.video-text');
-    if (!sections.length) return;
+    document.querySelectorAll('section.video-text video[data-hero-video]').forEach(function (video) {
+      video.loop = true;
+      video.muted = true;
+      video.playsInline = true;
 
-    sections.forEach(function (section) {
-      var videos = section.querySelectorAll('video[data-hero-video]');
-      if (!videos.length) return;
-
-      videos.forEach(function (video) {
-        if (!video.hasAttribute('preload')) {
-          video.setAttribute('preload', 'auto');
-        }
-
-        var enableLoopAndPlay = function () {
-          if (!video.hasAttribute('data-loop-applied')) {
-            video.loop = true;
-            video.setAttribute('data-loop-applied', 'true');
-          }
-
-          if (typeof video.play === 'function') {
-            var playPromise = video.play();
-            if (playPromise && typeof playPromise.catch === 'function') {
-              playPromise.catch(function () {
-                /* Ignore autoplay blocks; user gesture will resume */
-              });
-            }
-          }
-        };
-
-        if (video.readyState >= 2) {
-          enableLoopAndPlay();
-        } else {
-          video.addEventListener('loadeddata', enableLoopAndPlay, { once: true });
-        }
-      });
+      // Only try to play once, and only if paused
+      if (video.paused) {
+        var p = video.play();
+        if (p && p.catch) p.catch(function(){});
+      }
     });
   }
 
