@@ -260,13 +260,13 @@
         {% capture desktop_video %}
           {{ section.settings.video | video_tag: autoplay: true, muted: true, loop: true, controls: false, playsinline: true, preload: 'auto', class: classes, id: 'video', image_size: '800x', poster: poster_url }}
         {% endcapture %}
-        {{ desktop_video | replace: '<video', '<video data-hero-video fetchpriority="high"' }}
+        {{ desktop_video }}
         
         {% if has_mobile_video %}
           {% capture mobile_video %}
             {{ section.settings.mobile_video | video_tag: autoplay: true, muted: true, loop: true, controls: false, playsinline: true, preload: 'auto', class: 'videos hide-desktop', id: 'video-mobile', image_size: '800x', poster: poster_url }}
           {% endcapture %}
-          {{ mobile_video | replace: '<video', '<video data-hero-video fetchpriority="high"' }}
+          {{ mobile_video }}
         {% endif %}
       </div>
     {%- endif -%}
