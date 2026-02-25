@@ -401,10 +401,8 @@ video[data-hero-video] {
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', prepareHeroVideos);
-    console.log('aaa')
   } else {
-    console.log('bbb')
-    // prepareHeroVideos();
+    prepareHeroVideos();
   }
 })();
 {% endjavascript %}
