@@ -264,7 +264,7 @@
         {{ desktop_video }}
         
         {% if has_mobile_video %}
-          {% assign id_mobile = 'video-{{ section.id }}' %}
+          {% assign id_mobile = 'video-mobile-{{ section.id }}' %}
           {% capture mobile_video %}
             {{ section.settings.mobile_video | video_tag: autoplay: true, muted: true, loop: true, controls: false, playsinline: true, preload: 'auto', class: 'videos hide-desktop', id: id_mobile , image_size: '800x', poster: poster_url }}
           {% endcapture %}
