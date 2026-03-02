@@ -33,16 +33,154 @@
         "content_font_size": 24,
         "content_font_size_mb": 20,
         "link_text": "SHOP THE INSIDER",
-        "link_url": "",
+        "link_url": "https://www.porteandhall.com/collections/indoor-doormats?filter.v.m.custom.filters=The+Insider&sort_by=best-selling",
         "button_style": "large",
         "custom-class": "home-banner",
         "media_first": true,
         "content_full_width": true
       }
+    },
+    "shop_by_size_LkVNrK": {
+      "type": "shop-by-size",
+      "blocks": {
+        "block_JynDt7": {
+          "type": "block",
+          "settings": {
+            "title": "DOORMAT",
+            "products": [
+              "the-insider-wild-side-dove-doormat",
+              "the-insider-bark-grey-doormat",
+              "the-insider-bark-creme-doormat",
+              "the-insider-maze-navy-doormat",
+              "the-insider-bark-graphite-doormat",
+              "the-insider-wild-side-sable-doormat",
+              "the-insider-dreamweaver-cloud-doormat",
+              "the-insider-dreamweaver-champagne-doormat"
+            ],
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_yyEcUf": {
+          "type": "block",
+          "settings": {
+            "title": "RUNNER",
+            "products": [
+              "the-insider-dreamweaver-mocha-runner",
+              "the-insider-bark-grey-runner",
+              "the-insider-helix-mushroom-runner",
+              "the-insider-dreamweaver-cloud-runner",
+              "the-insider-fans-green-runner",
+              "the-insider-wild-side-sable-runner",
+              "the-insider-bark-creme-runner",
+              "the-insider-wild-side-dove-runner"
+            ],
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_xCmUYz": {
+          "type": "block",
+          "settings": {
+            "title": "XL RUNNER",
+            "products": [
+              "the-insider-minuet-midnight-xl-runner",
+              "the-insider-bark-creme-xl-runner",
+              "the-insider-helix-mushroom-xl-runner",
+              "the-insider-dreamweaver-cloud-xl-runner",
+              "the-insider-bark-denim-xl-runner",
+              "the-insider-bark-grey-xl-runner",
+              "the-insider-maze-navy-xl-runner",
+              "the-insider-fugu-blue-xl-runner"
+            ],
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_7wXdWM": {
+          "type": "block",
+          "settings": {
+            "title": "AREA MAT",
+            "products": [
+              "the-insider-wild-side-sable-area-mat",
+              "the-insider-wild-side-dove-area-mat",
+              "the-insider-maze-navy-area-mat",
+              "the-insider-fugu-blue-area-mat",
+              "the-insider-bark-grey-area-mat",
+              "the-insider-bark-graphite-area-mat",
+              "the-insider-bark-creme-area-mat"
+            ],
+            "link_text": "",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_JynDt7",
+        "block_yyEcUf",
+        "block_xCmUYz",
+        "block_7wXdWM"
+      ],
+      "name": "Shop by size",
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 60,
+        "bg_color": "#ffffff",
+        "title": "Best Sellers by Size",
+        "title_font_size": 64,
+        "title_font_size_mb": 40,
+        "title_color": "#30383d",
+        "button_label": "SHOP ALL",
+        "button_link": "https://www.porteandhall.com/collections/indoor-doormats?filter.v.m.custom.filters=The+Insider&sort_by=best-selling",
+        "content_margin_bottom": 80,
+        "content_margin_bottom_mb": 40,
+        "centered_tab": false,
+        "show_product_badge": true
+      }
+    },
+    "images_with_text_LgbH4j": {
+      "type": "images-with-text",
+      "blocks": {
+        "block_368jXD": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/gif_1024x1024_f9b55c1b-8614-424b-979c-8188a61a59db.webp",
+            "title": "Ultra-thin, no snags"
+          }
+        },
+        "block_dGrz3X": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/gif_2_1024x1024_ab0836ba-cf10-434e-b2eb-3c0e253ad69a.webp",
+            "title": "Slip-resistant, won’t mark"
+          }
+        },
+        "block_kCyP6d": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/gif_3_1024x1024_d3199dc6-ffb1-4d0b-8bcb-989d761bff63.webp",
+            "title": "Water-absorbent, protects floors"
+          }
+        }
+      },
+      "block_order": [
+        "block_368jXD",
+        "block_dGrz3X",
+        "block_kCyP6d"
+      ],
+      "name": "Images with text",
+      "settings": {
+        "background": "#eeefef",
+        "text_color": "#30383d"
+      }
     }
   },
   "order": [
     "main",
-    "video_text_waFH8M"
+    "video_text_waFH8M",
+    "images_with_text_LgbH4j",
+    "shop_by_size_LkVNrK"
   ]
 }
