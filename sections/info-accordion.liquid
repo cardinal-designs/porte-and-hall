@@ -1,0 +1,272 @@
+{{ 'section-info-accordion.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'info-accordion.js' | asset_url }}" defer="defer"></script>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  @media only screen and (max-width: 990px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+  }
+</style>
+
+<section
+  id="{{ section.settings.anchor | default: 'info-accordion-' | append: section.id }}"
+  class="info-accordion"
+  data-info-accordion
+  data-allow-multiple="{{ section.settings.allow_multiple_open }}"
+>
+  <div class="page-width">
+    <div class="info-accordion__layout">
+      <div class="info-accordion__intro info-accordion__intro--mobile">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="info-accordion__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.text != blank -%}
+          <div class="info-accordion__text">
+            {{ section.settings.text }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="info-accordion__media">
+        <div class="info-accordion__media-item">
+          {%- if section.settings.image_top != blank -%}
+            {{
+              section.settings.image_top
+              | image_url: width: 1600
+              | image_tag:
+                loading: 'lazy',
+                widths: '320, 480, 640, 800, 960, 1200, 1600',
+                class: 'info-accordion__image',
+                alt: section.settings.image_top.alt
+            }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'info-accordion__image info-accordion__placeholder' }}
+          {%- endif -%}
+        </div>
+
+        <div class="info-accordion__media-item">
+          {%- if section.settings.image_bottom != blank -%}
+            {{
+              section.settings.image_bottom
+              | image_url: width: 1600
+              | image_tag:
+                loading: 'lazy',
+                widths: '320, 480, 640, 800, 960, 1200, 1600',
+                class: 'info-accordion__image',
+                alt: section.settings.image_bottom.alt
+            }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'info-accordion__image info-accordion__placeholder' }}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="info-accordion__content-wrapper">
+        <div class="info-accordion__intro info-accordion__intro--desktop">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="info-accordion__heading">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+
+          {%- if section.settings.text != blank -%}
+            <div class="info-accordion__text">
+              {{ section.settings.text }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div class="info-accordion__details" data-info-accordion-items>
+          {%- for block in section.blocks -%}
+            {%- assign panel_id = 'info-accordion-panel-' | append: section.id | append: '-' | append: block.id -%}
+            {%- assign button_id = 'info-accordion-button-' | append: section.id | append: '-' | append: block.id -%}
+            {%- assign is_open = false -%}
+            {%- if section.settings.open_first_item and forloop.first -%}
+              {%- assign is_open = true -%}
+            {%- endif -%}
+
+            <article class="info-accordion__item{% if is_open %} is-open{% endif %}" {{ block.shopify_attributes }}>
+              <button
+                class="info-accordion__trigger body"
+                type="button"
+                id="{{ button_id }}"
+                aria-controls="{{ panel_id }}"
+                aria-expanded="{% if is_open %}true{% else %}false{% endif %}"
+              >
+                <span class="info-accordion__bullet" aria-hidden="true"></span>
+                <span class="info-accordion__title">{{ block.settings.title }}</span>
+                <span class="info-accordion__plus" aria-hidden="true"></span>
+              </button>
+
+              <div
+                id="{{ panel_id }}"
+                class="info-accordion__content"
+                role="region"
+                aria-labelledby="{{ button_id }}"
+                {% unless is_open %}hidden{% endunless %}
+              >
+                {{ block.settings.answer }}
+              </div>
+            </article>
+          {%- endfor -%} 
+        </div>
+
+        {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+            <a class="button info-accordion__button" href="{{ section.settings.button_link }}">
+              {{ section.settings.button_label }}
+            </a>
+          {%- endif -%}
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Info accordion",
+  "tag": "section",
+  "class": "with-spacing",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Details That Deliver"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>The Insider doesn’t just lie there—it works.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_top",
+      "label": "Top image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_bottom",
+      "label": "Bottom image"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first_item",
+      "label": "Open first accordion item by default",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "allow_multiple_open",
+      "label": "Allow multiple open items",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#CAD2D3"
+    },
+    {
+        "type": "header",
+        "content": "Paddings"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 120,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 60
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 120,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 60
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_top",
+        "min": 0,
+        "max": 120,
+        "step": 2,
+        "unit": "px",
+        "label": "Mobile Padding Top",
+        "default": 30
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_bottom",
+        "min": 0,
+        "max": 120,
+        "step": 2,
+        "unit": "px",
+        "label": "Mobile Padding Bottom",
+        "default": 30
+      },
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Accordion item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Accordion title"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Content",
+          "default": "<p>Accordion content</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Info accordion",
+      "blocks": [
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

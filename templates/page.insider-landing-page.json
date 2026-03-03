@@ -40,6 +40,42 @@
         "content_full_width": true
       }
     },
+    "images_with_text_LgbH4j": {
+      "type": "images-with-text",
+      "blocks": {
+        "block_368jXD": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/gif_1024x1024_f9b55c1b-8614-424b-979c-8188a61a59db.webp",
+            "title": "Ultra-thin, no snags"
+          }
+        },
+        "block_dGrz3X": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/gif_2_1024x1024_ab0836ba-cf10-434e-b2eb-3c0e253ad69a.webp",
+            "title": "Slip-resistant, won’t mark"
+          }
+        },
+        "block_kCyP6d": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/gif_3_1024x1024_d3199dc6-ffb1-4d0b-8bcb-989d761bff63.webp",
+            "title": "Water-absorbent, protects floors"
+          }
+        }
+      },
+      "block_order": [
+        "block_368jXD",
+        "block_dGrz3X",
+        "block_kCyP6d"
+      ],
+      "name": "Images with text",
+      "settings": {
+        "background": "#eeefef",
+        "text_color": "#30383d"
+      }
+    },
     "shop_by_size_LkVNrK": {
       "type": "shop-by-size",
       "blocks": {
@@ -140,40 +176,67 @@
         "show_product_badge": true
       }
     },
-    "images_with_text_LgbH4j": {
-      "type": "images-with-text",
+    "info_accordion_j4eJ4f": {
+      "type": "info-accordion",
       "blocks": {
-        "block_368jXD": {
-          "type": "block",
+        "item_Yb79Wd": {
+          "type": "item",
           "settings": {
-            "image": "shopify://shop_images/gif_1024x1024_f9b55c1b-8614-424b-979c-8188a61a59db.webp",
-            "title": "Ultra-thin, no snags"
+            "title": "Super-low profile",
+            "answer": "<p>Ultra-thin and borderless, so it fits under doors and stays flat—no bunching, curling, or catching. </p>"
           }
         },
-        "block_dGrz3X": {
-          "type": "block",
+        "item_KbmxEK": {
+          "type": "item",
           "settings": {
-            "image": "shopify://shop_images/gif_2_1024x1024_ab0836ba-cf10-434e-b2eb-3c0e253ad69a.webp",
-            "title": "Slip-resistant, won’t mark"
+            "title": "Stays in place",
+            "answer": "<p>A grippy backing keeps The Insider from sliding around—without an annoying rug pad.</p>"
           }
         },
-        "block_kCyP6d": {
-          "type": "block",
+        "item_AHG7Xt": {
+          "type": "item",
           "settings": {
-            "image": "shopify://shop_images/gif_3_1024x1024_d3199dc6-ffb1-4d0b-8bcb-989d761bff63.webp",
-            "title": "Water-absorbent, protects floors"
+            "title": "Absorbs moisture",
+            "answer": "<p>It soaks up water and spills, then dries quickly—to help protect floors and prevent slips.</p>"
+          }
+        },
+        "item_bkdxBz": {
+          "type": "item",
+          "settings": {
+            "title": "Low maintenance",
+            "answer": "<p>Shake off dirt, rinse out stains, and you’re done—no mess, no stress.</p>"
+          }
+        },
+        "item_8MWy38": {
+          "type": "item",
+          "settings": {
+            "title": "Designed to impress",
+            "answer": "<p>Created by our founder, an interior designer, The Insider doesn’t just perform—it looks beautiful.</p>"
           }
         }
       },
       "block_order": [
-        "block_368jXD",
-        "block_dGrz3X",
-        "block_kCyP6d"
+        "item_Yb79Wd",
+        "item_KbmxEK",
+        "item_AHG7Xt",
+        "item_bkdxBz",
+        "item_8MWy38"
       ],
-      "name": "Images with text",
+      "name": "Info accordion",
       "settings": {
-        "background": "#eeefef",
-        "text_color": "#30383d"
+        "heading": "Details That Deliver",
+        "text": "<p>The Insider doesn’t just lie there—it works.</p>",
+        "image_top": "shopify://shop_images/a68b8990705fce0485029d6a450712246c64f340_59441842-585a-4a89-a9e0-e94a252d8c84.png",
+        "image_bottom": "shopify://shop_images/543c79cd1b9b83f9e441334f7e0c227bb996091a.jpg",
+        "button_label": "Shop now",
+        "button_link": "https://www.porteandhall.com/collections/indoor-doormats?filter.v.m.custom.filters=The+Insider&sort_by=best-selling",
+        "open_first_item": false,
+        "allow_multiple_open": false,
+        "bg_color": "#cad2d3",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 60
       }
     }
   },
@@ -181,6 +244,7 @@
     "main",
     "video_text_waFH8M",
     "images_with_text_LgbH4j",
-    "shop_by_size_LkVNrK"
+    "shop_by_size_LkVNrK",
+    "info_accordion_j4eJ4f"
   ]
 }
