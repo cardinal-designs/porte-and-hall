@@ -45,6 +45,10 @@
   overflow: hidden;
 }
 
+.designer-spotlight__image img {
+  object-fit: contain;
+}
+
 .designer-spotlight__subtitle {
   margin: 0 0 80px;
 }
