@@ -5,35 +5,37 @@
   <div class="page-width">
     <div class="designer-spotlight__container">
       {% for block in section.blocks %}
-        <div class="designer-spotlight__item {% cycle 'odd', 'even' %}" {{ block.shopify_attributes }}>
-          <div class="designer-spotlight__image-container">
-            <h2 class="designer-spotlight__title h3">{{ block.settings.title }}</h2>
-            <div class="designer-spotlight-feature__designer">
-              <div class="designer-spotlight-feature__designer-image">
-                {% render 'lazy-image' image: block.settings.designer_image, fade: true, fill: true %}
-              </div>
-              <div class="designer-spotlight-feature__designer-content">
-                <p class="designer-spotlight-feature__designer-name">{{ block.settings.designer_name }}</p>
-                <p class="designer-spotlight-feature__designer-title">{{ block.settings.designer_title }}</p>
-              </div>
+        <div class="designer-spotlight__item-wrapper" {{ block.shopify_attributes }}>
+          <h2 class="designer-spotlight__title h3">{{ block.settings.title }}</h2>
+          <div class="designer-spotlight-feature__designer">
+            <div class="designer-spotlight-feature__designer-image">
+              {% render 'lazy-image' image: block.settings.designer_image, fade: true, fill: true %}
             </div>
-            <div class="designer-spotlight__image">
-              {% render 'lazy-image' image: block.settings.image, fade: true, fill: true %}
+            <div class="designer-spotlight-feature__designer-content">
+              <p class="designer-spotlight-feature__designer-name">{{ block.settings.designer_name }}</p>
+              <p class="designer-spotlight-feature__designer-title">{{ block.settings.designer_title }}</p>
             </div>
           </div>
-          <div class="designer-spotlight__content">
-            <h3 class="designer-spotlight__text-header h3">{{ block.settings.text_header_1 }}</h3>
-            <p class="designer-spotlight__text h4">{{ block.settings.text_1 }}</p>
-            {% if block.settings.text_header_2 != blank %}
-              <h3 class="designer-spotlight__text-header h3">{{ block.settings.text_header_2 }}</h3>
-              <p class="designer-spotlight__text h4">{{ block.settings.text_2 }}</p>
-            {% endif %}
+          <div class="designer-spotlight__item {% cycle 'odd', 'even' %}">
+            <div class="designer-spotlight__image-container">
+              <div class="designer-spotlight__image">
+                {% render 'lazy-image' image: block.settings.image, fade: true, fill: true %}
+              </div>
+            </div>
+            <div class="designer-spotlight__content">
+              <h3 class="designer-spotlight__text-header h3">{{ block.settings.text_header_1 }}</h3>
+              <p class="designer-spotlight__text h4">{{ block.settings.text_1 }}</p>
+              {% if block.settings.text_header_2 != blank %}
+                <h3 class="designer-spotlight__text-header h3">{{ block.settings.text_header_2 }}</h3>
+                <p class="designer-spotlight__text h4">{{ block.settings.text_2 }}</p>
+              {% endif %}
 
-            {% if block.settings.text_header_3 != blank %}
-              <h3 class="designer-spotlight__text-header h3">{{ block.settings.text_header_3 }}</h3>
-              <p class="designer-spotlight__text h4">{{ block.settings.text_3 }}</p>
-            {% endif %}
-            <a href="{{ block.settings.button_link }}" class="designer-spotlight__button button">{{ block.settings.button_label }}</a>
+              {% if block.settings.text_header_3 != blank %}
+                <h3 class="designer-spotlight__text-header h3">{{ block.settings.text_header_3 }}</h3>
+                <p class="designer-spotlight__text h4">{{ block.settings.text_3 }}</p>
+              {% endif %}
+              <a href="{{ block.settings.button_link }}" class="designer-spotlight__button button">{{ block.settings.button_label }}</a>
+            </div>
           </div>
         </div>
         {% unless forloop.last %}
