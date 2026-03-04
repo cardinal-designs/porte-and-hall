@@ -95,7 +95,7 @@
   }
 
   .designer-spotlight__item {
-    flex-direction: column;
+    flex-direction: column !important;
     gap: 20px;
   }
 
