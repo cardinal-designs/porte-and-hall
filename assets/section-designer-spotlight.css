@@ -11,9 +11,12 @@
   gap: 80px;
 }
 
+.designer-spotlight__item-wrapper {
+  color: white;
+}
+
 .designer-spotlight__item {
   display: flex;
-  align-items: center;
   gap: 60px;
   color: white;
 }
@@ -44,6 +47,19 @@
   position: relative;
   overflow: hidden;
 }
+
+.designer-spotlight__image img {
+  object-fit: contain;
+  object-position: left;
+}
+
+/* .odd .designer-spotlight__image img {
+  object-position: left;
+}
+
+.even .designer-spotlight__image img {
+  object-position: right;
+} */
 
 .designer-spotlight__subtitle {
   margin: 0 0 80px;
@@ -79,7 +95,7 @@
   }
 
   .designer-spotlight__item {
-    flex-direction: column;
+    flex-direction: column !important;
     gap: 20px;
   }
 
