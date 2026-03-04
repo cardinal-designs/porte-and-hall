@@ -47,15 +47,16 @@
 
 .designer-spotlight__image img {
   object-fit: contain;
+  object-position: left;
 }
 
-.odd .designer-spotlight__image img {
+/* .odd .designer-spotlight__image img {
   object-position: left;
 }
 
 .even .designer-spotlight__image img {
   object-position: right;
-}
+} */
 
 .designer-spotlight__subtitle {
   margin: 0 0 80px;
