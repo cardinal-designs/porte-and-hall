@@ -132,7 +132,7 @@
 
 {%- assign first_video = nil -%}
 {%- for m in product.media -%}
-  {%- unless m.alt == 'hide-outlier' or product.handle == 'the-insider-dreamweaver-mocha-doormat' -%}
+  {%- unless m.alt == 'hide-outlier' -%}
     {%- if m.media_type == 'video' or m.media_type == 'external_video' -%}
       {%- assign first_video = m -%}
       {%- break -%}
@@ -154,7 +154,7 @@
       {%- endif -%}
 
       {%- for media in product.media -%}
-        {%- unless media.alt == 'hide-outlier' or product.handle == 'the-insider-dreamweaver-mocha-doormat' -%}
+        {%- unless media.alt == 'hide-outlier' -%}
           {%- if first_video and media.id == first_video.id -%}{%- continue -%}{%- endif -%}
           {%- assign position = position | plus: 1 -%}
           <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
@@ -185,7 +185,7 @@
       {%- endif -%}
 
       {%- for media in product.media -%}
-        {%- unless media.alt == 'hide-outlier' or product.handle == 'the-insider-dreamweaver-mocha-doormat' -%}
+        {%- unless media.alt == 'hide-outlier' -%}
           {%- if first_video and media.id == first_video.id -%}{%- continue -%}{%- endif -%}
           {%- assign position = position | plus: 1 -%}
           <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
