@@ -131,6 +131,7 @@
 {%- comment -%} Video-first (PDP only) ordering: find first video/external_video, render it first, then the rest. {%- endcomment -%}
 
 {%- assign first_video = nil -%}
+{% unless product.handle == 'the-insider-dreamweaver-mocha-doormat' %}
 {%- for m in product.media -%}
   {%- unless m.alt == 'hide-outlier' -%}
     {%- if m.media_type == 'video' or m.media_type == 'external_video' -%}
@@ -139,6 +140,7 @@
     {%- endif -%}
   {%- endunless -%}
 {%- endfor -%}
+{% endunless %}
 
 {%- assign position = 0 -%}
 
