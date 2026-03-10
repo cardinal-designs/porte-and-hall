@@ -151,6 +151,12 @@
     "d6ffae26-0ed7-4647-a4f9-a65110b580f2": {
       "type": "designer-program",
       "blocks": {
+        "powerful_form_builder_app_block_UMpXKY": {
+          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+          "settings": {
+            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"ODQ5Njc=\"></div>"
+          }
+        },
         "powerful_form_builder_app_block_MnQKmy": {
           "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
           "settings": {
@@ -159,6 +165,7 @@
         }
       },
       "block_order": [
+        "powerful_form_builder_app_block_UMpXKY",
         "powerful_form_builder_app_block_MnQKmy"
       ],
       "settings": {
