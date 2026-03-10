@@ -14,12 +14,13 @@
       </div>
 
       <div class="Designer_Program_Form">
-        {%- for block in section.blocks -%}
+        {% comment %} {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when '@app' -%}
               {% render block %}
           {%- endcase -%}
-        {%- endfor -%}
+        {%- endfor -%} {% endcomment %}
+         <div class="globo-formbuilder" data-id="ODQ5Njc="></div>
       </div>
 
       
