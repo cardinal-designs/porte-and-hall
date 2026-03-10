@@ -1,0 +1,68 @@
+{{ 'section-images-with-text.css' | asset_url | stylesheet_tag }}
+
+{%- capture css_variables -%}
+  --background: {{ section.settings.background }};
+  --text_color: {{ section.settings.text_color }};
+{%- endcapture -%}
+
+<div id="section-{{ section.id }}" class="section images-with-text" style="{{- css_variables | strip_newlines -}}">
+  <div class="images-container">
+    <div class="images-wrapper">
+      {%- for block in section.blocks -%}
+        <div class="images-text-content">
+            {% if block.settings.image %}
+              <div class="">
+                {{ block.settings.image | image_url: width: 100 | image_tag }}
+              </div>
+            {%  endif %}
+            <span class="images_text">{{ block.settings.title }}</span>
+        </div>
+      {%  endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Images with text",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background",
+        "default": "#EEEFEF"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text",
+        "default": "#30383D"
+      },
+    ],
+     "blocks": [
+    {
+     "type": "block",
+     "name": "Image block",
+     "limit":4,
+     "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+    "presets": [
+    {
+      "name": "Images with text",
+      "settings": {}
+    }
+  ]
+  }
+{% endschema %}

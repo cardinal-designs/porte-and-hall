@@ -1,0 +1,301 @@
+{{ 'section-testimonials-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'testimonials-slider.js' | asset_url }}" defer="defer"></script>
+
+{% liquid
+  assign testimonial_blocks = section.blocks | where: 'type', 'testimonial'
+  assign total_slides = testimonial_blocks.size
+%}
+
+<section class="testimonials-section">
+  <div class="page-width">
+    <testimonials-slider
+      class="testimonials-slider"
+      data-show-arrows="{{ section.settings.show_arrows }}"
+      data-show-pagination="{{ section.settings.show_pagination }}"
+      data-gallery-count="{{ testimonial_blocks.size }}"
+      data-testimonial-count="{{ testimonial_blocks.size }}"
+      tabindex="0"
+      aria-label="{{ section.settings.heading | escape }}"
+      role="region"
+    >
+      <header class="testimonials-slider__header">
+        {% if section.settings.heading != blank %}
+          <h2 class="testimonials-slider__title">{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        <div class="testimonials-slider__rating" aria-label="5 out of 5 stars">
+          <span class="testimonials-slider__stars" aria-hidden="true">
+            {% for i in (1..4) %}
+              {%- render 'icon', icon: 'star' -%}
+            {% endfor %}
+            {%- render 'icon', icon: 'star-unfilled' -%}
+          </span>
+          {% if section.settings.subheading != blank %}
+            <p class="testimonials-slider__subheading">{{ section.settings.subheading }}</p>
+          {% endif %}
+        </div>
+      </header>
+
+      <div class="testimonials-slider__gallery" aria-label="Customer gallery">
+        {% if section.settings.show_arrows and testimonial_blocks.size > 1 %}
+          <button class="testimonials-slider__arrow testimonials-slider__arrow--prev" type="button" data-action="prev" data-slider="gallery" aria-label="Previous gallery slide">
+            {% render 'icon' with 'small-arrow' %} 
+          </button>
+        {% endif %}
+
+        <div class="testimonials-slider__gallery-viewport" data-slider-viewport="gallery">
+          <ul class="testimonials-slider__gallery-track" data-slider-track="gallery" role="list">
+            {% for block in testimonial_blocks %}
+              <li class="testimonials-slider__gallery-slide" data-gallery-slide data-gallery-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+                <button
+                  class="testimonials-slider__gallery-trigger"
+                  type="button"
+                  data-gallery-trigger
+                  data-gallery-index="{{ forloop.index0 }}"
+                  aria-label="Open testimonial {{ forloop.index }}"
+                >
+                  {% if block.settings.gallery_image != blank %}
+                    {{
+                      block.settings.gallery_image
+                      | image_url: width: 1000
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '320, 480, 640, 800, 1000',
+                        sizes: '(max-width: 768px) 50vw, 20vw',
+                        class: 'testimonials-slider__gallery-image',
+                        alt: block.settings.gallery_image.alt | default: block.settings.author_name
+                    }}
+                  {% elsif block.settings.author_image != blank %}
+                    {{
+                      block.settings.author_image
+                      | image_url: width: 1000
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '320, 480, 640, 800, 1000',
+                        sizes: '(max-width: 768px) 50vw, 20vw',
+                        class: 'testimonials-slider__gallery-image',
+                        alt: block.settings.author_image.alt | default: block.settings.author_name
+                    }}
+                  {% else %}
+                    {{ 'image' | placeholder_svg_tag: 'testimonials-slider__gallery-image testimonials-slider__gallery-image--placeholder' }}
+                  {% endif %}
+                </button>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        {% if section.settings.show_arrows and testimonial_blocks.size > 1 %}
+          <button class="testimonials-slider__arrow testimonials-slider__arrow--next" type="button" data-action="next" data-slider="gallery" aria-label="Next gallery slide">
+            {% render 'icon' with 'small-arrow' %} 
+          </button>
+        {% endif %}
+      </div>
+
+      <div class="testimonials-slider__reviews" aria-label="Testimonials">
+        {% if section.settings.show_arrows and testimonial_blocks.size > 1 %}
+          <button class="testimonials-slider__arrow testimonials-slider__arrow--prev" type="button" data-action="prev" data-slider="testimonial" aria-label="Previous testimonial">
+            {% render 'icon' with 'small-arrow' %} 
+          </button>
+        {% endif %}
+
+        <div class="testimonials-slider__reviews-viewport" data-slider-viewport="testimonial">
+          <ul class="testimonials-slider__reviews-track" data-slider-track="testimonial" role="list">
+            {% for block in testimonial_blocks %}
+              <li class="testimonials-slider__review-slide" data-testimonial-slide data-testimonial-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+                <div class="testimonials-slider__card">
+                  {% if block.settings.author_image != blank %}
+                    <div class="testimonials-slider__author-media">
+                      {{
+                        block.settings.author_image
+                        | image_url: width: 800
+                        | image_tag:
+                          loading: 'lazy',
+                          widths: '320, 480, 640, 800',
+                          sizes: '(max-width: 768px) 100vw, 32vw',
+                          class: 'testimonials-slider__author-image',
+                          alt: block.settings.author_name
+                      }}
+                    </div>
+                  {% endif %}
+
+                  <div class="testimonials-slider__author-content">
+                    <div class="testimonials-slider__review-header">
+                        <div class="testimonials-slider__review-stars" aria-hidden="true">
+                        {% for i in (1..5) %}
+                          {%- render 'icon', icon: 'star' -%}
+                        {% endfor %}
+                      </div>
+
+                      {% if block.settings.author_meta != blank %}
+                        <p class="testimonials-slider__review-meta">{{ block.settings.author_meta }}</p>
+                      {% endif %}
+                    </div>
+                    
+
+                    {% if block.settings.review_text != blank %}
+                      <div class="testimonials-slider__review-text">
+                        {{ block.settings.review_text | newline_to_br }}
+                      </div>
+                    {% endif %}
+
+                    {% if block.settings.author_name != blank %}
+                      <div class="testimonials-slider__author-name">
+                        <p>
+                        {{ block.settings.author_name }}</p>
+                        {% if block.settings.verified_review_badge_text != blank %}
+                          <span class="testimonials-slider__verified-badge">
+                            {% render 'icon', icon: 'verified' %}
+                            {{ block.settings.verified_review_badge_text }}
+                          </span>
+                        {% endif %}
+                        
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        {% if section.settings.show_arrows and testimonial_blocks.size > 1 %}
+          <button class="testimonials-slider__arrow testimonials-slider__arrow--next" type="button" data-action="next" data-slider="testimonial" aria-label="Next testimonial">
+            {% render 'icon' with 'small-arrow' %} 
+          </button>
+        {% endif %}
+      </div>
+
+      {% if section.settings.show_pagination and total_slides > 1 %}
+        <div class="testimonials-slider__pagination" role="tablist" aria-label="Testimonials pagination" data-pagination>
+          {% for i in (1..total_slides) %}
+            <button
+              class="testimonials-slider__dot{% if forloop.first %} is-active{% endif %}"
+              type="button"
+              data-pagination-dot="{{ forloop.index0 }}"
+              role="tab"
+              aria-label="Go to slide {{ forloop.index }}"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            ></button>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_url }}" class="testimonials-slider__link button">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {% endif %}
+    </testimonials-slider>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "class": "testimonials-slider-section with-spacing",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Customers, the floor is yours."
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "(BASED ON 2366 REVIEWS)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pagination",
+      "label": "Show pagination",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "review_text",
+          "label": "Review text",
+          "default": "<p>This mat saved my sanity.</p>"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Author name",
+          "default": "Alf"
+        },
+        {
+          "type": "text",
+          "id": "verified_review_badge_text",
+          "label": "Verified review badge text",
+          "default": "Verified review"
+        },
+        {
+          "type": "text",
+          "id": "author_meta",
+          "label": "Author meta",
+          "default": "Bark (Grey) Doormat | 01/20/2026"
+        },
+        {
+          "type": "image_picker",
+          "id": "gallery_image",
+          "label": "Gallery image",
+          "info": "Optional image for top Gallery slider"
+        },
+        {
+          "type": "image_picker",
+          "id": "author_image",
+          "label": "Author image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,220 +1,14 @@
-{% style %}
-  .image-with-text .home-banner .FeatureText{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    margin:0 auto;
-    position:relative;
-    align-items: center;  
-  }
-
-  .hero-video-section {
-    max-width: 1440px;
-  }
-  
-  .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper{
-  margin-right: -40px;
-  padding-left: 40px;
-  }
-  
-  .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .FeatureText__Content{
-  position: relative;
-    z-index: 1;
-  }
-
- .image-with-text .home-banner .FeatureText .FeatureText__ImageWrapper{
-       position:relative;
-       min-height: 570px;
-   }
-
-   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
-      padding: 56px 40px 72px;
-    text-align: left;
-    max-width: 572px;
-    margin-left: auto;
-  background: #F4F2EE;
-
-   }
-
-     .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p,
-     .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading h1 {
-       color:#30383D;
-        font-size: 72px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 72px; /* 100% */
-        letter-spacing: 0.72px;
-        font-family: louize;
-     }
-  .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description p{
-       color:#546B82;
-       font-size: 30px;
-       font-style: normal;
-       font-weight: 400;
-      line-height: 36px; /* 112.5% */
-       letter-spacing: 0.64px;
-       font-family: brandon;
-
-    }
-
-    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader  .Link--underline{
-       background-color: #A19377;
-       padding:16px 40px;
-       color: #FFF;
-     font-family: brandon;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 24px; /* 150% */
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        text-decoration:none;
-    }
-
-   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description{
-       margin-bottom: 52px;
-      margin-top:10px;
-   }
-
-  .template__social-proof.template-index .image-with-text .SectionHeader__SubHeading {
-    /* color: #30383D; */
-    color: black;
-    font-size: 21px;
-    margin-bottom: 10px;
-    font-weight: 400;
-  }
-
-  .template__social-proof.template-index .image-with-text .SectionHeader__SubHeading span {
-    color: #A19377;
-  }
-
-  .FeatureText__ImageWrapper.video-wrapper {
-    width: 100%; 
-    aspect-ratio: 1 / 1; 
-    overflow: hidden;
-  }
-
-  .FeatureText__ImageWrapper.video-wrapper video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-  }
-
-  .video-text .FeatureText__ContentWrapper {
-    margin-right: 50px !important;
-    padding-left: 0 !important;
-  }
-
-  .video-text .FeatureText__ContentWrapper .SectionHeader {
-    max-width: unset !important;
-    padding-left: 72px !important;
-  }
-
-  .video-text .SectionHeader__Description {
-    max-width: 700px;
-  }
-
- @media screen and  (min-width: 1700px) {
-    .image-with-text .home-banner .FeatureText {
-        grid-template-columns: 35% 65%;
-    }
-
-    .image-with-text .video-text.home-banner .FeatureText {
-        grid-template-columns: 1fr 1fr;
-    }
- }
-  
-  @media screen and (max-width:1100px){
-    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
-      padding: 32px 32px 47px;
-    }
-  }
-  @media screen and (max-width:990px){
-    .image-with-text .home-banner .FeatureText{
-        grid-template-columns: 1fr;
-
-    }
-    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper{
-      order:2;
-      margin-right: 0px;
-    padding: 0 20px;
-    }
-    .image-with-text .home-banner .FeatureText .FeatureText__ImageWrapper{
-      order:1;
-      min-height: unset;
-    }
-    .image-with-text .home-banner .FeatureText .FeatureText__ImageWrapper .aspect-ratio{
-      position: relative;
-    }
-    
-    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
-      padding:24px 50px 34px;
-      text-align: center;
-      max-width: 500px;
-    margin: 0 auto;
-      margin-top: -90px;
-    }
-    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p,
-    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading  h1{
-      font-size: 40px;
-      font-weight: 500;
-      line-height: 44px;
-      letter-spacing: 0.4px;
-    }
-    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description p{
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
-    }
-    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .Link--underline{
-      padding: 10px 34px;
-    }
-    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description{
-      margin-bottom:38px;
-    }
-
-    .template__social-proof.template-index .image-with-text .SectionHeader__SubHeading {
-      font-size: 14px;
-    }
-
-    .video-text .FeatureText__ContentWrapper .SectionHeader {
-      max-width: 500px !important;
-      padding-left: 50px !important;
-    }
-
-    .video-text .FeatureText__ContentWrapper {
-      order: 2;
-      margin-right: 0px !important;
-      padding: 0 20px !important;
-    }
-
-    .video-text .FeatureText {
-      background: unset;
-    }
-  }
-  
-  @media screen and (max-width:380px){
-    .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader{
-          padding: 24px 20px 34px;
-    }
-
-    .video-text .FeatureText__ContentWrapper .SectionHeader {
-      padding-left: 20px !important;
-    }
-  }
-  
-  @media (min-width: 769px) {
-    .indoor-mats-2 .FeatureText__Content a {
-      width: 75%;
-      display: flex;
-      justify-content: center;
-    }
-  }
-  
-{% endstyle %}
+{{ 'section-video-text.css' | asset_url | stylesheet_tag }}
  
  <section class="Section {{ section.settings.custom-class }} video-text" id="VideoText-{{ section.id }}">
+  {%- capture css_variables -%}
+    --title_fz: {{ section.settings.title_font_size }}px;
+    --content_fz: {{ section.settings.content_font_size }}px;
+    --content_fz_mb: {{ section.settings.content_font_size_mb }}px;
+  {%- endcapture -%}
+
   {%- capture section_content -%}
-    <div class="FeatureText__ContentWrapper">
+    <div class="FeatureText__ContentWrapper{% if section.settings.content_full_width %} FeatureText__ContentWrapper--full-width{% endif %}" style="{{- css_variables | strip_newlines -}}">
       <div class="FeatureText__Content">
         {%- if section.settings.subheading != blank or section.settings.title != blank or section.settings.content != blank -%}
           <header class="SectionHeader">
@@ -233,7 +27,7 @@
             {%- endif -%}
 
             {%- if section.settings.link_text != blank -%}
-              <a href="{{ section.settings.link_url }}" class="Link Link--underline">{{ section.settings.link_text | escape }}</a>
+              <a href="{{ section.settings.link_url }}" class="Link Link--underline button-{{ section.settings.button_style }}">{{ section.settings.link_text | escape }}</a>
             {%- endif -%}
           </header>
         {%- endif -%}
@@ -272,25 +66,11 @@
     {%- endif -%}
   {%- endcapture -%}
 
-  <div class="FeatureText hero-video-section">
-       {{- section_content -}}
+  <div class="FeatureText hero-video-section{% if section.settings.media_first %} media-first{% endif %}">
+      {{- section_content -}}
       {{- section_image -}}
-      
-
   </div>
 </section>
-
-<style>
- .video-wrapper {
-  background-color: #ffffff;
-}
-
-video[data-hero-video] {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-</style>
 
 {% schema %}
 {
@@ -325,10 +105,40 @@ video[data-hero-video] {
       "default": "<p>Add Title...</p>"
     },
     {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 72
+    },
+    {
       "type": "richtext",
       "id": "content",
       "label": "Text",
       "default": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+    },
+    {
+      "type": "range",
+      "id": "content_font_size",
+      "min": 10,
+      "max": 70,
+      "step": 1,
+      "unit": "px",
+      "label": "Content Font Size",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "content_font_size_mb",
+      "min": 10,
+      "max": 70,
+      "step": 1,
+      "unit": "px",
+      "label": "Content Font Size Mobile",
+      "default": 14
     },
     {
       "type": "text",
@@ -341,10 +151,43 @@ video[data-hero-video] {
       "label": "Link URL"
     },
     {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button Style",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "small"
+    },
+    {
       "type": "text",
       "id": "custom-class",
       "label": "custom-class"
-    }
+    },
+    {
+      "type": "header",
+      "content": "Config"
+    },
+    {
+      "type": "checkbox",
+      "id": "media_first",
+      "label": "Media first on desktop",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "content_full_width",
+      "label": "Content full width",
+      "default": false
+    },
+
   ],
   "presets": [
     {
@@ -355,9 +198,6 @@ video[data-hero-video] {
   ]
 }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
 
 {% javascript %}
 (function () {

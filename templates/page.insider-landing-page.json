@@ -1,0 +1,367 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "page_heading": "",
+        "subhead": "",
+        "image": "shopify://shop_images/Rectangle_600_afdd9d4e-2ac5-4953-8125-1a557f66a497.jpg",
+        "section_height": "350",
+        "bg_color": "#f4f2ee"
+      }
+    },
+    "video_text_waFH8M": {
+      "type": "video-text",
+      "name": "Video with text",
+      "settings": {
+        "video": "shopify://files/videos/insiderLP (1).mp4",
+        "mobile_video": "shopify://files/videos/insiderLP-mobile.mp4",
+        "subheading": "",
+        "title": "<p>Designed to Stay Put</p>",
+        "title_font_size": 64,
+        "content": "<p>No rug pad, no bunching, no drama.</p>",
+        "content_font_size": 24,
+        "content_font_size_mb": 20,
+        "link_text": "SHOP THE INSIDER",
+        "link_url": "shopify://products/the-insider-bark-creme-doormat",
+        "button_style": "large",
+        "custom-class": "home-banner",
+        "media_first": true,
+        "content_full_width": true
+      }
+    },
+    "images_with_text_LgbH4j": {
+      "type": "images-with-text",
+      "blocks": {
+        "block_368jXD": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/gif_1024x1024_f9b55c1b-8614-424b-979c-8188a61a59db.webp",
+            "title": "Ultra-thin, no snags"
+          }
+        },
+        "block_dGrz3X": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/gif_2_1024x1024_ab0836ba-cf10-434e-b2eb-3c0e253ad69a.webp",
+            "title": "Slip-resistant, won’t mark"
+          }
+        },
+        "block_kCyP6d": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/gif_3_1024x1024_d3199dc6-ffb1-4d0b-8bcb-989d761bff63.webp",
+            "title": "Water-absorbent, protects floors"
+          }
+        }
+      },
+      "block_order": [
+        "block_368jXD",
+        "block_dGrz3X",
+        "block_kCyP6d"
+      ],
+      "name": "Images with text",
+      "settings": {
+        "background": "#eeefef",
+        "text_color": "#30383d"
+      }
+    },
+    "shop_by_size_LkVNrK": {
+      "type": "shop-by-size",
+      "blocks": {
+        "block_JynDt7": {
+          "type": "block",
+          "settings": {
+            "title": "DOORMAT",
+            "products": [
+              "the-insider-wild-side-dove-doormat",
+              "the-insider-bark-grey-doormat",
+              "the-insider-bark-creme-doormat",
+              "the-insider-maze-navy-doormat",
+              "the-insider-bark-graphite-doormat",
+              "the-insider-wild-side-sable-doormat",
+              "the-insider-dreamweaver-cloud-doormat"
+            ],
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_yyEcUf": {
+          "type": "block",
+          "settings": {
+            "title": "RUNNER",
+            "products": [
+              "the-insider-dreamweaver-mocha-runner",
+              "the-insider-bark-grey-runner",
+              "the-insider-helix-mushroom-runner",
+              "the-insider-dreamweaver-cloud-runner",
+              "the-insider-fans-green-runner",
+              "the-insider-wild-side-sable-runner",
+              "the-insider-bark-creme-runner",
+              "the-insider-wild-side-dove-runner"
+            ],
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_xCmUYz": {
+          "type": "block",
+          "settings": {
+            "title": "XL RUNNER",
+            "products": [
+              "the-insider-minuet-midnight-xl-runner",
+              "the-insider-bark-creme-xl-runner",
+              "the-insider-helix-mushroom-xl-runner",
+              "the-insider-dreamweaver-cloud-xl-runner",
+              "the-insider-bark-denim-xl-runner",
+              "the-insider-bark-grey-xl-runner",
+              "the-insider-maze-navy-xl-runner",
+              "the-insider-fugu-blue-xl-runner"
+            ],
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_7wXdWM": {
+          "type": "block",
+          "settings": {
+            "title": "AREA MAT",
+            "products": [
+              "the-insider-wild-side-sable-area-mat",
+              "the-insider-wild-side-dove-area-mat",
+              "the-insider-maze-navy-area-mat",
+              "the-insider-fugu-blue-area-mat",
+              "the-insider-bark-grey-area-mat",
+              "the-insider-bark-graphite-area-mat",
+              "the-insider-bark-creme-area-mat"
+            ],
+            "link_text": "",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_JynDt7",
+        "block_yyEcUf",
+        "block_xCmUYz",
+        "block_7wXdWM"
+      ],
+      "name": "Shop by size",
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 60,
+        "bg_color": "#ffffff",
+        "title": "Best Sellers by Size",
+        "title_font_size": 64,
+        "title_font_size_mb": 40,
+        "title_color": "#30383d",
+        "button_label": "SHOP ALL",
+        "button_link": "https://www.porteandhall.com/collections/indoor-doormats?filter.v.m.custom.filters=The+Insider&sort_by=best-selling",
+        "content_margin_bottom": 80,
+        "content_margin_bottom_mb": 40,
+        "centered_tab": false,
+        "show_product_badge": false
+      }
+    },
+    "info_accordion_j4eJ4f": {
+      "type": "info-accordion",
+      "blocks": {
+        "item_Yb79Wd": {
+          "type": "item",
+          "settings": {
+            "title": "Super-low profile",
+            "answer": "<p>Ultra-thin and borderless, so it fits under doors and stays flat—no bunching, curling, or catching. </p>"
+          }
+        },
+        "item_KbmxEK": {
+          "type": "item",
+          "settings": {
+            "title": "Stays in place",
+            "answer": "<p>A grippy backing keeps The Insider from sliding around—without an annoying rug pad.</p>"
+          }
+        },
+        "item_AHG7Xt": {
+          "type": "item",
+          "settings": {
+            "title": "Absorbs moisture",
+            "answer": "<p>It soaks up water and spills, then dries quickly—to help protect floors and prevent slips.</p>"
+          }
+        },
+        "item_bkdxBz": {
+          "type": "item",
+          "settings": {
+            "title": "Low maintenance",
+            "answer": "<p>Shake off dirt, rinse out stains, and you’re done—no mess, no stress.</p>"
+          }
+        },
+        "item_8MWy38": {
+          "type": "item",
+          "settings": {
+            "title": "Designed to impress",
+            "answer": "<p>Created by our founder, an interior designer, The Insider doesn’t just perform—it looks beautiful.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_Yb79Wd",
+        "item_KbmxEK",
+        "item_AHG7Xt",
+        "item_bkdxBz",
+        "item_8MWy38"
+      ],
+      "name": "Info accordion",
+      "settings": {
+        "heading": "Details That Deliver",
+        "text": "<p>The Insider doesn’t just lie there—it works.</p>",
+        "image_top": "shopify://shop_images/a68b8990705fce0485029d6a450712246c64f340_59441842-585a-4a89-a9e0-e94a252d8c84.png",
+        "image_bottom": "shopify://shop_images/543c79cd1b9b83f9e441334f7e0c227bb996091a.jpg",
+        "button_label": "Shop now",
+        "button_link": "shopify://products/the-insider-bark-creme-doormat",
+        "open_first_item": true,
+        "allow_multiple_open": false,
+        "bg_color": "#cad2d3",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 60
+      }
+    },
+    "testimonials_slider_fyTNQ3": {
+      "type": "testimonials-slider",
+      "blocks": {
+        "testimonial_EF4mQY": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "<p><strong>Get one! I got two.</strong><br/>Beautiful mats. Stay where you put them. They are thin enough so you don’t trip over them. They hug the floor. First purchased a kitchen runner and loved it, so I purchased one for the front door.</p>",
+            "author_name": "Deborah J.",
+            "verified_review_badge_text": "Verified review",
+            "author_meta": "Wild Side (Dove) Doormat | 11/30/2025",
+            "author_image": "shopify://shop_images/ae041eccc7b84d4259586ba3688cf1efd75b64c1.jpg"
+          }
+        },
+        "testimonial_YifGeD": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "<p><strong>This mat saved my sanity.</strong><br/>My dog has been kicking and scrunching up mats for 7 years. This mat has not moved since I’ve put it down.</p>",
+            "author_name": "Alf",
+            "verified_review_badge_text": "Verified review",
+            "author_meta": "Bark (Grey) Doormat | 01/20/2026",
+            "gallery_image": "shopify://shop_images/bd06a51878caf2541a07bc345d0c9cada59b487d.jpg",
+            "author_image": "shopify://shop_images/dcdfb0501eb7164dc5a7b11550fd97ac6c2112b2.jpg"
+          }
+        },
+        "testimonial_gHnXTf": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "<p><strong>Hardworking runner</strong><br/>I purchased two runners for my kitchen, and they are perfect! I looked at lots of options but chose Porte + Hall because I wanted a rug that would hold up, lie flat, and handle a bit of moisture all while looking good.</p>",
+            "author_name": "Susan P.",
+            "verified_review_badge_text": "Verified review",
+            "author_meta": "Dreamweaver (Champagne) Runner | 08/28/2025",
+            "gallery_image": "shopify://shop_images/d1a29fc23a4b2b1a7fc2652b101920e3d7e0d6da.png",
+            "author_image": "shopify://shop_images/884b9c43eaa0b2b021b9e7bb86915c9dbfc0588a.jpg"
+          }
+        },
+        "testimonial_xkqpmP": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "<p><strong>Love, love, love!</strong><br/>This is my second mat and I love it. It’s perfect for high traffic and dogs running in and out! Never moves and so easy to clean. Highly recommend! I’ll keep adding to my collection. :)</p>",
+            "author_name": "Ansley W.",
+            "verified_review_badge_text": "Verified review",
+            "author_meta": "Bark (Grey) Area Mat | 10/17/2025",
+            "author_image": "shopify://shop_images/7693ce351906dd6eabba01666e055ae316974b7c_1.jpg"
+          }
+        },
+        "testimonial_4BTBq9": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "<p><strong>Perfect for door touching floor</strong><br/>Our back door has absolutely NO space between the floor and bottom of the door. I was worried I wouldn’t be able to find a doormat that would fit, but I bit the bullet and tried this one and I am SO PLEASED It fits PERFECTLY and has already been so effective at keeping my floors cleaner.</p>",
+            "author_name": "Priscilla",
+            "verified_review_badge_text": "Verified review",
+            "author_meta": "Wild Side (Sable) Area Mat | 10/03/2025",
+            "author_image": "shopify://shop_images/efd9e3399286a476f226decfa2295cd83310287f.jpg"
+          }
+        },
+        "testimonial_CGeQVM": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "<p><strong>Hardworking runner</strong><br/>I purchased 2 runners for my kitchen & they are perfect! I looked at looks of options but chose Porte + Hall because I wanted a rug that would hold up, lay flat & handle a bit of wet. These rugs laid flat from the get-go, absorb wet drips (large & small), all while looking good.</p>",
+            "author_name": "Susan P.",
+            "verified_review_badge_text": "Verified review",
+            "author_meta": "Minuet (Midnight) Runner | 08/29/2025",
+            "author_image": "shopify://shop_images/9554367d7182a6abf18fc43fc4f71c3605615503.jpg"
+          }
+        },
+        "testimonial_JLznU7": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "<p><strong>Absolutely perfect!</strong><br/>My entryway was always a slippery mess in rain or snow because a standard doormat didn’t fit under the door. This mat is perfect—such a wide variety of patterns and colors and well-made. No more slip-sliding in the door during bad weather!</p>",
+            "author_name": "Laura S.",
+            "verified_review_badge_text": "Verified review",
+            "author_meta": "Bark (Creme) Runner | 08/28/2025",
+            "author_image": "shopify://shop_images/ff50b4a515e3c395778a79719dc9280611ce7c54.jpg"
+          }
+        },
+        "testimonial_tWTGHF": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "<p>The rug I’ve always been looking for It stays in place and washes beautifully with a hose. I spilled coffee on it, took it out, sprayed it down and it came right out. There’s no reason not to buy.</p>",
+            "author_name": "Rachael S.",
+            "verified_review_badge_text": "Verified review",
+            "author_meta": "Bark (Grey) Runner | 08/09/2025",
+            "author_image": "shopify://shop_images/75a31a5c0642e5271bec379ed14eb76bad0e1973.jpg"
+          }
+        },
+        "testimonial_zDDYf6": {
+          "type": "testimonial",
+          "settings": {
+            "review_text": "<p><strong>I love my Porte + Hall indoor runners and mats!</strong><br/>These rugs are not only gorgeous, but unique and functional! Low profile (no tripping or doors getting caught) and extremely easy to clean (I have pets). This is my second set of P+H mats for my home. I am obsessed with their aesthetic and comfortable feel on our feet.</p>",
+            "author_name": "Julie T.",
+            "verified_review_badge_text": "Verified review",
+            "author_meta": "Wild Side (dove) Area Mat | 07/01/2025",
+            "author_image": "shopify://shop_images/dc1aa131566d73768b0e3dfc147f6fbe6d2c2f09.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_EF4mQY",
+        "testimonial_YifGeD",
+        "testimonial_gHnXTf",
+        "testimonial_xkqpmP",
+        "testimonial_4BTBq9",
+        "testimonial_CGeQVM",
+        "testimonial_JLznU7",
+        "testimonial_tWTGHF",
+        "testimonial_zDDYf6"
+      ],
+      "name": "Testimonials",
+      "settings": {
+        "heading": "Customers, the floor is yours.",
+        "subheading": "(BASED ON 2366 REVIEWS)",
+        "show_arrows": true,
+        "show_pagination": true,
+        "button_label": "SHOP NOW",
+        "button_url": "shopify://products/the-insider-bark-creme-doormat"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "video_text_waFH8M",
+    "images_with_text_LgbH4j",
+    "shop_by_size_LkVNrK",
+    "info_accordion_j4eJ4f",
+    "testimonials_slider_fyTNQ3"
+  ]
+}

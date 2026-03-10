@@ -1010,6 +1010,10 @@ deferred-media {
   z-index: 6;
 }
 
+.template__insider-landing-page .outer-header-wrapper {
+  position: relative;
+}
+
 /*================ Announcement Bar ================*/
 #shopify-section-announcement-bar {
   z-index: 4;
@@ -1085,6 +1089,11 @@ deferred-media {
     grid-template-areas: "logo icons";
     grid-template-columns: auto 1fr;
     padding: 14px 20px;
+  }
+
+  .template__insider-landing-page .header--inner {
+    grid-template-areas: "empty logo icons";
+    grid-template-columns: 1fr auto 1fr;
   }
 }
 
@@ -1779,6 +1788,25 @@ header.condensed .header__menu {
 .footer__copy {
   text-align: center;
   font-weight: 600;
+}
+
+.template__insider-landing-page .footer__copy {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 40px;
+  color: #CAD2D3;
+}
+
+.template__insider-landing-page  .footer__logo {
+  padding-top: 80px;
+}
+
+.template__insider-landing-page .footer__bottom {
+  padding-bottom: 80px;
 }
 
 .footer__copy a {
@@ -3102,6 +3130,10 @@ main#MainContent {
 
 .outdoor .header .header__icon--menu {
   display: none;
+}
+
+.template__insider-landing-page main#MainContent {
+  padding-top: 0;
 }
 
 @media screen and (max-width: 989px) and (min-width: 769px) {

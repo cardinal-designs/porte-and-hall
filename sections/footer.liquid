@@ -33,45 +33,76 @@
         </a>
       {% endif %}
     </div>
-    <div class="footer__top">
-      <div class="footer__blocks">
-        {% for block in section.blocks %}
-          <div class="footer__block" {{ block.shopify_attributes }}>
-            {% if block.settings.heading != blank %}
-              <h2 class="footer__heading">{{ block.settings.heading | escape }}</h2>
-            {% endif %}
+    
+    {%- unless page.handle == 'the-insider' -%}
+      <div class="footer__top">
+        <div class="footer__blocks">
+          {% for block in section.blocks %}
+            <div class="footer__block" {{ block.shopify_attributes }}>
+              {% if block.settings.heading != blank %}
+                <h2 class="footer__heading">{{ block.settings.heading | escape }}</h2>
+              {% endif %}
 
-            {% if block.settings.menu != blank %}
-              <ul class="footer__menu list-unstyled">
-                {% for link in block.settings.menu.links %}
+              {% if block.settings.menu != blank %}
+                <ul class="footer__menu list-unstyled">
+                  {% for link in block.settings.menu.links %}
+                    <li>
+                      <a
+                        href="{{ link.url }}"
+                        {% if link.url contains "http://" or link.url contains "https://" %}
+                          target="_blank"
+                        {% endif %}
+                        class="footer__menu-link{% if link.active %} footer__menu-link--active{% endif %}"
+                      >
+                        {{ link.title }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                  {% if forloop.index0 == 0 %}
+                  {% comment %}
                   <li>
-                    <a
-                      href="{{ link.url }}"
-                      {% if link.url contains "http://" or link.url contains "https://" %}
-                        target="_blank"
-                      {% endif %}
-                      class="footer__menu-link{% if link.active %} footer__menu-link--active{% endif %}"
-                    >
-                      {{ link.title }}
-                    </a>
+                    <a class="footer__menu-link" href="#" data-acsb-custom-trigger="true"> Accessibility </a>
                   </li>
-                {% endfor %}
-                {% if forloop.index0 == 0 %}
-                {% comment %}
-                <li>
-                  <a class="footer__menu-link" href="#" data-acsb-custom-trigger="true"> Accessibility </a>
-                </li>
-                {% endcomment %}
-                 <li>
-                <a href="/" class="footer__menu-link optanon-show-settings">Cookie Settings</a>
-                </li>
-                {% endif %}
-              </ul>
-            {% endif %}
-          </div>
-        {% endfor %}
+                  {% endcomment %}
+                  <li>
+                  <a href="/" class="footer__menu-link optanon-show-settings">Cookie Settings</a>
+                  </li>
+                  {% endif %}
+                </ul>
+              {% endif %}
+            </div>
+          {% endfor %}
 
-        <div class="footer__block hide-mobile">
+          <div class="footer__block hide-mobile">
+            {% render 'social' %}
+            <ul class="footer__menu list-unstyled">
+              {% if section.settings.student_discount_link != blank %}
+                <li>
+                  <a href="{{ section.settings.student_discount_link }}" class="footer__menu-link" target="_blank">{{ section.settings.student_discount }}</a>
+                </li>
+              {% endif %}
+              {% if section.settings.exclusive_beans_link != blank %}
+                <li>
+                  <a href="{{ section.settings.exclusive_beans_link }}" class="footer__menu-link" target="_blank">{{ section.settings.exclusive_beans }}</a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__newsletter">
+          {% if section.settings.newsletter_heading != blank %}
+            <p class="footer__heading h3">{{ section.settings.newsletter_heading | escape }}</p>
+          {% endif %}
+
+          {% if section.settings.newsletter_text != blank %}
+            <p class="footer__text">{{ section.settings.newsletter_text | escape }}</p>
+          {% endif %}
+          
+          <div class="klaviyo-form-SZV96h"></div>
+        </div>
+
+        <div class="footer__block hide-desktop">
           {% render 'social' %}
           <ul class="footer__menu list-unstyled">
             {% if section.settings.student_discount_link != blank %}
@@ -87,35 +118,7 @@
           </ul>
         </div>
       </div>
-
-      <div class="footer__newsletter">
-        {% if section.settings.newsletter_heading != blank %}
-          <p class="footer__heading h3">{{ section.settings.newsletter_heading | escape }}</p>
-        {% endif %}
-
-        {% if section.settings.newsletter_text != blank %}
-          <p class="footer__text">{{ section.settings.newsletter_text | escape }}</p>
-        {% endif %}
-        
-        <div class="klaviyo-form-SZV96h"></div>
-      </div>
-
-      <div class="footer__block hide-desktop">
-        {% render 'social' %}
-        <ul class="footer__menu list-unstyled">
-          {% if section.settings.student_discount_link != blank %}
-            <li>
-              <a href="{{ section.settings.student_discount_link }}" class="footer__menu-link" target="_blank">{{ section.settings.student_discount }}</a>
-            </li>
-          {% endif %}
-          {% if section.settings.exclusive_beans_link != blank %}
-            <li>
-              <a href="{{ section.settings.exclusive_beans_link }}" class="footer__menu-link" target="_blank">{{ section.settings.exclusive_beans }}</a>
-            </li>
-          {% endif %}
-        </ul>
-      </div>
-    </div>
+    {%- endunless -%}
   </div>
 
   <div class="footer__bottom">
