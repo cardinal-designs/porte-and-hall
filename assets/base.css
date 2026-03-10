@@ -3128,6 +3128,10 @@ main#MainContent {
   display: none;
 }
 
+.template__insider-landing-page main#MainContent {
+  padding-top: 0;
+}
+
 @media screen and (max-width: 989px) and (min-width: 769px) {
   main#MainContent {
     padding-top: 89px;
