@@ -15,10 +15,7 @@
 
       <div class="Designer_Program_Form">
         {%- for block in section.blocks -%}
-          {%- case block.type -%}
-            {%- when '@app' -%}
               {% render block %}
-          {%- endcase -%}
         {%- endfor -%}
       </div>
 
