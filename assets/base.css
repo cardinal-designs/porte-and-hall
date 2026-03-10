@@ -1010,6 +1010,10 @@ deferred-media {
   z-index: 6;
 }
 
+.template__insider-landing-page .outer-header-wrapper {
+  position: relative;
+}
+
 /*================ Announcement Bar ================*/
 #shopify-section-announcement-bar {
   z-index: 4;
