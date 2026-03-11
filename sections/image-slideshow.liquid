@@ -114,20 +114,27 @@
 </div>
 
 {% javascript %}
-  const imageSlider = new Swiper('.image-slideshow__slider', {
-    slidesPerView: 1,
-    loop: false, 
-    spaceBetween: 0,
-    speed: 500,
-    centeredSlides: true,
-    autoplay: {
-      delay: 3000,
-    }, 
-    pagination: {
-      el: '.image-slideshow__pagination',
-      clickable: true
-    } 
-  });
+  (function() {
+    var container = document.querySelector('.image-slideshow__slider');
+    if (!container) return;
+
+    window.initOnVisible(container, function() {
+      const imageSlider = new Swiper('.image-slideshow__slider', {
+        slidesPerView: 1,
+        loop: false, 
+        spaceBetween: 0,
+        speed: 500,
+        centeredSlides: true,
+        autoplay: {
+          delay: 3000,
+        }, 
+        pagination: {
+          el: '.image-slideshow__pagination',
+          clickable: true
+        } 
+      });
+    });
+  })();
 {% endjavascript %} 
 
 {% schema %}

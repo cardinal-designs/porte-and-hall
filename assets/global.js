@@ -804,37 +804,35 @@ customElements.define('add-to-cart', AddToCart);
 // customElements.define('global-section', GlobalSection)
 
 var UGCCarousel = class extends HTMLElement {
-  constructor(){
-    super();
+  connectedCallback(){
+    if (this._io) return;
+    this._io = true;
 
-    this.section_id = this.querySelector(`.swiper`).id
-    this.pagination = this.querySelector(`.ugc-carousel__pagination`)
-    const swiper_options = {
-      slidesPerView: 2.5,
-      centeredSlides: true,
-      spaceBetween: 10,
-      loop: true,
-      mousewheel: true,
-      pagination: {
-        el: this.pagination,
-        clickable: true,
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 'auto',
-          spaceBetween: 18,
+    window.initOnVisible(this, () => {
+      this.section_id = this.querySelector(`.swiper`).id
+      this.pagination = this.querySelector(`.ugc-carousel__pagination`)
+      const swiper_options = {
+        slidesPerView: 2.5,
+        centeredSlides: true,
+        spaceBetween: 10,
+        loop: true,
+        mousewheel: true,
+        pagination: {
+          el: this.pagination,
+          clickable: true,
         },
-      },
-      on: {
-        init: function () {
-          console.log('swiper initialized');
+        breakpoints: {
+          768: {
+            slidesPerView: 'auto',
+            spaceBetween: 18,
+          },
         },
-      },
-    }
+      }
 
-    if (!this.classList.contains("swiper-initialized")){
-      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
-    }
+      if (!this.classList.contains("swiper-initialized")){
+        this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+      }
+    });
   }
 
   initializeCarousel(swipe, options) {
@@ -845,45 +843,48 @@ var UGCCarousel = class extends HTMLElement {
 customElements.define('ugc-carousel', UGCCarousel)
 
 var ProductCarousel = class extends HTMLElement {
-  constructor(){
-    super();
+  connectedCallback(){
+    if (this._io) return;
+    this._io = true;
 
-    this.section_id = this.querySelector(`.swiper`).id
-    this.pagination = this.querySelector(`.swiper-pagination`)
-    const swiper_options = {
-      slidesPerView: 2.25,
-      slidesPerGroup: 2,
-      slidesPerGroupAuto: false,
-      centeredSlides: false,
-      spaceBetween: 10,
-      loopedSlides: 2,
-      draggable: true,
-      loop: true,
-      pagination: {
-        el: this.pagination,
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 'auto',
-          slidesPerGroup: 3,
-          centeredSlides: false,
-          spaceBetween: 20,
-          slidesPerGroupAuto: true,
-          loopedSlides: 4,
-          slidesPerGroupAuto: true,
-          centeredSlides: true,
+    window.initOnVisible(this, () => {
+      this.section_id = this.querySelector(`.swiper`).id
+      this.pagination = this.querySelector(`.swiper-pagination`)
+      const swiper_options = {
+        slidesPerView: 2.25,
+        slidesPerGroup: 2,
+        slidesPerGroupAuto: false,
+        centeredSlides: false,
+        spaceBetween: 10,
+        loopedSlides: 2,
+        draggable: true,
+        loop: true,
+        pagination: {
+          el: this.pagination,
+          clickable: true,
         },
-      },
-    }
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          768: {
+            slidesPerView: 'auto',
+            slidesPerGroup: 3,
+            centeredSlides: false,
+            spaceBetween: 20,
+            slidesPerGroupAuto: true,
+            loopedSlides: 4,
+            slidesPerGroupAuto: true,
+            centeredSlides: true,
+          },
+        },
+      }
 
-    if (!this.classList.contains("swiper-initialized")){
-      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
-    }
+      if (!this.classList.contains("swiper-initialized")){
+        this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+      }
+    });
   }
 
   initializeCarousel(swipe, options) {
@@ -894,39 +895,41 @@ var ProductCarousel = class extends HTMLElement {
 customElements.define('product-carousel', ProductCarousel)
 
 var ProductCarouselNew = class extends HTMLElement {
-  constructor(){
-    super();
+  connectedCallback(){
+    if (this._io) return;
+    this._io = true;
 
-    this.section_id = this.querySelector(`.swiper`).id
-    this.pagination = this.querySelector(`.swiper-pagination`)
-     const swiper_options = {  
-      spaceBetween: 10,
-      slidesPerView: 2.2,
-      loop: true,
-      draggable: true,
-      centeredSlides: false,
-      pagination: {
-        el: this.pagination,
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-        768: {
-          spaceBetween: 20,
-          loop: false,
-          centeredSlides: false,
-          slidesPerView: 4,
+    window.initOnVisible(this, () => {
+      this.section_id = this.querySelector(`.swiper`).id
+      this.pagination = this.querySelector(`.swiper-pagination`)
+      const swiper_options = {  
+        spaceBetween: 10,
+        slidesPerView: 2.2,
+        loop: true,
+        draggable: true,
+        centeredSlides: false,
+        pagination: {
+          el: this.pagination,
+          clickable: true,
         },
-      },
-    }
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          768: {
+            spaceBetween: 20,
+            loop: false,
+            centeredSlides: false,
+            slidesPerView: 4,
+          },
+        },
+      }
 
-    if (!this.classList.contains("swiper-initialized")){
-      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
-    }
-
+      if (!this.classList.contains("swiper-initialized")){
+        this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+      }
+    });
   }
 
   initializeCarousel(swipe, options) {
@@ -937,39 +940,41 @@ var ProductCarouselNew = class extends HTMLElement {
 customElements.define('product-carousel-new', ProductCarouselNew)
 
 var ProductCarouselNew2 = class extends HTMLElement {
-  constructor(){
-    super();
+  connectedCallback(){
+    if (this._io) return;
+    this._io = true;
 
-    this.section_id = this.querySelector(`.swiper`).id
-    this.pagination = this.querySelector(`.swiper-pagination`)
-     const swiper_options = {  
-      spaceBetween: 10,
-      slidesPerView: 2.2,
-      loop: false,
-      draggable: true,
-      centeredSlides: false,
-      pagination: {
-        el: this.pagination,
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-        768: {
-          spaceBetween: 20,
-          loop: false,
-          centeredSlides: false,
-          slidesPerView: 4,
+    window.initOnVisible(this, () => {
+      this.section_id = this.querySelector(`.swiper`).id
+      this.pagination = this.querySelector(`.swiper-pagination`)
+      const swiper_options = {  
+        spaceBetween: 10,
+        slidesPerView: 2.2,
+        loop: false,
+        draggable: true,
+        centeredSlides: false,
+        pagination: {
+          el: this.pagination,
+          clickable: true,
         },
-      },
-    }
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          768: {
+            spaceBetween: 20,
+            loop: false,
+            centeredSlides: false,
+            slidesPerView: 4,
+          },
+        },
+      }
 
-    if (!this.classList.contains("swiper-initialized")){
-      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
-    }
-
+      if (!this.classList.contains("swiper-initialized")){
+        this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+      }
+    });
   }
 
   initializeCarousel(swipe, options) {
@@ -980,48 +985,46 @@ var ProductCarouselNew2 = class extends HTMLElement {
 customElements.define('product-carousel-new-two', ProductCarouselNew2)
 
 var ImageCarousel = class extends HTMLElement {
-  constructor(){
-    super();
+  connectedCallback(){
+    if (this._io) return;
+    this._io = true;
 
-    this.section_id = this.querySelector(`.swiper`).id
-    this.pagination = this.querySelector(`.image-carousel__pagination`)
-    const swiper_options = {
-      slidesPerView: 1.1,
-      centeredSlides: true,
-      spaceBetween: 10,
-      loop: true,
-      pagination: {
-        el: this.pagination,
-        clickable: true,
-      },
-      breakpoints: {
-        1920: {
-          slidesPerView: 4,
-          spaceBetween: 20,
+    window.initOnVisible(this, () => {
+      this.section_id = this.querySelector(`.swiper`).id
+      this.pagination = this.querySelector(`.image-carousel__pagination`)
+      const swiper_options = {
+        slidesPerView: 1.1,
+        centeredSlides: true,
+        spaceBetween: 10,
+        loop: true,
+        pagination: {
+          el: this.pagination,
+          clickable: true,
         },
-        1440: {
-          slidesPerView: 3,
-          spaceBetween: 20,
+        breakpoints: {
+          1920: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+          },
+          1440: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          1023: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          }
         },
-        1023: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        }
-      },
-      on: {
-        init: function () {
-          console.log('swiper initialized');
-        },
-      },
-    }
+      }
 
-    if (!this.classList.contains("swiper-initialized")){
-      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
-    }
+      if (!this.classList.contains("swiper-initialized")){
+        this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+      }
+    });
   }
 
   initializeCarousel(swipe, options) {
@@ -1032,46 +1035,44 @@ var ImageCarousel = class extends HTMLElement {
 customElements.define('image-carousel', ImageCarousel)
 
 var ArticleCarousel = class extends HTMLElement {
-  constructor(){
-    super();
+  connectedCallback(){
+    if (this._io) return;
+    this._io = true;
 
-    this.section_id = this.querySelector(`.swiper`).id
-    this.pagination = this.querySelector(`.article-carousel__pagination`)
-    const swiper_options = {
-      slidesPerView: 2,
-      spaceBetween: 12,
-      centeredSlides: false,
-      loop: true,
-      pagination: {
-        el: this.pagination,
-        clickable: true,
-      },
-      breakpoints: {
-        1920: {
-          slidesPerView: 4,
-          spaceBetween: 20,
-          centeredSlides: true
+    window.initOnVisible(this, () => {
+      this.section_id = this.querySelector(`.swiper`).id
+      this.pagination = this.querySelector(`.article-carousel__pagination`)
+      const swiper_options = {
+        slidesPerView: 2,
+        spaceBetween: 12,
+        centeredSlides: false,
+        loop: true,
+        pagination: {
+          el: this.pagination,
+          clickable: true,
         },
-        1440: {
-          slidesPerView: 3.4,
-          spaceBetween: 20,
-          centeredSlides: true
+        breakpoints: {
+          1920: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+            centeredSlides: true
+          },
+          1440: {
+            slidesPerView: 3.4,
+            spaceBetween: 20,
+            centeredSlides: true
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          }
         },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        }
-      },
-      on: {
-        init: function () {
-          console.log('swiper initialized');
-        },
-      },
-    }
+      }
 
-    if (!this.classList.contains("swiper-initialized")){
-      this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
-    }
+      if (!this.classList.contains("swiper-initialized")){
+        this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+      }
+    });
   }
 
   initializeCarousel(swipe, options) {
@@ -1359,15 +1360,23 @@ customElements.define('sticky-atc', class StickyATC extends HTMLElement {
 var ProductFeature = class extends HTMLElement {
   constructor() {
     super();
+  }
+
+  connectedCallback() {
+    if (this._io) return;
+    this._io = true;
 
     this.swatches = this.querySelectorAll("button[data-url]")
     this.swatches.forEach( swatch => {
       swatch.addEventListener("click", this.updateSection.bind(this))
     })
 
-    this.setupTabs()
-    this.setupMedia()
     this.setupBackInStock()
+
+    window.initOnVisible(this, () => {
+      this.setupTabs()
+      this.setupMedia()
+    });
   }
 
   updateSection(event) {

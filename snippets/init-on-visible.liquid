@@ -1,0 +1,58 @@
+<script>
+/*
+ * Lazy-initialize a callback when an element enters the viewport.
+ * Defined inline in head so it is available to every script on the page.
+ *
+ * - If the element is already in / near the viewport, init immediately.
+ * - Otherwise use IntersectionObserver with a generous rootMargin.
+ * - A fallback timeout (4 s) guarantees init even if IO never fires
+ *   (e.g. element starts with display:none or has zero dimensions).
+ * - The callback is guaranteed to run at most once.
+ */
+window.initOnVisible = function (element, callback, rootMargin) {
+  if (!element) { callback(); return; }
+
+  var margin = parseInt(rootMargin, 10) || 200;
+  var called = false;
+
+  function runOnce() {
+    if (called) return;
+    called = true;
+    if (timer) clearTimeout(timer);
+    callback();
+  }
+
+  function isNearViewport() {
+    var rect = element.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var vw = window.innerWidth  || document.documentElement.clientWidth;
+    if (rect.width === 0 && rect.height === 0 && rect.top === 0 && rect.left === 0) return false;
+    return (
+      rect.bottom > -margin &&
+      rect.top    < vh + margin &&
+      rect.right  > -margin &&
+      rect.left   < vw + margin
+    );
+  }
+
+  if (isNearViewport()) { runOnce(); return; }
+
+  if (typeof IntersectionObserver === 'undefined') { runOnce(); return; }
+
+  var observer = new IntersectionObserver(function (entries) {
+    for (var i = 0; i < entries.length; i++) {
+      if (entries[i].isIntersecting) {
+        observer.disconnect();
+        runOnce();
+        return;
+      }
+    }
+  }, { rootMargin: margin + 'px' });
+  observer.observe(element);
+
+  var timer = setTimeout(function () {
+    observer.disconnect();
+    runOnce();
+  }, 4000);
+};
+</script>

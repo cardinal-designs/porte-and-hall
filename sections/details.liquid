@@ -96,36 +96,45 @@
 {% endif %}
 
 {% javascript %}
-  const details = document.querySelectorAll('button.details__points-item');
-  const points = document.querySelectorAll('.details__point');
+  (function() {
+    var imageCarousel = document.querySelector('.details__media-inner');
+    var details = document.querySelectorAll('button.details__points-item');
+    var points = document.querySelectorAll('.details__point');
+    var imageSlider = null;
 
-  const imageCarousel = document.querySelector('.details__media-inner');
-  if (imageCarousel) {
-    const imageSlider = new Swiper(imageCarousel, {
-      slidesPerView: 1,
-      allowTouchMove: false,
-    });
-  }
-
-  details.forEach((button) => {
-    button.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      Array.from(details)
-        .find((point) => point.classList.contains('active'))
-        .classList.remove('active');
-      Array.from(points)
-        .find((point) => point.classList.contains('active'))
-        .classList.remove('active');
-
-      e.target.classList.add('active');
-      document.querySelector(`.details__point[data-detail="${e.target.dataset.detail}"]`).classList.add('active');
-
-      if (imageSlider) {
-        imageSlider.slideTo(e.target.dataset.detail);
+    function initDetailsSlider() {
+      if (imageCarousel) {
+        imageSlider = new Swiper(imageCarousel, {
+          slidesPerView: 1,
+          allowTouchMove: false,
+        });
       }
+    }
+
+    if (imageCarousel) {
+      window.initOnVisible(imageCarousel, initDetailsSlider);
+    }
+
+    details.forEach((button) => {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        Array.from(details)
+          .find((point) => point.classList.contains('active'))
+          .classList.remove('active');
+        Array.from(points)
+          .find((point) => point.classList.contains('active'))
+          .classList.remove('active');
+
+        e.target.classList.add('active');
+        document.querySelector(`.details__point[data-detail="${e.target.dataset.detail}"]`).classList.add('active');
+
+        if (imageSlider) {
+          imageSlider.slideTo(e.target.dataset.detail);
+        }
+      });
     });
-  });
+  })();
 {% endjavascript %}
 
 {% schema %}

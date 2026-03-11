@@ -96,34 +96,41 @@
 {% endunless %}
 
 {% javascript %}
-  const tabsButtons = document.querySelectorAll('[data-action-tabs]');
+  (function() {
+    var container = document.querySelector('.see-it-in-action__tabs');
+    if (!container) return;
 
-  const seeItSlider = new Swiper('.see-it-in-action__tabs', {
-    slidesPerView: 1,
-    spaceBetween: 0,
-    allowTouchMove: false,
-    loop: false,
-    autoplay: {
-      delay: 5000,
-    },
-    on: {
-      slideChange: function () {
-        Array.from(tabsButtons)
-          .find((btn) => btn.classList.contains('active'))
-          .classList.remove('active');
-        Array.from(tabsButtons)
-          .find((btn) => btn.dataset.actionTabs == this.activeIndex)
-          .classList.add('active');
-      },
-    },
-  });
+    window.initOnVisible(container, function() {
+      const tabsButtons = document.querySelectorAll('[data-action-tabs]');
 
-  tabsButtons.forEach((button) => {
-    button.addEventListener('click', function (e) {
-      e.preventDefault();
-      seeItSlider.slideTo(e.target.dataset.actionTabs);
+      const seeItSlider = new Swiper('.see-it-in-action__tabs', {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        allowTouchMove: false,
+        loop: false,
+        autoplay: {
+          delay: 5000,
+        },
+        on: {
+          slideChange: function () {
+            Array.from(tabsButtons)
+              .find((btn) => btn.classList.contains('active'))
+              .classList.remove('active');
+            Array.from(tabsButtons)
+              .find((btn) => btn.dataset.actionTabs == this.activeIndex)
+              .classList.add('active');
+          },
+        },
+      });
+
+      tabsButtons.forEach((button) => {
+        button.addEventListener('click', function (e) {
+          e.preventDefault();
+          seeItSlider.slideTo(e.target.dataset.actionTabs);
+        });
+      });
     });
-  });
+  })();
 {% endjavascript %}
 
 {% schema %}
