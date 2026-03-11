@@ -1,4 +1,4 @@
-{{ 'lazysizes.min.js' | asset_url | preload_tag: as: 'script' }}
+{% comment %} lazysizes preload removed — lazy-image now uses native loading {% endcomment %}
 {{ 'swiper-bundle.min.js' | asset_url | preload_tag: as: 'script' }}
 {{ 'micromodal.min.js' | asset_url | preload_tag: as: 'script' }}
 {{ 'gsap.min.js' | asset_url | preload_tag: as: 'script' }}

@@ -92,9 +92,17 @@
     {% endcomment %}
     <div class="product-card__image">
       <a href="{{ product_card_product.url }}">
-        {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image", forloop_index: forloop_index, sizes: '(min-width: 768px) 23vw, 40vw' %}
+        {%- liquid
+          assign is_eager = false
+          if card_index != blank and card_index <= 4
+            assign is_eager = true
+          elsif forloop_index != blank and forloop_index <= 4
+            assign is_eager = true
+          endif
+        -%}
+        {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image", prioritize_loading: is_eager, sizes: '(min-width: 768px) 23vw, 40vw' %}
         {% if product_card_product.media[1] != null %}
-          {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill', aria-label: "image", forloop_index: 2, sizes: '(min-width: 768px) 23vw, 40vw' %}
+          {% render 'deferred-hover-image', image: product_card_product.media[1], classes: 'img-fill', sizes: '(min-width: 768px) 23vw, 40vw' %}
         {% endif %}
 
         {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}

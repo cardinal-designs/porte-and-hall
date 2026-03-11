@@ -128,7 +128,7 @@
     {{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
 
     {% comment %} {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }} {% endcomment %}
-    <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
+    {% comment %} <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
     <script src="{{ 'micromodal.min.js' | asset_url }}" defer></script>

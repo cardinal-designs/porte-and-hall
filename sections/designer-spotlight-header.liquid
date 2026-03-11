@@ -4,8 +4,8 @@
   <div class="page-width">
     <div class="designer-spotlight-header__container">
       <div class="designer-spotlight-header__image">
-        {% render 'lazy-image' image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile' %}
-        {% render 'lazy-image' image: section.settings.mobile_image, fade: true, fill: true, classes: 'hide-desktop' %}
+        {% render 'lazy-image' image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile', prioritize_loading: true %}
+        {% render 'lazy-image' image: section.settings.mobile_image, fade: true, fill: true, classes: 'hide-desktop', prioritize_loading: true %}
       </div>
       <div class="designer-spotlight-header__content">
         <h1 class="designer-spotlight-header__title h1">{{ section.settings.title }}</h1>

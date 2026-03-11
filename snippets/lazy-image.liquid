@@ -1,5 +1,9 @@
 {% doc %}
-  Renders a responsive, lazy-loaded image with an aspect ratio wrapper.
+  Renders a responsive image using Shopify's native image_tag.
+
+  Uses native loading="lazy" / loading="eager" instead of lazysizes.
+  Visual transitions (blur-up, fade-in) still work via CSS classes
+  that toggle on the native onload event — no JS library needed.
 
   @param {object} image - The Shopify image object (required).
   @param {number} [widthI] - Override for the image width.
@@ -9,13 +13,13 @@
   @param {boolean} [fill] - If true, adds 'img-fill' class to the wrapper.
   @param {boolean} [blur] - If true, adds 'lazyload--blur' class for a blur-up effect.
   @param {boolean} [fade] - If true, adds 'lazyload--fade' class for a fade-in effect.
-  @param {number} [forloop_index] - Used to determine if the image should be lazy-loaded (lazy if index > 1).
   @param {boolean} [prioritize_loading] - If true, sets loading="eager", fetchpriority="high", and preload=true.
   @param {string} [sizes] - Sizes attribute for the img tag (defaults to "100vw").
   @param {string} [widths] - Comma-separated list of widths for srcset (defaults to standard set).
 
   @example
   {% render 'lazy-image', image: product.featured_image, fade: true, fill: true %}
+  {% render 'lazy-image', image: hero_img, prioritize_loading: true, fill: true %}
 {% enddoc %}
 
 {%- liquid
@@ -29,10 +33,6 @@
   assign fetchpriority_val = 'auto'
   assign preload_val = false
 
-  if forloop_index == 1
-    assign loading_val = 'eager'
-  endif
-
   if prioritize_loading
     assign loading_val = 'eager'
     assign fetchpriority_val = 'high'
@@ -40,14 +40,14 @@
   endif
 
   capture img_classes
-    echo 'lazyload'
     if blur
-      echo ' lazyload--blur'
+      echo 'lazyload--blur'
     endif
     if fade
       echo ' lazyload--fade'
     endif
   endcapture
+  assign img_classes = img_classes | strip
 -%}
 
 <div

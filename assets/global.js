@@ -1,3 +1,29 @@
+/*================ Deferred hover-image loader ================*/
+(function(){
+  function loadHoverImg(card){
+    var el = card.querySelector('[data-hover-srcset]');
+    if(!el) return;
+    var img = document.createElement('img');
+    img.srcset = el.dataset.hoverSrcset;
+    img.sizes  = el.dataset.hoverSizes || '100vw';
+    if(el.dataset.hoverSrc) img.src = el.dataset.hoverSrc;
+    img.alt = '';
+    img.loading = 'eager';
+    img.className = 'lazyload--fade';
+    img.onload = function(){ img.classList.add('lazyloaded'); };
+    el.appendChild(img);
+    el.removeAttribute('data-hover-srcset');
+  }
+  document.addEventListener('mouseover', function(e){
+    var card = e.target.closest('.product-card__image');
+    if(card) loadHoverImg(card);
+  }, {passive:true});
+  document.addEventListener('touchstart', function(e){
+    var card = e.target.closest('.product-card__image');
+    if(card) loadHoverImg(card);
+  }, {passive:true});
+})();
+
 /*================ Shopify Common JS ================*/
 if ((typeof window.Shopify) == 'undefined') {
   window.Shopify = {};

@@ -102,9 +102,15 @@
     {% endcomment %}
     <div class="product-card__image">
       <a href="{{ product_card_product.url }}">
-        {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image" %}
+        {%- liquid
+          assign is_eager = false
+          if card_index != blank and card_index <= 4
+            assign is_eager = true
+          endif
+        -%}
+        {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image", prioritize_loading: is_eager %}
         {% if product_card_product.media[1] != null %}
-          {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill', aria-label: "image" %}
+          {% render 'deferred-hover-image', image: product_card_product.media[1], classes: 'img-fill' %}
         {% endif %}
 
         {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
