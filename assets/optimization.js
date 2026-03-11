@@ -7,12 +7,18 @@
     'touchstart',
     'keypress',
     'touchmove',
+    'click',
   ];
-  const SCRIPTS_LOADED_FLAG = 'third-party-scripts-loaded';
 
-  async function onUserActivity() {
+  let scriptsLoaded = false;
+
+  async function loadDeferredScripts() {
+    if (scriptsLoaded) return;
+    scriptsLoaded = true;
+
+    // Remove all interaction listeners
     for (const event of userActivityEvents) {
-      window.removeEventListener(event, onUserActivity);
+      window.removeEventListener(event, onUserActivity, { passive: true });
     }
 
     const scriptTagsForLoad = Array.from(
@@ -22,38 +28,60 @@
     const scriptsLoad = [];
 
     for (const scriptTag of scriptTagsForLoad) {
-      scriptTag.src = scriptTag.dataset.lazySrc;
+      const lazySrc = scriptTag.dataset.lazySrc;
+      if (!lazySrc) continue;
+
+      // Create a fresh script element to ensure proper loading
+      // (some browsers don't load when src is set on an existing tag)
+      const newScript = document.createElement('script');
+
+      // Copy all attributes except data-lazy-src
+      for (const attr of scriptTag.attributes) {
+        if (attr.name === 'data-lazy-src') continue;
+        // Skip blocking attribute — deferred scripts should never block render
+        if (attr.name === 'blocking') continue;
+        newScript.setAttribute(attr.name, attr.value);
+      }
+
+      // Set the real src
+      newScript.src = lazySrc;
 
       const scriptLoad = new Promise((resolve) => {
-        scriptTag.onload = resolve;
-        scriptTag.onerror = resolve;
+        newScript.onload = resolve;
+        newScript.onerror = resolve;
       });
 
       scriptsLoad.push(scriptLoad);
+
+      // Replace original element with the new one
+      scriptTag.parentNode.replaceChild(newScript, scriptTag);
     }
 
+    // Fire the Shopify head-scripts load event (used by content_for_header)
     window.dispatchEvent(new CustomEvent('load-head-scripts'));
 
     await Promise.all(scriptsLoad);
-
-    localStorage.setItem(SCRIPTS_LOADED_FLAG, 'true');
 
     window.dispatchEvent(new CustomEvent('third-party-scripts-loaded'));
 
     document.documentElement.classList.add('third-party-scripts-loaded');
   }
 
+  function onUserActivity() {
+    loadDeferredScripts();
+  }
+
   function startListenUserActivity() {
     for (const event of userActivityEvents) {
-      window.addEventListener(event, onUserActivity);
+      window.addEventListener(event, onUserActivity, { passive: true });
     }
   }
 
-  window.addEventListener('load', () => {
-    if (localStorage.getItem(SCRIPTS_LOADED_FLAG)) {
-      onUserActivity();
-    } else {
-      startListenUserActivity();
-    }
-  });
+  // Always wait for first user interaction — even for returning visitors.
+  // This ensures we never add to Total Blocking Time on initial load.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startListenUserActivity);
+  } else {
+    startListenUserActivity();
+  }
 })();
