@@ -72,6 +72,19 @@
       hidden
     {% endunless %}
   >
+
+      <div class="gift-note-form__from-wrapper">
+        <input
+          type="text"
+          id="{{ form_id }}-to"
+          name="attributes[gift_to]"
+          class="gift-note-form__to"
+          placeholder="{{ to_placeholder }}"
+          aria-label="{{ to_placeholder }}"
+          value="{{ saved_to }}"
+        >
+      </div>
+
     <div class="gift-note-form__content-inner">
       <div class="gift-note-form__message-wrapper">
         <textarea
@@ -97,18 +110,6 @@
         <span class="gift-note-form__lines-remaining">{{ max_lines | minus: 1 }}</span>
         {{ 'gift_note.lines_left' | t | default: 'lines left' }}.
       </p>
-
-      <div class="gift-note-form__from-wrapper">
-        <input
-          type="text"
-          id="{{ form_id }}-to"
-          name="attributes[gift_to]"
-          class="gift-note-form__to"
-          placeholder="{{ to_placeholder }}"
-          aria-label="{{ to_placeholder }}"
-          value="{{ saved_to }}"
-        >
-      </div>
 
       <div class="gift-note-form__from-wrapper">
         <input
