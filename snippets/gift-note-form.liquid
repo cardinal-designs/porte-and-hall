@@ -7,6 +7,7 @@
   @param {number} [max_lines] - Maximum number of lines (default: 4)
   @param {string} [message_placeholder] - Placeholder for the gift message textarea
   @param {string} [from_placeholder] - Placeholder for the "From" field
+  @param {string} [to_placeholder] - Placeholder for the "To" field
   @param {string} [form_id] - Unique ID prefix for the form elements
 
   @example
@@ -16,6 +17,7 @@
     max_lines: 4,
     message_placeholder: 'Write your gift message here...',
     from_placeholder: 'FROM:',
+    to_placeholder: 'TO:',
     form_id: 'cart-drawer'
   %}
 {% enddoc %}
@@ -26,12 +28,14 @@
   assign max_lines = max_lines | default: 4
   assign message_placeholder = message_placeholder | default: 'Write your gift message here...'
   assign from_placeholder = from_placeholder | default: 'FROM:'
+  assign to_placeholder = to_placeholder | default: 'TO:'
   assign form_id = form_id | default: 'gift-note'
 
   assign saved_message = cart.attributes['Gift Message'] | default: ''
   assign saved_from = cart.attributes['Gift From'] | default: ''
+  assign saved_to = cart.attributes['Gift To'] | default: ''
   assign has_saved_data = false
-  if saved_message != blank or saved_from != blank
+  if saved_message != blank or saved_from != blank or saved_to
     assign has_saved_data = true
   endif
 -%}
@@ -97,6 +101,18 @@
       <div class="gift-note-form__from-wrapper">
         <input
           type="text"
+          id="{{ form_id }}-to"
+          name="attributes[gift_to]"
+          class="gift-note-form__to"
+          placeholder="{{ to_placeholder }}"
+          aria-label="{{ to_placeholder }}"
+          value="{{ saved_to }}"
+        >
+      </div>
+
+      <div class="gift-note-form__from-wrapper">
+        <input
+          type="text"
           id="{{ form_id }}-from"
           name="attributes[gift_from]"
           class="gift-note-form__from"
@@ -105,6 +121,8 @@
           value="{{ saved_from }}"
         >
       </div>
+
+
     </div>
   </div>
 </gift-note-form>
