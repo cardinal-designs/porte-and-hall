@@ -11,6 +11,7 @@
   "sections": {
     "breadcrumbs_8LXnyk": {
       "type": "breadcrumbs",
+      "disabled": true,
       "name": "Breadcrumbs",
       "settings": {
         "background_color": "",
@@ -22,6 +23,7 @@
     },
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "page_heading": "",
         "subhead": "",
@@ -33,17 +35,16 @@
     "177317723145ab427b": {
       "type": "apps",
       "blocks": {
-        "powerful_form_builder_app_block_8GiUim": {
-          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+        "easify_box_builder_box_builder_embedded_content_RQXVB4": {
+          "type": "shopify://apps/easify-box-builder/blocks/box-builder-embedded-content/5e4620dd-6bb8-4776-ada5-5f18c69faedd",
           "settings": {
-            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"ODQ5Njc=\"></div>"
+            "boxHandle": "new-box"
           }
         }
       },
       "block_order": [
-        "powerful_form_builder_app_block_8GiUim"
+        "easify_box_builder_box_builder_embedded_content_RQXVB4"
       ],
-      "disabled": true,
       "settings": {
         "include_margins": true,
         "heading": "",
