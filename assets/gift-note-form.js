@@ -15,6 +15,7 @@ class GiftNoteForm extends HTMLElement {
       '.gift-note-form__lines-remaining',
     );
     this.fromInput = this.querySelector('.gift-note-form__from');
+    this.toInput = this.querySelector('.gift-note-form__to');
 
     this.skipRerenderTimeout = null;
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
@@ -52,6 +53,11 @@ class GiftNoteForm extends HTMLElement {
       this.fromInput.addEventListener('blur', this.handleBlur);
       this.fromInput.addEventListener('focus', this.handleFocus);
     }
+
+    if (this.toInput) {
+      this.toInput.removeEventListener('blur', this.handleBlur);
+      this.toInput.removeEventListener('focus', this.handleFocus);
+    }
   }
 
   unbindEvents() {
@@ -69,6 +75,12 @@ class GiftNoteForm extends HTMLElement {
     if (this.fromInput) {
       this.fromInput.removeEventListener('blur', this.handleBlur);
       this.fromInput.removeEventListener('focus', this.handleFocus);
+    }
+
+
+    if (this.toInput) {
+      this.toInput.removeEventListener('blur', this.handleBlur);
+      this.toInput.removeEventListener('focus', this.handleFocus);
     }
   }
 
@@ -209,18 +221,21 @@ class GiftNoteForm extends HTMLElement {
     this.updateCartAttributes({
       'Gift Message': this.messageTextarea.value.trim(),
       'Gift From': this.fromInput?.value.trim() || '',
+      'Gift To': this.toInput?.value.trim() || '',
     });
   }
 
   clearCartAttributes() {
     if (this.messageTextarea) this.messageTextarea.value = '';
     if (this.fromInput) this.fromInput.value = '';
+    if (this.toInput) this.fromInput.value = '';
     this.updateCharCount();
 
     this.updateCartAttributes(
       {
         'Gift Message': '',
         'Gift From': '',
+        'Gift To': '',
       },
       'Failed to clear gift note:',
     );
