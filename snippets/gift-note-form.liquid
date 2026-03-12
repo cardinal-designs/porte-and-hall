@@ -74,7 +74,7 @@
           placeholder="{{ message_placeholder }}"
           aria-label="{{ message_placeholder }}"
           maxlength="250"
-          {% comment %} rows="{{ max_lines }}" {% endcomment %}
+          rows="{{ max_lines }}"
         >{{ saved_message }}</textarea>
         {% comment %} <div class="gift-note-form__lines">
           {%- for i in (1..max_lines) -%}
