@@ -2,7 +2,7 @@ class GiftNoteForm extends HTMLElement {
   constructor() {
     super();
 
-    this.maxCharsPerLine = parseInt(this.dataset.maxChars) || 29;
+    this.maxCharsTotal = parseInt(this.dataset.maxChars) || 250;
     this.maxLines = parseInt(this.dataset.maxLines) || 4;
 
     this.checkbox = this.querySelector('.gift-note-form__checkbox');
@@ -23,7 +23,7 @@ class GiftNoteForm extends HTMLElement {
     this.handleBlur = this.handleBlur.bind(this);
     this.handleFocus = this.handleFocus.bind(this);
 
-    if (this.messageTextarea && this.messageTextarea.value) {
+    if (this.messageTextarea) {
       this.updateCharCount();
     }
   }
@@ -37,8 +37,10 @@ class GiftNoteForm extends HTMLElement {
   }
 
   bindEvents() {
-    if (this.checkbox)
+    if (this.checkbox) {
       this.checkbox.addEventListener('change', this.handleCheckboxChange);
+    }
+
     if (this.messageTextarea) {
       this.messageTextarea.addEventListener('input', this.handleMessageInput);
       this.messageTextarea.addEventListener('keydown', this.handleKeydown);
@@ -53,17 +55,17 @@ class GiftNoteForm extends HTMLElement {
   }
 
   unbindEvents() {
-    if (this.checkbox)
+    if (this.checkbox) {
       this.checkbox.removeEventListener('change', this.handleCheckboxChange);
+    }
+
     if (this.messageTextarea) {
-      this.messageTextarea.removeEventListener(
-        'input',
-        this.handleMessageInput,
-      );
+      this.messageTextarea.removeEventListener('input', this.handleMessageInput);
       this.messageTextarea.removeEventListener('keydown', this.handleKeydown);
       this.messageTextarea.removeEventListener('blur', this.handleBlur);
       this.messageTextarea.removeEventListener('focus', this.handleFocus);
     }
+
     if (this.fromInput) {
       this.fromInput.removeEventListener('blur', this.handleBlur);
       this.fromInput.removeEventListener('focus', this.handleFocus);
@@ -91,9 +93,11 @@ class GiftNoteForm extends HTMLElement {
 
   handleCheckboxChange(event) {
     const isChecked = event.target.checked;
+
     if (this.content) {
       this.content.hidden = !isChecked;
     }
+
     event.target.setAttribute('aria-expanded', isChecked);
 
     if (isChecked) {
@@ -111,31 +115,23 @@ class GiftNoteForm extends HTMLElement {
 
   handleMessageInput(event) {
     const textarea = event.target;
-    const lines = textarea.value.split('\n');
+    let value = textarea.value;
 
+    // Limit to 4 lines
+    let lines = value.split('\n');
     if (lines.length > this.maxLines) {
-      lines.length = this.maxLines;
-      textarea.value = lines.join('\n');
+      lines = lines.slice(0, this.maxLines);
+      value = lines.join('\n');
     }
 
-    let modified = false;
-    for (let i = 0; i < lines.length; i++) {
-      if (lines[i].length > this.maxCharsPerLine) {
-        if (lines.length < this.maxLines) {
-          const overflow = lines[i].substring(this.maxCharsPerLine);
-          lines[i] = lines[i].substring(0, this.maxCharsPerLine);
-          lines.splice(i + 1, 0, overflow);
-          modified = true;
-        } else {
-          lines[i] = lines[i].substring(0, this.maxCharsPerLine);
-          modified = true;
-        }
-      }
+    // Limit to 250 total characters, including line breaks
+    if (value.length > this.maxCharsTotal) {
+      value = value.substring(0, this.maxCharsTotal);
     }
 
-    if (modified) {
-      const cursorPos = textarea.selectionStart;
-      textarea.value = lines.join('\n');
+    if (textarea.value !== value) {
+      const cursorPos = Math.min(textarea.selectionStart, value.length);
+      textarea.value = value;
       textarea.setSelectionRange(cursorPos, cursorPos);
     }
 
@@ -144,15 +140,10 @@ class GiftNoteForm extends HTMLElement {
 
   handleKeydown(event) {
     const textarea = event.target;
-    const lines = textarea.value.split('\n');
-    const currentLine =
-      textarea.value.substring(0, textarea.selectionStart).split('\n').length -
-      1;
-
-    if (event.key === 'Enter' && lines.length >= this.maxLines) {
-      event.preventDefault();
-      return;
-    }
+    const value = textarea.value;
+    const selectionStart = textarea.selectionStart;
+    const selectionEnd = textarea.selectionEnd;
+    const hasSelection = selectionStart !== selectionEnd;
 
     const allowedKeys = [
       'Backspace',
@@ -163,21 +154,31 @@ class GiftNoteForm extends HTMLElement {
       'ArrowDown',
       'Home',
       'End',
-      'Enter',
       'Tab',
     ];
-    if (!allowedKeys.includes(event.key) && !event.ctrlKey && !event.metaKey) {
-      if (
-        lines[currentLine] &&
-        lines[currentLine].length >= this.maxCharsPerLine
-      ) {
-        if (
-          textarea.selectionStart === textarea.selectionEnd &&
-          lines.length >= this.maxLines
-        ) {
-          event.preventDefault();
-        }
+
+    // Block Enter if already at max lines and no text is selected
+    if (event.key === 'Enter') {
+      const lines = value.split('\n');
+      if (lines.length >= this.maxLines && !hasSelection) {
+        event.preventDefault();
       }
+      return;
+    }
+
+    // Let navigation/deletion/shortcuts through
+    if (
+      allowedKeys.includes(event.key) ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.altKey
+    ) {
+      return;
+    }
+
+    // Block typing if already at total max and no text is selected
+    if (value.length >= this.maxCharsTotal && !hasSelection) {
+      event.preventDefault();
     }
   }
 
@@ -186,17 +187,18 @@ class GiftNoteForm extends HTMLElement {
       !this.messageTextarea ||
       !this.charsRemainingEl ||
       !this.linesRemainingEl
-    )
+    ) {
       return;
+    }
 
-    const lines = this.messageTextarea.value.split('\n');
-    const currentLineIndex = Math.min(lines.length - 1, this.maxLines - 1);
-    const currentLine = lines[currentLineIndex] || '';
+    const value = this.messageTextarea.value;
+    const lines = value ? value.split('\n') : [''];
 
     this.charsRemainingEl.textContent = Math.max(
       0,
-      this.maxCharsPerLine - currentLine.length,
+      this.maxCharsTotal - value.length,
     );
+
     this.linesRemainingEl.textContent = Math.max(
       0,
       this.maxLines - lines.length,
