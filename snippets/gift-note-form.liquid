@@ -12,7 +12,7 @@
   @example
   {% render 'gift-note-form',
     checkbox_label: 'Complimentary Greeting Message',
-    max_chars_per_line: 29,
+    max_chars_per_line: 250,
     max_lines: 4,
     message_placeholder: 'Write your gift message here...',
     from_placeholder: 'FROM:',
@@ -22,7 +22,7 @@
 
 {%- liquid
   assign checkbox_label = checkbox_label | default: 'Complimentary Greeting Message'
-  assign max_chars_per_line = max_chars_per_line | default: 29
+  assign max_chars_per_line = 250
   assign max_lines = max_lines | default: 4
   assign message_placeholder = message_placeholder | default: 'Write your gift message here...'
   assign from_placeholder = from_placeholder | default: 'FROM:'

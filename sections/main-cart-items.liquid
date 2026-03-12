@@ -65,7 +65,7 @@
           <div class="cart-page-gift-note">
             {% render 'gift-note-form',
               checkbox_label: section.settings.greeting_checkbox_label,
-              max_chars_per_line: section.settings.greeting_max_chars_per_line,
+              max_chars_per_line: 250,
               max_lines: section.settings.greeting_max_lines,
               message_placeholder: section.settings.greeting_message_placeholder,
               from_placeholder: section.settings.greeting_from_placeholder,
@@ -133,15 +133,6 @@
           "id": "greeting_checkbox_label",
           "label": "Checkbox label",
           "default": "Complimentary Greeting Message"
-        },
-        {
-          "type": "range",
-          "id": "greeting_max_chars_per_line",
-          "label": "Max characters per line",
-          "min": 10,
-          "max": 50,
-          "step": 1,
-          "default": 29
         },
         {
           "type": "range",
