@@ -59,6 +59,11 @@
   font-size: 11px;
 }
 
+.gift-note-form__label-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .gift-note-form__content {
   padding: 0;
   display: grid;
