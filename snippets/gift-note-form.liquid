@@ -85,7 +85,7 @@
 
       <p class="gift-note-form__char-count">
         <span class="gift-note-form__chars-remaining">{{ max_chars_per_line }}</span>
-        {{ 'gift_note.characters_left' | t | default: 'characters left in this line' }},
+        {{ 'gift_note.characters_left' | t | default: 'characters left' }},
         {{ 'gift_note.and' | t | default: 'and' }}
         <span class="gift-note-form__lines-remaining">{{ max_lines | minus: 1 }}</span>
         {{ 'gift_note.lines_left' | t | default: 'lines left' }}.
