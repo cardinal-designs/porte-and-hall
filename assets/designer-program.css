@@ -567,5 +567,9 @@ ul.js-error-messages {
     font-size: 16px !important;
     margin: 10px 0 0 !important;
   }
+
+  .Designer_Program_Form .globo-formbuilder .globo-form-app [data-type="radio"] label {
+    font-size: 14px !important;
+  }
   
 }
