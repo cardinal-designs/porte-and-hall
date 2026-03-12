@@ -151,7 +151,7 @@
   margin-top: 12px;
 }
 
-.gift-note-form__from {
+.gift-note-form__from, .gift-note-form__to {
   width: 100%;
   padding: 16px;
   border: 1px solid var(--color-border, #ccc);
@@ -162,11 +162,11 @@
   color: var(--color-foreground, #333);
 }
 
-.gift-note-form__from:focus {
+.gift-note-form__from:focus, .gift-note-form__to:focus {
   outline: 2px solid var(--color-foreground, #333);
   outline-offset: -2px;
 }
 
-.gift-note-form__from::placeholder {
+.gift-note-form__from::placeholder, .gift-note-form__to::placeholder {
   color: var(--color-foreground-muted, #999);
 }
