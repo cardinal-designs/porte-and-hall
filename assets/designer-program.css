@@ -224,10 +224,10 @@ ul.js-error-messages {
   z-index: unset !important;
 }
 
-.Designer_Program_Form .globo-form-app .header,
+/* .Designer_Program_Form .globo-form-app .header,
 .Designer_Program_Form .globo-form-control label {
   display: none !important;
-}
+} */
 
 .Designer_Program_Form .globo-form-control {
   margin-bottom: 50px !important;
@@ -365,10 +365,10 @@ ul.js-error-messages {
   animation: none !important;
 }
 
-.Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-input + .checkbox-label:after,
+/* .Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-input + .checkbox-label:after,
 .Designer_Program_Form [data-type="acceptTerms"] .checkbox-input + label.checkbox-label.globo-option:after {
   display: none !important;
-}
+} */
 
 .Designer_Program_Form .globo-form-control.How_Did_You_Hear .checkbox-wrapper .checkbox-input:checked + .checkbox-label:after,
 .Designer_Program_Form [data-type="acceptTerms"] .checkbox-input:checked + label.checkbox-label.globo-option:after{
