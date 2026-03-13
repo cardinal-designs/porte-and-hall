@@ -11,9 +11,9 @@ class GiftNoteForm extends HTMLElement {
     this.charsRemainingEl = this.querySelector(
       '.gift-note-form__chars-remaining',
     );
-    this.linesRemainingEl = this.querySelector(
-      '.gift-note-form__lines-remaining',
-    );
+    // this.linesRemainingEl = this.querySelector(
+    //   '.gift-note-form__lines-remaining',
+    // );
     this.fromInput = this.querySelector('.gift-note-form__from');
     this.toInput = this.querySelector('.gift-note-form__to');
 
@@ -197,8 +197,8 @@ class GiftNoteForm extends HTMLElement {
   updateCharCount() {
     if (
       !this.messageTextarea ||
-      !this.charsRemainingEl ||
-      !this.linesRemainingEl
+      !this.charsRemainingEl //  ||
+      // !this.linesRemainingEl
     ) {
       return;
     }
@@ -211,10 +211,10 @@ class GiftNoteForm extends HTMLElement {
       this.maxCharsTotal - value.length,
     );
 
-    this.linesRemainingEl.textContent = Math.max(
-      0,
-      this.maxLines - lines.length,
-    );
+    // this.linesRemainingEl.textContent = Math.max(
+    //   0,
+    //   this.maxLines - lines.length,
+    // );
   }
 
   saveToCart() {
