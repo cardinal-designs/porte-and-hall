@@ -260,6 +260,11 @@ span.jdgm-prev-badge__stars {
   min-width: auto !important;
 }
 
+.productSelected-module__product_selected__KB.productSelected-module__product_selected_withQtyInput__wQ {
+  height: 70px !important;
+  min-height: 70px !important; 
+}
+
 /* .productList-module__has_sidebar__HP .productList-module__card_product_wrap__BW {
   gap: 20px !important;
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
