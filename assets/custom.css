@@ -101,6 +101,7 @@ span.jdgm-prev-badge__stars {
 
 .productList-module__has_sidebar__HP .productList-module__card_product_wrap__BW {
   gap: 20px !important;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 /*========== Swatch Trade Program CSS End ==========*/
