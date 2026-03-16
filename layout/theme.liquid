@@ -45,13 +45,13 @@
     {% endif %}
     </script>
       
-    {% unless customer %}
+    {% comment %} {% unless customer %}
       <script>
         if(window.location.href?.includes("/apps/box-builder/")){
           window.location.href = "/";
         }
       </script>
-    {% endunless %}
+    {% endunless %} {% endcomment %}
 
     <!-- begin Convert Experiences code-->
     <script type="text/javascript" src="//cdn-4.convertexperiments.com/js/10041621-10044581.js" defer="defer"></script>
