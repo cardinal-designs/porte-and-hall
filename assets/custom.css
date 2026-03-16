@@ -188,13 +188,12 @@ span.jdgm-prev-badge__stars {
 }
 
 .sidebarSummary-module__header__actions__Wj .sidebarSummary-module__number_product_add__kj {
-  color:  #30383D;
+  color:  #30383D !important;
   font-family: brandon !important;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: 1.08px;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  line-height: normal !important;
+  letter-spacing: 1.08px !important;
 }
 
 /* .productList-module__has_sidebar__HP .productList-module__card_product_wrap__BW {
