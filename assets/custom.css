@@ -248,7 +248,9 @@ span.jdgm-prev-badge__stars {
   max-width: 50px;
   border-radius: 0;
   min-height: auto;
-  max-height: unset; 
+  max-height: unset;
+  min-width: auto;
+  width: 100%; 
 }
 
 /* .productList-module__has_sidebar__HP .productList-module__card_product_wrap__BW {
