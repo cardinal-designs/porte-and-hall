@@ -346,6 +346,11 @@ span.jdgm-prev-badge__stars {
   letter-spacing: 1.08px !important;
 }
 
+.orderDetail-module__summary_checkout__ZS {
+  border-radius: 0 !important;
+  border-color: #CAD2D3 !important;
+}
+
 /* .productList-module__has_sidebar__HP .productList-module__card_product_wrap__BW {
   gap: 20px !important;
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
