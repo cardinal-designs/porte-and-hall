@@ -238,6 +238,12 @@ span.jdgm-prev-badge__stars {
   padding: 15px 20px 20px !important;
 }
 
+.productSelected-module__product_selected__KB {
+  padding: 9px !important;
+  border-radius: 0 !important;
+  border-color: #CAD2D3 !important;
+}
+
 /* .productList-module__has_sidebar__HP .productList-module__card_product_wrap__BW {
   gap: 20px !important;
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
