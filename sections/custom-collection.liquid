@@ -333,19 +333,7 @@
               <div class="product-card ">
                 <div class="product-card__image">
                   <a href="{{ block.settings.collection1.url }}">
-                    <div class="aspect-ratio img-fill" style="max-width: 100%; width: 100%; --aspect-ratio: ">
-                      <img class="lazyload--fade lazyautosizes lazyloaded"
-                        data-src="{{ block.settings.collection_image1 | image_url: width: 300 }}"
-                        data-widths="[200,300,400,600]" 
-                        data-sizes="auto" 
-                        alt="image" 
-                        loading="lazy"
-                        data-media-id="" 
-                        sizes="274px"
-                        height="{{ block.settings.collection_image1.height }}"
-                        width="{{ block.settings.collection_image1.width }}"
-                        src="{{ block.settings.collection_image1 | image_url: width: 300 }}">
-                    </div>
+                    {% render 'lazy-image', image: block.settings.collection_image1, fade: true, fill: true, widthI: 600, sizes: '(min-width: 768px) 274px, 50vw' %}
                   </a>
                 </div>
               
@@ -382,19 +370,7 @@
               <div class="product-card ">
                 <div class="product-card__image">
                   <a href="{{ block.settings.collection2.url }}">
-                    <div class="aspect-ratio img-fill" style="max-width: 100%; width: 100%; --aspect-ratio: ">
-                      <img class="lazyload--fade lazyautosizes lazyloaded"
-                        data-src="{{ block.settings.collection_image2 | image_url: width: 300 }}"
-                        data-widths="[200,300,400,600]" 
-                        data-sizes="auto" 
-                        alt="image" 
-                        loading="lazy"
-                        data-media-id="" 
-                        sizes="274px"
-                        height="{{ block.settings.collection_image2.height }}"
-                        width="{{ block.settings.collection_image2.width }}"
-                        src="{{ block.settings.collection_image2 | image_url: width: 300 }}">
-                    </div>
+                    {% render 'lazy-image', image: block.settings.collection_image2, fade: true, fill: true, widthI: 600, sizes: '(min-width: 768px) 274px, 50vw' %}
                   </a>
                 </div>
               

@@ -99,9 +99,9 @@
               {% render 'lazy-image', image: product_card_product.media[0], fade: true, classes: 'img-fill',style: 'opacity: 0;', aria-label: "image" %}
             {% endif %}
         {% else %}
-          {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image" %}
+          {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image", prioritize_loading: prioritize_loading %}
           {% if product_card_product.media[1] != null %}
-            {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill', aria-label: "image" %}
+            {% render 'deferred-hover-image', image: product_card_product.media[1], classes: 'img-fill' %}
           {% endif %}
         {% endif %}
         {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}

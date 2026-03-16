@@ -236,7 +236,11 @@
 {% render 'product-zoom' %}
 
 {% javascript %}
+  (function() {
+  var productSection = document.querySelector('.product__media-list');
 
+  if (productSection) {
+    window.initOnVisible(productSection, function() {
   const thumbnailSlider = new Swiper('.product__media-thumbnails', {
     slidesPerView: 'auto',
     loop: false,
@@ -290,6 +294,8 @@
       control: productZoomSlider,
     },
   });
+  }); // end initOnVisible
+  } // end if productSection
 
   const zoomContainer = document.querySelector('.product__zoom');
   const openZoom = document.querySelectorAll('[data-open-zoom]');
@@ -341,6 +347,7 @@
     )
     observer.observe(document.body, {childList: true})
 
+  })(); // end IIFE
 {% endjavascript %}
 
 <script>

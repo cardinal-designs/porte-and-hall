@@ -68,24 +68,31 @@
 </div>
 
 {% javascript %}
-  const contentSwiper = new Swiper('.text-media-carousel__text', {
-    slidesPerView: 1,
-  });
+  (function() {
+    var container = document.querySelector('.text-media-carousel__media-inner');
+    if (!container) return;
 
-  const imageSwiper = new Swiper('.text-media-carousel__media-inner', {
-    slidesPerView: 1,
-    pagination: {
-      el: '.text-media-carousel__pagination',
-      clickable: true,
-    },
-    navigation: {
-        nextEl: '.text-media-carousel__media-next',
-        prevEl: '.text-media-carousel__media-prev',
-      },
-    controller: {
-      control: contentSwiper,
-    },
-  });
+    window.initOnVisible(container, function() {
+      const contentSwiper = new Swiper('.text-media-carousel__text', {
+        slidesPerView: 1,
+      });
+
+      const imageSwiper = new Swiper('.text-media-carousel__media-inner', {
+        slidesPerView: 1,
+        pagination: {
+          el: '.text-media-carousel__pagination',
+          clickable: true,
+        },
+        navigation: {
+            nextEl: '.text-media-carousel__media-next',
+            prevEl: '.text-media-carousel__media-prev',
+          },
+        controller: {
+          control: contentSwiper,
+        },
+      });
+    });
+  })();
 {% endjavascript %}
 
 {% schema %}

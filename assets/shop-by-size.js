@@ -10,7 +10,12 @@ class ShopBySize extends HTMLElement {
     this._initialized = true;
 
     this.initTabs();
-    this.initSwipers();
+
+    if (window.initOnVisible) {
+      window.initOnVisible(this, () => this.initSwipers());
+    } else {
+      this.initSwipers();
+    }
   }
 
   initTabs() {

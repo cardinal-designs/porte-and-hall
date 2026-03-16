@@ -55,18 +55,21 @@
 </section>
 
 <script>
-
   document.addEventListener("DOMContentLoaded", (event) => {
-    var tradeSwiper = new Swiper(".hero__image--slider", {
-      loop: true,
-      slidesPerView: 1, 
-      autoplay: {
-        delay: 2000,
-        disableOnInteraction: false,
-      },
-    });       
+    var container = document.querySelector(".hero__image--slider");
+    if (container && window.initOnVisible) {
+      window.initOnVisible(container, function() {
+        var tradeSwiper = new Swiper(".hero__image--slider", {
+          loop: true,
+          slidesPerView: 1, 
+          autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+          },
+        });
+      });
+    }
   });
-  
 </script>
 
 {% schema %}

@@ -78,20 +78,27 @@
 
 
 {% javascript %}
-  const stylingTipsImages = new Swiper('.styling-tips__images', {
-    slidesPerView: 1,
-    loop: true,
-    autoplay: {
-      delay: 3000,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    pagination: {
-      el: ".swiper-pagination",
-    },
-  });
+  (function() {
+    var container = document.querySelector('.styling-tips__images');
+    if (!container) return;
+
+    window.initOnVisible(container, function() {
+      const stylingTipsImages = new Swiper('.styling-tips__images', {
+        slidesPerView: 1,
+        loop: true,
+        autoplay: {
+          delay: 3000,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+        },
+      });
+    });
+  })();
 {% endjavascript %}
 
 

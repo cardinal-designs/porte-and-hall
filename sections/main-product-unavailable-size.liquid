@@ -889,11 +889,9 @@
 {% render 'product-zoom' %}
 
 {% javascript %}
-  const productTabs = new Swiper('.product__tabs', {
-    slidesPerView: 1,
-    loop: false,
-    allowTouchMove: false,
-  });
+  (function() {
+  var productSection = document.querySelector('.product__media-list');
+  var productTabs = null;
 
   const productTabsButtons = document.querySelectorAll('[data-product-tabs]');
   productTabsButtons.forEach((button) => {
@@ -903,8 +901,16 @@
         .find((btn) => btn.classList.contains('active'))
         .classList.remove('active');
       e.target.classList.add('active');
-      productTabs.slideTo(e.target.dataset.productTabs);
+      if (productTabs) productTabs.slideTo(e.target.dataset.productTabs);
     });
+  });
+
+  if (productSection) {
+    window.initOnVisible(productSection, function() {
+  productTabs = new Swiper('.product__tabs', {
+    slidesPerView: 1,
+    loop: false,
+    allowTouchMove: false,
   });
 
   const thumbnailSlider = new Swiper('.product__media-thumbnails', {
@@ -960,6 +966,8 @@
       control: productZoomSlider,
     },
   });
+  }); // end initOnVisible
+  } // end if productSection
 
   const zoomContainer = document.querySelector('.product__zoom');
   const openZoom = document.querySelectorAll('[data-open-zoom]');
@@ -1041,6 +1049,7 @@
       container.querySelector('.notifyme_error').innerHTML = '<p class="success">Email is required</p>';
     }
   });
+  })(); // end IIFE
 {% endjavascript %}
 
 {% paginate grouped_size_collection.products by 250 %}

@@ -1,10 +1,9 @@
-{{ 'lazysizes.min.js' | asset_url | preload_tag: as: 'script' }}
+{% comment %} lazysizes preload removed — lazy-image now uses native loading {% endcomment %}
 {{ 'swiper-bundle.min.js' | asset_url | preload_tag: as: 'script' }}
 {{ 'micromodal.min.js' | asset_url | preload_tag: as: 'script' }}
 {{ 'gsap.min.js' | asset_url | preload_tag: as: 'script' }}
 {{ 'ScrollToPlugin.min.js' | asset_url | preload_tag: as: 'script' }}
 {{ 'global.js' | asset_url | preload_tag: as: 'script' }}
-{{ 'custom.js' | asset_url | preload_tag: as: 'script' }}
 
 <!-- handwriting -->
 <link rel="preload" href="{{ 'LaBelleAurore-Regular.ttf' | asset_url }}" as="font" type="font/ttf" crossorigin>

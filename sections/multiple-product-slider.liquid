@@ -64,7 +64,11 @@
   });
 
    $(document).ready(function() {
-      new Swiper('.swiper1', {
+      var container = document.querySelector('.collection-navigation-with-slider');
+      if (!container || !window.initOnVisible) return;
+
+      window.initOnVisible(container, function() {
+        new Swiper('.swiper1', {
           loop: false,
           slidesPerView: 2.2,
           paginationClickable: false,
@@ -159,6 +163,7 @@
           },
         }
       });
+      }); // end initOnVisible
 
     
   });

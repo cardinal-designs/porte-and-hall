@@ -72,23 +72,30 @@
 {% endif %}
 
 {% javascript %}
-  const stylingTipsImages = new Swiper('.styling-tips__images', {
-    slidesPerView: 1,
-    allowTouchMove: false,
-    loop: false,
-  });
+  (function() {
+    var container = document.querySelector('.styling-tips__content');
+    if (!container) return;
 
-  const stylingTipsContent = new Swiper('.styling-tips__content', {
-    slidesPerView: 1,
-    spaceBetween: 10,
-    pagination: {
-      el: '.styling-tips__pagination',
-      clickable: true,
-    },
-    controller: {
-      control: stylingTipsImages,
-    },
-  });
+    window.initOnVisible(container, function() {
+      const stylingTipsImages = new Swiper('.styling-tips__images', {
+        slidesPerView: 1,
+        allowTouchMove: false,
+        loop: false,
+      });
+
+      const stylingTipsContent = new Swiper('.styling-tips__content', {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        pagination: {
+          el: '.styling-tips__pagination',
+          clickable: true,
+        },
+        controller: {
+          control: stylingTipsImages,
+        },
+      });
+    });
+  })();
 {% endjavascript %}
 
 {% schema %}

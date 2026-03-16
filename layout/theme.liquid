@@ -9,13 +9,8 @@
           suffix: "{{ template.suffix }}"
       };
     </script>
-    <script type="module" blocking="render" fetchpriority="high" src="https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js" async></script>
-   
-    <style>
-      .main_nav1 {
-        opacity: 0.1 !important;
-      }
-    </style>
+    {%- render 'init-on-visible' -%}
+    <script type="module" data-lazy-src="https://cdn.intelligems.io/esm/9a01383c11cb/bundle.js"></script>
     {%- render 'optimization' -%}
     <meta name="google-site-verification" content="IVpP462_ffIVedPbcCOwwr4v0yqczNWKVEY2XNhS4b4" />
     <script data-lazy-src="https://www.googleoptimize.com/optimize.js?id=OPT-WV5FTMC" defer="defer"></script>
@@ -46,16 +41,20 @@
     </script>
 
     <!-- begin Convert Experiences code-->
-    <script type="text/javascript" src="//cdn-4.convertexperiments.com/js/10041621-10044581.js" defer="defer"></script>
+    <script type="text/javascript" data-lazy-src="//cdn-4.convertexperiments.com/js/10041621-10044581.js" defer="defer"></script>
     <!-- end Convert Experiences code -->
     
     <script type="text/javascript">
-    // adding the convert script to head
+    // adding the convert script to head (deferred until interaction)
     if (typeof _conv_host == 'undefined') {
-      window['_conv_prevent_bodyhide'] = true
-      let _conv_track = document.createElement('script')
-      _conv_track.src = '//cdn-3.convertexperiments.com/js/10021617-1002839.js'
-      document.getElementsByTagName('head')[0].appendChild(_conv_track)
+      window['_conv_prevent_bodyhide'] = true;
+      window.addEventListener('third-party-scripts-loaded', function() {
+        if (typeof _conv_host == 'undefined') {
+          var _conv_track = document.createElement('script');
+          _conv_track.src = '//cdn-3.convertexperiments.com/js/10021617-1002839.js';
+          document.getElementsByTagName('head')[0].appendChild(_conv_track);
+        }
+      });
     }
     // doing logic to submit track conversions
     {% if first_time_accessed %}
@@ -129,7 +128,7 @@
     {{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
 
     {% comment %} {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }} {% endcomment %}
-    <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
+    {% comment %} <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
     <script src="{{ 'micromodal.min.js' | asset_url }}" defer></script>
@@ -156,8 +155,12 @@
     #privy-container #privy-inner-container [tabindex]:focus {
       outline: none !important;
 	}
-    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
     </style>
+
+    <!-- Non-blocking Google Fonts (moved from render-blocking @import) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" media="print" onload="this.media='all'">
 
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
@@ -229,7 +232,7 @@
     </script>
     {%- render 'head-scripts-loader' -%}
     
-    <script defer src="https://static.shopmy.us/Affiliates/sms_aff_clicktrack.js?domain=porteandhall.com&expires=30"></script>
+    <script data-lazy-src="https://static.shopmy.us/Affiliates/sms_aff_clicktrack.js?domain=porteandhall.com&expires=30" defer></script>
   </head>
 
   <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
@@ -417,8 +420,31 @@
         </script>
     {% endif %}
 
-    <!-- AccessiBe widget -->    
-    <script> (function(){ var s = document.createElement('script'); var h = document.querySelector('head') || document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init({ statementLink : '', footerHtml : '', hideMobile : false, hideTrigger : false, disableBgProcess : false, language : 'en', position : 'left', leadColor : '#556b82', triggerColor : '#50657b', triggerRadius : '50%', triggerPositionX : 'left', triggerPositionY : 'bottom', triggerIcon : 'people', triggerSize : 'medium', triggerOffsetX : 20, triggerOffsetY : 20, mobile : { triggerSize : 'small', triggerPositionX : 'right', triggerPositionY : 'bottom', triggerOffsetX : 10, triggerOffsetY : 10, triggerRadius : '50%' } }); }; h.appendChild(s); })(); </script>   
+    <!-- AccessiBe widget (deferred until first interaction) -->
+    <script>
+      window.addEventListener('third-party-scripts-loaded', function() {
+        var s = document.createElement('script');
+        var h = document.querySelector('head') || document.body;
+        s.src = 'https://acsbapp.com/apps/app/dist/js/app.js';
+        s.async = true;
+        s.onload = function() {
+          acsbJS.init({
+            statementLink: '', footerHtml: '', hideMobile: false,
+            hideTrigger: false, disableBgProcess: false, language: 'en',
+            position: 'left', leadColor: '#556b82', triggerColor: '#50657b',
+            triggerRadius: '50%', triggerPositionX: 'left', triggerPositionY: 'bottom',
+            triggerIcon: 'people', triggerSize: 'medium',
+            triggerOffsetX: 20, triggerOffsetY: 20,
+            mobile: {
+              triggerSize: 'small', triggerPositionX: 'right',
+              triggerPositionY: 'bottom', triggerOffsetX: 10,
+              triggerOffsetY: 10, triggerRadius: '50%'
+            }
+          });
+        };
+        h.appendChild(s);
+      });
+    </script>
 
     <!-- OneTrust Cookies Consent Notice start for www.porteandhall.com -->
     <style>
@@ -621,43 +647,17 @@
  };
 </style>
 
-  </body>
-</html>
-
 <!-- Begin Shopify-Afterpay JavaScript Snippet (v1.2.1) -->
 {% if cart.currency.iso_code == shop.currency %}
 <script type="text/javascript">
 // Overrides:
- var afterpay_msg_size = 'md';  // Can be 'xs', 'sm', 'md' or 'lg'.
-// var afterpay_bold_amount = true;
- var afterpay_logo_theme = 'black';  // Can be 'colour', 'black' or 'white'.
-// var afterpay_modal_open_icon = true;
-// var afterpay_hide_upper_limit = false;
-// var afterpay_hide_lower_limit = true;
-// var afterpay_show_if_outside_limits = true;
-
+ var afterpay_msg_size = 'md';
+ var afterpay_logo_theme = 'black';
  var afterpay_product_integration_enabled = true;
  var afterpay_product_selector = '.afterpay-pdp .afterpay-wrapper';
-// var afterpay_variable_price_fallback = false;
-// var afterpay_variable_price_fallback_selector = '';
-// var afterpay_variable_price_fallback_method = 'mutation';  // Can be 'mutation' or 'interval'.
-
-// var afterpay_cart_integration_enabled = true;
-// var afterpay_cart_static_selector = '#cart-subtotal-selector';
-// var afterpay_variable_subtotal_fallback = false;
-// var afterpay_variable_subtotal_fallback_selector = '';
-// var afterpay_variable_subtotal_fallback_method = 'mutation'; // Can be 'mutation' or 'interval'.
-
 var afterpay_dynamic_cart_integration_enabled = true;
 var afterpay_dynamic_cart_selector = '.cart-drawer__footer #cart-drawer-subtotal';
 var afterpay_dynamic_cart_observer_target = '#cart-drawer';
-
-// var afterpay_footer_logo_enabled = true;
-// var afterpay_footer_logo_format = 'icon';  // Can be 'icon', 'stacked' or 'logo'.
-// var afterpay_footer_logo_theme = 'colour'; // Can be 'colour', 'black' or 'white'.
-// var afterpay_footer_logo_background = 'border';  // Can be 'border' or 'transparent'.
-// var afterpay_footer_logo_container = 'footer ul.payment-icons';
-// var afterpay_footer_logo_template = '<li class="payment-icon"><object data="{logo_path}" type="image/svg+xml"></object></li>';
 
 // Non-editable fields:
 var afterpay_js_language = {{ localization.language.iso_code | slice: 0, 2 | json }};
@@ -675,8 +675,11 @@ var afterpay_cart_skus = {{cart.items | map: 'sku' | join: ',' | json }};
 var afterpay_cart_collections = {{cart.items | map: 'product' | map: 'collections' | map: 'title' | uniq | join: ',' | json }};
 var afterpay_js_snippet_version = '1.2.1';
 </script>
-<script type="text/javascript" src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
+<script type="text/javascript" data-lazy-src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
 {% else %}
 <!-- Afterpay disabled: {{ cart.currency.iso_code }} != {{ shop.currency }} -->
 {% endif %}
 <!-- End Shopify-Afterpay JavaScript Snippet (v1.2.1) -->
+
+  </body>
+</html>

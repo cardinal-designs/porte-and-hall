@@ -54,18 +54,21 @@
 
 
 <script>
-
   document.addEventListener("DOMContentLoaded", (event) => {
-    var tradeSwiper = new Swiper(".trade__image--slider", {
-      loop: true,
-      slidesPerView: 1, 
-      autoplay: {
-        delay: 2000,
-        disableOnInteraction: false,
-      },
-    });       
+    var container = document.querySelector(".trade__image--slider");
+    if (container && window.initOnVisible) {
+      window.initOnVisible(container, function() {
+        var tradeSwiper = new Swiper(".trade__image--slider", {
+          loop: true,
+          slidesPerView: 1, 
+          autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+          },
+        });
+      });
+    }
   });
-  
 </script>
 
 {% schema %}
