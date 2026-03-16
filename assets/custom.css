@@ -225,14 +225,14 @@ span.jdgm-prev-badge__stars {
 }
 
 .productSelected-module__price_product_selected__rE,
-.boxProduct-module__summary_content_title_price_wrap__UD {
+.boxProduct-module__summary_content_title_price_wrap__UD .boxProduct-module__summary_content_title_price__IS  {
   color:  #30383D !important;
   font-size: 16px !important;
   letter-spacing: 0.96px !important;
 }
 
 .productSelected-module__price_product_selected__rE span,
-.boxProduct-module__summary_content_title_price_wrap__UD span {
+.boxProduct-module__summary_content_title_price_wrap__UD .boxProduct-module__summary_content_title_price__IS  {
   font-weight: 400 !important;
 }
 
