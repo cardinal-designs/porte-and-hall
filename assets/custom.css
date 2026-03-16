@@ -88,8 +88,14 @@ span.jdgm-prev-badge__stars {
   gap: 30px !important;
 }
 
-[el-key="4eb0db80-208e-4526-af88-4292fda03bb6"] *:not(b):not(strong) {
-  margin-top: 50px !important
+.rootElementRenderer-module__setting_sidebar__Ep [el-key="4eb0db80-208e-4526-af88-4292fda03bb6"] *:not(b):not(strong) {
+  margin-top: 50px !important;
+  color: #30383D !important;
+  font-size: 64px !important;
+  font-weight: 500 !important;
+  line-height: 120% !important;
+  letter-spacing: 1.28px !important;
+  font-family: louize !important;
 }
 
 /*========== Swatch Trade Program CSS End ==========*/
