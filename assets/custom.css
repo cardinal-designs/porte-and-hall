@@ -447,7 +447,8 @@ span.jdgm-prev-badge__stars {
   min-width: 50px !important;
 }
 
-.boxItem-module__summary_content_icon__WY {
+.boxItem-module__summary_content_icon__WY,
+.boxItemMobile-module__summary_content_icon__ls {
   width: 50px !important;
   height: 50px !important;
   object-fit: scale-down !important;
