@@ -54,11 +54,13 @@ span.jdgm-prev-badge__stars {
 
 /*========== Swatch Trade Program CSS Start ==========*/
 
-.rootElementRenderer-module__setting_sidebar__Ep [el-key="09e40368-06f7-49bc-a6f9-9b5ca1c8b599"] [el-type=HEADING] p {
+.rootElementRenderer-module__setting_sidebar__Ep [el-key="09e40368-06f7-49bc-a6f9-9b5ca1c8b599"] [el-type=HEADING] p,
+.rootElementRenderer-module__rootElementContainer__3I [el-key="09e40368-06f7-49bc-a6f9-9b5ca1c8b599"] [el-type=HEADING] p {
   line-height: 1 !important;
 }
 
-.rootElementRenderer-module__setting_sidebar__Ep [el-key="09e40368-06f7-49bc-a6f9-9b5ca1c8b599"] [el-type=HEADING] p * {
+.rootElementRenderer-module__setting_sidebar__Ep [el-key="09e40368-06f7-49bc-a6f9-9b5ca1c8b599"] [el-type=HEADING] p *,
+.rootElementRenderer-module__rootElementContainer__3I [el-key="09e40368-06f7-49bc-a6f9-9b5ca1c8b599"] [el-type=HEADING] p * {
   color: #30383D !important;
   font-size: 64px !important;
   font-weight: 500 !important;
@@ -80,7 +82,8 @@ span.jdgm-prev-badge__stars {
   font-family: louize !important;
 }
 
-.rootElementRenderer-module__setting_sidebar__Ep [el-key="09e40368-06f7-49bc-a6f9-9b5ca1c8b599"] {
+.rootElementRenderer-module__setting_sidebar__Ep [el-key="09e40368-06f7-49bc-a6f9-9b5ca1c8b599"],
+.rootElementRenderer-module__rootElementContainer__3I [el-key="09e40368-06f7-49bc-a6f9-9b5ca1c8b599"] {
   gap: 10px !important;
 }
 
@@ -90,6 +93,7 @@ span.jdgm-prev-badge__stars {
 }
 
 .rootElementRenderer-module__setting_sidebar__Ep [el-key="09e40368-06f7-49bc-a6f9-9b5ca1c8b599"] [el-key="8feab13f-d1eb-4468-980e-a07e361408fd"] *,
+.rootElementRenderer-module__rootElementContainer__3I [el-key="09e40368-06f7-49bc-a6f9-9b5ca1c8b599"] [el-key="8feab13f-d1eb-4468-980e-a07e361408fd"] *,,
 [el-key="dc36e30a-9910-4b5d-ba95-9e2738bc48a2"] [el-key="5f4dcc67-6d38-480a-80bb-c9dd8dc842f4"] {
   color: #30383D !important;
   font-size: 18px !important;
@@ -102,7 +106,8 @@ span.jdgm-prev-badge__stars {
   gap: 30px !important;
 }
 
-.rootElementRenderer-module__setting_sidebar__Ep [el-key="4eb0db80-208e-4526-af88-4292fda03bb6"] *:not(b):not(strong) {
+.rootElementRenderer-module__setting_sidebar__Ep [el-key="4eb0db80-208e-4526-af88-4292fda03bb6"] *:not(b):not(strong),
+.rootElementRenderer-module__rootElementContainer__3I [el-key="4eb0db80-208e-4526-af88-4292fda03bb6"] *:not(b):not(strong) {
   margin-top: 20px !important;
   margin-bottom: 20px !important;
   color: #30383D !important;
@@ -410,7 +415,7 @@ span.jdgm-prev-badge__stars {
 
 @media screen and (max-width: 1024px) {
 
-  
+
 
 }
 
