@@ -453,6 +453,7 @@ span.jdgm-prev-badge__stars {
   width: 50px !important;
   height: 50px !important;
   object-fit: scale-down !important;
+  min-width: unset !important;
 }
 
 .quantityStepper-module__button__eS {
