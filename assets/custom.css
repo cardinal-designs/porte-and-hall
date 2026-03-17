@@ -478,6 +478,10 @@ span.jdgm-prev-badge__stars {
     padding: 15px 20px 10px !important;
   }
 
+  .sidebarSummary-module__sidebar_footer_actions__xs {
+    gap: 10px !important;
+  }
+
   .sidebarSummary-module__overview_sidebar_total__U5,
   .sidebarSummary-module__summary_icon_view_text__MV {
     color: #30383D !important;
