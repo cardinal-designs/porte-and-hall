@@ -432,6 +432,10 @@ span.jdgm-prev-badge__stars {
   color: #30383D !important;
 }
 
+.sidebarSummary-module__header__action__mn {
+  gap: 10px !important;
+}
+
 @media screen and (max-width: 1024px) {
 
   [sbb-data-box-id="12964"] .PAGE_PADDING_TS {
