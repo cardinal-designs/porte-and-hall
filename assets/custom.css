@@ -415,7 +415,9 @@ span.jdgm-prev-badge__stars {
 
 @media screen and (max-width: 1024px) {
 
-
+  [sbb-data-box-id="12964"] .PAGE_PADDING_TS {
+    padding: 30px 20px 50px !important;
+  }
 
 }
 
