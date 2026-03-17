@@ -516,10 +516,10 @@ span.jdgm-prev-badge__stars {
     gap: 10px !important;
   }
 
-  .sidebarSummary-module__overview_sidebar__dm .sidebarSummary-module__overview_sidebar_total__U5,
-  .sidebarSummary-module__summary_icon_view_text__MV,
-  .sidebarSummary-module__number_product_add__kj,
-  .sidebarSummary-module__mobileClear__G9 {
+  [sbb-data-box-id="12964"] .sidebarSummary-module__overview_sidebar__dm .sidebarSummary-module__overview_sidebar_total__U5,
+  [sbb-data-box-id="12964"] .sidebarSummary-module__summary_icon_view_text__MV,
+  [sbb-data-box-id="12964"] .sidebarSummary-module__number_product_add__kj,
+  [sbb-data-box-id="12964"] .sidebarSummary-module__mobileClear__G9 {
     color: #30383D !important;
     font-size: 16px !important;
     font-weight: 600 !important;
