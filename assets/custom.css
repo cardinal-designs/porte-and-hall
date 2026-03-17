@@ -450,6 +450,7 @@ span.jdgm-prev-badge__stars {
 .boxItem-module__summary_content_icon__WY {
   width: 50px !important;
   height: 50px !important;
+  object-fit: scale-down !important;
 }
 
 @media screen and (max-width: 1024px) {
