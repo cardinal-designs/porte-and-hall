@@ -476,7 +476,7 @@ span.jdgm-prev-badge__stars {
   }
 
   .sidebarSummary-module__price__container_wrap_mobile__uY {
-    padding: 15px 20px 10px !important;
+    padding: 15px 0 10px !important;
   }
 
   .sidebarSummary-module__sidebar_footer_actions__xs {
@@ -492,9 +492,9 @@ span.jdgm-prev-badge__stars {
     letter-spacing: 0.96px !important;
   }
 
-  .sidebarSummary-module__price__container_wrap__H4 {
+  /* .sidebarSummary-module__price__container_wrap__H4 {
     border-radius: 0 !important;
-  }
+  } */
 
 }
 
