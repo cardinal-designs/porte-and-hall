@@ -457,6 +457,10 @@ span.jdgm-prev-badge__stars {
   border: none !important;
 }
 
+.quantityStepper-module__button_disabled__pY {
+  background-color: transparent !important;
+}
+
 @media screen and (max-width: 1024px) {
 
   [sbb-data-box-id="12964"] .PAGE_PADDING_TS {
