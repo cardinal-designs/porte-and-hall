@@ -483,6 +483,10 @@ span.jdgm-prev-badge__stars {
   padding-left: 60px !important;
 }
 
+.quantityStepper-module__icon__Ie svg {
+  width: 16px;
+}
+
 .quantityInput-module__add_quantity_product_wrap_relative__lk .icon-module__root__bM svg {
   width: 12px;
 }
@@ -624,10 +628,6 @@ span.jdgm-prev-badge__stars {
 
   .boxProductMobile-module__summary_content_info_item_img__et {
     border-radius: 0 !important;
-  }
-
-  .quantityStepper-module__icon__Ie svg {
-    width: 16px;
   }
 
   .boxItemMobile-module__quantity_stepper_root_content__s- input {
