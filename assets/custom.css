@@ -462,6 +462,14 @@ span.jdgm-prev-badge__stars {
   background-color: transparent !important;
 }
 
+.boxItem-module__summary_btn_edit__mL {
+  color: #30383d !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: normal !important;
+  letter-spacing: .96px !important;
+}
+
 @media screen and (max-width: 1024px) {
 
   [sbb-data-box-id="12964"] .PAGE_PADDING_TS {
