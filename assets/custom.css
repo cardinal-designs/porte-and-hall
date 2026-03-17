@@ -453,6 +453,15 @@ span.jdgm-prev-badge__stars {
     padding-bottom: 11.5px !important;
   }
 
+  [sbb-data-box-id="12964"] .addToBoxButton-module__button_atc__zo .PRODUCT_CARD_ATC_BUTTON_TS, 
+  [sbb-data-box-id="12964"] .sidebarSummary-module__button__navigate__Mh .QUICK_SUMMARY_BUTTON_NEXT_TS, 
+  [sbb-data-box-id="12964"] .orderDetail-module__summary_checkout__ZS .BOX_REVIEW_PAGE_CHECKOUT_BUTTON_TS, 
+  [sbb-data-box-id="12964"] .orderDetail-module__summary_checkout__ZS .BOX_REVIEW_PAGE_CREATE_NEW_BOX_BUTTON_TS {
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+    font-size: 12px !important;
+  }
+
 }
 
 /*========== Swatch Trade Program CSS End ==========*/
