@@ -416,10 +416,9 @@ span.jdgm-prev-badge__stars {
   gap: 10px !important;
 }
 
-/* .productList-module__has_sidebar__HP .productList-module__card_product_wrap__BW {
-  gap: 20px !important;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-} */
+[sbb-data-box-id="12964"] .QUICK_SUMMARY_HEADER_TEXT_TS {
+  color: #30383D !important;
+}
 
 @media screen and (max-width: 1024px) {
 
