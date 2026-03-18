@@ -33,15 +33,18 @@
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
   assign collection_title = grouped_collection.title | downcase
 
+
+  assign show_badge = false
+    if swatch.tags contains 'new'
+      assign show_badge = true
+    endif
+
   capture color_swatch_list
   assign swatch_count = 1
   for swatch in grouped_collection.products
 
     
-    assign show_badge = false
-    if swatch.tags contains 'new'
-      assign show_badge = true
-    endif
+    
 
     for option in swatch.options_with_values
       assign option_name = option.name | downcase
