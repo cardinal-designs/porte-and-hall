@@ -57,7 +57,7 @@ span.jdgm-prev-badge__stars {
 }
 .product__swatches .product__swatch-badge-new {
   position: absolute;
-  top: -19px;
+  bottom: -16px;
   left: 50%;
   background: var(--blue);
   color: #fff;
