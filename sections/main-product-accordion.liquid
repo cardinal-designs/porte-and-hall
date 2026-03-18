@@ -264,7 +264,7 @@ endcapture
           data-color="{{ product.options_by_name['Color'].selected_value | default: product.options_by_name['Style'].selected_value }}">
         </div>
 
-        <div class="product__swatches">
+        <div class="product__swatches {% if swatch.tags contains 'new' %}new_badge{% endif %}">
           {{ color_swatch_list }}
         </div>
 
