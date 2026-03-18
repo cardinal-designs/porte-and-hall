@@ -39,9 +39,12 @@
 
     
     assign show_badge = false
-    if swatch.tags contains 'new'
-      assign show_badge = true
-    endif
+    for tag in swatch.tags
+      assign tag_lower = tag | downcase
+      if tag_lower == 'new'
+        assign show_badge = true
+      endif
+    endfor
 
     for option in swatch.options_with_values
       assign option_name = option.name | downcase
@@ -266,9 +269,12 @@ endcapture
 
         {% assign has_new_tag = false %}
         {% for swatch in grouped_collection.products %}
-          {% if swatch.tags contains 'new' %}
-            {% assign has_new_tag = true %}
-          {% endif %}
+          {% for tag in swatch.tags %}
+            {% assign tag_lower = tag | downcase %}
+            {% if tag_lower == 'new' %}
+              {% assign has_new_tag = true %}
+            {% endif %}
+          {% endfor %}
         {% endfor %}
         <div class="product__swatches 000 {% if product.tags contains 'new' %} product__swatches--new{% endif %}">
           {{ color_swatch_list }}
