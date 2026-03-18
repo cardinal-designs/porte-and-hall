@@ -270,7 +270,7 @@ endcapture
             {% assign has_new_tag = true %}
           {% endif %}
         {% endfor %}
-        <div class="product__swatches {% if product.tags contains 'new' %} product__swatches--new{% endif %}">
+        <div class="product__swatches 000 {% if product.tags contains 'new' %} product__swatches--new{% endif %}">
           {{ color_swatch_list }}
         </div>
 
