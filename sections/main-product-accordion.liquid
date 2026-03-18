@@ -35,88 +35,74 @@
 
   capture color_swatch_list
     assign swatch_count = 1
-    assign printed_swatch_values = ""
-
     for swatch in grouped_collection.products
+
+      assign swatch_badge_handles = ''
+      for tag in swatch.tags
+        assign tag_lower = tag | downcase
+        if tag_lower contains 'new:'
+          assign badge_color_handle = tag_lower | remove: 'new:' | strip
+          assign swatch_badge_handles = swatch_badge_handles | append: badge_color_handle | append: '|'
+        endif
+      endfor
 
       for option in swatch.options_with_values
         assign option_name = option.name | downcase
-
         if color_label contains option_name or option_name == 'style'
-          
+          assign option_index = 'option' | append: forloop.index
           for value in option.values
-            assign swatch_key = value | handle
-
-            if printed_swatch_values contains swatch_key
-              continue
-            endif
-            assign printed_swatch_values = printed_swatch_values | append: swatch_key | append: "|"
-
             assign matched_variant = swatch.variants | where: 'title', value
             if matched_variant != blank
               assign swatch_link = matched_variant[0].url
-            else
-              assign swatch_link = swatch.variants[0].url
             endif
 
             assign element_classes = 'product__swatch'
-
-            if swatch.id == product.id and option.selected_value == value
+            if swatch == product and option.selected_value == value
               assign element_classes = element_classes | append: ' product__active-swatch'
             endif
-
-            unless swatch.available
+            if swatch.available == false
               assign element_classes = element_classes | append: ' product__oos-swatch'
-            endunless
+            endif
+
+            
+            assign value_handle = value | handle
+            assign show_badge = false
+            if swatch_badge_handles contains value_handle
+              assign show_badge = true
+            endif
 
             assign swatch_file_name = value | handle | append: '.png'
+            assign swatch_image = images[swatch_file_name]
 
             echo "<a href='"
-            echo swatch_link
+            echo swatch_link | default: swatch.variants[0].url
             echo "' class='"
             echo element_classes
             echo "'"
-
-            # --- ADA Fix: Update ARIA label based on availability ---
             echo " aria-label='"
             echo value | escape
             unless swatch.available
               echo " is Unavailable"
             endunless
             echo "'"
-
-            # --- ADA Fix: Disable for screen readers when unavailable ---
-            unless swatch.available
-              echo " aria-disabled='true'"
-            endunless
-
-            echo " title='"
-            echo value | escape
-            echo "' data-tooltip='"
+            echo " data-tooltip='"
             echo value | escape
             echo "'>"
-
             echo "<span style='background-image: url("
             echo swatch_file_name | file_url
             echo ")'></span>"
 
-            # --- ADA Fix: Screen-reader-only text ---
-            echo "<span class='sr-only'>"
-            if swatch.available
-              echo value | escape
-            else
-              echo value | escape | append: " (Unavailable)"
+            
+            if show_badge
+              echo '<span class="product__swatch-badge">New</span>'
             endif
-            echo "</span>"
 
-            echo "</a>"
+            echo '</a>'
 
             assign swatch_count = swatch_count | plus: 1
           endfor
-
         endif
       endfor
-
     endfor
   endcapture
 %}
