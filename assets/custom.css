@@ -55,7 +55,7 @@ span.jdgm-prev-badge__stars {
 .product__swatch {
   position: relative; /* required */
 }
-.product__swatch-badge-new {
+.product__swatches .product__swatch-badge-new {
   position: absolute;
   top: -4px;
   right: -4px;
@@ -65,7 +65,7 @@ span.jdgm-prev-badge__stars {
   font-weight: 700;
   line-height: 1;
   padding: 2px 3px;
-  border-radius: 3px;
+  border-radius: 10px;
   pointer-events: none;
   text-transform: uppercase;
   z-index: 2;
