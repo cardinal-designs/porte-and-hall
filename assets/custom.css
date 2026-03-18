@@ -51,3 +51,22 @@ span.jdgm-prev-badge__stars {
 .product__price-reviews-wrapper .price-item--regular-b2b {
   text-decoration: line-through;
 }
+
+.product__swatch {
+  position: relative; /* required */
+}
+.product__swatch-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #e00;
+  color: #fff;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 2px 3px;
+  border-radius: 3px;
+  pointer-events: none;
+  text-transform: uppercase;
+  z-index: 2;
+}
