@@ -55,11 +55,11 @@ span.jdgm-prev-badge__stars {
 .product__swatch {
   position: relative; /* required */
 }
-.product__swatch-badge {
+.product__swatch-badge-new {
   position: absolute;
   top: -4px;
   right: -4px;
-  background: #e00;
+  background: var(--blue);
   color: #fff;
   font-size: 8px;
   font-weight: 700;
