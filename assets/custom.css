@@ -52,9 +52,14 @@ span.jdgm-prev-badge__stars {
   text-decoration: line-through;
 }
 
-.product__swatch {
-  position: relative; /* required */
+.product__swatches .product__swatches--new {
+  row-gap: 23px;
 }
+
+.product__swatch {
+  position: relative;
+}
+
 .product__swatches .product__swatch-badge-new {
   position: absolute;
   bottom: -16px;
