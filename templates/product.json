@@ -353,6 +353,27 @@
         "show_recent_articles": true,
         "hide_mobile": true
       }
+    },
+    "1773820344d9f6a854": {
+      "type": "apps",
+      "blocks": {
+        "easify_box_builder_box_bundle_product_btn_34LNNK": {
+          "type": "shopify://apps/easify-box-builder/blocks/box-bundle-product-btn/5e4620dd-6bb8-4776-ada5-5f18c69faedd",
+          "settings": {
+            "btnText": "Build Your Box",
+            "btnClasses": "button button--full-width",
+            "redirectTargetPage": "box_builder_page"
+          }
+        }
+      },
+      "block_order": [
+        "easify_box_builder_box_bundle_product_btn_34LNNK"
+      ],
+      "settings": {
+        "include_margins": true,
+        "heading": "",
+        "section_reviews": true
+      }
     }
   },
   "order": [
@@ -370,6 +391,7 @@
     "reviews",
     "168172537899ce8b94",
     "you-may-like",
-    "featured-articles"
+    "featured-articles",
+    "1773820344d9f6a854"
   ]
 }
