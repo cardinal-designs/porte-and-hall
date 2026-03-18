@@ -38,14 +38,10 @@
   for swatch in grouped_collection.products
 
     
-    assign swatch_badge_handles = ''
-    for tag in swatch.tags
-      assign tag_lower = tag | downcase
-      if tag_lower contains 'new:'
-        assign badge_color_handle = tag_lower | remove: 'new:' | strip
-        assign swatch_badge_handles = swatch_badge_handles | append: badge_color_handle | append: '|'
-      endif
-    endfor
+    assign show_badge = false
+    if swatch.tags contains 'new'
+      assign show_badge = true
+    endif
 
     for option in swatch.options_with_values
       assign option_name = option.name | downcase
@@ -65,13 +61,6 @@
             assign element_classes = element_classes | append: ' product__oos-swatch'
           endif
 
-          
-          assign value_handle = value | handle
-          assign show_badge = false
-          if swatch_badge_handles contains value_handle
-            assign show_badge = true
-          endif
-
           assign swatch_file_name = value | handle | append: '.png'
           assign swatch_image = images[swatch_file_name]
 
@@ -89,14 +78,14 @@
           echo " data-tooltip='"
           echo value | escape
           echo "'>"
+
+          if show_badge
+            echo "<span class='product__swatch-badge'>New</span>"
+          endif
+
           echo "<span style='background-image: url("
           echo swatch_file_name | file_url
           echo ")'></span>"
-
-          
-          if show_badge
-            echo '<span class="product__swatch-badge">New</span>'
-          endif
 
           echo '</a>'
 
