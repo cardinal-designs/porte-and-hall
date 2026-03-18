@@ -33,18 +33,15 @@
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
   assign collection_title = grouped_collection.title | downcase
 
-
-  assign show_badge = false
-    if swatch.tags contains 'new'
-      assign show_badge = true
-    endif
-
   capture color_swatch_list
   assign swatch_count = 1
   for swatch in grouped_collection.products
 
     
-    
+    assign show_badge = false
+    if swatch.tags contains 'new'
+      assign show_badge = true
+    endif
 
     for option in swatch.options_with_values
       assign option_name = option.name | downcase
@@ -267,7 +264,15 @@ endcapture
           data-color="{{ product.options_by_name['Color'].selected_value | default: product.options_by_name['Style'].selected_value }}">
         </div>
 
-        <div class="product__swatches {% if swatch.tags contains 'new' %}new_badge{% endif %}">
+        {% assign has_new_tag = false %}
+        {% for swatch in grouped_collection.products %}
+          {% if swatch.tags contains 'new' %}
+            {% assign has_new_tag = true %}
+          {% endif %}
+        {% endfor %}
+
+
+        <div class="product__swatches {% if product.tags contains 'new' %} product__swatches--new{% endif %}">
           {{ color_swatch_list }}
         </div>
 
