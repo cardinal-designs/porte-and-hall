@@ -111,33 +111,33 @@
         "feature_fLC3D4": {
           "type": "feature",
           "settings": {
-            "title": "Trade Pricing",
-            "description": "<p>Automatically get 20% off when you’re logged into your account + additional savings the more you spend. </p>"
-          }
-        },
-        "feature_fLAkHU": {
-          "type": "feature",
-          "settings": {
-            "title": "Dedicated Support",
-            "description": "<p>Email trade@porteandhall.com anytime for personalized assistance from a member of the Porte + Hall team.</p>"
+            "title": "Exclusive Pricing",
+            "description": "<p>Enjoy 20% off retail automatically when you’re logged in—no codes, no extra steps—and unlock tiered savings as you spend more with us.  </p>"
           }
         },
         "feature_pFfam4": {
           "type": "feature",
           "settings": {
             "title": "VIP Access",
-            "description": "<p>Receive invitations to private events and sneak previews of our latest designs.</p>"
+            "description": "<p>Be the first to shop new collections and receive invitations to exclusive, trade-only events.</p>"
+          }
+        },
+        "feature_fLAkHU": {
+          "type": "feature",
+          "settings": {
+            "title": "Dedicated Support",
+            "description": "<p>Questions about sizing, lead times, or which pattern works best in a high-traffic mudroom? Email trade@porteandhall.com—we’re here to help.</p>"
           }
         }
       },
       "block_order": [
         "feature_fLC3D4",
-        "feature_fLAkHU",
-        "feature_pFfam4"
+        "feature_pFfam4",
+        "feature_fLAkHU"
       ],
       "settings": {
         "bg_color": "#f4f2ee",
-        "heading": "How we support you",
+        "heading": "Why Designers Love It Here",
         "image": "shopify://shop_images/BarkCreme_Runner_v4_1_5fb03b9c-fece-4de6-a5fd-371fc97f9422.jpg"
       }
     },
