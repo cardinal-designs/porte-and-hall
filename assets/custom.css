@@ -336,7 +336,8 @@ span.jdgm-prev-badge__stars {
   gap: 10px !important;
 }
 
-.sidebarSummary-module__price__container_wrap__H4 {
+.sidebarSummary-module__price__container_wrap__H4,
+.sidebarSummary-module__price__container_wrap__Vm {
   padding: 15px 20px 20px !important;
   border-top: 1px solid #CAD2D3;
   box-shadow: none !important;
