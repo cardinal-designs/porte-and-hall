@@ -149,11 +149,6 @@ span.jdgm-prev-badge__stars {
   border-radius: 0 !important;
 }
 
-.sidebarSummary-module__price__container_wrap__H4 {
-  border-top: 1px solid #CAD2D3;
-  box-shadow: none !important;
-}
-
 .productContent-module__product_image_item__r7 {
   margin-bottom: 15px !important;
 }
@@ -343,6 +338,8 @@ span.jdgm-prev-badge__stars {
 
 .sidebarSummary-module__price__container_wrap__H4 {
   padding: 15px 20px 20px !important;
+  border-top: 1px solid #CAD2D3;
+  box-shadow: none !important;
 }
 
 .productSelected-module__product_selected__KB {
