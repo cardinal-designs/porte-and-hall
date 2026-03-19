@@ -571,7 +571,8 @@ span.jdgm-prev-badge__stars {
 
 @media screen and (max-width: 1024px) {
 
-  .sidebarSummary-module__sidebar__Fe {
+  .sidebarSummary-module__sidebar__Fe,
+  .sidebarSummary-module__sidebar__Iv {
     z-index: 9999999991 !important;
   }
 
