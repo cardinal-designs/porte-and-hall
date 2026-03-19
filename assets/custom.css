@@ -346,7 +346,8 @@ span.jdgm-prev-badge__stars {
   box-shadow: none !important;
 }
 
-.productSelected-module__product_selected__KB {
+.productSelected-module__product_selected__KB,
+.productSelected-module__product_selected__ST {
   padding: 9px !important;
   border-radius: 0 !important;
   border-color: #CAD2D3 !important;
