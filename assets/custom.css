@@ -569,6 +569,10 @@ span.jdgm-prev-badge__stars {
   border-radius: 0;
 }
 
+.sidebarSummary-module__mobilePanel__33, .sidebarSummary-module__mobilePanel_footer__HU, .sidebarSummary-module__mobilePanelDetail__16 {
+  background-color: transparent !important;
+}
+
 @media screen and (max-width: 1024px) {
 
   .sidebarSummary-module__sidebar__Fe,
