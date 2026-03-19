@@ -353,10 +353,6 @@ span.jdgm-prev-badge__stars {
   border-color: #CAD2D3 !important;
 }
 
-.productSelected-module__product_selected_image__Qh {
-  border-radius: 0 !important;
-}
-
 .productSelected-module__product_selected_image_item__oP,
 .productSelected-module__product_selected_image_item__-y {
   max-width: 50px !important;
@@ -367,11 +363,13 @@ span.jdgm-prev-badge__stars {
   width: 100% !important; 
 }
 
-.productSelected-module__product_selected_image__Qh {
+.productSelected-module__product_selected_image__Qh,
+.productSelected-module__product_selected_image__L2 {
   max-width: 50px !important;
   min-height: auto !important;
   max-height: unset !important;
   min-width: auto !important;
+  border-radius: 0 !important;
 }
 
 .productSelected-module__product_selected__KB.productSelected-module__product_selected_withQtyInput__wQ,
