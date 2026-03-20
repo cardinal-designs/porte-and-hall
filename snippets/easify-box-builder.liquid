@@ -1,0 +1,71 @@
+{% if item.item_components.size > 0 %}
+  <style>
+    /* Toggle button */
+    .toggle-items-btn {
+      margin-bottom: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font: inherit;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: inherit;
+    }
+
+    /* Container của các item component */
+    .items-component-content {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.2s ease 0.2s; /* delay 0.2s */
+    }
+
+    /* Khi mở */
+    .items-component-content.show {
+      max-height: 500px; /* đủ lớn để chứa nội dung */
+      opacity: 1;
+    }
+
+    /* Từng item */
+    .item-componet {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+  </style>
+
+  <div class="items-component-wrapper" style="margin-left: 20px;">
+    <button type="button"
+      class="toggle-items-btn"
+      onclick="
+        const content = this.nextElementSibling;
+        const isVisible = content.classList.toggle('show');
+        this.innerHTML = isVisible
+          ? 'Show less <span style=\'font-size: 0.8em;\'>↑</span>'
+          : 'Show more <span style=\'font-size: 0.8em;\'>↓</span>';
+      "
+    >
+      Show more <span style="font-size: 0.8em;">↓</span>
+    </button>
+
+    <div class="items-component-content">
+      {%- for itemComponent in item.item_components -%}
+        <div class="item-componet">
+          {% if itemComponent.image %}
+            <img
+              src="{{ itemComponent.image | image_url: width: 50 }}"
+              class="cart-item__image"
+              alt="{{ item.image.alt | escape }}"
+              loading="lazy"
+              width="50"
+              height="{{ 50 | divided_by: item.image.aspect_ratio | ceil }}"
+            >
+          {% endif %}
+          <span>{{ itemComponent.quantity }} x <span class="title-text">{{ itemComponent.title }}</span></span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
