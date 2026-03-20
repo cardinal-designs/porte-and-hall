@@ -312,6 +312,13 @@ span.jdgm-prev-badge__stars {
   font-weight: 400 !important;
 }
 
+.productSelected-module__icon_remove_product__uE,
+.productSelected-module__icon_remove_product__DA {
+  background-color: transparent !important;
+  right: 2px !important;
+  top: 2px !important;
+}
+
 .productSelected-module__icon_remove_product__DA {
   background-color: transparent !important;
 }
