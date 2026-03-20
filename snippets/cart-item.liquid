@@ -55,10 +55,6 @@
           {% endfor %}
         {% endif %}
 
-        {% if item.item_components.size > 0 %}
-          {% render 'easify-box-builder', item: item %}
-        {% endif %}
-
         {% for property in item.properties %}
           {% assign property_first_char = property.first | slice: 0 %}
           {% if property.last != blank and property_first_char != '_' %}
@@ -75,6 +71,11 @@
           {% endif %}
         {% endfor %}
 
+        {% if item.item_components.size > 0 %}
+          {% render 'easify-box-builder', item: item %}
+        {% endif %}
+
+        
         {% if item.line_level_discount_allocations.size > 0 %}
           <ul class="cart-item__discounts">
             {% for discount_allocation in item.line_level_discount_allocations %}
