@@ -1,18 +1,33 @@
 <cart-drawer>
-  <div class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-modal="true" aria-label="Cart Drawer" role="dialog" tabindex="-1">
+  <div
+    class="cart-drawer"
+    id="cart-drawer"
+    aria-hidden="true"
+    aria-modal="true"
+    aria-label="Cart Drawer"
+    role="dialog"
+    tabindex="-1"
+  >
     <form id="cart-drawer__form" action="{{ routes.cart_url }}" method="post" class="cart-drawer__form">
       <div class="cart-drawer__inner">
         <div class="cart-drawer__header">
           <h2 class="cart-drawer__title" tabindex="0">{{ section.settings.cart_title }}</h2>
-          <button type="button" class="cart-drawer__close modal__close-button link link--text focus-inset" id="cart-drawer__close" aria-label="{{ 'accessibility.close' | t }}">
-            {% render 'icon' icon: 'close' %}
+          <button
+            type="button"
+            class="cart-drawer__close modal__close-button link link--text focus-inset"
+            id="cart-drawer__close"
+            aria-label="{{ 'accessibility.close' | t }}"
+          >
+            {% render 'icon', icon: 'close' %}
           </button>
         </div>
         <div class="cart-drawer__content" id="cart-drawer__content" data-id="{{ section.id }}">
           {% if cart.items.size == 0 %}
             <div class="cart-drawer__empty">
-              <p class="h3">{{ section.settings.empty_text | default: "Your cart is empty." }}</p>
-              <a href="{{ section.settings.button | default: "/>" }}" class="button">{{ section.settings.button_text | default: "Shop All" }}</a>
+              <p class="h3">{{ section.settings.empty_text | default: 'Your cart is empty.' }}</p>
+              <a href="{{ section.settings.button | default: "/>" }}" class="button">
+                {{- section.settings.button_text | default: 'Shop All' -}}
+              </a>
             </div>
           {% else %}
             <div class="cart-drawer__items" id="cart-drawer-items">
@@ -26,7 +41,10 @@
                 {% if item.product.id == gift_wrap_product.id %}
                   {% assign gift_wrap_product_found = true %}
                 {% endif %}
-                {% render 'cart-item' item: item, idx: forloop.index %}
+                {% render 'cart-item', item: item, idx: forloop.index %}
+                {% if item.cart.items.size > 0 %}
+                  {% render 'easify-box-builder', item: item %}
+                {% endif %}
               {% endfor %}
               <div class="cart-drawer__rebuy">
                 <div class="slider__product">
@@ -35,20 +53,27 @@
               </div>
             </div>
             <div class="cart-drawer__footer">
-
-              {% if section.settings.enable_gift_note and porter_product_found and gift_wrap_product != blank and gift_wrap_product_found == false %}
-                  <div id="gift-wrap-option">
-                    <input 
-                      type="checkbox" 
-                      id="add-gift-wrap" 
-                      {% if gift_wrap_product_found %}checked{% endif %}
-                    /> 
-                    <label for="add-gift-wrap">
-                      {% assign gift_note_price = gift_wrap_product.first_available_variant.price | money_without_trailing_zeros %}
-                      {{ section.settings.checkbox_label_text | replace: '[price]', gift_note_price }}
-                    </label>
-                  </div>
-               {% capture noteModal %}
+              {% if section.settings.enable_gift_note
+                and porter_product_found
+                and gift_wrap_product != blank
+                and gift_wrap_product_found == false
+              %}
+                <div id="gift-wrap-option">
+                  <input
+                    type="checkbox"
+                    id="add-gift-wrap"
+                    {% if gift_wrap_product_found %}
+                      checked
+                    {% endif %}
+                  >
+                  <label for="add-gift-wrap">
+                    {% assign gift_note_price = gift_wrap_product.first_available_variant.price
+                      | money_without_trailing_zeros
+                    %}
+                    {{ section.settings.checkbox_label_text | replace: '[price]', gift_note_price }}
+                  </label>
+                </div>
+                {% capture noteModal %}
                 <div id="gift-note-modal">
                   <div class="gift-note-content">
                     <div class="gift-note__header">
@@ -76,46 +101,68 @@
                     {% if section.settings.gift_note != blank %}<p class="gift-wrap-note">{{ section.settings.gift_note }}</p>{% endif %}
                   </div>
                 </div>
-               {% endcapture %}           
+               {% endcapture %}
               {% endif %}
-              
+
               <div class="cart-drawer__subtotal-wrapper" id="cart-drawer-subtotal">
                 <h4 class="body-sm">Subtotal</h4>
                 <div class="cart-drawer__loading-container">
                   <h4 class="cart-drawer__subtotal">{{ cart.total_price | money_without_trailing_zeros }}</h4>
                   <div class="loading-overlay hidden" id="cart-drawer-loading">
                     <div class="loading-overlay__spinner">
-                      <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        role="presentation"
+                        class="spinner"
+                        viewBox="0 0 66 66"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
                         <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
                       </svg>
                     </div>
                   </div>
                 </div>
               </div>
-              <a href="/checkout" class="button button--full" name="checkout" form="cart" tabindex="0">{{ 'sections.cart.checkout' | t }}</a>
+              <a href="/checkout" class="button button--full" name="checkout" form="cart" tabindex="0">
+                {{- 'sections.cart.checkout' | t -}}
+              </a>
               <h6 class="cart-drawer__taxes body-xs">{{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}</h6>
-
 
               <div class="cart-text-with-icon">
                 <div class="icon-text-box">
-                    <span>
-                      <img src="https://cdn.shopify.com/s/files/1/0084/8602/7327/files/credit-card_1_1_150x.svg?v=1693988743" alt="icons" class="cart-rating-icons" loading="lazy" width="30" height="30"/>
-                    </span>
-                    <h6>Secured Payment</h6>
-                  </div>
-                  <div class="icon-text-box">
-                    <span>
-                     <img src="https://cdn.shopify.com/s/files/1/0084/8602/7327/files/feedback_1_150x.svg?v=1693988743" alt="icons" class="cart-rating-icons" loading="lazy" width="30" height="30"/>
-                    </span>
-                    <h6>Rated 4.9 by 1000+ Happy Customers</h6>
-                  </div>
+                  <span>
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0084/8602/7327/files/credit-card_1_1_150x.svg?v=1693988743"
+                      alt="icons"
+                      class="cart-rating-icons"
+                      loading="lazy"
+                      width="30"
+                      height="30"
+                    >
+                  </span>
+                  <h6>Secured Payment</h6>
+                </div>
+                <div class="icon-text-box">
+                  <span>
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0084/8602/7327/files/feedback_1_150x.svg?v=1693988743"
+                      alt="icons"
+                      class="cart-rating-icons"
+                      loading="lazy"
+                      width="30"
+                      height="30"
+                    >
+                  </span>
+                  <h6>Rated 4.9 by 1000+ Happy Customers</h6>
+                </div>
               </div>
             </div>
             {{ noteModal }}
           {% endif %}
         </div>
       </div>
-    </form> 
+    </form>
   </div>
 </cart-drawer>
 
