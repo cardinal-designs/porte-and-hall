@@ -42,9 +42,9 @@
                   {% assign gift_wrap_product_found = true %}
                 {% endif %}
                 {% render 'cart-item', item: item, idx: forloop.index %}
-                {% if item.cart.items.size > 0 %}
-                  {% render 'easify-box-builder', item: item %}
-                {% endif %}
+                
+                {% render 'easify-box-builder', item: item %}
+                
               {% endfor %}
               <div class="cart-drawer__rebuy">
                 <div class="slider__product">
