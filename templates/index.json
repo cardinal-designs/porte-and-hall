@@ -26,15 +26,21 @@
       "type": "video-text",
       "name": "Video with text",
       "settings": {
-        "video": "shopify://files/videos/cro_compress.mp4",
-        "mobile_video": "shopify://files/videos/hero-mobile.mp4",
+        "video": "shopify://files/videos/cro_lp_march2026.mp4",
+        "mobile_video": "shopify://files/videos/cro_lp_march2026.mp4",
         "video_poster": "shopify://shop_images/white-img.png",
         "subheading": "",
         "title": "<h1>Worthy of Your Welcome</h1>",
+        "title_font_size": 72,
         "content": "<p>Premium indoor and outdoor mats to elevate your entry and your everyday.</p>",
+        "content_font_size": 30,
+        "content_font_size_mb": 14,
         "link_text": "explore more",
         "link_url": "shopify://collections/shop-all",
-        "custom-class": "home-banner"
+        "button_style": "small",
+        "custom-class": "home-banner",
+        "media_first": false,
+        "content_full_width": false
       }
     },
     "3726ddfa-f49e-4e18-a5f2-430400876ccd": {
