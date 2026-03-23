@@ -1,5 +1,6 @@
 {% if item.item_components.size > 0 %}
   <style>
+    /* Toggle button */
     .toggle-items-btn {
       margin-bottom: 10px;
       background: none;
@@ -13,18 +14,21 @@
       color: inherit;
     }
 
+    /* Container của các item component */
     .items-component-content {
       max-height: 0;
       opacity: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease, opacity 0.2s ease 0.2s;
+      transition: max-height 0.4s ease, opacity 0.2s ease 0.2s; /* delay 0.2s */
     }
 
+    /* Khi mở */
     .items-component-content.show {
-      max-height: 500px;
+      max-height: 500px; /* đủ lớn để chứa nội dung */
       opacity: 1;
     }
 
+    /* Từng item */
     .item-componet {
       display: flex;
       align-items: center;
@@ -43,10 +47,10 @@
           : 'Show more <span style=\'font-size: 0.8em;\'>↓</span>';
       "
     >
-      Show less <span style="font-size: 0.8em;">↑</span>
+      Show more <span style="font-size: 0.8em;">↓</span>
     </button>
 
-    <div class="items-component-content show">
+    <div class="items-component-content">
       {%- for itemComponent in item.item_components -%}
         <div class="item-componet">
           {% if itemComponent.image %}
