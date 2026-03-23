@@ -97,6 +97,22 @@
   line-height: 0;
 }
 
+.trade__image--wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.trade__image--wrapper img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  object-fit: cover;
+}
+
 @media (min-width: 768px) {
 
   .trade__image--item .desktop__hidden {
