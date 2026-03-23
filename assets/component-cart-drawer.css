@@ -64,7 +64,7 @@
 .cart-item {
   padding: 15px 20px 15px 8px;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   position: relative;
   border-bottom: 1px solid var(--beige-secondary);
 }
