@@ -136,6 +136,9 @@
 }
 
 @media (max-width: 767px) {
+  .trade__program {
+    flex-direction: column;
+  }
 
   .trade__image--item .mobile__hidden {
     display: none;
