@@ -351,7 +351,7 @@
   outline-color: var(--gold);
 }
 
-.product__active-swatch:after,
+/* .product__active-swatch:after,
 .product__swatch:not(.product__active-swatch):not(.product__oos-swatch):hover:after {
   content: "";
   position: absolute;
@@ -362,7 +362,7 @@
   width: 25px;
   aspect-ratio: 1/1;
   border-radius: 50%;
-}
+} */
 
 .product__swatch.hidden {
   opacity: 0;
