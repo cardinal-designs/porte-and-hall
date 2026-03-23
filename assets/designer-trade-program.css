@@ -155,5 +155,8 @@
     height: auto;
   }
   
+  .trade__image--wrapper img {
+    position: static;
+  }
 }
 
