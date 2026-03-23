@@ -71,6 +71,12 @@
           {% endif %}
         {% endfor %}
 
+        {% comment %} Easify Box Builder {% endcomment %}
+        {% if item.item_components.size > 0 %}
+          {% render 'easify-box-builder', item: item %}
+        {% endif %}
+
+
         {% if item.line_level_discount_allocations.size > 0 %}
           <ul class="cart-item__discounts">
             {% for discount_allocation in item.line_level_discount_allocations %}
