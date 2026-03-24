@@ -29,6 +29,8 @@
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
         "materials": "{{ section.settings.collection.metafields.custom.materials | metafield_tag }}",
         "care": "{{ section.settings.collection.metafields.custom.care | metafield_tag }}",
+        "weight": "<p>{{ section.settings.collection.metafields.custom.weight.value }}</p>",
+        "thickness": "{{ section.settings.collection.metafields.custom.thickness | metafield_tag }}",
         "hide_pinterest": true,
         "hide_dimensions": true,
         "text_dimensions": false,
