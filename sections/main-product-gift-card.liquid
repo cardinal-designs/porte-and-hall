@@ -168,22 +168,24 @@
           {% endif %}
         {% endif %}
 
-        {% for option in product.options_with_values %}
-          <div class="product__option-name body">
-            <span>
-              {{ option.name }}
-            </span>
-            <span> — </span> 
-            <div class="no-js-hidden product__price" id="price-{{ section.id }}" role="status">
-              {% if product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product.price > product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
-                <span class="old-price">{{ product.price | money_without_trailing_zeros }}</span>
-                <span>{{ product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
-              {% else %}
-                {% render 'price', product: product, use_variant: true, show_badges: true, price_class: '' %}
-              {%  endif  %}
+        {% unless product.type == 'Gift Card' %}
+          {% for option in product.options_with_values %}
+            <div class="product__option-name body">
+              <span>
+                {{ option.name }}
+              </span>
+              <span> — </span> 
+              <div class="no-js-hidden product__price" id="price-{{ section.id }}" role="status">
+                {% if product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product.price > product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+                  <span class="old-price">{{ product.price | money_without_trailing_zeros }}</span>
+                  <span>{{ product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
+                {% else %}
+                  {% render 'price', product: product, use_variant: true, show_badges: true, price_class: '' %}
+                {%  endif  %}
+              </div>
             </div>
-          </div>
-        {% endfor %}
+          {% endfor %}
+        {% endunless %}
 
         <div class="product__swatches">
           {{ color_swatch_list }}
