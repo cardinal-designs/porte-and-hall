@@ -155,7 +155,7 @@
       
     {% if title != blank or collection.title != blank %}
       <a href="{{ product_card_product.url }}">
-        <div class="product-card__title h3 blue">
+        <div class="product-card__title h3 blue TESt">
           {{ title | default: collection.title | replace: ' | ', ' ' }}
           <br><span><h2 class="body {% if product_card_product.handle contains 'ii' %}no-capitalize{% endif %}" style="text-transform:none;"> {{ product_card_product.options_by_name['color'].values[0] }}</h2> </span>
           {% comment %} {%- if collection.metafields.custom.dimensions != blank -%}
