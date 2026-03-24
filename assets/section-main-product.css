@@ -1363,3 +1363,151 @@ product-form form {
   opacity: 0.7;
   margin-right: 6px;
 }
+
+.visually-hidden {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  word-wrap: normal !important;
+}
+.recipient-form {
+  display: block;
+  position: relative;
+  margin-top: 25px;
+  width: 100%;
+}
+
+.recipient-form__fake-checkbox {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.form__fakeCheckbox input {
+  display: none;
+}
+
+.form__fakeCheckbox .fakeCheckbox__icon {
+  border: 1px solid var(--gold);
+  width: 16px;
+  height: 16px;
+  line-height: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.form__fakeCheckbox .fakeCheckbox__icon .icon {
+  display: none;
+  width: 10px;
+  height: 10px;
+  color: var(--beige-secondary);
+}
+
+.form__fakeCheckbox input:checked+label .fakeCheckbox__icon .icon  {
+  display: block;
+}
+
+
+.form__fakeCheckbox input:checked+label .fakeCheckbox__icon {
+  background-color: var(--gold);
+}
+
+.recipient-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px !important;
+  cursor: pointer;
+}
+
+.recipient-fields {
+  display: none;
+  margin-top: 10px;
+}
+
+.recipient-fields .field, .recipient-fields__field.recipient-fields__field--email {
+  margin-bottom: 40px;
+}
+
+.recipient-fields hr {
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.recipient-form:has(input[type='checkbox']:checked) .recipient-fields {
+  display: block;
+}
+
+.recipient-fields__field {
+  margin-bottom: 15px;
+}
+
+.recipient-fields .field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.recipient-fields .field__label {
+  display: none;
+}
+
+.recipient-fields__field .text-area {
+  border: 1px solid var(--blue);
+  padding: 20px;
+}
+
+.recipient-form .hidden {
+  display: none !important;
+}
+
+.recipient-email-label.optional {
+  display: none;
+}
+
+.recipient-fields__field--send-on {
+  margin-bottom: 20px;
+}
+
+.recipient-fields__field--send-on .field, .recipient-fields__field--email .field {
+  margin-bottom: 3px;
+}
+
+.recipient-fields__field--send-on .recipient-hint {
+  opacity: 0.6;
+}
+
+.recipient-fields__field--message .field {
+  margin-bottom: 4px;
+}
+
+.recipient-fields__field--message .recipient-form-field-label {
+  margin-left: auto;
+  margin-right: 0;
+  display: block;
+  width: max-content;
+}
+
+.product__option-name {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.product__option-name span:first-of-type {
+  font-weight: 600;
+}
+
+.variant-selects {
+  margin-top: 10px;
+}
+
+.recipient-form .form__message .error-message {
+  color: var(--error);
+}
