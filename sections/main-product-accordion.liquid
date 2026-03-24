@@ -804,8 +804,12 @@ endcapture
                     {{ grouped_collection.metafields.custom.additional_dimensions | newline_to_br }}
                   {% endif %}
                   {% if grouped_collection.metafields.custom.weight != blank %}
-                  <br>
-                  Weight: {{ grouped_collection.metafields.custom.weight }}
+                    <br>
+                    Weight: {{ grouped_collection.metafields.custom.weight }}
+                  {% endif %}
+                  {% if grouped_collection.metafields.custom.thickness != blank %}
+                    <br>
+                    Thickness: {{ grouped_collection.metafields.custom.thickness }}
                   {% endif %}
                 </p>
               </div>
@@ -813,38 +817,6 @@ endcapture
            </div>
          </div>
         {% endif %}
-
-        {% if section.settings.weight != blank %}
-          <div class="accordion">
-            <div data-id="4" class="accordion-title">
-              <h2 class="h3">Weight</h2>
-              {% render 'icon', icon: 'caret' %}
-            </div>
-            <div data-id="4" class="accordion-content">
-             <div class="swiper-slide">
-               <div class="product__tabs-item body-sm">
-                 {{ section.settings.weight }}
-               </div>
-             </div>
-            </div>
-          </div>
-         {% endif %}
-
-         {% if section.settings.thickness != blank %}
-          <div class="accordion">
-            <div data-id="4" class="accordion-title">
-              <h2 class="h3">Thickness</h2>
-              {% render 'icon', icon: 'caret' %}
-            </div>
-            <div data-id="4" class="accordion-content">
-             <div class="swiper-slide">
-               <div class="product__tabs-item body-sm">
-                 {{ section.settings.thickness }}
-               </div>
-             </div>
-            </div>
-          </div>
-         {% endif %}
 
         {% if section.settings.care != blank %}
          <div class="accordion">
