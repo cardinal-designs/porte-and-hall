@@ -92,7 +92,12 @@
   color: var(--blue-secondary);
 }
 
+.trade__image--item {
+  height: 100%;
+}
+
 .trade__image--item figure {
+  height: 100%;
   margin: 0;
   line-height: 0;
 }
