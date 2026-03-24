@@ -1,6 +1,6 @@
 {{ 'section-video-text.css' | asset_url | stylesheet_tag }}
  
- <section class="Section {{ section.settings.custom-class }} video-text" id="VideoText-{{ section.id }}">
+ <section class="Section {{ section.settings.custom-class }} video-text" id="VideoText-{{ section.id }}" style="background-color: {{ section.settings.bg_color }};">
   {%- capture css_variables -%}
     --title_fz: {{ section.settings.title_font_size }}px;
     --content_fz: {{ section.settings.content_font_size }}px;
@@ -66,7 +66,7 @@
     {%- endif -%}
   {%- endcapture -%}
 
-  <div class="FeatureText hero-video-section{% if section.settings.media_first %} media-first{% endif %}" style="background-color: {{ section.settings.bg_color }};">
+  <div class="FeatureText hero-video-section{% if section.settings.media_first %} media-first{% endif %}">
       {{- section_content -}}
       {{- section_image -}}
   </div>
