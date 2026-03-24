@@ -813,6 +813,39 @@ endcapture
            </div>
          </div>
         {% endif %}
+
+        {% if section.settings.weight != blank %}
+          <div class="accordion">
+            <div data-id="4" class="accordion-title">
+              <h2 class="h3">Weight</h2>
+              {% render 'icon', icon: 'caret' %}
+            </div>
+            <div data-id="4" class="accordion-content">
+             <div class="swiper-slide">
+               <div class="product__tabs-item body-sm">
+                 {{ section.settings.weight }}
+               </div>
+             </div>
+            </div>
+          </div>
+         {% endif %}
+
+         {% if section.settings.thickness != blank %}
+          <div class="accordion">
+            <div data-id="4" class="accordion-title">
+              <h2 class="h3">Thickness</h2>
+              {% render 'icon', icon: 'caret' %}
+            </div>
+            <div data-id="4" class="accordion-content">
+             <div class="swiper-slide">
+               <div class="product__tabs-item body-sm">
+                 {{ section.settings.thickness }}
+               </div>
+             </div>
+            </div>
+          </div>
+         {% endif %}
+
         {% if section.settings.care != blank %}
          <div class="accordion">
            <div data-id="4" class="accordion-title">
@@ -1404,6 +1437,18 @@ endcapture
       "id": "care",
       "label": "Care",
       "info": "Connect collection metafields for care"
+    },
+    {
+      "type": "richtext",
+      "id": "weight",
+      "label": "Weight",
+      "info": "Connect collection metafields for Weight"
+    },
+    {
+      "type": "richtext",
+      "id": "thickness",
+      "label": "Thickness",
+      "info": "Connect collection metafields for Thickness"
     },
     {
       "type": "checkbox",
