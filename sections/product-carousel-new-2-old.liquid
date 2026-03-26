@@ -79,35 +79,35 @@
       <div class="swiper-wrapper">
         {% for product in section.settings.collection.products limit: 4 %}
           {% unless product.tags contains "Swatch" %}
-          {% for collection in product.collections %}
-            {% if collection.title contains ' |' %}
-              {% assign grouped_collection = collection %}
-            {% endif %}
-          {% endfor %}
+            {% for collection in product.collections %}
+              {% if collection.title contains ' |' %}
+                {% assign grouped_collection = collection %}
+              {% endif %}
+            {% endfor %}
 
-          {% assign only_one = false %}
-          {% if product.handle contains 'wild-side' %}
-            {% assign only_one = true %}
-          {% endif %}
-
-          <div class="product-carousel__item swiper-slide">
-            {% if section.settings.product_card_type == 'standard_card' %}
-              {% render 'grouped-product-card-2',
-                product_card_product: product,
-                collection: grouped_collection,
-                title: grouped_collection.title,
-                button_text: section.settings.button_text
-              %}
-            {% else %}
-              {% render 'grouped-product-card-3',
-                product_card_product: product,
-                collection: grouped_collection,
-                title: grouped_collection.title,
-                button_text: section.settings.button_text,
-                only_show_one: only_one
-              %}
+            {% assign only_one = false %}
+            {% if product.handle contains 'wild-side' %}
+              {% assign only_one = true %}
             {% endif %}
-          </div>
+
+            <div class="product-carousel__item swiper-slide">
+              {% if section.settings.product_card_type == 'standard_card' %}
+                {% render 'grouped-product-card-2',
+                  product_card_product: product,
+                  collection: grouped_collection,
+                  title: grouped_collection.title,
+                  button_text: section.settings.button_text
+                %}
+              {% else %}
+                {% render 'grouped-product-card-3',
+                  product_card_product: product,
+                  collection: grouped_collection,
+                  title: grouped_collection.title,
+                  button_text: section.settings.button_text,
+                  only_show_one: only_one
+                %}
+              {% endif %}
+            </div>
           {% endunless %}
         {% endfor %}
       </div>
