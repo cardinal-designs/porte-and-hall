@@ -26,6 +26,7 @@
     <div class="shop-all__products">
       {% for block in section.blocks %}
         {%- assign collection = collections[block.settings.collection] -%}
+        {% unless collection.products[0].tags contains "Swatch" %}
         <div class="product-carousel__item swiper-slide">
           {% render 'grouped-product-card',
             product_card_product: collection.products[0],
@@ -34,6 +35,7 @@
             button_text: block.settings.button_text
           %}
         </div>
+        {% endunless %}
       {% endfor %}
     </div>
   </div>
