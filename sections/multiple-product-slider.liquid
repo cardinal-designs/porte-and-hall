@@ -22,28 +22,30 @@
 {%- for block in section.blocks -%}
 {% assign strlngt = strlngt | plus:1 %}
    <div class="products-section {% if strlngt ==1 %}tab-active{% endif %}" data-id="tab{{strlngt}}">
-          <div class="swiper{{strlngt}}">
-            <div class="swiper-wrapper">
-      {% for product in block.settings.collection.products limit: 20 %}
-      {% for collection in product.collections %}
-        {% if collection.title contains ' |' %}
-          {% assign grouped_collection = collection %}
-        {% endif %}
-      {% endfor %}
-      <div class="product-carousel__item swiper-slide">
-          <div class="product-card custom-product-card">
-        {% render 'product-card-custom',
-          product_card_product: product,
-          collection: grouped_collection,
-          title: grouped_collection.title,
-          button_text: section.settings.button_text,
-          custom_image: product.metafields.custom.image_for_homepage
-        %}
-      </div>
-      </div>
-    {% endfor %}
-      </div>
-       <div class="swiper-button-prev swiper-button-prev{{strlngt}}"></div>
+      <div class="swiper{{strlngt}}">
+        <div class="swiper-wrapper">
+          {% for product in block.settings.collection.products limit: 20 %}
+            {% unless product.tags contains "Swatch" %}
+            {% for collection in product.collections %}
+              {% if collection.title contains ' |' %}
+                {% assign grouped_collection = collection %}
+              {% endif %}
+            {% endfor %}
+            <div class="product-carousel__item swiper-slide">
+              <div class="product-card custom-product-card">
+                {% render 'product-card-custom',
+                  product_card_product: product,
+                  collection: grouped_collection,
+                  title: grouped_collection.title,
+                  button_text: section.settings.button_text,
+                  custom_image: product.metafields.custom.image_for_homepage
+                %}
+              </div>
+            </div>
+          {% endunless %}
+        {% endfor %}
+        </div>
+        <div class="swiper-button-prev swiper-button-prev{{strlngt}}"></div>
         <div class="swiper-button-next swiper-button-next{{strlngt}}"></div>
    </div>
 </div>
