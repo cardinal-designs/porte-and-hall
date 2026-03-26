@@ -15,55 +15,57 @@
     assign swatch_count = 1
     assign hidden_swatches = 0
     for product in collection.products
-      for option in product.options_with_values
-        assign option_name = option.name | downcase
-        if color_label contains option_name or option_name == 'style'
-          assign option_index = 'option' | append: forloop.index
-          for value in option.values
-            assign matched_variant = product.variants | where: 'title', value
-            
-            if product == product_card_product
-              assign active_swatch = product
-              if matched_variant != blank
-                assign active_swatch_link = matched_variant[0].url
-              endif
+      unless product.tags contains "Swatch"
+        for option in product.options_with_values
+          assign option_name = option.name | downcase
+          if color_label contains option_name or option_name == 'style'
+            assign option_index = 'option' | append: forloop.index
+            for value in option.values
+              assign matched_variant = product.variants | where: 'title', value
+              
+              if product == product_card_product
+                assign active_swatch = product
+                if matched_variant != blank
+                  assign active_swatch_link = matched_variant[0].url
+                endif
 
-              assign element_classes = element_classes | append: ' product-card__active-swatch'
-              assign active_swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
-              assign active_swatch_tooltip_value = value
-            else
-              if matched_variant != blank
-                assign swatch_link = matched_variant[0].url
-              endif
-
-              if swatch_count > 3
-                assign element_classes = 'product-card__swatch hidden'
-                assign hidden_swatches = hidden_swatches | plus: 1
+                assign element_classes = element_classes | append: ' product-card__active-swatch'
+                assign active_swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
+                assign active_swatch_tooltip_value = value
               else
-                assign element_classes = 'product-card__swatch'
+                if matched_variant != blank
+                  assign swatch_link = matched_variant[0].url
+                endif
+
+                if swatch_count > 3
+                  assign element_classes = 'product-card__swatch hidden'
+                  assign hidden_swatches = hidden_swatches | plus: 1
+                else
+                  assign element_classes = 'product-card__swatch'
+                endif
+
+                assign swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
+                assign swatch_image = images[swatch_file_name]
+
+                echo "<a href='"
+                echo swatch_link | default: product.variants[0].url
+                echo "' class='"
+                echo element_classes
+                echo "'"
+                echo " aria-label='"
+                echo value | escape
+                echo "'"
+                echo "style='background-image: url("
+                echo swatch_file_name | file_img_url: '60x60'
+                echo ")' data-tooltip='"
+                echo value | escape
+                echo "'></a>"
+                assign swatch_count = swatch_count | plus: 1
               endif
-
-              assign swatch_file_name = value | remove: "(" | remove: ")" | handle | append: '.png'
-              assign swatch_image = images[swatch_file_name]
-
-              echo "<a href='"
-              echo swatch_link | default: product.variants[0].url
-              echo "' class='"
-              echo element_classes
-              echo "'"
-              echo " aria-label='"
-              echo value | escape
-              echo "'"
-              echo "style='background-image: url("
-              echo swatch_file_name | file_img_url: '60x60'
-              echo ")' data-tooltip='"
-              echo value | escape
-              echo "'></a>"
-              assign swatch_count = swatch_count | plus: 1
-            endif
-          endfor
-        endif
-      endfor
+            endfor
+          endif
+        endfor
+      endunless
     endfor
     if hidden_swatches > 0
       echo '<button data-hidden-swatches class="body-xs blue">'
