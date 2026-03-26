@@ -45,13 +45,20 @@
     {% endif %}
     </script>
       
-    {% comment %} {% unless customer %}
+    {% unless customer %}
       <script>
         if(window.location.href?.includes("/apps/box-builder/")){
           window.location.href = "/";
         }
       </script>
-    {% endunless %} {% endcomment %}
+    {% endunless %}
+
+    {% if product.tags contains 'Swatch' %}
+      {% layout none %}
+      <script>
+        window.location.replace('/');
+      </script>
+    {% endif %}
 
     <!-- begin Convert Experiences code-->
     <script type="text/javascript" src="//cdn-4.convertexperiments.com/js/10041621-10044581.js" defer="defer"></script>
