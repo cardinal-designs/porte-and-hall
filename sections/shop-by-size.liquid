@@ -63,22 +63,24 @@
         <div class="shop-by-size__swiper js-shop-by-size-swiper">
           <div class="swiper-wrapper">
             {% for product in block.settings.products limit: 20 %}
-              {% for collection in product.collections %}
-                {% if collection.title contains ' |' %}
-                  {% assign grouped_collection = collection %}
-                {% endif %}
-              {% endfor %}
-              <div class="shop-by-size__item swiper-slide">
-                  <div class="shop-by-size__product-card">
-                    {% render 'product-card-custom',
-                      product_card_product: product,
-                      collection: grouped_collection,
-                      title: grouped_collection.title,
-                      custom_image: product.metafields.custom.image_for_insider,
-                      show_product_badge: section.settings.show_product_badge
-                    %}
-                  </div>
-              </div>
+              {% unless product.tags contains "Swatch" %}
+                {% for collection in product.collections %}
+                  {% if collection.title contains ' |' %}
+                    {% assign grouped_collection = collection %}
+                  {% endif %}
+                {% endfor %}
+                <div class="shop-by-size__item swiper-slide">
+                    <div class="shop-by-size__product-card">
+                      {% render 'product-card-custom',
+                        product_card_product: product,
+                        collection: grouped_collection,
+                        title: grouped_collection.title,
+                        custom_image: product.metafields.custom.image_for_insider,
+                        show_product_badge: section.settings.show_product_badge
+                      %}
+                    </div>
+                </div>
+              {% endunless %}
             {% endfor %}
           </div>
           <div class="swiper-button-prev swiper-button-prev{{index}}"> 
