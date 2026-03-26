@@ -231,6 +231,11 @@ span.jdgm-prev-badge__stars {
   border-radius: 0 !important;
 }
 
+[sbb-data-box-id="12964"] .productContent-module__card_product__Zs .PRODUCT_CARD_ATC_BUTTON_DISABLED_TS {
+  background-color: rgb(203, 203, 203) !important;
+  color: rgb(255, 255, 255) !important;
+}
+
 [sbb-data-box-id="12964"] .button-module__root__Yr,
 [sbb-data-box-id="12964"] .productContent-module__card_product__Zs .PRODUCT_CARD_ATC_BUTTON_DISABLED_TS {
   width: auto;
@@ -257,7 +262,8 @@ span.jdgm-prev-badge__stars {
 
 [sbb-data-box-id="12964"] .PRODUCT_CARD_ATC_BUTTON_TS .button-module__button_content__Be,
 .button-module__largeButton__cV .button-module__button_content_text__gS,
-[sbb-data-box-id="12964"] .orderDetail-module__summary_checkout__ZS .BOX_REVIEW_PAGE_CHECKOUT_BUTTON_TS .button-module__button_content__Be {
+[sbb-data-box-id="12964"] .orderDetail-module__summary_checkout__ZS .BOX_REVIEW_PAGE_CHECKOUT_BUTTON_TS .button-module__button_content__Be,
+[sbb-data-box-id="12964"] .productContent-module__card_product__Zs .PRODUCT_CARD_ATC_BUTTON_DISABLED_TS {
   font-size: inherit !important;
 }
 
