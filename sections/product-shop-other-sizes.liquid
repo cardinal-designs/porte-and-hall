@@ -35,6 +35,7 @@
               {% break %}
             {% endif %}
           {% endfor %}
+          {% unless match_current_style.tags contains "Swatch" %}
           {% render 'grouped-product-card',
             product_card_product: match_current_style,
             collection: block,
@@ -42,6 +43,7 @@
             button_text: 'Shop Now',
             simple_card: true
           %}
+          {% endunless %}
         </div>
       {% endfor %}
     </div>
