@@ -5,10 +5,9 @@
 {{ 'section-featured-product.css' | asset_url | stylesheet_tag }}
 
 
-
 {% liquid
   if product == blank
-    unless product.tags contains "Swatch"
+    unless section.settings.product.tags contains "Swatch"
       assign product = section.settings.product
     endunless
   endif
