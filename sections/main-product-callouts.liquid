@@ -158,7 +158,7 @@ endcapture
 
               {% if visible_media_index == 2 and second_media_override_image != blank %}
                 <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-second-media-override-main">
-                  {% render 'product-media', media: second_media_override_image, position: visible_media_index %}
+                  {% render 'product-media', media: second_media_override_image.value, position: visible_media_index %}
                   <div class="product__media-buttons">
                     {% render 'zoom-button' %}
                   </div>
@@ -182,7 +182,7 @@ endcapture
 
           {% if visible_media_index == 1 and second_media_override_image != blank and inserted_override_main == false %}
             <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-second-media-override-main">
-              {% render 'product-media', media: second_media_override_image, position: 2 %}
+              {% render 'product-media', media: second_media_override_image.value, position: 2 %}
               <div class="product__media-buttons">
                 {% render 'zoom-button' %}
               </div>
