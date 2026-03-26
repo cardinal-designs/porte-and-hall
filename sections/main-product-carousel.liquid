@@ -40,19 +40,21 @@
       <div class="swiper-pagination product-carousel__pagination"></div>
       <div class="swiper-wrapper">
         {% for product in section.settings.collection.products limit: 25 %}
-          {% for collection in product.collections %}
-            {% if collection.title contains ' |' %}
-              {% assign grouped_collection = collection %}
-            {% endif %}
-          {% endfor %}
-          <div class="product-carousel__item swiper-slide">
-            {% render 'grouped-product-card',
-              product_card_product: product,
-              collection: grouped_collection,
-              title: grouped_collection.title,
-              button_text: section.settings.button_text
-            %}
-          </div>
+          {% unless product.tags contains "Swatch" %}
+            {% for collection in product.collections %}
+              {% if collection.title contains ' |' %}
+                {% assign grouped_collection = collection %}
+              {% endif %}
+            {% endfor %}
+            <div class="product-carousel__item swiper-slide">
+              {% render 'grouped-product-card',
+                product_card_product: product,
+                collection: grouped_collection,
+                title: grouped_collection.title,
+                button_text: section.settings.button_text
+              %}
+            </div>
+          {% endunless %}
         {% endfor %}
       </div>
       <div class="swiper-button-prev"></div>
