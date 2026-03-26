@@ -193,6 +193,7 @@ span.jdgm-prev-badge__stars {
 
 [sbb-data-box-id="12964"] .addToBoxButton-module__button_atc__zo .PRODUCT_CARD_ATC_BUTTON_TS,
 [sbb-data-box-id="12964"] .button-module__root__Yr,
+[sbb-data-box-id="12964"] .PRODUCT_CARD_ATC_BUTTON_DISABLED_TS,
 [sbb-data-box-id="12964"] .genericDialog-module__dialogButtonBase__Rv,
 [sbb-data-box-id="12964"] .sidebarSummary-module__button__navigate__Mh .QUICK_SUMMARY_BUTTON_NEXT_TS,
 [sbb-data-box-id="12964"] .sidebarSummary-module__button__navigate__jA .QUICK_SUMMARY_BUTTON_NEXT_TS,
@@ -230,7 +231,8 @@ span.jdgm-prev-badge__stars {
   border-radius: 0 !important;
 }
 
-[sbb-data-box-id="12964"] .button-module__root__Yr {
+[sbb-data-box-id="12964"] .button-module__root__Yr,
+[sbb-data-box-id="12964"] .PRODUCT_CARD_ATC_BUTTON_DISABLED_TS {
   width: auto;
   font-size: 14px !important;
   padding: 19px 5px !important;
@@ -262,6 +264,7 @@ span.jdgm-prev-badge__stars {
 [sbb-data-box-id="12964"] .sidebarSummary-module__button__navigate__jA .QUICK_SUMMARY_BUTTON_NEXT_TS:hover,
 [sbb-data-box-id="12964"] .addToBoxButton-module__button_atc__zo .PRODUCT_CARD_ATC_BUTTON_TS:hover,
 [sbb-data-box-id="12964"] .button-module__root__Yr:hover,
+[sbb-data-box-id="12964"] .PRODUCT_CARD_ATC_BUTTON_DISABLED_TS:hover,
 [sbb-data-box-id="12964"] .genericDialog-module__dialogButtonBase__Rv:hover,
 [sbb-data-box-id="12964"] .orderDetail-module__summary_checkout__ZS .BOX_REVIEW_PAGE_CHECKOUT_BUTTON_TS:hover,
 [sbb-data-box-id="12964"] .orderDetail-module__summary_checkout__ZS .BOX_REVIEW_PAGE_CREATE_NEW_BOX_BUTTON_TS:hover,
