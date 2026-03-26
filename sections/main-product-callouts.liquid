@@ -127,7 +127,7 @@ endcapture
 
               {% if visible_media_index == 2 and second_media_override_image != blank %}
                 <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-second-media-override-thumb">
-                  {% render 'product-media', media: second_media_override_image.values, position: visible_media_index, width: '106' %}
+                  {% render 'product-media', media: second_media_override_image.value, position: visible_media_index, width: '106' %}
                 </div>
                 {% assign inserted_override_thumb = true %}
               {% endif %}
@@ -142,7 +142,7 @@ endcapture
 
           {% if visible_media_index == 1 and second_media_override_image != blank and inserted_override_thumb == false %}
             <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-second-media-override-thumb">
-              {% render 'product-media', media: second_media_override_image.values, position: 2, width: '106' %}
+              {% render 'product-media', media: second_media_override_image.value, position: 2, width: '106' %}
             </div>
           {% endif %}
         </div>
