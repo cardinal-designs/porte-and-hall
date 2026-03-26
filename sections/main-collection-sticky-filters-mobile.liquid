@@ -115,24 +115,26 @@
           {% paginate collection.products by 50 %}
           <ul id="product-grid" data-id="{{ section.id }}" class="product-grid product-grid-4 list-unstyled">
               {% for product in collection.products %}
-                {% for collection in product.collections %}
-                  {% if collection.title contains ' |' %}
-                    {% assign grouped_collection = collection %}
-                  {% endif %}
-                {% endfor %}
-                <li class="product-grid__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" >
-                  <meta itemprop="name" content="{{ product.title }}">
-                  <meta itemprop="url" content="{{ product.url }}">
-                  <meta itemprop="position" content="{{ forloop.index }}" />
+                {% unless product.tags contains "Swatch" %}
+                  {% for collection in product.collections %}
+                    {% if collection.title contains ' |' %}
+                      {% assign grouped_collection = collection %}
+                    {% endif %}
+                  {% endfor %}
+                  <li class="product-grid__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" >
+                    <meta itemprop="name" content="{{ product.title }}">
+                    <meta itemprop="url" content="{{ product.url }}">
+                    <meta itemprop="position" content="{{ forloop.index }}" />
 
-                  {% render 'grouped-product-card-4',
-                    product_card_product: product,
-                    collection: grouped_collection,
-                    title: grouped_collection.title,
-                    button_text: 'Shop Now',
-                    forloop_index: forloop.index
-                  %}
-                </li>
+                    {% render 'grouped-product-card-4',
+                      product_card_product: product,
+                      collection: grouped_collection,
+                      title: grouped_collection.title,
+                      button_text: 'Shop Now',
+                      forloop_index: forloop.index
+                    %}
+                  </li>
+                {% endunless %}
               {% endfor %}
           </ul>
             <div id="load-more-wrapper" class="load-more-wrapper">
