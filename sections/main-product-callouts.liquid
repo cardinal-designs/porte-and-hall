@@ -33,6 +33,15 @@
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
   assign collection_title = grouped_collection.title | downcase
 
+  assign second_media_override = product.metafields.custom.second_media_override.value
+  assign second_media_override_image = blank
+  assign second_media_replace = false
+
+  if second_media_override != blank
+    assign second_media_override_image = second_media_override.image
+    assign second_media_replace = second_media_override.replace_second_image.value | default: second_media_override.replace_second_image
+  endif
+
   capture color_swatch_list
   assign swatch_count = 1
   for swatch in grouped_collection.products
@@ -110,31 +119,99 @@ endcapture
     <div class="product__media-wrapper">
       <div class="hide-mobile product__media-thumbnails list-unstyled swiper">
         <div class="swiper-wrapper">
+          {% assign visible_media_index = 0 %}
+          {% assign inserted_override_thumb = false %}
+
           {% for media in product.media %}
             {% unless media.alt == 'hide-outlier' %}
-            <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
-              {% render 'product-media', media: media, position: forloop.index, width: '106' %}
-            </div>
-          {% endunless %}
+              {% assign visible_media_index = visible_media_index | plus: 1 %}
+
+              {% if visible_media_index == 2 and second_media_override_image != blank %}
+                <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-override-thumb">
+                  {{
+                    second_media_override_image
+                    | image_url: width: 106
+                    | image_tag: loading: 'lazy', widths: '106, 212', alt: product.title
+                  }}
+                </div>
+                {% assign inserted_override_thumb = true %}
+              {% endif %}
+
+              {% unless visible_media_index == 2 and second_media_replace %}
+                <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+                  {% render 'product-media', media: media, position: visible_media_index, width: '106' %}
+                </div>
+              {% endunless %}
+            {% endunless %}
           {% endfor %}
+
+          {% if visible_media_index == 1 and second_media_override_image != blank and inserted_override_thumb == false %}
+            <div class="product__media-thumbnail-item swiper-slide" data-media-id="{{ section.id }}-override-thumb">
+              {{
+                second_media_override_image
+                | image_url: width: 106
+                | image_tag: loading: 'lazy', widths: '106, 212', alt: product.title
+              }}
+            </div>
+          {% endif %}
         </div>
       </div>
 
       <div class="product__media-list list-unstyled swiper">
         <div class="swiper-wrapper">
+          {% assign visible_media_index = 0 %}
+          {% assign inserted_override_main = false %}
+
           {% for media in product.media %}
             {% unless media.alt == 'hide-outlier' %}
-            <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
-              {% render 'product-media', media: media, position: forloop.index %}
+              {% assign visible_media_index = visible_media_index | plus: 1 %}
+
+              {% if visible_media_index == 2 and second_media_override_image != blank %}
+                <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-override-main">
+                  {{
+                    second_media_override_image
+                    | image_url: width: 1600
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '400, 600, 800, 1000, 1200, 1600',
+                      alt: product.title
+                  }}
+                  <div class="product__media-buttons">
+                    {% render 'zoom-button' %}
+                  </div>
+                </div>
+                {% assign inserted_override_main = true %}
+              {% endif %}
+
+              {% unless visible_media_index == 2 and second_media_replace %}
+                <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-{{ media.id }}">
+                  {% render 'product-media', media: media, position: visible_media_index %}
+                  <div class="product__media-buttons">
+                    {% unless section.settings.hide_pinterest == true %}
+                      {% render 'pin-button', media: media %}
+                    {% endunless %}
+                    {% render 'zoom-button' %}
+                  </div>
+                </div>
+              {% endunless %}
+            {% endunless %}
+          {% endfor %}
+
+          {% if visible_media_index == 1 and second_media_override_image != blank and inserted_override_main == false %}
+            <div class="product__media-item swiper-slide" data-media-id="{{ section.id }}-override-main">
+              {{
+                second_media_override_image
+                | image_url: width: 1600
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '400, 600, 800, 1000, 1200, 1600',
+                  alt: product.title
+              }}
               <div class="product__media-buttons">
-                {% unless section.settings.hide_pinterest == true %}
-                  {% render 'pin-button', media: media %}
-                {% endunless %}
                 {% render 'zoom-button' %}
               </div>
             </div>
-            {% endunless %}
-          {% endfor %}
+          {% endif %}
         </div>
         <div class="product__media-pagination swiper-pagination hide-desktop"></div>
         <div class="product__media-button swiper-button-prev hide-desktop"></div>
