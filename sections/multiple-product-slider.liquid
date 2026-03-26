@@ -25,7 +25,7 @@
       <div class="swiper{{strlngt}}">
         <div class="swiper-wrapper">
           {% for product in block.settings.collection.products limit: 20 %}
-              {% unless product.tags contains "Swatch" %}
+            {% unless product.tags contains "Swatch" %}
               {% for collection in product.collections %}
                 {% if collection.title contains ' |' %}
                   {% assign grouped_collection = collection %}
