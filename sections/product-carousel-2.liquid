@@ -801,41 +801,43 @@
         <div class="collection-col index-{{ loopNum }}">
           <div class="collection-row-inner">
             {% for product in block.settings.collection1.products limit: 1 %}
-              {% for collection in product.collections %}
-                {% if collection.title contains ' |' %}
-                  {% assign grouped_collection = collection %}
-                {% endif %}
-              {% endfor %}
-              <div class="collection-col-inner product-1">
-                <div class="image_container">
-                  <a href="{{ block.settings.product.url }}">
-                    {% render 'lazy-image', image: block.settings.product_image1, fade: true, classes: '' %}
-                  </a>
+              {% unless product.tags contains "Swatch" %}
+                {% for collection in product.collections %}
+                  {% if collection.title contains ' |' %}
+                    {% assign grouped_collection = collection %}
+                  {% endif %}
+                {% endfor %}
+                <div class="collection-col-inner product-1">
+                  <div class="image_container">
+                    <a href="{{ block.settings.product.url }}">
+                      {% render 'lazy-image', image: block.settings.product_image1, fade: true, classes: '' %}
+                    </a>
+                  </div>
+        
+                  <div class="collection-col-inner text">
+                      <div class="rating-reviews">
+                        <a href="{{all_products[block.settings.product].url}}#rave-reviews-main">
+                        <div class='jdgm-widget jdgm-preview-badge' data-id='{{ block.settings.product.id }}'> 
+                          {{ block.settings.product.metafields.judgeme.badge }} 
+                        </div> 
+                        </a>
+                      </div>
+                    <div class="title-swatch_container">
+                      <h3>{{ block.settings.title }}</h3>
+                      <p class="hide-mobile igPrice" data-product-id="{{ all_products[block.settings.product].id }}">{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
+                    </div>
+                    <div class="flex-swatch">
+                      <div class="hide-large swatch_container">
+                        {{ color_swatch_list }}
+                      </div>
+                      <p class="mobile-price hide-desktop">{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
+                    </div>
+                    <div class="hide-medium swatch_container">
+                    {{ color_swatch_list }}
+                    </div>
+                  </div>
                 </div>
-       
-            <div class="collection-col-inner text">
-                <div class="rating-reviews">
-                  <a href="{{all_products[block.settings.product].url}}#rave-reviews-main">
-                  <div class='jdgm-widget jdgm-preview-badge' data-id='{{ block.settings.product.id }}'> 
-                    {{ block.settings.product.metafields.judgeme.badge }} 
-                  </div> 
-                  </a>
-                </div>
-              <div class="title-swatch_container">
-                <h3>{{ block.settings.title }}</h3>
-                <p class="hide-mobile igPrice" data-product-id="{{ all_products[block.settings.product].id }}">{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
-              </div>
-              <div class="flex-swatch">
-                <div class="hide-large swatch_container">
-                  {{ color_swatch_list }}
-                </div>
-                <p class="mobile-price hide-desktop">{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
-              </div>
-              <div class="hide-medium swatch_container">
-              {{ color_swatch_list }}
-              </div>
-            </div>
-                   </div>
+              {% endunless %}
             {% endfor %}
             
             <div class="collection-col-inner text list-button">
