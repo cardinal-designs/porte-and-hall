@@ -15,19 +15,21 @@
       <div class="swiper-wrapper">
         {% assign my_fields = article.metafields.custom %}
         {% for product in my_fields.shop_story_product.value %}
-          {% for collection in product.collections %}
-            {% if collection.title contains ' |' %}
-              {% assign grouped_collection = collection %}
-            {% endif %}
-          {% endfor %}
-          <div class="product-carousel__item swiper-slide">
-            {% render 'grouped-product-card',
-              product_card_product: product,
-              title: grouped_collection.title,
-              collection: grouped_collection,
-              button_text: 'Shop Now'
-            %}
-          </div>
+          {% unless product.tags contains "Swatch" %}
+            {% for collection in product.collections %}
+              {% if collection.title contains ' |' %}
+                {% assign grouped_collection = collection %}
+              {% endif %}
+            {% endfor %}
+            <div class="product-carousel__item swiper-slide">
+              {% render 'grouped-product-card',
+                product_card_product: product,
+                title: grouped_collection.title,
+                collection: grouped_collection,
+                button_text: 'Shop Now'
+              %}
+            </div>
+          {% endunless %}
         {% endfor %}
       </div>
     </div>
