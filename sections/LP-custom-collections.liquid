@@ -405,23 +405,25 @@
 
           <div class="collection-row-inner">
             {% for product in block.settings.collection1.products limit: 1 %}
-              {% for collection in product.collections %}
-                {% if collection.title contains ' |' %}
-                  {% assign grouped_collection = collection %}
-                {% endif %}
-              {% endfor %}
-              <div class="collection-col-inner product">
-                <p class="badge">
-                  {{- block.settings.badge1 -}}
-                </p>
-                {% render 'product-card-custom',
-                  product_card_product: block.settings.product1,
-                  collection: grouped_collection,
-                  title: block.settings.product1_title,
-                  button_text: section.settings.button_text,
-                  custom_image: block.settings.product_image1
-                %}
-              </div>
+              {% unless product.tags contains "Swatch" %}
+                {% for collection in product.collections %}
+                  {% if collection.title contains ' |' %}
+                    {% assign grouped_collection = collection %}
+                  {% endif %}
+                {% endfor %}
+                <div class="collection-col-inner product">
+                  <p class="badge">
+                    {{- block.settings.badge1 -}}
+                  </p>
+                  {% render 'product-card-custom',
+                    product_card_product: block.settings.product1,
+                    collection: grouped_collection,
+                    title: block.settings.product1_title,
+                    button_text: section.settings.button_text,
+                    custom_image: block.settings.product_image1
+                  %}
+                </div>
+              {% endunless %}
             {% endfor %}
             
             <div class="collection-col-inner text">
