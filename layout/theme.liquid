@@ -45,13 +45,13 @@
     {% endif %}
     </script>
       
-    {% comment %} {% unless customer %}
+    {% unless customer %}
       <script>
         if(window.location.href?.includes("/apps/box-builder/")){
           window.location.href = "/";
         }
       </script>
-    {% endunless %} {% endcomment %}
+    {% endunless %}
 
     {% if product.tags contains 'Swatch' %}
       {% layout none %}
