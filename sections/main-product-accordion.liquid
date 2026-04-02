@@ -809,7 +809,7 @@ endcapture
                   {% endif %}
                   {% if grouped_collection.metafields.custom.thickness != blank %}
                     <br>
-                    Thickness: {{ grouped_collection.metafields.custom.thickness | metafield_text | strip_html }}
+                    <span>Thickness:</span> {{ grouped_collection.metafields.custom.thickness | metafield_tag }}
                   {% endif %}
                 </p>
               </div>
