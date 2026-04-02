@@ -40,6 +40,13 @@
       padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
     }
   }
+
+  @media (max-width: 768px) {
+    .breadcrumbs__item {
+      font-size: 12px;
+    }
+  }
+
 {% endstyle %}
 
 {%- unless template == 'index' or template == 'cart' or template == 'list-collections' or template == '404' -%}
