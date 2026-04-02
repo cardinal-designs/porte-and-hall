@@ -807,12 +807,11 @@ endcapture
                     <br>
                     Weight: {{ grouped_collection.metafields.custom.weight }}
                   {% endif %}
-
-                </p>
-                                  {% if grouped_collection.metafields.custom.thickness != blank %}
+                  {% if grouped_collection.metafields.custom.thickness != blank %}
                     <br>
-                  Thickness: {{ grouped_collection.metafields.custom.thickness | metafield_tag }}
+                  {{ grouped_collection.metafields.custom.thickness | metafield_tag | prepend: 'Thickness: ' }}
                   {% endif %}
+                </p>
               </div>
             </div>
            </div>
