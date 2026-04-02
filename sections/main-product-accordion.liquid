@@ -809,7 +809,7 @@ endcapture
                   {% endif %}
                   {% if grouped_collection.metafields.custom.thickness != blank %}
                     <br>
-                  {{ grouped_collection.metafields.custom.thickness | prepend: 'Thickness: ' | metafield_tag }}
+                  {{ grouped_collection.metafields.custom.thickness | metafield_tag | prepend: 'Thieckness: ' }}
                   {% endif %}
                 </p>
               </div>
