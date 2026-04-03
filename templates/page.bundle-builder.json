@@ -30,20 +30,22 @@
         "bg_color": "#f4f2ee"
       }
     },
-    "177317723145ab427b": {
+    "1775202111f49fc80e": {
       "type": "apps",
       "blocks": {
-        "powerful_form_builder_app_block_8GiUim": {
-          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+        "rebuy_personalization_engine_rebuy_widget_8AK3mJ": {
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
           "settings": {
-            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"ODQ5Njc=\"></div>"
+            "enabled": true,
+            "id": "281585",
+            "product_id_enabled": false,
+            "collection_id_enabled": false
           }
         }
       },
       "block_order": [
-        "powerful_form_builder_app_block_8GiUim"
+        "rebuy_personalization_engine_rebuy_widget_8AK3mJ"
       ],
-      "disabled": true,
       "settings": {
         "include_margins": true,
         "heading": "",
@@ -54,6 +56,6 @@
   "order": [
     "breadcrumbs_8LXnyk",
     "main",
-    "177317723145ab427b"
+    "1775202111f49fc80e"
   ]
 }
