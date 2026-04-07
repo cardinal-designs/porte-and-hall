@@ -696,6 +696,28 @@
             {% assign tab_count = tab_count | plus: 1 %}
           {% endif %}
 
+          {% if section.settings.weight != blank %}
+            <button
+              class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
+              data-product-tabs="{{ tab_count }}"
+            >
+              Weight
+            </button>
+
+            {% assign tab_count = tab_count | plus: 1 %}
+          {% endif %}
+
+          {% if section.settings.thickness != blank %}
+            <button
+              class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
+              data-product-tabs="{{ tab_count }}"
+            >
+              Thickness
+            </button>
+
+            {% assign tab_count = tab_count | plus: 1 %}
+          {% endif %}
+
           {% if section.settings.care != blank %}
             <button
               class="body-xs body-bold-weight {% if tab_count == 0 %} active{% endif %}"
@@ -1302,7 +1324,19 @@
       "type": "richtext",
       "id": "care",
       "label": "Care",
-      "info": "Connect collection metafields for care"
+      "info": "Connect collection metafields for Care"
+    },
+    {
+      "type": "richtext",
+      "id": "weight",
+      "label": "weight",
+      "info": "Connect collection metafields for Weight"
+    },
+    {
+      "type": "richtext",
+      "id": "thickness",
+      "label": "Thickness",
+      "info": "Connect collection metafields for Thickness"
     },
     {
       "type": "checkbox",
