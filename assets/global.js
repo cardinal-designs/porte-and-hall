@@ -1724,11 +1724,11 @@ window.disableBundleButtons = function () {
   });
 };
 
-window.checkAndDisableBundle = function (cartData) {
+window.checkAndDisableBundle = async function (cartData = null) {
   try {
-    const items = cartData?.items || [];
+    const data = cartData || await window.getCart();
 
-    let hasBundleItem = items.some(item => {
+    let hasBundleItem = data?.items?.some(item => {
       return item?.properties?._widget_id === "281585";
     });
 
