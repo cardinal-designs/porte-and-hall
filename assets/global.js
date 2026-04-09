@@ -1711,14 +1711,49 @@ function getCart() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
+function getCart() {
+  return fetch(window.Shopify.routes.root + 'cart.js', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })
+    .then(response => response.json())
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
   let locationHref = window.location.href;
 
   if (locationHref?.includes("/pages/bundle")) {
-    let rebuyBundleBuilderMainBody = document.querySelector(".rebuy-bundle-builder__main-body");
-    console.log("rebuyBundleBuilderMainBody", rebuyBundleBuilderMainBody)
-    let cartData = await getCart();
-    console.log("cartData", cartData);
+    let timeoutLimit = 2 * 60 * 1000; // 2 minutes
+    let startTime = Date.now();
+
+    const observer = new MutationObserver(async () => {
+      let rebuyBundleBuilderMainBody = document.querySelector(".rebuy-bundle-builder__main-body");
+
+      if (rebuyBundleBuilderMainBody) {
+        console.log("Element found:", rebuyBundleBuilderMainBody);
+
+        observer.disconnect(); // stop observing
+
+        let cartData = await getCart();
+        console.log("cartData", cartData);
+      }
+
+      // Stop after 2 minutes
+      if (Date.now() - startTime > timeoutLimit) {
+        console.warn("Stopped observing after 2 minutes");
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
   }
 });
-
