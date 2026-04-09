@@ -1715,8 +1715,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   let locationHref = window.location.href;
 
   if (locationHref?.includes("/pages/bundle")) {
+    let rebuyBundleBuilderMainBody = document.querySelector(".rebuy-bundle-builder__main-body");
+    console.log("rebuyBundleBuilderMainBody", rebuyBundleBuilderMainBody)
     let cartData = await getCart();
-    console.log(cartData);
+    console.log("cartData", cartData);
   }
 });
 
