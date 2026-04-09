@@ -1697,6 +1697,8 @@ setTimeout(function() {
   });
 }); */
 
+
+
 function getCart() {
   return fetch(window.Shopify.routes.root + 'cart.js', {
     method: 'GET',
@@ -1711,18 +1713,15 @@ function getCart() {
     });
 }
 
-function getCart() {
-  return fetch(window.Shopify.routes.root + 'cart.js', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-  })
-    .then(response => response.json())
-    .catch(error => {
-      console.error('Error:', error);
-    });
+function disableBundleButtons() {
+  const buttons = document.querySelectorAll('.rebuy-button');
+
+  buttons.forEach(button => {
+    button.disabled = true;
+    button.classList.add('is-disabled');
+    button.style.pointerEvents = 'none';
+    button.style.opacity = '0.5';
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1742,6 +1741,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let cartData = await getCart();
         console.log("cartData", cartData);
+
+        let hasBundleItem = cartData?.items?.some(item => {
+          return item?.properties?._widget_id === "281585";
+        });
+
+        if (hasBundleItem) {
+          disableBundleButtons();
+          console.log("Bundle item found → buttons disabled");
+        }
       }
 
       // Stop after 2 minutes
