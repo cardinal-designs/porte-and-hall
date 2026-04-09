@@ -1697,10 +1697,26 @@ setTimeout(function() {
   });
 }); */
 
-document.addEventListener("DOMContentLoaded", (event) => {
+function getCart() {
+  return fetch(window.Shopify.routes.root + 'cart.js', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })
+    .then(response => response.json())
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
   let locationHref = window.location.href;
-  if(locationHref?.includes("/pages/bundle")){
-    console.log("locationHref", locationHref)
+
+  if (locationHref?.includes("/pages/bundle")) {
+    let cartData = await getCart();
+    console.log(cartData);
   }
 });
 
