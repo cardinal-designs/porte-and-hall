@@ -1699,7 +1699,7 @@ setTimeout(function() {
 
 document.addEventListener("DOMContentLoaded", (event) => {
   let locationHref = window.location.href;
-  if(locationHref?.includes("bundle")){
+  if(locationHref?.includes("/pages/bundle")){
     console.log("locationHref", locationHref)
   }
 });
