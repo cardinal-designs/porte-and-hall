@@ -202,6 +202,10 @@ class CartDrawer extends HTMLElement {
       })
       .then((state) => {
         const parsedState = JSON.parse(state);
+
+        if (window.checkAndDisableBundle) {
+          window.checkAndDisableBundle(parsedState);
+        }
         
         const quantityElement =
           document.getElementById(`Quantity-${line}`) || document.getElementById(`Drawer-quantity-${line}`);

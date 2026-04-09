@@ -1699,7 +1699,7 @@ setTimeout(function() {
 
 
 
-function getCart() {
+window.getCart = function () {
   return fetch(window.Shopify.routes.root + 'cart.js', {
     method: 'GET',
     headers: {
@@ -1711,9 +1711,9 @@ function getCart() {
     .catch(error => {
       console.error('Error:', error);
     });
-}
+};
 
-function disableBundleButtons() {
+window.disableBundleButtons = function () {
   const buttons = document.querySelectorAll('.rebuy-button');
 
   buttons.forEach(button => {
@@ -1722,46 +1722,21 @@ function disableBundleButtons() {
     button.style.pointerEvents = 'none';
     button.style.opacity = '0.5';
   });
-}
+};
 
-document.addEventListener("DOMContentLoaded", () => {
-  let locationHref = window.location.href;
+window.checkAndDisableBundle = function (cartData) {
+  try {
+    const items = cartData?.items || [];
 
-  if (locationHref?.includes("/pages/bundle")) {
-    let timeoutLimit = 2 * 60 * 1000; // 2 minutes
-    let startTime = Date.now();
-
-    const observer = new MutationObserver(async () => {
-      let rebuyBundleBuilderMainBody = document.querySelector(".rebuy-bundle-builder__main-body");
-
-      if (rebuyBundleBuilderMainBody) {
-        console.log("Element found:", rebuyBundleBuilderMainBody);
-
-        observer.disconnect(); // stop observing
-
-        let cartData = await getCart();
-        console.log("cartData", cartData);
-
-        let hasBundleItem = cartData?.items?.some(item => {
-          return item?.properties?._widget_id === "281585";
-        });
-
-        if (hasBundleItem) {
-          disableBundleButtons();
-          console.log("Bundle item found → buttons disabled");
-        }
-      }
-
-      // Stop after 2 minutes
-      if (Date.now() - startTime > timeoutLimit) {
-        console.warn("Stopped observing after 2 minutes");
-        observer.disconnect();
-      }
+    let hasBundleItem = items.some(item => {
+      return item?.properties?._widget_id === "281585";
     });
 
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
+    if (hasBundleItem) {
+      window.disableBundleButtons();
+      console.log("Bundle item found → buttons disabled");
+    }
+  } catch (error) {
+    console.error("Bundle check error:", error);
   }
-});
+};
