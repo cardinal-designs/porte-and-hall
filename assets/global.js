@@ -1713,30 +1713,59 @@ window.getCart = function () {
     });
 };
 
-window.disableBundleButtons = function () {
+window.setBundleButtonsDisabled = function (disabled) {
   const buttons = document.querySelectorAll('.rebuy-button');
 
   buttons.forEach(button => {
-    button.disabled = true;
-    button.classList.add('is-disabled');
-    button.style.pointerEvents = 'none';
-    button.style.opacity = '0.5';
+    button.disabled = disabled;
+    button.classList.toggle('is-disabled', disabled);
+    button.style.pointerEvents = disabled ? 'none' : '';
+    button.style.opacity = disabled ? '0.5' : '';
   });
+};
+
+window.disableBundleButtons = function () {
+  window.setBundleButtonsDisabled(true);
+};
+
+window.enableBundleButtons = function () {
+  window.setBundleButtonsDisabled(false);
 };
 
 window.checkAndDisableBundle = async function (cartData = null) {
   try {
     const data = cartData || await window.getCart();
 
-    let hasBundleItem = data?.items?.some(item => {
+    const hasBundleItem = data?.items?.some(item => {
       return item?.properties?._widget_id === "281585";
     });
 
-    if (hasBundleItem) {
-      window.disableBundleButtons();
-      console.log("Bundle item found → buttons disabled");
-    }
+    window.setBundleButtonsDisabled(Boolean(hasBundleItem));
   } catch (error) {
     console.error("Bundle check error:", error);
   }
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    if (window.checkAndDisableBundle) {
+      window.checkAndDisableBundle();
+    }
+  }, 300);
+});
+
+document.addEventListener('cart:updated', (event) => {
+  if (window.checkAndDisableBundle) {
+    window.checkAndDisableBundle(event?.detail?.cart || null);
+  }
+});
+
+['rebuy:cart.ready', 'rebuy:cart.add', 'rebuy:cart.change'].forEach((eventName) => {
+  document.addEventListener(eventName, () => {
+    setTimeout(() => {
+      if (window.checkAndDisableBundle) {
+        window.checkAndDisableBundle();
+      }
+    }, 300);
+  });
+});

@@ -226,6 +226,10 @@ class CartDrawer extends HTMLElement {
 
         }));
 
+        document.dispatchEvent(new CustomEvent('cart:updated', {
+          detail: { cart: parsedState }
+        }));
+
         this.disableLoading();
         this.drawer.focus();
       }).catch(() => {
@@ -320,6 +324,9 @@ function updateMainCart(Rebuy) {
       setTimeout(() => {
         if (Rebuy) {
           Rebuy.init();
+        }
+        if (window.checkAndDisableBundle) {
+          window.checkAndDisableBundle();
         }
       }, 2000);
     });
