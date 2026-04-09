@@ -1696,3 +1696,11 @@ setTimeout(function() {
     });
   });
 }); */
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  let locationHref = window.location.href;
+  if(locationHref?.contains("bundle")){
+    console.log("locationHref", locationHref)
+  }
+});
+
