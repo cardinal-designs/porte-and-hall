@@ -470,5 +470,5 @@ function cartScroll() {
 }
 
 document.dispatchEvent(new CustomEvent('cart:updated', {
-  console.log("cart:updated event")
+  cartScroll()
 }));
