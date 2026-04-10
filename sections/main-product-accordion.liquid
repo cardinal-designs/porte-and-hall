@@ -967,34 +967,34 @@ endcapture
     
   });
 
-  const container = document.querySelector('.product__media-thumbnails');
+  // const container = document.querySelector('.product__media-thumbnails');
 
-  container.addEventListener('click', (e) => {
-    const slide = e.target.closest('.swiper-slide');
-    if (!slide) return;
+  // container.addEventListener('click', (e) => {
+  //   const slide = e.target.closest('.swiper-slide');
+  //   if (!slide) return;
 
-    const swiper = thumbnailSlider;
-    const slides = Array.from(swiper.slides);
-    const index = slides.indexOf(slide);
+  //   const swiper = thumbnailSlider;
+  //   const slides = Array.from(swiper.slides);
+  //   const index = slides.indexOf(slide);
 
-    const slideRect = slide.getBoundingClientRect();
-    const containerRect = container.getBoundingClientRect();
+  //   const slideRect = slide.getBoundingClientRect();
+  //   const containerRect = container.getBoundingClientRect();
 
-    const isHiddenLeft = slideRect.left < containerRect.left || slideRect.top < containerRect.top;
+  //   const isHiddenLeft = slideRect.left < containerRect.left || slideRect.top < containerRect.top;
 
-    const isHiddenRight = slideRect.right > containerRect.right || slideRect.bottom > containerRect.bottom;
+  //   const isHiddenRight = slideRect.right > containerRect.right || slideRect.bottom > containerRect.bottom;
 
-    console.log("index",index);
+  //   console.log("index",index);
 
-    if (isHiddenLeft) {
-      swiper.slideTo(index - 1, 400);
-    }
+  //   if (isHiddenLeft) {
+  //     swiper.slideTo(index - 1, 400);
+  //   }
 
-    else if (isHiddenRight) {
-      swiper.slideTo(index, 400);
-    }
+  //   else if (isHiddenRight) {
+  //     swiper.slideTo(index, 400);
+  //   }
 
-  });
+  // });
 
 
   const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
