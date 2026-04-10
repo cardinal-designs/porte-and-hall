@@ -970,12 +970,6 @@ endcapture
     watchSlidesVisibility: true,
   });
 
-  // thumbnailSlider.on('tap', function (swiper, event) {
-  //   if (swiper.clickedIndex !== undefined) {
-  //     swiper.slideTo(swiper.clickedIndex);
-  //   }
-  // });
-
   document.querySelectorAll('.product__media-thumbnails .swiper-slide')
   .forEach((slide, index) => {
     slide.addEventListener('click', () => {
@@ -991,8 +985,6 @@ endcapture
       else if (index >= activeIndex + 4) {
         thumbnailSlider.slideTo(index - 3);
       }
-
-      // 👉 If already in view → do nothing
     });
   });
 
