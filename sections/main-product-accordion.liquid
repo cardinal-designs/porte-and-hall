@@ -1003,30 +1003,26 @@ endcapture
     if (!slide) return;
 
     const swiper = thumbnailSlider;
-
-    // 👉 ✅ FIX: Check if slider actually overflows
-    const isScrollable = swiper.isBeginning === false || swiper.isEnd === false;
-
-    if (!isScrollable) return; // ⛔ Do nothing if no overflow
-
     const slides = Array.from(swiper.slides);
     const index = slides.indexOf(slide);
 
-    const slideRect = slide.getBoundingClientRect();
-    const containerRect = container.getBoundingClientRect();
+    const visibleSlides = swiper.slidesPerViewDynamic(); // 👈 KEY
 
-    const isHiddenLeft =
-      slideRect.left < containerRect.left || slideRect.top < containerRect.top;
+    const start = swiper.activeIndex;
+    const end = start + visibleSlides - 1;
 
-    const isHiddenRight =
-      slideRect.right > containerRect.right ||
-      slideRect.bottom > containerRect.bottom;
-
-    if (isHiddenLeft || isHiddenRight) {
+    // 👉 LEFT SIDE (this is what was broken)
+    if (index < start) {
       swiper.slideTo(index, 400);
     }
-  });
 
+    // 👉 RIGHT SIDE
+    else if (index > end) {
+      swiper.slideTo(index - visibleSlides + 1, 400);
+    }
+
+    // 👉 If already visible → do nothing
+  });
 
   const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
     slidesPerView: 'auto',
