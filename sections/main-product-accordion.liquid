@@ -996,6 +996,37 @@ endcapture
 
   // });
 
+  const container = document.querySelector('.product__media-thumbnails');
+
+  container.addEventListener('click', (e) => {
+    const slide = e.target.closest('.swiper-slide');
+    if (!slide) return;
+
+    const swiper = thumbnailSlider;
+
+    // 👉 ✅ FIX: Check if slider actually overflows
+    const isScrollable = swiper.isBeginning === false || swiper.isEnd === false;
+
+    if (!isScrollable) return; // ⛔ Do nothing if no overflow
+
+    const slides = Array.from(swiper.slides);
+    const index = slides.indexOf(slide);
+
+    const slideRect = slide.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    const isHiddenLeft =
+      slideRect.left < containerRect.left || slideRect.top < containerRect.top;
+
+    const isHiddenRight =
+      slideRect.right > containerRect.right ||
+      slideRect.bottom > containerRect.bottom;
+
+    if (isHiddenLeft || isHiddenRight) {
+      swiper.slideTo(index, 400);
+    }
+  });
+
 
   const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
     slidesPerView: 'auto',
