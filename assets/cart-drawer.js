@@ -63,7 +63,8 @@ class CartDrawer extends HTMLElement {
 
     this.pageOverlayElement.classList.add('is-visible');
     document.body.addEventListener('click', this.onBodyClick);
-    this.enableDrawerFocus()
+    this.enableDrawerFocus();
+    console.log("cart render");
   }
 
   disableDrawerFocus() {
@@ -75,8 +76,6 @@ class CartDrawer extends HTMLElement {
   enableDrawerFocus() {
     this.drawer.querySelectorAll('[tabindex], a, button, input, select, textarea')
       .forEach(el => el.removeAttribute('tabindex'));
-
-    console.log("cart render");
   }
 
   close() {
