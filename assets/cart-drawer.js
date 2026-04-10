@@ -75,6 +75,8 @@ class CartDrawer extends HTMLElement {
   enableDrawerFocus() {
     this.drawer.querySelectorAll('[tabindex], a, button, input, select, textarea')
       .forEach(el => el.removeAttribute('tabindex'));
+
+    console.log("cart render");
   }
 
   close() {
