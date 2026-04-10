@@ -967,22 +967,6 @@ endcapture
     watchSlidesProgress: true,
   });
 
-  function applyThumbnailPeek() {
-    const thumbW = 78;      // your thumbnail width
-    const gap = 10;         // your spaceBetween
-    const visibleCount = 4; // full thumbs to show
-    const peekPx = 36;      // how much of the next thumb peeks in
-
-    const stripWidth = visibleCount * (thumbW + gap) + peekPx;
-
-    // Mobile: constrain width; Desktop vertical: constrain height
-    if (window.matchMedia('(max-width: 768px)').matches) {
-      // document.querySelector('.product__media-thumbnails').style.width = stripWidth + 'px';
-    }
-  }
-
-  // applyThumbnailPeek();
-
   thumbnailSlider.on('click', function (swiper) {
     const clickedIndex = swiper.clickedIndex;
     if (clickedIndex === undefined || clickedIndex < 0) return;
