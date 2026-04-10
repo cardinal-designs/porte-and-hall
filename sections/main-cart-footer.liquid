@@ -70,6 +70,12 @@
                   {% assign disable_checkout_for_bundle = true %}
                 {% endif %}
 
+                {% if disable_checkout_for_bundle %}
+                  <p class="body-sm bundle-checkout-error">
+                    Only 1 swatch bundle is allowed per checkout. Please remove extra swatch bundle items.
+                  </p>
+                {% endif %}
+
                 <noscript>
                   <button type="submit" class="cart__update-button button button--secondary" form="cart">
                     {{ 'sections.cart.update' | t }}
@@ -81,11 +87,7 @@
                 </button>
                 
               </div>
-              {% if disable_checkout_for_bundle %}
-                <p class="body-sm bundle-checkout-error">
-                  Only 1 swatch bundle is allowed per checkout. Please remove extra swatch bundle items.
-                </p>
-              {% endif %}
+              
           
               {% if additional_checkout_buttons %}
                 <div class="cart__dynamic-checkout-buttons additional-checkout-buttons">
