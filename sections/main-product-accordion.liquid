@@ -964,9 +964,10 @@ endcapture
     loop: false,
     spaceBetween: 10,
     direction: isMobile ? 'horizontal' : 'vertical',
-    watchSlidesProgress: true,
     slideToClickedSlide: true,
-    speed: 400,
+    centeredSlides: false, // important
+    watchSlidesProgress: true,
+    watchSlidesVisibility: true,
   });
 
   document.querySelectorAll('.product__media-thumbnails .swiper-slide')
