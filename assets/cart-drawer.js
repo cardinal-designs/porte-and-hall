@@ -468,3 +468,7 @@ function cartScroll() {
     cartItemsEle.style.height = 'calc(100vh - '+totalHeight+'px)';
   }
 }
+
+document.dispatchEvent(new CustomEvent('cart:updated', {
+  console.log("cart:updated event");
+}));
