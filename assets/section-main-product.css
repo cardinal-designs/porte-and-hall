@@ -81,10 +81,6 @@
   border-color: var(--gold);
 }
 
-.product__media-thumbnails .swiper-slide {
-  width: 20%;
-}
-
 .product__zoom-thumbnails .swiper-slide.swiper-slide-thumb-active {
   border: 3px solid var(--gold);
 }
@@ -1366,6 +1362,7 @@ product-form form {
 }
 
 @media screen and (max-width: 768px) {
+
   .bis-new {
     font-size: 16px !important;
     width: unset !important;
@@ -1374,6 +1371,10 @@ product-form form {
   .product-form__submit.button .price .h3,
   .product-form__submit.button .price--on-sale .price-item--regular {
     font-size: 16px;
+  }
+
+  .product__media-thumbnails .swiper-slide {
+    width: 20%;
   }
 
 }
