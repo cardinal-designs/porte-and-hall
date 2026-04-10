@@ -354,6 +354,7 @@ function updateMainCart(Rebuy, cartData = null) {
       setTimeout(() => {
         if (Rebuy) {
           Rebuy.init();
+          cartScroll();
         }
       }, 2000);
     });
