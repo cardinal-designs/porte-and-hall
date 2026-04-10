@@ -229,10 +229,6 @@ class CartDrawer extends HTMLElement {
         this.disableLoading();
         this.drawer.focus();
 
-        // cartScroll();
-
-        console.log("cart render");
-
       }).catch(() => {
         this.disableLoading();
       });
