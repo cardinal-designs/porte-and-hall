@@ -227,6 +227,8 @@ class CartDrawer extends HTMLElement {
           detail: { cart: parsedState }
         }));
 
+        cartScroll();
+
         this.disableLoading();
         this.drawer.focus();
         
@@ -446,31 +448,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function cartScroll() {
-  let cartFooter = document.querySelector('.cart-drawer__footer');
-  let footerHeight = 0;
-  if(cartFooter) {
-    footerHeight = cartFooter.clientHeight;
-  }
-  let cartHeader = document.querySelector('.cart-drawer__header');
-  let headerHeight = 0;
-  if(cartHeader) {
-    headerHeight = cartHeader.clientHeight;
-  }
+  // Use requestAnimationFrame to ensure the DOM has been painted
+  requestAnimationFrame(() => {
+    const cartFooter = document.querySelector('.cart-drawer__footer');
+    const cartHeader = document.querySelector('.cart-drawer__header');
+    const cartItemsEle = document.querySelector('.cart-drawer__items');
 
-  let totalHeight = footerHeight + headerHeight;
+    if (!cartItemsEle) return;
 
-  console.log("headerHeight",headerHeight);
-  console.log("footerHeight",footerHeight);
-  let cartItemsEle = document.querySelector('.cart-drawer__items');
-  console.log("cartItemsEle::",cartItemsEle)
-  console.log("totalHeight::",totalHeight)
-  if(cartItemsEle) {
+    const footerHeight = cartFooter?.offsetHeight || 0;
+    const headerHeight = cartHeader?.offsetHeight || 0;
+    const totalHeight = footerHeight + headerHeight;
+
     cartItemsEle.style.height = `calc(100vh - ${totalHeight}px)`;
-  }
+  });
 }
 
+// Remove the 2s timeout — fire cartScroll right after sections re-render
 document.addEventListener('cart:updated', function (e) {
-  setTimeout(() => {
-    cartScroll();
-  }, 2000);
+  cartScroll();
 });
