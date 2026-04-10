@@ -977,7 +977,7 @@ endcapture
       const activeIndex = thumbnailSlider.activeIndex;
 
       // 👉 LEFT scroll (when clicking previous thumbnails)
-      if (index < activeIndex) {
+      if (index <= activeIndex) {
         thumbnailSlider.slideTo(index - 1);
       }
 
