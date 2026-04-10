@@ -229,24 +229,6 @@ class CartDrawer extends HTMLElement {
         this.disableLoading();
         this.drawer.focus();
 
-        let cartFooter = document.querySelector('.cart-drawer__footer');
-        let footerHeight = 0;
-        if(cartFooter) {
-          footerHeight = cartFooter.clientHeight;
-        }
-        let cartHeader = document.querySelector('.cart-drawer__header');
-        let headerHeight = 0;
-        if(cartHeader) {
-          headerHeight = cartHeader.clientHeight;
-        }
-
-        let totalHeight = footerHeight + headerHeight;
-        let cartItemsEle = document.querySelector('.cart-drawer__items');
-        if(cartItemsEle) {
-          cartItemsEle.style.height = 'calc(100vh - '+totalHeight+'px)';
-        }
-
-
       }).catch(() => {
         this.disableLoading();
       });
