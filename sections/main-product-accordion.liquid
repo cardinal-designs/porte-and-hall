@@ -970,39 +970,26 @@ endcapture
     watchSlidesVisibility: true,
   });
 
-  // document.querySelectorAll('.product__media-thumbnails .swiper-slide')
-  // .forEach((slide, index) => {
-  //   slide.addEventListener('click', () => {
+  document.querySelectorAll('.product__media-thumbnails .swiper-slide')
+  .forEach((slide, index) => {
+    slide.addEventListener('click', () => {
 
-  //     const swiper = thumbnailSlider;
-  //     const activeIndex = swiper.activeIndex;
+      const swiper = thumbnailSlider;
+      const activeIndex = swiper.activeIndex;
 
-  //     // 👉 If clicking LEFT side (hidden before view)
-  //     if (index < activeIndex) {
-  //       swiper.slideTo(index);
-  //     }
+      // 👉 If clicking LEFT side (hidden before view)
+      if (index < activeIndex) {
+        swiper.slideTo(index);
+      }
 
-  //     // 👉 If clicking RIGHT side (hidden after view)
-  //     else if (index > activeIndex) {
-  //       swiper.slideTo(index);
-  //     }
+      // 👉 If clicking RIGHT side (hidden after view)
+      else if (index > activeIndex) {
+        swiper.slideTo(index);
+      }
 
-  //   });
-  // });
+    });
+  });
 
-  const offset = 1;
-
-  if (index < activeIndex) {
-    swiper.slideTo(Math.max(index - offset, 0));
-  } else if (index > activeIndex) {
-    swiper.slideTo(index - offset);
-  }
-
-  // thumbnailSlider.on('click', function (swiper) {
-  //   if (swiper.clickedIndex !== undefined) {
-  //     swiper.slideTo(swiper.clickedIndex);
-  //   }
-  // });
 
   const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
     slidesPerView: 'auto',
