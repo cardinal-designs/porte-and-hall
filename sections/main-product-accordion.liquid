@@ -980,8 +980,7 @@ endcapture
     const slideRect = slide.getBoundingClientRect();
     const containerRect = container.getBoundingClientRect();
 
-    const isHiddenLeft =
-      slideRect.left < containerRect.left || slideRect.top < containerRect.top;
+    const isHiddenLeft = slideRect.left < containerRect.left || slideRect.top < containerRect.top;
 
     const isHiddenRight =
       slideRect.right > containerRect.right ||
@@ -989,17 +988,14 @@ endcapture
 
     console.log("index",index);
 
-    // 👉 LEFT side fix (your missing piece)
     if (isHiddenLeft) {
       swiper.slideTo(index - 1, 400);
     }
 
-    // 👉 RIGHT side (already working but handled properly)
     else if (isHiddenRight) {
       swiper.slideTo(index, 400);
     }
 
-    // 👉 If fully visible → do nothing (prevents jump)
   });
 
 
