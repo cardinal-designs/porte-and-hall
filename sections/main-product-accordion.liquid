@@ -968,6 +968,14 @@ endcapture
     slideToClickedSlide: true,
   });
 
+  thumbnailSlider.on('click', function (swiper) {
+    const clickedIndex = swiper.clickedIndex;
+
+    if (clickedIndex >= 4) { // 5th thumbnail (0-based index)
+      swiper.slideTo(clickedIndex);
+    }
+  });
+
   const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
     slidesPerView: 'auto',
     loop: false,
