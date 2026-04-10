@@ -974,17 +974,19 @@ endcapture
   .forEach((slide, index) => {
     slide.addEventListener('click', () => {
 
-      const activeIndex = thumbnailSlider.activeIndex;
+      const swiper = thumbnailSlider;
+      const activeIndex = swiper.activeIndex;
 
-      // 👉 LEFT scroll (when clicking previous thumbnails)
-      if (index <= activeIndex) {
-        thumbnailSlider.slideTo(index - 1);
+      // 👉 If clicking LEFT side (hidden before view)
+      if (index < activeIndex) {
+        swiper.slideTo(index);
       }
 
-      // 👉 RIGHT scroll (your existing logic improved)
-      else if (index >= activeIndex + 4) {
-        thumbnailSlider.slideTo(index - 3);
+      // 👉 If clicking RIGHT side (hidden after view)
+      else if (index > activeIndex) {
+        swiper.slideTo(index);
       }
+
     });
   });
 
