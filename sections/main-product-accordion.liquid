@@ -980,9 +980,8 @@ endcapture
       // 👉 If clicking LEFT side (hidden before view)
       console.log("index", index);
       console.log("activeIndex", activeIndex);
-      if (index <= activeIndex) {
-        console.log("teee tee ooo");
-        swiper.slideTo(0);
+      if (index < activeIndex) {
+        swiper.slideTo(index);
       }
 
       // 👉 If clicking RIGHT side (hidden after view)
