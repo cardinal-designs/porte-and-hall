@@ -65,6 +65,7 @@ class CartDrawer extends HTMLElement {
     document.body.addEventListener('click', this.onBodyClick);
     this.enableDrawerFocus();
     console.log("cart render");
+    cartScroll();
   }
 
   disableDrawerFocus() {
@@ -443,7 +444,6 @@ document.addEventListener('DOMContentLoaded', () => {
   drawer.classList.add('aria-unhidden');
   if(drawer.getAttribute("aria-hidden") == "false") drawer.focus();
   trapFocusinCart(drawer);
-  // cartScroll();
 });
 
 function cartScroll() {
