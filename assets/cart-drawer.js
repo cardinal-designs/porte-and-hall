@@ -229,6 +229,8 @@ class CartDrawer extends HTMLElement {
         this.disableLoading();
         this.drawer.focus();
 
+        cartScroll();
+
       }).catch(() => {
         this.disableLoading();
       });
@@ -456,6 +458,9 @@ function cartScroll() {
   if(cartHeader) {
     headerHeight = cartHeader.clientHeight;
   }
+
+  console.log("footerHeight", footerHeight);
+  console.log("headerHeight", headerHeight);
 
   let totalHeight = footerHeight + headerHeight;
   let cartItemsEle = document.querySelector('.cart-drawer__items');
