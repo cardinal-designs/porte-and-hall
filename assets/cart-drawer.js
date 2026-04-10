@@ -300,18 +300,13 @@ customElements.define('cart-drawer', CartDrawer);
 
 
 function updateCartIconBubble(cartData = null) {
-  console.log("updateCartIconBubble===");
   fetch(`${window.origin}/?section_id=cart-icon-bubble`)
     .then((response) => response.text())
     .then((responseText) => {
       const html = new DOMParser().parseFromString(responseText, 'text/html');
-      console.log("html===", html);
       const target = document.getElementById('cart-icon-bubble');
       const source = html.querySelector('#cart-icon-bubble .shopify-section') || html.querySelector('.shopify-section');
       const targetInner = target?.querySelector('.shopify-section');
-      console.log("target===", target);
-      console.log("source===", source);
-      console.log("targetInner===", targetInner);
       if (target && source) {
         if(targetInner){
           targetInner.replaceWith(source);
@@ -333,8 +328,6 @@ function updateCartIconBubble(cartData = null) {
 }
 
 function updateMainCart(Rebuy, cartData = null) {
-  console.log("cartData===", cartData);
-  console.log("window.getCart===", window.getCart());
   return fetch(`${window.origin}/?section_id=cart-drawer`)
     .then((response) => response.text())
     .then((responseText) => {
@@ -392,7 +385,6 @@ document.addEventListener('rebuy:cart.ready', (event) => {
   }, 250);
 });
 document.addEventListener('rebuy:cart.add', (event) => { 
-  console.log('rebuy:cart.add');
   syncCartDrawerAndValidation();
   const drawer = document.getElementById("cart-drawer");
   setTimeout(() => {
