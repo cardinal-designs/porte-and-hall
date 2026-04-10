@@ -79,7 +79,8 @@ span.jdgm-prev-badge__stars {
   transform: translateX(-50%);
 }
 
-.checkout-disabled {
+.checkout-disabled
+.cart__checkout-button.is-disabled {
   pointer-events: none;
   opacity: 0.5;
 }
