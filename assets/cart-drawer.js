@@ -64,7 +64,6 @@ class CartDrawer extends HTMLElement {
     this.pageOverlayElement.classList.add('is-visible');
     document.body.addEventListener('click', this.onBodyClick);
     this.enableDrawerFocus();
-    console.log("cart render");
     cartScroll();
   }
 
@@ -457,9 +456,6 @@ function cartScroll() {
   if(cartHeader) {
     headerHeight = cartHeader.clientHeight;
   }
-
-  console.log("footerHeight", footerHeight);
-  console.log("headerHeight", headerHeight);
 
   let totalHeight = footerHeight + headerHeight;
   let cartItemsEle = document.querySelector('.cart-drawer__items');
