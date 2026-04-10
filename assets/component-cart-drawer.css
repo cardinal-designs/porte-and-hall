@@ -515,8 +515,8 @@ cart-drawer-remove-button {
 }
 .cart-text-with-icon .icon-text-box:first-child {
   padding-right: 20px;
-  justify-content: end;
-  width: 35%;
+  /* justify-content: end;
+  width: 35%; */
 }
 
 .cart-text-with-icon .icon-text-box:last-child {
