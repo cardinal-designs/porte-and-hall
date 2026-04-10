@@ -226,4 +226,9 @@ cart-items {
     justify-content: flex-end;
     gap: 1rem;
   }
+
+  .bundle-checkout-error {
+    text-align: right;
+  }
+
 }
