@@ -52,13 +52,13 @@
   height: calc(100% - 60px);
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow: auto;
   background: transparent linear-gradient(180deg,#fff 0,var(--beige-light) 100%) 0 0 no-repeat padding-box;
 }
 
 .cart-drawer__items {
   height: 100%;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .cart-item {
