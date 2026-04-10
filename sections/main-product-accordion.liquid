@@ -990,11 +990,19 @@ endcapture
   //   });
   // });
 
-  thumbnailSlider.on('click', function (swiper) {
-    if (swiper.clickedIndex !== undefined) {
-      swiper.slideTo(swiper.clickedIndex);
-    }
-  });
+  const offset = 1;
+
+  if (index < activeIndex) {
+    swiper.slideTo(Math.max(index - offset, 0));
+  } else if (index > activeIndex) {
+    swiper.slideTo(index - offset);
+  }
+
+  // thumbnailSlider.on('click', function (swiper) {
+  //   if (swiper.clickedIndex !== undefined) {
+  //     swiper.slideTo(swiper.clickedIndex);
+  //   }
+  // });
 
   const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
     slidesPerView: 'auto',
