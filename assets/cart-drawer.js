@@ -242,6 +242,9 @@ class CartDrawer extends HTMLElement {
 
         let totalHeight = footerHeight + headerHeight;
         let cartItemsEle = document.querySelector('.cart-drawer__items');
+        if(cartItemsEle) {
+          cartItemsEle.style.height = 'calc(100vh - '+totalHeight+'px)';
+        }
 
 
       }).catch(() => {
