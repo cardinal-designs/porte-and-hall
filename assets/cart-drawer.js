@@ -465,7 +465,7 @@ function cartScroll() {
   console.log("cartItemsEle::",cartItemsEle)
   console.log("totalHeight::",totalHeight)
   if(cartItemsEle) {
-    cartItemsEle.style.height = 'calc(100vh - '+totalHeight+'px)';
+    cartItemsEle.style.height = 'calc(100vh - '+ totalHeight +'px)';
   }
 }
 
