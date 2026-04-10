@@ -1460,7 +1460,7 @@ var ProductFeature = class extends HTMLElement {
     this.thumbnailSlider = new Swiper(this.thumbnails, {
       slidesPerView: 'auto',
       loop: false,
-      spaceBetween: 20,
+      spaceBetween: 10,
       direction: 'vertical',
     });
 
