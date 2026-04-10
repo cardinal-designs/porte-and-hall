@@ -444,7 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
   drawer.classList.add('aria-unhidden');
   if(drawer.getAttribute("aria-hidden") == "false") drawer.focus();
   trapFocusinCart(drawer);
-  cartScroll();
+  // cartScroll();
 });
 
 function cartScroll() {
