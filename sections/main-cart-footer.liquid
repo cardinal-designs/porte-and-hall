@@ -52,28 +52,29 @@
                 </small>
               </div>
             {% else %}
+              {% assign bundle_session_keys = '|' %}
+              {% assign bundle_session_count = 0 %}
+              {% for item in cart.items %}
+                {% assign rebuy_bundle_session = item.properties['_r_added_bundle_session_id'] | default: '' %}
+                {% if rebuy_bundle_session != blank %}
+                  {% assign bundle_session_token = '|' | append: rebuy_bundle_session | append: '|' %}
+                  {% unless bundle_session_keys contains bundle_session_token %}
+                    {% assign bundle_session_keys = bundle_session_keys | append: rebuy_bundle_session | append: '|' %}
+                    {% assign bundle_session_count = bundle_session_count | plus: 1 %}
+                  {% endunless %}
+                {% endif %}
+              {% endfor %}
+              {% assign disable_checkout_for_bundle = false %}
+              {% if bundle_session_count > 1 %}
+                {% assign disable_checkout_for_bundle = true %}
+              {% endif %}
               {% if disable_checkout_for_bundle %}
                 <p class="body-sm bundle-checkout-error">
                   Only 1 swatch bundle is allowed per checkout. Please remove extra swatch bundle items.
                 </p>
               {% endif %}
               <div class="cart__ctas" {{ block.shopify_attributes }}>
-                {% assign bundle_session_keys = '|' %}
-                {% assign bundle_session_count = 0 %}
-                {% for item in cart.items %}
-                  {% assign rebuy_bundle_session = item.properties['_r_added_bundle_session_id'] | default: '' %}
-                  {% if rebuy_bundle_session != blank %}
-                    {% assign bundle_session_token = '|' | append: rebuy_bundle_session | append: '|' %}
-                    {% unless bundle_session_keys contains bundle_session_token %}
-                      {% assign bundle_session_keys = bundle_session_keys | append: rebuy_bundle_session | append: '|' %}
-                      {% assign bundle_session_count = bundle_session_count | plus: 1 %}
-                    {% endunless %}
-                  {% endif %}
-                {% endfor %}
-                {% assign disable_checkout_for_bundle = false %}
-                {% if bundle_session_count > 1 %}
-                  {% assign disable_checkout_for_bundle = true %}
-                {% endif %}
+                
 
                 <noscript>
                   <button type="submit" class="cart__update-button button button--secondary" form="cart">
