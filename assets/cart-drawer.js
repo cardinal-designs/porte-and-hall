@@ -470,5 +470,5 @@ function cartScroll() {
 }
 
 document.addEventListener('cart:updated', function (e) {
-  console.log(e.detail.cart);
+  console.log("cart:updated event");
 });
