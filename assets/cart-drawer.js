@@ -229,9 +229,7 @@ class CartDrawer extends HTMLElement {
 
         this.disableLoading();
         this.drawer.focus();
-        setTimeout(() => {
-          cartScroll();
-        }, 2000);
+        
       }).catch(() => {
         this.disableLoading();
       });
@@ -470,5 +468,7 @@ function cartScroll() {
 }
 
 document.addEventListener('cart:updated', function (e) {
-  console.log("cart:updated event");
+  setTimeout(() => {
+    cartScroll();
+  }, 2000);
 });
