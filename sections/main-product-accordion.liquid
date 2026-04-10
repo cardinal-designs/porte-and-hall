@@ -969,47 +969,19 @@ endcapture
     speed: 400,
   });
 
-  const container = document.querySelector('.product__media-thumbnails');
+  document.querySelectorAll('.product__media-thumbnails .swiper-slide')
+  .forEach((slide, index) => {
+    slide.addEventListener('click', () => {
 
-  container.addEventListener('click', (e) => {
-    const slide = e.target.closest('.swiper-slide');
-    if (!slide) return;
+      // Always move clicked slide into view
+      thumbnailSlider.slideTo(index);
 
-    const slides = Array.from(container.querySelectorAll('.swiper-slide'));
-    const index = slides.indexOf(slide);
-
-    const swiper = thumbnailSlider;
-
-    // Current visible range
-    const firstVisible = swiper.activeIndex;
-    const lastVisible = firstVisible + swiper.params.slidesPerView;
-
-    // 👉 If clicking LEFT side (before visible area)
-    if (index < firstVisible) {
-      swiper.slideTo(index); // align to start
-    }
-
-    // 👉 If clicking RIGHT side (after visible area)
-    else if (index >= lastVisible - 1) {
-      swiper.slideTo(index - 1); // bring into view nicely
-    }
-
-    // 👉 If already visible → do nothing (prevents jumpiness)
+      // 👇 Optional: force scroll when beyond 4th item
+      if (index >= 4) {
+        thumbnailSlider.slideTo(index - 1); 
+      }
+    });
   });
-
-  // document.querySelectorAll('.product__media-thumbnails .swiper-slide')
-  // .forEach((slide, index) => {
-  //   slide.addEventListener('click', () => {
-
-  //     // Always move clicked slide into view
-  //     thumbnailSlider.slideTo(index);
-
-  //     // 👇 Optional: force scroll when beyond 4th item
-  //     if (index >= 4) {
-  //       thumbnailSlider.slideTo(index - 1); 
-  //     }
-  //   });
-  // });
 
   const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
     slidesPerView: 'auto',
