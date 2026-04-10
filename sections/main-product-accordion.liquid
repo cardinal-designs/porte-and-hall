@@ -984,7 +984,7 @@ endcapture
     if (clickedIndex >= TRIGGER_AT) {
       // Slide back enough so clicked thumb is 2nd from left, 
       // keeping context on both sides
-      const targetSlide = Math.max(0, clickedIndex - 1);
+      const targetSlide = Math.max(0, clickedIndex - 2);
       thumbnailSlider.slideTo(targetSlide, 350);
     } else {
       // Tapping early thumbs scrolls back to the start
