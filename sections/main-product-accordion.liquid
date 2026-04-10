@@ -990,6 +990,12 @@ endcapture
     });
   });
 
+  thumbnailSlider.on('click', function (swiper) {
+    if (swiper.clickedIndex !== undefined) {
+      swiper.slideTo(swiper.clickedIndex);
+    }
+  });
+
   const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
     slidesPerView: 'auto',
     loop: false,
