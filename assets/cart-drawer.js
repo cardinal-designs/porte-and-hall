@@ -231,7 +231,7 @@ class CartDrawer extends HTMLElement {
         this.drawer.focus();
         setTimeout(() => {
           cartScroll();
-        }, 1000);
+        }, 2000);
       }).catch(() => {
         this.disableLoading();
       });
