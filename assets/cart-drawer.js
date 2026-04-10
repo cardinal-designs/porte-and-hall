@@ -443,3 +443,22 @@ document.addEventListener('DOMContentLoaded', () => {
   if(drawer.getAttribute("aria-hidden") == "false") drawer.focus();
   trapFocusinCart(drawer);
 });
+
+function cartScroll() {
+  let cartFooter = document.querySelector('.cart-drawer__footer');
+  let footerHeight = 0;
+  if(cartFooter) {
+    footerHeight = cartFooter.clientHeight;
+  }
+  let cartHeader = document.querySelector('.cart-drawer__header');
+  let headerHeight = 0;
+  if(cartHeader) {
+    headerHeight = cartHeader.clientHeight;
+  }
+
+  let totalHeight = footerHeight + headerHeight;
+  let cartItemsEle = document.querySelector('.cart-drawer__items');
+  if(cartItemsEle) {
+    cartItemsEle.style.height = 'calc(100vh - '+totalHeight+'px)';
+  }
+}
