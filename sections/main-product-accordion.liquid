@@ -964,37 +964,8 @@ endcapture
     loop: false,
     spaceBetween: 10,
     direction: isMobile ? 'horizontal' : 'vertical',
-    watchSlidesProgress: true,
+    
   });
-
-  // const container = document.querySelector('.product__media-thumbnails');
-
-  // container.addEventListener('click', (e) => {
-  //   const slide = e.target.closest('.swiper-slide');
-  //   if (!slide) return;
-
-  //   const swiper = thumbnailSlider;
-  //   const slides = Array.from(swiper.slides);
-  //   const index = slides.indexOf(slide);
-
-  //   const slideRect = slide.getBoundingClientRect();
-  //   const containerRect = container.getBoundingClientRect();
-
-  //   const isHiddenLeft = slideRect.left < containerRect.left || slideRect.top < containerRect.top;
-
-  //   const isHiddenRight = slideRect.right > containerRect.right || slideRect.bottom > containerRect.bottom;
-
-  //   console.log("index",index);
-
-  //   if (isHiddenLeft) {
-  //     swiper.slideTo(index - 1, 400);
-  //   }
-
-  //   else if (isHiddenRight) {
-  //     swiper.slideTo(index, 400);
-  //   }
-
-  // });
 
   const container = document.querySelector('.product__media-thumbnails');
 
@@ -1006,23 +977,25 @@ endcapture
     const slides = Array.from(swiper.slides);
     const index = slides.indexOf(slide);
 
-    const visibleSlides = swiper.slidesPerViewDynamic(); // 👈 KEY
+    const slideRect = slide.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
 
-    const start = swiper.activeIndex;
-    const end = start + visibleSlides - 1;
+    const isHiddenLeft = slideRect.left < containerRect.left || slideRect.top < containerRect.top;
 
-    // 👉 LEFT SIDE (this is what was broken)
-    if (index < start) {
+    const isHiddenRight = slideRect.right > containerRect.right || slideRect.bottom > containerRect.bottom;
+
+    console.log("index",index);
+
+    if (isHiddenLeft) {
+      swiper.slideTo(index - 1, 400);
+    }
+
+    else if (isHiddenRight) {
       swiper.slideTo(index, 400);
     }
 
-    // 👉 RIGHT SIDE
-    else if (index > end) {
-      swiper.slideTo(index - visibleSlides + 1, 400);
-    }
-
-    // 👉 If already visible → do nothing
   });
+
 
   const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
     slidesPerView: 'auto',
