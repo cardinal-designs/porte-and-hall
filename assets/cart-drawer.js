@@ -448,23 +448,29 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function cartScroll() {
-  // Use requestAnimationFrame to ensure the DOM has been painted
-  requestAnimationFrame(() => {
-    const cartFooter = document.querySelector('.cart-drawer__footer');
-    const cartHeader = document.querySelector('.cart-drawer__header');
-    const cartItemsEle = document.querySelector('.cart-drawer__items');
+  const cartFooter = document.querySelector('.cart-drawer__footer');
+  const cartHeader = document.querySelector('.cart-drawer__header');
+  const cartItemsEle = document.querySelector('.cart-drawer__items');
 
-    if (!cartItemsEle) return;
+  if (!cartItemsEle) return;
 
-    const footerHeight = cartFooter?.offsetHeight || 0;
-    const headerHeight = cartHeader?.offsetHeight || 0;
-    const totalHeight = footerHeight + headerHeight;
+  const footerHeight = cartFooter?.offsetHeight || 0;
+  const headerHeight = cartHeader?.offsetHeight || 0;
 
-    cartItemsEle.style.height = `calc(100vh - ${totalHeight}px)`;
-  });
+  const totalHeight = footerHeight + headerHeight;
+
+  // Debug (optional)
+  // console.log({ footerHeight, headerHeight, totalHeight });
+
+  cartItemsEle.style.height = `calc(100vh - ${totalHeight}px)`;
 }
 
-// Remove the 2s timeout — fire cartScroll right after sections re-render
-document.addEventListener('cart:updated', function (e) {
-  cartScroll();
+document.addEventListener('cart:updated', function () {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      cartScroll();
+      // Run again after delay for safety
+      setTimeout(cartScroll, 300);
+    });
+  });
 });
