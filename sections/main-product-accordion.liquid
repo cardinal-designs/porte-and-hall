@@ -978,6 +978,8 @@ endcapture
       const activeIndex = swiper.activeIndex;
 
       // 👉 If clicking LEFT side (hidden before view)
+      console.log("index", index);
+      console.log("activeIndex", activeIndex);
       if (index < activeIndex) {
         swiper.slideTo(index);
       }
