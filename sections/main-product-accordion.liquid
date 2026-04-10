@@ -960,7 +960,7 @@ endcapture
 
   let isMobile = window.matchMedia('(max-width: 768px)').matches;
   let thumbnailSlider = new Swiper('.product__media-thumbnails', {
-    slidesPerView: isMobile ? 5 : 'auto',
+    slidesPerView: isMobile ? 'auto' : 'auto',
     loop: false,
     spaceBetween: 10,
     direction: isMobile ? 'horizontal' : 'vertical',
