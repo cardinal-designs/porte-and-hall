@@ -980,13 +980,19 @@ endcapture
   .forEach((slide, index) => {
     slide.addEventListener('click', () => {
 
-      // Always move clicked slide into view
-      thumbnailSlider.slideTo(index);
+      const activeIndex = thumbnailSlider.activeIndex;
 
-      // 👇 Optional: force scroll when beyond 4th item
-      if (index >= 4) {
-        thumbnailSlider.slideTo(index - 1); 
+      // 👉 LEFT scroll (when clicking previous thumbnails)
+      if (index < activeIndex) {
+        thumbnailSlider.slideTo(index);
       }
+
+      // 👉 RIGHT scroll (your existing logic improved)
+      else if (index >= activeIndex + 4) {
+        thumbnailSlider.slideTo(index - 3);
+      }
+
+      // 👉 If already in view → do nothing
     });
   });
 
