@@ -987,6 +987,8 @@ endcapture
       slideRect.right > containerRect.right ||
       slideRect.bottom > containerRect.bottom;
 
+    console.log("index",index);
+
     // 👉 LEFT side fix (your missing piece)
     if (isHiddenLeft) {
       swiper.slideTo(index - 1, 400);
