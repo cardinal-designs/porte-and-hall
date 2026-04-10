@@ -969,20 +969,11 @@ endcapture
     speed: 400,
   });
 
-  document.querySelector('.product__media-thumbnails')
-  .addEventListener('click', (e) => {
-    const slide = e.target.closest('.swiper-slide');
-    if (!slide) return;
+  const totalSlides = thumbnailSlider.slides.length;
 
-    const slides = [...document.querySelectorAll('.swiper-slide')];
-    const index = slides.indexOf(slide);
-
-    thumbnailSlider.slideTo(index);
-
-    if (index >= 4) {
-      thumbnailSlider.slideTo(index - 1);
-    }
-  });
+  if (index >= totalSlides - 1) {
+    thumbnailSlider.slideTo(totalSlides - 1);
+  }
 
   const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
     slidesPerView: 'auto',
