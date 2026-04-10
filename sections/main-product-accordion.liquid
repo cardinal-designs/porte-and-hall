@@ -982,9 +982,7 @@ endcapture
 
     const isHiddenLeft = slideRect.left < containerRect.left || slideRect.top < containerRect.top;
 
-    const isHiddenRight =
-      slideRect.right > containerRect.right ||
-      slideRect.bottom > containerRect.bottom;
+    const isHiddenRight = slideRect.right > containerRect.right || slideRect.bottom > containerRect.bottom;
 
     console.log("index",index);
 
