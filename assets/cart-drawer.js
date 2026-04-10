@@ -462,6 +462,8 @@ function cartScroll() {
   console.log("headerHeight",headerHeight);
   console.log("footerHeight",footerHeight);
   let cartItemsEle = document.querySelector('.cart-drawer__items');
+  console.log("cartItemsEle::",cartItemsEle)
+  console.log("totalHeight::",totalHeight)
   if(cartItemsEle) {
     cartItemsEle.style.height = 'calc(100vh - '+totalHeight+'px)';
   }
