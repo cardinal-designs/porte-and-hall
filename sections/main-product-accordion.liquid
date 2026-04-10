@@ -970,25 +970,25 @@ endcapture
     watchSlidesVisibility: true,
   });
 
-  thumbnailSlider.on('tap', function (swiper, event) {
-    if (swiper.clickedIndex !== undefined) {
-      swiper.slideTo(swiper.clickedIndex);
-    }
-  });
-
-  // document.querySelectorAll('.product__media-thumbnails .swiper-slide')
-  // .forEach((slide, index) => {
-  //   slide.addEventListener('click', () => {
-
-  //     // Always move clicked slide into view
-  //     thumbnailSlider.slideTo(index);
-
-  //     // 👇 Optional: force scroll when beyond 4th item
-  //     if (index >= 4) {
-  //       thumbnailSlider.slideTo(index - 1); 
-  //     }
-  //   });
+  // thumbnailSlider.on('tap', function (swiper, event) {
+  //   if (swiper.clickedIndex !== undefined) {
+  //     swiper.slideTo(swiper.clickedIndex);
+  //   }
   // });
+
+  document.querySelectorAll('.product__media-thumbnails .swiper-slide')
+  .forEach((slide, index) => {
+    slide.addEventListener('click', () => {
+
+      // Always move clicked slide into view
+      thumbnailSlider.slideTo(index);
+
+      // 👇 Optional: force scroll when beyond 4th item
+      if (index >= 4) {
+        thumbnailSlider.slideTo(index - 1); 
+      }
+    });
+  });
 
   const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
     slidesPerView: 'auto',
