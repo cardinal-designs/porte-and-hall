@@ -122,9 +122,32 @@
                   </div>
                 </div>
               </div>
-              <a href="/checkout" class="button button--full" name="checkout" form="cart" tabindex="0">
+
+              {% assign bundle_session_keys = '|' %}
+              {% assign bundle_session_count = 0 %}
+              {% for item in cart.items %}
+                {% assign rebuy_bundle_session = item.properties['_r_added_bundle_session_id'] | default: '' %}
+                {% if rebuy_bundle_session != blank %}
+                  {% assign bundle_session_token = '|' | append: rebuy_bundle_session | append: '|' %}
+                  {% unless bundle_session_keys contains bundle_session_token %}
+                    {% assign bundle_session_keys = bundle_session_keys | append: rebuy_bundle_session | append: '|' %}
+                    {% assign bundle_session_count = bundle_session_count | plus: 1 %}
+                  {% endunless %}
+                {% endif %}
+              {% endfor %}
+              {% assign disable_checkout_for_bundle = false %}
+              {% if bundle_session_count > 1 %}
+                {% assign disable_checkout_for_bundle = true %}
+              {% endif %}
+
+              <a href="{% if disable_checkout_for_bundle %}#{% else %}/checkout{% endif %}" class="button button--full{% if disable_checkout_for_bundle %} checkout-disabled is-disabled{% endif %}" name="checkout" form="cart" tabindex="0" {% if disable_checkout_for_bundle %}aria-disabled="true" style="pointer-events:none;opacity:0.5;"{% endif %}>
                 {{- 'sections.cart.checkout' | t -}}
               </a>
+              {% if disable_checkout_for_bundle %}
+                <p class="body-xs bundle-checkout-error" style="color:#b42318;margin-top:8px;">
+                  Only 1 swatch bundle is allowed per checkout. Please remove extra swatch bundle items.
+                </p>
+              {% endif %}
               <h6 class="cart-drawer__taxes body-xs">{{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}</h6>
 
               <div class="cart-text-with-icon">

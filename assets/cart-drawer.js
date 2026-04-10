@@ -203,10 +203,6 @@ class CartDrawer extends HTMLElement {
       .then((state) => {
         const parsedState = JSON.parse(state);
 
-        if (window.checkAndDisableBundle) {
-          window.checkAndDisableBundle(parsedState);
-        }
-        
         const quantityElement =
           document.getElementById(`Quantity-${line}`) || document.getElementById(`Drawer-quantity-${line}`);
 
@@ -303,8 +299,43 @@ class CartDrawer extends HTMLElement {
 customElements.define('cart-drawer', CartDrawer);
 
 
-function updateMainCart(Rebuy) {
-  fetch(`${window.origin}/?section_id=cart-drawer`)
+function updateCartIconBubble(cartData = null) {
+  console.log("updateCartIconBubble===");
+  fetch(`${window.origin}/?section_id=cart-icon-bubble`)
+    .then((response) => response.text())
+    .then((responseText) => {
+      const html = new DOMParser().parseFromString(responseText, 'text/html');
+      console.log("html===", html);
+      const target = document.getElementById('cart-icon-bubble');
+      const source = html.querySelector('#cart-icon-bubble .shopify-section') || html.querySelector('.shopify-section');
+      const targetInner = target?.querySelector('.shopify-section');
+      console.log("target===", target);
+      console.log("source===", source);
+      console.log("targetInner===", targetInner);
+      if (target && source) {
+        if(targetInner){
+          targetInner.replaceWith(source);
+        }else{
+          let cartIconBubble = `<div class="cart-count-bubble">
+                      
+                        <span aria-hidden="true">${cartData.item_count}</span>
+                      
+                      <span class="visually-hidden">${cartData.item_count} items</span>
+                    </div>
+          `;
+          target.insertAdjacentHTML('beforeend', cartIconBubble);
+        }
+      }
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+}
+
+function updateMainCart(Rebuy, cartData = null) {
+  console.log("cartData===", cartData);
+  console.log("window.getCart===", window.getCart());
+  return fetch(`${window.origin}/?section_id=cart-drawer`)
     .then((response) => response.text())
     .then((responseText) => {
       const html = new DOMParser().parseFromString(responseText, 'text/html');
@@ -316,6 +347,8 @@ function updateMainCart(Rebuy) {
           targetElement.replaceWith(sourceElement);
         }
       }
+
+      updateCartIconBubble(cartData || window.getCart() || null);
     })
     .catch((e) => {
       console.error(e);
@@ -325,10 +358,29 @@ function updateMainCart(Rebuy) {
         if (Rebuy) {
           Rebuy.init();
         }
-        if (window.checkAndDisableBundle) {
-          window.checkAndDisableBundle();
-        }
       }, 2000);
+    });
+}
+
+function syncCartDrawerAndValidation() {
+  let latestCartData = null;
+
+  fetch(`${window.Shopify.routes.root}cart.js`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })
+    .then((response) => response.json())
+    .then((cartData) => {
+      latestCartData = cartData;
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+    .finally(() => {
+      updateMainCart(Rebuy, latestCartData);
     });
 }
 
@@ -340,18 +392,33 @@ document.addEventListener('rebuy:cart.ready', (event) => {
   }, 250);
 });
 document.addEventListener('rebuy:cart.add', (event) => { 
-  updateMainCart(Rebuy)
+  console.log('rebuy:cart.add');
+  syncCartDrawerAndValidation();
   const drawer = document.getElementById("cart-drawer");
   setTimeout(() => {
     drawer.focus();
   }, 250);
 });
 document.addEventListener('rebuy:cart.change', (event) => { 
-  updateMainCart(Rebuy)
+  syncCartDrawerAndValidation();
   const drawer = document.getElementById("cart-drawer");
   setTimeout(() => {
     drawer.focus();
   }, 250);
+});
+
+let rebuyDrawerSyncTimers = [];
+
+document.addEventListener('click', (event) => {
+  const rebuyButton = event.target.closest('.rebuy-button');
+  if (!rebuyButton) return;
+
+  rebuyDrawerSyncTimers.forEach((timerId) => clearTimeout(timerId));
+  rebuyDrawerSyncTimers = [800, 1800, 3200].map((delay) => {
+    return setTimeout(() => {
+      syncCartDrawerAndValidation();
+    }, delay);
+  });
 });
 
 function trapFocusinCart(modal) {  
