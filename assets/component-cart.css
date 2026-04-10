@@ -201,6 +201,10 @@ cart-items {
   text-align: right;
 }
 
+.bundle-checkout-error {
+  text-align: center;
+}
+
 @media screen and (min-width: 769px) {
   .cart-note {
     max-width: 35rem;
