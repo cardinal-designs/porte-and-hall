@@ -967,32 +967,44 @@ endcapture
     watchSlidesProgress: true,
   });
 
-  const container = document.querySelector('.product__media-thumbnails');
+  thumbnailSlider.on('click', function (swiper, e) {
+    const clickedIndex = swiper.clickedIndex; // 0-based
 
-  container.addEventListener('click', (e) => {
-    const slide = e.target.closest('.swiper-slide');
-    if (!slide) return;
+    const TRIGGER_AT = 4; // 0-based index = 5th thumb
 
-    const swiper = thumbnailSlider;
-    const slides = Array.from(swiper.slides);
-    const index = slides.indexOf(slide);
-
-    const slideRect = slide.getBoundingClientRect();
-    const containerRect = container.getBoundingClientRect();
-
-    const isHiddenLeft = slideRect.left < containerRect.left || slideRect.top < containerRect.top;
-
-    const isHiddenRight = slideRect.right > containerRect.right || slideRect.bottom > containerRect.bottom;
-
-    if (isHiddenLeft) {
-      swiper.slideTo(index - 1, 400);
+    if (clickedIndex >= TRIGGER_AT) {
+      // Scroll so the clicked thumb lands 3rd or 4th from left
+      const targetSlide = Math.max(0, clickedIndex - 3);
+      thumbnailSlider.slideTo(targetSlide, 350); // 350ms ease
     }
-
-    else if (isHiddenRight) {
-      swiper.slideTo(index, 400);
-    }
-
   });
+
+  // const container = document.querySelector('.product__media-thumbnails');
+
+  // container.addEventListener('click', (e) => {
+  //   const slide = e.target.closest('.swiper-slide');
+  //   if (!slide) return;
+
+  //   const swiper = thumbnailSlider;
+  //   const slides = Array.from(swiper.slides);
+  //   const index = slides.indexOf(slide);
+
+  //   const slideRect = slide.getBoundingClientRect();
+  //   const containerRect = container.getBoundingClientRect();
+
+  //   const isHiddenLeft = slideRect.left < containerRect.left || slideRect.top < containerRect.top;
+
+  //   const isHiddenRight = slideRect.right > containerRect.right || slideRect.bottom > containerRect.bottom;
+
+  //   if (isHiddenLeft) {
+  //     swiper.slideTo(index - 1, 400);
+  //   }
+
+  //   else if (isHiddenRight) {
+  //     swiper.slideTo(index, 400);
+  //   }
+
+  // });
 
 
   const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
