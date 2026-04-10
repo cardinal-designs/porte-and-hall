@@ -377,7 +377,6 @@ function syncCartDrawerAndValidation() {
     })
     .finally(() => {
       updateMainCart(Rebuy, latestCartData);
-      cartScroll();
     });
 }
 
