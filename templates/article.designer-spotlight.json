@@ -36,6 +36,24 @@
         "block_FYJTfn": {
           "type": "block",
           "settings": {
+            "image": "shopify://shop_images/designerspotlight_gail_homepage_1.jpg",
+            "title": "Meet the Designer",
+            "designer_image": "shopify://shop_images/designerspotlight_gail.jpg",
+            "designer_name": "Gail Davis",
+            "designer_title": "Founder, <a href=\"https://www.gaildavisdesignsllc.com/\" target=\"_blank\">Gail Davis Designs\n</a>",
+            "text_header_1": "What’s the biggest design mistake you see in entryways?",
+            "text_1": "People tend to treat the entry as a pass-through instead of connecting it to the rest of their home. I treat every space as if a party could happen—so it feels as considered as everything else.",
+            "text_header_2": "How can someone make their entry feel more inviting?",
+            "text_2": "Design with intention: Add wallpaper that makes folks do a double take, or a mirror that has an unusual shape or color. And choose a mat that will make you smile. The Insider runner in <a style=\"text-decoration: underline;\" target=\"_blank\" href=\"https://www.porteandhall.com/products/the-insider-retro-orange-runner\">Retro Orange</a> makes my entry feel like it’s always sunny. It’s a joy to come down the steps and see the space bright and welcoming.",
+            "text_header_3": "What’s your most-used design phrase with clients?",
+            "text_3": "“You live in a home, not a museum.” It is not meant to remain pristine. It’s meant to hold your routines, your quiet moments, and the rhythm of your life. It will become messy at times. It will shift and change. And this is a beautiful thing. Because the purpose of your home is not perfection. It’s meant to be warm, inviting, and deeply livable.",
+            "button_label": "Shop the Look",
+            "button_link": "shopify://products/the-insider-retro-orange-runner"
+          }
+        },
+        "block_KrhCYk": {
+          "type": "block",
+          "settings": {
             "image": "shopify://shop_images/IMG_6710_copy_eb167a91-6d19-4660-ac1d-8aa8ed4fd0c3.jpg",
             "title": "Meet the Designer",
             "designer_image": "shopify://shop_images/Glenna_Headshot_web_2x_copy.jpg",
@@ -72,6 +90,7 @@
       },
       "block_order": [
         "block_FYJTfn",
+        "block_KrhCYk",
         "block_36qNrr"
       ],
       "custom_css": [],
