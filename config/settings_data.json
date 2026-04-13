@@ -33,8 +33,8 @@
         "type": "announcement-bar",
         "custom_css": [],
         "settings": {
-          "hide_bar": true,
-          "text": "<span style=\"text-decoration:underline;\">Sign up</span> for 15% off your first order",
+          "hide_bar": false,
+          "text": "Made to last, not to toss.<br>\n20% off The Outlier through 4/22<br>\nwith code MADETOLAST",
           "link": "#",
           "background_color": "#546b82",
           "text_color": "#ffffff",
@@ -177,14 +177,6 @@
         "type": "shopify://apps/intelligems-a-b-testing/blocks/intelligems-script/fa83b64c-0c77-4c0c-b4b2-b94b42f5ef19",
         "disabled": false,
         "settings": {}
-      },
-      "8912919057760678768": {
-        "type": "shopify://apps/easify-box-builder/blocks/app-embed-block/5e4620dd-6bb8-4776-ada5-5f18c69faedd",
-        "disabled": false,
-        "settings": {
-          "settings_js_develop_mode": false,
-          "settings_exclude_js_paths": ""
-        }
       }
     }
   },
