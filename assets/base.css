@@ -3500,7 +3500,7 @@ header.SectionHeader .Link {
 }
 
 .shopify-section .announcement-bar .cursor_pointer {
-  cursor: default;
+  cursor: pointer;
 }
 
 @media (max-width: 860px) {
