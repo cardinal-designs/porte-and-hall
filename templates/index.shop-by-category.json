@@ -218,11 +218,16 @@
       ],
       "name": "Shop By Category",
       "settings": {
+        "bg_color": "#eeefef",
         "sub_heading": "SHOP BY CATEGORY",
         "heading": "Welcome to a Better Mat",
         "text": "Beautiful performance for every space.",
         "btn_label": "SHOP ALL",
-        "btn_link": "shopify://collections/shop-all"
+        "btn_link": "shopify://collections/shop-all",
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "mobile_padding_top": 36,
+        "mobile_padding_bottom": 36
       }
     },
     "product_carousel_2_nFt3hG": {
