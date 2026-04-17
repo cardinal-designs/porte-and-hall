@@ -1,0 +1,38 @@
+.header__shop--by-category {
+    text-align: center;
+}
+
+.header__sub--heading {
+    font-family: 'brandon';
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 6%;
+    text-align: center;
+    vertical-align: middle;
+    color: #999999;
+    margin-bottom: 24px;
+}
+
+.header__heading {
+    font-family: louize;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 80%;
+    letter-spacing: 2%;
+    margin-bottom: 24px;
+}
+
+.header__text {
+    font-family: 'brandon';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: 1%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.category__carousel--container {
+    margin-top: 80px;
+}
