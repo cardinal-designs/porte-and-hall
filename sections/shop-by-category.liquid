@@ -15,9 +15,24 @@
         </div>
         <div class="category__carousel--container swiper">
             <div class="swiper-wrapper">
-                <div class="category__carousel--item swiper-slide">
-                    <a class="inset"></a>
-                </div>
+                {% for block in section.blocks %}
+                    <div class="category__carousel--item swiper-slide">
+                        <a href="{{ block.settings.url }}">
+                            <div class="image__block">
+                                {{
+                                block.settings.gallery_image
+                                | image_url: width: 1000
+                                | image_tag:
+                                    loading: 'lazy',
+                                    widths: '320, 480, 640, 800, 1000',
+                                    sizes: '(max-width: 768px) 50vw, 20vw',
+                                    class: 'testimonials-slider__gallery-image',
+                                    alt: block.settings.gallery_image.alt | default: block.settings.author_name
+                                }}
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
         {% if section.settings.btn_label != blank and section.settings.btn_link != blank %}
