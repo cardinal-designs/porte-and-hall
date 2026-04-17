@@ -47,6 +47,16 @@
     color: #CAD2D3;
 }
 
+.category-swiper-button-next {
+    right: 0;
+    left: auto;
+}
+
+.category-swiper-button-prev {
+    left: 0;
+    right: auto;
+}
+
 .category__carousel--item .image__block {
     padding-bottom: 400px;
     position: relative;
