@@ -33,10 +33,11 @@
 .category__carousel--container {
     margin-top: 80px;
     margin-bottom: 80px;
+    max-width: 1144px;
 }
 
 .category__carousel--container .swiper-wrapper {
-    padding: 0 48px;
+    /* padding: 0 48px; */
 }
 
 .category__carousel--item .image__block {
