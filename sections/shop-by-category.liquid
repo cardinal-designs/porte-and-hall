@@ -1,5 +1,28 @@
 {{ 'section-shop-by-category.css' | asset_url | stylesheet_tag }}
 
+<div class="section__shop--by-category">
+    <div class="page-width">
+        <div class="header__shop--by-category">
+            {% if section.settings.sub_heading != blank %}
+                <div class="header__sub--heading">{{ section.settings.sub_heading }}</div>
+            {% endif %}
+            {% if section.settings.heading != blank %}
+                <h2 class="blue header__heading">{{ section.settings.heading }}</h2>
+            {% endif %}
+            {% if section.settings.text != blank %}
+                <p class="header__text">{{ section.settings.text }}</p>
+            {% endif %}
+        </div>
+        <div class="category__carousel--container swiper">
+            <div class="swiper-wrapper">
+                <div class="category__carousel--item swiper-slide">
+                    <a class="inset"></a>
+                </div>
+            </div>
+        </div>
+        <a class="shop-all-btn" href="/collections/best-sellers">SHOP ALL BEST SELLERS</a>
+    </div>
+</div>
 
 
 
