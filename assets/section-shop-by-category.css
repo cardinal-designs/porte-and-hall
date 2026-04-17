@@ -8,8 +8,6 @@
     font-size: 18px;
     line-height: 100%;
     letter-spacing: 6%;
-    text-align: center;
-    vertical-align: middle;
     color: #999999;
     margin-bottom: 24px;
 }
@@ -29,7 +27,6 @@
     font-size: 20px;
     line-height: 120%;
     letter-spacing: 1%;
-    text-align: center;
     vertical-align: middle;
 }
 
@@ -52,7 +49,6 @@
     top: 0;
 }
 
-
 .section__shop--by-category .shop-all-btn {
     font-weight: 600;
     font-size: 18px;
@@ -69,5 +65,19 @@
     position: absolute;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.8) 100%);
     top: 0;
+    left: 0;
+}
+
+.categories__item--text {
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 120%;
+    letter-spacing: 1%;
+    font-family: 'brandon';
+    color: #fff;
+    padding: 24px;
+    position: absolute;
+    bottom: 0;
+    width: -webkit-fill-available;
     left: 0;
 }
