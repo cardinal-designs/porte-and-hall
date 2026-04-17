@@ -30,6 +30,9 @@
                                     alt: block.settings.image.alt | default: block.settings.author_name
                                 }}
                             </div>
+                            <div class="categories__item--text">
+                                {{ block.settings.text }}
+                            </div>
                         </a>
                     </div>
                 {% endfor %}
