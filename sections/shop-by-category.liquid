@@ -1,0 +1,40 @@
+{{ 'section-shop-by-category.css' | asset_url | stylesheet_tag }}
+
+
+
+
+{% schema %}
+{
+  "name": "Categories Grid",
+  "settings": [],
+  "blocks": [
+    {
+     "type": "block",
+     "name": "block",
+     "settings": [ 
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop By Category",
+      "settings": {}
+    }
+  ]
+}
+{% endschema %}
