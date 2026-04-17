@@ -14,7 +14,7 @@
   }
 {%- endstyle -%}
 
-<div class="section__shop--by-category section-{{ section.id }}-padding">
+<div class="section__shop--by-category section-{{ section.id }}-padding" style="background-color: {{ section.settings.bg_color }}">
     <div class="page-width">
         <div class="header__shop--by-category">
             {% if section.settings.sub_heading != blank %}
@@ -64,6 +64,11 @@
 {
   "name": "Categories Grid",
   "settings": [
+    {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background"
+    },
     {
         "type": "text",
         "id": "sub_heading",
