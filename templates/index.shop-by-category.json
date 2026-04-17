@@ -158,6 +158,77 @@
     },
     "shop_by_category_XrEGz9": {
       "type": "shop-by-category",
+      "blocks": {
+        "block_6DKJqK": {
+          "type": "block",
+          "settings": {
+            "text": "Indoor",
+            "image": "shopify://shop_images/2c02500d49d571d5ba294162f82231da610d1aee.jpg",
+            "url": "shopify://collections/indoor-doormats"
+          }
+        },
+        "block_NmMhQw": {
+          "type": "block",
+          "settings": {
+            "text": "Outdoor",
+            "image": "shopify://shop_images/9bbd6eb8493c783fe9bdd4078ab2a28d73cf8ece.jpg",
+            "url": "shopify://collections/outside-doormats"
+          }
+        },
+        "block_Jq6chP": {
+          "type": "block",
+          "settings": {
+            "text": "Runners",
+            "image": "shopify://shop_images/46086de1575e6967c6f55fcf7657fe8371088e09.jpg",
+            "url": "shopify://collections/runners"
+          }
+        },
+        "block_nTMRkQ": {
+          "type": "block",
+          "settings": {
+            "text": "",
+            "url": ""
+          }
+        },
+        "block_JfwaPe": {
+          "type": "block",
+          "settings": {
+            "text": "",
+            "url": ""
+          }
+        },
+        "block_7U6Kmx": {
+          "type": "block",
+          "settings": {
+            "text": "",
+            "url": ""
+          }
+        },
+        "block_JQnJHC": {
+          "type": "block",
+          "settings": {
+            "text": "",
+            "url": ""
+          }
+        },
+        "block_Vzif6B": {
+          "type": "block",
+          "settings": {
+            "text": "",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_6DKJqK",
+        "block_NmMhQw",
+        "block_Jq6chP",
+        "block_nTMRkQ",
+        "block_JfwaPe",
+        "block_7U6Kmx",
+        "block_JQnJHC",
+        "block_Vzif6B"
+      ],
       "name": "Shop By Category",
       "settings": {
         "sub_heading": "SHOP BY CATEGORY",
