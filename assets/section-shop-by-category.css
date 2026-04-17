@@ -131,7 +131,8 @@
     background: #546B82;
 }
 
-.category-swiper-pagination .swiper-pagination-bullet-active:after {
+.category-swiper-pagination .swiper-pagination-bullet-active:after,
+.header__shop--by-category .shop-all-btn {
     display: none;
 } 
 
@@ -148,6 +149,10 @@
     .header__heading {
         font-size: 40px;
         max-width: 200px;
+    }
+
+    .header__shop--by-category .shop-all-btn {
+        display: block;
     }
 
 }
