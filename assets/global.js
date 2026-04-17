@@ -1696,3 +1696,49 @@ setTimeout(function() {
     });
   });
 }); */
+
+
+// var ProductCarouselNew2 = class extends HTMLElement {
+//   connectedCallback(){
+//     if (this._io) return;
+//     this._io = true;
+
+//     window.initOnVisible(this, () => {
+//       this.section_id = this.querySelector(`.swiper`).id
+//       this.pagination = this.querySelector(`.swiper-pagination`)
+//       const swiper_options = {  
+//         spaceBetween: 10,
+//         slidesPerView: 2.2,
+//         loop: false,
+//         draggable: true,
+//         centeredSlides: false,
+//         pagination: {
+//           el: this.pagination,
+//           clickable: true,
+//         },
+//         navigation: {
+//           nextEl: '.swiper-button-next',
+//           prevEl: '.swiper-button-prev',
+//         },
+//         breakpoints: {
+//           768: {
+//             spaceBetween: 20,
+//             loop: false,
+//             centeredSlides: false,
+//             slidesPerView: 4,
+//           },
+//         },
+//       }
+
+//       if (!this.classList.contains("swiper-initialized")){
+//         this.initializeCarousel(this.querySelector(`.swiper`), swiper_options);
+//       }
+//     });
+//   }
+
+//   initializeCarousel(swipe, options) {
+//     const productSwiper = new Swiper(swipe, options);
+//   }
+// }
+
+// customElements.define('product-carousel-new-two', ProductCarouselNew2)

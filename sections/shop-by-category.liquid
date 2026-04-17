@@ -70,27 +70,29 @@
 </div>
 
 <script>
-var swiper = new Swiper(".category__carousel--{{ section.id }}", {
-    slidesPerView: 3.2,
-    spaceBetween: 8,
-    navigation: {
-        nextEl: ".category-swiper-button-next",
-        prevEl: ".category-swiper-button-prev",
-    },
-    pagination: {
-        el: ".category-swiper-pagination",
-    },
-    breakpoints: {
-        768: {
-            slidesPerView: 3.5,
+    document.addEventListener("DOMContentLoaded", (event) => {
+        var swiper = new Swiper(".category__carousel--{{ section.id }}", {
+            slidesPerView: 3.2,
             spaceBetween: 8,
-        },
-        1024: {
-            slidesPerView: 4,
-            spaceBetween: 12,
-        },
-    },
-});
+            navigation: {
+                nextEl: ".category-swiper-button-next",
+                prevEl: ".category-swiper-button-prev",
+            },
+            pagination: {
+                el: ".category-swiper-pagination",
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 3.5,
+                    spaceBetween: 8,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 12,
+                },
+            },
+        });
+    });
 </script>
 
 {% schema %}
