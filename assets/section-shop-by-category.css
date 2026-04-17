@@ -36,13 +36,14 @@
     max-width: 1144px;
 }
 
-.category-swiper-button-next,
-.category-swiper-button-prev {
+.category-swiper-button {
     color: #546B82;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.category-swiper-button-next.swiper-button-disabled,
-.category-swiper-button-prev.swiper-button-disabled {
+.category-swiper-button.swiper-button-disabled {
     color: #CAD2D3;
 }
 
