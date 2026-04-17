@@ -27,7 +27,7 @@
                 <p class="header__text">{{ section.settings.text }}</p>
             {% endif %}
         </div>
-        <div class="category__carousel--container swiper" id="category__carousel">
+        <div class="category__carousel--container category__carousel--{{ section.id }} swiper">
             <div class="swiper-wrapper">
                 {% for block in section.blocks %}
                     <div class="category__carousel--item swiper-slide">
@@ -61,7 +61,7 @@
                     <path d="M15 6L9 12L15 18" stroke="#546B82" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
-            <div class="swiper-pagination"></div>
+            <div class="category-swiper-pagination"></div>
         </div>
         {% if section.settings.btn_label != blank and section.settings.btn_link != blank %}
             <a class="shop-all-btn" href="{{ section.settings.btn_link }}">{{ section.settings.btn_label }}</a>
@@ -69,7 +69,17 @@
     </div>
 </div>
 
-
+<script>
+var swiper = new Swiper(".category__carousel--{{ section.id }}", {
+    navigation: {
+    nextEl: ".category-swiper-button-next",
+    prevEl: ".category-swiper-button-prev",
+    },
+    pagination: {
+        el: ".category-swiper-pagination",
+    },
+});
+</script>
 
 {% schema %}
 {
