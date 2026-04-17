@@ -162,4 +162,10 @@
         max-width: 100%;
     }
 
+    .category__carousel--container {
+        padding: 0;
+        margin-top: 32px;
+        margin-bottom: 0;
+    }
+
 }
