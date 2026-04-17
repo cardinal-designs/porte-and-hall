@@ -33,6 +33,9 @@
 .category__carousel--container {
     margin-top: 80px;
     margin-bottom: 80px;
+}
+
+.category__carousel--container .swiper-wrapper {
     padding: 0 48px;
 }
 
