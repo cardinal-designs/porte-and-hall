@@ -16,7 +16,7 @@
     font-family: louize;
     font-weight: 500;
     font-size: 64px;
-    line-height: 80%;
+    line-height: 120%;
     letter-spacing: 2%;
     margin-bottom: 24px;
 }
@@ -143,6 +143,10 @@
 
     .section__shop--by-category .page-width {
         padding: 0 24px;
+    }
+
+    .header__heading {
+        font-size: 40px;
     }
 
 }
