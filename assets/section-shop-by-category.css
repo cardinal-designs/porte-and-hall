@@ -109,3 +109,13 @@
     width: -webkit-fill-available;
     left: 0;
 }
+
+.category-swiper-pagination .swiper-pagination-bullet {
+    width: 24px;
+    height: 4px;
+    background: rgb(84 107 130 / 16%);
+    border: none;
+    max-width: unset;
+    max-height: unset;
+    transform: none;
+}
