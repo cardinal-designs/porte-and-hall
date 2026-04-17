@@ -119,3 +119,11 @@
     max-height: unset;
     transform: none;
 }
+
+.category-swiper-pagination .swiper-pagination-bullet-active {
+    background: #546B82;
+}
+
+.category-swiper-pagination .swiper-pagination-bullet-active:after {
+    display: none;
+} 
