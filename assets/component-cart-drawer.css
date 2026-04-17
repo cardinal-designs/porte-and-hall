@@ -1024,3 +1024,8 @@ square-placement {
     border-width: 0 1px 1px 0;
     transform: rotate(45deg);
 }
+.no-work__quantity .quantity__input,
+.no-work__quantity .quantity__input + .quantity__button {
+  pointer-events: none;
+  opacity: 0.5;
+}

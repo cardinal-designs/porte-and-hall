@@ -123,20 +123,14 @@
                 </div>
               </div>
 
-              {% assign bundle_session_keys = '|' %}
-              {% assign bundle_session_count = 0 %}
+              {% assign restricted_product_quantity = 0 %}
               {% for item in cart.items %}
-                {% assign rebuy_bundle_session = item.properties['_r_added_bundle_session_id'] | default: '' %}
-                {% if rebuy_bundle_session != blank %}
-                  {% assign bundle_session_token = '|' | append: rebuy_bundle_session | append: '|' %}
-                  {% unless bundle_session_keys contains bundle_session_token %}
-                    {% assign bundle_session_keys = bundle_session_keys | append: rebuy_bundle_session | append: '|' %}
-                    {% assign bundle_session_count = bundle_session_count | plus: 1 %}
-                  {% endunless %}
+                {% if item.product_id == 8127852937279 %}
+                  {% assign restricted_product_quantity = restricted_product_quantity | plus: item.quantity %}
                 {% endif %}
               {% endfor %}
               {% assign disable_checkout_for_bundle = false %}
-              {% if bundle_session_count > 1 %}
+              {% if restricted_product_quantity > 1 %}
                 {% assign disable_checkout_for_bundle = true %}
               {% endif %}
 
