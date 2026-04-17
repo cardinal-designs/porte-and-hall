@@ -36,3 +36,18 @@
 .category__carousel--container {
     margin-top: 80px;
 }
+
+.category__carousel--item .image__block {
+    padding-bottom: 400px;
+    position: relative;
+}
+
+.category__carousel--item .image__block img {
+    height: 100%;
+    width: 100%;
+    object-position: top;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
