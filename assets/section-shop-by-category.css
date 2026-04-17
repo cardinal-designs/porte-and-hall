@@ -151,6 +151,10 @@
         max-width: 200px;
     }
 
+    .section__shop--by-category .shop-all-btn {
+        display: none;
+    }
+
     .header__shop--by-category .shop-all-btn {
         display: block;
     }
