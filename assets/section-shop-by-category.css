@@ -110,6 +110,12 @@
     left: 0;
 }
 
+.category-swiper-pagination {
+    line-height: 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
 .category-swiper-pagination .swiper-pagination-bullet {
     width: 24px;
     height: 4px;
