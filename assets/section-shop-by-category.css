@@ -36,8 +36,14 @@
     max-width: 1144px;
 }
 
-.category__carousel--container .swiper-wrapper {
-    /* padding: 0 48px; */
+.category-swiper-button-next,
+.category-swiper-button-prev {
+    color: #546B82;
+}
+
+.category-swiper-button-next.swiper-button-disabled,
+.category-swiper-button-prev.swiper-button-disabled {
+    color: #CAD2D3;
 }
 
 .category__carousel--item .image__block {
