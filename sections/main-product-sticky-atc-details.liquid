@@ -878,26 +878,22 @@ endcapture
                     {% assign swatch_link = matched_variant[0].url %}
                 {% endif %}
 
+                {% assign swatch_file_name = value | handle | append: '.png' %}
+                {% assign swatch_image = images[swatch_file_name] %}
+
                 {% assign element_classes = 'product__swatch' %}
 
                 {% if swatch == product and option.selected_value == value %}
                     {% assign element_classes = element_classes | append: ' product__active-swatch' %}
+                    <a href="{{ swatch_link | default: swatch.variants[0].url }}"
+                        class="{{ element_classes }}"
+                        aria-label="{{ value | escape }}{% unless swatch.available %} is Unavailable{% endunless %}"
+                        data-tooltip="{{ value | escape }}">
+                        
+                        <span style="background-image: url({{ swatch_file_name | file_url }})"></span>
+                    </a>
                 {% endif %}
-
-                {% if swatch.available == false %}
-                    {% assign element_classes = element_classes | append: ' product__oos-swatch' %}
-                {% endif %}
-
-                {% assign swatch_file_name = value | handle | append: '.png' %}
-                {% assign swatch_image = images[swatch_file_name] %}
-
-                <a href="{{ swatch_link | default: swatch.variants[0].url }}"
-                    class="{{ element_classes }}"
-                    aria-label="{{ value | escape }}{% unless swatch.available %} is Unavailable{% endunless %}"
-                    data-tooltip="{{ value | escape }}">
-                    
-                    <span style="background-image: url({{ swatch_file_name | file_url }})"></span>
-                </a>
+                
                 {% endfor %}
             {% endif %}
             {% endfor %}
