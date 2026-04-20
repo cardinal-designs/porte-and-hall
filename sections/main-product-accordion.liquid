@@ -108,7 +108,7 @@ endcapture
     </a>
 
     <div class="wef product__media-wrapper">
-      <div class="hide-mobile product__media-thumbnails list-unstyled swiper">
+      <div class="product__media-thumbnails list-unstyled default-product-section swiper">
         <div class="swiper-wrapper">
           {% for media in product.media %}
             {% unless media.alt == 'hide-outlier' %}
@@ -136,7 +136,7 @@ endcapture
             {% endunless %}
           {% endfor %}
         </div>
-        <div class="product__media-pagination swiper-pagination hide-desktop"></div>
+        <div class="product__media-pagination swiper-pagination hide-desktop hide-mobile"></div>
         <div class="product__media-button swiper-button-prev hide-desktop"></div>
         <div class="product__media-button swiper-button-next hide-desktop"></div>
       </div>
@@ -963,11 +963,38 @@ endcapture
     allowTouchMove: false,
   });
 
-  const thumbnailSlider = new Swiper('.product__media-thumbnails', {
+  let isMobile = window.matchMedia('(max-width: 768px)').matches;
+  let thumbnailSlider = new Swiper('.product__media-thumbnails', {
     slidesPerView: 'auto',
     loop: false,
     spaceBetween: 10,
-    direction: 'vertical',
+    direction: isMobile ? 'horizontal' : 'vertical',
+    watchSlidesProgress: true,
+  });
+
+  thumbnailSlider.on('click', function (swiper) {
+    const clickedIndex = swiper.clickedIndex;
+    if (clickedIndex === undefined || clickedIndex < 0) return;
+
+    const slide = swiper.slides[clickedIndex];
+    if (!slide) return;
+
+    // Check if the clicked slide is fully visible
+    const isFullyVisible = slide.progress === 0 || 
+      (slide.progress > -1 && slide.progress < 0);
+
+    // Only scroll if the clicked slide is at or beyond the peek zone
+    const TRIGGER_AT = 4; // 5th thumb (0-based)
+
+    if (clickedIndex >= TRIGGER_AT) {
+      // Slide back enough so clicked thumb is 2nd from left, 
+      // keeping context on both sides
+      const targetSlide = Math.max(0, clickedIndex - 2);
+      thumbnailSlider.slideTo(targetSlide, 350);
+    } else {
+      // Tapping early thumbs scrolls back to the start
+      thumbnailSlider.slideTo(0, 350);
+    }
   });
 
   const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
@@ -997,7 +1024,7 @@ endcapture
   });
 
   // Main product slider
-  const productSlider = new Swiper('.product__media-list', {
+  let productSlider = new Swiper('.product__media-list', {
     slidesPerView: 1,
     loop: false,
     spaceBetween: 20,
@@ -1015,6 +1042,58 @@ endcapture
     controller: {
       control: productZoomSlider,
     },
+  });
+
+  window.addEventListener('resize', function() {
+    const mobileView = window.matchMedia('(max-width: 768px)').matches;
+    if (mobileView !== isMobile) {
+      isMobile = mobileView;
+      thumbnailSlider.destroy(true, true);
+      productSlider.destroy(true, true);
+      
+      const slides = document.querySelectorAll('.product__media-thumbnails .swiper-slide');
+      slides.forEach(function(slide) {
+         slide.style.width = '';
+         slide.style.height = '';
+         slide.style.marginTop = '';
+         slide.style.marginBottom = '';
+         slide.style.marginRight = '';
+         slide.style.marginLeft = '';
+      });
+      const wrapper = document.querySelector('.product__media-thumbnails .swiper-wrapper');
+      if (wrapper) {
+         wrapper.style.transform = '';
+         wrapper.style.height = '';
+         wrapper.style.width = '';
+      }
+
+      thumbnailSlider = new Swiper('.product__media-thumbnails', {
+        slidesPerView: isMobile ? 5 : 'auto',
+        loop: false,
+        spaceBetween: 10,
+        direction: isMobile ? 'horizontal' : 'vertical',
+      });
+      
+      productSlider = new Swiper('.product__media-list', {
+        slidesPerView: 1,
+        loop: false,
+        spaceBetween: 20,
+        pagination: {
+          el: '.product__media-pagination',
+          clickable: true,
+        },
+        thumbs: {
+          swiper: thumbnailSlider,
+        },
+        navigation: {
+          prevEl: '.product__media-button.swiper-button-prev',
+          nextEl: '.product__media-button.swiper-button-next',
+        },
+        controller: {
+          control: productZoomSlider,
+        },
+      });
+    }
   });
   }); // end initOnVisible
   } // end if productSection

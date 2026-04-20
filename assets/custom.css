@@ -78,3 +78,7 @@ span.jdgm-prev-badge__stars {
   height: auto;
   transform: translateX(-50%);
 }
+
+#ot-sdk-btn-floating.ot-floating-button {
+  display: none;
+}
