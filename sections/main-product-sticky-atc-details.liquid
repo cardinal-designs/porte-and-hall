@@ -868,34 +868,34 @@ endcapture
             {% for option in swatch.options_with_values %}
             {% assign option_name = option.name | downcase %}
 
-            {% if color_label contains option_name or option_name == 'style' %}
-                {% assign option_index = 'option' | append: forloop.index %}
+                {% if color_label contains option_name or option_name == 'style' %}
+                    {% assign option_index = 'option' | append: forloop.index %}
 
-                {% for value in option.values %}
-                {% assign matched_variant = swatch.variants | where: 'title', value %}
+                    {% for value in option.values %}
+                    {% assign matched_variant = swatch.variants | where: 'title', value %}
 
-                {% if matched_variant != blank %}
-                    {% assign swatch_link = matched_variant[0].url %}
+                    {% if matched_variant != blank %}
+                        {% assign swatch_link = matched_variant[0].url %}
+                    {% endif %}
+
+                    {% assign swatch_file_name = value | handle | append: '.png' %}
+                    {% assign swatch_image = images[swatch_file_name] %}
+
+                    {% assign element_classes = 'product__swatch' %}
+
+                    {% if swatch == product and option.selected_value == value %}
+                        {% assign element_classes = element_classes | append: ' product__active-swatch' %}
+                        <a href="{{ swatch_link | default: swatch.variants[0].url }}"
+                            class="{{ element_classes }}"
+                            aria-label="{{ value | escape }}{% unless swatch.available %} is Unavailable{% endunless %}"
+                            data-tooltip="{{ value | escape }}">
+                            
+                            <span style="background-image: url({{ swatch_file_name | file_url }})"></span>
+                        </a>
+                    {% endif %}
+                    
+                    {% endfor %}
                 {% endif %}
-
-                {% assign swatch_file_name = value | handle | append: '.png' %}
-                {% assign swatch_image = images[swatch_file_name] %}
-
-                {% assign element_classes = 'product__swatch' %}
-
-                {% if swatch == product and option.selected_value == value %}
-                    {% assign element_classes = element_classes | append: ' product__active-swatch' %}
-                    <a href="{{ swatch_link | default: swatch.variants[0].url }}"
-                        class="{{ element_classes }}"
-                        aria-label="{{ value | escape }}{% unless swatch.available %} is Unavailable{% endunless %}"
-                        data-tooltip="{{ value | escape }}">
-                        
-                        <span style="background-image: url({{ swatch_file_name | file_url }})"></span>
-                    </a>
-                {% endif %}
-                
-                {% endfor %}
-            {% endif %}
             {% endfor %}
         {% endfor %}
     </div>
