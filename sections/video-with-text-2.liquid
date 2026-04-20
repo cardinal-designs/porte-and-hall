@@ -1,38 +1,40 @@
 {{ 'section-hero.css' | asset_url | stylesheet_tag }}
 
 <div class="hero video-with-text">
-  <div class="hero__content">
-    <div class="hero__container">
-      {% if product.handle contains 'outlier' %}
-        <h4 class="hero__title">{{ section.settings.outlier_title }}</h4>
-        <p>{{ section.settings.outlier_sub-text }}</p>
-        <div class="content-section">
-          {{ section.settings.outlier_content }}
-        </div>
-      {% else %}
-        <h4 class="hero__title">{{ section.settings.title }}</h4>
-        <p>{{ section.settings.sub-text }}</p>
-        <div class="content-section">
-          {{ section.settings.content }}
-        </div>
-      {% endif %}
-    </div>
-  </div>
 
-  <div class="hero__media">
-    {% if product.handle contains 'outlier' %}
-      {{ section.settings.outlier_video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
-    {% elsif product.handle contains 'innerweave' %}
-      {{ section.settings.innerweave_video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
-    {% elsif product.handle contains 'insider' %}
-      {{ section.settings.insider_video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
-    {% endif %}
-    <div id="circle-play" class="hero__element">
-      <svg xmlns="http://www.w3.org/2000/svg" width="45" height="50" viewBox="0 0 45 50" fill="none">
-      <path d="M42.9214 21.5359C45.5881 23.0755 45.5881 26.9245 42.9214 28.4641L6.92138 49.2487C4.25472 50.7883 0.921387 48.8638 0.921387 45.7846L0.921387 4.21539C0.921387 1.13619 4.25472 -0.788311 6.92139 0.751289L42.9214 21.5359Z" fill="white"/>
-      </svg>
+    <div class="hero__content">
+      <div class="hero__container">
+        {% if product.handle contains 'outlier' %}
+          <h4 class="hero__title">{{ section.settings.outlier_title }}</h4>
+          <p>{{ section.settings.outlier_sub-text }}</p>
+          <div class="content-section">
+            {{ section.settings.outlier_content }}
+          </div>
+        {% else %}
+          <h4 class="hero__title">{{ section.settings.title }}</h4>
+          <p>{{ section.settings.sub-text }}</p>
+          <div class="content-section">
+            {{ section.settings.content }}
+          </div>
+        {% endif %}
+      </div>
     </div>
-  </div>
+
+    <div class="hero__media">
+      {% if product.handle contains 'outlier' %}
+        {{ section.settings.outlier_video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
+      {% elsif product.handle contains 'innerweave' %}
+        {{ section.settings.innerweave_video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
+      {% elsif product.handle contains 'insider' %}
+        {{ section.settings.insider_video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos', id: 'video', image_size: '1000x' }}
+      {% endif %}
+      <div id="circle-play" class="hero__element">
+        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="50" viewBox="0 0 45 50" fill="none">
+        <path d="M42.9214 21.5359C45.5881 23.0755 45.5881 26.9245 42.9214 28.4641L6.92138 49.2487C4.25472 50.7883 0.921387 48.8638 0.921387 45.7846L0.921387 4.21539C0.921387 1.13619 4.25472 -0.788311 6.92139 0.751289L42.9214 21.5359Z" fill="white"/>
+        </svg>
+      </div>
+    </div>
+
 </div>
 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->

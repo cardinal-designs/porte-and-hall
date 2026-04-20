@@ -804,8 +804,12 @@ endcapture
                     {{ grouped_collection.metafields.custom.additional_dimensions | newline_to_br }}
                   {% endif %}
                   {% if grouped_collection.metafields.custom.weight != blank %}
-                  <br>
-                  Weight: {{ grouped_collection.metafields.custom.weight }}
+                    <br>
+                    Weight: {{ grouped_collection.metafields.custom.weight }}
+                  {% endif %}
+                  {% if grouped_collection.metafields.custom.thickness != blank %}
+                    <br>
+                    Thickness: {{ grouped_collection.metafields.custom.thickness | metafield_tag }}
                   {% endif %}
                 </p>
               </div>
@@ -813,6 +817,7 @@ endcapture
            </div>
          </div>
         {% endif %}
+
         {% if section.settings.care != blank %}
          <div class="accordion">
            <div data-id="4" class="accordion-title">

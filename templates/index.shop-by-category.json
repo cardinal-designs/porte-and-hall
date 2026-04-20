@@ -156,6 +156,80 @@
         "btn_link": "shopify://collections/best-sellers"
       }
     },
+    "shop_by_category_XrEGz9": {
+      "type": "shop-by-category",
+      "blocks": {
+        "block_6DKJqK": {
+          "type": "block",
+          "settings": {
+            "text": "Indoor",
+            "image": "shopify://shop_images/2c02500d49d571d5ba294162f82231da610d1aee.jpg",
+            "url": "shopify://collections/indoor-doormats"
+          }
+        },
+        "block_NmMhQw": {
+          "type": "block",
+          "settings": {
+            "text": "Outdoor",
+            "image": "shopify://shop_images/9bbd6eb8493c783fe9bdd4078ab2a28d73cf8ece.jpg",
+            "url": "shopify://collections/outside-doormats"
+          }
+        },
+        "block_Jq6chP": {
+          "type": "block",
+          "settings": {
+            "text": "Runners",
+            "image": "shopify://shop_images/46086de1575e6967c6f55fcf7657fe8371088e09.jpg",
+            "url": "shopify://collections/runners"
+          }
+        },
+        "block_nTMRkQ": {
+          "type": "block",
+          "settings": {
+            "text": "Area Mats",
+            "image": "shopify://shop_images/165d45a5d2faf224987c0c5e56b178647de04f6c.jpg",
+            "url": "shopify://collections/area-mats"
+          }
+        },
+        "block_JfwaPe": {
+          "type": "block",
+          "settings": {
+            "text": "Ultra-thin",
+            "image": "shopify://shop_images/c8b6dea987b5efd5cc0463263111072b4bb539e4.jpg",
+            "url": "/collections/indoor-doormats?filter.v.m.custom.filters=The+Insider"
+          }
+        },
+        "block_7U6Kmx": {
+          "type": "block",
+          "settings": {
+            "text": "Woven",
+            "image": "shopify://shop_images/0bfc12b88c282fdfd6e183f1c0e705b252041fa1.jpg",
+            "url": "/collections/indoor-doormats?filter.v.m.custom.filters=The+Innerweave"
+          }
+        }
+      },
+      "block_order": [
+        "block_6DKJqK",
+        "block_NmMhQw",
+        "block_Jq6chP",
+        "block_nTMRkQ",
+        "block_JfwaPe",
+        "block_7U6Kmx"
+      ],
+      "name": "Shop By Category",
+      "settings": {
+        "bg_color": "#eeefef",
+        "sub_heading": "SHOP BY CATEGORY",
+        "heading": "Welcome to a Better Mat",
+        "text": "Beautiful performance for every space.",
+        "btn_label": "SHOP ALL",
+        "btn_link": "shopify://collections/shop-all",
+        "padding_top": 120,
+        "padding_bottom": 120,
+        "mobile_padding_top": 80,
+        "mobile_padding_bottom": 80
+      }
+    },
     "product_carousel_2_nFt3hG": {
       "type": "product-carousel-2",
       "blocks": {
@@ -803,6 +877,7 @@
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",
     "product_carousel_new_aKw9LG",
     "product_carousel_new_2_JLEKyQ",
+    "shop_by_category_XrEGz9",
     "product_carousel_2_nFt3hG",
     "40919de2-f3c2-45da-99ff-c69ad3e95306",
     "fd8fd5d7-6d77-45a1-8718-85dc6bc781d2",

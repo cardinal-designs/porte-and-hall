@@ -3121,7 +3121,7 @@ body {
   position: fixed;
 }
 main#MainContent {
-  padding-top: 147px;
+  padding-top: 176px;
 }
 
 .outdoor main#MainContent {
@@ -3138,7 +3138,7 @@ main#MainContent {
 
 @media screen and (max-width: 989px) and (min-width: 769px) {
   main#MainContent {
-    padding-top: 89px;
+    padding-top: 119px;
   }
 
   .outdoor main#MainContent {
@@ -3147,7 +3147,7 @@ main#MainContent {
 }
 @media screen and (max-width: 768px) {
   main#MainContent {
-    padding-top: 61px;
+    padding-top: 91px;
   }
 
   .outdoor main#MainContent {
@@ -3500,7 +3500,7 @@ header.SectionHeader .Link {
 }
 
 .shopify-section .announcement-bar .cursor_pointer {
-  cursor: default;
+  cursor: pointer;
 }
 
 @media (max-width: 860px) {
