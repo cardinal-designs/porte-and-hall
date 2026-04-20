@@ -10,10 +10,10 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
     const header = document.querySelector(".outer-header-wrapper")
 
     if(this.connectedForm){
-          this.connectedForm.style.top = `${header.clientHeight}px`
+          // this.connectedForm.style.top = `${header.clientHeight}px`
 
           window.addEventListener("resize", function(){
-            this.connectedForm.style.top = `${header.clientHeight}px`
+            // this.connectedForm.style.top = `${header.clientHeight}px`
           }.bind(this))
     }
 
