@@ -866,7 +866,6 @@ endcapture
     <div class="sticky__product--details">
         {% liquid
             capture sticky_color_swatch_list
-            assign swatch_count = 1
             for swatch in grouped_collection.products
                 for option in swatch.options_with_values
                 assign option_name = option.name | downcase
@@ -878,38 +877,32 @@ endcapture
                         assign swatch_link = matched_variant[0].url
                     endif
 
-                    assign element_classes = 'product__swatch'
-                    if swatch == product and option.selected_value == value
-                        assign element_classes = element_classes | append: ' product__active-swatch'
-                    endif
-                    if swatch.available == false
-                        assign element_classes = element_classes | append: ' product__oos-swatch'
-                    endif
-
                     assign swatch_file_name = value | handle | append: '.png'
                     assign swatch_image = images[swatch_file_name]
 
-                    echo "<a href='"
-                    echo swatch_link | default: swatch.variants[0].url
-                    echo "' class='"
-                    echo element_classes
-                    echo "'"
-                    echo " aria-label='"
-                    echo value | escape
-                    unless swatch.available
-                        echo " is Unavailable"
-                    endunless
-                    echo "'"
-                    echo " data-tooltip='"
-                    echo value | escape
-                    echo "'>"
-                    echo "<span style='background-image: url("
-                    echo swatch_file_name | file_url
-                    echo ")'></span>"
+                    assign element_classes = 'product__swatch'
+                    if swatch == product and option.selected_value == value
+                        assign element_classes = element_classes | append: ' product__active-swatch'
+                        echo "<a href='"
+                        echo swatch_link | default: swatch.variants[0].url
+                        echo "' class='"
+                        echo element_classes
+                        echo "'"
+                        echo " aria-label='"
+                        echo value | escape
+                        unless swatch.available
+                            echo " is Unavailable"
+                        endunless
+                        echo "'"
+                        echo " data-tooltip='"
+                        echo value | escape
+                        echo "'>"
+                        echo "<span style='background-image: url("
+                        echo swatch_file_name | file_url
+                        echo ")'></span>"
+                        echo '</a>'
+                    endif
 
-                    echo '</a>'
-
-                    assign swatch_count = swatch_count | plus: 1
                     endfor
                 endif
                 endfor
