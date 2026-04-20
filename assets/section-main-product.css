@@ -786,6 +786,12 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   font-family: brandon, sans-serif;
 }
 
+.sticky__product--details .price .h3 {
+  font-size: 16px;
+  color: #fff;
+  font-family: brandon, sans-serif;
+}
+
 @media screen and (max-width: 900px) {
 
   sticky-atc.show {
