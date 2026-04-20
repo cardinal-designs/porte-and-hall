@@ -1346,6 +1346,12 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
           .forEach((el) => {
             el.classList.remove("loading");
           });
+
+          this.connectedForm
+          .querySelectorAll(".product-form__submit")
+          .forEach((btn) => {
+            btn.classList.remove("loading");
+          });
         }
         this.cartDrawer.open();
       });
