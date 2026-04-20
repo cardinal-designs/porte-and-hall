@@ -768,6 +768,9 @@ sticky-atc .product-form__buttons {
   width: auto;
 }
 
+sticky-atc.sticky__details .product__quantity-atc-wrapper {
+  justify-content: space-between;
+}
 
 @media screen and (max-width: 900px) {
 
