@@ -772,6 +772,14 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   justify-content: space-between;
 }
 
+.sticky__product--details .product__title {
+  font-size: 16px;
+  color: #fff;
+  text-transform: capitalize;
+  font-weight: bold;
+  font-family: brandon, sans-serif;
+}
+
 @media screen and (max-width: 900px) {
 
   sticky-atc.show {
