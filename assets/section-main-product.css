@@ -794,6 +794,12 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   font-family: brandon, sans-serif;
 }
 
+.sticky__details .product-form__submit.button {
+  color: var(--gold);
+  background: #fff;
+  padding: 15px 20px;
+}
+
 @media screen and (max-width: 900px) {
 
   sticky-atc.show {
