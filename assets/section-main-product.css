@@ -769,7 +769,7 @@ sticky-atc .product-form__buttons {
 
 sticky-atc.show {
   position: fixed;
-  top: 0;
+  bottom: 0;
   width: 100%;
   opacity: 1;
 }
