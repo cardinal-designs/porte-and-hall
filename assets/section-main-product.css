@@ -767,11 +767,16 @@ sticky-atc .product-form__buttons {
   width: auto;
 }
 
-sticky-atc.show {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  opacity: 1;
+
+@media screen and (max-width: 900px) {
+
+  sticky-atc.show {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    opacity: 1;
+  }
+  
 }
 
 sticky-atc .product-form__submit.button {
