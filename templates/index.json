@@ -271,6 +271,10 @@
     },
     "fd8fd5d7-6d77-45a1-8718-85dc6bc781d2": {
       "type": "video-with-text",
+      "custom_css": [
+        ".video-text {background: #546B82;}",
+        ".hero {max-width: 1440px; margin: 0 auto;}"
+      ],
       "settings": {
         "video": "shopify://files/videos/-ac6f-42e5-bcfd-ed1480562d97_1f6bdcd7-c609-47fe-acf8-e0c27945452e.mp4",
         "title": "So Easy To Clean",
