@@ -901,15 +901,20 @@ endcapture
             {% endfor %}
         {% endcapture %}
         {{ sticky_color_swatch_list }}
-        <h2 class="product__title blue">
-            {% if product.title contains 'Porter' %}
-                The Porter Mat
-            {% elsif grouped_collection.title contains '5 x 7 Area Mat' %}
-                The Innerweave Area Mat
-            {% else %}
-            {{ grouped_collection.title | remove: ' |' | default: product.title }}
-            {% endif %}
-        </h2>
+        <div>
+            <h2 class="product__title blue">
+                {% if product.title contains 'Porter' %}
+                    The Porter Mat
+                {% elsif grouped_collection.title contains '5 x 7 Area Mat' %}
+                    The Innerweave Area Mat
+                {% else %}
+                {{ grouped_collection.title | remove: ' |' | default: product.title }}
+                {% endif %}
+            </h2>
+            <span>
+            {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '' %}
+            </span>
+        </div>
     </div>
 
     <div class="product-form__buttons">
@@ -930,10 +935,6 @@ endcapture
                 {{ 'products.product.sold_out' | t }}
               {% endif %}
             {% endif %}
-        </span>
-        <span> | </span>
-        <span>
-          {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '' %}
         </span>
         <div class="loading-overlay__spinner">
           <svg
