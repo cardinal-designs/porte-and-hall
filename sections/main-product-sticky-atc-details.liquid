@@ -882,12 +882,9 @@ endcapture
                         {% assign swatch_file_name = value | handle | append: '.png' %}
                         {% assign swatch_image = images[swatch_file_name] %}
 
-                        {% assign element_classes = 'product__swatch' %}
-
                         {% if swatch == product and option.selected_value == value %}
-                            {% assign element_classes = element_classes | append: ' product__active-swatch' %}
                             <div
-                                class="{{ element_classes }}"
+                                class="product__swatch"
                                 aria-label="{{ value | escape }}{% unless swatch.available %} is Unavailable{% endunless %}"
                                 data-tooltip="{{ value | escape }}">
                                 
