@@ -886,13 +886,13 @@ endcapture
 
                         {% if swatch == product and option.selected_value == value %}
                             {% assign element_classes = element_classes | append: ' product__active-swatch' %}
-                            <a href="{{ swatch_link | default: swatch.variants[0].url }}"
+                            <div
                                 class="{{ element_classes }}"
                                 aria-label="{{ value | escape }}{% unless swatch.available %} is Unavailable{% endunless %}"
                                 data-tooltip="{{ value | escape }}">
                                 
                                 <span style="background-image: url({{ swatch_file_name | file_url }})"></span>
-                            </a>
+                            </div>
                         {% endif %}
                         
                         {% endfor %}
