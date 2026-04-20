@@ -800,17 +800,6 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   padding: 15px 20px;
 }
 
-@media screen and (max-width: 900px) {
-
-  sticky-atc.show {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    opacity: 1;
-  }
-
-}
-
 sticky-atc .product-form__submit.button {
   font-size: 16px;
 }
@@ -861,6 +850,14 @@ variant-selects {
   .product__media-list {
     padding-bottom: 50px;
   }
+
+  sticky-atc.show {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    opacity: 1;
+  }
+
 }
 
 @media screen and (max-width: 768px) {
