@@ -45,7 +45,12 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
     submitButton.setAttribute('disabled', true);
     submitButton.closest(".product__quantity-atc-wrapper").classList.add('loading');
     if(this.connectedForm){
-          this.connectedForm.querySelector(".product__quantity-atc-wrapper").classList.add('loading');
+          // this.connectedForm.querySelector(".product__quantity-atc-wrapper").classList.add('loading');
+          this.connectedForm
+          .querySelectorAll(".product__quantity-atc-wrapper")
+          .forEach((el) => {
+            el.classList.add("loading");
+          });
     }
 
 
