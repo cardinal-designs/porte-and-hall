@@ -229,6 +229,11 @@ ul.js-error-messages {
   display: none !important;
 }
 
+
+ [data-element-id="consent-1"] label {
+  display: block !important;
+}
+
 .Designer_Program_Form .globo-form-control {
   margin-bottom: 50px !important;
   padding: 0 !important;
