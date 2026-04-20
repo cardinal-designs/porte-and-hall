@@ -761,6 +761,7 @@ sticky-atc .product__quantity-atc-wrapper {
   justify-content: center;
   column-gap: 20px;
   width: 100%;
+  padding: 5px 35px;
 }
 
 sticky-atc .product-form__buttons {
@@ -776,7 +777,7 @@ sticky-atc .product-form__buttons {
     width: 100%;
     opacity: 1;
   }
-  
+
 }
 
 sticky-atc .product-form__submit.button {
