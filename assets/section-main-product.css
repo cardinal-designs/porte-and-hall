@@ -800,6 +800,10 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   padding: 12px;
 }
 
+.sticky__details .product-form__submit.button .spinner .path {
+  stroke: currentColor;
+}
+
 sticky-atc .product-form__submit.button {
   font-size: 16px;
 }
