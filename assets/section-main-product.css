@@ -779,7 +779,7 @@ sticky-atc .product-form__buttons {
 }
 
 sticky-atc.sticky__details .product__quantity-atc-wrapper {
-  justify-content: space-between;
+  justify-content: space-between !important;
   padding-top: 15px;
   padding-bottom: 15px;
 }
