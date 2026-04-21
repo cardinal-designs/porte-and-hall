@@ -30,7 +30,7 @@
   color: var(--blue);
   font-family: louize;
   display:block;
-  margin-bottom: 95px;
+  /* margin-bottom: 95px; */
 }
 
 .stamped-questions-filter-label, .stamped-reviews-filter-label {
@@ -330,7 +330,7 @@ div[data-widget-style*=standard] .stamped-summary {
   }
 
   .rave-reviews-main h2 {
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
   }
 
   div[data-widget-style*=standard] .stamped-summary {
