@@ -175,11 +175,19 @@
             "url": "shopify://collections/outside-doormats"
           }
         },
+        "block_MQQTtd": {
+          "type": "block",
+          "settings": {
+            "text": "Doormats",
+            "image": "shopify://shop_images/46086de1575e6967c6f55fcf7657fe8371088e09.jpg",
+            "url": "/collections/shop-all?filter.v.m.custom.size=Doormats"
+          }
+        },
         "block_Jq6chP": {
           "type": "block",
           "settings": {
             "text": "Runners",
-            "image": "shopify://shop_images/46086de1575e6967c6f55fcf7657fe8371088e09.jpg",
+            "image": "shopify://shop_images/f5192e35d1b0260b6780cdbd4d0723c15a8dc9b3.jpg",
             "url": "shopify://collections/runners"
           }
         },
@@ -211,6 +219,7 @@
       "block_order": [
         "block_6DKJqK",
         "block_NmMhQw",
+        "block_MQQTtd",
         "block_Jq6chP",
         "block_nTMRkQ",
         "block_JfwaPe",
@@ -219,9 +228,9 @@
       "name": "Shop By Category",
       "settings": {
         "bg_color": "#eeefef",
-        "sub_heading": "SHOP BY CATEGORY",
-        "heading": "Welcome to a Better Mat",
-        "text": "Beautiful performance for every space.",
+        "sub_heading": "",
+        "heading": "Shop by category",
+        "text": "",
         "btn_label": "SHOP ALL",
         "btn_link": "shopify://collections/shop-all",
         "padding_top": 120,

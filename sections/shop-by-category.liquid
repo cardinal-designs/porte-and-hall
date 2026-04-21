@@ -26,9 +26,6 @@
             {% if section.settings.text != blank %}
                 <p class="header__text">{{ section.settings.text }}</p>
             {% endif %}
-            {% if section.settings.btn_label != blank and section.settings.btn_link != blank %}
-                <a class="shop-all-btn" href="{{ section.settings.btn_link }}">{{ section.settings.btn_label }}</a>
-            {% endif %}
         </div>
         <div class="category__carousel--container">
             <div class="category__carousel--wrapper category__carousel--{{ section.id }} swiper">
