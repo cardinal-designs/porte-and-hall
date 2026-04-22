@@ -1,50 +1,50 @@
 {% style %}
 
+  {% if section.settings.hide_desktop == true %}
+    #shopify-section-{{ section.id }} {
+      display: none !important
+    } 
+  {% endif %}
+
+  .shop__collection--mobile {
+    background: #eeefef;
+  }
+
+  .shop__collection--mobile .collection-row .collection-col::before {
+    background: #eeefef;
+  }
+
+  .shop__collection--mobile .badge {
+    top: 18px !important;
+  }
+
+  .shop__collection--mobile .text-link.product-card__link {
+    margin-top: 0 !important;
+    padding: 8px !important;
+  }
+
+  .shop__collection--mobile .product-card {
+    height: calc(100% - 25px) !important;
+    justify-content: space-between !important;
+  }
+
+  .shop__collection--mobile .product-card__title.blue {
+    padding-top: 0 !important;
+  }
+
+  .shop__collection--mobile .product-card__swatches {
+    margin-bottom: 0 !important;
+  }
+
+  @media (max-width:989px) {
+
     {% if section.settings.hide_desktop == true %}
-        #shopify-section-{{ section.id }} {
-            display: none !important
-        } 
+      #shopify-section-{{ section.id }} {
+        display: block !important
+      } 
     {% endif %}
 
-    .shop__collection--mobile {
-        background: #eeefef;
-    }
-
-    .shop__collection--mobile .collection-row .collection-col::before {
-        background: #eeefef;
-    }
-
-    .shop__collection--mobile .badge {
-        top: 18px !important;
-    }
-
-    .shop__collection--mobile .text-link.product-card__link {
-        margin-top: 0 !important;
-        padding: 8px !important;
-    }
-
-    .shop__collection--mobile .product-card {
-        height: calc(100% - 25px) !important;
-        justify-content: space-between !important;
-    }
-
-    .shop__collection--mobile .product-card__title.blue {
-        padding-top: 0 !important;
-    }
-
-    .shop__collection--mobile .product-card__swatches {
-        margin-bottom: 0 !important;
-    }
-
-    @media (max-width:989px) {
-
-        {% if section.settings.hide_desktop == true %}
-            #shopify-section-{{ section.id }} {
-                display: block !important
-            } 
-        {% endif %}
-
-    }
+  }
 
 {% endstyle %}
 
