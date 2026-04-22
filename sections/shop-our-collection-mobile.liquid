@@ -1,18 +1,10 @@
 {% style %}
-@media (max-width:989px){
-  {% if section.settings.hide_mobile == true %}
-    #shopify-section-{{ section.id }} {
-      display: none !important;
-    }
-  {% endif %}
-  /* #shopify-section-template--16866356691007__40919de2-f3c2-45da-99ff-c69ad3e95306,
-  #shopify-section-template--16866356691007__40919de2-f3c2-45da-99ff-c69ad3e95306,
-  #shopify-section-template--16866358034495__40919de2-f3c2-45da-99ff-c69ad3e95306,
-  #shopify-section-template--16905855270975__40919de2-f3c2-45da-99ff-c69ad3e95306, 
-  #shopify-section-template--16905854976063__40919de2-f3c2-45da-99ff-c69ad3e95306 {
-    display: none !important;
-  } */
-}
+
+    {% if section.settings.hide_desktop == true %}
+        #shopify-section-{{ section.id }} {
+            display: none !important
+        } 
+    {% endif %}
 
   .custom-coll-home {
     background: white;
@@ -43,7 +35,17 @@
   .custom-coll-home .product-card__swatches {
     margin-bottom: 0 !important;
   }
-}
+
+  @media (max-width:989px) {
+
+        {% if section.settings.hide_desktop == true %}
+            #shopify-section-{{ section.id }} {
+                display: block !important
+            } 
+        {% endif %}
+
+    }
+
 {% endstyle %}
 
 <div class="custom-collection custom-coll-home">
@@ -125,6 +127,12 @@
       "type": "checkbox",
       "id": "hide_mobile",
       "label": "Hide Mobile?",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_desktop",
+      "label": "Hide Desktop?",
       "default": true
     }
   ],
