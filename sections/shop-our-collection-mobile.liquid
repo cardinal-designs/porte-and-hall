@@ -48,7 +48,7 @@
 
 {% endstyle %}
 
-<div class="custom-collection shop__collection--mobile">
+<div class="shop__collection--mobile">
   <div class="page-width">
     {%- if section.settings.title != blank -%}
       <header class="SectionHeader">
@@ -115,7 +115,7 @@
 {% schema %}
 {
   "name": "Shop Collection Mobile",
-  "class": "custom-collection-section",
+  "class": "shop-collection-mobile",
   "settings": [
     {
       "type": "text",
@@ -216,17 +216,17 @@
   header.SectionHeader .SectionHeader__Heading{
      font-size:48px;
   }
-  .custom-collection{
+  .shop__collection--mobile{
     padding:56px 0;
   }
-  .custom-collection .page-width{
+  .shop__collection--mobile .page-width{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 40px;
   }
-  .custom-collection header.SectionHeader .SectionHeader__Heading {
+  .shop__collection--mobile header.SectionHeader .SectionHeader__Heading {
     line-height: 62px;
     letter-spacing: 0.96px;
   }
@@ -297,7 +297,7 @@
     position: relative;
   }
 
-  .custom-collection .product-card{
+  .shop__collection--mobile .product-card{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -310,15 +310,15 @@
     background: #FFF;
     padding-bottom:8px;
   }
-  .custom-collection .product-card .product-card__image{
+  .shop__collection--mobile .product-card .product-card__image{
     aspect-ratio: 1/1;
     width: 100%;
     position: relative;
   }
-  .custom-collection .product-card .aspect-ratio{
+  .shop__collection--mobile .product-card .aspect-ratio{
     transition: opacity .4s ease-in-out;
   }
-  .custom-collection .product-card .product-card__swatches{
+  .shop__collection--mobile .product-card .product-card__swatches{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -330,10 +330,10 @@
     margin-bottom: 16px;
     padding:0 6px;
   }
-  .custom-collection .product-card *{
+  .shop__collection--mobile .product-card *{
     width:100%;
   }
-  .custom-collection .product-card .product-card__swatches button{
+  .shop__collection--mobile .product-card .product-card__swatches button{
     width:auto;
     color: #546B82;
     font-size: 14px;
@@ -342,7 +342,7 @@
     letter-spacing: 0.28px;
      font-family: brandon;
   }
-  .custom-collection .product-card .product-card__swatches .product-card__swatch{
+  .shop__collection--mobile .product-card .product-card__swatches .product-card__swatch{
     width: 24px;
     height: 24px;
     aspect-ratio: 1/1;
@@ -357,7 +357,7 @@
     position: relative;
   }
 
-  .custom-collection .product-card .product-card__title{
+  .shop__collection--mobile .product-card .product-card__title{
     color: #30383D;
     font-size: 24px;
     font-weight: 500;
@@ -367,16 +367,16 @@
     text-transform: unset;
     padding-top: 8px;
   }
-  .custom-collection .product-card .product-card__title span{
+  .shop__collection--mobile .product-card .product-card__title span{
     display:none;
   }
-  .custom-collection .product-card .product-content{
+  .shop__collection--mobile .product-card .product-content{
     border: 1px solid #CAD2D3;
     border-top:0px;
     background:#FFF;
     padding: 4px 10px 14px;
   }
-  .custom-collection .product-card .text-link{
+  .shop__collection--mobile .product-card .text-link{
     color: #A19377;
     font-size: 16px;
     font-weight: 500;
@@ -390,46 +390,46 @@
     max-width: 180px;
     margin: 0 auto;
   }
-  .custom-collection .product-card .text-link *{
+  .shop__collection--mobile .product-card .text-link *{
     width:auto;
   }
-  .custom-collection .product-card .text-link span{
+  .shop__collection--mobile .product-card .text-link span{
     position: relative;
     top: 2px;
     margin-left: 6px;
   }
 
   @media (max-width:1200px){
-    .custom-collection .page-width{
+    .shop__collection--mobile .page-width{
       padding: 0 40px;
     }
     .collection-row{
       gap: 20px;
     }
-    .custom-collection .product-card .product-content{
+    .shop__collection--mobile .product-card .product-content{
       padding:6px 8px 12px;
     }
 
-    .custom-collection .product-card .text-link{
+    .shop__collection--mobile .product-card .text-link{
       padding: 6px 12px 5px;
       font-size: 12px;
     line-height: 20px;
 
     }
-    .custom-collection .product-card .text-link svg{
+    .shop__collection--mobile .product-card .text-link svg{
       width: 20px;
     }
   }
 
   @media (max-width:989px){
-    .custom-collection{
+    .shop__collection--mobile{
       padding:32px 0 40px;
     }
-    .custom-collection .page-width{
+    .shop__collection--mobile .page-width{
       padding:0 20px;
       gap: 20px;
     }
-    .custom-collection header.SectionHeader .SectionHeader__Heading{
+    .shop__collection--mobile header.SectionHeader .SectionHeader__Heading{
       font-size: 24px;
       line-height: 32px;
       letter-spacing: 0.48px;
@@ -451,29 +451,29 @@
       line-height: 20px;
       padding:3px 12px 1px;
     }
-   .custom-collection .product-card .product-card__title{
+   .shop__collection--mobile .product-card .product-card__title{
       font-size: 16px;
       font-weight: 500;
       line-height: 24px;
       letter-spacing: 0.32px;
     }
-    .custom-collection .product-card .product-card__swatches{
+    .shop__collection--mobile .product-card .product-card__swatches{
       column-gap: 4px;
       row-gap: 4px;
     }
-    .custom-collection .product-card .product-card__swatches button{
+    .shop__collection--mobile .product-card .product-card__swatches button{
       font-size: 10px;
       line-height: 12px;
       color: #A19377;
     }
-    .custom-collection .product-card .product-card__swatches .product-card__swatch{
+    .shop__collection--mobile .product-card .product-card__swatches .product-card__swatch{
       width: 14px;
       height: 14px;
     }
-    .custom-collection .product-card .text-link span{
+    .shop__collection--mobile .product-card .text-link span{
       top:3px;
     }
-    .custom-collection .product-card .product-card__swatches{
+    .shop__collection--mobile .product-card .product-card__swatches{
       margin-top: 6px;
       margin-bottom: 16px;
     }
@@ -487,7 +487,7 @@
   }
 
    @media (max-width:480px){
-     .custom-collection .product-card .text-link{
+     .shop__collection--mobile .product-card .text-link{
        max-width: calc(100% - 8px);
     margin: 0 4px;
        text-align:center;
@@ -507,7 +507,7 @@
 
   }
 
-  .custom-collection .product-card__image-label, .custom-collection .product-card__price{
+  .shop__collection--mobile .product-card__image-label, .shop__collection--mobile .product-card__price{
     display:none;
   }
 </style>
