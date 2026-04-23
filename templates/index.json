@@ -24,6 +24,7 @@
     },
     "video_text_hTPBAL": {
       "type": "video-text",
+      "disabled": true,
       "name": "Video with text",
       "settings": {
         "video": "shopify://files/videos/Outlier Made to Last _1200x1200_7c022148-d5cf-44af-a35c-bb48245453c7.mp4",
@@ -37,6 +38,27 @@
         "content_font_size_mb": 14,
         "link_text": "SHOP THE OUTLIER",
         "link_url": "shopify://products/the-outlier-charcoal-doormat",
+        "button_style": "small",
+        "custom-class": "home-banner",
+        "media_first": false,
+        "content_full_width": false
+      }
+    },
+    "video_text_yYPefV": {
+      "type": "video-text",
+      "name": "Video with text",
+      "settings": {
+        "video": "shopify://files/videos/cro_compress.mp4",
+        "mobile_video": "shopify://files/videos/cro_compress.mp4",
+        "video_poster": "shopify://shop_images/white-img.png",
+        "subheading": "",
+        "title": "<h1>Worthy of Your Welcome</h1>",
+        "title_font_size": 72,
+        "content": "<p>Premium indoor and outdoor mats to elevate your entry and your everyday.</p>",
+        "content_font_size": 30,
+        "content_font_size_mb": 14,
+        "link_text": "explore more",
+        "link_url": "shopify://collections/shop-all",
         "button_style": "small",
         "custom-class": "home-banner",
         "media_first": false,
@@ -803,6 +825,7 @@
   "order": [
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62",
     "video_text_hTPBAL",
+    "video_text_yYPefV",
     "3726ddfa-f49e-4e18-a5f2-430400876ccd",
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",
     "product_carousel_new_aKw9LG",
