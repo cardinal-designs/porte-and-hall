@@ -1,227 +1,93 @@
-// customElements.define('product-form', class ProductForm extends HTMLElement {
-//   constructor() {
-//     super();   
-
-//     this.form = this.querySelector('form');
-//     this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
-//     this.connectedForm = document.querySelector(`sticky-atc[data-main-form="${this.form.getAttribute("id")}"]`) || ""
-//     this.cartDrawer = document.querySelector('cart-drawer');
-
-//     const header = document.querySelector(".outer-header-wrapper")
-
-//     if(this.connectedForm){
-//           // this.connectedForm.style.top = `${header.clientHeight}px`
-
-//           window.addEventListener("resize", function(){
-//             // this.connectedForm.style.top = `${header.clientHeight}px`
-//           }.bind(this))
-//     }
-
-
-//     const observer = new IntersectionObserver(
-//       entries => {
-//         entries.forEach( entry => {
-//           console.log(entries)
-//           entry.target.classList.toggle("show", entry.isIntersecting)
-//           if(this.connectedForm){
-//             this.connectedForm.classList.toggle("show", !entry.isIntersecting)
-//           }
-//         })
-//       },
-//       {
-//         rootMargin: `-${Math.max(0, header.clientHeight)}px 0px 0px 0px`,
-//         threshold: 0
-//       }
-//     )
-  
-//     // observer.observe(document.querySelector(".product-section"))
-//     observer.observe(document.querySelector(".product-form") || document.querySelector("product-form"))
-//   }
-
-//   onSubmitHandler(evt) {
-//     evt.preventDefault();
-    
-//     const submitButton = this.querySelector('[type="submit"]');
-
-//     submitButton.setAttribute('disabled', true);
-//     submitButton.closest(".product__quantity-atc-wrapper").classList.add('loading');
-//     if(this.connectedForm){
-//           // this.connectedForm.querySelector(".product__quantity-atc-wrapper").classList.add('loading');
-//           this.connectedForm
-//           .querySelectorAll(".product__quantity-atc-wrapper")
-//           .forEach((el) => {
-//             el.classList.add("loading");
-//           });
-//     }
-
-
-//     const formData = new FormData(this.form);
-//     formData.append('properties[FINAL SALE]', 'NO RETURNS, EXCHANGES OR ADDITIONAL DISCOUNTS APPLIED.');
-//     formData.append('sections', this.getSectionsToRender().map((section) => section.section).join(','));
-//     formData.append('sections_url', window.location.pathname);
-
-//     const config = fetchConfig('javascript');
-//     config.headers['X-Requested-With'] = 'XMLHttpRequest';
-//     delete config.headers['Content-Type'];
-
-//     fetch(`${routes.cart_add_url}`, { ...config, body: formData })
-//       .then((response) => response.json())
-//       .then((parsedState) => {
-
-//         this.getSectionsToRender().forEach((section => {
-//           const elementToReplace =
-//             document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-
-//           elementToReplace.innerHTML =
-//             this.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
-
-//         }));
-//       })
-//       .catch((e) => {
-//         console.error(e);
-//       })
-//       .finally(() => {
-//         submitButton.closest(".product__quantity-atc-wrapper").classList.remove('loading');
-//         submitButton.removeAttribute('disabled');
-//         if(this.connectedForm){
-//           // this.connectedForm.querySelector(".product__quantity-atc-wrapper").classList.remove('loading');
-//           this.connectedForm
-//           .querySelectorAll(".product__quantity-atc-wrapper")
-//           .forEach((el) => {
-//             el.classList.remove("loading");
-//           });
-
-//           this.connectedForm
-//           .querySelectorAll(".product-form__submit")
-//           .forEach((btn) => {
-//             btn.classList.remove("loading");
-//           });
-//         }
-//         this.cartDrawer.open();
-//         setTimeout(function(){
-//           if(Rebuy){
-//             Rebuy.init();
-//           }
-//         }, 1000)
-//         const drawer = document.getElementById("cart-drawer");
-//         setTimeout(() => {
-//           drawer.focus();
-//         }, 250);
-//       });
-//   }
-
-//   getSectionsToRender() {
-//     return [
-//       {
-//         id: 'cart-drawer__content',
-//         section: document.getElementById('cart-drawer__content').dataset.id,
-//         selector: '.cart-drawer__content',
-//       },
-//       {
-//         id: 'cart-icon-bubble',
-//         section: 'cart-icon-bubble',
-//         selector: '.shopify-section'
-//       }
-//     ];
-//   }
-
-//   getSectionInnerHTML(html, selector) {
-//     return new DOMParser()
-//       .parseFromString(html, 'text/html')
-//       .querySelector(selector).innerHTML;
-//   }
-
-//   handleErrorMessage(errorMessage = false) {
-//     this.errorMessageWrapper = this.errorMessageWrapper || this.querySelector('.product-form__error-message-wrapper');
-//     this.errorMessage = this.errorMessage || this.errorMessageWrapper.querySelector('.product-form__error-message');
-
-//     this.errorMessageWrapper.toggleAttribute('hidden', !errorMessage);
-
-//     if (errorMessage) {
-//       this.errorMessage.textContent = errorMessage;
-//     }
-//   }
-// });
-
-// customElements.define('sticky-atc', class StickyATC extends HTMLElement {
-//   constructor(){
-//     super();
-
-//     this.input = this.querySelector("input[name='quantity']")
-//     this.submit = this.querySelector("button[name='add']")
-//     this.mainForm = document.querySelector(`form#${this.dataset.mainForm}`)
-
-//     this.submit.addEventListener('click', function(e){
-//       e.preventDefault()
-//       e.target.classList.add('loading')
-//       this.mainForm.querySelector('button[type="submit"]').click()
-//     }.bind(this))
-//   }
-// })
-
-
 customElements.define('product-form', class ProductForm extends HTMLElement {
   constructor() {
-    super();
+    super();   
 
     this.form = this.querySelector('form');
     this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
-    this.connectedForm = document.querySelector(`sticky-atc[data-main-form="${this.form.getAttribute("id")}"]`) || "";
+    this.connectedForm = document.querySelector(`sticky-atc[data-main-form="${this.form.getAttribute("id")}"]`) || ""
     this.cartDrawer = document.querySelector('cart-drawer');
 
-    if (this.connectedForm) {
-      window.addEventListener("resize", function() {}.bind(this));
+    const header = document.querySelector(".outer-header-wrapper")
+
+    if(this.connectedForm){
+          // this.connectedForm.style.top = `${header.clientHeight}px`
+
+          window.addEventListener("resize", function(){
+            // this.connectedForm.style.top = `${header.clientHeight}px`
+          }.bind(this))
     }
-  }
 
-  connectedCallback() {
-    requestAnimationFrame(() => {
-      const header = document.querySelector(".outer-header-wrapper");
+    connectedCallback() {
+      requestAnimationFrame(() => {
+        // const header = document.querySelector(".outer-header-wrapper");
 
-      const observer = new IntersectionObserver(
-        entries => {
-          entries.forEach(entry => {
-            if (this.connectedForm) {
-              this.connectedForm.classList.toggle("show", !entry.isIntersecting);
-            }
-          });
-        },
-        {
-          rootMargin: `-${Math.max(0, header.clientHeight)}px 0px 0px 0px`,
-          threshold: 0
+        const observer = new IntersectionObserver(
+          entries => {
+            entries.forEach(entry => {
+              if (this.connectedForm) {
+                this.connectedForm.classList.toggle("show", !entry.isIntersecting);
+              }
+            });
+          },
+          {
+            rootMargin: `-${Math.max(0, header.clientHeight)}px 0px 0px 0px`,
+            threshold: 0
+          }
+        );
+
+        const target = this.querySelector('.product-form__submit')
+          || this.querySelector('[type="submit"]');
+
+        if (target) {
+          // Set correct initial state immediately without waiting for observer
+          const rect = target.getBoundingClientRect();
+          const isVisible = rect.top >= header.clientHeight && rect.bottom <= window.innerHeight;
+          if (this.connectedForm) {
+            this.connectedForm.classList.toggle("show", !isVisible);
+          }
+
+          observer.observe(target);
         }
-      );
+      });
+    }
 
-      const target = this.querySelector('.product-form__submit')
-        || this.querySelector('[type="submit"]');
 
-      if (target) {
-        // Set correct initial state immediately without waiting for observer
-        const rect = target.getBoundingClientRect();
-        const isVisible = rect.top >= header.clientHeight && rect.bottom <= window.innerHeight;
-        if (this.connectedForm) {
-          this.connectedForm.classList.toggle("show", !isVisible);
-        }
-
-        observer.observe(target);
-      }
-    });
+    // const observer = new IntersectionObserver(
+    //   entries => {
+    //     entries.forEach( entry => {
+    //       console.log(entries)
+    //       entry.target.classList.toggle("show", entry.isIntersecting)
+    //       if(this.connectedForm){
+    //         this.connectedForm.classList.toggle("show", !entry.isIntersecting)
+    //       }
+    //     })
+    //   },
+    //   {
+    //     rootMargin: `-${Math.max(0, header.clientHeight)}px 0px 0px 0px`,
+    //     threshold: 0
+    //   }
+    // )
+  
+    // // observer.observe(document.querySelector(".product-section"))
+    // observer.observe(document.querySelector(".product-form") || document.querySelector("product-form"))
   }
 
   onSubmitHandler(evt) {
     evt.preventDefault();
-
+    
     const submitButton = this.querySelector('[type="submit"]');
 
     submitButton.setAttribute('disabled', true);
     submitButton.closest(".product__quantity-atc-wrapper").classList.add('loading');
-    if (this.connectedForm) {
-      this.connectedForm
-        .querySelectorAll(".product__quantity-atc-wrapper")
-        .forEach((el) => {
-          el.classList.add("loading");
-        });
+    if(this.connectedForm){
+          // this.connectedForm.querySelector(".product__quantity-atc-wrapper").classList.add('loading');
+          this.connectedForm
+          .querySelectorAll(".product__quantity-atc-wrapper")
+          .forEach((el) => {
+            el.classList.add("loading");
+          });
     }
+
 
     const formData = new FormData(this.form);
     formData.append('properties[FINAL SALE]', 'NO RETURNS, EXCHANGES OR ADDITIONAL DISCOUNTS APPLIED.');
@@ -235,11 +101,14 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
     fetch(`${routes.cart_add_url}`, { ...config, body: formData })
       .then((response) => response.json())
       .then((parsedState) => {
+
         this.getSectionsToRender().forEach((section => {
           const elementToReplace =
             document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
+
           elementToReplace.innerHTML =
             this.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
+
         }));
       })
       .catch((e) => {
@@ -248,24 +117,26 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
       .finally(() => {
         submitButton.closest(".product__quantity-atc-wrapper").classList.remove('loading');
         submitButton.removeAttribute('disabled');
-        if (this.connectedForm) {
+        if(this.connectedForm){
+          // this.connectedForm.querySelector(".product__quantity-atc-wrapper").classList.remove('loading');
           this.connectedForm
-            .querySelectorAll(".product__quantity-atc-wrapper")
-            .forEach((el) => {
-              el.classList.remove("loading");
-            });
+          .querySelectorAll(".product__quantity-atc-wrapper")
+          .forEach((el) => {
+            el.classList.remove("loading");
+          });
+
           this.connectedForm
-            .querySelectorAll(".product-form__submit")
-            .forEach((btn) => {
-              btn.classList.remove("loading");
-            });
+          .querySelectorAll(".product-form__submit")
+          .forEach((btn) => {
+            btn.classList.remove("loading");
+          });
         }
         this.cartDrawer.open();
-        setTimeout(function() {
-          if (Rebuy) {
+        setTimeout(function(){
+          if(Rebuy){
             Rebuy.init();
           }
-        }, 1000);
+        }, 1000)
         const drawer = document.getElementById("cart-drawer");
         setTimeout(() => {
           drawer.focus();
@@ -297,7 +168,9 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
   handleErrorMessage(errorMessage = false) {
     this.errorMessageWrapper = this.errorMessageWrapper || this.querySelector('.product-form__error-message-wrapper');
     this.errorMessage = this.errorMessage || this.errorMessageWrapper.querySelector('.product-form__error-message');
+
     this.errorMessageWrapper.toggleAttribute('hidden', !errorMessage);
+
     if (errorMessage) {
       this.errorMessage.textContent = errorMessage;
     }
@@ -305,17 +178,17 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
 });
 
 customElements.define('sticky-atc', class StickyATC extends HTMLElement {
-  constructor() {
+  constructor(){
     super();
 
-    this.input = this.querySelector("input[name='quantity']");
-    this.submit = this.querySelector("button[name='add']");
-    this.mainForm = document.querySelector(`form#${this.dataset.mainForm}`);
+    this.input = this.querySelector("input[name='quantity']")
+    this.submit = this.querySelector("button[name='add']")
+    this.mainForm = document.querySelector(`form#${this.dataset.mainForm}`)
 
-    this.submit.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.target.classList.add('loading');
-      this.mainForm.querySelector('button[type="submit"]').click();
-    }.bind(this));
+    this.submit.addEventListener('click', function(e){
+      e.preventDefault()
+      e.target.classList.add('loading')
+      this.mainForm.querySelector('button[type="submit"]').click()
+    }.bind(this))
   }
-});
+})
