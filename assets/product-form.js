@@ -29,7 +29,7 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
         })
       },
       {
-        rootMargin: `-${(header.clientHeight - 20)}px`,
+        rootMargin: `-${Math.max(0, header.clientHeight - 20 - 400)}px`,
         threshold: 0
       }
     )
