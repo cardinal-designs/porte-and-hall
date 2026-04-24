@@ -6,6 +6,12 @@
   margin-bottom: 30px;
   text-align: center;
 }
+
+.product-carousel__heading h2 {
+  font-size: 48px;
+}
+
+
 .product-carousel__container {
   position: relative;
 }
@@ -88,6 +94,10 @@
 
   .product-carousel__heading {
     margin-bottom: 20px;
+  }
+
+  .product-carousel__heading h2 {
+    font-size: 32px;
   }
 
   .product-carousel .swiper-button-next,
