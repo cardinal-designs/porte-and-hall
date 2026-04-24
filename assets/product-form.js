@@ -35,7 +35,7 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
     )
   
     // observer.observe(document.querySelector(".product-section"))
-    observer.observe(document.querySelector(".product-form__submit") || document.querySelector('[type="submit"]'))
+    observer.observe(document.querySelector(".product-form") || document.querySelector('product-form'))
   }
 
   onSubmitHandler(evt) {
