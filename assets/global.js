@@ -1271,7 +1271,7 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach( entry => {
-          console.log(entries)
+          // console.log(entries)
           entry.target.classList.toggle("show", entry.isIntersecting)
           if(this.connectedForm){
             this.connectedForm.classList.toggle("show", !entry.isIntersecting)
@@ -1284,7 +1284,8 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
       }
     )
   
-    observer.observe(document.querySelector(".product-section"))
+    // observer.observe(document.querySelector(".product-section"))
+    observer.observe(document.querySelector(".product-form__submit") || document.querySelector('[type="submit"]'))
   }
 
   onSubmitHandler(evt) {
