@@ -52,11 +52,19 @@
         "heading": "",
         "section_reviews": true
       }
+    },
+    "custom_liquid_rcqUFX": {
+      "type": "custom-liquid",
+      "name": "Liquid",
+      "settings": {
+        "custom_html": "{% assign product = page.metafields.custom.bundle_product.value %}\n<script>window.productData = {{ product | json }};</script>"
+      }
     }
   },
   "order": [
     "breadcrumbs_8LXnyk",
     "main",
-    "1775202337dd3d0ddd"
+    "1775202337dd3d0ddd",
+    "custom_liquid_rcqUFX"
   ]
 }

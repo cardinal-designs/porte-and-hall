@@ -36,4 +36,32 @@ customElements.define('form-validation',class formValidation extends HTMLElement
     this.querySelector('.js-error-messages').innerHTML = this.errorMessage.join('');
   }
 
-}); 
+});
+
+function toggleBundleCTA(timeout) {
+  setTimeout(() => {
+    const items = Rebuy.Cart.items();
+    document.querySelector(".rebuy-bundle-builder__cta-container button").disabled = false;
+    document.querySelectorAll(".rebuy-bundle-builder__product-quantity .rebuy-button").forEach(button => button.disabled = false);
+    if(document.querySelector(".rebuy-bundle-builder__group-container-action .error-message")) {
+      document.querySelector(".rebuy-bundle-builder__group-container-action .error-message").remove();
+    }
+    items.forEach(item => {
+      if(window.productData.id == item.product_id) { 
+        document.querySelector(".rebuy-bundle-builder__cta-container button").disabled = true;
+        document.querySelectorAll(".rebuy-bundle-builder__product-quantity .rebuy-button").forEach(button => button.disabled = true);
+        if(!document.querySelector(".rebuy-bundle-builder__group-container-action .error-message")) {
+          document.querySelector(".rebuy-bundle-builder__group-container-action").insertAdjacentHTML('beforeend', `<p class="error-message" style="color: red;">${window.bundleErrorMessage}</p>`);
+        }
+      }
+    });
+  }, timeout);
+}
+
+document.addEventListener('rebuy:cart.change', function(event) {
+  toggleBundleCTA(1000);
+});
+
+window.addEventListener('load', (event) => {
+  toggleBundleCTA(1500);
+});
