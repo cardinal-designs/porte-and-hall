@@ -7,7 +7,7 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
     this.connectedForm = document.querySelector(`sticky-atc[data-main-form="${this.form.getAttribute("id")}"]`) || ""
     this.cartDrawer = document.querySelector('cart-drawer');
 
-    const header = document.querySelector(".outer-header-wrapper")
+    // const header = document.querySelector(".outer-header-wrapper")
 
     if(this.connectedForm){
           // this.connectedForm.style.top = `${header.clientHeight}px`
@@ -19,7 +19,7 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
 
     connectedCallback() {
       requestAnimationFrame(() => {
-        // const header = document.querySelector(".outer-header-wrapper");
+        const header = document.querySelector(".outer-header-wrapper");
 
         const observer = new IntersectionObserver(
           entries => {
