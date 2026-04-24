@@ -1267,40 +1267,6 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
           }.bind(this))
     }
 
-    connectedCallback() {
-      requestAnimationFrame(() => {
-        const header = document.querySelector(".outer-header-wrapper");
-
-        const observer = new IntersectionObserver(
-          entries => {
-            entries.forEach(entry => {
-              if (this.connectedForm) {
-                this.connectedForm.classList.toggle("show", !entry.isIntersecting);
-              }
-            });
-          },
-          {
-            rootMargin: `-${Math.max(0, header.clientHeight)}px 0px 0px 0px`,
-            threshold: 0
-          }
-        );
-
-        const target = this.querySelector('.product-form__submit')
-          || this.querySelector('[type="submit"]');
-
-        if (target) {
-          // Set correct initial state immediately without waiting for observer
-          const rect = target.getBoundingClientRect();
-          const isVisible = rect.top >= header.clientHeight && rect.bottom <= window.innerHeight;
-          if (this.connectedForm) {
-            this.connectedForm.classList.toggle("show", !isVisible);
-          }
-
-          observer.observe(target);
-        }
-      });
-    }
-
     // const observer = new IntersectionObserver(
     //   entries => {
     //     entries.forEach( entry => {
@@ -1319,6 +1285,38 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
   
     // // observer.observe(document.querySelector(".product-section"))
     // observer.observe(document.querySelector(".product-form") || document.querySelector("product-form"));
+  }
+
+  connectedCallback() {
+    requestAnimationFrame(() => {
+      const header = document.querySelector(".outer-header-wrapper");
+      let firstFire = true; // ignore the initial observer callback
+
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (firstFire) {
+              firstFire = false;
+              return; // skip the initial fire on load
+            }
+            if (this.connectedForm) {
+              this.connectedForm.classList.toggle("show", !entry.isIntersecting);
+            }
+          });
+        },
+        {
+          rootMargin: `-${Math.max(0, header.clientHeight)}px 0px 0px 0px`,
+          threshold: 0
+        }
+      );
+
+      const target = this.querySelector('.product-form__submit')
+        || this.querySelector('[type="submit"]');
+
+      if (target) {
+        observer.observe(target);
+      }
+    });
   }
 
   onSubmitHandler(evt) {

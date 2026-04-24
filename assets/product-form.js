@@ -40,10 +40,15 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
   connectedCallback() {
     requestAnimationFrame(() => {
       const header = document.querySelector(".outer-header-wrapper");
+      let firstFire = true; // ignore the initial observer callback
 
       const observer = new IntersectionObserver(
         entries => {
           entries.forEach(entry => {
+            if (firstFire) {
+              firstFire = false;
+              return; // skip the initial fire on load
+            }
             if (this.connectedForm) {
               this.connectedForm.classList.toggle("show", !entry.isIntersecting);
             }
@@ -59,13 +64,6 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
         || this.querySelector('[type="submit"]');
 
       if (target) {
-        // Set correct initial state immediately without waiting for observer
-        const rect = target.getBoundingClientRect();
-        const isVisible = rect.top >= header.clientHeight && rect.bottom <= window.innerHeight;
-        if (this.connectedForm) {
-          this.connectedForm.classList.toggle("show", !isVisible);
-        }
-
         observer.observe(target);
       }
     });
