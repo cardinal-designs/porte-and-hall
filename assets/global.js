@@ -1285,7 +1285,7 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
     )
   
     // observer.observe(document.querySelector(".product-section"))
-    observer.observe(document.querySelector(".product__info-wrapper"))
+    observer.observe(document.querySelector(".product-form") || document.querySelector("product-form"));
   }
 
   onSubmitHandler(evt) {
