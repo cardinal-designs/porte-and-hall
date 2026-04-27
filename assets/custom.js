@@ -39,7 +39,7 @@ customElements.define('form-validation',class formValidation extends HTMLElement
 }); 
 
 document.addEventListener('click', function (e) {
-  const swatch = e.target.closest('.sticky__details .product__swatch');
+  const swatch = e.target.closest('.sticky__details .product__swatch span');
   if (!swatch) return;
 
   const variantName = document.querySelector('.product__swatches');
