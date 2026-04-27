@@ -807,6 +807,10 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   gap: 15px;
 }
 
+sticky__product--details .product__swatch {
+  pointer-events: auto;
+}
+
 .sticky__product--details .product__title {
   font-size: 16px;
   color: #fff;
