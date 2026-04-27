@@ -768,6 +768,11 @@ sticky-atc {
   max-height: 61px;
 }
 
+.template__sticky-add-to-cart-details,
+.template__sticky-add-to-cart {
+  max-height: 100vh;
+}
+
 sticky-atc .quantity {
   background: transparent;
 }
