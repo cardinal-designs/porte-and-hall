@@ -757,6 +757,9 @@ sticky-atc {
   opacity: 0;
   position: fixed;
   transition: all .3s ease;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 sticky-atc .quantity {
@@ -782,6 +785,7 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   justify-content: space-between !important;
   padding-top: 15px;
   padding-bottom: 15px;
+  padding-bottom: calc(15px + env(safe-area-inset-bottom));
 }
 
 .sticky__product--details {
