@@ -762,6 +762,7 @@ sticky-atc {
   right: 0;
   padding-bottom: env(safe-area-inset-bottom);
   max-height: 77px;
+  background: transparent;
 }
 
 .template__sticky-add-to-cart sticky-atc {
