@@ -55,19 +55,11 @@ customElements.define('form-validation',class formValidation extends HTMLElement
 // });
 
 document.querySelectorAll('.sticky__details .product__swatch').forEach((swatch, index) => {
-  // DEBUG: Check if swatches are found
   console.debug(`[Swatch Init] Swatch #${index} found:`, swatch);
-
-  if (!swatch) {
-    console.error('[Swatch Init] Swatch element is null or undefined');
-    return;
-  }
 
   swatch.addEventListener('click', () => {
     console.group(`[Swatch Click] Swatch #${index} clicked`);
-    console.debug('[Swatch Click] Element:', swatch);
 
-    // DEBUG: Check variant name element existence
     const variantName = document.querySelector('.product__variant-name');
     console.debug('[Variant Name] Element:', variantName);
 
@@ -77,47 +69,45 @@ document.querySelectorAll('.sticky__details .product__swatch').forEach((swatch, 
       return;
     }
 
-    // DEBUG: Check nav element
     const nav = document.querySelector('.outer-header-wrapper');
-    console.debug('[Nav] Element:', nav);
-
-    if (!nav) {
-      console.warn('[Nav] .outer-header-wrapper not found — defaulting navHeight to 0');
-    }
+    if (!nav) console.warn('[Nav] .outer-header-wrapper not found — defaulting navHeight to 0');
 
     const navHeight = nav ? nav.offsetHeight : 0;
     console.debug('[Nav] Height:', navHeight);
 
     const buffer = 73;
-    console.debug('[Scroll] Buffer:', buffer);
 
-    // FIX: Guard against detached/invisible element with getBoundingClientRect
-    const rect = variantName.getBoundingClientRect();
-    console.debug('[Scroll] variantName BoundingClientRect:', rect);
+    // FIX: Use offsetTop for absolute position instead of getBoundingClientRect
+    // getBoundingClientRect is relative to viewport — unreliable when scrolled
+    const absoluteTop = getAbsoluteTop(variantName);
+    console.debug('[Scroll] Absolute offsetTop of variantName:', absoluteTop);
 
-    if (rect.top === 0 && rect.bottom === 0) {
-      console.warn('[Scroll] variantName may be hidden or detached from layout (rect is zero)');
-    }
-
-    const scrollY = window.scrollY ?? window.pageYOffset; // FIX: fallback for older browsers
-    console.debug('[Scroll] window.scrollY:', scrollY);
-
-    const top = rect.top + scrollY - navHeight - buffer;
+    const top = absoluteTop - navHeight - buffer;
     console.debug('[Scroll] Calculated scroll top:', top);
+    console.debug('[Scroll] Nav height:', navHeight, '| Buffer:', buffer);
 
     if (top < 0) {
-      console.warn(`[Scroll] Calculated top is negative (${top}) — clamping to 0`);
+      console.warn(`[Scroll] Still negative after fix (${top}) — element may be inside a transformed/sticky container`);
     }
 
-    // FIX: Clamp top to 0 to avoid negative scroll positions
     window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-
-    console.debug('[Scroll] scrollTo() called successfully');
+    console.debug('[Scroll] scrollTo() called with top:', Math.max(0, top));
     console.groupEnd();
   });
 });
 
-// DEBUG: Warn if no swatches were found at all
+// Helper: walk up the DOM to get true absolute top position
+function getAbsoluteTop(element) {
+  let top = 0;
+  let el = element;
+  while (el) {
+    top += el.offsetTop;
+    el = el.offsetParent;
+  }
+  console.debug('[getAbsoluteTop] Computed absolute top:', top, 'for', element);
+  return top;
+}
+
 if (document.querySelectorAll('.sticky__details .product__swatch').length === 0) {
-  console.warn('[Swatch Init] No swatches found matching ".sticky__details .product__swatch" — check your selector or DOM timing');
+  console.warn('[Swatch Init] No swatches found — check selector or DOM timing');
 }
