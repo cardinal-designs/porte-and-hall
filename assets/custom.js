@@ -90,9 +90,14 @@ document.querySelectorAll('.sticky__details .product__swatch').forEach((swatch, 
       console.warn(`[Scroll] Still negative after fix (${top}) — element may be inside a transformed/sticky container`);
     }
 
-    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-    console.debug('[Scroll] scrollTo() called with top:', Math.max(0, top));
-    console.groupEnd();
+    // Alternative: use scrollIntoView as a fallback
+    variantName.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Then manually adjust for nav offset using scrollBy
+    setTimeout(() => window.scrollBy({ top: -(navHeight + buffer), behavior: 'smooth' }), 300);
+
+    // window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    // console.debug('[Scroll] scrollTo() called with top:', Math.max(0, top));
+    // console.groupEnd();
   });
 });
 
