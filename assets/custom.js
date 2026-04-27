@@ -38,17 +38,18 @@ customElements.define('form-validation',class formValidation extends HTMLElement
 
 }); 
 
-// document.querySelectorAll('.product__swatch').forEach(swatch => {
-//   swatch.addEventListener('click', () => {
-//     const variantName = document.querySelector('.product__variant-name');
-//     if (!variantName) return;
+document.querySelectorAll('.sticky__details .product__swatch').forEach(swatch => {
+  swatch.addEventListener('click', () => {
+    console.log("swatch",swatch);
+    const variantName = document.querySelector('.product__variant-name');
+    if (!variantName) return;
 
-//     const nav = document.querySelector('header') || document.querySelector('nav');
-//     const navHeight = nav ? nav.offsetHeight : 0;
-//     const buffer = 12;
+    const nav = document.querySelector('header');
+    const navHeight = nav ? nav.offsetHeight : 0;
+    const buffer = 73;
 
-//     const top = variantName.getBoundingClientRect().top + window.scrollY - navHeight - buffer;
+    const top = variantName.getBoundingClientRect().top + window.scrollY - navHeight - buffer;
 
-//     window.scrollTo({ top, behavior: 'smooth' });
-//   });
-// });
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
