@@ -207,7 +207,7 @@ endcapture
             </div>
           {% endif %}
         {% endif %}
-
+        
         {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
           <div class="product__description body blue">
             {{ grouped_collection.metafields.custom.short_description | default: product.description }}
