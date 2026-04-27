@@ -711,39 +711,7 @@ endcapture
           {% endform %}
         </product-form>
       </div>
-      {% comment %}
-      {% if product.available == false %}
-        <div class="product__oos-notify-wrapper">
-          <p class="body">Notify me when THIS STYLE IS back in stock:</p>
-          <div id="NotifyMe_form" class="NotifyMe_form">
-            <input
-              class="notify-email-val"
-              type="email"
-              id="notify_email"
-              name="email"
-              placeholder="Email Address"
-              class="email"
-              required
-            >
-            <input
-              class="notify-me-var"
-              type="hidden"
-              id="notify_id"
-              name="variant"
-              value="{{ product.variants[0].id }}"
-            >
-            <button type="button" class="text-link" value="Submit" data-bis-button>Submit ></button>
-            <div class="notifyme_error"></div>
-          </div>
-        </div>
-      {% elsif oos_products.size > 0 %}
-      <div class="product__oos-notify-wrapper">
-        <p class="body"><button data-modal-trigger="notify-me" >Notify me</button> when out of stock styles are back in stock</p>
-      </div>
-      {% endif %}
-      {% endcomment %}
 
-      {% comment %}ACCORDION BEGINS{% endcomment %}
       <pdp-accordion class="product-accordion__container">
         {% if grouped_collection.metafields.custom.product_features != blank %}
          <div class="accordion">
@@ -852,7 +820,7 @@ endcapture
         {% endif %}
         {% endcomment %}
       </pdp-accordion>
-      {% comment %}ACCORDION ENDS{% endcomment %}         
+
     </div>
   </div>
 </section>
