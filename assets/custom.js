@@ -38,7 +38,7 @@ customElements.define('form-validation',class formValidation extends HTMLElement
 
 }); 
 
-document.querySelectorAll('.sticky__product--details .product__swatch').forEach(swatch => {
+document.querySelectorAll('.sticky__details .product__swatch').forEach(swatch => {
   swatch.addEventListener('click', () => {
     const variantName = document.querySelector('.product__variant-name');
     if (!variantName) return;
