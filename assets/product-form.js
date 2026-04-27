@@ -50,7 +50,6 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
               return; // skip the initial fire on load
             }
             if (this.connectedForm) {
-              firstFire = true;
               this.connectedForm.classList.toggle("show", !entry.isIntersecting);
             }
           });
