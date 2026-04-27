@@ -88,6 +88,11 @@
     top: 0;
 }
 
+.section__shop--by-category .shop-all-btn {
+    padding: auto 100px;
+    text-align: center;
+}
+
 .category__carousel--item .image__block::after {
     content: '';
     width: 100%;
