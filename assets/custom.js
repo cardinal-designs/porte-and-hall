@@ -40,7 +40,7 @@ customElements.define('form-validation',class formValidation extends HTMLElement
 
 document.querySelectorAll('.sticky__details .product__swatch').forEach(swatch => {
   swatch.addEventListener('click', () => {
-    const variantName = document.querySelector('.product__variant-name');
+    const variantName = document.querySelector('.product__swatches');
     if (!variantName) return;
 
     const nav = document.querySelector('.outer-header-wrapper');
