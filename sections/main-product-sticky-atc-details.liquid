@@ -225,20 +225,20 @@ endcapture
         {% if section.settings.text_dimensions == true %}
         <p id="btnhomeModal2" class="body"><span>Dimensions:</span> <u>view here</u></p>
         {% endif %}
-         <div id="myModal" class="dimension-modal-content dimension_modal">
-              <div class="dimension-modal-header">
-              {% if product.title contains 'Porter' %}
-                <h6>The Porter Mat</h6>
-              {% else %}
-                <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
-              {% endif %}
-              <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %}<span class="sr-only">Close Button</span></button></div>
-              </div>
-              <div class="dimension-modal-body">
-               <p>{{ product.metafields.custom.product_dimensions.value.dimension }}</p>
-               <img src="{{ product.metafields.custom.product_dimensions.value.dimension_image | img_url:'original' }}" alt="Dimension Image">
-              </div> 
+        <div id="myModal" class="dimension-modal-content dimension_modal">
+          <div class="dimension-modal-header">
+            {% if product.title contains 'Porter' %}
+              <h6>The Porter Mat</h6>
+            {% else %}
+              <h6>{{ grouped_collection.title | remove: ' |' | default: product.title }}</h6>
+            {% endif %}
+            <div class="cancel-button close"><button class="cancel-icon">{% render 'icon' with 'close-circle' %}<span class="sr-only">Close Button</span></button></div>
           </div>
+          <div class="dimension-modal-body">
+            <p>{{ product.metafields.custom.product_dimensions.value.dimension }}</p>
+            <img src="{{ product.metafields.custom.product_dimensions.value.dimension_image | img_url:'original' }}" alt="Dimension Image" />
+          </div> 
+        </div>
         {% for option in product.options_with_values %}
           <div class="product__variant-name body" aria-label="Selected {{ option.name }}: {{ option.selected_value }}">
             {% if option.name == 'Size' %}
@@ -259,12 +259,7 @@ endcapture
           </div>
         {% endfor %}
 
-        {% comment %} {% if product.metafields.custom.style_text != blank %}
-        <p class="style-text__color">{{ product.metafields.custom.style_text }}</p>
-        {% endif %} {% endcomment %}
-
-        <div id="active-color" 
-          data-color="{{ product.options_by_name['Color'].selected_value | default: product.options_by_name['Style'].selected_value }}">
+        <div id="active-color" data-color="{{ product.options_by_name['Color'].selected_value | default: product.options_by_name['Style'].selected_value }}">
         </div>
 
         {% assign has_new_tag = false %}
@@ -279,15 +274,6 @@ endcapture
         <div class="product__swatches {% if has_new_tag %} product__swatches--new{% endif %}">
           {{ color_swatch_list }}
         </div>
-
-        {% comment %}
-        <div>
-          {% form 'product', product, id: 'product-form-installment', class: 'installment' %}
-            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-            {{ form | payment_terms }}
-          {% endform %}
-        </div>
-        {% endcomment %}
 
         <product-form class="product-form">
           <div class="product-form__error-message-wrapper" role="alert" hidden>
