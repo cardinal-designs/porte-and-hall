@@ -9,8 +9,6 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
 
     // const header = document.querySelector(".outer-header-wrapper")
 
-    console.log("this::",this);
-
     if(this.connectedForm){
           // this.connectedForm.style.top = `${header.clientHeight}px`
 
@@ -62,7 +60,8 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
         }
       );
 
-      const target = this.querySelector('.product__info-container');
+      const target = this.querySelector('.product-form__submit')
+        || this.querySelector('[type="submit"]');
 
       if (target) {
         observer.observe(target);
