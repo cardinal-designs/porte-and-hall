@@ -9,6 +9,8 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
 
     // const header = document.querySelector(".outer-header-wrapper")
 
+    console.log("this::",this);
+
     if(this.connectedForm){
           // this.connectedForm.style.top = `${header.clientHeight}px`
 
