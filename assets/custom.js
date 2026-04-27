@@ -38,18 +38,49 @@ customElements.define('form-validation',class formValidation extends HTMLElement
 
 }); 
 
-document.querySelectorAll('.sticky__details .product__swatch').forEach(swatch => {
+
+document.querySelectorAll('.product__swatch').forEach(swatch => {
   swatch.addEventListener('click', () => {
-    console.log("swatch",swatch);
     const variantName = document.querySelector('.product__variant-name');
     if (!variantName) return;
 
     const nav = document.querySelector('header');
     const navHeight = nav ? nav.offsetHeight : 0;
-    const buffer = 73;
+    const buffer = 12;
 
-    const top = variantName.getBoundingClientRect().top + window.scrollY - navHeight - buffer;
+    const scrollRootSelectors = [
+      '[data-scroll-container]',
+      '.scroll-container',
+      'main',
+      '#MainContent',
+      '#main-content',
+      'body',
+    ];
 
-    window.scrollTo({ top, behavior: 'smooth' });
+    let scrollRoot = null;
+    for (const sel of scrollRootSelectors) {
+      const el = document.querySelector(sel);
+      if (el) {
+        const { overflow, overflowY } = getComputedStyle(el);
+        const isScrollable = /auto|scroll/.test(overflow + overflowY) && el.scrollHeight > el.clientHeight;
+        if (isScrollable && !scrollRoot) scrollRoot = el;
+      }
+    }
+
+    if (scrollRoot) {
+      const containerRect = scrollRoot.getBoundingClientRect();
+      const containerScrollTop = scrollRoot.scrollTop;
+      const rect = variantName.getBoundingClientRect();
+      const targetTop = rect.top - containerRect.top + containerScrollTop - navHeight - buffer;
+      scrollRoot.scrollTo({ top: targetTop, behavior: 'smooth' });
+    } else {
+      let offsetTop = 0;
+      let el = variantName;
+      while (el) {
+        offsetTop += el.offsetTop;
+        el = el.offsetParent;
+      }
+      window.scrollTo({ top: offsetTop - navHeight - buffer, behavior: 'smooth' });
+    }
   });
 });
