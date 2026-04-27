@@ -60,8 +60,7 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
         }
       );
 
-      const target = this.querySelector('.product-form__submit')
-        || this.querySelector('[type="submit"]');
+      const target = this.querySelector('.product__info--inner');
 
       if (target) {
         observer.observe(target);
