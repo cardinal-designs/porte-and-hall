@@ -760,18 +760,6 @@ sticky-atc {
   bottom: 0;
   left: 0;
   right: 0;
-  padding-bottom: env(safe-area-inset-bottom);
-  max-height: 77px;
-  background: transparent;
-}
-
-.template__sticky-add-to-cart sticky-atc {
-  max-height: 61px;
-}
-
-.template__sticky-add-to-cart-details,
-.template__sticky-add-to-cart {
-  max-height: 100vh;
 }
 
 sticky-atc .quantity {
@@ -805,11 +793,6 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   display: flex;
   align-items: center;
   gap: 15px;
-}
-
-sticky__product--details .product__swatch,
-sticky__product--details .product__swatch span {
-  pointer-events: auto;
 }
 
 .sticky__product--details .product__title {
