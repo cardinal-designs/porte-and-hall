@@ -727,83 +727,65 @@ endcapture
          </div>
         {% endif %}
        
-         <div class="accordion">
-           <div data-id="2" class="accordion-title">
-             <h2 class="h3">Materials</h2>
-             {% render 'icon', icon: 'caret' %}
-           </div>
-           <div data-id="2" class="accordion-content">
-            <div class="swiper-slide">
-              <div class="product__tabs-item body-sm">
-                {{ section.settings.materials }}
-              </div>
+        <div class="accordion">
+          <div data-id="2" class="accordion-title">
+            <h2 class="h3">Materials</h2>
+            {% render 'icon', icon: 'caret' %}
+          </div>
+          <div data-id="2" class="accordion-content">
+          <div class="swiper-slide">
+            <div class="product__tabs-item body-sm">
+              {{ section.settings.materials }}
             </div>
-           </div>
-         </div>
+          </div>
+          </div>
+        </div>
        
         {% if grouped_collection.metafields.custom.dimensions != blank %}
-         <div class="accordion">
-           <div data-id="3" class="accordion-title">
-             <h2 class="h3">Dimensions</h2>
-             {% render 'icon', icon: 'caret' %}
-           </div>
-           <div data-id="3" class="accordion-content">
-            <div class="swiper-slide">
-              <div class="product__tabs-item">
-                <p class="body-sm">
-                  Dimensions: {{ grouped_collection.metafields.custom.dimensions | newline_to_br }}
-                  {% if grouped_collection.metafields.custom.additional_dimensions != blank %}
-                    <br>
-                    {{ grouped_collection.metafields.custom.additional_dimensions | newline_to_br }}
-                  {% endif %}
-                  {% if grouped_collection.metafields.custom.weight != blank %}
-                    <br>
-                    Weight: {{ grouped_collection.metafields.custom.weight }}
-                  {% endif %}
-                  {% if grouped_collection.metafields.custom.thickness != blank %}
-                    <br>
-                    Thickness: {{ grouped_collection.metafields.custom.thickness | metafield_tag }}
-                  {% endif %}
-                </p>
-              </div>
+        <div class="accordion">
+          <div data-id="3" class="accordion-title">
+            <h2 class="h3">Dimensions</h2>
+            {% render 'icon', icon: 'caret' %}
+          </div>
+          <div data-id="3" class="accordion-content">
+          <div class="swiper-slide">
+            <div class="product__tabs-item">
+              <p class="body-sm">
+                Dimensions: {{ grouped_collection.metafields.custom.dimensions | newline_to_br }}
+                {% if grouped_collection.metafields.custom.additional_dimensions != blank %}
+                  <br>
+                  {{ grouped_collection.metafields.custom.additional_dimensions | newline_to_br }}
+                {% endif %}
+                {% if grouped_collection.metafields.custom.weight != blank %}
+                  <br>
+                  Weight: {{ grouped_collection.metafields.custom.weight }}
+                {% endif %}
+                {% if grouped_collection.metafields.custom.thickness != blank %}
+                  <br>
+                  Thickness: {{ grouped_collection.metafields.custom.thickness | metafield_tag }}
+                {% endif %}
+              </p>
             </div>
-           </div>
-         </div>
+          </div>
+          </div>
+        </div>
         {% endif %}
 
         {% if section.settings.care != blank %}
-         <div class="accordion">
-           <div data-id="4" class="accordion-title">
-             <h2 class="h3">Cleaning &amp; Care</h2>
-             {% render 'icon', icon: 'caret' %}
-           </div>
-           <div data-id="4" class="accordion-content">
-            <div class="swiper-slide">
-              <div class="product__tabs-item body-sm">
-                {{ section.settings.care }}
-              </div>
-            </div>
-           </div>
-         </div>
-        {% endif %}
-
-        {% comment %}
-        {% if product.handle contains "outlier" %}
         <div class="accordion">
-           <div data-id="5" class="accordion-title">
-             <h3>Warranty</h3>
-             {% render 'icon', icon: 'caret' %}
-           </div>
-           <div data-id="5" class="accordion-content">
-            <div class="swiper-slide">
-              <div class="product__tabs-item body-sm">
-                <a href="/pages/outlier-warranty">Outlier Warranty</a>
-              </div>
+          <div data-id="4" class="accordion-title">
+            <h2 class="h3">Cleaning &amp; Care</h2>
+            {% render 'icon', icon: 'caret' %}
+          </div>
+          <div data-id="4" class="accordion-content">
+          <div class="swiper-slide">
+            <div class="product__tabs-item body-sm">
+              {{ section.settings.care }}
             </div>
-           </div>
+          </div>
+          </div>
         </div>
         {% endif %}
-        {% endcomment %}
       </pdp-accordion>       
     </div>
   </div>
