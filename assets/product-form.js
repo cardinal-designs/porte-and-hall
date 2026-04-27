@@ -45,10 +45,11 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
       const observer = new IntersectionObserver(
         entries => {
           entries.forEach(entry => {
-            if (firstFire) {
-              firstFire = false;
-              return; // skip the initial fire on load
-            }
+            // if (firstFire) {
+            //   firstFire = false;
+            //   return; // skip the initial fire on load
+            // }
+            entry.target.classList.toggle("show", entry.isIntersecting)
             if (this.connectedForm) {
               this.connectedForm.classList.toggle("show", !entry.isIntersecting);
             }
