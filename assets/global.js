@@ -1306,7 +1306,7 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
           });
         },
         {
-          rootMargin: `-${Math.max(0, header.clientHeight)}px 0px 0px 0px`,
+          rootMargin: `-${(header.clientHeight - 20)}px`,
           threshold: 0
         }
       );
