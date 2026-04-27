@@ -37,37 +37,37 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
     // observer.observe(document.querySelector(".product-form") || document.querySelector("product-form"))
   }
 
-  connectedCallback() {
-    requestAnimationFrame(() => {
-      const header = document.querySelector(".outer-header-wrapper");
-      let firstFire = true; // ignore the initial observer callback
+  // connectedCallback() {
+  //   requestAnimationFrame(() => {
+  //     const header = document.querySelector(".outer-header-wrapper");
+  //     let firstFire = true; // ignore the initial observer callback
 
-      const observer = new IntersectionObserver(
-        entries => {
-          entries.forEach(entry => {
-            // if (firstFire) {
-            //   firstFire = false;
-            //   return; // skip the initial fire on load
-            // }
-            entry.target.classList.toggle("show", entry.isIntersecting)
-            if (this.connectedForm) {
-              this.connectedForm.classList.toggle("show", !entry.isIntersecting);
-            }
-          });
-        },
-        {
-          rootMargin: `-${Math.max(0, header.clientHeight)}px 0px 0px 0px`,
-          threshold: 0
-        }
-      );
+  //     const observer = new IntersectionObserver(
+  //       entries => {
+  //         entries.forEach(entry => {
+  //           // if (firstFire) {
+  //           //   firstFire = false;
+  //           //   return; // skip the initial fire on load
+  //           // }
+  //           entry.target.classList.toggle("show", entry.isIntersecting)
+  //           if (this.connectedForm) {
+  //             this.connectedForm.classList.toggle("show", !entry.isIntersecting);
+  //           }
+  //         });
+  //       },
+  //       {
+  //         rootMargin: `-${(header.clientHeight - 20)}px`,
+  //         threshold: 0
+  //       }
+  //     );
 
-      const target = this.querySelector('.product__info--inner');
+  //     const target = this.querySelector('.product__info--inner');
 
-      if (target) {
-        observer.observe(target);
-      }
-    });
-  }
+  //     if (target) {
+  //       observer.observe(target);
+  //     }
+  //   });
+  // }
 
   onSubmitHandler(evt) {
     evt.preventDefault();
