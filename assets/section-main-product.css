@@ -807,7 +807,8 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   gap: 15px;
 }
 
-sticky__product--details .product__swatch {
+sticky__product--details .product__swatch,
+sticky__product--details .product__swatch span {
   pointer-events: auto;
 }
 
