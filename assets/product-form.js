@@ -7,7 +7,7 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
     this.connectedForm = document.querySelector(`sticky-atc[data-main-form="${this.form.getAttribute("id")}"]`) || ""
     this.cartDrawer = document.querySelector('cart-drawer');
 
-    // const header = document.querySelector(".outer-header-wrapper")
+    const header = document.querySelector(".outer-header-wrapper")
 
     if(this.connectedForm){
           // this.connectedForm.style.top = `${header.clientHeight}px`
@@ -17,23 +17,23 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
           }.bind(this))
     }
 
-    // const observer = new IntersectionObserver(
-    //   entries => {
-    //     entries.forEach( entry => {
-    //       console.log(entries)
-    //       entry.target.classList.toggle("show", entry.isIntersecting)
-    //       if(this.connectedForm){
-    //         this.connectedForm.classList.toggle("show", !entry.isIntersecting)
-    //       }
-    //     })
-    //   },
-    //   {
-    //     rootMargin: `-${Math.max(0, header.clientHeight)}px 0px 0px 0px`,
-    //     threshold: 0
-    //   }
-    // )
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach( entry => {
+          console.log(entries)
+          entry.target.classList.toggle("show", entry.isIntersecting)
+          if(this.connectedForm){
+            this.connectedForm.classList.toggle("show", !entry.isIntersecting)
+          }
+        })
+      },
+      {
+        rootMargin: `-${(header.clientHeight - 20)}px`,
+        threshold: 0
+      }
+    )
   
-    // // observer.observe(document.querySelector(".product-section"))
+    observer.observe(document.querySelector(".product__info--inner"))
     // observer.observe(document.querySelector(".product-form") || document.querySelector("product-form"))
   }
 
