@@ -75,7 +75,7 @@ document.querySelectorAll('.sticky__details .product__swatch').forEach((swatch, 
     const navHeight = nav ? nav.offsetHeight : 0;
     console.debug('[Nav] Height:', navHeight);
 
-    const buffer = 73;
+    const buffer = 12;
 
     // FIX: Use offsetTop for absolute position instead of getBoundingClientRect
     // getBoundingClientRect is relative to viewport — unreliable when scrolled
