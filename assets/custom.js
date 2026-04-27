@@ -46,7 +46,7 @@ document.querySelectorAll('.product__swatch').forEach(swatch => {
 
     const nav = document.querySelector('header');
     const navHeight = nav ? nav.offsetHeight : 0;
-    const buffer = 12;
+    const buffer = 73;
 
     const scrollRootSelectors = [
       '[data-scroll-container]',
