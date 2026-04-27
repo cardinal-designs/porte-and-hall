@@ -808,9 +808,7 @@
                         {% if swatch == product and option.selected_value == value %}
                             <div
                                 class="product__swatch"
-                                aria-label="{{ value | escape }}{% unless swatch.available %} is Unavailable{% endunless %}"
-                                data-tooltip="{{ value | escape }}">
-                                
+                                aria-label="{{ value | escape }}{% unless swatch.available %} is Unavailable{% endunless %}">
                                 <span style="background-image: url({{ swatch_file_name | file_url }})"></span>
                             </div>
                         {% endif %}
