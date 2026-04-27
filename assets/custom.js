@@ -38,13 +38,12 @@ customElements.define('form-validation',class formValidation extends HTMLElement
 
 }); 
 
-document.querySelectorAll('.sticky__details .product__swatch').forEach(swatch => {
+document.querySelectorAll('.product__swatch').forEach(swatch => {
   swatch.addEventListener('click', () => {
-    console.log("swatch",swatch);
     const variantName = document.querySelector('.product__variant-name');
     if (!variantName) return;
 
-    const nav = document.querySelector('.outer-header-wrapper');
+    const nav = document.querySelector('header') || document.querySelector('nav');
     const navHeight = nav ? nav.offsetHeight : 0;
     const buffer = 12;
 
