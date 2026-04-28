@@ -246,98 +246,6 @@
         "hide_desktop": true
       }
     },
-    "shop_by_category_Dt4Cz9": {
-      "type": "shop-by-category",
-      "blocks": {
-        "block_PV7xX8": {
-          "type": "block",
-          "settings": {
-            "text": "Indoor",
-            "image": "shopify://shop_images/2c02500d49d571d5ba294162f82231da610d1aee.jpg",
-            "url": "shopify://collections/indoor-doormats"
-          }
-        },
-        "block_MBqLxi": {
-          "type": "block",
-          "settings": {
-            "text": "Outdoor",
-            "image": "shopify://shop_images/9bbd6eb8493c783fe9bdd4078ab2a28d73cf8ece.jpg",
-            "url": "shopify://collections/outside-doormats"
-          }
-        },
-        "block_Nj6kA9": {
-          "type": "block",
-          "settings": {
-            "text": "Doormats",
-            "image": "shopify://shop_images/46086de1575e6967c6f55fcf7657fe8371088e09.jpg",
-            "url": "/collections/shop-all?filter.v.m.custom.size=Doormats"
-          }
-        },
-        "block_DNnqz9": {
-          "type": "block",
-          "settings": {
-            "text": "Runners",
-            "image": "shopify://shop_images/f5192e35d1b0260b6780cdbd4d0723c15a8dc9b3.jpg",
-            "url": "shopify://collections/runners"
-          }
-        },
-        "block_dFcEME": {
-          "type": "block",
-          "settings": {
-            "text": "Area Mats",
-            "image": "shopify://shop_images/165d45a5d2faf224987c0c5e56b178647de04f6c.jpg",
-            "url": "shopify://collections/area-mats"
-          }
-        },
-        "block_gaUqRj": {
-          "type": "block",
-          "settings": {
-            "text": "Ultra-thin",
-            "image": "shopify://shop_images/c8b6dea987b5efd5cc0463263111072b4bb539e4.jpg",
-            "url": "/collections/indoor-doormats?filter.v.m.custom.filters=The+Insider"
-          }
-        },
-        "block_eqtaYP": {
-          "type": "block",
-          "settings": {
-            "text": "Woven",
-            "image": "shopify://shop_images/0bfc12b88c282fdfd6e183f1c0e705b252041fa1.jpg",
-            "url": "/collections/indoor-doormats?filter.v.m.custom.filters=The+Innerweave"
-          }
-        },
-        "block_pTLNyw": {
-          "type": "block",
-          "settings": {
-            "text": "",
-            "url": ""
-          }
-        }
-      },
-      "block_order": [
-        "block_PV7xX8",
-        "block_MBqLxi",
-        "block_Nj6kA9",
-        "block_DNnqz9",
-        "block_dFcEME",
-        "block_gaUqRj",
-        "block_eqtaYP",
-        "block_pTLNyw"
-      ],
-      "disabled": true,
-      "name": "Shop By Category",
-      "settings": {
-        "bg_color": "#eeefef",
-        "sub_heading": "",
-        "heading": "Shop by category",
-        "text": "",
-        "btn_label": "SHOP ALL",
-        "btn_link": "shopify://collections/shop-all",
-        "padding_top": 56,
-        "padding_bottom": 56,
-        "mobile_padding_top": 40,
-        "mobile_padding_bottom": 40
-      }
-    },
     "40919de2-f3c2-45da-99ff-c69ad3e95306": {
       "type": "custom-collection-products",
       "blocks": {
@@ -381,53 +289,6 @@
       "settings": {
         "title": "Meet our collections",
         "hide_mobile": true
-      }
-    },
-    "shop_our_collection_mobile_rgEqA3": {
-      "type": "shop-our-collection-mobile",
-      "blocks": {
-        "block_xhPmUf": {
-          "type": "block",
-          "settings": {
-            "title": "Indoor Mats",
-            "badge1": "Natural look",
-            "product1_title": "The Innerweave",
-            "collection1": "the-innerweave",
-            "product1": "the-innerweave-chevron-natural-doormat",
-            "product_image1": "shopify://shop_images/Innerweave_mat_9848f33d-c73b-490a-99c1-61c4daf0a915.jpg",
-            "badge2": "Ultra-thin",
-            "product2_title": "The Insider",
-            "collection2": "the-insider",
-            "product2": "the-insider-retro-orange-doormat",
-            "product_image2": "shopify://shop_images/the_insider_ccf4c005-c63e-499e-844d-f5e94140440b.jpg"
-          }
-        },
-        "block_MW69mm": {
-          "type": "block",
-          "settings": {
-            "title": "Outdoor Mats",
-            "badge1": "Dirt trapper",
-            "product1_title": "The Outlier",
-            "collection1": "the-outlier",
-            "product1": "the-outlier-slate-doormat",
-            "product_image1": "shopify://shop_images/the_outlier_df24f4b8-d6b9-4b52-a5d7-660359294000.jpg",
-            "badge2": "Eye-catcher",
-            "product2_title": "The Porter",
-            "collection2": "the-porter-standard",
-            "product2": "the-porter-truffle-standard",
-            "product_image2": "shopify://shop_images/Homepage_porterthumbnail.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "block_xhPmUf",
-        "block_MW69mm"
-      ],
-      "disabled": true,
-      "name": "Shop Collection Mobile",
-      "settings": {
-        "title": "Meet our collections",
-        "hide_desktop": true
       }
     },
     "fd8fd5d7-6d77-45a1-8718-85dc6bc781d2": {
@@ -970,9 +831,7 @@
     "product_carousel_new_aKw9LG",
     "product_carousel_new_2_JLEKyQ",
     "product_carousel_2_nFt3hG",
-    "shop_by_category_Dt4Cz9",
     "40919de2-f3c2-45da-99ff-c69ad3e95306",
-    "shop_our_collection_mobile_rgEqA3",
     "fd8fd5d7-6d77-45a1-8718-85dc6bc781d2",
     "cb7443ea-2e0d-49d4-9b54-bb61eac621af",
     "44d27af1-3359-4920-b45f-a777de8eced5",
