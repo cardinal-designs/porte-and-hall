@@ -294,6 +294,44 @@
     },
     "shop_our_collection_mobile_rgEqA3": {
       "type": "shop-our-collection-mobile",
+      "blocks": {
+        "block_xhPmUf": {
+          "type": "block",
+          "settings": {
+            "title": "Indoor Mats",
+            "badge1": "Natural look",
+            "product1_title": "The Innerweave",
+            "collection1": "the-innerweave",
+            "product1": "the-innerweave-chevron-natural-doormat",
+            "product_image1": "shopify://shop_images/Innerweave_mat_9848f33d-c73b-490a-99c1-61c4daf0a915.jpg",
+            "badge2": "Ultra-thin",
+            "product2_title": "The Insider",
+            "collection2": "the-insider",
+            "product2": "the-insider-retro-orange-doormat",
+            "product_image2": "shopify://shop_images/the_insider_ccf4c005-c63e-499e-844d-f5e94140440b.jpg"
+          }
+        },
+        "block_MW69mm": {
+          "type": "block",
+          "settings": {
+            "title": "Outdoor Mats",
+            "badge1": "Dirt trapper",
+            "product1_title": "The Outlier",
+            "collection1": "the-outlier",
+            "product1": "the-outlier-slate-doormat",
+            "product_image1": "shopify://shop_images/the_outlier_df24f4b8-d6b9-4b52-a5d7-660359294000.jpg",
+            "badge2": "Eye-catcher",
+            "product2_title": "The Porter",
+            "collection2": "the-porter-standard",
+            "product2": "the-porter-truffle-standard",
+            "product_image2": "shopify://shop_images/Homepage_porterthumbnail.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "block_xhPmUf",
+        "block_MW69mm"
+      ],
       "name": "Shop Collection Mobile",
       "settings": {
         "title": "Meet our collections",
