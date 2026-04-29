@@ -162,5 +162,9 @@ span.jdgm-prev-badge__stars {
 }
 
 .rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget-button .rebuy-grey {
-    color: #000000;
+  color: #000000;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-title {
+  font-size: 14px;
 }
