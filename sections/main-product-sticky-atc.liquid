@@ -833,37 +833,6 @@ endcapture
   data-section-id="{{ section.id }}"
 >
   <div class="product__quantity-atc-wrapper">
-    {% comment %}
-    <div class="product-form__input product-form__quantity">
-      <label class="form__label visually-hidden" for="sticky-Quantity-{{ section.id }}">
-        {{ 'products.product.quantity.label' | t }}
-      </label>
-      <quantity-input class="quantity">
-        <button class="quantity__button no-js-hidden" name="minus" type="button">
-          <span class="visually-hidden">
-            {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
-          </span>
-          {% render 'icon', icon: 'minus' %}
-        </button>
-        <input
-          class="quantity__input"
-          type="number"
-          name="quantity"
-          id="sticky-Quantity-{{ section.id }}"
-          min="1"
-          value="1"
-          form="{{ product_form_id }}"
-        >
-        <button class="quantity__button no-js-hidden" name="plus" type="button">
-          <span class="visually-hidden">
-            {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
-          </span>
-          {% render 'icon', icon: 'plus' %}
-        </button>
-      </quantity-input>
-    </div>
-    {% endcomment %}
-
     <div class="product-form__buttons">
       <button
         name="add"
