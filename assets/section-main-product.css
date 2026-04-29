@@ -795,8 +795,7 @@ sticky-atc .product-form__buttons {
 
 sticky-atc.sticky__details .product__quantity-atc-wrapper {
   justify-content: space-between !important;
-  padding-top: 15px;
-  padding-bottom: 15px; 
+  padding: 15px 5px;
 }
 
 sticky-atc .product__quantity-atc-wrapper::before {
@@ -816,7 +815,7 @@ sticky-atc .product__quantity-atc-wrapper::before {
 .sticky__product--details {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 8px;
 }
 
 .sticky__product--details .product__title {
