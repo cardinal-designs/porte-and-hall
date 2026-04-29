@@ -800,7 +800,7 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
 
 sticky-atc.sticky__details .product__quantity-atc-wrapper::before {
   content: "";
-  background: var(--gold);
+  background: #D2B066;
   /* max-height: 77px; */
   display: block;
   width: 100%;
