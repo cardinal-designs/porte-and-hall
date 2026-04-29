@@ -791,6 +791,7 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   padding-bottom: 15px;
   background: transparent;
   position: relative;
+  overflow: hidden;
 }
 
 sticky-atc.sticky__details .product__quantity-atc-wrapper::before {
