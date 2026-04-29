@@ -188,3 +188,11 @@ span.jdgm-prev-badge__stars {
   }
 
 }
+
+@media (max-width: 767px) {
+
+  .rebuy-widget.rebuy-bundle-builder .rebuy-button {
+    padding: 10px 7px;
+  }
+
+}
