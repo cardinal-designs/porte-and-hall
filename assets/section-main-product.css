@@ -900,9 +900,8 @@ variant-selects {
   sticky-atc.show {
     position: fixed;
     bottom: 0;
-    width: 100%;
+    width: calc(100% - 16px);
     opacity: 1;
-    transform: translateY(calc(-1 * env(safe-area-inset-bottom)));
   }
 
 }
