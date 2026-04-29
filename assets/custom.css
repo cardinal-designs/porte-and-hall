@@ -140,6 +140,10 @@ span.jdgm-prev-badge__stars {
   align-items: center;
 }
 
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-block .rebuy-product-info {
+  display: none
+}
+
 .rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget-label {
   border: none;
   display: flex;
