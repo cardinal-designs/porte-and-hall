@@ -780,7 +780,7 @@
   </div>
 </section>
 
-{% comment %} <sticky-atc
+<sticky-atc
   class="sticky__details"
   data-main-form="{{product_form_id}}"
   data-section-id="{{ section.id }}"
@@ -870,7 +870,7 @@
       </div>
     </div>
   </div>
-</sticky-atc> {% endcomment %}
+</sticky-atc>
 
 {% if oos_products.size > 0 and product.available != false %}
   {% render 'notify-me-modal', products: oos_products %}

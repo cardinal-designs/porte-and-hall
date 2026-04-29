@@ -792,6 +792,7 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   background: transparent;
   position: relative;
   overflow: hidden;
+  max-height: 77px;
 }
 
 sticky-atc.sticky__details .product__quantity-atc-wrapper::before {
