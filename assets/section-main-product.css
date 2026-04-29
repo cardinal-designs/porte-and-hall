@@ -765,6 +765,17 @@ sticky-atc {
   overflow: hidden;
 }
 
+sticky-atc::after {
+  content: '';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-bottom);
+  background: #ffffff;
+  z-index: -1;
+}
+
 sticky-atc .quantity {
   background: transparent;
 }
