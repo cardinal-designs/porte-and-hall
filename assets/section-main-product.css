@@ -778,6 +778,9 @@ sticky-atc .product__quantity-atc-wrapper {
   column-gap: 10px;
   width: 100%;
   padding: 16px 10px;
+  background: transparent !important;
+  position: relative;
+  overflow: hidden;
 }
 
 sticky-atc .product-form__buttons {
@@ -792,10 +795,7 @@ sticky-atc .product-form__buttons {
 sticky-atc.sticky__details .product__quantity-atc-wrapper {
   justify-content: space-between !important;
   padding-top: 15px;
-  padding-bottom: 15px;
-  background: transparent !important;
-  position: relative;
-  overflow: hidden;
+  padding-bottom: 15px; 
 }
 
 sticky-atc.sticky__details .product__quantity-atc-wrapper::before {
