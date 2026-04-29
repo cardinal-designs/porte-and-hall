@@ -176,3 +176,11 @@ span.jdgm-prev-badge__stars {
 .rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__product-sign-holder {
   border-radius: 0;
 }
+
+@media (min-width: 1179px) {
+
+  .rebuy-bundle-builder__steps-container {
+    padding-right: 0;
+  }
+
+}
