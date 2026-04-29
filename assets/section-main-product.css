@@ -835,7 +835,8 @@ sticky-atc .product__quantity-atc-wrapper::before {
 .sticky__details .product-form__submit.button {
   color: var(--gold);
   background: #fff;
-  padding: 12px;
+  padding: 10px 8px;
+  font-size: 12px;
 }
 
 .sticky__details .product-form__submit.button .spinner .path {
