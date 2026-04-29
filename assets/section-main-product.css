@@ -787,7 +787,7 @@ sticky-atc .product-form__buttons {
 .product__sticky--details {
   background: transparent !important;
   /* max-height: 77px; */
-  margin-bottom: env(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 sticky-atc.sticky__details .product__quantity-atc-wrapper {
