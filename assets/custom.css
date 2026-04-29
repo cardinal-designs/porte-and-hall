@@ -135,11 +135,11 @@ span.jdgm-prev-badge__stars {
   border-radius: 0;
 }
 
-.rebuy-bundle-builder__item-quantity-widget {
+.rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget {
   border-color: #000;
 }
 
-.rebuy-bundle-builder__item-quantity-widget-label {
+.rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget-label {
   border: none;
   display: flex;
   align-items: center;
@@ -147,11 +147,11 @@ span.jdgm-prev-badge__stars {
   font-size: 14px;
 }
 
-.rebuy-bundle-builder__item-quantity-widget-button {
+.rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget-button {
   height: 40px;
   font-size: 16px;
 }
 
-.rebuy-bundle-builder__item-quantity-widget-button .rebuy-grey {
+.rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget-button .rebuy-grey {
     color: #000000;
 }
