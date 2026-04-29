@@ -84,16 +84,3 @@ document.querySelectorAll('.product__swatch').forEach(swatch => {
     }
   });
 });
-
-
-document.addEventListener('DOMContentLoaded', function () {
-  const stickyAtc = document.querySelector('sticky-atc');
-  const meta = document.querySelector('meta[name="theme-color"]');
-  if (!stickyAtc || !meta) return;
-
-  const observer = new MutationObserver(function () {
-    meta.setAttribute('content', stickyAtc.classList.contains('show') ? '#D2B066' : '#ffffff');
-  });
-
-  observer.observe(stickyAtc, { attributes: true, attributeFilter: ['class'] });
-});
