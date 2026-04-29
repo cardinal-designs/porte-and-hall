@@ -896,11 +896,28 @@ variant-selects {
   .product__media-thumbnails.default-product-section.swiper-horizontal + .product__media-list {
     padding-bottom: 10px;
   }
+  
   sticky-atc.show {
     position: fixed;
     bottom: 0;
     width: 100%;
     opacity: 1;
+    /* Push it just above Safari's detection threshold */
+    padding-bottom: env(safe-area-inset-bottom);
+    background: #D2B066 !important; /* let it fill the safe area */
+  }
+
+  sticky-atc.sticky__details .product__quantity-atc-wrapper {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  sticky-atc.sticky__details .product__quantity-atc-wrapper::before {
+    display: none; /* remove the pseudo bg */
+  }
+
+  sticky-atc .product__quantity-atc-wrapper {
+    background: transparent !important; /* bg now on parent */
   }
 
 }
