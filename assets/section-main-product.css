@@ -760,7 +760,7 @@ sticky-atc {
   bottom: 0;
   left: 0;
   right: 0;
-  background: transparent !important;
+  background: #fff !important;
   max-height: 77px;
   overflow: hidden;
 }
@@ -798,7 +798,7 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   overflow: hidden;
 }
 
-/* sticky-atc.sticky__details .product__quantity-atc-wrapper::before {
+sticky-atc.sticky__details .product__quantity-atc-wrapper::before {
   content: "";
   background: var(--gold);
   max-height: 77px;
@@ -810,7 +810,7 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   bottom: 0;
   z-index: -1;
   height: 100%;
-} */
+}
 
 .sticky__product--details {
   display: flex;
