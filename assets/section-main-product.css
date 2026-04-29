@@ -795,6 +795,12 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   position: relative;
 }
 
+sticky-atc.sticky__details .product__quantity-atc-wrapper::before {
+  content: "";
+  background: var(--gold);
+  height: env(safe-area-inset-bottom);
+}
+
 .sticky__product--details {
   display: flex;
   align-items: center;
