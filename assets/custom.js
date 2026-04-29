@@ -84,3 +84,26 @@ document.querySelectorAll('.product__swatch').forEach(swatch => {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const stickyAtc = document.querySelector('sticky-atc');
+  if (!stickyAtc) return;
+
+  const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  if (!themeColorMeta) return;
+
+  const observer = new MutationObserver(function () {
+    if (stickyAtc.classList.contains('show')) {
+      themeColorMeta.setAttribute('content', '#ffffff');
+    } else {
+      themeColorMeta.setAttribute('content', '#ffffff');
+    }
+  });
+
+  observer.observe(stickyAtc, { attributes: true, attributeFilter: ['class'] });
+
+  // Also force it on scroll since Safari re-evaluates on scroll
+  window.addEventListener('scroll', function () {
+    themeColorMeta.setAttribute('content', '#ffffff');
+  }, { passive: true });
+});
