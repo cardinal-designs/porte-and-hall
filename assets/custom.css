@@ -109,3 +109,12 @@ span.jdgm-prev-badge__stars {
 .rebuy-bundle-builder__steps-container {
   padding-right: 20px;
 }
+
+.rebuy-bundle-builder__step-header {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.rebuy-widget .rebuy-product-block, .rebuy-recommended-products .rebuy-product-block {
+  padding: 0 !important;
+}
