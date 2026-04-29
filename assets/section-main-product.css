@@ -757,7 +757,7 @@ sticky-atc {
   opacity: 0;
   position: fixed;
   transition: all .3s ease;
-  bottom: 0;
+  bottom: 30px;
   left: 0;
   right: 0;
   background: #fff !important;
