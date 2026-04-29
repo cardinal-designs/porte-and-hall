@@ -141,6 +141,9 @@ span.jdgm-prev-badge__stars {
 
 .rebuy-bundle-builder__item-quantity-widget-label {
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .rebuy-bundle-builder__item-quantity-widget-button {
