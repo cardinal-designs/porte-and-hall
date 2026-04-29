@@ -115,11 +115,15 @@ span.jdgm-prev-badge__stars {
   padding-right: 0 !important;
 }
 
-.rebuy-widget .rebuy-product-block {
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-block {
   padding: 10px !important;
 }
 
-.rebuy-widget .rebuy-product-grid.start-column {
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-grid.start-column {
   margin-left: -10px;
   margin-right: -10px;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-button {
+
 }
