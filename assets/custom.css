@@ -177,7 +177,7 @@ span.jdgm-prev-badge__stars {
   border-radius: 0;
 }
 
-@media (min-width: 1179px) {
+@media (max-width: 1179px) {
 
   .rebuy-bundle-builder__steps-container {
     padding-right: 0;
