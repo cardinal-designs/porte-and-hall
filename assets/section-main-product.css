@@ -786,6 +786,7 @@ sticky-atc.sticky__details .product__quantity-atc-wrapper {
   padding-top: 15px;
   padding-bottom: 15px;
   background: var(--gold);
+  max-height: 47px;
 }
 
 .sticky__product--details {
