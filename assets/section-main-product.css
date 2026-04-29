@@ -783,12 +783,12 @@ sticky-atc .product-form__buttons {
 
 sticky-atc.sticky__details .product__quantity-atc-wrapper {
   justify-content: space-between !important;
-  /* padding-top: 15px;
-  padding-bottom: 15px; */
+  padding-top: 15px;
+  padding-bottom: 15px;
   background: var(--gold);
-  padding: 0;
+  /* padding: 0;
   margin-top: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 15px; */
 }
 
 .sticky__product--details {
