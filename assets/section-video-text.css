@@ -232,7 +232,6 @@ video[data-hero-video] {
 
   .video-text .FeatureText__ContentWrapper .SectionHeader {
     max-width: 500px !important;
-    padding-left: 50px !important;
   }
 
   .video-text .FeatureText__ContentWrapper {
@@ -270,10 +269,6 @@ video[data-hero-video] {
 @media screen and (max-width:380px) {
   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader {
     padding: 24px 20px 34px;
-  }
-
-  .video-text .FeatureText__ContentWrapper .SectionHeader {
-    padding-left: 20px !important;
   }
 }
 
