@@ -269,14 +269,14 @@ video[data-hero-video] {
   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader {
     padding: 24px 20px 34px !important;
   }
-}
-
-@media screen and (max-width: 380px) {
+  
   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading h1 {
     max-width: 280px;
     margin: 0 auto;
   }
-  
+}
+
+@media screen and (max-width: 380px) {
   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .Link--underline.button-small {
     padding: 14px 15px;
   }
