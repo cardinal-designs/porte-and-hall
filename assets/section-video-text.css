@@ -178,7 +178,6 @@ video[data-hero-video] {
 @media screen and (max-width:990px) {
   .image-with-text .home-banner .FeatureText {
     grid-template-columns: 1fr;
-
   }
 
   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper {
@@ -197,7 +196,7 @@ video[data-hero-video] {
   }
 
   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader {
-    padding: 24px 50px 34px;
+    padding: 24px 30px 34px;
     text-align: center;
     max-width: 500px;
     margin: 0 auto;
