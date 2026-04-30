@@ -265,7 +265,7 @@ video[data-hero-video] {
   }
 }
 
-@media screen and (max-width:380px) {
+@media screen and (max-width: 450px) {
   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader {
     padding: 24px 20px 34px !important;
   }
