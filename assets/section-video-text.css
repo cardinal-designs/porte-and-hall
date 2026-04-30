@@ -271,6 +271,12 @@ video[data-hero-video] {
   }
 }
 
+@media screen and (max-width: 380px) {
+  .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .Link--underline.button-small {
+    padding: 14px 15px;
+  }
+}
+
 @media (min-width: 769px) {
   .indoor-mats-2 .FeatureText__Content a {
     width: 75%;
