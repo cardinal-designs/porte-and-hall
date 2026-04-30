@@ -218,8 +218,8 @@ video[data-hero-video] {
     line-height: 1.2;
   }
 
-  .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .Link--underline {
-    padding: 10px 34px;
+  .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .Link--underline.button-small {
+    padding: 14px 20px;
   }
 
   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description {
