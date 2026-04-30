@@ -196,7 +196,7 @@ video[data-hero-video] {
   }
 
   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader {
-    padding: 24px 30px 34px;
+    padding: 24px 30px 34px !important;
     text-align: center;
     max-width: 500px;
     margin: 0 auto;
