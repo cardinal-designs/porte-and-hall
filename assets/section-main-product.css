@@ -1604,8 +1604,12 @@ product-form form {
   color: var(--error);
 }
 
-.template__sticky-add-to-cart #chat-button,
-.template__sticky-add-to-cart-details #chat-button {
-  right: 0 !important;
-  bottom: 85px !important;
+@media screen and (max-width: 768px) {
+
+  .template__sticky-add-to-cart #chat-button,
+  .template__sticky-add-to-cart-details #chat-button {
+    right: 0 !important;
+    bottom: 85px !important;
+  }
+
 }
