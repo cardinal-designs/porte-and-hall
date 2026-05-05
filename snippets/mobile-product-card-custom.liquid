@@ -65,8 +65,6 @@
   endcapture
 %}
 
-swatch_count -- {{ swatch_count }}
-
 <grouped-product-card data-collection-id="{{collection.id}}">
   <div class="product-card {% if simple_card == true %}product-card-simple{% endif %}">
     {% comment %}
@@ -224,14 +222,15 @@ swatch_count -- {{ swatch_count }}
       {% endif %}
     {% endif %}
 
-    {% comment %} {% unless template.suffix == 'last-chance' %}
+    {% unless template.suffix == 'last-chance' %}
     <div class="product-card__swatches">
-      {% if active_swatch != blank %}
+      {% comment %} {% if active_swatch != blank %}
         <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" aria-label="{{ active_swatch_tooltip_value }}" style="background-image: url({{ active_swatch_file_name | file_img_url: '60x60' }})"></a>
       {% endif %}
-      {{ color_swatch_list }}
+      {{ color_swatch_list }} {% endcomment %}
+      {{ swatch_count }}
     </div>
-    {% endunless %} {% endcomment %}
+    {% endunless %}
 
     {% if collection.metafields.custom.short_description != blank %}
       {% unless simple_card == true %}
