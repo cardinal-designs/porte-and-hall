@@ -246,6 +246,12 @@
       {% endunless %}
     {% endif %}
 
+    {% if description != blank %}
+        <div class="product-card__description body" {% unless template.suffix == "last-chance" %}style="display: none;{% endunless %}">
+          {{ description }}
+        </div>
+    {% endif %}
+
     {% if template.suffix == 'last-chance' %}
       <div>
 <!--         <div class="product-card__urgency">Only {{ product_card_product.selected_or_first_available_variant.inventory_quantity }} products left!</div> -->
