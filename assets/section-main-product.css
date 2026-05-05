@@ -1604,7 +1604,7 @@ product-form form {
   color: var(--error);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 899px) {
 
   .template__sticky-add-to-cart #chat-button,
   .template__sticky-add-to-cart-details #chat-button {
