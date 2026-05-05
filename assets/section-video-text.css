@@ -285,9 +285,17 @@ video[data-hero-video] {
 }
 
 @media (min-width: 769px) {
+
   .indoor-mats-2 .FeatureText__Content a {
     width: 75%;
     display: flex;
     justify-content: center;
   }
+
+}
+
+.template__sticky-add-to-cart #chat-button,
+.template__sticky-add-to-cart-details #chat-button {
+  right: 0 !important;
+  bottom: 85px !important;
 }
