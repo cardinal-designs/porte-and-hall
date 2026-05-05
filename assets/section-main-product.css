@@ -753,7 +753,8 @@ button[type="add"] > * {
 }
 
 sticky-atc {
-  z-index: 21474836361;
+  /* z-index: 21474836361; */
+  z-index: 2;
   opacity: 0;
   position: fixed;
   transition: all .3s ease;
