@@ -279,6 +279,9 @@ video[data-hero-video] {
   .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .Link--underline.button-small {
     padding: 14px 15px;
   }
+  .image-with-text .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .Link--underline { 
+    font-size: 12px;
+  }
 }
 
 @media (min-width: 769px) {
