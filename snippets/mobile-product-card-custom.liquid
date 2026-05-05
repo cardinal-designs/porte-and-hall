@@ -49,8 +49,9 @@
               echo ")' aria-label='Color swatcher' data-tooltip='"
               echo value | escape
               echo "'></a>"
-              assign swatch_count = swatch_count | plus: 1
+              
             endif
+            assign swatch_count = swatch_count | plus: 1
           endfor
         endif
       endfor
@@ -64,6 +65,8 @@
     endif
   endcapture
 %}
+
+swatch_count -- {{ swatch_count }}
 
 <grouped-product-card data-collection-id="{{collection.id}}">
   <div class="product-card {% if simple_card == true %}product-card-simple{% endif %}">
