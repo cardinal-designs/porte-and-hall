@@ -221,18 +221,6 @@
       {% endif %}
     {% endif %}
 
-    {% unless template.suffix == 'last-chance' %}
-        {% if swatch_count > 0 %}
-            <div class="product-card__swatches">
-            {% comment %} {% if active_swatch != blank %}
-                <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" aria-label="{{ active_swatch_tooltip_value }}" style="background-image: url({{ active_swatch_file_name | file_img_url: '60x60' }})"></a>
-            {% endif %}
-            {{ color_swatch_list }} {% endcomment %}
-            available in {{ swatch_count }} colors
-            </div>
-        {% endif %}
-    {% endunless %}
-
     {% if collection.metafields.custom.short_description != blank %}
       {% unless simple_card == true %}
         <div class="product-card__description body" {% unless template.suffix == "last-chance" %}style="display: none;{% endunless %}">
@@ -280,6 +268,17 @@
             </span> {% endcomment %}
         </a>
     {% endif %}
+        {% unless template.suffix == 'last-chance' %}
+        {% if swatch_count > 0 %}
+            <div class="product-card__swatches">
+            {% comment %} {% if active_swatch != blank %}
+                <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" aria-label="{{ active_swatch_tooltip_value }}" style="background-image: url({{ active_swatch_file_name | file_img_url: '60x60' }})"></a>
+            {% endif %}
+            {{ color_swatch_list }} {% endcomment %}
+            available in {{ swatch_count }} colors
+            </div>
+        {% endif %}
+    {% endunless %}
   {% if simple_card == true %}</div>{% endif %}
   </div>
 </grouped-product-card>
