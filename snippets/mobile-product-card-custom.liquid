@@ -246,6 +246,7 @@
       {% endunless %}
     {% endif %}
 
+    description -- {{description }}
     {% if description != blank %}
         <div class="product-card__description body" {% unless template.suffix == "last-chance" %}style="display: none;{% endunless %}">
           {{ description }}
