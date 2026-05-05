@@ -228,7 +228,7 @@
         <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" aria-label="{{ active_swatch_tooltip_value }}" style="background-image: url({{ active_swatch_file_name | file_img_url: '60x60' }})"></a>
       {% endif %}
       {{ color_swatch_list }} {% endcomment %}
-      {{ swatch_count }}
+      available in {{ swatch_count }} colors
     </div>
     {% endunless %}
 
