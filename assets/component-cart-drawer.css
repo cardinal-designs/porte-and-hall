@@ -505,6 +505,7 @@ cart-drawer-remove-button {
 .cart-text-with-icon {
   display:flex;
   justify-content: center;
+  gap: 20px;
 }
 
 .cart-text-with-icon .icon-text-box {
@@ -525,7 +526,7 @@ cart-drawer-remove-button {
 .cart-text-with-icon .icon-text-box:before {
   content:"";
   position:absolute;
-  right: 0;
+  right: -10px;
   top: 0;
   background: #D2B065;
   height: 100%;
