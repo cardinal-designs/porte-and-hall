@@ -546,7 +546,8 @@ cart-drawer-remove-button {
   text-align: center;
 }
 
-.cart-text-with-icon .icon-text-box:first-child h6 {
+.cart-text-with-icon .icon-text-box:first-child h6,
+.cart-text-with-icon .icon-text-box:last-child h6 {
   max-width: 65px;
 }
 
