@@ -118,11 +118,15 @@
             Outdoor
           {% endif %}
         </div> {% endcomment %}
-        {% if lowercase_tags contains 'best seller' %}
-          <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
+        
+        <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' or template.suffix == 'best-sellers' %}hidden{% endif %}">
+          {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
+            {{ product_card_product.first_available_variant.metafields.custom.use }}
+          {% elsif lowercase_tags contains 'best seller' %}
             Best Seller
-          </div>
-        {% endif %}
+          {% endif %}
+        </div>
+
         {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
           {% assign price_change = product_card_product.price | minus: product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
           {% assign percent_discount = price_change | times: 100 | divided_by: product_card_product.price %}
