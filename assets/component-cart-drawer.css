@@ -562,6 +562,10 @@ cart-drawer-remove-button {
   max-width: 20px;
 }
 
+.cart-text-with-icon .icon-text-box:last-child span img {
+  max-width: 25px;
+}
+
 .template-cart .cart__footer-wrapper:last-child .cart__footer {
   padding-bottom: 0;
 }
