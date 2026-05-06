@@ -604,6 +604,11 @@ cart-drawer-remove-button {
   .cart-text-with-icon {
     gap: 20px;
   }
+
+  .cart-text-with-icon .icon-text-box:before {
+    right: -10px;
+  }
+
 }
 
 /* Rebuy Block CSS [START] */
