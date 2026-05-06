@@ -1621,4 +1621,9 @@ product-form form {
     max-height: 10px;
   }
 
+  .main-product-ATF-revamp .swiper-pagination-bullet-active:after {
+    width: 4px;
+    height: 4px;
+  }
+
 }
