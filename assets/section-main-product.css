@@ -1613,3 +1613,12 @@ product-form form {
   }
 
 }
+
+@media screen and (max-width: 768px) {
+
+  .main-product-ATF-revamp .swiper-pagination-bullet {
+    max-width: 10px;
+    max-height: 10px;
+  }
+
+}
