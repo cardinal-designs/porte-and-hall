@@ -527,7 +527,8 @@ cart-drawer-remove-button {
   content:"";
   position:absolute;
   right: -20px;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   background: #D2B065;
   height: 50%;
   width: 1px;
