@@ -1,0 +1,314 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs_3xzGJ4": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
+    "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c": {
+      "type": "page-hero",
+      "blocks": {
+        "2b0d0088-6c3d-48fc-aebe-ea6130c622e7": {
+          "type": "icon",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Outsider-Scrape_1.gif",
+            "title": "STAIN-RESISTANT"
+          }
+        },
+        "f9f45ca9-6345-4f5f-89d5-56aebb2a5189": {
+          "type": "icon",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Outsider-Removable_aad5ef63-5b85-44d2-b720-2ffb6443308c.gif",
+            "title": "SLIP-RESISTANT"
+          }
+        },
+        "711cf30f-2298-4b22-8226-af3f38d9b8dd": {
+          "type": "icon",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Homepage-Quality.gif",
+            "title": "HIGH-QUALITY"
+          }
+        }
+      },
+      "block_order": [
+        "2b0d0088-6c3d-48fc-aebe-ea6130c622e7",
+        "f9f45ca9-6345-4f5f-89d5-56aebb2a5189",
+        "711cf30f-2298-4b22-8226-af3f38d9b8dd"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Our Mats In Under A Minute",
+        "text": "",
+        "small_text": "",
+        "swap-fonts": false
+      }
+    },
+    "main_collection_banner_bQhCqC": {
+      "type": "main-collection-banner",
+      "custom_css": [
+        ".collection-hero__description {margin: 0; padding: 0;}"
+      ],
+      "name": "t:sections.main-collection-banner.name",
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false
+      }
+    },
+    "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a": {
+      "type": "collection-head-slider",
+      "blocks": {
+        "category_rbdpyb": {
+          "type": "category",
+          "settings": {
+            "title": "Indoor Doormats",
+            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Indoor"
+          }
+        },
+        "category_6DiQQ4": {
+          "type": "category",
+          "settings": {
+            "title": "Outdoor Doormats",
+            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Outdoor"
+          }
+        },
+        "category_TUtNNX": {
+          "type": "category",
+          "settings": {
+            "title": "Runners",
+            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
+          }
+        },
+        "category_DB8PtU": {
+          "type": "category",
+          "settings": {
+            "title": "Area Mats",
+            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
+          }
+        },
+        "category_Ed3rUr": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "title": "Shop all",
+            "link": "https://www.porteandhall.com/collections/shop-all"
+          }
+        }
+      },
+      "block_order": [
+        "category_rbdpyb",
+        "category_6DiQQ4",
+        "category_TUtNNX",
+        "category_DB8PtU",
+        "category_Ed3rUr"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "product-grid": {
+      "type": "main-collection-sticky-filters-mobile",
+      "blocks": {
+        "category_QfnPTA": {
+          "type": "category",
+          "settings": {
+            "title": "Indoor Doormats",
+            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Indoor"
+          }
+        },
+        "category_AEAT8d": {
+          "type": "category",
+          "settings": {
+            "title": "Outdoor Doormats",
+            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Outdoor"
+          }
+        },
+        "category_3a9r6P": {
+          "type": "category",
+          "settings": {
+            "title": "Runners",
+            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
+          }
+        },
+        "category_m84LW4": {
+          "type": "category",
+          "settings": {
+            "title": "Area Mats",
+            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
+          }
+        }
+      },
+      "block_order": [
+        "category_QfnPTA",
+        "category_AEAT8d",
+        "category_3a9r6P",
+        "category_m84LW4"
+      ],
+      "settings": {
+        "products_per_page": 16,
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "add_image_padding": false,
+        "show_image_outline": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "collapse_on_larger_devices": false,
+        "text_color": "#546b82",
+        "bg_color": "#ffffff"
+      }
+    },
+    "logo_marquee_XqK98A": {
+      "type": "logo-marquee",
+      "blocks": {
+        "logo_mhyqrd": {
+          "type": "logo",
+          "name": "Featured In",
+          "settings": {
+            "logo": "shopify://shop_images/featuredin.png",
+            "svg": ""
+          }
+        },
+        "logo_9mX4Rq": {
+          "type": "logo",
+          "name": "Better Homes and Garden",
+          "settings": {
+            "logo": "shopify://shop_images/better-homes-and-gardens-seeklogo_copy_b7ad6b67-efaf-4408-b921-c51fea885314.png",
+            "svg": ""
+          }
+        },
+        "logo_FUCrUc": {
+          "type": "logo",
+          "name": "Forbes",
+          "settings": {
+            "logo": "shopify://shop_images/Forbes-01_0f8e5020-ca8c-4799-bfdf-20323649e33a.png",
+            "svg": ""
+          }
+        },
+        "logo_mRAepk": {
+          "type": "logo",
+          "name": "Southern Living",
+          "settings": {
+            "logo": "shopify://shop_images/Southern-Living-Logo_copy_81a6b959-9e38-4dc8-8fbc-22cd11990acf.png",
+            "svg": ""
+          }
+        },
+        "logo_3A9YVD": {
+          "type": "logo",
+          "name": "Real Simple",
+          "settings": {
+            "logo": "shopify://shop_images/RealSimple.svg_copy_2_1_a4c57903-a665-48f7-a751-1f564040b71c.png",
+            "svg": ""
+          }
+        },
+        "logo_3tJMJr": {
+          "type": "logo",
+          "name": "Veranda",
+          "settings": {
+            "logo": "shopify://shop_images/Veranda-logo_copy.png",
+            "svg": ""
+          }
+        },
+        "logo_DQqYWW": {
+          "type": "logo",
+          "name": "USA Today",
+          "settings": {
+            "logo": "shopify://shop_images/USA-Today-logo_copy_cd5eca3a-a963-4717-9b53-40e078f1195b.png",
+            "svg": ""
+          }
+        },
+        "logo_peJmpH": {
+          "type": "logo",
+          "name": "People Inc",
+          "settings": {
+            "logo": "shopify://shop_images/people-inc.png",
+            "svg": ""
+          }
+        },
+        "logo_ykYJee": {
+          "type": "logo",
+          "name": "Apartment Therapy",
+          "settings": {
+            "logo": "shopify://shop_images/apartment-therapy_1d580765-3cce-43d1-a704-a03b68af769a.png",
+            "svg": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_mhyqrd",
+        "logo_9mX4Rq",
+        "logo_FUCrUc",
+        "logo_mRAepk",
+        "logo_3A9YVD",
+        "logo_3tJMJr",
+        "logo_DQqYWW",
+        "logo_peJmpH",
+        "logo_ykYJee"
+      ],
+      "settings": {
+        "background_color": "#d8d3c7"
+      }
+    },
+    "2046a8d4-8126-4344-8df2-6dd5193e7293": {
+      "type": "featured-articles",
+      "blocks": {
+        "140e3c63-9b99-476d-9378-53fd1ce30b89": {
+          "type": "article",
+          "settings": {
+            "article": "news/how-to-find-the-best-doormat-for-your-home"
+          }
+        },
+        "faf6f395-3915-4f58-b2c5-acd839476fc2": {
+          "type": "article",
+          "settings": {
+            "article": "news/the-view-from-my-porch"
+          }
+        },
+        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23": {
+          "type": "article",
+          "settings": {
+            "article": "news/why-pay-more-for-a-doormat"
+          }
+        }
+      },
+      "block_order": [
+        "140e3c63-9b99-476d-9378-53fd1ce30b89",
+        "faf6f395-3915-4f58-b2c5-acd839476fc2",
+        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23"
+      ],
+      "settings": {
+        "heading": "Style tips from the Porte + Hall Blog",
+        "background": "#eeefef",
+        "blog": "news",
+        "show_recent_articles": true,
+        "hide_mobile": false
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs_3xzGJ4",
+    "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
+    "main_collection_banner_bQhCqC",
+    "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a",
+    "product-grid",
+    "logo_marquee_XqK98A",
+    "2046a8d4-8126-4344-8df2-6dd5193e7293"
+  ]
+}
