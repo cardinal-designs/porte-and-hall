@@ -130,7 +130,11 @@
               Outdoor
             </div>
           {% endif %} {% endcomment %}
-           {% if lowercase_tags contains 'best seller' %}
+          {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
+            <div class="product-card__image-label body-xs visible-on-image">
+              {{ product_card_product.first_available_variant.metafields.custom.use }}
+            </div>
+          {% elsif lowercase_tags contains 'best seller' %}
             <div class="product-card__image-label body-xs visible-on-image">
               Best Seller
             </div>
