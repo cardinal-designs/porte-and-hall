@@ -1646,6 +1646,10 @@ product-form form {
     margin-bottom: 0;
   }
 
+  .main-product-ATF-revamp .product__tag {
+    display: none;
+  }
+
   .main-product-ATF-revamp .swiper-horizontal > .swiper-pagination-bullets, 
   .main-product-ATF-revamp .swiper-pagination-bullets.swiper-pagination-horizontal, 
   .main-product-ATF-revamp .swiper-pagination-custom, 
