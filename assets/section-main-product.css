@@ -1626,6 +1626,10 @@ product-form form {
     height: 4px;
   }
 
+  .main-product-ATF-revamp .swiper-pagination {
+    column-gap: 10px;
+  }
+
   .main-product-ATF-revamp .swiper-horizontal > .swiper-pagination-bullets, 
   .main-product-ATF-revamp .swiper-pagination-bullets.swiper-pagination-horizontal, 
   .main-product-ATF-revamp .swiper-pagination-custom, 
