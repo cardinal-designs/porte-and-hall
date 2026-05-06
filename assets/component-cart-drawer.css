@@ -549,7 +549,13 @@ cart-drawer-remove-button {
 }
 
 .cart-text-with-icon .icon-text-box span {
-  padding-right: 14px;
+  padding-right: 10px;
+}
+
+.cart-text-with-icon .icon-text-box span img {
+  width: auto;
+  height: auto;
+  max-width: 30px;
 }
 
 .template-cart .cart__footer-wrapper:last-child .cart__footer {
