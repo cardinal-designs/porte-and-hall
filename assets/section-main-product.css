@@ -902,7 +902,7 @@ variant-selects {
   sticky-atc.show {
     position: fixed;
     bottom: 0;
-    width: calc(100% - 4px);
+    width: calc(100% - 6px);
     opacity: 1;
   }
 
