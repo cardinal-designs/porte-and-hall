@@ -765,7 +765,7 @@ sticky-atc {
   background: transparent !important;
   /* max-height: 77px; */
   overflow: hidden;
-  margin: 8px;
+  margin: 2px;
 }
 
 sticky-atc .quantity {
@@ -902,7 +902,7 @@ variant-selects {
   sticky-atc.show {
     position: fixed;
     bottom: 0;
-    width: calc(100% - 16px);
+    width: calc(100% - 4px);
     opacity: 1;
   }
 
