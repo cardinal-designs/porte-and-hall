@@ -762,10 +762,12 @@ sticky-atc {
   bottom: 30px;
   left: 0;
   right: 0;
-  border: 4px solid white;
+  /* border: 4px solid white; */
   /* max-height: 77px; */
   overflow: hidden;
   margin: 0px;
+  padding: 4px;
+  background: white;
 }
 
 sticky-atc .quantity {
