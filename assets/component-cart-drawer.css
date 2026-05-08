@@ -10,7 +10,8 @@
   transform: translateX(100%);
   -webkit-transform: translateX(100%);
   transition: .4s ease-in-out;
-  z-index: 15;
+  /* z-index: 15; */
+  z-index: 21474836361;
   background: white;
 }
 
