@@ -102,7 +102,7 @@
                {% endcapture %}
               {% endif %}
 
-              <div class="cart-drawer__subtotal-wrapper">
+              <div class="cart-drawer__subtotal-wrapper" id="cart-drawer-subtotal">
                 <h4 class="body-sm">Subtotal</h4>
                 <div class="cart-drawer__loading-container">
                   <h4 class="cart-drawer__subtotal">{{ cart.total_price | money_without_trailing_zeros }}</h4>
