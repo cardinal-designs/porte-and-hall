@@ -1616,3 +1616,48 @@ product-form form {
   }
 
 }
+
+@media screen and (max-width: 768px) {
+
+  .main-product-ATF-revamp .swiper-pagination-bullet {
+    max-width: 10px;
+    max-height: 10px;
+  }
+
+  .main-product-ATF-revamp .swiper-pagination-bullet-active:after {
+    width: 4px;
+    height: 4px;
+  }
+
+  .main-product-ATF-revamp .swiper-pagination {
+    column-gap: 10px;
+  }
+
+  .main-product-ATF-revamp .product__title {
+    font-size: 28px;
+  }
+
+  .main-product-ATF-revamp .price .h3 {
+    font-size: 16px;
+  }
+
+  .main-product-ATF-revamp .jdgm-prev-badge__text {
+    font-size: 14px !important;
+  }
+
+  .main-product-ATF-revamp .product__swatches {
+    margin-bottom: 0;
+  }
+
+  .main-product-ATF-revamp .product__tag {
+    display: none;
+  }
+
+  .main-product-ATF-revamp .swiper-horizontal > .swiper-pagination-bullets, 
+  .main-product-ATF-revamp .swiper-pagination-bullets.swiper-pagination-horizontal, 
+  .main-product-ATF-revamp .swiper-pagination-custom, 
+  .main-product-ATF-revamp .swiper-pagination-fraction {
+    bottom: 20px;
+  }
+
+}
