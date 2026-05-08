@@ -24,6 +24,28 @@
     },
     "video_text_hTPBAL": {
       "type": "video-text",
+      "disabled": true,
+      "name": "Video with text",
+      "settings": {
+        "video": "shopify://files/videos/Mother'sDay_homepage_1200x1200 (1).mp4",
+        "mobile_video": "shopify://files/videos/Mother'sDay_homepage_mobile_1200x1200 (1).mp4",
+        "video_poster": "shopify://shop_images/white-img.png",
+        "subheading": "",
+        "title": "<h1>Home Starts</h1><h1>With You</h1>",
+        "title_font_size": 60,
+        "content": "<p>You deserve a mat that works as hard as you do. And looks beautiful doing it.</p>",
+        "content_font_size": 28,
+        "content_font_size_mb": 14,
+        "link_text": "Shop the Mother's Day Sale",
+        "link_url": "shopify://collections/shop-all",
+        "button_style": "small",
+        "custom-class": "home-banner",
+        "media_first": false,
+        "content_full_width": false
+      }
+    },
+    "video_text_y8x8dw": {
+      "type": "video-text",
       "name": "Video with text",
       "settings": {
         "video": "shopify://files/videos/Mother'sDay_homepage_1200x1200 (1).mp4",
@@ -850,6 +872,7 @@
   "order": [
     "418f1ea5-87fc-47df-a19d-dd5b66fe7e62",
     "video_text_hTPBAL",
+    "video_text_y8x8dw",
     "3726ddfa-f49e-4e18-a5f2-430400876ccd",
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",
     "product_carousel_new_aKw9LG",
