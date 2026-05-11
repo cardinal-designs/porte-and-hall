@@ -28,7 +28,7 @@
         "button_style": "small",
         "custom-class": "home-banner",
         "media_first": false,
-        "content_full_width": true
+        "content_full_width": false
       }
     },
     "video_text_hTPBAL": {
@@ -36,6 +36,7 @@
       "disabled": true,
       "name": "Video with text",
       "settings": {
+        "bg_color": "",
         "video": "shopify://files/videos/Outlier Made to Last _1200x1200_7c022148-d5cf-44af-a35c-bb48245453c7.mp4",
         "mobile_video": "shopify://files/videos/Outlier Made to Last _1200x1200 (1).mp4",
         "video_poster": "shopify://shop_images/white-img.png",
@@ -58,6 +59,7 @@
       "disabled": true,
       "name": "Video with text",
       "settings": {
+        "bg_color": "",
         "video": "shopify://files/videos/Mother'sDay_homepage_1200x1200 (1).mp4",
         "mobile_video": "shopify://files/videos/Mother'sDay_homepage_mobile_1200x1200 (1).mp4",
         "video_poster": "shopify://shop_images/white-img.png",
