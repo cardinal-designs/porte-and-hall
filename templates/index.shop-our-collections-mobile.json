@@ -27,6 +27,7 @@
       "disabled": true,
       "name": "Video with text",
       "settings": {
+        "bg_color": "",
         "video": "shopify://files/videos/Mother'sDay_homepage_1200x1200 (1).mp4",
         "mobile_video": "shopify://files/videos/Mother'sDay_homepage_mobile_1200x1200 (1).mp4",
         "video_poster": "shopify://shop_images/white-img.png",
@@ -48,15 +49,22 @@
       "type": "video-text",
       "name": "Video with text",
       "settings": {
+        "bg_color": "",
         "video": "shopify://files/videos/cro_compress.mp4",
         "mobile_video": "shopify://files/videos/cro_compress.mp4",
         "video_poster": "shopify://shop_images/white-img.png",
         "subheading": "",
         "title": "<h1>Worthy of Your Welcome</h1>",
+        "title_font_size": 72,
         "content": "<p>Premium indoor and outdoor mats to elevate your entry and your everyday.</p>",
+        "content_font_size": 30,
+        "content_font_size_mb": 14,
         "link_text": "explore more",
         "link_url": "shopify://collections/shop-all",
-        "custom-class": "home-banner"
+        "button_style": "small",
+        "custom-class": "home-banner",
+        "media_first": false,
+        "content_full_width": false
       }
     },
     "3726ddfa-f49e-4e18-a5f2-430400876ccd": {
@@ -293,15 +301,15 @@
           "type": "block",
           "settings": {
             "title": "Indoor Mats",
-            "badge1": "Ultra-thin",
+            "badge1": "Ultra thin",
             "product1_title": "The Insider",
-            "product1_description": "Our #1 best-selling ultra-thin mat that fits under your door",
+            "product1_description": "Lies flat, stays put, and fits seamlessly under your door",
             "collection1": "the-insider",
             "product1": "the-insider-retro-orange-doormat",
             "product_image1": "shopify://shop_images/WildSideDove_Doormat_v2.jpg",
             "badge2": "Natural look",
             "product2_title": "The Innerweave",
-            "product2_description": "Stain-resistant natural fibers that are soft on bare feet",
+            "product2_description": "Soft woven texture that resists stains and shedding",
             "collection2": "the-innerweave",
             "product2": "the-innerweave-chevron-natural-doormat",
             "product_image2": "shopify://shop_images/Innerweave_mat_9848f33d-c73b-490a-99c1-61c4daf0a915.jpg"
@@ -311,15 +319,15 @@
           "type": "block",
           "settings": {
             "title": "Outdoor Mats",
-            "badge1": "Dirt trapper",
+            "badge1": "Dirt-trapper",
             "product1_title": "The Outlier",
-            "product1_description": "Maximum scrape-ability with thousands of rubbery bristles",
+            "product1_description": "Scrapes shoes clean, drains water, and stays strong",
             "collection1": "the-outlier",
             "product1": "the-outlier-slate-doormat",
             "product_image1": "shopify://shop_images/the_outlier_df24f4b8-d6b9-4b52-a5d7-660359294000.jpg",
             "badge2": "Eye-catcher",
             "product2_title": "The Porter",
-            "product2_description": "Our most luxurious, hand-knitted mat that traps all the dirt",
+            "product2_description": "Hand-knotted luxury with all-weather durability",
             "collection2": "the-porter-standard",
             "product2": "the-porter-truffle-standard",
             "product_image2": "shopify://shop_images/Homepage_porterthumbnail.jpg"
