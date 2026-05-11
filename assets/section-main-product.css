@@ -1649,6 +1649,8 @@ product-form form {
 
   .main-product-ATF-revamp .product__swatches {
     margin-bottom: 0;
+    column-gap: 7px;
+    row-gap: 7px;
   }
 
   .main-product-ATF-revamp .product__swatch {
