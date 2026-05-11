@@ -1651,6 +1651,11 @@ product-form form {
     margin-bottom: 0;
   }
 
+  .main-product-ATF-revamp .product__swatch {
+    height: 52px;
+    width: 52px;
+  }
+
   .main-product-ATF-revamp .product__tag {
     display: none;
   }
