@@ -287,7 +287,7 @@
       {% section 'cart-drawer' %}
     {% endif %}
 
-    <main id="MainContent" class="{{collection.template_suffix}}  content-for-layout focus-none" role="main" tabindex="-1">
+    <main id="MainContent" class="{{collection.template_suffix}} {% if product %}product-template{% endif %} content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
