@@ -1116,7 +1116,7 @@ deferred-media {
 
 .header__navigation {
   grid-area: nav;
-  background: var(--beige-secondary);
+  background: #eeefef;
   padding: 8px 40px 0;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
