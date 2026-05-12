@@ -166,6 +166,56 @@
         "title": "Meet our collections"
       }
     },
+    "custom_collection_products_desktop_XNiQe4": {
+      "type": "custom-collection-products-desktop",
+      "blocks": {
+        "block_BUxUMe": {
+          "type": "block",
+          "settings": {
+            "title": "Indoor Mats",
+            "badge1": "Natural look",
+            "product1_title": "The Innerweave",
+            "product1_description": "Lies flat, stays put, and fits seamlessly under your door.",
+            "collection1": "the-innerweave",
+            "product1": "the-innerweave-chevron-natural-doormat",
+            "product_image1": "shopify://shop_images/Innerweave_mat_9848f33d-c73b-490a-99c1-61c4daf0a915.jpg",
+            "badge2": "Ultra-thin",
+            "product2_title": "The Insider",
+            "product2_description": "Soft woven texture that resists stains and shedding.",
+            "collection2": "the-insider",
+            "product2": "the-insider-retro-orange-doormat",
+            "product_image2": "shopify://shop_images/the_insider_ccf4c005-c63e-499e-844d-f5e94140440b.jpg"
+          }
+        },
+        "block_jM9rVm": {
+          "type": "block",
+          "settings": {
+            "title": "Outdoor Mats",
+            "badge1": "Dirt trapper",
+            "product1_title": "The Outlier",
+            "product1_description": "Scrapes shoes clean, drains water, and stays strong.",
+            "collection1": "the-outlier",
+            "product1": "the-outlier-slate-doormat",
+            "product_image1": "shopify://shop_images/the_outlier_df24f4b8-d6b9-4b52-a5d7-660359294000.jpg",
+            "badge2": "Eye-catcher",
+            "product2_title": "The Porter",
+            "product2_description": "Hand-knotted luxury with all-weather durability.",
+            "collection2": "the-porter-standard",
+            "product2": "the-porter-truffle-standard",
+            "product_image2": "shopify://shop_images/Homepage_porterthumbnail.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "block_BUxUMe",
+        "block_jM9rVm"
+      ],
+      "name": "Custom Collection products",
+      "settings": {
+        "title": "Meet our collections",
+        "hide_mobile": true
+      }
+    },
     "product_carousel_new_aKw9LG": {
       "type": "product-carousel-new",
       "disabled": true,
@@ -841,6 +891,7 @@
     "video_text_yYPefV",
     "3726ddfa-f49e-4e18-a5f2-430400876ccd",
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",
+    "custom_collection_products_desktop_XNiQe4",
     "product_carousel_new_aKw9LG",
     "product_carousel_new_2_JLEKyQ",
     "product_carousel_2_nFt3hG",
