@@ -115,7 +115,7 @@
 
         {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
 
-        <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
+        {% comment %} <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
           {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
             {{ product_card_product.first_available_variant.metafields.custom.use }}
           {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
@@ -125,7 +125,13 @@
           {% elsif lowercase_tags contains 'outdoor' %}
             Outdoor
           {% endif %}
-        </div>
+        </div> {% endcomment %}
+
+        {% if lowercase_tags contains 'best seller' %}
+          <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' or template.suffix == 'best-sellers' %}hidden{% endif %}">
+            Best Seller
+          </div>
+        {% endif %}
 
         {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
           {% assign price_change = product_card_product.price | minus: product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
@@ -140,7 +146,7 @@
     {% if simple_card == true %}<div>{% endif %}
 
     {% if template.suffix == 'last-chance' %}
-      <div class="product-card__type-label body-xs">
+      {% comment %} <div class="product-card__type-label body-xs">
         {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
           {{ product_card_product.first_available_variant.metafields.custom.use }}
         {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
@@ -150,7 +156,12 @@
         {% elsif lowercase_tags contains 'outdoor' %}
           Outdoor
         {% endif %}
-      </div>
+      </div> {% endcomment %}
+      {% if lowercase_tags contains 'best seller' %}
+        <div class="product-card__type-label body-xs">
+          Best Seller
+        </div>
+      {% endif %}
     {% endif %}
 
     {% if section.settings.show_metafield_style %}
