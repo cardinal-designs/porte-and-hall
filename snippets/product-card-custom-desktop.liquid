@@ -222,14 +222,7 @@
       {% endif %}
     {% endif %}
 
-    {% unless template.suffix == 'last-chance' %}
-    <div class="product-card__swatches">
-      {% if active_swatch != blank %}
-        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" aria-label="{{ active_swatch_tooltip_value }}" style="background-image: url({{ active_swatch_file_name | file_img_url: '60x60' }})"></a>
-      {% endif %}
-      {{ color_swatch_list }}
-    </div>
-    {% endunless %}
+   
 
     {% if collection.metafields.custom.short_description != blank %}
       {% unless simple_card == true %}
@@ -246,21 +239,21 @@
     {% if template.suffix == 'last-chance' %}
       <div>
 <!--         <div class="product-card__urgency">Only {{ product_card_product.selected_or_first_available_variant.inventory_quantity }} products left!</div> -->
-      <button data-quick-add class="product-card__quick-add button" data-variant="{{ product_card_product.selected_or_first_available_variant.id }}">
-        <span>Add to Cart</span>
-        <div class="loading-overlay__spinner">
-          <svg
-            aria-hidden="true"
-            focusable="false"
-            role="presentation"
-            class="spinner"
-            viewBox="0 0 66 66"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-          </svg>
-        </div>
-      </button>
+        <button data-quick-add class="product-card__quick-add button" data-variant="{{ product_card_product.selected_or_first_available_variant.id }}">
+          <span>Add to Cart</span>
+          <div class="loading-overlay__spinner">
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              role="presentation"
+              class="spinner"
+              viewBox="0 0 66 66"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+            </svg>
+          </div>
+        </button>
       </div>
     {% else %}
       <a href="{{ product_card_product.url }}" class="text-link gold-secondary--dark product-card__link">
@@ -272,6 +265,16 @@
         </span> {% endcomment %}
       </a>
     {% endif %}
+    
+    {% unless template.suffix == 'last-chance' %}
+      <div class="product-card__swatches">
+        {% if active_swatch != blank %}
+          <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" class="product-card__swatch" aria-label="{{ active_swatch_tooltip_value }}" style="background-image: url({{ active_swatch_file_name | file_img_url: '60x60' }})"></a>
+        {% endif %}
+        {{ color_swatch_list }}
+      </div>
+    {% endunless %}
+
   {% if simple_card == true %}</div>{% endif %}
   </div>
 </grouped-product-card>
