@@ -179,11 +179,13 @@
 
 
     <!-- Start of Judge.me code --> 
-    {% comment %} <div class='jdgm-widget jdgm-preview-badge xtreviewbadge' data-id='{{ product_card_product.id }}'> 
+    {% unless collection.url == "shop-all" %}
+    <div class='jdgm-widget jdgm-preview-badge xtreviewbadge' data-id='{{ product_card_product.id }}'> 
       <a href="{{ product_card_product.url }}/#judgeme_product_reviews">
         {{ product_card_product.metafields.judgeme.badge }} 
       </a>
-    </div>  {% endcomment %}
+    </div> 
+    {% endunless %}
     <!-- End of Judge.me code -->
 
 
