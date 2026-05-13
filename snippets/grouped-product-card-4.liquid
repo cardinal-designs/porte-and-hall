@@ -157,7 +157,19 @@
       <a href="{{ product_card_product.url }}">
         <div class="product-card__title h3 blue">
           {{ title | default: collection.title | replace: ' | ', ' ' }}
-          <br><span><h2 class="body {% if product_card_product.handle contains 'ii' %}no-capitalize{% endif %}" style="text-transform:none;"> {{ product_card_product.options_by_name['color'].values[0] }}</h2> </span>
+          {% comment %} <br><span><h2 class="body {% if product_card_product.handle contains 'ii' %}no-capitalize{% endif %}" style="text-transform:none;"> {{ product_card_product.options_by_name['color'].values[0] }}</h2> </span> {% endcomment %}
+          {% comment %} {%- if collection.metafields.custom.dimensions != blank -%}
+            <span class="body">({{ collection.metafields.custom.dimensions }})</span>
+          {%- endif -%} {% endcomment %}
+        </div>
+      </a>
+    {% endif %}
+
+    {% if title != blank or collection.title != blank %}
+      <a href="{{ product_card_product.url }}">
+        <div class="product-card__title h3 blue">
+          {% comment %} {{ title | default: collection.title | replace: ' | ', ' ' }} {% endcomment %}
+          <span><h2 class="body {% if product_card_product.handle contains 'ii' %}no-capitalize{% endif %}" style="text-transform:none;"> {{ product_card_product.options_by_name['color'].values[0] }}</h2> </span>
           {% comment %} {%- if collection.metafields.custom.dimensions != blank -%}
             <span class="body">({{ collection.metafields.custom.dimensions }})</span>
           {%- endif -%} {% endcomment %}
@@ -167,12 +179,12 @@
 
 
     <!-- Start of Judge.me code --> 
-<div class='jdgm-widget jdgm-preview-badge xtreviewbadge' data-id='{{ product_card_product.id }}'> 
-  <a href="{{ product_card_product.url }}/#judgeme_product_reviews">
-  {{ product_card_product.metafields.judgeme.badge }} 
-    </a>
-</div> 
-<!-- End of Judge.me code -->
+    <div class='jdgm-widget jdgm-preview-badge xtreviewbadge' data-id='{{ product_card_product.id }}'> 
+      <a href="{{ product_card_product.url }}/#judgeme_product_reviews">
+        {{ product_card_product.metafields.judgeme.badge }} 
+      </a>
+    </div> 
+    <!-- End of Judge.me code -->
 
 
     {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
