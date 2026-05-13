@@ -131,7 +131,8 @@
                     title: grouped_collection.title,
                     button_text: 'Shop Now',
                     card_index: forloop.index,
-                    forloop_index: forloop.index
+                    forloop_index: forloop.index,
+                    hide_tag: section.settings.hide_tag
                   %}
                 </li>
               {% endfor %}
@@ -528,6 +529,12 @@
       "id": "show_secondary_image",
       "default": false,
       "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_tag",
+      "default": false,
+      "label": "Hide Label?"
     },
     {
       "type": "checkbox",
