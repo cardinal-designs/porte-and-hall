@@ -179,8 +179,9 @@
 
 
     <!-- Start of Judge.me code --> 
-    collection.url -- {{ canonical_url }}
-    {% unless collection.url contains "shop-all" %}
+    {% assign main_collection = canonical_url | split: "/" | last %}
+    main_collection -- {{ main_collection }}
+    {% unless main_collection == "shop-all" %}
     <div class='jdgm-widget jdgm-preview-badge xtreviewbadge' data-id='{{ product_card_product.id }}'> 
       <a href="{{ product_card_product.url }}/#judgeme_product_reviews">
         {{ product_card_product.metafields.judgeme.badge }} 
