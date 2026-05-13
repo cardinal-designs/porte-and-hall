@@ -180,7 +180,6 @@
 
     <!-- Start of Judge.me code --> 
     {% assign main_collection = canonical_url | split: "/" | last %}
-    main_collection -- {{ main_collection }}
     {% unless main_collection == "shop-all" %}
     <div class='jdgm-widget jdgm-preview-badge xtreviewbadge' data-id='{{ product_card_product.id }}'> 
       <a href="{{ product_card_product.url }}/#judgeme_product_reviews">
