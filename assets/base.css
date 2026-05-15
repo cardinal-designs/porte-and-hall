@@ -3147,11 +3147,12 @@ main#MainContent {
 }
 @media screen and (max-width: 768px) {
   main#MainContent {
-    padding-top: 91px;
+    /* padding-top: 91px; */
+    padding-top: 61px;
   }
 
   main#MainContent.product-template {
-    padding-top: 60px;
+    padding-top: 61px;
   }
 
   .outdoor main#MainContent {
