@@ -33,7 +33,7 @@
         "type": "announcement-bar",
         "custom_css": [],
         "settings": {
-          "hide_bar": false,
+          "hide_bar": true,
           "text": "You’ve earned it—20% off everything with code <b>JUSTFORMOM</b>. Ends Sunday.",
           "link": "shopify://products/the-outlier-charcoal-doormat",
           "background_color": "#546b82",
@@ -175,6 +175,11 @@
       },
       "1877152918344802950": {
         "type": "shopify://apps/intelligems-a-b-testing/blocks/intelligems-script/fa83b64c-0c77-4c0c-b4b2-b94b42f5ef19",
+        "disabled": false,
+        "settings": {}
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": false,
         "settings": {}
       }
