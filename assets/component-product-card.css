@@ -13,6 +13,10 @@ grouped-product-card {
   gap: 4px;
 }
 
+.product-card a {
+  margin-top: 5px;
+}
+
 .product-card__image {
   aspect-ratio: 1/1;
   width: 100%;
