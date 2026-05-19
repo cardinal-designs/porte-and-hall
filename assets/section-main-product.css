@@ -1610,11 +1610,10 @@ product-form form {
 
   .template__sticky-add-to-cart #chat-button {
     bottom: 65px !important;
+    right: 0 !important;
   }
 
-  .template__sticky-add-to-cart-details #chat-button,
-  .template__sticky-add-to-cart #chat-button
-   {
+  .template__sticky-add-to-cart-details #chat-button {
     right: 0 !important;
     bottom: 80px !important;
   }
