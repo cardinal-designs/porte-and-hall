@@ -1612,7 +1612,9 @@ product-form form {
     bottom: 65px !important;
   }
 
-  .template__sticky-add-to-cart-details #chat-button {
+  .template__sticky-add-to-cart-details #chat-button,
+  .template__sticky-add-to-cart #chat-button
+   {
     right: 0 !important;
     bottom: 80px !important;
   }
