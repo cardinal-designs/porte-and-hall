@@ -23,7 +23,7 @@
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c": {
       "type": "page-hero",
       "settings": {
-        "bg_image": "shopify://shop_images/maze_banner_copy_3317c4d6-c019-4613-8dc5-06b90f21234d.png",
+        "bg_image": "shopify://shop_images/finalfewbanner-50off.png",
         "heading": "",
         "text": "",
         "small_text": "",
@@ -36,6 +36,7 @@
         "products_per_page": 16,
         "image_ratio": "adapt",
         "show_secondary_image": false,
+        "hide_tag": false,
         "add_image_padding": false,
         "show_image_outline": true,
         "show_vendor": false,
@@ -45,83 +46,92 @@
         "collapse_on_larger_devices": false
       }
     },
-    "logo_marquee_Hznmri": {
+    "logo_marquee_f76LGY": {
       "type": "logo-marquee",
       "blocks": {
-        "logo_8pNtVC": {
+        "logo_YFaRJp": {
           "type": "logo",
+          "name": "Featured In",
           "settings": {
             "logo": "shopify://shop_images/featuredin.png",
             "svg": ""
           }
         },
-        "logo_FyW49z": {
+        "logo_fHe4Mn": {
           "type": "logo",
+          "name": "Better Homes and Garden",
           "settings": {
-            "logo": "shopify://shop_images/better-homes.png",
+            "logo": "shopify://shop_images/better-homes-and-gardens-seeklogo_copy_b7ad6b67-efaf-4408-b921-c51fea885314.png",
             "svg": ""
           }
         },
-        "logo_HeCaaM": {
+        "logo_UMiKTz": {
           "type": "logo",
+          "name": "Forbes",
           "settings": {
-            "logo": "shopify://shop_images/forbes_31a0686e-a850-4946-b594-06bc53e22eef.png",
+            "logo": "shopify://shop_images/Forbes-01_0f8e5020-ca8c-4799-bfdf-20323649e33a.png",
             "svg": ""
           }
         },
-        "logo_7W8egn": {
+        "logo_nHNTTx": {
           "type": "logo",
+          "name": "Southern Living",
           "settings": {
-            "logo": "shopify://shop_images/southern-living.png",
+            "logo": "shopify://shop_images/Southern-Living-Logo_copy_81a6b959-9e38-4dc8-8fbc-22cd11990acf.png",
             "svg": ""
           }
         },
-        "logo_aRQrDY": {
+        "logo_8xBYpq": {
           "type": "logo",
+          "name": "Real Simple",
           "settings": {
-            "logo": "shopify://shop_images/real-simple.png",
+            "logo": "shopify://shop_images/RealSimple.svg_copy_2_1_a4c57903-a665-48f7-a751-1f564040b71c.png",
             "svg": ""
           }
         },
-        "logo_dYKHnK": {
+        "logo_bcamQK": {
           "type": "logo",
+          "name": "Veranda",
           "settings": {
-            "logo": "shopify://shop_images/veranda_2e315f3b-d341-4431-8de6-e873af462a1b.png",
+            "logo": "shopify://shop_images/Veranda-logo_copy.png",
             "svg": ""
           }
         },
-        "logo_Nxtncp": {
+        "logo_xdGHn3": {
           "type": "logo",
+          "name": "USA Today",
           "settings": {
-            "logo": "shopify://shop_images/usa-today.png",
+            "logo": "shopify://shop_images/USA-Today-logo_copy_cd5eca3a-a963-4717-9b53-40e078f1195b.png",
             "svg": ""
           }
         },
-        "logo_YFRtCL": {
+        "logo_cA7DzK": {
           "type": "logo",
+          "name": "People Inc",
           "settings": {
             "logo": "shopify://shop_images/people-inc.png",
             "svg": ""
           }
         },
-        "logo_iM6Nhq": {
+        "logo_emDdyy": {
           "type": "logo",
+          "name": "Apartment Therapy",
           "settings": {
-            "logo": "shopify://shop_images/apartment-therapy.png",
+            "logo": "shopify://shop_images/apartment-therapy_1d580765-3cce-43d1-a704-a03b68af769a.png",
             "svg": ""
           }
         }
       },
       "block_order": [
-        "logo_8pNtVC",
-        "logo_FyW49z",
-        "logo_HeCaaM",
-        "logo_7W8egn",
-        "logo_aRQrDY",
-        "logo_dYKHnK",
-        "logo_Nxtncp",
-        "logo_YFRtCL",
-        "logo_iM6Nhq"
+        "logo_YFaRJp",
+        "logo_fHe4Mn",
+        "logo_UMiKTz",
+        "logo_nHNTTx",
+        "logo_8xBYpq",
+        "logo_bcamQK",
+        "logo_xdGHn3",
+        "logo_cA7DzK",
+        "logo_emDdyy"
       ],
       "settings": {
         "background_color": "#d8d3c7"
@@ -191,7 +201,7 @@
     "breadcrumbs_ejkaVn",
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
     "product-grid",
-    "logo_marquee_Hznmri",
+    "logo_marquee_f76LGY",
     "2046a8d4-8126-4344-8df2-6dd5193e7293",
     "6cba2d1c-ca6b-48b3-8672-d03b3b848c6e"
   ]
