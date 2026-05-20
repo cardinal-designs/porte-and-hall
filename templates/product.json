@@ -29,8 +29,6 @@
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
         "materials": "{{ section.settings.collection.metafields.custom.materials | metafield_tag }}",
         "care": "{{ section.settings.collection.metafields.custom.care | metafield_tag }}",
-        "weight": "<p>{{ section.settings.collection.metafields.custom.weight.value }}</p>",
-        "thickness": "{{ section.settings.collection.metafields.custom.thickness | metafield_tag }}",
         "hide_pinterest": true,
         "hide_dimensions": true,
         "text_dimensions": false,
@@ -122,6 +120,7 @@
         "block_pdi6Ua",
         "block_WMzwR3"
       ],
+      "disabled": true,
       "settings": {
         "title": "Shop our other collections",
         "subtitle": ""
@@ -230,6 +229,7 @@
     },
     "see-in-action": {
       "type": "see-it-in-action",
+      "disabled": true,
       "settings": {
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
         "heading": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_section_title | metafield_tag }}</p>",
@@ -292,6 +292,7 @@
       "blocks": {
         "judge_me_reviews_review_widget_GBTbQT": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
           "settings": {
             "review_data": "sample_data",
             "max_width": 1200,
