@@ -110,6 +110,10 @@
             <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
             {{ product_card_product.first_available_variant.metafields.custom.use }}
             </div>  
+          {% elsif lowercase_tags contains 'best seller' %}
+          <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' or template.suffix == 'best-sellers' or template.suffix == 'badge-reduction' %}hidden{% endif %}">
+            Best Seller
+          </div>
           {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
             <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
             Indoor/Outdoor
@@ -124,11 +128,8 @@
             </div>  
           {% endif %}
         
-        {% if lowercase_tags contains 'best seller' %}
-          <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' or template.suffix == 'best-sellers' or template.suffix == 'badge-reduction' %}hidden{% endif %}">
-            Best Seller
-          </div>
-        {% endif %} 
+
+       
       {% endunless %}
 
         {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
