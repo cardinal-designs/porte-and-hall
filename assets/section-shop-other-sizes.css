@@ -17,7 +17,7 @@
 }
 
 .shop-other-sizes__heading {
-  max-width: 500px;
+  /* max-width: 500px; */
   text-align: center;
 }
 
@@ -37,7 +37,7 @@
   }
 
   .shop-other-sizes__heading {
-    grid-area: header;
+    /* grid-area: header; */
     text-align: center;
     /* width: 240px; */
     margin: auto;
