@@ -491,7 +491,7 @@ endcapture
                   <span>{{ product_size }}</span>
                   {% endif %}
                   {% if product_size == 'Doormat' %}
-                    {% if product.handle contains 'innerweave' %}
+                    {% if product.handle contains 'innerweave' or product.handle contains 'everweave' %}
                       <span class="other-sizes__dimension">2' x 3'</span>
                     {% else %}
                       <span class="other-sizes__dimension">2' 3" x 3'</span>
