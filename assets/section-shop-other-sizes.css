@@ -17,7 +17,7 @@
 }
 
 .shop-other-sizes__heading {
-  max-width: 340px;
+  max-width: 500px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -38,7 +38,7 @@
   .shop-other-sizes__heading {
     grid-area: header;
     text-align: center;
-    width: 240px;
+    /* width: 240px; */
     margin: auto;
   }
 
