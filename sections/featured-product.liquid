@@ -117,9 +117,9 @@
       <div id="ProductInfo-{{ section.id }}" class="product__info-container">
         {% assign product_form_id = 'product-form-' | append: section.id %}
 
-        <h3 class="product__tag gray">
+        {% comment %} <h3 class="product__tag gray">
           {{ product.variants.first.metafields.filters.use.value.first }}
-        </h3>
+        </h3> {% endcomment %}
 
         <h1 class="product__title blue">
           {{ grouped_collection.title | remove: ' |' | default: product.title }}
