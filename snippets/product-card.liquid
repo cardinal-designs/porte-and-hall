@@ -17,15 +17,21 @@
       {% endif %}
 
       {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
-      <div class="product-card__image-label body-xs">
+      
         {% if lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
+          <div class="product-card__image-label body-xs">
           Indoor/Outdoor
+          </div>
         {% elsif lowercase_tags contains 'indoor' %}
+          <div class="product-card__image-label body-xs">
           Indoor
+          </div>
         {% elsif lowercase_tags contains 'outdoor' %}
+          <div class="product-card__image-label body-xs">
           Outdoor
+          </div>
         {% endif %}
-      </div>
+      
     </div>
   </a>
   <div class="product-card__container">
