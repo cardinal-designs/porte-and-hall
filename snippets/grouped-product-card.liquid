@@ -106,11 +106,11 @@
         {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
 
         {% unless hide_tag == true %}
-          {% comment %} {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
-            <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
-            {{ product_card_product.first_available_variant.metafields.custom.use }}
-            </div>   {% endcomment %}
-          {% if lowercase_tags contains 'best seller' %}
+          {% if product_card_product.first_available_variant.metafields.filters.use != blank %}
+            <div class="aa product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
+            {{ product_card_product.first_available_variant.metafields.filters.use }}
+            </div>  
+          {% elsif lowercase_tags contains 'best seller' %}
           <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' or template.suffix == 'best-sellers' or template.suffix == 'badge-reduction' %}hidden{% endif %}">
             Best Seller
           </div>
