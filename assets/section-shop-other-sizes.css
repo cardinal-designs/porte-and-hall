@@ -26,11 +26,11 @@
   }
 
   .shop-other-sizes__inner {
-    grid-template-columns: repeat(2, minmax(auto, 1fr));
+    /* grid-template-columns: repeat(2, minmax(auto, 1fr));
     grid-auto-rows: auto;
     grid-template-areas:
     'header header'
-    'left right';
+    'left right'; */
     column-gap: 12px;
     row-gap: 30px;
   }
@@ -47,11 +47,11 @@
   }
 
   .shop-other-sizes__item:first-of-type {
-    grid-area: left;
+    /* grid-area: left; */
   }
 
   .shop-other-sizes__item:last-of-type {
-    grid-area: right;
+    /* grid-area: right; */
   }
 
   .shop-other-sizes .divider {
