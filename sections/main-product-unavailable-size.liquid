@@ -497,19 +497,11 @@
                   {% endif %}
 
                   {% if product_size == 'Doormat' %}
-                    {% if product.handle contains 'innerweave' %}
-                      <span class="other-sizes__dimension">2' x 3'</span>
-                    {% else %}
-                      <span class="other-sizes__dimension">2' x 3'</span>
-                    {% endif %}
+                    <span class="other-sizes__dimension">2' x 3'</span>
                   {% elsif product_size == 'XL Runner' %}
                      <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
                   {% elsif product_size == 'Runner' %}
-                    {% if product.handle contains 'innerweave' %}
-                      <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
-                    {% else %}
-                      <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
-                    {% endif %}
+                    <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
                   {% elsif product_size == '5 x 7 Area Mat' %}
                     <span class="other-sizes__dimension">5' x 7'</span>
                   {% elsif product_size == 'Area Mat' %}
