@@ -117,9 +117,9 @@
       <div id="ProductInfo-{{ section.id }}" class="product__info-container">
         {% assign product_form_id = 'product-form-' | append: section.id %}
 
-        {% comment %} <h3 class="product__tag gray">
+        <h3 class="product__tag gray">
           {{ product.variants.first.metafields.filters.use.value.first }}
-        </h3> {% endcomment %}
+        </h3>
 
         <h1 class="product__title blue">
           {{ grouped_collection.title | remove: ' |' | default: product.title }}
@@ -433,11 +433,7 @@
                   {% elsif product_size == 'XL Runner' %}
                     <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
                   {% elsif product_size == 'Runner' %}
-                    {% if product.handle contains 'innerweave' %}
-                      <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
-                    {% else %}
-                      <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
-                    {% endif %}
+                    <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
                   {% elsif product_size == 'Area Mat' %}
                     {% if product.handle contains 'innerweave' %}
                       <span class="other-sizes__dimension">4' x 6'</span>
