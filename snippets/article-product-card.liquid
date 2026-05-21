@@ -68,17 +68,24 @@
 
       {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
 
-      <div class="product-card__image-label body-xs">
         {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
+          <div class="product-card__image-label body-xs">
           {{ product_card_product.first_available_variant.metafields.custom.use }}
+          </div>
         {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
+          <div class="product-card__image-label body-xs">
           Indoor/Outdoor
+          </div>
         {% elsif lowercase_tags contains 'indoor' %}
+          <div class="product-card__image-label body-xs">
           Indoor
+          </div>
         {% elsif lowercase_tags contains 'outdoor' %}
+          <div class="product-card__image-label body-xs">
           Outdoor
+          </div>
         {% endif %}
-      </div>
+      
     </div>
     <div class="product-card__container">
       {% if title != blank or collection.title != blank %}
