@@ -499,7 +499,7 @@ endcapture
                   {% elsif product_size == 'XL Runner' %}
                      <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
                   {% elsif product_size == 'Runner' %}
-                    {% if product.handle contains 'innerweave' %}
+                    {% if product.handle contains 'innerweave' or product.handle contains 'everweave' %}
                       <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
                     {% else %}
                       <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
@@ -507,7 +507,7 @@ endcapture
                   {% elsif product_size == '5 x 7 Area Mat' %}
                     <span class="other-sizes__dimension">5' x 7'</span>
                   {% elsif product_size == 'Area Mat' %}
-                    {% if product.handle contains 'innerweave' %}
+                    {% if product.handle contains 'innerweave' or product.handle contains 'everweave' %}
                       <span class="other-sizes__dimension">4' x 6'</span>
                     {% else %}
                       <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
@@ -564,7 +564,7 @@ endcapture
                       {% elsif current_size.last == 'XL Runner' %}
                         <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
                       {% elsif current_size.last == 'Runner' %}
-                        {% if current_size.first == 'The Innerweave' %}
+                        {% if current_size.first == 'The Innerweave' or current_size.first == 'The Everweave' %}
                           <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
                         {% else %}
                           <span class="other-sizes__dimension">2' 3" x 6' 7"</span>
@@ -572,7 +572,7 @@ endcapture
                       {% elsif current_size.last == '5 x 7 Area Mat' %}
                         <span class="other-sizes__dimension">5' x 7'</span>
                       {% elsif current_size.last == 'Area Mat' %}
-                        {% if current_size.first == 'The Innerweave' %}
+                        {% if current_size.first == 'The Innerweave' or current_size.first == 'The Everweave' %}
                           <span class="other-sizes__dimension">4' x 6'</span>
                         {% else %}
                           <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
