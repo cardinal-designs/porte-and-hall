@@ -15,6 +15,12 @@
     assign swatch_products_count = swatch_products_count | plus: 1
   endfor
 
+  assign max_visible_swatches = 6
+  assign remaining_swatches = swatch_products_count | minus: max_visible_swatches
+  if remaining_swatches < 0
+    assign remaining_swatches = 0
+  endif
+
   assign is_eager = false
   if card_index != blank and card_index <= 1
     assign is_eager = true
@@ -60,7 +66,7 @@
 
     {%- if swatch_products_count > 0 -%}
       <div class="product-card__swatches collection-swatch-bundle-card__swatches">
-        {%- for swatch_product in swatch_products -%}
+        {%- for swatch_product in swatch_products limit: max_visible_swatches -%}
           {%- liquid
             assign swatch_label = swatch_product.options_by_name['color'].values[0] | default: swatch_product.title
             assign swatch_file_name = swatch_label | remove: '(' | remove: ')' | handle | append: '.png'
@@ -77,6 +83,15 @@
             data-tooltip="{{ swatch_label | escape }}"
           ></a>
         {%- endfor -%}
+        {%- if remaining_swatches > 0 -%}
+          <a
+            href="{{ bundle_url }}"
+            class="collection-swatch-bundle-card__swatch-more body-xs blue"
+            aria-label="{{ remaining_swatches }} more swatches"
+          >
+            +{{ remaining_swatches }}
+          </a>
+        {%- endif -%}
       </div>
     {%- endif -%}
   </div>

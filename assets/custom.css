@@ -97,6 +97,18 @@ span.jdgm-prev-badge__stars {
   margin-top: 0.5rem;
 }
 
+.collection-swatch-bundle-card__swatch-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  font-family: brandon, sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
 .collection-swatch-bundle-grid__item {
   list-style: none;
 }
