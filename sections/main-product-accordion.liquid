@@ -156,7 +156,7 @@ endcapture
           {% elsif grouped_collection.title contains '5 x 7 Area Mat' %}
             The Innerweave Area Mat
           {% elsif product.title contains 'Everymat' %}
-          The Everymat
+            The Everymat
           {% else %}
           {{ grouped_collection.title | remove: ' |' | default: product.title }}
           {% endif %}
