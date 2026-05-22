@@ -15,7 +15,7 @@
     assign swatch_products_count = swatch_products_count | plus: 1
   endfor
 
-  assign max_visible_swatches = 6
+  assign max_visible_swatches = 4
   assign remaining_swatches = swatch_products_count | minus: max_visible_swatches
   if remaining_swatches < 0
     assign remaining_swatches = 0
