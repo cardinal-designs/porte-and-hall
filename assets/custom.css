@@ -79,6 +79,10 @@ span.jdgm-prev-badge__stars {
   color: var(--blue);
 }
 
+.collection-swatch-bundle-grid__item .product-card__swatches {
+  margin: 0;
+}
+
 .collection-swatch-bundle-card__star svg {
   display: block;
   width: 12px;
