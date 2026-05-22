@@ -89,6 +89,24 @@ span.jdgm-prev-badge__stars {
   height: auto;
   stroke: currentColor;
   stroke-width: 2px;
+  display: none;
+}
+
+.collection-swatch-bundle-card__star {
+  font-family: 'JudgemeStar';
+  display: inline !important;
+  text-decoration: none !important;
+  margin: 0 !important;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.collection-swatch-bundle-card__star::after {
+    content: "\e000";
+}
+
+.collection-swatch-bundle-card__star.collection-swatch-bundle-card__star--half::after {
+    content: "\e002";
 }
 
 .collection-swatch-bundle-card__review-count {
