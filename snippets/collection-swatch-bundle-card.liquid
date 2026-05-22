@@ -1,0 +1,83 @@
+{% comment %}
+  B2B collection grid promo card for the swatch bundle.
+
+  Accepts:
+  - bundle_url: {String} destination URL (required)
+  - card_index: {Number} optional, for eager-loading main image
+{% endcomment %}
+{%- liquid
+  assign bundle_url = bundle_url | default: settings.swatch_bundle_page_link | default: routes.root_url
+  assign card_title = settings.swatch_bundle_collection_title
+  assign card_image = settings.swatch_bundle_collection_image
+  assign swatch_products = settings.swatch_bundle_collection_products
+  assign swatch_products_count = 0
+  for swatch_product in swatch_products
+    assign swatch_products_count = swatch_products_count | plus: 1
+  endfor
+
+  assign is_eager = false
+  if card_index != blank and card_index <= 1
+    assign is_eager = true
+  endif
+-%}
+
+<grouped-product-card class="collection-swatch-bundle-card" data-collection-swatch-bundle>
+  <div class="product-card">
+    <div class="product-card__image">
+      <a href="{{ bundle_url }}">
+        {%- if card_image != blank -%}
+          {%- render 'lazy-image',
+            image: card_image,
+            fade: true,
+            classes: 'img-fill',
+            aria-label: card_title,
+            prioritize_loading: is_eager
+          -%}
+        {%- elsif swatch_products_count > 0 -%}
+          {%- assign first_swatch_product = swatch_products | first -%}
+          {%- if first_swatch_product.featured_media != blank -%}
+            {%- render 'lazy-image',
+              image: first_swatch_product.featured_media,
+              fade: true,
+              classes: 'img-fill',
+              aria-label: card_title,
+              prioritize_loading: is_eager
+            -%}
+          {%- endif -%}
+        {%- endif -%}
+      </a>
+    </div>
+
+    {%- if card_title != blank -%}
+      <a href="{{ bundle_url }}">
+        <div class="product-card__title h3 blue">
+          {{ card_title | escape }}
+        </div>
+      </a>
+    {%- endif -%}
+
+    {% render 'collection-swatch-bundle-reviews', bundle_url: bundle_url %}
+
+    {%- if swatch_products_count > 0 -%}
+      <div class="product-card__swatches collection-swatch-bundle-card__swatches">
+        {%- for swatch_product in swatch_products -%}
+          {%- liquid
+            assign swatch_label = swatch_product.options_by_name['color'].values[0] | default: swatch_product.title
+            assign swatch_file_name = swatch_label | remove: '(' | remove: ')' | handle | append: '.png'
+            assign swatch_bg_image = swatch_file_name | file_img_url: '60x60'
+            if images[swatch_file_name] == blank and swatch_product.featured_media != blank
+              assign swatch_bg_image = swatch_product.featured_media | image_url: width: 60
+            endif
+          -%}
+          <a
+            href="{{ bundle_url }}"
+            class="product-card__swatch{% if forloop.first %} product-card__active-swatch{% endif %}"
+            style="background-image: url({{ swatch_bg_image }})"
+            aria-label="{{ swatch_label | escape }}"
+            data-tooltip="{{ swatch_label | escape }}"
+          ></a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</grouped-product-card>

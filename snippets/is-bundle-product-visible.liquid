@@ -1,0 +1,29 @@
+{% comment %}
+  Outputs "true" or "false" for whether a product should be shown on the storefront.
+  Products tagged "bundle" are visible only to logged-in B2B customers (customer.b2b?).
+
+  Accepts:
+  - product: {Object} Product Liquid object (required)
+{% endcomment %}
+{%- liquid
+  assign bundle_product_visible = true
+
+  if product == blank
+    assign bundle_product_visible = false
+  else
+    assign has_bundle_tag = false
+    for tag in product.tags
+      assign tag_downcase = tag | downcase
+      if tag_downcase == 'bundle'
+        assign has_bundle_tag = true
+      endif
+    endfor
+
+    if has_bundle_tag
+      unless customer and customer.b2b?
+        assign bundle_product_visible = false
+      endunless
+    endif
+  endif
+-%}
+{%- if bundle_product_visible -%}true{%- else -%}false{%- endif -%}

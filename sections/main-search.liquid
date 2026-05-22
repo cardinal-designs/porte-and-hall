@@ -53,6 +53,14 @@
   assign sort_by = search.sort_by | default: search.default_sort_by
   assign terms = search.terms | escape
   assign search_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+
+  assign search_visible_results_count = 0
+  if search.performed
+    capture search_visible_results_count_capture
+      render 'search-visible-results-count', search_results: search.results
+    endcapture
+    assign search_visible_results_count = search_visible_results_count_capture | strip | plus: 0
+  endif
 %}
 
 <div class="template-search spaced-section{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %}">
@@ -117,11 +125,13 @@
     </div>
     {% if search.performed %}
       {% unless section.settings.enable_filtering or section.settings.enable_sorting %} 
-        {% if search.results_count > 0 %}        
-          <p role="status">{{ 'templates.search.results_with_count_and_term' | t: terms: search.terms, count: search.results_count }}</p>
+        {% if search_visible_results_count > 0 %}
+          <p role="status">{{ 'templates.search.results_with_count_and_term' | t: terms: search.terms, count: search_visible_results_count }}</p>
         {% endif %}
       {% endunless %}
-      {% if search.results_count == 0 and search.filters == empty %}        
+      {% if search.results_count == 0 and search.filters == empty %}
+        <p role="status">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
+      {% elsif search_visible_results_count == 0 and search.results_count > 0 and search.filters == empty %}
         <p role="status">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
       {% endif %}
     {% endif %}
@@ -130,7 +140,13 @@
     {% if search.filters != empty %}
       {% if section.settings.enable_filtering or section.settings.enable_sorting %}
         <div class="page-width">
-          {% render 'facets', results: search, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting, collapse_on_larger_devices: section.settings.collapse_on_larger_devices %}
+          {% render 'facets',
+            results: search,
+            visible_results_count: search_visible_results_count,
+            enable_filtering: section.settings.enable_filtering,
+            enable_sorting: section.settings.enable_sorting,
+            collapse_on_larger_devices: section.settings.collapse_on_larger_devices
+          %}
         </div>
       {% endif %}
     {% endif %}
@@ -151,6 +167,13 @@
             <div class="loading-overlay gradient"></div>
             <ul class="grid grid--4-col-desktop grid--4-col-tablet grid--2-col grid--one-third-max grid--quarter-max negative-margin product-grid" role="list">
               {% for item in search.results %}
+                {%- if item.object_type == 'product' -%}
+                  {%- capture bundle_product_visible -%}{%- render 'is-bundle-product-visible', product: item -%}{%- endcapture -%}
+                  {%- assign bundle_product_visible = bundle_product_visible | strip -%}
+                  {%- if bundle_product_visible == 'false' -%}
+                    {%- continue -%}
+                  {%- endif -%}
+                {%- endif -%}
                 <li class="xtsearchproduct grid__item{% unless item.object_type == 'product' %} grid__item--small{% endunless %}">
                   {% case item.object_type %}
                     {% when 'product' %}

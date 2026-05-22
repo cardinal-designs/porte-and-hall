@@ -48,6 +48,59 @@ span.jdgm-prev-badge__stars {
 
 /*========== jdgm edits End ==========*/
 
+/*========== Collection swatch bundle card (B2B) ==========*/
+
+.collection-swatch-bundle-card .product-card__image a {
+  display: block;
+  height: 100%;
+}
+
+.collection-swatch-bundle-card__reviews {
+  margin: 0.25rem 0 0.5rem;
+}
+
+.collection-swatch-bundle-card__reviews-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.collection-swatch-bundle-card__stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 24px;
+}
+
+.collection-swatch-bundle-card__star {
+  display: inline-flex;
+  line-height: 0;
+  color: var(--blue);
+}
+
+.collection-swatch-bundle-card__star svg {
+  display: block;
+}
+
+.collection-swatch-bundle-card__review-count {
+  color: var(--gold-secondary--dark);
+  font-family: brandon, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+.collection-swatch-bundle-card__swatches {
+  margin-top: 0.5rem;
+}
+
+.collection-swatch-bundle-grid__item {
+  list-style: none;
+}
+
 .product__price-reviews-wrapper .price-item--regular-b2b {
   text-decoration: line-through;
 }

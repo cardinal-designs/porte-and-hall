@@ -1,0 +1,37 @@
+{% comment %}
+  Counts search results visible to the current customer (excludes bundle-tagged products for non-B2B).
+
+  Accepts:
+  - search_results: {Array} search.results from the search object (required)
+
+  Usage:
+  {% capture count %}{% render 'search-visible-results-count', search_results: search.results %}{% endcapture %}
+{% endcomment %}
+{%- liquid
+  assign visible_count = 0
+
+  for item in search_results
+    assign include_item = true
+
+    if item.object_type == 'product'
+      assign has_bundle_tag = false
+      for tag in item.tags
+        assign tag_downcase = tag | downcase
+        if tag_downcase == 'bundle'
+          assign has_bundle_tag = true
+        endif
+      endfor
+
+      if has_bundle_tag
+        unless customer and customer.b2b?
+          assign include_item = false
+        endunless
+      endif
+    endif
+
+    if include_item
+      assign visible_count = visible_count | plus: 1
+    endif
+  endfor
+-%}
+{{- visible_count -}}

@@ -11,6 +11,11 @@
     {% endif %}
     <ul id="predictive-search-results-list" class="predictive-search__results-list list-unstyled" role="listbox" aria-labelledby="predictive-search-products">
       {% for product in predictive_search.resources.products %}
+        {%- capture bundle_product_visible -%}{%- render 'is-bundle-product-visible', product: product -%}{%- endcapture -%}
+        {%- assign bundle_product_visible = bundle_product_visible | strip -%}
+        {%- if bundle_product_visible == 'false' -%}
+          {%- continue -%}
+        {%- endif -%}
         <li id="predictive-search-option-{{ forloop.index }}" class="predictive-search__list-item" role="option" aria-selected="false">
           <a href="{{ product.url }}" class="predictive-search__item predictive-search__item--link link link--text" tabindex="-1">
             {% if product.featured_media != blank %}

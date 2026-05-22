@@ -1,0 +1,81 @@
+{% comment %}
+  Star rating + review count for collection swatch bundle card.
+
+  Accepts:
+  - bundle_url: {String} link target (optional)
+{% endcomment %}
+{%- liquid
+  assign bundle_url = bundle_url | default: settings.swatch_bundle_page_link | default: routes.root_url
+  assign rating_value = settings.swatch_bundle_collection_rating_value | default: '4.5' | strip
+  assign review_count = settings.swatch_bundle_collection_review_count | strip
+
+  assign rating_whole = 0
+  assign show_half_star = false
+
+  if rating_value != blank
+    assign rating_parts = rating_value | split: '.'
+    assign rating_whole = rating_parts[0] | plus: 0
+    if rating_parts.size > 1
+      assign rating_decimal = rating_parts[1] | plus: 0
+      if rating_decimal >= 3 and rating_decimal <= 7
+        assign show_half_star = true
+      elsif rating_decimal >= 8
+        assign rating_whole = rating_whole | plus: 1
+      endif
+    endif
+  endif
+
+  if rating_whole > 5
+    assign rating_whole = 5
+    assign show_half_star = false
+  endif
+
+  if rating_whole == 5
+    assign show_half_star = false
+  endif
+
+  assign half_star_index = rating_whole | plus: 1
+  assign review_label = review_count
+  if review_count != blank
+    assign review_count_downcase = review_count | downcase
+    unless review_count_downcase contains 'review'
+      assign review_label = review_count | append: ' REVIEWS'
+    endunless
+  endif
+-%}
+
+{%- if rating_whole > 0 or review_count != blank -%}
+  <div class="collection-swatch-bundle-card__reviews rating-reviews">
+    <a href="{{ bundle_url }}" class="collection-swatch-bundle-card__reviews-link">
+      {%- if rating_whole > 0 -%}
+        <span class="collection-swatch-bundle-card__stars" aria-label="{{ rating_value }} out of 5 stars">
+          {%- for i in (1..5) -%}
+            {%- if i <= rating_whole -%}
+              <span class="collection-swatch-bundle-card__star collection-swatch-bundle-card__star--full" aria-hidden="true">
+                <svg width="17" height="16" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                  <path d="M22.4 8.1332C22.4 7.81762 22.1521 7.6168 21.6562 7.53074L14.875 6.54098L11.8562 0.516394C11.6812 0.172131 11.4625 0 11.2 0C10.9375 0 10.7188 0.172131 10.5437 0.516394L7.525 6.54098L0.74375 7.53074C0.247917 7.6168 0 7.81762 0 8.1332C0 8.33402 0.116667 8.54918 0.35 8.77869L5.25 13.4693L4.06875 20.0963C4.06875 20.2111 4.06875 20.2971 4.06875 20.3545C4.06875 20.5266 4.1125 20.6773 4.2 20.8064C4.2875 20.9355 4.43333 21 4.6375 21C4.78333 21 4.95833 20.9426 5.1625 20.8279L11.2 17.7295L17.2375 20.8279C17.4417 20.9426 17.6167 21 17.7625 21C17.9667 21 18.1125 20.9355 18.2 20.8064C18.2875 20.6773 18.3312 20.5266 18.3312 20.3545C18.3312 20.2398 18.3312 20.1537 18.3312 20.0963L17.15 13.4693L22.05 8.77869C22.2833 8.54918 22.4 8.33402 22.4 8.1332Z" fill="currentColor"/>
+                </svg>
+              </span>
+            {%- elsif show_half_star and i == half_star_index -%}
+              <span class="collection-swatch-bundle-card__star collection-swatch-bundle-card__star--half" aria-hidden="true">
+                <svg width="17" height="16" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+                  <defs>
+                    <linearGradient id="bundle-star-half-{{ forloop.index }}">
+                      <stop offset="50%" stop-color="currentColor"/>
+                      <stop offset="50%" stop-color="currentColor" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M22.4 8.1332C22.4 7.81762 22.1521 7.6168 21.6562 7.53074L14.875 6.54098L11.8562 0.516394C11.6812 0.172131 11.4625 0 11.2 0C10.9375 0 10.7188 0.172131 10.5437 0.516394L7.525 6.54098L0.74375 7.53074C0.247917 7.6168 0 7.81762 0 8.1332C0 8.33402 0.116667 8.54918 0.35 8.77869L5.25 13.4693L4.06875 20.0963C4.06875 20.2111 4.06875 20.2971 4.06875 20.3545C4.06875 20.5266 4.1125 20.6773 4.2 20.8064C4.2875 20.9355 4.43333 21 4.6375 21C4.78333 21 4.95833 20.9426 5.1625 20.8279L11.2 17.7295L17.2375 20.8279C17.4417 20.9426 17.6167 21 17.7625 21C17.9667 21 18.1125 20.9355 18.2 20.8064C18.2875 20.6773 18.3312 20.5266 18.3312 20.3545C18.3312 20.2398 18.3312 20.1537 18.3312 20.0963L17.15 13.4693L22.05 8.77869C22.2833 8.54918 22.4 8.33402 22.4 8.1332Z" fill="url(#bundle-star-half-{{ forloop.index }})"/>
+                </svg>
+              </span>
+            {%- endif -%}
+          {%- endfor -%}
+        </span>
+      {%- endif -%}
+
+      {%- if review_count != blank -%}
+        <span class="collection-swatch-bundle-card__review-count">{{ review_label }}</span>
+      {%- endif -%}
+    </a>
+  </div>
+{%- endif -%}

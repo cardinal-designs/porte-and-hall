@@ -1,0 +1,66 @@
+{% comment %}
+  First grid slot: B2B swatch bundle promo (theme setting toggle).
+
+  Accepts:
+  - include_schema: {Boolean} output ListItem schema.org markup
+  - grid_item_class: {String} extra classes on <li>
+  - paginate_page: {Number} current paginate page from parent section (required inside paginate)
+{% endcomment %}
+{%- liquid
+  assign show_swatch_bundle_card = false
+  assign paginate_page_num = paginate_page | default: 1 | plus: 0
+
+  assign viewer_can_see_bundle_card = false
+  if customer and customer.b2b?
+    assign viewer_can_see_bundle_card = true
+  elsif request.design_mode
+    assign viewer_can_see_bundle_card = true
+  endif
+
+  if settings.swatch_bundle_collection_enable and viewer_can_see_bundle_card and paginate_page_num == 1
+    assign has_bundle_content = false
+
+    if settings.swatch_bundle_page_link != blank
+      assign has_bundle_content = true
+    endif
+    if settings.swatch_bundle_collection_title != blank
+      assign has_bundle_content = true
+    endif
+    if settings.swatch_bundle_collection_image != blank
+      assign has_bundle_content = true
+    endif
+    if settings.swatch_bundle_collection_rating_value != blank
+      assign has_bundle_content = true
+    endif
+    if settings.swatch_bundle_collection_review_count != blank
+      assign has_bundle_content = true
+    endif
+
+    for swatch_product in settings.swatch_bundle_collection_products limit: 1
+      assign has_bundle_content = true
+    endfor
+
+    if has_bundle_content
+      assign show_swatch_bundle_card = true
+    endif
+  endif
+-%}
+
+{%- if show_swatch_bundle_card -%}
+  {%- assign bundle_url = settings.swatch_bundle_page_link | default: '/pages/bundle' -%}
+  <li
+    class="product-grid__item collection-swatch-bundle-grid__item{% if grid_item_class != blank %} {{ grid_item_class }}{% endif %}"
+    {% if include_schema %}
+      itemprop="itemListElement"
+      itemscope
+      itemtype="https://schema.org/ListItem"
+    {% endif %}
+  >
+    {%- if include_schema -%}
+      <meta itemprop="name" content="{{ settings.swatch_bundle_collection_title | default: 'Swatch Bundle' | escape }}">
+      <meta itemprop="url" content="{{ bundle_url }}">
+      <meta itemprop="position" content="1">
+    {%- endif -%}
+    {% render 'collection-swatch-bundle-card', bundle_url: bundle_url, card_index: 1 %}
+  </li>
+{%- endif -%}
