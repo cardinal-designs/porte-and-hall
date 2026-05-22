@@ -3128,10 +3128,6 @@ main#MainContent {
   padding-top: 147px;
 }
 
-.outdoor main#MainContent {
-  padding-top: 100px;
-}
-
 .outdoor .header .header__icon--menu {
   display: none;
 }
@@ -3142,7 +3138,7 @@ main#MainContent {
 
 @media screen and (max-width: 989px) and (min-width: 769px) {
   main#MainContent {
-    padding-top: 119px;
+    padding-top: 117px;
   }
 
   .outdoor main#MainContent {
@@ -3153,10 +3149,6 @@ main#MainContent {
   main#MainContent {
     /* padding-top: 91px; */
     padding-top: 92px;
-  }
-
-  .template__sale main#MainContent {
-    padding-top: 61px;
   }
 
   .outdoor main#MainContent {
