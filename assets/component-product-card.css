@@ -114,11 +114,6 @@ grouped-product-card {
   /* margin: 0 0 6px; */
 }
 
-.product-card__title > span.body {
-  /* text-transform: lowercase; */
-  text-transform: capitalize;
-}
-
 .product-card__title > span.no-capitalize {
   text-transform: none;
 }
