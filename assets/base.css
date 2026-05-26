@@ -1265,6 +1265,8 @@ header.condensed .header__menu {
 }
 
 .cart-count-bubble {
+  height: 15px;
+  width: 15px;
   border-radius: 100%;
   position: absolute;
   bottom: 0;
@@ -3092,10 +3094,6 @@ body {
 
 .cart-count-bubble {
   font-weight: 500;
-}
-.cart-count-bubble span {
-  position: relative;
-  top: 1px;
 }
 .header__menu-item {
   font-weight: 500;
