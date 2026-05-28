@@ -13,7 +13,7 @@
       "type": "video-text",
       "name": "Video with text",
       "settings": {
-
+        "bg_color": "",
         "video": "shopify://files/videos/cro_compress.mp4",
         "mobile_video": "shopify://files/videos/cro_compress.mp4",
         "video_poster": "shopify://shop_images/white-img.png",
@@ -188,6 +188,82 @@
         "product_card_type": "video_card",
         "button_text": "Shop Now",
         "btn_link": "shopify://collections/best-sellers"
+      }
+    },
+    "shop_by_category_8eKXeN": {
+      "type": "shop-by-category",
+      "blocks": {
+        "block_dPDEh6": {
+          "type": "block",
+          "settings": {
+            "text": "",
+            "url": ""
+          }
+        },
+        "block_mkNTmG": {
+          "type": "block",
+          "settings": {
+            "text": "",
+            "url": ""
+          }
+        },
+        "block_LGz9Gz": {
+          "type": "block",
+          "settings": {
+            "text": "",
+            "url": ""
+          }
+        },
+        "block_D4FRm3": {
+          "type": "block",
+          "settings": {
+            "text": "",
+            "url": ""
+          }
+        },
+        "block_MebXDW": {
+          "type": "block",
+          "settings": {
+            "text": "",
+            "url": ""
+          }
+        },
+        "block_HJVqVz": {
+          "type": "block",
+          "settings": {
+            "text": "",
+            "url": ""
+          }
+        },
+        "block_Atk7GX": {
+          "type": "block",
+          "settings": {
+            "text": "",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_dPDEh6",
+        "block_mkNTmG",
+        "block_LGz9Gz",
+        "block_D4FRm3",
+        "block_MebXDW",
+        "block_HJVqVz",
+        "block_Atk7GX"
+      ],
+      "name": "Shop By Category",
+      "settings": {
+        "bg_color": "",
+        "sub_heading": "",
+        "heading": "",
+        "text": "",
+        "btn_label": "",
+        "btn_link": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "mobile_padding_top": 36,
+        "mobile_padding_bottom": 36
       }
     },
     "product_carousel_2_nFt3hG": {
@@ -893,6 +969,7 @@
     "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",
     "product_carousel_new_aKw9LG",
     "product_carousel_new_2_JLEKyQ",
+    "shop_by_category_8eKXeN",
     "product_carousel_2_nFt3hG",
     "40919de2-f3c2-45da-99ff-c69ad3e95306",
     "custom_collection_products_desktop_XNiQe4",
