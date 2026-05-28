@@ -35,6 +35,7 @@
       {% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
     </title>
 
+    {% comment %}
     {%- if template.name == 'product' and product != blank -%}
       {%- capture bundle_product_visible -%}{%- render 'is-bundle-product-visible', product: product -%}{%- endcapture -%}
       {%- assign bundle_product_visible = bundle_product_visible | strip -%}
@@ -46,6 +47,7 @@
         <script>window.location.replace({{ routes.root_url | json }});</script>
       {%- endunless -%}
     {%- endif -%}
+    {% endcomment %}
 
     <script>
     {% if collection.handle == 'all' %}
