@@ -18,8 +18,8 @@
       {% endif %}
     {% else %}
       {% if section.settings.mobile_image != blank %}
-        {% render 'lazy-image', image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile', prioritize_loading: true %}
-        {% render 'lazy-image', image: section.settings.mobile_image, fade: true, fill: true, classes: 'hide-desktop', prioritize_loading: true %}
+        {% render 'lazy-image', image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile', prioritize_loading: true, widthI: 2000, widths: '550, 750, 1100, 1500, 2000' %}
+        {% render 'lazy-image', image: section.settings.mobile_image, fade: true, fill: true, classes: 'hide-desktop', prioritize_loading: true, widthI: 1100, widths: '375, 550, 750, 1100' %}
       {% elsif section.settings.image != blank %}
         {% render 'lazy-image', image: section.settings.image, fade: true, fill: true, prioritize_loading: true %}
       {% endif %}

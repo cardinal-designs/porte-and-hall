@@ -39,7 +39,7 @@
             echo value | escape
             echo "'"
             echo "style='background-image: url("
-            echo swatch_file_name | file_img_url: '60x60'
+            echo swatch_file_name | file_img_url: '64x64'
             echo ")' aria-label='Color swatch' data-tooltip='"
             echo value | escape
             echo "'></a>"
@@ -61,7 +61,7 @@
 <grouped-product-card data-collection-id="{{collection.id}}">
   <div class="product-card{% if product_card_product.media[1] != nil %} has-animation{% endif %} {% if simple_card == true %}product-card-simple{% endif %}">
     <div class="product-card__image">
-      {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "img", prioritize_loading: prioritize_loading %}
+      {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "img", prioritize_loading: prioritize_loading, widthI: 750, sizes: '(min-width: 768px) 23vw, 45vw' %}
       {% if product_card_product.media[1] != null %}
         {% render 'deferred-hover-image', image: product_card_product.media[1], classes: 'img-fill' %}
       {% endif %}

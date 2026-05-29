@@ -45,7 +45,7 @@
               echo value | escape
               echo "'"
               echo "style='background-image: url("
-              echo swatch_file_name | file_img_url: '60x60'
+              echo swatch_file_name | file_img_url: '64x64'
               echo ")' data-tooltip='"
               echo value | escape
               echo "'></a>"
@@ -92,7 +92,7 @@
     {% endcomment %}
     <div class="product-card__image">
       <a href="{{ product_card_product.url }}">
-        {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image", prioritize_loading: prioritize_loading %}
+        {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image", prioritize_loading: prioritize_loading, widthI: 750, sizes: '(min-width: 768px) 23vw, 45vw' %}
         {% if product_card_product.media[1] != null %}
           {% render 'deferred-hover-image', image: product_card_product.media[1], classes: 'img-fill' %}
         {% endif %}
@@ -217,7 +217,7 @@
 
     <div class="product-card__swatches hide-mobile">
       {% if active_swatch != blank %}
-        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" aria-label="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | file_img_url: '60x60' }})"></a>
+        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" aria-label="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | file_img_url: '64x64' }})"></a>
       {% endif %}
       {{ color_swatch_list }}
     </div>

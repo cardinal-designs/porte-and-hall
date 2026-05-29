@@ -11,7 +11,7 @@
 <div class="product-card{% if product_card_product.media[1] != nil %} has-animation{% endif %}">
   <a href="{{ product_card_product.url | split: '?' | first }}">
     <div class="product-card__image">
-      {% render 'lazy-image', image: product_card_product.featured_media, fade: false, classes: 'img-fill', aria-label: "Product image", prioritize_loading: prioritize_loading %}
+      {% render 'lazy-image', image: product_card_product.featured_media, fade: false, classes: 'img-fill', aria-label: "Product image", prioritize_loading: prioritize_loading, widthI: 750, sizes: '(min-width: 768px) 23vw, 45vw' %}
       {% if product_card_product.media[1] != null %}
         {% render 'deferred-hover-image', image: product_card_product.media[1], classes: 'img-fill' %}
       {% endif %}

@@ -34,9 +34,9 @@
 
 {% if collection and collection.products.size > 0 %}
   <link rel="preload" as="image"
-    href="{{ collection.products.first.featured_image | img_url: '1000x' }}"
+    href="{{ collection.products.first.featured_image | img_url: '750x' }}"
     imagesrcset="
-      {{ collection.products.first.featured_image | img_url: '750x' }} 750w,
-      {{ collection.products.first.featured_image | img_url: '1000x' }} 1000w"
+      {{ collection.products.first.featured_image | img_url: '535x' }} 535w,
+      {{ collection.products.first.featured_image | img_url: '750x' }} 750w"
     imagesizes="100vw">
 {% endif %}

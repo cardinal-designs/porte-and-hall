@@ -265,7 +265,7 @@
                        aria-label='{{ value | escape }}'
                        title='{{ value | escape }}'
                        data-tooltip='{{ value | escape }}'>
-                      <span style='background-image: url({{ swatch_file_name | file_url }})'></span>
+                      <span style='background-image: url({{ swatch_file_name | file_img_url: '120x120' }})'></span>
                       <span class='sr-only'>{{ value | escape }}</span>
                     </a>
                   {% endcapture %}

@@ -1,0 +1,20 @@
+{% doc %}
+  Returns a resized Shopify CDN URL for theme swatch PNG files.
+
+  @param {string} swatch_file_name - Theme file name (e.g. bark-ii-denim.png)
+  @param {string} [context] - "card" (30px UI) or "pdp" (47px UI). Defaults to pdp.
+
+  @example
+  {% render 'swatch-image-url', swatch_file_name: swatch_file_name, context: 'pdp' %}
+{% enddoc %}
+
+{%- liquid
+  assign swatch_context = context | default: 'pdp'
+  if swatch_context == 'card'
+    assign swatch_size = '64x64'
+  else
+    assign swatch_size = '120x120'
+  endif
+
+  echo swatch_file_name | file_img_url: swatch_size
+-%}

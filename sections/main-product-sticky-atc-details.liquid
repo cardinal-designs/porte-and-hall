@@ -75,7 +75,7 @@
             {% if show_badge %}
               <span class="product__swatch-badge-new">New</span>
             {% endif %}
-            <span style="background-image: url({{ swatch_file_name | file_url }})"></span>
+            <span style="background-image: url({{ swatch_file_name | file_img_url: '120x120' }})"></span>
           </a>
 
           {% assign swatch_count = swatch_count | plus: 1 %}
@@ -810,7 +810,7 @@
                               <div
                                   class="product__swatch"
                                   aria-label="{{ value | escape }}{% unless swatch.available %} is Unavailable{% endunless %}">
-                                  <span style="background-image: url({{ swatch_file_name | file_url }})"></span>
+                                  <span style="background-image: url({{ swatch_file_name | file_img_url: '120x120' }})"></span>
                               </div>
                           {% endif %}
                           

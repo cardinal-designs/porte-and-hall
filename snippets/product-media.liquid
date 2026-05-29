@@ -76,7 +76,7 @@
 
 <div class="product__media">
   {% if media.media_type == 'image' %}
-    {% render 'lazy-image', image: media.preview_image, fade: true, classes: 'img-fill', width: width %}
+    {% render 'lazy-image', image: media.preview_image, fade: true, classes: 'img-fill', widthI: 1500, sizes: '(min-width: 990px) 50vw, 100vw', widths: '375, 550, 750, 1100, 1500' %}
   {% elsif media.media_type == 'video' %}
     <video autoplay loop muted playsinline class="img-fill">
       <source src="{{ media.sources[1].url }}" type="video/mp4">

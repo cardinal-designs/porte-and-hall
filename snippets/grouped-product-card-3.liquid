@@ -45,7 +45,7 @@
               echo value | escape
               echo "'"
               echo "style='background-image: url("
-              echo swatch_file_name | file_img_url: '60x60'
+              echo swatch_file_name | file_img_url: '64x64'
               echo ")' data-tooltip='"
               echo value | escape
               echo "'></a>"
@@ -94,14 +94,14 @@
       <a href="{{ product_card_product.url }}">
         {% if product_card_product.metafields.custom.carousel_new_2_video != blank and only_show_one == true %}
            {{ product_card_product.metafields.custom.carousel_new_2_video.value | video_tag: autoplay: true, loop: true, muted: true, controls: false, style: 'width: 100%; opacity: 1', class: 'videos carousel-new-2__video hide-desktop', id: 'video', image_size: '1x' }}
-           {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', style: 'opacity: 0;', aria-label: "image" %}
+           {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', style: 'opacity: 0;', aria-label: "image", widthI: 750, sizes: '(min-width: 768px) 23vw, 45vw' %}
             {% if product_card_product.media[0] != null %}
-              {% render 'lazy-image', image: product_card_product.media[0], fade: true, classes: 'img-fill',style: 'opacity: 0;', aria-label: "image" %}
+              {% render 'lazy-image', image: product_card_product.media[0], fade: true, classes: 'img-fill',style: 'opacity: 0;', aria-label: "image", widthI: 750, sizes: '(min-width: 768px) 23vw, 45vw' %}
             {% endif %}
         {% else %}
-          {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image", prioritize_loading: prioritize_loading %}
+          {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "image", prioritize_loading: prioritize_loading, widthI: 750, sizes: '(min-width: 768px) 23vw, 45vw' %}
           {% if product_card_product.media[1] != null %}
-            {% render 'deferred-hover-image', image: product_card_product.media[1], classes: 'img-fill' %}
+            {% render 'deferred-hover-image', image: product_card_product.media[1], classes: 'img-fill', sizes: '(min-width: 768px) 23vw, 45vw', widthI: 750 %}
           {% endif %}
         {% endif %}
         {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
@@ -221,7 +221,7 @@
 
     <div class="product-card__swatches hide-mobile">
       {% if active_swatch != blank %}
-        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" aria-label="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | file_img_url: '60x60' }})"></a>
+        <a href="{{ active_swatch_link | default: active_swatch.variants[0].url }}" data-tooltip="{{ active_swatch_tooltip_value }}" aria-label="{{ active_swatch_tooltip_value }}" class="product-card__swatch" style="background-image: url({{ active_swatch_file_name | file_img_url: '64x64' }})"></a>
       {% endif %}
       {{ color_swatch_list }}
     </div>

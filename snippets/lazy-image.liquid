@@ -23,12 +23,7 @@
 {% enddoc %}
 
 {%- liquid
-  assign img_width = widthI | default: image.width
-  assign img_height = heightI | default: image.height
   assign aria_label_val = aria-label | default: 'image'
-  assign sizes_val = sizes | default: '100vw'
-  assign widths_val = widths | default: '165, 360, 535, 750, 1000, 1500, 3000'
-
   assign loading_val = 'lazy'
   assign fetchpriority_val = 'auto'
   assign preload_val = false
@@ -37,6 +32,23 @@
     assign loading_val = 'eager'
     assign fetchpriority_val = 'high'
     assign preload_val = true
+    assign img_width = widthI | default: 2000
+    assign img_height = heightI | default: image.height
+    assign sizes_val = sizes | default: '100vw'
+    assign widths_val = widths | default: '375, 550, 750, 1100, 1500, 2000'
+  elsif widthI
+    assign img_width = widthI
+    assign img_height = heightI | default: image.height
+    assign sizes_val = sizes | default: '(min-width: 768px) 23vw, 45vw'
+    assign widths_val = widths | default: '165, 360, 535, 750'
+  else
+    assign img_width = 1000
+    if image.width < img_width
+      assign img_width = image.width
+    endif
+    assign img_height = heightI | default: image.height
+    assign sizes_val = sizes | default: '100vw'
+    assign widths_val = widths | default: '165, 360, 535, 750, 1000'
   endif
 
   capture img_classes
