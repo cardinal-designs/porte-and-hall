@@ -1,3 +1,6 @@
+{%- if template.name == 'index' -%}
+  {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 {{ 'component-product-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'section-product-carousel.css' | asset_url | stylesheet_tag }}

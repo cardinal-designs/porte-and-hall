@@ -121,10 +121,14 @@
 
     {% render 'meta-tags' %}
 
-    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
+    {%- unless template.name == 'index' -%}
+      {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
+    {%- endunless -%}
     {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
     {% render 'css-variables' %}
-    {{ 'cro.css' | asset_url | stylesheet_tag: preload: true }}
+    {%- if page.handle == 'indoor-mats-2' or template.suffix == 'inside-mats-2' -%}
+      {{ 'cro.css' | asset_url | stylesheet_tag: preload: true }}
+    {%- endif -%}
     {{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
 
     {% comment %} {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }} {% endcomment %}
