@@ -1,0 +1,22 @@
+{% doc %}
+  Emits a high-priority preload link for the homepage hero video poster.
+
+  @param {string} [poster_url] - Pre-built poster URL (preferred)
+  @param {object} [video] - Shopify video setting
+  @param {object} [fallback_poster] - Manual poster from video_poster setting
+{% enddoc %}
+
+{%- liquid
+  assign lcp_poster_url = poster_url
+
+  if lcp_poster_url == blank and video != blank
+    capture lcp_poster_url
+      render 'hero-video-poster-url', video: video, fallback_poster: fallback_poster, width: 800
+    endcapture
+    assign lcp_poster_url = lcp_poster_url | strip
+  endif
+-%}
+
+{%- if lcp_poster_url != blank -%}
+  <link rel="preload" as="image" href="{{ lcp_poster_url }}" fetchpriority="high">
+{%- endif -%}

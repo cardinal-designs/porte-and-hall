@@ -1,0 +1,25 @@
+{% doc %}
+  Returns a resized poster URL for a Shopify-hosted hero video.
+
+  Prefers the auto-generated video preview image, then falls back to the
+  optional manual poster image setting.
+
+  @param {object} video - Shopify video setting (required)
+  @param {object} [fallback_poster] - Manual poster from video_poster setting
+  @param {number} [width] - Poster width in pixels (default 800)
+
+  @example
+  {% capture poster_url %}
+    {% render 'hero-video-poster-url', video: section.settings.video, fallback_poster: section.settings.video_poster %}
+  {% endcapture %}
+{% enddoc %}
+
+{%- liquid
+  assign poster_width = width | default: 800
+
+  if video.preview_image != blank
+    echo video.preview_image | image_url: width: poster_width
+  elsif fallback_poster != blank
+    echo fallback_poster | image_url: width: poster_width
+  endif
+-%}
