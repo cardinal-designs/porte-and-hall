@@ -1542,7 +1542,7 @@ var ProductFeature = class extends HTMLElement {
     this.mediaList = this.querySelector('.product__media-list')
     this.productSlider = new Swiper(this.mediaList, {
       slidesPerView: 1,
-      loop: false,
+      loop: true,
       spaceBetween: 20,
       pagination: {
         el: '.product__media-pagination',
