@@ -44,7 +44,7 @@
   endif
 -%}
 
-{%- if rating_whole > 0 or review_count != blank -%}
+{%- if review_count != blank -%}
   <div class="collection-swatch-bundle-card__reviews rating-reviews">
     <a href="{{ bundle_url }}" class="collection-swatch-bundle-card__reviews-link">
       {%- if rating_whole > 0 -%}
