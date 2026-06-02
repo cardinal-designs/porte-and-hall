@@ -1503,6 +1503,7 @@ var ProductFeature = class extends HTMLElement {
   }
 
   setupMedia() {
+    console.log('adjfaskjh')
 
     this.thumbnails = this.querySelector('.product__media-thumbnails')
     this.thumbnailSlider = new Swiper(this.thumbnails, {
