@@ -1555,9 +1555,9 @@ var ProductFeature = class extends HTMLElement {
         prevEl: '.product__media-button.swiper-button-prev',
         nextEl: '.product__media-button.swiper-button-next',
       },
-      controller: {
-        control: this.productZoomSlider,
-      },
+      // controller: {
+      //   control: this.productZoomSlider,
+      // },
     });
 
     this.zoomContainer = this.querySelector('.product__zoom');
