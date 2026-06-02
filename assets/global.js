@@ -1507,7 +1507,7 @@ var ProductFeature = class extends HTMLElement {
     this.thumbnails = this.querySelector('.product__media-thumbnails')
     this.thumbnailSlider = new Swiper(this.thumbnails, {
       slidesPerView: 'auto',
-      loop: false,
+      loop: true,
       spaceBetween: 10,
       direction: 'vertical',
     });
@@ -1515,14 +1515,14 @@ var ProductFeature = class extends HTMLElement {
     this.thumbnailsZoom = this.querySelector('.product__media-thumbnails-zoom')
     this.zoomThumbnailSlider = new Swiper(this.thumbnailsZoom, {
       slidesPerView: 'auto',
-      loop: false,
+      loop: true,
       spaceBetween: 10,
       direction: 'vertical',
     });
 
     this.zoomSlider = this.querySelector('.product__zoom-slider')
     this.productZoomSlider = new Swiper(this.zoomSlider, {
-      loop: false,
+      loop: true,
       slidesPerView: 1,
       allowTouchMove: true,
       navigation: {
