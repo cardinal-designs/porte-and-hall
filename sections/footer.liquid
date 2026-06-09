@@ -48,7 +48,7 @@
                   {% for link in block.settings.menu.links %}
                     <li>
                       <a
-                        href="{{ link.url }}"
+                        href="{{ link.url }}" aria-label="Go to {{ link.title }}"
                         {% if link.url contains "http://" or link.url contains "https://" %}
                           target="_blank"
                         {% endif %}
@@ -65,7 +65,7 @@
                   </li>
                   {% endcomment %}
                   <li>
-                  <a href="/" class="footer__menu-link optanon-show-settings">Cookie Settings</a>
+                  <a href="/" aria-label="Cookie Settings" class="footer__menu-link optanon-show-settings">Cookie Settings</a>
                   </li>
                   {% endif %}
                 </ul>
@@ -78,12 +78,12 @@
             <ul class="footer__menu list-unstyled">
               {% if section.settings.student_discount_link != blank %}
                 <li>
-                  <a href="{{ section.settings.student_discount_link }}" class="footer__menu-link" target="_blank">{{ section.settings.student_discount }}</a>
+                  <a href="{{ section.settings.student_discount_link }}" aria-label="Student Discount" class="footer__menu-link" target="_blank">{{ section.settings.student_discount }}</a>
                 </li>
               {% endif %}
               {% if section.settings.exclusive_beans_link != blank %}
                 <li>
-                  <a href="{{ section.settings.exclusive_beans_link }}" class="footer__menu-link" target="_blank">{{ section.settings.exclusive_beans }}</a>
+                  <a href="{{ section.settings.exclusive_beans_link }}" aria-label="Exclusive Beans" class="footer__menu-link" target="_blank">{{ section.settings.exclusive_beans }}</a>
                 </li>
               {% endif %}
             </ul>
@@ -107,12 +107,12 @@
           <ul class="footer__menu list-unstyled">
             {% if section.settings.student_discount_link != blank %}
               <li>
-                <a href="{{ section.settings.student_discount_link }}" class="footer__menu-link" target="_blank">{{ section.settings.student_discount }}</a>
+                <a href="{{ section.settings.student_discount_link }}" aria-label="Student Discount" class="footer__menu-link" target="_blank">{{ section.settings.student_discount }}</a>
               </li>
             {% endif %}
             {% if section.settings.exclusive_beans_link != blank %}
               <li>
-                <a href="{{ section.settings.exclusive_beans_link }}" class="footer__menu-link" target="_blank">{{ section.settings.exclusive_beans }}</a>
+                <a href="{{ section.settings.exclusive_beans_link }}" aria-label="Exclusive Beans" class="footer__menu-link" target="_blank">{{ section.settings.exclusive_beans }}</a>
               </li>
             {% endif %}
           </ul>
@@ -133,7 +133,7 @@
               <span>&nbsp;|&nbsp;</span>
             {% endunless %}
             <a
-              href="{{ link.url }}"
+              href="{{ link.url }}" aria-label="Go to {{ link.title }}"
               class="footer__policy-link"
             >
               {{ link.title }}
