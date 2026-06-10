@@ -1238,11 +1238,17 @@ var accordionToggle = class extends HTMLElement {
   }
 
   onToggleClick(event) {
-    let id = event.target.parentNode.getAttribute("data-id");
-    let currentToggle = document.querySelector(`.accordion-content[data-id='${id}']`)
-    let currentTitle = document.querySelector(`.accordion-title[data-id='${id}'] svg`)
-    currentTitle.classList.contains('rotate') ? currentTitle.classList.remove('rotate') : currentTitle.classList.add('rotate');
-    currentToggle.classList.contains('active') ? currentToggle.classList.remove('active') : currentToggle.classList.add('active');
+    const title = event.currentTarget;
+    const id = title.getAttribute('data-id');
+    const currentToggle = this.querySelector(`.accordion-content[data-id='${id}']`);
+    const currentTitle = title.querySelector('svg');
+
+    if (!currentToggle || !currentTitle) {
+      return;
+    }
+
+    currentTitle.classList.toggle('rotate');
+    currentToggle.classList.toggle('active');
   }
 }
 

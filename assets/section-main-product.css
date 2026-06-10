@@ -1317,6 +1317,21 @@ variant-selects {
   transform: rotate(0deg);
 }
 
+@media screen and (max-width: 768px) {
+  .accordion-title svg {
+    position: relative;
+  }
+
+  .accordion-title svg::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
+}
 
 /* ============ optimized-pdp-fold ============== */
 
