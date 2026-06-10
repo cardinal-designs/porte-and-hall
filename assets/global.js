@@ -1254,6 +1254,34 @@ var accordionToggle = class extends HTMLElement {
 
 customElements.define('pdp-accordion', accordionToggle);
 
+(function initPdpSwatchTaps() {
+  const isBlockedSwatch = (swatch) =>
+    swatch.classList.contains('product__color-swatch--not-available');
+
+  const getPdpSwatchLink = (target) => {
+    const swatch = target.closest('a.product__swatch[href]');
+    if (!swatch || isBlockedSwatch(swatch)) return null;
+    if (!swatch.closest('.product__swatches')) return null;
+    return swatch;
+  };
+
+  document.addEventListener('touchend', (event) => {
+    if (event.touches.length > 0) return;
+
+    const swatch = getPdpSwatchLink(event.target);
+    if (!swatch) return;
+
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+
+    const endTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (!endTarget || !swatch.contains(endTarget)) return;
+
+    event.preventDefault();
+    window.location.assign(swatch.href);
+  }, { passive: false });
+})();
+
 customElements.define('product-form', class ProductForm extends HTMLElement {
   constructor() {
     super();   
