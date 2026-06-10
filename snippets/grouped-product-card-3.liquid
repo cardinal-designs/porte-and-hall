@@ -106,9 +106,9 @@
                 image_size: '1x'
             }}
           {% endcapture %}
-
+        
           {% assign captions_url = 'hero-captions-en.vtt' | file_url %}
-
+        
           {{ card_video
             | replace: '</video>', '<track kind="captions" src="' | append: captions_url | append: '" srclang="en" label="English" default></track></video>'
           }}
