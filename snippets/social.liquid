@@ -9,7 +9,7 @@
         href="{{ settings.social_instagram_link }}"
         target="_blank"
         class="link link--text list-social__link"
-        aria-describedby="a11y-external-message"
+        aria-describedby="a11y-external-message-{{ section.id }}"
       >
         {% comment %} {% render 'icon' icon: 'instagram' %} {% endcomment %}
         <span class="">{{ 'general.social.links.instagram' | t }}</span>
@@ -23,7 +23,7 @@
         href="{{ settings.social_facebook_link }}"
         target="_blank"
         class="link link--text list-social__link"
-        aria-describedby="a11y-external-message"
+        aria-describedby="a11y-external-message-{{ section.id }}"
       >
         {% comment %} {% render 'icon', icon: 'facebook' %} {% endcomment %}
         <span class="">{{ 'general.social.links.facebook' | t }}</span>
@@ -36,7 +36,7 @@
         href="{{ settings.social_twitter_link }}"
         target="_blank"
         class="link link--text list-social__link"
-        aria-describedby="a11y-external-message"
+        aria-describedby="a11y-external-message-{{ section.id }}"
       >
         {% comment %} {% render 'icon', icon: 'twitter' %} {% endcomment %}
         <span class="">{{ 'general.social.links.twitter' | t }}</span>
@@ -49,7 +49,7 @@
         href="{{ settings.social_youtube_link }}"
         target="_blank"
         class="link link--text list-social__link"
-        aria-describedby="a11y-external-message"
+        aria-describedby="a11y-external-message-{{ section.id }}"
       >
         {% comment %} {% render 'icon', icon: 'youtube' %} {% endcomment %}
         <span class="">{{ 'general.social.links.youtube' | t }}</span>
@@ -66,7 +66,7 @@
         href="{{ settings.social_pinterest_link }}"
         target="_blank"
         class="link link--text list-social__link"
-        aria-describedby="a11y-external-message"
+        aria-describedby="a11y-external-message-{{ section.id }}"
       >
         {% comment %} {% render 'icon', icon: 'pinterst' %} {% endcomment %}
         <span class="">{{ 'general.social.links.pinterest' | t }}</span>
@@ -79,7 +79,7 @@
         href="{{ settings.social_tumblr_link }}"
         target="_blank"
         class="link link--text list-social__link"
-        aria-describedby="a11y-external-message"
+        aria-describedby="a11y-external-message-{{ section.id }}"
       >
         {% comment %} {% render 'icon', icon: 'tumblr' %} {% endcomment %}
         <span class="">{{ 'general.social.links.tumblr' | t }}</span>
@@ -92,7 +92,7 @@
         href="{{ settings.social_snapchat_link }}"
         target="_blank"
         class="link link--text list-social__link"
-        aria-describedby="a11y-external-message"
+        aria-describedby="a11y-external-message-{{ section.id }}"
       >
         {% comment %} {% render 'icon', icon: 'snapchat' %} {% endcomment %}
         <span class="">{{ 'general.social.links.snapchat' | t }}</span>
@@ -105,7 +105,7 @@
         href="{{ settings.social_vimeo_link }}"
         target="_blank"
         class="link link--text list-social__link"
-        aria-describedby="a11y-external-message"
+        aria-describedby="a11y-external-message-{{ section.id }}"
       >
         {% render 'icon', icon: 'vimeo' %}
         <span class="">{{ 'general.social.links.vimeo' | t }}</span>
@@ -113,6 +113,6 @@
     </li>
   {% endif %}
 </ul>
-<span id="a11y-external-message" class="sr-only">
+<span id="a11y-external-message-{{ section.id }}" class="sr-only">
   Opens in a new window.
 </span>

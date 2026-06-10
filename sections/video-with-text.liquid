@@ -20,7 +20,13 @@
             assign classes = 'videos hide-mobile'
           endif
         %}
-        {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: classes, id: 'video-with-text-vid', image_size: '1000x' }}
+        {% capture video_with_text_video %}
+          {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: classes, id: 'video-with-text-vid', image_size: '1000x' }}
+        {% endcapture %}
+        {% assign captions_url = 'hero-captions-en.vtt' | file_url %}
+        {{ video_with_text_video
+          | replace: '</video>', '<track kind="captions" src="' | append: captions_url | append: '" srclang="en" label="English" default></track></video>'
+        }}
         {% if section.settings.mobile_video != blank %}
           {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos hide-desktop', id: 'video-with-text-vid', image_size: '1000x' }}
         {% endif %}
