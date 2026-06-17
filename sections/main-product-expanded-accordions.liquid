@@ -920,21 +920,21 @@
 
   const thumbnailSlider = new Swiper('.product__media-thumbnails', {
     slidesPerView: 'auto',
-    loop: false,
+    loop: true,
     spaceBetween: 10,
     direction: 'vertical',
   });
 
   const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
     slidesPerView: 'auto',
-    loop: false,
+    loop: true,
     spaceBetween: 10,
     direction: 'vertical',
   });
 
   // Product zoom slider
   const productZoomSlider = new Swiper('.product__zoom-slider', {
-    loop: false,
+    loop: true,
     slidesPerView: 1,
     allowTouchMove: true,
     navigation: {
@@ -954,7 +954,7 @@
   // Main product slider
   const productSlider = new Swiper('.product__media-list', {
     slidesPerView: 1,
-    loop: false,
+    loop: true,
     spaceBetween: 20,
     pagination: {
       el: '.product__media-pagination',
