@@ -9,21 +9,15 @@
  */
 {
   "sections": {
-    "1781133125367e3d97": {
-      "type": "apps",
-      "blocks": {
-        "redo_order_tracking_login_Ata4cD": {
-          "type": "shopify://apps/redo/blocks/order-tracking-login/c613644b-6df4-4d11-b336-43a5c06745a1",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "redo_order_tracking_login_Ata4cD"
-      ],
+    "breadcrumbs_JeH4Nw": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
       "settings": {
-        "include_margins": false,
-        "heading": "",
-        "section_reviews": true
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
       }
     },
     "main": {
@@ -35,6 +29,73 @@
         "image": "shopify://shop_images/Rectangle_600_afdd9d4e-2ac5-4953-8125-1a557f66a497.jpg",
         "section_height": "350",
         "bg_color": "#f4f2ee"
+      }
+    },
+    "75e5524b-59f4-4c16-b0f9-593367967193": {
+      "type": "malomo-banner",
+      "blocks": {
+        "eb2b74a7-24a8-4891-b71b-9609c9de98e8": {
+          "type": "shopify://apps/malomo-order-tracking/blocks/shipment-tracker/5cb158a1-dc52-4d21-aac7-e017083c11e2",
+          "settings": {
+            "publishable_api_key": "pk_312077ec1008bfa1ada2bf75e985275a",
+            "element": "shipmentTracker",
+            "block_width": 450,
+            "button_background_color": "#d2b066",
+            "button_border_color": "",
+            "button_border_radius": 0,
+            "button_border_width": 0,
+            "button_capitalization": "capitalize",
+            "button_height": 48,
+            "button_text_color": "#ffffff",
+            "input_background_color": "#ffffff",
+            "input_border_color": "#546b82",
+            "input_border_radius": 0,
+            "input_border_width": 1,
+            "input_height": 40,
+            "corso_shop_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "eb2b74a7-24a8-4891-b71b-9609c9de98e8"
+      ],
+      "disabled": true,
+      "settings": {
+        "height": "600",
+        "header_background_color": "rgba(0,0,0,0)",
+        "header_font_size": "40",
+        "header_horizontal_alignment": "left",
+        "header_padding_top": "20",
+        "header_padding_bottom": "20",
+        "header_level": "h4",
+        "header_text": "",
+        "background_color": "rgba(0,0,0,0)",
+        "background_image": "shopify://shop_images/ph.jpg",
+        "background_repeat": "no-repeat",
+        "background_size": "cover",
+        "malomo_background_color": "#ffffff",
+        "malomo_border_color": "",
+        "malomo_border_radius": "0",
+        "malomo_border_style": "none",
+        "malomo_border_width": "0",
+        "malomo_padding": "30"
+      }
+    },
+    "178173384162a42231": {
+      "type": "apps",
+      "blocks": {
+        "redo_order_tracking_login_RneL3b": {
+          "type": "shopify://apps/redo/blocks/order-tracking-login/c613644b-6df4-4d11-b336-43a5c06745a1",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "redo_order_tracking_login_RneL3b"
+      ],
+      "settings": {
+        "include_margins": false,
+        "heading": "",
+        "section_reviews": true
       }
     },
     "ca1df935-d762-481b-9392-8a50ca84d6f3": {
@@ -150,8 +211,10 @@
     }
   },
   "order": [
-    "1781133125367e3d97",
+    "breadcrumbs_JeH4Nw",
     "main",
+    "75e5524b-59f4-4c16-b0f9-593367967193",
+    "178173384162a42231",
     "ca1df935-d762-481b-9392-8a50ca84d6f3",
     "c84603d9-c17f-4c4e-b401-8da3c94ea5c6",
     "049bbdc8-1886-4932-8ae7-2f4836a308e4",
