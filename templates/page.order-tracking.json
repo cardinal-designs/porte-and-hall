@@ -20,10 +20,18 @@
       "block_order": [
         "redo_order_tracking_login_Ata4cD"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": false,
         "heading": "",
         "section_reviews": true
+      }
+    },
+    "custom_liquid_gnLXRB": {
+      "type": "custom-liquid",
+      "name": "Liquid",
+      "settings": {
+        "custom_html": "<div id=\"redo-order-tracking-login\"></div>"
       }
     },
     "main": {
@@ -151,6 +159,7 @@
   },
   "order": [
     "1781133125367e3d97",
+    "custom_liquid_gnLXRB",
     "main",
     "ca1df935-d762-481b-9392-8a50ca84d6f3",
     "c84603d9-c17f-4c4e-b401-8da3c94ea5c6",
