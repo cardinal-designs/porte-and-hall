@@ -1238,15 +1238,49 @@ var accordionToggle = class extends HTMLElement {
   }
 
   onToggleClick(event) {
-    let id = event.target.parentNode.getAttribute("data-id");
-    let currentToggle = document.querySelector(`.accordion-content[data-id='${id}']`)
-    let currentTitle = document.querySelector(`.accordion-title[data-id='${id}'] svg`)
-    currentTitle.classList.contains('rotate') ? currentTitle.classList.remove('rotate') : currentTitle.classList.add('rotate');
-    currentToggle.classList.contains('active') ? currentToggle.classList.remove('active') : currentToggle.classList.add('active');
+    const title = event.currentTarget;
+    const id = title.getAttribute('data-id');
+    const currentToggle = this.querySelector(`.accordion-content[data-id='${id}']`);
+    const currentTitle = title.querySelector('svg');
+
+    if (!currentToggle || !currentTitle) {
+      return;
+    }
+
+    currentTitle.classList.toggle('rotate');
+    currentToggle.classList.toggle('active');
   }
 }
 
 customElements.define('pdp-accordion', accordionToggle);
+
+(function initPdpSwatchTaps() {
+  const isBlockedSwatch = (swatch) =>
+    swatch.classList.contains('product__color-swatch--not-available');
+
+  const getPdpSwatchLink = (target) => {
+    const swatch = target.closest('a.product__swatch[href]');
+    if (!swatch || isBlockedSwatch(swatch)) return null;
+    if (!swatch.closest('.product__swatches')) return null;
+    return swatch;
+  };
+
+  document.addEventListener('touchend', (event) => {
+    if (event.touches.length > 0) return;
+
+    const swatch = getPdpSwatchLink(event.target);
+    if (!swatch) return;
+
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+
+    const endTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (!endTarget || !swatch.contains(endTarget)) return;
+
+    event.preventDefault();
+    window.location.assign(swatch.href);
+  }, { passive: false });
+})();
 
 customElements.define('product-form', class ProductForm extends HTMLElement {
   constructor() {
@@ -1503,11 +1537,12 @@ var ProductFeature = class extends HTMLElement {
   }
 
   setupMedia() {
+    console.log('adjfaskjh')
 
     this.thumbnails = this.querySelector('.product__media-thumbnails')
     this.thumbnailSlider = new Swiper(this.thumbnails, {
       slidesPerView: 'auto',
-      loop: false,
+      loop: true,
       spaceBetween: 10,
       direction: 'vertical',
     });
@@ -1515,14 +1550,14 @@ var ProductFeature = class extends HTMLElement {
     this.thumbnailsZoom = this.querySelector('.product__media-thumbnails-zoom')
     this.zoomThumbnailSlider = new Swiper(this.thumbnailsZoom, {
       slidesPerView: 'auto',
-      loop: false,
+      loop: true,
       spaceBetween: 10,
       direction: 'vertical',
     });
 
     this.zoomSlider = this.querySelector('.product__zoom-slider')
     this.productZoomSlider = new Swiper(this.zoomSlider, {
-      loop: false,
+      loop: true,
       slidesPerView: 1,
       allowTouchMove: true,
       navigation: {
@@ -1542,7 +1577,7 @@ var ProductFeature = class extends HTMLElement {
     this.mediaList = this.querySelector('.product__media-list')
     this.productSlider = new Swiper(this.mediaList, {
       slidesPerView: 1,
-      loop: false,
+      loop: true,
       spaceBetween: 20,
       pagination: {
         el: '.product__media-pagination',
@@ -1555,9 +1590,9 @@ var ProductFeature = class extends HTMLElement {
         prevEl: '.product__media-button.swiper-button-prev',
         nextEl: '.product__media-button.swiper-button-next',
       },
-      controller: {
-        control: this.productZoomSlider,
-      },
+      // controller: {
+      //   control: this.productZoomSlider,
+      // },
     });
 
     this.zoomContainer = this.querySelector('.product__zoom');

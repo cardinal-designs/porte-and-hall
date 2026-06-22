@@ -1,0 +1,9 @@
+{% comment %}
+  Renders .other-sizes__dimension from product.metafields.custom.product_dimensions.
+  Omits output when the metafield is blank.
+
+  @param {product} dimension_product - product to read dimensions from
+{% endcomment %}
+{% if dimension_product != blank and dimension_product.metafields.custom.product_dimensions.value.dimension != blank %}
+  <span class="other-sizes__dimension">{{ dimension_product.metafields.custom.product_dimensions.value.dimension }}</span>
+{% endif %}
