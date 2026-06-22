@@ -18,7 +18,7 @@
           <p class="columns__item-heading">{{ block.settings.heading }}</p>
           <p class="columns__item-text">{{ block.settings.text }}</p>
           {% if block.settings.link != blank and block.settings.link_text != blank %}
-            <a href="{{ block.settings.link }}" class="columns__item-link text-link gold">{{ block.settings.link_text }} ></a>
+            <a href="{{ block.settings.link }}" class="columns__item-link text-link gold--dark">{{ block.settings.link_text }} ></a>
           {% endif %}
         </div>
       {% endfor %}
