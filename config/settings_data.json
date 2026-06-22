@@ -31,11 +31,13 @@
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
-        "custom_css": [],
+        "custom_css": [
+          ".announcement-bar {font-size: 12px;}"
+        ],
         "settings": {
           "hide_bar": false,
-          "text": "FINAL FEW. FINAL CHANCE. <u>SHOP NOW</u>!",
-          "link": "shopify://collections/sale",
+          "text": "20% off Insider & Innerweave with code <b>HAPPYFEET</b>",
+          "link": "/collections/shop-all?filter.v.m.custom.filters=The+Insider&filter.v.m.custom.filters=The+Innerweave",
           "background_color": "#546b82",
           "text_color": "#ffffff",
           "show_popup": true,

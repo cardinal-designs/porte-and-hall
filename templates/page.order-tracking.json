@@ -11,6 +11,7 @@
   "sections": {
     "breadcrumbs_JeH4Nw": {
       "type": "breadcrumbs",
+      "disabled": true,
       "name": "Breadcrumbs",
       "settings": {
         "background_color": "",
@@ -61,24 +62,7 @@
       ],
       "disabled": true,
       "settings": {
-        "height": "600",
-        "header_background_color": "rgba(0,0,0,0)",
-        "header_font_size": "40",
-        "header_horizontal_alignment": "left",
-        "header_padding_top": "20",
-        "header_padding_bottom": "20",
-        "header_level": "h4",
-        "header_text": "",
-        "background_color": "rgba(0,0,0,0)",
-        "background_image": "shopify://shop_images/ph.jpg",
-        "background_repeat": "no-repeat",
-        "background_size": "cover",
-        "malomo_background_color": "#ffffff",
-        "malomo_border_color": "",
-        "malomo_border_radius": "0",
-        "malomo_border_style": "none",
-        "malomo_border_width": "0",
-        "malomo_padding": "30"
+        "custom_html": "<div id=\"redo-order-tracking-login\"></div>"
       }
     },
     "178173384162a42231": {
