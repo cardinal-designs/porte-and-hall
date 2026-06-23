@@ -2152,14 +2152,14 @@ header.condensed .header__menu {
   background: transparent;
   border: 1px solid var(--gold);
   border-radius: 0;
-  max-width: 12px;
-  max-height: 12px;
+  max-width: 15px;
+  max-height: 15px;
   transform: rotate(45deg);
   opacity: 1;
   width: 100%;
   height: auto;
   aspect-ratio: 1/1;
-  margin: 0 2px !important;
+  margin: 0 4px !important;
 }
 .swiper-pagination-bullet-active {
   position: relative;
@@ -2173,8 +2173,8 @@ header.condensed .header__menu {
   content: "";
   background: var(--gold);
   transform: translate(-50%, -50%);
-  width: 5.68px;
-  height: 5.68px;
+  width: 8.68px;
+  height: 8.68px;
 }
 
 .swiper-button-prev:after,

@@ -68,7 +68,8 @@
   }
 
   function onUserActivity() {
-    loadDeferredScripts();
+    // Defer so the first tap (e.g. PDP swatch link) can complete before DOM changes.
+    setTimeout(loadDeferredScripts, 0);
   }
 
   function startListenUserActivity() {

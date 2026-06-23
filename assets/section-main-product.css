@@ -324,6 +324,20 @@
   .product__swatches {
     margin-bottom: 20px;
   }
+
+  .product__swatches .product__swatch {
+    position: relative;
+  }
+
+  .product__swatches .product__swatch::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .product__swatch {
@@ -352,6 +366,7 @@
   display: block;
   overflow: hidden;
   border-radius: 50%;
+  pointer-events: none;
 }
 
 .product__swatch:focus {
@@ -1317,6 +1332,21 @@ variant-selects {
   transform: rotate(0deg);
 }
 
+@media screen and (max-width: 768px) {
+  .accordion-title svg {
+    position: relative;
+  }
+
+  .accordion-title svg::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
+}
 
 /* ============ optimized-pdp-fold ============== */
 

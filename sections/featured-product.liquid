@@ -393,9 +393,7 @@
             {% endif %}
 
             {% assign small_text_1 = 0 %}
-            {% for block in other_sizes %} 
-              {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
-              {%- assign current_size = block.title | split: " | " -%}
+            {% for block in other_sizes %}              {%- assign current_size = block.title | split: " | " -%}
               {%- assign format_color = "- " | append: active_style | append: " /" -%}
               {%- assign match_name = block.title | replace: "|",  format_color -%}
               {%- assign match = block.products | where: 'title', match_name -%}
@@ -424,27 +422,12 @@
                   href="{{ product.url }}"
                 >
                   <span>{{ product_size }}</span>
-                  {% if product_size == 'Doormat' %}
-                    <span class="other-sizes__dimension">2' x 3'</span>
-                  {% elsif product_size == 'XL Runner' %}
-                     <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
-                  {% elsif product_size == 'Runner' %}
-                    <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
-                  {% elsif product_size == '5 x 7 Area Mat' %}
-                    <span class="other-sizes__dimension">5' x 7'</span>
-                  {% elsif product_size == 'Area Mat' %}
-                    <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
-                  {% elsif current_size.last == 'Standard' %}
-                    <span class="other-sizes__dimension">36” x 72”</span>
-                  {% elsif current_size.last == 'Double' %}
-                    <span class="other-sizes__dimension">30” x 48”</span>
-                  {% endif %}
+                  {% render 'product-other-size-dimension', dimension_product: product %}
                 </a>
 
                 {%- comment -%} Other Sizes {%- endcomment -%}
               
-                {%- for block in other_sizes -%}  
-                  {%- assign dimension = grouped_collection.metafields.custom.dimensions -%}
+                {%- for block in other_sizes -%}
                   {%- assign current_size = block.title | split: " | " -%}
                   {%- assign format_color = "- " | append: active_style | append: " /" -%}
                   {%- assign match_name = block.title | replace: "|",  format_color -%}
@@ -457,25 +440,7 @@
                       data-url="{{ match.first.url }}"
                     >
                       <span>{{ current_size.last }}</span>
-                      {% if product_size == 'Doormat' %}
-                        <span class="other-sizes__dimension">2' x 3'</span>
-                      {% elsif product_size == 'XL Runner' %}
-                        <span class="other-sizes__dimension">2' 3" x 8' 6"</span>
-                      {% elsif product_size == 'Runner' %}
-                        <span class="other-sizes__dimension">2' 5" x 6' 5"</span>
-                      {% elsif product_size == '5 x 7 Area Mat' %}
-                        <span class="other-sizes__dimension">5' x 7'</span>
-                      {% elsif product_size == 'Area Mat' %}
-                        <span class="other-sizes__dimension">4' 6" x 6' 6"</span>
-                      {% elsif current_size.last == 'Standard' %}
-                        <span class="other-sizes__dimension">36” x 72”</span>
-                      {% elsif current_size.last == 'Double' %}
-                        <span class="other-sizes__dimension">30” x 48”</span>
-                      {% endif %}
-
-                      {% comment %}
-                      <span class="other-sizes__dimension">{{ dimension }}</span>
-                      {% endcomment %}
+                      {% render 'product-other-size-dimension', dimension_product: match.first %}
                     </button>                
                   {%- endif -%}
                 {%- endfor -%}
@@ -499,7 +464,7 @@
                   {% comment %} href="{{ product.url }}" {% endcomment %}
                 >
                   <span>{{ product_size }}</span>
-                  <span class="other-sizes__dimension">1' 9" x 3'</span>
+                  {% render 'product-other-size-dimension', dimension_product: product %}
                 </div>
                 {%- endcapture -%}
                 {%- unless other_size_links == blank -%}

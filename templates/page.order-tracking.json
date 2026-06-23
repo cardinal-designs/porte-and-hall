@@ -32,11 +32,62 @@
         "bg_color": "#f4f2ee"
       }
     },
-    "custom_liquid_wziG9q": {
+    "75e5524b-59f4-4c16-b0f9-593367967193": {
+      "type": "malomo-banner",
+      "blocks": {
+        "eb2b74a7-24a8-4891-b71b-9609c9de98e8": {
+          "type": "shopify://apps/malomo-order-tracking/blocks/shipment-tracker/5cb158a1-dc52-4d21-aac7-e017083c11e2",
+          "settings": {
+            "publishable_api_key": "pk_312077ec1008bfa1ada2bf75e985275a",
+            "element": "shipmentTracker",
+            "block_width": 450,
+            "button_background_color": "#d2b066",
+            "button_border_color": "",
+            "button_border_radius": 0,
+            "button_border_width": 0,
+            "button_capitalization": "capitalize",
+            "button_height": 48,
+            "button_text_color": "#ffffff",
+            "input_background_color": "#ffffff",
+            "input_border_color": "#546b82",
+            "input_border_radius": 0,
+            "input_border_width": 1,
+            "input_height": 40,
+            "corso_shop_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "eb2b74a7-24a8-4891-b71b-9609c9de98e8"
+      ],
+      "disabled": true,
+      "settings": {
+        "custom_html": "<div id=\"redo-order-tracking-login\"></div>"
+      }
+    },
+    "custom_liquid_LANKAy": {
       "type": "custom-liquid",
       "name": "Liquid",
       "settings": {
         "custom_html": "<div id=\"redo-order-tracking-login\"></div>"
+      }
+    },
+    "178173384162a42231": {
+      "type": "apps",
+      "blocks": {
+        "redo_order_tracking_login_RneL3b": {
+          "type": "shopify://apps/redo/blocks/order-tracking-login/c613644b-6df4-4d11-b336-43a5c06745a1",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "redo_order_tracking_login_RneL3b"
+      ],
+      "disabled": true,
+      "settings": {
+        "include_margins": false,
+        "heading": "",
+        "section_reviews": true
       }
     },
     "ca1df935-d762-481b-9392-8a50ca84d6f3": {
@@ -154,7 +205,9 @@
   "order": [
     "breadcrumbs_JeH4Nw",
     "main",
-    "custom_liquid_wziG9q",
+    "75e5524b-59f4-4c16-b0f9-593367967193",
+    "custom_liquid_LANKAy",
+    "178173384162a42231",
     "ca1df935-d762-481b-9392-8a50ca84d6f3",
     "c84603d9-c17f-4c4e-b401-8da3c94ea5c6",
     "049bbdc8-1886-4932-8ae7-2f4836a308e4",
