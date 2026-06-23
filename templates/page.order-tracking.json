@@ -9,17 +9,6 @@
  */
 {
   "sections": {
-    "breadcrumbs_JeH4Nw": {
-      "type": "breadcrumbs",
-      "name": "Breadcrumbs",
-      "settings": {
-        "background_color": "",
-        "padding_top": 10,
-        "padding_bottom": 10,
-        "mobile_padding_top": 10,
-        "mobile_padding_bottom": 10
-      }
-    },
     "main": {
       "type": "main-page",
       "disabled": true,
@@ -81,21 +70,11 @@
         "malomo_padding": "30"
       }
     },
-    "178173384162a42231": {
-      "type": "apps",
-      "blocks": {
-        "redo_order_tracking_login_RneL3b": {
-          "type": "shopify://apps/redo/blocks/order-tracking-login/c613644b-6df4-4d11-b336-43a5c06745a1",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "redo_order_tracking_login_RneL3b"
-      ],
+    "custom_liquid_BaqPtR": {
+      "type": "custom-liquid",
+      "name": "Liquid",
       "settings": {
-        "include_margins": false,
-        "heading": "",
-        "section_reviews": true
+        "custom_html": "<div id=\"redo-order-tracking-login\"></div>"
       }
     },
     "ca1df935-d762-481b-9392-8a50ca84d6f3": {
@@ -211,10 +190,9 @@
     }
   },
   "order": [
-    "breadcrumbs_JeH4Nw",
     "main",
     "75e5524b-59f4-4c16-b0f9-593367967193",
-    "178173384162a42231",
+    "custom_liquid_BaqPtR",
     "ca1df935-d762-481b-9392-8a50ca84d6f3",
     "c84603d9-c17f-4c4e-b401-8da3c94ea5c6",
     "049bbdc8-1886-4932-8ae7-2f4836a308e4",
