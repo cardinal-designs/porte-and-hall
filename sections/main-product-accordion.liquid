@@ -657,9 +657,14 @@ endcapture
                 </quantity-input>
               </div>
 
-              {{ product.collections | where: "handle", "swatches" | size }}
+              {% assign is_swatch_collection = false %}
+              {% assign collection_count = product.collections | where: "handle", "swatches" | size | default: 0 %}
 
-              {% unless product.collections contains "swatches" %}
+              {% if collection_count > 0 %}
+                {% assign is_swatch_collection = true %}
+              {% endif %}              
+
+              {% unless is_swatch_collection %}
                   <div class="product-form__buttons">
                     <button
                       type="submit"
