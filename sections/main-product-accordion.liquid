@@ -627,6 +627,15 @@ endcapture
 
             {% render 'final-sale-notice', product: product %}
 
+
+              {% assign is_swatch_collection = false %}
+              {% assign collection_count = product.collections | where: "handle", "swatches" | size | default: 0 %}
+
+              {% if collection_count > 0 %}
+                {% assign is_swatch_collection = true %}
+              {% endif %}              
+
+              {% unless is_swatch_collection %}
             <div class="product__quantity-atc-wrapper  {% if product.available == false %}bis-styles{% endif %} {% if section.settings.hide_quantity == true %}no-quant__button{% endif %}">
               <div class="product-form__input product-form__quantity {% if product.available == false or section.settings.hide_quantity == true %}visually-hidden{% endif%}">
                 <label class="form__label visually-hidden" for="Quantity-{{ section.id }}">
@@ -657,66 +666,57 @@ endcapture
                 </quantity-input>
               </div>
 
-              {% assign is_swatch_collection = false %}
-              {% assign collection_count = product.collections | where: "handle", "swatches" | size | default: 0 %}
-
-              {% if collection_count > 0 %}
-                {% assign is_swatch_collection = true %}
-              {% endif %}              
-
-              {% unless is_swatch_collection %}
-                  <div class="product-form__buttons">
-                    <button
-                      type="submit"
-                      name="add"
-                      class="product-form__submit button {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
-                      {% if product.selected_or_first_available_variant.available == false %}
-                        disabled
-                      {% endif %}
-                    >
-                      
-                      <span>
-                        {% if product.selected_or_first_available_variant.inventory_policy == 'continue' and product.selected_or_first_available_variant.inventory_quantity <= 0 %}
-                          PREORDER
-                        {% else %}
-                          {% if product.selected_or_first_available_variant.available %}
-                          {{ 'products.product.add_to_cart' | t }}
-                        {% else %}
-                          {{ 'products.product.sold_out' | t }}
-                        {% endif %}
-                        {% endif %}
-              
-                      </span>
-                      <span> | </span>
-                      <span>
-
-                        {% if product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product.price > product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
-                          <span>{{ product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
-                        {% else %}
-                          {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '', ATC_button: true %}
-                      {%  endif %}
-                      </span>
-                      <div class="loading-overlay__spinner">
-                        <svg
-                          aria-hidden="true"
-                          focusable="false"
-                          role="presentation"
-                          class="spinner"
-                          viewBox="0 0 66 66"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                        </svg>
-                      </div>
-                    </button>
-                    {% if block.settings.show_dynamic_checkout %}
-                      {{ form | payment_button }}
+                <div class="product-form__buttons">
+                  <button
+                    type="submit"
+                    name="add"
+                    class="product-form__submit button {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
+                    {% if product.selected_or_first_available_variant.available == false %}
+                      disabled
                     {% endif %}
-                  </div>
-              {% endunless %}
-            </div>
+                  >
+                    
+                    <span>
+                      {% if product.selected_or_first_available_variant.inventory_policy == 'continue' and product.selected_or_first_available_variant.inventory_quantity <= 0 %}
+                        PREORDER
+                      {% else %}
+                        {% if product.selected_or_first_available_variant.available %}
+                        {{ 'products.product.add_to_cart' | t }}
+                      {% else %}
+                        {{ 'products.product.sold_out' | t }}
+                      {% endif %}
+                      {% endif %}
+            
+                    </span>
+                    <span> | </span>
+                    <span>
 
-            <div class="afterpay-wrapper"></div>
+                      {% if product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product.price > product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+                        <span>{{ product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
+                      {% else %}
+                        {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '', ATC_button: true %}
+                    {%  endif %}
+                    </span>
+                    <div class="loading-overlay__spinner">
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        role="presentation"
+                        class="spinner"
+                        viewBox="0 0 66 66"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                      </svg>
+                    </div>
+                  </button>
+                  {% if block.settings.show_dynamic_checkout %}
+                    {{ form | payment_button }}
+                  {% endif %}
+                </div>
+              </div>
+              <div class="afterpay-wrapper"></div>
+            {% endunless %}
           {% endform %}
         </product-form>
       </div>
