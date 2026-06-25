@@ -62,7 +62,23 @@
       ],
       "disabled": true,
       "settings": {
-        "custom_html": "<div id=\"redo-order-tracking-login\"></div>"
+        "height": "500",
+        "header_background_color": "rgba(0,0,0,0)",
+        "header_font_size": "40",
+        "header_horizontal_alignment": "center",
+        "header_padding_top": "20",
+        "header_padding_bottom": "20",
+        "header_level": "h2",
+        "header_text": "",
+        "background_color": "rgba(0,0,0,0)",
+        "background_repeat": "repeat",
+        "background_size": "auto",
+        "malomo_background_color": "rgba(0,0,0,0)",
+        "malomo_border_color": "",
+        "malomo_border_radius": "0",
+        "malomo_border_style": "none",
+        "malomo_border_width": "0",
+        "malomo_padding": "0"
       }
     },
     "custom_liquid_LANKAy": {
@@ -93,6 +109,24 @@
     "ca1df935-d762-481b-9392-8a50ca84d6f3": {
       "type": "logo-marquee",
       "blocks": {
+        "logo_K6mCUd": {
+          "type": "logo",
+          "settings": {
+            "svg": ""
+          }
+        },
+        "logo_7m9t8K": {
+          "type": "logo",
+          "settings": {
+            "svg": ""
+          }
+        },
+        "logo_mX9GXh": {
+          "type": "logo",
+          "settings": {
+            "svg": ""
+          }
+        },
         "1733af77-9d7e-46bd-9c36-a97358e288ce": {
           "type": "logo",
           "settings": {
@@ -143,6 +177,9 @@
         }
       },
       "block_order": [
+        "logo_K6mCUd",
+        "logo_7m9t8K",
+        "logo_mX9GXh",
         "1733af77-9d7e-46bd-9c36-a97358e288ce",
         "59b710a0-6694-4fc5-92b4-3b890633931f",
         "3b5d494a-d1d9-45e1-bdab-cf0bf3209fbc",
@@ -152,6 +189,7 @@
         "41c09d59-9be8-4c66-a014-69e9fe7f8f1e",
         "36b6e9e6-33c1-43dd-b915-83aa94867f07"
       ],
+      "disabled": true,
       "settings": {
         "background_color": "#d8d3c7"
       }
