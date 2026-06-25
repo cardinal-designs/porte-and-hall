@@ -657,7 +657,7 @@ endcapture
                 </quantity-input>
               </div>
 
-              {{ product.collections | json }}
+              {{ product.collections | map: "handle", "swatch" | json }}
 
               {% unless product.collections contains "swatches" %}
                   <div class="product-form__buttons">
