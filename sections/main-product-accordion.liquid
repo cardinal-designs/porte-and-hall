@@ -627,44 +627,43 @@ endcapture
 
             {% render 'final-sale-notice', product: product %}
 
+            {% assign is_swatch_collection = false %}
+            {% assign collection_count = product.collections | where: "handle", "swatches" | size | default: 0 %}
 
-              {% assign is_swatch_collection = false %}
-              {% assign collection_count = product.collections | where: "handle", "swatches" | size | default: 0 %}
+            {% if collection_count > 0 %}
+              {% assign is_swatch_collection = true %}
+            {% endif %}              
 
-              {% if collection_count > 0 %}
-                {% assign is_swatch_collection = true %}
-              {% endif %}              
-
-              {% unless is_swatch_collection %}
-            <div class="product__quantity-atc-wrapper  {% if product.available == false %}bis-styles{% endif %} {% if section.settings.hide_quantity == true %}no-quant__button{% endif %}">
-              <div class="product-form__input product-form__quantity {% if product.available == false or section.settings.hide_quantity == true %}visually-hidden{% endif%}">
-                <label class="form__label visually-hidden" for="Quantity-{{ section.id }}">
-                  {{ 'products.product.quantity.label' | t }}
-                </label>
-                <quantity-input class="quantity">
-                  <button class="quantity__button no-js-hidden" name="minus" type="button">
-                    <span class="visually-hidden">
-                      {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
-                    </span>
-                    {% render 'icon', icon: 'minus' %}
-                  </button>
-                  <input
-                    class="quantity__input"
-                    type="number"
-                    name="quantity"
-                    id="Quantity-{{ section.id }}"
-                    min="1"
-                    value="1"
-                    form="{{ product_form_id }}"
-                  >
-                  <button class="quantity__button no-js-hidden" name="plus" type="button">
-                    <span class="visually-hidden">
-                      {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
-                    </span>
-                    {% render 'icon', icon: 'plus' %}
-                  </button>
-                </quantity-input>
-              </div>
+            {% unless is_swatch_collection %}
+              <div class="product__quantity-atc-wrapper  {% if product.available == false %}bis-styles{% endif %} {% if section.settings.hide_quantity == true %}no-quant__button{% endif %}">
+                <div class="product-form__input product-form__quantity {% if product.available == false or section.settings.hide_quantity == true %}visually-hidden{% endif%}">
+                  <label class="form__label visually-hidden" for="Quantity-{{ section.id }}">
+                    {{ 'products.product.quantity.label' | t }}
+                  </label>
+                  <quantity-input class="quantity">
+                    <button class="quantity__button no-js-hidden" name="minus" type="button">
+                      <span class="visually-hidden">
+                        {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+                      </span>
+                      {% render 'icon', icon: 'minus' %}
+                    </button>
+                    <input
+                      class="quantity__input"
+                      type="number"
+                      name="quantity"
+                      id="Quantity-{{ section.id }}"
+                      min="1"
+                      value="1"
+                      form="{{ product_form_id }}"
+                    >
+                    <button class="quantity__button no-js-hidden" name="plus" type="button">
+                      <span class="visually-hidden">
+                        {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+                      </span>
+                      {% render 'icon', icon: 'plus' %}
+                    </button>
+                  </quantity-input>
+                </div>
 
                 <div class="product-form__buttons">
                   <button
