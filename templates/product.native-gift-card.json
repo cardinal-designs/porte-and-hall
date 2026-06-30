@@ -131,6 +131,7 @@
     },
     "see-in-action": {
       "type": "see-it-in-action",
+      "disabled": true,
       "settings": {
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
         "heading": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_section_title | metafield_tag }}</p>",
@@ -175,6 +176,7 @@
       "block_order": [
         "question_1"
       ],
+      "disabled": true,
       "settings": {
         "heading": "",
         "anchor": "",
