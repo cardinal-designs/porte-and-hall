@@ -17,8 +17,8 @@
       {% endif %}
     </div>
 
-    {% if mobile_image != blank %}
-      <div class="collection-hero__image-container media">
+    {% if mobile_image != blank %}test
+      <div class="media">
         <img
           srcset="{% if image.width >= 165 %}{{ image | img_url: '165x' }} 165w,{% endif %}
             {% if image.width >= 360 %}{{ image | img_url: '360x' }} 360w,{% endif %}
