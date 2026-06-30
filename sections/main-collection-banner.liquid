@@ -6,22 +6,24 @@
 %}
 
 <div class="collection-hero{% if section.settings.show_collection_image and image %} collection-hero--with-image{% endif %}">
-  <div class="collection-hero__inner{% unless section.settings.full_width %} page-width{% endunless %}">
-    <div class="collection-hero__text-wrapper{% if image != blank %} collection-hero__text-wrapper--overlay{% endif %}">
-      <h1 class="collection-hero__title">
-        {{- collection.title | escape -}}
-      </h1>
+  <div class="{% unless section.settings.full_width %} page-width{% endunless %}">
+    <div class="collection-hero__inner">
+      <div class="collection-hero__text-wrapper{% if image != blank %} collection-hero__text-wrapper--overlay{% endif %}">
+        <h1 class="collection-hero__title">
+          {{- collection.title | escape -}}
+        </h1>
 
-      {% if section.settings.show_collection_description and collection.description != blank %}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
+        {% if section.settings.show_collection_description and collection.description != blank %}
+          <div class="collection-hero__description rte">{{ collection.description }}</div>
+        {% endif %}
+      </div>
+
+      {% if image != blank and mobile_image != blank %}
+        {{ image | image_url: width: 1500 | image_tag: preload: true, width: image.width, class: 'desktop-image hide-mobile', sizes: '1500px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
+      {% elsif image != blank %}
+        
       {% endif %}
     </div>
-
-    {% if image != blank and mobile_image != blank %}
-      {{ image | image_url: width: 1500 | image_tag: preload: true, width: image.width, class: 'desktop-image hide-mobile', sizes: '1500px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
-    {% elsif image != blank %}
-      
-    {% endif %}
   </div>
 </div>
 
