@@ -18,7 +18,7 @@
     </div>
 
     {% if image != blank and mobile_image != blank %}
-      {{ block.settings.image_2 | image_url: width: 1200 | image_tag: preload: true, width: block.settings.image_2.width, class: 'w-full h-full inset object-cover', sizes: '1200px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
+      {{ image | image_url: width: 1500 | image_tag: preload: true, width: image.width, class: 'desktop-image hide-mobile', sizes: '1500px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
     {% elsif image != blank %}
       
     {% endif %}
