@@ -1,6 +1,9 @@
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
-{% liquid %}
+{% liquid
+  assign image = collection.metafields.custom.hero_image
+  assign mobile_image = collection.metafields.custom.mobile_image
+%}
 
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %}">
   <div class="collection-hero__inner page-width">
