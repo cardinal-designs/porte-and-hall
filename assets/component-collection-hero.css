@@ -1,3 +1,7 @@
+.collection-hero {
+  position: relative;
+}
+
 .collection-hero--with-image {
   background-color: rgba(var(--color-foreground), 0.04);
 }
