@@ -5,7 +5,7 @@
   assign mobile_image = collection.metafields.custom.mobile_image
 %}
 
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %}">
+<div class="collection-hero{% if section.settings.show_collection_image and image %} collection-hero--with-image{% endif %}">
   <div class="collection-hero__inner{% unless section.settings.full_width %} page-width{% endunless %}">
     <div class="collection-hero__text-wrapper{% if image != blank %} collection-hero__text-wrapper--overlay{% endif %}">
       <h1 class="collection-hero__title">
@@ -18,10 +18,25 @@
     </div>
 
     {% if mobile_image != blank %}
-      {% render 'lazy-image', image: image, fade: true, classes: 'hide-mobile', prioritize_loading: true %}
-      {% render 'lazy-image', image: mobile_image, fade: true, classes: 'hide-desktop', prioritize_loading: true %}
+      <div class="collection-hero__image-container media">
+        <img
+          srcset="{% if image.width >= 165 %}{{ image | img_url: '165x' }} 165w,{% endif %}
+            {% if image.width >= 360 %}{{ image | img_url: '360x' }} 360w,{% endif %}
+            {% if image.width >= 535 %}{{ image | img_url: '535x' }} 535w,{% endif %}
+            {% if image.width >= 750 %}{{ image | img_url: '750x' }} 750w,{% endif %}
+            {% if image.width >= 1070 %}{{ image | img_url: '1070x' }} 1070w,{% endif %}
+            {% if image.width >= 1500 %}{{ image | img_url: '1500x' }} 1500w,{% endif %}
+            {{ image | img_url: 'master' }} {{ image.width }}w"
+          src="{{ image | img_url: '1500x' }}"
+          sizes="100vw"
+          alt="{{ collection.title | escape }}"
+          loading="lazy"
+          width="{{ image.width }}"
+          height="{{ image.height }}"
+        >
+      </div>
     {% elsif image != blank %}
-      {% render 'lazy-image', image: image, fade: true, prioritize_loading: true %}
+      
     {% endif %}
   </div>
 </div>
