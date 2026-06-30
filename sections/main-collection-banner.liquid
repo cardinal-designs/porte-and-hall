@@ -21,7 +21,7 @@
       {% render 'lazy-image', image: image, fade: true, classes: 'hide-mobile', prioritize_loading: true %}
       {% render 'lazy-image', image: mobile_image, fade: true, classes: 'hide-desktop', prioritize_loading: true %}
     {% elsif image != blank %}
-      {% render 'lazy-image', image: image, fade: true, fill: true, prioritize_loading: true %}
+      {% render 'lazy-image', image: image, fade: true, prioritize_loading: true %}
     {% endif %}
   </div>
 </div>
