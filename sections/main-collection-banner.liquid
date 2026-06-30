@@ -20,7 +20,7 @@
 
       {% if image != blank and mobile_image != blank %}
         {{ image | image_url: width: 1500 | image_tag: preload: true, width: image.width, class: 'desktop-image hide-mobile', sizes: '1500px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
-        {{ mobile_image | image_url: width: 1500 | image_tag: preload: true, width: mobile_image.width, class: 'mobile-image hide-desktop', sizes: '1500px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
+        {{ mobile_image | image_url: width: 1100 | image_tag: preload: true, width: mobile_image.width, class: 'mobile-image hide-desktop', sizes: '1100px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
       {% elsif image != blank %}
         {{ image | image_url: width: 1500 | image_tag: preload: true, width: image.width, class: 'desktop-image hide-mobile', sizes: '1500px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
       {% endif %}
