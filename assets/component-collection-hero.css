@@ -118,3 +118,9 @@
 .collection-hero .mobile-image {
   width: 100%;
 }
+
+@media screen and (max-width: 768px) {
+  .collection-hero__text-wrapper--overlay {
+    padding: 20px;
+  }
+}
