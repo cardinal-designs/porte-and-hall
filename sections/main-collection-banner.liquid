@@ -20,8 +20,9 @@
 
       {% if image != blank and mobile_image != blank %}
         {{ image | image_url: width: 1500 | image_tag: preload: true, width: image.width, class: 'desktop-image hide-mobile', sizes: '1500px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
+        {{ image | image_url: width: 1500 | image_tag: preload: true, width: image.width, class: 'mobile-image hide-desktop', sizes: '1500px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
       {% elsif image != blank %}
-        
+        {{ image | image_url: width: 1500 | image_tag: preload: true, width: image.width, class: 'desktop-image hide-mobile', sizes: '1500px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
       {% endif %}
     </div>
   </div>
