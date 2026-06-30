@@ -2,7 +2,7 @@
 
 {% liquid
   assign image = collection.metafields.custom.hero_image
-  assign mobile_image = collection.metafields.custom.mobile_image
+  assign mobile_image = collection.metafields.custom.mobile_hero_image
 %}
 
 <div class="collection-hero{% if section.settings.show_collection_image and image %} collection-hero--with-image{% endif %}">
@@ -17,7 +17,7 @@
       {% endif %}
     </div>
 
-    {% if mobile_image != blank %}test
+    {% if mobile_image != blank %}
       <div class="media">
         <img
           srcset="{% if image.width >= 165 %}{{ image | img_url: '165x' }} 165w,{% endif %}
