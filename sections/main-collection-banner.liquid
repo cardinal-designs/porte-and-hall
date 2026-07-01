@@ -5,13 +5,22 @@
   assign mobile_image = collection.metafields.custom.mobile_hero_image
 %}
 
+{% if section.settings.show_title %}
+<div class="collection-hero__container">
+  <h1 class="collection-hero__title">
+    {{- collection.title | escape -}}
+  </h1>
+</div>
+{% endif %}
 <div class="collection-hero{% if section.settings.show_collection_image and image %} collection-hero--with-image{% endif %}">
   <div class="{% unless section.settings.full_width %} page-width{% endunless %}">
     <div class="collection-hero__inner">
       <div class="collection-hero__text-wrapper{% if image != blank %} collection-hero__text-wrapper--overlay{% endif %}">
+        {% unless section.settings.show_title %}
         <h1 class="collection-hero__title">
           {{- collection.title | escape -}}
         </h1>
+        {% endunless %}
 
         {% if section.settings.show_collection_description and collection.description != blank %}
           <div class="collection-hero__description rte">{{ collection.description }}</div>
