@@ -18,6 +18,12 @@
     {% if settings.favicon != blank %}
       <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
     {% endif %}
+
+    {% if template.name == 'collection' and collection %}
+      {% if collection.metafields.seo.noindex == true %}
+        <meta name="robots" content="noindex,nofollow">
+      {% endif %}
+    {% endif %}
         
     <title>
       {{ page_title }}
