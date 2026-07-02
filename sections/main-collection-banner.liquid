@@ -1,36 +1,39 @@
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %}">
-  <div class="collection-hero__inner page-width">
-    <div class="collection-hero__text-wrapper">
-      <h1 class="collection-hero__title">
-        {{- collection.title | escape -}}
-      </h1>
+{% liquid
+  assign image = collection.metafields.custom.hero_image
+  assign mobile_image = collection.metafields.custom.mobile_hero_image
+%}
 
-      {% if section.settings.show_collection_description and collection.description != blank %}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
+{% unless section.settings.show_title %}
+<div class="page-width">
+  <h1 class="collection-hero__title--top">
+    {{- collection.title | escape -}}
+  </h1>
+</div>
+{% endunless %}
+<div class="collection-hero{% if section.settings.show_collection_image and image %} collection-hero--with-image{% endif %}">
+  <div class="{% unless section.settings.full_width %} page-width{% endunless %}">
+    <div class="collection-hero__inner">
+      <div class="collection-hero__text-wrapper{% if image != blank %} collection-hero__text-wrapper--overlay{% endif %}">
+        {% if section.settings.show_title %}
+        <h1 class="collection-hero__title">
+          {{- collection.title | escape -}}
+        </h1>
+        {% endif %}
+
+        {% if section.settings.show_collection_description and collection.description != blank %}
+          <div class="collection-hero__description rte">{{ collection.description }}</div>
+        {% endif %}
+      </div>
+
+      {% if image != blank and mobile_image != blank %}
+        {{ image | image_url: width: 1500 | image_tag: preload: true, width: image.width, class: 'desktop-image hide-mobile', sizes: '1500px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
+        {{ mobile_image | image_url: width: 1100 | image_tag: preload: true, width: mobile_image.width, class: 'mobile-image hide-desktop', sizes: '1100px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
+      {% elsif image != blank %}
+        {{ image | image_url: width: 1500 | image_tag: preload: true, width: image.width, class: 'desktop-image hide-mobile', sizes: '1500px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
       {% endif %}
     </div>
-
-    {% if section.settings.show_collection_image and collection.image %}
-      <div class="collection-hero__image-container media">
-        <img
-          srcset="{% if collection.image.width >= 165 %}{{ collection.image | img_url: '165x' }} 165w,{% endif %}
-            {% if collection.image.width >= 360 %}{{ collection.image | img_url: '360x' }} 360w,{% endif %}
-            {% if collection.image.width >= 535 %}{{ collection.image | img_url: '535x' }} 535w,{% endif %}
-            {% if collection.image.width >= 750 %}{{ collection.image | img_url: '750x' }} 750w,{% endif %}
-            {% if collection.image.width >= 1070 %}{{ collection.image | img_url: '1070x' }} 1070w,{% endif %}
-            {% if collection.image.width >= 1500 %}{{ collection.image | img_url: '1500x' }} 1500w,{% endif %}
-            {{ collection.image | img_url: 'master' }} {{ collection.image.width }}w"
-          src="{{ collection.image | img_url: '750x' }}"
-          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 769px) calc(50vw - 130px), calc(50vw - 55px)"
-          alt="{{ collection.title | escape }}"
-          loading="lazy"
-          width="{{ collection.image.width }}"
-          height="{{ collection.image.height }}"
-        >
-      </div>
-    {% endif %}
   </div>
 </div>
 
@@ -39,6 +42,11 @@
   "name": "t:sections.main-collection-banner.name",
   "class": "spaced-section spaced-section--full-width",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show collection title on image?"
+    },
     {
       "type": "paragraph",
       "content": "t:sections.main-collection-banner.settings.paragraph.content"
@@ -51,10 +59,8 @@
     },
     {
       "type": "checkbox",
-      "id": "show_collection_image",
-      "default": false,
-      "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
-      "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
+      "id": "full_width",
+      "label": "Full width?"
     }
   ],
   "presets": [
