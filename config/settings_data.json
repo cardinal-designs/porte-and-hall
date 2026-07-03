@@ -32,11 +32,13 @@
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
-        "custom_css": [],
+        "custom_css": [
+          ".announcement-bar {font-size: 12px;}"
+        ],
         "settings": {
           "hide_bar": false,
-          "text": "Final Few. Final Chance. <u>SHOP NOW</u>",
-          "link": "shopify://collections/sale",
+          "text": "25% off for America's 250<sup><span style=\"text-transform: lowercase;\">th</span></sup> • <u>Shop the Sale</u>",
+          "link": "shopify://collections/the-250th-edit",
           "background_color": "#546b82",
           "text_color": "#ffffff",
           "show_popup": true,
