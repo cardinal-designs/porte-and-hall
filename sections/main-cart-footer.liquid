@@ -52,6 +52,20 @@
                 </small>
               </div>
             {% else %}
+              {% assign restricted_product_quantity = 0 %}
+              {% for item in cart.items %}
+                {% if item.product_id == 8127852937279 %}
+                  {% assign restricted_product_quantity = restricted_product_quantity | plus: item.quantity %}
+                {% endif %}
+              {% endfor %}
+              {% assign disable_checkout_for_bundle = false %}
+              {% if restricted_product_quantity > 1 %}
+                {% assign disable_checkout_for_bundle = true %}
+              {% endif %}
+              {% if disable_checkout_for_bundle %}
+                <p class="body-sm bundle-checkout-error">you've reached your limit to 1 bundle per user</p>
+              {% endif %}
+              
               <div class="cart__ctas" {{ block.shopify_attributes }}>
                 <noscript>
                   <button type="submit" class="cart__update-button button button--secondary" form="cart">
@@ -59,7 +73,7 @@
                   </button>
                 </noscript>
 
-                <button type="submit" id="checkout" class="cart__checkout-button button" name="checkout"{% if cart == empty %} disabled{% endif %} form="cart">
+                <button type="submit" id="checkout" class="cart__checkout-button button{% if disable_checkout_for_bundle %} is-disabled{% endif %}" name="checkout"{% if cart == empty or disable_checkout_for_bundle %} disabled{% endif %} form="cart"{% if disable_checkout_for_bundle %} aria-disabled="true"{% endif %}>
                   {{ 'sections.cart.checkout' | t }}
                 </button>
               </div>
