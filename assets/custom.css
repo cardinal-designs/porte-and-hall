@@ -240,6 +240,13 @@ span.jdgm-prev-badge__stars {
   letter-spacing: 2px;
 }
 
+.rebuy-bundle-builder .rebuy-money {
+  color: var(--blue);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+}
+
 .rebuy-widget.rebuy-bundle-builder {
   padding-bottom: 50px;
 }
