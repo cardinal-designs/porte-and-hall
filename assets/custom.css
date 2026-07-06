@@ -82,3 +82,104 @@ span.jdgm-prev-badge__stars {
 #ot-sdk-btn-floating.ot-floating-button {
   display: none;
 }
+
+
+.rebuy-widget.rebuy-bundle-builder {
+  padding-bottom: 50px;
+}
+
+.rebuy-bundle-builder__product-holder-detail-title {
+  display: none !important;
+}
+
+.rebuy-bundle-builder__steps-container {
+  padding-right: 20px;
+}
+
+.rebuy-bundle-builder__step-header {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-block {
+  padding: 10px 8px !important;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-grid.start-column {
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-button {
+  background-color: #a19377;
+  color: #fff;
+  font-family: brandon;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 0;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget {
+  border-color: #000;
+  align-items: center;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-block .rebuy-product-actions {
+  margin-top: 15px;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-block .rebuy-product-info .rebuy-product-price {
+  display: none
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget-label {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget-button {
+  height: 40px;
+  font-size: 16px;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget-button .rebuy-grey {
+  color: #000000;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-title {
+  font-size: 14px;
+  pointer-events: none !important;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-image {
+  pointer-events: none !important;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__product-sign-holder {
+  border-radius: 0;
+}
+
+@media (max-width: 1179px) {
+
+  .rebuy-bundle-builder__steps-container {
+    padding-right: 0;
+  }
+
+  .rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__group-container {
+    z-index: 21474836341;
+  }
+
+}
+
+@media (max-width: 767px) {
+
+  .rebuy-widget.rebuy-bundle-builder .rebuy-button {
+    padding: 10px 7px;
+  }
+
+}
