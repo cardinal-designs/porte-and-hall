@@ -327,6 +327,12 @@ span.jdgm-prev-badge__stars {
   border-radius: 0;
 }
 
+.no-work__quantity .quantity__input,
+.no-work__quantity .quantity__input + .quantity__button {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 @media (max-width: 1179px) {
 
   .rebuy-bundle-builder__steps-container {
