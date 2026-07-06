@@ -63,7 +63,8 @@ class CartDrawer extends HTMLElement {
 
     this.pageOverlayElement.classList.add('is-visible');
     document.body.addEventListener('click', this.onBodyClick);
-    this.enableDrawerFocus()
+    this.enableDrawerFocus();
+    cartScroll();
   }
 
   disableDrawerFocus() {
@@ -221,6 +222,12 @@ class CartDrawer extends HTMLElement {
             this.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
 
         }));
+
+        document.dispatchEvent(new CustomEvent('cart:updated', {
+          detail: { cart: parsedState }
+        }));
+
+        cartScroll();
 
         this.disableLoading();
         this.drawer.focus();
