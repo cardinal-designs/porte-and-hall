@@ -372,3 +372,31 @@ document.addEventListener('DOMContentLoaded', () => {
   if(drawer.getAttribute("aria-hidden") == "false") drawer.focus();
   trapFocusinCart(drawer);
 });
+
+function cartScroll() {
+  const cartFooter = document.querySelector('.cart-drawer__footer');
+  const cartHeader = document.querySelector('.cart-drawer__header');
+  const cartItemsEle = document.querySelector('.cart-drawer__items');
+
+  if (!cartItemsEle) return;
+
+  const footerHeight = cartFooter?.offsetHeight || 0;
+  const headerHeight = cartHeader?.offsetHeight || 0;
+
+  const totalHeight = footerHeight + headerHeight;
+
+  // Debug (optional)
+  // console.log({ footerHeight, headerHeight, totalHeight });
+
+  cartItemsEle.style.height = `calc(100vh - ${totalHeight}px)`;
+}
+
+document.addEventListener('cart:updated', function () {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      cartScroll();
+      // Run again after delay for safety
+      setTimeout(cartScroll, 300);
+    });
+  });
+});
