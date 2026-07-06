@@ -309,6 +309,17 @@ span.jdgm-prev-badge__stars {
   border-radius: 0;
 }
 
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-title {
+  color: #546B82;
+  font-family: brandon;
+  font-size: 18px;
+  line-height: 120%;
+  font-family: brandon;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
 @media (max-width: 1179px) {
 
   .rebuy-bundle-builder__steps-container {
