@@ -1024,7 +1024,7 @@ square-placement {
     transform: rotate(45deg);
 }
 
-.rebuy-widget .rebuy-product-title {
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-title {
   color: #546B82;
   font-family: brandon;
   font-size: 18px;
