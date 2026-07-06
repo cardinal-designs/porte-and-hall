@@ -302,8 +302,8 @@ class CartDrawer extends HTMLElement {
 customElements.define('cart-drawer', CartDrawer);
 
 
-function updateMainCart(Rebuy) {
-  fetch(`${window.origin}/?section_id=cart-drawer`)
+function updateMainCart(Rebuy, cartData = null) {
+  return fetch(`${window.origin}/?section_id=cart-drawer`)
     .then((response) => response.text())
     .then((responseText) => {
       const html = new DOMParser().parseFromString(responseText, 'text/html');
@@ -315,6 +315,8 @@ function updateMainCart(Rebuy) {
           targetElement.replaceWith(sourceElement);
         }
       }
+
+      updateCartIconBubble(cartData || window.getCart() || null);
     })
     .catch((e) => {
       console.error(e);
@@ -323,6 +325,7 @@ function updateMainCart(Rebuy) {
       setTimeout(() => {
         if (Rebuy) {
           Rebuy.init();
+          cartScroll();
         }
       }, 2000);
     });
