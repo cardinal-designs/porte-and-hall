@@ -464,7 +464,7 @@ endcapture
               {%- capture other_size_links -%}
                 {%- comment -%} Current Product Size {%- endcomment -%}
                   {% assign active_order = '' %}
-                  {% if product.handle contains '3-x-5-doormat' %}
+                  {% if product.handle contains '3-x-5' %}
                     {% assign active_order = 2 %}
                   {% elsif product.handle contains 'doormat' %}
                     {% assign active_order = 1 %}
