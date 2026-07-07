@@ -469,7 +469,9 @@
               {%- capture other_size_links -%}
                 {%- comment -%} Current Product Size {%- endcomment -%}
                   {% assign active_order = '' %}
-                  {% if product.handle contains 'doormat' %}
+                  {% if product.handle contains '3-x-5-doormat' %}
+                    {% assign active_order = 8 %}
+                  {% elsif product.handle contains 'doormat' %}
                     {% assign active_order = 1 %}
                   {% elsif product.handle contains 'xl-runner' %}
                     {% assign active_order = 3 %}
@@ -477,8 +479,6 @@
                     {% assign active_order = 2 %}
                   {% elsif product.handle contains 'area-mat-5x7' %}
                     {% assign active_order = 7 %}
-                  {% elsif product.handle contains '3-x-5-doormat' %}
-                    {% assign active_order = 8 %}
                   {% elsif product.handle contains 'area-mat' %}
                     {% assign active_order = 4 %}
                    {% elsif product.handle contains 'standard' %}
