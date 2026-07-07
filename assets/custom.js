@@ -111,8 +111,28 @@ function toggleBundleCTA(timeout) {
 
 document.addEventListener('rebuy:cart.change', function(event) {
   toggleBundleCTA(1000);
+  setTimeout(() => enforceNotAvailableClass(), 1100);
 });
 
 window.addEventListener('load', (event) => {
   toggleBundleCTA(1500);
+  setTimeout(() => enforceNotAvailableClass(), 1600);
 });
+
+// Add .is-disabled to any swatch button whose text is "Not Available"
+function enforceNotAvailableClass(rootSelector = '.rebuy-bundle-builder__step-body') {
+  const root = document.querySelector(rootSelector) || document;
+
+  root
+    .querySelectorAll('.rebuy-bundle-builder__product-quantity .rebuy-button')
+    .forEach((btn) => {
+      const label = (btn.querySelector('span') || btn).textContent.trim().toLowerCase();
+
+      if (label === 'not available') {
+        btn.classList.add('is-disabled');
+      } else {
+        btn.classList.remove('is-disabled'); // remove if it becomes available
+      }
+    });
+}
+
