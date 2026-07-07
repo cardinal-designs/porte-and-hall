@@ -464,7 +464,9 @@ endcapture
               {%- capture other_size_links -%}
                 {%- comment -%} Current Product Size {%- endcomment -%}
                   {% assign active_order = '' %}
-                 {% if product.handle contains 'doormat' %}
+                  {% if product.handle contains '3-x-5-doormat' %}
+                    {% assign active_order = 8 %}
+                  {% elsif product.handle contains 'doormat' %}
                     {% assign active_order = 1 %}
                   {% elsif product.handle contains 'xl-runner' %}
                     {% assign active_order = 3 %}
@@ -487,6 +489,8 @@ endcapture
                 >
                   {% if product_size == '5 x 7 Area Mat' %}
                     <span>Area Mat</span>
+                  {% elsif product_size == '3 x 5 Doormat' %}
+                    <span>Doormat</span>
                   {% else %}
                   <span>{{ product_size }}</span>
                   {% endif %}
@@ -518,7 +522,7 @@ endcapture
 
                   {%- if prod_url != blank and prod_url != product.url -%}
                     <a 
-                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == '5 x 7 Area Mat'  %}7{% endif %} ;"
+                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == '5 x 7 Area Mat'  %}7{% elsif current_size[1] == '3 x 5 Doormat'  %}8{% endif %} ;"
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
                       href="{{ prod_url }}"
                     >
