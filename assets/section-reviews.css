@@ -406,6 +406,10 @@ div[data-widget-style*=standard] .stamped-summary {
     gap: 14px;
   }
 
+  .rebuy-bundle-builder__step-tab {
+    min-width: unset;
+  }
+
 }
 
 @media screen and (max-width: 567px) {
@@ -424,8 +428,4 @@ div[data-widget-style*=standard] .stamped-summary {
     margin-bottom: 15px;
   }
   
-}
-
-.rebuy-bundle-builder__step-tab {
-  min-width: unset;
 }
