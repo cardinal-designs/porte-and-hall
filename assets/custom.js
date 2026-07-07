@@ -109,16 +109,6 @@ function toggleBundleCTA(timeout) {
   }, timeout);
 }
 
-document.addEventListener('rebuy:cart.change', function(event) {
-  toggleBundleCTA(1000);
-  setTimeout(() => enforceNotAvailableClass(), 1100);
-});
-
-window.addEventListener('load', (event) => {
-  toggleBundleCTA(1500);
-  setTimeout(() => enforceNotAvailableClass(), 1600);
-});
-
 // Add .is-disabled to any swatch button whose text is "Not Available"
 function enforceNotAvailableClass(rootSelector = '.rebuy-bundle-builder__step-body') {
   const root = document.querySelector(rootSelector) || document;
@@ -135,4 +125,16 @@ function enforceNotAvailableClass(rootSelector = '.rebuy-bundle-builder__step-bo
       }
     });
 }
+
+document.addEventListener('rebuy:cart.change', function(event) {
+  toggleBundleCTA(1000);
+  setTimeout(() => enforceNotAvailableClass(), 1100);
+});
+
+window.addEventListener('load', (event) => {
+  toggleBundleCTA(1500);
+  setTimeout(() => enforceNotAvailableClass(), 1600);
+});
+
+
 
