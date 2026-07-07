@@ -465,21 +465,21 @@ endcapture
                 {%- comment -%} Current Product Size {%- endcomment -%}
                   {% assign active_order = '' %}
                   {% if product.handle contains '3-x-5-doormat' %}
-                    {% assign active_order = 8 %}
+                    {% assign active_order = 2 %}
                   {% elsif product.handle contains 'doormat' %}
                     {% assign active_order = 1 %}
                   {% elsif product.handle contains 'xl-runner' %}
-                    {% assign active_order = 3 %}
-                  {% elsif product.handle contains 'runner' %}
-                    {% assign active_order = 2 %}
-                  {% elsif product.handle contains 'area-mat-5x7' %}
-                    {% assign active_order = 7 %}
-                  {% elsif product.handle contains 'area-mat' %}
                     {% assign active_order = 4 %}
-                   {% elsif product.handle contains 'standard' %}
+                  {% elsif product.handle contains 'runner' %}
+                    {% assign active_order = 3 %}
+                  {% elsif product.handle contains 'area-mat-5x7' %}
+                    {% assign active_order = 8 %}
+                  {% elsif product.handle contains 'area-mat' %}
                     {% assign active_order = 5 %}
-                  {% elsif product.handle contains 'double' %}
+                   {% elsif product.handle contains 'standard' %}
                     {% assign active_order = 6 %}
+                  {% elsif product.handle contains 'double' %}
+                    {% assign active_order = 7 %}
                   {% endif %}
 
                 <a 
@@ -522,7 +522,7 @@ endcapture
 
                   {%- if prod_url != blank and prod_url != product.url -%}
                     <a 
-                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == 'Runner'  %}2{% elsif current_size[1] == 'XL Runner'  %}3{% elsif current_size[1] == 'Area Mat'  %}4{% elsif current_size[1] == 'Standard'  %}5{% elsif current_size[1] == 'Double'  %}6{% elsif current_size[1] == '5 x 7 Area Mat'  %}7{% elsif current_size[1] == '3 x 5 Doormat'  %}8{% endif %} ;"
+                      style="order: {% if current_size[1] == 'Doormat' %}1{% elsif current_size[1] == '3 x 5 Doormat'  %}2{% elsif current_size[1] == 'Runner'  %}3{% elsif current_size[1] == 'XL Runner'  %}4{% elsif current_size[1] == 'Area Mat'  %}5{% elsif current_size[1] == 'Standard'  %}6{% elsif current_size[1] == 'Double'  %}7{% elsif current_size[1] == '5 x 7 Area Mat'  %}8{% endif %} ;"
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
                       href="{{ prod_url }}"
                     >
