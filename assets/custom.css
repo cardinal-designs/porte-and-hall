@@ -352,3 +352,8 @@ span.jdgm-prev-badge__stars {
   }
 
 }
+
+button.rebuy-button.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
