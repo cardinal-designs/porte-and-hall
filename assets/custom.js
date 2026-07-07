@@ -133,14 +133,19 @@ function initNotAvailableObserver() {
   return mo;
 }
 
-document.addEventListener('rebuy:cart.change', function(event) {
-  toggleBundleCTA(1000);
-  setTimeout(() => enforceNotAvailableClass(), 1100);
+// run once
+window.addEventListener('load', () => {
+  initNotAvailableObserver();
 });
 
-window.addEventListener('load', (event) => {
+document.addEventListener('rebuy:cart.change', function () {
+  toggleBundleCTA(1000);
+  setTimeout(() => enforceNotAvailableClass(document), 1100);
+});
+
+window.addEventListener('load', function () {
   toggleBundleCTA(1500);
-  initNotAvailableObserver();
+  setTimeout(() => enforceNotAvailableClass(document), 1600);
 });
 
 
