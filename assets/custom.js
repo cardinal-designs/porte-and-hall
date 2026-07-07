@@ -133,12 +133,6 @@ function initNotAvailableObserver() {
   return mo;
 }
 
-// run once
-window.addEventListener('load', () => {
-  initNotAvailableObserver();
-});
-
-
 document.addEventListener('rebuy:cart.change', function(event) {
   toggleBundleCTA(1000);
   setTimeout(() => enforceNotAvailableClass(), 1100);
@@ -146,7 +140,7 @@ document.addEventListener('rebuy:cart.change', function(event) {
 
 window.addEventListener('load', (event) => {
   toggleBundleCTA(1500);
-  setTimeout(() => enforceNotAvailableClass(), 1600);
+  initNotAvailableObserver();
 });
 
 
