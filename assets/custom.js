@@ -107,13 +107,13 @@ function toggleBundleCTA(timeout) {
       }
     });
 
-    document
-    .querySelectorAll(".rebuy-bundle-builder__product-quantity .rebuy-button")
-    .forEach(button => {
-      button.disabled = button.innerText
-        .toLowerCase()
-        .includes("not available");
-    });
+    // document
+    // .querySelectorAll(".rebuy-bundle-builder__product-quantity .rebuy-button")
+    // .forEach(button => {
+    //   button.disabled = button.innerText
+    //     .toLowerCase()
+    //     .includes("not available");
+    // });
   }, timeout);
 }
 
