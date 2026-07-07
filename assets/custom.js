@@ -106,94 +106,23 @@ function toggleBundleCTA(timeout) {
         }
       }
     });
+
+    document
+    .querySelectorAll(".rebuy-bundle-builder__product-quantity .rebuy-button")
+    .forEach(button => {
+      button.disabled = button.innerText
+        .toLowerCase()
+        .includes("not available");
+    });
   }, timeout);
 }
 
-// Add .is-disabled to any swatch button whose text is "Not Available"
-// 1) Your existing function (keep it)
-function enforceNotAvailableClass(rootSelector = '.rebuy-bundle-builder__step-body') {
-  const root = document.querySelector(rootSelector) || document;
-
-  root
-    .querySelectorAll('.rebuy-bundle-builder__product-quantity .rebuy-button')
-    .forEach((btn) => {
-      const label = (btn.querySelector('span') || btn).textContent.trim().toLowerCase();
-
-      if (label === 'not available') btn.classList.add('is-disabled');
-      else btn.classList.remove('is-disabled');
-    });
-}
-
-
-// 2) Observer that survives the widget being replaced
-//    We watch document.body, and whenever Rebuy replaces/updates the widget,
-//    we re-run enforceNotAvailableClass.
-function initRebuyNotAvailableObserver() {
-  let scheduled = false;
-
-  const run = () => {
-    scheduled = false;
-    enforceNotAvailableClass(); // uses your default rootSelector
-  };
-
-  const scheduleRun = () => {
-    if (scheduled) return;
-    scheduled = true;
-    requestAnimationFrame(run); // debounced + fast
-  };
-
-  // Run once right away
-  scheduleRun();
-
-  const mo = new MutationObserver((mutations) => {
-    // Only re-run when changes are likely related to Rebuy/widget/buttons/text
-    for (const m of mutations) {
-      if (
-        (m.type === 'childList' && (m.addedNodes.length || m.removedNodes.length)) ||
-        (m.type === 'characterData') ||
-        (m.type === 'attributes' &&
-          m.target &&
-          m.target.nodeType === 1 &&
-          (
-            m.target.classList?.contains('rebuy-button') ||
-            m.target.closest?.('.rebuy-widget, .rebuy-bundle-builder')
-          )
-        )
-      ) {
-        scheduleRun();
-        break;
-      }
-    }
-  });
-
-  // Watch the whole page because the entire widget can be replaced
-  mo.observe(document.body, {
-    subtree: true,
-    childList: true,
-    characterData: true,
-    attributes: true,
-  });
-
-  return mo; // in case you want to disconnect later
-}
-
-
-// 3) Start it once (don’t start multiple times)
-window.addEventListener('load', () => {
-  if (!window.__rebuyNotAvailObserver) {
-    window.__rebuyNotAvailObserver = initRebuyNotAvailableObserver();
-  }
-});
-
-
 document.addEventListener('rebuy:cart.change', function(event) {
   toggleBundleCTA(1000);
-  setTimeout(() => enforceNotAvailableClass(), 1100);
 });
 
 window.addEventListener('load', (event) => {
   toggleBundleCTA(1500);
-  setTimeout(() => enforceNotAvailableClass(), 1600);
 });
 
 
