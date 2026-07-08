@@ -313,6 +313,11 @@ div[data-widget-style*=standard] .stamped-summary {
   align-items: center;
 }
 
+.rebuy-bundle-builder__step-tabs--sticky {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 @media screen and (max-width: 1199px) {
 
   .stamped-summary-photos.stamped-summary-photos-container {
@@ -391,11 +396,6 @@ div[data-widget-style*=standard] .stamped-summary {
   .rebuy-bundle-builder__step-tab-title {
     font-size: 12px;
     letter-spacing: 1px;
-  }
-
-  .rebuy-bundle-builder__step-tabs--sticky {
-    padding-left: 0;
-    padding-right: 0;
   }
 
   .rebuy-bundle-builder__step-tabs--sticky {
