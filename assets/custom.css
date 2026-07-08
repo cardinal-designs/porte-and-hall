@@ -232,7 +232,8 @@ span.jdgm-prev-badge__stars {
 .rebuy-widget.rebuy-bundle-builder .rebuy-product-title {
   color: #546B82;
   font-family: brandon;
-  font-size: 18px;
+  font-size: 12px;
+  pointer-events: none !important;
   line-height: 120%;
   font-family: brandon;
   text-transform: uppercase;
@@ -312,11 +313,6 @@ span.jdgm-prev-badge__stars {
 
 .rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget-button .rebuy-grey {
   color: #000000;
-}
-
-.rebuy-widget.rebuy-bundle-builder .rebuy-product-title {
-  font-size: 12px;
-  pointer-events: none !important;
 }
 
 .rebuy-widget.rebuy-bundle-builder .rebuy-product-image {
