@@ -345,6 +345,11 @@ div[data-widget-style*=standard] .stamped-summary {
     justify-content: center;
   }
 
+  .rebuy-bundle-builder__step-tab-title {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -391,11 +396,6 @@ div[data-widget-style*=standard] .stamped-summary {
   
   select#stamped-sort-select {
     border-top: 1px solid #eee!important;
-  }
-
-  .rebuy-bundle-builder__step-tab-title {
-    font-size: 12px;
-    letter-spacing: 1px;
   }
 
   .rebuy-bundle-builder__step-tabs--sticky {
