@@ -468,6 +468,11 @@ blockquote {
   color: var(--blue);
 }
 
+.button--white {
+  background: white;
+  color: #896A28;
+}
+
 /* Button - other */
 .button:disabled,
 .button[aria-disabled="true"],
