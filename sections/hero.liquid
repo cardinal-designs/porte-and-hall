@@ -4,7 +4,7 @@
   <div class="hero__content">
     <div class="hero__container">
       <h1 class="hero__title">{{ section.settings.title | newline_to_br }}</h1>
-      <a href="{{ section.settings.button_link }}" class="button">{{ section.settings.button_label }}</a>
+      <a href="{{ section.settings.button_link }}" class="button{% if section.settings.white_button %} button--white{% endif %}">{{ section.settings.button_label }}</a>
     </div>
   </div>
 
@@ -85,6 +85,11 @@
       "type": "url",
       "id": "button_link",
       "label": "Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "white_button",
+      "label": "White button"
     }
   ],
   "presets": [
