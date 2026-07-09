@@ -1048,6 +1048,25 @@
       "@type": "Thing",
       "name": {{ product.vendor | json }}
     },
+    {%- liquid
+      assign review_rating_value = blank
+      if product.metafields.reviews.rating.value.rating != blank
+        assign review_rating_value = product.metafields.reviews.rating.value.rating
+      endif
+      assign review_count_value = blank
+      if product.metafields.reviews.rating_count.value != blank
+        assign review_count_value = product.metafields.reviews.rating_count.value
+      elsif product.metafields.reviews.rating_count != blank
+        assign review_count_value = product.metafields.reviews.rating_count
+      endif
+    -%}
+    {%- if review_rating_value != blank and review_count_value != blank and review_count_value > 0 -%}
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": {{ review_rating_value | json }},
+      "reviewCount": {{ review_count_value | json }}
+    },
+    {%- endif -%}
     "offers": [
       {% for variant in product.variants %}
         {
@@ -1055,6 +1074,15 @@
           {% if variant.sku != blank %}
             "sku": {{ variant.sku | json }},
           {% endif %}
+          {%- if variant.barcode.size == 12 -%}
+            "gtin12": {{ variant.barcode | json }},
+          {%- endif -%}
+          {%- if variant.barcode.size == 13 -%}
+            "gtin13": {{ variant.barcode | json }},
+          {%- endif -%}
+          {%- if variant.barcode.size == 14 -%}
+            "gtin14": {{ variant.barcode | json }},
+          {%- endif -%}
           "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
           "price" : {{ variant.price | divided_by: 100.00 | json }},
           "priceCurrency" : {{ cart.currency.iso_code | json }},
