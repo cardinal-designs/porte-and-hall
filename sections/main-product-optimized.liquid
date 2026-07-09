@@ -129,7 +129,7 @@
          {% comment %} Start of Judge.me code {% endcomment %}
         <a href="#judgeme_product_reviews">
           <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'> 
-            {{ product.metafields.judgeme.badge }} 
+            {% render 'judgeme-badge-no-schema', product: product %} 
           </div> 
         </a>
           {% comment %} End of Judge.me code {% endcomment %}

@@ -184,12 +184,12 @@
     {% endif %}
 
 
-    <!-- Start of Judge.me code --> 
-<div class='jdgm-widget jdgm-preview-badge xtreviewbadge' data-id='{{ product_card_product.id }}'> 
-  <a href="{{ product_card_product.url }}/#judgeme_product_reviews" aria-label="View product reviews">
-  {{ product_card_product.metafields.judgeme.badge }} 
+    <!-- Start of Judge.me code -->
+<div class='jdgm-widget jdgm-preview-badge xtreviewbadge' data-id='{{ product_card_product.id }}'>
+<a href="{{ product_card_product.url }}/#judgeme_product_reviews" aria-label="View product reviews">
+  {% render 'judgeme-badge-no-schema', product: product_card_product %}
   </a>
-</div> 
+</div>
 <!-- End of Judge.me code -->
 
     {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
