@@ -685,7 +685,7 @@ var afterpay_js_snippet_version = '1.2.1';
 
 <script>
   document.addEventListener("DOMContentLoaded", (event) => {
-  const headerHeight = document.querySelector("header").offsetHeight;
+  const headerHeight = document.querySelector(".outer-header-wrapper ").offsetHeight;
   document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
   console.log(headerHeight)
 });
