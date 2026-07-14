@@ -22,9 +22,8 @@
     },
     "main": {
       "type": "main-page",
-      "custom_css": [
-        ".h1 {font-size: 12px;}"
-      ],
+      "disabled": true,
+      "custom_css": [],
       "settings": {
         "page_heading": "",
         "subhead": "",
