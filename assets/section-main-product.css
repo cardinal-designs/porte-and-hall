@@ -54,9 +54,9 @@
   .product__media-wrapper {
     height: fit-content;
     position: sticky;
-    top: var(--header-height);
+    top: calc(var(--header-height) + 20px);
   }
-  
+
   .product__media-thumbnails {
     flex-direction: column;
     margin-bottom: 0;
