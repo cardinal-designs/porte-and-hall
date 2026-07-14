@@ -102,7 +102,7 @@ function toggleBundleCTA(timeout) {
         document.querySelector(".rebuy-bundle-builder__cta-container button").disabled = true;
         document.querySelectorAll(".rebuy-bundle-builder__product-quantity .rebuy-button").forEach(button => button.disabled = true);
         if(!document.querySelector(".rebuy-bundle-builder__group-container-action .error-message")) {
-          document.querySelector(".rebuy-bundle-builder__group-container-action").insertAdjacentHTML('beforeend', `<p class="error-message" style="color: #546B82;">${window.bundleErrorMessage}</p>`);
+          document.querySelector(".rebuy-bundle-builder__group-container-action").insertAdjacentHTML('beforeend', `<p class="error-message" style="color: red;">${window.bundleErrorMessage}</p>`);
         }
       }
     });
