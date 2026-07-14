@@ -88,10 +88,3 @@ document.addEventListener('click', (event) => {
     window.scrollTo({ top: offsetTop - navHeight - buffer, behavior: 'smooth' });
   }
 });
-
-
-document.addEventListener("DOMContentLoaded", (event) => {
-  const headerHeight = document.querySelector("header").offsetHeight;
-  document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
-  console.log(headerHeight)
-});
