@@ -671,9 +671,9 @@ cart-drawer-remove-button {
 
 /* Splide slider */
 
-/* .cart-drawer .slider__product .rebuy-widget .rebuy-product-block .rebuy-button {
-  background: #D1BD93;
-  border-color: #D1BD93;
+.cart-drawer .slider__product .rebuy-widget .rebuy-product-block .rebuy-button {
+  background: #896A28;
+  border-color: #896A28;
   border-radius: 0;
   font-size: 16px;
   font-weight: 500;
@@ -756,10 +756,10 @@ cart-drawer-remove-button {
   width: 90px !important;
 }
 
-.cart-drawer .single__product .rebuy-product-grid .rebuy-button,
-.cart-drawer .rebuy-product-grid.flickity-enabled .rebuy-button {
-  background: #D1BD93;
-  border-color: #D1BD93;
+.single__product .rebuy-product-grid .rebuy-button,
+.rebuy-product-grid.flickity-enabled .rebuy-button {
+  background: #896A28;
+  border-color: #896A28;
   border-radius: 0;
   font-size: 16px;
   font-weight: 500;
