@@ -73,6 +73,24 @@
   {% endpaginate %}
 </div>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "@id": {{ request.origin | append: blog.url | append: '#blog' | json }},
+  "name": {{ blog.title | json }},
+  "url": {{ request.origin | append: blog.url | json }},
+  {%- if page_description != blank -%}
+  "description": {{ page_description | json }},
+  {%- endif -%}
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "url": {{ shop.url | json }}
+  }
+}
+</script>
+
 {% schema %}
   {
     "name": "Blog Landing",
