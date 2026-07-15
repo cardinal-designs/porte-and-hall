@@ -131,6 +131,7 @@
     },
     "see-in-action": {
       "type": "see-it-in-action",
+      "disabled": true,
       "settings": {
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
         "heading": "<p>{{ section.settings.collection.metafields.custom.collage_inspo_section_title | metafield_tag }}</p>",
@@ -175,6 +176,7 @@
       "block_order": [
         "question_1"
       ],
+      "disabled": true,
       "settings": {
         "heading": "",
         "anchor": "",
@@ -193,6 +195,7 @@
       "blocks": {
         "judge_me_reviews_review_widget_GBTbQT": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
           "settings": {
             "review_data": "sample_data",
             "max_width": 1200,

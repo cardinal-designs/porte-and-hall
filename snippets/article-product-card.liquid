@@ -90,7 +90,7 @@
     <div class="product-card__container">
       {% if title != blank or collection.title != blank %}
         <div class="product-card__title h3 blue">
-          {{ title | default: collection.title | replace: ' | ', '<br>' }}
+          {{ title | default: collection.title | remove: '3 x 5' | replace: ' | ', '<br>' }}
           {%- if collection.metafields.custom.dimensions != blank -%}
             <span class="body">({{ collection.metafields.custom.dimensions }})</span>
           {%- endif -%}

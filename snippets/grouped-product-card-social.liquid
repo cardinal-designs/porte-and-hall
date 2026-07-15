@@ -174,13 +174,13 @@
 
     <a href="{{ product_card_product.url }}">
       
-    <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product_card_product.id }}'> 
-      {{ product_card_product.metafields.judgeme.badge }} 
+    <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product_card_product.id }}'>
+{% render 'judgeme-badge-no-schema', product: product_card_product %} 
     </div> 
       
       {% if title != blank or collection.title != blank %}
       <div class="product-card__title h3 blue">
-        {{ title | default: collection.title | replace: ' | ', ' ' }}
+        {{ title | default: collection.title | remove: '3 x 5' | replace: ' | ', ' ' }}
         <br><span class="body">{{ product_card_product.options_by_name['color'].values[0]  | capitalize }}</span>
         {% comment %} {%- if collection.metafields.custom.dimensions != blank -%}
           <span class="body">({{ collection.metafields.custom.dimensions }})</span>

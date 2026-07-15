@@ -13,63 +13,17 @@
       "type": "video-text",
       "name": "Video with text",
       "settings": {
-        "bg_color": "#F4F2EE",
-        "video": "shopify://files/videos/cro_compress.mp4",
-        "mobile_video": "shopify://files/videos/cro_compress.mp4",
-        "video_poster": "shopify://shop_images/white-img.png",
+        "bg_color": "#f4f2ee",
+        "video": "shopify://files/videos/Barefoot Season_HP_desktop_compressed.mp4",
+        "mobile_video": "shopify://files/videos/Barefoot Season_HP_mobile_comp.mp4",
+        "video_poster": "shopify://shop_images/white-img.webp",
         "subheading": "",
-        "title": "<h1>Worthy of Your Welcome</h1>",
-        "title_font_size": 72,
-        "content": "<p>Premium indoor and outdoor mats to elevate your entry and your everyday.</p>",
-        "content_font_size": 30,
+        "title": "<h1>Summer,<br/>Come On In</h1>",
+        "title_font_size": 70,
+        "content": "<p>Doors open, shoes optional—our mats were made for this.</p>",
+        "content_font_size": 22,
         "content_font_size_mb": 14,
         "link_text": "explore more",
-        "link_url": "shopify://collections/shop-all",
-        "button_style": "small",
-        "custom-class": "home-banner",
-        "media_first": false,
-        "content_full_width": false
-      }
-    },
-    "video_text_hTPBAL": {
-      "type": "video-text",
-      "disabled": true,
-      "name": "Video with text",
-      "settings": {
-        "bg_color": "",
-        "video": "shopify://files/videos/Outlier Made to Last _1200x1200_7c022148-d5cf-44af-a35c-bb48245453c7.mp4",
-        "mobile_video": "shopify://files/videos/Outlier Made to Last _1200x1200 (1).mp4",
-        "video_poster": "shopify://shop_images/white-img.png",
-        "subheading": "",
-        "title": "<h1>We Don't Do Disposable Doormats</h1>",
-        "title_font_size": 60,
-        "content": "<p>The Outlier is built to last for years—durable, recyclable, and made in the USA.</p>",
-        "content_font_size": 25,
-        "content_font_size_mb": 14,
-        "link_text": "SHOP THE OUTLIER",
-        "link_url": "shopify://products/the-outlier-charcoal-doormat",
-        "button_style": "small",
-        "custom-class": "home-banner",
-        "media_first": false,
-        "content_full_width": false
-      }
-    },
-    "video_text_yYPefV": {
-      "type": "video-text",
-      "disabled": true,
-      "name": "Video with text",
-      "settings": {
-        "bg_color": "",
-        "video": "shopify://files/videos/Mother'sDay_homepage_1200x1200 (1).mp4",
-        "mobile_video": "shopify://files/videos/Mother'sDay_homepage_mobile_1200x1200 (1).mp4",
-        "video_poster": "shopify://shop_images/white-img.png",
-        "subheading": "",
-        "title": "<h1>Home Starts</h1><h1>With You</h1>",
-        "title_font_size": 60,
-        "content": "<p>You deserve a mat that works as hard as you do. And looks beautiful doing it.</p>",
-        "content_font_size": 28,
-        "content_font_size_mb": 14,
-        "link_text": "Shop the Mother's Day Sale",
         "link_url": "shopify://collections/shop-all",
         "button_style": "small",
         "custom-class": "home-banner",
@@ -119,63 +73,6 @@
         "custom-class": "home-icon-with-text",
         "text_color": "#30383d",
         "background": "#eeefef"
-      }
-    },
-    "1a45718e-f365-4cf1-b3e7-cabc296e2bdc": {
-      "type": "custom-collection",
-      "blocks": {
-        "70266841-060c-4d29-8cf3-32d2f27e0956": {
-          "type": "block",
-          "settings": {
-            "title": "Indoor Mats",
-            "badge1": "Natural look",
-            "collection_image1": "shopify://shop_images/the_innerweave.jpg",
-            "collection1": "the-innerweave",
-            "collection1_title": "",
-            "collection1_show_more": "4",
-            "badge2": "Ultra-thin",
-            "collection_image2": "shopify://shop_images/the_insider_ccf4c005-c63e-499e-844d-f5e94140440b.jpg",
-            "collection2": "the-insider",
-            "collection2_title": "",
-            "collection2_show_more": "12"
-          }
-        },
-        "81eefe71-5d4e-40de-af7c-1753292165b4": {
-          "type": "block",
-          "settings": {
-            "title": "Outdoor Mats",
-            "badge1": "Rubbery feel",
-            "collection_image1": "shopify://shop_images/the_outlier_df24f4b8-d6b9-4b52-a5d7-660359294000.jpg",
-            "collection1": "the-outlier",
-            "collection1_title": "The Outlier",
-            "collection1_show_more": "",
-            "badge2": "Removable insert",
-            "collection_image2": "shopify://shop_images/collections_chestnut_2dc4b571-46db-456a-b058-2c27984b516e.jpg",
-            "collection2": "the-outlier",
-            "collection2_title": "",
-            "collection2_show_more": ""
-          }
-        }
-      },
-      "block_order": [
-        "70266841-060c-4d29-8cf3-32d2f27e0956",
-        "81eefe71-5d4e-40de-af7c-1753292165b4"
-      ],
-      "disabled": true,
-      "settings": {
-        "title": "Meet our collections"
-      }
-    },
-    "product_carousel_new_aKw9LG": {
-      "type": "product-carousel-new",
-      "disabled": true,
-      "settings": {
-        "heading": "Shop our best sellers",
-        "background": "",
-        "show_metafield_style": false,
-        "collection": "best-sellers-limited",
-        "button_text": "Shop Now",
-        "btn_link": "shopify://collections/best-sellers"
       }
     },
     "product_carousel_new_2_JLEKyQ": {
@@ -341,52 +238,6 @@
         "hide_desktop": true
       }
     },
-    "40919de2-f3c2-45da-99ff-c69ad3e95306": {
-      "type": "custom-collection-products",
-      "blocks": {
-        "12faff32-e0a9-4e79-979d-fa24bfa28b92": {
-          "type": "block",
-          "settings": {
-            "title": "Indoor Mats",
-            "badge1": "Natural look",
-            "product1_title": "The Innerweave",
-            "collection1": "the-innerweave",
-            "product1": "the-innerweave-chevron-natural-doormat",
-            "product_image1": "shopify://shop_images/Innerweave_mat_9848f33d-c73b-490a-99c1-61c4daf0a915.jpg",
-            "badge2": "Ultra-thin",
-            "product2_title": "The Insider",
-            "collection2": "the-insider",
-            "product2": "the-insider-retro-orange-doormat",
-            "product_image2": "shopify://shop_images/the_insider_ccf4c005-c63e-499e-844d-f5e94140440b.jpg"
-          }
-        },
-        "84f650fc-6ea8-4c6e-b15b-4a27b75e7476": {
-          "type": "block",
-          "settings": {
-            "title": "Outdoor Mats",
-            "badge1": "Dirt trapper",
-            "product1_title": "The Outlier",
-            "collection1": "the-outlier",
-            "product1": "the-outlier-slate-doormat",
-            "product_image1": "shopify://shop_images/the_outlier_df24f4b8-d6b9-4b52-a5d7-660359294000.jpg",
-            "badge2": "Eye-catcher",
-            "product2_title": "The Porter",
-            "collection2": "the-porter-standard",
-            "product2": "the-porter-truffle-standard",
-            "product_image2": "shopify://shop_images/Homepage_porterthumbnail.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "12faff32-e0a9-4e79-979d-fa24bfa28b92",
-        "84f650fc-6ea8-4c6e-b15b-4a27b75e7476"
-      ],
-      "disabled": true,
-      "settings": {
-        "title": "Meet our collections",
-        "hide_mobile": true
-      }
-    },
     "custom_collection_products_desktop_XNiQe4": {
       "type": "custom-collection-products-desktop",
       "blocks": {
@@ -444,7 +295,7 @@
         ".hero {max-width: 1440px; margin-left: auto; margin-right: auto;}"
       ],
       "settings": {
-        "video": "shopify://files/videos/-ac6f-42e5-bcfd-ed1480562d97_1f6bdcd7-c609-47fe-acf8-e0c27945452e.mp4",
+        "video": "shopify://files/videos/easy to clean_comp.mp4",
         "title": "So Easy To Clean",
         "sub-text": "We fit right into your I-don't-have-time-for-that cleaning routine.",
         "content": "<ul>\n<li>Wash with a hose or at the sink with cold water (high pressure is your friend)</li>\n<li>Use OxiClean™ to tackle tough stains</li>\n<li>Hang to dry</li>\n</ul>"
@@ -553,356 +404,6 @@
         "link_url": "shopify://collections/shop-all"
       }
     },
-    "339880a2-1845-4515-a00b-2483f17bb3c5": {
-      "type": "image-slideshow",
-      "blocks": {
-        "d5685ca9-ed05-432b-b39d-94f360bdb90a": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/newherodesktop.jpg",
-            "image_mobile": "shopify://shop_images/newheromobile.jpg",
-            "section_header": "",
-            "section_paragraph": "",
-            "button_text": "",
-            "button_url": "",
-            "block_align_left": false,
-            "section_align_left": false,
-            "section_align_top_mobile": false,
-            "text_color": "#000000"
-          }
-        },
-        "92bc6ef1-3f43-4be9-8c5e-704c0aebfab3": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/IMG_2354_desktop.jpg",
-            "image_mobile": "shopify://shop_images/IMG_2354_mobile.jpg",
-            "section_header": "",
-            "section_paragraph": "",
-            "button_text": "",
-            "button_url": "",
-            "block_align_left": false,
-            "section_align_left": false,
-            "section_align_top_mobile": false,
-            "text_color": "#000000"
-          }
-        },
-        "506a441d-b866-429d-9533-3c6510b0fb00": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/LPherotest__0011_fansgreen_2x_0ad22fbb-3fc3-45ea-8d6a-4e48c5885649.jpg",
-            "image_mobile": "shopify://shop_images/herocarousel3_2x_bf897b6c-6b37-4d05-b943-00a8bed73e5f.jpg",
-            "section_header": "",
-            "section_paragraph": "",
-            "button_text": "",
-            "button_url": "",
-            "block_align_left": false,
-            "section_align_left": false,
-            "section_align_top_mobile": false,
-            "text_color": "#000000"
-          }
-        },
-        "609c2e03-669d-488b-aa98-abd4157c9269": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/LPherotest__0014_chevronnatural_2x_027aad20-a224-4e45-b4d4-6a05fdf9bd45.jpg",
-            "image_mobile": "shopify://shop_images/herocarousel4_2x_67f38c1c-6696-49f6-a05c-4b939658e79b.jpg",
-            "section_header": "",
-            "section_paragraph": "",
-            "button_text": "",
-            "button_url": "",
-            "block_align_left": false,
-            "section_align_left": false,
-            "section_align_top_mobile": false,
-            "text_color": "#000000"
-          }
-        },
-        "4d0252aa-faed-4591-9436-90184cdb7b36": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/LPherotest__0002_outsiderblue2_2x_beaba565-66d4-405d-a902-2354c9200c82.jpg",
-            "section_header": "",
-            "section_paragraph": "",
-            "button_text": "",
-            "button_url": "",
-            "block_align_left": false,
-            "section_align_left": false,
-            "section_align_top_mobile": false,
-            "text_color": "#000000"
-          }
-        },
-        "54dbb46c-ae1c-460a-af1d-bb1c3749692d": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/LPherotest__0010_fansblue_2x_ff0684ea-fae9-4f08-a454-7a484224796b.jpg",
-            "section_header": "",
-            "section_paragraph": "",
-            "button_text": "",
-            "button_url": "",
-            "block_align_left": false,
-            "section_align_left": false,
-            "section_align_top_mobile": false,
-            "text_color": "#000000"
-          }
-        },
-        "0b5776b0-6c6f-48db-9855-9301b3fa817f": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/LPherotest__0007_barkrunner_2x_ff43d285-0667-484d-9ddb-aff844021250.jpg",
-            "image_mobile": "shopify://shop_images/barkcremerunnercarousel_2x_6703b568-44d6-4289-8c71-2e29fba7812a.jpg",
-            "section_header": "",
-            "section_paragraph": "",
-            "button_text": "",
-            "button_url": "",
-            "block_align_left": false,
-            "section_align_left": false,
-            "section_align_top_mobile": false,
-            "text_color": "#000000"
-          }
-        },
-        "5025673f-40b3-4f02-b07d-abb08fa22a8d": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/LPherotest__0012_mazered_2x_56c1eb9d-69ac-4124-bcf0-a7ec3234991a.jpg",
-            "section_header": "",
-            "section_paragraph": "",
-            "button_text": "",
-            "button_url": "",
-            "block_align_left": false,
-            "section_align_left": false,
-            "section_align_top_mobile": false,
-            "text_color": "#000000"
-          }
-        },
-        "c093d8f7-3955-49c8-a9ae-fdd9a04a9815": {
-          "type": "image",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/PEBBLE_-_IMG_4645_1_recolor_3_2x_1_1_1.jpg",
-            "image_mobile": "shopify://shop_images/IMG_4645_copyslider.jpg",
-            "section_header": "",
-            "section_paragraph": "",
-            "button_text": "",
-            "button_url": "",
-            "block_align_left": false,
-            "section_align_left": false,
-            "section_align_top_mobile": false,
-            "text_color": "#000000"
-          }
-        }
-      },
-      "block_order": [
-        "d5685ca9-ed05-432b-b39d-94f360bdb90a",
-        "92bc6ef1-3f43-4be9-8c5e-704c0aebfab3",
-        "506a441d-b866-429d-9533-3c6510b0fb00",
-        "609c2e03-669d-488b-aa98-abd4157c9269",
-        "4d0252aa-faed-4591-9436-90184cdb7b36",
-        "54dbb46c-ae1c-460a-af1d-bb1c3749692d",
-        "0b5776b0-6c6f-48db-9855-9301b3fa817f",
-        "5025673f-40b3-4f02-b07d-abb08fa22a8d",
-        "c093d8f7-3955-49c8-a9ae-fdd9a04a9815"
-      ],
-      "disabled": true,
-      "custom_css": [
-        ".image-slideshow__text {padding-top: 10%;}"
-      ],
-      "settings": {
-        "title": "Finally.\nA mat worthy of your welcome.",
-        "page_width": true,
-        "padding_left_right": false,
-        "button_label": "Shop Now",
-        "button_link": "shopify://collections/shop-all"
-      }
-    },
-    "16587824044cd3c400": {
-      "type": "hero",
-      "disabled": true,
-      "settings": {
-        "video": "shopify://files/videos/desktop.mp4",
-        "mobile_video": "shopify://files/videos/hero-GIF_formobile.mp4",
-        "title": "Finally.\nA mat worthy of your welcome.",
-        "button_label": "Shop Now",
-        "button_link": "shopify://collections/shop-all"
-      }
-    },
-    "d6a4e5b3-bc8d-47c2-be4d-b259ce228429": {
-      "type": "logo-marquee",
-      "blocks": {
-        "50d28991-9949-425a-8be2-904babebbf3d": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"146\" height=\"30\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
-          }
-        },
-        "149c1817-ad42-4e33-9606-3fdd86617b59": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"242\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Better_homes.svg?v=1613389157\" alt=\"logo\">"
-          }
-        },
-        "c601b093-74e6-4c97-9b9f-e92dbbc1954b": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"143\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
-          }
-        },
-        "525c8d7f-3fd8-424a-9bb9-796fe7acd9b9": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"100\" height=\"25\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
-          }
-        },
-        "3a0ca646-6b8d-40f7-bad1-95beb0f48c38": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"146\" height=\"30\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Featured_In_0ea9b708-e73b-4198-a1ef-75ced98693c5.svg?v=1613388521\" alt=\"logo\">"
-          }
-        },
-        "7776a47e-3b45-4168-a62f-1ed5450e55e4": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"242\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Better_homes.svg?v=1613389157\" alt=\"logo\">"
-          }
-        },
-        "75cd2c0e-3721-428e-9a94-ab9ee0f2702a": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"143\" height=\"17\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/real_simple_e63465e2-d55d-40d0-a780-8012ce152292.svg?v=1613389237\" alt=\"logo\">"
-          }
-        },
-        "e94d2efd-9517-44b1-ae3f-3c3ce149ac5f": {
-          "type": "logo",
-          "settings": {
-            "svg": "<img width=\"100\" height=\"25\" src=\"https://cdn.shopify.com/s/files/1/0510/2488/7998/files/Sunset_bf907479-4a1f-47b8-bd79-6158e4a16c5c.svg?v=1613389325\" alt=\"logo\">"
-          }
-        }
-      },
-      "block_order": [
-        "50d28991-9949-425a-8be2-904babebbf3d",
-        "149c1817-ad42-4e33-9606-3fdd86617b59",
-        "c601b093-74e6-4c97-9b9f-e92dbbc1954b",
-        "525c8d7f-3fd8-424a-9bb9-796fe7acd9b9",
-        "3a0ca646-6b8d-40f7-bad1-95beb0f48c38",
-        "7776a47e-3b45-4168-a62f-1ed5450e55e4",
-        "75cd2c0e-3721-428e-9a94-ab9ee0f2702a",
-        "e94d2efd-9517-44b1-ae3f-3c3ce149ac5f"
-      ],
-      "disabled": true,
-      "settings": {
-        "background_color": "#d8d3c7"
-      }
-    },
-    "da10a9d1-b562-4add-8fa2-54431f6fa235": {
-      "type": "image-links",
-      "blocks": {
-        "868e623f-12f7-4895-9dda-b6e5ce7484f1": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/Indoor-Mat-Insider-Maze-Red-Doormat.jpg",
-            "text": "The Insider in Maze Red",
-            "link_text": "Shop All Indoor Mats",
-            "link": "/collections/shop-all?filter.v.m.filters.use=Indoor"
-          }
-        },
-        "08b5bc26-e2e6-4d42-a104-492b1a89dd94": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/Outdoor-Mat-Outsider-Teak-Frame-Blue-Insert-Doormat.jpg",
-            "text": "The Outsider in Teak / Blue",
-            "link_text": "Shop All Outdoor Mats",
-            "link": "/collections/shop-all?filter.v.m.filters.use=Outdoor"
-          }
-        }
-      },
-      "block_order": [
-        "868e623f-12f7-4895-9dda-b6e5ce7484f1",
-        "08b5bc26-e2e6-4d42-a104-492b1a89dd94"
-      ],
-      "disabled": true,
-      "settings": {
-        "heading": "We’ve got all of your hard-working spaces covered, both indoor and outdoor."
-      }
-    },
-    "630d0a75-2fb2-42a8-bda0-7ad9acc2a8bb": {
-      "type": "main-product-carousel",
-      "disabled": true,
-      "settings": {
-        "heading": "Meet our mats",
-        "background": "",
-        "show_metafield_style": false,
-        "collection": "shop-all",
-        "button_text": "Shop now",
-        "bottom_button_text": "",
-        "bottom_button_link": ""
-      }
-    },
-    "7337a49a-31a0-4e5d-9a53-968d18d1068e": {
-      "type": "featured-articles",
-      "blocks": {
-        "140e3c63-9b99-476d-9378-53fd1ce30b89": {
-          "type": "article",
-          "settings": {
-            "article": "news/best-doormat-for-your-home"
-          }
-        },
-        "faf6f395-3915-4f58-b2c5-acd839476fc2": {
-          "type": "article",
-          "settings": {
-            "article": "news/the-view-from-my-porch"
-          }
-        },
-        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23": {
-          "type": "article",
-          "settings": {
-            "article": "news/why-pay-more-for-a-doormat"
-          }
-        }
-      },
-      "block_order": [
-        "140e3c63-9b99-476d-9378-53fd1ce30b89",
-        "faf6f395-3915-4f58-b2c5-acd839476fc2",
-        "cc9c34ec-5a8d-4a24-9b5f-20963c337e23"
-      ],
-      "disabled": true,
-      "settings": {
-        "heading": "Hit the ground stunning:\nThe Porte + Hall blog",
-        "background": "",
-        "blog": "news",
-        "show_recent_articles": true,
-        "hide_mobile": false
-      }
-    },
-    "542bd631-99ef-452b-91d4-02d612f961a0": {
-      "type": "fan-motif-section",
-      "disabled": true,
-      "settings": {
-        "hide_desktop": false,
-        "hide_mobile": false,
-        "color": "green",
-        "alignment": "left",
-        "heading": "First impressions matter.\nFor both you and your visitors.",
-        "text": "Just like a clean desk or freshly-made bed, coming home to a beautiful and functional entryway is restorative and uplifting. We aim to turn these often overlooked areas of our homes into inspired areas that welcome and invite us home.",
-        "link": "shopify://pages/about-us",
-        "link_text": "LEARN MORE ABOUT US",
-        "image": "shopify://shop_images/door_illustration.png",
-        "show_faq": true,
-        "title_1": "",
-        "title_richtext_1": "",
-        "answer_1": "",
-        "title_2": "",
-        "title_richtext_2": "",
-        "answer_2": "",
-        "title_3": "",
-        "title_richtext_3": "",
-        "answer_3": ""
-      }
-    },
     "16946940833216dae7": {
       "type": "apps",
       "blocks": {
@@ -970,26 +471,14 @@
   },
   "order": [
     "video_text_pk7JCQ",
-    "video_text_hTPBAL",
-    "video_text_yYPefV",
     "3726ddfa-f49e-4e18-a5f2-430400876ccd",
-    "1a45718e-f365-4cf1-b3e7-cabc296e2bdc",
-    "product_carousel_new_aKw9LG",
     "product_carousel_new_2_JLEKyQ",
     "shop_by_category_8eKXeN",
     "product_carousel_2_nFt3hG",
-    "40919de2-f3c2-45da-99ff-c69ad3e95306",
     "custom_collection_products_desktop_XNiQe4",
     "fd8fd5d7-6d77-45a1-8718-85dc6bc781d2",
     "cb7443ea-2e0d-49d4-9b54-bb61eac621af",
     "44d27af1-3359-4920-b45f-a777de8eced5",
-    "339880a2-1845-4515-a00b-2483f17bb3c5",
-    "16587824044cd3c400",
-    "d6a4e5b3-bc8d-47c2-be4d-b259ce228429",
-    "da10a9d1-b562-4add-8fa2-54431f6fa235",
-    "630d0a75-2fb2-42a8-bda0-7ad9acc2a8bb",
-    "7337a49a-31a0-4e5d-9a53-968d18d1068e",
-    "542bd631-99ef-452b-91d4-02d612f961a0",
     "16946940833216dae7",
     "designer_spotlight_feature_zzgH6k",
     "17679084224c371b9a"
