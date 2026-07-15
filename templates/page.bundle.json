@@ -99,6 +99,33 @@
       ],
       "name": "LP Columns with buttons",
       "settings": {}
+    },
+    "designer_spotlight_4tjVtk": {
+      "type": "designer-spotlight",
+      "blocks": {
+        "block_678NA4": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/4_Indoor-Mat-Insider-Ripple-Silt-Runner.jpg",
+            "title": "",
+            "designer_name": "",
+            "designer_title": "",
+            "text_header_1": "",
+            "text_1": "",
+            "text_header_2": "<span style=\"font-size:45px;\">Feel the Difference Before Your Client Does</span>",
+            "text_2": "<br><br>As a Porte + Hall trade member, order up to 5 complimentary swatches so you can feel the texture, true the color against your palette, and know exactly how a mat will read in your clients space.<br><br><br><br>",
+            "text_header_3": "",
+            "text_3": "",
+            "button_label": "Select your Swatches",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_678NA4"
+      ],
+      "name": "Designer Spotlight",
+      "settings": {}
     }
   },
   "order": [
@@ -106,6 +133,7 @@
     "main",
     "177317723145ab427b",
     "image_text_iUj9hf",
-    "lp_columns_with_buttons_9UcTpG"
+    "lp_columns_with_buttons_9UcTpG",
+    "designer_spotlight_4tjVtk"
   ]
 }
