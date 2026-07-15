@@ -52,7 +52,7 @@
   height: calc(100% - 60px);
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow: auto;
   background: transparent linear-gradient(180deg,#fff 0,var(--beige-light) 100%) 0 0 no-repeat padding-box;
 }
 
@@ -505,6 +505,7 @@ cart-drawer-remove-button {
 .cart-text-with-icon {
   display:flex;
   justify-content: center;
+  padding-bottom: 5rem;
 }
 
 .cart-text-with-icon .icon-text-box {

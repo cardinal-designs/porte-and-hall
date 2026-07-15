@@ -51,61 +51,41 @@
         "section_reviews": true
       }
     },
-    "image_text_iUj9hf": {
-      "type": "image-text",
-      "name": "Image with text",
-      "settings": {
-        "subheading": "",
-        "title": "<h1>Swatches</h1>",
-        "content": "<p><br/><br/>Trade Members may order up to five complimentary swatches.<br/><br/>See the color, feel the texture, and choose with confidence.</p>",
-        "link_text": "",
-        "link_url": "",
-        "custom-class": ""
-      }
-    },
-    "lp_columns_with_buttons_9UcTpG": {
-      "type": "LP-columns-with-buttons",
+    "1783321871059e3ea5": {
+      "type": "apps",
       "blocks": {
-        "block_nQYaAJ": {
-          "type": "block",
+        "rebuy_personalization_engine_rebuy_widget_6AqUi3": {
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
           "settings": {
-            "column_badge": "",
-            "column_title": "",
-            "button_1_text": "SIGN IN",
-            "button_1_url": "https://www.porteandhall.com/account/login",
-            "button_2_text": "",
-            "button_2_url": "",
-            "button_3_text": "",
-            "button_3_url": ""
-          }
-        },
-        "block_agg4Ap": {
-          "type": "block",
-          "settings": {
-            "column_badge": "",
-            "column_title": "",
-            "button_1_text": "BECOME A MEMBER",
-            "button_1_url": "shopify://pages/designer-program",
-            "button_2_text": "",
-            "button_2_url": "",
-            "button_3_text": "",
-            "button_3_url": ""
+            "enabled": true,
+            "id": "299383",
+            "product_id_enabled": false,
+            "collection_id_enabled": false
           }
         }
       },
       "block_order": [
-        "block_nQYaAJ",
-        "block_agg4Ap"
+        "rebuy_personalization_engine_rebuy_widget_6AqUi3"
       ],
-      "name": "LP Columns with buttons",
-      "settings": {}
+      "settings": {
+        "include_margins": true,
+        "heading": "",
+        "section_reviews": true
+      }
+    },
+    "custom_liquid_VnrjTy": {
+      "type": "custom-liquid",
+      "name": "Liquid",
+      "settings": {
+        "custom_html": "{% assign product = page.metafields.custom.bundle_product.value %}\n<script>window.productData = {{ product | json }};</script>"
+      }
     }
   },
   "order": [
     "breadcrumbs_8LXnyk",
     "main",
     "177317723145ab427b",
-    "image_text_iUj9hf",
-    "lp_columns_with_buttons_9UcTpG"
+    "1783321871059e3ea5",
+    "custom_liquid_VnrjTy"
   ]
 }

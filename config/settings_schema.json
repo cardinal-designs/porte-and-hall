@@ -25,6 +25,65 @@
     ]
   },
   {
+    "name": "Bundle",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "bundle_error_message",
+        "default": "You can only add one bundle (up to 5 swatches) to cart.",
+        "label": "Bundle Error Message"
+      },
+      {
+        "type": "header",
+        "content": "Collection swatch bundle card (B2B only)"
+      },
+      {
+        "type": "checkbox",
+        "id": "swatch_bundle_collection_enable",
+        "default": false,
+        "label": "Show swatch bundle card first in collections",
+        "info": "When enabled, displays a promotional card as the first item in collection grids for logged-in B2B customers only."
+      },
+      {
+        "type": "image_picker",
+        "id": "swatch_bundle_collection_image",
+        "label": "Card image"
+      },
+      {
+        "type": "text",
+        "id": "swatch_bundle_collection_title",
+        "label": "Card title",
+        "default": "Swatch Bundle"
+      },
+      {
+        "type": "text",
+        "id": "swatch_bundle_collection_rating_value",
+        "label": "Star rating",
+        "default": "4.5",
+        "info": "Example: 4.5 (shows filled stars plus a half star when applicable)"
+      },
+      {
+        "type": "text",
+        "id": "swatch_bundle_collection_review_count",
+        "label": "Review count",
+        "default": "290",
+        "info": "Displayed as uppercase text, e.g. 290 becomes 290 REVIEWS"
+      },
+      {
+        "type": "product_list",
+        "id": "swatch_bundle_collection_products",
+        "label": "Swatch products",
+        "limit": 12,
+        "info": "Products shown as swatches. All swatch and card clicks go to the bundle page link below."
+      },
+      {
+        "type": "url",
+        "id": "swatch_bundle_page_link",
+        "label": "Bundle page link"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.social-media.name",
     "settings": [
       {

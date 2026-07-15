@@ -63,7 +63,8 @@ class CartDrawer extends HTMLElement {
 
     this.pageOverlayElement.classList.add('is-visible');
     document.body.addEventListener('click', this.onBodyClick);
-    this.enableDrawerFocus()
+    this.enableDrawerFocus();
+    cartScroll();
   }
 
   disableDrawerFocus() {
@@ -222,6 +223,12 @@ class CartDrawer extends HTMLElement {
 
         }));
 
+        document.dispatchEvent(new CustomEvent('cart:updated', {
+          detail: { cart: parsedState }
+        }));
+
+        cartScroll();
+
         this.disableLoading();
         this.drawer.focus();
       }).catch(() => {
@@ -295,8 +302,8 @@ class CartDrawer extends HTMLElement {
 customElements.define('cart-drawer', CartDrawer);
 
 
-function updateMainCart(Rebuy) {
-  fetch(`${window.origin}/?section_id=cart-drawer`)
+function updateMainCart(Rebuy, cartData = null) {
+  return fetch(`${window.origin}/?section_id=cart-drawer`)
     .then((response) => response.text())
     .then((responseText) => {
       const html = new DOMParser().parseFromString(responseText, 'text/html');
@@ -308,6 +315,8 @@ function updateMainCart(Rebuy) {
           targetElement.replaceWith(sourceElement);
         }
       }
+
+      updateCartIconBubble(cartData || window.getCart() || null);
     })
     .catch((e) => {
       console.error(e);
@@ -316,6 +325,7 @@ function updateMainCart(Rebuy) {
       setTimeout(() => {
         if (Rebuy) {
           Rebuy.init();
+          cartScroll();
         }
       }, 2000);
     });
@@ -371,4 +381,32 @@ document.addEventListener('DOMContentLoaded', () => {
   drawer.classList.add('aria-unhidden');
   if(drawer.getAttribute("aria-hidden") == "false") drawer.focus();
   trapFocusinCart(drawer);
+});
+
+function cartScroll() {
+  const cartFooter = document.querySelector('.cart-drawer__footer');
+  const cartHeader = document.querySelector('.cart-drawer__header');
+  const cartItemsEle = document.querySelector('.cart-drawer__items');
+
+  if (!cartItemsEle) return;
+
+  const footerHeight = cartFooter?.offsetHeight || 0;
+  const headerHeight = cartHeader?.offsetHeight || 0;
+
+  const totalHeight = footerHeight + headerHeight;
+
+  // Debug (optional)
+  // console.log({ footerHeight, headerHeight, totalHeight });
+
+  cartItemsEle.style.height = `calc(100vh - ${totalHeight}px)`;
+}
+
+document.addEventListener('cart:updated', function () {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      cartScroll();
+      // Run again after delay for safety
+      setTimeout(cartScroll, 300);
+    });
+  });
 });
