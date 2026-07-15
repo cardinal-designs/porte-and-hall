@@ -128,8 +128,6 @@
             </div>  
           {% endif %}
         
-
-       
       {% endunless %}
 
         {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
@@ -173,8 +171,8 @@
       
     {% if title != blank or collection.title != blank %}
       <a href="{{ product_card_product.url }}">
-        <div class="product-card__title blue">
-          <span class="h3">{{ title | default: collection.title | replace: ' | ', '<br>' }}</span>
+        <div class="product-card__title blue">f
+          <span class="h3">{{ title | default: collection.title | remove: '3 x 5' | replace: ' | ', '<br>' }}</span>
           <span class="body">{{ product_card_product.options_by_name['color'].values[0] }}</span>
           {% comment %} {%- if collection.metafields.custom.dimensions != blank -%}
             <span class="body">({{ collection.metafields.custom.dimensions }})</span>
@@ -184,13 +182,13 @@
     {% endif %}
 
 
-    <!-- Start of Judge.me code --> 
-<div class='jdgm-widget jdgm-preview-badge xtreviewbadge' data-id='{{ product_card_product.id }}'> 
-  <a href="{{ product_card_product.url }}/#judgeme_product_reviews" aria-label="View product reviews">
-  {{ product_card_product.metafields.judgeme.badge }} 
-  </a>
-</div> 
-<!-- End of Judge.me code -->
+    <!-- Start of Judge.me code -->
+    <div class='jdgm-widget jdgm-preview-badge xtreviewbadge' data-id='{{ product_card_product.id }}'>
+    <a href="{{ product_card_product.url }}/#judgeme_product_reviews" aria-label="View product reviews">
+      {% render 'judgeme-badge-no-schema', product: product_card_product %}
+      </a>
+    </div>
+    <!-- End of Judge.me code -->
 
     {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
     {% assign auto_discount_price = product_card_product.metafields.custom.auto_discount_price %}
@@ -230,7 +228,6 @@
         </p>
       {% endif %}
     {% endif %}
-
     
     {% comment %}
     <p class="product-card__price body blue">

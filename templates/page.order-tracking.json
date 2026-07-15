@@ -41,7 +41,7 @@
             "publishable_api_key": "pk_312077ec1008bfa1ada2bf75e985275a",
             "element": "shipmentTracker",
             "block_width": 450,
-            "button_background_color": "#d2b066",
+            "button_background_color": "#896A28",
             "button_border_color": "",
             "button_border_radius": 0,
             "button_border_width": 0,
@@ -101,9 +101,7 @@
       ],
       "disabled": true,
       "settings": {
-        "include_margins": false,
-        "heading": "",
-        "section_reviews": true
+        "custom_html": "<div id=\"redo-order-tracking-login\"></div>"
       }
     },
     "ca1df935-d762-481b-9392-8a50ca84d6f3": {
@@ -191,7 +189,7 @@
       ],
       "disabled": true,
       "settings": {
-        "background_color": "#d8d3c7"
+        "background_color": "#896A28"
       }
     },
     "c84603d9-c17f-4c4e-b401-8da3c94ea5c6": {
@@ -242,7 +240,6 @@
     }
   },
   "order": [
-    "breadcrumbs_JeH4Nw",
     "main",
     "75e5524b-59f4-4c16-b0f9-593367967193",
     "custom_liquid_LANKAy",

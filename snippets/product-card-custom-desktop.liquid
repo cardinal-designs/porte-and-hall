@@ -165,7 +165,7 @@
     {% if title != blank or collection.title != blank %}
       <a href="{{ product_card_product.url }}">
         <div class="product-card__title h3 blue">
-          {{ title | default: collection.title | replace: ' | ', '<br>' }}
+          {{ title | default: collection.title | remove: '3 x 5' | replace: ' | ', '<br>' }}
           <span class="body {% if product_card_product.handle contains 'ii' %}no-capitalize{% endif %}">{{ product_card_product.options_by_name['color'].values[0] }}</span>
           {% comment %} {%- if collection.metafields.custom.dimensions != blank -%}
             <span class="body">({{ collection.metafields.custom.dimensions }})</span>
@@ -176,9 +176,9 @@
 
 
      <!-- Start of Judge.me code --> 
-<div class='jdgm-widget jdgm-preview-badge xtreviewbadge' data-id='{{ product_card_product.id }}'> 
-  <a href="{{ product_card_product.url }}/#judgeme_product_reviews" aria-label="View product reviews">
-  {{ product_card_product.metafields.judgeme.badge }} 
+<div class='jdgm-widget jdgm-preview-badge xtreviewbadge' data-id='{{ product_card_product.id }}'>
+<a href="{{ product_card_product.url }}/#judgeme_product_reviews" aria-label="View product reviews">
+  {% render 'judgeme-badge-no-schema', product: product_card_product %} 
   </a>
 </div> 
 <!-- End of Judge.me code -->

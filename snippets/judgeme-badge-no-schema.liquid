@@ -1,0 +1,20 @@
+{% doc %}
+  Renders the Judge.me preview badge without Schema.org microdata.
+  Visual stars/count remain; aggregateRating itemprops are stripped so cards
+  and secondary badges do not create extra Product/AggregateRating entities.
+  @param {product} product - Product whose Judge.me badge metafield to render
+  @example
+  {% render 'judgeme-badge-no-schema', product: product_card_product %}
+{% enddoc %}
+{{ product.metafields.judgeme.badge
+  | replace: " itemprop='aggregateRating'", ''
+  | replace: ' itemprop="aggregateRating"', ''
+  | replace: " itemscope itemtype='http://schema.org/AggregateRating'", ''
+  | replace: ' itemscope itemtype="http://schema.org/AggregateRating"', ''
+  | replace: " itemscope itemtype='https://schema.org/AggregateRating'", ''
+  | replace: ' itemscope itemtype="https://schema.org/AggregateRating"', ''
+  | replace: " itemprop='reviewCount'", ''
+  | replace: ' itemprop="reviewCount"', ''
+  | replace: " itemprop='ratingValue'", ''
+  | replace: ' itemprop="ratingValue"', ''
+}}

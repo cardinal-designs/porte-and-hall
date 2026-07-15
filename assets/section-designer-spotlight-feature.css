@@ -33,7 +33,7 @@
   padding-bottom: 100%;
   position: relative;
   overflow: hidden;
-  border: 1px solid #D2B066;
+  border: 1px solid #896A28;
 }
 
 .designer-spotlight-feature__designer-name {
@@ -78,6 +78,8 @@
 
 .designer-spotlight-feature .button {
   display: inline-block;
+  background-color: white;
+  color: #896A28;
 }
 
 @media screen and (max-width: 768px) { 

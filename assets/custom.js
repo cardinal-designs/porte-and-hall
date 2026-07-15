@@ -125,5 +125,3 @@ window.addEventListener('load', (event) => {
   toggleBundleCTA(1500);
 });
 
-
-
