@@ -1,6 +1,6 @@
 .product-section {
   background: var(--beige-secondary);
-  overflow-x: hidden;
+  overflow-x: clip;
   
 }
 
@@ -51,6 +51,12 @@
 }
 
 @media screen and (min-width: 769px) {
+  .product__media-wrapper {
+    height: fit-content;
+    position: sticky;
+    top: calc(var(--header-height) + 20px);
+  }
+
   .product__media-thumbnails {
     flex-direction: column;
     margin-bottom: 0;
