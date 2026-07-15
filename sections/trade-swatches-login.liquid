@@ -236,6 +236,15 @@
   </svg>
 {%- endcapture -%}
 
+{%- liquid
+  assign hide_trade_swatches_login = false
+
+  if page.handle == 'swatches' and customer and customer.b2b?
+    assign hide_trade_swatches_login = true
+  endif
+-%}
+
+{% unless hide_trade_swatches_login %}
 <div
   id="TradeSwatches-{{ section.id }}"
   class="trade-swatches__container"
@@ -374,6 +383,7 @@
     </div>
   {%- endif -%}
 </div>
+{% endunless %}
 
 {% schema %}
 {
