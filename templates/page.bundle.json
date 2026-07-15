@@ -31,6 +31,50 @@
         "bg_color": "rgba(0,0,0,0)"
       }
     },
+    "trade_swatches_login_X6BJKk": {
+      "type": "trade-swatches-login",
+      "blocks": {
+        "column_QUhKa8": {
+          "type": "column",
+          "settings": {
+            "column_badge": "",
+            "column_title": "",
+            "button_1_text": "SIGN IN",
+            "button_1_url": "https://www.porteandhall.com/account/login",
+            "button_2_text": "",
+            "button_2_url": "",
+            "button_3_text": "",
+            "button_3_url": ""
+          }
+        },
+        "column_t6n3ma": {
+          "type": "column",
+          "settings": {
+            "column_badge": "",
+            "column_title": "",
+            "button_1_text": "BECOME A MEMBER",
+            "button_1_url": "shopify://pages/designer-program",
+            "button_2_text": "",
+            "button_2_url": "",
+            "button_3_text": "",
+            "button_3_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_QUhKa8",
+        "column_t6n3ma"
+      ],
+      "name": "Trade Swatches Login",
+      "settings": {
+        "subheading": "",
+        "title": "<h1>Swatches</h1>",
+        "content": "<p><br/>Trade Members may order up to five complimentary swatches.<br/><br/>See the color, feel the texture, and choose with confidence.</p>",
+        "link_text": "",
+        "link_url": "",
+        "custom-class": ""
+      }
+    },
     "image_text_eRzCTq": {
       "type": "image-text",
       "name": "Image with text",
@@ -113,6 +157,7 @@
   "order": [
     "breadcrumbs_8LXnyk",
     "main",
+    "trade_swatches_login_X6BJKk",
     "image_text_eRzCTq",
     "lp_columns_with_buttons_7zQDya",
     "1783321871059e3ea5",
