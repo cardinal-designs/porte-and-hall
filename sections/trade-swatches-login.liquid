@@ -1,0 +1,489 @@
+{% style %}
+  /* ----------------------------------------
+    IMAGE WITH TEXT
+  ---------------------------------------- */
+
+  #TradeSwatches-{{ section.id }} .home-banner .FeatureText {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
+    position: relative;
+    align-items: center;
+  }
+
+  #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper {
+    margin-right: -40px;
+    padding-left: 40px;
+  }
+
+  #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .FeatureText__Content {
+    position: relative;
+    z-index: 1;
+  }
+
+  #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ImageWrapper {
+    position: relative;
+    min-height: 570px;
+  }
+
+  #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader {
+    padding: 56px 40px 72px;
+    text-align: left;
+    max-width: 572px;
+    margin-left: auto;
+    background: #F4F2EE;
+  }
+
+  #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p,
+  #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading h1 {
+    color: #30383D;
+    font-size: 72px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 72px;
+    letter-spacing: 0.72px;
+    font-family: louize;
+  }
+
+  #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description p {
+    color: #546B82;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: 0.64px;
+    font-family: brandon;
+  }
+
+  #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .Link--underline {
+    background-color: #A19377;
+    padding: 16px 40px;
+    color: #FFF;
+    font-family: brandon;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description {
+    margin-bottom: 52px;
+    margin-top: 10px;
+  }
+
+  .template__social-proof.template-index #TradeSwatches-{{ section.id }} .SectionHeader__SubHeading {
+    color: black;
+    font-size: 21px;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+
+  .template__social-proof.template-index #TradeSwatches-{{ section.id }} .SectionHeader__SubHeading span {
+    color: #A19377;
+  }
+
+  /* ----------------------------------------
+    COLUMNS WITH BUTTONS
+  ---------------------------------------- */
+
+  #TradeSwatches-{{ section.id }} .columns-wrap {
+    display: grid;
+    justify-content: center;
+    gap: 32px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  #TradeSwatches-{{ section.id }} .columns-wrap .col {
+    text-align: center;
+  }
+
+  #TradeSwatches-{{ section.id }} .columns-wrap .column-badge {
+    background: #546b82;
+    color: #fff;
+    font-size: 24px;
+    padding: 4px 12px;
+    border-radius: 24px;
+    width: max-content;
+    margin: 0 auto -20px;
+    z-index: 1;
+    position: relative;
+  }
+
+  #TradeSwatches-{{ section.id }} .columns-wrap .column-btn-group {
+    display: grid;
+    gap: 8px;
+    max-width: 85%;
+    margin: 12px auto 0;
+  }
+
+  #TradeSwatches-{{ section.id }} .column-btn-group .button {
+    background: white;
+    color: #ada188;
+    border: 2px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 20px;
+  }
+
+  @media screen and (max-width: 1100px) {
+    #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader {
+      padding: 32px 32px 47px;
+    }
+  }
+
+  @media screen and (max-width: 990px) {
+    #TradeSwatches-{{ section.id }} .home-banner .FeatureText {
+      grid-template-columns: 1fr;
+    }
+
+    #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper {
+      order: 2;
+      margin-right: 0;
+      padding: 0 20px;
+    }
+
+    #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ImageWrapper {
+      order: 1;
+      min-height: unset;
+    }
+
+    #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ImageWrapper .aspect-ratio {
+      position: relative;
+    }
+
+    #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader {
+      padding: 24px 50px 34px;
+      text-align: center;
+      max-width: 500px;
+      margin: -90px auto 0;
+    }
+
+    #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading p,
+    #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader__Heading h1 {
+      font-size: 40px;
+      font-weight: 500;
+      line-height: 44px;
+      letter-spacing: 0.4px;
+    }
+
+    #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description p {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+
+    #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .Link--underline {
+      padding: 10px 34px;
+    }
+
+    #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader .SectionHeader__Description {
+      margin-bottom: 38px;
+    }
+
+    .template__social-proof.template-index #TradeSwatches-{{ section.id }} .SectionHeader__SubHeading {
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 380px) {
+    #TradeSwatches-{{ section.id }} .home-banner .FeatureText .FeatureText__ContentWrapper .SectionHeader {
+      padding: 24px 20px 34px;
+    }
+  }
+
+  @media screen and (min-width: 989px) {
+    #TradeSwatches-{{ section.id }} .columns-wrap {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media screen and (min-width: 1700px) {
+    #TradeSwatches-{{ section.id }} .home-banner .FeatureText {
+      grid-template-columns: 35% 65%;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    #TradeSwatches-{{ section.id }} .indoor-mats-2 .FeatureText__Content a {
+      width: 75%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+{% endstyle %}
+
+{%- capture arrow_icon -%}
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="29"
+    height="16"
+    viewBox="0 0 29 16"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M28.7071 8.70711C29.0976 8.31658 29.0976 7.68342 28.7071 7.29289L22.3431 0.928932C21.9526 0.538408 21.3195 0.538408 20.9289 0.928932C20.5384 1.31946 20.5384 1.95262 20.9289 2.34315L26.5858 8L20.9289 13.6569C20.5384 14.0474 20.5384 14.6805 20.9289 15.0711C21.3195 15.4616 21.9526 15.4616 22.3431 15.0711L28.7071 8.70711ZM0 9H28V7H0V9Z"
+      fill="#A19377"
+    />
+  </svg>
+{%- endcapture -%}
+
+<div
+  id="TradeSwatches-{{ section.id }}"
+  class="trade-swatches__container"
+  data-section-id="{{ section.id }}"
+  data-section-type="trade-swatches-login"
+>
+  <section class="Section {{ section.settings.custom-class }}">
+    {%- capture section_content -%}
+      <div class="FeatureText__ContentWrapper">
+        <div class="FeatureText__Content">
+          {%- if section.settings.subheading != blank
+            or section.settings.title != blank
+            or section.settings.content != blank
+          -%}
+            <header class="SectionHeader">
+              {%- if section.settings.subheading != blank -%}
+                <h4 class="SectionHeader__SubHeading">
+                  {{ section.settings.subheading }}
+                </h4>
+              {%- endif -%}
+
+              {%- if section.settings.title != blank -%}
+                <div class="SectionHeader__Heading">
+                  {{ section.settings.title }}
+                </div>
+              {%- endif -%}
+
+              {%- if section.settings.content != blank -%}
+                <div class="SectionHeader__Description">
+                  {{ section.settings.content }}
+                </div>
+              {%- endif -%}
+
+              {%- if section.settings.link_text != blank -%}
+                <a
+                  href="{{ section.settings.link_url }}"
+                  class="Link Link--underline"
+                >
+                  {{ section.settings.link_text | escape }}
+                </a>
+              {%- endif -%}
+            </header>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endcapture -%}
+
+    {%- capture section_image -%}
+      {%- if section.settings.image != blank -%}
+        <div class="FeatureText__ImageWrapper">
+          {% render 'lazy-image',
+            image: section.settings.image,
+            fade: true,
+            classes: 'img-fill',
+            aria-label: 'hero image',
+            heightI: 570,
+            widthI: 900
+          %}
+        </div>
+      {%- endif -%}
+    {%- endcapture -%}
+
+    <div class="FeatureText">
+      {{- section_content -}}
+      {{- section_image -}}
+    </div>
+  </section>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="LP-columns-with-buttons with-spacing">
+      <div class="page-width">
+        <div class="columns-wrap">
+          {% for block in section.blocks %}
+            <div class="col" {{ block.shopify_attributes }}>
+              <div class="column-image">
+                {% if block.settings.column_badge != blank %}
+                  <p class="column-badge">
+                    {{ block.settings.column_badge }}
+                  </p>
+                {% endif %}
+
+                {% if block.settings.column_image != blank %}
+                  {{
+                    block.settings.column_image
+                    | image_url: width: 900
+                    | image_tag:
+                      width: 900,
+                      widths: '300, 450, 600, 750, 900',
+                      sizes: '(min-width: 989px) 450px, 100vw',
+                      loading: 'lazy'
+                  }}
+                {% endif %}
+              </div>
+
+              <div class="column-content">
+                {% if block.settings.column_title != blank %}
+                  <h4>{{ block.settings.column_title }}</h4>
+                {% endif %}
+
+                <div class="column-btn-group">
+                  {% if block.settings.button_1_text != blank %}
+                    <a
+                      href="{{ block.settings.button_1_url }}"
+                      class="button"
+                    >
+                      {{ block.settings.button_1_text }}
+                      {{ arrow_icon }}
+                    </a>
+                  {% endif %}
+
+                  {% if block.settings.button_2_text != blank %}
+                    <a
+                      href="{{ block.settings.button_2_url }}"
+                      class="button"
+                    >
+                      {{ block.settings.button_2_text }}
+                      {{ arrow_icon }}
+                    </a>
+                  {% endif %}
+
+                  {% if block.settings.button_3_text != blank %}
+                    <a
+                      href="{{ block.settings.button_3_url }}"
+                      class="button"
+                    >
+                      {{ block.settings.button_3_text }}
+                      {{ arrow_icon }}
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Trade Swatches Login",
+  "class": "trade-swatches-login-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "1200 x 1200px .png recommended"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Sub-heading"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "<p>Add Title...</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Text",
+      "default": "<p>Add your own custom content to give more information about your store, availability details...</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "text",
+      "id": "custom-class",
+      "label": "Custom class"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "column_badge",
+          "label": "Column badge"
+        },
+        {
+          "type": "image_picker",
+          "id": "column_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "column_title",
+          "label": "Column title"
+        },
+        {
+          "type": "text",
+          "id": "button_1_text",
+          "label": "Button 1 text"
+        },
+        {
+          "type": "url",
+          "id": "button_1_url",
+          "label": "Button 1 URL"
+        },
+        {
+          "type": "text",
+          "id": "button_2_text",
+          "label": "Button 2 text"
+        },
+        {
+          "type": "url",
+          "id": "button_2_url",
+          "label": "Button 2 URL"
+        },
+        {
+          "type": "text",
+          "id": "button_3_text",
+          "label": "Button 3 text"
+        },
+        {
+          "type": "url",
+          "id": "button_3_url",
+          "label": "Button 3 URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "Trade Swatches Login",
+      "blocks": [
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
