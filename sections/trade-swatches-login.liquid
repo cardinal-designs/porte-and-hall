@@ -243,8 +243,8 @@
     assign hide_trade_swatches_login = true
   endif
 -%}
-
-ff{{customer | json }}
+{% if customer %}af{% endif %}
+ff{{ customer | json }}
 {% unless hide_trade_swatches_login %}
 <div
   id="TradeSwatches-{{ section.id }}"
