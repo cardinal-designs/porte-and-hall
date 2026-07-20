@@ -437,6 +437,19 @@
         "button_link": "shopify://products/the-insider-retro-orange-runner"
       }
     },
+    "image_text_M74aHT": {
+      "type": "image-text",
+      "name": "Image with text",
+      "settings": {
+        "image": "shopify://shop_images/5_Indoor-Mat-Insider-Ripple-Silt-Runner.jpg",
+        "subheading": "hello",
+        "title": "<p>Add Title...</p>",
+        "content": "<p>Add your own custom content to give more information about your store, availability details...</p>",
+        "link_text": "",
+        "link_url": "",
+        "custom-class": ""
+      }
+    },
     "17679084224c371b9a": {
       "type": "apps",
       "blocks": {
@@ -481,6 +494,7 @@
     "44d27af1-3359-4920-b45f-a777de8eced5",
     "16946940833216dae7",
     "designer_spotlight_feature_zzgH6k",
+    "image_text_M74aHT",
     "17679084224c371b9a"
   ]
 }
