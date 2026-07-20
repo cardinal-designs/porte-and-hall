@@ -1,0 +1,480 @@
+{% comment %}
+  Section: 50/50 Image + Text
+  - Image left/right toggle
+  - Mobile: image stacks above text
+  - Fully customizable colors, text, buttons, links
+  - Optional B2B-only visibility
+  - Class naming follows BEM: block__element--modifier
+{% endcomment %}
+
+{%- liquid
+  assign show_section = true
+  if section.settings.b2b_only
+    assign show_section = false
+    if customer and customer.b2b?
+      assign show_section = true
+    endif
+  endif
+-%}
+
+{%- if show_section -%}
+<style>
+  /* Block: fifty-fifty */
+  #shopify-section-{{ section.id }} .fifty-fifty {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  /* Element: fifty-fifty__inner */
+  #shopify-section-{{ section.id }} .fifty-fifty__inner {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: {{ section.settings.column_gap }}px;
+    align-items: center;
+  }
+
+  /* Modifier: fifty-fifty__inner--image-right */
+  #shopify-section-{{ section.id }} .fifty-fifty__inner--image-right .fifty-fifty__image {
+    order: 2;
+  }
+  #shopify-section-{{ section.id }} .fifty-fifty__inner--image-right .fifty-fifty__content {
+    order: 1;
+  }
+
+  /* Element: fifty-fifty__image */
+  #shopify-section-{{ section.id }} .fifty-fifty__image {
+    width: 100%;
+    height: 100%;
+    min-height: {{ section.settings.image_height }}px;
+    border-radius: {{ section.settings.image_radius }}px;
+    overflow: hidden;
+  }
+  #shopify-section-{{ section.id }} .fifty-fifty__image-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Modifier: fifty-fifty__image--placeholder */
+  #shopify-section-{{ section.id }} .fifty-fifty__image--placeholder {
+    height: {{ section.settings.image_height }}px;
+    background: #e5e0d8;
+  }
+
+  /* Element: fifty-fifty__content */
+  #shopify-section-{{ section.id }} .fifty-fifty__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Element: fifty-fifty__eyebrow */
+  #shopify-section-{{ section.id }} .fifty-fifty__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: {{ section.settings.eyebrow_color }};
+    margin-bottom: 20px;
+  }
+  #shopify-section-{{ section.id }} .fifty-fifty__eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: {{ section.settings.eyebrow_color }};
+  }
+
+  /* Element: fifty-fifty__heading */
+  #shopify-section-{{ section.id }} .fifty-fifty__heading {
+    font-size: {{ section.settings.heading_size }}px;
+    line-height: 1.15;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 24px 0;
+    font-weight: 500;
+  }
+
+  /* Element: fifty-fifty__body */
+  #shopify-section-{{ section.id }} .fifty-fifty__body {
+    font-size: {{ section.settings.body_size }}px;
+    line-height: 1.6;
+    color: {{ section.settings.body_color }};
+    margin: 0 0 32px 0;
+    max-width: 480px;
+  }
+
+  /* Element: fifty-fifty__button */
+  #shopify-section-{{ section.id }} .fifty-fifty__button {
+    display: inline-block;
+    background-color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 32px;
+    border-radius: {{ section.settings.button_radius }}px;
+    transition: opacity 0.2s ease;
+  }
+  #shopify-section-{{ section.id }} .fifty-fifty__button:hover {
+    opacity: 0.85;
+  }
+
+  /* Element: fifty-fifty__footnote */
+  #shopify-section-{{ section.id }} .fifty-fifty__footnote {
+    font-size: 14px;
+    color: {{ section.settings.footnote_color }};
+    margin-top: 20px;
+  }
+
+  /* Element: fifty-fifty__footnote-link */
+  #shopify-section-{{ section.id }} .fifty-fifty__footnote-link {
+    color: {{ section.settings.link_color }};
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .fifty-fifty__inner,
+    #shopify-section-{{ section.id }} .fifty-fifty__inner--image-right {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    #shopify-section-{{ section.id }} .fifty-fifty__inner .fifty-fifty__image,
+    #shopify-section-{{ section.id }} .fifty-fifty__inner--image-right .fifty-fifty__image {
+      order: 1;
+    }
+    #shopify-section-{{ section.id }} .fifty-fifty__inner .fifty-fifty__content,
+    #shopify-section-{{ section.id }} .fifty-fifty__inner--image-right .fifty-fifty__content {
+      order: 2;
+    }
+    #shopify-section-{{ section.id }} .fifty-fifty__heading {
+      font-size: {{ section.settings.heading_size_mobile }}px;
+    }
+  }
+</style>
+
+<div class="fifty-fifty">
+  <div class="fifty-fifty__inner{% if section.settings.image_position == 'right' %} fifty-fifty__inner--image-right{% endif %}">
+
+    <div class="fifty-fifty__image{% if section.settings.image == blank %} fifty-fifty__image--placeholder{% endif %}">
+      {%- if section.settings.image != blank -%}
+        <img
+          class="fifty-fifty__image-media"
+          src="{{ section.settings.image | image_url: width: 1600 }}"
+          alt="{{ section.settings.image.alt | escape }}"
+          loading="lazy"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+        >
+      {%- endif -%}
+    </div>
+
+    <div class="fifty-fifty__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="fifty-fifty__eyebrow">{{ section.settings.eyebrow }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="fifty-fifty__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.body_text != blank -%}
+        <div class="fifty-fifty__body">{{ section.settings.body_text }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link | default: '#' }}" class="fifty-fifty__button">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.footnote_text != blank -%}
+        <div class="fifty-fifty__footnote">
+          {{ section.settings.footnote_text }}
+          {%- if section.settings.footnote_link_text != blank -%}
+            <a href="{{ section.settings.footnote_link | default: '#' }}" class="fifty-fifty__footnote-link">{{ section.settings.footnote_link_text }}</a>
+          {%- endif -%}
+          {%- if section.settings.footnote_text_after != blank -%}
+            {{ section.settings.footnote_text_after }}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "50/50 Image + Text",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Visibility"
+    },
+    {
+      "type": "checkbox",
+      "id": "b2b_only",
+      "label": "Only show this section to B2B customers",
+      "default": false,
+      "info": "Uses {% raw %}{% if customer and customer.b2b? %}{% endraw %} to check for a logged-in B2B company customer."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position (desktop)",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left",
+      "info": "On mobile, the image always stacks above the text."
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Max content width",
+      "min": 1000,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Gap between columns",
+      "min": 20,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Image min height",
+      "min": 300,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "default": 560
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Text content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "TRADE PERK"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "See It. Feel It. Make the Call."
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size (desktop)",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading size (mobile)",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "<p>Trade members receive five complimentary swatches of their choice—so you can see the color, feel the texture, and move forward with confidence.</p>"
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 17
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Select Your 5 Swatches"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Button corner radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "Footnote / secondary link"
+    },
+    {
+      "type": "text",
+      "id": "footnote_text",
+      "label": "Footnote text (before link)",
+      "default": "Not a trade member yet?"
+    },
+    {
+      "type": "text",
+      "id": "footnote_link_text",
+      "label": "Footnote link text",
+      "default": "Join below ↓"
+    },
+    {
+      "type": "url",
+      "id": "footnote_link",
+      "label": "Footnote link URL"
+    },
+    {
+      "type": "text",
+      "id": "footnote_text_after",
+      "label": "Footnote text (after link)",
+      "default": "— applications are reviewed within 24 hours."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section background",
+      "default": "#F2EEE6"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow color",
+      "default": "#B08D4F"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#5A6B82"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body text color",
+      "default": "#2B2B2B"
+    },
+    {
+      "type": "color",
+      "id": "footnote_color",
+      "label": "Footnote text color",
+      "default": "#8A8579"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Footnote link color",
+      "default": "#5A6B82"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#C6A15B"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#1A1A1A"
+    }
+  ],
+  "presets": [
+    {
+      "name": "50/50 Image + Text"
+    }
+  ]
+}
+{% endschema %}
