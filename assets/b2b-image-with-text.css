@@ -71,7 +71,7 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--fifty-fifty-eyebrow-color, #B08D4F);
+  color: var(--fifty-fifty-sub-text-color, #B08D4F);
   margin-bottom: 20px;
 }
 
@@ -80,7 +80,7 @@
   display: inline-block;
   width: 28px;
   height: 1px;
-  background: var(--fifty-fifty-eyebrow-color, #B08D4F);
+  background: var(--fifty-fifty-sub-text-color, #B08D4F);
 }
 
 /* Element: heading */
@@ -120,14 +120,12 @@
   opacity: 0.85;
 }
 
-/* Element: footnote */
 .fifty-fifty__footnote {
   font-size: 14px;
   color: var(--fifty-fifty-footnote-color, #8A8579);
   margin-top: 20px;
 }
 
-/* Element: footnote-link */
 .fifty-fifty__footnote-link {
   color: var(--fifty-fifty-link-color, #5A6B82);
   font-weight: 700;
@@ -158,5 +156,5 @@
   .fifty-fifty__heading {
     font-size: var(--fifty-fifty-heading-size-mobile, 32px);
   }
-  
+
 }
