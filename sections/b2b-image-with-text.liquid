@@ -1,11 +1,4 @@
-{% comment %}
-  Section: 50/50 Image + Text
-  - Image left/right toggle
-  - Mobile: image stacks above text
-  - Fully customizable colors, text, buttons, links
-  - Optional B2B-only visibility
-  - Class naming follows BEM: block__element--modifier
-{% endcomment %}
+{{ 'b2b-image-with-text.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign show_section = true
