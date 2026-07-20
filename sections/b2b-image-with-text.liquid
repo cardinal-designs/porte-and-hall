@@ -137,22 +137,11 @@
   }
 
   @media screen and (max-width: 749px) {
-    #shopify-section-{{ section.id }} .fifty-fifty__inner,
-    #shopify-section-{{ section.id }} .fifty-fifty__inner--image-right {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-    #shopify-section-{{ section.id }} .fifty-fifty__inner .fifty-fifty__image,
-    #shopify-section-{{ section.id }} .fifty-fifty__inner--image-right .fifty-fifty__image {
-      order: 1;
-    }
-    #shopify-section-{{ section.id }} .fifty-fifty__inner .fifty-fifty__content,
-    #shopify-section-{{ section.id }} .fifty-fifty__inner--image-right .fifty-fifty__content {
-      order: 2;
-    }
+
     #shopify-section-{{ section.id }} .fifty-fifty__heading {
       font-size: {{ section.settings.heading_size_mobile }}px;
     }
+    
   }
 </style>
 
