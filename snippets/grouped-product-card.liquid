@@ -171,7 +171,7 @@
       
     {% if title != blank or collection.title != blank %}
       <a href="{{ product_card_product.url }}">
-        <div class="product-card__title blue">f
+        <div class="product-card__title blue">
           <span class="h3">{{ title | default: collection.title | remove: '3 x 5' | replace: ' | ', '<br>' }}</span>
           <span class="body">{{ product_card_product.options_by_name['color'].values[0] }}</span>
           {% comment %} {%- if collection.metafields.custom.dimensions != blank -%}
