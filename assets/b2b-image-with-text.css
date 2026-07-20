@@ -1,20 +1,9 @@
-/* ==========================================================================
-   Component: fifty-fifty
-   Pure static CSS — no Liquid, no section settings referenced directly.
-   All customizable values are exposed as CSS custom properties with
-   sensible fallback defaults, so this file works standalone and can be
-   reused across sections/themes. The section file sets the custom
-   properties inline per-instance.
-   ========================================================================== */
-
-/* Block */
 .fifty-fifty {
   background-color: var(--fifty-fifty-bg-color, #F2EEE6);
   padding-top: var(--fifty-fifty-padding-top, 80px);
   padding-bottom: var(--fifty-fifty-padding-bottom, 80px);
 }
 
-/* Element: inner */
 .fifty-fifty__inner {
   max-width: var(--fifty-fifty-container-width, 1400px);
   margin: 0 auto;
@@ -25,15 +14,14 @@
   align-items: center;
 }
 
-/* Modifier: inner--image-right */
 .fifty-fifty__inner--image-right .fifty-fifty__image {
   order: 2;
 }
+
 .fifty-fifty__inner--image-right .fifty-fifty__content {
   order: 1;
 }
 
-/* Element: image */
 .fifty-fifty__image {
   width: 100%;
   height: 100%;
@@ -49,20 +37,17 @@
   display: block;
 }
 
-/* Modifier: image--placeholder */
 .fifty-fifty__image--placeholder {
   height: var(--fifty-fifty-image-height, 560px);
   background: #e5e0d8;
 }
 
-/* Element: content */
 .fifty-fifty__content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-/* Element: eyebrow */
 .fifty-fifty__sub-text {
   display: flex;
   align-items: center;
@@ -83,7 +68,6 @@
   background: var(--fifty-fifty-sub-text-color, #B08D4F);
 }
 
-/* Element: heading */
 .fifty-fifty__heading {
   font-size: var(--fifty-fifty-heading-size, 48px);
   line-height: 1.15;
@@ -92,7 +76,6 @@
   font-weight: 500;
 }
 
-/* Element: body */
 .fifty-fifty__body {
   font-size: var(--fifty-fifty-body-size, 17px);
   line-height: 1.6;
@@ -101,7 +84,6 @@
   max-width: 480px;
 }
 
-/* Element: button */
 .fifty-fifty__button {
   display: inline-block;
   background-color: var(--fifty-fifty-button-bg-color, #C6A15B);
@@ -132,9 +114,6 @@
   text-decoration: underline;
 }
 
-/* ==========================================================================
-   Responsive: mobile stacks image above content
-   ========================================================================== */
 @media screen and (max-width: 749px) {
 
   .fifty-fifty__inner,
