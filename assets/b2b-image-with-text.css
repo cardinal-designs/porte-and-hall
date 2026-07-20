@@ -1,0 +1,7 @@
+.fifty-fifty .fifty-fifty__inner {
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
