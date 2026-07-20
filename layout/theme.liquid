@@ -473,236 +473,232 @@
    {% endstyle %}
    <script src="{{ 'optimization.js' | asset_url }}" defer></script>
 
-{% if request.page_type != 'index' %}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+    {% if request.page_type != 'index' %}
+    <script type="application/ld+json">
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": {{ "Home" | json }},
-      "item": {{ shop.url | json }}
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": {{ "Home" | json }},
+          "item": {{ shop.url | json }}
+        }
+        {% if request.page_type == 'collection' %}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ collection.title | json }},
+          "item": {{ collection.url | prepend: shop.url | json }}
+        }
+        {% elsif request.page_type == 'product' %}
+        {% if product.collections.size > 0 %}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ product.collections.first.title | json }},
+          "item": {{ product.collections.first.url | prepend: shop.url | json }}
+        }
+        {% endif %}
+        ,{
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ product.title | json }},
+          "item": {{ product.url | prepend: shop.url | json }}
+        }
+        {% elsif request.page_type == 'page' %}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ page.title | json }},
+          "item": {{ page.url | prepend: shop.url | json }}
+        }
+        {% elsif request.page_type == 'article' %}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ blog.title | json }},
+          "item": {{ blog.url | prepend: shop.url | json }}
+        }
+        ,{
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ article.title | json }},
+          "item": {{ article.url | prepend: shop.url | json }}
+        }
+        {% endif %}
+      ]
     }
-    {% if request.page_type == 'collection' %}
-    ,{
-      "@type": "ListItem",
-      "position": 2,
-      "name": {{ collection.title | json }},
-      "item": {{ collection.url | prepend: shop.url | json }}
-    }
-    {% elsif request.page_type == 'product' %}
-    {% if product.collections.size > 0 %}
-    ,{
-      "@type": "ListItem",
-      "position": 2,
-      "name": {{ product.collections.first.title | json }},
-      "item": {{ product.collections.first.url | prepend: shop.url | json }}
-    }
+    </script>
     {% endif %}
-    ,{
-      "@type": "ListItem",
-      "position": 3,
-      "name": {{ product.title | json }},
-      "item": {{ product.url | prepend: shop.url | json }}
+
+    {% if template.name == 'article' %}
+    {%- liquid
+      if article.image
+        assign article_seo_image = article.image | image_url: width: 1920
+        unless article_seo_image contains 'http'
+          assign article_seo_image = article_seo_image | prepend: 'https:'
+        endunless
+      endif
+    -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": {{ shop.url | append: article.url | json }}
+      },
+      "headline": {{ article.title | json }},
+      "description": {{ article.content | strip_html | json }},
+      "image": [
+        {% if article_seo_image != blank %}
+          {{ article_seo_image | json }}
+        {% endif %}
+      ],
+      "author": {
+        "@type": "Person",
+        "name": {{ article.author | json }},
+        "url": {{ article.url | prepend: shop.url | json }}
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": {{ shop.name | json }}
+      },
+      "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' | json }},
+      "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%:z' | json }}
     }
-    {% elsif request.page_type == 'page' %}
-    ,{
-      "@type": "ListItem",
-      "position": 2,
-      "name": {{ page.title | json }},
-      "item": {{ page.url | prepend: shop.url | json }}
-    }
-    {% elsif request.page_type == 'article' %}
-    ,{
-      "@type": "ListItem",
-      "position": 2,
-      "name": {{ blog.title | json }},
-      "item": {{ blog.url | prepend: shop.url | json }}
-    }
-    ,{
-      "@type": "ListItem",
-      "position": 3,
-      "name": {{ article.title | json }},
-      "item": {{ article.url | prepend: shop.url | json }}
-    }
+    </script>
     {% endif %}
-  ]
-}
-</script>
-{% endif %}
 
-{% if template.name == 'article' %}
-{%- liquid
-  if article.image
-    assign article_seo_image = article.image | image_url: width: 1920
-    unless article_seo_image contains 'http'
-      assign article_seo_image = article_seo_image | prepend: 'https:'
-    endunless
-  endif
--%}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": {{ shop.url | append: article.url | json }}
-  },
-  "headline": {{ article.title | json }},
-  "description": {{ article.content | strip_html | json }},
-  "image": [
-    {% if article_seo_image != blank %}
-      {{ article_seo_image | json }}
+    {% if template == 'index' %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": {{ shop.name | json }},
+      "image": {{ shop.brand.logo | img_url: '300x' | prepend: 'https:' | json }},
+      "@id": {{ shop.url | json }},
+      "url": {{ shop.url | json }},
+      "description": {{ shop.description | default: "Your trusted online store." | strip_html | json }},
+      "openingHours": "Mo-Su 00:00-23:59",
+      "telephone": {{ shop.phone | json }},
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": {{ shop.address.street | json }},
+        "addressLocality": {{ shop.address.city | json }},
+        "addressRegion": {{ shop.address.province | json }},
+        "postalCode": {{ shop.address.zip | json }},
+        "addressCountry": {{ shop.address.country | json }}
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": {{ shop.phone | json }},
+        "contactType": "Customer Service",
+        "areaServed": "US",
+        "availableLanguage": ["English"]
+      },
+      "sameAs": [
+        "https://www.instagram.com/porteandhall/",
+        "https://www.facebook.com/porteandhall",
+        "https://www.pinterest.com/porchandhall/_created/"
+      ],
+      "priceRange": "$$",
+      "paymentAccepted": "Visa, Master Card, PayPal",
+      "currenciesAccepted": {{ shop.currency | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ shop.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.81",
+        "reviewCount": "241"
+      }
+      
+    }
+    </script>
+
     {% endif %}
-  ],
-  "author": {
-    "@type": "Person",
-    "name": {{ article.author | json }},
-    "url": {{ article.url | prepend: shop.url | json }}
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": {{ shop.name | json }}
-  },
-  "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' | json }},
-  "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%:z' | json }}
-}
-</script>
-{% endif %}
 
+    <style>
+    .xtreviewbadge .jdgm-prev-badge__text {visibility: unset;font-size: 12px !important;color:#896A28 !important;text-transform:uppercase;font-weight:600;padding:0 6px;}
+    .xtreviewbadge.jdgm-widget{font-size: 12px;margin: 0;}
+    .xtreviewbadge .jdgm-star {color: #546B82 !important;}
+    .xtreviewbadge .jdgm-prev-badge__stars {width: auto !important;}
 
+    @media screen and (max-width: 768px) {
+      .xtreviewbadge .jdgm-prev-badge__text, .custom-collection .jdgm-prev-badge__text { padding: 0 0 0 4px; font-size: 14px !important; }
+      .xtreviewbadge .jdgm-prev-badge__stars {min-height: unset !important;}
+      .xtreviewbadge .jdgm-prev-badge__text { font-size: 10px !important;}
+      .xtreviewbadge.jdgm-widget{font-size: 12px !important; margin: 0 0 0 4px;}
+      .custom-product-card .jdgm-star {
+          padding: 0 2px 0 0 !important;
+      }
 
+      .shop-by-size__item .jdgm-prev-badge__stars .jdgm-star,
+      .shop-by-size__item .jdgm-prev-badge__text {
+      font-size: 16px !important;
+      }
+    };
+    </style>
 
-{% if template == 'index' %}
+    <!-- Begin Shopify-Afterpay JavaScript Snippet (v1.2.1) -->
+    {% if cart.currency.iso_code == shop.currency %}
+    <script type="text/javascript">
+    // Overrides:
+    var afterpay_msg_size = 'md';
+    var afterpay_logo_theme = 'black';
+    var afterpay_product_integration_enabled = true;
+    var afterpay_product_selector = '.afterpay-pdp .afterpay-wrapper';
+    var afterpay_dynamic_cart_integration_enabled = true;
+    var afterpay_dynamic_cart_selector = '.cart-drawer__footer #cart-drawer-subtotal';
+    var afterpay_dynamic_cart_observer_target = '#cart-drawer';
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Store",
-  "name": {{ shop.name | json }},
-  "image": {{ shop.brand.logo | img_url: '300x' | prepend: 'https:' | json }},
-  "@id": {{ shop.url | json }},
-  "url": {{ shop.url | json }},
-  "description": {{ shop.description | default: "Your trusted online store." | strip_html | json }},
-  "openingHours": "Mo-Su 00:00-23:59",
-  "telephone": {{ shop.phone | json }},
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": {{ shop.address.street | json }},
-    "addressLocality": {{ shop.address.city | json }},
-    "addressRegion": {{ shop.address.province | json }},
-    "postalCode": {{ shop.address.zip | json }},
-    "addressCountry": {{ shop.address.country | json }}
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": {{ shop.phone | json }},
-    "contactType": "Customer Service",
-    "areaServed": "US",
-    "availableLanguage": ["English"]
-  },
-  "sameAs": [
-    "https://www.instagram.com/porteandhall/",
-    "https://www.facebook.com/porteandhall",
-    "https://www.pinterest.com/porchandhall/_created/"
-  ],
-  "priceRange": "$$",
-  "paymentAccepted": "Visa, Master Card, PayPal",
-  "currenciesAccepted": {{ shop.currency | json }},
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "{{ shop.url }}/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  },
-  
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.81",
-    "reviewCount": "241"
-  }
-  
-}
-</script>
+    // Non-editable fields:
+    var afterpay_js_language = {{ localization.language.iso_code | slice: 0, 2 | json }};
+    var afterpay_js_country = {{ localization.country.iso_code | json }};
+    var afterpay_shop_currency = {{ shop.currency | json }};
+    var afterpay_cart_currency = {{ cart.currency.iso_code | json }};
+    var afterpay_shop_money_format = {{ shop.money_format | json }};
+    var afterpay_shop_permanent_domain = {{ shop.permanent_domain | json }};
+    var afterpay_theme_name = {{ theme.name | json }};
+    var afterpay_product = {{ product | json }};
+    var afterpay_product_collections = {{ product.collections | map: 'title' | join: ',' | json }};
+    var afterpay_current_variant = {{ product.selected_or_first_available_variant | json }};
+    var afterpay_cart_total_price = {{ cart.total_price | json }};
+    var afterpay_cart_skus = {{cart.items | map: 'sku' | join: ',' | json }};
+    var afterpay_cart_collections = {{cart.items | map: 'product' | map: 'collections' | map: 'title' | uniq | join: ',' | json }};
+    var afterpay_js_snippet_version = '1.2.1';
+    </script>
+    <script type="text/javascript" data-lazy-src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
+    {% else %}
+    <!-- Afterpay disabled: {{ cart.currency.iso_code }} != {{ shop.currency }} -->
+    {% endif %}
+    <!-- End Shopify-Afterpay JavaScript Snippet (v1.2.1) -->
 
+    <style>
+      .items-component-content img {
+        width: 50px !important;
+        height: 50px !important;
+      }
+    </style>
 
-{% endif %}
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+      const headerHeight = document.querySelector(".outer-header-wrapper ").offsetHeight;
+      document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
+    });
 
-<style>
-.xtreviewbadge .jdgm-prev-badge__text {visibility: unset;font-size: 12px !important;color:#896A28 !important;text-transform:uppercase;font-weight:600;padding:0 6px;}
-.xtreviewbadge.jdgm-widget{font-size: 12px;margin: 0;}
-.xtreviewbadge .jdgm-star {color: #546B82 !important;}
-.xtreviewbadge .jdgm-prev-badge__stars {width: auto !important;}
-
-@media screen and (max-width: 768px) {
-  .xtreviewbadge .jdgm-prev-badge__text, .custom-collection .jdgm-prev-badge__text { padding: 0 0 0 4px; font-size: 14px !important; }
-  .xtreviewbadge .jdgm-prev-badge__stars {min-height: unset !important;}
-  .xtreviewbadge .jdgm-prev-badge__text { font-size: 10px !important;}
-  .xtreviewbadge.jdgm-widget{font-size: 12px !important; margin: 0 0 0 4px;}
-  .custom-product-card .jdgm-star {
-      padding: 0 2px 0 0 !important;
-  }
-
-  .shop-by-size__item .jdgm-prev-badge__stars .jdgm-star,
-  .shop-by-size__item .jdgm-prev-badge__text {
-  font-size: 16px !important;
-   }
- };
-</style>
-
-<!-- Begin Shopify-Afterpay JavaScript Snippet (v1.2.1) -->
-{% if cart.currency.iso_code == shop.currency %}
-<script type="text/javascript">
-// Overrides:
- var afterpay_msg_size = 'md';
- var afterpay_logo_theme = 'black';
- var afterpay_product_integration_enabled = true;
- var afterpay_product_selector = '.afterpay-pdp .afterpay-wrapper';
-var afterpay_dynamic_cart_integration_enabled = true;
-var afterpay_dynamic_cart_selector = '.cart-drawer__footer #cart-drawer-subtotal';
-var afterpay_dynamic_cart_observer_target = '#cart-drawer';
-
-// Non-editable fields:
-var afterpay_js_language = {{ localization.language.iso_code | slice: 0, 2 | json }};
-var afterpay_js_country = {{ localization.country.iso_code | json }};
-var afterpay_shop_currency = {{ shop.currency | json }};
-var afterpay_cart_currency = {{ cart.currency.iso_code | json }};
-var afterpay_shop_money_format = {{ shop.money_format | json }};
-var afterpay_shop_permanent_domain = {{ shop.permanent_domain | json }};
-var afterpay_theme_name = {{ theme.name | json }};
-var afterpay_product = {{ product | json }};
-var afterpay_product_collections = {{ product.collections | map: 'title' | join: ',' | json }};
-var afterpay_current_variant = {{ product.selected_or_first_available_variant | json }};
-var afterpay_cart_total_price = {{ cart.total_price | json }};
-var afterpay_cart_skus = {{cart.items | map: 'sku' | join: ',' | json }};
-var afterpay_cart_collections = {{cart.items | map: 'product' | map: 'collections' | map: 'title' | uniq | join: ',' | json }};
-var afterpay_js_snippet_version = '1.2.1';
-</script>
-<script type="text/javascript" data-lazy-src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
-{% else %}
-<!-- Afterpay disabled: {{ cart.currency.iso_code }} != {{ shop.currency }} -->
-{% endif %}
-<!-- End Shopify-Afterpay JavaScript Snippet (v1.2.1) -->
-
-<style>
-  .items-component-content img {
-    width: 50px !important;
-    height: 50px !important;
-  }
-</style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", (event) => {
-  const headerHeight = document.querySelector(".outer-header-wrapper ").offsetHeight;
-  document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
-});
-
-window.addEventListener("resize", (event) => {
-    const headerHeight = document.querySelector(".outer-header-wrapper ").offsetHeight;
-  document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
-});
-</script>
+    window.addEventListener("resize", (event) => {
+        const headerHeight = document.querySelector(".outer-header-wrapper ").offsetHeight;
+      document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
+    });
+    </script>
 
   </body>
 </html>
