@@ -970,9 +970,15 @@ variant-selects {
   margin-bottom: 2px !important;
 }
 
-/* Notify Me Klaviyo button */
 #klaviyo-bis-button-container .go1760632271.go1760632271.go1760632271 {
   background: #896a28;
+}
+
+@media screen and (max-width: 768px) {
+  .bis-styles {
+    font-size: 16px;
+    height: 47px;
+  }
 }
 
 /* Dimension Modal */
