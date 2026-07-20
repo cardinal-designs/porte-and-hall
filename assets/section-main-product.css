@@ -959,7 +959,7 @@ variant-selects {
   justify-content: center;
   color: white;
   font-family: brandon;
-  font-size: 16px;
+  font-size: 16px !important;
   line-height: 120%;
   text-transform: uppercase;
   font-weight: 600;
@@ -976,7 +976,6 @@ variant-selects {
 
 @media screen and (max-width: 768px) {
   .bis-styles {
-    font-size: 16px;
     height: 47px;
   }
 }
