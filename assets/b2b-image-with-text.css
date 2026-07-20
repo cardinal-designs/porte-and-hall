@@ -63,7 +63,7 @@
 }
 
 /* Element: eyebrow */
-.fifty-fifty__eyebrow {
+.fifty-fifty__sub-text {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -75,7 +75,7 @@
   margin-bottom: 20px;
 }
 
-.fifty-fifty__eyebrow::before {
+.fifty-fifty__sub-text::before {
   content: "";
   display: inline-block;
   width: 28px;
