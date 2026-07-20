@@ -11,70 +11,31 @@
 -%}
 
 {%- if show_section -%}
-<style>
 
-  #shopify-section-{{ section.id }} .fifty-fifty {
-    background-color: {{ section.settings.bg_color }};
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
+{%- style -%}
+  #fifty-fifty-{{ section.id }} {
+    --fifty-fifty-bg-color: {{ section.settings.bg_color }};
+    --fifty-fifty-padding-top: {{ section.settings.padding_top }}px;
+    --fifty-fifty-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --fifty-fifty-container-width: {{ section.settings.container_width }}px;
+    --fifty-fifty-column-gap: {{ section.settings.column_gap }}px;
+    --fifty-fifty-image-height: {{ section.settings.image_height }}px;
+    --fifty-fifty-image-radius: {{ section.settings.image_radius }}px;
+    --fifty-fifty-eyebrow-color: {{ section.settings.eyebrow_color }};
+    --fifty-fifty-heading-color: {{ section.settings.heading_color }};
+    --fifty-fifty-heading-size: {{ section.settings.heading_size }}px;
+    --fifty-fifty-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --fifty-fifty-body-color: {{ section.settings.body_color }};
+    --fifty-fifty-body-size: {{ section.settings.body_size }}px;
+    --fifty-fifty-button-bg-color: {{ section.settings.button_bg_color }};
+    --fifty-fifty-button-text-color: {{ section.settings.button_text_color }};
+    --fifty-fifty-button-radius: {{ section.settings.button_radius }}px;
+    --fifty-fifty-footnote-color: {{ section.settings.footnote_color }};
+    --fifty-fifty-link-color: {{ section.settings.link_color }};
   }
+{%- endstyle -%}
 
-  #shopify-section-{{ section.id }} .fifty-fifty__inner {
-    max-width: {{ section.settings.container_width }}px;
-    gap: {{ section.settings.column_gap }}px;
-  }
-
-  #shopify-section-{{ section.id }} .fifty-fifty__image {
-    min-height: {{ section.settings.image_height }}px;
-    border-radius: {{ section.settings.image_radius }}px;
-  }
-
-  #shopify-section-{{ section.id }} .fifty-fifty__image--placeholder {
-    height: {{ section.settings.image_height }}px;
-  }
-
-  #shopify-section-{{ section.id }} .fifty-fifty__sub-text {
-    color: {{ section.settings.sub_text_color }};
-  }
-
-  #shopify-section-{{ section.id }} .fifty-fifty__sub-text::before {
-    background: {{ section.settings.sub_text_color }};
-  }
-
-  #shopify-section-{{ section.id }} .fifty-fifty__heading {
-    font-size: {{ section.settings.heading_size }}px;
-    color: {{ section.settings.heading_color }};
-  }
-
-  #shopify-section-{{ section.id }} .fifty-fifty__body {
-    font-size: {{ section.settings.body_size }}px;
-    color: {{ section.settings.body_color }};
-  }
-
-  #shopify-section-{{ section.id }} .fifty-fifty__button {
-    background-color: {{ section.settings.button_bg_color }};
-    color: {{ section.settings.button_text_color }};
-    border-radius: {{ section.settings.button_radius }}px;
-  }
-
-  #shopify-section-{{ section.id }} .fifty-fifty__footnote {
-    color: {{ section.settings.footnote_color }};
-  }
-
-  #shopify-section-{{ section.id }} .fifty-fifty__footnote-link {
-    color: {{ section.settings.link_color }};
-  }
-
-  @media screen and (max-width: 749px) {
-
-    #shopify-section-{{ section.id }} .fifty-fifty__heading {
-      font-size: {{ section.settings.heading_size_mobile }}px;
-    }
-
-  }
-</style>
-
-<div class="fifty-fifty">
+<div class="fifty-fifty" id="fifty-fifty-{{ section.id }}">
   <div class="fifty-fifty__inner{% if section.settings.image_position == 'right' %} fifty-fifty__inner--image-right{% endif %}">
 
     <div class="fifty-fifty__image{% if section.settings.image == blank %} fifty-fifty__image--placeholder{% endif %}">
