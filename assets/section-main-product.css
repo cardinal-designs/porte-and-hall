@@ -959,7 +959,6 @@ variant-selects {
   justify-content: center;
   color: white;
   font-family: brandon;
-  font-size: 16px !important;
   line-height: 120%;
   text-transform: uppercase;
   font-weight: 600;
@@ -972,6 +971,7 @@ variant-selects {
 
 #klaviyo-bis-button-container .go1760632271.go1760632271.go1760632271 {
   background: #896a28;
+  font-size: 16px;
 }
 
 @media screen and (max-width: 768px) {
