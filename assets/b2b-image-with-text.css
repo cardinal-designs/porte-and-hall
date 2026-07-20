@@ -5,3 +5,23 @@
     grid-template-columns: 1fr 1fr;
     align-items: center;
 }
+
+@media screen and (max-width: 749px) {
+
+    .fifty-fifty .fifty-fifty__inner,
+    .fifty-fifty .fifty-fifty__inner--image-right {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    
+    .fifty-fifty .fifty-fifty__inner .fifty-fifty__image,
+    .fifty-fifty .fifty-fifty__inner--image-right .fifty-fifty__image {
+      order: 1;
+    }
+
+    .fifty-fifty .fifty-fifty__inner .fifty-fifty__content,
+    .fifty-fifty .fifty-fifty__inner--image-right .fifty-fifty__content {
+      order: 2;
+    }
+
+  }
