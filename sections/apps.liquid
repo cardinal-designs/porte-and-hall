@@ -2,6 +2,19 @@
 {{ 'section-reviews.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 
+{%- liquid
+  assign show_apps_section = true
+
+  if page.handle == 'swatches'
+    assign show_apps_section = false
+
+    if customer and customer.b2b?
+      assign show_apps_section = true
+    endif
+  endif
+-%}
+
+{% if show_apps_section %}
 {%- if section.settings.section_reviews -%}
   <div class="rave-reviews">
   <div class="rave-reviews-main" id="rave-reviews-main">
@@ -21,6 +34,7 @@
   </div>
   </div>
 {%- endif -%}
+{% endif %}
 
 {% schema %}
 {

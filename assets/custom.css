@@ -1,15 +1,15 @@
 /*========== Color Contrast Start ==========*/
 
-.collection-filters__button {
-  background-color: #5A553F !important;
-}
-
 .load-more-wrapper .button {
   background-color: #6B531F;
 }
 
 .article-card .article-card__link {
   color: #514C39;
+}
+
+.article-card .article-card__link {
+  border-color: #546B82;
 }
 
 .cart-drawer__empty .button {
@@ -81,4 +81,274 @@ span.jdgm-prev-badge__stars {
 
 #ot-sdk-btn-floating.ot-floating-button {
   display: none;
+}
+
+
+/*========== Collection swatch bundle card (B2B) ==========*/
+
+.collection-swatch-bundle-card .product-card__image a {
+  display: block;
+  height: 100%;
+}
+
+.collection-swatch-bundle-card__reviews {
+  /* margin: 0.25rem 0 0.5rem; */
+}
+
+.collection-swatch-bundle-card__reviews-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.collection-swatch-bundle-card__stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 24px;
+}
+
+.collection-swatch-bundle-card__star {
+  display: inline-flex;
+  line-height: 0;
+  color: var(--blue);
+}
+
+.collection-swatch-bundle-grid__item .product-card__swatches {
+  margin: 0;
+}
+
+.collection-swatch-bundle-card__star svg {
+  display: block;
+  width: 12px;
+  height: auto;
+  stroke: currentColor;
+  stroke-width: 2px;
+  display: none;
+}
+
+.collection-swatch-bundle-card__star {
+  font-family: 'JudgemeStar';
+  display: inline !important;
+  text-decoration: none !important;
+  margin: 0 !important;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.collection-swatch-bundle-card__star::after {
+    content: "\e000";
+}
+
+.collection-swatch-bundle-card__star.collection-swatch-bundle-card__star--half::after {
+    content: "\e002";
+}
+
+.collection-swatch-bundle-card__review-count {
+  color: var(--gold-secondary--dark);
+  font-family: brandon, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+.collection-swatch-bundle-card__swatches {
+  margin-top: 0.5rem;
+}
+
+.collection-swatch-bundle-card__swatch-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  font-family: brandon, sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.collection-swatch-bundle-grid__item {
+  list-style: none;
+}
+
+.product__price-reviews-wrapper .price-item--regular-b2b {
+  text-decoration: line-through;
+}
+
+.product__swatches.product__swatches--new {
+  row-gap: 23px;
+}
+
+.product__swatch {
+  position: relative;
+}
+
+.product__swatches .product__swatch-badge-new {
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 7px 9px;
+  border-radius: 17px;
+  pointer-events: none;
+  text-transform: uppercase;
+  z-index: 2;
+  width: auto;
+  height: auto;
+  transform: translateX(-50%);
+}
+
+.checkout-disabled,
+.cart__checkout-button.is-disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.bundle-checkout-error {
+  color: #b42318;
+  margin-bottom: 8px;
+}
+
+.cart-drawer__footer .bundle-checkout-error {
+  text-align: center;
+}
+
+.items-component-wrapper {
+  margin-left: 0 !important;
+}
+
+.items-component-content .item-componet {
+  margin-bottom: 10px;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-title {
+  color: #546B82;
+  font-family: brandon;
+  font-size: 12px;
+  pointer-events: none !important;
+  line-height: 120%;
+  font-family: brandon;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.rebuy-bundle-builder .rebuy-money {
+  color: var(--blue);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+}
+
+.rebuy-widget.rebuy-bundle-builder {
+  padding-bottom: 50px;
+}
+
+.rebuy-bundle-builder__product-holder-detail-title {
+  display: none !important;
+}
+
+.rebuy-bundle-builder__steps-container {
+  padding-right: 20px;
+}
+
+.rebuy-bundle-builder__step-header {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-block {
+  padding: 10px 8px !important;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-grid.start-column {
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-button {
+  color: #fff;
+  font-family: brandon;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 0;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget {
+  border-color: #000;
+  align-items: center;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-block .rebuy-product-actions {
+  margin-top: 15px;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-block .rebuy-product-info .rebuy-product-price {
+  display: none
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget-label {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget-button {
+  height: 40px;
+  font-size: 16px;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__item-quantity-widget-button .rebuy-grey {
+  color: #000000;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-product-image {
+  pointer-events: none !important;
+}
+
+.rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__product-sign-holder {
+  border-radius: 0;
+}
+
+.no-work__quantity .quantity__input,
+.no-work__quantity .quantity__input + .quantity__button {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+@media (max-width: 1179px) {
+
+  .rebuy-bundle-builder__steps-container {
+    padding-right: 0;
+  }
+
+  .rebuy-widget.rebuy-bundle-builder .rebuy-bundle-builder__group-container {
+    z-index: 21474836341;
+  }
+
+}
+
+@media (max-width: 767px) {
+
+  .rebuy-widget.rebuy-bundle-builder .rebuy-button {
+    padding: 10px 7px;
+  }
+
+}
+
+button.rebuy-button.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }

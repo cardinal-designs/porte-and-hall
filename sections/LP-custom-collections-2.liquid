@@ -751,7 +751,7 @@
                 <div class="rating-reviews">
                   <a href="{{currentProduct.url}}#rave-reviews-main">
                   <div class='jdgm-widget jdgm-preview-badge' data-id='{{ currentProduct.id }}'> 
-                    {{ currentProduct.metafields.judgeme.badge }} 
+                    {% render 'judgeme-badge-no-schema', product: currentProduct %} 
                   </div> 
                   </a>
                 </div>

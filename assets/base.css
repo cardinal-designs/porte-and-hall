@@ -446,7 +446,7 @@ blockquote {
 .button,
 .shopify-challenge__button {
   padding: 18px 70px 18px;
-  background: var(--gold);
+  background: #896A28;
   color: white;
   text-align: center;
   cursor: pointer;
@@ -466,6 +466,11 @@ blockquote {
 .button--light {
   background: var(--off-white);
   color: var(--blue);
+}
+
+.button--white {
+  background: white;
+  color: #896A28;
 }
 
 /* Button - other */
@@ -1881,6 +1886,10 @@ header.condensed .header__menu {
   line-height: 130% !important;
 }
 
+.footer .go1969532672.go1969532672.go1969532672 {
+  color: white !important;
+}
+
 @media screen and (max-width: 768px) {
   .footer .kl-private-reset-css-Xuajs1 input[type="email"] {
     font-size: 14px !important;
@@ -3074,7 +3083,7 @@ select#notify_id {
 
 html,
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* announcementbar */
@@ -3181,7 +3190,7 @@ header.SectionHeader .SectionHeader__Heading {
   letter-spacing: 0.84px;
 }
 header.SectionHeader .Link {
-  color: #a19377;
+  color: #896A28;
   color: #7E7358;
   font-size: 16px;
   font-weight: 500;
@@ -3231,6 +3240,10 @@ header.SectionHeader .Link {
   max-width: unset !important;
 }
 
+.template-index .rave-reviews .rave-reviews-main .jdgm-star {
+  color: #546B82 !important;
+}
+
 .template-index
   .rave-reviews
   .rave-reviews-main
@@ -3250,7 +3263,7 @@ header.SectionHeader .Link {
   display: none;
 }
 .template-index .stamped-ratings-wrapper .stamped-reviews-rating .stamped-fa {
-  color: #d2b066;
+  color: #896A28;
 }
 
 .template-index
@@ -3572,7 +3585,7 @@ iframe#preview-bar-iframe {
 }
 
 .jdgm-carousel-wrapper .jdgm-star {
-  color: #d2b066 !important;
+  color: #896A28 !important;
 }
 
 .jdgm-verified-by-judgeme {
@@ -3686,7 +3699,7 @@ iframe#preview-bar-iframe {
 }
 
 .product__price-reviews-wrapper .jdgm-widget .jdgm-prev-badge__text {
-  color: var(--gold-secondary--dark);
+  color: #896A28;
   font-family: brandon;
   font-size: 14px;
   font-weight: 600;

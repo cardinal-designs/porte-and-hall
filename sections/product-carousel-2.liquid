@@ -817,7 +817,7 @@
                 <div class="rating-reviews">
                   <a href="{{all_products[block.settings.product].url}}#rave-reviews-main" aria-label="View reviews for {{ block.settings.product.title }}">
                   <div class='jdgm-widget jdgm-preview-badge' data-id='{{ block.settings.product.id }}' aria-label="View reviews for {{ block.settings.product.title }}"> 
-                    {{ block.settings.product.metafields.judgeme.badge }} 
+                    {% render 'judgeme-badge-no-schema', product: block.settings.product %} 
                   </div> 
                   </a>
                 </div>
