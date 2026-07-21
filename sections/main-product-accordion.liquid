@@ -707,6 +707,7 @@ endcapture
       {% endcomment %}
 
       {% comment %}ACCORDION BEGINS{% endcomment %}
+       {% unless product.tags contains 'Swatch' %}
       <pdp-accordion class="product-accordion__container">
         {% if grouped_collection.metafields.custom.product_features != blank %}
          <div class="accordion">
@@ -815,6 +816,7 @@ endcapture
         {% endif %}
         {% endcomment %}
       </pdp-accordion>
+      {% endunless %}
       {% comment %}ACCORDION ENDS{% endcomment %}         
     </div>
   </div>
