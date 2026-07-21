@@ -20,6 +20,17 @@
         "bg_color": "#f4f2ee"
       }
     },
+    "breadcrumbs_yG68eF": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
     "designer_trade_program_zrdttM": {
       "type": "designer-trade-program",
       "blocks": {
@@ -49,17 +60,6 @@
         "button_1_text": "Become a Member",
         "button_2_text": "Sign In",
         "button_2_url": "/account/login"
-      }
-    },
-    "breadcrumbs_yG68eF": {
-      "type": "breadcrumbs",
-      "name": "Breadcrumbs",
-      "settings": {
-        "background_color": "",
-        "padding_top": 10,
-        "padding_bottom": 10,
-        "mobile_padding_top": 10,
-        "mobile_padding_bottom": 10
       }
     },
     "designer_how_it_work_xgLzzt": {
@@ -317,8 +317,8 @@
   },
   "order": [
     "main",
-    "designer_trade_program_zrdttM",
     "breadcrumbs_yG68eF",
+    "designer_trade_program_zrdttM",
     "designer_how_it_work_xgLzzt",
     "designer_program_founder_bKR69z",
     "designer_how_support_c8WabR",
