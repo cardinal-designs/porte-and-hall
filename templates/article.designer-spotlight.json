@@ -33,6 +33,24 @@
     "designer_spotlight_fFHtkW": {
       "type": "designer-spotlight",
       "blocks": {
+        "block_Yc9HLD": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/designerspotlight_gail_homepagealt.jpg",
+            "title": "Meet the Designer",
+            "designer_image": "shopify://shop_images/designerspotlight_heatherlisa.jpg",
+            "designer_name": "Heather Weisz & Lisa Hynes",
+            "designer_title": "Co-Founders, <a href=\"https://www.hwinteriors.net/\" target=\"_blank\">HW Interiors\n</a>",
+            "text_header_1": "What's your top tip for creating a beautiful, welcoming entry?",
+            "text_1": "We like to start with one standout detail that feels special and then layer around it. Whether it's a striking piece of art, a sculptural light fixture, or a beautiful antique console, a focal point instantly gives a space personality and purpose. From there, we add texture, warmth, and pieces that feel collected over time rather than overly coordinated.",
+            "text_header_2": "What's the biggest design mistake you see in entryways or other high-traffic areas?",
+            "text_2": "Scale and proportion. People often fill an entry with several small accessories when one larger, impactful piece would create a stronger statement. Too many undersized items can make a space feel cluttered rather than curated. A well-scaled rug or mat, for example, can often do more for a space than several smaller decorative pieces.",
+            "text_header_3": "What's a design hill you're willing to die on?",
+            "text_3": "Artwork, accessories, lighting, a great mat: they're not optional extras—they're the final layer that makes a home feel complete. We often tell clients that a beautifully designed room without those finishing touches is like leaving the house without jewelry, shoes, or a handbag.",
+            "button_label": "Shop the Look",
+            "button_link": "shopify://products/the-porter-iron-double"
+          }
+        },
         "block_FYJTfn": {
           "type": "block",
           "settings": {
@@ -89,6 +107,7 @@
         }
       },
       "block_order": [
+        "block_Yc9HLD",
         "block_FYJTfn",
         "block_KrhCYk",
         "block_36qNrr"
