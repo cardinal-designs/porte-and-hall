@@ -295,6 +295,7 @@ endcapture
         </div>
         {% endcomment %}
 
+        {% unless product.tags contains 'Swatch' %}
         <product-form class="product-form">
           <div class="product-form__error-message-wrapper" role="alert" hidden>
             <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 13 13">
@@ -671,6 +672,7 @@ endcapture
             <div class="afterpay-wrapper"></div>
           {% endform %}
         </product-form>
+      {% endunless %}
       </div>
       {% comment %}
       {% if product.available == false %}
