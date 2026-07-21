@@ -25,8 +25,7 @@
       "settings": {
         "page_heading": "",
         "subhead": "",
-        "image": "shopify://shop_images/Rectangle_600_afdd9d4e-2ac5-4953-8125-1a557f66a497.jpg",
-        "section_height": "350",
+        "section_height": "250",
         "bg_color": "#f4f2ee"
       }
     },
@@ -49,11 +48,20 @@
         "heading": "",
         "section_reviews": true
       }
+    },
+    "images_with_text_c3WYJG": {
+      "type": "images-with-text",
+      "name": "Images with text",
+      "settings": {
+        "background": "#EEEFEF",
+        "text_color": "#30383D"
+      }
     }
   },
   "order": [
     "breadcrumbs_8LXnyk",
     "main",
-    "177317723145ab427b"
+    "177317723145ab427b",
+    "images_with_text_c3WYJG"
   ]
 }
