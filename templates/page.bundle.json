@@ -65,6 +65,7 @@
         "column_QUhKa8",
         "column_t6n3ma"
       ],
+      "disabled": true,
       "name": "Trade Swatches Login",
       "settings": {
         "subheading": "",
@@ -154,6 +155,41 @@
       "settings": {
         "custom_html": "{% assign product = page.metafields.custom.bundle_product.value %}\n<script>window.productData = {{ product | json }};</script>"
       }
+    },
+    "b2b_image_with_text_QfDURy": {
+      "type": "b2b-image-with-text",
+      "name": "50/50 Image With Text",
+      "settings": {
+        "b2b_only": false,
+        "image_position": "left",
+        "container_width": 1400,
+        "column_gap": 100,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "image_height": 560,
+        "image_radius": 0,
+        "eyebrow": "TRADE PERK",
+        "heading": "See It. Feel It. Make the Call.",
+        "heading_size": 48,
+        "heading_size_mobile": 32,
+        "body_text": "<p>Trade members receive five complimentary swatches of their choice—so you can see the color, feel the texture, and move forward with confidence.</p>",
+        "body_size": 17,
+        "button_label": "LOG IN",
+        "button_link": "",
+        "button_radius": 2,
+        "footnote_text": "Not a trade member yet?",
+        "footnote_link_text": "Join below ↓",
+        "footnote_link": "",
+        "footnote_text_after": "— applications are reviewed within 24 hours.",
+        "bg_color": "#F2EEE6",
+        "sub_text_color": "#896A28",
+        "heading_color": "#5A6B82",
+        "body_color": "#2B2B2B",
+        "footnote_color": "#8A8579",
+        "link_color": "#5A6B82",
+        "button_bg_color": "#896A28",
+        "button_text_color": "#FFFFFF"
+      }
     }
   },
   "order": [
@@ -163,6 +199,7 @@
     "image_text_eRzCTq",
     "lp_columns_with_buttons_7zQDya",
     "1783321871059e3ea5",
-    "custom_liquid_VnrjTy"
+    "custom_liquid_VnrjTy",
+    "b2b_image_with_text_QfDURy"
   ]
 }
