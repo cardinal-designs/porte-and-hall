@@ -246,7 +246,8 @@ endcapture
               </div> 
           </div>
         {% for option in product.options_with_values %}
-          <div class="TEST product__variant-name body" aria-label="Selected {{ option.name }}: {{ option.selected_value }}">
+          {% unless product.tags contains 'Swatch' %}
+          <div class="product__variant-name body" aria-label="Selected {{ option.name }}: {{ option.selected_value }}">
             {% if option.name == 'Size' %}
               {% continue %}
             {% endif %}
@@ -263,6 +264,7 @@ endcapture
             </span>
             <span> — {{ option.selected_value }}</span>
           </div>
+          {% endunless %}
         {% endfor %}
 
         {% if product.metafields.custom.style_text != blank %}
