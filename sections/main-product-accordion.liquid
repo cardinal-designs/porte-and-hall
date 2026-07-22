@@ -246,7 +246,7 @@ endcapture
               </div> 
           </div>
         {% for option in product.options_with_values %}
-          <div class="product__variant-name body" aria-label="Selected {{ option.name }}: {{ option.selected_value }}">
+          <div class="TEST product__variant-name body" aria-label="Selected {{ option.name }}: {{ option.selected_value }}">
             {% if option.name == 'Size' %}
               {% continue %}
             {% endif %}
