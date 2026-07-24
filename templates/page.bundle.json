@@ -158,6 +158,9 @@
     },
     "b2b_image_with_text_QfDURy": {
       "type": "b2b-image-with-text",
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.fifty-fifty__image {display: none !important; }}"
+      ],
       "name": "50/50 Image With Text",
       "settings": {
         "b2b_only": false,
@@ -182,14 +185,14 @@
         "footnote_link_text": "Join now",
         "footnote_link": "shopify://pages/designer-program",
         "footnote_text_after": "— applications are reviewed within 24 hours.",
-        "bg_color": "#F2EEE6",
-        "sub_text_color": "#896A28",
-        "heading_color": "#5A6B82",
-        "body_color": "#2B2B2B",
-        "footnote_color": "#8A8579",
-        "link_color": "#5A6B82",
-        "button_bg_color": "#896A28",
-        "button_text_color": "#FFFFFF"
+        "bg_color": "#f2eee6",
+        "sub_text_color": "#896a28",
+        "heading_color": "#5a6b82",
+        "body_color": "#2b2b2b",
+        "footnote_color": "#8a8579",
+        "link_color": "#5a6b82",
+        "button_bg_color": "#896a28",
+        "button_text_color": "#ffffff"
       }
     }
   },
