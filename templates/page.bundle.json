@@ -159,7 +159,8 @@
     "b2b_image_with_text_QfDURy": {
       "type": "b2b-image-with-text",
       "custom_css": [
-        "@media screen and (max-width: 768px) {.fifty-fifty__image {display: none !important; }}"
+        "@media screen and (max-width: 768px) {.fifty-fifty__image {display: none !important; }}",
+        ".fifty-fifty__button {width: 225px; padding: 19px 87px;}"
       ],
       "name": "50/50 Image With Text",
       "settings": {
