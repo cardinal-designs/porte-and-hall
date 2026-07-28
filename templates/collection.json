@@ -68,8 +68,9 @@
       ],
       "name": "t:sections.main-collection-banner.name",
       "settings": {
+        "show_title": false,
         "show_collection_description": true,
-        "show_collection_image": false
+        "full_width": false
       }
     },
     "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a": {
@@ -119,6 +120,7 @@
         "category_fwnzTp",
         "category_U7VJ38"
       ],
+      "disabled": true,
       "settings": {}
     },
     "product-grid": {
@@ -127,6 +129,7 @@
         "products_per_page": 16,
         "image_ratio": "adapt",
         "show_secondary_image": false,
+        "hide_tag": false,
         "add_image_padding": false,
         "show_image_outline": true,
         "show_vendor": false,
