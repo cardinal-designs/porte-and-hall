@@ -270,7 +270,7 @@
     {% if section.settings.logo %}
       {% assign image_size = section.settings.logo.width | append: 'x' %}
       "logo": {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},
-    {% endif -%}
+    {%- endif -%}
     {%- assign sameas_array = sameas_urls | split: ',' -%}
     {%- if sameas_array != blank %}
     "sameAs": [
