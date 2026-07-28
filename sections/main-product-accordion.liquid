@@ -168,7 +168,10 @@ endcapture
         <div class="afaf product__price-reviews-wrapper">
           <div class="no-js-hidden product__price" id="price-{{ section.id }}" role="status">
             {% if product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product.price > product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
-              {% assign percent_off = product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | minus: product.price | times: 100.0 | divided_by: product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | round %}
+              {% liquid
+                assign sale_price = product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | times: 1.0
+                assign percent_off = sale_price | minus: product.price | times: 100.0 | divided_by: sale_price | round 
+              %}{{sale_price }}
               <span class="sale-price">{{ product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
               <span class="old-price">{{ product.price | money_without_trailing_zeros }}</span>
               <span class="percentage-off">({{ percent_off }}% off)</span>
