@@ -1200,97 +1200,97 @@
     assign review_count_value = product.metafields.reviews.rating_count
   endif
 -%}
+
 <script type="application/ld+json">
-[
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "@id": {{ canonical_url | append: '#product' | json }},
-    "name": {{ product.title | json }},
-    "url": {{ request.origin | append: product.url | json }},
-    "image": {{ seo_image_url | json }},
-    "description": {{ product.description | strip_html | json }},
-    "brand": {
-      "@type": "Brand",
-      "name": {{ product.vendor | json }}
-    },
-    {%- if review_rating_value != blank and review_count_value != blank and review_count_value > 0 -%}
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": {{ review_rating_value | json }},
-      "reviewCount": {{ review_count_value | json }}
-    },
-    {%- endif -%}
-    "offers": [
-    {%- for variant in product.variants -%}
-      {
-        "@type": "Offer",
-        {%- if variant.sku != blank -%}
-        "sku": {{ variant.sku | json }},
-        {%- endif -%}
-        {%- if variant.barcode.size == 12 -%}
-        "gtin12": {{ variant.barcode | json }},
-        {%- endif -%}
-        {%- if variant.barcode.size == 13 -%}
-        "gtin13": {{ variant.barcode | json }},
-        {%- endif -%}
-        {%- if variant.barcode.size == 14 -%}
-        "gtin14": {{ variant.barcode | json }},
-        {%- endif -%}
-        "price": {{ variant.price | divided_by: 100.00 | json }},
-        "priceCurrency": {{ cart.currency.iso_code | json }},
-        "priceValidUntil": {{ 'now' | date: '%s' | plus: 2592000 | date: '%Y-%m-%d' | json }},
-        "url": {{ request.origin | append: variant.url | json }},
-        "itemCondition": "https://schema.org/NewCondition",
-        "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
-        "shippingDetails": { "@id": "#shipping_policy" },
-        "hasMerchantReturnPolicy": { "@id": "#return_policy" }
-      }{% unless forloop.last %},{% endunless %}
-    {%- endfor -%}
-    ]
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "OfferShippingDetails",
-    "@id": "#shipping_policy",
-    "shippingRate": {
-      "@type": "MonetaryAmount",
-      "value": 0,
-      "currency": {{ cart.currency.iso_code | json }}
-    },
-    "shippingDestination": {
-      "@type": "DefinedRegion",
-      "addressCountry": "US",
-      "addressRegion": ["US"]
-    },
-    "deliveryTime": {
-      "@type": "ShippingDeliveryTime",
-      "handlingTime": {
-        "@type": "QuantitativeValue",
-        "minValue": 0,
-        "maxValue": 2,
-        "unitCode": "DAY"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "@id": {{ canonical_url | append: '#product' | json }},
+      "name": {{ product.title | json }},
+      "url": {{ request.origin | append: product.url | json }},
+      "image": {{ seo_image_url | json }},
+      "description": {{ product.description | strip_html | json }},
+      "brand": {
+        "@type": "Brand",
+        "name": {{ product.vendor | json }}
       },
-      "transitTime": {
-        "@type": "QuantitativeValue",
-        "minValue": 0,
-        "maxValue": 2,
-        "unitCode": "DAY"
+      {%- if review_rating_value != blank and review_count_value != blank and review_count_value > 0 -%}
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": {{ review_rating_value | json }},
+        "reviewCount": {{ review_count_value | json }}
+      },
+      {%- endif -%}
+      "offers": [
+      {%- for variant in product.variants -%}
+        {
+          "@type": "Offer",
+          {%- if variant.sku != blank -%}
+          "sku": {{ variant.sku | json }},
+          {%- endif -%}
+          {%- if variant.barcode.size == 12 -%}
+          "gtin12": {{ variant.barcode | json }},
+          {%- endif -%}
+          {%- if variant.barcode.size == 13 -%}
+          "gtin13": {{ variant.barcode | json }},
+          {%- endif -%}
+          {%- if variant.barcode.size == 14 -%}
+          "gtin14": {{ variant.barcode | json }},
+          {%- endif -%}
+          "price": {{ variant.price | divided_by: 100.00 | json }},
+          "priceCurrency": {{ cart.currency.iso_code | json }},
+          "priceValidUntil": {{ 'now' | date: '%s' | plus: 2592000 | date: '%Y-%m-%d' | json }},
+          "url": {{ request.origin | append: variant.url | json }},
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+          "shippingDetails": { "@id": "#shipping_policy" },
+          "hasMerchantReturnPolicy": { "@id": "#return_policy" }
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+      ]
+    },
+    {
+      "@type": "OfferShippingDetails",
+      "@id": "#shipping_policy",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": 0,
+        "currency": {{ cart.currency.iso_code | json }}
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "US"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 2,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 2,
+          "unitCode": "DAY"
+        }
       }
+    },
+    {
+      "@type": "MerchantReturnPolicy",
+      "@id": "#return_policy",
+      "applicableCountry": "US",
+      "returnPolicyCountry": "US",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 30,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
     }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "MerchantReturnPolicy",
-    "@id": "#return_policy",
-    "applicableCountry": ["US"],
-    "returnPolicyCountry": "US",
-    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-    "merchantReturnDays": 30,
-    "returnMethod": "https://schema.org/ReturnByMail",
-    "returnFees": "https://schema.org/FreeReturn"
-  }
-]
+  ]
+}
 </script>
 
 
