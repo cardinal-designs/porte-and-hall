@@ -267,7 +267,6 @@
 }
 
 .product__price .old-price {
-  margin-right: 5px;
   text-decoration: line-through;
   text-decoration-thickness: 1px;
   opacity: .3;
@@ -278,8 +277,9 @@
 }
 
 .product__price .sale-price {
+  margin-right: 5px;
   color: #7d3c3c;
-  font-weight: semibold;
+  font-weight: 800;
 }
 
 .product__description {
