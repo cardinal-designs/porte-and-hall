@@ -139,7 +139,7 @@
         </div>
         {% endif %}
       </a>
-    </div>test
+    </div>
     {% if simple_card == true %}<div>{% endif %}
 
     {% if template.suffix == 'last-chance' %}
@@ -209,14 +209,14 @@
           <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
         {% else %}
           <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
-        {% endif %}        
+        {% endif %}        1
       </p>
     {% else %}
       {% if show_discounted_price %}
         <p class="product-card__price body blue">
           <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
           <span>{{ auto_discount_price }}</span>
-        </p>
+        </p>2
       {% else %}
         <p class="product-card__price body blue">
           {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
@@ -225,7 +225,7 @@
           {% else %}
             <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
           {% endif %}
-        </p>
+        </p>3
       {% endif %}
     {% endif %}
     
