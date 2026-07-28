@@ -1,13 +1,14 @@
 {% comment %}
-  Fonts: ATOF faces only.
+  Fonts: ATOF faces only — must match @font-face first format (woff2).
+  Louize Medium first: homepage LCP candidate is the hero H1 (font-family: louize).
   Theme JS: preload only global.js (always needed for header/cart wiring).
   Swiper is large (~132 KiB) — let the defer tag discover it without an extra
   early preload competing with LCP on mobile.
   GSAP is interaction-lazy (data-lazy-src) — do not preload.
 {% endcomment %}
+<link rel="preload" href="{{ 'LouizeDisplayTrial-Medium.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ 'BrandonGrotesque-Regular.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ 'BrandonGrotesque-Bold.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ 'LouizeDisplayTrial-Medium.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
 
 {{ 'global.js' | asset_url | preload_tag: as: 'script' }}
 

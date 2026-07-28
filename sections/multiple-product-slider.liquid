@@ -51,23 +51,39 @@
 </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
-  $(document).ready(function(){ 
-      $('.tab-a').click(function(event){  
-        event.preventDefault(); 
-        $(".products-section").removeClass('tab-active');
-        $(".products-section[data-id='"+$(this).attr('data-id')+"']").addClass("tab-active");
-        $(".tab-a").removeClass('active-a');
-        $(this).parent().find(".tab-a").addClass('active-a');
-       });
-  });
+  (function () {
+    // Wait for DOMContentLoaded so deferred Swiper is defined (replaces jQuery ready).
+    // Calling initOnVisible mid-parse can run the callback before Swiper loads.
+    function onReady(fn) {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fn);
+      } else {
+        fn();
+      }
+    }
 
-   $(document).ready(function() {
-      var container = document.querySelector('.collection-navigation-with-slider');
-      if (!container || !window.initOnVisible) return;
+    onReady(function () {
+    var root = document.querySelector('.collection-navigation-with-slider');
+    if (!root) return;
 
-      window.initOnVisible(container, function() {
+    root.querySelectorAll('.tab-a').forEach(function (tab) {
+      tab.addEventListener('click', function (event) {
+        event.preventDefault();
+        var id = tab.getAttribute('data-id');
+        root.querySelectorAll('.products-section').forEach(function (section) {
+          section.classList.toggle('tab-active', section.getAttribute('data-id') === id);
+        });
+        root.querySelectorAll('.tab-a').forEach(function (t) {
+          t.classList.remove('active-a');
+        });
+        tab.classList.add('active-a');
+      });
+    });
+
+    if (!window.initOnVisible || typeof Swiper === 'undefined') return;
+
+    window.initOnVisible(root, function () {
         new Swiper('.swiper1', {
           loop: false,
           slidesPerView: 1.7,
@@ -168,11 +184,8 @@
         }
       });
       }); // end initOnVisible
-
-    
-  });
-
-  
+    }); // end onReady
+  })();
 </script>
 <style>
 .collection-navigation-with-slider .product-card__price .old-price {

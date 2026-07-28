@@ -1,11 +1,57 @@
 .video-wrapper {
   background-color: #ffffff;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* Prefer real preview-frame ratio; fall back to prior square hero. */
+  aspect-ratio: var(--poster-ar-mobile, 1 / 1);
 }
 
-video[data-hero-video] {
+@media screen and (min-width: 769px) {
+  .video-wrapper {
+    aspect-ratio: var(--poster-ar-desktop, 1 / 1);
+  }
+}
+
+/* Poster + video fill the ratio box — neither may expand the wrapper. */
+.video-wrapper picture,
+.hero-lcp-poster {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  z-index: 1;
+}
+
+.hero-lcp-poster {
+  object-fit: cover;
+}
+
+.video-wrapper video.videos,
+.video-wrapper video[data-hero-video] {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+
+/* Poster fades out when video plays; video stays under content z-index. */
+.video-wrapper.is-playing .hero-lcp-poster {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.video-wrapper.is-playing video.videos,
+.video-wrapper.is-playing video[data-hero-video] {
+  opacity: 1;
+  z-index: 0;
 }
 
 .image-with-text .home-banner .FeatureText {
@@ -136,7 +182,6 @@ video[data-hero-video] {
 
 .FeatureText__ImageWrapper.video-wrapper {
   width: 100%;
-  aspect-ratio: 1 / 1;
   overflow: hidden;
 }
 
@@ -149,6 +194,9 @@ video[data-hero-video] {
 .video-text .FeatureText__ContentWrapper {
   margin-right: 50px !important;
   padding-left: 0 !important;
+  /* Above hero media so -90px card overlay stays readable */
+  position: relative;
+  z-index: 2;
 }
 
 .video-text .FeatureText__ContentWrapper .SectionHeader {
@@ -201,6 +249,7 @@ video[data-hero-video] {
     text-align: center;
     max-width: 500px;
     margin: 0 auto;
+    /* Intentional mobile design: cream card overlaps bottom of hero media. */
     margin-top: -90px;
   }
 

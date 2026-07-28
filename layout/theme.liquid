@@ -141,9 +141,17 @@
         assign load_swiper = false
       endif
     -%}
-    {%- comment -%} Swiper CSS only when Swiper JS loads (still deferred — Step 2) {%- endcomment -%}
+    {%- comment -%}
+      Swiper CSS: blocking on product (gallery collapses without layout rules).
+      Elsewhere keep deferred to protect homepage LCP/TBT. Critical .swiper /
+      .swiper-wrapper / .swiper-slide rules also live in base.css as a safety net.
+    {%- endcomment -%}
     {% if load_swiper %}
-      {% render 'deferred-css', asset: 'swiper-bundle.min.css' %}
+      {% if template.name == 'product' %}
+        {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+      {% else %}
+        {% render 'deferred-css', asset: 'swiper-bundle.min.css' %}
+      {% endif %}
     {% endif %}
 
     {% if load_swiper %}
@@ -164,6 +172,15 @@
     {%- liquid
       assign content_for_header = content_for_header | replace_first: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'"
       assign content_for_header = content_for_header | replace_first: "src='https://cdn.shopify.com/shopifycloud/preview-bar/preview-bar-modules.js'", "data-lazy-src='https://cdn.shopify.com/shopifycloud/preview-bar/preview-bar-modules.js'"
+      comment
+        Strip non-critical / duplicate platform preconnects so total stays ≤4.
+        Theme already preconnects cdn.shopify.com early; brand fonts are self-hosted there.
+        fonts.shopifycdn.com is unused (no Shopify font_face on storefront).
+      endcomment
+      assign content_for_header = content_for_header | replace: '<link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>', ''
+      assign content_for_header = content_for_header | replace: "<link rel='preconnect' href='https://fonts.shopifycdn.com' crossorigin>", ''
+      assign content_for_header = content_for_header | replace: '<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>', ''
+      assign content_for_header = content_for_header | replace: "<link rel='preconnect' href='https://cdn.shopify.com' crossorigin>", ''
     -%}
     {{ content_for_header }}
     {% # theme-check-enable %}
@@ -178,10 +195,7 @@
 	}
     </style>
 
-    <!-- Non-blocking Google Fonts (moved from render-blocking @import) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" media="print" onload="this.media='all'">
+    {% comment %} Google Fonts removed — Roboto was only used for Stamped widget copy; brand fonts are self-hosted via asset_url (long CDN cache). {% endcomment %}
 
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
