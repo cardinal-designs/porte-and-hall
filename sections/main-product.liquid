@@ -1178,13 +1178,13 @@
         assign review_count_value = product.metafields.reviews.rating_count
       endif
     -%}
-    {%- if review_rating_value != blank and review_count_value != blank and review_count_value > 0 -%}
+    {% comment %} {%- if review_rating_value != blank and review_count_value != blank and review_count_value > 0 -%}
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": {{ review_rating_value | json }},
       "reviewCount": {{ review_count_value | json }}
     },
-    {%- endif -%}
+    {%- endif -%} {% endcomment %}
     "offers": [
       {% for variant in product.variants %}
         {
