@@ -277,6 +277,10 @@
   font-weight: 600;
 }
 
+.product__price .sale-price {
+  color: #7d3c3c;
+  font-weight: semibold;
+}
 
 .product__description {
   margin-top: 20px;
