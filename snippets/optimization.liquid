@@ -1,36 +1,15 @@
-{% comment %} lazysizes preload removed — lazy-image now uses native loading {% endcomment %}
-{{ 'swiper-bundle.min.js' | asset_url | preload_tag: as: 'script' }}
-{{ 'micromodal.min.js' | asset_url | preload_tag: as: 'script' }}
-{{ 'gsap.min.js' | asset_url | preload_tag: as: 'script' }}
-{{ 'ScrollToPlugin.min.js' | asset_url | preload_tag: as: 'script' }}
-{{ 'global.js' | asset_url | preload_tag: as: 'script' }}
-
-<!-- handwriting -->
-<link rel="preload" href="{{ 'LaBelleAurore-Regular.ttf' | asset_url }}" as="font" type="font/ttf" crossorigin>
-
-<!-- louize -->
-<link rel="preload" href="{{ 'LouizeDisplayTrial-Regular.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
+{% comment %}
+  Fonts: ATOF faces only.
+  Theme JS: preload only global.js (always needed for header/cart wiring).
+  Swiper is large (~132 KiB) — let the defer tag discover it without an extra
+  early preload competing with LCP on mobile.
+  GSAP is interaction-lazy (data-lazy-src) — do not preload.
+{% endcomment %}
+<link rel="preload" href="{{ 'BrandonGrotesque-Regular.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ 'BrandonGrotesque-Bold.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ 'LouizeDisplayTrial-Medium.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
 
-<!-- brandon light -->
-<link rel="preload" href="{{ 'BrandonGrotesque-Light.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ 'BrandonGrotesque-Light.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
-
-<!-- brandon regular -->
-<link rel="preload" href="{{ 'BrandonGrotesque-Regular.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ 'BrandonGrotesque-Regular.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
-
-<!-- brandon regular italic -->
-<link rel="preload" href="{{ 'BrandonGrotesque-RegularItalic.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ 'BrandonGrotesque-RegularItalic.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
-
-<!-- brandon medium -->
-<link rel="preload" href="{{ 'BrandonGrotesque-Medium.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ 'BrandonGrotesque-Medium.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
-
-<!-- brandon bold -->
-<link rel="preload" href="{{ 'BrandonGrotesque-Bold.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ 'BrandonGrotesque-Bold.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
+{{ 'global.js' | asset_url | preload_tag: as: 'script' }}
 
 {% if collection and collection.products.size > 0 %}
   <link rel="preload" as="image"

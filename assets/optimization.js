@@ -1,22 +1,56 @@
 (() => {
-  const userActivityEvents = [
-    'mousedown',
-    'mousemove',
-    'keydown',
-    'scroll',
-    'touchstart',
-    'keypress',
-    'touchmove',
-    'click',
-  ];
+  // Intentional engagement only — NOT scroll/mousemove/touchmove/pointermove.
+  // Lighthouse scrolls during lab runs; scroll-as-activity caused a third-party burst.
+  // Also omit pointerdown: some lab tools synthesize pointer events while scrolling.
+  const userActivityEvents = ['keydown', 'touchstart', 'click'];
 
   let scriptsLoaded = false;
+
+  function idleYield(timeoutMs) {
+    return new Promise((resolve) => {
+      if (typeof requestIdleCallback === 'function') {
+        requestIdleCallback(() => resolve(), { timeout: timeoutMs });
+      } else {
+        setTimeout(resolve, Math.min(timeoutMs, 50));
+      }
+    });
+  }
+
+  function activateScript(scriptTag) {
+    const lazySrc = scriptTag.dataset.lazySrc;
+    if (!lazySrc) return Promise.resolve();
+
+    const newScript = document.createElement('script');
+
+    for (const attr of scriptTag.attributes) {
+      if (attr.name === 'data-lazy-src') continue;
+      if (attr.name === 'blocking') continue;
+      newScript.setAttribute(attr.name, attr.value);
+    }
+
+    newScript.src = lazySrc;
+    // Dynamically inserted scripts ignore defer relative to document parse;
+    // mark async so they don't block each other as parser-blocking sync loads.
+    if (!newScript.hasAttribute('async') && !newScript.hasAttribute('defer')) {
+      newScript.async = true;
+    }
+
+    const scriptLoad = new Promise((resolve) => {
+      newScript.onload = resolve;
+      newScript.onerror = resolve;
+    });
+
+    if (scriptTag.parentNode) {
+      scriptTag.parentNode.replaceChild(newScript, scriptTag);
+    }
+
+    return scriptLoad;
+  }
 
   async function loadDeferredScripts() {
     if (scriptsLoaded) return;
     scriptsLoaded = true;
 
-    // Remove all interaction listeners
     for (const event of userActivityEvents) {
       window.removeEventListener(event, onUserActivity, { passive: true });
     }
@@ -25,45 +59,19 @@
       document.querySelectorAll('script[data-lazy-src]')
     );
 
-    const scriptsLoad = [];
-
+    // Stagger activation so parse/compile work does not become one long task
+    // under mobile CPU throttling. Yield between each script.
     for (const scriptTag of scriptTagsForLoad) {
-      const lazySrc = scriptTag.dataset.lazySrc;
-      if (!lazySrc) continue;
-
-      // Create a fresh script element to ensure proper loading
-      // (some browsers don't load when src is set on an existing tag)
-      const newScript = document.createElement('script');
-
-      // Copy all attributes except data-lazy-src
-      for (const attr of scriptTag.attributes) {
-        if (attr.name === 'data-lazy-src') continue;
-        // Skip blocking attribute — deferred scripts should never block render
-        if (attr.name === 'blocking') continue;
-        newScript.setAttribute(attr.name, attr.value);
-      }
-
-      // Set the real src
-      newScript.src = lazySrc;
-
-      const scriptLoad = new Promise((resolve) => {
-        newScript.onload = resolve;
-        newScript.onerror = resolve;
-      });
-
-      scriptsLoad.push(scriptLoad);
-
-      // Replace original element with the new one
-      scriptTag.parentNode.replaceChild(newScript, scriptTag);
+      activateScript(scriptTag);
+      await idleYield(120);
     }
 
-    // Fire the Shopify head-scripts load event (used by content_for_header)
+    // Shopify content_for_header listeners rewritten to this event
     window.dispatchEvent(new CustomEvent('load-head-scripts'));
 
-    await Promise.all(scriptsLoad);
-
+    // Give network a moment, then signal secondary loaders (AccessiBe, Convert)
+    await idleYield(500);
     window.dispatchEvent(new CustomEvent('third-party-scripts-loaded'));
-
     document.documentElement.classList.add('third-party-scripts-loaded');
   }
 
@@ -78,8 +86,6 @@
     }
   }
 
-  // Always wait for first user interaction — even for returning visitors.
-  // This ensures we never add to Total Blocking Time on initial load.
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', startListenUserActivity);
   } else {

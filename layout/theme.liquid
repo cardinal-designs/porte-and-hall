@@ -41,7 +41,7 @@
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            t=l.createElement(r);t.async=1;t.dataset.lazySrc="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "wn1dwl162x");
     </script>
@@ -127,23 +127,24 @@
 
     {% render 'meta-tags' %}
 
-    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
-    {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
     {% render 'css-variables' %}
-    {{ 'cro.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
-
-    {% comment %} {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }} {% endcomment %}
-    {% comment %} <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script> {% endcomment %}
+    {{ 'cro.css' | asset_url | stylesheet_tag: preload: true }}
+    {%- comment -%} Swiper is below-the-fold carousels only — safe to defer {%- endcomment -%}
+    {% render 'deferred-css', asset: 'swiper-bundle.min.css' %}
 
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
     <script src="{{ 'micromodal.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'ScrollToPlugin.min.js' | asset_url }}" defer></script>
+    {%- comment -%}
+      GSAP is only used for .scroll__button smooth-scroll (designer program),
+      and that handler already waits 2s. Keep it off the initial mobile TBT path.
+    {%- endcomment -%}
+    <script data-lazy-src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+    <script data-lazy-src="{{ 'ScrollToPlugin.min.js' | asset_url }}" defer></script>
     <script src="{{ 'global.js' | asset_url }}" defer></script>
     <script data-lazy-src="{{ 'custom.js' | asset_url }}" defer></script>
-
-    <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
+    <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}" defer></script>
 
     {% # theme-check-disable %}
     {%- liquid
@@ -172,62 +173,11 @@
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
     </script>
 
-    <script src="{{ 'grouped-product-card.js' | asset_url }}" defer="defer"></script>
-
-    <!-- friendbuy app integration -->          
-    <script>
-      window['friendbuy'] = window['friendbuy'] || [];
-      window['friendbuy'].push(['site', 'site-e25da741-www.porteandhall.com']);
-      window['friendbuy'].push(['track', 'customer',
-          {
-              id: '{{ customer.id }}',
-              email: '{{ customer.email }}',
-              first_name: '{{ customer.first_name }}',
-              last_name: '{{ customer.last_name }}'
-          }
-      ]);
-      (function (f, r, n, d, b, y) {
-          b = f.createElement(r), y = f.getElementsByTagName(r)[0];b.async = 1;b.dataset.lazySrc = n;y.parentNode.insertBefore(b, y);
-      })(document, 'script', '//djnf6e5yyirys.cloudfront.net/js/friendbuy.min.js');
-    </script>
-
-    <!-- Microsoft Advertising -->
-    <script>
-      (function(w,d,t,r,u)
-      {
-        var f,n,i;
-        w[u]=w[u]||[],f=function()
-        {
-          var o={ti:"97168087", enableAutoSpaTracking: true};
-          o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")
-        },
-        n=d.createElement(t),n.dataset.lazySrc=r,n.async=1,n.onload=n.onreadystatechange=function()
-        {
-          var s=this.readyState;
-          s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)
-        },
-        i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)
-      })
-      (window,document,"script","//bat.bing.com/bat.js","uetq");
-    </script>
-
-    <script>
-      function uet_report_conversion() {
-        window.uetq = window.uetq || [];
-        window.uetq.push("event", "purchase", {"revenue_value":Replace_with_Variable_Revenue_Function(),"currency":"USD"});
-      }
-    </script>
-
-    <script>
-      function uet_report_conversion() {
-        window.uetq = window.uetq || [];
-        window.uetq.push("event", "add_to_cart", {});
-      }
-    </script>
+    {% unless template.name == 'index' %}
+      <script src="{{ 'grouped-product-card.js' | asset_url }}" defer="defer"></script>
+    {% endunless %}
 
     {%- render 'head-scripts-loader' -%}
-    
-    <script data-lazy-src="https://static.shopmy.us/Affiliates/sms_aff_clicktrack.js?domain=porteandhall.com&expires=30" defer></script>
   </head>
 
   <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
@@ -472,6 +422,51 @@
      .ot-floating-button__front {visibility: hidden;}
    {% endstyle %}
    <script src="{{ 'optimization.js' | asset_url }}" defer></script>
+
+    <!-- Deferred third-party trackers (moved out of <head>) -->
+    <script>
+      window['friendbuy'] = window['friendbuy'] || [];
+      window['friendbuy'].push(['site', 'site-e25da741-www.porteandhall.com']);
+      window['friendbuy'].push(['track', 'customer',
+          {
+              id: '{{ customer.id }}',
+              email: '{{ customer.email }}',
+              first_name: '{{ customer.first_name }}',
+              last_name: '{{ customer.last_name }}'
+          }
+      ]);
+      (function (f, r, n, d, b, y) {
+          b = f.createElement(r), y = f.getElementsByTagName(r)[0];b.async = 1;b.dataset.lazySrc = n;y.parentNode.insertBefore(b, y);
+      })(document, 'script', '//djnf6e5yyirys.cloudfront.net/js/friendbuy.min.js');
+    </script>
+
+    <script>
+      (function(w,d,t,r,u)
+      {
+        var f,n,i;
+        w[u]=w[u]||[],f=function()
+        {
+          var o={ti:"97168087", enableAutoSpaTracking: true};
+          o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")
+        },
+        n=d.createElement(t),n.dataset.lazySrc=r,n.async=1,n.onload=n.onreadystatechange=function()
+        {
+          var s=this.readyState;
+          s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)
+        },
+        i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)
+      })
+      (window,document,"script","//bat.bing.com/bat.js","uetq");
+    </script>
+
+    <script>
+      function uet_report_conversion() {
+        window.uetq = window.uetq || [];
+        window.uetq.push("event", "add_to_cart", {});
+      }
+    </script>
+
+    <script data-lazy-src="https://static.shopmy.us/Affiliates/sms_aff_clicktrack.js?domain=porteandhall.com&expires=30" defer></script>
 
     {% if request.page_type != 'index' %}
     <script type="application/ld+json">

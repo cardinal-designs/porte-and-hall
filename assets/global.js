@@ -469,14 +469,24 @@ const serializeForm = form => {
 };
 
 /*================ Initialize ================*/
-// Micromodal
-MicroModal.init({
-  openClass: 'is-open',
-  disableScroll: true,
-  disableFocus: true,
-  openTrigger: 'data-modal-trigger',
-  closeTrigger: 'data-modal-close'
-});
+// Micromodal — defer init to idle so parse of global.js isn't followed by sync setup work
+(function initMicroModalWhenReady() {
+  function run() {
+    if (typeof MicroModal === 'undefined') return;
+    MicroModal.init({
+      openClass: 'is-open',
+      disableScroll: true,
+      disableFocus: true,
+      openTrigger: 'data-modal-trigger',
+      closeTrigger: 'data-modal-close'
+    });
+  }
+  if (typeof requestIdleCallback === 'function') {
+    requestIdleCallback(run, { timeout: 2000 });
+  } else {
+    setTimeout(run, 1);
+  }
+})();
 
 /*================ Components ================*/
 var MenuDrawer = class extends HTMLElement {
@@ -1737,29 +1747,36 @@ document.addEventListener("DOMContentLoaded", (event) => {
 setTimeout(function() {
   window.headerSticky();
 
-  if (typeof gsap === "undefined" || !gsap.plugins.scrollTo) {
-    console.error("GSAP or ScrollToPlugin not loaded!");
-    return;
+  // GSAP loads via data-lazy-src (interaction). Bind when available; otherwise
+  // wait for third-party/lazy bundle so designer-program scroll still works.
+  function bindScrollButtons() {
+    if (typeof gsap === "undefined" || !gsap.plugins || !gsap.plugins.scrollTo) {
+      return false;
+    }
+    const HEADER_HEIGHT = document.querySelector('.header')?.offsetHeight ?? 0;
+    document.querySelectorAll(".scroll__button").forEach(function (button) {
+      if (button.dataset.scrollBound) return;
+      button.dataset.scrollBound = 'true';
+      button.addEventListener("click", function () {
+        const target = document.querySelector(".Designer_Program_Main");
+        if (target) {
+          gsap.to(window, {
+            scrollTo: {
+              y: target,
+              offsetY: HEADER_HEIGHT,
+            },
+            duration: 1,
+            ease: "power2.out",
+          });
+        }
+      });
+    });
+    return true;
   }
 
-  const HEADER_HEIGHT = document.querySelector('.header')?.offsetHeight ?? 0; 
-  document.querySelectorAll(".scroll__button").forEach(function (button) {
-    button.addEventListener("click", function () {
-      const target = document.querySelector(".Designer_Program_Main");
-      if (target) {
-        gsap.to(window, {
-          scrollTo: {
-            y: target, 
-            offsetY: HEADER_HEIGHT,
-          },
-          duration: 1,
-          ease: "power2.out",
-        });
-      } else {
-        console.error("Target section not found!");
-      }
-    });
-  });
+  if (!bindScrollButtons()) {
+    window.addEventListener('third-party-scripts-loaded', bindScrollButtons, { once: true });
+  }
 }, 2000);
 });
 
