@@ -337,6 +337,11 @@
   margin-top: 23px;
 }
 
+@media screen and (max-width: 420px) {
+  .product__price-reviews-divider {
+    display: none;
+  }
+}
 
 @media screen and (max-width: 768px) {
   .product__swatches {
