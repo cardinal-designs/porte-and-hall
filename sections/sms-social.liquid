@@ -1,10 +1,18 @@
 {{ 'section-sms-social.css' | asset_url | stylesheet_tag }}
-<div class="SMS_Section" style="background-image: url('{{ section.settings.image | img_url: 'master' }}')">
+<div class="SMS_Section" style="background-image: url('{{ section.settings.image | image_url: width: 1600 }}')">
   <div class="SMS_Inr_Block">
     <div class="SMS_Inr_Block_inner">
       {% if section.settings.logo_image != blank %}
         <div class="Site_Logo">
-          <img src="{{ section.settings.logo_image | img_url: '248x' }}">
+          {{
+            section.settings.logo_image
+            | image_url: width: 248
+            | image_tag:
+              loading: 'lazy',
+              widths: '124, 248',
+              sizes: '124px',
+              alt: shop.name
+          }}
         </div>
       {% endif %}
       {% if section.settings.title != blank %}

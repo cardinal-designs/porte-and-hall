@@ -300,7 +300,16 @@
           <div class="category-blocks__container">
             {% for block in section.blocks %}
               <div class="category-block">
-                <img src="{{ block.settings.image | img_url: 'master' }}"/>
+                {% assign category_alt = block.settings.image.alt | default: block.settings.text %}
+                {{
+                  block.settings.image
+                  | image_url: width: 400
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '200, 300, 400',
+                    sizes: '120px',
+                    alt: category_alt
+                }}
                 <p>{{ block.settings.text }}</p>
               </div>
             {% endfor %}

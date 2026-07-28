@@ -5,29 +5,76 @@
   Visual transitions (blur-up, fade-in) still work via CSS classes
   that toggle on the native onload event — no JS library needed.
 
-  @param {object} image - The Shopify image object (required).
+  Width/height overrides are sanitized to integers in 1..5760 before
+  being passed to image_url. Invalid or blank values fall back to the
+  source image width (Media → preview_image.width), capped at 1600.
+  Height is only sent to image_url when both dimensions are valid
+  overrides (intentional crop).
+
+  @param {object} image - The Shopify image or media object (required).
   @param {number} [widthI] - Override for the image width.
-  @param {number} [heightI] - Override for the image height.
+  @param {number} [heightI] - Override for the image height (crop only with widthI).
+  @param {number} [width] - Alias for widthI (legacy callers / product-media).
+  @param {number} [height] - Alias for heightI (legacy callers).
   @param {string} [aria-label] - ARIA label for the image (defaults to "image").
   @param {string} [classes] - Additional classes for the wrapper div.
   @param {boolean} [fill] - If true, adds 'img-fill' class to the wrapper.
   @param {boolean} [blur] - If true, adds 'lazyload--blur' class for a blur-up effect.
   @param {boolean} [fade] - If true, adds 'lazyload--fade' class for a fade-in effect.
-  @param {boolean} [prioritize_loading] - If true, sets loading="eager", fetchpriority="high", and preload=true.
+  @param {boolean} [prioritize_loading] - LCP only: loading="eager", fetchpriority="high", preload=true.
+  @param {boolean} [eager] - Above-the-fold but not LCP: loading="eager" only (no fetchpriority/preload).
   @param {string} [sizes] - Sizes attribute for the img tag (defaults to "100vw").
   @param {string} [widths] - Comma-separated list of widths for srcset (defaults to standard set).
 
   @example
   {% render 'lazy-image', image: product.featured_image, fade: true, fill: true %}
   {% render 'lazy-image', image: hero_img, prioritize_loading: true, fill: true %}
+  {% render 'lazy-image', image: card_img, eager: true %}
 {% enddoc %}
 
 {%- liquid
-  assign img_width = widthI | default: image.width
-  assign img_height = heightI | default: image.height
+  # Resolve intrinsic width from Image or Media (preview_image).
+  assign source_width = image.width | default: image.preview_image.width | default: 1600 | times: 1
+  if source_width < 1 or source_width > 5760
+    assign source_width = 1600
+  endif
+  assign fallback_width = source_width | at_most: 1600
+  if fallback_width < 1
+    assign fallback_width = 1600
+  endif
+
+  assign raw_width = widthI | default: width
+  assign raw_height = heightI | default: height
+
+  assign img_width = fallback_width
+  assign has_valid_width_override = false
+  if raw_width != blank
+    assign parsed_width = raw_width | times: 1
+    if parsed_width >= 1 and parsed_width <= 5760
+      assign img_width = parsed_width
+      assign has_valid_width_override = true
+    endif
+  endif
+
+  # Only crop when both overrides are valid positive integers.
+  assign use_crop = false
+  if has_valid_width_override and raw_height != blank
+    assign parsed_height = raw_height | times: 1
+    if parsed_height >= 1 and parsed_height <= 5760
+      assign img_height = parsed_height
+      assign use_crop = true
+    endif
+  endif
+
+  if img_width < 1 or img_width > 5760
+    assign img_width = fallback_width
+  endif
+
+  assign aspect_ratio_val = image.aspect_ratio | default: image.preview_image.aspect_ratio | default: 1
+
   assign aria_label_val = aria-label | default: 'image'
   assign sizes_val = sizes | default: '100vw'
-  assign widths_val = widths | default: '165, 360, 535, 750, 1000, 1500, 3000'
+  assign widths_val = widths | default: '360, 535, 750, 1000, 1200, 1600'
 
   assign loading_val = 'lazy'
   assign fetchpriority_val = 'auto'
@@ -37,6 +84,8 @@
     assign loading_val = 'eager'
     assign fetchpriority_val = 'high'
     assign preload_val = true
+  elsif eager
+    assign loading_val = 'eager'
   endif
 
   capture img_classes
@@ -52,20 +101,37 @@
 
 <div
   class="aspect-ratio{% if fill %} img-fill{% endif %} {{ classes }}"
-  style="max-width: 100%; width: 100%; --aspect-ratio: {{ image.aspect_ratio }}"
+  style="max-width: 100%; width: 100%; --aspect-ratio: {{ aspect_ratio_val }}"
 >
-  {{-
-    image
-    | image_url: width: img_width, height: img_height
-    | image_tag:
-      loading: loading_val,
-      fetchpriority: fetchpriority_val,
-      preload: preload_val,
-      class: img_classes,
-      sizes: sizes_val,
-      widths: widths_val,
-      aria-label: aria_label_val,
-      alt: image.alt,
-      onload: "this.classList.add('lazyloaded')"
-  -}}
+  {%- if use_crop -%}
+    {{-
+      image
+      | image_url: width: img_width, height: img_height
+      | image_tag:
+        loading: loading_val,
+        fetchpriority: fetchpriority_val,
+        preload: preload_val,
+        class: img_classes,
+        sizes: sizes_val,
+        widths: widths_val,
+        aria-label: aria_label_val,
+        alt: image.alt,
+        onload: "this.classList.add('lazyloaded')"
+    -}}
+  {%- else -%}
+    {{-
+      image
+      | image_url: width: img_width
+      | image_tag:
+        loading: loading_val,
+        fetchpriority: fetchpriority_val,
+        preload: preload_val,
+        class: img_classes,
+        sizes: sizes_val,
+        widths: widths_val,
+        aria-label: aria_label_val,
+        alt: image.alt,
+        onload: "this.classList.add('lazyloaded')"
+    -}}
+  {%- endif -%}
 </div>

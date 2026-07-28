@@ -9,7 +9,15 @@
         <div class="categories-grid__text">
           <p>{{ block.settings.text }}</p>
         </div>
-        <img src="{{ block.settings.image | img_url: 'master' }}"/>
+        {{
+          block.settings.image
+          | image_url: width: 800
+          | image_tag:
+            loading: 'lazy',
+            widths: '320, 480, 640, 800',
+            sizes: '(min-width: 768px) 25vw, 50vw',
+            alt: block.settings.text
+        }}
         </a>
       </div>
     {% endfor %}

@@ -69,9 +69,12 @@
 .grand__entrance--image-item figure {
   margin: 0;
   line-height: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 .grand__entrance--image-item img {
+  display: block;
   width: 100%;
   max-width: 100%;
   height: auto;

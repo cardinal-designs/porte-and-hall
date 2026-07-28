@@ -688,7 +688,7 @@
                 
                 <div class="image_container">
                   <a href="{{ productUrl }}">
-                    {% render 'lazy-image', image: block.settings.product_image1, fade: true, classes: '' %}
+                    {% render 'lazy-image', image: block.settings.product_image1, fade: true, classes: '', widthI: 800, sizes: '(min-width: 768px) 40vw, 85vw', widths: '320, 480, 640, 800' %}
                   </a>
                 </div>
               </div>

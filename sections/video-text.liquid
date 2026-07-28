@@ -1,6 +1,49 @@
+{%- liquid
+  assign has_mobile_video = false
+  if section.settings.video != blank and section.settings.mobile_video != blank and section.settings.mobile_video.id != section.settings.video.id
+    assign has_mobile_video = true
+  endif
+
+  if section.settings.video_poster != blank
+    assign poster_url_desktop = section.settings.video_poster | image_url: width: 1200
+    assign poster_url_mobile = section.settings.video_poster | image_url: width: 750
+  endif
+-%}
+
+{%- comment -%}
+  LCP is the video poster image, not the <video> element. fetchpriority on <video>
+  does not prioritize the poster request — preload the matching poster URL instead.
+  Media queries match .hide-mobile / .hide-desktop (768px / 769px).
+{%- endcomment -%}
+{%- if section.settings.video != blank and poster_url_desktop != blank -%}
+  {%- if has_mobile_video -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ poster_url_mobile }}"
+      media="(max-width: 768px)"
+      fetchpriority="high"
+    >
+    <link
+      rel="preload"
+      as="image"
+      href="{{ poster_url_desktop }}"
+      media="(min-width: 769px)"
+      fetchpriority="high"
+    >
+  {%- else -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ poster_url_desktop }}"
+      fetchpriority="high"
+    >
+  {%- endif -%}
+{%- endif -%}
+
 {{ 'section-video-text.css' | asset_url | stylesheet_tag }}
- 
- <section class="Section {{ section.settings.custom-class }} video-text" id="VideoText-{{ section.id }}" style="background-color: {{ section.settings.bg_color }};">
+
+<section class="Section {{ section.settings.custom-class }} video-text" id="VideoText-{{ section.id }}" style="background-color: {{ section.settings.bg_color }};">
   {%- capture css_variables -%}
     --title_fz: {{ section.settings.title_font_size }}px;
     --content_fz: {{ section.settings.content_font_size }}px;
@@ -38,38 +81,34 @@
   {%- capture section_image -%}
     {%- if section.settings.video != blank -%}
       {% liquid
-        assign has_mobile_video = false
-        if section.settings.mobile_video != blank and section.settings.mobile_video.id != section.settings.video.id
-          assign has_mobile_video = true
-        endif
-
         assign classes = 'videos'
         if has_mobile_video
           assign classes = 'videos hide-mobile'
         endif
-        
-        assign poster_url = section.settings.video_poster | image_url: width: 1920
       %}
       <div class="FeatureText__ImageWrapper video-wrapper">
         {% capture desktop_video %}
-          {{ section.settings.video | video_tag: autoplay: true, muted: true, loop: true, controls: false, playsinline: true, preload: 'auto', class: classes, id: 'video', image_size: '800x', poster: poster_url }}
+          {{ section.settings.video | video_tag: autoplay: true, muted: true, loop: true, controls: false, playsinline: true, preload: 'metadata', class: classes, id: 'video', image_size: '1200x', poster: poster_url_desktop }}
         {% endcapture %}
         {% assign captions_url = 'hero-captions-en.vtt' | file_url %}
-        {{ desktop_video
-          | replace: '<video', '<video data-hero-video fetchpriority="high"'
-          | replace: '</video>', '<track kind="captions" src="' | append: captions_url | append: '" srclang="en" label="English" default></track></video>'
-        }}
-        
-        {% if has_mobile_video %}
+        {%- if has_mobile_video -%}
+          {{ desktop_video
+            | replace: '<video', '<video data-hero-video'
+            | replace: '</video>', '<track kind="captions" src="' | append: captions_url | append: '" srclang="en" label="English" default></track></video>'
+          }}
           {% capture mobile_video %}
-            {{ section.settings.mobile_video | video_tag: autoplay: true, muted: true, loop: true, controls: false, playsinline: true, preload: 'auto', class: 'videos hide-desktop', id: 'video-mobile', image_size: '800x', poster: poster_url }}
+            {{ section.settings.mobile_video | video_tag: autoplay: true, muted: true, loop: true, controls: false, playsinline: true, preload: 'metadata', class: 'videos hide-desktop', id: 'video-mobile', image_size: '750x', poster: poster_url_mobile }}
           {% endcapture %}
-          {% assign captions_url = 'hero-captions-en.vtt' | file_url %}
-          {{ mobile_video 
+          {{ mobile_video
             | replace: '<video', '<video data-hero-video fetchpriority="high"'
             | replace: '</video>', '<track kind="captions" src="' | append: captions_url | append: '" srclang="en" label="English" default></track></video>'
           }}
-        {% endif %}
+        {%- else -%}
+          {{ desktop_video
+            | replace: '<video', '<video data-hero-video fetchpriority="high"'
+            | replace: '</video>', '<track kind="captions" src="' | append: captions_url | append: '" srclang="en" label="English" default></track></video>'
+          }}
+        {%- endif -%}
       </div>
     {%- endif -%}
   {%- endcapture -%}

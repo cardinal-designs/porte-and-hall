@@ -34,9 +34,10 @@
 
 {% if collection and collection.products.size > 0 %}
   <link rel="preload" as="image"
-    href="{{ collection.products.first.featured_image | img_url: '1000x' }}"
+    href="{{ collection.products.first.featured_image | image_url: width: 800 }}"
     imagesrcset="
-      {{ collection.products.first.featured_image | img_url: '750x' }} 750w,
-      {{ collection.products.first.featured_image | img_url: '1000x' }} 1000w"
-    imagesizes="100vw">
+      {{ collection.products.first.featured_image | image_url: width: 400 }} 400w,
+      {{ collection.products.first.featured_image | image_url: width: 600 }} 600w,
+      {{ collection.products.first.featured_image | image_url: width: 800 }} 800w"
+    imagesizes="(min-width: 768px) 25vw, 45vw">
 {% endif %}

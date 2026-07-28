@@ -18,7 +18,15 @@
           {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline:true, class: 'videos', id: 'video', image_size: '1000x' }}
           </div>
         {% else %}
-        <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt  }}" height="auto" width="100%">
+        {{
+          section.settings.image
+          | image_url: width: 1000
+          | image_tag:
+            loading: 'lazy',
+            widths: '400, 600, 800, 1000',
+            sizes: '(min-width: 768px) 50vw, 100vw',
+            alt: section.settings.image.alt
+        }}
         {% endif %}
         
       </div>  
@@ -50,7 +58,15 @@
         {% if block.type == 'image' %}
           {% if block.settings.image != blank %}
             <div class="finer__details--image">
-              <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.image_right.alt  }}" height="auto" width="auto">
+              {{
+                block.settings.image
+                | image_url: width: 800
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '320, 480, 640, 800',
+                  sizes: '(min-width: 768px) 40vw, 90vw',
+                  alt: block.settings.image.alt
+              }}
             </div>
           {% endif %}
         {% endif %}

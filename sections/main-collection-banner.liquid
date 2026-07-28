@@ -21,10 +21,38 @@
       </div>
 
       {% if image != blank and mobile_image != blank %}
-        {{ image | image_url: width: 1500 | image_tag: preload: true, width: image.width, class: 'desktop-image hide-mobile', sizes: '1500px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
-        {{ mobile_image | image_url: width: 1100 | image_tag: preload: true, width: mobile_image.width, class: 'mobile-image hide-desktop', sizes: '1100px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
+        {{
+          image
+          | image_url: width: 1600
+          | image_tag:
+            loading: 'eager',
+            class: 'desktop-image hide-mobile',
+            sizes: '100vw',
+            widths: '750, 1100, 1400, 1600'
+        }}
+        {{
+          mobile_image
+          | image_url: width: 900
+          | image_tag:
+            loading: 'eager',
+            fetchpriority: 'high',
+            preload: true,
+            class: 'mobile-image hide-desktop',
+            sizes: '100vw',
+            widths: '375, 550, 750, 900'
+        }}
       {% elsif image != blank %}
-        {{ image | image_url: width: 1500 | image_tag: preload: true, width: image.width, class: 'desktop-image hide-mobile', sizes: '1500px', widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000' }}
+        {{
+          image
+          | image_url: width: 1600
+          | image_tag:
+            loading: 'eager',
+            fetchpriority: 'high',
+            preload: true,
+            class: 'desktop-image hide-mobile',
+            sizes: '100vw',
+            widths: '750, 1100, 1400, 1600'
+        }}
       {% endif %}
     </div>
   </div>

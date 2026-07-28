@@ -94,9 +94,23 @@
   color: var(--blue-secondary);
 }
 
+.trade__image--wrapper,
+.trade__image--item,
+.trade__image--item figure {
+  width: 100%;
+  max-width: 100%;
+}
+
 .trade__image--item figure {
   margin: 0;
   line-height: 0;
+}
+
+.trade__image--item img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 @media (min-width: 768px) {

@@ -25,7 +25,15 @@
     </div>
     <div class="details__media-wrapper">
       <div class="details__image">
-        {{ image | image_url: width: 1200 | image_tag }}
+        {{
+          image
+          | image_url: width: 1000
+          | image_tag:
+            loading: 'lazy',
+            widths: '400, 600, 800, 1000',
+            sizes: '(min-width: 768px) 50vw, 100vw',
+            alt: image.alt
+        }}
       </div>
       {% for arrow in arrows.value %}
         <div
