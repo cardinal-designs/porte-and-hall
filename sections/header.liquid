@@ -272,7 +272,7 @@
       "logo": {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},
     {%- endif -%}
     {%- assign sameas_array = sameas_urls | split: ',' -%}
-    {%- if sameas_array != blank %}
+    {%- if sameas_array != blank -%}
     "sameAs": [
       {%- for url in sameas_array %}
       "{{ url | strip }}"{%- unless forloop.last -%},{%- endunless -%}
