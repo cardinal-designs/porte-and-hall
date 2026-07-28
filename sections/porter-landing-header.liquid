@@ -115,7 +115,16 @@
     {% endif %}
   </div>
 </header>
-
+{%- capture sameas_urls -%}
+  {%- if settings.social_twitter_link != blank -%}{{ settings.social_twitter_link }},{%- endif -%}
+  {%- if settings.social_facebook_link != blank -%}{{ settings.social_facebook_link }},{%- endif -%}
+  {%- if settings.social_pinterest_link != blank -%}{{ settings.social_pinterest_link }},{%- endif -%}
+  {%- if settings.social_instagram_link != blank -%}{{ settings.social_instagram_link }},{%- endif -%}
+  {%- if settings.social_tumblr_link != blank -%}{{ settings.social_tumblr_link }},{%- endif -%}
+  {%- if settings.social_snapchat_link != blank -%}{{ settings.social_snapchat_link }},{%- endif -%}
+  {%- if settings.social_youtube_link != blank -%}{{ settings.social_youtube_link }},{%- endif -%}
+  {%- if settings.social_vimeo_link != blank -%}{{ settings.social_vimeo_link }}{%- endif -%}
+{%- endcapture %}
 <script type="application/ld+json">
   {
     "@context": "http://schema.org",
@@ -125,16 +134,14 @@
       {% assign image_size = section.settings.logo.width | append: 'x' %}
       "logo": {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},
     {% endif %}
+    {%- assign sameas_array = sameas_urls | split: ',' -%}
+    {%- if sameas_array != blank %}
     "sameAs": [
-      {{ settings.social_twitter_link | json }},
-      {{ settings.social_facebook_link | json }},
-      {{ settings.social_pinterest_link | json }},
-      {{ settings.social_instagram_link | json }},
-      {{ settings.social_tumblr_link | json }},
-      {{ settings.social_snapchat_link | json }},
-      {{ settings.social_youtube_link | json }},
-      {{ settings.social_vimeo_link | json }}
-    ],
+      {%- for url in sameas_array %}
+      "{{ url | strip }}"{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor %}
+    ]
+    {%- endif %}
     "url": {{ shop.url | append: page.url | json }}
   }
 </script>
