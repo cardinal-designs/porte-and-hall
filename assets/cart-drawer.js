@@ -390,15 +390,10 @@ function cartScroll() {
 
   if (!cartItemsEle) return;
 
-  const footerHeight = cartFooter?.offsetHeight || 0;
-  const headerHeight = cartHeader?.offsetHeight || 0;
-
-  const totalHeight = footerHeight + headerHeight;
-
-  // Debug (optional)
-  // console.log({ footerHeight, headerHeight, totalHeight });
-
-  cartItemsEle.style.height = `calc(100vh - ${totalHeight}px)`;
+  // Batch reads, then single write.
+  const footerHeight = cartFooter ? cartFooter.offsetHeight : 0;
+  const headerHeight = cartHeader ? cartHeader.offsetHeight : 0;
+  cartItemsEle.style.height = `calc(100vh - ${footerHeight + headerHeight}px)`;
 }
 
 document.addEventListener('cart:updated', function () {

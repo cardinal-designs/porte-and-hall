@@ -131,10 +131,24 @@
     {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'cro.css' | asset_url | stylesheet_tag: preload: true }}
-    {%- comment -%} Swiper is below-the-fold carousels only — safe to defer {%- endcomment -%}
-    {% render 'deferred-css', asset: 'swiper-bundle.min.css' %}
+    {%- liquid
+      # Swiper is ~132 KiB. Skip on templates with no carousels to cut unused JS.
+      assign load_swiper = true
+      if template.name == 'cart' or template.name == 'password' or template.name == 'login' or template.name == 'register' or template.name == 'gift_card'
+        assign load_swiper = false
+      endif
+      if request.page_type == 'customers'
+        assign load_swiper = false
+      endif
+    -%}
+    {%- comment -%} Swiper CSS only when Swiper JS loads (still deferred — Step 2) {%- endcomment -%}
+    {% if load_swiper %}
+      {% render 'deferred-css', asset: 'swiper-bundle.min.css' %}
+    {% endif %}
 
-    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+    {% if load_swiper %}
+      <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+    {% endif %}
     <script src="{{ 'micromodal.min.js' | asset_url }}" defer></script>
     {%- comment -%}
       GSAP is only used for .scroll__button smooth-scroll (designer program),
@@ -684,15 +698,38 @@
     </style>
 
     <script>
-      document.addEventListener("DOMContentLoaded", (event) => {
-      const headerHeight = document.querySelector(".outer-header-wrapper ").offsetHeight;
-      document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
-    });
+      (function () {
+        var lastHeight = -1;
 
-    window.addEventListener("resize", (event) => {
-        const headerHeight = document.querySelector(".outer-header-wrapper ").offsetHeight;
-      document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
-    });
+        function setHeaderHeightVar() {
+          var header = document.querySelector('.outer-header-wrapper');
+          if (!header) return;
+          var headerHeight = header.offsetHeight;
+          if (headerHeight === lastHeight) return;
+          lastHeight = headerHeight;
+          document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
+        }
+
+        var resizeTimer;
+        function onResize() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(setHeaderHeightVar, 150);
+        }
+
+        // Measure once after DOM is ready; once after fonts settle.
+        // Do NOT listen to resize until window load — font/image layout during
+        // the load window was restarting debounce timers and adding TBT on mobile.
+        document.addEventListener('DOMContentLoaded', setHeaderHeightVar);
+
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(setHeaderHeightVar).catch(function () {});
+        }
+
+        window.addEventListener('load', function () {
+          setHeaderHeightVar();
+          window.addEventListener('resize', onResize);
+        });
+      })();
     </script>
 
   </body>
