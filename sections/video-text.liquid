@@ -133,6 +133,40 @@
           </picture>
         {%- endif -%}
 
+        {%- liquid
+          # Build JSON source lists for JS viewport pick. Do NOT use <source media>
+          # — browsers do not reliably honor media on video sources.
+          capture sources_desktop_json
+            echo '['
+            for source in desktop_video.sources
+              echo '{"src":'
+              echo source.url | json
+              echo ',"type":'
+              echo source.mime_type | json
+              echo '}'
+              unless forloop.last
+                echo ','
+              endunless
+            endfor
+            echo ']'
+          endcapture
+          if has_mobile_video
+            capture sources_mobile_json
+              echo '['
+              for source in mobile_video.sources
+                echo '{"src":'
+                echo source.url | json
+                echo ',"type":'
+                echo source.mime_type | json
+                echo '}'
+                unless forloop.last
+                  echo ','
+                endunless
+              endfor
+              echo ']'
+            endcapture
+          endif
+        -%}
         <video
           data-hero-video
           id="video-hero-{{ section.id }}"
@@ -141,32 +175,16 @@
           muted
           loop
           preload="none"
-          {% if poster_url_desktop != blank %}
-            poster="{{ poster_url_desktop }}"
-          {% elsif poster_url_mobile != blank %}
-            poster="{{ poster_url_mobile }}"
+          data-poster-mobile="{{ poster_url_mobile | default: poster_url_desktop | escape }}"
+          data-poster-desktop="{{ poster_url_desktop | default: poster_url_mobile | escape }}"
+          data-sources-desktop="{{ sources_desktop_json | strip_newlines | escape }}"
+          {% if has_mobile_video %}
+            data-sources-mobile="{{ sources_mobile_json | strip_newlines | escape }}"
+          {% endif %}
+          {% if poster_url_desktop != blank or poster_url_mobile != blank %}
+            poster="{{ poster_url_desktop | default: poster_url_mobile }}"
           {% endif %}
         >
-          {%- if has_mobile_video -%}
-            {%- for source in mobile_video.sources -%}
-              <source
-                src="{{ source.url }}"
-                type="{{ source.mime_type }}"
-                media="(max-width: 768px)"
-              >
-            {%- endfor -%}
-            {%- for source in desktop_video.sources -%}
-              <source
-                src="{{ source.url }}"
-                type="{{ source.mime_type }}"
-                media="(min-width: 769px)"
-              >
-            {%- endfor -%}
-          {%- else -%}
-            {%- for source in desktop_video.sources -%}
-              <source src="{{ source.url }}" type="{{ source.mime_type }}">
-            {%- endfor -%}
-          {%- endif -%}
           <track kind="captions" src="{{ captions_url }}" srclang="en" label="English" default>
         </video>
       </div>
@@ -313,37 +331,120 @@
 {% javascript %}
 (function () {
   /*
-    Breakpoint selection is Liquid + <source media> — no matchMedia JS.
-    Do NOT call video.load()/play() on load/idle: decoding the ~3MB hero MP4
-    creates long tasks inside the FCP→TTI window and spikes mobile TBT.
-    Start playback only after a real user gesture (same gate as optimization.js).
+    1) Poster <picture> remains LCP (video starts with preload="none", no <source>).
+    2) After paint/idle, matchMedia picks ONE viewport source list, load(), muted play().
+    3) Gesture fallback only if play() is rejected (autoplay policy).
+    Never preload="auto"; never inject both mobile and desktop source lists.
   */
   var started = false;
+  var gestureArmed = false;
+  var MOBILE_MQ = '(max-width: 768px)';
+  var IDLE_TIMEOUT_MS = 1500;
 
-  function loadAndPlay(video, wrapper) {
-    if (!video || video.getAttribute('data-hero-loaded') === 'true') return;
-    video.setAttribute('data-hero-loaded', 'true');
-
+  function parseSources(raw) {
+    if (!raw) return [];
     try {
-      video.load();
-    } catch (e) {}
+      var list = JSON.parse(raw);
+      return Array.isArray(list) ? list : [];
+    } catch (e) {
+      return [];
+    }
+  }
 
+  function applyViewportSource(video) {
+    if (!video || video.getAttribute('data-sources-applied') === 'true') return true;
+
+    var useMobile =
+      window.matchMedia(MOBILE_MQ).matches && video.getAttribute('data-sources-mobile');
+    var list = parseSources(
+      useMobile
+        ? video.getAttribute('data-sources-mobile')
+        : video.getAttribute('data-sources-desktop')
+    );
+    if (!list.length) {
+      list = parseSources(video.getAttribute('data-sources-desktop'));
+    }
+    if (!list.length) return false;
+
+    var poster = useMobile
+      ? video.getAttribute('data-poster-mobile')
+      : video.getAttribute('data-poster-desktop');
+    if (poster) video.setAttribute('poster', poster);
+
+    video.querySelectorAll('source').forEach(function (el) {
+      el.remove();
+    });
+
+    var track = video.querySelector('track');
+    list.forEach(function (item) {
+      if (!item || !item.src) return;
+      var source = document.createElement('source');
+      source.src = item.src;
+      if (item.type) source.type = item.type;
+      if (track) video.insertBefore(source, track);
+      else video.appendChild(source);
+    });
+
+    video.setAttribute('data-sources-applied', 'true');
+    return true;
+  }
+
+  function fadePoster(wrapper) {
+    if (wrapper) wrapper.classList.add('is-playing');
+  }
+
+  function attemptPlay(video, wrapper) {
+    if (!video || typeof video.play !== 'function') return;
+    if (video.getAttribute('data-play-attempted') === 'pending') return;
+
+    // Fade only on actual `playing` (first frame), never on play() resolve alone.
     video.addEventListener(
       'playing',
       function () {
-        if (wrapper) wrapper.classList.add('is-playing');
+        fadePoster(wrapper);
       },
       { once: true }
     );
 
-    var tryPlay = function () {
-      if (typeof video.play !== 'function') return;
+    var run = function () {
+      video.removeAttribute('data-play-attempted');
+      if (!video.paused && !video.ended) {
+        // Already rendering frames — playing may have already fired; ensure fade.
+        if (video.readyState >= 3) fadePoster(wrapper);
+        return;
+      }
       var p = video.play();
-      if (p && typeof p.catch === 'function') p.catch(function () {});
+      if (p && typeof p.then === 'function') {
+        p.catch(function (err) {
+          video.setAttribute(
+            'data-play-rejected',
+            err && err.name ? err.name : 'rejected'
+          );
+          armGestureFallback();
+        });
+      }
     };
 
-    if (video.readyState >= 2) tryPlay();
-    else video.addEventListener('loadeddata', tryPlay, { once: true });
+    if (video.readyState >= 2) {
+      run();
+    } else {
+      video.setAttribute('data-play-attempted', 'pending');
+      video.addEventListener('loadeddata', run, { once: true });
+    }
+  }
+
+  function loadAndPlay(video, wrapper) {
+    if (!video) return;
+
+    if (video.getAttribute('data-hero-loaded') !== 'true') {
+      if (!applyViewportSource(video)) return;
+      video.setAttribute('data-hero-loaded', 'true');
+      try {
+        video.load();
+      } catch (e) {}
+    }
+
+    attemptPlay(video, wrapper);
   }
 
   function startAll() {
@@ -357,8 +458,60 @@
     });
   }
 
-  ['keydown', 'touchstart', 'click'].forEach(function (type) {
-    window.addEventListener(type, startAll, { once: true, passive: true, capture: true });
-  });
+  function onGesturePlay() {
+    document.querySelectorAll('section.video-text video[data-hero-video]').forEach(function (video) {
+      var section = video.closest('section.video-text');
+      var wrapper = section ? section.querySelector('.video-wrapper') : null;
+      if (video.getAttribute('data-hero-loaded') === 'true') {
+        attemptPlay(video, wrapper);
+      } else {
+        // Auto-start has not applied sources yet; allow one start pass.
+        started = false;
+        startAll();
+      }
+    });
+  }
+
+  function armGestureFallback() {
+    if (gestureArmed) return;
+    gestureArmed = true;
+    ['keydown', 'touchstart', 'click'].forEach(function (type) {
+      window.addEventListener(type, onGesturePlay, { once: true, passive: true, capture: true });
+    });
+  }
+
+  function scheduleAutoStart() {
+    var fired = false;
+    function run() {
+      if (fired) return;
+      fired = true;
+      startAll();
+    }
+
+    function afterPaint(cb) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(cb);
+      });
+    }
+
+    function armIdle() {
+      afterPaint(function () {
+        if (typeof requestIdleCallback === 'function') {
+          requestIdleCallback(run, { timeout: IDLE_TIMEOUT_MS });
+        } else {
+          setTimeout(run, IDLE_TIMEOUT_MS);
+        }
+      });
+    }
+
+    // Wait for window load so the LCP poster can paint/claim before MP4 work.
+    if (document.readyState === 'complete') {
+      armIdle();
+    } else {
+      window.addEventListener('load', armIdle, { once: true });
+    }
+  }
+
+  scheduleAutoStart();
 })();
 {% endjavascript %}
