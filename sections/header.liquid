@@ -3,6 +3,9 @@
 
 {% liquid
   assign main_menu = section.settings.menu
+  if customer and customer.b2b? and section.settings.b2b_menu != blank
+    assign main_menu = section.settings.b2b_menu
+  endif
 %}
 
 <header class="header">
@@ -389,6 +392,11 @@
       "id": "menu",
       "default": "main-menu",
       "label": "Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "b2b_menu",
+      "label": "B2B Menu"
     },
     {
       "type": "checkbox",
