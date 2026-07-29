@@ -260,6 +260,10 @@
   margin-top: 10px;
 }
 
+.product__price-reviews-wrapper.product__price-reviews-wrapper--trade .jdgm-widget {
+  width: 100%;
+}
+
 .product__price {
  display: flex;
   flex-direction: row;
