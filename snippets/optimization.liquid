@@ -1,42 +1,23 @@
-{% comment %} lazysizes preload removed — lazy-image now uses native loading {% endcomment %}
-{{ 'swiper-bundle.min.js' | asset_url | preload_tag: as: 'script' }}
-{{ 'micromodal.min.js' | asset_url | preload_tag: as: 'script' }}
-{{ 'gsap.min.js' | asset_url | preload_tag: as: 'script' }}
-{{ 'ScrollToPlugin.min.js' | asset_url | preload_tag: as: 'script' }}
-{{ 'global.js' | asset_url | preload_tag: as: 'script' }}
-
-<!-- handwriting -->
-<link rel="preload" href="{{ 'LaBelleAurore-Regular.ttf' | asset_url }}" as="font" type="font/ttf" crossorigin>
-
-<!-- louize -->
-<link rel="preload" href="{{ 'LouizeDisplayTrial-Regular.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
-<link rel="preload" href="{{ 'LouizeDisplayTrial-Medium.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
-
-<!-- brandon light -->
-<link rel="preload" href="{{ 'BrandonGrotesque-Light.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ 'BrandonGrotesque-Light.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
-
-<!-- brandon regular -->
+{% comment %}
+  Fonts: ATOF faces only — must match @font-face first format (woff2).
+  Louize Medium first: homepage LCP candidate is the hero H1 (font-family: louize).
+  Theme JS: preload only global.js (always needed for header/cart wiring).
+  Swiper is large (~132 KiB) — let the defer tag discover it without an extra
+  early preload competing with LCP on mobile.
+  GSAP is interaction-lazy (data-lazy-src) — do not preload.
+{% endcomment %}
+<link rel="preload" href="{{ 'LouizeDisplayTrial-Medium.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ 'BrandonGrotesque-Regular.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ 'BrandonGrotesque-Regular.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
-
-<!-- brandon regular italic -->
-<link rel="preload" href="{{ 'BrandonGrotesque-RegularItalic.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ 'BrandonGrotesque-RegularItalic.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
-
-<!-- brandon medium -->
-<link rel="preload" href="{{ 'BrandonGrotesque-Medium.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ 'BrandonGrotesque-Medium.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
-
-<!-- brandon bold -->
 <link rel="preload" href="{{ 'BrandonGrotesque-Bold.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ 'BrandonGrotesque-Bold.woff' | asset_url }}" as="font" type="font/woff" crossorigin>
+
+{{ 'global.js' | asset_url | preload_tag: as: 'script' }}
 
 {% if collection and collection.products.size > 0 %}
   <link rel="preload" as="image"
-    href="{{ collection.products.first.featured_image | img_url: '1000x' }}"
+    href="{{ collection.products.first.featured_image | image_url: width: 800 }}"
     imagesrcset="
-      {{ collection.products.first.featured_image | img_url: '750x' }} 750w,
-      {{ collection.products.first.featured_image | img_url: '1000x' }} 1000w"
-    imagesizes="100vw">
+      {{ collection.products.first.featured_image | image_url: width: 400 }} 400w,
+      {{ collection.products.first.featured_image | image_url: width: 600 }} 600w,
+      {{ collection.products.first.featured_image | image_url: width: 800 }} 800w"
+    imagesizes="(min-width: 768px) 25vw, 45vw">
 {% endif %}

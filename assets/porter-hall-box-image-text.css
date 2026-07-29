@@ -83,12 +83,15 @@
 
 .section__step--right .box__image img {
   width: 100%;
+  max-width: 100%;
   height: auto;
   display: block;
 }
 
 .section__step--right .box__image figure {
   margin: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 @media (min-width: 768px) {

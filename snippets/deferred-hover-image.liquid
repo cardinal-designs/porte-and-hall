@@ -1,15 +1,18 @@
 {%- liquid
-  assign img_width = widthI | default: image.width
-  assign img_height = heightI | default: image.height
-  assign sizes_val = sizes | default: '100vw'
+  assign img_width = widthI | default: 800 | at_most: 1000
+  assign sizes_val = sizes | default: '(min-width: 1200px) 25vw, (min-width: 768px) 33vw, 45vw'
 -%}
 {%- capture hover_srcset -%}
-  {{- image | image_url: width: 165 }} 165w, {{ image | image_url: width: 360 }} 360w, {{ image | image_url: width: 535 }} 535w, {{ image | image_url: width: 750 }} 750w, {{ image | image_url: width: 1000 }} 1000w, {{ image | image_url: width: 1500 }} 1500w
+  {{- image | image_url: width: 200 }} 200w,
+  {{ image | image_url: width: 360 }} 360w,
+  {{ image | image_url: width: 535 }} 535w,
+  {{ image | image_url: width: 750 }} 750w,
+  {{ image | image_url: width: 1000 }} 1000w
 {%- endcapture -%}
 <div
   class="aspect-ratio img-fill {{ classes }}"
   style="max-width: 100%; width: 100%; --aspect-ratio: {{ image.aspect_ratio }}"
-  data-hover-srcset="{{ hover_srcset | strip }}"
+  data-hover-srcset="{{ hover_srcset | strip_newlines | strip }}"
   data-hover-sizes="{{ sizes_val }}"
   data-hover-src="{{ image | image_url: width: img_width }}"
 ></div>

@@ -41,7 +41,7 @@
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            t=l.createElement(r);t.async=1;t.dataset.lazySrc="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "wn1dwl162x");
     </script>
@@ -127,28 +127,60 @@
 
     {% render 'meta-tags' %}
 
-    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
-    {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
     {% render 'css-variables' %}
-    {{ 'cro.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'custom.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'cro.css' | asset_url | stylesheet_tag: preload: true }}
+    {%- liquid
+      # Swiper is ~132 KiB. Skip on templates with no carousels to cut unused JS.
+      assign load_swiper = true
+      if template.name == 'cart' or template.name == 'password' or template.name == 'login' or template.name == 'register' or template.name == 'gift_card'
+        assign load_swiper = false
+      endif
+      if request.page_type == 'customers'
+        assign load_swiper = false
+      endif
+    -%}
+    {%- comment -%}
+      Swiper CSS: blocking on product (gallery collapses without layout rules).
+      Elsewhere keep deferred to protect homepage LCP/TBT. Critical .swiper /
+      .swiper-wrapper / .swiper-slide rules also live in base.css as a safety net.
+    {%- endcomment -%}
+    {% if load_swiper %}
+      {% if template.name == 'product' %}
+        {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+      {% else %}
+        {% render 'deferred-css', asset: 'swiper-bundle.min.css' %}
+      {% endif %}
+    {% endif %}
 
-    {% comment %} {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }} {% endcomment %}
-    {% comment %} <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script> {% endcomment %}
-
-    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+    {% if load_swiper %}
+      <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+    {% endif %}
     <script src="{{ 'micromodal.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'ScrollToPlugin.min.js' | asset_url }}" defer></script>
+    {%- comment -%}
+      GSAP is only used for .scroll__button smooth-scroll (designer program),
+      and that handler already waits 2s. Keep it off the initial mobile TBT path.
+    {%- endcomment -%}
+    <script data-lazy-src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+    <script data-lazy-src="{{ 'ScrollToPlugin.min.js' | asset_url }}" defer></script>
     <script src="{{ 'global.js' | asset_url }}" defer></script>
     <script data-lazy-src="{{ 'custom.js' | asset_url }}" defer></script>
-
-    <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}"></script>
+    <script data-lazy-src="{{ 'ajax-pagination.js' | asset_url }}" defer></script>
 
     {% # theme-check-disable %}
     {%- liquid
       assign content_for_header = content_for_header | replace_first: "window.addEventListener('load'", "window.addEventListener('load-head-scripts'"
       assign content_for_header = content_for_header | replace_first: "src='https://cdn.shopify.com/shopifycloud/preview-bar/preview-bar-modules.js'", "data-lazy-src='https://cdn.shopify.com/shopifycloud/preview-bar/preview-bar-modules.js'"
+      comment
+        Strip non-critical / duplicate platform preconnects so total stays ≤4.
+        Theme already preconnects cdn.shopify.com early; brand fonts are self-hosted there.
+        fonts.shopifycdn.com is unused (no Shopify font_face on storefront).
+      endcomment
+      assign content_for_header = content_for_header | replace: '<link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>', ''
+      assign content_for_header = content_for_header | replace: "<link rel='preconnect' href='https://fonts.shopifycdn.com' crossorigin>", ''
+      assign content_for_header = content_for_header | replace: '<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>', ''
+      assign content_for_header = content_for_header | replace: "<link rel='preconnect' href='https://cdn.shopify.com' crossorigin>", ''
     -%}
     {{ content_for_header }}
     {% # theme-check-enable %}
@@ -163,71 +195,19 @@
 	}
     </style>
 
-    <!-- Non-blocking Google Fonts (moved from render-blocking @import) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" media="print" onload="this.media='all'">
+    {% comment %} Google Fonts removed — Roboto was only used for Stamped widget copy; brand fonts are self-hosted via asset_url (long CDN cache). {% endcomment %}
 
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
     </script>
 
+    {%- comment -%}
+      Required on homepage (product-carousel-new-2 → grouped-product-card-*) and
+      collection/PDP carousels. Always load — skipping index broke card Swipers/swatches.
+    {%- endcomment -%}
     <script src="{{ 'grouped-product-card.js' | asset_url }}" defer="defer"></script>
 
-    <!-- friendbuy app integration -->          
-    <script>
-      window['friendbuy'] = window['friendbuy'] || [];
-      window['friendbuy'].push(['site', 'site-e25da741-www.porteandhall.com']);
-      window['friendbuy'].push(['track', 'customer',
-          {
-              id: '{{ customer.id }}',
-              email: '{{ customer.email }}',
-              first_name: '{{ customer.first_name }}',
-              last_name: '{{ customer.last_name }}'
-          }
-      ]);
-      (function (f, r, n, d, b, y) {
-          b = f.createElement(r), y = f.getElementsByTagName(r)[0];b.async = 1;b.dataset.lazySrc = n;y.parentNode.insertBefore(b, y);
-      })(document, 'script', '//djnf6e5yyirys.cloudfront.net/js/friendbuy.min.js');
-    </script>
-
-    <!-- Microsoft Advertising -->
-    <script>
-      (function(w,d,t,r,u)
-      {
-        var f,n,i;
-        w[u]=w[u]||[],f=function()
-        {
-          var o={ti:"97168087", enableAutoSpaTracking: true};
-          o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")
-        },
-        n=d.createElement(t),n.dataset.lazySrc=r,n.async=1,n.onload=n.onreadystatechange=function()
-        {
-          var s=this.readyState;
-          s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)
-        },
-        i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)
-      })
-      (window,document,"script","//bat.bing.com/bat.js","uetq");
-    </script>
-
-    <script>
-      function uet_report_conversion() {
-        window.uetq = window.uetq || [];
-        window.uetq.push("event", "purchase", {"revenue_value":Replace_with_Variable_Revenue_Function(),"currency":"USD"});
-      }
-    </script>
-
-    <script>
-      function uet_report_conversion() {
-        window.uetq = window.uetq || [];
-        window.uetq.push("event", "add_to_cart", {});
-      }
-    </script>
-
     {%- render 'head-scripts-loader' -%}
-    
-    <script data-lazy-src="https://static.shopmy.us/Affiliates/sms_aff_clicktrack.js?domain=porteandhall.com&expires=30" defer></script>
   </head>
 
   <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
@@ -473,6 +453,51 @@
    {% endstyle %}
    <script src="{{ 'optimization.js' | asset_url }}" defer></script>
 
+    <!-- Deferred third-party trackers (moved out of <head>) -->
+    <script>
+      window['friendbuy'] = window['friendbuy'] || [];
+      window['friendbuy'].push(['site', 'site-e25da741-www.porteandhall.com']);
+      window['friendbuy'].push(['track', 'customer',
+          {
+              id: '{{ customer.id }}',
+              email: '{{ customer.email }}',
+              first_name: '{{ customer.first_name }}',
+              last_name: '{{ customer.last_name }}'
+          }
+      ]);
+      (function (f, r, n, d, b, y) {
+          b = f.createElement(r), y = f.getElementsByTagName(r)[0];b.async = 1;b.dataset.lazySrc = n;y.parentNode.insertBefore(b, y);
+      })(document, 'script', '//djnf6e5yyirys.cloudfront.net/js/friendbuy.min.js');
+    </script>
+
+    <script>
+      (function(w,d,t,r,u)
+      {
+        var f,n,i;
+        w[u]=w[u]||[],f=function()
+        {
+          var o={ti:"97168087", enableAutoSpaTracking: true};
+          o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")
+        },
+        n=d.createElement(t),n.dataset.lazySrc=r,n.async=1,n.onload=n.onreadystatechange=function()
+        {
+          var s=this.readyState;
+          s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)
+        },
+        i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)
+      })
+      (window,document,"script","//bat.bing.com/bat.js","uetq");
+    </script>
+
+    <script>
+      function uet_report_conversion() {
+        window.uetq = window.uetq || [];
+        window.uetq.push("event", "add_to_cart", {});
+      }
+    </script>
+
+    <script data-lazy-src="https://static.shopmy.us/Affiliates/sms_aff_clicktrack.js?domain=porteandhall.com&expires=30" defer></script>
+
     {% if request.page_type != 'index' %}
     <script type="application/ld+json">
     {
@@ -689,15 +714,38 @@
     </style>
 
     <script>
-      document.addEventListener("DOMContentLoaded", (event) => {
-      const headerHeight = document.querySelector(".outer-header-wrapper ").offsetHeight;
-      document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
-    });
+      (function () {
+        var lastHeight = -1;
 
-    window.addEventListener("resize", (event) => {
-        const headerHeight = document.querySelector(".outer-header-wrapper ").offsetHeight;
-      document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
-    });
+        function setHeaderHeightVar() {
+          var header = document.querySelector('.outer-header-wrapper');
+          if (!header) return;
+          var headerHeight = header.offsetHeight;
+          if (headerHeight === lastHeight) return;
+          lastHeight = headerHeight;
+          document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
+        }
+
+        var resizeTimer;
+        function onResize() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(setHeaderHeightVar, 150);
+        }
+
+        // Measure once after DOM is ready; once after fonts settle.
+        // Do NOT listen to resize until window load — font/image layout during
+        // the load window was restarting debounce timers and adding TBT on mobile.
+        document.addEventListener('DOMContentLoaded', setHeaderHeightVar);
+
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(setHeaderHeightVar).catch(function () {});
+        }
+
+        window.addEventListener('load', function () {
+          setHeaderHeightVar();
+          window.addEventListener('resize', onResize);
+        });
+      })();
     </script>
 
   </body>

@@ -27,9 +27,12 @@
 .colorway__item figure {
   margin: 0;
   line-height: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 .colorway__item figure img {
+  display: block;
   width: 100%;
   height: auto;
   max-width: 100%;

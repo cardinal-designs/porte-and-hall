@@ -20,7 +20,15 @@
         {% for block in section.blocks %}
           <div class="swiper-slide">
             <div class="ugc-carousel__item">
-              {{ block.settings.image | image_url: width: 400 | image_tag }}
+              {{
+                block.settings.image
+                | image_url: width: 400
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '200, 300, 400',
+                  sizes: '(min-width: 768px) 20vw, 40vw',
+                  alt: block.settings.image.alt
+              }}
             </div>
           </div>
         {% endfor %}

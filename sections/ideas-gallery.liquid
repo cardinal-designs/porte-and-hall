@@ -68,7 +68,15 @@
                         <div class="ideas-gallery__item" data-index={{ custom_index }}>
                           <div class="see-it-in-action__tabs-image">
                             {% assign photo_object = photo.image.value | file_url %}
-                            {{ photo.image | image_url: width: 1200 | image_tag }}
+                            {{
+                              photo.image
+                              | image_url: width: 800
+                              | image_tag:
+                                loading: 'lazy',
+                                widths: '320, 480, 640, 800',
+                                sizes: '(min-width: 768px) 30vw, 80vw',
+                                alt: photo.product_name
+                            }}
                           </div>
       
                           <div class="see-it-in-action__tabs-label body-xs">{{ photo.product_name }} {{ photo.image.aspect_ratio }}</div>

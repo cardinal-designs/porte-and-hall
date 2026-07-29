@@ -12,7 +12,15 @@
       {% if section.settings.image != blank %}
         <div class="designer__message--image-wrapper">          
           <div class="image__container"> 
-            <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.image.alt  }}" height="auto" width="auto">
+            {{
+              section.settings.image
+              | image_url: width: 800
+              | image_tag:
+                loading: 'lazy',
+                widths: '320, 480, 640, 800',
+                sizes: '(min-width: 768px) 40vw, 90vw',
+                alt: section.settings.image.alt
+            }}
             {% if section.settings.overlay_text != blank %}
               <div class="overlay">{{ section.settings.overlay_text }}</div>
             {% endif %}

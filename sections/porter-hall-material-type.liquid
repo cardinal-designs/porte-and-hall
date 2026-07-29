@@ -12,11 +12,27 @@
         <div class="material__column">
           <div class="material__column--image-wrapper">
             <figure {% if section.settings.mobile_image_doublewide != blank %}class="mobile__hide"{% endif %}>
-              {{ section.settings.image_doublewide | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_doublewide.alt }}
+              {{
+                section.settings.image_doublewide
+                | image_url: width: 1000
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '400, 600, 800, 1000',
+                  sizes: '(min-width: 768px) 45vw, 100vw',
+                  alt: section.settings.image_doublewide.alt
+              }}
             </figure>
             {% if section.settings.mobile_image_doublewide != blank %}
             <figure class="desktop__hide">
-              {{ section.settings.mobile_image_doublewide | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.mobile_image_doublewide.alt }}
+              {{
+                section.settings.mobile_image_doublewide
+                | image_url: width: 800
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '320, 480, 640, 800',
+                  sizes: '100vw',
+                  alt: section.settings.mobile_image_doublewide.alt
+              }}
             </figure>
             {% endif %}
           </div>
@@ -31,11 +47,27 @@
         <div class="material__column material__column--standard">
           <div class="material__column--image-wrapper">
             <figure {% if section.settings.mobile_image_standard != blank %}class="mobile__hide"{% endif %}>
-              {{ section.settings.image_standard | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_standard.alt }}
+              {{
+                section.settings.image_standard
+                | image_url: width: 1000
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '400, 600, 800, 1000',
+                  sizes: '(min-width: 768px) 45vw, 100vw',
+                  alt: section.settings.image_standard.alt
+              }}
             </figure>
             {% if section.settings.mobile_image_standard != blank %}
               <figure class="desktop__hide">
-                {{ section.settings.mobile_image_standard | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.mobile_image_standard.alt }}
+                {{
+                  section.settings.mobile_image_standard
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '320, 480, 640, 800',
+                    sizes: '100vw',
+                    alt: section.settings.mobile_image_standard.alt
+                }}
               </figure>
             {% endif %}
           </div>

@@ -27,7 +27,15 @@
       {% if section.settings.image_1 != blank %}
         <div class="grand__entrance--image-item">
           <figure>
-            {{ section.settings.image_1 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_1.alt }}
+            {{
+              section.settings.image_1
+              | image_url: width: 1000
+              | image_tag:
+                loading: 'lazy',
+                widths: '400, 600, 800, 1000',
+                sizes: '(min-width: 768px) 50vw, 100vw',
+                alt: section.settings.image_1.alt
+            }}
           </figure>
           <p class="{% if section.settings.image_1_mobile_caption != blank %}mobile__hidden {% endif %} caption caption__{{ section.settings.image_1_caption_position }}" style="color: {{ section.settings.text_1_color }}" >
             {{ section.settings.image_1_caption | replace: '|' , '<br>' }}
@@ -47,7 +55,15 @@
         {% if section.settings.image_2 != blank %}
           <div class="grand__entrance--image-item">
             <figure>
-              {{ section.settings.image_2 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_2.alt }}
+              {{
+                section.settings.image_2
+                | image_url: width: 800
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '320, 480, 640, 800',
+                  sizes: '(min-width: 768px) 25vw, 100vw',
+                  alt: section.settings.image_2.alt
+              }}
             </figure>
             <p class="{% if section.settings.image_2_mobile_caption != blank %}mobile__hidden {% endif %} caption caption__{{ section.settings.image_2_caption_position }}" style="color: {{ section.settings.text_2_color }}">
               {{ section.settings.image_2_caption | replace: '|' , '<br>' }}
@@ -64,7 +80,15 @@
         {% if section.settings.image_3 != blank %}
           <div class="grand__entrance--image-item">
             <figure>
-              {{ section.settings.image_3 | image_url: width: 1200 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image_3.alt }}
+              {{
+                section.settings.image_3
+                | image_url: width: 800
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '320, 480, 640, 800',
+                  sizes: '(min-width: 768px) 25vw, 100vw',
+                  alt: section.settings.image_3.alt
+              }}
             </figure>
             <p class="{% if section.settings.image_3_mobile_caption != blank %}mobile__hidden {% endif %} caption caption__{{ section.settings.image_3_caption_position }}" style="color: {{ section.settings.text_3_color }}">
               {{ section.settings.image_3_caption | replace: '|' , '<br>' }}

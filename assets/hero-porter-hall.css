@@ -14,6 +14,8 @@
 
 .hero__image--item {
   position: relative;
+  width: 100%;
+  max-width: 100%;
 }
 
 .hero__text {
@@ -137,9 +139,12 @@
 .hero__image--item figure {
   margin: 0;
   line-height: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 .hero__image--item img {
+  display: block;
   max-width: 100%;
   width: 100%;
   height: auto;

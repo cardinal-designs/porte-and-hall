@@ -123,19 +123,23 @@
     margin-top: 40px;
 }
 
+/* Beat deferred Swiper defaults (round/opacity bullets) — keep bar segments */
 .category-swiper-pagination .swiper-pagination-bullet {
-    width: 24px;
-    height: 4px;
-    background: rgb(84 107 130 / 16%);
-    border: none;
+    width: 24px !important;
+    height: 4px !important;
+    background: rgb(84 107 130 / 16%) !important;
+    border: none !important;
+    border-radius: 0 !important;
     max-width: unset;
     max-height: unset;
-    transform: none;
+    transform: none !important;
+    opacity: 1 !important;
+    aspect-ratio: auto !important;
     margin: 0 2px !important;
 }
 
 .category-swiper-pagination .swiper-pagination-bullet-active {
-    background: #546B82;
+    background: #546B82 !important;
 }
 
 .category-swiper-pagination .swiper-pagination-bullet-active:after,

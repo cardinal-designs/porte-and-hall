@@ -95,9 +95,9 @@
         {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "Product image", widthI: 500, heightI: 500 %}
         {% endcomment %}
         {% if custom_image != blank %}
-          {% render 'lazy-image', image: custom_image, fade: true, classes: 'img-fill', aria-label: "Custom product image", widthI: 500, heightI: 500 %}
+          {% render 'lazy-image', image: custom_image, fade: true, classes: 'img-fill', aria-label: "Custom product image", widthI: 800, sizes: '(min-width: 1200px) 25vw, (min-width: 768px) 33vw, 45vw', widths: '200, 360, 535, 750, 800' %}
         {% elsif product_card_product.media[1] != null %}
-          {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill', aria-label: "Product image", widthI: 500, heightI: 500 %}          
+          {% render 'lazy-image', image: product_card_product.media[1], fade: true, classes: 'img-fill', aria-label: "Product image", widthI: 800, sizes: '(min-width: 1200px) 25vw, (min-width: 768px) 33vw, 45vw', widths: '200, 360, 535, 750, 800' %}          
         {% endif %}
       
 

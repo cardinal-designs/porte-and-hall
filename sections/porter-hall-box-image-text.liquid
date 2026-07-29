@@ -27,7 +27,15 @@
             {% if section.settings.video != blank %}
             {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline:true, class: 'video-text__video videos', id: 'video', image_size: '1000x' }}
             {% else %}
-            {{ section.settings.image | image_url: width: 800 | image_tag: width: "100%", loading: "lazy", alt: section.settings.image.alt }}
+            {{
+              section.settings.image
+              | image_url: width: 800
+              | image_tag:
+                loading: 'lazy',
+                widths: '400, 600, 800',
+                sizes: '(min-width: 768px) 40vw, 90vw',
+                alt: section.settings.image.alt
+            }}
             {% endif %}
           </figure>
         </div>
