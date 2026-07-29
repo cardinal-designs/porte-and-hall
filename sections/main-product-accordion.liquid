@@ -187,7 +187,7 @@ endcapture
                 {% if original_price > 0 %}
                   <span class="sale-price">{{ money_price }}</span>
                   <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>
-                  <span class="percentage-off">({{ discount_factor }}% off Trade Price)</span>
+                  <span class="percentage-off">({{ trade_pricing_discount_percentage }}% off Trade Price)</span>
                 {% else %}
                   {% render 'price', product: product, use_variant: true, show_badges: true, price_class: '' %}
                 {% endif %}
