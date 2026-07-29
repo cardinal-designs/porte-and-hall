@@ -22,6 +22,9 @@
     },
     "main": {
       "type": "main-page",
+      "custom_css": [
+        ".main-page-subhead {color: #ffffff;}"
+      ],
       "settings": {
         "page_heading": "<br>",
         "subhead": "Shipping Information",
