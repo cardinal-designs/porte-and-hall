@@ -205,8 +205,8 @@
         {% assign original_price = product_card_product.price | times: 100 | divided_by: discount_factor %}
 
         {% if original_price > 0 %}
+          <span class="sale-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
           <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>
-          <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
         {% else %}
           <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
         {% endif %}        
@@ -214,19 +214,17 @@
     {% else %}
       {% if show_discounted_price %}
         <p class="product-card__price body blue">
+          <span class="sale-price">{{ auto_discount_price }}</span>
           <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
-          <span>{{ auto_discount_price }}</span>
         </p>
       {% else %}
         <p class="product-card__price body blue">
           {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
             {% liquid
                 assign sale_price = product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | times: 1.0
-                assign percent_off = product_card_product.price | minus: sale_price | times: 100.0 | divided_by: product_card_product.price | round 
               %}
               <span class="sale-price">{{ product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
               <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
-              <span class="percentage-off">({{ percent_off }}% off)</span>
           {% else %}
             <span>{{ product_card_product.price | money_without_trailing_zeros }}</span>
           {% endif %}
