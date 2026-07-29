@@ -85,6 +85,7 @@
           "mobile_logo_width": 180,
           "logo_position": "center",
           "menu": "2023-main-nav-new",
+          "b2b_menu": "main-desktop-nav-trade-specific",
           "enable_search": false
         }
       },
@@ -140,7 +141,8 @@
       "mobile-menu": {
         "type": "mobile-menu",
         "settings": {
-          "menu": "2024-best-seller-mobile-new"
+          "menu": "2024-best-seller-mobile-new",
+          "b2b_menu": "mobile-menu-trade"
         }
       },
       "porter-landing-header": {
