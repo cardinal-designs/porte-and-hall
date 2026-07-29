@@ -160,7 +160,7 @@
             {% assign mega_menu_names = mega_menu_names | downcase | split: ',' | compact %}
 
             {% unless mega_menu_names contains downcased_link_title %}
-              {% if customer and customer.b2b? and link.title == 'Swatches' %}
+              {% comment %} {% if customer and customer.b2b? and link.title == 'Swatches' %}
                 <li>
                 <a
                   href="{{ link.url }}"
@@ -172,7 +172,7 @@
                   {{ link.title | escape }}
                 </a>
               </li>
-              {% else %}
+              {% else %} {% endcomment %}
               <li>
                 {% if link.links != blank %}
                   <div class="header__menu-item header__menu-item--has-dropdown">
@@ -212,7 +212,7 @@
                   </a>
                 {% endif %}
               </li>
-            {% endif %}
+     
             {% else %}
               <li class="header__mega-menu-wrapper">
                 <a
