@@ -204,7 +204,7 @@ endcapture
           {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
           {% assign discount_factor = 100 | minus: trade_pricing_discount_percentage %}
           {% assign original_price = target.price | times: 100 | divided_by: discount_factor %}
-          {% if original_price > 0 %}
+          {% if original_price > 0 %}test
             <div class="product__trade--price">
               <div class="price">
                 <div class="h3">
