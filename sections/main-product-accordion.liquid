@@ -183,6 +183,7 @@ endcapture
                   assign discount_factor = 100 | minus: trade_pricing_discount_percentage
                   assign original_price = target.price | times: 100 | divided_by: discount_factor
                 %}
+                test
                 {% if original_price > 0 %}
                   <span class="sale-price">{{ money_price }}</span>
                   <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>
