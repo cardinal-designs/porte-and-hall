@@ -22,7 +22,9 @@
     },
     "main": {
       "type": "main-page",
-      "custom_css": [],
+      "custom_css": [
+        ".Page_Header_Inner h1 {color:#ffffff;}"
+      ],
       "settings": {
         "page_heading": "",
         "subhead": "",
