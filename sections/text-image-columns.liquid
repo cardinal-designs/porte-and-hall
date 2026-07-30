@@ -5,7 +5,15 @@
     <div class="text-image-columns__block">
       <div class="text-image-columns__image-wrapper">
         {% if block.settings.image != blank %}
-          {{ block.settings.image | image_url: width: 1200 | image_tag }}
+          {{
+            block.settings.image
+            | image_url: width: 800
+            | image_tag:
+              loading: 'lazy',
+              widths: '320, 480, 640, 800',
+              sizes: '(min-width: 768px) 45vw, 90vw',
+              alt: block.settings.image.alt
+          }}
         {% endif %}
         {% if block.settings.label != blank %}
           <div class="text-image-columns__image-label body-xs">{{ block.settings.label }}</div>

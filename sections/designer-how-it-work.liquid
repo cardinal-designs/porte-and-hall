@@ -10,7 +10,15 @@
             <h2 class="how__it--works-title">{{ section.settings.heading }}</h2>
           {% endif %}
           <figure>
-            {{ section.settings.image | image_url: width: 1200 | image_tag: width: "100%", alt: section.settings.image.alt }}
+            {{
+              section.settings.image
+              | image_url: width: 1000
+              | image_tag:
+                loading: 'lazy',
+                widths: '400, 600, 800, 1000',
+                sizes: '(min-width: 768px) 45vw, 90vw',
+                alt: section.settings.image.alt
+            }}
           </figure>          
         </div>
       {% endif %}

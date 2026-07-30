@@ -1,0 +1,15 @@
+{% doc %}
+  Loads a theme CSS asset without blocking first paint.
+  Uses the media="print" → onload media="all" pattern with a noscript fallback.
+
+  @param {string} asset - Asset filename, e.g. 'base.css' (required)
+  @example
+    {% render 'deferred-css', asset: 'base.css' %}
+{% enddoc %}
+<link
+  rel="stylesheet"
+  href="{{ asset | asset_url }}"
+  media="print"
+  onload="this.media='all'"
+>
+<noscript>{{ asset | asset_url | stylesheet_tag }}</noscript>

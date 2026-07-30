@@ -7,12 +7,28 @@
       <div class="designer__image--grid">
         {% if section.settings.image_left_top != blank %}
           <div class="designer__image--left-top">
-            <img src="{{ section.settings.image_left_top | image_url: width: 1200 }}" alt="{{ section.settings.image_left_top.alt }}" height="auto" width="auto">
+            {{
+              section.settings.image_left_top
+              | image_url: width: 800
+              | image_tag:
+                loading: 'lazy',
+                widths: '320, 480, 640, 800',
+                sizes: '(min-width: 768px) 30vw, 90vw',
+                alt: section.settings.image_left_top.alt
+            }}
           </div>
         {% endif %}
         {% if section.settings.image_left_bottom != blank %}
           <div class="designer__image--left-bottom">
-            <img src="{{ section.settings.image_left_bottom | image_url: width: 1200 }}" alt="{{ section.settings.image_left_bottom.alt }}" height="auto" width="auto">
+            {{
+              section.settings.image_left_bottom
+              | image_url: width: 800
+              | image_tag:
+                loading: 'lazy',
+                widths: '320, 480, 640, 800',
+                sizes: '(min-width: 768px) 30vw, 90vw',
+                alt: section.settings.image_left_bottom.alt
+            }}
           </div>
         {% endif %}
       </div>
@@ -20,7 +36,15 @@
   
       {% if section.settings.image_right != blank %}
         <div class="designer__image--right">
-          <img src="{{ section.settings.image_right | image_url: width: 1200 }}" alt="{{ section.settings.image_right.alt  }}" height="auto" width="auto">
+          {{
+            section.settings.image_right
+            | image_url: width: 1000
+            | image_tag:
+              loading: 'lazy',
+              widths: '400, 600, 800, 1000',
+              sizes: '(min-width: 768px) 40vw, 90vw',
+              alt: section.settings.image_right.alt
+          }}
         </div>
       {% endif %}
     </div>

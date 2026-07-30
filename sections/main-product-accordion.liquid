@@ -165,54 +165,57 @@ endcapture
         </h1>
 
         {% unless product.tags contains 'Swatch' %}
-        <div class="afaf product__price-reviews-wrapper">
-          <div class="no-js-hidden product__price" id="price-{{ section.id }}" role="status">
-            {% if product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product.price > product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
-              <span class="old-price">{{ product.price | money_without_trailing_zeros }}</span>
-              <span>{{ product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
-            {% else %}
-              {% render 'price', product: product, use_variant: true, show_badges: true, price_class: '' %}
-            {%  endif  %}
-          </div>
+          <div class="afaf product__price-reviews-wrapper{% if customer and customer.b2b? %} product__price-reviews-wrapper--trade{% endif %}">
+            <div class="no-js-hidden product__price" id="price-{{ section.id }}" role="status">
+              {% if customer and customer.b2b? %}
+                {% liquid
+                  assign sale_price = product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | times: 1.0
+                  assign percent_off = product.price | minus: sale_price | times: 100.0 | divided_by: product.price | round 
 
-          <span class="blue"> | </span>
+                  assign target = product.selected_or_first_available_variant
+                  assign price = target.price
+                  assign money_price = price | money_without_trailing_zeros
+                  if settings.currency_code_enabled
+                    assign money_price = price | money_with_currency
+                  endif
 
-          {% comment %} Start of Judge.me code {% endcomment %}
-          <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'> 
-            {% render 'judgeme-badge-no-schema', product: product %} 
-          </div> 
-          {% comment %} End of Judge.me code {% endcomment %}
-          
-        </div>
-      {% endunless %}
-
-        {% if customer and customer.b2b? %}
-          {% liquid
-            assign target = product.selected_or_first_available_variant
-            assign price = target.price
-            assign money_price = price | money_without_trailing_zeros
-            if settings.currency_code_enabled
-              assign money_price = price | money_with_currency
-            endif
-          %}
-    
-          {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
-          {% assign discount_factor = 100 | minus: trade_pricing_discount_percentage %}
-          {% assign original_price = target.price | times: 100 | divided_by: discount_factor %}
-          {% if original_price > 0 %}
-            <div class="product__trade--price">
-              <div class="price">
-                <div class="h3">
-                  <div class="price__regular">
-                    <span class="price-item price-item--regular">
-                      {{ money_price }} <span>Trade Price</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
+                  assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1
+                  assign discount_factor = 100 | minus: trade_pricing_discount_percentage
+                  assign original_price = target.price | times: 100 | divided_by: discount_factor
+                %}
+                
+                {% if original_price > 0 %}
+                  <span class="sale-price">{{ money_price }}</span>
+                  <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>
+                  <span class="percentage-off">({{ trade_pricing_discount_percentage }}% off Trade Price)</span>
+                {% else %}
+                  {% render 'price', product: product, use_variant: true, show_badges: true, price_class: '' %}
+                {% endif %}
+              {% elsif product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product.price > product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+                {% liquid
+                  assign sale_price = product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | times: 1.0
+                  assign percent_off = product.price | minus: sale_price | times: 100.0 | divided_by: product.price | round 
+                %}
+                <span class="sale-price">{{ product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
+                <span class="old-price">{{ product.price | money_without_trailing_zeros }}</span>
+                <span class="percentage-off">({{ percent_off }}% off)</span>
+              {% else %}
+                {% render 'price', product: product, use_variant: true, show_badges: true, price_class: '' %}
+              {%  endif  %}
             </div>
-          {% endif %}
-        {% endif %}
+
+            {% unless customer and customer.b2b? %}
+              <span class="product__price-reviews-divider blue"> | </span>
+            {% endunless %}
+
+            {% comment %} Start of Judge.me code {% endcomment %}
+            <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'> 
+              {% render 'judgeme-badge-no-schema', product: product %} 
+            </div> 
+            {% comment %} End of Judge.me code {% endcomment %}
+            
+          </div>
+        {% endunless %}
 
         {% if grouped_collection.metafields.custom.short_description != blank or product.description != blank %}
           <div class="product__description body blue">
@@ -1212,97 +1215,97 @@ endcapture
     assign review_count_value = product.metafields.reviews.rating_count
   endif
 -%}
+
 <script type="application/ld+json">
-[
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "@id": {{ canonical_url | append: '#product' | json }},
-    "name": {{ product.title | json }},
-    "url": {{ request.origin | append: product.url | json }},
-    "image": {{ seo_image_url | json }},
-    "description": {{ product.description | strip_html | json }},
-    "brand": {
-      "@type": "Brand",
-      "name": {{ product.vendor | json }}
-    },
-    {%- if review_rating_value != blank and review_count_value != blank and review_count_value > 0 -%}
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": {{ review_rating_value | json }},
-      "reviewCount": {{ review_count_value | json }}
-    },
-    {%- endif -%}
-    "offers": [
-    {%- for variant in product.variants -%}
-      {
-        "@type": "Offer",
-        {%- if variant.sku != blank -%}
-        "sku": {{ variant.sku | json }},
-        {%- endif -%}
-        {%- if variant.barcode.size == 12 -%}
-        "gtin12": {{ variant.barcode | json }},
-        {%- endif -%}
-        {%- if variant.barcode.size == 13 -%}
-        "gtin13": {{ variant.barcode | json }},
-        {%- endif -%}
-        {%- if variant.barcode.size == 14 -%}
-        "gtin14": {{ variant.barcode | json }},
-        {%- endif -%}
-        "price": {{ variant.price | divided_by: 100.00 | json }},
-        "priceCurrency": {{ cart.currency.iso_code | json }},
-        "priceValidUntil": {{ 'now' | date: '%s' | plus: 2592000 | date: '%Y-%m-%d' | json }},
-        "url": {{ request.origin | append: variant.url | json }},
-        "itemCondition": "https://schema.org/NewCondition",
-        "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
-        "shippingDetails": { "@id": "#shipping_policy" },
-        "hasMerchantReturnPolicy": { "@id": "#return_policy" }
-      }{% unless forloop.last %},{% endunless %}
-    {%- endfor -%}
-    ]
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "OfferShippingDetails",
-    "@id": "#shipping_policy",
-    "shippingRate": {
-      "@type": "MonetaryAmount",
-      "value": 0,
-      "currency": {{ cart.currency.iso_code | json }}
-    },
-    "shippingDestination": {
-      "@type": "DefinedRegion",
-      "addressCountry": "US",
-      "addressRegion": ["US"]
-    },
-    "deliveryTime": {
-      "@type": "ShippingDeliveryTime",
-      "handlingTime": {
-        "@type": "QuantitativeValue",
-        "minValue": 0,
-        "maxValue": 2,
-        "unitCode": "DAY"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "@id": {{ canonical_url | append: '#product' | json }},
+      "name": {{ product.title | json }},
+      "url": {{ request.origin | append: product.url | json }},
+      "image": {{ seo_image_url | json }},
+      "description": {{ product.description | strip_html | json }},
+      "brand": {
+        "@type": "Brand",
+        "name": {{ product.vendor | json }}
       },
-      "transitTime": {
-        "@type": "QuantitativeValue",
-        "minValue": 0,
-        "maxValue": 2,
-        "unitCode": "DAY"
+      {% comment %} {%- if review_rating_value != blank and review_count_value != blank and review_count_value > 0 -%}
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": {{ review_rating_value | json }},
+        "reviewCount": {{ review_count_value | json }}
+      },
+      {%- endif -%} {% endcomment %}
+      "offers": [
+      {%- for variant in product.variants -%}
+        {
+          "@type": "Offer",
+          {%- if variant.sku != blank -%}
+          "sku": {{ variant.sku | json }},
+          {%- endif -%}
+          {%- if variant.barcode.size == 12 -%}
+          "gtin12": {{ variant.barcode | json }},
+          {%- endif -%}
+          {%- if variant.barcode.size == 13 -%}
+          "gtin13": {{ variant.barcode | json }},
+          {%- endif -%}
+          {%- if variant.barcode.size == 14 -%}
+          "gtin14": {{ variant.barcode | json }},
+          {%- endif -%}
+          "price": {{ variant.price | divided_by: 100.00 | json }},
+          "priceCurrency": {{ cart.currency.iso_code | json }},
+          "priceValidUntil": {{ 'now' | date: '%s' | plus: 2592000 | date: '%Y-%m-%d' | json }},
+          "url": {{ request.origin | append: variant.url | json }},
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+          "shippingDetails": { "@id": "#shipping_policy" },
+          "hasMerchantReturnPolicy": { "@id": "#return_policy" }
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+      ]
+    },
+    {
+      "@type": "OfferShippingDetails",
+      "@id": "#shipping_policy",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": 0,
+        "currency": {{ cart.currency.iso_code | json }}
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "US"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 2,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 2,
+          "unitCode": "DAY"
+        }
       }
+    },
+    {
+      "@type": "MerchantReturnPolicy",
+      "@id": "#return_policy",
+      "applicableCountry": "US",
+      "returnPolicyCountry": "US",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 30,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
     }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "MerchantReturnPolicy",
-    "@id": "#return_policy",
-    "applicableCountry": ["US"],
-    "returnPolicyCountry": "US",
-    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-    "merchantReturnDays": 30,
-    "returnMethod": "https://schema.org/ReturnByMail",
-    "returnFees": "https://schema.org/FreeReturn"
-  }
-]
+  ]
+}
 </script>
 
 

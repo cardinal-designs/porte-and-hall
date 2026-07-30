@@ -61,9 +61,9 @@
 <grouped-product-card data-collection-id="{{collection.id}}">
   <div class="product-card{% if product_card_product.media[1] != nil %} has-animation{% endif %} {% if simple_card == true %}product-card-simple{% endif %}">
     <div class="product-card__image">
-      {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "img", prioritize_loading: prioritize_loading %}
+      {% render 'lazy-image', image: product_card_product.featured_media, fade: true, classes: 'img-fill', aria-label: "img", eager: prioritize_loading, widthI: 800, sizes: '(min-width: 1200px) 25vw, (min-width: 768px) 33vw, 45vw', widths: '200, 360, 535, 750, 800' %}
       {% if product_card_product.media[1] != null %}
-        {% render 'deferred-hover-image', image: product_card_product.media[1], classes: 'img-fill' %}
+        {% render 'deferred-hover-image', image: product_card_product.media[1], classes: 'img-fill', sizes: '(min-width: 1200px) 25vw, (min-width: 768px) 33vw, 45vw' %}
       {% endif %}
 
       {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}

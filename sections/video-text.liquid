@@ -1,6 +1,72 @@
+{%- liquid
+  assign desktop_video = section.settings.video
+  assign mobile_video = section.settings.mobile_video
+  assign has_mobile_video = false
+  if desktop_video != blank and mobile_video != blank and mobile_video.id != desktop_video.id
+    assign has_mobile_video = true
+  endif
+
+  # Prefer Shopify video preview frames for LCP (not blank white merchant posters).
+  if has_mobile_video and mobile_video.preview_image != blank
+    assign poster_mobile_image = mobile_video.preview_image
+  elsif desktop_video.preview_image != blank
+    assign poster_mobile_image = desktop_video.preview_image
+  elsif section.settings.video_poster != blank
+    assign poster_mobile_image = section.settings.video_poster
+  endif
+
+  if desktop_video.preview_image != blank
+    assign poster_desktop_image = desktop_video.preview_image
+  elsif section.settings.video_poster != blank
+    assign poster_desktop_image = section.settings.video_poster
+  else
+    assign poster_desktop_image = poster_mobile_image
+  endif
+
+  if poster_mobile_image != blank
+    assign poster_url_mobile = poster_mobile_image | image_url: width: 750
+  endif
+  if poster_desktop_image != blank
+    assign poster_url_desktop = poster_desktop_image | image_url: width: 1200
+  endif
+
+  assign poster_alt = section.settings.title | strip_html | default: shop.name
+  assign captions_url = 'hero-captions-en.vtt' | file_url
+-%}
+
+{%- comment -%}
+  LCP surface is the poster <img>, not the <video>. Preload the viewport-matched
+  poster early. Video bytes load after LCP via preload="none" + idle/visible init.
+{%- endcomment -%}
+{%- if desktop_video != blank and poster_url_mobile != blank -%}
+  {%- if has_mobile_video and poster_url_desktop != blank -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ poster_url_mobile }}"
+      media="(max-width: 768px)"
+      fetchpriority="high"
+    >
+    <link
+      rel="preload"
+      as="image"
+      href="{{ poster_url_desktop }}"
+      media="(min-width: 769px)"
+      fetchpriority="high"
+    >
+  {%- else -%}
+    <link
+      rel="preload"
+      as="image"
+      href="{{ poster_url_desktop | default: poster_url_mobile }}"
+      fetchpriority="high"
+    >
+  {%- endif -%}
+{%- endif -%}
+
 {{ 'section-video-text.css' | asset_url | stylesheet_tag }}
- 
- <section class="Section {{ section.settings.custom-class }} video-text" id="VideoText-{{ section.id }}" style="background-color: {{ section.settings.bg_color }};">
+
+<section class="Section {{ section.settings.custom-class }} video-text" id="VideoText-{{ section.id }}" style="background-color: {{ section.settings.bg_color }};">
   {%- capture css_variables -%}
     --title_fz: {{ section.settings.title_font_size }}px;
     --content_fz: {{ section.settings.content_font_size }}px;
@@ -36,40 +102,91 @@
   {%- endcapture -%}
 
   {%- capture section_image -%}
-    {%- if section.settings.video != blank -%}
-      {% liquid
-        assign has_mobile_video = false
-        if section.settings.mobile_video != blank and section.settings.mobile_video.id != section.settings.video.id
-          assign has_mobile_video = true
-        endif
+    {%- if desktop_video != blank -%}
+      {%- liquid
+        assign ar_mobile_w = poster_mobile_image.width | default: 750
+        assign ar_mobile_h = poster_mobile_image.height | default: 1000
+        assign ar_desktop_w = poster_desktop_image.width | default: ar_mobile_w
+        assign ar_desktop_h = poster_desktop_image.height | default: ar_mobile_h
+      -%}
+      <div
+        class="FeatureText__ImageWrapper video-wrapper"
+        style="--poster-ar-mobile: {{ ar_mobile_w }} / {{ ar_mobile_h }}; --poster-ar-desktop: {{ ar_desktop_w }} / {{ ar_desktop_h }};"
+      >
+        {%- if poster_url_mobile != blank or poster_url_desktop != blank -%}
+          <picture>
+            {%- if has_mobile_video and poster_url_mobile != blank -%}
+              <source
+                media="(max-width: 768px)"
+                srcset="{{ poster_url_mobile }}"
+              >
+            {%- endif -%}
+            <img
+              class="hero-lcp-poster"
+              src="{{ poster_url_desktop | default: poster_url_mobile }}"
+              width="{{ ar_desktop_w }}"
+              height="{{ ar_desktop_h }}"
+              fetchpriority="high"
+              decoding="async"
+              alt="{{ poster_alt | escape }}"
+            >
+          </picture>
+        {%- endif -%}
 
-        assign classes = 'videos'
-        if has_mobile_video
-          assign classes = 'videos hide-mobile'
-        endif
-        
-        assign poster_url = section.settings.video_poster | image_url: width: 1920
-      %}
-      <div class="FeatureText__ImageWrapper video-wrapper">
-        {% capture desktop_video %}
-          {{ section.settings.video | video_tag: autoplay: true, muted: true, loop: true, controls: false, playsinline: true, preload: 'auto', class: classes, id: 'video', image_size: '800x', poster: poster_url }}
-        {% endcapture %}
-        {% assign captions_url = 'hero-captions-en.vtt' | file_url %}
-        {{ desktop_video
-          | replace: '<video', '<video data-hero-video fetchpriority="high"'
-          | replace: '</video>', '<track kind="captions" src="' | append: captions_url | append: '" srclang="en" label="English" default></track></video>'
-        }}
-        
-        {% if has_mobile_video %}
-          {% capture mobile_video %}
-            {{ section.settings.mobile_video | video_tag: autoplay: true, muted: true, loop: true, controls: false, playsinline: true, preload: 'auto', class: 'videos hide-desktop', id: 'video-mobile', image_size: '800x', poster: poster_url }}
-          {% endcapture %}
-          {% assign captions_url = 'hero-captions-en.vtt' | file_url %}
-          {{ mobile_video 
-            | replace: '<video', '<video data-hero-video fetchpriority="high"'
-            | replace: '</video>', '<track kind="captions" src="' | append: captions_url | append: '" srclang="en" label="English" default></track></video>'
-          }}
-        {% endif %}
+        {%- liquid
+          # Build JSON source lists for JS viewport pick. Do NOT use <source media>
+          # — browsers do not reliably honor media on video sources.
+          capture sources_desktop_json
+            echo '['
+            for source in desktop_video.sources
+              echo '{"src":'
+              echo source.url | json
+              echo ',"type":'
+              echo source.mime_type | json
+              echo '}'
+              unless forloop.last
+                echo ','
+              endunless
+            endfor
+            echo ']'
+          endcapture
+          if has_mobile_video
+            capture sources_mobile_json
+              echo '['
+              for source in mobile_video.sources
+                echo '{"src":'
+                echo source.url | json
+                echo ',"type":'
+                echo source.mime_type | json
+                echo '}'
+                unless forloop.last
+                  echo ','
+                endunless
+              endfor
+              echo ']'
+            endcapture
+          endif
+        -%}
+        <video
+          data-hero-video
+          id="video-hero-{{ section.id }}"
+          class="videos"
+          playsinline
+          muted
+          loop
+          preload="none"
+          data-poster-mobile="{{ poster_url_mobile | default: poster_url_desktop | escape }}"
+          data-poster-desktop="{{ poster_url_desktop | default: poster_url_mobile | escape }}"
+          data-sources-desktop="{{ sources_desktop_json | strip_newlines | escape }}"
+          {% if has_mobile_video %}
+            data-sources-mobile="{{ sources_mobile_json | strip_newlines | escape }}"
+          {% endif %}
+          {% if poster_url_desktop != blank or poster_url_mobile != blank %}
+            poster="{{ poster_url_desktop | default: poster_url_mobile }}"
+          {% endif %}
+        >
+          <track kind="captions" src="{{ captions_url }}" srclang="en" label="English" default>
+        </video>
       </div>
     {%- endif -%}
   {%- endcapture -%}
@@ -103,8 +220,8 @@
     {
       "type": "image_picker",
       "id": "video_poster",
-      "label": "Video Poster Image",
-      "info": "Shows while video loads. Use a white image."
+      "label": "Video Poster Image (fallback)",
+      "info": "Optional. Prefer leaving blank — the theme uses each video's Shopify preview frame for LCP. Avoid blank/white images."
     },
     {
       "type": "textarea",
@@ -199,8 +316,7 @@
       "id": "content_full_width",
       "label": "Content full width",
       "default": false
-    },
-
+    }
   ],
   "presets": [
     {
@@ -214,50 +330,188 @@
 
 {% javascript %}
 (function () {
-  function prepareHeroVideos() {
-    var sections = document.querySelectorAll('section.video-text');
-    if (!sections.length) return;
+  /*
+    1) Poster <picture> remains LCP (video starts with preload="none", no <source>).
+    2) After paint/idle, matchMedia picks ONE viewport source list, load(), muted play().
+    3) Gesture fallback only if play() is rejected (autoplay policy).
+    Never preload="auto"; never inject both mobile and desktop source lists.
+  */
+  var started = false;
+  var gestureArmed = false;
+  var MOBILE_MQ = '(max-width: 768px)';
+  var IDLE_TIMEOUT_MS = 1500;
 
-    sections.forEach(function (section) {
-      var videos = section.querySelectorAll('video[data-hero-video]');
-      if (!videos.length) return;
+  function parseSources(raw) {
+    if (!raw) return [];
+    try {
+      var list = JSON.parse(raw);
+      return Array.isArray(list) ? list : [];
+    } catch (e) {
+      return [];
+    }
+  }
 
-      videos.forEach(function (video) {
-        if (!video.hasAttribute('preload')) {
-          video.setAttribute('preload', 'auto');
-        }
+  function applyViewportSource(video) {
+    if (!video || video.getAttribute('data-sources-applied') === 'true') return true;
 
-        var enableLoopAndPlay = function () {
-          if (!video.hasAttribute('data-loop-applied')) {
-            video.loop = true;
-            video.setAttribute('data-loop-applied', 'true');
-          }
+    var useMobile =
+      window.matchMedia(MOBILE_MQ).matches && video.getAttribute('data-sources-mobile');
+    var list = parseSources(
+      useMobile
+        ? video.getAttribute('data-sources-mobile')
+        : video.getAttribute('data-sources-desktop')
+    );
+    if (!list.length) {
+      list = parseSources(video.getAttribute('data-sources-desktop'));
+    }
+    if (!list.length) return false;
 
-          if (typeof video.play === 'function') {
-            var playPromise = video.play();
-            if (playPromise && typeof playPromise.catch === 'function') {
-              playPromise.catch(function () {
-                /* Ignore autoplay blocks; user gesture will resume */
-              });
-            }
-          }
-        };
+    var poster = useMobile
+      ? video.getAttribute('data-poster-mobile')
+      : video.getAttribute('data-poster-desktop');
+    if (poster) video.setAttribute('poster', poster);
 
-        if (video.readyState >= 2) {
-          enableLoopAndPlay();
-        } else {
-          video.addEventListener('loadeddata', enableLoopAndPlay, { once: true });
-        }
-      });
+    video.querySelectorAll('source').forEach(function (el) {
+      el.remove();
+    });
+
+    var track = video.querySelector('track');
+    list.forEach(function (item) {
+      if (!item || !item.src) return;
+      var source = document.createElement('source');
+      source.src = item.src;
+      if (item.type) source.type = item.type;
+      if (track) video.insertBefore(source, track);
+      else video.appendChild(source);
+    });
+
+    video.setAttribute('data-sources-applied', 'true');
+    return true;
+  }
+
+  function fadePoster(wrapper) {
+    if (wrapper) wrapper.classList.add('is-playing');
+  }
+
+  function attemptPlay(video, wrapper) {
+    if (!video || typeof video.play !== 'function') return;
+    if (video.getAttribute('data-play-attempted') === 'pending') return;
+
+    // Fade only on actual `playing` (first frame), never on play() resolve alone.
+    video.addEventListener(
+      'playing',
+      function () {
+        fadePoster(wrapper);
+      },
+      { once: true }
+    );
+
+    var run = function () {
+      video.removeAttribute('data-play-attempted');
+      if (!video.paused && !video.ended) {
+        // Already rendering frames — playing may have already fired; ensure fade.
+        if (video.readyState >= 3) fadePoster(wrapper);
+        return;
+      }
+      var p = video.play();
+      if (p && typeof p.then === 'function') {
+        p.catch(function (err) {
+          video.setAttribute(
+            'data-play-rejected',
+            err && err.name ? err.name : 'rejected'
+          );
+          armGestureFallback();
+        });
+      }
+    };
+
+    if (video.readyState >= 2) {
+      run();
+    } else {
+      video.setAttribute('data-play-attempted', 'pending');
+      video.addEventListener('loadeddata', run, { once: true });
+    }
+  }
+
+  function loadAndPlay(video, wrapper) {
+    if (!video) return;
+
+    if (video.getAttribute('data-hero-loaded') !== 'true') {
+      if (!applyViewportSource(video)) return;
+      video.setAttribute('data-hero-loaded', 'true');
+      try {
+        video.load();
+      } catch (e) {}
+    }
+
+    attemptPlay(video, wrapper);
+  }
+
+  function startAll() {
+    if (started) return;
+    started = true;
+    document.querySelectorAll('section.video-text').forEach(function (section) {
+      loadAndPlay(
+        section.querySelector('video[data-hero-video]'),
+        section.querySelector('.video-wrapper')
+      );
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', prepareHeroVideos);
-  } else {
-    prepareHeroVideos();
+  function onGesturePlay() {
+    document.querySelectorAll('section.video-text video[data-hero-video]').forEach(function (video) {
+      var section = video.closest('section.video-text');
+      var wrapper = section ? section.querySelector('.video-wrapper') : null;
+      if (video.getAttribute('data-hero-loaded') === 'true') {
+        attemptPlay(video, wrapper);
+      } else {
+        // Auto-start has not applied sources yet; allow one start pass.
+        started = false;
+        startAll();
+      }
+    });
   }
+
+  function armGestureFallback() {
+    if (gestureArmed) return;
+    gestureArmed = true;
+    ['keydown', 'touchstart', 'click'].forEach(function (type) {
+      window.addEventListener(type, onGesturePlay, { once: true, passive: true, capture: true });
+    });
+  }
+
+  function scheduleAutoStart() {
+    var fired = false;
+    function run() {
+      if (fired) return;
+      fired = true;
+      startAll();
+    }
+
+    function afterPaint(cb) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(cb);
+      });
+    }
+
+    function armIdle() {
+      afterPaint(function () {
+        if (typeof requestIdleCallback === 'function') {
+          requestIdleCallback(run, { timeout: IDLE_TIMEOUT_MS });
+        } else {
+          setTimeout(run, IDLE_TIMEOUT_MS);
+        }
+      });
+    }
+
+    // Wait for window load so the LCP poster can paint/claim before MP4 work.
+    if (document.readyState === 'complete') {
+      armIdle();
+    } else {
+      window.addEventListener('load', armIdle, { once: true });
+    }
+  }
+
+  scheduleAutoStart();
 })();
 {% endjavascript %}
-
-

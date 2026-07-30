@@ -61,6 +61,25 @@
     flex-direction: column;
     margin-bottom: 0;
     padding: 0;
+    /* Fill the 53px grid track — global .swiper { margin:auto } otherwise
+       shrink-wraps to ~6px (border-only "dash") once overflow:hidden applies. */
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    align-self: stretch;
+    height: 100%;
+  }
+
+  .product__media-thumbnails .swiper-wrapper {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+
+  .product__media-thumbnails .swiper-slide {
+    width: 100% !important;
+    height: auto !important;
   }
 }
 
@@ -98,6 +117,32 @@
 
 .product__media-list .swiper-wrapper {
   height: unset;
+}
+
+/* Keep PDP gallery sized by .product__media padding-bottom, not Swiper's height:100% */
+.product__media-list.swiper,
+.product__media-list .swiper-slide {
+  height: auto;
+}
+
+/* Flex + overflow:hidden (Swiper) otherwise collapses this column to width:0 */
+.product__media-wrapper .product__media-list {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Beat Swiper default blue icon-font nav — white SVG chevrons (brand) */
+.product__media-button.swiper-button-prev,
+.product__media-button.swiper-button-next {
+  color: transparent;
+}
+
+.product__media-button.swiper-button-prev:after,
+.product__media-button.swiper-button-next:after {
+  font-family: inherit !important;
+  font-size: 0 !important;
+  color: transparent !important;
 }
 
 .product__media {
@@ -255,8 +300,13 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: baseline;
+  flex-wrap: wrap;
   column-gap: 13px;
   margin-top: 10px;
+}
+
+.product__price-reviews-wrapper.product__price-reviews-wrapper--trade .jdgm-widget {
+  width: 100%;
 }
 
 .product__price {
@@ -267,16 +317,28 @@
 }
 
 .product__price .old-price {
-  margin-right: 5px;
+  font-weight: 600;
   text-decoration: line-through;
   text-decoration-thickness: 1px;
-  opacity: .3;
 }
 
 .product__price .old-price + span {
   font-weight: 600;
 }
 
+.product__price .sale-price {
+  margin-right: 5px;
+  color: #7d3c3c;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.product__price .percentage-off {
+  margin-left: 6px;
+  color: #7d3c3c;
+  font-weight: 800;
+  font-size: 18px;
+}
 
 .product__description {
   margin-top: 20px;
@@ -325,6 +387,11 @@
   margin-top: 23px;
 }
 
+@media screen and (max-width: 420px) {
+  .product__price-reviews-divider {
+    display: none;
+  }
+}
 
 @media screen and (max-width: 768px) {
   .product__swatches {

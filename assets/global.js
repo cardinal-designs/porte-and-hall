@@ -324,28 +324,34 @@ function setCookie(name, value, days) {
 }
 
 function slideUp(target, duration = 500) {
+  // Read layout once, then write — avoid interleaving that forces sync reflow.
+  const height = target.offsetHeight;
   target.style.transitionProperty = 'height, margin, padding';
   target.style.transitionDuration = duration + 'ms';
   target.style.boxSizing = 'border-box';
-  target.style.height = target.offsetHeight + 'px';
-  target.offsetHeight;
+  target.style.height = height + 'px';
   target.style.overflow = 'hidden';
-  target.style.height = 0;
-  target.style.paddingTop = 0;
-  target.style.paddingBottom = 0;
-  target.style.marginTop = 0;
-  target.style.marginBottom = 0;
-  window.setTimeout( () => {
-        target.style.display = 'none';
-        target.style.removeProperty('height');
-        target.style.removeProperty('padding-top');
-        target.style.removeProperty('padding-bottom');
-        target.style.removeProperty('margin-top');
-        target.style.removeProperty('margin-bottom');
-        target.style.removeProperty('overflow');
-        target.style.removeProperty('transition-duration');
-        target.style.removeProperty('transition-property');
-        //alert("!");
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      target.style.height = 0;
+      target.style.paddingTop = 0;
+      target.style.paddingBottom = 0;
+      target.style.marginTop = 0;
+      target.style.marginBottom = 0;
+    });
+  });
+
+  window.setTimeout(() => {
+    target.style.display = 'none';
+    target.style.removeProperty('height');
+    target.style.removeProperty('padding-top');
+    target.style.removeProperty('padding-bottom');
+    target.style.removeProperty('margin-top');
+    target.style.removeProperty('margin-bottom');
+    target.style.removeProperty('overflow');
+    target.style.removeProperty('transition-duration');
+    target.style.removeProperty('transition-property');
   }, duration);
 }
 
@@ -354,23 +360,30 @@ function slideDown(target, duration = 500) {
   let display = window.getComputedStyle(target).display;
   if (display === 'none') display = 'block';
   target.style.display = display;
-  let height = target.offsetHeight;
+
+  // Single layout read after display is applied, then batch writes.
+  const height = target.offsetHeight;
   target.style.overflow = 'hidden';
   target.style.height = 0;
   target.style.paddingTop = 0;
   target.style.paddingBottom = 0;
   target.style.marginTop = 0;
   target.style.marginBottom = 0;
-  target.offsetHeight;
   target.style.boxSizing = 'border-box';
-  target.style.transitionProperty = "height, margin, padding";
+  target.style.transitionProperty = 'height, margin, padding';
   target.style.transitionDuration = duration + 'ms';
-  target.style.height = height + 'px';
-  target.style.removeProperty('padding-top');
-  target.style.removeProperty('padding-bottom');
-  target.style.removeProperty('margin-top');
-  target.style.removeProperty('margin-bottom');
-  window.setTimeout( () => {
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      target.style.height = height + 'px';
+      target.style.removeProperty('padding-top');
+      target.style.removeProperty('padding-bottom');
+      target.style.removeProperty('margin-top');
+      target.style.removeProperty('margin-bottom');
+    });
+  });
+
+  window.setTimeout(() => {
     target.style.removeProperty('height');
     target.style.removeProperty('overflow');
     target.style.removeProperty('transition-duration');
@@ -469,14 +482,24 @@ const serializeForm = form => {
 };
 
 /*================ Initialize ================*/
-// Micromodal
-MicroModal.init({
-  openClass: 'is-open',
-  disableScroll: true,
-  disableFocus: true,
-  openTrigger: 'data-modal-trigger',
-  closeTrigger: 'data-modal-close'
-});
+// Micromodal — defer init to idle so parse of global.js isn't followed by sync setup work
+(function initMicroModalWhenReady() {
+  function run() {
+    if (typeof MicroModal === 'undefined') return;
+    MicroModal.init({
+      openClass: 'is-open',
+      disableScroll: true,
+      disableFocus: true,
+      openTrigger: 'data-modal-trigger',
+      closeTrigger: 'data-modal-close'
+    });
+  }
+  if (typeof requestIdleCallback === 'function') {
+    requestIdleCallback(run, { timeout: 2000 });
+  } else {
+    setTimeout(run, 1);
+  }
+})();
 
 /*================ Components ================*/
 var MenuDrawer = class extends HTMLElement {
@@ -1537,8 +1560,6 @@ var ProductFeature = class extends HTMLElement {
   }
 
   setupMedia() {
-    console.log('adjfaskjh')
-
     this.thumbnails = this.querySelector('.product__media-thumbnails')
     this.thumbnailSlider = new Swiper(this.thumbnails, {
       slidesPerView: 'auto',
@@ -1699,70 +1720,104 @@ accordionItems.forEach((accordion) => {
 
 let appStickyAnnouncement;
 
-const getAppStickyAnnouncement = () => {
-  if (!appStickyAnnouncement) {
-    appStickyAnnouncement = document.querySelector(".bx-creative-2961651");
-    if (!appStickyAnnouncement) return;
-
-    const resizeObserver = new ResizeObserver(() => {
-      window.headerSticky();
-    });
-    resizeObserver.observe(appStickyAnnouncement);
-
-    // on appStickyAnnouncement remove
-    const mutationObserver = new MutationObserver(() => {
-      window.headerSticky();
-    });
-    mutationObserver.observe(document, { childList: true, subtree: true });
-  }
+function debounce(fn, wait) {
+  let t;
+  return function debounced() {
+    const ctx = this;
+    const args = arguments;
+    clearTimeout(t);
+    t = setTimeout(function () { fn.apply(ctx, args); }, wait);
+  };
 }
 
-window.headerSticky = function(){
-  getAppStickyAnnouncement();
-  if(appStickyAnnouncement) {
-    document.querySelector(".outer-header-wrapper").style.top = `${appStickyAnnouncement.clientHeight}px`;
-  } else {
-    document.querySelector(".outer-header-wrapper").style.top = "0px";
+const headerStickyDebounced = debounce(function () {
+  window.headerSticky();
+}, 150);
+
+const getAppStickyAnnouncement = () => {
+  if (appStickyAnnouncement) return;
+  appStickyAnnouncement = document.querySelector('.bx-creative-2961651');
+  if (!appStickyAnnouncement) return;
+
+  // Only observe the sticky bar itself — never the whole document.
+  // A document MutationObserver fired constantly during load (app injects,
+  // deferred scripts) and re-scheduled headerSticky under 4x CPU → TBT spike.
+  if (typeof ResizeObserver !== 'undefined') {
+    const resizeObserver = new ResizeObserver(headerStickyDebounced);
+    resizeObserver.observe(appStickyAnnouncement);
   }
 };
 
-window.addEventListener("pageshow", () => {
-  window.headerSticky();
-})
+window.headerSticky = function () {
+  getAppStickyAnnouncement();
+  const wrapper = document.querySelector('.outer-header-wrapper');
+  if (!wrapper) return;
 
-window.addEventListener("resize", () => {
-  window.headerSticky();
-})
-document.addEventListener("DOMContentLoaded", (event) => {
-setTimeout(function() {
-  window.headerSticky();
+  const topPx = appStickyAnnouncement ? appStickyAnnouncement.clientHeight : 0;
+  const nextTop = topPx ? topPx + 'px' : '0px';
+  if (wrapper.style.top === nextTop) return;
+  wrapper.style.top = nextTop;
+};
 
-  if (typeof gsap === "undefined" || !gsap.plugins.scrollTo) {
-    console.error("GSAP or ScrollToPlugin not loaded!");
-    return;
-  }
-
-  const HEADER_HEIGHT = document.querySelector('.header')?.offsetHeight ?? 0; 
-  document.querySelectorAll(".scroll__button").forEach(function (button) {
-    button.addEventListener("click", function () {
-      const target = document.querySelector(".Designer_Program_Main");
-      if (target) {
-        gsap.to(window, {
-          scrollTo: {
-            y: target, 
-            offsetY: HEADER_HEIGHT,
-          },
-          duration: 1,
-          ease: "power2.out",
-        });
-      } else {
-        console.error("Target section not found!");
-      }
-    });
-  });
-}, 2000);
+// bfcache restore only — avoid duplicate work on normal first navigation
+window.addEventListener('pageshow', function (e) {
+  if (e.persisted) window.headerSticky();
 });
 
+window.addEventListener('resize', headerStickyDebounced);
+
+// One idle pass after load (not DOMContentLoaded + 2s timeout during TBT window)
+window.addEventListener('load', function () {
+  const run = function () {
+    window.headerSticky();
+
+    // Late-injected sticky promo bars: light poll instead of document MutationObserver
+    var attempts = 0;
+    var timer = setInterval(function () {
+      attempts += 1;
+      window.headerSticky();
+      if (appStickyAnnouncement || attempts >= 5) clearInterval(timer);
+    }, 1000);
+  };
+  if (typeof requestIdleCallback === 'function') {
+    requestIdleCallback(run, { timeout: 2500 });
+  } else {
+    setTimeout(run, 1);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  setTimeout(function () {
+    function bindScrollButtons() {
+      if (typeof gsap === 'undefined' || !gsap.plugins || !gsap.plugins.scrollTo) {
+        return false;
+      }
+      const HEADER_HEIGHT = document.querySelector('.header')?.offsetHeight ?? 0;
+      document.querySelectorAll('.scroll__button').forEach(function (button) {
+        if (button.dataset.scrollBound) return;
+        button.dataset.scrollBound = 'true';
+        button.addEventListener('click', function () {
+          const target = document.querySelector('.Designer_Program_Main');
+          if (target) {
+            gsap.to(window, {
+              scrollTo: {
+                y: target,
+                offsetY: HEADER_HEIGHT,
+              },
+              duration: 1,
+              ease: 'power2.out',
+            });
+          }
+        });
+      });
+      return true;
+    }
+
+    if (!bindScrollButtons()) {
+      window.addEventListener('third-party-scripts-loaded', bindScrollButtons, { once: true });
+    }
+  }, 2000);
+});
 /* document.addEventListener("DOMContentLoaded", (event) => {
   const HEADER_HEIGHT = document.querySelector('.header').offsetHeight; // Adjust based on your fixed header height
   document.querySelectorAll(".scroll__button").forEach(function(button) {

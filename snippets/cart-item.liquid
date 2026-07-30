@@ -19,20 +19,23 @@
     </cart-drawer-remove-button>
   {% endif %}
 
-  <div class="cart-item__image-wrapper">
+  <a href="{{ item.url }}" class="cart-item__image-wrapper">
     {% if item.image %}
-      <img
-        class="cart-item__image"
-        src="{{ item.image | img_url: '150x' }}"
-        alt="{{ item.image.alt | escape }}"
-        loading="lazy"
-        width="75"
-        height="{{ 75 | divided_by: item.image.aspect_ratio | ceil }}">
+      {{
+        item.image
+        | image_url: width: 150
+        | image_tag:
+          class: 'cart-item__image',
+          loading: 'lazy',
+          widths: '75, 150',
+          sizes: '75px',
+          alt: item.image.alt
+      }}
     {% endif %}
-  </div>
+  </a>
   <div class="cart-item__content">
 
-    <h5 class="cart-item__title">{{ item.product.title | remove: item.variant.title | remove: "-"}}</h5>
+    <h5 class="cart-item__title"><a href="{{ item.url }}">{{ item.product.title | remove: item.variant.title | remove: "-"}}</a></h5>
 
     {% if item.product.has_only_default_variant == false or item.properties.size != 0 or item.selling_plan_allocation != nil %}
       <div class="cart-item__variant">
