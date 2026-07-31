@@ -23,7 +23,7 @@
     "main": {
       "type": "main-page",
       "custom_css": [
-        ".Page_Header {padding-top: 0;}"
+        ".Page_Header {padding-top: 0; padding-bottom: 0;}"
       ],
       "settings": {
         "page_heading": "",
