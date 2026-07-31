@@ -49,7 +49,7 @@
             {% for media in details %}
               <div class="swiper-slide details__image-container">
                 <div class="details__image">
-                  {% render 'lazy-image', image: media.image, blur: true, fill: true %}
+                  {% render 'lazy-image', image: media.image, blur: true, fill: true, alt: image.alt %}
                 </div>
                 <div
                   class="details__point"
