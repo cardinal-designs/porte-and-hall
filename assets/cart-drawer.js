@@ -378,7 +378,7 @@ function trapFocusinCart(modal) {
 document.addEventListener('DOMContentLoaded', () => {
   const drawer = document.getElementById("cart-drawer");
   // Call this after opening the drawer
-  drawer.classList.add('aria-unhidden');
+  // drawer.classList.add('aria-unhidden');
   if(drawer.getAttribute("aria-hidden") == "false") drawer.focus();
   trapFocusinCart(drawer);
 });
