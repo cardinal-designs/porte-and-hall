@@ -23,7 +23,7 @@
         <h2 class="details__content-heading">{{ grouped_collection.metafields.custom.design_detail_arrows.value.heading | replace: "\n", "<br>" }}</h2>
       </div>
     </div>
-    <div class="details__media-wrapper" alt="{{ grouped_collection.metafields.custom.design_detail_arrows.value.image.value.alt }}">
+    <div class="details__media-wrapper">
       <div class="details__image">
         {{
           image
@@ -32,7 +32,7 @@
             loading: 'lazy',
             widths: '400, 600, 800, 1000',
             sizes: '(min-width: 768px) 50vw, 100vw',
-            alt: image.alt
+            alt: image.value.alt
         }}
       </div>
       {% for arrow in arrows.value %}
