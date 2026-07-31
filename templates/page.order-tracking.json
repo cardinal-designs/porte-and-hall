@@ -39,6 +39,9 @@
     },
     "c84603d9-c17f-4c4e-b401-8da3c94ea5c6": {
       "type": "main-product-carousel",
+      "custom_css": [
+        ".product-carousel__inner {padding-top: 40px;}"
+      ],
       "settings": {
         "heading": "Never miss a mat. There's more to see!",
         "background": "",
