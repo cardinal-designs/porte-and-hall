@@ -58,8 +58,12 @@ class CartDrawer extends HTMLElement {
   }
 
   open() {
-    this.drawer.setAttribute('aria-hidden', false);
+    this.drawer.setAttribute('aria-hidden', 'false');
     this.drawer.setAttribute('aria-expanded', true);
+
+    this.drawer.querySelector(
+      'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )?.focus();
 
     this.pageOverlayElement.classList.add('is-visible');
     document.body.addEventListener('click', this.onBodyClick);
@@ -378,7 +382,7 @@ function trapFocusinCart(modal) {
 document.addEventListener('DOMContentLoaded', () => {
   const drawer = document.getElementById("cart-drawer");
   // Call this after opening the drawer
-  drawer.classList.add('aria-unhidden');
+  // drawer.classList.add('aria-unhidden');
   if(drawer.getAttribute("aria-hidden") == "false") drawer.focus();
   trapFocusinCart(drawer);
 });

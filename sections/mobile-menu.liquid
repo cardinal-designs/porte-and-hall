@@ -1,3 +1,10 @@
+{% liquid
+  assign mobile_menu = section.settings.menu
+  if customer and customer.b2b? and section.settings.b2b_menu != blank
+    assign mobile_menu = section.settings.b2b_menu
+  endif
+%}
+
 <menu-drawer>
   <div
     class="menu-drawer"
@@ -17,7 +24,28 @@
       </div>
       <div class="menu-drawer__content">
         <ul class="menu-drawer__menu list-unstyled" role="list">
-          {% for link in section.settings.menu.links %}
+          {% for link in mobile_menu.links %}
+            {% if link.title == 'Swatches' %}
+              {% if customer and customer.b2b? %}
+              <li>
+              {% if link.links != blank %}
+                <button class="menu-drawer__menu-button menu-drawer__menu-button--has-menu body" href="{{ link.url }}">
+                  {{ link.title }}
+                  {% render 'icon', icon: 'caret' %}
+                </button>
+                <ul class="menu-drawer__secondary-menu list-unstyled" role="list">
+                  {% for child_link in link.links %}
+                    <li>
+                      <a class="menu-drawer__secondary-menu-button body" href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link.title }}</a>
+              {% endif %}
+            </li>
+              {% endif %}
+            {% else %}
             <li>
               {% if link.links != blank %}
                 <button class="menu-drawer__menu-button menu-drawer__menu-button--has-menu body" href="{{ link.url }}">
@@ -35,6 +63,7 @@
                 <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link.title }}</a>
               {% endif %}
             </li>
+            {%endif %}
           {% endfor %}
 
           <li>
@@ -70,6 +99,11 @@
       "type": "link_list",
       "id": "menu",
       "label": "Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "b2b_menu",
+      "label": "B2B Menu"
     }
   ]
 }

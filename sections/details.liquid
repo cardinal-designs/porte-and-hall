@@ -42,14 +42,14 @@
         </div>
       </div>
     </div>
-    <div class="details__media-wrapper">
+    <div class="details__media-wrapper" 22>
       {% if image_carousel == true %}
         <div class="details__media-inner swiper">
           <div class="swiper-wrapper">
             {% for media in details %}
               <div class="swiper-slide details__image-container">
                 <div class="details__image">
-                  {% render 'lazy-image', image: media.image, blur: true, fill: true %}
+                  {% render 'lazy-image', image: media.image, blur: true, fill: true, alt: media.image.alt %}
                 </div>
                 <div
                   class="details__point"

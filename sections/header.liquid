@@ -1,6 +1,13 @@
 {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag: preload: true }}
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
 
+{% liquid
+  assign main_menu = section.settings.menu
+  if customer and customer.b2b? and section.settings.b2b_menu != blank
+    assign main_menu = section.settings.b2b_menu
+  endif
+%}
+
 <header class="header">
   <div class="header--{{ section.settings.logo_position }} header--inner page-width">
     <!-- Logo -->
@@ -104,7 +111,7 @@
           </a>
         {% endif %}
 
-        {% if section.settings.menu != blank %}
+        {% if main_menu != blank %}
           <button class="js-open-menu header__icon header__icon--menu" aria-label="Menu">
             {% render 'icon', icon: 'hamburger' %}
           </button>
@@ -143,10 +150,10 @@
 {% unless page.handle == 'outdoor' or page.handle == 'the-insider' %}
   <div class="header__navigation">
     <!-- Navigation -->
-    {% if section.settings.menu != blank %}
+    {% if main_menu != blank %}
       <nav class="header__menu">
         <ul class="header__menu-list" role="list">
-          {% for link in section.settings.menu.links %}
+          {% for link in main_menu.links %}
             {% assign downcased_link_title = link.title | downcase | strip %}
             {% assign mega_menu_names = '' %}
 
@@ -160,6 +167,19 @@
             {% assign mega_menu_names = mega_menu_names | downcase | split: ',' | compact %}
 
             {% unless mega_menu_names contains downcased_link_title %}
+              {% comment %} {% if customer and customer.b2b? and link.title == 'Swatches' %}
+                <li>
+                <a
+                  href="{{ link.url }}"
+                  class="header__menu-item"
+                  {% if link.current %}
+                    aria-current="page"
+                  {% endif %}
+                >
+                  {{ link.title | escape }}
+                </a>
+              </li>
+              {% else %} {% endcomment %}
               <li>
                 {% if link.links != blank %}
                   <div class="header__menu-item header__menu-item--has-dropdown">
@@ -199,6 +219,7 @@
                   </a>
                 {% endif %}
               </li>
+     
             {% else %}
               <li class="header__mega-menu-wrapper">
                 <a
@@ -379,6 +400,11 @@
       "id": "menu",
       "default": "main-menu",
       "label": "Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "b2b_menu",
+      "label": "B2B Menu"
     },
     {
       "type": "checkbox",

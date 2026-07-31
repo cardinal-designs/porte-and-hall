@@ -85,6 +85,7 @@
           "mobile_logo_width": 180,
           "logo_position": "center",
           "menu": "2023-main-nav-new",
+          "b2b_menu": "main-desktop-nav-trade-specific",
           "enable_search": false
         }
       },
@@ -140,7 +141,8 @@
       "mobile-menu": {
         "type": "mobile-menu",
         "settings": {
-          "menu": "2024-best-seller-mobile-new"
+          "menu": "2024-best-seller-mobile-new",
+          "b2b_menu": "mobile-menu-trade"
         }
       },
       "porter-landing-header": {
@@ -213,6 +215,16 @@
       },
       "6176556142592085346": {
         "type": "shopify://apps/justuno-email-sms-pop-ups/blocks/star_rating/ea1f1a23-7069-4266-a6e1-df04f87c7e94",
+        "disabled": false,
+        "settings": {}
+      },
+      "1248957848723945065": {
+        "type": "shopify://apps/mntn/blocks/tracking-pixel/d40b5b2f-bf84-4a06-b576-832ad24a8652",
+        "disabled": false,
+        "settings": {}
+      },
+      "4252583770683550135": {
+        "type": "shopify://apps/redo/blocks/redo_app_embed/c613644b-6df4-4d11-b336-43a5c06745a1",
         "disabled": false,
         "settings": {}
       }
