@@ -226,6 +226,8 @@ grouped-product-card {
 .product-card__link {
   margin-top: auto;
   font-weight: 600;
+  min-height: 24px;
+  display: block;
 }
 
 .product-cart-4 .product-card__price {
