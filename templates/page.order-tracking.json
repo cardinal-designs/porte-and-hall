@@ -22,10 +22,13 @@
     },
     "main": {
       "type": "main-page",
+      "custom_css": [
+        ".Page_Header {padding-top: 0;}"
+      ],
       "settings": {
         "page_heading": "",
         "subhead": "",
-        "section_height": "250",
+        "section_height": "150",
         "bg_color": "#f4f2ee"
       }
     },
