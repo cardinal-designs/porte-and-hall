@@ -68,7 +68,9 @@
       ],
       "name": "t:sections.main-collection-banner.name",
       "settings": {
-        "show_collection_description": true
+        "show_title": false,
+        "show_collection_description": true,
+        "full_width": false
       }
     },
     "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a": {
@@ -214,7 +216,7 @@
         "logo_UQLxLP"
       ],
       "settings": {
-        "background_color": "#896A28"
+        "background_color": "#896a28"
       }
     },
     "2046a8d4-8126-4344-8df2-6dd5193e7293": {
