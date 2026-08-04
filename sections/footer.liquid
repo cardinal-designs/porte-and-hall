@@ -150,6 +150,28 @@
 
   cookieLink?.addEventListener("click", e=>{e.preventDefault()})
 </script>
+
+{% if customer %}<script>
+  window.justunoShopifyCustomer = {
+    order_count: {{ customer.orders_count | default: 0 }},
+    currency: {{ cart.currency.iso_code | json }},
+    total_spent: {{ customer.total_spent | default: 0 | json }},
+    tags: {{ customer.tags | json }},
+    is_wholesale: {{ customer.tags | json }}.includes("wholesale"),
+    accepts_marketing: {{ customer.accepts_marketing | json }},
+    last_order_days_ago: {% if customer.last_order.created_at %}
+      {{ 'now' | date: '%s' | minus: customer.last_order.created_at | date: '%s' | divided_by: 86400 }}
+    {% else %}
+      null
+    {% endif %},
+    product_ids: "{% for order in customer.orders %}{% for line_item in order.line_items %}{{ line_item.product_id }}{% unless forloop.last and order == customer.orders.last %},{% endunless %}{% endfor %}{% endfor %}",
+    skus: [{% for order in customer.orders %}{% for line_item in order.line_items %}{{ line_item.sku | json }}{% unless forloop.last and order == customer.orders.last %},{% endunless %}{% endfor %}{% endfor %}].toString(),
+    product_names: [{% for order in customer.orders %}{% for line_item in order.line_items %}{{ line_item.product.title | json }}{% unless forloop.last and order == customer.orders.last %},{% endunless %}{% endfor %}{% endfor %}].toString(),
+    collections: [{% for order in customer.orders %}{% for line_item in order.line_items %}{% for collection in line_item.product.collections %}{{ collection.title | json }}{% unless forloop.last and order == customer.orders.last %},{% endunless %}{% endfor %}{% unless forloop.last %},{% endunless %}{% endfor %}{% endfor %}].toString()
+  };
+</script>{% endif %}
+
+
 {% schema %}
 {
   "name": "Footer",
