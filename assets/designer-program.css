@@ -224,6 +224,10 @@ ul.js-error-messages {
   z-index: unset !important;
 }
 
+.globo-form-app .header {
+  display: none !important;
+}
+
 .Designer_Program_Form .globo-form-app .header,
 .Designer_Program_Form .globo-form-control label {
   /* display: none !important; */
