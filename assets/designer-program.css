@@ -564,6 +564,7 @@ ul.js-error-messages {
   .Designer_Program_Form .Files__wrapper.globo-form-control .material_filled-label .label-content,
   .Designer_Program_Form input::-webkit-input-placeholder,
   .Designer_Program_Form [data-type=acceptTerms] label.checkbox-label.globo-option {
+    font-family: brandon !important;
     font-size: 14px !important;
   }
 
