@@ -456,9 +456,9 @@ ul.js-error-messages {
   /* background-repeat: no-repeat !important; */
   /* background-position: 99% 60% !important; */
   font-family: brandon !important;
-  line-height: 24px;
-  letter-spacing: .3px;
+  letter-spacing: .3px !important;
   color: #546b82;
+  font-size: 18px !important;
 
 }
 
