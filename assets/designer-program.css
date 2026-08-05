@@ -430,7 +430,8 @@ ul.js-error-messages {
   color: #546B82 !important;
 }
 
-.Designer_Program_Form .label-content {
+.Designer_Program_Form .label-content,
+.globo-form-app .globo-form-control .radio-wrapper .globo-option {
   font-family: brandon !important;
   font-weight: 500;
   font-size: 16px !important;
