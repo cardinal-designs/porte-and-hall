@@ -53,12 +53,12 @@
       "announcement-bar": {
         "type": "announcement-bar",
         "custom_css": [
-          ".announcement-bar {font-size: 12px;}"
+          ".announcement-bar {font-size: 11px;}"
         ],
         "settings": {
           "hide_bar": false,
-          "text": "Final Few. Final Chance. <u>Shop Now</u>",
-          "link": "shopify://collections/sale",
+          "text": "Cheers to 7 Years! 15% Off Everything w/ Code <b>SEVEN</b>",
+          "link": "shopify://collections/shop-all",
           "background_color": "#546b82",
           "text_color": "#ffffff",
           "show_popup": true,
