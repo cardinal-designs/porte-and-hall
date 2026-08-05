@@ -424,12 +424,10 @@ ul.js-error-messages {
 }
 
 .globo-form-control input, .globo-form-control textarea, .globo-form-control select {
-  font-size: 18px !important;
-  line-height: 120% !important;
+  font-size: 16px !important;
   font-family: brandon !important;
   text-transform: uppercase !important;
-  font-weight: 600 !important;
-  letter-spacing: 2px !important;  
+  font-weight: 500 !important;
   color: #546B82 !important;
 }
 
