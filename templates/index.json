@@ -11,13 +11,17 @@
   "sections": {
     "video_text_pk7JCQ": {
       "type": "video-text",
+      "custom_css": [
+        ".ph-logo-recolor {background-color: #546b82; -webkit-mask-image: url(https://cdn.shopify.com/s/files/1/0084/8602/7327/files/SVG.svg?v=1744971231); mask-image: url(https://cdn.shopify.com/s/files/1/0084/8602/7327/files/SVG.svg?v=1744971231); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: contain; mask-size: contain; -webkit-mask-position: center; mask-position: center;}",
+        "@media (max-width: 749px) {.ph-logo-recolor {margin: 0 auto; align-self: center; }}"
+      ],
       "name": "Video with text",
       "settings": {
         "bg_color": "#f4f2ee",
         "video": "shopify://files/videos/7years_stafford.mp4",
         "mobile_video": "shopify://files/videos/7years_stafford.mp4",
         "video_poster": "shopify://shop_images/white-img.webp",
-        "subheading": "<div style=\"font-family:louize; font-weight:500\"><i>\"Seven years ago, I started Porte + Hall with one belief: great design should meet you at the door. Thank you for believing it, too.\"\n<div class=\"ph-logo-recolor\" style=\"width:150px; aspect-ratio: 1 / 1;\"></div>\n<style>\n.ph-logo-recolor {\n  background-color: #546B82;\n  -webkit-mask-image: url(\"https://www.porteandhall.com/cdn/shop/files/SVG.svg\");\n  mask-image: url(\"https://www.porteandhall.com/cdn/shop/files/SVG.svg\");\n  -webkit-mask-repeat: no-repeat;\n  mask-repeat: no-repeat;\n  -webkit-mask-size: contain;\n  mask-size: contain;\n  -webkit-mask-position: center;\n  mask-position: center;\n}\n@media (max-width: 749px) {\n  .ph-logo-recolor {\n    margin: 0 auto;\n    align-self: center;\n  }\n}</style>— Stafford Meyer, Founder</i></div>",
+        "subheading": "<div style=\"font-family:louize; font-weight:500\"><i>\"Seven years ago, I started Porte + Hall with one belief: great design should meet you at the door. Thank you for believing it, too.\"\n<div class=\"ph-logo-recolor\" style=\"width:150px; aspect-ratio: 1 / 1;\"></div>— Stafford Meyer, Founder</i></div>",
         "title": "",
         "title_font_size": 70,
         "content": "<p><br/>Our anniversary, your gift. Enjoy 15% off everything. Through August 16th.</p>",
