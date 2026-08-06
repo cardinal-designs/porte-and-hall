@@ -432,7 +432,7 @@ endcapture
               assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
             %}
 
-            <span data-idd="{{ other_sizes }}" data-active-style="{{ active_style }}"></span>
+            <span data-idd="{{ grouped_collection }}" data-active-style="{{ active_style }}"></span>
 
               {% if other_sizes != blank and section.settings.shop_more_below != true %}
                 {% capture other_size_links %}
