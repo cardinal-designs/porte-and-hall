@@ -435,6 +435,7 @@ endcapture
             <span data-active-style="{{ active_style }}"></span>
 
               {% if other_sizes != blank and section.settings.shop_more_below != true %}
+                {% if product.handle contains '3-x-5' %} ffff{{ other_sizes }} {% endif %}
                 {% capture other_size_links %}
                   {% for block in other_sizes %}
                     {% assign current_size = block.title | split: " | " %}
@@ -461,7 +462,7 @@ endcapture
             {% endif %}
 
              {% assign small_text_1 = 0 %}
-            {% if product.handle contains '3-x-5' %} {{ other_sizes }} {% endif %}
+            
             {% for block in other_sizes %}              
               {%- assign current_size = block.title | split: " | " -%}
               {%- assign format_color = "- " | append: active_style | append: " /" -%}
