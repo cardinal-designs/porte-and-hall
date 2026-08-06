@@ -1,5 +1,5 @@
 .trade__program {
-  margin-top: 54px;
+  margin-top: 0;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -159,7 +159,7 @@
   }
 
   .trade__program {
-    min-height: 772px;
+    /* min-height: 772px; */
   }
 
   .trade__overlay {
