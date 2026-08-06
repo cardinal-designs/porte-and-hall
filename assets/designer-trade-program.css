@@ -143,7 +143,7 @@
 @media (max-width: 991px) {
 
   .trade__content {
-    width: 100%;
+    max-width: 100%;
   }
 
   .trade__overlay {
