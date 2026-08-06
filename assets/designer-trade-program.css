@@ -146,6 +146,10 @@
     width: 100%;
   }
 
+  .trade__overlay {
+    padding: 30px;
+  }
+
 }
 
 @media (max-width: 767px) {
