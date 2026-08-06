@@ -162,6 +162,10 @@
     /* min-height: 772px; */
   }
 
+  .trade__image--item figure {
+    min-height: 550px;
+  }
+
   .trade__overlay {
     padding: 30px 20px;
     max-width: 100%;
