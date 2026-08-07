@@ -11,19 +11,23 @@
   "sections": {
     "video_text_pk7JCQ": {
       "type": "video-text",
+      "custom_css": [
+        ".ph-logo-recolor {background-color: #546b82; -webkit-mask-image: url(https://cdn.shopify.com/s/files/1/0084/8602/7327/files/stafford-signature.svg?v=1745449475); mask-image: url(https://cdn.shopify.com/s/files/1/0084/8602/7327/files/stafford-signature.svg?v=1745449475); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: contain; mask-size: contain; -webkit-mask-position: center; mask-position: center;}",
+        "@media (max-width: 749px) {.ph-logo-recolor {margin: 0 auto; align-self: center; }}"
+      ],
       "name": "Video with text",
       "settings": {
         "bg_color": "#f4f2ee",
-        "video": "shopify://files/videos/Barefoot Season_HP_desktop_compressed.mp4",
-        "mobile_video": "shopify://files/videos/Barefoot Season_HP_mobile_comp.mp4",
-        "video_poster": "shopify://shop_images/white-img.webp",
-        "subheading": "",
-        "title": "<h1>Summer,<br/>Come On In</h1>",
+        "video": "shopify://files/videos/7years_stafford.mp4",
+        "mobile_video": "shopify://files/videos/7years_stafford.mp4",
+        "video_poster": "shopify://shop_images/stafford7years.jpg",
+        "subheading": "<div style=\"font-size:18px; color:#896a28; padding-bottom:15px; letter-spacing: 1.5px;\">OUR ANNIVERSARY, YOUR GIFT</div>\n<div style=\"font-family:louize; font-weight:500; padding-bottom:15px; font-size:55px;\">Enjoy 15% off everything.</div>\n<div style=\"font-size:18px;  font-weight:600;letter-spacing:1.5px; padding-bottom:25px;\">Now through August 16th</div>\n<div style=\"font-size:22px; font-weight:400;\">\"Seven years ago, I started Porte + Hall with one belief: great design should meet you at the door. Thank you for believing it, too.\"</div>\n<div class=\"ph-logo-recolor\" style=\"width:100px; aspect-ratio: 1 / 1;\"></div>\n<div style=\"font-size:20px; padding-bottom:40px; font-weight:400\"><i>— Stafford Meyer, Founder</i></div>",
+        "title": "",
         "title_font_size": 70,
-        "content": "<p>Doors open, shoes optional—our mats were made for this.</p>",
+        "content": "",
         "content_font_size": 22,
         "content_font_size_mb": 14,
-        "link_text": "explore more",
+        "link_text": "shop the anniversary sale",
         "link_url": "shopify://collections/shop-all",
         "button_style": "small",
         "custom-class": "home-banner",
