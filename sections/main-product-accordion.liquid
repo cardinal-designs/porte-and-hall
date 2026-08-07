@@ -63,6 +63,9 @@
           if swatch.available == false
             assign element_classes = element_classes | append: ' product__oos-swatch'
           endif
+          if show_badge
+            assign element_classes = element_classes | append: ' product__new-swatch'
+          endif
 
           assign swatch_file_name = value | handle | append: '.png'
           assign swatch_image = images[swatch_file_name]
