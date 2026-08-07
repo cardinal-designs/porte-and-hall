@@ -450,6 +450,10 @@
   outline-color: var(--gold);
 }
 
+.product__active-swatch.product__new-swatch {
+  outline-offset: -2px;
+}
+
 /* .product__active-swatch:after,
 .product__swatch:not(.product__active-swatch):not(.product__oos-swatch):hover:after {
   content: "";
