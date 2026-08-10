@@ -260,11 +260,13 @@
       {% endif %}
     </div>
 
-    {% if template.suffix == 'porter-landing' %}
-      {% section 'porter-mobile-menu' %}
-    {% else %}
-      {% section 'mobile-menu' %}
-    {% endif %}
+    {%- unless page.handle == 'the-insider' -%}
+      {% if template.suffix == 'porter-landing' %}
+        {% section 'porter-mobile-menu' %}
+      {% else %}
+        {% section 'mobile-menu' %}
+      {% endif %}
+    {%- endunless -%}
 
     {%- unless page.handle == 'the-insider' -%}
       {% if template != 'cart' %}
