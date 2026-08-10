@@ -266,9 +266,11 @@
       {% section 'mobile-menu' %}
     {% endif %}
 
-    {% if template != 'cart' %}
-      {% section 'cart-drawer' %}
-    {% endif %}
+    {%- unless page.handle == 'the-insider' -%}
+      {% if template != 'cart' %}
+        {% section 'cart-drawer' %}
+      {% endif %}
+    {%- endunless -%}
 
     <main id="MainContent" class="{{collection.template_suffix}} {% if product %}product-template{% endif %} content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
