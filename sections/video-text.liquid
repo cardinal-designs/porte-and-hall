@@ -65,6 +65,7 @@
 {%- endif -%}
 
 {{ 'section-video-text.css' | asset_url | stylesheet_tag }}
+{% render 'ph-responsive-video' %}
 
 <section class="Section {{ section.settings.custom-class }} video-text" id="VideoText-{{ section.id }}" style="background-color: {{ section.settings.bg_color }};">
   {%- capture css_variables -%}
@@ -169,6 +170,7 @@
         -%}
         <video
           data-hero-video
+          data-autoplay-video
           id="video-hero-{{ section.id }}"
           class="videos"
           playsinline
@@ -334,6 +336,8 @@
     1) Poster <picture> remains LCP (video starts with preload="none", no <source>).
     2) After paint/idle, matchMedia picks ONE viewport source list, load(), muted play().
     3) Gesture fallback only if play() is rejected (autoplay policy).
+    4) Breakpoint crossing (mobile↔desktop) reuses PHResponsiveVideo.bindBreakpointSwitch —
+       initial idle/load timing stays local to this section.
     Never preload="auto"; never inject both mobile and desktop source lists.
   */
   var started = false;
@@ -356,6 +360,7 @@
 
     var useMobile =
       window.matchMedia(MOBILE_MQ).matches && video.getAttribute('data-sources-mobile');
+    var mode = useMobile ? 'mobile' : 'desktop';
     var list = parseSources(
       useMobile
         ? video.getAttribute('data-sources-mobile')
@@ -376,8 +381,10 @@
     });
 
     var track = video.querySelector('track');
+    var firstSrc = '';
     list.forEach(function (item) {
       if (!item || !item.src) return;
+      if (!firstSrc) firstSrc = item.src;
       var source = document.createElement('source');
       source.src = item.src;
       if (item.type) source.type = item.type;
@@ -386,7 +393,17 @@
     });
 
     video.setAttribute('data-sources-applied', 'true');
+    // Keep helper breakpoint-switch tracking in sync with initial selection.
+    video.setAttribute('data-source-mode', mode);
+    video.setAttribute('data-current-src', firstSrc);
     return true;
+  }
+
+  function bindBreakpoint(video) {
+    if (!video || !window.PHResponsiveVideo || !window.PHResponsiveVideo.bindBreakpointSwitch) {
+      return;
+    }
+    window.PHResponsiveVideo.bindBreakpointSwitch(video);
   }
 
   function fadePoster(wrapper) {
@@ -435,6 +452,8 @@
 
   function loadAndPlay(video, wrapper) {
     if (!video) return;
+
+    bindBreakpoint(video);
 
     if (video.getAttribute('data-hero-loaded') !== 'true') {
       if (!applyViewportSource(video)) return;
@@ -512,6 +531,46 @@
     }
   }
 
+  // Bind early (safe): switchIfNeeded no-ops until data-sources-applied after idle init.
+  document.querySelectorAll('section.video-text video[data-hero-video]').forEach(bindBreakpoint);
+
   scheduleAutoStart();
+
+  if (!window.__phVideoTextSectionEventsBound) {
+    window.__phVideoTextSectionEventsBound = true;
+
+    document.addEventListener('shopify:section:unload', function (event) {
+      var sectionEl = event.target;
+      if (!sectionEl || !window.PHResponsiveVideo) return;
+      var video = sectionEl.querySelector('video[data-hero-video]');
+      if (video && window.PHResponsiveVideo.unbindBreakpointSwitch) {
+        window.PHResponsiveVideo.unbindBreakpointSwitch(video);
+      }
+    });
+
+    document.addEventListener('shopify:section:load', function (event) {
+      var sectionEl = event.target;
+      if (!sectionEl) return;
+      var section = sectionEl.querySelector('section.video-text');
+      if (!section) return;
+      var video = section.querySelector('video[data-hero-video]');
+      var wrapper = section.querySelector('.video-wrapper');
+      if (!video) return;
+
+      if (window.PHResponsiveVideo && window.PHResponsiveVideo.unbindBreakpointSwitch) {
+        window.PHResponsiveVideo.unbindBreakpointSwitch(video);
+      }
+      video.removeAttribute('data-sources-applied');
+      video.removeAttribute('data-source-mode');
+      video.removeAttribute('data-current-src');
+      video.removeAttribute('data-hero-loaded');
+      video.removeAttribute('data-play-attempted');
+      video.removeAttribute('data-play-rejected');
+      video.removeAttribute('data-mq-bound');
+
+      // Theme editor re-render: init this section immediately (page idle already passed).
+      loadAndPlay(video, wrapper);
+    });
+  }
 })();
 {% endjavascript %}

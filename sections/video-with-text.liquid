@@ -1,113 +1,268 @@
+{%- comment -%}
+  Below-the-fold video + text.
+  Uses the same single-video + matchMedia pattern as video-text.liquid.
+  Click-to-play UX preserved; MP4 bytes deferred until near viewport.
+{%- endcomment -%}
+
+{%- liquid
+  assign desktop_video = section.settings.video
+  assign mobile_video = section.settings.mobile_video
+  assign has_mobile_video = false
+  if desktop_video != blank and mobile_video != blank and mobile_video.id != desktop_video.id
+    assign has_mobile_video = true
+  endif
+
+  if has_mobile_video and mobile_video.preview_image != blank
+    assign poster_mobile_image = mobile_video.preview_image
+  elsif desktop_video.preview_image != blank
+    assign poster_mobile_image = desktop_video.preview_image
+  endif
+
+  if desktop_video.preview_image != blank
+    assign poster_desktop_image = desktop_video.preview_image
+  else
+    assign poster_desktop_image = poster_mobile_image
+  endif
+
+  if poster_mobile_image != blank
+    assign poster_url_mobile = poster_mobile_image | image_url: width: 750
+  endif
+  if poster_desktop_image != blank
+    assign poster_url_desktop = poster_desktop_image | image_url: width: 1000
+  endif
+
+  assign captions_url = 'hero-captions-en.vtt' | file_url
+-%}
+
 {{ 'section-hero.css' | asset_url | stylesheet_tag }}
+{% render 'ph-responsive-video' %}
 
-<div class="hero video-with-text">
-
-    <div class="hero__content">
-      <div class="hero__container">
-        <h3 class="hero__title">{{ section.settings.title }}</h3>
-        <p>{{ section.settings.sub-text }}</p>
-        <div class="content-section">
-          {{ section.settings.content }}
-        </div>
+<div class="hero video-with-text" id="VideoWithText-{{ section.id }}" data-section-type="video-with-text">
+  <div class="hero__content">
+    <div class="hero__container">
+      <h3 class="hero__title">{{ section.settings.title }}</h3>
+      <p>{{ section.settings.sub-text }}</p>
+      <div class="content-section">
+        {{ section.settings.content }}
       </div>
     </div>
+  </div>
 
-    <div class="hero__media">
-      {% if section.settings.video != blank %}
-        {% liquid
-          assign classes = 'videos'
-          if section.settings.mobile_video != blank
-            assign classes = 'videos hide-mobile'
+  <div class="hero__media">
+    {%- if desktop_video != blank -%}
+      {%- liquid
+        # Prefer progressive MP4 only (matches Shopify video_tag loop behaviour;
+        # avoids injecting HLS m3u8 that can create extra probes). Fall back to
+        # all sources if no mp4 entry exists.
+        capture sources_desktop_json
+          echo '['
+          assign mp4_count = 0
+          for source in desktop_video.sources
+            if source.mime_type == 'video/mp4'
+              if mp4_count > 0
+                echo ','
+              endif
+              echo '{"src":'
+              echo source.url | json
+              echo ',"type":'
+              echo source.mime_type | json
+              echo '}'
+              assign mp4_count = mp4_count | plus: 1
+            endif
+          endfor
+          if mp4_count == 0
+            for source in desktop_video.sources
+              echo '{"src":'
+              echo source.url | json
+              echo ',"type":'
+              echo source.mime_type | json
+              echo '}'
+              unless forloop.last
+                echo ','
+              endunless
+            endfor
           endif
-        %}
-        {% capture video_with_text_video %}
-          {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: classes, id: 'video-with-text-vid', image_size: '1000x' }}
-        {% endcapture %}
-        {% assign captions_url = 'hero-captions-en.vtt' | file_url %}
-        {{ video_with_text_video
-          | replace: '</video>', '<track kind="captions" src="' | append: captions_url | append: '" srclang="en" label="English" default></track></video>'
-        }}
-        {% if section.settings.mobile_video != blank %}
-          {{ section.settings.video | video_tag: autoplay: false, loop: false, muted: true, controls: false, class: 'videos hide-desktop', id: 'video-with-text-vid', image_size: '1000x' }}
-        {% endif %}
-      {% endif %}
-      <div id="circle-play" class="hero__element">
-        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="50" viewBox="0 0 45 50" fill="none">
-        <path d="M42.9214 21.5359C45.5881 23.0755 45.5881 26.9245 42.9214 28.4641L6.92138 49.2487C4.25472 50.7883 0.921387 48.8638 0.921387 45.7846L0.921387 4.21539C0.921387 1.13619 4.25472 -0.788311 6.92139 0.751289L42.9214 21.5359Z" fill="white"/>
-        </svg>
-      </div>
-    </div>
+          echo ']'
+        endcapture
 
+        if has_mobile_video
+          capture sources_mobile_json
+            echo '['
+            assign mp4_count = 0
+            for source in mobile_video.sources
+              if source.mime_type == 'video/mp4'
+                if mp4_count > 0
+                  echo ','
+                endif
+                echo '{"src":'
+                echo source.url | json
+                echo ',"type":'
+                echo source.mime_type | json
+                echo '}'
+                assign mp4_count = mp4_count | plus: 1
+              endif
+            endfor
+            if mp4_count == 0
+              for source in mobile_video.sources
+                echo '{"src":'
+                echo source.url | json
+                echo ',"type":'
+                echo source.mime_type | json
+                echo '}'
+                unless forloop.last
+                  echo ','
+                endunless
+              endfor
+            endif
+            echo ']'
+          endcapture
+        endif
+      -%}
+
+      <video
+        data-deferred-video
+        id="video-with-text-{{ section.id }}"
+        class="videos"
+        playsinline
+        muted
+        preload="none"
+        data-poster-mobile="{{ poster_url_mobile | default: poster_url_desktop | escape }}"
+        data-poster-desktop="{{ poster_url_desktop | default: poster_url_mobile | escape }}"
+        data-sources-desktop="{{ sources_desktop_json | strip_newlines | escape }}"
+        {% if has_mobile_video %}
+          data-sources-mobile="{{ sources_mobile_json | strip_newlines | escape }}"
+        {% endif %}
+        {% if poster_url_desktop != blank or poster_url_mobile != blank %}
+          poster="{{ poster_url_desktop | default: poster_url_mobile }}"
+        {% endif %}
+        aria-label="{{ section.settings.title | default: 'Video' | escape }}"
+      >
+        <track kind="captions" src="{{ captions_url }}" srclang="en" label="English" default>
+      </video>
+
+      <button
+        type="button"
+        id="circle-play-{{ section.id }}"
+        class="hero__element"
+        aria-label="Play or pause video"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="50" viewBox="0 0 45 50" fill="none" aria-hidden="true">
+          <path d="M42.9214 21.5359C45.5881 23.0755 45.5881 26.9245 42.9214 28.4641L6.92138 49.2487C4.25472 50.7883 0.921387 48.8638 0.921387 45.7846L0.921387 4.21539C0.921387 1.13619 4.25472 -0.788311 6.92139 0.751289L42.9214 21.5359Z" fill="white"/>
+        </svg>
+      </button>
+    {%- endif -%}
+  </div>
 </div>
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 <script>
- //   $('.videos').parent().click(function () {
- //    if($(this).children(".videos").get(0).paused){
- //   $(this).children(".videos").get(0).play();   
- //  $(this).children(".hero__element").fadeOut();
- //  }else{       
- //  $(this).children(".videos").get(0).pause();
-     
- //    $(this).children(".hero__element").fadeIn();
- //  }
-      
- // });
+(function () {
+  var rootId = 'VideoWithText-{{ section.id }}';
 
- //  $('.videos').parent().click(function () {
- //    if($(this).children(".videos").get(0).paused){
- //          $(this).children(".videos").get(0).play();   
- //          $(this).children(".hero__element").fadeOut();
- //    }else{
- //        $(this).children(".videos").get(0).stop();
- //        $(this).children(".hero__element").fadeIn();
- //    }
-    
-      
- // });
+  window.PHInitVideoWithText = function (root) {
+    if (!root || root.getAttribute('data-video-init') === 'true') return;
+    if (!window.PHResponsiveVideo) return;
 
+    var video = root.querySelector('video[data-deferred-video]');
+    var playBtn = root.querySelector('.hero__element');
+    if (!video || !playBtn) return;
 
-  
-  {% comment %} const video = document.getElementsByClassName("videos");
-  const circlePlayButton = document.getElementsByClassName("hero__element");
-  
-  function togglePlay() {
-  	if (video.paused || video.ended) {
-  		video.play();
-  	} else {
-  		video.pause();
-  	}
+    root.setAttribute('data-video-init', 'true');
+    // Listen for mobile↔desktop crossings only after init; switch is no-op until sources applied.
+    window.PHResponsiveVideo.bindBreakpointSwitch(video);
+
+    function ensureSources() {
+      var result = window.PHResponsiveVideo.applyViewportSource(video);
+      if (!result || !result.ok) return false;
+      if (result.changed) {
+        try {
+          video.load();
+        } catch (e) {}
+      }
+      return true;
+    }
+
+    // Prefetch the correct viewport source when section nears viewport (not on page load).
+    window.PHResponsiveVideo.whenNear(
+      root,
+      function () {
+        ensureSources();
+      },
+      300
+    );
+
+    function togglePlay() {
+      if (!ensureSources()) return;
+
+      function run() {
+        if (video.paused || video.ended) {
+          var p = video.play();
+          if (p && typeof p.catch === 'function') p.catch(function () {});
+        } else {
+          video.pause();
+        }
+      }
+
+      if (video.readyState >= 2) {
+        run();
+      } else {
+        video.addEventListener('loadeddata', run, { once: true });
+      }
+    }
+
+    playBtn.addEventListener('click', togglePlay);
+    video.addEventListener('playing', function () {
+      playBtn.style.opacity = 0;
+    });
+    video.addEventListener('pause', function () {
+      playBtn.style.opacity = 1;
+    });
+  };
+
+  function boot() {
+    window.PHInitVideoWithText(document.getElementById(rootId));
   }
-  
-  circlePlayButton.addEventListener("click", togglePlay);
-  video.addEventListener("playing", function () {
-  	circlePlayButton.style.opacity = 0;
-  });
-  video.addEventListener("pause", function () {
-  	circlePlayButton.style.opacity = 1;
-  }); {% endcomment %}
 
-
-  const video = document.getElementById("video-with-text-vid");
-  const circlePlayButton = document.getElementById("circle-play");
-  
-  function togglePlay() {
-  	if (video.paused || video.ended) {
-  		video.play();
-  	} else {
-  		video.pause();
-  	}
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
   }
-  
-  circlePlayButton.addEventListener("click", togglePlay);
-  video.addEventListener("playing", function () {
-  	circlePlayButton.style.opacity = 0;
-  });
-  video.addEventListener("pause", function () {
-  	circlePlayButton.style.opacity = 1;
-  });
 
-  
+  if (!window.__phVwtSectionLoadBound) {
+    window.__phVwtSectionLoadBound = true;
+    document.addEventListener('shopify:section:load', function (event) {
+      var sectionEl = event.target;
+      if (!sectionEl || !window.PHInitVideoWithText) return;
+      var root = sectionEl.querySelector('[data-section-type="video-with-text"]');
+      if (!root) return;
+      root.removeAttribute('data-video-init');
+      var video = root.querySelector('video[data-deferred-video]');
+      if (video) {
+        if (window.PHResponsiveVideo && window.PHResponsiveVideo.unbindBreakpointSwitch) {
+          window.PHResponsiveVideo.unbindBreakpointSwitch(video);
+        }
+        video.removeAttribute('data-sources-applied');
+        video.removeAttribute('data-source-mode');
+        video.removeAttribute('data-current-src');
+      }
+      window.PHInitVideoWithText(root);
+    });
+  }
+
+  // Remove MediaQueryList listener while the old video is still in the DOM.
+  // section:load alone cannot reach the detached previous element.
+  if (!window.__phVwtSectionUnloadBound) {
+    window.__phVwtSectionUnloadBound = true;
+    document.addEventListener('shopify:section:unload', function (event) {
+      var sectionEl = event.target;
+      if (!sectionEl || !window.PHResponsiveVideo) return;
+      var video = sectionEl.querySelector('video[data-deferred-video]');
+      if (video && window.PHResponsiveVideo.unbindBreakpointSwitch) {
+        window.PHResponsiveVideo.unbindBreakpointSwitch(video);
+      }
+    });
+  }
+})();
 </script>
 
 {% schema %}
@@ -164,6 +319,9 @@
     transform: translate(50%, 50%);
     width: auto;
     cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 0;
   }
 
   .video-text .hero__content .hero__container .hero__title{
@@ -281,9 +439,6 @@
       top:-40px;
       padding:0 20px;
     }
-    .hero.video-with-text{
-      {% comment %} margin-top:40px; {% endcomment %}
-    }
   }
 
     @media screen and (max-width: 640px) {
@@ -306,7 +461,4 @@
          bottom: 5px;
       }
     }
-
-  
 </style>
-
