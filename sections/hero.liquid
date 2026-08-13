@@ -1,6 +1,35 @@
 {{ 'section-hero.css' | asset_url | stylesheet_tag }}
+{% render 'ph-responsive-video' %}
 
-<div class="hero">
+{%- liquid
+  assign desktop_video = section.settings.video
+  assign mobile_video = section.settings.mobile_video
+  assign has_mobile_video = false
+  if desktop_video != blank and mobile_video != blank and mobile_video.id != desktop_video.id
+    assign has_mobile_video = true
+  endif
+
+  if has_mobile_video and mobile_video.preview_image != blank
+    assign poster_mobile_image = mobile_video.preview_image
+  elsif desktop_video.preview_image != blank
+    assign poster_mobile_image = desktop_video.preview_image
+  endif
+
+  if desktop_video.preview_image != blank
+    assign poster_desktop_image = desktop_video.preview_image
+  else
+    assign poster_desktop_image = poster_mobile_image
+  endif
+
+  if poster_mobile_image != blank
+    assign poster_url_mobile = poster_mobile_image | image_url: width: 750
+  endif
+  if poster_desktop_image != blank
+    assign poster_url_desktop = poster_desktop_image | image_url: width: 1200
+  endif
+-%}
+
+<div class="hero" id="Hero-{{ section.id }}" data-section-type="hero">
   <div class="hero__content">
     <div class="hero__container">
       <h1 class="hero__title">{{ section.settings.title | newline_to_br }}</h1>
@@ -9,13 +38,93 @@
   </div>
 
   <div class="hero__media">
-    {% if section.settings.video != blank %}
-      {% if section.settings.mobile_video != blank %}
-        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "hide-mobile" }}
-        {{ section.settings.mobile_video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: "hide-desktop" }}
-      {% else %}
-        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
-      {% endif %}
+    {% if desktop_video != blank %}
+      {%- liquid
+        # Prefer progressive MP4 only (aligned with Shopify video_tag when loop is on).
+        capture sources_desktop_json
+          echo '['
+          assign mp4_count = 0
+          for source in desktop_video.sources
+            if source.mime_type == 'video/mp4'
+              if mp4_count > 0
+                echo ','
+              endif
+              echo '{"src":'
+              echo source.url | json
+              echo ',"type":'
+              echo source.mime_type | json
+              echo '}'
+              assign mp4_count = mp4_count | plus: 1
+            endif
+          endfor
+          if mp4_count == 0
+            for source in desktop_video.sources
+              echo '{"src":'
+              echo source.url | json
+              echo ',"type":'
+              echo source.mime_type | json
+              echo '}'
+              unless forloop.last
+                echo ','
+              endunless
+            endfor
+          endif
+          echo ']'
+        endcapture
+
+        if has_mobile_video
+          capture sources_mobile_json
+            echo '['
+            assign mp4_count = 0
+            for source in mobile_video.sources
+              if source.mime_type == 'video/mp4'
+                if mp4_count > 0
+                  echo ','
+                endif
+                echo '{"src":'
+                echo source.url | json
+                echo ',"type":'
+                echo source.mime_type | json
+                echo '}'
+                assign mp4_count = mp4_count | plus: 1
+              endif
+            endfor
+            if mp4_count == 0
+              for source in mobile_video.sources
+                echo '{"src":'
+                echo source.url | json
+                echo ',"type":'
+                echo source.mime_type | json
+                echo '}'
+                unless forloop.last
+                  echo ','
+                endunless
+              endfor
+            endif
+            echo ']'
+          endcapture
+        endif
+      -%}
+
+      <video
+        data-deferred-video
+        data-autoplay-video
+        id="hero-video-{{ section.id }}"
+        class="videos"
+        playsinline
+        muted
+        loop
+        preload="none"
+        data-poster-mobile="{{ poster_url_mobile | default: poster_url_desktop | escape }}"
+        data-poster-desktop="{{ poster_url_desktop | default: poster_url_mobile | escape }}"
+        data-sources-desktop="{{ sources_desktop_json | strip_newlines | escape }}"
+        {% if has_mobile_video %}
+          data-sources-mobile="{{ sources_mobile_json | strip_newlines | escape }}"
+        {% endif %}
+        {% if poster_url_desktop != blank or poster_url_mobile != blank %}
+          poster="{{ poster_url_desktop | default: poster_url_mobile }}"
+        {% endif %}
+      ></video>
     {% else %}
       {% if section.settings.mobile_image != blank %}
         {% render 'lazy-image', image: section.settings.image, fade: true, fill: true, classes: 'hide-mobile', eager: true, widthI: 1600, sizes: '100vw', widths: '750, 1100, 1400, 1600' %}
@@ -30,6 +139,107 @@
     </div>
   </div>
 </div>
+
+<script>
+(function () {
+  var rootId = 'Hero-{{ section.id }}';
+
+  window.PHInitHeroVideo = function (root) {
+    if (!root || root.getAttribute('data-video-init') === 'true') return;
+    if (!window.PHResponsiveVideo) return;
+
+    var video = root.querySelector('video[data-deferred-video]');
+    if (!video) return;
+
+    root.setAttribute('data-video-init', 'true');
+    // Listen for mobile↔desktop crossings only after init; switch is no-op until sources applied.
+    window.PHResponsiveVideo.bindBreakpointSwitch(video);
+
+    function loadAndPlay() {
+      if (video.getAttribute('data-hero-loaded') === 'true') {
+        attemptPlay();
+        return;
+      }
+      var result = window.PHResponsiveVideo.applyViewportSource(video);
+      if (!result || !result.ok) return;
+      video.setAttribute('data-hero-loaded', 'true');
+      if (result.changed) {
+        try {
+          video.load();
+        } catch (e) {}
+      }
+      attemptPlay();
+    }
+
+    function attemptPlay() {
+      if (typeof video.play !== 'function') return;
+      if (video.readyState >= 2) {
+        var p = video.play();
+        if (p && typeof p.catch === 'function') p.catch(function () {});
+      } else {
+        video.addEventListener(
+          'loadeddata',
+          function () {
+            var p = video.play();
+            if (p && typeof p.catch === 'function') p.catch(function () {});
+          },
+          { once: true }
+        );
+      }
+    }
+
+    // Near-viewport init: ATF heroes start immediately; BTF wait until approach.
+    // No forced 4s timeout (unlike initOnVisible) so distant heroes stay unloaded.
+    window.PHResponsiveVideo.whenNear(root, loadAndPlay, 200);
+  };
+
+  function boot() {
+    window.PHInitHeroVideo(document.getElementById(rootId));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+
+  if (!window.__phHeroSectionLoadBound) {
+    window.__phHeroSectionLoadBound = true;
+    document.addEventListener('shopify:section:load', function (event) {
+      var sectionEl = event.target;
+      if (!sectionEl || !window.PHInitHeroVideo) return;
+      var root = sectionEl.querySelector('[data-section-type="hero"]');
+      if (!root) return;
+      root.removeAttribute('data-video-init');
+      var video = root.querySelector('video[data-deferred-video]');
+      if (video) {
+        if (window.PHResponsiveVideo && window.PHResponsiveVideo.unbindBreakpointSwitch) {
+          window.PHResponsiveVideo.unbindBreakpointSwitch(video);
+        }
+        video.removeAttribute('data-sources-applied');
+        video.removeAttribute('data-source-mode');
+        video.removeAttribute('data-current-src');
+        video.removeAttribute('data-hero-loaded');
+      }
+      window.PHInitHeroVideo(root);
+    });
+  }
+
+  // Remove MediaQueryList listener while the old video is still in the DOM.
+  // section:load alone cannot reach the detached previous element.
+  if (!window.__phHeroSectionUnloadBound) {
+    window.__phHeroSectionUnloadBound = true;
+    document.addEventListener('shopify:section:unload', function (event) {
+      var sectionEl = event.target;
+      if (!sectionEl || !window.PHResponsiveVideo) return;
+      var video = sectionEl.querySelector('video[data-deferred-video]');
+      if (video && window.PHResponsiveVideo.unbindBreakpointSwitch) {
+        window.PHResponsiveVideo.unbindBreakpointSwitch(video);
+      }
+    });
+  }
+})();
+</script>
 
 {% schema %}
 {

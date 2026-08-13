@@ -1,0 +1,268 @@
+{% doc %}
+  Shared responsive-video helpers (idempotent by VERSION).
+  Mirrors the proven matchMedia source-selection pattern from sections/video-text.liquid.
+
+  - applyViewportSource(video): injects ONE viewport source list from data-sources-*
+    Tracks data-source-mode + data-current-src. Re-applies only when mode/URL changes.
+  - whenNear(el, cb, rootMarginPx): IntersectionObserver without the 4s forced init
+  - bindBreakpointSwitch(video): matchMedia('(max-width: 768px)') change listener
+    Switches source only after the video was initialized; restores autoplay/playing state
+
+  @example
+  {% render 'ph-responsive-video' %}
+{% enddoc %}
+<script>
+(function () {
+  var VERSION = 2;
+  if (window.PHResponsiveVideo && window.PHResponsiveVideo.VERSION === VERSION) return;
+
+  var MOBILE_MQ = '(max-width: 768px)';
+
+  function parseSources(raw) {
+    if (!raw) return [];
+    try {
+      var list = JSON.parse(raw);
+      return Array.isArray(list) ? list : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function getViewportMode(video) {
+    var useMobile =
+      window.matchMedia(MOBILE_MQ).matches && video.getAttribute('data-sources-mobile');
+    return useMobile ? 'mobile' : 'desktop';
+  }
+
+  function getSourceListForMode(video, mode) {
+    var list = parseSources(
+      mode === 'mobile'
+        ? video.getAttribute('data-sources-mobile')
+        : video.getAttribute('data-sources-desktop')
+    );
+    if (!list.length) {
+      list = parseSources(video.getAttribute('data-sources-desktop'));
+    }
+    return list;
+  }
+
+  function primarySrc(list) {
+    for (var i = 0; i < list.length; i++) {
+      if (list[i] && list[i].src) return list[i].src;
+    }
+    return '';
+  }
+
+  /**
+   * Inject the viewport-matched source list.
+   * Returns { ok, changed }.
+   * - ok=false: no usable sources
+   * - changed=false: already on the correct mode/URL (no DOM/network work)
+   */
+  function applyViewportSource(video) {
+    if (!video) return { ok: false, changed: false };
+
+    var mode = getViewportMode(video);
+    var list = getSourceListForMode(video, mode);
+    if (!list.length) return { ok: false, changed: false };
+
+    var nextSrc = primarySrc(list);
+    if (!nextSrc) return { ok: false, changed: false };
+
+    var prevMode = video.getAttribute('data-source-mode') || '';
+    var prevSrc = video.getAttribute('data-current-src') || '';
+    var already = video.getAttribute('data-sources-applied') === 'true';
+
+    // Same asset (or same mode+url) — no DOM mutation, no load().
+    if (already && prevSrc === nextSrc) {
+      if (prevMode !== mode) video.setAttribute('data-source-mode', mode);
+      return { ok: true, changed: false };
+    }
+
+    var poster =
+      mode === 'mobile'
+        ? video.getAttribute('data-poster-mobile')
+        : video.getAttribute('data-poster-desktop');
+    if (poster) video.setAttribute('poster', poster);
+
+    video.querySelectorAll('source').forEach(function (el) {
+      el.remove();
+    });
+
+    var track = video.querySelector('track');
+    list.forEach(function (item) {
+      if (!item || !item.src) return;
+      var source = document.createElement('source');
+      source.src = item.src;
+      if (item.type) source.type = item.type;
+      if (track) video.insertBefore(source, track);
+      else video.appendChild(source);
+    });
+
+    video.setAttribute('data-sources-applied', 'true');
+    video.setAttribute('data-source-mode', mode);
+    video.setAttribute('data-current-src', nextSrc);
+    return { ok: true, changed: true };
+  }
+
+  function playSafe(video) {
+    if (!video || typeof video.play !== 'function') return;
+    var p = video.play();
+    if (p && typeof p.catch === 'function') p.catch(function () {});
+  }
+
+  function restorePlayback(video, wasPlaying) {
+    var isAutoplay = video.hasAttribute('data-autoplay-video');
+    // Autoplay sections always resume. Click-to-play resumes only if it was playing.
+    if (!isAutoplay && !wasPlaying) return;
+
+    function run() {
+      playSafe(video);
+    }
+
+    if (video.readyState >= 2) {
+      run();
+    } else {
+      video.addEventListener('loadeddata', run, { once: true });
+    }
+  }
+
+  /**
+   * Breakpoint crossed: swap source if needed. No-op when:
+   * - video not yet initialized (below-fold deferral still active)
+   * - mode/URL unchanged
+   * - video detached from document
+   */
+  function switchIfNeeded(video) {
+    if (!video || !video.isConnected) return;
+    // Do not force network for sections that have not been near-viewport initialized.
+    if (video.getAttribute('data-sources-applied') !== 'true') return;
+
+    var wasPlaying = !video.paused && !video.ended;
+    var result = applyViewportSource(video);
+    if (!result.ok || !result.changed) return;
+
+    try {
+      video.load();
+    } catch (e) {}
+
+    restorePlayback(video, wasPlaying);
+  }
+
+  function unbindBreakpointSwitch(video) {
+    if (!video) return;
+    var mq = video.__phMq;
+    var onChange = video.__phMqChange;
+    if (mq && onChange) {
+      if (typeof mq.removeEventListener === 'function') {
+        mq.removeEventListener('change', onChange);
+      } else if (typeof mq.removeListener === 'function') {
+        mq.removeListener(onChange);
+      }
+    }
+    video.__phMq = null;
+    video.__phMqChange = null;
+    video.removeAttribute('data-mq-bound');
+  }
+
+  /**
+   * One matchMedia('change') listener per video element.
+   * Fires only on mobile↔desktop transitions, not on every pixel resize.
+   */
+  function bindBreakpointSwitch(video) {
+    if (!video) return;
+    if (video.getAttribute('data-mq-bound') === 'true') return;
+
+    var mq = window.matchMedia(MOBILE_MQ);
+    function onChange() {
+      if (!video.isConnected) {
+        unbindBreakpointSwitch(video);
+        return;
+      }
+      switchIfNeeded(video);
+    }
+
+    if (typeof mq.addEventListener === 'function') {
+      mq.addEventListener('change', onChange);
+    } else if (typeof mq.addListener === 'function') {
+      mq.addListener(onChange);
+    } else {
+      return;
+    }
+
+    video.__phMq = mq;
+    video.__phMqChange = onChange;
+    video.setAttribute('data-mq-bound', 'true');
+  }
+
+  /**
+   * Run callback once when element is near viewport.
+   * Unlike window.initOnVisible, does NOT force-run after 4s — critical for
+   * deferring below-the-fold video network until the user actually approaches.
+   */
+  function whenNear(element, callback, rootMarginPx) {
+    if (!element) {
+      callback();
+      return;
+    }
+
+    var margin = typeof rootMarginPx === 'number' ? rootMarginPx : 300;
+    var called = false;
+
+    function runOnce() {
+      if (called) return;
+      called = true;
+      callback();
+    }
+
+    function isNearViewport() {
+      var rect = element.getBoundingClientRect();
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      var vw = window.innerWidth || document.documentElement.clientWidth;
+      if (rect.width === 0 && rect.height === 0 && rect.top === 0 && rect.left === 0) {
+        return false;
+      }
+      return (
+        rect.bottom > -margin &&
+        rect.top < vh + margin &&
+        rect.right > -margin &&
+        rect.left < vw + margin
+      );
+    }
+
+    if (isNearViewport()) {
+      runOnce();
+      return;
+    }
+
+    if (typeof IntersectionObserver === 'undefined') {
+      runOnce();
+      return;
+    }
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) {
+            observer.disconnect();
+            runOnce();
+            return;
+          }
+        }
+      },
+      { rootMargin: margin + 'px' }
+    );
+    observer.observe(element);
+  }
+
+  window.PHResponsiveVideo = {
+    VERSION: VERSION,
+    MOBILE_MQ: MOBILE_MQ,
+    parseSources: parseSources,
+    applyViewportSource: applyViewportSource,
+    whenNear: whenNear,
+    bindBreakpointSwitch: bindBreakpointSwitch,
+    unbindBreakpointSwitch: unbindBreakpointSwitch
+  };
+})();
+</script>
