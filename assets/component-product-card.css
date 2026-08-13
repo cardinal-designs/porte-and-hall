@@ -127,7 +127,6 @@ grouped-product-card {
 .product-card__price .old-price {
   text-decoration: line-through;
   text-decoration-thickness: 1px;
-  opacity: .5;
 }
 
 .product-card__price .old-price + span {
