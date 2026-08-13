@@ -380,7 +380,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  column-gap: 10px;
+  column-gap: 14px;
   row-gap: 10px;
   flex-wrap: wrap;
   /* overflow-x: scroll; */
@@ -448,6 +448,10 @@
 
 .product__active-swatch {
   outline-color: var(--gold);
+}
+
+.product__active-swatch.product__new-swatch {
+  outline-offset: -2px;
 }
 
 /* .product__active-swatch:after,

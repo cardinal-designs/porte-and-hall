@@ -63,6 +63,9 @@
           if swatch.available == false
             assign element_classes = element_classes | append: ' product__oos-swatch'
           endif
+          if show_badge
+            assign element_classes = element_classes | append: ' product__new-swatch'
+          endif
 
           assign swatch_file_name = value | handle | append: '.png'
           assign swatch_image = images[swatch_file_name]
@@ -83,7 +86,7 @@
           echo "'>"
 
           if show_badge
-            echo "<span class='product__swatch-badge-new'>New</span>"
+            echo '<span class="product__swatch-badge-new"><svg class="swatch-ring-svg" width="72" height="69" viewBox="0 0 72 69"><path d="M 50.14 4.62 A 34.48 34.48 0 1 1 22.10 4.62" fill="none" stroke="#546B82" stroke-width="1.1"></path><path id="ringTextPathDesktop" d="M 23.20 4.15 A 34.48 34.48 0 0 1 49.04 4.15" fill="none" stroke="none"></path><text font-family="Brandon Grotesque, sans-serif" font-size="10" font-weight="700" letter-spacing="0.4" fill="#546B82"><textPath href="#ringTextPathDesktop" startOffset="50%" text-anchor="middle">NEW!</textPath></text></svg></span>'
           endif
 
           echo "<span style='background-image: url("
