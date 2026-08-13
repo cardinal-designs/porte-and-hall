@@ -60,7 +60,7 @@ span.jdgm-prev-badge__stars {
   position: relative;
 }
 
-.product__swatches .product__swatch-badge-new {
+/* .product__swatches .product__swatch-badge-new {
   position: absolute;
   bottom: -16px;
   left: 50%;
@@ -77,6 +77,10 @@ span.jdgm-prev-badge__stars {
   width: auto;
   height: auto;
   transform: translateX(-50%);
+} */
+
+.product__swatches .product__swatch-badge-new {
+  display: none;
 }
 
 #ot-sdk-btn-floating.ot-floating-button {

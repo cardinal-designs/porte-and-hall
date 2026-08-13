@@ -432,7 +432,7 @@ endcapture
               assign other_sizes = grouped_collection.metafields.custom.other_sizes.value
             %}
 
-            <span data-active-style="{{ active_style }}"></span>
+            <span data-idd="{{ grouped_collection }}" data-active-style="{{ active_style }}"></span>
 
               {% if other_sizes != blank and section.settings.shop_more_below != true %}
                 {% capture other_size_links %}
@@ -461,7 +461,9 @@ endcapture
             {% endif %}
 
              {% assign small_text_1 = 0 %}
-            {% for block in other_sizes %}              {%- assign current_size = block.title | split: " | " -%}
+            
+            {% for block in other_sizes %}              
+              {%- assign current_size = block.title | split: " | " -%}
               {%- assign format_color = "- " | append: active_style | append: " /" -%}
               {%- assign match_name = block.title | replace: "|",  format_color -%}
               {%- assign match = block.products | where: 'title', match_name -%}

@@ -2355,6 +2355,7 @@ header.condensed .header__menu {
 
 .rte a {
   color: var(--gold-secondary);
+  text-decoration: underline;
 }
 
 .rte a:hover {
