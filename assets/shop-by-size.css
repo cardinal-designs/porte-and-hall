@@ -95,7 +95,7 @@
   line-height: 1;
   letter-spacing: 0.06em;
   padding: 12px;
-  background-color: rgba(84, 107, 130, 0.16);
+  border: 1px solid var(--blue);
 }
 
 .shop-by-size__section .shop-by-size__navigation ul li a.shop-by-size__tab--active {
