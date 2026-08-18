@@ -209,6 +209,11 @@
     {%- endcomment -%}
     <script src="{{ 'grouped-product-card.js' | asset_url }}" defer="defer"></script>
 
+    {%- comment -%} Style the Rebuy Smart Search results page toward the collection UI (search page only). {%- endcomment -%}
+    {% if request.page_type == 'search' %}
+      {{ 'component-rebuy-search.css' | asset_url | stylesheet_tag }}
+    {% endif %}
+
     {%- render 'head-scripts-loader' -%}
   </head>
 

@@ -1303,16 +1303,17 @@ header.condensed .header__menu {
 /*================ Search ================*/
 .header__search {
   width: 100%;
-  padding: 20px 0;
+  padding: 24px 0;
   position: absolute;
   top: 100%;
   left: 0;
   background: white;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid var(--blue, #546b82);
+  border-bottom: 1px solid var(--blue, #546b82);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 3;
 }
 
 .header__search.is-visible {
@@ -1324,6 +1325,7 @@ header.condensed .header__menu {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 16px;
 }
 
 .header__search-form {
@@ -1332,23 +1334,83 @@ header.condensed .header__menu {
 }
 
 .header__search-group {
-  margin-right: 20px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #000;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--blue, #546b82);
+  transition: border-color 0.2s ease;
+}
+
+.header__search-group:focus-within {
+  border-bottom-width: 2px;
 }
 
 .header__search-input {
   width: 100%;
-  padding: 0 0 10px;
+  padding: 0;
   border: 0;
+  font-family: brandon, sans-serif;
   font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  color: var(--blue, #546b82);
+  background: transparent;
 }
 
-.header__search-container .icon {
-  height: 25px;
-  width: 25px;
+.header__search-input::placeholder {
+  color: var(--blue, #546b82);
+  opacity: 0.5;
+}
+
+.header__search-input:focus {
+  outline: none;
+}
+
+/* Hide the browser's native search clear (✕) so it doesn't clash with our blue icons. */
+.header__search-input::-webkit-search-cancel-button,
+.header__search-input::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Search submit + close: SAME size, both centered on the input's text line. */
+.header__search-button,
+.header__search-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--blue, #546b82);
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+/* The close is a sibling of the field (which has bottom padding + underline).
+   Nudge it up by that padding so it aligns with the magnifier and the text. */
+.header__search-close {
+  margin-bottom: 8px;
+}
+
+/* Box sizes differ on purpose: the magnifier glyph fills only ~65% of its
+   viewBox while the close ✕ fills 100%. These sizes make the two glyphs render
+   at the same visual size (~14px). */
+.header__search-button .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.header__search-close .icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* Recolor search/close icons to the theme blue. The shared 'search' svg ships
+   with a hard-coded fill="black"; scope the override so other usages are safe. */
+.header__icon--search .icon path,
+.header__search-button .icon path,
+.header__search-close .icon path {
+  fill: var(--blue, #546b82);
 }
 
 /*============================================================================

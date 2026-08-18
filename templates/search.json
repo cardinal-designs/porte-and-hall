@@ -12,11 +12,6 @@
     "main": {
       "type": "main-search",
       "disabled": true,
-      "custom_css": [
-        ".xtsearchproduct {list-style: none;}",
-        ".xtsearchproduct .product-card {display: block !important;}",
-        ".xtsearchproduct .product-card__title {font-size: 18px; font-weight: bold; padding-top: 12px;}"
-      ],
       "settings": {
         "image_ratio": "square",
         "show_secondary_image": false,
@@ -24,8 +19,8 @@
         "show_image_outline": true,
         "show_vendor": false,
         "show_rating": false,
-        "enable_filtering": false,
-        "enable_sorting": false,
+        "enable_filtering": true,
+        "enable_sorting": true,
         "collapse_on_larger_devices": false,
         "article_show_date": true,
         "article_show_author": false
