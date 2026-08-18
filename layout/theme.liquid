@@ -154,6 +154,7 @@
       {% endif %}
     {% endif %}
 
+
     {% if load_swiper %}
       <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
     {% endif %}
@@ -162,6 +163,7 @@
       GSAP is only used for .scroll__button smooth-scroll (designer program),
       and that handler already waits 2s. Keep it off the initial mobile TBT path.
     {%- endcomment -%}
+
     <script data-lazy-src="{{ 'gsap.min.js' | asset_url }}" defer></script>
     <script data-lazy-src="{{ 'ScrollToPlugin.min.js' | asset_url }}" defer></script>
     <script src="{{ 'global.js' | asset_url }}" defer></script>
@@ -206,8 +208,6 @@
       collection/PDP carousels. Always load — skipping index broke card Swipers/swatches.
     {%- endcomment -%}
     <script src="{{ 'grouped-product-card.js' | asset_url }}" defer="defer"></script>
-
-    <script async src="https://cdn.rebuyengine.com/onsite/js/rebuy.js?shop={{ shop.permanent_domain }}"></script>
 
     {%- render 'head-scripts-loader' -%}
   </head>
@@ -750,5 +750,6 @@
       })();
     </script>
 
+<script async src="https://cdn.rebuyengine.com/onsite/js/rebuy.js?shop={{ shop.permanent_domain }}"></script>
   </body>
 </html>
