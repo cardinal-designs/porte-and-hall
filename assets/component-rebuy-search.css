@@ -29,7 +29,7 @@
 .rebuy-smart-search-results-page__product .rebuy-product-title,
 .rebuy-smart-search-results-page__product-detail .rebuy-product-title {
   margin: 0 !important;
-  font-family: louize, serif !important;
+  font-family: brandon !important;
   font-size: 16px !important;
   font-weight: 500 !important;
   line-height: 1.3 !important;
@@ -42,7 +42,7 @@
 .rebuy-smart-search-results-page__product .rebuy-money,
 .rebuy-smart-search-results-page__product .rebuy-product-price {
   margin: 0 !important;
-  font-family: brandon, sans-serif !important;
+  font-family: brandon !important;
   font-size: 16px !important;
   font-weight: 400 !important;
   color: var(--blue, #546b82) !important;
@@ -54,7 +54,7 @@
   border: 0 !important;
   border-radius: 0 !important;
   color: #fff !important;
-  font-family: brandon, sans-serif !important;
+  font-family: brandon !important;
   font-size: 15px !important;
   font-weight: 600 !important;
   letter-spacing: 2px !important;
@@ -67,7 +67,7 @@
   border: 0 !important;
   border-radius: 0 !important;
   color: #fff !important;
-  font-family: brandon, sans-serif !important;
+  font-family: brandon !important;
   font-size: 15px !important;
   font-weight: 600 !important;
   letter-spacing: 2px !important;
@@ -86,10 +86,10 @@
 /* --- Filter group headings (SHOP BY SIZE / COLOR / …): match collection --- */
 .rebuy-smart-search-results-page-sidebar__filter-section-title,
 .rebuy-smart-search-results-page-sidebar__filter-list-title {
-  font-family: brandon, sans-serif !important;
-  font-size: 16px !important;
+  font-family: brandon !important;
+  font-size: 13px !important;
   font-weight: 600 !important;
-  letter-spacing: 2px !important;
+  letter-spacing: 1.5px !important;
   text-transform: uppercase !important;
   color: var(--blue, #546b82) !important;
 }
@@ -109,7 +109,7 @@ h3.rebuy-smart-search-results-page-sidebar__filter-section-title.rebuy-title {
 .rebuy-smart-search-results-page__filter-option-list label,
 .rebuy-smart-search-results-page__filter-product-type,
 .rebuy-smart-search-results-page__filter-product-option {
-  font-family: brandon, sans-serif !important;
+  font-family: brandon !important;
   font-size: 14px !important;
   font-weight: 600 !important;
   letter-spacing: 2px !important;
@@ -130,18 +130,19 @@ h3.rebuy-smart-search-results-page-sidebar__filter-section-title.rebuy-title {
 /* --- "FILTERS" / results heading --- */
 .rebuy-smart-search-results-page-sidebar__result-title,
 .rebuy-smart-search-results-page-sidebar__result-section-title {
-  font-family: louize, serif !important;
+  font-family: brandon !important;
   color: var(--blue, #546b82) !important;
 }
 
 .rebuy-smart-search-results-page-sidebar__result-section-title {
   padding-bottom: 10px !important;
+  font-size: 13px !important;
 }
 
 /* --- Search input + sort select: brand styling --- */
 .rebuy-smart-search-results-page-sidebar__input.rebuy-input,
 .rebuy-smart-search-results-page__container .rebuy-select {
-  font-family: brandon, sans-serif !important;
+  font-family: brandon !important;
   color: var(--blue, #546b82) !important;
   border-color: var(--blue, #546b82) !important;
   border-radius: 0 !important;
@@ -183,7 +184,7 @@ h3.rebuy-smart-search-results-page-sidebar__filter-section-title.rebuy-title {
 [data-rebuy-id="297767"] .rebuy-product-title,
 [data-rebuy-id="297767"] .rebuy-product-title-link {
   margin: 0 !important;
-  font-family: louize, serif !important;
+  font-family: brandon !important;
   font-size: 16px !important;
   font-weight: 500 !important;
   line-height: 1.3 !important;
@@ -195,7 +196,7 @@ h3.rebuy-smart-search-results-page-sidebar__filter-section-title.rebuy-title {
 [data-rebuy-id="297767"] .rebuy-money,
 [data-rebuy-id="297767"] .rebuy-product-price {
   margin: 0 !important;
-  font-family: brandon, sans-serif !important;
+  font-family: brandon !important;
   font-size: 16px !important;
   font-weight: 400 !important;
   color: var(--blue, #546b82) !important;
@@ -206,7 +207,7 @@ h3.rebuy-smart-search-results-page-sidebar__filter-section-title.rebuy-title {
   border: 0 !important;
   border-radius: 0 !important;
   color: #fff !important;
-  font-family: brandon, sans-serif !important;
+  font-family: brandon !important;
   font-size: 15px !important;
   font-weight: 600 !important;
   letter-spacing: 2px !important;
@@ -223,11 +224,58 @@ h3.rebuy-smart-search-results-page-sidebar__filter-section-title.rebuy-title {
 }
 
 .rebuy-smart-search-results-page-sidebar__result-section {
-  width: 100% !important;
+  width: calc(100% - 220px) !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__result-title {
+  margin-bottom: 0 !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__main-section {
+  margin-top: 20px !important;
+}
+
+.rebuy-smart-search-results-page__filter-price-dash {
+  width: 8px !important;
+}
+
+.rebuy-smart-search-results-page__filter-price-block {
+  width: calc(50% - 4px) !important;
+}
+
+.rebuy-smart-search-results-page__filter-option-list {
+  align-items: flex-start !important;
+}
+
+@media screen and (max-width: 1024px) {
+
+  .rebuy-widget .rebuy-product-grid .rebuy-product-block,
+  .rebuy-widget .rebuy-product-block+.rebuy-product-block {
+    padding: 5px !important;
+  }
+
+  .rebuy-widget .rebuy-product-title-link {
+    font-size: 11px !important;
+    letter-spacing: 1px !important;
+  }
+
+  .rebuy-money, .rebuy-widget .rebuy-money {
+    font-size: 12px !important;
+  }
+
+  .rebuy-product-actions .rebuy-button {
+    font-size: 12px !important;
+    letter-spacing: 1px !important;
+  }
+
+  .rebuy-widget .rebuy-product-block .rebuy-product-actions {
+    margin-top: 0 !important;
+  }
+
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   
   .rebuy-smart-search-results-page__product .rebuy-button, .rebuy-smart-search-results-page__continuous-scroll-button.rebuy-button {
     width: 100% !important;
@@ -235,8 +283,25 @@ h3.rebuy-smart-search-results-page-sidebar__filter-section-title.rebuy-title {
     letter-spacing: 1px !important;
   }
 
+  .rebuy-widget .rebuy-product-grid .rebuy-product-block,
   .rebuy-widget .rebuy-product-block+.rebuy-product-block {
     padding: 5px !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__context-right {
+    max-width: 125px !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__context-left {
+    padding-right: 0 !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__result-section {
+    width: 100% !important;
+  }
+
+  .rebuy-widget .rebuy-product-grid.small-carousel {
+    padding-bottom: 40px !important;
   }
 
 }
