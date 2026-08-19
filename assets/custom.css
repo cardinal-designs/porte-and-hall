@@ -79,13 +79,16 @@ span.jdgm-prev-badge__stars {
 } */
 
 .product__swatches .product__swatch-badge-new {
-  display: none;
+  overflow: visible;
 }
 
 .product__swatches .product__swatch-badge-new svg {
   width: 57px;
   height: auto;
   overflow: visible;
+  position: absolute;
+  left: -5px;
+  top: -5px;
 }
 
 #ot-sdk-btn-floating.ot-floating-button {
