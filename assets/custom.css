@@ -80,6 +80,7 @@ span.jdgm-prev-badge__stars {
 
 .product__swatches .product__swatch-badge-new {
   overflow: visible;
+  position: absolute;
 }
 
 .product__swatches .product__swatch-badge-new svg {
