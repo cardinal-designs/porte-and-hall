@@ -272,12 +272,19 @@ h3.rebuy-smart-search-results-page-sidebar__filter-section-title.rebuy-title {
     margin-top: 0 !important;
   }
 
+  .rebuy-widget .rebuy-carousel__arrows .rebuy-carousel__arrow,
+  .rebuy-widget .flickity-button {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
 }
 
 
 @media screen and (max-width: 767px) {
   
-  .rebuy-smart-search-results-page__product .rebuy-button, .rebuy-smart-search-results-page__continuous-scroll-button.rebuy-button {
+  .rebuy-smart-search-results-page__product .rebuy-button,
+  .rebuy-smart-search-results-page__continuous-scroll-button.rebuy-button {
     width: 100% !important;
     font-size: 13px !important;
     letter-spacing: 1px !important;
