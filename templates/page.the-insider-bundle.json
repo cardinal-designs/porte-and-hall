@@ -1,0 +1,210 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs_8LXnyk": {
+      "type": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "page_heading": "",
+        "subhead": "",
+        "section_height": "250",
+        "bg_color": "rgba(0,0,0,0)"
+      }
+    },
+    "trade_swatches_login_X6BJKk": {
+      "type": "trade-swatches-login",
+      "blocks": {
+        "column_QUhKa8": {
+          "type": "column",
+          "settings": {
+            "column_badge": "",
+            "column_title": "",
+            "button_1_text": "SIGN IN",
+            "button_1_url": "https://www.porteandhall.com/account/login",
+            "button_2_text": "",
+            "button_2_url": "",
+            "button_3_text": "",
+            "button_3_url": ""
+          }
+        },
+        "column_t6n3ma": {
+          "type": "column",
+          "settings": {
+            "column_badge": "",
+            "column_title": "",
+            "button_1_text": "BECOME A MEMBER",
+            "button_1_url": "shopify://pages/designer-program",
+            "button_2_text": "",
+            "button_2_url": "",
+            "button_3_text": "",
+            "button_3_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_QUhKa8",
+        "column_t6n3ma"
+      ],
+      "disabled": true,
+      "name": "Trade Swatches Login",
+      "settings": {
+        "subheading": "",
+        "title": "<h1>Swatches</h1>",
+        "content": "<p><br/>Trade Members may order up to five complimentary swatches.<br/><br/>See the color, feel the texture, and choose with confidence.</p>",
+        "link_text": "",
+        "link_url": "",
+        "custom-class": ""
+      }
+    },
+    "image_text_eRzCTq": {
+      "type": "image-text",
+      "disabled": true,
+      "name": "Image with text",
+      "settings": {
+        "subheading": "",
+        "title": "<h1>Swatches</h1>",
+        "content": "<p><br/>Trade Members may order up to five complimentary swatches.<br/><br/>See the color, feel the texture, and choose with confidence.</p>",
+        "link_text": "",
+        "link_url": "",
+        "custom-class": ""
+      }
+    },
+    "lp_columns_with_buttons_7zQDya": {
+      "type": "LP-columns-with-buttons",
+      "blocks": {
+        "block_zYQaip": {
+          "type": "block",
+          "settings": {
+            "column_badge": "",
+            "column_title": "",
+            "button_1_text": "SIGN IN",
+            "button_1_url": "https://www.porteandhall.com/account/login",
+            "button_2_text": "",
+            "button_2_url": "",
+            "button_3_text": "",
+            "button_3_url": ""
+          }
+        },
+        "block_qh9HPz": {
+          "type": "block",
+          "settings": {
+            "column_badge": "",
+            "column_title": "",
+            "button_1_text": "BECOME A MEMBER",
+            "button_1_url": "shopify://pages/designer-program",
+            "button_2_text": "",
+            "button_2_url": "",
+            "button_3_text": "",
+            "button_3_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_zYQaip",
+        "block_qh9HPz"
+      ],
+      "disabled": true,
+      "name": "LP Columns with buttons",
+      "settings": {}
+    },
+    "1783321871059e3ea5": {
+      "type": "apps",
+      "blocks": {
+        "rebuy_personalization_engine_rebuy_widget_6AqUi3": {
+          "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-widget/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+          "settings": {
+            "enabled": true,
+            "id": "299383",
+            "product_id_enabled": false,
+            "collection_id_enabled": false
+          }
+        }
+      },
+      "block_order": [
+        "rebuy_personalization_engine_rebuy_widget_6AqUi3"
+      ],
+      "settings": {
+        "include_margins": true,
+        "heading": "",
+        "section_reviews": true
+      }
+    },
+    "custom_liquid_VnrjTy": {
+      "type": "custom-liquid",
+      "name": "Liquid",
+      "settings": {
+        "custom_html": "{% assign product = page.metafields.custom.bundle_product.value %}\n<script>window.productData = {{ product | json }};</script>"
+      }
+    },
+    "b2b_image_with_text_Vhx4rf": {
+      "type": "b2b-image-with-text",
+      "custom_css": [
+        "@media screen and (max-width: 768px) {.fifty-fifty__image {display: none !important; }}",
+        ".fifty-fifty__button {width: 225px; padding: 19px 87px;}"
+      ],
+      "name": "50/50 Image With Text",
+      "settings": {
+        "b2b_only": false,
+        "image_position": "left",
+        "container_width": 1400,
+        "column_gap": 100,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "image": "shopify://shop_images/swatchimage_groupshot_2_0e50ed52-5cc8-4054-b186-be8ffbaab93a.jpg",
+        "image_height": 560,
+        "image_radius": 0,
+        "eyebrow": "TRADE PERK",
+        "heading": "See It. Feel It. Make the Call.",
+        "heading_size": 48,
+        "heading_size_mobile": 32,
+        "body_text": "<p>Trade members receive five complimentary swatches of their choice—so you can see the color, feel the texture, and move forward with confidence.</p>",
+        "body_size": 17,
+        "button_label": "LOG IN",
+        "button_link": "https://www.porteandhall.com/account/login",
+        "button_radius": 2,
+        "footnote_text": "Not a trade member yet?",
+        "footnote_link_text": "Join now",
+        "footnote_link": "shopify://pages/designer-program",
+        "footnote_text_after": "— applications are reviewed within 24 hours.",
+        "bg_color": "#f2eee6",
+        "sub_text_color": "#896a28",
+        "heading_color": "#5a6b82",
+        "body_color": "#2b2b2b",
+        "footnote_color": "#8a8579",
+        "link_color": "#5a6b82",
+        "button_bg_color": "#896a28",
+        "button_text_color": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs_8LXnyk",
+    "main",
+    "trade_swatches_login_X6BJKk",
+    "image_text_eRzCTq",
+    "lp_columns_with_buttons_7zQDya",
+    "1783321871059e3ea5",
+    "custom_liquid_VnrjTy",
+    "b2b_image_with_text_Vhx4rf"
+  ]
+}
