@@ -33,6 +33,24 @@
     "designer_spotlight_fFHtkW": {
       "type": "designer-spotlight",
       "blocks": {
+        "block_rDcCHA": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/designerspotlight_isabel_homepagealt.jpg",
+            "title": "Meet the Designer",
+            "designer_image": "shopify://shop_images/Isabel_Ladd_2026_Headshot.jpg",
+            "designer_name": "Isabel Ladd",
+            "designer_title": "Founder, Isabel Ladd Interiors",
+            "text_header_1": "What’s your top tip for creating a beautiful, welcoming entry?",
+            "text_1": "Make an entry a showstopper! As a passthrough space that greets you the moment you come home, give yourself permission to decorate with extra-personality. This space greets you the moment you get to your home, so surround yourself with the aesthetics that bring you joy. You could wallpaper the walls, the ceiling, or both. You could paint - or color drench - the space in your FAVORITE color. Rugs, accessories, and warm lighting cozy up the entryway instantly. However you decorate your entryway, my biggest tip is to decorate with what lights YOU up.",
+            "text_header_2": "What’s a design hill you’re willing to die on?",
+            "text_2": "The ceiling is the fifth wall, and the floor is the sixth! Don't just decorate the walls - but consider the ceiling and floor, too. Leaving a ceiling white if you have color and pattern on your walls can make the ceiling feel like an afterthought and the starkness of the ceiling can actually direct your eye there. Similarly, a well designed floor can do wonders for any space. Ideas include painting, stenciling, or adding a rug with a dose of pattern to instantly bring design to the floor.",
+            "text_header_3": "What’s a design rule you love breaking—or one you’ll never break?",
+            "text_3": "My only design rule is to decorate for YOU, and not for \"resale\". You (and your family) are the ones living in your home and it should reflect the energy YOU desire. If you decorate for resale (a hypothetical next person) by following \"design rules\" that reflect banal, unoriginal, conforming design to avoid offending, you miss out on creating an environment that would otherwise lift you up. So mix and match the design periods and styles, envelop yourself with the colors and patterns you love, and experiment with new designs you're inspired to try out. You miss out on the good stuff if you succumb to \"analysis paralysis\" and worry about what you should or shouldn't do. Design is meant to be experimented with, and personal style is meant to evolve. So just trust yourself... or hire an interior design to do it all for you :)",
+            "button_label": "SHOP THE LOOK",
+            "button_link": "shopify://products/the-insider-maze-ii-red-runner"
+          }
+        },
         "block_Yc9HLD": {
           "type": "block",
           "settings": {
@@ -107,6 +125,7 @@
         }
       },
       "block_order": [
+        "block_rDcCHA",
         "block_Yc9HLD",
         "block_FYJTfn",
         "block_KrhCYk",
