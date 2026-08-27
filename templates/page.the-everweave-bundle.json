@@ -154,6 +154,18 @@
       "settings": {
         "custom_html": "{% assign product = page.metafields.custom.bundle_product.value %}\n<script>window.productData = {{ product | json }};</script>"
       }
+    },
+    "image_text_azkiNC": {
+      "type": "image-text",
+      "name": "Image with text",
+      "settings": {
+        "subheading": "",
+        "title": "",
+        "content": "<p><strong>Terms and Conditions</strong>: Buy 2 mats, get 20% off” and “buy 3+ mats, get 25% off bundling offers only valid on all colors of Chevron mats and Bark II Creme and Grey mats, when 2 or more mats are purchased within one order. While supplies last.<br/></p>",
+        "link_text": "",
+        "link_url": "",
+        "custom-class": ""
+      }
     }
   },
   "order": [
@@ -163,6 +175,7 @@
     "image_text_eRzCTq",
     "lp_columns_with_buttons_7zQDya",
     "1783321871059e3ea5",
-    "custom_liquid_VnrjTy"
+    "custom_liquid_VnrjTy",
+    "image_text_azkiNC"
   ]
 }
