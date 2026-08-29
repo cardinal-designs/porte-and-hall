@@ -110,7 +110,11 @@
             <div class="aa product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
             {{ product_card_product.first_available_variant.metafields.filters.use.value }}
             </div>   {% endcomment %}
-          {% if lowercase_tags contains 'best seller' %}
+          {% if lowercase_tags contains 'final sale' %}
+          <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' or template.suffix == 'best-sellers' or template.suffix == 'badge-reduction' %}hidden{% endif %}">
+            Final Sale
+          </div>
+        {% elsif lowercase_tags contains 'best seller' %}
           <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' or template.suffix == 'best-sellers' or template.suffix == 'badge-reduction' %}hidden{% endif %}">
             Best Seller
           </div>
@@ -119,7 +123,7 @@
             Indoor/Outdoor
             </div>  
           {% elsif lowercase_tags contains 'indoor' %}
-            <div class="TEST product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
+            <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
             Indoor
             </div>  
           {% elsif lowercase_tags contains 'outdoor' %}
