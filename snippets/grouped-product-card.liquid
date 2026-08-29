@@ -111,7 +111,7 @@
             {{ product_card_product.first_available_variant.metafields.filters.use.value }}
             </div>   {% endcomment %}
           {% if lowercase_tags contains 'final sale' %}
-          <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' or template.suffix == 'best-sellers' or template.suffix == 'badge-reduction' %}hidden{% endif %}">
+          <div class="product-card__image-label body-xs">
             Final Sale
           </div>
         {% elsif lowercase_tags contains 'best seller' %}
