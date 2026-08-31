@@ -42,9 +42,9 @@
             {% endif %}
             {% if section.settings.button_text != blank %}
               <div class="how__it--works-button-container">
-                <div class="how__it--works-button scroll__button">
+                <a href="{{ section.settings.button_url }}" class="how__it--works-button scroll__button">
                   {{ section.settings.button_text }}
-                </div>
+                </a>
               </div>
             {% endif %}
           </div>
@@ -81,6 +81,11 @@
       "id": "button_text",
       "label": "Button Text",
       "default": "Become a member"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
     }
   ],
   "blocks": [
