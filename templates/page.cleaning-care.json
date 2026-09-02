@@ -23,7 +23,7 @@
     "main": {
       "type": "main-page",
       "custom_css": [
-        "#template--16905855172671__main .Page_Header {height:0px}"
+        "#template--16905855172671__main .Page_Header {height: 0px; display: none;}"
       ],
       "settings": {
         "page_heading": "",
