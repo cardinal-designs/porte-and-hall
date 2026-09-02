@@ -22,14 +22,13 @@
     },
     "main": {
       "type": "main-page",
-      "disabled": true,
       "custom_css": [
         ".Page_Header_Inner h1 {color: #ffffff;}"
       ],
       "settings": {
         "page_heading": "",
         "subhead": "",
-        "section_height": "250",
+        "section_height": "125",
         "bg_color": "rgba(0,0,0,0)"
       }
     }
