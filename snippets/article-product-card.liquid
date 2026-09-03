@@ -96,10 +96,12 @@
           {%- endif -%}
         </div>
       {% endif %}
-      {% assign card_variant = product_card_product.selected_or_first_available_variant %}
-      {% assign show_compare_at_sale = false %}
-      {% if settings.show_compare_at_price and card_variant.compare_at_price != blank and card_variant.compare_at_price > card_variant.price %}
-        {% assign show_compare_at_sale = true %}
+      {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
+      {% assign auto_discount_price = product_card_product.metafields.custom.auto_discount_price %}
+      {% assign show_discounted_price = false %}
+      {% if enable_auto_discount_price and auto_discount_price > 0 %}
+        {% assign show_discounted_price = true %}
+        {% assign auto_discount_price = auto_discount_price | times: 100 |  money %}
       {% endif %}
       <div class="product-card__content">
         {% if customer and customer.b2b? %}
@@ -113,12 +115,19 @@
             {{ product_card_product.price | money_without_trailing_zeros }}
           </p>
         {% else %}
-          <p class="product-card__price body blue">
-            {{ card_variant.price | money_without_trailing_zeros }}
-            {% if show_compare_at_sale %}
-              <span class="old-price">{{ card_variant.compare_at_price | money_without_trailing_zeros }}</span>
-            {% endif %}
-          </p>
+          {% if show_discounted_price %}
+            <p class="product-card__price body blue">
+              <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
+              {{ auto_discount_price }}
+            </p>
+          {% else %}
+            <p class="product-card__price body blue">
+              {% if product_card_product.compare_at_price > product_card_product.price %}
+                <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
+              {% endif %}
+              {{ product_card_product.price | money_without_trailing_zeros }}
+            </p>
+          {% endif %}
         {% endif %}
 
         <div class="product-card__swatches">
