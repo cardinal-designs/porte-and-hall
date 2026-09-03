@@ -30,13 +30,16 @@
   endif
 %}
 
-{% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
-{% assign auto_discount_price = product.metafields.custom.auto_discount_price %}
-{% assign show_discounted_price = false %}
-{% if enable_auto_discount_price and auto_discount_price > 0 %}
-  {% assign show_discounted_price = true %}
-  {% assign auto_discount_price = auto_discount_price | times: 100 |  money %}
-{% endif %}
+{% liquid
+  assign price_on_sale = false
+  assign percent_off = 0
+  unless ATC_button
+    if settings.show_compare_at_price and compare_at_price != blank and compare_at_price > price
+      assign price_on_sale = true
+      assign percent_off = compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price | round
+    endif
+  endunless
+%}
 
 {% if customer and customer.b2b? %}
   <div class="price{% if price_class %} {{ price_class }}{% endif %}">
@@ -71,7 +74,7 @@
       price
       {% if price_class %} {{ price_class }}{% endif %}
       {% if available == false %} price--sold-out {% endif %}
-      {% if compare_at_price > price or show_discounted_price %} price--on-sale {% endif %}
+      {% if price_on_sale %} price--on-sale {% endif %}
       {% if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif %}
       {% if show_badges %} price--show-badge{% endif %}
     "
@@ -83,53 +86,33 @@
           - div.price__sale: Displayed when a variant is a sale
       {% endcomment %}
       
-      {% if show_discounted_price %}
-        <div class="price__regular">
+      <div class="price__regular">
+        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+        <span class="price-item price-item--regular">
+          {{ money_price }}
+        </span>
+      </div>
+      <div class="price__sale">
+        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
+        <span class="price-item price-item--sale price-item--last">
+          {{ money_price }}
+        </span>
+        {% unless product.price_varies == false and product.compare_at_price_varies %}
           <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
-          <span class="price-item price-item--regular">
-            {{ auto_discount_price }}
+          <span>
+            <s class="price-item price-item--regular">
+              {% if settings.currency_code_enabled %}
+                {{ compare_at_price | money_with_currency }}
+              {% else %}
+                {{ compare_at_price | money_without_trailing_zeros }}
+              {% endif %}
+            </s>
           </span>
-        </div>  
-        <div class="price__sale">
-          
-            <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
-            <span>
-              <s class="price-item price-item--regular">
-                {{ money_price }}
-              </s>
-            </span>
-          
-          <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
-          <span class="price-item price-item--sale price-item--last">
-            {{ auto_discount_price }}
-          </span>
-        </div>
-      {% else %}
-        <div class="price__regular">
-          <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
-          <span class="price-item price-item--regular">
-            {{ money_price }}
-          </span>
-        </div>  
-        <div class="price__sale">
-          {% unless product.price_varies == false and product.compare_at_price_varies %}
-            <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
-            <span>
-              <s class="price-item price-item--regular">
-                {% if settings.currency_code_enabled %}
-                  {{ compare_at_price | money_with_currency }}
-                {% else %}
-                  {{ compare_at_price | money }}
-                {% endif %}
-              </s>
-            </span>
-          {% endunless %}
-          <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
-          <span class="price-item price-item--sale price-item--last">
-            {{ money_price }}
-          </span>
-        </div>
-      {% endif %}
+        {% endunless %}
+        {% if price_on_sale %}
+          <span class="percentage-off">({{ percent_off }}% off)</span>
+        {% endif %}
+      </div>
 
       <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
         <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
