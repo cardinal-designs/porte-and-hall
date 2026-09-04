@@ -25,8 +25,21 @@
       "settings": {
         "page_heading": "",
         "subhead": "",
-        "section_height": "250",
+        "image": "shopify://shop_images/reviews-background.jpg",
+        "section_height": "125",
         "bg_color": "#f4f2ee"
+      }
+    },
+    "image_text_yTMwKm": {
+      "type": "image-text",
+      "name": "Image with text",
+      "settings": {
+        "subheading": "",
+        "title": "",
+        "content": "<p><br/>At Porte + Hall, design and durability go hand in hand and we let our customers do the talking. Below you'll find verified reviews from homeowners and design professionals who've lived with our doormats, rugs, runners, and area mats through daily use, in every season.  With more than 3,900 verified reviews and 81% rated five stars, the feedback speaks to what matters most to us: a low-profile silhouette that fits real doorways, materials built to hold up outdoors and in, and a look that feels like luxury.<br/><br/><br/></p>",
+        "link_text": "",
+        "link_url": "",
+        "custom-class": ""
       }
     },
     "177317723145ab427b": {
@@ -76,6 +89,7 @@
   "order": [
     "breadcrumbs_8LXnyk",
     "main",
+    "image_text_yTMwKm",
     "177317723145ab427b",
     "17861439356bf29c4a"
   ]
