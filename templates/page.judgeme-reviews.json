@@ -67,6 +67,49 @@
         "button_text_color": "#1A1A1A"
       }
     },
+    "logo_marquee_fWX8FA": {
+      "type": "logo-marquee",
+      "blocks": {
+        "logo_KWExHX": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Veranda-logo_copy.png",
+            "svg": ""
+          }
+        },
+        "logo_3hJ7tw": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/apartment-therapy-logo-vector-3_copy.png",
+            "svg": ""
+          }
+        },
+        "logo_Y4aJqJ": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/USA-Today-logo_copy_cd5eca3a-a963-4717-9b53-40e078f1195b.png",
+            "svg": ""
+          }
+        },
+        "logo_6CGKTq": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Southern-Living-Logo_copy_81a6b959-9e38-4dc8-8fbc-22cd11990acf.png",
+            "svg": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_KWExHX",
+        "logo_3hJ7tw",
+        "logo_Y4aJqJ",
+        "logo_6CGKTq"
+      ],
+      "name": "Logo Marquee",
+      "settings": {
+        "background_color": "#546B82"
+      }
+    },
     "177317723145ab427b": {
       "type": "apps",
       "blocks": {
@@ -80,7 +123,6 @@
       "block_order": [
         "powerful_form_builder_app_block_8GiUim"
       ],
-      "disabled": true,
       "settings": {
         "include_margins": true,
         "heading": "",
@@ -109,13 +151,27 @@
         "heading": "",
         "section_reviews": true
       }
+    },
+    "image_text_TpCkmm": {
+      "type": "image-text",
+      "name": "Image with text",
+      "settings": {
+        "subheading": "",
+        "title": "",
+        "content": "<p><br/><br/></p>",
+        "link_text": "",
+        "link_url": "",
+        "custom-class": ""
+      }
     }
   },
   "order": [
     "breadcrumbs_8LXnyk",
     "main",
     "b2b_image_with_text_icUbM3",
+    "logo_marquee_fWX8FA",
     "177317723145ab427b",
-    "17861439356bf29c4a"
+    "17861439356bf29c4a",
+    "image_text_TpCkmm"
   ]
 }
