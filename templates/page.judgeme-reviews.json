@@ -70,6 +70,27 @@
     "logo_marquee_fWX8FA": {
       "type": "logo-marquee",
       "blocks": {
+        "logo_VQhQX6": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/featuredin.png",
+            "svg": ""
+          }
+        },
+        "logo_86zgYP": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Forbes-01_0f8e5020-ca8c-4799-bfdf-20323649e33a.png",
+            "svg": ""
+          }
+        },
+        "logo_dt4DEb": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/people-inc.png",
+            "svg": ""
+          }
+        },
         "logo_KWExHX": {
           "type": "logo",
           "settings": {
@@ -100,6 +121,9 @@
         }
       },
       "block_order": [
+        "logo_VQhQX6",
+        "logo_86zgYP",
+        "logo_dt4DEb",
         "logo_KWExHX",
         "logo_3hJ7tw",
         "logo_Y4aJqJ",
