@@ -200,6 +200,55 @@
         "link_url": "",
         "custom-class": ""
       }
+    },
+    "faq_G8U7B8": {
+      "type": "faq",
+      "blocks": {
+        "faq_XwCwAp": {
+          "type": "faq",
+          "settings": {
+            "title": "Are Porte + Hall doormats durable enough for daily outdoor use?",
+            "title_richtext": "<p><br/><br/></p>",
+            "answer": "<p>Yes. Outdoor styles like The Outlier and The Porter are built to hold up to daily foot traffic and changing weather. Reviewers consistently point to how well these mats maintain their shape and color after months of exterior use.</p>"
+          }
+        },
+        "faq_NgVC6w": {
+          "type": "faq",
+          "settings": {
+            "title": "How thin are Porte + Hall doormats, and will they fit tight doorways?",
+            "title_richtext": "",
+            "answer": "<p>Our ultra-slim construction, especially in The Insider line, is designed for a low profile that clears tight door swings and thresholds without sacrificing texture or durability — a detail our customers frequently call out as a key reason they chose us over bulkier alternatives.</p>"
+          }
+        },
+        "faq_cPWFm3": {
+          "type": "faq",
+          "settings": {
+            "title": "Are Porte + Hall mats easy to clean?",
+            "title_richtext": "",
+            "answer": "<p>Yes. Our materials are chosen for everyday livability, and reviewers regularly note how easily debris, dirt, and spills wipe away or shake out, even with kids and pets in the house.</p>"
+          }
+        },
+        "faq_zdLBe9": {
+          "type": "faq",
+          "settings": {
+            "title": "Are Porte + Hall doormats worth the investment?",
+            "title_richtext": "",
+            "answer": "<p>Our customers think so — 81% of over 3,900 verified reviews are five stars. The price reflects the materials and construction behind a mat built to perform for years, not a season, which is the value our reviewers cite most often.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_XwCwAp",
+        "faq_NgVC6w",
+        "faq_cPWFm3",
+        "faq_zdLBe9"
+      ],
+      "name": "FAQ",
+      "settings": {
+        "heading": "",
+        "anchor": "",
+        "collection": ""
+      }
     }
   },
   "order": [
@@ -210,6 +259,7 @@
     "image_text_4BRRhk",
     "177317723145ab427b",
     "17861439356bf29c4a",
-    "image_text_TpCkmm"
+    "image_text_TpCkmm",
+    "faq_G8U7B8"
   ]
 }
