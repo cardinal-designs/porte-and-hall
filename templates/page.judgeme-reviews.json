@@ -204,12 +204,20 @@
     "faq_G8U7B8": {
       "type": "faq",
       "blocks": {
+        "faq_zw9dQJ": {
+          "type": "faq",
+          "settings": {
+            "title": "What's the difference between The Insider, The Innerweave, The Outlier, and The Porter?",
+            "title_richtext": "",
+            "answer": "<p>The Insider and Innerweave are designed for indoor (and indoor/outdoor, for the Innerweave) spaces like entryways and mudrooms; The Outlier and The Porter are built for full outdoor exposure year-round, with The Porter's hand-knotted Italian construction offering our most refined outdoor option.<br/></p>"
+          }
+        },
         "faq_XwCwAp": {
           "type": "faq",
           "settings": {
-            "title": "Are Porte + Hall doormats durable enough for daily indoor or outdoor use?",
+            "title": "Are Porte + Hall doormats durable enough for daily outdoor use?",
             "title_richtext": "<p><br/><br/></p>",
-            "answer": "<p>Yes. Outdoor styles like The Outlier and The Porter are built to hold up to daily foot traffic and changing weather. Reviewers consistently point to how well these mats maintain their shape and color after months of exterior use.</p>"
+            "answer": "<p>Yes. The Outlier is built with all-weather construction and drainage channels, backed by a 5-year warranty, while The Porter is hand-knotted from 100% Italian yarns designed to repel moisture and resist fading. Both are made to hold up through changing seasons, not just look good on day one.</p>"
           }
         },
         "faq_NgVC6w": {
@@ -217,15 +225,15 @@
           "settings": {
             "title": "How thin are Porte + Hall doormats, and will they fit tight doorways?",
             "title_richtext": "",
-            "answer": "<p>Our ultra-slim construction, especially in The Insider line, is designed for a low profile that clears tight door swings and thresholds without sacrificing texture or durability — a detail our customers frequently call out as a key reason they chose us over bulkier alternatives.</p>"
+            "answer": "<p>The Insider is our lowest-profile option — woven in Italy with a slip-resistant latex backing, designed to clear tight door swings without sacrificing durability. It's built to take on daily mud, boots, and pets while staying easy to live with.</p>"
           }
         },
         "faq_cPWFm3": {
           "type": "faq",
           "settings": {
-            "title": "Are Porte + Hall mats easy to clean?",
+            "title": "Are Porte + Hall doormats easy to clean?",
             "title_richtext": "",
-            "answer": "<p>Yes. Our materials are chosen for everyday livability, and reviewers regularly note how easily debris, dirt, and spills wipe away or shake out, even with kids and pets in the house.</p>"
+            "answer": "<p>Yes, though care varies by style: indoor mats like The Insider and The Innerweave shake out and spot-clean with a damp cloth, while outdoor styles like The Outlier can be hosed down or pressure washed. None require machine washing.</p>"
           }
         },
         "faq_zdLBe9": {
@@ -233,17 +241,17 @@
           "settings": {
             "title": "Are Porte + Hall doormats worth the investment?",
             "title_richtext": "",
-            "answer": "<p>Our customers think so — 81% of over 3,900 verified reviews are five stars. The price reflects the materials and construction behind a mat built to perform for years, not a season, which is the value our reviewers cite most often.<br/><br/></p>"
+            "answer": "<p>Our customers think so — 81% of over 3,900 verified reviews are five stars. That reflects what's behind each mat: Italian-woven or hand-knotted materials and, on The Outlier, a 5-year warranty — built to perform for years, not a season.<br/><br/></p>"
           }
         }
       },
       "block_order": [
+        "faq_zw9dQJ",
         "faq_XwCwAp",
         "faq_NgVC6w",
         "faq_cPWFm3",
         "faq_zdLBe9"
       ],
-      "disabled": true,
       "name": "FAQ",
       "settings": {
         "heading": "",
