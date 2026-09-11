@@ -1,0 +1,102 @@
+{%- comment -%}
+  Affiliate Landing Page — "Why It's Different" (founder/designer story)
+  Second of four sections for this page. Renders snippets/affiliate-landing-base
+  for shared fonts/tokens, same pattern as affiliate-landing-hero.liquid.
+{%- endcomment -%}
+ 
+{%- render 'affiliate-landing-base' -%}
+ 
+<style>
+.wp-why-{{ section.id }}{padding:56px 48px;}
+.wp-why-{{ section.id }} .wp-why-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:0.85fr 1.15fr;gap:72px;align-items:center;}
+.wp-why-{{ section.id }} .wp-why-image{aspect-ratio:5/4;background:linear-gradient(135deg,#7d8fa1 0%,#546B82 60%,#3e5266 100%);position:relative;overflow:hidden;}
+.wp-why-{{ section.id }} .wp-why-image img{width:100%;height:100%;object-fit:cover;display:block;}
+.wp-why-{{ section.id }} .wp-why-eyebrow{display:block;font-size:14px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--wp-accent);margin-bottom:18px;}
+.wp-why-{{ section.id }} h2{font-family:var(--wp-font-serif);font-size:38px;font-weight:500;line-height:1.2;color:var(--wp-primary);margin-bottom:20px;}
+.wp-why-{{ section.id }} p.wp-why-body{font-size:15.5px;line-height:1.75;color:var(--wp-primary);max-width:560px;margin-bottom:26px;}
+.wp-why-{{ section.id }} .wp-why-quote{font-family:var(--wp-font-serif);font-style:italic;font-size:19px;line-height:1.5;color:var(--wp-primary);max-width:560px;margin-bottom:14px;}
+.wp-why-{{ section.id }} .wp-why-attrib{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--wp-primary);}
+ 
+@media (max-width:700px){
+  .wp-why-{{ section.id }}{padding:32px 18px;}
+  .wp-why-{{ section.id }} .wp-why-inner{grid-template-columns:1fr;gap:24px;}
+  .wp-why-{{ section.id }} .wp-why-image{aspect-ratio:12/10;}
+  .wp-why-{{ section.id }} .wp-why-eyebrow{font-size:12px;margin-bottom:12px;}
+  .wp-why-{{ section.id }} h2{font-size:26px;line-height:1.25;margin-bottom:14px;}
+  .wp-why-{{ section.id }} p.wp-why-body{font-size:13.5px;margin-bottom:18px;max-width:none;}
+  .wp-why-{{ section.id }} .wp-why-quote{font-size:16px;line-height:1.45;margin-bottom:10px;max-width:none;}
+}
+</style>
+ 
+<section class="wp-landing wp-why-{{ section.id }}">
+  <div class="wp-why-inner">
+    <div class="wp-why-image">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: section.settings.image.alt }}
+      {%- endif -%}
+    </div>
+    <div>
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="wp-why-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.body != blank -%}
+        <p class="wp-why-body">{{ section.settings.body }}</p>
+      {%- endif -%}
+      {%- if section.settings.quote != blank -%}
+        <p class="wp-why-quote">&ldquo;{{ section.settings.quote }}&rdquo;</p>
+      {%- endif -%}
+      {%- if section.settings.attribution != blank -%}
+        <span class="wp-why-attrib">{{ section.settings.attribution }}</span>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+ 
+{% schema %}
+{
+  "name": "Affiliate Landing — CEO",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Why It's Different"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Made by an interior designer who was tired of ugly doormats"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body copy",
+      "default": "After 20 years designing homes, founder Stafford Meyer couldn't find an entry mat that was as considered as the rest of the house. So she spent two years building one — form and function, no compromise."
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Pull quote (no quotation marks needed)",
+      "default": "First impressions matter — for you and your guests. I hope you walk all over us."
+    },
+    {
+      "type": "text",
+      "id": "attribution",
+      "label": "Attribution",
+      "default": "Stafford Meyer · Founder"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Affiliate Landing — Why Different"
+    }
+  ]
+}
+{% endschema %}
