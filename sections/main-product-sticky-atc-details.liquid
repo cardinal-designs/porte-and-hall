@@ -150,14 +150,9 @@
 
           <div class="product__price-reviews-wrapper">
             <div class="no-js-hidden product__price" id="price-{{ section.id }}" role="status">
-              {% if settings.show_compare_at_price and product.selected_or_first_available_variant.compare_at_price != blank and product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
-                {% liquid
-                  assign current_variant = product.selected_or_first_available_variant
-                  assign percent_off = current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round
-                %}
-                <span class="sale-price">{{ current_variant.price | money_without_trailing_zeros }}</span>
-                <span class="old-price">{{ current_variant.compare_at_price | money_without_trailing_zeros }}</span>
-                <span class="percentage-off">({{ percent_off }}% off)</span>
+              {% if product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product.price > product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+                <span class="old-price">{{ product.price | money_without_trailing_zeros }}</span>
+                <span>{{ product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
               {% else %}
                 {% render 'price', product: product, use_variant: true, show_badges: true, price_class: '' %}
               {%  endif  %}
@@ -610,7 +605,11 @@
                     <span> | </span>
                     <span>
 
-                      {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '', ATC_button: true %}
+                      {% if product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product.price > product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
+                        <span>{{ product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
+                      {% else %}
+                        {% render 'price', product: product, use_variant: true, show_badges: false, price_class: '', ATC_button: true %}
+                    {%  endif %}
                     </span>
                     <div class="loading-overlay__spinner">
                       <svg
