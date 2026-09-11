@@ -110,6 +110,81 @@
         "promo_code": ""
       }
     },
+    "logo_marquee_YE77eN": {
+      "type": "logo-marquee",
+      "blocks": {
+        "logo_VfyAQz": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/featuredin.png",
+            "svg": ""
+          }
+        },
+        "logo_JBqAFH": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/people-inc.png",
+            "svg": ""
+          }
+        },
+        "logo_GyXNjD": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/RealSimple.svg_copy_2_1_a4c57903-a665-48f7-a751-1f564040b71c.png",
+            "svg": ""
+          }
+        },
+        "logo_KaMzqV": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Forbes-01_0f8e5020-ca8c-4799-bfdf-20323649e33a.png",
+            "svg": ""
+          }
+        },
+        "logo_q7NNxt": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Veranda-logo_copy.png",
+            "svg": ""
+          }
+        },
+        "logo_qCWVpY": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/apartment-therapy-logo-vector-3_copy.png",
+            "svg": ""
+          }
+        },
+        "logo_8eXr7U": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/USA-Today-logo_copy_cd5eca3a-a963-4717-9b53-40e078f1195b.png",
+            "svg": ""
+          }
+        },
+        "logo_7mD3CR": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Southern-Living-Logo_copy_81a6b959-9e38-4dc8-8fbc-22cd11990acf.png",
+            "svg": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_VfyAQz",
+        "logo_JBqAFH",
+        "logo_GyXNjD",
+        "logo_KaMzqV",
+        "logo_q7NNxt",
+        "logo_qCWVpY",
+        "logo_8eXr7U",
+        "logo_7mD3CR"
+      ],
+      "name": "Logo Marquee",
+      "settings": {
+        "background_color": "#546B82"
+      }
+    },
     "affiliate_landing_ceo_WphpMV": {
       "type": "affiliate-landing-ceo",
       "name": "Affiliate Landing — Why Different",
@@ -202,81 +277,6 @@
         "heading": "Our Collections",
         "subheading": "Porte + Hall offers stylish, durable indoor and outdoor mats designed for practicality and aesthetics, with features like stain resistance, slip resistance, and weather durability."
       }
-    },
-    "logo_marquee_YE77eN": {
-      "type": "logo-marquee",
-      "blocks": {
-        "logo_VfyAQz": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/featuredin.png",
-            "svg": ""
-          }
-        },
-        "logo_JBqAFH": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/people-inc.png",
-            "svg": ""
-          }
-        },
-        "logo_GyXNjD": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/RealSimple.svg_copy_2_1_a4c57903-a665-48f7-a751-1f564040b71c.png",
-            "svg": ""
-          }
-        },
-        "logo_KaMzqV": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/Forbes-01_0f8e5020-ca8c-4799-bfdf-20323649e33a.png",
-            "svg": ""
-          }
-        },
-        "logo_q7NNxt": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/Veranda-logo_copy.png",
-            "svg": ""
-          }
-        },
-        "logo_qCWVpY": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/apartment-therapy-logo-vector-3_copy.png",
-            "svg": ""
-          }
-        },
-        "logo_8eXr7U": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/USA-Today-logo_copy_cd5eca3a-a963-4717-9b53-40e078f1195b.png",
-            "svg": ""
-          }
-        },
-        "logo_7mD3CR": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/Southern-Living-Logo_copy_81a6b959-9e38-4dc8-8fbc-22cd11990acf.png",
-            "svg": ""
-          }
-        }
-      },
-      "block_order": [
-        "logo_VfyAQz",
-        "logo_JBqAFH",
-        "logo_GyXNjD",
-        "logo_KaMzqV",
-        "logo_q7NNxt",
-        "logo_qCWVpY",
-        "logo_8eXr7U",
-        "logo_7mD3CR"
-      ],
-      "name": "Logo Marquee",
-      "settings": {
-        "background_color": ""
-      }
     }
   },
   "order": [
@@ -285,8 +285,8 @@
     "177317723145ab427b",
     "images_with_text_c3WYJG",
     "affiliate_landing_hero_zW3wif",
+    "logo_marquee_YE77eN",
     "affiliate_landing_ceo_WphpMV",
-    "affiliate_landing_shortlist_nCpayn",
-    "logo_marquee_YE77eN"
+    "affiliate_landing_shortlist_nCpayn"
   ]
 }
