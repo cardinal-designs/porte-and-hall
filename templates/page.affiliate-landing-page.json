@@ -22,6 +22,7 @@
     },
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "page_heading": "",
         "subhead": "",
@@ -53,8 +54,72 @@
       "type": "images-with-text",
       "name": "Images with text",
       "settings": {
-        "background": "#EEEFEF",
-        "text_color": "#30383D"
+        "background": "#eeefef",
+        "text_color": "#30383d"
+      }
+    },
+    "affiliate_landing_hero_zW3wif": {
+      "type": "affiliate-landing-hero",
+      "blocks": {
+        "slide_8GzYN4": {
+          "type": "slide",
+          "settings": {
+            "label": "The Insider",
+            "link": ""
+          }
+        },
+        "slide_VJMVKt": {
+          "type": "slide",
+          "settings": {
+            "label": "The Innerweave",
+            "link": ""
+          }
+        },
+        "slide_WLMndm": {
+          "type": "slide",
+          "settings": {
+            "label": "The Outlier",
+            "link": ""
+          }
+        },
+        "slide_eVinFe": {
+          "type": "slide",
+          "settings": {
+            "label": "The Porter",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_8GzYN4",
+        "slide_VJMVKt",
+        "slide_WLMndm",
+        "slide_eVinFe"
+      ],
+      "name": "Affiliate Landing — Hero",
+      "settings": {
+        "eyebrow": "Designer Entryway Mats · 7 Years In The Making",
+        "heading": "Welcome to a Better Mat",
+        "lede": "We make premium indoor and outdoor mats with practical features. And since our founder is an interior designer,  all of our collections are as great looking as they are  hard working. Form and function—that’s our thing.<br><br>\n\nUse code <b>ENTRY10</b> for 10% off",
+        "trust_count": "3,600+",
+        "trust_count_label": "five-star reviews",
+        "trust_line_2": "",
+        "trust_line_3": "30-day returns",
+        "cta_text": "Shop our Collections",
+        "cta_link": "",
+        "promo_code": ""
+      }
+    },
+    "affiliate_landing_ceo_WphpMV": {
+      "type": "affiliate-landing-ceo",
+      "name": "Affiliate Landing — Why Different",
+      "settings": {
+        "image": "shopify://shop_images/about-stafford.jpg",
+        "eyebrow": "Why It's Different",
+        "heading": "Meet Stafford, founder of Porte+Hall",
+        "body": "",
+        "quote": "In my 20 years as an interior designer, I struggled to source entry mats that were as well-designed and functional as the rest of the home. I was bewildered by the scarcity of options. Why was the first thing to greet you at your door not important? So I decided to design my own - because first impressions matter, for you and your guests. Welcome to our collection and we hope you walk all over us!",
+        "attribution": "Stafford Meyer | Founder and CEO"
       }
     }
   },
@@ -62,6 +127,8 @@
     "breadcrumbs_8LXnyk",
     "main",
     "177317723145ab427b",
-    "images_with_text_c3WYJG"
+    "images_with_text_c3WYJG",
+    "affiliate_landing_hero_zW3wif",
+    "affiliate_landing_ceo_WphpMV"
   ]
 }
