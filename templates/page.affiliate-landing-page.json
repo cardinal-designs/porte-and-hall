@@ -121,6 +121,87 @@
         "quote": "In my 20 years as an interior designer, I struggled to source entry mats that were as well-designed and functional as the rest of the home. I was bewildered by the scarcity of options. Why was the first thing to greet you at your door not important? So I decided to design my own - because first impressions matter, for you and your guests. Welcome to our collection and we hope you walk all over us!",
         "attribution": "Stafford Meyer | Founder and CEO"
       }
+    },
+    "affiliate_landing_shortlist_nCpayn": {
+      "type": "affiliate-landing-shortlist",
+      "blocks": {
+        "product_F6XbKn": {
+          "type": "product",
+          "settings": {
+            "category_line": "Indoor · Designed to Stay Put",
+            "name": "The Insider",
+            "show_rating": true,
+            "review_count": "2,738 reviews",
+            "new_tag_text": "",
+            "description": "Bunching? Nope. Rug pads? Never. This super-thin, slip resistant indoor mat slides under doors, lies flat, and keeps floors clean and dry without getting in your way.",
+            "price": "$69",
+            "button_text": "Shop Now",
+            "button_link": "",
+            "badge_text": "",
+            "exclusion_note": ""
+          }
+        },
+        "product_pJtdNn": {
+          "type": "product",
+          "settings": {
+            "category_line": "Indoor / Outdoor · Woven to PERFORM",
+            "name": "The Innerweave",
+            "show_rating": true,
+            "review_count": "686 reviews",
+            "new_tag_text": "New to The Short List",
+            "description": "A natural-looking beauty that doesn't ask for much. Soft, stain-resistant, shed-free, and built to handle daily traffic—indoors or out.",
+            "price": "$125",
+            "button_text": "Shop",
+            "button_link": "",
+            "badge_text": "",
+            "exclusion_note": ""
+          }
+        },
+        "product_7yVJkV": {
+          "type": "product",
+          "settings": {
+            "category_line": "Outdoor · Dirt Stops here",
+            "name": "The Outlier",
+            "show_rating": true,
+            "review_count": "317 reviews",
+            "new_tag_text": "New to The Short List",
+            "description": "Dirt doesn't stand a chance. Rain drains away. Your front door stays polished. USA-made, recyclable, and backed by a 5-year warranty.",
+            "price": "$158",
+            "button_text": "Shop",
+            "button_link": "",
+            "badge_text": "",
+            "exclusion_note": ""
+          }
+        },
+        "product_mpUFGR": {
+          "type": "product",
+          "settings": {
+            "category_line": "Outdoor · Luxury that Lasts",
+            "name": "The Porter",
+            "show_rating": false,
+            "review_count": "",
+            "new_tag_text": "",
+            "description": "This is why you <i>can</i> have nice things. Hand-knotted with two-toned Italian yarns, this richly textured outdoor mat is tougher than it looks.",
+            "price": "$460",
+            "button_text": "Shop Now",
+            "button_link": "",
+            "badge_text": "",
+            "exclusion_note": "Not eligible for code ENTRY10"
+          }
+        }
+      },
+      "block_order": [
+        "product_F6XbKn",
+        "product_pJtdNn",
+        "product_7yVJkV",
+        "product_mpUFGR"
+      ],
+      "name": "Affiliate Landing — SL",
+      "settings": {
+        "eyebrow": "DESIGNER STYLE. EVERYDAY FUNCTION.",
+        "heading": "Our Collections",
+        "subheading": "Porte + Hall offers stylish, durable indoor and outdoor mats designed for practicality and aesthetics, with features like stain resistance, slip resistance, and weather durability."
+      }
     }
   },
   "order": [
@@ -129,6 +210,7 @@
     "177317723145ab427b",
     "images_with_text_c3WYJG",
     "affiliate_landing_hero_zW3wif",
-    "affiliate_landing_ceo_WphpMV"
+    "affiliate_landing_ceo_WphpMV",
+    "affiliate_landing_shortlist_nCpayn"
   ]
 }
