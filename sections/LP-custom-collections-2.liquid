@@ -721,28 +721,26 @@
               {% endfor %}
 
 
-              {% assign enable_auto_discount_price = settings.enable_auto_discount_price %}
-              {% assign auto_discount_price = currentProduct.metafields.custom.auto_discount_price %}
-              {% assign show_discounted_price = false %}
-              {% if enable_auto_discount_price and auto_discount_price > 0 %}
-                {% assign show_discounted_price = true %}
-                {% assign auto_discount_price = auto_discount_price | times: 100 |  money %}
+              {% assign card_variant = currentProduct.selected_or_first_available_variant %}
+              {% assign show_compare_at_sale = false %}
+              {% if settings.show_compare_at_price and card_variant.compare_at_price != blank and card_variant.compare_at_price > card_variant.price %}
+                {% assign show_compare_at_sale = true %}
               {% endif %}
 
-              <div class="price_rating {% if show_discounted_price %}discounted__price--rating{% endif %}">
+              <div class="price_rating {% if show_compare_at_sale %}discounted__price--rating{% endif %}">
                 <p class="igPrice" data-product-id="{{ currentProduct.id }}">
-                  {% if show_discounted_price %}
+                  {% if show_compare_at_sale %}
+                    {{ card_variant.price | money_without_trailing_zeros }}
                     <span>
                       <s class="price-item price-item--regular">
-                        {{currentProduct.price | money_without_trailing_zeros}}
+                        {{ card_variant.compare_at_price | money_without_trailing_zeros }}
                       </s>
                     </span>
-                    {{ auto_discount_price }}
                   {% else %}
-                    {{ currentProduct.price | money_without_trailing_zeros }}
+                    {{ card_variant.price | money_without_trailing_zeros }}
                   {% endif %}
                 </p>
-                {% unless show_discounted_price %}
+                {% unless show_compare_at_sale %}
                   <span class="blue"> | </span>
                 {% endunless %}
   
