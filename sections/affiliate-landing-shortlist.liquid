@@ -1,0 +1,270 @@
+{%- comment -%}
+  Affiliate Landing Page — "The Short List" (four-product grid)
+  Third of four sections for this page. Renders snippets/affiliate-landing-base
+  for shared fonts/tokens, same pattern as the other affiliate-landing-*
+  sections. id="shop" is preserved on the section root because the hero's
+  CTA button defaults to linking to #shop.
+ 
+  Each product tile is a theme block (Section > Add block) so merchants can
+  add/remove/reorder products and edit each one's photo, copy, and price
+  independently from the customizer — same approach as the hero rotator's
+  slide blocks. Per-product quirks (The Outlier's "5-Year Warranty" corner
+  badge, The Porter's "New to The Short List" tag in place of a star rating,
+  and The Porter's ENTRY15 exclusion note) are all optional per-block
+  settings rather than hardcoded, so any block can use any combination.
+{%- endcomment -%}
+ 
+{%- render 'affiliate-landing-base' -%}
+ 
+<style>
+.wp-shop-{{ section.id }}{padding:48px 48px 40px;}
+.wp-shop-{{ section.id }} .wp-shop-inner{max-width:1400px;margin:0 auto;}
+.wp-shop-{{ section.id }} .wp-shop-eyebrow{display:block;font-size:14px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--wp-accent);margin-bottom:14px;}
+.wp-shop-{{ section.id }} .wp-shop-title{font-family:var(--wp-font-serif);font-size:38px;font-weight:500;color:var(--wp-primary);margin-bottom:12px;letter-spacing:-.01em;}
+.wp-shop-{{ section.id }} .wp-shop-sub{font-size:15px;color:var(--wp-text-secondary);max-width:560px;line-height:1.6;margin-bottom:48px;}
+ 
+.wp-shop-{{ section.id }} .wp-product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+.wp-shop-{{ section.id }} .wp-p-card{display:flex;flex-direction:column;}
+.wp-shop-{{ section.id }} .wp-p-card-img{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--wp-tag-bg);margin-bottom:18px;}
+.wp-shop-{{ section.id }} .wp-p-card-img img{width:100%;height:100%;object-fit:cover;}
+.wp-shop-{{ section.id }} .wp-p-card-badge{position:absolute;top:14px;left:14px;background:var(--wp-primary);color:var(--wp-white);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 12px;}
+.wp-shop-{{ section.id }} .wp-p-card-line{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--wp-text-muted);margin-bottom:8px;}
+.wp-shop-{{ section.id }} .wp-p-card h3{font-family:var(--wp-font-sans);font-weight:400;font-size:21px;letter-spacing:.4px;color:var(--wp-primary);margin-bottom:8px;}
+.wp-shop-{{ section.id }} .wp-p-card .wp-stars{color:var(--wp-accent);font-size:13px;letter-spacing:1px;margin-bottom:12px;display:block;}
+.wp-shop-{{ section.id }} .wp-p-card .wp-stars span{color:var(--wp-text-muted);font-family:Arial,sans-serif;letter-spacing:normal;margin-left:6px;}
+.wp-shop-{{ section.id }} .wp-p-card .wp-new-tag{display:block;font-size:11.5px;color:var(--wp-text-muted);margin-bottom:12px;font-style:italic;}
+.wp-shop-{{ section.id }} .wp-p-card p.wp-desc{font-size:13.5px;line-height:1.6;color:var(--wp-text-secondary);margin-bottom:16px;flex:1;}
+.wp-shop-{{ section.id }} .wp-p-card-footer{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.wp-shop-{{ section.id }} .wp-p-card .wp-price{font-size:18px;color:var(--wp-primary);}
+.wp-shop-{{ section.id }} .wp-p-card .wp-price .wp-from{font-size:12px;color:var(--wp-text-secondary);font-weight:400;margin-right:4px;}
+.wp-shop-{{ section.id }} .wp-p-card .wp-excl-note{display:block;min-height:1.4em;font-size:11px;color:var(--wp-text-muted);}
+.wp-shop-{{ section.id }} .wp-btn-shop{display:inline-block;background:var(--wp-primary);color:var(--wp-white);padding:11px 22px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:3px;transition:background .18s;}
+.wp-shop-{{ section.id }} .wp-btn-shop:hover{background:var(--wp-primary-dark);}
+ 
+@media (max-width:700px){
+  .wp-shop-{{ section.id }}{padding:36px 18px 8px;}
+  .wp-shop-{{ section.id }} .wp-shop-eyebrow{font-size:12px;margin-bottom:10px;}
+  .wp-shop-{{ section.id }} .wp-shop-title{font-size:26px;margin-bottom:8px;}
+  .wp-shop-{{ section.id }} .wp-shop-sub{font-size:13px;margin-bottom:26px;max-width:none;}
+  .wp-shop-{{ section.id }} .wp-product-grid{grid-template-columns:1fr;gap:28px;}
+}
+</style>
+ 
+<section class="wp-landing wp-shop-{{ section.id }}" id="shop">
+  <div class="wp-shop-inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="wp-shop-eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="wp-shop-title">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="wp-shop-sub">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+ 
+    <div class="wp-product-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'product' -%}
+          <article class="wp-p-card" {{ block.shopify_attributes }}>
+            <div class="wp-p-card-img">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.name }}
+              {%- endif -%}
+              {%- if block.settings.badge_text != blank -%}
+                <div class="wp-p-card-badge">{{ block.settings.badge_text }}</div>
+              {%- endif -%}
+            </div>
+            {%- if block.settings.category_line != blank -%}
+              <div class="wp-p-card-line">{{ block.settings.category_line }}</div>
+            {%- endif -%}
+            <h3>{{ block.settings.name }}</h3>
+            {%- if block.settings.show_rating -%}
+              <span class="wp-stars">&#9733;&#9733;&#9733;&#9733;&#9733;{% if block.settings.review_count != blank %}<span>{{ block.settings.review_count }}</span>{% endif %}</span>
+            {%- elsif block.settings.new_tag_text != blank -%}
+              <span class="wp-new-tag">{{ block.settings.new_tag_text }}</span>
+            {%- endif -%}
+            {%- if block.settings.description != blank -%}
+              <p class="wp-desc">{{ block.settings.description }}</p>
+            {%- endif -%}
+            <div class="wp-p-card-footer">
+              {%- if block.settings.price != blank -%}
+                <span class="wp-price"><span class="wp-from">from</span>{{ block.settings.price }}</span>
+              {%- endif -%}
+              <a class="wp-btn-shop" href="{{ block.settings.button_link | default: '#' }}">{{ block.settings.button_text | default: 'Shop' }}</a>
+            </div>
+            {%- comment -%}
+              Always rendered (even blank) so every card reserves the same
+              space below the footer — otherwise a card with a note (e.g.
+              The Porter's ENTRY15 exclusion) ends up taller than the
+              others, and since only .wp-desc above the footer flexes to
+              fill the row's stretched height, that extra height gets
+              added below the footer instead of above it — pushing that
+              one card's price/Shop button row visibly higher than the
+              rest. Reserving the line for all cards keeps every footer
+              aligned regardless of which product has a note.
+            {%- endcomment -%}
+            <span class="wp-excl-note">{{ block.settings.exclusion_note }}</span>
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+ 
+{% schema %}
+{
+  "name": "Affiliate Landing — SL",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "The Short List"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Start With The Ones Everyone Buys"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Four mats, thousands of five-star reviews between them. Skip the scroll and pick your entry point."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "category_line",
+          "label": "Category line",
+          "default": "Indoor · Ultra-Thin"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Product name",
+          "default": "The Insider"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show star rating",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "review_count",
+          "label": "Review count text (shown next to stars)",
+          "default": "2,738 reviews"
+        },
+        {
+          "type": "text",
+          "id": "new_tag_text",
+          "label": "Text shown instead of a rating (used when \"Show star rating\" is off)",
+          "default": "New to The Short List"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "The barely-there profile with no border, so your door glides right over it. Soft underfoot, resists stains and shedding."
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price (include $ sign)",
+          "default": "$69"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Shop"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Corner badge on photo (leave blank to hide)",
+          "info": "E.g. \"5 Year\" for The Outlier's warranty badge."
+        },
+        {
+          "type": "text",
+          "id": "exclusion_note",
+          "label": "Fine-print note below the button (leave blank to hide)",
+          "info": "E.g. \"Not eligible for code ENTRY15\" for The Porter."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Affiliate Landing — SL",
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {
+            "category_line": "Indoor · Ultra-Thin",
+            "name": "The Insider",
+            "show_rating": true,
+            "review_count": "2,738 reviews",
+            "description": "The barely-there profile with no border, so your door glides right over it. Soft underfoot, resists stains and shedding.",
+            "price": "$69"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "category_line": "Indoor / Outdoor · Woven",
+            "name": "The Innerweave",
+            "show_rating": true,
+            "review_count": "686 reviews",
+            "description": "The natural, hand-woven look — in technical fibers that shrug off weather and foot traffic and stay put.",
+            "price": "$125"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "category_line": "Outdoor · Dirt-Trapper",
+            "name": "The Outlier",
+            "show_rating": true,
+            "review_count": "317 reviews",
+            "description": "A patented grid of thousands of rubbery bristles that scrape shoes clean and drain water. Made in the USA, backed by a 5-year warranty.",
+            "price": "$158",
+            "badge_text": "5 Year"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "category_line": "Area Mat · Statement Piece",
+            "name": "The Porter",
+            "show_rating": false,
+            "new_tag_text": "New to The Short List",
+            "description": "The considered finish for a full entry or hallway — the same durability and design DNA as our doormats, made to scale.",
+            "price": "$225",
+            "exclusion_note": "Not eligible for code ENTRY15"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
