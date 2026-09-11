@@ -1,0 +1,55 @@
+{%- comment -%}
+  Shared fonts / color tokens / reset for the affiliate landing
+  page sections affiliate-landing-hero, and the sections that will follow:
+  why-different, short-list, reviews). Each of those sections renders
+  this snippet once, so this <style> block prints once per section that
+  includes it — a few duplicate KB of CSS across 4 sections is harmless
+  and far simpler than trying to dedupe across sections, since Liquid
+  variables don't persist from one section's render to another's.
+
+  Custom properties are namespaced --wp-* on purpose, so they can't
+  collide with any --primary / --accent tokens the main theme already
+  defines elsewhere on the site.
+
+  Assumes this page uses a blank ("layout: false") alternate page
+  template with no theme header/footer — see the .wp-landing class
+  below, which every section's root element should carry, so these
+  resets stay scoped to this page even if that assumption changes later.
+{%- endcomment -%}
+<style>
+@font-face{
+  font-family:'Brandon Grotesque';
+  src:url('https://www.porteandhall.com/cdn/shop/t/130/assets/BrandonGrotesque-Light.ttf?v=71162') format('truetype');
+  font-weight:300; font-style:normal;
+}
+@font-face{
+  font-family:'Brandon Grotesque';
+  src:url('https://cdn.shopify.com/s/files/1/0084/8602/7327/files/BrandonGrotesque-Bold.woff?v=1753700643') format('woff');
+  font-weight:700; font-style:normal;
+}
+@font-face{
+  font-family:'Louize Display';
+  src:url('https://www.porteandhall.com/cdn/shop/t/130/assets/LouizeDisplayTrial-Regular.woff?v=184402738702060371941754505253') format('woff');
+  font-weight:400; font-style:normal;
+}
+:root{
+  --wp-white:#FFFFFF;
+  --wp-border:#E5E0D7;
+  --wp-border-strong:#D9D4CB;
+  --wp-text-body:#30383D;
+  --wp-text-secondary:#6B6B6B;
+  --wp-text-muted:#999999;
+  --wp-tag-bg:#F3F0EC;
+  --wp-primary:#546B82;
+  --wp-primary-dark:#3E5266;
+  --wp-accent:#896A28;
+  --wp-accent-hover:#7A5A23;
+  --wp-font-serif:'Louize Display', Georgia, serif;
+  --wp-font-sans:'Brandon Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+.wp-landing, .wp-landing *{box-sizing:border-box;}
+.wp-landing{background:var(--wp-white);color:var(--wp-text-body);font-family:var(--wp-font-sans);-webkit-font-smoothing:antialiased;}
+.wp-landing a{text-decoration:none;color:inherit;}
+.wp-landing button{cursor:pointer;border:none;background:none;font-family:inherit;}
+.wp-landing img{display:block;max-width:100%;}
+</style>
