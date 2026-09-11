@@ -9,45 +9,14 @@
  */
 {
   "sections": {
-    "breadcrumbs_8LXnyk": {
-      "type": "breadcrumbs",
-      "name": "Breadcrumbs",
-      "settings": {
-        "background_color": "",
-        "padding_top": 10,
-        "padding_bottom": 10,
-        "mobile_padding_top": 10,
-        "mobile_padding_bottom": 10
-      }
-    },
     "main": {
       "type": "main-page",
       "disabled": true,
       "settings": {
         "page_heading": "",
         "subhead": "",
-        "section_height": "250",
+        "section_height": "125",
         "bg_color": "#f4f2ee"
-      }
-    },
-    "177317723145ab427b": {
-      "type": "apps",
-      "blocks": {
-        "powerful_form_builder_app_block_8GiUim": {
-          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
-          "settings": {
-            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"ODQ5Njc=\"></div>"
-          }
-        }
-      },
-      "block_order": [
-        "powerful_form_builder_app_block_8GiUim"
-      ],
-      "disabled": true,
-      "settings": {
-        "include_margins": true,
-        "heading": "",
-        "section_reviews": true
       }
     },
     "images_with_text_c3WYJG": {
@@ -186,7 +155,7 @@
       ],
       "name": "Logo Marquee",
       "settings": {
-        "background_color": "#546B82"
+        "background_color": "#546b82"
       }
     },
     "affiliate_landing_ceo_WphpMV": {
@@ -288,9 +257,7 @@
     }
   },
   "order": [
-    "breadcrumbs_8LXnyk",
     "main",
-    "177317723145ab427b",
     "images_with_text_c3WYJG",
     "affiliate_landing_hero_zW3wif",
     "logo_marquee_YE77eN",
