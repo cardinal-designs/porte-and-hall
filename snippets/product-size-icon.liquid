@@ -1,0 +1,32 @@
+{% comment %}
+  Renders .product-size-icon — a small grey rectangle whose proportions cue the
+  mat's real shape, matching the staging PDP size selector.
+
+  Dimensions are mapped by size NAME to the same px values staging uses (staging
+  stored these per-size; we replicate them as presentation logic — no new
+  metaobjects, and no dependence on the inconsistent product_dimensions strings).
+  Unknown size names render no icon.
+
+  @param {string} size_name - the size label (e.g. "Doormat", "Runner", "XL Runner", "Area Mat")
+{% endcomment %}
+{%- liquid
+  assign n = size_name | default: '' | downcase | strip
+  assign w = 0
+  assign h = 0
+  if n contains 'xl runner'
+    assign w = 14
+    assign h = 51
+  elsif n contains 'runner'
+    assign w = 13
+    assign h = 40
+  elsif n contains 'area mat'
+    assign w = 24
+    assign h = 36
+  elsif n contains 'doormat'
+    assign w = 18
+    assign h = 12
+  endif
+-%}
+{%- if w > 0 and h > 0 -%}
+  <span class="product-size-icon" style="width: {{ w }}px; height: {{ h }}px;" aria-hidden="true"></span>
+{%- endif -%}

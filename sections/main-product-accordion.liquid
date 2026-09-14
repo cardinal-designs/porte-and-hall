@@ -499,9 +499,10 @@ endcapture
 
                 <a 
                   style="order: {{ active_order }};"
-                  class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button active" 
+                  class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button active"
                   href="{{ product.url }}"
                 >
+                  {% comment %} {% render 'product-size-icon', size_name: product_size %} {% endcomment %}
                   {% if product_size == '5 x 7 Area Mat' %}
                     <span>Area Mat</span>
                   {% elsif product_size == '3 x 5 Doormat' %}
@@ -557,6 +558,15 @@ endcapture
                           assign dimension_product = alternate_match
                         endif
                       %}
+                      {% comment %} {% render 'product-size-icon', size_name: current_size.last %}
+                      {% if current_size.last == '5 x 7 Area Mat' %}
+                        <span>Area Mat</span>
+                      {% elsif current_size.last == '3 x 5 Doormat' %}
+                        <span>Doormat</span>
+                      {% else %}
+                      <span>{{ current_size.last }}</span>
+                      {% endif %} {% endcomment %}
+
                       {% render 'product-other-size-dimension', dimension_product: dimension_product %}
                     </a>
                   {%- endif -%}
