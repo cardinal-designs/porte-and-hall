@@ -39,6 +39,7 @@
     },
     "other-sizes": {
       "type": "product-shop-other-sizes",
+      "disabled": true,
       "settings": {}
     },
     "lp_custom_collections_2_ABDk4m": {
@@ -119,6 +120,7 @@
         "block_pdi6Ua",
         "block_WMzwR3"
       ],
+      "disabled": true,
       "settings": {
         "title": "Shop our other collections",
         "subtitle": ""
@@ -211,18 +213,21 @@
         "logo_Enti77",
         "logo_b4Vezr"
       ],
+      "disabled": true,
       "settings": {
         "background_color": "#d8d3c7"
       }
     },
     "design-details": {
       "type": "design-detail-arrows",
+      "disabled": true,
       "settings": {
         "heading": ""
       }
     },
     "product_quote_KP6aXV": {
       "type": "product-quote",
+      "disabled": true,
       "settings": {}
     },
     "see-in-action": {
@@ -240,6 +245,7 @@
     },
     "styling-tips": {
       "type": "styling-tips",
+      "disabled": true,
       "settings": {
         "heading": "Our founder Stafford's styling tips",
         "image": "shopify://shop_images/Stafford_and_dog_1_2x_8d4ed32a-5883-4611-bf23-c1cc022cb717.png",
@@ -248,6 +254,7 @@
     },
     "see-the-difference": {
       "type": "see-the-difference",
+      "disabled": true,
       "settings": {
         "colleciton": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
         "heading": "Small mat, big difference",
@@ -272,10 +279,23 @@
       "block_order": [
         "question_1"
       ],
+      "disabled": true,
       "settings": {
         "heading": "",
         "anchor": "",
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
+      }
+    },
+    "you-may-like": {
+      "type": "main-product-carousel",
+      "settings": {
+        "heading": "Never miss a mat. There's more to see!",
+        "background": "",
+        "show_metafield_style": false,
+        "collection": "shop-all",
+        "button_text": "Shop now",
+        "bottom_button_text": "",
+        "bottom_button_link": ""
       }
     },
     "reviews": {
@@ -307,18 +327,6 @@
         "section_reviews": true
       }
     },
-    "you-may-like": {
-      "type": "main-product-carousel",
-      "settings": {
-        "heading": "Never miss a mat. There's more to see!",
-        "background": "",
-        "show_metafield_style": false,
-        "collection": "shop-all",
-        "button_text": "Shop now",
-        "bottom_button_text": "",
-        "bottom_button_link": ""
-      }
-    },
     "featured-articles": {
       "type": "featured-articles",
       "blocks": {
@@ -346,6 +354,7 @@
         "faf6f395-3915-4f58-b2c5-acd839476fc2",
         "cc9c34ec-5a8d-4a24-9b5f-20963c337e23"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Hit the ground stunning:\nThe Porte + Hall blog",
         "background": "",
@@ -367,9 +376,9 @@
     "styling-tips",
     "see-the-difference",
     "faq",
+    "you-may-like",
     "reviews",
     "168172537899ce8b94",
-    "you-may-like",
     "featured-articles"
   ]
 }
