@@ -417,6 +417,10 @@
     width: 65px !important;
   }
 
+  .main-product-accordion .product__swatch:before {
+    display: none;
+  }
+
   .product__swatches .product__swatch::before {
     content: '';
     position: absolute;
@@ -1622,6 +1626,14 @@ variant-selects {
 product-form form {
   display: flex;
   flex-direction: column;
+}
+
+@media screen and (max-width: 1024px) {
+  
+  .small_button_text {
+    padding: 8px 4px !important;
+  }
+
 }
 
 @media screen and (max-width: 900px) {
