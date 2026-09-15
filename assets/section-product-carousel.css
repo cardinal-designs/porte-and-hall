@@ -89,6 +89,11 @@
   font-weight: 500;
   font-size: 19px;
   letter-spacing: 1.5px;
+  font-family: louize;
+}
+
+.product-carousel__slider .product-card__title {
+  padding-top: 15px;
 }
 
 .product-carousel__slider .product-card__price {
@@ -194,6 +199,15 @@
 
   .product-carousel__slider .product-carousel__container {
     padding-top: 20px;
+  }
+
+}
+
+@media screen and (max-width: 545px) {
+
+  .product-carousel .product-carousel__slider .swiper-button-next,
+  .product-carousel .product-carousel__slider .swiper-button-prev {
+    top: 165px !important;
   }
 
 }
