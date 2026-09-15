@@ -143,6 +143,10 @@
   color: transparent !important;
 }
 
+.product__media-pagination .swiper-pagination-bullet {
+  display: none;
+}
+
 .product__media {
   padding-bottom: 100%;
   position: relative;
@@ -1481,6 +1485,10 @@ variant-selects {
 .main-product-accordion .product__variant-name span {
   font-weight: 400;
   font-size: 16px;
+}
+
+.main-product-accordion .product__variant-name.body span {
+  letter-spacing: 0;
 }
 
 .main-product-accordion .product__price .old-price {
