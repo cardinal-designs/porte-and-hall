@@ -17,9 +17,24 @@
   {% endif %}
 {% endfor %}
 
+{%- liquid
+  assign plp_default_template = false
+  if template.name == 'collection' and template.suffix == blank
+    assign plp_default_template = true
+  endif
+-%}
+
 <div class="collection-filters__button hide-desktop">
   <button class="collection-filters__open js-open-filters h3">
-    <span>Filter {% render 'icon', icon: 'filter' %}</span>
+    {%- if plp_default_template -%}
+      <span>
+        {% render 'icon', icon: 'filter' %}
+        Filter{% if total_active_values > 0 %} ({{ total_active_values }}){% endif %}
+      </span>
+      <span class="collection-filters__open-caret">{% render 'icon', icon: 'caret' %}</span>
+    {%- else -%}
+      <span>Filter {% render 'icon', icon: 'filter' %}</span>
+    {%- endif -%}
   </button>
 </div>
 
@@ -108,10 +123,30 @@
               <div class="collection-filters__filters" id="filter-dropdowns">
                 <button class="text-link js-clear-all-filters js-clear-all-filters--close blue hide-mobile">Clear All</button>
                 <div class="collection-filters__dropdowns">
+                  {%- comment -%}
+                    Same colour-label list used by grouped-product-card.liquid, so a
+                    shop translated into another locale still resolves its colour filter.
+                  {%- endcomment -%}
+                  {% assign color_labels = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ',' %}
+                  {%- comment -%}
+                    Five sections render this snippet, but only main-collection-product-grid
+                    loads component-collection-plp.css. The swatch markup replaces the value's
+                    text with a CSS-sized element, so it may only render where that stylesheet
+                    is present — otherwise the colour options collapse to nothing. The
+                    `--color` classes below are safe everywhere and stay unconditional.
+                  {%- endcomment -%}
+                  {% assign render_color_swatches = false %}
+                  {% if template.name == 'collection' and template.suffix == blank %}
+                    {% assign render_color_swatches = true %}
+                  {% endif %}
                   {% for filter in collection.filters %}
                     {% assign total_active_values = total_active_values | plus: filter.active_values.size %}
                     {% assign downcase_filter = filter.label | downcase %}
-                    <div class="collection-filters__dropdown">
+                    {% assign is_color_filter = false %}
+                    {% if color_labels contains downcase_filter %}
+                      {% assign is_color_filter = true %}
+                    {% endif %}
+                    <div class="collection-filters__dropdown{% if is_color_filter %} collection-filters__dropdown--color{% endif %}">
                       <button class="collection-filters__dropdown-button h3 {% if filter.active_values != blank %} has-active-filters{% endif %} active">
                         {% if downcase_filter == 'product type' %}
                           <span>Shop By Category</span>
@@ -122,7 +157,7 @@
                       </button>
                       <div class="collection-filters__dropdown-wrapper">
                         <div
-                          class="collection-filters__dropdown-container{% if filter.type == 'price_range' %} collection-filters__dropdown-container--price-range{% endif %}"
+                          class="collection-filters__dropdown-container{% if filter.type == 'price_range' %} collection-filters__dropdown-container--price-range{% endif %}{% if is_color_filter %} collection-filters__dropdown-container--color{% endif %}"
                           id="collection-filter-{{ filter.param_name | escape }}"
                         >
                           {% unless filter.type == 'price_range' %}
@@ -156,7 +191,7 @@
                                     type="checkbox"
                                   {% endif %} {% endcomment %}
                                   type="checkbox"
-                                  class="collection-filters__filter-button"
+                                  class="collection-filters__filter-button{% if render_color_swatches and is_color_filter %} visually-hidden{% endif %}"
                                   name="{{ value.param_name }}"
                                   value="{{ value.value }}"
                                   data-filter="{{ value.param_name }}-{{ value.value }}"
@@ -170,15 +205,24 @@
                                   for="Filter-{{ filter.label | escape }}-{{ forloop.index }}"
                                   class="collection-filters__filter-label h3{% if value.count == 0 and value.active == false %} collection-filters__filter-button--disabled{% endif %}"
                                 >
-                                  {{ value.label | escape }}
+                                  {%- if render_color_swatches and is_color_filter -%}
+                                    {%- comment -%}
+                                      The name stays in the DOM for screen readers and for the
+                                      swatch's tooltip; only its visual form changes.
+                                    {%- endcomment -%}
+                                    <span class="visually-hidden">{{ value.label | escape }}</span>
+                                    {% render 'filter-color-swatch', value: value %}
+                                  {%- else -%}
+                                    {{ value.label | escape }}
+                                  {%- endif -%}
                                   {% comment %} ({{ value.count }}) {% endcomment %}
                                 </label>
                               </div>
                             {% endfor %}
-                              <div class="collection-filters__input-wrapper">
+                              <div class="collection-filters__input-wrapper collection-filters__input-wrapper--all">
                                 <input
                                   type="checkbox"
-                                  class="collection-filters__filter-button"
+                                  class="collection-filters__filter-button{% if render_color_swatches and is_color_filter %} visually-hidden{% endif %}"
                                   name="{{ filter.values[0].param_name }}"
                                   value=""
                                   remove-filter="{{ filter.param_name }}"
@@ -191,7 +235,12 @@
                                   for="Filter-{{ filter.label | escape }}-all"
                                   class="collection-filters__filter-label h3{% if value.count == 0 and value.active == false %} collection-filters__filter-button--disabled{% endif %}"
                                 >
-                                  Shop All {{ filter.label }}{% if filter.label == "Collection" %}s{% endif %}
+                                  {%- if render_color_swatches and is_color_filter -%}
+                                    <span class="visually-hidden">Shop All {{ filter.label }}</span>
+                                    <span class="collection-filters__filter-swatch collection-filters__filter-swatch--all"></span>
+                                  {%- else -%}
+                                    Shop All {{ filter.label }}{% if filter.label == "Collection" %}s{% endif %}
+                                  {%- endif -%}
                                 </label>
                               </div>
                           {% else %}

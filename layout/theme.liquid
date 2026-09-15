@@ -212,7 +212,7 @@
     {%- render 'head-scripts-loader' -%}
   </head>
 
-  <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
+  <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}{% if template.name == 'collection' and template.suffix == blank %} template__collection--default{% endif %}">
     <style>
       .sr-only {
         position: absolute !important;
