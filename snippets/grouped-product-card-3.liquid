@@ -206,7 +206,7 @@
     {% endif %}
 
     {% if customer and customer.b2b? %}
-      <p class="product-card__price body blue">
+      <p class="product-card__price body blue" data-product-id="{{ product_card_product.id }}" data-variant-id="{{ product_card_product.selected_or_first_available_variant.id }}">
         {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
         {% assign discount_factor = 100 | minus: trade_pricing_discount_percentage %}
         {% assign original_price = product_card_product.price | times: 100 | divided_by: discount_factor %}
