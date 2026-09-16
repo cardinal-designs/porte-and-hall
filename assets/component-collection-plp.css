@@ -745,5 +745,9 @@
     display: none;
   }
 
+  .template__collection--default [data-hidden-swatches] {
+    font-size: 14px;
+  }
+
 }
 
