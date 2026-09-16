@@ -12,6 +12,16 @@
 
 .load-more-wrapper {
   text-align: center;
+  margin-top: 40px;
+}
+
+.load-more__count {
+  margin: 0;
+  font-family: brandon;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #6b6b6b;
 }
 
 load-more.button {

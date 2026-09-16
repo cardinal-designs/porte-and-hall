@@ -1216,27 +1216,38 @@ var LoadMore = class extends HTMLElement {
   constructor() {
     super();
 
-    const dataUrl = this.dataset.loadMore;
-    const productGrid = this.closest(".collection").querySelector("#product-grid");
-    const loadMoreWrapper = productGrid?.nextElementSibling;
+    this.addEventListener("click", this.loadNextPage.bind(this));
+  }
 
-    this.addEventListener("click", async function(e){
-      e.preventDefault();
+  async loadNextPage(event) {
+    event.preventDefault();
 
-      this.classList.add("loading");
+    if (this.classList.contains("loading")) return;
 
-      await fetch(dataUrl).then(response => response.text()).then((responseText) => {
-        const html = responseText;
-        const htmlContent = new DOMParser().parseFromString(html, 'text/html')
+    const nextUrl = this.dataset.loadMore;
+    const productGrid = this.closest(".collection")?.querySelector("#product-grid");
+    const loadMoreWrapper = this.closest(".load-more-wrapper");
 
-        productGrid.innerHTML = productGrid.innerHTML + htmlContent.querySelector("#product-grid").innerHTML;
-        loadMoreWrapper.querySelector('load-more').innerHTML = htmlContent.querySelector("load-more").innerHTML || ""
-        this.classList.remove("loading")
-      })
-      window.scrollUtils1();
-      window.scrollUtils2();
-      window.scrollUtils3();
-    }.bind(this))
+    if (!nextUrl || !productGrid || !loadMoreWrapper) return;
+
+    this.classList.add("loading");
+
+    try {
+      const responseText = await fetch(nextUrl).then(response => response.text());
+      const htmlContent = new DOMParser().parseFromString(responseText, 'text/html');
+      const nextGrid = htmlContent.querySelector("#product-grid");
+      const nextWrapper = htmlContent.querySelector(".load-more-wrapper");
+
+      if (nextGrid) productGrid.insertAdjacentHTML("beforeend", nextGrid.innerHTML);
+      loadMoreWrapper.innerHTML = nextWrapper ? nextWrapper.innerHTML : "";
+    } catch (error) {
+      this.classList.remove("loading");
+      return;
+    }
+
+    window.scrollUtils1();
+    window.scrollUtils2();
+    window.scrollUtils3();
   }
 };
 

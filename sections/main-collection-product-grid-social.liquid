@@ -130,6 +130,7 @@
               {% endfor %}
           </ul>
             <div id="load-more-wrapper" class="load-more-wrapper">
+              {% render 'load-more-count', paginate: paginate %}
               {% if paginate.pages > 1 and paginate.next %}
               <load-more role="button" class="button" data-load-more="{{ paginate.next.url }}">
                 <span>Load more</span>
