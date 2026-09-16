@@ -823,7 +823,7 @@
                 </div>
               <div class="title-swatch_container">
                 <h3>{{ block.settings.title }}</h3>
-                <p class="hide-mobile igPrice" data-product-id="{{ all_products[block.settings.product].id }}">{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
+                <p class="hide-mobile igPrice" data-product-id="{{ all_products[block.settings.product].id }}" data-variant-id="{{ all_products[block.settings.product].selected_or_first_available_variant.id }}">{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
               </div>
               <div class="flex-swatch">
                 <div class="hide-large swatch_container">
