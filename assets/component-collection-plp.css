@@ -476,7 +476,6 @@
     border-right: 1px solid #d9d4cb;
   }
 
-  /* The drawer header doubles as the sidebar heading here, minus the close button */
   .template__collection--default .collection-filters__slideout-header {
     padding: 0 0 18px;
   }
@@ -487,6 +486,7 @@
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    font-family: brandon;
   }
 
   .template__collection--default .collection-filters__clear-all {
