@@ -520,6 +520,7 @@
 }
 
 .other-sizes__wrapper-links.other-sizes__wrapper-links--inner {
+  display: flex;
   justify-content: space-between;
   gap: 0;
   width: 100%;
@@ -1026,6 +1027,11 @@ variant-selects {
     opacity: 1;
   }
 
+  .product__media-wrapper {
+    position: relative;
+    top: 0;
+  }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -1364,8 +1370,10 @@ variant-selects {
 }
 
 .other-sizes__wrapper-links {
-  display: flex;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  width: 100%;
 }
 
 .other-sizes__dimension {
