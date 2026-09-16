@@ -829,7 +829,7 @@
                 <div class="hide-large swatch_container">
                   {{ color_swatch_list }}
                 </div>
-                <p class="mobile-price hide-desktop">{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
+                <p class="mobile-price hide-desktop igPrice" data-product-id="{{ all_products[block.settings.product].id }}" data-variant-id="{{ all_products[block.settings.product].selected_or_first_available_variant.id }}">{{ all_products[block.settings.product].price | money_without_trailing_zeros }}</p>
               </div>
               <div class="hide-medium swatch_container">
               {{ color_swatch_list }}
