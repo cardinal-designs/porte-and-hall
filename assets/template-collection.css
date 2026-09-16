@@ -16,7 +16,7 @@
 .collection-grid__inner {
   display: grid;
   grid-template-columns: minmax(0, 276px) minmax(0, 1fr);
-  column-gap: 40.5px;
+  column-gap: 24px;
   grid-template-areas: 'filters grid';
   position: relative;
 }
