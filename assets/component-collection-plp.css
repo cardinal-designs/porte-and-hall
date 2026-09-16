@@ -470,7 +470,39 @@
   letter-spacing: normal;
 }
 
+.template__collection--default collection-filters,
+.template__collection--default .collection-filters__slideout-content {
+  scrollbar-width: thin;
+  scrollbar-color: #d9d4cb transparent;
+}
+
+.template__collection--default collection-filters::-webkit-scrollbar,
+.template__collection--default .collection-filters__slideout-content::-webkit-scrollbar {
+  width: 2px;
+}
+
+.template__collection--default collection-filters::-webkit-scrollbar-track,
+.template__collection--default .collection-filters__slideout-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.template__collection--default collection-filters::-webkit-scrollbar-thumb,
+.template__collection--default .collection-filters__slideout-content::-webkit-scrollbar-thumb {
+  background-color: #d9d4cb;
+  border-radius: 2px;
+}
+
 @media screen and (min-width: 769px) {
+
+  .template__collection--default collection-filters {
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .template__collection--default .collection-filters__slideout-content {
+    max-height: none;
+    overflow: visible;
+  }
 
   .template__collection--default .collection-filters__container {
     padding: 28px 36px 0 0;
