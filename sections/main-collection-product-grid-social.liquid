@@ -109,7 +109,7 @@
         </div>
       {% else %}
         <div class="collection">
-          {% paginate collection.products by 50 %}
+          {% paginate collection.products by 60 %}
           <ul id="product-grid" data-id="{{ section.id }}" class="product-grid product-grid-4 list-unstyled">
               {% for product in collection.products %}
                 {% comment %} {% render 'product-card', product_card_product: product %} {% endcomment %}
