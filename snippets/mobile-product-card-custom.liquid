@@ -208,7 +208,7 @@
     {% endif %}
 
     {% if customer and customer.b2b? %}
-      <p class="product-card__price body blue">
+      <p class="product-card__price body blue" data-product-id="{{ product_card_product.id }}" data-variant-id="{{ product_card_product.selected_or_first_available_variant.id }}">
         {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
         {% assign discount_factor = 100 | minus: trade_pricing_discount_percentage %}
         {% assign original_price = product_card_product.price | times: 100 | divided_by: discount_factor %}
@@ -221,12 +221,12 @@
       </p>
     {% else %}
       {% if show_discounted_price %}
-        <p class="product-card__price body blue">
+        <p class="product-card__price body blue" data-product-id="{{ product_card_product.id }}" data-variant-id="{{ product_card_product.selected_or_first_available_variant.id }}">
           <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
           <span>{{ auto_discount_price }}</span>
         </p>
       {% else %}
-        <p class="product-card__price body blue">
+        <p class="product-card__price body blue" data-product-id="{{ product_card_product.id }}" data-variant-id="{{ product_card_product.selected_or_first_available_variant.id }}">
           {% if product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value != blank and product_card_product.price > product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value %}
             <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
             <span>{{ product_card_product.selected_or_first_available_variant.metafields.custom.last_chance_price.value | money_without_trailing_zeros }}</span>
@@ -276,7 +276,7 @@
       </div>
     {% else %}
         <a href="{{ product_card_product.url }}" class="text-link gold-secondary--dark product-card__link">
-        {% if button_text == blank %}{{ product_card_product.price | money_without_trailing_zeros }} | Shop Now{% else %}{{ product_card_product.price | money_without_trailing_zeros }} | {{ button_text }}{% endif %} 
+        {% if button_text == blank %}<span class="igPrice" data-product-id="{{ product_card_product.id }}" data-variant-id="{{ product_card_product.selected_or_first_available_variant.id }}">{{ product_card_product.price | money_without_trailing_zeros }}</span> | Shop Now{% else %}<span class="igPrice" data-product-id="{{ product_card_product.id }}" data-variant-id="{{ product_card_product.selected_or_first_available_variant.id }}">{{ product_card_product.price | money_without_trailing_zeros }}</span> | {{ button_text }}{% endif %}  
             {% comment %} <span> 
                 <svg xmlns="http://www.w3.org/2000/svg" width="29" height="16" viewBox="0 0 29 16" fill="none">
                     <path d="M28.7071 8.70711C29.0976 8.31658 29.0976 7.68342 28.7071 7.29289L22.3431 0.928932C21.9526 0.538408 21.3195 0.538408 20.9289 0.928932C20.5384 1.31946 20.5384 1.95262 20.9289 2.34315L26.5858 8L20.9289 13.6569C20.5384 14.0474 20.5384 14.6805 20.9289 15.0711C21.3195 15.4616 21.9526 15.4616 22.3431 15.0711L28.7071 8.70711ZM0 9H28V7H0V9Z" fill="#A19377"/>
