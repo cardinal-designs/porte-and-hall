@@ -280,12 +280,14 @@
   pointer-events: none;
 }
 
-.template__collection--default .collection-filters__filters .text-link {
+.template__collection--default .collection-filters__clear-all {
   margin-bottom: 0;
   line-height: normal;
   color: #6b6b6b;
   font-size: 11px;
   font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -297,17 +299,21 @@
 }
 
 .template__collection--default .collection-filters__active-filters .remove-filter {
+  padding: 5px 14px;
+  font-family: brandon;
+  font-weight: 400;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
   gap: 10px;
   background: var(--blue);
   color: #fff;
   border-radius: 50px;
-  font-size: 14px;
-  font-weight: 400;
-  text-transform: none;
+  text-transform: capitalize;
 }
 
 .template__collection--default .collection-filters__slideout-title {
-  font-size: 17px;
+  font-size: 18px;
   color: #30383d;
 }
 
@@ -455,11 +461,49 @@
   display: none !important;
 }
 
+.template__collection--default [data-hidden-swatches] {
+  font-family: brandon;
+  font-size: 16px;
+  line-height: 22px;
+  color: #999;
+  font-weight: 400;
+}
+
 @media screen and (min-width: 769px) {
 
   .template__collection--default .collection-filters__container {
     padding: 28px 36px 0 0;
     border-right: 1px solid #d9d4cb;
+  }
+
+  /* The drawer header doubles as the sidebar heading here, minus the close button */
+  .template__collection--default .collection-filters__slideout-header {
+    padding: 0 0 18px;
+  }
+
+  .template__collection--default .collection-filters__slideout-title {
+    line-height: normal;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .template__collection--default .collection-filters__clear-all {
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .template__collection--default #active-filters .collection-filters__active-filters {
+    align-items: flex-start;
+    padding: 0;
+    margin: 0 0 18px;
+    gap: 6px;
+  }
+
+  .template__collection--default #active-filters .remove-filter svg {
+    width: 9px;
+    flex-shrink: 0;
   }
 
 }
@@ -547,7 +591,26 @@
   .template__collection--default .collection-filters__slideout-header {
     padding: 20px 20px 12px;
   }
-  
+
+  .template__collection--default .collection-filters__slideout-header .collection-filters__clear-all {
+    margin: 0;
+    margin-right: 0;
+    letter-spacing: normal;
+    text-transform: none;
+    width: auto;
+    color: #6b6b6b;
+    font-family: brandon, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+
   .template__collection--default .collection-grid-section .page-width {
     padding-left: 48px;
     padding-right: 48px;
@@ -675,6 +738,10 @@
 
   .template__collection--default .collection-filters__controls {
     padding: 12px 20px;
+  }
+
+  .template__collection--default .collection-filters__slideout-close {
+    display: none;
   }
 
 }

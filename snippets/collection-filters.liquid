@@ -67,14 +67,26 @@
 
         <div class="collection-filters__slideout">
           <div class="collection-filters__slideout-container no-scrollbar">
-            <div class="collection-filters__slideout-header hide-desktop">
+            {%- comment -%}
+              On the default PLP this header serves both breakpoints: the drawer header on
+              mobile and the sidebar heading on desktop, where the close button drops away.
+              The other templates that render this snippet keep it mobile-only.
+            {%- endcomment -%}
+            <div class="collection-filters__slideout-header{% unless plp_default_template %} hide-desktop{% endunless %}">
               <p class="collection-filters__slideout-title h2 blue">Filter</p>
-              <button class="collection-filters__slideout-close js-close-filters" aria-label="close Filters">
+              {%- if plp_default_template -%}
+                <button class="text-link collection-filters__clear-all blue js-clear-all-filters js-clear-all-filters--close">Clear all</button>
+              {%- endif -%}
+              <button class="collection-filters__slideout-close js-close-filters{% if plp_default_template %} hide-desktop{% endif %}" aria-label="close Filters">
                 {% render 'icon', icon: 'close' %}
               </button>
             </div>
             <div class="collection-filters__slideout-content">
-              <div id="active-filters" class="hide-desktop">
+              {%- comment -%}
+                The default PLP shows the active-filter chips in the desktop sidebar too;
+                the other templates that render this snippet keep them mobile-only.
+              {%- endcomment -%}
+              <div id="active-filters"{% unless plp_default_template %} class="hide-desktop"{% endunless %}>
                 {% if total_active_values > 0 %}
                   <div class="collection-filters__active-filters">
                     {% for filter in collection.filters %}
@@ -115,13 +127,21 @@
                       {% endcase %}
                     {% endfor %}
 
-                    <button class="text-link js-clear-all-filters js-clear-all-filters--close blue">Clear All</button>
+                    {%- comment -%}
+                      The default PLP has its Clear All in the header at both breakpoints,
+                      so this copy only renders for the templates that don't.
+                    {%- endcomment -%}
+                    {%- unless plp_default_template -%}
+                      <button class="text-link js-clear-all-filters js-clear-all-filters--close blue hide-desktop">Clear All</button>
+                    {%- endunless -%}
                   </div>
                 {% endif %}
               </div>
 
               <div class="collection-filters__filters" id="filter-dropdowns">
-                <button class="text-link js-clear-all-filters js-clear-all-filters--close blue hide-mobile">Clear All</button>
+                {%- unless plp_default_template -%}
+                  <button class="text-link js-clear-all-filters js-clear-all-filters--close blue hide-mobile">Clear All</button>
+                {%- endunless -%}
                 <div class="collection-filters__dropdowns">
                   {%- comment -%}
                     Same colour-label list used by grouped-product-card.liquid, so a
