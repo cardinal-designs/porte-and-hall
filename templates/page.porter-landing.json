@@ -98,62 +98,6 @@
         "text_3_color": "#ffffff"
       }
     },
-    "image_text_Lw6xn7": {
-      "type": "image-text",
-      "name": "Image with text",
-      "settings": {
-        "subheading": "",
-        "title": "<p>4 Elegant Colorways</p>",
-        "content": "",
-        "link_text": "",
-        "link_url": "",
-        "custom-class": ""
-      }
-    },
-    "images_with_text_eUFMEY": {
-      "type": "images-with-text",
-      "blocks": {
-        "block_baEHrD": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/greystone.png",
-            "title": "Greystone"
-          }
-        },
-        "block_npKYJC": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/truffle.png",
-            "title": "Truffle"
-          }
-        },
-        "block_HGcHHz": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/portergraniteswatch.png",
-            "title": "Granite"
-          }
-        },
-        "block_8Fwqxc": {
-          "type": "block",
-          "settings": {
-            "image": "shopify://shop_images/iron.png",
-            "title": "Iron"
-          }
-        }
-      },
-      "block_order": [
-        "block_baEHrD",
-        "block_npKYJC",
-        "block_HGcHHz",
-        "block_8Fwqxc"
-      ],
-      "name": "Images with text",
-      "settings": {
-        "background": "#FCFCFC",
-        "text_color": "#30383D"
-      }
-    },
     "porter_hall_colorways_xHj4Bh": {
       "type": "porter-hall-colorways",
       "blocks": {
@@ -234,6 +178,62 @@
         "mobile_image_standard": "shopify://shop_images/Group_1_740a77ef-5343-4beb-a5a2-e286947e11ed.png",
         "standard_title": "Standard",
         "standard_description": "<p>Perfectly oversized and anything but ordinary, this mat was made to make a statement at most doors.</p>"
+      }
+    },
+    "image_text_Lw6xn7": {
+      "type": "image-text",
+      "name": "Image with text",
+      "settings": {
+        "subheading": "",
+        "title": "<p>4 Elegant Colorways</p>",
+        "content": "",
+        "link_text": "",
+        "link_url": "",
+        "custom-class": ""
+      }
+    },
+    "images_with_text_eUFMEY": {
+      "type": "images-with-text",
+      "blocks": {
+        "block_baEHrD": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/greystone.png",
+            "title": "Greystone"
+          }
+        },
+        "block_npKYJC": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/truffle.png",
+            "title": "Truffle"
+          }
+        },
+        "block_HGcHHz": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/portergraniteswatch.png",
+            "title": "Granite"
+          }
+        },
+        "block_8Fwqxc": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/iron.png",
+            "title": "Iron"
+          }
+        }
+      },
+      "block_order": [
+        "block_baEHrD",
+        "block_npKYJC",
+        "block_HGcHHz",
+        "block_8Fwqxc"
+      ],
+      "name": "Images with text",
+      "settings": {
+        "background": "#EEEFEF",
+        "text_color": "#546B82"
       }
     },
     "porter_hall_video_text_zDhyEj": {
@@ -350,10 +350,10 @@
     "hero_porter_hall_FeqBxV",
     "breadcrumbs_DMjzEK",
     "porter_hall_image_grid_7BTqhf",
-    "image_text_Lw6xn7",
-    "images_with_text_eUFMEY",
     "porter_hall_colorways_xHj4Bh",
     "porter_hall_material_type_GEYDmB",
+    "image_text_Lw6xn7",
+    "images_with_text_eUFMEY",
     "porter_hall_video_text_zDhyEj",
     "porter_hall_video_text_hnGRDJ",
     "porter_hall_box_image_text_NWHbjw"
