@@ -182,10 +182,13 @@
     },
     "image_text_Lw6xn7": {
       "type": "image-text",
+      "custom_css": [
+        ".FeatureText__ContentWrapper {background-color: #eeefef;}"
+      ],
       "name": "Image with text",
       "settings": {
         "subheading": "",
-        "title": "<p>4 Elegant Colorways</p>",
+        "title": "<h2>4 Elegant Colorways</h2>",
         "content": "",
         "link_text": "",
         "link_url": "",
