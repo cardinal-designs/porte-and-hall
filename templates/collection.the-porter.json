@@ -73,72 +73,6 @@
         "full_width": false
       }
     },
-    "porter_hall_video_text_Y8TWGa": {
-      "type": "porter-hall-video-text",
-      "custom_css": [
-        "@media screeen and (max-width: 600px) {h2 {font-size: 20px; }}"
-      ],
-      "name": "The Finer Details",
-      "settings": {
-        "bg_color": "rgba(0,0,0,0)",
-        "image": "shopify://shop_images/porter_pdp_truffledouble_3_2x_1_copy.jpg",
-        "title": "Make a Grand Entrance",
-        "subtitle": "<br>A stylish home deserves more than any old doormat. Knotted by hand from the finest Italian yarns, The Porter is a luxury outdoor mat like no other. It not only welcomes you with stunning visual interest, but it’s also built to brave the elements and hold up for years to come.",
-        "image_position": "image--first",
-        "remove_top_space": true,
-        "remove_bottom_space": true
-      }
-    },
-    "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a": {
-      "type": "collection-head-slider",
-      "blocks": {
-        "category_iMcWEt": {
-          "type": "category",
-          "settings": {
-            "title": "Indoor Doormats",
-            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Indoor"
-          }
-        },
-        "category_HHDEN6": {
-          "type": "category",
-          "settings": {
-            "title": "Outdoor Doormats",
-            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Outdoor"
-          }
-        },
-        "category_tcW9nG": {
-          "type": "category",
-          "settings": {
-            "title": "Runners",
-            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
-          }
-        },
-        "category_fwnzTp": {
-          "type": "category",
-          "settings": {
-            "title": "Area Mats",
-            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
-          }
-        },
-        "category_U7VJ38": {
-          "type": "category",
-          "disabled": true,
-          "settings": {
-            "title": "Shop all",
-            "link": "https://www.porteandhall.com/collections/shop-all"
-          }
-        }
-      },
-      "block_order": [
-        "category_iMcWEt",
-        "category_HHDEN6",
-        "category_tcW9nG",
-        "category_fwnzTp",
-        "category_U7VJ38"
-      ],
-      "disabled": true,
-      "settings": {}
-    },
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
@@ -243,7 +177,7 @@
         "logo_KnnnYX"
       ],
       "settings": {
-        "background_color": "#d8d3c7"
+        "background_color": "#546B82"
       }
     },
     "2046a8d4-8126-4344-8df2-6dd5193e7293": {
@@ -286,8 +220,6 @@
     "breadcrumbs_pUGgiG",
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
     "main_collection_banner_CcJ4HN",
-    "porter_hall_video_text_Y8TWGa",
-    "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a",
     "product-grid",
     "logo_marquee_C4YGDM",
     "2046a8d4-8126-4344-8df2-6dd5193e7293"
