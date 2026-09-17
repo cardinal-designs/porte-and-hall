@@ -95,6 +95,62 @@
         "text_3_color": "#ffffff"
       }
     },
+    "image_text_Lw6xn7": {
+      "type": "image-text",
+      "name": "Image with text",
+      "settings": {
+        "subheading": "",
+        "title": "<p>4 Elegant Colorways</p>",
+        "content": "",
+        "link_text": "",
+        "link_url": "",
+        "custom-class": ""
+      }
+    },
+    "images_with_text_eUFMEY": {
+      "type": "images-with-text",
+      "blocks": {
+        "block_baEHrD": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/greystone.png",
+            "title": "Greystone"
+          }
+        },
+        "block_npKYJC": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/truffle.png",
+            "title": "Truffle"
+          }
+        },
+        "block_HGcHHz": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/granite.webp",
+            "title": "Granite"
+          }
+        },
+        "block_8Fwqxc": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/iron.png",
+            "title": "Iron"
+          }
+        }
+      },
+      "block_order": [
+        "block_baEHrD",
+        "block_npKYJC",
+        "block_HGcHHz",
+        "block_8Fwqxc"
+      ],
+      "name": "Images with text",
+      "settings": {
+        "background": "#FCFCFC",
+        "text_color": "#30383D"
+      }
+    },
     "porter_hall_colorways_xHj4Bh": {
       "type": "porter-hall-colorways",
       "blocks": {
@@ -160,6 +216,9 @@
     },
     "porter_hall_material_type_GEYDmB": {
       "type": "porter-hall-material-type",
+      "custom_css": [
+        "h2 {color: #546a83;}"
+      ],
       "name": "Two of a Kind",
       "settings": {
         "bg_color": "#eeefef",
@@ -288,6 +347,8 @@
     "hero_porter_hall_FeqBxV",
     "breadcrumbs_DMjzEK",
     "porter_hall_image_grid_7BTqhf",
+    "image_text_Lw6xn7",
+    "images_with_text_eUFMEY",
     "porter_hall_colorways_xHj4Bh",
     "porter_hall_material_type_GEYDmB",
     "porter_hall_video_text_zDhyEj",
