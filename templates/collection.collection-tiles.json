@@ -61,6 +61,16 @@
         "swap-fonts": false
       }
     },
+    "main_collection_banner_PaHLHe": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "name": "t:sections.main-collection-banner.name",
+      "settings": {
+        "show_title": false,
+        "show_collection_description": true,
+        "full_width": false
+      }
+    },
     "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a": {
       "type": "collection-head-slider",
       "blocks": {
@@ -110,6 +120,51 @@
       ],
       "disabled": true,
       "settings": {}
+    },
+    "collection_tiles_4g6n8D": {
+      "type": "collection-tiles",
+      "blocks": {
+        "tile_ViTKip": {
+          "type": "tile",
+          "settings": {
+            "image_link": "",
+            "heading": "<h3>THE INSIDER COLLECTION</h3>",
+            "description": "<p>Short supporting line.</p>",
+            "button_label": "SHOP Insider 3 x 5",
+            "button_link": "https://www.porteandhall.com/collections/3x5-doormats?filter.v.m.custom.filters=The+Insider"
+          }
+        },
+        "tile_8BRzBE": {
+          "type": "tile",
+          "settings": {
+            "image_link": "",
+            "heading": "<h3>THE INNERWEAVE COLLECTION</h3>",
+            "description": "<p>Short supporting line.</p>",
+            "button_label": "SHOP INNERWEAVE 3 x 5",
+            "button_link": "https://www.porteandhall.com/collections/3x5-doormats?filter.v.m.custom.filters=The+Innerweave"
+          }
+        }
+      },
+      "block_order": [
+        "tile_ViTKip",
+        "tile_8BRzBE"
+      ],
+      "name": "Collection Tiles + CTA",
+      "settings": {
+        "heading": "Shop 3 x 5 Doormats",
+        "full_bleed": false,
+        "column_gap": 28,
+        "mobile_tile_width": 78,
+        "padding_top": 56,
+        "padding_bottom": 72,
+        "color_bg": "#FFFFFF",
+        "color_heading": "#546B82",
+        "color_text": "#30383D",
+        "color_text_secondary": "#6B6B6B",
+        "color_button_bg": "#896A28",
+        "color_button_text": "#FFFFFF",
+        "button_font_size": 13
+      }
     },
     "product-grid": {
       "type": "main-collection-sticky-filters-mobile",
@@ -294,15 +349,6 @@
         "show_recent_articles": true,
         "hide_mobile": false
       }
-    },
-    "main_collection_banner_PaHLHe": {
-      "type": "main-collection-banner",
-      "name": "t:sections.main-collection-banner.name",
-      "settings": {
-        "show_title": false,
-        "show_collection_description": true,
-        "full_width": false
-      }
     }
   },
   "order": [
@@ -310,6 +356,7 @@
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
     "main_collection_banner_PaHLHe",
     "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a",
+    "collection_tiles_4g6n8D",
     "product-grid",
     "logo_marquee_XqK98A",
     "2046a8d4-8126-4344-8df2-6dd5193e7293"
