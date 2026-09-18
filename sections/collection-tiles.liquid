@@ -26,7 +26,7 @@
     assign ct_grid_cols = 5
   endif
 %}
-
+ 
 {% style %}
   #shopify-section-{{ ct_id }} {
     --ct-bg: {{ section.settings.color_bg }};
@@ -43,7 +43,7 @@
     --ct-font-serif: 'Louize Display', Georgia, serif;
     --ct-font-sans: 'Brandon Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
-
+ 
   #shopify-section-{{ ct_id }} .ph-tiles-section {
     background: var(--ct-bg);
     padding: var(--ct-padding-top) 0 var(--ct-padding-bottom);
@@ -74,11 +74,30 @@
     padding: 0;
   }
   #shopify-section-{{ ct_id }} .tile { display: flex; flex-direction: column; }
-  #shopify-section-{{ ct_id }} .tile-img-link,
-  #shopify-section-{{ ct_id }} .tile-img-placeholder { display: block; overflow: hidden; border-radius: 2px; }
-  #shopify-section-{{ ct_id }} .tile img,
-  #shopify-section-{{ ct_id }} .tile-img-placeholder { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; background: #dfe3e6; }
-  #shopify-section-{{ ct_id }} .tile-img-placeholder svg { width: 100%; height: 100%; }
+  #shopify-section-{{ ct_id }} .tile-img-link { display: block; }
+  /* Fixed-ratio crop box — the <img> is pinned to fill it, so a real photo's
+     own width/height (which Shopify's image_tag writes onto the element)
+     can never stretch the tile taller than this box, whatever shape the
+     source photo is. */
+  #shopify-section-{{ ct_id }} .tile-img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: 2px;
+    background: #dfe3e6;
+  }
+  #shopify-section-{{ ct_id }} .tile-img-wrap img,
+  #shopify-section-{{ ct_id }} .tile-img-wrap .tile-img-placeholder-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: center;
+    margin: 0;
+  }
   #shopify-section-{{ ct_id }} .field-heading {
     font-family: var(--ct-font-serif);
     font-weight: 400;
@@ -111,7 +130,7 @@
     width: fit-content;
     text-decoration: none;
   }
-
+ 
   @media (max-width: 768px) {
     #shopify-section-{{ ct_id }} .ph-tiles-section { padding: 40px 0 50px; }
     #shopify-section-{{ ct_id }} .ph-tiles-section .inner { padding: 0 24px; }
@@ -130,46 +149,48 @@
     #shopify-section-{{ ct_id }} .field-heading { font-size: 18px; margin-top: 14px; }
   }
 {% endstyle %}
-
+ 
 <div class="ph-tiles-section {% if section.settings.full_bleed %}is-full-bleed{% else %}is-contained{% endif %}">
   <div class="inner">
-
+ 
     {% if section.settings.heading != blank %}
       <h1 class="section-title">{{ section.settings.heading }}</h1>
     {% endif %}
-
+ 
     <div class="tile-grid" role="list">
       {% for block in section.blocks %}
         {% assign tile = block.settings %}
         <div class="tile" role="listitem" {{ block.shopify_attributes }}>
-
+ 
           {% if tile.image_link != blank %}<a class="tile-img-link" href="{{ tile.image_link }}">{% endif %}
-            {% if tile.image %}
-              {{ tile.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: tile.image.alt | default: tile.heading }}
-            {% else %}
-              <div class="tile-img-placeholder">{{ 'lifestyle-1' | placeholder_svg_tag }}</div>
-            {% endif %}
+            <div class="tile-img-wrap">
+              {% if tile.image %}
+                {{ tile.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: tile.image.alt | default: tile.heading }}
+              {% else %}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'tile-img-placeholder-svg' }}
+              {% endif %}
+            </div>
           {% if tile.image_link != blank %}</a>{% endif %}
-
+ 
           {% if tile.heading != blank %}
             <div class="field-heading">{{ tile.heading }}</div>
           {% endif %}
-
+ 
           {% if tile.description != blank %}
             <div class="field-body">{{ tile.description }}</div>
           {% endif %}
-
+ 
           {% if tile.button_label != blank %}
             <a class="cta-btn" href="{{ tile.button_link | default: '#' }}">{{ tile.button_label }}</a>
           {% endif %}
-
+ 
         </div>
       {% endfor %}
     </div>
-
+ 
   </div>
 </div>
-
+ 
 {% schema %}
 {
   "name": "Collection Tiles + CTA",
