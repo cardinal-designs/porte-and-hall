@@ -210,8 +210,8 @@
       ],
       "settings": {
         "products_per_page": 16,
-        "image_ratio": "adapt",
-        "show_secondary_image": false,
+        "image_ratio": "square",
+        "show_secondary_image": true,
         "hide_tag": false,
         "add_image_padding": false,
         "show_image_outline": true,
