@@ -26,13 +26,13 @@
     assign ct_grid_cols = 5
   endif
 %}
- 
+
 {% style %}
   #shopify-section-{{ ct_id }} {
     --ct-bg: {{ section.settings.color_bg }};
     --ct-heading: {{ section.settings.color_heading }};
-    --ct-text: {{ section.settings.color_text }};
-    --ct-text-secondary: {{ section.settings.color_text_secondary }};
+    --ct-text: {% if section.settings.color_text != blank %}{{ section.settings.color_text }}{% else %}inherit{% endif %};
+    --ct-text-secondary: {% if section.settings.color_text_secondary != blank %}{{ section.settings.color_text_secondary }}{% else %}inherit{% endif %};
     --ct-btn-bg: {{ section.settings.color_button_bg }};
     --ct-btn-text: {{ section.settings.color_button_text }};
     --ct-btn-font-size: {{ section.settings.button_font_size }}px;
@@ -40,14 +40,20 @@
     --ct-padding-top: {{ section.settings.padding_top }}px;
     --ct-padding-bottom: {{ section.settings.padding_bottom }}px;
     --ct-mobile-tile-width: {{ section.settings.mobile_tile_width }}%;
-    --ct-font-serif: 'Louize Display', Georgia, serif;
+    /* Only the CTA button gets an explicit font-family below — it's a
+       brand-new element the theme has no base style for. Everything
+       else (H1, tile heading, tile description) intentionally does NOT
+       set font-family/font-weight/color here anymore, so it inherits
+       your theme's real global styles (h1, p, body text) instead of a
+       hand-guessed approximation. Both fonts are already loaded
+       sitewide by the theme, so naming the family is enough when we do
+       need it — no local @font-face required. */
     --ct-font-sans: 'Brandon Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
- 
+
   #shopify-section-{{ ct_id }} .ph-tiles-section {
     background: var(--ct-bg);
     padding: var(--ct-padding-top) 0 var(--ct-padding-bottom);
-    font-family: var(--ct-font-sans);
   }
   #shopify-section-{{ ct_id }} .ph-tiles-section .inner { padding: 0 40px; }
   #shopify-section-{{ ct_id }} .ph-tiles-section.is-contained .inner { max-width: 1280px; margin: 0 auto; }
@@ -58,8 +64,8 @@
     margin-right: calc(50% - 50vw);
   }
   #shopify-section-{{ ct_id }} .section-title {
-    font-family: var(--ct-font-serif);
-    font-weight: 400;
+    /* No font-family/font-weight here — a real <h1>, so it already
+       picks up the theme's native heading font + weight on its own. */
     font-size: 38px;
     color: var(--ct-heading);
     margin: 0 0 32px;
@@ -99,16 +105,18 @@
     margin: 0;
   }
   #shopify-section-{{ ct_id }} .field-heading {
-    font-family: var(--ct-font-serif);
-    font-weight: 400;
+    /* No font-family/font-weight — inherits the theme's real text font.
+       color defaults to "inherit" (see --ct-text above) unless you pick
+       one in the section settings. */
     font-size: 20px;
     color: var(--ct-text);
     margin-top: 18px;
     line-height: 1.3;
   }
   #shopify-section-{{ ct_id }} .field-body {
-    font-family: var(--ct-font-sans);
-    font-weight: 300;
+    /* Same as above — no font-family/font-weight/color override by
+       default, so this paragraph matches your theme's real body copy
+       instead of a lighter, hand-picked approximation. */
     font-size: 14.5px;
     color: var(--ct-text-secondary);
     margin-top: 6px;
@@ -130,7 +138,7 @@
     width: fit-content;
     text-decoration: none;
   }
- 
+
   @media (max-width: 768px) {
     #shopify-section-{{ ct_id }} .ph-tiles-section { padding: 40px 0 50px; }
     #shopify-section-{{ ct_id }} .ph-tiles-section .inner { padding: 0 24px; }
@@ -149,19 +157,19 @@
     #shopify-section-{{ ct_id }} .field-heading { font-size: 18px; margin-top: 14px; }
   }
 {% endstyle %}
- 
+
 <div class="ph-tiles-section {% if section.settings.full_bleed %}is-full-bleed{% else %}is-contained{% endif %}">
   <div class="inner">
- 
+
     {% if section.settings.heading != blank %}
       <h1 class="section-title">{{ section.settings.heading }}</h1>
     {% endif %}
- 
+
     <div class="tile-grid" role="list">
       {% for block in section.blocks %}
         {% assign tile = block.settings %}
         <div class="tile" role="listitem" {{ block.shopify_attributes }}>
- 
+
           {% if tile.image_link != blank %}<a class="tile-img-link" href="{{ tile.image_link }}">{% endif %}
             <div class="tile-img-wrap">
               {% if tile.image %}
@@ -171,26 +179,26 @@
               {% endif %}
             </div>
           {% if tile.image_link != blank %}</a>{% endif %}
- 
+
           {% if tile.heading != blank %}
             <div class="field-heading">{{ tile.heading }}</div>
           {% endif %}
- 
+
           {% if tile.description != blank %}
             <div class="field-body">{{ tile.description }}</div>
           {% endif %}
- 
+
           {% if tile.button_label != blank %}
             <a class="cta-btn" href="{{ tile.button_link | default: '#' }}">{{ tile.button_label }}</a>
           {% endif %}
- 
+
         </div>
       {% endfor %}
     </div>
- 
+
   </div>
 </div>
- 
+
 {% schema %}
 {
   "name": "Collection Tiles + CTA",
@@ -245,8 +253,18 @@
     { "type": "header", "content": "Colors" },
     { "type": "color", "id": "color_bg", "label": "Section background", "default": "#FFFFFF" },
     { "type": "color", "id": "color_heading", "label": "Heading (H1)", "default": "#546B82" },
-    { "type": "color", "id": "color_text", "label": "Tile heading text", "default": "#30383D" },
-    { "type": "color", "id": "color_text_secondary", "label": "Tile description text", "default": "#6B6B6B" },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Tile heading text (optional)",
+      "info": "Leave blank to inherit your theme's normal text color. Only set this if you want a tile heading to differ."
+    },
+    {
+      "type": "color",
+      "id": "color_text_secondary",
+      "label": "Tile description text (optional)",
+      "info": "Leave blank to inherit your theme's normal body text color/weight. Only set this if you want the description to differ."
+    },
     { "type": "header", "content": "CTA button (applies to every tile)" },
     { "type": "color", "id": "color_button_bg", "label": "Button background", "default": "#896A28" },
     { "type": "color", "id": "color_button_text", "label": "Button text", "default": "#FFFFFF" },
