@@ -61,18 +61,6 @@
         "swap-fonts": false
       }
     },
-    "main_collection_banner_bQhCqC": {
-      "type": "main-collection-banner",
-      "custom_css": [
-        ".collection-hero__description {margin: 0; padding: 0;}"
-      ],
-      "name": "t:sections.main-collection-banner.name",
-      "settings": {
-        "show_title": false,
-        "show_collection_description": true,
-        "full_width": false
-      }
-    },
     "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a": {
       "type": "collection-head-slider",
       "blocks": {
@@ -269,7 +257,7 @@
         "logo_ykYJee"
       ],
       "settings": {
-        "background_color": "#d8d3c7"
+        "background_color": "#546B82"
       }
     },
     "2046a8d4-8126-4344-8df2-6dd5193e7293": {
@@ -311,7 +299,6 @@
   "order": [
     "breadcrumbs_3xzGJ4",
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
-    "main_collection_banner_bQhCqC",
     "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a",
     "product-grid",
     "logo_marquee_XqK98A",
