@@ -257,7 +257,7 @@
         "logo_ykYJee"
       ],
       "settings": {
-        "background_color": "#546B82"
+        "background_color": "#546b82"
       }
     },
     "2046a8d4-8126-4344-8df2-6dd5193e7293": {
@@ -294,11 +294,21 @@
         "show_recent_articles": true,
         "hide_mobile": false
       }
+    },
+    "main_collection_banner_PaHLHe": {
+      "type": "main-collection-banner",
+      "name": "t:sections.main-collection-banner.name",
+      "settings": {
+        "show_title": false,
+        "show_collection_description": true,
+        "full_width": false
+      }
     }
   },
   "order": [
     "breadcrumbs_3xzGJ4",
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
+    "main_collection_banner_PaHLHe",
     "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a",
     "product-grid",
     "logo_marquee_XqK98A",
