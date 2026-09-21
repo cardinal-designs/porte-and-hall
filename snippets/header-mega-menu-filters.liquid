@@ -1,0 +1,19 @@
+{% comment %}
+  Renders the filter pills of a header mega menu panel.
+
+  Accepts:
+  - heading: {String} optional heading above the pills
+  - items: {String} pre-rendered <li> markup of the filter links
+
+  Usage:
+  {% render 'header-mega-menu-filters', heading: block.settings.filters_heading, items: mega_filters %}
+{% endcomment %}
+
+<div class="header__mega-menu-filters">
+  {% if heading != blank %}
+    <p class="header__mega-menu-filters-title">{{ heading | escape }}</p>
+  {% endif %}
+  <ul class="header__mega-menu-filter-list" role="list">
+    {{ items }}
+  </ul>
+</div>

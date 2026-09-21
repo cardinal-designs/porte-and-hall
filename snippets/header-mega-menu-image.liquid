@@ -1,0 +1,80 @@
+{% comment %}
+  Renders one image of a header mega menu panel.
+
+  Accepts:
+  - layout: {String} 'featured' (overlay tile) or 'grid' (card with caption below the image)
+  - image: {Object} image_picker value
+  - badge: {String} optional badge shown on top of the image
+  - subtitle: {String} optional kicker above the title
+  - title: {String} optional title
+  - text: {String} optional description
+  - link_label: {String} optional call to action label
+  - link: {String} optional link, makes the whole image clickable
+
+  Usage:
+  {% render 'header-mega-menu-image', layout: 'grid', image: block.settings.image_1, ... %}
+{% endcomment %}
+
+{%- liquid
+  assign image_alt = image.alt | default: title | default: subtitle
+
+  if layout == 'grid'
+    assign item_class = 'header__mega-menu-card'
+    assign image_widths = '240, 360, 480'
+    assign image_sizes = '(min-width: 1200px) 200px, 16vw'
+  else
+    assign item_class = 'header__mega-menu-block'
+    assign image_widths = '360, 480, 640, 800, 960'
+    assign image_sizes = '(min-width: 1200px) 450px, 35vw'
+  endif
+
+  if link != blank
+    assign tag = 'a'
+  else
+    assign tag = 'div'
+  endif
+-%}
+
+<li class="{{ item_class }}-item">
+  <{{ tag }}
+    class="{{ item_class }}"
+    {% if link != blank %}
+      href="{{ link }}"
+    {% endif %}
+  >
+    <div class="{{ item_class }}-media">
+      {% if image != blank %}
+        {{
+          image
+          | image_url: width: 960
+          | image_tag:
+            loading: 'lazy',
+            widths: image_widths,
+            sizes: image_sizes,
+            class: 'header__mega-menu-block-image',
+            alt: image_alt
+        }}
+      {% else %}
+        <div class="header__mega-menu-block-placeholder"></div>
+      {% endif %}
+      {% if badge != blank %}
+        <span class="header__mega-menu-block-badge">{{ badge | escape }}</span>
+      {% endif %}
+    </div>
+
+    <div class="header__mega-menu-block-content">
+      {% if subtitle != blank %}
+        <p class="header__mega-menu-block-subtitle">{{ subtitle | escape }}</p>
+      {% endif %}
+      {% if title != blank %}
+        <p class="header__mega-menu-block-title">{{ title | escape }}</p>
+      {% endif %}
+      {% if text != blank %}
+        <p class="header__mega-menu-block-text">{{ text | escape }}</p>
+      {% endif %}
+      {% if link_label != blank %}
+        <span class="header__mega-menu-block-link">{{ link_label | escape }}</span>
+      {% endif %}
+    </div>
+  </{{ tag }}>
+</li>

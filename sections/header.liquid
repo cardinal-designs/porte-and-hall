@@ -2,6 +2,8 @@
 <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
 
 {% liquid
+  # Top level navigation always comes from the selected menu (Shopify Navigation).
+  # "Mega menu" blocks only add dropdown content to the menu item they are named after.
   assign main_menu = section.settings.menu
   if customer and customer.b2b? and section.settings.b2b_menu != blank
     assign main_menu = section.settings.b2b_menu
@@ -54,7 +56,7 @@
     {%- unless page.handle == 'the-insider' -%}
       <div class="header__icons">
         {% if section.settings.enable_search %}
-          <button class="js-open-search header__icon header__icon--search hide-mobile" aria-label="Open Search Bar">
+          <button class="js-open-search header__icon header__icon--search header__icon--desktop-only" aria-label="Open Search Bar">
             {% render 'icon', icon: 'search' %}
           </button>
         {% endif %}
@@ -65,18 +67,32 @@
             href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
             class="header__icon header__icon--account hide-mobile"
           >
-            {% render 'icon', icon: 'account' %}
-            <span class="visually-hidden">
-              {% liquid
-                if customer
-                  echo 'customer.account_fallback' | t
-                else
-                  echo 'customer.log_in' | t
+            {%- liquid
+              if customer
+                assign account_text = 'customer.account_fallback' | t
+                if section.settings.account_label != blank
+                  assign account_text = section.settings.account_label
                 endif
-              %}
+              else
+                assign account_text = 'customer.log_in' | t
+                if section.settings.login_label != blank
+                  assign account_text = section.settings.login_label
+                endif
+              endif
+            -%}
+            <span class="header__icon-text">{{ account_text | escape }}</span>
+            <span class="header__icon-graphic">
+              {% render 'icon', icon: 'account' %}
+              <span class="visually-hidden">{{ account_text | escape }}</span>
             </span>
           </a>
           {% endunless %}
+        {% endif %}
+
+        {% if section.settings.trade_label != blank and section.settings.trade_link != blank %}
+          <a href="{{ section.settings.trade_link }}" class="header__icon header__icon--trade header__icon--desktop-only">
+            <span class="header__icon-text">{{ section.settings.trade_label | escape }}</span>
+          </a>
         {% endif %}
 
         {% if template != 'cart' %}
@@ -151,122 +167,326 @@
   <div class="header__navigation">
     <!-- Navigation -->
     {% if main_menu != blank %}
-      <nav class="header__menu">
+      <nav class="header__menu header__menu--mega" aria-label="{{ 'sections.header.menu' | t }}">
         <ul class="header__menu-list" role="list">
           {% for link in main_menu.links %}
-            {% assign downcased_link_title = link.title | downcase | strip %}
-            {% assign mega_menu_names = '' %}
+            {%- liquid
+              assign downcased_link_title = link.title | downcase | strip
 
-            {% for block in section.blocks %}
-              {% if block.type == 'mega_menu' %}
-                {% assign trim_mega_menu_name = block.settings.title | strip %}
-                {% assign mega_menu_names = mega_menu_names | append: trim_mega_menu_name | append: ',' %}
-              {% endif %}
-            {% endfor %}
+              # Find the "Mega menu" block attached to this menu item. All dropdown
+              # content lives in that block's own settings - no child blocks.
+              assign mega_block = nil
+              for block in section.blocks
+                if block.type == 'mega_menu'
+                  assign block_title = block.settings.title | downcase | strip
+                  if block_title != blank and block_title == downcased_link_title
+                    assign mega_block = block
+                    break
+                  endif
+                endif
+              endfor
 
-            {% assign mega_menu_names = mega_menu_names | downcase | split: ',' | compact %}
+              assign mega_view_all = ''
+              assign mega_filters = ''
+              assign mega_images = ''
 
-            {% unless mega_menu_names contains downcased_link_title %}
-              {% comment %} {% if customer and customer.b2b? and link.title == 'Swatches' %}
-                <li>
+              if mega_block
+                assign mega_settings = mega_block.settings
+
+                if mega_settings.view_all_label != blank
+                  capture mega_view_all
+                    echo '<li>'
+                    if mega_settings.view_all_link != blank
+                      echo '<a href="' | append: mega_settings.view_all_link | append: '"'
+                    else
+                      echo '<span'
+                    endif
+                    echo ' class="header__mega-menu-group-link--additional">'
+                    echo mega_settings.view_all_label | escape
+                    if mega_settings.view_all_link != blank
+                      echo '</a>'
+                    else
+                      echo '</span>'
+                    endif
+                    echo '</li>'
+                  endcapture
+                endif
+
+                for i in (1..4)
+                  assign label_key = 'filter_' | append: i | append: '_label'
+                  assign link_key = 'filter_' | append: i | append: '_link'
+                  assign filter_label = mega_settings[label_key]
+                  assign filter_link = mega_settings[link_key]
+
+                  if filter_label != blank
+                    capture filter_html
+                      echo '<li>'
+                      if filter_link != blank
+                        echo '<a href="' | append: filter_link | append: '"'
+                      else
+                        echo '<span'
+                      endif
+                      echo ' class="header__mega-menu-filter">'
+                      echo filter_label | escape
+                      if filter_link != blank
+                        echo '</a>'
+                      else
+                        echo '</span>'
+                      endif
+                      echo '</li>'
+                    endcapture
+                    assign mega_filters = mega_filters | append: filter_html
+                  endif
+                endfor
+
+                for i in (1..6)
+                  assign image_key = 'image_' | append: i
+                  assign badge_key = 'badge_' | append: i
+                  assign subtitle_key = 'subtitle_' | append: i
+                  assign title_key = 'title_' | append: i
+                  assign text_key = 'text_' | append: i
+                  assign link_label_key = 'link_label_' | append: i
+                  assign link_key = 'link_' | append: i
+
+                  assign image_title = mega_settings[title_key]
+                  assign image_subtitle = mega_settings[subtitle_key]
+
+                  if mega_settings[image_key] != blank or image_title != blank or image_subtitle != blank
+                    capture image_html
+                      render 'header-mega-menu-image', layout: mega_settings.mega_layout, image: mega_settings[image_key], badge: mega_settings[badge_key], subtitle: image_subtitle, title: image_title, text: mega_settings[text_key], link_label: mega_settings[link_label_key], link: mega_settings[link_key]
+                    endcapture
+                    assign mega_images = mega_images | append: image_html
+                  endif
+                endfor
+              endif
+
+              assign has_mega = false
+              if mega_block and link.links != blank
+                assign has_mega = true
+              endif
+              if mega_block and mega_images != blank
+                assign has_mega = true
+              endif
+              if mega_block and mega_view_all != blank
+                assign has_mega = true
+              endif
+              if mega_block and mega_filters != blank
+                assign has_mega = true
+              endif
+
+              assign mega_heading = ''
+              if has_mega
+                assign mega_heading = mega_block.settings.mega_heading | default: link.title
+              endif
+
+              assign highlight_title = section.settings.highlight_title | downcase | strip
+              assign is_highlighted = false
+              if highlight_title != blank and highlight_title == downcased_link_title
+                assign is_highlighted = true
+              endif
+            -%}
+
+            {%- capture item_style -%}
+              {%- if is_highlighted and section.settings.highlight_color != blank -%}
+                style="--menu-item-color: {{ section.settings.highlight_color }};"
+              {%- endif -%}
+            {%- endcapture -%}
+            {%- capture item_class -%}
+              header__menu-item{% if is_highlighted %} header__menu-item--highlighted{% endif %}
+            {%- endcapture -%}
+
+            {% if has_mega %}
+              <li class="header__mega-menu-wrapper" data-mega-menu>
                 <a
                   href="{{ link.url }}"
-                  class="header__menu-item"
+                  class="{{ item_class | strip }} header__menu-item--mega"
+                  {{ item_style }}
                   {% if link.current %}
                     aria-current="page"
                   {% endif %}
                 >
-                  {{ link.title | escape }}
+                  {{- link.title | escape -}}
                 </a>
-              </li>
-              {% else %} {% endcomment %}
-              <li>
-                {% if link.links != blank %}
-                  <div class="header__menu-item header__menu-item--has-dropdown">
-                    <span
-                      {% if link.child_active %}
-                        class="header__active-menu-item"
-                      {% endif %}
-                    >
-                      {{- link.title | escape -}}
-                    </span>
-                    {% render 'icon', icon: 'caret' %}
-                  </div>
-                  <ul class="header__submenu" role="list" tabindex="-1">
-                    {% for childlink in link.links %}
-                      <li>
-                        <a
-                          href="{{ childlink.url }}"
-                          class="header__submenu-item{% if childlink.current %} header__submenu-item--active{% endif %}"
-                          {% if childlink.current %}
-                            aria-current="page"
-                          {% endif %}
-                        >
-                          {{ childlink.title | escape }}
-                        </a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% else %}
-                  <a
-                    href="{{ link.url }}"
-                    class="header__menu-item"
-                    {% if link.current %}
-                      aria-current="page"
-                    {% endif %}
-                  >
-                    {{ link.title | escape }}
-                  </a>
-                {% endif %}
-              </li>
-     
-            {% else %}
-              <li class="header__mega-menu-wrapper">
-                <a
-                  href="{{ link.url }}"
-                  class="header__menu-item header__menu-item--mega body-3 bold"
-                  {% if link.current %}
-                    aria-current="page"
-                  {% endif %}
+
+                <button
+                  type="button"
+                  class="header__menu-toggle"
+                  aria-expanded="false"
+                  aria-controls="MegaMenu-{{ mega_block.id }}"
+                  aria-label="{{ link.title | escape }}"
                 >
-                  {{ link.title | escape }}
-                </a>
+                  {% render 'icon', icon: 'caret' %}
+                </button>
 
-                {% for block in section.blocks %}
-                  {% assign trim_mega_menu_name = block.settings.title | strip %}
-                  {% assign downcased_mega_menu_name = trim_mega_menu_name | downcase %}
-                  {% assign mega_menu_names = mega_menu_names | append: trim_mega_menu_name | append: ',' %}
+                <div class="header__mega-menu-outer" id="MegaMenu-{{ mega_block.id }}" {{ mega_block.shopify_attributes }}>
+                  <div class="header__mega-menu">
+                    <div class="page-width">
+                      <div class="header__mega-menu-container header__mega-menu-container--{{ mega_block.settings.mega_layout }}">
+                        {% if mega_block.settings.mega_layout == 'grid' %}
+                          <div class="header__mega-menu-grid-wrapper">
+                            {% if mega_heading != blank %}
+                              <p class="header__mega-menu-group-title">{{ mega_heading | escape }}</p>
+                            {% endif %}
 
-                  {% if downcased_mega_menu_name == downcased_link_title %}
-                    <div class="header__mega-menu-outer">
-                      <div class="header__mega-menu">
-                        <div class="page-width">
-                          <div class="header__mega-menu-container">
+                            {% if mega_images != blank %}
+                              <ul class="header__mega-menu-cards" role="list">
+                                {{ mega_images }}
+                              </ul>
+                            {% endif %}
+
+                            {% if link.links != blank or mega_view_all != blank %}
+                              <ul class="header__mega-menu-group-links header__mega-menu-group-links--inline" role="list">
+                                {% for childlink in link.links %}
+                                  <li>
+                                    <a
+                                      href="{{ childlink.url }}"
+                                      class="header__mega-menu-group-link"
+                                      {% if childlink.current %}
+                                        aria-current="page"
+                                      {% endif %}
+                                    >
+                                      {{ childlink.title | escape }}
+                                    </a>
+                                  </li>
+                                {% endfor %}
+                                {{ mega_view_all }}
+                              </ul>
+                            {% endif %}
+
+                            {% if mega_filters != blank %}
+                              {% render 'header-mega-menu-filters',
+                                heading: mega_block.settings.filters_heading,
+                                items: mega_filters
+                              %}
+                            {% endif %}
+                          </div>
+                        {% else %}
+                          <div class="header__mega-menu-panel-main">
                             <div class="header__mega-menu-links">
-                              {% for child_link in link.links %}
+                              {%- liquid
+                                # Menu items with a third level keep the legacy column layout,
+                                # otherwise the child links are shown as a single list.
+                                assign has_grandchildren = false
+                                for childlink in link.links
+                                  if childlink.links != blank
+                                    assign has_grandchildren = true
+                                    break
+                                  endif
+                                endfor
+                              -%}
+
+                              {% if has_grandchildren %}
+                                {% for childlink in link.links %}
+                                  <div class="header__mega-menu-group">
+                                    <p class="header__mega-menu-group-title">{{ childlink.title | escape }}</p>
+                                    <ul class="header__mega-menu-group-links" role="list">
+                                      {% for grandchildlink in childlink.links %}
+                                        <li>
+                                          <a
+                                            href="{{ grandchildlink.url }}"
+                                            class="header__mega-menu-group-link"
+                                            {% if grandchildlink.current %}
+                                              aria-current="page"
+                                            {% endif %}
+                                          >
+                                            {{ grandchildlink.title | escape }}
+                                          </a>
+                                        </li>
+                                      {% endfor %}
+                                      {% if forloop.first %}
+                                        {{ mega_view_all }}
+                                      {% endif %}
+                                    </ul>
+                                  </div>
+                                {% endfor %}
+                              {% else %}
                                 <div class="header__mega-menu-group">
-                                  <p class="header__mega-menu-group-title">{{ child_link.title }}</p>
+                                  {% if mega_heading != blank %}
+                                    <p class="header__mega-menu-group-title">{{ mega_heading | escape }}</p>
+                                  {% endif %}
                                   <ul class="header__mega-menu-group-links" role="list">
-                                    {% for grandchild_link in child_link.links %}
+                                    {% for childlink in link.links %}
                                       <li>
-                                        <a href="{{ grandchild_link.url }}" class="">{{ grandchild_link.title }}</a>
+                                        <a
+                                          href="{{ childlink.url }}"
+                                          class="header__mega-menu-group-link"
+                                          {% if childlink.current %}
+                                            aria-current="page"
+                                          {% endif %}
+                                        >
+                                          {{ childlink.title | escape }}
+                                        </a>
                                       </li>
                                     {% endfor %}
+                                    {{ mega_view_all }}
                                   </ul>
                                 </div>
-                              {% endfor %}
+                              {% endif %}
                             </div>
+
+                            {% if mega_filters != blank %}
+                              {% render 'header-mega-menu-filters',
+                                heading: mega_block.settings.filters_heading,
+                                items: mega_filters
+                              %}
+                            {% endif %}
                           </div>
-                        </div>
+
+                          {% if mega_images != blank %}
+                            <ul class="header__mega-menu-blocks" role="list">
+                              {{ mega_images }}
+                            </ul>
+                          {% endif %}
+                        {% endif %}
                       </div>
                     </div>
-                  {% endif %}
-                {% endfor %}
+                  </div>
+                </div>
               </li>
-              <div class="header__mega-menu-overlay"></div>
-            {% endunless %}
+            {% elsif link.links != blank %}
+              <li>
+                <div class="header__menu-item header__menu-item--has-dropdown">
+                  <span
+                    class="{{ item_class | strip }}{% if link.child_active %} header__active-menu-item{% endif %}"
+                    {{ item_style }}
+                  >
+                    {{- link.title | escape -}}
+                  </span>
+                  {% render 'icon', icon: 'caret' %}
+                </div>
+                <ul class="header__submenu" role="list" tabindex="-1">
+                  {% for childlink in link.links %}
+                    <li>
+                      <a
+                        href="{{ childlink.url }}"
+                        class="header__submenu-item{% if childlink.current %} header__submenu-item--active{% endif %}"
+                        {% if childlink.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        {{ childlink.title | escape }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </li>
+            {% else %}
+              <li>
+                <a
+                  href="{{ link.url }}"
+                  class="{{ item_class | strip }}"
+                  {{ item_style }}
+                  {% if link.current %}
+                    aria-current="page"
+                  {% endif %}
+                >
+                  {{ link.title | escape }}
+                </a>
+              </li>
+            {% endif %}
           {% endfor %}
         </ul>
+        <div class="header__mega-menu-overlay" data-mega-menu-overlay></div>
       </nav>
     {% endif %}
   </div>
@@ -342,6 +562,102 @@
   });
   }
 
+  /* Desktop mega menu (block-based navigation) */
+  (() => {
+    const CLOSE_DELAY = 150;
+
+    const initMegaMenu = (nav) => {
+      if (!nav || nav.dataset.megaMenuReady) return;
+      nav.dataset.megaMenuReady = 'true';
+
+      const items = nav.querySelectorAll('[data-mega-menu]');
+      const overlay = nav.querySelector('[data-mega-menu-overlay]');
+      let closeTimer;
+
+      const setOpen = (item, isOpen) => {
+        item.classList.toggle('is-open', isOpen);
+        item.querySelector('.header__menu-toggle').setAttribute('aria-expanded', isOpen);
+        nav.classList.toggle('has-open-mega-menu', !!nav.querySelector('[data-mega-menu].is-open'));
+      };
+
+      const open = (item) => {
+        clearTimeout(closeTimer);
+        items.forEach((other) => other !== item && setOpen(other, false));
+        setOpen(item, true);
+      };
+
+      const closeAll = () => {
+        clearTimeout(closeTimer);
+        items.forEach((item) => setOpen(item, false));
+      };
+
+      items.forEach((item) => {
+        const toggle = item.querySelector('.header__menu-toggle');
+        const topLink = item.querySelector('a.header__menu-item');
+        let openedByTouch = false;
+
+        item.addEventListener('mouseenter', () => open(item));
+        item.addEventListener('mouseleave', () => {
+          clearTimeout(closeTimer);
+          closeTimer = setTimeout(() => setOpen(item, false), CLOSE_DELAY);
+        });
+
+        toggle.addEventListener('click', () => {
+          if (openedByTouch || !item.classList.contains('is-open')) {
+            openedByTouch = false;
+            open(item);
+          } else {
+            setOpen(item, false);
+          }
+        });
+
+        // On touch devices the first tap opens the panel, the second follows the link.
+        item.addEventListener('pointerdown', (event) => {
+          openedByTouch = event.pointerType !== 'mouse' && !item.classList.contains('is-open');
+        });
+        if (topLink) {
+          topLink.addEventListener('click', (event) => {
+            if (!openedByTouch) return;
+            openedByTouch = false;
+            event.preventDefault();
+            open(item);
+          });
+        }
+
+        item.addEventListener('focusout', (event) => {
+          if (!item.contains(event.relatedTarget)) setOpen(item, false);
+        });
+
+        item.addEventListener('keyup', (event) => {
+          if (event.code !== 'Escape' || !item.classList.contains('is-open')) return;
+          setOpen(item, false);
+          toggle.focus();
+        });
+      });
+
+      if (overlay) overlay.addEventListener('click', closeAll);
+
+      document.addEventListener('click', (event) => {
+        if (!nav.contains(event.target)) closeAll();
+      });
+
+      // Theme editor: keep the panel of the selected block open while it is being edited.
+      document.addEventListener('shopify:block:select', (event) => {
+        const item = event.target.closest('[data-mega-menu]');
+        if (item && nav.contains(item)) open(item);
+      });
+      document.addEventListener('shopify:block:deselect', (event) => {
+        if (nav.contains(event.target)) closeAll();
+      });
+    };
+
+    initMegaMenu(document.querySelector('.header__menu--mega'));
+
+    document.addEventListener('shopify:section:load', (event) => {
+      initMegaMenu(event.target.querySelector('.header__menu--mega'));
+    });
+  })();
+
 {% endjavascript %}
 
 {% schema %}
@@ -411,18 +727,394 @@
       "id": "enable_search",
       "label": "Enable Search",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Desktop header links"
+    },
+    {
+      "type": "text",
+      "id": "login_label",
+      "label": "Login label",
+      "default": "Login",
+      "info": "Shown on desktop instead of the account icon when the customer is logged out."
+    },
+    {
+      "type": "text",
+      "id": "account_label",
+      "label": "Account label",
+      "default": "Account",
+      "info": "Shown on desktop instead of the account icon when the customer is logged in."
+    },
+    {
+      "type": "text",
+      "id": "trade_label",
+      "label": "Trade label",
+      "default": "Trade"
+    },
+    {
+      "type": "url",
+      "id": "trade_link",
+      "label": "Trade link"
+    },
+    {
+      "type": "header",
+      "content": "Menu item highlight"
+    },
+    {
+      "type": "text",
+      "id": "highlight_title",
+      "label": "Highlighted menu item",
+      "info": "Menu item title to highlight, e.g. Sale."
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#896a28"
+    },
+    {
+      "type": "paragraph",
+      "content": "Top level navigation comes from the Menu setting above (edit titles and links in Shopify Navigation). Add a \"Mega menu\" block named after a menu item to give that item a dropdown. The links inside the dropdown come from that menu item's sub links; everything else is set in the block."
     }
   ],
   "blocks": [
     {
       "type": "mega_menu",
-      "name": "Mega Menu",
+      "name": "Mega menu",
+      "limit": 6,
       "settings": [
         {
           "type": "text",
           "id": "title",
-          "label": "Menu Item",
-          "info": "Enter menu item to apply a mega menu dropdown."
+          "label": "Menu item",
+          "info": "Title of the menu item this dropdown belongs to, e.g. Shop Indoor. The links inside the dropdown come from that menu item's sub links in Shopify Navigation."
+        },
+        {
+          "type": "select",
+          "id": "mega_layout",
+          "label": "Layout",
+          "options": [
+            {
+              "value": "featured",
+              "label": "Menu links + featured images"
+            },
+            {
+              "value": "grid",
+              "label": "Image grid"
+            }
+          ],
+          "default": "featured"
+        },
+        {
+          "type": "text",
+          "id": "mega_heading",
+          "label": "Heading",
+          "info": "Defaults to the menu item title. Not used when the menu item has a third level of links."
+        },
+        {
+          "type": "header",
+          "content": "View all link"
+        },
+        {
+          "type": "text",
+          "id": "view_all_label",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "view_all_link",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Filter pills"
+        },
+        {
+          "type": "text",
+          "id": "filters_heading",
+          "label": "Heading",
+          "default": "Popular filters"
+        },
+        {
+          "type": "text",
+          "id": "filter_1_label",
+          "label": "Filter 1 label"
+        },
+        {
+          "type": "url",
+          "id": "filter_1_link",
+          "label": "Filter 1 link"
+        },
+        {
+          "type": "text",
+          "id": "filter_2_label",
+          "label": "Filter 2 label"
+        },
+        {
+          "type": "url",
+          "id": "filter_2_link",
+          "label": "Filter 2 link"
+        },
+        {
+          "type": "text",
+          "id": "filter_3_label",
+          "label": "Filter 3 label"
+        },
+        {
+          "type": "url",
+          "id": "filter_3_link",
+          "label": "Filter 3 link"
+        },
+        {
+          "type": "text",
+          "id": "filter_4_label",
+          "label": "Filter 4 label"
+        },
+        {
+          "type": "url",
+          "id": "filter_4_link",
+          "label": "Filter 4 link"
+        },
+        {
+          "type": "header",
+          "content": "Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "badge_1",
+          "label": "Badge"
+        },
+        {
+          "type": "text",
+          "id": "subtitle_1",
+          "label": "Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "title_1",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "text_1",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "link_label_1",
+          "label": "Link label"
+        },
+        {
+          "type": "url",
+          "id": "link_1",
+          "label": "Link",
+          "info": "The whole image is clickable."
+        },
+        {
+          "type": "header",
+          "content": "Image 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "badge_2",
+          "label": "Badge"
+        },
+        {
+          "type": "text",
+          "id": "subtitle_2",
+          "label": "Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "text_2",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "link_label_2",
+          "label": "Link label"
+        },
+        {
+          "type": "url",
+          "id": "link_2",
+          "label": "Link",
+          "info": "The whole image is clickable."
+        },
+        {
+          "type": "header",
+          "content": "Image 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "badge_3",
+          "label": "Badge"
+        },
+        {
+          "type": "text",
+          "id": "subtitle_3",
+          "label": "Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "title_3",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "text_3",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "link_label_3",
+          "label": "Link label"
+        },
+        {
+          "type": "url",
+          "id": "link_3",
+          "label": "Link",
+          "info": "The whole image is clickable."
+        },
+        {
+          "type": "header",
+          "content": "Image 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "badge_4",
+          "label": "Badge"
+        },
+        {
+          "type": "text",
+          "id": "subtitle_4",
+          "label": "Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "title_4",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "text_4",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "link_label_4",
+          "label": "Link label"
+        },
+        {
+          "type": "url",
+          "id": "link_4",
+          "label": "Link",
+          "info": "The whole image is clickable."
+        },
+        {
+          "type": "header",
+          "content": "Image 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_5",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "badge_5",
+          "label": "Badge"
+        },
+        {
+          "type": "text",
+          "id": "subtitle_5",
+          "label": "Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "title_5",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "text_5",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "link_label_5",
+          "label": "Link label"
+        },
+        {
+          "type": "url",
+          "id": "link_5",
+          "label": "Link",
+          "info": "The whole image is clickable."
+        },
+        {
+          "type": "header",
+          "content": "Image 6"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_6",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "badge_6",
+          "label": "Badge"
+        },
+        {
+          "type": "text",
+          "id": "subtitle_6",
+          "label": "Subtitle"
+        },
+        {
+          "type": "text",
+          "id": "title_6",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "text_6",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "link_label_6",
+          "label": "Link label"
+        },
+        {
+          "type": "url",
+          "id": "link_6",
+          "label": "Link",
+          "info": "The whole image is clickable."
         }
       ]
     }
