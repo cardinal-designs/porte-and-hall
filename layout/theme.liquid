@@ -188,16 +188,23 @@
     {% # theme-check-enable %}
     
     <!-- BEGIN PRIVY WIDGET CODE -->
-	<script type='text/javascript'> var _d_site = _d_site || 'C944B2C24A5E6353CEBE51B6'; </script>
-	<script data-lazy-src='https://widget.privy.com/assets/widget.js' defer="defer"></script>
-	<!-- END PRIVY WIDGET CODE -->
+    <script type='text/javascript'> var _d_site = _d_site || 'C944B2C24A5E6353CEBE51B6'; </script>
+    <script data-lazy-src='https://widget.privy.com/assets/widget.js' defer="defer"></script>
+    <!-- END PRIVY WIDGET CODE -->
     <style>
-    #privy-container #privy-inner-container [tabindex]:focus {
-      outline: none !important;
-	}
+      #privy-container #privy-inner-container [tabindex]:focus {
+        outline: none !important;
+	  }
     </style>
 
     {% comment %} Google Fonts removed — Roboto was only used for Stamped widget copy; brand fonts are self-hosted via asset_url (long CDN cache). {% endcomment %}
+
+    {% if customer %}
+    <script>
+      // Exposes B2B/Trade login status so price testing can detect and exclude Trade customers
+      window.isB2BCustomer = {{ customer.b2b? }};
+    </script>
+    {% endif %}
 
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
