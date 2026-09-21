@@ -1239,6 +1239,10 @@ deferred-media {
 
 .header__icon .icon {
   height: 100%;
+  width: 100%;
+}
+
+.header__icon--menu {
   width: 24px;
 }
 
