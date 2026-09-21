@@ -2082,6 +2082,7 @@ a.header__mega-menu-filter:hover {
 
 .menu-drawer__menu-button--has-menu svg path {
   stroke: currentColor;
+  stroke-width: 0px;
 }
 
 .menu-drawer__menu li.is-open svg {
