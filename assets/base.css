@@ -2189,7 +2189,8 @@ a.header__mega-menu-filter:hover {
 }
 
 .menu-drawer--mega .menu-drawer__close svg {
-  width: 18px;
+  width: 15px;
+  height: auto;
   color: var(--blue);
 }
 
