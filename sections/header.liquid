@@ -239,8 +239,22 @@
                   endif
                 endfor
 
+                # Only slots with a selected image are rendered. Count them first so the
+                # grid can split the full panel width evenly (--mega-image-count).
+                assign mega_image_count = 0
                 for i in (1..6)
                   assign image_key = 'image_' | append: i
+                  if mega_settings[image_key] != blank
+                    assign mega_image_count = mega_image_count | plus: 1
+                  endif
+                endfor
+
+                for i in (1..6)
+                  assign image_key = 'image_' | append: i
+                  if mega_settings[image_key] == blank
+                    continue
+                  endif
+
                   assign badge_key = 'badge_' | append: i
                   assign subtitle_key = 'subtitle_' | append: i
                   assign title_key = 'title_' | append: i
@@ -248,15 +262,10 @@
                   assign link_label_key = 'link_label_' | append: i
                   assign link_key = 'link_' | append: i
 
-                  assign image_title = mega_settings[title_key]
-                  assign image_subtitle = mega_settings[subtitle_key]
-
-                  if mega_settings[image_key] != blank or image_title != blank or image_subtitle != blank
-                    capture image_html
-                      render 'header-mega-menu-image', layout: mega_settings.mega_layout, image: mega_settings[image_key], badge: mega_settings[badge_key], subtitle: image_subtitle, title: image_title, text: mega_settings[text_key], link_label: mega_settings[link_label_key], link: mega_settings[link_key]
-                    endcapture
-                    assign mega_images = mega_images | append: image_html
-                  endif
+                  capture image_html
+                    render 'header-mega-menu-image', layout: mega_settings.mega_layout, image_count: mega_image_count, image: mega_settings[image_key], badge: mega_settings[badge_key], subtitle: mega_settings[subtitle_key], title: mega_settings[title_key], text: mega_settings[text_key], link_label: mega_settings[link_label_key], link: mega_settings[link_key]
+                  endcapture
+                  assign mega_images = mega_images | append: image_html
                 endfor
               endif
 
@@ -329,7 +338,7 @@
                             {% endif %}
 
                             {% if mega_images != blank %}
-                              <ul class="header__mega-menu-cards" role="list">
+                              <ul class="header__mega-menu-cards" role="list" style="--mega-image-count: {{ mega_image_count }};">
                                 {{ mega_images }}
                               </ul>
                             {% endif %}

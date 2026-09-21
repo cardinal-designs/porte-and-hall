@@ -3,7 +3,8 @@
 
   Accepts:
   - layout: {String} 'featured' (overlay tile) or 'grid' (card with caption below the image)
-  - image: {Object} image_picker value
+  - image_count: {Number} number of images rendered in the panel, used for the grid image sizes
+  - image: {Object} image_picker value (required; only render this snippet for slots with an image)
   - badge: {String} optional badge shown on top of the image
   - subtitle: {String} optional kicker above the title
   - title: {String} optional title
@@ -19,9 +20,12 @@
   assign image_alt = image.alt | default: title | default: subtitle
 
   if layout == 'grid'
+    assign columns = image_count | default: 1 | at_least: 1
+    assign column_px = 1240 | divided_by: columns
+    assign column_vw = 100 | divided_by: columns
     assign item_class = 'header__mega-menu-card'
-    assign image_widths = '240, 360, 480'
-    assign image_sizes = '(min-width: 1200px) 200px, 16vw'
+    assign image_widths = '240, 360, 480, 720, 960, 1280'
+    assign image_sizes = '(min-width: 1300px) ' | append: column_px | append: 'px, ' | append: column_vw | append: 'vw'
   else
     assign item_class = 'header__mega-menu-block'
     assign image_widths = '360, 480, 640, 800, 960'
@@ -43,20 +47,16 @@
     {% endif %}
   >
     <div class="{{ item_class }}-media">
-      {% if image != blank %}
-        {{
-          image
-          | image_url: width: 960
-          | image_tag:
-            loading: 'lazy',
-            widths: image_widths,
-            sizes: image_sizes,
-            class: 'header__mega-menu-block-image',
-            alt: image_alt
-        }}
-      {% else %}
-        <div class="header__mega-menu-block-placeholder"></div>
-      {% endif %}
+      {{
+        image
+        | image_url: width: 1280
+        | image_tag:
+          loading: 'lazy',
+          widths: image_widths,
+          sizes: image_sizes,
+          class: 'header__mega-menu-block-image',
+          alt: image_alt
+      }}
       {% if badge != blank %}
         <span class="header__mega-menu-block-badge">{{ badge | escape }}</span>
       {% endif %}

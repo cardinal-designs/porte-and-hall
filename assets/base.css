@@ -1548,9 +1548,15 @@ header.condensed .header__menu {
 }
 
 .header__menu--mega .header__menu-item[aria-current="page"],
-.header__menu--mega a.header__menu-item:hover {
+.header__menu--mega a.header__menu-item:not(.header__menu-item--mega):hover {
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+.header__menu--mega a.header__menu-item:focus-visible,
+.header__menu-toggle:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
 }
 
 @media screen and (max-width: 1199px) {
@@ -1576,10 +1582,6 @@ header.condensed .header__menu {
   width: 10px;
   height: auto;
   transition: transform 0.3s ease;
-}
-
-.header__mega-menu-wrapper.is-open {
-  box-shadow: inset 0 -3px 0 var(--blue);
 }
 
 .header__mega-menu-wrapper.is-open .icon-caret {
@@ -1793,8 +1795,7 @@ a.header__mega-menu-filter:hover {
   pointer-events: none;
 }
 
-.header__mega-menu-block-image,
-.header__mega-menu-block-placeholder {
+.header__mega-menu-block-image {
   height: 100%;
   width: 100%;
   position: absolute;
@@ -1804,10 +1805,6 @@ a.header__mega-menu-filter:hover {
   left: 0;
   object-fit: cover;
   transition: transform 0.3s;
-}
-
-.header__mega-menu-block-placeholder {
-  background: #eceeee;
 }
 
 .header__mega-menu-block:hover .header__mega-menu-block-image,
@@ -1888,7 +1885,8 @@ a.header__mega-menu-filter:hover {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  /* One equal column per rendered image (set inline from Liquid) */
+  grid-template-columns: repeat(var(--mega-image-count, 6), minmax(0, 1fr));
   gap: 16px;
   list-style: none;
 }
@@ -1907,6 +1905,8 @@ a.header__mega-menu-filter:hover {
 .header__mega-menu-card-media {
   position: relative;
   aspect-ratio: 5 / 4;
+  /* Keeps the panel height sensible when only a few wide cards are shown */
+  max-height: 240px;
   overflow: hidden;
 }
 
