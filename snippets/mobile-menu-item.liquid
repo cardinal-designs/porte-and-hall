@@ -1,0 +1,110 @@
+{% comment %}
+  Renders one top level item of the mobile menu drawer.
+  Rendered from the header navigation loop so the drawer uses the same Shopify menu and the
+  same "Mega menu" block content (pre-rendered by the desktop loop) as the desktop nav.
+
+  Accepts:
+  - link: {Object} top level menu link
+  - has_mega: {Boolean} whether a Mega menu block is attached to this item
+  - mega_layout: {String} 'featured' or 'grid'
+  - mega_view_all: {String} pre-rendered <li> with the View all link
+  - mega_filters: {String} pre-rendered <li> filter pills
+  - mega_images: {String} pre-rendered <li> image cards
+  - is_highlighted: {Boolean} highlighted menu item (e.g. Sale)
+  - item_style: {String} inline style with the highlight color
+
+  Usage:
+  {% render 'mobile-menu-item', link: link, has_mega: has_mega, ... %}
+{% endcomment %}
+
+{%- liquid
+  assign button_class = 'menu-drawer__menu-button'
+  if is_highlighted
+    assign button_class = button_class | append: ' menu-drawer__menu-button--highlighted'
+  endif
+-%}
+
+<li class="menu-drawer__item{% if has_mega %} menu-drawer__item--mega{% endif %}">
+  {%- if has_mega or link.links != blank -%}
+    <button
+      type="button"
+      class="{{ button_class }} menu-drawer__menu-button--has-menu"
+      aria-expanded="false"
+      {{ item_style }}
+    >
+      <span>{{ link.title | escape }}</span>
+      {% render 'icon', icon: 'caret' %}
+    </button>
+
+    <div class="menu-drawer__secondary-menu{% if has_mega %} menu-drawer__mega menu-drawer__mega--{{ mega_layout }}{% endif %}">
+      {%- capture child_links_html -%}
+        {%- for childlink in link.links -%}
+          <li>
+            <a
+              class="menu-drawer__secondary-menu-button"
+              href="{{ childlink.url }}"
+              {% if childlink.current %}
+                aria-current="page"
+              {% endif %}
+            >
+              {{- childlink.title | escape -}}
+            </a>
+            {%- if childlink.links != blank -%}
+              <ul class="menu-drawer__tertiary-list list-unstyled" role="list">
+                {%- for grandchildlink in childlink.links -%}
+                  <li>
+                    <a class="menu-drawer__tertiary-menu-button" href="{{ grandchildlink.url }}">
+                      {{- grandchildlink.title | escape -}}
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      {%- endcapture -%}
+
+      {%- if has_mega and mega_layout == 'grid' -%}
+        {%- if mega_images != blank -%}
+          <ul class="menu-drawer__mega-images menu-drawer__mega-images--grid list-unstyled" role="list">
+            {{ mega_images }}
+          </ul>
+        {%- endif -%}
+        {%- if child_links_html != blank or mega_view_all != blank -%}
+          <ul class="menu-drawer__secondary-list list-unstyled" role="list">
+            {{ child_links_html }}
+            {{ mega_view_all }}
+          </ul>
+        {%- endif -%}
+      {%- else -%}
+        {%- if child_links_html != blank or mega_view_all != blank -%}
+          <ul class="menu-drawer__secondary-list list-unstyled" role="list">
+            {{ child_links_html }}
+            {{ mega_view_all }}
+          </ul>
+        {%- endif -%}
+        {%- if mega_filters != blank -%}
+          <ul class="menu-drawer__mega-filters list-unstyled" role="list">
+            {{ mega_filters }}
+          </ul>
+        {%- endif -%}
+        {%- if mega_images != blank -%}
+          <ul class="menu-drawer__mega-images menu-drawer__mega-images--featured list-unstyled" role="list">
+            {{ mega_images }}
+          </ul>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  {%- else -%}
+    <a
+      class="{{ button_class }}"
+      href="{{ link.url }}"
+      {{ item_style }}
+      {% if link.current %}
+        aria-current="page"
+      {% endif %}
+    >
+      {{- link.title | escape -}}
+    </a>
+  {%- endif -%}
+</li>

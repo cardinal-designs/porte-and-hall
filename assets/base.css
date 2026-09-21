@@ -2115,6 +2115,306 @@ a.header__mega-menu-filter:hover {
   width: 19px;
 }
 
+/* Mobile / tablet header: hamburger left, centered logo, search + cart right */
+@media screen and (max-width: 989px) {
+  .header--inner {
+    grid-template-areas: "hamburger logo icons";
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  .header__icon--menu {
+    grid-area: hamburger;
+    justify-self: start;
+    display: flex;
+    align-items: center;
+  }
+
+  .header__icon--menu svg {
+    width: 24px;
+    height: auto;
+  }
+
+  .header__icons {
+    align-items: center;
+  }
+
+  /* Login lives in the drawer on mobile / tablet */
+  .header__icons .header__icon--account {
+    display: none;
+  }
+
+  .header__icon--search {
+    width: 20px;
+    height: 20px;
+    line-height: 0;
+  }
+
+  .header__icon--search svg path {
+    fill: var(--blue);
+  }
+}
+
+/* Drawer built from the Header menu + Mega menu blocks (mobile-menu section) */
+.menu-drawer--mega {
+  margin-left: 0;
+  right: auto;
+  left: 0;
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+  background: white;
+  color: var(--blue);
+}
+
+.menu-drawer--mega[aria-hidden="false"] {
+  transform: translateX(0);
+  -webkit-transform: translateX(0);
+}
+
+.menu-drawer--mega .menu-drawer__inner {
+  margin: 0;
+  border: 0;
+}
+
+.menu-drawer--mega .menu-drawer__header {
+  padding: 14px 20px;
+  justify-content: space-between;
+  border-bottom: 1px solid #e3dcce;
+  color: var(--blue);
+}
+
+.menu-drawer--mega .menu-drawer__logo {
+  display: flex;
+  line-height: 0;
+}
+
+.menu-drawer--mega .menu-drawer__svg-logo svg,
+.menu-drawer--mega .menu-drawer__image-logo {
+  width: 150px;
+  height: auto;
+}
+
+.menu-drawer--mega .menu-drawer__close svg {
+  width: 18px;
+  color: var(--blue);
+}
+
+.menu-drawer--mega .menu-drawer__content {
+  height: auto;
+  min-height: 0;
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.menu-drawer--mega .menu-drawer__menu {
+  overflow: visible;
+}
+
+.menu-drawer--mega .menu-drawer__menu li {
+  margin: 0;
+}
+
+.menu-drawer--mega .menu-drawer__item {
+  border-bottom: 1px solid #e3dcce;
+}
+
+.menu-drawer--mega .menu-drawer__menu-button {
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  background: none;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.menu-drawer--mega .menu-drawer__menu-button--highlighted {
+  color: var(--menu-item-color, var(--gold));
+}
+
+.menu-drawer--mega .menu-drawer__item.is-open > .menu-drawer__menu-button {
+  background: #f8f8f7;
+}
+
+.menu-drawer--mega .menu-drawer__menu-button--has-menu svg {
+  width: 11px;
+  flex-shrink: 0;
+}
+
+.menu-drawer--mega .menu-drawer__secondary-menu {
+  border-top: 1px solid #e3dcce;
+  background: white;
+}
+
+.menu-drawer--mega .menu-drawer__secondary-list li {
+  border-bottom: 1px solid #eee;
+}
+
+.menu-drawer--mega .menu-drawer__secondary-list li:has(> .header__mega-menu-group-link--additional),
+.menu-drawer--mega .menu-drawer__secondary-list li:last-child {
+  border-bottom: 0;
+}
+
+.menu-drawer--mega .menu-drawer__secondary-menu-button {
+  margin: 0;
+  padding: 13px 20px;
+  display: block;
+  font-size: 15px;
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-align: left;
+  text-transform: none;
+  color: var(--blue-secondary);
+}
+
+.menu-drawer--mega .menu-drawer__tertiary-menu-button {
+  padding: 8px 20px 8px 36px;
+  display: block;
+  font-size: 14px;
+  color: #5a5f63;
+}
+
+.menu-drawer--mega .header__mega-menu-group-link--additional {
+  padding: 12px 20px 16px;
+  display: inline-block;
+  font-size: 13px;
+}
+
+/* Filter pills: one horizontally scrollable row */
+.menu-drawer__mega-filters {
+  padding: 14px 20px 16px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  border-top: 1px solid #e3dcce;
+  scrollbar-width: none;
+}
+
+.menu-drawer__mega-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.menu-drawer__mega-filters li {
+  flex: 0 0 auto;
+}
+
+.menu-drawer--mega .header__mega-menu-filter {
+  padding: 7px 14px;
+  font-size: 13px;
+}
+
+/* Images: 2 column grid (featured tiles and collection cards) */
+.menu-drawer__mega-images {
+  padding: 16px 20px 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  border-top: 1px solid #e3dcce;
+}
+
+.menu-drawer__mega-images > :only-child {
+  grid-column: 1 / -1;
+}
+
+.menu-drawer--mega .menu-drawer__mega--grid .menu-drawer__mega-images {
+  border-top: 0;
+}
+
+.menu-drawer--mega .header__mega-menu-block {
+  height: 150px;
+  border-radius: 5px;
+}
+
+.menu-drawer--mega .header__mega-menu-block-badge {
+  padding: 3px 7px;
+  top: 8px;
+  left: 8px;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+}
+
+.menu-drawer--mega .header__mega-menu-block-content {
+  left: 10px;
+  right: 10px;
+  bottom: 9px;
+  gap: 3px;
+}
+
+.menu-drawer--mega .header__mega-menu-block-subtitle {
+  font-size: 9px;
+  letter-spacing: 0.5px;
+}
+
+/* The long description does not fit the small tiles: kicker + CTA only */
+.menu-drawer--mega .header__mega-menu-block .header__mega-menu-block-text {
+  display: none;
+}
+
+.menu-drawer--mega .header__mega-menu-block .header__mega-menu-block-title,
+.menu-drawer--mega .header__mega-menu-block-link {
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  text-decoration: none;
+}
+
+.menu-drawer--mega .header__mega-menu-card {
+  border-radius: 5px;
+}
+
+.menu-drawer--mega .header__mega-menu-card .header__mega-menu-block-content {
+  padding: 8px 9px 10px;
+}
+
+.menu-drawer--mega .header__mega-menu-card .header__mega-menu-block-subtitle {
+  font-size: 10px;
+}
+
+.menu-drawer--mega .header__mega-menu-card .header__mega-menu-block-title {
+  font-size: 16px;
+}
+
+.menu-drawer--mega .header__mega-menu-card .header__mega-menu-block-text {
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+/* Login / Trade */
+.menu-drawer__utility {
+  padding: 8px 0 24px;
+}
+
+.menu-drawer__utility-link {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.menu-drawer__utility-link svg {
+  width: 16px;
+  height: auto;
+}
+
 /*============================================================================
   Footer
 ==============================================================================*/

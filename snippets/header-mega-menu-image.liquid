@@ -25,11 +25,12 @@
     assign column_vw = 100 | divided_by: columns
     assign item_class = 'header__mega-menu-card'
     assign image_widths = '240, 360, 480, 720, 960, 1280'
-    assign image_sizes = '(min-width: 1300px) ' | append: column_px | append: 'px, ' | append: column_vw | append: 'vw'
+    assign image_sizes = '(min-width: 1300px) ' | append: column_px | append: 'px, (min-width: 990px) ' | append: column_vw | append: 'vw, 50vw'
   else
     assign item_class = 'header__mega-menu-block'
     assign image_widths = '360, 480, 640, 800, 960'
-    assign image_sizes = '(min-width: 1200px) 450px, 35vw'
+    # The same images are shown in the 2 column mobile drawer (50vw)
+    assign image_sizes = '(min-width: 1200px) 450px, (min-width: 990px) 35vw, 50vw'
   endif
 
   if link != blank

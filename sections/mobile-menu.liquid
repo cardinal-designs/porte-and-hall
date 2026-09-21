@@ -1,13 +1,14 @@
-{% liquid
-  assign mobile_menu = section.settings.menu
-  if customer and customer.b2b? and section.settings.b2b_menu != blank
-    assign mobile_menu = section.settings.b2b_menu
-  endif
-%}
+{% comment %}
+  Mobile menu drawer shell. It stays outside the header (the header wrapper has its own
+  stacking context, which would put the drawer under the page overlay).
+  The content - navigation, mega menu content, Login and Trade - is rendered by the Header
+  section from Header -> Menu and its "Mega menu" blocks (<template id="MobileMenuContent">)
+  and cloned into [data-mobile-menu-content] by MenuDrawer in global.js.
+{% endcomment %}
 
 <menu-drawer>
   <div
-    class="menu-drawer"
+    class="menu-drawer menu-drawer--mega"
     id="menu-drawer"
     aria-hidden="true"
     aria-modal="true"
@@ -15,77 +16,12 @@
     role="dialog"
     tabindex="-1"
   >
-    <div class="menu-drawer__inner">
+    <div class="menu-drawer__inner" data-mobile-menu-content>
       <div class="menu-drawer__header">
         <p class="menu-drawer__title h4 visually-hidden">Menu</p>
-        <button class="js-close-menu menu-drawer__close">
+        <button type="button" class="js-close-menu menu-drawer__close" aria-label="{{ 'accessibility.close' | t }}">
           {% render 'icon', icon: 'close' %}
         </button>
-      </div>
-      <div class="menu-drawer__content">
-        <ul class="menu-drawer__menu list-unstyled" role="list">
-          {% for link in mobile_menu.links %}
-            {% if link.title == 'Swatches' %}
-              {% if customer and customer.b2b? %}
-              <li>
-              {% if link.links != blank %}
-                <button class="menu-drawer__menu-button menu-drawer__menu-button--has-menu body" href="{{ link.url }}">
-                  {{ link.title }}
-                  {% render 'icon', icon: 'caret' %}
-                </button>
-                <ul class="menu-drawer__secondary-menu list-unstyled" role="list">
-                  {% for child_link in link.links %}
-                    <li>
-                      <a class="menu-drawer__secondary-menu-button body" href="{{ link.url }}">{{ link.title }}</a>
-                    </li>
-                  {% endfor %}
-                </ul>
-              {% else %}
-                <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link.title }}</a>
-              {% endif %}
-            </li>
-              {% endif %}
-            {% else %}
-            <li>
-              {% if link.links != blank %}
-                <button class="menu-drawer__menu-button menu-drawer__menu-button--has-menu body" href="{{ link.url }}">
-                  {{ link.title }}
-                  {% render 'icon', icon: 'caret' %}
-                </button>
-                <ul class="menu-drawer__secondary-menu list-unstyled" role="list">
-                  {% for child_link in link.links %}
-                    <li>
-                      <a class="menu-drawer__secondary-menu-button body" href="{{ link.url }}">{{ link.title }}</a>
-                    </li>
-                  {% endfor %}
-                </ul>
-              {% else %}
-                <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link.title }}</a>
-              {% endif %}
-            </li>
-            {%endif %}
-          {% endfor %}
-
-          <li>
-            {% if shop.customer_accounts_enabled %}
-              <a
-                href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
-                class="header__icon header__icon--account"
-              >
-                {% render 'icon', icon: 'account' %}
-                <span class="visually-hidden">
-                  {% liquid
-                    if customer
-                      echo 'customer.account_fallback' | t
-                    else
-                      echo 'customer.log_in' | t
-                    endif
-                  %}
-                </span>
-              </a>
-            {% endif %}
-          </li>
-        </ul>
       </div>
     </div>
   </div>
@@ -96,14 +32,8 @@
   "name": "Mobile Menu",
   "settings": [
     {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Menu"
-    },
-    {
-      "type": "link_list",
-      "id": "b2b_menu",
-      "label": "B2B Menu"
+      "type": "paragraph",
+      "content": "The mobile menu uses the Header section: Header → Menu for the navigation (including the B2B menu) and the Header \"Mega menu\" blocks for the Shop Indoor / Shop Outdoor / Our Collections content, plus the Login and Trade labels."
     }
   ]
 }

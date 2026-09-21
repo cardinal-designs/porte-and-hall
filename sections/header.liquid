@@ -12,6 +12,14 @@
 
 <header class="header">
   <div class="header--{{ section.settings.logo_position }} header--inner page-width">
+    {%- unless page.handle == 'the-insider' -%}
+      {% if main_menu != blank %}
+        <button class="js-open-menu header__icon header__icon--menu" aria-label="Menu" aria-controls="menu-drawer">
+          {% render 'icon', icon: 'hamburger' %}
+        </button>
+      {% endif %}
+    {%- endunless -%}
+
     <!-- Logo -->
     <div class="header__logo">
       <a href="{{ shop.url }}" class="header__logo-link" aria-label="Header logo">
@@ -56,7 +64,7 @@
     {%- unless page.handle == 'the-insider' -%}
       <div class="header__icons">
         {% if section.settings.enable_search %}
-          <button class="js-open-search header__icon header__icon--search header__icon--desktop-only" aria-label="Open Search Bar">
+          <button class="js-open-search header__icon header__icon--search" aria-label="Open Search Bar">
             {% render 'icon', icon: 'search' %}
           </button>
         {% endif %}
@@ -127,11 +135,6 @@
           </a>
         {% endif %}
 
-        {% if main_menu != blank %}
-          <button class="js-open-menu header__icon header__icon--menu" aria-label="Menu">
-            {% render 'icon', icon: 'hamburger' %}
-          </button>
-        {% endif %}
       </div>
     {%- endunless -%}
 
@@ -163,7 +166,16 @@
       </div>
     {% endif %}
   </div>
-{% unless page.handle == 'outdoor' or page.handle == 'the-insider' %}
+{%- liquid
+  # The desktop nav is hidden on these pages, but the menu loop still runs so the
+  # mobile drawer (built in the same loop) is available everywhere.
+  assign show_desktop_nav = true
+  if page.handle == 'outdoor' or page.handle == 'the-insider'
+    assign show_desktop_nav = false
+  endif
+  assign mobile_menu_html = ''
+-%}
+{%- capture desktop_nav_html -%}
   <div class="header__navigation">
     <!-- Navigation -->
     {% if main_menu != blank %}
@@ -493,14 +505,105 @@
                 </a>
               </li>
             {% endif %}
+
+            {%- comment -%} Mobile drawer item: same menu link, same mega menu content {%- endcomment -%}
+            {%- liquid
+              assign hide_in_drawer = false
+              if downcased_link_title == 'swatches'
+                unless customer and customer.b2b?
+                  assign hide_in_drawer = true
+                endunless
+              endif
+            -%}
+            {%- unless hide_in_drawer -%}
+              {%- capture mobile_item_html -%}
+                {% render 'mobile-menu-item',
+                  link: link,
+                  has_mega: has_mega,
+                  mega_layout: mega_block.settings.mega_layout,
+                  mega_view_all: mega_view_all,
+                  mega_filters: mega_filters,
+                  mega_images: mega_images,
+                  is_highlighted: is_highlighted,
+                  item_style: item_style
+                %}
+              {%- endcapture -%}
+              {%- assign mobile_menu_html = mobile_menu_html | append: mobile_item_html -%}
+            {%- endunless -%}
           {% endfor %}
         </ul>
         <div class="header__mega-menu-overlay" data-mega-menu-overlay></div>
       </nav>
     {% endif %}
   </div>
-  {% endunless %}
+{%- endcapture -%}
+{%- if show_desktop_nav -%}
+  {{ desktop_nav_html }}
+{%- endif -%}
 </header>
+
+{%- comment -%}
+  Mobile drawer content. The drawer shell lives in the "mobile-menu" section (outside the
+  header stacking context); global.js (MenuDrawer) clones this template into it, so the
+  mobile menu uses the same Menu + Mega menu blocks as the desktop navigation.
+{%- endcomment -%}
+{%- if main_menu != blank -%}
+  <template id="MobileMenuContent">
+    {%- liquid
+      if customer
+        assign drawer_account_text = 'customer.account_fallback' | t
+        if section.settings.account_label != blank
+          assign drawer_account_text = section.settings.account_label
+        endif
+      else
+        assign drawer_account_text = 'customer.log_in' | t
+        if section.settings.login_label != blank
+          assign drawer_account_text = section.settings.login_label
+        endif
+      endif
+    -%}
+    <div class="menu-drawer__header">
+      <a href="{{ routes.root_url }}" class="menu-drawer__logo" aria-label="{{ shop.name | escape }}">
+        {%- if section.settings.svg_logo != blank -%}
+          <span class="menu-drawer__svg-logo">{{ section.settings.svg_logo }}</span>
+        {%- elsif section.settings.logo != blank -%}
+          {{ section.settings.logo | image_url: width: 300 | image_tag: class: 'menu-drawer__image-logo', alt: shop.name }}
+        {%- else -%}
+          <span class="h4">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+      <button type="button" class="js-close-menu menu-drawer__close" aria-label="{{ 'accessibility.close' | t }}">
+        {% render 'icon', icon: 'close' %}
+      </button>
+    </div>
+    <div class="menu-drawer__content">
+      <ul class="menu-drawer__menu list-unstyled" role="list">
+        {{ mobile_menu_html }}
+      </ul>
+
+      <ul class="menu-drawer__utility list-unstyled" role="list">
+        {%- if shop.customer_accounts_enabled -%}
+          <li>
+            <a
+              href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+              class="menu-drawer__utility-link"
+            >
+              {% render 'icon', icon: 'account' %}
+              <span>{{ drawer_account_text | escape }}</span>
+            </a>
+          </li>
+        {%- endif -%}
+        {%- if section.settings.trade_label != blank and section.settings.trade_link != blank -%}
+          <li>
+            <a href="{{ section.settings.trade_link }}" class="menu-drawer__utility-link">
+              <span>{{ section.settings.trade_label | escape }}</span>
+            </a>
+          </li>
+        {%- endif -%}
+      </ul>
+    </div>
+  </template>
+{%- endif -%}
 
 {%- capture sameas_urls -%}
   {%- if settings.social_twitter_link != blank -%}{{ settings.social_twitter_link }},{%- endif -%}

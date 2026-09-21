@@ -506,22 +506,40 @@ var MenuDrawer = class extends HTMLElement {
   constructor() {
     super();
 
-    this.drawer = this.drawer = document.getElementById('menu-drawer');
-    this.openButtons = document.querySelectorAll('.js-open-menu');
-    this.closeButtons = document.querySelectorAll('.js-close-menu');
-    this.menuButtons = document.querySelectorAll('.menu-drawer__menu-button');
+    this.drawer = document.getElementById('menu-drawer');
     this.pageOverlayElement = document.querySelector('.page-overlay');
-    
+
+    // Content rendered by the Header section (same menu + mega menu blocks as desktop).
+    this.renderContent();
+
     this.drawer.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.closeMenuDrawer());
     this.bindEvents();
     this.disableDrawerFocus()
   }
 
   bindEvents() {
-    this.openButtons.forEach(openBtn => openBtn.addEventListener('click', this.openMenuDrawer.bind(this)));
-    this.closeButtons.forEach(closeBtn => closeBtn.addEventListener('click', this.closeMenuDrawer.bind(this)));
-    this.menuButtons.forEach(menuBtn => menuBtn.addEventListener('click', this.toggleMenuButtons.bind(this)));
+    // Delegated so the handlers survive Theme Editor re-renders of the header/drawer content.
+    document.addEventListener('click', (evt) => {
+      if (evt.target.closest('.js-open-menu')) this.openMenuDrawer();
+    });
+    this.drawer.addEventListener('click', (evt) => {
+      if (evt.target.closest('.js-close-menu')) return this.closeMenuDrawer();
+
+      const menuButton = evt.target.closest('.menu-drawer__menu-button--has-menu');
+      if (menuButton) this.toggleMenuButtons(menuButton);
+    });
     this.onBodyClick = this.handleBodyClick.bind(this);
+
+    document.addEventListener('shopify:section:load', () => this.renderContent());
+  }
+
+  renderContent() {
+    const template = document.getElementById('MobileMenuContent');
+    const target = this.drawer.querySelector('[data-mobile-menu-content]');
+    if (!template || !target) return;
+
+    target.replaceChildren(template.content.cloneNode(true));
+    if (this.drawer.getAttribute('aria-hidden') !== 'false') this.disableDrawerFocus();
   }
 
   disableDrawerFocus() {
@@ -538,6 +556,7 @@ var MenuDrawer = class extends HTMLElement {
   openMenuDrawer() {
     this.drawer.setAttribute('aria-hidden', false);
     this.drawer.setAttribute('aria-expanded', true);
+    document.querySelectorAll('.js-open-menu').forEach(btn => btn.setAttribute('aria-expanded', true));
 
     this.pageOverlayElement.classList.add('is-visible');
     document.body.addEventListener('click', this.onBodyClick);
@@ -547,22 +566,26 @@ var MenuDrawer = class extends HTMLElement {
   closeMenuDrawer() {
     this.drawer.setAttribute('aria-hidden', true);
     this.drawer.removeAttribute('aria-expanded', true);
+    document.querySelectorAll('.js-open-menu').forEach(btn => btn.setAttribute('aria-expanded', false));
 
     this.pageOverlayElement.classList.remove('is-visible');
     document.body.removeEventListener('click', this.onBodyClick);
     this.disableDrawerFocus()
   }
 
-  toggleMenuButtons() {
-    const parent = event.target.parentElement;
-    const secondaryMenu = event.target.nextElementSibling;
-    
+  toggleMenuButtons(menuButton) {
+    const parent = menuButton.parentElement;
+    const secondaryMenu = menuButton.nextElementSibling;
+    if (!secondaryMenu) return;
+
     if (parent.classList.contains('is-open')) {
       slideUp(secondaryMenu);
       parent.classList.remove('is-open');
+      menuButton.setAttribute('aria-expanded', false);
     } else {
       slideDown(secondaryMenu);
       parent.classList.add('is-open');
+      menuButton.setAttribute('aria-expanded', true);
     }
   }
 
