@@ -1229,7 +1229,7 @@ deferred-media {
 .header__icons {
   display: flex;
   grid-area: icons;
-  column-gap: 20px;
+  column-gap: 10px;
   justify-self: end;
   align-items: flex-end;
 }
@@ -1274,7 +1274,7 @@ deferred-media {
 @media screen and (min-width: 990px) {
   .header__icons {
     align-items: center;
-    column-gap: 24px;
+    column-gap: 16px;
   }
 
   .header__icon-text {
@@ -1298,8 +1298,8 @@ deferred-media {
   }
 
   .header__icon--search {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     line-height: 0;
   }
 
@@ -1916,7 +1916,7 @@ a.header__mega-menu-filter:hover {
 
 .header__mega-menu-card-media {
   position: relative;
-  aspect-ratio: 5 / 4;
+  aspect-ratio: 3 / 2;
   /* Keeps the panel height sensible when only a few wide cards are shown */
   max-height: 240px;
   overflow: hidden;
@@ -2144,8 +2144,8 @@ a.header__mega-menu-filter:hover {
   }
 
   .header__icon--search {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     line-height: 0;
   }
 
@@ -2156,18 +2156,8 @@ a.header__mega-menu-filter:hover {
 
 /* Drawer built from the Header menu + Mega menu blocks (mobile-menu section) */
 .menu-drawer--mega {
-  margin-left: 0;
-  right: auto;
-  left: 0;
-  transform: translateX(-100%);
-  -webkit-transform: translateX(-100%);
   background: white;
   color: var(--blue);
-}
-
-.menu-drawer--mega[aria-hidden="false"] {
-  transform: translateX(0);
-  -webkit-transform: translateX(0);
 }
 
 .menu-drawer--mega .menu-drawer__inner {
@@ -2176,7 +2166,7 @@ a.header__mega-menu-filter:hover {
 }
 
 .menu-drawer--mega .menu-drawer__header {
-  padding: 14px 20px;
+  padding: 20px;
   justify-content: space-between;
   border-bottom: 1px solid #e3dcce;
   color: var(--blue);
@@ -2268,13 +2258,13 @@ a.header__mega-menu-filter:hover {
   margin: 0;
   padding: 13px 20px;
   display: block;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.3;
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: 0.3px;
   text-align: left;
   text-transform: none;
-  color: var(--blue-secondary);
+  color: var(--blue);
 }
 
 .menu-drawer--mega .menu-drawer__tertiary-menu-button {
@@ -2288,6 +2278,7 @@ a.header__mega-menu-filter:hover {
   padding: 12px 20px 16px;
   display: inline-block;
   font-size: 13px;
+  letter-spacing: 0.3px;
 }
 
 /* Filter pills: one horizontally scrollable row */
@@ -2296,7 +2287,6 @@ a.header__mega-menu-filter:hover {
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  border-top: 1px solid #e3dcce;
   scrollbar-width: none;
 }
 
