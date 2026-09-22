@@ -62,6 +62,8 @@ class CartDrawer extends HTMLElement {
   }
 
   enforceGiftNoteEligibility() {
+    if (document.querySelector('cart-items')) return;
+
     const marker = document.getElementById('gift-note-orphaned');
     if (!marker) {
       this.giftNoteRemovalInFlight = false;
