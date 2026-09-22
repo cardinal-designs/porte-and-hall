@@ -953,7 +953,6 @@ square-placement {
   font-size: 0.75rem;
   color: #999;
   text-align: center;
-  text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 .gift-note__header {
@@ -996,6 +995,9 @@ square-placement {
 #gift-wrap-option label {
     position: relative;
     cursor: pointer;
+    font-weight: 450 !important;
+    line-height: 22px;
+    text-transform: none;
 }
 #gift-wrap-option label:before {
     content: "";
@@ -1015,7 +1017,7 @@ square-placement {
     content: "";
     display: block;
     position: absolute;
-    top: 6px;
+    top: 4px;
     left: 7px;
     width: 5px;
     height: 10px;
