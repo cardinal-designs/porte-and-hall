@@ -111,7 +111,7 @@
         
           {% if product_card_product.first_available_variant.metafields.filters.use != blank %}
             <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
-            {{ product_card_product.first_available_variant.metafields.filters.use.value }}
+            {{ product_card_product.first_available_variant.metafields.filters.use.first.value }}
             </div> 
           {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
             <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
