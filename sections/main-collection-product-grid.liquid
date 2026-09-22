@@ -64,9 +64,20 @@
     </script>
 
     <div id="ProductGridContainer">
-      {%- if plp_default_template and section.settings.enable_sorting -%}
-        <div class="collection-toolbar hide-mobile">
-          {% render 'collection-sort', results: collection %}
+      {%- if plp_default_template -%}
+        <div class="collection-toolbar">
+          {%- comment -%}
+            products_count is the filtered total; collection-filters.js swaps this
+            element on every AJAX filter/sort reload.
+          {%- endcomment -%}
+          <p class="collection-toolbar__count" id="collection-product-count">
+            Showing <strong>{{ collection.products_count }}</strong> Product{% unless collection.products_count == 1 %}s{% endunless %}
+          </p>
+          {%- if section.settings.enable_sorting -%}
+            <div class="collection-toolbar__sort hide-mobile">
+              {% render 'collection-sort', results: collection %}
+            </div>
+          {%- endif -%}
         </div>
       {%- endif -%}
       {% if collection.products.size == 0 %}

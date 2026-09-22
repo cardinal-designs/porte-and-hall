@@ -28,7 +28,11 @@
 <div class="collection-filters__button hide-desktop">
   <button class="collection-filters__open js-open-filters h3">
     {%- if plp_default_template -%}
-      <span>
+      {%- comment -%}
+        This button sits outside the fragments reloadSections() swaps, so
+        collection-filters.js replaces this span from each AJAX response.
+      {%- endcomment -%}
+      <span id="collection-filters-open-label">
         {% render 'icon', icon: 'filter' %}
         Filter{% if total_active_values > 0 %} ({{ total_active_values }}){% endif %}
       </span>
@@ -226,6 +230,13 @@
                                     {%- endcomment -%}
                                     <span class="visually-hidden">{{ value.label | escape }}</span>
                                     {% render 'filter-color-swatch', value: value %}
+                                  {%- elsif plp_default_template -%}
+                                    {%- comment -%}
+                                      Shopify's own count for this value, re-rendered with the
+                                      dropdown container on every AJAX filter/sort reload.
+                                    {%- endcomment -%}
+                                    <span class="collection-filters__filter-option">{{ value.label | escape }}</span>
+                                    <span class="collection-filters__filter-count">({{ value.count }})</span>
                                   {%- else -%}
                                     {{ value.label | escape }}
                                   {%- endif -%}

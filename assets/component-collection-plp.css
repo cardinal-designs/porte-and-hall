@@ -192,7 +192,7 @@
   padding: 14px 0 10px;
   margin-bottom: 0;
   border-bottom: 0;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -206,29 +206,70 @@
   display: none;
 }
 
+/* +/− icon: two bars; the vertical one folds away while the icon turns. */
 .template__collection--default
   .collection-filters__slideout
   .collection-filters__dropdown-button:after {
-  content: '+';
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  content: '';
   flex-shrink: 0;
   width: 18px;
   height: 18px;
   margin-left: 10px;
-  color: #999;
-  font-size: 22px;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: 0;
-  text-transform: none;
+  background:
+    linear-gradient(#999, #999) center / 12px 1.5px no-repeat,
+    linear-gradient(#999, #999) center / 1.5px 12px no-repeat;
+  transition: background-size 0.25s ease, transform 0.25s ease;
 }
 
 .template__collection--default
   .collection-filters__slideout
   .collection-filters__dropdown-button.active:after {
-  content: '\2212';
+  background-size: 12px 1.5px, 1.5px 0;
+  transform: rotate(180deg);
+}
+
+/* Accordion: rows animate 0fr -> 1fr (as on staging) instead of display toggling.
+   The wrapper clips, so the container's padding doesn't show while collapsed;
+   visibility is delayed on close so collapsed options still can't take focus. */
+.template__collection--default
+  .collection-filters__slideout
+  .collection-filters__dropdown-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    grid-template-rows 0.25s ease,
+    opacity 0.2s ease,
+    visibility 0s linear 0.25s;
+}
+
+.template__collection--default
+  .collection-filters__slideout
+  .collection-filters__dropdown-button.active
+  + .collection-filters__dropdown-wrapper {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    grid-template-rows 0.25s ease,
+    opacity 0.25s ease 0.05s,
+    visibility 0s linear 0s;
+}
+
+.template__collection--default
+  .collection-filters__slideout
+  .collection-filters__dropdown-wrapper
+  > .collection-filters__dropdown-container {
+  min-height: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .template__collection--default .collection-filters__slideout .collection-filters__dropdown-wrapper,
+  .template__collection--default .collection-filters__slideout .collection-filters__dropdown-button:after {
+    transition: none;
+  }
 }
 
 .template__collection--default .collection-filters__dropdowns {
@@ -245,7 +286,7 @@
   .collection-filters__slideout
   .collection-filters__filter-label {
   padding: 6px 0 6px 27px;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.02em;
   text-transform: unset;
@@ -254,6 +295,13 @@
 
 .template__collection--default .collection-filters__filter-option {
   min-width: 0;
+}
+
+/* Full-width rows so each option's count can sit on the right. */
+.template__collection--default
+  .collection-filters__dropdown-container:not(.collection-filters__dropdown-container--color):not(.collection-filters__dropdown-container--price-range)
+  .collection-filters__input-wrapper {
+  align-self: stretch;
 }
 
 .template__collection--default .collection-filters__filter-count {
@@ -632,13 +680,13 @@
   }
 
   .template__collection--default .product-card__color-count {
-    font-size: 11px;
+    display: none;
   }
 
   .template__collection--default .collection-filters__dropdown-button {
     padding: 0;
     margin-bottom: 10px;
-    font-size: 12px;
+    font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #30383d !important;
@@ -818,12 +866,27 @@
 /* Sort dropdown (snippets/collection-sort.liquid) */
 .template__collection--default .collection-toolbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+  gap: 16px;
   padding-top: 28px;
 }
 
-.template__collection--default .collection-toolbar + .collection {
+.template__collection--default .collection-toolbar__count {
+  margin: 0;
+  font-family: brandon, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #6b6b6b;
+}
+
+.template__collection--default .collection-toolbar__count strong {
+  font-weight: 600;
+  color: #30383d;
+}
+
+.template__collection--default #ProductGridContainer .collection-toolbar + .collection {
   padding-top: 20px;
 }
 
@@ -903,8 +966,8 @@
   margin: 0;
   padding: 6px 0;
   background: #fff;
-  border: 1px solid #e5e0d7;
-  border-radius: 4px;
+  border: 1px solid var(--blue);
+  border-radius: 2px;
   box-shadow: 0 8px 24px rgba(48, 56, 61, 0.1);
 }
 
@@ -929,11 +992,19 @@
 }
 
 .template__collection--default .collection-sort__option.is-selected {
-  background: #eeefef;
-  font-weight: 700;
+  font-weight: 600 !important;
+  background: #f5f5f5;
 }
 
 @media screen and (max-width: 768px) {
+  .template__collection--default .collection-toolbar {
+    padding-top: 14px;
+  }
+
+  .template__collection--default #ProductGridContainer .collection-toolbar + .collection {
+    padding-top: 12px;
+  }
+
   .template__collection--default .collection-filters__mobile-bar {
     display: flex;
     gap: 10px;
@@ -947,12 +1018,12 @@
 
   .template__collection--default .collection-filters__mobile-bar .collection-filters__button {
     position: static;
-    flex: 1 1 0;
+    flex-basis: 50%;
     width: auto;
   }
 
   .template__collection--default .collection-sort--mobile {
-    flex: 1 1 0;
+    flex-basis: 50%;
     min-width: 0;
   }
 
@@ -985,7 +1056,9 @@
   }
 
   .template__collection--default .collection-sort--mobile .collection-sort__option {
-    padding: 10px 14px;
-    font-size: 15px;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: var(--blue);
+    font-weight: 500;
   }
 }

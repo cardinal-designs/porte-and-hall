@@ -280,6 +280,8 @@ class collectionFilters extends HTMLElement {
         // Replace dropdown filters
         const dropdownContents = this.querySelectorAll('.collection-filters__dropdown-container');
         dropdownContents.forEach(content => {
+          // The sort dropdown's container has no id and nothing to replace.
+          if (!content.id) return;
           const newContent = htmlContent.getElementById(content.id).innerHTML;
           content.innerHTML = newContent;
         });
@@ -303,7 +305,12 @@ class collectionFilters extends HTMLElement {
       { id: 'active-filters' },
       // { id: 'apply-product-count' },
       // { id: 'collection-filters__clear' },
-      { id: 'load-more-wrapper' }
+      { id: 'load-more-wrapper' },
+      // "Showing N Products" exists only on the default collection template.
+      ...(document.getElementById('collection-product-count') ? [{ id: 'collection-product-count' }] : []),
+      // Mobile "Filter (N)" on the default collection template: the count comes from
+      // the response's Liquid, so it matches the filters Shopify actually applied.
+      ...(document.getElementById('collection-filters-open-label') ? [{ id: 'collection-filters-open-label' }] : [])
     ]
   }
 
