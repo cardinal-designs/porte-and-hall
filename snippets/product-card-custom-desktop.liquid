@@ -114,19 +114,19 @@
 
       {%- if show_product_badge -%}
           {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
-            <div class="product-card__image-label body-xs visible-on-image">
+            <div class="aa product-card__image-label body-xs visible-on-image">
               {{ product_card_product.first_available_variant.metafields.custom.use }}
             </div>
           {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
-            <div class="product-card__image-label body-xs visible-on-image">
+            <div class="bb product-card__image-label body-xs visible-on-image">
               Indoor/Outdoor
             </div>
           {% elsif lowercase_tags contains 'indoor' %}
-            <div class="product-card__image-label body-xs visible-on-image">
+            <div class="cc product-card__image-label body-xs visible-on-image">
               Indoor
             </div>
           {% elsif lowercase_tags contains 'outdoor' %}
-            <div class="product-card__image-label body-xs visible-on-image">
+            <div class="dd product-card__image-label body-xs visible-on-image">
               Outdoor
             </div>
           {% endif %}
@@ -135,7 +135,7 @@
 
     {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
 
-        <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
+        <div class="ee product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
           {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
             {{ product_card_product.first_available_variant.metafields.custom.use }}
           {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
