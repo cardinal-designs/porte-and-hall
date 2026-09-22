@@ -156,8 +156,32 @@ class collectionFilters extends HTMLElement {
     this.sortBy = sort;
     sortTextDestination.innerHTML = sortText;
     
+    // closeAllDropdowns() also collapses the filter groups; keep them as the user left them.
+    const filterGroupState = this.getFilterGroupState();
     this.closeAllDropdowns();
+    this.restoreFilterGroupState(filterGroupState);
     this.reloadSections();
+  }
+
+  // Open/closed state of each filter group, keyed by its container id
+  // (collection-filter-<param>), which is the same before and after a reload.
+  getFilterGroupState() {
+    const state = new Map();
+    this.querySelectorAll('#filter-dropdowns .collection-filters__dropdown').forEach(group => {
+      const container = group.querySelector('.collection-filters__dropdown-container[id]');
+      const button = group.querySelector('.collection-filters__dropdown-button');
+      if (container && button) state.set(container.id, button.classList.contains('active'));
+    });
+    return state;
+  }
+
+  restoreFilterGroupState(state) {
+    state.forEach((isOpen, id) => {
+      const button = document.getElementById(id)
+        ?.closest('.collection-filters__dropdown')
+        ?.querySelector('.collection-filters__dropdown-button');
+      button?.classList.toggle('active', isOpen);
+    });
   }
 
   closeAllDropdowns() {
@@ -197,6 +221,7 @@ class collectionFilters extends HTMLElement {
 
   reloadSections(newUrl) {
     let url = '';
+    const filterGroupState = this.getFilterGroupState();
 
     let formData = new FormData(this.form);
 
@@ -258,6 +283,7 @@ class collectionFilters extends HTMLElement {
           const newContent = htmlContent.getElementById(content.id).innerHTML;
           content.innerHTML = newContent;
         });
+        this.restoreFilterGroupState(filterGroupState);
         this.disableLoading();
       })
       .catch(() => {

@@ -1,0 +1,50 @@
+{%- comment -%}
+  Sort dropdown for the default collection template.
+  It holds no form fields of its own: picking an option checks the matching
+  `sort_by` radio inside <collection-filters> and fires its change event, so the
+  existing filter code keeps building the URL and reloading the grid.
+
+  Accepts:
+  - results: {Object} collection
+  - modifier: {String} optional class suffix, e.g. 'mobile'
+{%- endcomment -%}
+{%- liquid
+  assign sort_by = results.sort_by | default: results.default_sort_by
+  assign sort_modifier = modifier | default: 'desktop'
+  assign sort_id = 'CollectionSort-' | append: sort_modifier
+-%}
+
+<collection-sort class="collection-sort{% if modifier != blank %} collection-sort--{{ modifier }}{% endif %}">
+  <span class="collection-sort__label" id="{{ sort_id }}-label">Sort by</span>
+  <div class="collection-sort__control">
+    <button
+      type="button"
+      class="collection-sort__trigger"
+      aria-haspopup="listbox"
+      aria-expanded="false"
+      aria-controls="{{ sort_id }}-menu"
+      aria-labelledby="{{ sort_id }}-label {{ sort_id }}-current"
+    >
+      <span class="collection-sort__trigger-text">Sort by</span>
+      <span class="collection-sort__current" id="{{ sort_id }}-current" data-sort-current>
+        {%- for option in results.sort_options -%}
+          {%- if option.value == sort_by -%}{{ option.name | escape }}{%- endif -%}
+        {%- endfor -%}
+      </span>
+      {% render 'icon', icon: 'caret' %}
+    </button>
+    <ul class="collection-sort__menu list-unstyled" id="{{ sort_id }}-menu" role="listbox" aria-labelledby="{{ sort_id }}-label" hidden>
+      {%- for option in results.sort_options -%}
+        <li
+          class="collection-sort__option{% if option.value == sort_by %} is-selected{% endif %}"
+          role="option"
+          tabindex="-1"
+          data-value="{{ option.value | escape }}"
+          aria-selected="{% if option.value == sort_by %}true{% else %}false{% endif %}"
+        >
+          {{- option.name | escape -}}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</collection-sort>

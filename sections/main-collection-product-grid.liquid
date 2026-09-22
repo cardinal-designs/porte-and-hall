@@ -3,8 +3,15 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
 {{ 'component-collection-filters.css' | asset_url | stylesheet_tag }}
-{%- if template.name == 'collection' and template.suffix == blank -%}
+{%- liquid
+  assign plp_default_template = false
+  if template.name == 'collection' and template.suffix == blank
+    assign plp_default_template = true
+  endif
+-%}
+{%- if plp_default_template -%}
   {{ 'component-collection-plp.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'collection-sort.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
 <script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
@@ -57,6 +64,11 @@
     </script>
 
     <div id="ProductGridContainer">
+      {%- if plp_default_template and section.settings.enable_sorting -%}
+        <div class="collection-toolbar hide-mobile">
+          {% render 'collection-sort', results: collection %}
+        </div>
+      {%- endif -%}
       {% if collection.products.size == 0 %}
         <div class="collection collection--empty" id="product-grid" data-id="{{ section.id }}">
           <div class="loading-overlay gradient"></div>
@@ -93,7 +105,9 @@
                     title: grouped_collection.title,
                     button_text: 'Shop Now',
                     card_index: forloop.index,
-                    hide_tag: section.settings.hide_tag
+                    hide_tag: section.settings.hide_tag,
+                    plp_layout: plp_default_template,
+                    show_reviews: section.settings.show_rating
                   %}
                 </li>
               {% endfor %}

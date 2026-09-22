@@ -24,6 +24,7 @@
   endif
 -%}
 
+{%- if plp_default_template -%}<div class="collection-filters__mobile-bar hide-desktop">{%- endif -%}
 <div class="collection-filters__button hide-desktop">
   <button class="collection-filters__open js-open-filters h3">
     {%- if plp_default_template -%}
@@ -37,6 +38,12 @@
     {%- endif -%}
   </button>
 </div>
+{%- if plp_default_template -%}
+  {%- if section.settings.enable_sorting -%}
+    {% render 'collection-sort', results: collection, modifier: 'mobile' %}
+  {%- endif -%}
+</div>
+{%- endif -%}
 
 <collection-filters
   class="collection-filters"
@@ -375,7 +382,11 @@
               <div class="collection-filters__dropdown-wrapper">
                 <div class="collection-filters__dropdown-container">
                   {% for option in collection.sort_options %}
-                    {% unless option.value == 'manual' %}
+                    {%- comment -%}
+                      The default template's sort dropdown lists every option, including
+                      "Featured", so its radio has to exist for the form to submit it.
+                    {%- endcomment -%}
+                    {% unless option.value == 'manual' and plp_default_template == false %}
                       {% assign collection_sort_by = collection.sort_by | default: collection.default_sort_by %}
                       <input
                         type="radio"
