@@ -170,11 +170,24 @@ cart-remove-button .icon-remove {
   padding: 0;
 }
 
+.cart-item .cart-item__price .loading-overlay {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+}
+
 @media screen and (min-width: 769px) {
   .cart-item .loading-overlay {
     right: 0;
     padding-top: 4.5rem;
     bottom: auto;
+  }
+
+  .cart-item .cart-item__price .loading-overlay {
+    padding-top: 0;
+    bottom: 0;
   }
 }
 
