@@ -31,18 +31,64 @@
             </div>
           {% else %}
             <div class="cart-drawer__items" id="cart-drawer-items">
-              {% assign porter_product_found = false %}
-              {% assign gift_wrap_product_found = false %}
-              {% assign gift_wrap_product = all_products[section.settings.gift_note_product] %}
+              {%- liquid
+                assign porter_product_found = false
+                assign gift_wrap_product_found = false
+                assign gift_note_sku = section.settings.gift_note_sku | default: 'GFTNT00PH'
+                assign gift_note_variant_id = section.settings.gift_note_variant_id | default: '41650434277439'
+                assign gift_note_title = 'Gift Note'
+                assign gift_note_price = 500
+                assign gift_note_image = blank
+                assign gift_note_available = false
+                assign gift_note_line_index = 0
+
+                assign gift_wrap_product = section.settings.gift_note_product
+                if gift_wrap_product.title == blank and gift_wrap_product != blank
+                  assign gift_wrap_product = all_products[gift_wrap_product]
+                endif
+                if gift_wrap_product.title == blank
+                  assign gift_wrap_product = all_products['gift-note']
+                endif
+
+                if gift_wrap_product != blank and gift_wrap_product.first_available_variant != blank
+                  assign gift_note_available = true
+                  assign gift_note_variant_id = gift_wrap_product.first_available_variant.id
+                  assign gift_note_title = gift_wrap_product.title
+                  assign gift_note_price = gift_wrap_product.first_available_variant.price
+                  assign gift_note_image = gift_wrap_product.featured_image
+                elsif gift_note_variant_id != blank
+                  assign gift_note_available = true
+                endif
+
+                assign gift_note_variant_key = gift_note_variant_id | append: ''
+
+                for item in cart.items
+                  if item.product.type == 'Porter' or item.product.tags contains 'Porter' or item.product.handle contains 'porter' or item.product.title contains 'Porter'
+                    assign porter_product_found = true
+                  endif
+
+                  if item.product.metafields.custom.gift_note.value == true or item.product.metafields.custom.enable_gift_note.value == true or item.product.metafields.custom.gift_note_eligible.value == true
+                    assign porter_product_found = true
+                  endif
+
+                  assign item_variant_key = item.variant.id | append: ''
+                  assign is_gift_note = false
+                  if item.sku == gift_note_sku or item.product.type == 'Gift Note'
+                    assign is_gift_note = true
+                  elsif gift_note_variant_key != '' and item_variant_key == gift_note_variant_key
+                    assign is_gift_note = true
+                  elsif gift_wrap_product != blank and item.product.id == gift_wrap_product.id
+                    assign is_gift_note = true
+                  endif
+
+                  if is_gift_note
+                    assign gift_wrap_product_found = true
+                    assign gift_note_line_index = forloop.index
+                  endif
+                endfor
+              -%}
               {% for item in cart.items %}
-                {% if item.product.type == 'Porter' %}
-                  {% assign porter_product_found = true %}
-                {% endif %}
-                {% if item.product.id == gift_wrap_product.id %}
-                  {% assign gift_wrap_product_found = true %}
-                {% endif %}
                 {% render 'cart-item', item: item, idx: forloop.index %}
-                
               {% endfor %}
               <div class="cart-drawer__rebuy">
                 <div class="slider__product">
@@ -51,24 +97,19 @@
               </div>
             </div>
             <div class="cart-drawer__footer">
+              {% if gift_wrap_product_found and porter_product_found == false %}
+                <div id="gift-note-orphaned" data-line="{{ gift_note_line_index }}" hidden></div>
+              {% endif %}
               {% if section.settings.enable_gift_note
                 and porter_product_found
-                and gift_wrap_product != blank
+                and gift_note_available
                 and gift_wrap_product_found == false
               %}
                 <div id="gift-wrap-option">
-                  <input
-                    type="checkbox"
-                    id="add-gift-wrap"
-                    {% if gift_wrap_product_found %}
-                      checked
-                    {% endif %}
-                  >
+                  <input type="checkbox" id="add-gift-wrap">
                   <label for="add-gift-wrap">
-                    {% assign gift_note_price = gift_wrap_product.first_available_variant.price
-                      | money_without_trailing_zeros
-                    %}
-                    {{ section.settings.checkbox_label_text | replace: '[price]', gift_note_price }}
+                    {% assign gift_note_price_display = gift_note_price | money_without_trailing_zeros %}
+                    {{ section.settings.checkbox_label_text | replace: '[price]', gift_note_price_display }}
                   </label>
                 </div>
                 {% capture noteModal %}
@@ -77,25 +118,27 @@
                     <div class="gift-note__header">
                      <a id="close-gift-note" aria-label="Close">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 6L9 12L15 18" stroke="#444c39" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 6L9 12L15 18" stroke="#444c39" stroke-width="2" stroke-linecap="round" stroke-join="round"/>
                       </svg>
                     </a>
-                    <h3>{{ gift_wrap_product.title }}</h3>      
+                    <h3>{{ gift_note_title }}</h3>
                     </div>
-                    <div class="gift-note__image">
-                      <img src="{{ gift_wrap_product.featured_image | image_url: width: 100 }}" alt="{{ gift_wrap_product.featured_image.alt }}" height="auto" width="auto">
-                    </div>
-                    <textarea 
-                      id="gift-note-text" 
-                      placeholder="ADD A GIFT NOTE" 
+                    {% if gift_note_image != blank %}
+                      <div class="gift-note__image">
+                        <img src="{{ gift_note_image | image_url: width: 100 }}" alt="{{ gift_note_image.alt | default: gift_note_title }}" height="auto" width="auto">
+                      </div>
+                    {% endif %}
+                    <textarea
+                      id="gift-note-text"
+                      placeholder="ADD A GIFT NOTE"
                       maxlength="250"
-                      data-variant-id="{{ gift_wrap_product.first_available_variant.id }}"
+                      data-variant-id="{{ gift_note_variant_id }}"
                     ></textarea>
-                    
+
                     <div class="char-count"><span>250</span> CHARACTERS LEFT</div>
-                
+
                     {% if section.settings.note_button_text != blank %}<a id="add-gift-note-btn">{{ section.settings.note_button_text }}</a>{% endif %}
-                    
+
                     {% if section.settings.gift_note != blank %}<p class="gift-wrap-note">{{ section.settings.gift_note }}</p>{% endif %}
                   </div>
                 </div>
@@ -229,6 +272,19 @@
     },
     {
       "type": "text",
+      "id": "gift_note_variant_id",
+      "label": "Gift note variant ID",
+      "default": "41650434277439",
+      "info": "Fallback when the Gift Note product is tagged hidden (SKU GFTNT00PH)."
+    },
+    {
+      "type": "text",
+      "id": "gift_note_sku",
+      "label": "Gift note SKU",
+      "default": "GFTNT00PH"
+    },
+    {
+      "type": "text",
       "id": "checkbox_label_text",
       "label": "Label text",
       "default": "Add Gift Wrap +[price]",
@@ -249,3 +305,4 @@
   ]
 }
 {% endschema %}
+ 
