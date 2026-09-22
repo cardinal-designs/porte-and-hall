@@ -337,7 +337,20 @@ class CartDrawer extends HTMLElement {
 customElements.define('cart-drawer', CartDrawer);
 
 
-function updateMainCart(Rebuy, cartData = null) {
+function refreshCartIconBubble() {
+  const cartIcon = document.getElementById('cart-icon-bubble');
+  if (!cartIcon) return Promise.resolve();
+
+  return fetch(`${window.origin}/?section_id=cart-icon-bubble`)
+    .then((response) => response.text())
+    .then((responseText) => {
+      const html = new DOMParser().parseFromString(responseText, 'text/html');
+      const source = html.querySelector('.shopify-section');
+      if (source) cartIcon.innerHTML = source.innerHTML;
+    });
+}
+
+function updateMainCart(Rebuy) {
   return fetch(`${window.origin}/?section_id=cart-drawer`)
     .then((response) => response.text())
     .then((responseText) => {
@@ -350,9 +363,9 @@ function updateMainCart(Rebuy, cartData = null) {
           targetElement.replaceWith(sourceElement);
         }
       }
-
-      updateCartIconBubble(cartData || window.getCart() || null);
-
+    })
+    .then(() => refreshCartIconBubble())
+    .then(() => {
       const drawerElement = document.querySelector('cart-drawer');
       if (drawerElement && typeof drawerElement.enforceGiftNoteEligibility === 'function') {
         drawerElement.enforceGiftNoteEligibility();
