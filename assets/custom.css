@@ -356,3 +356,55 @@ button.rebuy-button.is-disabled {
     opacity: 0.5;
     pointer-events: none;
 }
+
+/*========== Header ==========*/
+
+@media screen and (min-width: 1100px) {
+
+  :root {
+    --ph-header-search-width: clamp(280px, 28vw, 520px);
+    --ph-header-row-height: 89px;
+  }
+
+  .header--inner {
+    grid-template-areas: "logo search icons";
+    min-height: var(--ph-header-row-height);
+  }
+
+  .header--inner .header__logo {
+    justify-self: start;
+  }
+
+  .header--inner .header__icons {
+    align-items: center;
+  }
+
+  .header--inner .header__search {
+    position: static;
+    grid-area: search;
+    justify-self: center;
+    z-index: auto;
+    width: var(--ph-header-search-width);
+    padding: 0;
+    border: 0;
+    background: none;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .header--inner .header__search > .page-width {
+    padding: 0;
+  }
+
+  .header--inner .header__search-form {
+    max-width: none;
+  }
+
+  .header__icon--search,
+  .header--inner .header__search-close {
+    display: none;
+  }
+
+}
+
+/*========== Header ==========*/

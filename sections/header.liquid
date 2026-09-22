@@ -342,6 +342,16 @@
   });
   }
 
+  const searchGroup = document.querySelector('.header__search-group');
+
+  if (searchGroup) {
+    searchGroup.addEventListener('click', (event) => {
+      if (event.target.closest('.header__search-input')) {
+        event.stopPropagation();
+      }
+    });
+  }
+
 {% endjavascript %}
 
 {% schema %}
