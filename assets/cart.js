@@ -24,10 +24,34 @@ class CartItems extends HTMLElement {
     }, 300);
 
     this.addEventListener('change', this.debouncedOnChange.bind(this));
+    this.giftNoteRemovalInFlight = false;
+    requestAnimationFrame(() => this.enforceGiftNoteEligibility());
   }
 
   onChange(event) {
     this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
+  }
+
+  enforceGiftNoteEligibility(syncDrawer = false) {
+    const marker = this.querySelector('.js-gift-note-orphaned');
+    if (!marker) {
+      this.giftNoteRemovalInFlight = false;
+      if (syncDrawer) this.syncCartDrawer();
+      return;
+    }
+    if (this.giftNoteRemovalInFlight) return;
+
+    const line = marker.dataset.line;
+    if (!line || line === '0') return;
+
+    this.giftNoteRemovalInFlight = true;
+    this.updateQuantity(line, 0, null);
+  }
+
+  syncCartDrawer() {
+    if (typeof updateMainCart === 'function') {
+      updateMainCart(typeof Rebuy !== 'undefined' ? Rebuy : null);
+    }
   }
 
   getSectionsToRender() {
@@ -105,9 +129,10 @@ class CartItems extends HTMLElement {
           document.getElementById(`Quantity-${line}`) || document.getElementById(`Drawer-quantity-${line}`);
 
         if (parsedState.errors) {
-          quantityElement.value = quantityElement.getAttribute('value');
+          if (quantityElement) quantityElement.value = quantityElement.getAttribute('value');
           this.showLineItemError(line, parsedState.errors);
           this.disableLoading();
+          this.giftNoteRemovalInFlight = false;
           return;
         }
         
@@ -128,6 +153,7 @@ class CartItems extends HTMLElement {
         const lineItem = this.querySelector(`#CartItem-${line}`);
         if (lineItem && lineItem.querySelector(`[name="${name}"]`)) lineItem.querySelector(`[name="${name}"]`).focus();
         this.disableLoading();
+        this.enforceGiftNoteEligibility(true);
       }).catch(() => {
         this.querySelectorAll('.cart-item__price .loading-overlay').forEach((overlay) => overlay.classList.add('hidden'));
         document.getElementById('cart-errors').textContent = window.cartStrings.error;
@@ -137,12 +163,14 @@ class CartItems extends HTMLElement {
 
   updateLiveRegions(line, itemCount) {
     if (this.currentItemCount === itemCount) {
-      document.getElementById(`Line-item-error-${line}`)
-        .querySelector('.cart-item__error-text')
-        .innerHTML = window.cartStrings.quantityError.replace(
+      const errorText = document.getElementById(`Line-item-error-${line}`)?.querySelector('.cart-item__error-text');
+      const quantityInput = document.getElementById(`Quantity-${line}`);
+      if (errorText && quantityInput && window.cartStrings?.quantityError) {
+        errorText.innerHTML = window.cartStrings.quantityError.replace(
           '[quantity]',
-          document.getElementById(`Quantity-${line}`).value
+          quantityInput.value
         );
+      }
     }
 
     this.currentItemCount = itemCount;

@@ -37,9 +37,26 @@
         data-id="{{ section.id }}">
         <div class="js-contents">
           {% if cart != empty %}
+            {%- liquid
+              assign porter_product_found = false
+              assign gift_note_found = false
+              assign gift_note_line_index = 0
+              for item in cart.items
+                if item.product.type == 'Porter' or item.product.tags contains 'Porter' or item.product.handle contains 'porter' or item.product.title contains 'Porter'
+                  assign porter_product_found = true
+                endif
+                if item.sku == 'GFTNT00PH' or item.product.type == 'Gift Note' or item.product.handle == 'gift-note'
+                  assign gift_note_found = true
+                  assign gift_note_line_index = forloop.index
+                endif
+              endfor
+            -%}
             {% for item in cart.items %}
               {% render 'cart-item' item: item, idx: forloop.index, is_cart: true %}
             {% endfor %}
+            {% if gift_note_found and porter_product_found == false %}
+              <div class="js-gift-note-orphaned" data-line="{{ gift_note_line_index }}" hidden></div>
+            {% endif %}
           {% endif %}
         </div>
       </div>
