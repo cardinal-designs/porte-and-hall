@@ -320,7 +320,7 @@ function updateMainCart(Rebuy, cartData = null) {
         }
       }
 
-      // updateCartIconBubble(cartData || window.getCart() || null);
+       updateCartIconBubble(cartData || window.getCart() || null);
     })
     .catch((e) => {
       console.error(e);
