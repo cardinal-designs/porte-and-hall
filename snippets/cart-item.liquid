@@ -1,4 +1,4 @@
-<div class="cart-item" data-cart-item-id="{{ item.variant.id }}">
+<div class="cart-item" id="{% if is_cart %}CartItem{% else %}CartDrawer-Item{% endif %}-{{ item.index | plus: 1 }}" data-cart-item-id="{{ item.variant.id }}">
   {% if is_cart %}
     <cart-remove-button id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
       <a
@@ -77,20 +77,19 @@
         {% if item.item_components.size > 0 %}
           {% render 'easify-box-builder', item: item %}
         {% endif %}
-
-        
-        {% if item.line_level_discount_allocations.size > 0 %}
-          <ul class="cart-item__discounts">
-            {% for discount_allocation in item.line_level_discount_allocations %}
-              <li class="cart-item__discount-label body-xs">
-                Save {{ discount_allocation.amount | money }}
-              </li>
-            {% endfor %}
-          </ul>
-        {% endif %}
       </div>
 
       <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+    {% endif %}
+
+    {% if item.line_level_discount_allocations.size > 0 %}
+      <ul class="cart-item__discounts">
+        {% for discount_allocation in item.line_level_discount_allocations %}
+          <li class="cart-item__discount-label body-xs">
+            Save {{ discount_allocation.amount | money_without_trailing_zeros }}
+          </li>
+        {% endfor %}
+      </ul>
     {% endif %}
 
     <div class="cart-item__bottom {% if customer and customer.b2b? %}cart-item__trade-bottom{% endif %}">
@@ -136,13 +135,14 @@
       </div>
 
       <div class="cart-item__price {% if customer and customer.b2b? %}cart-item__trade-price{% endif %}" data-product-id="{{ item.product.id }}" data-variant-id="{{ item.variant.id }}">
+        <div class="cart-drawer__loading-container">
         {% if customer and customer.b2b? %}
           {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
           {% assign discount_factor = 100 | minus: trade_pricing_discount_percentage %}
-          {% assign original_price = item.variant.price | times: 100 | divided_by: discount_factor %}
+          {% assign original_price = item.variant.price | times: 100 | divided_by: discount_factor | times: item.quantity %}
           {% if original_price > 0 %}
             
-            {% assign price = item.final_price %}
+            {% assign price = item.final_line_price %}
   
             <div class="cart-item__discounted-prices">
               <p>
@@ -164,33 +164,33 @@
               </dt>
               <dd>
                 <s class="cart-item__old-price price price--end">
-                  {{ item.original_price | money_without_trailing_zeros }}
+                  {{ item.original_line_price | money_without_trailing_zeros }}
                 </s>
               </dd>
               <dt class="visually-hidden">
                 {{ 'products.product.price.sale_price' | t }}
               </dt>
               <dd class="price price--end">
-                {{ item.final_price | money_without_trailing_zeros }}
+                {{ item.final_line_price | money_without_trailing_zeros }}
               </dd>
             </dl>
           {% endif %}
         {% else %}
-          {% if item.original_price != item.final_price %}
+          {% if item.original_line_price != item.final_line_price %}
             <dl class="cart-item__discounted-prices">
               <dt class="visually-hidden">
                 {{ 'products.product.price.regular_price' | t }}
               </dt>
               <dd>
                 <s class="cart-item__old-price price price--end">
-                  {{ item.original_price | money_without_trailing_zeros }}
+                  {{ item.original_line_price | money_without_trailing_zeros }}
                 </s>
               </dd>
               <dt class="visually-hidden">
                 {{ 'products.product.price.sale_price' | t }}
               </dt>
               <dd class="price price--end">
-                {{ item.final_price | money_without_trailing_zeros }}
+                {{ item.final_line_price | money_without_trailing_zeros }}
               </dd>
             </dl>
   
@@ -208,10 +208,25 @@
             {% endif %}
           {% else %}
             <span class="price price--end">
-              {{ item.original_price | money_without_trailing_zeros }}
+              {{ item.final_line_price | money_without_trailing_zeros }}
             </span>
           {% endif %}
         {% endif %}
+          <div class="loading-overlay hidden">
+            <div class="loading-overlay__spinner">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                role="presentation"
+                class="spinner"
+                viewBox="0 0 66 66"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
