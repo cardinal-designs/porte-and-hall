@@ -26,6 +26,10 @@
   opacity: 0;
 }
 
+.outer-header-wrapper {
+  z-index: 8;
+}
+
 html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) {
   font-family: brandon, sans-serif;
   letter-spacing: 0.3px;
