@@ -243,7 +243,7 @@
     assign hide_trade_swatches_login = true
   endif
 -%}
-
+ff {{ hide_trade_swatches_login }}
 {% unless hide_trade_swatches_login %}
 <div
   id="TradeSwatches-{{ section.id }}"
