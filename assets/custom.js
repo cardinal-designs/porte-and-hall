@@ -39,55 +39,55 @@ customElements.define('form-validation',class formValidation extends HTMLElement
 }); 
 
 
-document.addEventListener('click', (event) => {
-  const swatch = event.target.closest('.product__swatches .product__swatch');
-  if (!swatch) return;
+// document.addEventListener('click', (event) => {
+//   const swatch = event.target.closest('.product__swatches .product__swatch');
+//   if (!swatch) return;
 
-  // Scroll-to-label is desktop-only; on mobile it can fight swatch navigation.
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+//   // Scroll-to-label is desktop-only; on mobile it can fight swatch navigation.
+//   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
-  const variantName = document.querySelector('.product__variant-name');
-  if (!variantName) return;
+//   const variantName = document.querySelector('.product__variant-name');
+//   if (!variantName) return;
 
-  const nav = document.querySelector('header');
-  const navHeight = nav ? nav.offsetHeight : 0;
-  const buffer = 73;
+//   const nav = document.querySelector('header');
+//   const navHeight = nav ? nav.offsetHeight : 0;
+//   const buffer = 73;
 
-  const scrollRootSelectors = [
-    '[data-scroll-container]',
-    '.scroll-container',
-    'main',
-    '#MainContent',
-    '#main-content',
-    'body',
-  ];
+//   const scrollRootSelectors = [
+//     '[data-scroll-container]',
+//     '.scroll-container',
+//     'main',
+//     '#MainContent',
+//     '#main-content',
+//     'body',
+//   ];
 
-  let scrollRoot = null;
-  for (const sel of scrollRootSelectors) {
-    const el = document.querySelector(sel);
-    if (el) {
-      const { overflow, overflowY } = getComputedStyle(el);
-      const isScrollable = /auto|scroll/.test(overflow + overflowY) && el.scrollHeight > el.clientHeight;
-      if (isScrollable && !scrollRoot) scrollRoot = el;
-    }
-  }
+//   let scrollRoot = null;
+//   for (const sel of scrollRootSelectors) {
+//     const el = document.querySelector(sel);
+//     if (el) {
+//       const { overflow, overflowY } = getComputedStyle(el);
+//       const isScrollable = /auto|scroll/.test(overflow + overflowY) && el.scrollHeight > el.clientHeight;
+//       if (isScrollable && !scrollRoot) scrollRoot = el;
+//     }
+//   }
 
-  if (scrollRoot) {
-    const containerRect = scrollRoot.getBoundingClientRect();
-    const containerScrollTop = scrollRoot.scrollTop;
-    const rect = variantName.getBoundingClientRect();
-    const targetTop = rect.top - containerRect.top + containerScrollTop - navHeight - buffer;
-    scrollRoot.scrollTo({ top: targetTop, behavior: 'smooth' });
-  } else {
-    let offsetTop = 0;
-    let el = variantName;
-    while (el) {
-      offsetTop += el.offsetTop;
-      el = el.offsetParent;
-    }
-    window.scrollTo({ top: offsetTop - navHeight - buffer, behavior: 'smooth' });
-  }
-});
+//   if (scrollRoot) {
+//     const containerRect = scrollRoot.getBoundingClientRect();
+//     const containerScrollTop = scrollRoot.scrollTop;
+//     const rect = variantName.getBoundingClientRect();
+//     const targetTop = rect.top - containerRect.top + containerScrollTop - navHeight - buffer;
+//     scrollRoot.scrollTo({ top: targetTop, behavior: 'smooth' });
+//   } else {
+//     let offsetTop = 0;
+//     let el = variantName;
+//     while (el) {
+//       offsetTop += el.offsetTop;
+//       el = el.offsetParent;
+//     }
+//     window.scrollTo({ top: offsetTop - navHeight - buffer, behavior: 'smooth' });
+//   }
+// });
 
 function toggleBundleCTA(timeout) {
   setTimeout(() => {

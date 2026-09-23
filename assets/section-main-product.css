@@ -413,6 +413,11 @@
   }
 }
 
+product-swatch {
+  display: inline-block;
+  cursor: pointer;
+}
+
 .product__swatch {
   width: 47px;
   height: 47px;
