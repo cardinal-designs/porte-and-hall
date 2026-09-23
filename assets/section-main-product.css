@@ -5,7 +5,7 @@
 .product {
   display: grid;
   grid-template-columns: minmax(0, .6fr) minmax(0, .4fr);
-  gap: 80px;
+  gap: 40px;
   padding: 20px 0 50px;
 }
 
