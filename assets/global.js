@@ -2000,6 +2000,63 @@ customElements.define('product-section', class ProductSection extends HTMLElemen
         container.querySelector('.notifyme_error').innerHTML = '<p class="success">Email is required</p>';
       }
     });
+
+    var modal = document.getElementById('myModal');
+    var body = document.querySelector('body');
+    if(!!document.getElementById("btnhomeModal")) {
+      var btn = document.getElementById("btnhomeModal");
+    } else if (!!document.getElementById("btnhomeModal2")) {
+      var btn = document.getElementById("btnhomeModal2");
+    }
+    
+    var span = document.getElementsByClassName("close")[0];
+    
+    if(btn) {
+      btn.onclick = function() {
+        modal.classList.add("open");
+        body.classList.add("open");
+      }
+    }
+  
+    
+    span.onclick = function() {
+      modal.classList.remove("open");
+      body.classList.remove("open");
+    }
+    
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.classList.remove("open");
+        body.classList.remove("open");
+      }
+    }
+
+    this.handleIE();
+  }
+
+  isIE() {
+    const ua = window.navigator.userAgent;
+    const msie = ua.indexOf('MSIE ');
+    const trident = ua.indexOf('Trident/');
+
+    return msie > 0 || trident > 0;
+  }
+
+  handleIE() {
+    if (!this.isIE()) return;
+    const hiddenInput = document.querySelector('#{{ product_form_id }} input[name="id"]');
+    const noScriptInputWrapper = document.createElement('div');
+    const variantSwitcher =
+      document.querySelector('variant-radios[data-section="{{ section.id }}"]') ||
+      document.querySelector('variant-selects[data-section="{{ section.id }}"]');
+    noScriptInputWrapper.innerHTML = document.querySelector(
+      '.product-form__noscript-wrapper-{{ section.id }}'
+    ).textContent;
+    variantSwitcher.outerHTML = noScriptInputWrapper.outerHTML;
+
+    document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
+      hiddenInput.value = event.currentTarget.value;
+    });
   }
   
 })
@@ -2015,6 +2072,7 @@ customElements.define('product-swatch', class ProductSwatch extends HTMLElement 
 
   renderProductInfo(event) {
     event.preventDefault()
+    this.closest(".product").classList.add("product-loading")
     fetch(`${this.dataset.href}?section_id=${this.closest('product-section').dataset.section}`)
       .then((response) => response.text())
       .then((responseText) => {
@@ -2030,6 +2088,7 @@ customElements.define('product-swatch', class ProductSwatch extends HTMLElement 
         if(document.querySelector(".breadcrumbs__item[data-product-title]")) {
           document.querySelector(".breadcrumbs__item[data-product-title]").textContent = document.querySelector("product-section").dataset.product
         }
+        if(document.querySelector(".product-loading")) document.querySelector(".product-loading").classList.remove("product-loading")
       });
     }
 })
