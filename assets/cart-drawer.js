@@ -306,6 +306,43 @@ class CartDrawer extends HTMLElement {
 customElements.define('cart-drawer', CartDrawer);
 
 
+/* updateCartIconBubble(cartData || window.getCart()) */
+function updateCartIconBubble() {
+  return fetch(`${window.origin}/?section_id=cart-icon-bubble`)
+    .then((response) => response.text())
+    .then((responseText) => {
+      const target = document.getElementById('cart-icon-bubble');
+      if (!target) return;
+
+      const source = new DOMParser()
+        .parseFromString(responseText, 'text/html')
+        .querySelector('.shopify-section');
+
+      target.innerHTML = source ? source.innerHTML : responseText;
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+}
+
+function openCartDrawer() {
+  const cartDrawer = document.querySelector('cart-drawer');
+  if (cartDrawer && typeof cartDrawer.open === 'function') {
+    cartDrawer.open();
+  }
+}
+
+function handleRebuyCartAdd() {
+  window.closeRebuySearch?.();
+
+  openCartDrawer();
+  return updateMainCart(window.Rebuy);
+}
+
+window.updateCartIconBubble = updateCartIconBubble;
+window.openCartDrawer = openCartDrawer;
+window.handleRebuyCartAdd = handleRebuyCartAdd;
+
 function updateMainCart(Rebuy, cartData = null) {
   return fetch(`${window.origin}/?section_id=cart-drawer`)
     .then((response) => response.text())
@@ -320,7 +357,7 @@ function updateMainCart(Rebuy, cartData = null) {
         }
       }
 
-      updateCartIconBubble(cartData || window.getCart() || null);
+      updateCartIconBubble();
     })
     .catch((e) => {
       console.error(e);

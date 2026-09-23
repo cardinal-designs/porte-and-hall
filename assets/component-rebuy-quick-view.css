@@ -22,6 +22,10 @@
   --rb-smart-search-quick-view-button-radius: var(--ph-search-radius);
 }
 
+.header__search-container {
+  opacity: 0;
+}
+
 html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) {
   font-family: brandon, sans-serif;
   letter-spacing: 0.3px;
@@ -804,7 +808,7 @@ html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) :is
   }
 
   html #rebuy-quick-view-dropdown-search .rebuy-quick-view-dropdown__close {
-    position: static;
+    position: absolute;
     grid-column: 3;
     justify-self: start;
     margin: 0 0 0 20px;
@@ -898,5 +902,96 @@ html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) :is
   .header--inner .header__search-input,
   .header--inner .header__search-button {
     animation-duration: 0s;
+  }
+}
+
+html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search):not([data-ph-search-pending]) .rebuy-quick-view__overlay:not(:has(input)):not(:has(
+    .rebuy-quick-view__product,
+    .rebuy-quick-view__product-horizontal,
+    .rebuy-quick-view__search-term-section-list-term,
+    .rebuy-quick-view__keyword,
+    .rebuy-quick-view__collection,
+    .rebuy-quick-view__content,
+    .rebuy-quick-view__list-item,
+    .rebuy-quick-view__no-results,
+    [class*="rebuy-quick-view-skeleton"]
+  )) {
+  display: none;
+}
+
+html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) :is(.rebuy-quick-view-dropdown__body-left, .rebuy-quick-view-dropdown__body-right):not(:has(
+    .rebuy-quick-view__product,
+    .rebuy-quick-view__product-horizontal,
+    .rebuy-quick-view__search-term-section-list-term,
+    .rebuy-quick-view__keyword,
+    .rebuy-quick-view__collection,
+    .rebuy-quick-view__content,
+    .rebuy-quick-view__list-item,
+    .rebuy-quick-view__no-results,
+    [class*="rebuy-quick-view-skeleton"]
+  )) {
+  display: none;
+}
+
+html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search)[data-ph-search-pending] .rebuy-quick-view__overlay::before {
+  content: '';
+  display: block;
+  box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  margin: 0 auto 16px;
+  border: 2px solid var(--beige);
+  border-top-color: var(--blue, #546b82);
+  border-radius: 50%;
+  animation: ph-search-spinner 0.7s linear infinite;
+  margin-top: 15px;
+}
+
+html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search)[data-ph-search-pending] .rebuy-quick-view__overlay:not(:has(
+    .rebuy-quick-view__product,
+    .rebuy-quick-view__product-horizontal,
+    .rebuy-quick-view__search-term-section-list-term,
+    .rebuy-quick-view__keyword,
+    .rebuy-quick-view__collection,
+    .rebuy-quick-view__content,
+    .rebuy-quick-view__list-item,
+    .rebuy-quick-view__no-results,
+    [class*="rebuy-quick-view-skeleton"]
+  )) {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search)[data-ph-search-pending] .rebuy-quick-view__overlay:has([class*="rebuy-quick-view-skeleton"])::before {
+  content: none;
+}
+
+html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search)[data-ph-search-pending] .rebuy-quick-view__overlay:has([class*="rebuy-quick-view-skeleton"]) > * {
+  opacity: 1;
+}
+
+html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search)[data-ph-search-pending] .rebuy-quick-view__overlay > * {
+  opacity: 0.35;
+  transition: opacity 0.2s ease;
+}
+
+@keyframes ph-search-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search)[data-ph-search-pending] .rebuy-quick-view__overlay::before {
+    animation: ph-search-spinner-fade 1.2s ease-in-out infinite alternate;
+  }
+
+  @keyframes ph-search-spinner-fade {
+    from {
+      opacity: 0.3;
+    }
+    to {
+      opacity: 1;
+    }
   }
 }

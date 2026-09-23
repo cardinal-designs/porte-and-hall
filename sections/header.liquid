@@ -50,6 +50,34 @@
       }
     </style>
 
+    {% if section.settings.enable_search %}
+      <div class="header__search">
+        <div class="page-width">
+          <div class="header__search-container">
+            <form action="{{ routes.search_url }}" method="get" role="search" class="header__search-form">
+              <div class="header__search-group">
+                <input
+                  class="header__search-input"
+                  id="Search-In-Modal"
+                  type="search"
+                  name="q"
+                  value="{{ search.terms | escape }}"
+                  placeholder="Search..."
+                >
+                <input type="hidden" name="options[prefix]" value="last">
+                <button class="header__search-button" aria-label="{{ 'general.search.search' | t }}">
+                  {% render 'icon', icon: 'search' %}
+                </button>
+              </div>
+            </form>
+            <button class="js-close-search header__search-close">
+              {% render 'icon', icon: 'close' %}
+            </button>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
     <!-- Icons -->
     {%- unless page.handle == 'the-insider' -%}
       <div class="header__icons">
@@ -119,33 +147,6 @@
       </div>
     {%- endunless -%}
 
-    {% if section.settings.enable_search %}
-      <div class="header__search">
-        <div class="page-width">
-          <div class="header__search-container">
-            <form action="{{ routes.search_url }}" method="get" role="search" class="header__search-form">
-              <div class="header__search-group">
-                <input
-                  class="header__search-input"
-                  id="Search-In-Modal"
-                  type="search"
-                  name="q"
-                  value="{{ search.terms | escape }}"
-                  placeholder="Search..."
-                >
-                <input type="hidden" name="options[prefix]" value="last">
-                <button class="header__search-button" aria-label="{{ 'general.search.search' | t }}">
-                  {% render 'icon', icon: 'search' %}
-                </button>
-              </div>
-            </form>
-            <button class="js-close-search header__search-close">
-              {% render 'icon', icon: 'close' %}
-            </button>
-          </div>
-        </div>
-      </div>
-    {% endif %}
   </div>
 {% unless page.handle == 'outdoor' or page.handle == 'the-insider' %}
   <div class="header__navigation">
@@ -341,6 +342,145 @@
     search.classList.remove('is-visible');
   });
   }
+
+  const rebuySearchRoots = '#rebuy-quick-view-flyout-search, #rebuy-quick-view-dropdown-search';
+
+  const isRebuySearchVisible = () =>
+    Array.from(document.querySelectorAll(rebuySearchRoots)).some((root) => {
+      const field = root.querySelector('input');
+      return field && field.offsetParent !== null;
+    });
+
+  if (search && window.MutationObserver) {
+    let queued = false;
+
+    const closeThemeSearchForRebuy = () => {
+      queued = false;
+      if (search.classList.contains('is-visible') && isRebuySearchVisible()) {
+        search.classList.remove('is-visible');
+      }
+    };
+
+    new MutationObserver(() => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(closeThemeSearchForRebuy);
+    }).observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class', 'style'],
+    });
+  }
+
+  const rebuyRenderedContent = [
+    '.rebuy-quick-view__product',
+    '.rebuy-quick-view__product-horizontal',
+    '.rebuy-quick-view__search-term-section-list-term',
+    '.rebuy-quick-view__keyword',
+    '.rebuy-quick-view__collection',
+    '.rebuy-quick-view__content',
+    '.rebuy-quick-view__list-item',
+    '.rebuy-quick-view__no-results',
+    '[class*="rebuy-quick-view-skeleton"]',
+  ].join(', ');
+
+  const clearSearchPending = () => {
+    document.querySelectorAll(rebuySearchRoots).forEach((root) => {
+      root.removeAttribute('data-ph-search-pending');
+    });
+  };
+
+  let searchPendingTimer = null;
+
+  let searchPanelObserver = null;
+  let awaitingSearchRender = false;
+
+  const searchPanelSignature = (root) => {
+    const nodes = root.querySelectorAll(rebuyRenderedContent);
+    return nodes.length + '|' + (nodes.length ? (nodes[0].textContent || '').trim().slice(0, 120) : '');
+  };
+
+  let searchPanelSnapshot = '';
+  const watchSearchPanel = (root) => {
+    if (!window.MutationObserver) return;
+    if (searchPanelObserver) searchPanelObserver.disconnect();
+
+    searchPanelObserver = new MutationObserver(() => {
+      if (!awaitingSearchRender) return;
+
+      const signature = searchPanelSignature(root);
+      if (signature === searchPanelSnapshot) return;
+
+      if (!root.querySelector(rebuyRenderedContent)) return;
+
+      awaitingSearchRender = false;
+      clearTimeout(searchPendingTimer);
+      root.removeAttribute('data-ph-search-pending');
+    });
+
+    searchPanelObserver.observe(root, { childList: true, subtree: true });
+  };
+
+  document.addEventListener('input', (event) => {
+    const root = event.target.closest && event.target.closest(rebuySearchRoots);
+    if (!root) return;
+
+    clearTimeout(searchPendingTimer);
+
+    if (!event.target.value.trim()) {
+      awaitingSearchRender = false;
+      root.removeAttribute('data-ph-search-pending');
+      return;
+    }
+
+    root.setAttribute('data-ph-search-pending', '');
+    awaitingSearchRender = true;
+    searchPanelSnapshot = searchPanelSignature(root);
+    watchSearchPanel(root);
+    searchPendingTimer = setTimeout(() => {
+      awaitingSearchRender = false;
+      clearSearchPending();
+    }, 8000);
+  });
+
+  const rebuyCloseSelector =
+    ':is(#rebuy-quick-view-flyout-search, #rebuy-quick-view-dropdown-search) :is(.rebuy-quick-view__close-button, .rebuy-quick-view-dropdown__close, .rebuy-quick-view-flyout__close)';
+
+  const nativeInputValue = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+
+  const clearSearchField = (field) => {
+    if (field.type !== 'text' && field.type !== 'search') return;
+    if (!field.value) return;
+
+    if (nativeInputValue && nativeInputValue.set) {
+      nativeInputValue.set.call(field, '');
+    } else {
+      field.value = '';
+    }
+
+    field.dispatchEvent(new Event('input', { bubbles: true }));
+    field.dispatchEvent(new Event('change', { bubbles: true }));
+  };
+
+  const clearAllSearchFields = () => {
+    document.querySelectorAll(rebuySearchRoots + ', .header__search').forEach((root) => {
+      root.querySelectorAll('input').forEach(clearSearchField);
+    });
+  };
+
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest || !event.target.closest(rebuyCloseSelector)) return;
+    clearAllSearchFields();
+    requestAnimationFrame(clearAllSearchFields);
+  });
+
+  window.closeRebuySearch = () => {
+    const visibleClose = Array.from(document.querySelectorAll(rebuyCloseSelector)).find(
+      (button) => button.offsetParent !== null
+    );
+    if (visibleClose) visibleClose.click();
+  };
 
   const searchGroup = document.querySelector('.header__search-group');
 
