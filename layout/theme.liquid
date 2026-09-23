@@ -21,8 +21,8 @@
       <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
     {% endif %}
 
-    {% if template.name == 'collection' and collection %}
-      {% if collection.metafields.seo.noindex == true %}
+    {% if template.name == 'collection' and collection or product.handle == 'swatches-parent-product' %}
+      {% if collection.metafields.seo.noindex == true or product.handle == 'swatches-parent-product' %}
         <meta name="robots" content="noindex,nofollow">
       {% endif %}
     {% endif %}

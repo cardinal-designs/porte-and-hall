@@ -11,6 +11,7 @@
 -%}
 
 {%- if show_section -%}
+{% unless handle == 'swatches' and customer and customer.b2b? %}
 
 {%- style -%}
   #fifty-fifty-{{ section.id }} {
@@ -85,6 +86,7 @@
 
   </div>
 </div>
+{% endunless %}
 {%- endif -%}
 
 {% schema %}

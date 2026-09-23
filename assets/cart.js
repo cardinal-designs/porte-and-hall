@@ -150,12 +150,12 @@ class CartItems extends HTMLElement {
         }));
 
         this.updateLiveRegions(line, parsedState.item_count);
-        const lineItem =  document.getElementById(`CartItem-${line}`);
+        const lineItem = this.querySelector(`#CartItem-${line}`);
         if (lineItem && lineItem.querySelector(`[name="${name}"]`)) lineItem.querySelector(`[name="${name}"]`).focus();
         this.disableLoading();
         this.enforceGiftNoteEligibility(true);
       }).catch(() => {
-        this.querySelectorAll('.loading-overlay').forEach((overlay) => overlay.classList.add('hidden'));
+        this.querySelectorAll('.cart-item__price .loading-overlay').forEach((overlay) => overlay.classList.add('hidden'));
         document.getElementById('cart-errors').textContent = window.cartStrings.error;
         this.disableLoading();
       });
@@ -192,13 +192,14 @@ class CartItems extends HTMLElement {
 
   enableLoading(line) {
     document.getElementById('main-cart-items').classList.add('cart__items--disabled');
-    this.querySelectorAll(`#CartItem-${line} .loading-overlay`).forEach((overlay) => overlay.classList.remove('hidden'));
+    this.querySelectorAll(`#CartItem-${line} .cart-item__price .loading-overlay`).forEach((overlay) => overlay.classList.remove('hidden'));
     document.activeElement.blur();
     this.lineItemStatusElement.setAttribute('aria-hidden', false);
   }
 
   disableLoading() {
     document.getElementById('main-cart-items').classList.remove('cart__items--disabled');
+    this.querySelectorAll('.cart-item__price .loading-overlay').forEach((overlay) => overlay.classList.add('hidden'));
   }
 }
 
