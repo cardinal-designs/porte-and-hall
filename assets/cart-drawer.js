@@ -305,6 +305,34 @@ class CartDrawer extends HTMLElement {
 
 customElements.define('cart-drawer', CartDrawer);
 
+function updateCartIconBubble(cartData = null) {
+  fetch(`${window.origin}/?section_id=cart-icon-bubble`)
+    .then((response) => response.text())
+    .then((responseText) => {
+      const html = new DOMParser().parseFromString(responseText, 'text/html');
+      const target = document.getElementById('cart-icon-bubble');
+      const source = html.querySelector('#cart-icon-bubble .shopify-section') || html.querySelector('.shopify-section');
+      const targetInner = target?.querySelector('.shopify-section');
+      if (target && source) {
+        if(targetInner){
+          targetInner.replaceWith(source);
+        }else{
+          let cartIconBubble = `<div class="cart-count-bubble">
+                      
+                        <span aria-hidden="true">${cartData.item_count}</span>
+                      
+                      <span class="visually-hidden">${cartData.item_count} items</span>
+                    </div>
+          `;
+          target.insertAdjacentHTML('beforeend', cartIconBubble);
+        }
+      }
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+}
+
 
 function updateMainCart(Rebuy, cartData = null) {
   return fetch(`${window.origin}/?section_id=cart-drawer`)
