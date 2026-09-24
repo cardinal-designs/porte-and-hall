@@ -1523,6 +1523,10 @@ variant-selects {
   font-weight: 500;
 }
 
+.shopify-payment-button__more-options {
+  font-weight: 500;
+}
+
 @media screen and (max-width: 768px) {
   .accordion-title svg {
     position: relative;
