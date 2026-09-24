@@ -2100,7 +2100,7 @@ body.afterpay-pdp .page-width {
 }
 
 /* Larger swatches, as in the mockup; they wrap on their own. */
-@media screen and (min-width: 901px) {
+/* @media screen and (min-width: 901px) {
   .main-product-accordion .product__swatch {
     width: 88px;
     height: 88px;
@@ -2109,7 +2109,7 @@ body.afterpay-pdp .page-width {
   .main-product-accordion .product__swatches .product__swatch-badge-new svg {
     width: 98px;
   }
-}
+} */
 
 .main-product-accordion .product__app-blocks {
   display: flex;
