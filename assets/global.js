@@ -1914,6 +1914,8 @@ customElements.define('product-section', class ProductSection extends HTMLElemen
       loop: true,
       spaceBetween: 20,
       pagination: {
+        // Bullets, not a progressbar: the mockup's mobile gallery shows dots, and
+        // the progressbar type renders Swiper's blue bar and creates no bullets.
         el: '.product__media-pagination',
         clickable: true,
       },
