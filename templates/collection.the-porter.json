@@ -9,7 +9,7 @@
  */
 {
   "sections": {
-    "breadcrumbs_3xzGJ4": {
+    "breadcrumbs_pUGgiG": {
       "type": "breadcrumbs",
       "name": "Breadcrumbs",
       "settings": {
@@ -55,104 +55,41 @@
       ],
       "disabled": true,
       "settings": {
-        "heading": "Our Mats In Under A Minute",
+        "heading": "",
         "text": "",
         "small_text": "",
         "swap-fonts": false
       }
     },
-    "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a": {
-      "type": "collection-head-slider",
-      "blocks": {
-        "category_rbdpyb": {
-          "type": "category",
-          "settings": {
-            "title": "Indoor Doormats",
-            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Indoor"
-          }
-        },
-        "category_6DiQQ4": {
-          "type": "category",
-          "settings": {
-            "title": "Outdoor Doormats",
-            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Outdoor"
-          }
-        },
-        "category_TUtNNX": {
-          "type": "category",
-          "settings": {
-            "title": "Runners",
-            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
-          }
-        },
-        "category_DB8PtU": {
-          "type": "category",
-          "settings": {
-            "title": "Area Mats",
-            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
-          }
-        },
-        "category_Ed3rUr": {
-          "type": "category",
-          "disabled": true,
-          "settings": {
-            "title": "Shop all",
-            "link": "https://www.porteandhall.com/collections/shop-all"
-          }
-        }
-      },
-      "block_order": [
-        "category_rbdpyb",
-        "category_6DiQQ4",
-        "category_TUtNNX",
-        "category_DB8PtU",
-        "category_Ed3rUr"
+    "main_collection_banner_CcJ4HN": {
+      "type": "main-collection-banner",
+      "custom_css": [
+        ".collection-hero__description {margin: 0; padding: 0;}"
       ],
-      "disabled": true,
-      "settings": {}
+      "name": "t:sections.main-collection-banner.name",
+      "settings": {
+        "show_title": false,
+        "show_collection_description": true,
+        "full_width": false
+      }
+    },
+    "affiliate_landing_ceo_PafQgr": {
+      "type": "affiliate-landing-ceo",
+      "custom_css": [
+        ".wp-why-template--19698112299071__affiliate_landing_ceo_PafQgr .wp-why-inner {max-width:1269px}"
+      ],
+      "name": "Affiliate Landing — Why Different",
+      "settings": {
+        "image": "shopify://shop_images/porter_pdp_truffledouble_3_2x_1_copy.jpg",
+        "eyebrow": "MADE TO BE SEEN",
+        "heading": "Built to Be Used.",
+        "body": "The luxurious, long-lasting mat your front door deserves. Each Porter is hand-knotted in India from the highest-quality yarns loomed in Italy, with subtle variations that make every piece unique—and every entrance unforgettable.",
+        "quote": "",
+        "attribution": ""
+      }
     },
     "product-grid": {
-      "type": "main-collection-sticky-filters-mobile",
-      "blocks": {
-        "category_QfnPTA": {
-          "type": "category",
-          "disabled": true,
-          "settings": {
-            "title": "Indoor Doormats",
-            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Indoor"
-          }
-        },
-        "category_AEAT8d": {
-          "type": "category",
-          "disabled": true,
-          "settings": {
-            "title": "Outdoor Doormats",
-            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Outdoor"
-          }
-        },
-        "category_3a9r6P": {
-          "type": "category",
-          "disabled": true,
-          "settings": {
-            "title": "Runners",
-            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
-          }
-        },
-        "category_m84LW4": {
-          "type": "category",
-          "disabled": true,
-          "settings": {
-            "title": "Area Mats",
-            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
-          }
-        }
-      },
-      "block_order": [
-        "category_QfnPTA",
-        "category_AEAT8d",
-        "category_3a9r6P",
-        "category_m84LW4"
-      ],
+      "type": "main-collection-product-grid",
       "settings": {
         "products_per_page": 16,
         "image_ratio": "adapt",
@@ -164,15 +101,13 @@
         "show_rating": false,
         "enable_filtering": true,
         "enable_sorting": true,
-        "collapse_on_larger_devices": false,
-        "text_color": "#546b82",
-        "bg_color": "#ffffff"
+        "collapse_on_larger_devices": false
       }
     },
-    "logo_marquee_XqK98A": {
+    "logo_marquee_C4YGDM": {
       "type": "logo-marquee",
       "blocks": {
-        "logo_mhyqrd": {
+        "logo_g9NYJp": {
           "type": "logo",
           "name": "Featured In",
           "settings": {
@@ -180,7 +115,7 @@
             "svg": ""
           }
         },
-        "logo_9mX4Rq": {
+        "logo_yWMFir": {
           "type": "logo",
           "name": "Better Homes and Garden",
           "settings": {
@@ -188,7 +123,7 @@
             "svg": ""
           }
         },
-        "logo_FUCrUc": {
+        "logo_LJmT3i": {
           "type": "logo",
           "name": "Forbes",
           "settings": {
@@ -196,7 +131,7 @@
             "svg": ""
           }
         },
-        "logo_mRAepk": {
+        "logo_EGGVti": {
           "type": "logo",
           "name": "Southern Living",
           "settings": {
@@ -204,7 +139,7 @@
             "svg": ""
           }
         },
-        "logo_3A9YVD": {
+        "logo_piFP8b": {
           "type": "logo",
           "name": "Real Simple",
           "settings": {
@@ -212,7 +147,7 @@
             "svg": ""
           }
         },
-        "logo_3tJMJr": {
+        "logo_xkRgqN": {
           "type": "logo",
           "name": "Veranda",
           "settings": {
@@ -220,7 +155,7 @@
             "svg": ""
           }
         },
-        "logo_DQqYWW": {
+        "logo_HEnDhi": {
           "type": "logo",
           "name": "USA Today",
           "settings": {
@@ -228,7 +163,7 @@
             "svg": ""
           }
         },
-        "logo_peJmpH": {
+        "logo_NwHkWT": {
           "type": "logo",
           "name": "People Inc",
           "settings": {
@@ -236,7 +171,7 @@
             "svg": ""
           }
         },
-        "logo_ykYJee": {
+        "logo_KnnnYX": {
           "type": "logo",
           "name": "Apartment Therapy",
           "settings": {
@@ -246,18 +181,18 @@
         }
       },
       "block_order": [
-        "logo_mhyqrd",
-        "logo_9mX4Rq",
-        "logo_FUCrUc",
-        "logo_mRAepk",
-        "logo_3A9YVD",
-        "logo_3tJMJr",
-        "logo_DQqYWW",
-        "logo_peJmpH",
-        "logo_ykYJee"
+        "logo_g9NYJp",
+        "logo_yWMFir",
+        "logo_LJmT3i",
+        "logo_EGGVti",
+        "logo_piFP8b",
+        "logo_xkRgqN",
+        "logo_HEnDhi",
+        "logo_NwHkWT",
+        "logo_KnnnYX"
       ],
       "settings": {
-        "background_color": "#546b82"
+        "background_color": "#546B82"
       }
     },
     "2046a8d4-8126-4344-8df2-6dd5193e7293": {
@@ -294,24 +229,15 @@
         "show_recent_articles": true,
         "hide_mobile": false
       }
-    },
-    "main_collection_banner_PaHLHe": {
-      "type": "main-collection-banner",
-      "name": "t:sections.main-collection-banner.name",
-      "settings": {
-        "show_title": false,
-        "show_collection_description": true,
-        "full_width": false
-      }
     }
   },
   "order": [
-    "breadcrumbs_3xzGJ4",
+    "breadcrumbs_pUGgiG",
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
-    "main_collection_banner_PaHLHe",
-    "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a",
+    "main_collection_banner_CcJ4HN",
+    "affiliate_landing_ceo_PafQgr",
     "product-grid",
-    "logo_marquee_XqK98A",
+    "logo_marquee_C4YGDM",
     "2046a8d4-8126-4344-8df2-6dd5193e7293"
   ]
 }

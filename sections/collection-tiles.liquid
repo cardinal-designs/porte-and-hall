@@ -1,0 +1,319 @@
+{% comment %}
+  ================================================================
+  Collection Tiles + CTA — sections/collection-tiles-cta-section.liquid
+  ================================================================
+  Built for: Porte + Hall — collection-page feature row (built to sign-off
+  from Kristie White, rendering reviewed as Collection-Tiles-CTA-Section-Review.html)
+
+  WHAT THIS IS
+  A row of 2–5 image tiles meant to sit at the top of a collection page,
+  above the product grid it belongs to. Each tile is a repeatable block:
+  image, heading, description, and a CTA button. Designed to stay compact
+  enough that the product grid below remains close to (or above) the fold.
+
+  ================================================================
+{% endcomment %}
+
+{% liquid
+  assign ct_id = section.id
+  assign ct_blocks = section.blocks
+  assign ct_block_count = ct_blocks.size
+  assign ct_grid_cols = ct_block_count
+  if ct_grid_cols < 2
+    assign ct_grid_cols = 2
+  endif
+  if ct_grid_cols > 5
+    assign ct_grid_cols = 5
+  endif
+%}
+
+{% style %}
+  #shopify-section-{{ ct_id }} {
+    --ct-bg: {{ section.settings.color_bg }};
+    --ct-heading: {{ section.settings.color_heading }};
+    --ct-text: {% if section.settings.color_text != blank %}{{ section.settings.color_text }}{% else %}inherit{% endif %};
+    --ct-text-secondary: {% if section.settings.color_text_secondary != blank %}{{ section.settings.color_text_secondary }}{% else %}inherit{% endif %};
+    --ct-btn-bg: {{ section.settings.color_button_bg }};
+    --ct-btn-text: {{ section.settings.color_button_text }};
+    --ct-btn-font-size: {{ section.settings.button_font_size }}px;
+    --ct-gap-desktop: {{ section.settings.column_gap }}px;
+    --ct-padding-top: {{ section.settings.padding_top }}px;
+    --ct-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --ct-mobile-tile-width: {{ section.settings.mobile_tile_width }}%;
+    /* Only the CTA button gets an explicit font-family below — it's a
+       brand-new element the theme has no base style for. Everything
+       else (H1, tile heading, tile description) intentionally does NOT
+       set font-family/font-weight/color here anymore, so it inherits
+       your theme's real global styles (h1, p, body text) instead of a
+       hand-guessed approximation. Both fonts are already loaded
+       sitewide by the theme, so naming the family is enough when we do
+       need it — no local @font-face required. */
+    --ct-font-sans: 'Brandon Grotesque', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  #shopify-section-{{ ct_id }} .ph-tiles-section {
+    background: var(--ct-bg);
+    padding: var(--ct-padding-top) 0 var(--ct-padding-bottom);
+  }
+  #shopify-section-{{ ct_id }} .ph-tiles-section .inner { padding: 0 40px; }
+  #shopify-section-{{ ct_id }} .ph-tiles-section.is-contained .inner { max-width: 1280px; margin: 0 auto; }
+  #shopify-section-{{ ct_id }} .ph-tiles-section.is-full-bleed .inner {
+    max-width: none;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+  #shopify-section-{{ ct_id }} .section-title {
+    /* No font-family/font-weight here — a real <h1>, so it already
+       picks up the theme's native heading font + weight on its own. */
+    font-size: 38px;
+    color: var(--ct-heading);
+    margin: 0 0 32px;
+    line-height: 1.15;
+  }
+  #shopify-section-{{ ct_id }} .tile-grid {
+    display: grid;
+    grid-template-columns: repeat({{ ct_grid_cols }}, 1fr);
+    gap: var(--ct-gap-desktop);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  #shopify-section-{{ ct_id }} .tile { display: flex; flex-direction: column; }
+  #shopify-section-{{ ct_id }} .tile-img-link { display: block; }
+  /* Fixed-ratio crop box — the <img> is pinned to fill it, so a real photo's
+     own width/height (which Shopify's image_tag writes onto the element)
+     can never stretch the tile taller than this box, whatever shape the
+     source photo is. */
+  #shopify-section-{{ ct_id }} .tile-img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: 2px;
+    background: #dfe3e6;
+  }
+  #shopify-section-{{ ct_id }} .tile-img-wrap img,
+  #shopify-section-{{ ct_id }} .tile-img-wrap .tile-img-placeholder-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: center;
+    margin: 0;
+  }
+  #shopify-section-{{ ct_id }} .field-heading {
+    /* No font-family/font-weight — inherits the theme's real text font.
+       color defaults to "inherit" (see --ct-text above) unless you pick
+       one in the section settings. */
+    font-size: 20px;
+    color: var(--ct-text);
+    margin-top: 18px;
+    line-height: 1.3;
+  }
+  #shopify-section-{{ ct_id }} .field-body {
+    /* Same as above — no font-family/font-weight/color override by
+       default, so this paragraph matches your theme's real body copy
+       instead of a lighter, hand-picked approximation. */
+    font-size: 14.5px;
+    color: var(--ct-text-secondary);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  #shopify-section-{{ ct_id }} .field-body p { margin: 0; }
+  #shopify-section-{{ ct_id }} .cta-btn {
+    display: inline-block;
+    margin-top: 14px;
+    background: var(--ct-btn-bg);
+    color: var(--ct-btn-text);
+    font-family: var(--ct-font-sans);
+    font-weight: 700;
+    font-size: var(--ct-btn-font-size);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 11px 24px;
+    border-radius: 3px;
+    width: fit-content;
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    #shopify-section-{{ ct_id }} .ph-tiles-section { padding: 40px 0 50px; }
+    #shopify-section-{{ ct_id }} .ph-tiles-section .inner { padding: 0 24px; }
+    #shopify-section-{{ ct_id }} .ph-tiles-section.is-full-bleed .inner { padding: 0 24px; }
+    #shopify-section-{{ ct_id }} .section-title { font-size: 28px; margin-bottom: 20px; }
+    #shopify-section-{{ ct_id }} .tile-grid {
+      display: flex;
+      grid-template-columns: none;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 6px;
+    }
+    #shopify-section-{{ ct_id }} .tile-grid::-webkit-scrollbar { display: none; }
+    #shopify-section-{{ ct_id }} .tile { flex: 0 0 var(--ct-mobile-tile-width); scroll-snap-align: start; }
+    #shopify-section-{{ ct_id }} .field-heading { font-size: 18px; margin-top: 14px; }
+  }
+{% endstyle %}
+
+<div class="ph-tiles-section {% if section.settings.full_bleed %}is-full-bleed{% else %}is-contained{% endif %}">
+  <div class="inner">
+
+    {% if section.settings.heading != blank %}
+      <h1 class="section-title">{{ section.settings.heading }}</h1>
+    {% endif %}
+
+    <div class="tile-grid" role="list">
+      {% for block in section.blocks %}
+        {% assign tile = block.settings %}
+        <div class="tile" role="listitem" {{ block.shopify_attributes }}>
+
+          {% if tile.image_link != blank %}<a class="tile-img-link" href="{{ tile.image_link }}">{% endif %}
+            <div class="tile-img-wrap">
+              {% if tile.image %}
+                {{ tile.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: tile.image.alt | default: tile.heading }}
+              {% else %}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'tile-img-placeholder-svg' }}
+              {% endif %}
+            </div>
+          {% if tile.image_link != blank %}</a>{% endif %}
+
+          {% if tile.heading != blank %}
+            <div class="field-heading">{{ tile.heading }}</div>
+          {% endif %}
+
+          {% if tile.description != blank %}
+            <div class="field-body">{{ tile.description }}</div>
+          {% endif %}
+
+          {% if tile.button_label != blank %}
+            <a class="cta-btn" href="{{ tile.button_link | default: '#' }}">{{ tile.button_label }}</a>
+          {% endif %}
+
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Tiles + CTA",
+  "tag": "section",
+  "class": "ph-collection-tiles-section",
+  "settings": [
+    { "type": "header", "content": "Section content" },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading (H1)",
+      "default": "Shop by Collection",
+      "info": "Independent of the page/collection title — set this to whatever you want, or leave blank to hide."
+    },
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "checkbox",
+      "id": "full_bleed",
+      "label": "Full-bleed (edge-to-edge)",
+      "default": false,
+      "info": "Off keeps the row inside the theme's standard 1280px content width. On stretches it to the full browser width — useful when featuring more tiles."
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Gap between tiles (desktop)",
+      "min": 12, "max": 48, "step": 4, "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "mobile_tile_width",
+      "label": "Mobile tile width",
+      "min": 60, "max": 95, "step": 1, "unit": "%",
+      "default": 78,
+      "info": "How wide each tile is while swiping on mobile. Keep under 100% so the next tile peeks in as a swipe cue."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0, "max": 120, "step": 4, "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0, "max": 120, "step": 4, "unit": "px",
+      "default": 72
+    },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_bg", "label": "Section background", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_heading", "label": "Heading (H1)", "default": "#546B82" },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Tile heading text (optional)",
+      "info": "Leave blank to inherit your theme's normal text color. Only set this if you want a tile heading to differ."
+    },
+    {
+      "type": "color",
+      "id": "color_text_secondary",
+      "label": "Tile description text (optional)",
+      "info": "Leave blank to inherit your theme's normal body text color/weight. Only set this if you want the description to differ."
+    },
+    { "type": "header", "content": "CTA button (applies to every tile)" },
+    { "type": "color", "id": "color_button_bg", "label": "Button background", "default": "#896A28" },
+    { "type": "color", "id": "color_button_text", "label": "Button text", "default": "#FFFFFF" },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button font size",
+      "min": 10, "max": 18, "step": 1, "unit": "px",
+      "default": 13
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Collection tile",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image link",
+          "info": "Where clicking the image goes — typically the exact colorway/collection it shows."
+        },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Collection Name" },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Short supporting line.</p>"
+        },
+        { "type": "text", "id": "button_label", "label": "Button label", "default": "Filter" },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link",
+          "info": "Point this at the filtered version of the collection grid below (e.g. append your filter app's query param, like ?filter.p.tag=Stonewash)."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "Collection Tiles + CTA",
+      "blocks": [
+        { "type": "tile" },
+        { "type": "tile" }
+      ]
+    }
+  ]
+}
+{% endschema %}

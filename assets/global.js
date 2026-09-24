@@ -1845,3 +1845,263 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 }); */
+
+customElements.define('product-section', class ProductSection extends HTMLElement {
+  constructor() {
+    super()
+  }
+
+  connectedCallback() {
+    var productSection = document.querySelector('.product__media-list');
+    var productTabs = null;
+
+    const productTabsButtons = document.querySelectorAll('[data-product-tabs]');
+    productTabsButtons.forEach((button) => {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+        Array.from(productTabsButtons)
+          .find((btn) => btn.classList.contains('active'))
+          .classList.remove('active');
+        e.target.classList.add('active');
+        if (productTabs) productTabs.slideTo(e.target.dataset.productTabs);
+      });
+    });
+
+    if (productSection) {
+      window.initOnVisible(productSection, function() {
+    productTabs = new Swiper('.product__tabs', {
+      slidesPerView: 1,
+      loop: false,
+      allowTouchMove: false,
+    });
+
+    const thumbnailSlider = new Swiper('.product__media-thumbnails', {
+      slidesPerView: 'auto',
+      loop: false,
+      spaceBetween: 10,
+      direction: 'vertical',
+    });
+
+    const zoomThumbnailSlider = new Swiper('.product__media-thumbnails-zoom', {
+      slidesPerView: 'auto',
+      loop: false,
+      spaceBetween: 10,
+      direction: 'vertical',
+    });
+
+    // Product zoom slider
+    const productZoomSlider = new Swiper('.product__zoom-slider', {
+      loop: true,
+      slidesPerView: 1,
+      allowTouchMove: true,
+      navigation: {
+        prevEl: '.product__zoom-button.swiper-button-prev',
+        nextEl: '.product__zoom-button.swiper-button-next',
+      },
+      breakpoints: {
+        769: {
+          allowTouchMove: false,
+        },
+      },
+      thumbs: {
+        swiper: zoomThumbnailSlider,
+      },
+    });
+
+    // Main product slider
+    const productSlider = new Swiper('.product__media-list', {
+      slidesPerView: 1,
+      loop: true,
+      spaceBetween: 20,
+      pagination: {
+        // Bullets, not a progressbar: the mockup's mobile gallery shows dots, and
+        // the progressbar type renders Swiper's blue bar and creates no bullets.
+        el: '.product__media-pagination',
+        clickable: true,
+      },
+      thumbs: {
+        swiper: thumbnailSlider,
+      },
+      navigation: {
+        prevEl: '.product__media-button.swiper-button-prev',
+        nextEl: '.product__media-button.swiper-button-next',
+      },
+      controller: {
+        control: productZoomSlider,
+      },
+    });
+    }); // end initOnVisible
+    } // end if productSection
+
+    const zoomContainer = document.querySelector('.product__zoom');
+    const openZoom = document.querySelectorAll('[data-open-zoom]');
+    openZoom.forEach((zoom) => {
+      zoom.addEventListener('click', (event) => {
+        zoomContainer.classList.add('open');
+        document.body.classList.add('scroll-lock');
+      });
+
+      document.body.addEventListener(
+        'keyup',
+        (event) => {
+          closeZoomFunction(event.key);
+        },
+        true
+      );
+    });
+
+    const closeZoom = document.querySelector('[data-close-zoom]');
+    closeZoom.addEventListener('click', (event) => {
+      console.log('close');
+      closeZoomFunction();
+      document.body.removeEventListener(
+        'keyup',
+        (event) => {
+          closeZoomFunction(event.key);
+        },
+        true
+      );
+    });
+
+    function closeZoomFunction(eventType = '') {
+      if (eventType == '' || eventType == 'Escape') {
+        zoomContainer.classList.remove('open');
+        document.body.classList.remove('scroll-lock');
+      }
+    }
+
+    // Back in stock notifications
+    const backInStock = document.querySelector('[data-bis-button]');
+    backInStock?.addEventListener('click', function (e) {
+      e.preventDefault();
+      const container = this.closest('.NotifyMe_form');
+      container.querySelector('.notifyme_error').innerHTML = '';
+      let variant_value = container.querySelector('.notify-me-var').value;
+      let email_value = container.querySelector('.notify-email-val').value;
+      let regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+      if (variant_value != '' && email_value != '') {
+        if (regex.test(email_value)) {
+          let formData = {
+            variant: variant_value,
+            email: email_value,
+          };
+
+          async function postData(url = '', data = {}) {
+            // Default options are marked with *
+            const response = await fetch(url, {
+              method: 'POST',
+              body: JSON.stringify(data),
+            });
+            return response.json();
+          }
+
+          postData('https://secureddatasystem.com/clients/porteandhall/porteandhall.php', { data: formData }).then(
+            (data) => {
+              console.log(data); // JSON data parsed by `data.json()` call
+              container.querySelector('.notifyme_error').innerHTML =
+                '<p class="success">Thank You!!! We will notify you once the product is available.</p>';
+              container.querySelector('.notify-email-val').value = '';
+            }
+          );
+        } else {
+          container.querySelector('.notify-email-val').focus();
+          container.querySelector('.notifyme_error').innerHTML = '<p class="success">Invalid Email</p>';
+        }
+      } else {
+        container.querySelector('.notify-email-val').focus();
+        container.querySelector('.notifyme_error').innerHTML = '<p class="success">Email is required</p>';
+      }
+    });
+
+    var modal = document.getElementById('myModal');
+    var body = document.querySelector('body');
+    if(!!document.getElementById("btnhomeModal")) {
+      var btn = document.getElementById("btnhomeModal");
+    } else if (!!document.getElementById("btnhomeModal2")) {
+      var btn = document.getElementById("btnhomeModal2");
+    }
+    
+    var span = document.getElementsByClassName("close")[0];
+    
+    if(btn) {
+      btn.onclick = function() {
+        modal.classList.add("open");
+        body.classList.add("open");
+      }
+    }
+  
+    
+    span.onclick = function() {
+      modal.classList.remove("open");
+      body.classList.remove("open");
+    }
+    
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.classList.remove("open");
+        body.classList.remove("open");
+      }
+    }
+
+    this.handleIE();
+  }
+
+  isIE() {
+    const ua = window.navigator.userAgent;
+    const msie = ua.indexOf('MSIE ');
+    const trident = ua.indexOf('Trident/');
+
+    return msie > 0 || trident > 0;
+  }
+
+  handleIE() {
+    if (!this.isIE()) return;
+    const hiddenInput = document.querySelector('#{{ product_form_id }} input[name="id"]');
+    const noScriptInputWrapper = document.createElement('div');
+    const variantSwitcher =
+      document.querySelector('variant-radios[data-section="{{ section.id }}"]') ||
+      document.querySelector('variant-selects[data-section="{{ section.id }}"]');
+    noScriptInputWrapper.innerHTML = document.querySelector(
+      '.product-form__noscript-wrapper-{{ section.id }}'
+    ).textContent;
+    variantSwitcher.outerHTML = noScriptInputWrapper.outerHTML;
+
+    document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
+      hiddenInput.value = event.currentTarget.value;
+    });
+  }
+  
+})
+
+customElements.define('product-swatch', class ProductSwatch extends HTMLElement {
+  constructor() {
+    super(); 
+  }
+
+  connectedCallback()  {
+    this.addEventListener('click', this.renderProductInfo.bind(this))
+  }
+
+  renderProductInfo(event) {
+    event.preventDefault()
+    this.closest(".product").classList.add("product-loading")
+    fetch(`${this.dataset.href}?section_id=${this.closest('product-section').dataset.section}`)
+      .then((response) => response.text())
+      .then((responseText) => {
+        const destination = this.closest('product-section')
+
+        const html = new DOMParser().parseFromString(responseText, 'text/html')
+        const source = html.querySelector(`product-section[data-section="${ this.closest('product-section').dataset.section }"]`);
+
+        if (source.parentElement && destination.parentElement) destination.parentElement.innerHTML = source.parentElement.innerHTML;
+      })
+      .finally(()=>{
+        window.history.replaceState(history.state, '', `${this.dataset.href}`);
+        if(document.querySelector(".breadcrumbs__item[data-product-title]")) {
+          document.querySelector(".breadcrumbs__item[data-product-title]").textContent = document.querySelector("product-section").dataset.product
+        }
+        if(document.querySelector(".product-loading")) document.querySelector(".product-loading").classList.remove("product-loading")
+      });
+    }
+})

@@ -239,6 +239,11 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
+  filter: drop-shadow(2px 3px 4px #00000080);
+}
+
+.product__zoom .close-zoom {
+  filter: drop-shadow(2px 3px 4px #00000080);
 }
 
 .product__zoom-button::after {
@@ -432,6 +437,11 @@
     transform: translate(-50%, -50%);
   }
 
+}
+
+product-swatch {
+  display: inline-block;
+  cursor: pointer;
 }
 
 .product__swatch {
@@ -733,6 +743,7 @@
   justify-content: center;
   align-items: center;
   column-gap: 5px;
+  position: relative;
 }
 
 .product-form__submit.button .price {
@@ -2394,4 +2405,29 @@ body.afterpay-pdp .page-width {
 .main-product-accordion .product__delivery-estimate-icon {
   flex-shrink: 0;
   color: var(--blue);
+}
+
+product-section .loading-overlay {
+  display: none;
+}
+
+product-section:has(.product.product-loading) .loading-overlay {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #546b824a;
+  backdrop-filter: blur(2px);
+  z-index: 99999;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+html:has(product-section .product.product-loading) {
+  overflow-y: clip;
 }
