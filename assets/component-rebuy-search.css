@@ -679,6 +679,10 @@
   margin-top: 20px !important;
 }
 
+.rebuy-product-review .rebuy-star-rating {
+  min-width: auto !important;
+}
+
 @media screen and (min-width: 769px) {
 
   .rebuy-smart-search-results-page-sidebar__filter-section {
