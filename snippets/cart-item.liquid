@@ -135,7 +135,7 @@
         </quantity-input>
       </div>
 
-      <div class="cart-item__price {% if customer and customer.b2b? %}cart-item__trade-price{% endif %}">
+      <div class="cart-item__price {% if customer and customer.b2b? %}cart-item__trade-price{% endif %}" data-product-id="{{ item.product.id }}" data-variant-id="{{ item.variant.id }}">
         {% if customer and customer.b2b? %}
           {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
           {% assign discount_factor = 100 | minus: trade_pricing_discount_percentage %}

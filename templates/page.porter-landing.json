@@ -69,6 +69,9 @@
     },
     "porter_hall_image_grid_7BTqhf": {
       "type": "porter-hall-image-grid",
+      "custom_css": [
+        ".heading {color: #546a83;}"
+      ],
       "name": "Grand Entrance Section",
       "settings": {
         "bg_color": "#f4f2ee",
@@ -98,6 +101,17 @@
     "porter_hall_colorways_xHj4Bh": {
       "type": "porter-hall-colorways",
       "blocks": {
+        "color_BJPxy4": {
+          "type": "color",
+          "settings": {
+            "image": "shopify://shop_images/designerspotlight_gail_homepagealt.jpg",
+            "color_image": "shopify://shop_images/iron.png",
+            "link": "",
+            "color_name": "Iron",
+            "color_size": "Standard 30\" x 48\"",
+            "color_note": ""
+          }
+        },
         "color_DNVFHG": {
           "type": "color",
           "settings": {
@@ -133,13 +147,15 @@
         }
       },
       "block_order": [
+        "color_BJPxy4",
         "color_DNVFHG",
         "color_999pwx",
         "color_Mczgik"
       ],
+      "disabled": true,
       "name": "Colorways",
       "settings": {
-        "title": "3 Elegant Colorways",
+        "title": "4 Elegant Colorways",
         "mobile_slider": true,
         "button_text": "Shop Now",
         "button_link": "shopify://products/the-porter-truffle-standard"
@@ -147,18 +163,83 @@
     },
     "porter_hall_material_type_GEYDmB": {
       "type": "porter-hall-material-type",
+      "custom_css": [
+        "h2 {color: #546a83;}"
+      ],
       "name": "Two of a Kind",
       "settings": {
         "bg_color": "#eeefef",
         "title": "Two of a Kind",
         "image_doublewide": "shopify://shop_images/Group_2_57f06724-1fa3-42cf-b2b0-74d4dd909943.png",
         "mobile_image_doublewide": "shopify://shop_images/Group_2_57f06724-1fa3-42cf-b2b0-74d4dd909943.png",
-        "doublewide_title": "Doublewide",
+        "doublewide_title": "Double",
         "doublewide_description": "<p>Have a huge front door (or more than one)? We designed this big(ger) boy with you in mind.</p>",
         "image_standard": "shopify://shop_images/Group_1_740a77ef-5343-4beb-a5a2-e286947e11ed.png",
         "mobile_image_standard": "shopify://shop_images/Group_1_740a77ef-5343-4beb-a5a2-e286947e11ed.png",
         "standard_title": "Standard",
         "standard_description": "<p>Perfectly oversized and anything but ordinary, this mat was made to make a statement at most doors.</p>"
+      }
+    },
+    "image_text_Lw6xn7": {
+      "type": "image-text",
+      "custom_css": [
+        ".FeatureText__ContentWrapper {background-color: #eeefef;}"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "subheading": "",
+        "title": "<h2>4 Elegant Colorways</h2>",
+        "content": "",
+        "link_text": "",
+        "link_url": "",
+        "custom-class": ""
+      }
+    },
+    "images_with_text_eUFMEY": {
+      "type": "images-with-text",
+      "blocks": {
+        "block_baEHrD": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/greystone.png",
+            "title": "Greystone"
+          }
+        },
+        "block_npKYJC": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/truffle.png",
+            "title": "Truffle"
+          }
+        },
+        "block_HGcHHz": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/portergraniteswatch.png",
+            "title": "Granite"
+          }
+        },
+        "block_8Fwqxc": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/iron.png",
+            "title": "Iron"
+          }
+        }
+      },
+      "block_order": [
+        "block_baEHrD",
+        "block_npKYJC",
+        "block_HGcHHz",
+        "block_8Fwqxc"
+      ],
+      "custom_css": [
+        ".images-with-text .images-container .images-text-content .images_text {font-size: 20px;}"
+      ],
+      "name": "Images with text",
+      "settings": {
+        "background": "#EEEFEF",
+        "text_color": "#546B82"
       }
     },
     "porter_hall_video_text_zDhyEj": {
@@ -277,6 +358,8 @@
     "porter_hall_image_grid_7BTqhf",
     "porter_hall_colorways_xHj4Bh",
     "porter_hall_material_type_GEYDmB",
+    "image_text_Lw6xn7",
+    "images_with_text_eUFMEY",
     "porter_hall_video_text_zDhyEj",
     "porter_hall_video_text_hnGRDJ",
     "porter_hall_box_image_text_NWHbjw"

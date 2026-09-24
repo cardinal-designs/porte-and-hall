@@ -22,37 +22,6 @@
     },
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c": {
       "type": "page-hero",
-      "blocks": {
-        "2b0d0088-6c3d-48fc-aebe-ea6130c622e7": {
-          "type": "icon",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Outsider-Scrape_1.gif",
-            "title": "STAIN-RESISTANT"
-          }
-        },
-        "f9f45ca9-6345-4f5f-89d5-56aebb2a5189": {
-          "type": "icon",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Outsider-Removable_aad5ef63-5b85-44d2-b720-2ffb6443308c.gif",
-            "title": "SLIP-RESISTANT"
-          }
-        },
-        "711cf30f-2298-4b22-8226-af3f38d9b8dd": {
-          "type": "icon",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Homepage-Quality.gif",
-            "title": "HIGH-QUALITY"
-          }
-        }
-      },
-      "block_order": [
-        "2b0d0088-6c3d-48fc-aebe-ea6130c622e7",
-        "f9f45ca9-6345-4f5f-89d5-56aebb2a5189",
-        "711cf30f-2298-4b22-8226-af3f38d9b8dd"
-      ],
       "disabled": true,
       "settings": {
         "heading": "Our Mats In Under A Minute",
@@ -61,103 +30,60 @@
         "swap-fonts": false
       }
     },
-    "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a": {
-      "type": "collection-head-slider",
+    "collection_tiles_4g6n8D": {
+      "type": "collection-tiles",
       "blocks": {
-        "category_rbdpyb": {
-          "type": "category",
+        "tile_ViTKip": {
+          "type": "tile",
           "settings": {
-            "title": "Indoor Doormats",
-            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Indoor"
+            "image": "shopify://shop_images/Insider_Collection.jpg",
+            "image_link": "",
+            "heading": "THE INSIDER COLLECTION",
+            "description": "<p>Low-profile enough to sit flush under a door, tough enough for daily mess and moisture. Ten colorways, from Dreamweaver's soft neutrals to Wild Side's deeper tones. $165.</p>",
+            "button_label": "SHOP Insider 3 x 5",
+            "button_link": "https://www.porteandhall.com/collections/3x5-doormats?filter.v.m.custom.filters=The+Insider"
           }
         },
-        "category_6DiQQ4": {
-          "type": "category",
+        "tile_8BRzBE": {
+          "type": "tile",
           "settings": {
-            "title": "Outdoor Doormats",
-            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Outdoor"
-          }
-        },
-        "category_TUtNNX": {
-          "type": "category",
-          "settings": {
-            "title": "Runners",
-            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
-          }
-        },
-        "category_DB8PtU": {
-          "type": "category",
-          "settings": {
-            "title": "Area Mats",
-            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
-          }
-        },
-        "category_Ed3rUr": {
-          "type": "category",
-          "disabled": true,
-          "settings": {
-            "title": "Shop all",
-            "link": "https://www.porteandhall.com/collections/shop-all"
+            "image": "shopify://shop_images/Innerweave_collection.jpg",
+            "image_link": "",
+            "heading": "THE INNERWEAVE COLLECTION",
+            "description": "<p>Looks like natural fiber, performs like nothing else — shed-resistant, slip-resistant, and equally at home indoors or out. Six colorways in Chevron, Tigers Eye, and Keya. $228–$281.</p>",
+            "button_label": "SHOP INNERWEAVE 3 x 5",
+            "button_link": "https://www.porteandhall.com/collections/3x5-doormats?filter.v.m.custom.filters=The+Innerweave"
           }
         }
       },
       "block_order": [
-        "category_rbdpyb",
-        "category_6DiQQ4",
-        "category_TUtNNX",
-        "category_DB8PtU",
-        "category_Ed3rUr"
+        "tile_ViTKip",
+        "tile_8BRzBE"
       ],
-      "disabled": true,
-      "settings": {}
+      "name": "Collection Tiles + CTA",
+      "settings": {
+        "heading": "3 x 5 Doormats. Now with more to love.",
+        "full_bleed": false,
+        "column_gap": 28,
+        "mobile_tile_width": 78,
+        "padding_top": 56,
+        "padding_bottom": 72,
+        "color_bg": "#ffffff",
+        "color_heading": "#546b82",
+        "color_text": "#546b82",
+        "color_text_secondary": "#546b82",
+        "color_button_bg": "#896a28",
+        "color_button_text": "#ffffff",
+        "button_font_size": 15
+      }
     },
     "product-grid": {
       "type": "main-collection-sticky-filters-mobile",
-      "blocks": {
-        "category_QfnPTA": {
-          "type": "category",
-          "disabled": true,
-          "settings": {
-            "title": "Indoor Doormats",
-            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Indoor"
-          }
-        },
-        "category_AEAT8d": {
-          "type": "category",
-          "disabled": true,
-          "settings": {
-            "title": "Outdoor Doormats",
-            "link": "https://www.porteandhall.com/collections/shop-all?filter.v.m.custom.size=Doormats&filter.v.m.filters.use=Outdoor"
-          }
-        },
-        "category_3a9r6P": {
-          "type": "category",
-          "disabled": true,
-          "settings": {
-            "title": "Runners",
-            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Runners"
-          }
-        },
-        "category_m84LW4": {
-          "type": "category",
-          "disabled": true,
-          "settings": {
-            "title": "Area Mats",
-            "link": "https://www.porteandhall.com/collections/shop-all/?filter.v.m.custom.size=Area+Mats"
-          }
-        }
-      },
-      "block_order": [
-        "category_QfnPTA",
-        "category_AEAT8d",
-        "category_3a9r6P",
-        "category_m84LW4"
-      ],
       "settings": {
         "products_per_page": 16,
         "image_ratio": "adapt",
-        "show_secondary_image": false,
-        "hide_tag": false,
+        "show_secondary_image": true,
+        "hide_tag": true,
         "add_image_padding": false,
         "show_image_outline": true,
         "show_vendor": false,
@@ -294,22 +220,12 @@
         "show_recent_articles": true,
         "hide_mobile": false
       }
-    },
-    "main_collection_banner_PaHLHe": {
-      "type": "main-collection-banner",
-      "name": "t:sections.main-collection-banner.name",
-      "settings": {
-        "show_title": false,
-        "show_collection_description": true,
-        "full_width": false
-      }
     }
   },
   "order": [
     "breadcrumbs_3xzGJ4",
     "26a1e124-7e29-4c8e-98b9-6cd84ce95d2c",
-    "main_collection_banner_PaHLHe",
-    "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a",
+    "collection_tiles_4g6n8D",
     "product-grid",
     "logo_marquee_XqK98A",
     "2046a8d4-8126-4344-8df2-6dd5193e7293"

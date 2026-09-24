@@ -730,7 +730,7 @@
               {% endif %}
 
               <div class="price_rating {% if show_discounted_price %}discounted__price--rating{% endif %}">
-                <p class="igPrice" data-product-id="{{ currentProduct.id }}">
+                <p class="igPrice" data-product-id="{{ currentProduct.id }}" data-variant-id="{{ currentProduct.selected_or_first_available_variant.id }}">
                   {% if show_discounted_price %}
                     <span>
                       <s class="price-item price-item--regular">

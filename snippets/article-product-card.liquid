@@ -69,7 +69,7 @@
       {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
 
         {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
-          <div class="product-card__image-label body-xs">
+          <div class="TEST product-card__image-label body-xs">
           {{ product_card_product.first_available_variant.metafields.custom.use }}
           </div>
         {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
@@ -108,7 +108,7 @@
           {% assign trade_pricing_discount_percentage = settings.trade_pricing_discount_percentage | times: 1 %}
           {% assign discount_factor = 100 | minus: trade_pricing_discount_percentage %}
           {% assign original_price = product_card_product.price | times: 100 | divided_by: discount_factor %}
-          <p class="product-card__price body blue">
+          <p class="product-card__price body blue" data-product-id="{{ product_card_product.id }}" data-variant-id="{{ product_card_product.selected_or_first_available_variant.id }}">
             {% if original_price > 0 %}
               <span class="old-price">{{ original_price | money_without_trailing_zeros }}</span>
             {% endif %}
@@ -116,12 +116,12 @@
           </p>
         {% else %}
           {% if show_discounted_price %}
-            <p class="product-card__price body blue">
+            <p class="product-card__price body blue" data-product-id="{{ product_card_product.id }}" data-variant-id="{{ product_card_product.selected_or_first_available_variant.id }}">
               <span class="old-price">{{ product_card_product.price | money_without_trailing_zeros }}</span>
               {{ auto_discount_price }}
             </p>
           {% else %}
-            <p class="product-card__price body blue">
+            <p class="product-card__price body blue" data-product-id="{{ product_card_product.id }}" data-variant-id="{{ product_card_product.selected_or_first_available_variant.id }}">
               {% if product_card_product.compare_at_price > product_card_product.price %}
                 <span class="old-price">{{ product_card_product.compare_at_price | money_without_trailing_zeros }}</span>
               {% endif %}
