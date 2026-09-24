@@ -1994,7 +1994,7 @@ body.afterpay-pdp .page-width {
 .main-product-accordion .product {
   grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
   column-gap: 40px;
-  padding-top: 8px;
+  padding-top: 16px;
 }
 
 @media screen and (min-width: 901px) {
