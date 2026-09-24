@@ -1,4 +1,5 @@
 .product-section {
+  background: var(--beige-secondary);
   overflow-x: clip;
 }
 
@@ -1513,7 +1514,7 @@ variant-selects {
 .main-product-accordion .product__title {
   font-size: 42px;
   line-height: 130%;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 @media screen and (max-width: 768px) {
@@ -1912,15 +1913,21 @@ body.afterpay-pdp .page-width {
 
 /* Size selector: proportional icon above the label, narrower tiles (mockup parity). */
 .main-product-accordion .other-sizes__wrapper-links {
-  grid-template-columns: repeat(3, minmax(0, 112px));
+  grid-template-columns: repeat(4, minmax(0, 100px));
   gap: 12px;
   width: auto;
 }
 
 .main-product-accordion .other-sizes__button {
   box-sizing: border-box;
-  gap: 6px;
-  min-height: 112px;
+  display: grid;
+  grid-template-rows: 56px auto;
+  justify-items: center;
+  align-items: center;
+  gap: 4px;
+  width: 100px;
+  height: 100px;
+  min-height: 0;
   padding: 8px;
   font-size: 14px;
   line-height: 18px;
@@ -1987,12 +1994,6 @@ body.afterpay-pdp .page-width {
   }
 }
 
-.main-product-accordion .product__title {
-  font-size: 36px;
-  line-height: 1.15;
-  letter-spacing: 0.5px;
-}
-
 .main-product-accordion .product__price-reviews-wrapper {
   align-items: center;
   column-gap: 10px;
@@ -2037,7 +2038,7 @@ body.afterpay-pdp .page-width {
   margin-top: 10px;
   margin-bottom: 20px;
   column-gap: 12px;
-  row-gap: 12px;
+  row-gap: 16px;
 }
 
 .main-product-accordion .product__active-swatch {
@@ -2087,14 +2088,6 @@ body.afterpay-pdp .page-width {
   margin-top: 20px;
 }
 
-.main-product-accordion .product-form__submit.button {
-  width: 100%;
-  padding: 15px 20px;
-  border-radius: 6px;
-  font-size: 15px;
-  letter-spacing: 0.1em;
-}
-
 .main-product-accordion .shopify-payment-button {
   margin-top: 10px;
 }
@@ -2142,4 +2135,97 @@ body.afterpay-pdp .page-width {
   font-size: 15px;
   line-height: 1.6;
   color: #6b6b6b;
+}
+
+/* Swatch limit + reveal link */
+.main-product-accordion .product__swatches-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: brandon, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #6b6b6b;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.main-product-accordion .product__swatches-more[hidden] {
+  display: none;
+}
+
+.main-product-accordion .product__swatches-more:hover {
+  color: var(--blue);
+}
+
+.main-product-accordion .product__swatches-more-arrow {
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.main-product-accordion .product__swatches-more:hover .product__swatches-more-arrow {
+  transform: translateX(2px);
+}
+
+/* % off badge over the gallery, same shape as the product card flag */
+/* The flag is positioned against the image area, and `left` is pinned because
+   component-product-card.css (loaded further down the PDP by the carousel)
+   sets left: 8px on the shared class. */
+.main-product-accordion .product__media-list {
+  position: relative;
+}
+
+.main-product-accordion .product__discount-flag {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  right: auto;
+  bottom: auto;
+  z-index: 3;
+  width: auto;
+  padding: 8px 6px;
+  background: #ffffff;
+  font-family: brandon, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: var(--blue);
+  text-align: center;
+  pointer-events: none;
+}
+
+.main-product-accordion .product__discount-flag .product-card__discount-amount {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 28px;
+  line-height: 100%;
+}
+
+.main-product-accordion .product__discount-flag .product-card__discount-amount span {
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 768px) {
+  .main-product-accordion .other-sizes__button {
+    grid-template-rows: 48px auto;
+    width: 100%;
+    height: 100px;
+  }
+
+  .main-product-accordion .product__discount-flag {
+    padding: 6px 5px;
+    font-size: 14px;
+  }
+
+  .main-product-accordion .product__discount-flag .product-card__discount-amount {
+    font-size: 22px;
+  }
 }

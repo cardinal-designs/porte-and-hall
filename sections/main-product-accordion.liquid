@@ -4,6 +4,12 @@
 {{ 'component-rte.css' | asset_url | stylesheet_tag }}
 
 {% style %}
+  {%- if section.settings.background_color != blank -%}
+    #shopify-section-{{ section.id }} {
+      background: {{ section.settings.background_color }};
+    }
+  {%- endif -%}
+
   square-placement {
     margin-bottom: 0 !important;
     margin-top: 10px !important;
@@ -33,6 +39,66 @@
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
   assign collection_title = grouped_collection.title | downcase
 
+  # Accordion content lives on the product's collection — the one
+  # product.metafields.custom.collection_for_metafield_content points at, which the
+  # theme editor connects to section.settings.collection. The grouped collection is
+  # the fallback, as elsewhere in this section.
+  assign content_collection = grouped_collection
+  if section.settings.collection != blank
+    assign content_collection = section.settings.collection
+  endif
+  assign shipping_returns_metafield = content_collection.metafields.custom.shipping_returns
+  assign faqs_metafield = content_collection.metafields.custom.faqs
+
+  # % off badge over the gallery. Same discount sources the price block renders,
+  # in the same order, so the badge can never disagree with the price.
+  assign badge_variant = product.selected_or_first_available_variant
+  assign badge_last_chance_price = badge_variant.metafields.custom.last_chance_price.value
+  assign badge_auto_discount_price = product.metafields.custom.auto_discount_price
+  assign pdp_percent_off = 0
+  if customer and customer.b2b?
+    assign pdp_percent_off = 0
+  elsif badge_last_chance_price != blank and product.price > badge_last_chance_price
+    assign pdp_percent_off = product.price | minus: badge_last_chance_price | times: 100.0 | divided_by: product.price | round
+  elsif settings.enable_auto_discount_price and badge_auto_discount_price > 0
+    assign badge_auto_discount_cents = badge_auto_discount_price | times: 100
+    if badge_variant.price > badge_auto_discount_cents
+      assign pdp_percent_off = badge_variant.price | minus: badge_auto_discount_cents | times: 100.0 | divided_by: badge_variant.price | round
+    endif
+  elsif badge_variant.compare_at_price > badge_variant.price
+    assign pdp_percent_off = badge_variant.compare_at_price | minus: badge_variant.price | times: 100.0 | divided_by: badge_variant.compare_at_price | round
+  endif
+
+  # Colour line, e.g. "The Insider | Doormat" -> "Insider", for the reveal link.
+  assign product_line_name = grouped_collection.title | split: ' | ' | first | strip | remove_first: 'The ' | strip
+  assign visible_swatch_limit = 5
+  assign hidden_swatch_count = 0
+
+  # Where the selected colour sits in the list. Counted exactly like the render
+  # loop below, so the two always agree.
+  assign active_swatch_position = 0
+  assign swatch_position = 0
+  for swatch in grouped_collection.products
+    for option in swatch.options_with_values
+      assign option_name = option.name | downcase
+      if color_label contains option_name or option_name == 'style'
+        for value in option.values
+          assign swatch_position = swatch_position | plus: 1
+          if swatch == product and option.selected_value == value
+            assign active_swatch_position = swatch_position
+          endif
+        endfor
+      endif
+    endfor
+  endfor
+
+  # When the selected colour sits past the cut-off it takes a slot instead of
+  # adding one, so exactly five swatches stay visible either way.
+  assign effective_swatch_limit = visible_swatch_limit
+  if active_swatch_position > visible_swatch_limit
+    assign effective_swatch_limit = visible_swatch_limit | minus: 1
+  endif
+
   capture color_swatch_list
   assign swatch_count = 1
   for swatch in grouped_collection.products
@@ -59,6 +125,11 @@
           assign element_classes = 'product__swatch'
           if swatch == product and option.selected_value == value
             assign element_classes = element_classes | append: ' product__active-swatch '
+          endif
+          # The first slots show up front; the rest wait behind the reveal link.
+          if swatch_count > effective_swatch_limit and swatch_count != active_swatch_position
+            assign element_classes = element_classes | append: ' product__swatch--extra hidden'
+            assign hidden_swatch_count = hidden_swatch_count | plus: 1
           endif
           if swatch.available == false
             assign element_classes = element_classes | append: ' product__oos-swatch'
@@ -124,6 +195,17 @@ endcapture
       </div>
 
       <div class="product__media-list list-unstyled swiper">
+        {%- comment -%}
+          Same flag markup as the product card, so PDP and PLP read alike.
+          It lives in the image area, not the media wrapper, which also holds
+          the thumbnail column.
+        {%- endcomment -%}
+        {%- if pdp_percent_off > 0 -%}
+          <div class="product-card__discount-flag product__discount-flag">
+            <div class="product-card__discount-amount">{{ pdp_percent_off }} <span>%</span></div>
+            <span>off</span>
+          </div>
+        {%- endif -%}
         <div class="swiper-wrapper">
           {% for media in product.media %}
             {% unless media.alt == 'hide-outlier' %}
@@ -311,6 +393,30 @@ endcapture
         <div class="product__swatches {% if has_new_tag %} product__swatches--new{% endif %}">
           {{ color_swatch_list }}
         </div>
+
+        {%- if hidden_swatch_count > 0 -%}
+          <script>
+            document.addEventListener('click', function (event) {
+              var button = event.target.closest('[data-swatch-reveal]');
+              if (!button) return;
+              var swatches = document.querySelectorAll('.product__swatch--extra');
+              swatches.forEach(function (swatch) {
+                swatch.classList.remove('hidden');
+              });
+              button.setAttribute('aria-expanded', 'true');
+              button.hidden = true;
+            });
+          </script>
+          <button
+            type="button"
+            class="product__swatches-more"
+            data-swatch-reveal
+            aria-expanded="false"
+          >
+            Explore other {{ product_line_name | default: 'available' }} patterns
+            <span class="product__swatches-more-arrow" aria-hidden="true">&rarr;</span>
+          </button>
+        {%- endif -%}
 
         {% comment %}
         <div>
@@ -521,13 +627,7 @@ endcapture
                   href="{{ product.url }}"
                 >
                   {% render 'product-size-icon', size_name: product_size %}
-                  {% if product_size == '5 x 7 Area Mat' %}
-                    <span>Area Mat</span>
-                  {% elsif product_size == '3 x 5 Doormat' %}
-                    <span>Doormat</span>
-                  {% else %}
-                  <span>{{ product_size }}</span>
-                  {% endif %}
+                  <span class="visually-hidden">{{ product_size }}</span>
                   {% render 'product-other-size-dimension', dimension_product: product %}
                 </a>
 
@@ -561,13 +661,7 @@ endcapture
                       href="{{ prod_url }}"
                     >
                       {% render 'product-size-icon', size_name: current_size.last %}
-                      {% if current_size.last == '5 x 7 Area Mat' %}
-                        <span>Area Mat</span>
-                      {% elsif current_size.last == '3 x 5 Doormat' %}
-                        <span>Doormat</span>
-                      {% else %}
-                      <span>{{ current_size.last }}</span>
-                      {% endif %}
+                      <span class="visually-hidden">{{ current_size.last }}</span>
 
                       {% liquid
                         assign dimension_product = nil
@@ -850,7 +944,11 @@ endcapture
            <div data-id="5" class="accordion-content">
             <div class="swiper-slide">
               <div class="product__tabs-item body-sm">
-                {{ section.settings.shipping_returns }}
+                {%- if shipping_returns_metafield != blank -%}
+                  {{ shipping_returns_metafield | metafield_tag }}
+                {%- else -%}
+                  {{ section.settings.shipping_returns }}
+                {%- endif -%}
               </div>
             </div>
            </div>
@@ -864,7 +962,11 @@ endcapture
            <div data-id="6" class="accordion-content">
             <div class="swiper-slide">
               <div class="product__tabs-item body-sm">
-                {{ section.settings.faqs }}
+                {%- if faqs_metafield != blank -%}
+                  {{ faqs_metafield | metafield_tag }}
+                {%- else -%}
+                  {{ section.settings.faqs }}
+                {%- endif -%}
               </div>
             </div>
            </div>
@@ -1440,6 +1542,12 @@ endcapture
       "default": false
     },
     {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
       "type": "checkbox",
       "id": "show_dynamic_checkout",
       "label": "Show dynamic checkout button",
@@ -1453,12 +1561,14 @@ endcapture
     {
       "type": "html",
       "id": "shipping_returns",
-      "label": "Shipping & Returns"
+      "label": "Shipping & Returns fallback",
+      "info": "Used only when the collection metafield custom.shipping_returns is empty."
     },
     {
       "type": "html",
       "id": "faqs",
-      "label": "FAQs"
+      "label": "FAQs fallback",
+      "info": "Used only when the collection metafield custom.faqs is empty."
     }
   ]
 }
