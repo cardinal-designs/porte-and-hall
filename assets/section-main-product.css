@@ -2373,3 +2373,25 @@ body.afterpay-pdp .page-width {
     content: none;
   }
 }
+
+/* Estimated delivery line under the buy buttons */
+.main-product-accordion .product__delivery-estimate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-family: brandon, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #6b6b6b;
+}
+
+.main-product-accordion .product__delivery-estimate[hidden] {
+  display: none;
+}
+
+.main-product-accordion .product__delivery-estimate-icon {
+  flex-shrink: 0;
+  color: var(--blue);
+}

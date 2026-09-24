@@ -1,5 +1,8 @@
 {% comment %}theme-check-disable TemplateLength{% endcomment %}
 {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+{%- if section.settings.show_delivery_estimate -%}
+  <script src="{{ 'pdp-delivery-estimate.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-rte.css' | asset_url | stylesheet_tag }}
 
@@ -38,6 +41,13 @@
 
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
   assign collection_title = grouped_collection.title | downcase
+
+  # Preorder: the same condition the Add to cart label uses. A range counted from
+  # today would be wrong for stock that hasn't arrived, so the estimate is skipped.
+  assign is_preorder = false
+  if product.selected_or_first_available_variant.inventory_policy == 'continue' and product.selected_or_first_available_variant.inventory_quantity <= 0
+    assign is_preorder = true
+  endif
 
   # Accordion content lives on the product's collection — the one
   # product.metafields.custom.collection_for_metafield_content points at, which the
@@ -821,6 +831,28 @@ endcapture
         </product-form>
       {% endunless %}
 
+      {%- if section.settings.show_delivery_estimate and is_preorder == false -%}
+        {%- comment -%}
+          Dates are worked out in the browser (assets/pdp-delivery-estimate.js) from
+          the buyer's own "today"; the element stays hidden until they are in.
+        {%- endcomment -%}
+        <delivery-estimate
+          class="product__delivery-estimate"
+          data-min-days="{{ section.settings.delivery_days_min }}"
+          data-max-days="{{ section.settings.delivery_days_max }}"
+          hidden
+        >
+          <svg class="product__delivery-estimate-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
+            <path d="M2 7h14v10H2z" stroke-linejoin="round"/>
+            <path d="M16 7h4l2 4v6h-6z" stroke-linejoin="round"/>
+            <circle cx="5" cy="19" r="2"/>
+            <circle cx="18" cy="19" r="2"/>
+            <path d="M7 19h11" stroke-linecap="round"/>
+          </svg>
+          <span class="product__delivery-estimate-text" data-delivery-text></span>
+        </delivery-estimate>
+      {%- endif -%}
+
       {%- comment -%}
         App blocks (e.g. the estimated delivery date app) render under the buy buttons.
         Merchants place them from the theme editor; the theme renders no date itself.
@@ -1575,6 +1607,36 @@ endcapture
       "id": "shop_more_below",
       "label": "Move Shop Other to Bottom",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Estimated delivery"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_delivery_estimate",
+      "label": "Show estimated delivery date",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "delivery_days_min",
+      "label": "Minimum delivery days",
+      "info": "Business days; weekends are skipped.",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "delivery_days_max",
+      "label": "Maximum delivery days",
+      "info": "Business days; weekends are skipped.",
+      "min": 1,
+      "max": 45,
+      "step": 1,
+      "default": 5
     },
     {
       "type": "color",

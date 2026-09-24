@@ -13,7 +13,7 @@
       "type": "breadcrumbs",
       "name": "Breadcrumbs",
       "settings": {
-        "background_color": "#f4f2ee",
+        "background_color": "#FFFFFF",
         "padding_top": 10,
         "padding_bottom": 10,
         "mobile_padding_top": 10,
@@ -34,7 +34,11 @@
         "text_dimensions": false,
         "hide_shop_other": false,
         "hide_quantity": true,
-        "shop_more_below": true
+        "shop_more_below": true,
+        "background_color": "#ffffff",
+        "show_dynamic_checkout": true,
+        "shipping_returns": "",
+        "faqs": ""
       }
     },
     "other-sizes": {
