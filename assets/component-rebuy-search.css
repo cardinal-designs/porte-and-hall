@@ -1,0 +1,1080 @@
+.rebuy-smart-search-results-page__main-section,
+.rebuy-smart-search-results-page__context-section,
+.rebuy-smart-search-results-page__flyout {
+  --ph-rb-sidebar-width: 275px;
+  --ph-rb-divider: #d9d4cb;
+  --ph-rb-text: #30383d;
+  --ph-rb-muted: #999;
+  --ph-rb-sale: #7d3c3c;
+  --ph-rb-gold: #896a28;
+}
+
+.rebuy-smart-search-results-page__context-section {
+  align-items: center !important;
+  gap: 16px !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__result-title {
+  margin: 0 !important;
+  font-family: brandon, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  color: #6b6b6b !important;
+}
+
+.rebuy-smart-search-results-page__sort-by {
+  align-items: center !important;
+  gap: 16px !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__sort-by-label {
+  margin: 0 !important;
+  font-family: brandon, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: var(--ph-rb-muted) !important;
+}
+
+.rebuy-smart-search-results-page__sort-by .rebuy-filter-select-menu::before,
+.rebuy-smart-search-results-page__sort-by .rebuy-filter-select-menu::after {
+  display: none !important;
+}
+
+.rebuy-smart-search-results-page__sort-by .rebuy-select {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  height: 33px !important;
+  min-width: 160px !important;
+  padding: 0 38px 0 14px !important;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' fill='none' stroke='%2330383d' stroke-width='1.4'/%3E%3C/svg%3E") no-repeat right 14px center / 11px 7px !important;
+  border: 1px solid #e5e0d7 !important;
+  border-radius: 4px !important;
+  font-family: brandon, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.3 !important;
+  color: var(--ph-rb-text) !important;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.rebuy-smart-search-results-page__sort-by .rebuy-select:hover,
+.rebuy-smart-search-results-page__sort-by .rebuy-select:focus-visible {
+  border-color: var(--blue, #546b82) !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__result-section-title {
+  display: none !important;
+}
+
+.rebuy-smart-search-results-page__filter-section {
+  position: relative !important;
+  box-sizing: border-box !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__filter-section-title {
+  margin: 0 0 18px !important;
+  font-family: brandon, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: normal !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: var(--ph-rb-text) !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__filter-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__filter-container > li {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__filter-list-container {
+  width: 100% !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__filter-list-header {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__filter-list-toggle {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  padding: 14px 0 10px !important;
+  margin: 0 !important;
+  background: none !important;
+  border: 0 !important;
+  cursor: pointer;
+}
+
+.rebuy-smart-search-results-page-sidebar__filter-list-toggle > div {
+  display: none !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__filter-list-title {
+  margin: 0 !important;
+  font-family: brandon, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: #575757 !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__filter-list-toggle::after {
+  content: '';
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-left: 10px;
+  background:
+    linear-gradient(#999, #999) center / 12px 1.5px no-repeat,
+    linear-gradient(#999, #999) center / 1.5px 0 no-repeat;
+  transform: rotate(180deg);
+  transition: background-size 0.25s ease, transform 0.25s ease;
+}
+
+.rebuy-smart-search-results-page-sidebar__filter-list-container:has(> .rebuy-smart-search-results-page-sidebar__filter-list-body:not(.active))
+  .rebuy-smart-search-results-page-sidebar__filter-list-toggle::after {
+  background-size: 12px 1.5px, 1.5px 12px;
+  transform: none;
+}
+
+.rebuy-smart-search-results-page-sidebar__filter-list-body {
+  padding: 3px 0 14px !important;
+}
+
+.rebuy-smart-search-results-page__filter-option {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.rebuy-smart-search-results-page__filter-option-list {
+  display: flex !important;
+  align-items: center !important;
+  gap: 13px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.rebuy-smart-search-results-page__filter-option .rebuy-checkbox {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  flex: 0 0 14px !important;
+  width: 14px !important;
+  height: 14px !important;
+  margin: 0 !important;
+  background: #fff !important;
+  border: 1px solid var(--blue, #546b82) !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.rebuy-smart-search-results-page__filter-option .rebuy-checkbox::before,
+.rebuy-smart-search-results-page__filter-option .rebuy-checkbox::after {
+  content: none !important;
+  display: none !important;
+}
+
+.rebuy-smart-search-results-page__filter-option .rebuy-checkbox:checked {
+  background: var(--blue, #546b82) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='7' viewBox='0 0 8 7'%3E%3Cpath d='M1 3.6l2 2L7 1.2' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center / 8px 7px !important;
+  border-color: var(--blue, #546b82) !important;
+}
+
+.rebuy-smart-search-results-page__filter-option-checkbox-label {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  align-items: center !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 6px 0 !important;
+  font-family: brandon, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+  color: var(--ph-rb-text) !important;
+  cursor: pointer;
+}
+
+.rebuy-smart-search-results-page__filter-option-checkbox-label::before,
+.rebuy-smart-search-results-page__filter-option-checkbox-label::after {
+  content: none !important;
+  display: none !important;
+}
+
+.rebuy-smart-search-results-page__filter-label {
+  flex-shrink: 0;
+  margin-left: auto !important;
+  padding: 0 0 0 1px !important;
+  font-family: brandon, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+  white-space: nowrap;
+  color: var(--ph-rb-muted) !important;
+}
+
+.rebuy-smart-search-results-page__filter-option:has(input[id^="rebuy-metafield-variant-metafield-color-"]) {
+  --ph-rb-swatch: 26px;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  padding-left: 2px !important;
+}
+
+.rebuy-smart-search-results-page__filter-option-list:has(input[id^="rebuy-metafield-variant-metafield-color-"]) {
+  position: relative !important;
+  flex: 0 0 var(--ph-rb-swatch) !important;
+  width: var(--ph-rb-swatch) !important;
+  height: var(--ph-rb-swatch) !important;
+}
+
+.rebuy-smart-search-results-page__filter-option input[id^="rebuy-metafield-variant-metafield-color-"] {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0 !important;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.rebuy-smart-search-results-page__filter-option label[for^="rebuy-metafield-variant-metafield-color-"] {
+  position: relative !important;
+  display: block !important;
+  flex: none !important;
+  width: var(--ph-rb-swatch) !important;
+  height: var(--ph-rb-swatch) !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  background-color: var(--off-white, #f4f2ee);
+  background-size: cover !important;
+  background-position: center !important;
+  box-shadow: inset 0 0 0 1px #1a19162e;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  transition: transform 0.14s;
+}
+
+.rebuy-smart-search-results-page__filter-option-list:hover label[for^="rebuy-metafield-variant-metafield-color-"] {
+  transform: scale(1.12);
+}
+
+.rebuy-smart-search-results-page__filter-option input[id^="rebuy-metafield-variant-metafield-color-"]:checked + label::after {
+  content: '' !important;
+  display: block !important;
+  position: absolute;
+  inset: 2px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+
+.rebuy-smart-search-results-page__filter-option label[for^="rebuy-metafield-variant-metafield-color-"] .rebuy-smart-search-results-page__filter-label {
+  display: none !important;
+}
+
+.rebuy-smart-search-results-page__filter-option-list .rebuy-checkbox {
+  min-width: 14px !important;
+}
+
+.rebuy-smart-search-results-page__filter-option label.ph-rebuy-swatch--mapped {
+  box-shadow: none;
+}
+
+.rebuy-smart-search-results-page__selected-filters {
+  margin: 0 0 18px !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.rebuy-smart-search-results-page__selected-filters-header {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.rebuy-smart-search-results-page__selected-filters-header .rebuy-smart-search-results-page-sidebar__filter-list-title {
+  display: none !important;
+}
+
+.rebuy-smart-search-results-page__selected-filters-reset {
+  position: absolute !important;
+  top: -5px;
+  right: 24px;
+  margin: 0 !important;
+  padding: 5px 0 !important;
+  background: none !important;
+  border: 0 !important;
+  font-family: brandon, sans-serif !important;
+  font-size: 0 !important;
+  font-weight: 600 !important;
+  line-height: normal !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
+  color: #6b6b6b !important;
+  cursor: pointer;
+}
+
+.rebuy-smart-search-results-page__selected-filters-reset::before {
+  content: 'Clear all';
+  font-size: 12px;
+}
+
+.rebuy-smart-search-results-page__selected-filters-body {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: flex-start !important;
+  gap: 6px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.rebuy-smart-search-results-page__selected-filter-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin: 0 !important;
+  padding: 5px 14px !important;
+  background: var(--blue, #546b82) !important;
+  border: 0 !important;
+  border-radius: 50px !important;
+  font-family: brandon, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: capitalize !important;
+  color: #fff !important;
+}
+
+.rebuy-smart-search-results-page__selected-tag-label {
+  color: inherit !important;
+  font: inherit !important;
+  text-transform: inherit !important;
+}
+
+.rebuy-smart-search-results-page__selected-filter-tag-remove {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: none !important;
+  border: 0 !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+  color: #fff !important;
+  cursor: pointer;
+}
+
+/* Grid gaps + card type follow /collections/shop-all at each breakpoint:
+   ≤768px 2 cols (25px 12px, small type) · 769–1279px compact type · ≥1280px full type. */
+.rebuy-smart-search-results-page__container {
+  gap: 25px 20px !important;
+}
+
+.rebuy-smart-search-results-page__product {
+  gap: 12px !important;
+}
+
+.rebuy-smart-search-results-page__absolute-image-container {
+  padding-bottom: 100% !important;
+}
+
+.rebuy-smart-search-results-page__product .ph-rebuy-card__label {
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  z-index: 2;
+  padding: 10px;
+  background: var(--blue, #546b82);
+  font-family: brandon, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  pointer-events: none;
+}
+
+.rebuy-smart-search-results-page__product-detail {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
+  padding-top: 0 !important;
+  text-align: left !important;
+}
+
+.rebuy-smart-search-results-page__product .rebuy-product-options {
+  margin: 0 !important;
+}
+
+.rebuy-smart-search-results-page__product .rebuy-product-info {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.rebuy-smart-search-results-page__product .rebuy-product-title {
+  margin: 0 !important;
+  font-family: brandon, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: var(--blue, #546b82) !important;
+}
+
+.rebuy-smart-search-results-page__product.ph-rebuy-card .rebuy-product-title {
+  display: none !important;
+}
+
+.rebuy-smart-search-results-page__product .ph-rebuy-card__heading {
+  display: block;
+  color: var(--blue, #546b82);
+  text-decoration: none;
+}
+
+.rebuy-smart-search-results-page__product .ph-rebuy-card__line {
+  display: block;
+  font-family: brandon, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.rebuy-smart-search-results-page__product .ph-rebuy-card__name {
+  display: block;
+  font-family: brandon, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.3px;
+  text-transform: none;
+}
+
+.rebuy-smart-search-results-page__product .rebuy-product-review {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  line-height: 24px !important;
+}
+
+.rebuy-smart-search-results-page__product .rebuy-product-review .rebuy-star-rating {
+  width: 70px !important;
+}
+
+.rebuy-smart-search-results-page__product .rebuy-star-foreground-fill {
+  fill: var(--blue, #546b82) !important;
+}
+
+.rebuy-smart-search-results-page__product .rebuy-star-background-fill {
+  fill: #d4dae0 !important;
+}
+
+.rebuy-smart-search-results-page__product .rebuy-review-count {
+  margin: 0 !important;
+  padding-left: 6px !important;
+  font-family: brandon, sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 24px !important;
+  letter-spacing: normal !important;
+  text-transform: uppercase !important;
+}
+
+.rebuy-smart-search-results-page__product .rebuy-review-count-parenthesis {
+  display: none !important;
+}
+
+.rebuy-smart-search-results-page__product .rebuy-product-price,
+.rebuy-smart-search-results-page__product .ph-rebuy-card__price {
+  margin: -10px 0 0 !important;
+  font-family: brandon, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.3px !important;
+  color: var(--blue, #546b82) !important;
+}
+
+.rebuy-smart-search-results-page__product .rebuy-money {
+  font: inherit !important;
+  color: inherit !important;
+}
+
+.rebuy-smart-search-results-page__product.ph-rebuy-card--priced .rebuy-product-price {
+  display: none !important;
+}
+
+.rebuy-smart-search-results-page__product .ph-rebuy-card__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.rebuy-smart-search-results-page__product .ph-rebuy-card__sale-price {
+  font-weight: 800;
+  color: var(--ph-rb-sale, #7d3c3c);
+}
+
+.rebuy-smart-search-results-page__product .ph-rebuy-card__old-price {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.rebuy-smart-search-results-page__product .rebuy-button {
+  background: var(--blue) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  font-family: brandon !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  padding: 12px 16px !important;
+}
+
+.rebuy-select {
+  border-radius: 0 !important;
+}
+
+.rebuy-product-actions {
+  width: 100%;
+}
+
+.rebuy-smart-search-results-page__product .rebuy-button:hover {
+  opacity: 0.92 !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__input.rebuy-input {
+  font-family: brandon !important;
+  color: var(--blue, #546b82) !important;
+  border-color: var(--blue, #546b82) !important;
+  border-radius: 0 !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__input.rebuy-input::placeholder {
+  color: var(--blue, #546b82) !important;
+  opacity: 0.5 !important;
+}
+
+.rebuy-smart-search-results-page__continuous-scroll {
+  text-align: center !important;
+  margin-top: 40px !important;
+}
+
+.rebuy-smart-search-results-page__continuous-scroll-button.rebuy-button {
+  display: inline-block !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  margin: 20px 0 0 !important;
+  padding: 18px 70px !important;
+  background: #6b531f !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: brandon, sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  line-height: 120% !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  cursor: pointer;
+}
+
+[data-rebuy-id="297767"] .rebuy-product-info {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  text-align: left !important;
+  padding-top: 12px !important;
+}
+
+[data-rebuy-id="297767"] .rebuy-product-title,
+[data-rebuy-id="297767"] .rebuy-product-title-link {
+  margin: 0 !important;
+  font-family: brandon !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  color: var(--blue, #546b82) !important;
+}
+
+[data-rebuy-id="297767"] .rebuy-money,
+[data-rebuy-id="297767"] .rebuy-product-price {
+  margin: 0 !important;
+  font-family: brandon !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: var(--blue, #546b82) !important;
+}
+
+[data-rebuy-id="297767"] .rebuy-button {
+  background: #546b82 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  font-family: brandon !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  padding: 12px 16px !important;
+}
+
+[data-rebuy-id="297767"] .rebuy-button:hover {
+  opacity: 0.92 !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__main-section {
+  margin-top: 20px !important;
+}
+
+@media screen and (min-width: 769px) {
+
+  .rebuy-smart-search-results-page-sidebar__filter-section {
+    flex: 0 0 var(--ph-rb-sidebar-width) !important;
+    width: var(--ph-rb-sidebar-width) !important;
+    max-width: none !important;
+    padding: 20px 24px 0 0 !important;
+    border-right: 1px solid var(--ph-rb-divider) !important;
+    height: 100%;
+  }
+
+  .rebuy-smart-search-results-page__selected-filters-reset {
+    top: 15px;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__result-section {
+    width: calc(100% - var(--ph-rb-sidebar-width)) !important;
+    padding-left: 24px !important;
+    box-sizing: border-box !important;
+  }
+
+  .rebuy-smart-search-results-page__context-section {
+    padding-left: calc(var(--ph-rb-sidebar-width) + 24px) !important;
+    box-sizing: border-box !important;
+  }
+
+  #rebuy-smart-search-results-sidebar-flyout-filter,
+  #rebuy-smart-search-results-sidebar {
+    padding: 0 40px;
+    max-width: 1440px;
+  }
+
+}
+
+@media screen and (min-width: 769px) and (max-width: 1279px) {
+
+  .rebuy-smart-search-results-page__product .rebuy-product-title,
+  .rebuy-smart-search-results-page__product .ph-rebuy-card__line {
+    font-size: 13px !important;
+    letter-spacing: normal !important;
+  }
+
+  .rebuy-smart-search-results-page__product .rebuy-product-price,
+  .rebuy-smart-search-results-page__product .ph-rebuy-card__price {
+    font-size: 13px !important;
+  }
+
+}
+
+@media screen and (max-width: 1024px) {
+
+  .rebuy-widget .rebuy-product-grid .rebuy-product-block,
+  .rebuy-widget .rebuy-product-block+.rebuy-product-block {
+    padding: 5px !important;
+  }
+
+  .rebuy-widget .rebuy-product-title-link {
+    font-size: 11px !important;
+    letter-spacing: 1px !important;
+  }
+
+  .rebuy-money, .rebuy-widget .rebuy-money {
+    font-size: 12px !important;
+  }
+
+  .rebuy-product-actions .rebuy-button {
+    font-size: 12px !important;
+    letter-spacing: 1px !important;
+  }
+
+  .rebuy-widget .rebuy-product-block .rebuy-product-actions {
+    margin-top: 0 !important;
+  }
+
+  .rebuy-widget .rebuy-carousel__arrows .rebuy-carousel__arrow,
+  .rebuy-widget .flickity-button {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+}
+
+@media screen and (max-width: 991px) {
+
+  .rebuy-smart-search-results-page__container.col-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+
+  .rebuy-smart-search-results-page-sidebar__filter-section {
+    display: none !important;
+  }
+
+  .rebuy-smart-search-results-page__container {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__result-section {
+    width: 100% !important;
+    padding-left: 0 !important;
+  }
+
+  .rebuy-smart-search-results-page__context-section {
+    flex-direction: column-reverse !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    padding-left: 0 !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__context-left {
+    padding-right: 0 !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__context-right {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    gap: 10px !important;
+    max-width: none !important;
+    width: 100% !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__filter-trigger--mobile {
+    display: flex !important;
+    flex: 1 1 50% !important;
+    min-width: 0 !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__context-right .rebuy-smart-search-results-page-sidebar__sort-by--desktop {
+    display: flex !important;
+    flex: 1 1 50% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__context-right .rebuy-smart-search-results-page-sidebar__sort-by--desktop .rebuy-smart-search-results-page-sidebar__sort-by-label {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    white-space: nowrap !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__context-right .rebuy-filter-select-menu {
+    width: 100% !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__filter-mobile-facets,
+  .rebuy-smart-search-results-page-sidebar__context-right .rebuy-smart-search-results-page__sort-by .rebuy-select {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 42px !important;
+    padding: 0 14px !important;
+    background-color: #fff !important;
+    border: 1px solid var(--blue, #546b82) !important;
+    border-radius: 2px !important;
+    font-family: brandon, sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    color: #30383d !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__context-right .rebuy-smart-search-results-page__sort-by .rebuy-select {
+    display: block !important;
+    padding-right: 36px !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__filter-mobile-facets::after {
+    content: '';
+    width: 11px;
+    height: 7px;
+    margin-left: auto;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' fill='none' stroke='%2330383d' stroke-width='1.4'/%3E%3C/svg%3E") no-repeat center / contain;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__filter-mobile-facets-icon {
+    width: 14px !important;
+    height: auto !important;
+    flex-shrink: 0;
+    color: #30383d !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__filter-mobile-facets-label {
+    font-size: 0 !important; /* "Filter and sort" -> "Filter": sorting sits beside it */
+  }
+
+  .rebuy-smart-search-results-page-sidebar__filter-mobile-facets-label::before {
+    content: 'Filter';
+    font-size: 12px;
+  }
+
+  /* --- Filter drawer: the collection's bottom sheet (.collection-filters__slideout) --- */
+  .rebuy-smart-search-results-page__background {
+    background: rgba(79, 65, 70, 0.3) !important;
+  }
+
+  .rebuy-smart-search-results-page__flyout {
+    top: auto !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: 92vh !important;
+    max-height: 92dvh !important;
+    padding: 0 !important;
+    background: #fff !important;
+    border-radius: 16px 16px 0 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    pointer-events: none;
+  }
+
+  .rebuy-smart-search-results-page__flyout.is-visible {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .rebuy-smart-search-results-page__flyout-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    max-height: inherit !important;
+    padding: 0 !important;
+  }
+
+  .rebuy-smart-search-results-page__flyout-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-shrink: 0;
+    margin: 0 !important;
+    padding: 20px 20px 12px !important;
+    border: 0 !important;
+  }
+
+  .rebuy-smart-search-results-page__flyout-header-title {
+    margin: 0 !important;
+    font-size: 0 !important; /* "Filter & Sort (term - n)" -> "Filter" */
+    line-height: 1.2 !important;
+  }
+
+  .rebuy-smart-search-results-page__flyout-header-title::before {
+    content: 'Filter';
+    font-family: louize, serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: normal;
+    text-transform: none;
+    color: var(--ph-rb-text);
+  }
+
+  /* The collection's sheet has no close button: tap outside or Apply. */
+  .rebuy-smart-search-results-page__flyout-close {
+    display: none !important;
+  }
+
+  .ph-rebuy-flyout__clear-all {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: 0;
+    font-family: brandon, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: normal;
+    text-transform: none;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    color: #6b6b6b;
+    cursor: pointer;
+  }
+
+  .rebuy-smart-search-results-page__flyout-body {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding: 6px 20px 18px !important;
+  }
+
+  /* Sorting lives in the toolbar, as on the collection. */
+  .rebuy-smart-search-results-page__flyout .rebuy-smart-search-results-page__flyout-sort-by {
+    display: none !important;
+  }
+
+  /* Pills stay; the header's "Clear all" replaces Rebuy's reset in the sheet. */
+  .rebuy-smart-search-results-page__flyout .rebuy-smart-search-results-page__selected-filters-reset {
+    display: none !important;
+  }
+
+  .rebuy-smart-search-results-page__flyout .rebuy-smart-search-results-page-sidebar__filter-list-toggle {
+    padding: 0 !important;
+    margin-bottom: 10px !important;
+  }
+
+  .rebuy-smart-search-results-page__flyout .rebuy-smart-search-results-page-sidebar__filter-list-title {
+    font-size: 10px !important;
+    letter-spacing: 0.12em !important;
+    color: var(--ph-rb-text) !important;
+  }
+
+  .rebuy-smart-search-results-page__flyout .rebuy-smart-search-results-page-sidebar__filter-container > li {
+    padding-top: 8px !important;
+  }
+
+  .ph-rebuy-flyout__controls {
+    flex-shrink: 0;
+    padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px));
+    background: #fff;
+  }
+
+  .ph-rebuy-flyout__apply.button {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+    background: #896a28;
+    border: 0;
+    border-radius: 4px;
+    font-family: brandon, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .rebuy-smart-search-results-page__filter-option:has(input[id^="rebuy-metafield-variant-metafield-color-"]) {
+    gap: 7px !important;
+    padding-left: 0 !important;
+  }
+
+  /* Cards */
+  .rebuy-smart-search-results-page__container {
+    gap: 25px 12px !important;
+  }
+
+  .rebuy-smart-search-results-page__product .ph-rebuy-card__label {
+    padding: 4px 6px;
+    font-size: 9px;
+  }
+
+  .rebuy-smart-search-results-page__product .rebuy-product-title,
+  .rebuy-smart-search-results-page__product .ph-rebuy-card__line {
+    font-size: 13px !important;
+    letter-spacing: normal !important;
+  }
+
+  .rebuy-smart-search-results-page__product .ph-rebuy-card__name {
+    font-size: 16px;
+  }
+
+  .rebuy-smart-search-results-page__product .rebuy-review-count {
+    padding-left: 4px !important;
+    font-size: 10px !important;
+  }
+
+  .rebuy-smart-search-results-page__product .rebuy-product-price,
+  .rebuy-smart-search-results-page__product .ph-rebuy-card__price {
+    font-size: 13px !important;
+  }
+
+  .rebuy-smart-search-results-page__product .rebuy-button {
+    width: 100% !important;
+    font-size: 13px !important;
+    letter-spacing: 1px !important;
+  }
+
+  .rebuy-smart-search-results-page__continuous-scroll-button.rebuy-button {
+    padding: 14px 20px !important;
+    font-size: 16px !important;
+  }
+
+  .rebuy-widget .rebuy-product-grid .rebuy-product-block,
+  .rebuy-widget .rebuy-product-block+.rebuy-product-block {
+    padding: 5px !important;
+  }
+
+  .rebuy-widget .rebuy-product-grid.small-carousel {
+    padding-bottom: 40px !important;
+  }
+
+}

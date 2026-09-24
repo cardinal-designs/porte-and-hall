@@ -3,27 +3,24 @@
   assign swatch_hex = ''
   assign swatch_url = ''
 
-  case swatch_handle
-    when 'blue'
-      assign swatch_hex = '#2C45B9'
-    when 'grey', 'gray'
-      assign swatch_hex = '#D9D9D9'
-    when 'brown'
-      assign swatch_hex = '#8A6F6E'
-    when 'beige', 'off-white', 'offwhite', 'cream', 'ivory'
-      assign swatch_hex = '#F6F0E8'
-    when 'green'
-      assign swatch_hex = '#447924'
-    when 'red'
-      assign swatch_hex = '#EB514A'
-    when 'orange'
-      assign swatch_hex = '#F4B43F'
-    when 'pink'
-      assign swatch_hex = '#F6C3CB'
-    # 'multi' reuses the colour-wheel asset the base.css mapping already points at
-    when 'multi', 'multicolor', 'multicolour'
-      assign swatch_url = 'https://cdn.shopify.com/s/files/1/0084/8602/7327/files/color-wheel_1.png?v=1694583299'
-  endcase
+  # Hex / image per colour lives in snippets/color-swatch-map.liquid (also used by the search page).
+  capture swatch_map
+    render 'color-swatch-map'
+  endcapture
+  assign swatch_entries = swatch_map | strip | split: '|'
+  for swatch_entry in swatch_entries
+    assign swatch_pair = swatch_entry | split: '~'
+    if swatch_pair[0] == swatch_handle
+      assign swatch_value = swatch_pair[1]
+      assign swatch_first_char = swatch_value | slice: 0
+      if swatch_first_char == '#'
+        assign swatch_hex = swatch_value
+      else
+        assign swatch_url = swatch_value
+      endif
+      break
+    endif
+  endfor
 
   if swatch_hex == blank and swatch_url == blank
     assign swatch_file = swatch_handle | append: '.png'

@@ -156,6 +156,7 @@
       {% endif %}
     {% endif %}
 
+
     {% if load_swiper %}
       <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
     {% endif %}
@@ -164,6 +165,7 @@
       GSAP is only used for .scroll__button smooth-scroll (designer program),
       and that handler already waits 2s. Keep it off the initial mobile TBT path.
     {%- endcomment -%}
+
     <script data-lazy-src="{{ 'gsap.min.js' | asset_url }}" defer></script>
     <script data-lazy-src="{{ 'ScrollToPlugin.min.js' | asset_url }}" defer></script>
     <script src="{{ 'global.js' | asset_url }}" defer></script>
@@ -208,6 +210,25 @@
       collection/PDP carousels. Always load — skipping index broke card Swipers/swatches.
     {%- endcomment -%}
     <script src="{{ 'grouped-product-card.js' | asset_url }}" defer="defer"></script>
+
+    {%- comment -%} Style the Rebuy Smart Search results page toward the collection UI (search page only). {%- endcomment -%}
+    {% if request.page_type == 'search' %}
+      {{ 'component-rebuy-search.css' | asset_url | stylesheet_tag }}
+      {%- comment -%}
+        Colour swatches for the Rebuy filter (rebuy-product-cards.js): the same map and
+        "{handle}.png in Files" fallback as the collection's filter-color-swatch.liquid.
+      {%- endcomment -%}
+      {%- capture ph_swatch_map -%}{%- render 'color-swatch-map' -%}{%- endcapture -%}
+      <script>
+        window.phColorSwatchMap = {{ ph_swatch_map | strip | json }};
+        window.phColorSwatchFileUrl = {{ 'ph-swatch-handle.png' | file_img_url: '60x60' | json }};
+      </script>
+    {% endif %}
+
+    {{ 'component-rebuy-quick-view.css' | asset_url | stylesheet_tag }}
+
+    {%- comment -%} Two-line titles, use label + compare-at price on Rebuy search cards (results page + predictive search). {%- endcomment -%}
+    <script src="{{ 'rebuy-product-cards.js' | asset_url }}" defer="defer"></script>
 
     {%- render 'head-scripts-loader' -%}
   </head>
@@ -725,5 +746,6 @@
       })();
     </script>
 
+<script async src="https://cdn.rebuyengine.com/onsite/js/rebuy.js?shop={{ shop.permanent_domain }}"></script>
   </body>
 </html>

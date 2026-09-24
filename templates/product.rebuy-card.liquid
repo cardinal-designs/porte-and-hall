@@ -1,0 +1,32 @@
+{%- layout none -%}
+{%- liquid
+  assign card_variant = product.selected_or_first_available_variant
+  assign lowercase_tags = product.tags | join: '~~~' | downcase | split: '~~~'
+
+  assign card_label = ''
+  if product.first_available_variant.metafields.custom.use != blank
+    assign card_label = product.first_available_variant.metafields.custom.use.value | append: ''
+  elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor'
+    assign card_label = 'Indoor/Outdoor'
+  elsif lowercase_tags contains 'indoor'
+    assign card_label = 'Indoor'
+  elsif lowercase_tags contains 'outdoor'
+    assign card_label = 'Outdoor'
+  endif
+
+  assign card_price = card_variant.price | money_without_trailing_zeros
+  assign card_compare_at = null
+  assign last_chance_price = card_variant.metafields.custom.last_chance_price.value
+  if card_variant.compare_at_price > card_variant.price
+    assign card_compare_at = card_variant.compare_at_price | money_without_trailing_zeros
+  elsif last_chance_price != blank and card_variant.price > last_chance_price
+    assign card_compare_at = card_price
+    assign card_price = last_chance_price | money_without_trailing_zeros
+  endif
+-%}
+{
+  "id": {{ product.id | json }},
+  "label": {{ card_label | strip | json }},
+  "price": {{ card_price | json }},
+  "compare_at_price": {{ card_compare_at | json }}
+}

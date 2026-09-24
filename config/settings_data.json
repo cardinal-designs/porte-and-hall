@@ -86,7 +86,7 @@
           "logo_position": "center",
           "menu": "2023-main-nav-new",
           "b2b_menu": "main-desktop-nav-trade-specific",
-          "enable_search": false
+          "enable_search": true
         }
       },
       "cart-drawer": {
@@ -178,11 +178,6 @@
         "disabled": false,
         "settings": {}
       },
-      "10641372206048101839": {
-        "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-global-embed/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
-        "disabled": true,
-        "settings": {}
-      },
       "6279071938380501511": {
         "type": "shopify://apps/powerful-form-builder/blocks/app-embed/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
         "disabled": false,
@@ -226,6 +221,11 @@
       "12592085946906583873": {
         "type": "shopify://apps/wunderkind/blocks/tag/40b05e3b-2403-4814-8fab-e17e57e8b1aa",
         "disabled": true,
+        "settings": {}
+      },
+      "10641372206048101839": {
+        "type": "shopify://apps/rebuy-personalization-engine/blocks/rebuy-global-embed/a26ae9b9-933b-40bf-bbc6-bf1220bbc4dc",
+        "disabled": false,
         "settings": {}
       }
     }
