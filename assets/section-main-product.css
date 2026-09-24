@@ -1784,7 +1784,7 @@ product-form form {
 }
 
 product-section:has(.product.product-loading) .loading-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
