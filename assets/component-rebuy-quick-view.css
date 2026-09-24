@@ -22,10 +22,6 @@
   --rb-smart-search-quick-view-button-radius: var(--ph-search-radius);
 }
 
-.header__search-container {
-  opacity: 0;
-}
-
 .outer-header-wrapper {
   z-index: 8;
 }

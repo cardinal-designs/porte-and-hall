@@ -432,4 +432,21 @@ button.rebuy-button.is-disabled {
   margin: 0 -4px -5px;
 }
 
+.header__search.is-visible {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Theme search bar is replaced by Rebuy's search dropdown */
+.header__search {
+  display: none;
+}
+
+/* Waiting for Rebuy search to load */
+.header__icon--search[aria-busy="true"] {
+  cursor: progress;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
 /*========== Header ==========*/
