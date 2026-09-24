@@ -432,12 +432,6 @@
     transform: translate(-50%, -50%);
   }
 
-  .main-product-accordion .product__title {
-    font-size: 24px !important;
-    line-height: 130% !important;
-    font-weight: 400 !important;
-  }
-
 }
 
 .product__swatch {
@@ -1046,6 +1040,7 @@ variant-selects {
     flex-direction: column-reverse;
     width: calc(100% + 40px);
     margin-left: -20px;
+    margin-bottom: 20px;
   }
 
   .close-zoom {
@@ -1965,7 +1960,8 @@ body.afterpay-pdp .page-width {
 @media screen and (max-width: 768px) {
   .main-product-accordion .other-sizes__wrapper-links {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
+    column-gap: 20px;
+    row-gap: 10px;
   }
 
   .main-product-accordion .other-sizes__button {
@@ -2215,9 +2211,10 @@ body.afterpay-pdp .page-width {
 
 @media screen and (max-width: 768px) {
   .main-product-accordion .other-sizes__button {
-    grid-template-rows: 48px auto;
+    grid-template-rows: 45px auto;
     width: 100%;
     height: 100px;
+    min-height: unset;
   }
 
   .main-product-accordion .product__discount-flag {
@@ -2227,5 +2224,152 @@ body.afterpay-pdp .page-width {
 
   .main-product-accordion .product__discount-flag .product-card__discount-amount {
     font-size: 22px;
+  }
+}
+
+/* FAQ entries inside the PDP accordion (custom.faqs metaobjects) */
+.main-product-accordion .product__faq-item + .product__faq-item {
+  margin-top: 14px;
+}
+
+.main-product-accordion .product__faq-question {
+  margin: 0 0 4px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.main-product-accordion .product__faq-answer p:last-child {
+  margin-bottom: 0;
+}
+
+/* Collapsed swatches: selected colour first; the plain order returns on reveal. */
+.main-product-accordion .product__swatches--collapsed .product__active-swatch {
+  order: -1;
+}
+
+/* Size label above the cards ("Size — Doormat") */
+.main-product-accordion .other-sizes__label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: brandon, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+  color: var(--blue);
+}
+
+.main-product-accordion .other-sizes__label-value {
+  font-weight: 600;
+}
+
+/* Dynamic checkout button: match the Add to cart height in both of the states
+   Shopify can render — the branded wallet button and the plain "Buy it now".
+   Only the host/wrapper is ours; wallet internals live in Shopify's own
+   shadow DOM / iframe, so height is set on the outside and passed down through
+   Shopify's custom properties. */
+/* One height for both buy buttons, so Add to cart and the dynamic checkout
+   button line up whichever variant Shopify renders. */
+.main-product-accordion .product-form__buttons {
+  --pdp-buy-button-height: 52px;
+}
+
+.main-product-accordion .product-form__submit.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  min-height: var(--pdp-buy-button-height);
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  line-height: 1.1;
+  letter-spacing: 0.1em;
+}
+
+.main-product-accordion .shopify-payment-button {
+  --shopify-accelerated-checkout-button-block-size: var(--pdp-buy-button-height, 52px);
+  --shop-pay-button-height: var(--pdp-buy-button-height, 52px);
+  min-height: var(--pdp-buy-button-height, 52px);
+}
+
+.main-product-accordion .shopify-payment-button__button,
+.main-product-accordion shopify-accelerated-checkout,
+.main-product-accordion shopify-accelerated-checkout-cart,
+.main-product-accordion shop-pay-button,
+.main-product-accordion shop-pay-button > *,
+.main-product-accordion .shopify-payment-button__button--branded {
+  min-height: var(--pdp-buy-button-height, 52px);
+  height: var(--pdp-buy-button-height, 52px);
+  border-radius: 6px;
+}
+
+.main-product-accordion .shopify-payment-button__button--unbranded {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--pdp-buy-button-height, 52px);
+  padding: 0 20px;
+  font-family: brandon, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Mobile gallery: dots instead of arrows. The Swiper in global.js already has a
+   pagination element configured (.product__media-pagination, clickable), so this
+   only reveals and styles the bullets a base rule hides. */
+@media screen and (max-width: 768px) {
+  .main-product-accordion .product__media-button.swiper-button-prev,
+  .main-product-accordion .product__media-button.swiper-button-next {
+    display: none;
+  }
+
+  /* That bottom padding reserved room for the arrows; the dots sit on the
+     image instead, so the gallery ends at the image again. */
+  .main-product-accordion .product__media-list {
+    padding-bottom: 0;
+  }
+
+  .main-product-accordion .product__media-pagination {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 12px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+  }
+
+  /* base.css styles bullets as gold diamonds with !important, so the round
+     white dots from the mockup have to answer in kind. */
+  .main-product-accordion .product__media-pagination .swiper-pagination-bullet {
+    display: block;
+    width: 8px !important;
+    height: 8px !important;
+    max-width: 8px;
+    max-height: 8px;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+    opacity: 1 !important;
+    transform: none !important;
+    transition: background 0.2s ease;
+  }
+
+  .main-product-accordion .product__media-pagination .swiper-pagination-bullet-active {
+    background: #ffffff !important;
+  }
+
+  .main-product-accordion .product__media-pagination .swiper-pagination-bullet-active:after {
+    content: none;
   }
 }

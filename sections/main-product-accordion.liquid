@@ -48,7 +48,9 @@
     assign content_collection = section.settings.collection
   endif
   assign shipping_returns_metafield = content_collection.metafields.custom.shipping_returns
-  assign faqs_metafield = content_collection.metafields.custom.faqs
+  # custom.faqs is a list of FAQ metaobjects (fields: question, answer), the same
+  # source the `faq` section repeats over. Not rich text — don't metafield_tag it.
+  assign faqs_metaobjects = content_collection.metafields.custom.faqs.value
 
   # % off badge over the gallery. Same discount sources the price block renders,
   # in the same order, so the badge can never disagree with the price.
@@ -74,9 +76,10 @@
   assign visible_swatch_limit = 5
   assign hidden_swatch_count = 0
 
-  # Where the selected colour sits in the list. Counted exactly like the render
-  # loop below, so the two always agree.
+  # Where the selected colour sits, and how many colours there are. Counted
+  # exactly like the render loop below, so the two always agree.
   assign active_swatch_position = 0
+  assign swatch_total = 0
   assign swatch_position = 0
   for swatch in grouped_collection.products
     for option in swatch.options_with_values
@@ -84,6 +87,7 @@
       if color_label contains option_name or option_name == 'style'
         for value in option.values
           assign swatch_position = swatch_position | plus: 1
+          assign swatch_total = swatch_total | plus: 1
           if swatch == product and option.selected_value == value
             assign active_swatch_position = swatch_position
           endif
@@ -92,12 +96,13 @@
     endfor
   endfor
 
-  # When the selected colour sits past the cut-off it takes a slot instead of
-  # adding one, so exactly five swatches stay visible either way.
-  assign effective_swatch_limit = visible_swatch_limit
-  if active_swatch_position > visible_swatch_limit
-    assign effective_swatch_limit = visible_swatch_limit | minus: 1
+  # Collapsed state: the selected colour first, then the next colours in list
+  # order until five are showing. With five or fewer colours nothing is hidden.
+  assign other_swatch_limit = visible_swatch_limit
+  if active_swatch_position > 0
+    assign other_swatch_limit = visible_swatch_limit | minus: 1
   endif
+  assign shown_other_swatches = 0
 
   capture color_swatch_list
   assign swatch_count = 1
@@ -126,10 +131,15 @@
           if swatch == product and option.selected_value == value
             assign element_classes = element_classes | append: ' product__active-swatch '
           endif
-          # The first slots show up front; the rest wait behind the reveal link.
-          if swatch_count > effective_swatch_limit and swatch_count != active_swatch_position
-            assign element_classes = element_classes | append: ' product__swatch--extra hidden'
-            assign hidden_swatch_count = hidden_swatch_count | plus: 1
+          # The selected colour always shows; the others fill the remaining slots
+          # in list order. CSS moves the selected one to the front while collapsed.
+          if swatch_total > visible_swatch_limit and swatch_count != active_swatch_position
+            if shown_other_swatches < other_swatch_limit
+              assign shown_other_swatches = shown_other_swatches | plus: 1
+            else
+              assign element_classes = element_classes | append: ' product__swatch--extra hidden'
+              assign hidden_swatch_count = hidden_swatch_count | plus: 1
+            endif
           endif
           if swatch.available == false
             assign element_classes = element_classes | append: ' product__oos-swatch'
@@ -390,7 +400,7 @@ endcapture
             {% endif %}
           {% endfor %}
         {% endfor %}
-        <div class="product__swatches {% if has_new_tag %} product__swatches--new{% endif %}">
+        <div class="product__swatches {% if has_new_tag %} product__swatches--new{% endif %}{% if hidden_swatch_count > 0 %} product__swatches--collapsed{% endif %}">
           {{ color_swatch_list }}
         </div>
 
@@ -403,6 +413,8 @@ endcapture
               swatches.forEach(function (swatch) {
                 swatch.classList.remove('hidden');
               });
+              var group = document.querySelector('.product__swatches');
+              if (group) group.classList.remove('product__swatches--collapsed');
               button.setAttribute('aria-expanded', 'true');
               button.hidden = true;
             });
@@ -683,6 +695,19 @@ endcapture
               {%- unless section.settings.hide_shop_other == true -%}
                 {%- unless other_size_links == blank -%}
                   <div class="other-sizes__wrapper other-sizes__wrapper--other-collections">
+                    {%- liquid
+                      # Mockup's "Size — Doormat". The name of the size option, not its
+                      # dimensions, shortened the same way the cards used to be.
+                      assign size_label_value = product_size
+                      if product_size == '5 x 7 Area Mat'
+                        assign size_label_value = 'Area Mat'
+                      elsif product_size == '3 x 5 Doormat'
+                        assign size_label_value = 'Doormat'
+                      endif
+                    -%}
+                    {%- if size_label_value != blank -%}
+                      <span class="other-sizes__label">Size &mdash; <span class="other-sizes__label-value">{{ size_label_value }}</span></span>
+                    {%- endif -%}
                     <div class="other-sizes__wrapper-links">
                       {{ other_size_links }}
                     </div>
@@ -962,8 +987,17 @@ endcapture
            <div data-id="6" class="accordion-content">
             <div class="swiper-slide">
               <div class="product__tabs-item body-sm">
-                {%- if faqs_metafield != blank -%}
-                  {{ faqs_metafield | metafield_tag }}
+                {%- if faqs_metaobjects != blank -%}
+                  {%- comment -%}
+                    Same field access as the faq section's repeater blocks:
+                    question as plain text, answer through metafield_tag.
+                  {%- endcomment -%}
+                  {%- for faq in faqs_metaobjects -%}
+                    <div class="product__faq-item">
+                      <p class="product__faq-question">{{ faq.question.value }}</p>
+                      <div class="product__faq-answer">{{ faq.answer | metafield_tag }}</div>
+                    </div>
+                  {%- endfor -%}
                 {%- else -%}
                   {{ section.settings.faqs }}
                 {%- endif -%}
@@ -1141,9 +1175,10 @@ endcapture
     loop: true,
     spaceBetween: 20,
     pagination: {
+      // Bullets, not a progressbar: the mockup's mobile gallery shows dots, and
+      // the progressbar type renders Swiper's blue bar and creates no bullets.
       el: '.product__media-pagination',
       clickable: true,
-      type: 'progressbar',
     },
     thumbs: {
       swiper: thumbnailSlider,
@@ -1568,7 +1603,7 @@ endcapture
       "type": "html",
       "id": "faqs",
       "label": "FAQs fallback",
-      "info": "Used only when the collection metafield custom.faqs is empty."
+      "info": "Used only when the collection's FAQ metaobject list (custom.faqs) is empty."
     }
   ]
 }
