@@ -85,7 +85,7 @@
             {% render 'icon', icon: 'caret' %}
           </li>
         {%- endif -%}
-        <li class="breadcrumbs__item">
+        <li class="breadcrumbs__item" data-product-title>
           {{ product.title }}
         </li>
       {%- when 'collection' and collection.handle -%}
