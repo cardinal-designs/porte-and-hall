@@ -203,7 +203,25 @@ endcapture
                 <span class="old-price">{{ product.price | money_without_trailing_zeros }}</span>
                 <span class="percentage-off">({{ percent_off }}% off)</span>
               {% else %}
+                {%- liquid
+                  # Same discount sources price.liquid renders: auto discount metafield, then compare-at.
+                  assign variant_price = product.selected_or_first_available_variant.price
+                  assign compare_at = product.selected_or_first_available_variant.compare_at_price
+                  assign auto_discount_price = product.metafields.custom.auto_discount_price
+                  assign percent_off = 0
+                  if settings.enable_auto_discount_price and auto_discount_price > 0
+                    assign auto_discount_cents = auto_discount_price | times: 100
+                    if variant_price > auto_discount_cents
+                      assign percent_off = variant_price | minus: auto_discount_cents | times: 100.0 | divided_by: variant_price | round
+                    endif
+                  elsif compare_at > variant_price
+                    assign percent_off = compare_at | minus: variant_price | times: 100.0 | divided_by: compare_at | round
+                  endif
+                -%}
                 {% render 'price', product: product, use_variant: true, show_badges: true, price_class: '' %}
+                {% if percent_off > 0 %}
+                  <span class="percentage-off">({{ percent_off }}% off)</span>
+                {% endif %}
               {%  endif  %}
             </div>
 
@@ -502,7 +520,7 @@ endcapture
                   class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button active"
                   href="{{ product.url }}"
                 >
-                  {% comment %} {% render 'product-size-icon', size_name: product_size %} {% endcomment %}
+                  {% render 'product-size-icon', size_name: product_size %}
                   {% if product_size == '5 x 7 Area Mat' %}
                     <span>Area Mat</span>
                   {% elsif product_size == '3 x 5 Doormat' %}
@@ -542,6 +560,7 @@ endcapture
                       class="{% if small_text_1 == 3 %}small_button_text{% endif %} other-sizes__button" 
                       href="{{ prod_url }}"
                     >
+                      {% render 'product-size-icon', size_name: current_size.last %}
                       {% if current_size.last == '5 x 7 Area Mat' %}
                         <span>Area Mat</span>
                       {% elsif current_size.last == '3 x 5 Doormat' %}
@@ -558,15 +577,6 @@ endcapture
                           assign dimension_product = alternate_match
                         endif
                       %}
-                      {% comment %} {% render 'product-size-icon', size_name: current_size.last %}
-                      {% if current_size.last == '5 x 7 Area Mat' %}
-                        <span>Area Mat</span>
-                      {% elsif current_size.last == '3 x 5 Doormat' %}
-                        <span>Doormat</span>
-                      {% else %}
-                      <span>{{ current_size.last }}</span>
-                      {% endif %} {% endcomment %}
-
                       {% render 'product-other-size-dimension', dimension_product: dimension_product %}
                     </a>
                   {%- endif -%}
@@ -579,7 +589,6 @@ endcapture
               {%- unless section.settings.hide_shop_other == true -%}
                 {%- unless other_size_links == blank -%}
                   <div class="other-sizes__wrapper other-sizes__wrapper--other-collections">
-                    <span class="other-sizes__label">Size</span> 
                     <div class="other-sizes__wrapper-links">
                       {{ other_size_links }}
                     </div>
@@ -598,7 +607,6 @@ endcapture
                 {%- endcapture -%}
                  {%- unless other_size_links == blank -%}
                   <div class="other-sizes__wrapper other-sizes__wrapper--other-collections">
-                    <span class="other-sizes__label">Size</span> 
                     <div class="6 other-sizes__wrapper-links">
                       {{ other_size_links }}
                     </div>
@@ -643,7 +651,7 @@ endcapture
                 <button
                   type="submit"
                   name="add"
-                  class="product-form__submit button {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
+                  class="product-form__submit button {% if section.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
                   {% if product.selected_or_first_available_variant.available == false %}
                     disabled
                   {% endif %}
@@ -683,7 +691,7 @@ endcapture
                     </svg>
                   </div>
                 </button>
-                {% if block.settings.show_dynamic_checkout %}
+                {% if section.settings.show_dynamic_checkout %}
                   {{ form | payment_button }}
                 {% endif %}
               </div>
@@ -693,6 +701,22 @@ endcapture
           {% endform %}
         </product-form>
       {% endunless %}
+
+      {%- comment -%}
+        App blocks (e.g. the estimated delivery date app) render under the buy buttons.
+        Merchants place them from the theme editor; the theme renders no date itself.
+        They sit outside the product form so an app's own form is never nested inside it.
+      {%- endcomment -%}
+      {%- if section.blocks.size > 0 -%}
+        <div class="product__app-blocks">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when '@app' -%}
+                <div class="product__app-block" {{ block.shopify_attributes }}>{% render block %}</div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
       </div>
       {% comment %}
       {% if product.available == false %}
@@ -760,7 +784,7 @@ endcapture
        
          <div class="accordion">
            <div data-id="2" class="accordion-title">
-             <h2 class="h3">Materials</h2>
+             <h2 class="h3">Materials &amp; Construction</h2>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="2" class="accordion-content">
@@ -775,7 +799,7 @@ endcapture
         {% if grouped_collection.metafields.custom.dimensions != blank %}
          <div class="accordion">
            <div data-id="3" class="accordion-title">
-             <h2 class="h3">Dimensions</h2>
+             <h2 class="h3">Fit &amp; Dimensions</h2>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="3" class="accordion-content">
@@ -805,7 +829,7 @@ endcapture
         {% if section.settings.care != blank %}
          <div class="accordion">
            <div data-id="4" class="accordion-title">
-             <h2 class="h3">Cleaning &amp; Care</h2>
+             <h2 class="h3">Care &amp; Cleaning</h2>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="4" class="accordion-content">
@@ -817,6 +841,34 @@ endcapture
            </div>
          </div>
         {% endif %}
+
+         <div class="accordion">
+           <div data-id="5" class="accordion-title">
+             <h2 class="h3">Shipping &amp; Returns</h2>
+             {% render 'icon', icon: 'caret' %}
+           </div>
+           <div data-id="5" class="accordion-content">
+            <div class="swiper-slide">
+              <div class="product__tabs-item body-sm">
+                {{ section.settings.shipping_returns }}
+              </div>
+            </div>
+           </div>
+         </div>
+
+         <div class="accordion">
+           <div data-id="6" class="accordion-title">
+             <h2 class="h3">FAQs</h2>
+             {% render 'icon', icon: 'caret' %}
+           </div>
+           <div data-id="6" class="accordion-content">
+            <div class="swiper-slide">
+              <div class="product__tabs-item body-sm">
+                {{ section.settings.faqs }}
+              </div>
+            </div>
+           </div>
+         </div>
 
         {% comment %}
         {% if product.handle contains "outlier" %}
@@ -1332,7 +1384,7 @@ endcapture
   "name": "Product",
   "tag": "section",
   "class": "product-section",
-  "blocks": [],
+  "blocks": [{ "type": "@app" }],
   "settings": [
     {
       "type": "collection",
@@ -1386,6 +1438,27 @@ endcapture
       "id": "shop_more_below",
       "label": "Move Shop Other to Bottom",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dynamic_checkout",
+      "label": "Show dynamic checkout button",
+      "info": "Shows Shop Pay and the customer's other express checkout methods under Add to Cart.",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Accordions"
+    },
+    {
+      "type": "html",
+      "id": "shipping_returns",
+      "label": "Shipping & Returns"
+    },
+    {
+      "type": "html",
+      "id": "faqs",
+      "label": "FAQs"
     }
   ]
 }

@@ -1901,3 +1901,245 @@ product-form form {
   }
 
 }
+/* ---------- PDP updates (main-product-accordion) ---------- */
+
+/* Wider PDP only. body.afterpay-pdp is the theme's existing product-page hook
+   (layout/theme.liquid), so every section on the PDP widens together while the
+   rest of the site keeps the 1440px page width. */
+body.afterpay-pdp .page-width {
+  max-width: 1600px;
+}
+
+/* Size selector: proportional icon above the label, narrower tiles (mockup parity). */
+.main-product-accordion .other-sizes__wrapper-links {
+  grid-template-columns: repeat(3, minmax(0, 112px));
+  gap: 12px;
+  width: auto;
+}
+
+.main-product-accordion .other-sizes__button {
+  box-sizing: border-box;
+  gap: 6px;
+  min-height: 112px;
+  padding: 8px;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.4px;
+}
+
+.main-product-accordion .other-sizes__button .other-sizes__dimension {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.main-product-accordion .other-sizes__button.active .product-size-icon {
+  background-color: #ffffff;
+}
+
+/* Express checkout (Shop Pay and the rest) under Add to Cart. */
+.main-product-accordion .shopify-payment-button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.main-product-accordion .shopify-payment-button__button--unbranded {
+  border-radius: 6px;
+  background: var(--blue);
+  font-family: brandon;
+}
+
+/* App blocks (estimated delivery date) sit under the buy buttons. */
+.main-product-accordion .product__app-blocks {
+  margin-top: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .main-product-accordion .other-sizes__wrapper-links {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .main-product-accordion .other-sizes__button {
+    min-height: 100px;
+    padding: 8px 6px;
+    font-size: 14px;
+  }
+
+  .main-product-accordion .other-sizes__button .other-sizes__dimension {
+    font-size: 13px !important;
+  }
+}
+
+/* Buy box, columns and accordion presentation per the PDP mockup. */
+.main-product-accordion .product {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
+  column-gap: 56px;
+  padding-top: 8px;
+}
+
+@media screen and (min-width: 901px) {
+  .main-product-accordion .product__media-wrapper {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+  }
+}
+
+.main-product-accordion .product__title {
+  font-size: 36px;
+  line-height: 1.15;
+  letter-spacing: 0.5px;
+}
+
+.main-product-accordion .product__price-reviews-wrapper {
+  align-items: center;
+  column-gap: 10px;
+  margin-top: 10px;
+}
+
+.main-product-accordion .product__price .price .h3 {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.main-product-accordion .product__price .price__sale s,
+.main-product-accordion .product__price .price__sale s .price-item {
+  font-size: 16px;
+  font-weight: 400;
+  color: #999999;
+}
+
+.main-product-accordion .percentage-off {
+  font-size: 15px;
+  font-weight: 600;
+  color: #7d3c3c;
+}
+
+.main-product-accordion .product__description {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #6b6b6b;
+}
+
+.main-product-accordion .product__variant-name {
+  margin-top: 20px;
+  margin-bottom: 0;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  color: var(--blue);
+}
+
+.main-product-accordion .product__swatches {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  column-gap: 12px;
+  row-gap: 12px;
+}
+
+.main-product-accordion .product__active-swatch {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* Size cards */
+.main-product-accordion .other-sizes__wrapper {
+  margin-top: 0;
+}
+
+.main-product-accordion .other-sizes__button {
+  border-radius: 6px;
+  justify-content: center;
+  color: #6b6b6b;
+  font-weight: 600;
+}
+
+.main-product-accordion .other-sizes__button,
+.main-product-accordion .other-sizes__button span {
+  text-decoration: none;
+}
+
+.main-product-accordion .other-sizes__button span {
+  font-weight: 600 !important;
+  line-height: 18px;
+}
+
+.main-product-accordion .other-sizes__button:not(.active):hover {
+  background: #f9f9f9;
+  border-color: #d9d4cb;
+}
+
+.main-product-accordion .other-sizes__button .other-sizes__dimension {
+  font-weight: 400;
+  color: #999999;
+}
+
+.main-product-accordion .other-sizes__button.active,
+.main-product-accordion .other-sizes__button.active .other-sizes__dimension {
+  color: #ffffff;
+}
+
+/* Add to cart + express checkout stack */
+.main-product-accordion .product__quantity-atc-wrapper {
+  margin-top: 20px;
+}
+
+.main-product-accordion .product-form__submit.button {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+}
+
+.main-product-accordion .shopify-payment-button {
+  margin-top: 10px;
+}
+
+/* Larger swatches, as in the mockup; they wrap on their own. */
+@media screen and (min-width: 901px) {
+  .main-product-accordion .product__swatch {
+    width: 88px;
+    height: 88px;
+  }
+
+  .main-product-accordion .product__swatches .product__swatch-badge-new svg {
+    width: 98px;
+  }
+}
+
+.main-product-accordion .product__app-blocks {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #6b6b6b;
+}
+
+/* Accordions */
+.main-product-accordion .product-accordion__container {
+  margin-top: 24px;
+}
+
+.main-product-accordion .accordion-title {
+  padding: 2px 14px;
+}
+
+.main-product-accordion .accordion-title h2 {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+}
+
+.main-product-accordion .accordion-content .product__tabs-item {
+  padding: 2px 14px 16px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #6b6b6b;
+}
