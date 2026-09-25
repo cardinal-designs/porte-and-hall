@@ -85,7 +85,7 @@
 .product__media-thumbnails .swiper-slide,
 .product__zoom-thumbnails .swiper-slide {
   height: auto;
-  border: 3px solid transparent;
+  border: 2px solid transparent;
   box-sizing: border-box;
   cursor: pointer;
   transition: all .3s ease;
