@@ -1992,7 +1992,7 @@ body.afterpay-pdp .page-width {
 
 /* Buy box, columns and accordion presentation per the PDP mockup. */
 .main-product-accordion .product {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 40%);
   column-gap: 40px;
   padding-top: 16px;
 }
