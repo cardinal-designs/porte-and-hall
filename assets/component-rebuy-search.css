@@ -78,12 +78,17 @@
 .rebuy-smart-search-results-page-sidebar__filter-section-title {
   margin: 0 0 18px !important;
   font-family: brandon, sans-serif !important;
-  font-size: 13px !important;
+  font-size: 0 !important; /* "Filters" -> "Filter" */
   font-weight: 700 !important;
   line-height: normal !important;
   letter-spacing: 0.1em !important;
   text-transform: uppercase !important;
   color: var(--ph-rb-text) !important;
+}
+
+.rebuy-smart-search-results-page-sidebar__filter-section-title::before {
+  content: 'Filter';
+  font-size: 13px;
 }
 
 .rebuy-smart-search-results-page-sidebar__filter-container {
@@ -201,7 +206,7 @@
 }
 
 .rebuy-smart-search-results-page__filter-option .rebuy-checkbox:checked {
-  background: var(--blue, #546b82) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='7' viewBox='0 0 8 7'%3E%3Cpath d='M1 3.6l2 2L7 1.2' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center / 8px 7px !important;
+  background: var(--blue, #546b82) !important;
   border-color: var(--blue, #546b82) !important;
 }
 
@@ -226,6 +231,31 @@
 .rebuy-smart-search-results-page__filter-option-checkbox-label::after {
   content: none !important;
   display: none !important;
+}
+
+/* Tick drawn as on the collection filters (component-collection-plp.css), over the checkbox. */
+.rebuy-smart-search-results-page__filter-option-list {
+  position: relative !important;
+}
+
+.rebuy-smart-search-results-page__filter-option .rebuy-checkbox:not([id^="rebuy-metafield-variant-metafield-color-"]):checked + .rebuy-smart-search-results-page__filter-option-checkbox-label {
+  position: static !important;
+}
+
+.rebuy-smart-search-results-page__filter-option .rebuy-checkbox:not([id^="rebuy-metafield-variant-metafield-color-"]):checked + .rebuy-smart-search-results-page__filter-option-checkbox-label::after {
+  content: '' !important;
+  display: block !important;
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  width: 4px;
+  height: 8px;
+  margin-top: -6px;
+  box-sizing: content-box;
+  border: solid #fff;
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+  pointer-events: none;
 }
 
 .rebuy-smart-search-results-page__filter-label {
@@ -345,8 +375,9 @@
 }
 
 .rebuy-smart-search-results-page__selected-filters-reset::before {
-  content: 'Clear all';
+  content: "Clear all";
   font-size: 12px;
+  letter-spacing: .1em;
 }
 
 .rebuy-smart-search-results-page__selected-filters-body {
@@ -711,8 +742,8 @@
 
   #rebuy-smart-search-results-sidebar-flyout-filter,
   #rebuy-smart-search-results-sidebar {
-    padding: 0 40px;
-    max-width: 1440px;
+    padding: 0 40px !important;
+    max-width: 1440px !important;
   }
 
 }
@@ -852,6 +883,7 @@
     letter-spacing: 0 !important;
     text-transform: none !important;
     color: #30383d !important;
+    gap: 3px !important;
   }
 
   .rebuy-smart-search-results-page-sidebar__context-right .rebuy-smart-search-results-page__sort-by .rebuy-select {
