@@ -4,7 +4,7 @@
  *
  * This file may be updated by the Shopify admin theme editor
  * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten. 
+ * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -13,7 +13,7 @@
       "type": "breadcrumbs",
       "name": "Breadcrumbs",
       "settings": {
-        "background_color": "#FFFFFF",
+        "background_color": "#F4F2EE",
         "padding_top": 10,
         "padding_bottom": 10,
         "mobile_padding_top": 10,
@@ -35,6 +35,9 @@
         "hide_shop_other": false,
         "hide_quantity": true,
         "shop_more_below": true,
+        "show_delivery_estimate": true,
+        "delivery_days_min": 3,
+        "delivery_days_max": 5,
         "background_color": "#ffffff",
         "show_dynamic_checkout": true,
         "shipping_returns": "",
