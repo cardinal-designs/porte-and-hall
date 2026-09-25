@@ -720,7 +720,7 @@
     flex: 0 0 var(--ph-rb-sidebar-width) !important;
     width: var(--ph-rb-sidebar-width) !important;
     max-width: none !important;
-    padding: 20px 24px 0 0 !important;
+    padding: 0 24px 0 0 !important;
     border-right: 1px solid var(--ph-rb-divider) !important;
     height: 100%;
   }
