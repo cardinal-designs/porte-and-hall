@@ -54,7 +54,7 @@ html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) :is
 
 html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) :is(.rebuy-quick-view__search-input, .rebuy-quick-view-dropdown__search-input, .rebuy-quick-view-flyout__search-input):focus-within {
   border-bottom-color: var(--gold);
-  box-shadow: 0 1px 0 0 var(--gold);
+  box-shadow: 0 0 0 0 var(--gold);
 }
 
 html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) :is(.rebuy-quick-view__search-input, .rebuy-quick-view-dropdown__search-input, .rebuy-quick-view-flyout__search-input) input:focus-visible {
