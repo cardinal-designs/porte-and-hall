@@ -720,7 +720,6 @@
     flex: 0 0 var(--ph-rb-sidebar-width) !important;
     width: var(--ph-rb-sidebar-width) !important;
     max-width: none !important;
-    margin-top: 40px !important;
     padding: 0 24px 0 0 !important;
     border-right: 1px solid var(--ph-rb-divider) !important;
     height: 100%;
@@ -737,6 +736,7 @@
   }
 
   .rebuy-smart-search-results-page__context-section {
+    margin-top: 40px !important;
     padding-left: calc(var(--ph-rb-sidebar-width) + 24px) !important;
     box-sizing: border-box !important;
   }
