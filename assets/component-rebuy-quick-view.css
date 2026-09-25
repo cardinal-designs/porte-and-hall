@@ -95,7 +95,10 @@ html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) :is
 html #rebuy-quick-view-dropdown-search .rebuy-quick-view__overlay {
   width: 100%;
   max-width: none;
-  max-height: 640px !important;
+  /* --ph-search-overlay-top is the overlay's viewport offset, set in sections/header.liquid. */
+  max-height: min(640px, calc(100vh - var(--ph-search-overlay-top, 0px))) !important;
+  max-height: min(640px, calc(100dvh - var(--ph-search-overlay-top, 0px))) !important;
+  overflow-y: auto;
   margin-top: 0;
   border: 0;
   border-top: 1px solid var(--ph-search-rule);
@@ -118,6 +121,40 @@ html #rebuy-quick-view-dropdown-search .rebuy-quick-view__overlay .rebuy-quick-v
 
 html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) .rebuy-quick-view__container {
   color: inherit;
+}
+
+/* Page scroll is locked while the results overlay is open (class toggled in sections/header.liquid). */
+html.ph-search-scroll-lock,
+html.ph-search-scroll-lock body {
+  overflow: hidden;
+}
+
+html.ph-search-scroll-lock {
+  scrollbar-gutter: stable;
+}
+
+/* Results order: products, collections, content, then matching search terms. */
+html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) :is(.rebuy-quick-view__results, .rebuy-quick-view-dropdown__results) > .rebuy-quick-view__product-section {
+  order: 1;
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) :is(.rebuy-quick-view__results, .rebuy-quick-view-dropdown__results) > .rebuy-quick-view__product-section {
+    margin-bottom: 28px;
+  }
+}
+
+html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) :is(.rebuy-quick-view__results, .rebuy-quick-view-dropdown__results) > .rebuy-quick-view__collection-section {
+  order: 2;
+}
+
+html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) :is(.rebuy-quick-view__results, .rebuy-quick-view-dropdown__results) > .rebuy-quick-view__content-section {
+  order: 3;
+}
+
+html :is(#rebuy-quick-view-dropdown-search, #rebuy-quick-view-flyout-search) :is(.rebuy-quick-view__results, .rebuy-quick-view-dropdown__results) > .rebuy-quick-view__keywords-section {
+  order: 4;
 }
 
 #shopify-section-header:has(#rebuy-quick-view-dropdown-search .rebuy-quick-view-dropdown__container.visible) .header__search {

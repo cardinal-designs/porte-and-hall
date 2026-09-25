@@ -481,6 +481,47 @@
     if (visibleClose) visibleClose.click();
   };
 
+  // Fit the dropdown overlay to the space below its top edge (so it scrolls on short
+  // viewports) and lock page scroll while it's open.
+  let overlaySyncQueued = false;
+
+  const syncRebuyOverlay = () => {
+    overlaySyncQueued = false;
+    let open = false;
+
+    document.querySelectorAll(rebuySearchRoots).forEach((root) => {
+      const overlay = root.querySelector('.rebuy-quick-view__overlay');
+      if (!overlay || !overlay.getClientRects().length) return;
+
+      open = true;
+      const top = Math.max(0, Math.round(overlay.getBoundingClientRect().top)) + 'px';
+      if (root.style.getPropertyValue('--ph-search-overlay-top') !== top) {
+        root.style.setProperty('--ph-search-overlay-top', top);
+      }
+    });
+
+    document.documentElement.classList.toggle('ph-search-scroll-lock', open);
+  };
+
+  const queueRebuyOverlaySync = () => {
+    if (overlaySyncQueued) return;
+    overlaySyncQueued = true;
+    requestAnimationFrame(syncRebuyOverlay);
+  };
+
+  if (window.MutationObserver) {
+    new MutationObserver(queueRebuyOverlaySync).observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class', 'style'],
+    });
+  }
+
+  window.addEventListener('resize', queueRebuyOverlaySync);
+  document.addEventListener('transitionend', queueRebuyOverlaySync, true);
+  document.addEventListener('animationend', queueRebuyOverlaySync, true);
+
   const searchGroup = document.querySelector('.header__search-group');
 
   if (searchGroup) {
