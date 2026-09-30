@@ -2,6 +2,8 @@ body {
   font-family: brandon, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+
+
 /*============================================================================
   General
 ==============================================================================*/
@@ -1629,6 +1631,14 @@ header.condensed .header__menu {
 
 .menu-drawer .header__icon--account svg {
   width: 19px;
+}
+
+/* New Customer Accounts */
+/* New Customer Accounts */
+shopify-account {
+  --shopify-account-signed-in-avatar-color-background: #546b82;
+  --shopify-account-signed-in-avatar-color-text: #546b82;
+  --shopify-account-color-accent: #546b82;
 }
 
 /*============================================================================
