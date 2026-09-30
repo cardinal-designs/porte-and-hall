@@ -1255,7 +1255,8 @@ deferred-media {
 
 .header__icon--cart {
   position: relative;
-  width: 15px;
+  height: 28px;
+  width: auto;
 }
 
 /* Condensed Header */
