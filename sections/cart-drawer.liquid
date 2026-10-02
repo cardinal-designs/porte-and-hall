@@ -1,4 +1,5 @@
 <cart-drawer>
+  <ig-progress-bar></ig-progress-bar>
   <div
     class="cart-drawer"
     id="cart-drawer"
@@ -9,7 +10,9 @@
     tabindex="-1"
   >
     <form id="cart-drawer__form" action="{{ routes.cart_url }}" method="post" class="cart-drawer__form">
+      
       <div class="cart-drawer__inner">
+        
         <div class="cart-drawer__header">
           <h2 class="cart-drawer__title" tabindex="0">{{ section.settings.cart_title }}</h2>
           <button
