@@ -222,13 +222,13 @@
         "type": "shopify://apps/redo/blocks/redo_app_embed/c613644b-6df4-4d11-b336-43a5c06745a1",
         "disabled": false,
         "settings": {}
-      },
-      "12592085946906583873": {
-        "type": "shopify://apps/wunderkind/blocks/tag/40b05e3b-2403-4814-8fab-e17e57e8b1aa",
-        "disabled": true,
-        "settings": {}
       }
     }
   },
-  "presets": {}
+  "presets": {},
+  "platform_customizations": {
+    "custom_css": [
+      ".siena-iframe {z-index: 9 !important;}"
+    ]
+  }
 }
