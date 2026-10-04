@@ -3882,3 +3882,8 @@ iframe#preview-bar-iframe {
 .jdgm-carousel-wrapper .jdgm-carousel__item-container .jdgm-carousel-item__product {
   display: none;
 }
+
+/* Siena Popup */
+.siena-iframe {
+  z-index: 9 !important;
+}
