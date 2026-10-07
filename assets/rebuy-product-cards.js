@@ -146,7 +146,8 @@
   // Colour filter swatches, resolved like snippets/filter-color-swatch.liquid: the shared
   // map (hex or image), then a "{handle}.png" in Settings > Files, then — search only — a
   // CSS colour name ("Black", "Navy"). Anything else keeps the neutral "unmapped" circle.
-  const SWATCH_SELECTOR = 'label[for^="rebuy-metafield-variant-metafield-color-"]';
+  const SWATCH_ATTR = '[for^="rebuy-metafield-variant-metafield-color-"]';
+  const SWATCH_SELECTOR = `label${SWATCH_ATTR}`;
   const swatchMap = new Map(
     String(window.phColorSwatchMap || '')
       .split('|')
@@ -214,6 +215,20 @@
     });
   };
 
+  // Rebuy patches the sidebar in place when a filter is applied, so a label that was a
+  // colour swatch can come back as another filter's row (its `for` rewritten). The swatch
+  // CSS stops matching but the inline colour we set stays, leaving a solid block behind
+  // that row's text — so clear it once the label is no longer a colour swatch.
+  const STALE_SWATCH_SELECTOR = `label[data-ph-swatch]:not(${SWATCH_ATTR})`;
+
+  const clearSwatch = (label) => {
+    delete label.dataset.phSwatch;
+    label.style.backgroundColor = '';
+    label.style.backgroundImage = '';
+    label.classList.remove('ph-rebuy-swatch--mapped');
+    label.removeAttribute('title');
+  };
+
   // Mobile filter drawer: Rebuy's flyout, restyled as the collection's bottom sheet
   // (component-rebuy-search.css). Adds the collection's "Clear all" link and "Apply" button;
   // filters already apply as they're ticked, so Apply just closes — as on the collection.
@@ -253,6 +268,7 @@
     document.querySelectorAll(FLYOUT_SELECTOR).forEach(enhanceFlyout);
     document.querySelectorAll(CARD_SELECTOR).forEach(enhanceCard);
     document.querySelectorAll(FILTER_LABEL_SELECTOR).forEach(normaliseFilterLabel);
+    document.querySelectorAll(STALE_SWATCH_SELECTOR).forEach(clearSwatch);
     document.querySelectorAll(SWATCH_SELECTOR).forEach(applySwatch);
   };
 
