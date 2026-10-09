@@ -117,6 +117,10 @@ h3.rebuy-smart-search-results-page-sidebar__filter-section-title.rebuy-title {
   color: var(--blue, #546b82) !important;
 }
 
+.rebuy-smart-search-results-page__filter-option-checkbox-label span {
+  letter-spacing: 0.9px !important;
+}
+
 /* --- Spacing: gap between options and between filter groups --- */
 .rebuy-smart-search-results-page__filter-option {
   padding-bottom: 12px !important;
