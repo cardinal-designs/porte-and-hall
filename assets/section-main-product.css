@@ -413,6 +413,11 @@
   }
 }
 
+product-swatch {
+  display: inline-block;
+  cursor: pointer;
+}
+
 .product__swatch {
   width: 47px;
   height: 47px;
@@ -711,6 +716,7 @@
   justify-content: center;
   align-items: center;
   column-gap: 5px;
+  position: relative;
 }
 
 .product-form__submit.button .price {
@@ -1775,4 +1781,24 @@ product-form form {
     bottom: 20px;
   }
 
+}
+
+product-section:has(.product.product-loading) .loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #546b824a;
+  backdrop-filter: blur(2px);
+  z-index: 99999;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+html:has(product-section .product.product-loading) {
+  overflow-y: clip;
 }
