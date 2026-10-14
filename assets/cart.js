@@ -24,12 +24,100 @@ class CartItems extends HTMLElement {
     }, 300);
 
     this.addEventListener('change', this.debouncedOnChange.bind(this));
+    this.addEventListener('input', this.onGiftNoteInput.bind(this));
+    this.addEventListener('click', this.onGiftNoteClick.bind(this));
     this.giftNoteRemovalInFlight = false;
     requestAnimationFrame(() => this.enforceGiftNoteEligibility());
   }
 
   onChange(event) {
+    if (event.target.matches('.js-gift-note-checkbox')) {
+      this.toggleGiftNoteModal(event.target.checked);
+      return;
+    }
+    if (!event.target.dataset.index) return;
     this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
+  }
+
+  onGiftNoteInput(event) {
+    if (!event.target.matches('.js-gift-note-text')) return;
+    const charCountElement = this.querySelector('.js-gift-note-char-count');
+    if (charCountElement) charCountElement.textContent = `${event.target.maxLength - event.target.value.length}`;
+  }
+
+  onGiftNoteClick(event) {
+    if (event.target.closest('.js-gift-note-close')) {
+      event.preventDefault();
+      const checkbox = this.querySelector('.js-gift-note-checkbox');
+      if (checkbox) checkbox.checked = false;
+      this.toggleGiftNoteModal(false);
+    } else if (event.target.closest('.js-gift-note-add')) {
+      event.preventDefault();
+      this.addGiftNote();
+    }
+  }
+
+  toggleGiftNoteModal(isVisible) {
+    const giftNoteModal = this.querySelector('.js-gift-note-modal');
+    if (giftNoteModal) giftNoteModal.classList.toggle('is-visible', isVisible);
+  }
+
+  addGiftNote() {
+    const giftNoteField = this.querySelector('.js-gift-note-text');
+    const variantId = giftNoteField ? giftNoteField.dataset.variantId : null;
+    if (!variantId) return;
+
+    const propertyName = giftNoteField.dataset.propertyName;
+    const properties = propertyName ? { [propertyName]: giftNoteField.value } : {};
+
+    this.enableLoading();
+
+    const body = JSON.stringify({
+      items: [{ id: variantId, quantity: 1, properties }],
+      sections: this.getSectionsToRender().map((section) => section.section),
+      sections_url: window.location.pathname
+    });
+
+    fetch(`${routes.cart_add_url}`, {...fetchConfig(), ...{ body }})
+      .then((response) => response.json())
+      .then((parsedState) => {
+        if (parsedState.status) {
+          document.getElementById('cart-errors').textContent = parsedState.description || parsedState.message;
+          this.disableLoading();
+          return;
+        }
+
+        this.renderSections(parsedState.sections);
+        this.disableLoading();
+        this.syncCartDrawer();
+      }).catch(() => {
+        document.getElementById('cart-errors').textContent = window.cartStrings.error;
+        this.disableLoading();
+      });
+  }
+
+  // Re-renders the cart page after the cart was changed elsewhere (e.g. the cart drawer).
+  refresh() {
+    const sections = this.getSectionsToRender().map((section) => section.section);
+
+    return fetch(`${window.location.pathname}?sections=${sections.join(',')}`)
+      .then((response) => response.json())
+      .then((renderedSections) => {
+        this.renderSections(renderedSections);
+        this.enforceGiftNoteEligibility(true);
+      })
+      .catch((e) => console.error(e));
+  }
+
+  renderSections(sections) {
+    this.getSectionsToRender().forEach((section => {
+      if (!sections[section.section]) return;
+      const elementToReplace =
+        document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
+
+      elementToReplace.innerHTML =
+        this.getSectionInnerHTML(sections[section.section], section.selector);
+    }));
   }
 
   enforceGiftNoteEligibility(syncDrawer = false) {
@@ -141,13 +229,7 @@ class CartItems extends HTMLElement {
 
         if (cartFooter) cartFooter.classList.toggle('is-empty', parsedState.item_count === 0);
 
-        this.getSectionsToRender().forEach((section => {
-          const elementToReplace =
-            document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-
-          elementToReplace.innerHTML =
-            this.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
-        }));
+        this.renderSections(parsedState.sections);
 
         this.updateLiveRegions(line, parsedState.item_count);
         const lineItem = this.querySelector(`#CartItem-${line}`);

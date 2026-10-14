@@ -27,10 +27,7 @@ class CartDrawer extends HTMLElement {
     this.drawer.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
 
     this.pageOverlayElement = document.querySelector('.page-overlay');
-    this.giftWrapCheckbox = document.getElementById('add-gift-wrap'); 
-    
-    this.giftNoteText = document.getElementById('gift-note-text');
-    
+
     // Functionality
     this.currentItemCount = Array.from(this.querySelectorAll('[name="updates[]"]'))
       .reduce((total, quantityInput) => total + parseInt(quantityInput.value), 0);
@@ -42,7 +39,7 @@ class CartDrawer extends HTMLElement {
     this.addEventListener('change', this.debouncedOnChange.bind(this));
 
     this.addEventListener('input', (event) => {
-      if (event.target && event.target.id === 'gift-note-text') {
+      if (event.target && event.target.matches('.js-gift-note-text')) {
         this.updateCharCount(event.target);
       }
     });
@@ -57,14 +54,14 @@ class CartDrawer extends HTMLElement {
     const maxAttr = textarea.getAttribute('maxlength');
     const maxLength = maxAttr ? parseInt(maxAttr, 10) : 250;
     const remainingChars = maxLength - currentLength;
-    const charCountElement = document.querySelector('.char-count span');
+    const charCountElement = this.querySelector('.js-gift-note-char-count');
     if (charCountElement) charCountElement.textContent = `${remainingChars}`;
   }
 
   enforceGiftNoteEligibility() {
     if (document.querySelector('cart-items')) return;
 
-    const marker = document.getElementById('gift-note-orphaned');
+    const marker = this.querySelector('.js-gift-note-orphaned');
     if (!marker) {
       this.giftNoteRemovalInFlight = false;
       return;
@@ -76,6 +73,12 @@ class CartDrawer extends HTMLElement {
 
     this.giftNoteRemovalInFlight = true;
     this.updateQuantity(line, 0, null);
+  }
+
+  // Keeps the cart page in sync when the drawer changes the cart on /cart.
+  refreshCartPage() {
+    const cartItems = document.querySelector('cart-items');
+    if (cartItems && typeof cartItems.refresh === 'function') cartItems.refresh();
   }
 
   open() {
@@ -113,7 +116,7 @@ class CartDrawer extends HTMLElement {
   }
 
   onChange(event) {
-    if (event.target.matches('#add-gift-wrap')) {
+    if (event.target.matches('.js-gift-note-checkbox')) {
       this.handleGiftWrapChange(event);
     }else if(event.target.dataset?.index){
       this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
@@ -122,7 +125,7 @@ class CartDrawer extends HTMLElement {
 
   handleGiftWrapChange(event) {
     if (event.target.checked) {
-      const giftNoteModal = document.getElementById('gift-note-modal');
+      const giftNoteModal = this.querySelector('.js-gift-note-modal');
       if (giftNoteModal) giftNoteModal.classList.add('is-visible');
     } else {
       this.removeGiftWrapFromCart();
@@ -130,12 +133,15 @@ class CartDrawer extends HTMLElement {
   }
 
   addGiftWrapToCart() {
-    const giftNoteField = document.getElementById('gift-note-text');
+    const giftNoteField = this.querySelector('.js-gift-note-text');
     if (!giftNoteField) return;
 
     const giftNoteValue = giftNoteField.value;
-    const variantId = giftNoteField.getAttribute('data-variant-id');
+    const variantId = giftNoteField.dataset.variantId;
     if (!variantId) return;
+
+    const propertyName = giftNoteField.dataset.propertyName;
+    const properties = propertyName ? { [propertyName]: giftNoteValue } : {};
 
     fetch('/cart/add.js', {
       method: 'POST',
@@ -147,9 +153,7 @@ class CartDrawer extends HTMLElement {
           {
             id: variantId,
             quantity: 1,
-            properties: {
-              'Note': giftNoteValue
-            }
+            properties
           },
         ]
       }),
@@ -159,8 +163,9 @@ class CartDrawer extends HTMLElement {
         return response.json();
       })
       .then(() => {
-        const giftNoteModal = document.getElementById('gift-note-modal');
+        const giftNoteModal = this.querySelector('.js-gift-note-modal');
         if (giftNoteModal) giftNoteModal.classList.remove('is-visible');
+        this.refreshCartPage();
         if (typeof updateMainCart === 'function') {
           return updateMainCart(typeof Rebuy !== 'undefined' ? Rebuy : null);
         }
@@ -179,8 +184,8 @@ class CartDrawer extends HTMLElement {
   }
 
   findGiftWrapLineItemIndex() {
-    const giftNoteField = document.getElementById('gift-note-text');
-    const variantId = giftNoteField ? giftNoteField.getAttribute('data-variant-id') : null;
+    const giftNoteField = this.querySelector('.js-gift-note-text');
+    const variantId = giftNoteField ? giftNoteField.dataset.variantId : null;
     if (!variantId) return -1;
 
     const cartItems = [...this.querySelectorAll('[data-cart-item-id]')];
@@ -266,6 +271,7 @@ class CartDrawer extends HTMLElement {
         this.disableLoading();
         this.drawer.focus();
         this.enforceGiftNoteEligibility();
+        this.refreshCartPage();
       }).catch(() => {
         this.disableLoading();
       });
@@ -315,23 +321,18 @@ class CartDrawer extends HTMLElement {
 
   handleBodyClick(evt) {
     const target = evt.target;
-    let closeGiftModal = document.getElementById('close-gift-note');
-    if (closeGiftModal) {
-      const giftCloseBtn = document.getElementById('close-gift-note');
-      const giftNoteModal = document.getElementById('gift-note-modal');
-      const giftWrapCheckbox = document.getElementById('add-gift-wrap');
-  
-      if (giftCloseBtn && (target.matches('#close-gift-note') || giftCloseBtn.contains(target))) {
-        if (giftWrapCheckbox) {
-          giftWrapCheckbox.checked = false;
-        }
-        if (giftNoteModal) {
-          giftNoteModal.classList.remove('is-visible');
-        }
-      }
+    const giftCloseBtn = target.closest('.js-gift-note-close');
+    if (giftCloseBtn && this.contains(giftCloseBtn)) {
+      evt.preventDefault();
+      const giftWrapCheckbox = this.querySelector('.js-gift-note-checkbox');
+      const giftNoteModal = this.querySelector('.js-gift-note-modal');
+      if (giftWrapCheckbox) giftWrapCheckbox.checked = false;
+      if (giftNoteModal) giftNoteModal.classList.remove('is-visible');
     }
-    const addGiftNoteBtn = document.getElementById('add-gift-note-btn');
-    if (addGiftNoteBtn && target.matches('#add-gift-note-btn')) {
+
+    const addGiftNoteBtn = target.closest('.js-gift-note-add');
+    if (addGiftNoteBtn && this.contains(addGiftNoteBtn)) {
+      evt.preventDefault();
       this.addGiftWrapToCart();
     }
     
