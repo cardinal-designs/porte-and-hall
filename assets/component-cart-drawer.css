@@ -896,7 +896,7 @@ square-placement {
   margin-top: 0;
 }
 
-#gift-note-modal {
+.gift-note-modal {
   position: absolute;
   top: 0;
   right: 0;
@@ -913,7 +913,7 @@ square-placement {
   padding: 2rem;
 }
 
-#gift-note-modal.is-visible {
+.gift-note-modal.is-visible {
   transform: translateX(0);
 }
 
@@ -923,7 +923,7 @@ square-placement {
   gap: 1rem;
 }
 
-#gift-note-text {
+.gift-note__text {
   width: 100%;
   min-height: 120px;
   padding: 1rem;
@@ -935,14 +935,14 @@ square-placement {
   background-color: #fff;
 }
 
-#gift-note-text::placeholder {
+.gift-note__text::placeholder {
   color: #999;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 0.9rem;
 }
 
-#add-gift-note-btn {
+.gift-note__add-btn {
   background-color: var(--gold);
   color: #fff;
   text-align: center;
@@ -976,7 +976,7 @@ square-placement {
     justify-content: center;
     position: relative;
 }
-#close-gift-note {
+.gift-note__close {
   background: none;
   border: none;
   cursor: pointer;
@@ -984,7 +984,7 @@ square-placement {
   position: absolute;
   left: 0;
 }
-#gift-wrap-option {
+.gift-wrap-option {
   text-transform: uppercase;
   font-size: 16px;
   padding: 10px 20px;
@@ -998,7 +998,7 @@ square-placement {
     padding-bottom: 30px;
     border-bottom: 1px solid rgba(99, 102, 106, .1);
 }
-#gift-wrap-option input {
+.gift-wrap-option input {
     padding: 0;
     height: initial;
     width: initial;
@@ -1006,14 +1006,14 @@ square-placement {
     display: none;
     cursor: pointer;
 }
-#gift-wrap-option label {
+.gift-wrap-option label {
     position: relative;
     cursor: pointer;
     font-weight: 450 !important;
     line-height: 22px;
     text-transform: none;
 }
-#gift-wrap-option label:before {
+.gift-wrap-option label:before {
     content: "";
     -webkit-appearance: none;
     background-color: transparent;
@@ -1027,7 +1027,7 @@ square-placement {
     border: 1px solid #546B82;
     top: -3px;
 }
-#gift-wrap-option input:checked+label:after {
+.gift-wrap-option input:checked+label:after {
     content: "";
     display: block;
     position: absolute;
@@ -1038,4 +1038,17 @@ square-placement {
     border: solid #546B82;
     border-width: 0 1px 1px 0;
     transform: rotate(45deg);
+}
+/* Gift note on the cart page */
+.cart__gift-note .gift-wrap-option {
+  margin: 0;
+  padding: 16px 0;
+  border-top: 1px solid var(--beige);
+}
+
+.gift-note-modal.gift-note-modal--page {
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  box-shadow: -2px 0 16px rgba(0, 0, 0, 0.15);
 }
