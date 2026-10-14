@@ -3,13 +3,15 @@
   Configured under Theme settings > Gift note.
 
   Accepts:
-  - part {String}: 'option' (orphan marker + checkbox) or 'modal'
+  - part {String}: 'option' (cart fix marker + checkbox), 'modal', or 'item-check'
   - scope {String}: unique prefix for element IDs, e.g. 'CartDrawer' or 'Cart'
   - modal_class {String}: optional extra class for the modal
+  - item {Object}: cart line to test, for part 'item-check' (outputs 'true' if it is the gift note)
 
   Usage:
   {% render 'gift-note', part: 'option', scope: 'CartDrawer' %}
   {% render 'gift-note', part: 'modal', scope: 'CartDrawer' %}
+  {% capture is_gift_note %}{% render 'gift-note', part: 'item-check', item: item %}{% endcapture %}
 {%- endcomment -%}
 
 {%- liquid
@@ -33,23 +35,38 @@
 
   assign gift_note_in_cart = false
   assign gift_note_line = 0
+  assign gift_note_quantity = 0
   assign has_eligible_item = false
 
-  for item in cart.items
+  assign gift_note_lines = cart.items
+  if part == 'item-check'
+    assign gift_note_lines = blank
     assign item_variant_id = item.variant_id | append: ''
+    if gift_note_sku != blank and item.sku == gift_note_sku
+      assign gift_note_in_cart = true
+    elsif gift_note_variant_id != blank and item_variant_id == gift_note_variant_id
+      assign gift_note_in_cart = true
+    elsif gift_note_product.title != blank and item.product_id == gift_note_product.id
+      assign gift_note_in_cart = true
+    endif
+  endif
+
+  for cart_item in gift_note_lines
+    assign item_variant_id = cart_item.variant_id | append: ''
     assign is_gift_note = false
 
-    if gift_note_sku != blank and item.sku == gift_note_sku
+    if gift_note_sku != blank and cart_item.sku == gift_note_sku
       assign is_gift_note = true
     elsif gift_note_variant_id != blank and item_variant_id == gift_note_variant_id
       assign is_gift_note = true
-    elsif gift_note_product.title != blank and item.product_id == gift_note_product.id
+    elsif gift_note_product.title != blank and cart_item.product_id == gift_note_product.id
       assign is_gift_note = true
     endif
 
     if is_gift_note
       assign gift_note_in_cart = true
       assign gift_note_line = forloop.index
+      assign gift_note_quantity = cart_item.quantity
     else
       assign has_eligible_item = true
     endif
@@ -67,9 +84,15 @@
 -%}
 
 {%- case part -%}
+  {%- when 'item-check' -%}
+    {%- if gift_note_in_cart -%}true{%- endif -%}
+
   {%- when 'option' -%}
+    {%- comment -%} The JS sets this line to data-quantity: removes a leftover gift note, or caps it at 1 {%- endcomment -%}
     {%- if gift_note_in_cart and has_eligible_item == false -%}
-      <div class="js-gift-note-orphaned" data-line="{{ gift_note_line }}" hidden></div>
+      <div class="js-gift-note-fix" data-line="{{ gift_note_line }}" data-quantity="0" hidden></div>
+    {%- elsif gift_note_quantity > 1 -%}
+      <div class="js-gift-note-fix" data-line="{{ gift_note_line }}" data-quantity="1" hidden></div>
     {%- endif -%}
 
     {%- if show_gift_note -%}

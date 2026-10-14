@@ -23,7 +23,10 @@ class CartItems extends HTMLElement {
       this.onChange(event);
     }, 300);
 
-    this.addEventListener('change', this.debouncedOnChange.bind(this));
+    this.addEventListener('change', (event) => {
+      this.lockCheckoutForQuantityChange(event);
+      this.debouncedOnChange(event);
+    });
     this.addEventListener('input', this.onGiftNoteInput.bind(this));
     this.addEventListener('click', this.onGiftNoteClick.bind(this));
     this.giftNoteRemovalInFlight = false;
@@ -37,6 +40,20 @@ class CartItems extends HTMLElement {
     }
     if (!event.target.dataset.index) return;
     this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
+    this.unlockCheckoutForQuantityChange();
+  }
+
+  // Locks checkout during the debounce delay, before the update request starts.
+  lockCheckoutForQuantityChange(event) {
+    if (!event.target.dataset.index || this.quantityChangePending) return;
+    this.quantityChangePending = true;
+    CartCheckoutGuard.start();
+  }
+
+  unlockCheckoutForQuantityChange() {
+    if (!this.quantityChangePending) return;
+    this.quantityChangePending = false;
+    CartCheckoutGuard.end();
   }
 
   onGiftNoteInput(event) {
@@ -71,6 +88,7 @@ class CartItems extends HTMLElement {
     const properties = propertyName ? { [propertyName]: giftNoteField.value } : {};
 
     this.enableLoading();
+    CartCheckoutGuard.start();
 
     const body = JSON.stringify({
       items: [{ id: variantId, quantity: 1, properties }],
@@ -93,12 +111,15 @@ class CartItems extends HTMLElement {
       }).catch(() => {
         document.getElementById('cart-errors').textContent = window.cartStrings.error;
         this.disableLoading();
+      }).finally(() => {
+        CartCheckoutGuard.end();
       });
   }
 
   // Re-renders the cart page after the cart was changed elsewhere (e.g. the cart drawer).
   refresh() {
     const sections = this.getSectionsToRender().map((section) => section.section);
+    CartCheckoutGuard.start();
 
     return fetch(`${window.location.pathname}?sections=${sections.join(',')}`)
       .then((response) => response.json())
@@ -106,7 +127,8 @@ class CartItems extends HTMLElement {
         this.renderSections(renderedSections);
         this.enforceGiftNoteEligibility(true);
       })
-      .catch((e) => console.error(e));
+      .catch((e) => console.error(e))
+      .finally(() => CartCheckoutGuard.end());
   }
 
   renderSections(sections) {
@@ -121,7 +143,7 @@ class CartItems extends HTMLElement {
   }
 
   enforceGiftNoteEligibility(syncDrawer = false) {
-    const marker = this.querySelector('.js-gift-note-orphaned');
+    const marker = this.querySelector('.js-gift-note-fix');
     if (!marker) {
       this.giftNoteRemovalInFlight = false;
       if (syncDrawer) this.syncCartDrawer();
@@ -133,7 +155,7 @@ class CartItems extends HTMLElement {
     if (!line || line === '0') return;
 
     this.giftNoteRemovalInFlight = true;
-    this.updateQuantity(line, 0, null);
+    this.updateQuantity(line, marker.dataset.quantity || 0, null);
   }
 
   syncCartDrawer() {
@@ -198,6 +220,7 @@ class CartItems extends HTMLElement {
 
   updateQuantity(line, quantity, name) {
     this.enableLoading(line);
+    CartCheckoutGuard.start();
 
     const body = JSON.stringify({
       line,
@@ -240,6 +263,9 @@ class CartItems extends HTMLElement {
         this.querySelectorAll('.cart-item__price .loading-overlay').forEach((overlay) => overlay.classList.add('hidden'));
         document.getElementById('cart-errors').textContent = window.cartStrings.error;
         this.disableLoading();
+        this.giftNoteRemovalInFlight = false;
+      }).finally(() => {
+        CartCheckoutGuard.end();
       });
   }
 

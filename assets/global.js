@@ -312,6 +312,54 @@ function fetchConfig(type = 'json') {
   };
 }
 
+/*
+ * Blocks checkout while the cart is being updated, or while the gift note
+ * line needs fixing (left without any other product, or quantity above 1).
+ * Stops shoppers from reaching checkout with a stale cart.
+ */
+const CartCheckoutGuard = {
+  pending: 0,
+  selector: '[name="checkout"], .additional-checkout-buttons, .cart__dynamic-checkout-buttons',
+
+  start() {
+    this.pending += 1;
+    this.sync();
+  },
+
+  end() {
+    this.pending = Math.max(0, this.pending - 1);
+    this.sync();
+  },
+
+  isLocked() {
+    return this.pending > 0 || !!document.querySelector('.js-gift-note-fix');
+  },
+
+  sync() {
+    const isLocked = this.isLocked();
+    document.documentElement.classList.toggle('cart-checkout-locked', isLocked);
+    document.querySelectorAll(this.selector).forEach((element) => {
+      if (isLocked) {
+        element.setAttribute('aria-disabled', 'true');
+      } else if (!element.classList.contains('is-disabled')) {
+        element.removeAttribute('aria-disabled');
+      }
+    });
+  },
+
+  block(event) {
+    if (!this.isLocked()) return;
+    const target = event.type === 'submit' ? event.submitter : event.target;
+    if (!target || !target.closest || !target.closest(this.selector)) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }
+};
+
+document.addEventListener('click', (event) => CartCheckoutGuard.block(event), true);
+document.addEventListener('submit', (event) => CartCheckoutGuard.block(event), true);
+document.addEventListener('DOMContentLoaded', () => CartCheckoutGuard.sync());
+
 function getCookie(name) {
   var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
   return v ? v[2] : null;

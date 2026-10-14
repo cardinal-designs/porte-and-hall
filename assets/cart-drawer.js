@@ -36,7 +36,10 @@ class CartDrawer extends HTMLElement {
       this.onChange(event);
     }, 300);
 
-    this.addEventListener('change', this.debouncedOnChange.bind(this));
+    this.addEventListener('change', (event) => {
+      this.lockCheckoutForQuantityChange(event);
+      this.debouncedOnChange(event);
+    });
 
     this.addEventListener('input', (event) => {
       if (event.target && event.target.matches('.js-gift-note-text')) {
@@ -61,7 +64,7 @@ class CartDrawer extends HTMLElement {
   enforceGiftNoteEligibility() {
     if (document.querySelector('cart-items')) return;
 
-    const marker = this.querySelector('.js-gift-note-orphaned');
+    const marker = this.querySelector('.js-gift-note-fix');
     if (!marker) {
       this.giftNoteRemovalInFlight = false;
       return;
@@ -72,7 +75,7 @@ class CartDrawer extends HTMLElement {
     if (!line || line === '0') return;
 
     this.giftNoteRemovalInFlight = true;
-    this.updateQuantity(line, 0, null);
+    this.updateQuantity(line, marker.dataset.quantity || 0, null);
   }
 
   // Keeps the cart page in sync when the drawer changes the cart on /cart.
@@ -121,6 +124,20 @@ class CartDrawer extends HTMLElement {
     }else if(event.target.dataset?.index){
       this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
     }
+    this.unlockCheckoutForQuantityChange();
+  }
+
+  // Locks checkout during the debounce delay, before the update request starts.
+  lockCheckoutForQuantityChange(event) {
+    if (!event.target.dataset?.index || this.quantityChangePending) return;
+    this.quantityChangePending = true;
+    CartCheckoutGuard.start();
+  }
+
+  unlockCheckoutForQuantityChange() {
+    if (!this.quantityChangePending) return;
+    this.quantityChangePending = false;
+    CartCheckoutGuard.end();
   }
 
   handleGiftWrapChange(event) {
@@ -143,6 +160,7 @@ class CartDrawer extends HTMLElement {
     const propertyName = giftNoteField.dataset.propertyName;
     const properties = propertyName ? { [propertyName]: giftNoteValue } : {};
 
+    CartCheckoutGuard.start();
     fetch('/cart/add.js', {
       method: 'POST',
       headers: {
@@ -172,6 +190,7 @@ class CartDrawer extends HTMLElement {
       })
       .catch((error) => console.error(error))
       .finally(() => {
+        CartCheckoutGuard.end();
         this.drawer.focus();
       });
   }
@@ -228,6 +247,7 @@ class CartDrawer extends HTMLElement {
 
   updateQuantity(line, quantity, name) {
     this.enableLoading(line);
+    CartCheckoutGuard.start();
 
     const body = JSON.stringify({
       line,
@@ -247,9 +267,10 @@ class CartDrawer extends HTMLElement {
           document.getElementById(`Quantity-${line}`) || document.getElementById(`Drawer-quantity-${line}`);
 
         if (parsedState.errors) {
-          quantityElement.value = quantityElement.getAttribute('value');
+          if (quantityElement) quantityElement.value = quantityElement.getAttribute('value');
           this.showLineItemError(line, parsedState.errors);
           this.disableLoading();
+          this.giftNoteRemovalInFlight = false;
           return;
         }
 
@@ -274,6 +295,9 @@ class CartDrawer extends HTMLElement {
         this.refreshCartPage();
       }).catch(() => {
         this.disableLoading();
+        this.giftNoteRemovalInFlight = false;
+      }).finally(() => {
+        CartCheckoutGuard.end();
       });
   }
 
@@ -365,6 +389,7 @@ function refreshCartIconBubble() {
 }
 
 function updateMainCart(Rebuy) {
+  CartCheckoutGuard.start();
   return fetch(`${window.origin}/?section_id=cart-drawer`)
     .then((response) => response.text())
     .then((responseText) => {
@@ -389,6 +414,7 @@ function updateMainCart(Rebuy) {
       console.error(e);
     })
     .finally(() => {
+      CartCheckoutGuard.end();
       setTimeout(() => {
         if (Rebuy) {
           Rebuy.init();

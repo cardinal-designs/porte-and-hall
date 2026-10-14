@@ -1,8 +1,5 @@
-{% if cart == empty %}
-  {% render 'icon' icon: 'cart-empty' %}
-{% else %}
-  {% render 'icon' icon: 'cart' %}
-{% endif %}
+{%- comment -%} Same icon as the header markup; snippets/icon.liquid has no 'cart-empty' icon {%- endcomment -%}
+{% render 'icon' icon: 'cart' %}
 <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
 {% if cart != empty %}
   <div class="cart-count-bubble">

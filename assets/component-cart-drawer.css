@@ -987,9 +987,10 @@ square-placement {
 .gift-wrap-option {
   text-transform: uppercase;
   font-size: 16px;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border-bottom: 1px solid var(--beige);
-  margin: 0 -20px;
+  /* Negative top margin cancels the drawer footer's top padding so spacing is even */
+  margin: -5px -20px 0;
 }
 .gift-note__image {
     text-align: center;
@@ -1008,10 +1009,12 @@ square-placement {
 }
 .gift-wrap-option label {
     position: relative;
+    display: flex;
+    align-items: center;
     cursor: pointer;
     font-weight: 450 !important;
     line-height: 22px;
-    text-transform: none;
+    text-transform: uppercase;
 }
 .gift-wrap-option label:before {
     content: "";
@@ -1024,17 +1027,18 @@ square-placement {
     margin-right: 9px;
     height: 18px;
     width: 18px;
+    flex-shrink: 0;
     border: 1px solid #546B82;
-    top: -3px;
 }
 .gift-wrap-option input:checked+label:after {
     content: "";
     display: block;
     position: absolute;
-    top: 4px;
+    top: 50%;
     left: 7px;
     width: 5px;
     height: 10px;
+    margin-top: -6px;
     border: solid #546B82;
     border-width: 0 1px 1px 0;
     transform: rotate(45deg);
@@ -1051,4 +1055,22 @@ square-placement {
   height: 100vh;
   overflow-y: auto;
   box-shadow: -2px 0 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Checkout locked while the cart is updating (see CartCheckoutGuard in global.js) */
+.cart-checkout-locked [name="checkout"],
+.cart-checkout-locked .additional-checkout-buttons,
+.cart-checkout-locked .cart__dynamic-checkout-buttons {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Applies before JS runs when the page loads with a leftover gift note */
+html:has(.js-gift-note-fix) [name="checkout"],
+html:has(.js-gift-note-fix) .additional-checkout-buttons,
+html:has(.js-gift-note-fix) .cart__dynamic-checkout-buttons {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
