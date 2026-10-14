@@ -40,6 +40,9 @@
     "trade_pricing_discount_percentage": "20",
     "final_sale_property_key": "Final Sale",
     "final_sale_property_value": "No returns, exchanges, or additional discounts.",
+    "gift_note_product": "gift-note",
+    "gift_note_variant_id": "41650434277439",
+    "gift_note_sku": "GFTNT00PH",
     "colors_solid_button_labels": "#FFFFFF",
     "colors_accent_1": "#121212",
     "colors_accent_2": "#334FB4",
@@ -95,14 +98,7 @@
           "cart_title": "Your Cart",
           "empty_text": "",
           "button": "shopify://collections/shop-all",
-          "button_text": "",
-          "enable_gift_note": true,
-          "gift_note_product": "gift-note",
-          "gift_note_variant_id": "41650434277439",
-          "gift_note_sku": "GFTNT00PH",
-          "checkbox_label_text": "Include a personal gift note for [price]?",
-          "note_button_text": "ADD NOW",
-          "gift_note": "Gift Note Will be included within the package."
+          "button_text": ""
         }
       },
       "footer": {
@@ -223,11 +219,6 @@
       "4252583770683550135": {
         "type": "shopify://apps/redo/blocks/redo_app_embed/c613644b-6df4-4d11-b336-43a5c06745a1",
         "disabled": false,
-        "settings": {}
-      },
-      "12592085946906583873": {
-        "type": "shopify://apps/wunderkind/blocks/tag/40b05e3b-2403-4814-8fab-e17e57e8b1aa",
-        "disabled": true,
         "settings": {}
       }
     }
