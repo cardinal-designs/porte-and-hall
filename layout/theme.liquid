@@ -223,6 +223,8 @@
         window.phColorSwatchMap = {{ ph_swatch_map | strip | json }};
         window.phColorSwatchFileUrl = {{ 'ph-swatch-handle.png' | file_img_url: '60x60' | json }};
       </script>
+      {%- comment -%} Search-grid-style cards for the no-results "What Others Are Loving" widget. {%- endcomment -%}
+      <script src="{{ 'rebuy-no-results-widget.js' | asset_url }}" defer="defer"></script>
     {% endif %}
 
     {{ 'component-rebuy-quick-view.css' | asset_url | stylesheet_tag }}
