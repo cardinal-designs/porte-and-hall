@@ -980,6 +980,22 @@
     padding-left: 0 !important;
   }
 
+  .rebuy-smart-search-results-page__results-section.rebuy-smart-search-results-page-sidebar__result-section [data-rebuy-id="297767"] {
+    margin-left: -24px;
+  }
+
+  #rebuy-widget-297767 .ph-no-results-card__name {
+    font-size: 16px;
+  }
+
+  .rebuy-widget .rebuy-carousel__arrows .rebuy-carousel__arrow--next {
+    right: -30px;
+  }
+
+  .rebuy-widget .rebuy-carousel__arrows .rebuy-carousel__arrow--prev {
+    left: -30px;
+  }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -1085,7 +1101,7 @@
   }
 
   .rebuy-smart-search-results-page-sidebar__filter-mobile-facets-label {
-    font-size: 0 !important; /* "Filter and sort" -> "Filter": sorting sits beside it */
+    font-size: 0 !important;
   }
 
   .rebuy-smart-search-results-page-sidebar__filter-mobile-facets-label::before {
@@ -1093,7 +1109,6 @@
     font-size: 12px;
   }
 
-  /* --- Filter drawer: the collection's bottom sheet (.collection-filters__slideout) --- */
   .rebuy-smart-search-results-page__background {
     background: rgba(79, 65, 70, 0.3) !important;
   }
@@ -1143,7 +1158,7 @@
 
   .rebuy-smart-search-results-page__flyout-header-title {
     margin: 0 !important;
-    font-size: 0 !important; /* "Filter & Sort (term - n)" -> "Filter" */
+    font-size: 0 !important;
     line-height: 1.2 !important;
   }
 
@@ -1157,7 +1172,6 @@
     color: var(--ph-rb-text);
   }
 
-  /* The collection's sheet has no close button: tap outside or Apply. */
   .rebuy-smart-search-results-page__flyout-close {
     display: none !important;
   }
@@ -1187,12 +1201,10 @@
     padding: 6px 20px 18px !important;
   }
 
-  /* Sorting lives in the toolbar, as on the collection. */
   .rebuy-smart-search-results-page__flyout .rebuy-smart-search-results-page__flyout-sort-by {
     display: none !important;
   }
 
-  /* Pills stay; the header's "Clear all" replaces Rebuy's reset in the sheet. */
   .rebuy-smart-search-results-page__flyout .rebuy-smart-search-results-page__selected-filters-reset {
     display: none !important;
   }
@@ -1241,7 +1253,6 @@
     padding-left: 0 !important;
   }
 
-  /* Cards */
   .rebuy-smart-search-results-page__container {
     gap: 25px 12px !important;
   }
@@ -1289,6 +1300,22 @@
 
   .rebuy-widget .rebuy-product-grid.small-carousel {
     padding-bottom: 40px !important;
+  }
+
+  .rebuy-smart-search-results-page-sidebar__result-section {
+    padding-left: 0px !important;
+  }
+
+  .rebuy-smart-search-results-page__results-section.rebuy-smart-search-results-page-sidebar__result-section [data-rebuy-id="297767"] {
+    margin-left: 0;
+  }
+
+  .rebuy-widget .rebuy-carousel__arrows .rebuy-carousel__arrow--next {
+    right: 0;
+  }
+
+  .rebuy-widget .rebuy-carousel__arrows .rebuy-carousel__arrow--prev {
+    left: 0;
   }
 
 }
