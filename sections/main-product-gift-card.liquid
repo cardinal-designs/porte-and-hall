@@ -688,7 +688,7 @@
         {{ seo_media | img_url: media_size | prepend: "https:" | json }}
       ],
     {% endif %}
-    "description": {{ product.description | strip_html | json }},
+    "description": {{ product.description | strip_html | strip | default: product.title | json }},
     {% if product.selected_or_first_available_variant.sku != blank %}
       "sku": {{ product.selected_or_first_available_variant.sku | json }},
     {% endif %}
@@ -735,6 +735,7 @@
           "price" : {{ variant.price | divided_by: 100.00 | json }},
           "priceCurrency" : {{ cart.currency.iso_code | json }},
           "priceValidUntil": {{ 'now' | date: '%s' | plus: 2592000 | date: '%Y-%m-%d' | json }},
+          "validFrom": {{ product.published_at | default: product.created_at | date: '%Y-%m-%d' | json }},
           "url" : {{ shop.url | append: variant.url | json }},
           "shippingDetails": {
             "@type": "OfferShippingDetails",

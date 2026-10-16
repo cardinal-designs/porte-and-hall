@@ -1231,7 +1231,7 @@ endcapture
       "name": {{ product.title | json }},
       "url": {{ request.origin | append: product.url | json }},
       "image": {{ seo_image_url | json }},
-      "description": {{ product.description | strip_html | json }},
+      "description": {{ product.description | strip_html | strip | default: product.title | json }},
       "brand": {
         "@type": "Brand",
         "name": {{ product.vendor | json }}
@@ -1262,6 +1262,7 @@ endcapture
           "price": {{ variant.price | divided_by: 100.00 | json }},
           "priceCurrency": {{ cart.currency.iso_code | json }},
           "priceValidUntil": {{ 'now' | date: '%s' | plus: 2592000 | date: '%Y-%m-%d' | json }},
+          "validFrom": {{ product.published_at | default: product.created_at | date: '%Y-%m-%d' | json }},
           "url": {{ request.origin | append: variant.url | json }},
           "itemCondition": "https://schema.org/NewCondition",
           "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
