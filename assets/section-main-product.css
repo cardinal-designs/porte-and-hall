@@ -1777,7 +1777,7 @@ product-form form {
 
 }
 /* ---------- PDP accordions (main-product-accordion) ---------- */
-/* Scoped to this section so the other PDP templates keep their accordions. */
+
 .main-product-accordion .product-accordion__container {
   margin-top: 24px;
   border: 1px solid #E5E0D7;
@@ -1794,37 +1794,88 @@ product-form form {
 }
 
 .main-product-accordion .accordion-title {
-  padding: 2px 14px;
+  padding: 0 15px;
   background: #f9f9f9;
 }
 
 .main-product-accordion .accordion-title h2 {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 14px;
+  padding-bottom: 14px;
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.3px;
-  line-height: 1.4;
-}
-
-.main-product-accordion .accordion-content .product__tabs-item {
-  padding: 2px 14px 16px;
-  font-size: 15px;
-  line-height: 1.6;
-  color: #6b6b6b;
-}
-
-/* FAQ entries inside the PDP accordion (custom.faqs metaobjects) */
-.main-product-accordion .product__faq-item + .product__faq-item {
-  margin-top: 14px;
-}
-
-.main-product-accordion .product__faq-question {
-  margin: 0 0 4px;
-  font-weight: 600;
+  line-height: 22px;
   color: var(--blue);
 }
 
-.main-product-accordion .product__faq-answer p:last-child {
+.main-product-accordion .accordion-title svg {
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.main-product-accordion .accordion-content .product__tabs-item {
+  margin-top: 0;
+  padding: 18px 15px 22px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.3px;
+  color: var(--blue);
+}
+
+/* Rich text and the dimensions copy follow the panel's type, not .body-sm's. */
+.main-product-accordion .product__tabs-item p {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.main-product-accordion .product__tabs-item p:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.main-product-accordion .accordion-content ul {
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+
+.main-product-accordion .accordion-content ul:last-child {
   margin-bottom: 0;
+}
+
+.main-product-accordion .product__features-item p {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.product__tabs-item li {
+  font-weight: 400;
+  margin: 5px 0;
+}
+
+/* FAQ entries inside the PDP accordion (custom.faqs metaobjects) */
+.main-product-accordion .product__faq-item {
+  line-height: 22px;
+}
+
+.main-product-accordion .product__faq-item + .product__faq-item {
+  margin-top: 20px;
+}
+
+.main-product-accordion .product__faq-item .product__faq-question {
+  margin: 0 0 2px;
+  font-weight: 600;
+}
+
+.main-product-accordion .product__faq-question::before {
+  content: 'Q: ';
+}
+
+.main-product-accordion .product__faq-answer > :first-child::before {
+  content: 'A: ';
+}
+
+.main-product-accordion .product__faq-answer p:not(:last-child) {
+  margin-bottom: 6px;
 }
