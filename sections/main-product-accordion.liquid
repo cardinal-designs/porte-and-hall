@@ -33,6 +33,19 @@
   assign color_label = 'color,colour,couleur,colore,farbe,색,色,färg,farve' | split: ','
   assign collection_title = grouped_collection.title | downcase
 
+  # Accordion content lives on the product's collection — the one
+  # product.metafields.custom.collection_for_metafield_content points at, which the
+  # theme editor connects to section.settings.collection. The grouped collection is
+  # the fallback, as elsewhere in this section.
+  assign content_collection = grouped_collection
+  if section.settings.collection != blank
+    assign content_collection = section.settings.collection
+  endif
+  assign shipping_returns_metafield = content_collection.metafields.custom.shipping_returns
+  # custom.faqs is a list of FAQ metaobjects (fields: question, answer), the same
+  # source the `faq` section repeats over. Not rich text — don't metafield_tag it.
+  assign faqs_metaobjects = content_collection.metafields.custom.faqs.value
+
   capture color_swatch_list
   assign swatch_count = 1
   for swatch in grouped_collection.products
@@ -104,7 +117,7 @@ endcapture
 %}
 
 {% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> {% endcomment %}
-<section class="page-width">
+<section class="page-width main-product-accordion">
   <div class="product">
     <a class="skip-to-content-link button visually-hidden" href="#ProductInfo-{{ section.id }}">
       {{ 'accessibility.skip_to_product_info' | t }}
@@ -750,7 +763,7 @@ endcapture
        
          <div class="accordion">
            <div data-id="2" class="accordion-title">
-             <h2 class="h3">Materials</h2>
+             <h2 class="h3">Materials &amp; Construction</h2>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="2" class="accordion-content">
@@ -765,7 +778,7 @@ endcapture
         {% if grouped_collection.metafields.custom.dimensions != blank %}
          <div class="accordion">
            <div data-id="3" class="accordion-title">
-             <h2 class="h3">Dimensions</h2>
+             <h2 class="h3">Fit &amp; Dimensions</h2>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="3" class="accordion-content">
@@ -795,7 +808,7 @@ endcapture
         {% if section.settings.care != blank %}
          <div class="accordion">
            <div data-id="4" class="accordion-title">
-             <h2 class="h3">Cleaning &amp; Care</h2>
+             <h2 class="h3">Care &amp; Cleaning</h2>
              {% render 'icon', icon: 'caret' %}
            </div>
            <div data-id="4" class="accordion-content">
@@ -807,6 +820,51 @@ endcapture
            </div>
          </div>
         {% endif %}
+
+         <div class="accordion">
+           <div data-id="5" class="accordion-title">
+             <h2 class="h3">Shipping &amp; Returns</h2>
+             {% render 'icon', icon: 'caret' %}
+           </div>
+           <div data-id="5" class="accordion-content">
+            <div class="swiper-slide">
+              <div class="product__tabs-item body-sm">
+                {%- if shipping_returns_metafield != blank -%}
+                  {{ shipping_returns_metafield | metafield_tag }}
+                {%- else -%}
+                  {{ section.settings.shipping_returns }}
+                {%- endif -%}
+              </div>
+            </div>
+           </div>
+         </div>
+
+         <div class="accordion">
+           <div data-id="6" class="accordion-title">
+             <h2 class="h3">FAQs</h2>
+             {% render 'icon', icon: 'caret' %}
+           </div>
+           <div data-id="6" class="accordion-content">
+            <div class="swiper-slide">
+              <div class="product__tabs-item body-sm">
+                {%- if faqs_metaobjects != blank -%}
+                  {%- comment -%}
+                    Same field access as the faq section's repeater blocks:
+                    question as plain text, answer through metafield_tag.
+                  {%- endcomment -%}
+                  {%- for faq in faqs_metaobjects -%}
+                    <div class="product__faq-item">
+                      <p class="product__faq-question">{{ faq.question.value }}</p>
+                      <div class="product__faq-answer">{{ faq.answer | metafield_tag }}</div>
+                    </div>
+                  {%- endfor -%}
+                {%- else -%}
+                  {{ section.settings.faqs }}
+                {%- endif -%}
+              </div>
+            </div>
+           </div>
+         </div>
 
         {% comment %}
         {% if product.handle contains "outlier" %}
@@ -1375,6 +1433,22 @@ endcapture
       "id": "shop_more_below",
       "label": "Move Shop Other to Bottom",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Accordions"
+    },
+    {
+      "type": "html",
+      "id": "shipping_returns",
+      "label": "Shipping & Returns fallback",
+      "info": "Used only when the collection metafield custom.shipping_returns is empty."
+    },
+    {
+      "type": "html",
+      "id": "faqs",
+      "label": "FAQs fallback",
+      "info": "Used only when the collection's FAQ metaobject list (custom.faqs) is empty."
     }
   ]
 }
