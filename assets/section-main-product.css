@@ -1778,7 +1778,7 @@ product-form form {
 }
 
 /* Afterpay */
-square-placement {
-  display: none;
+.product-form square-placement {
+  display: none !important;
   margin-top: 0;
 }
