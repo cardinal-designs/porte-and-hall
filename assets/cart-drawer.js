@@ -261,12 +261,25 @@ class CartDrawer extends HTMLElement {
       .querySelector(selector).innerHTML;
   }
 
-  enableLoading() {
-    document.getElementById('cart-drawer-loading').classList.remove('hidden');
+  enableLoading(line) {
+    const subtotalLoader = document.getElementById('cart-drawer-loading');
+    if (subtotalLoader) subtotalLoader.classList.remove('hidden');
+
+    const lineItem = this.querySelector(`#CartDrawer-Item-${line}`);
+    if (lineItem) {
+      lineItem.querySelectorAll('.cart-item__price .loading-overlay').forEach((overlay) => {
+        overlay.classList.remove('hidden');
+      });
+    }
   }
 
   disableLoading() {
-    document.getElementById('cart-drawer-loading').classList.add('hidden');
+    const subtotalLoader = document.getElementById('cart-drawer-loading');
+    if (subtotalLoader) subtotalLoader.classList.add('hidden');
+
+    this.querySelectorAll('.cart-item__price .loading-overlay').forEach((overlay) => {
+      overlay.classList.add('hidden');
+    });
   }
 
   handleBodyClick(evt) {

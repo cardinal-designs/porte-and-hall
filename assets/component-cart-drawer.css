@@ -151,8 +151,22 @@ cart-drawer-remove-button {
   height: auto;
 }
 
+.cart-item__price {
+  position: relative;
+}
+
 .cart-item__price dd {
   margin-inline-start: 0;
+}
+
+.cart-item__price .cart-drawer__loading-container {
+  justify-content: flex-end;
+}
+
+.cart-item__price .cart-drawer__loading-container .loading-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .cart-item__discounted-prices {
