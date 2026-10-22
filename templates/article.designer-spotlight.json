@@ -33,6 +33,24 @@
     "designer_spotlight_fFHtkW": {
       "type": "designer-spotlight",
       "blocks": {
+        "block_ymMkAE": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/designerspotlight_parker_homepage.jpg",
+            "title": "Meet the Designer",
+            "designer_image": "shopify://shop_images/designerspotlight_parkerl.jpg",
+            "designer_name": "Parker Bowie Larson",
+            "designer_title": "Interior Designer   ·  <a href=\"https://www.parkerbowielarson.com/\" target=\"_blank\">parkerbowielarson.com</a>",
+            "text_header_1": "What’s your top tip for creating a beautiful, welcoming entry?",
+            "text_1": "Organization is key.  When people walk into an entry where there is a place for everything from your keys to shoes to bags, it allows for breathability in the space.  If you live in an apartment, don’t be afraid to utilize your walls with hooks and floating shelves.  Baskets are always a good choice for holding odds and ends, while also adding some texture.",
+            "text_header_2": "What’s a design hill you’re willing to die on?",
+            "text_2": "Functionality.  Whenever I meet with clients, we spend a lot of time discussing how they live and use each room, and I always keep that top of mind as I start designing.  For example, I had one client who thought they wanted an eat-in nook with a banquette in their kitchen, but they never sat at the table in their current one.\n<br><br>\nAs we redesigned the space, I pushed for a large island with comfy counter stools instead turning the room into a multi-season space with accordion glass doors that open up fully to a beautiful outdoor dining set.  They are so much happier, and it also allows them to use their formal dining room, which is just off the kitchen more often as well.",
+            "text_header_3": "What’s one of your favorite entryway hacks?",
+            "text_3": "Patterned wallpaper.  It’s a wonderful way to make a statement as you welcome your guests to your home.  Entryways are usually smaller spaces so a little goes a long way.",
+            "button_label": "SHOP THE LOOK",
+            "button_link": "shopify://products/the-insider-maze-ii-biscotti-xl-runner"
+          }
+        },
         "block_rDcCHA": {
           "type": "block",
           "settings": {
@@ -125,6 +143,7 @@
         }
       },
       "block_order": [
+        "block_ymMkAE",
         "block_rDcCHA",
         "block_Yc9HLD",
         "block_FYJTfn",

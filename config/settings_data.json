@@ -57,7 +57,7 @@
       "announcement-bar": {
         "type": "announcement-bar",
         "custom_css": [
-          ".announcement-bar {font-size: 11px;}"
+          ".announcement-bar {font-size: 12px;}"
         ],
         "settings": {
           "hide_bar": false,
@@ -224,5 +224,10 @@
       }
     }
   },
-  "presets": {}
+  "presets": {},
+  "platform_customizations": {
+    "custom_css": [
+      ".siena-iframe {z-index: 9 !important;}"
+    ]
+  }
 }

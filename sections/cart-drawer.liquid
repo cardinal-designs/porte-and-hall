@@ -22,6 +22,7 @@
           </button>
         </div>
         <div class="cart-drawer__content" id="cart-drawer__content" data-id="{{ section.id }}">
+           <ig-progress-bar></ig-progress-bar>
           {% if cart.items.size == 0 %}
             <div class="cart-drawer__empty">
               <p class="h3">{{ section.settings.empty_text | default: 'Your cart is empty.' }}</p>
