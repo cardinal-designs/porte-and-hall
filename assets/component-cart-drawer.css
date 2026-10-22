@@ -897,7 +897,7 @@ square-placement {
   margin-top: 0;
 }
 
-#gift-note-modal {
+.gift-note-modal {
   position: absolute;
   top: 0;
   right: 0;
@@ -914,7 +914,7 @@ square-placement {
   padding: 2rem;
 }
 
-#gift-note-modal.is-visible {
+.gift-note-modal.is-visible {
   transform: translateX(0);
 }
 
@@ -924,7 +924,7 @@ square-placement {
   gap: 1rem;
 }
 
-#gift-note-text {
+.gift-note__text {
   width: 100%;
   min-height: 120px;
   padding: 1rem;
@@ -936,14 +936,14 @@ square-placement {
   background-color: #fff;
 }
 
-#gift-note-text::placeholder {
+.gift-note__text::placeholder {
   color: #999;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 0.9rem;
 }
 
-#add-gift-note-btn {
+.gift-note__add-btn {
   background-color: var(--gold);
   color: #fff;
   text-align: center;
@@ -968,7 +968,6 @@ square-placement {
   font-size: 0.75rem;
   color: #999;
   text-align: center;
-  text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 .gift-note__header {
@@ -978,7 +977,7 @@ square-placement {
     justify-content: center;
     position: relative;
 }
-#close-gift-note {
+.gift-note__close {
   background: none;
   border: none;
   cursor: pointer;
@@ -986,12 +985,13 @@ square-placement {
   position: absolute;
   left: 0;
 }
-#gift-wrap-option {
+.gift-wrap-option {
   text-transform: uppercase;
   font-size: 16px;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border-bottom: 1px solid var(--beige);
-  margin: 0 -20px;
+  /* Negative top margin cancels the drawer footer's top padding so spacing is even */
+  margin: -5px -20px 0;
 }
 .gift-note__image {
     text-align: center;
@@ -1000,7 +1000,7 @@ square-placement {
     padding-bottom: 30px;
     border-bottom: 1px solid rgba(99, 102, 106, .1);
 }
-#gift-wrap-option input {
+.gift-wrap-option input {
     padding: 0;
     height: initial;
     width: initial;
@@ -1008,11 +1008,16 @@ square-placement {
     display: none;
     cursor: pointer;
 }
-#gift-wrap-option label {
+.gift-wrap-option label {
     position: relative;
+    display: flex;
+    align-items: center;
     cursor: pointer;
+    font-weight: 450 !important;
+    line-height: 22px;
+    text-transform: uppercase;
 }
-#gift-wrap-option label:before {
+.gift-wrap-option label:before {
     content: "";
     -webkit-appearance: none;
     background-color: transparent;
@@ -1023,18 +1028,50 @@ square-placement {
     margin-right: 9px;
     height: 18px;
     width: 18px;
+    flex-shrink: 0;
     border: 1px solid #546B82;
-    top: -3px;
 }
-#gift-wrap-option input:checked+label:after {
+.gift-wrap-option input:checked+label:after {
     content: "";
     display: block;
     position: absolute;
-    top: 6px;
+    top: 50%;
     left: 7px;
     width: 5px;
     height: 10px;
+    margin-top: -6px;
     border: solid #546B82;
     border-width: 0 1px 1px 0;
     transform: rotate(45deg);
+}
+/* Gift note on the cart page */
+.cart__gift-note .gift-wrap-option {
+  margin: 0;
+  padding: 16px 0;
+  border-top: 1px solid var(--beige);
+}
+
+.gift-note-modal.gift-note-modal--page {
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  box-shadow: -2px 0 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Checkout locked while the cart is updating (see CartCheckoutGuard in global.js) */
+.cart-checkout-locked [name="checkout"],
+.cart-checkout-locked .additional-checkout-buttons,
+.cart-checkout-locked .cart__dynamic-checkout-buttons {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Applies before JS runs when the page loads with a leftover gift note */
+html:has(.js-gift-note-fix) [name="checkout"],
+html:has(.js-gift-note-fix) .additional-checkout-buttons,
+html:has(.js-gift-note-fix) .cart__dynamic-checkout-buttons {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
 }

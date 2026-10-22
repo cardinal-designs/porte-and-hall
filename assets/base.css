@@ -2,6 +2,8 @@ body {
   font-family: brandon, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+
+
 /*============================================================================
   General
 ==============================================================================*/
@@ -1253,7 +1255,8 @@ deferred-media {
 
 .header__icon--cart {
   position: relative;
-  width: 15px;
+  height: 29px;
+  width: auto;
 }
 
 /* Condensed Header */
@@ -1475,6 +1478,8 @@ header.condensed .header__menu {
 }
 
 .header__icon--menu {
+  width: 30px;
+  margin-left: 4px;
   text-align: left;
 }
 
@@ -1629,6 +1634,14 @@ header.condensed .header__menu {
 
 .menu-drawer .header__icon--account svg {
   width: 19px;
+}
+
+/* New Customer Accounts */
+/* New Customer Accounts */
+shopify-account {
+  --shopify-account-signed-in-avatar-color-background: #546b82;
+  --shopify-account-signed-in-avatar-color-text: #ffffff;
+  --shopify-account-color-accent: #546b82;
 }
 
 /*============================================================================

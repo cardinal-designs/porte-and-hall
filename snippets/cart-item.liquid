@@ -94,8 +94,10 @@
 
     <div class="cart-item__bottom {% if customer and customer.b2b? %}cart-item__trade-bottom{% endif %}">
 
+      {%- capture is_gift_note -%}{%- render 'gift-note', part: 'item-check', item: item -%}{%- endcapture -%}
+      {%- assign is_gift_note = is_gift_note | strip -%}
       <div class="cart-item__quantity">
-        <quantity-input class="quantity {% if item.product_id == 8127852937279 %}no-work__quantity{% endif %}">
+        <quantity-input class="quantity {% if item.product_id == 8127852937279 or is_gift_note == 'true' %}no-work__quantity{% endif %}">
 
             <button
             class="quantity__button no-js-hidden"
@@ -121,12 +123,13 @@
             id="Quantity-{{ item.index | plus: 1 }}"
             data-index="{{ item.index | plus: 1 }}"
             {% if item.product_id == 8127852937279 %}disabled{% endif %}
+            {% if is_gift_note == 'true' %}max="1" readonly{% endif %}
           >
           <button
             class="quantity__button no-js-hidden"
-            {% unless item.product_id == 8127852937279 %} name="plus"{% endunless %}
+            {% unless item.product_id == 8127852937279 or is_gift_note == 'true' %} name="plus"{% endunless %}
             type="button"
-            {% if item.product_id == 8127852937279 %}disabled{% endif %}
+            {% if item.product_id == 8127852937279 or is_gift_note == 'true' %}disabled{% endif %}
           >
             <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
             {% render 'icon' icon: 'plus' %}
