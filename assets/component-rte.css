@@ -40,6 +40,13 @@
   margin-bottom: 0;
 }
 
+/* Links that make up a whole list item get a 24px-tall target (WCAG 2.5.8) */
+.rte li > a:only-child {
+  display: inline-block;
+  min-height: 24px;
+  padding: 2px 0;
+}
+
 .rte a {
   color: rgba(var(--color-link), var(--alpha-link));
   font-weight: 600;

@@ -1,0 +1,281 @@
+{%- comment -%}
+  Affiliate Landing Page — Hero ("Make A Grand Entrance")
+  First of four sections for this page. The others (Why It's Different,
+  The Short List, Reviews) follow the same pattern — a section file that
+  renders snippets/affiliate-landing-base for shared fonts/tokens, then
+  its own scoped <style> block and markup.
+ 
+  The rotator uses theme blocks (Section > Add block) instead of fixed
+  settings, so slides can be added, removed, or reordered from the
+  theme editor without touching code.
+{%- endcomment -%}
+ 
+{%- render 'affiliate-landing-base' -%}
+ 
+<style>
+.wp-hero-{{ section.id }}{padding:64px 48px 32px;}
+.wp-hero-{{ section.id }} .wp-hero-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:center;}
+.wp-hero-{{ section.id }} .wp-hero-eyebrow{display:block;font-size:14px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--wp-accent);margin-bottom:20px;}
+.wp-hero-{{ section.id }} h1{font-family:var(--wp-font-serif);font-size:58px;font-weight:500;line-height:1.08;letter-spacing:-.01em;color:var(--wp-primary);margin-bottom:24px;}
+.wp-hero-{{ section.id }} p.wp-lede{font-size:17px;line-height:1.7;color:var(--wp-text-secondary);max-width:480px;margin-bottom:28px;}
+.wp-hero-{{ section.id }} .wp-hero-trust{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--wp-text-secondary);margin-bottom:32px;}
+.wp-hero-{{ section.id }} .wp-hero-trust .wp-stars{color:var(--wp-accent);letter-spacing:1px;}
+.wp-hero-{{ section.id }} .wp-hero-trust .wp-dot{color:var(--wp-border-strong);}
+.wp-hero-{{ section.id }} .wp-hero-ctas{display:flex;flex-direction:column;gap:10px;align-items:flex-start;}
+.wp-hero-{{ section.id }} .wp-btn-primary{display:inline-block;background:var(--wp-accent);color:var(--wp-white);padding:17px 40px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:3px;transition:background .18s;}
+.wp-hero-{{ section.id }} .wp-btn-primary:hover{background:var(--wp-accent-hover);}
+.wp-hero-{{ section.id }} .wp-hero-code-note{font-size:12.5px;color:var(--wp-text-secondary);}
+.wp-hero-{{ section.id }} .wp-hero-code-note b{color:var(--wp-primary);}
+ 
+.wp-hero-{{ section.id }} .wp-hero-image{position:relative;border-radius:2px;overflow:hidden;aspect-ratio:4/3;background:var(--wp-tag-bg);}
+.wp-hero-{{ section.id }} .wp-rotator-slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;}
+.wp-hero-{{ section.id }} .wp-rotator-slide.active{opacity:1;z-index:2;}
+.wp-hero-{{ section.id }} .wp-rotator-slide img{width:100%;height:100%;object-fit:cover;}
+.wp-hero-{{ section.id }} .wp-rotator-label{position:absolute;top:16px;left:16px;z-index:3;background:rgba(42,39,35,0.8);color:var(--wp-white);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:10px 18px;border-radius:2px;transition:background .18s;}
+.wp-hero-{{ section.id }} .wp-rotator-label:hover{background:var(--wp-accent);}
+.wp-hero-{{ section.id }} .wp-rotator-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:2px;}
+/* 24x24 transparent hit area (WCAG 2.5.8 target size); the visible 9px dot is drawn by ::before */
+.wp-hero-{{ section.id }} .wp-rotator-dot{position:relative;display:flex;align-items:center;justify-content:center;width:24px;height:24px;padding:0;border-radius:50%;background:transparent;}
+.wp-hero-{{ section.id }} .wp-rotator-dot::before{content:'';width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.55);transition:background .18s,transform .18s;}
+.wp-hero-{{ section.id }} .wp-rotator-dot.active::before{background:var(--wp-white);transform:scale(1.25);}
+.wp-hero-{{ section.id }} .wp-rotator-dot:focus-visible{outline:2px solid var(--wp-white);outline-offset:0;}
+ 
+@media (max-width:700px){
+  .wp-hero-{{ section.id }}{padding:28px 18px 26px;}
+  .wp-hero-{{ section.id }} .wp-hero-inner{grid-template-columns:1fr;gap:24px;}
+  .wp-hero-{{ section.id }} .wp-hero-eyebrow{font-size:12px;letter-spacing:.12em;margin-bottom:12px;}
+  .wp-hero-{{ section.id }} h1{font-size:40px;line-height:1.12;margin-bottom:14px;}
+  .wp-hero-{{ section.id }} p.wp-lede{font-size:14px;margin-bottom:18px;max-width:none;}
+  .wp-hero-{{ section.id }} .wp-hero-trust{font-size:11.5px;margin-bottom:20px;}
+  .wp-hero-{{ section.id }} .wp-hero-ctas{width:100%;}
+  .wp-hero-{{ section.id }} .wp-btn-primary{display:block;text-align:center;width:100%;padding:15px 20px;font-size:12px;}
+  .wp-hero-{{ section.id }} .wp-hero-code-note{text-align:center;display:block;}
+}
+</style>
+ 
+<section class="wp-landing wp-hero-{{ section.id }}">
+  <div class="wp-hero-inner">
+    <div>
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="wp-hero-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h1>{{ section.settings.heading }}</h1>
+      {%- if section.settings.lede != blank -%}
+        <p class="wp-lede">{{ section.settings.lede }}</p>
+      {%- endif -%}
+      <div class="wp-hero-trust">
+        <span class="wp-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span><b>{{ section.settings.trust_count }}</b> {{ section.settings.trust_count_label }}</span>
+        {%- if section.settings.trust_line_2 != blank -%}
+          <span class="wp-dot">&middot;</span>
+          <span>{{ section.settings.trust_line_2 }}</span>
+        {%- endif -%}
+        {%- if section.settings.trust_line_3 != blank -%}
+          <span class="wp-dot">&middot;</span>
+          <span>{{ section.settings.trust_line_3 }}</span>
+        {%- endif -%}
+      </div>
+      <div class="wp-hero-ctas">
+        <a class="wp-btn-primary" id="wp-hero-cta-{{ section.id }}" href="{{ section.settings.cta_link | default: '#shop' }}">{{ section.settings.cta_text }} &#8595;</a>
+        {%- if section.settings.promo_code != blank -%}
+          <span class="wp-hero-code-note">15% off sitewide with code <b>{{ section.settings.promo_code }}</b></span>
+        {%- endif -%}
+      </div>
+    </div>
+ 
+    <div class="wp-hero-image" id="wp-hero-rotator-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'slide' -%}
+          <div class="wp-rotator-slide{% if forloop.first %} active{% endif %}" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: block.settings.label }}
+            {%- endif -%}
+            {%- if block.settings.label != blank -%}
+              <a class="wp-rotator-label" href="{{ block.settings.link | default: '#' }}">{{ block.settings.label }} &#8594;</a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+      <div class="wp-rotator-dots">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'slide' -%}
+            <button class="wp-rotator-dot{% if forloop.first %} active{% endif %}" data-target="{{ forloop.index0 }}" aria-label="Show {{ block.settings.label }}"></button>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<script>
+(function(){
+  var root = document.getElementById('wp-hero-rotator-{{ section.id }}');
+  if(!root) return;
+  var slides = root.querySelectorAll('.wp-rotator-slide');
+  var dots = root.querySelectorAll('.wp-rotator-dot');
+  var idx = 0, timer;
+  function show(i){
+    idx = (i + slides.length) % slides.length;
+    slides.forEach(function(s,n){ s.classList.toggle('active', n === idx); });
+    dots.forEach(function(d,n){ d.classList.toggle('active', n === idx); });
+  }
+  function next(){ show(idx + 1); }
+  function stop(){ if(timer) clearInterval(timer); }
+  function start(){ stop(); timer = setInterval(next, 4500); }
+  dots.forEach(function(d){
+    d.addEventListener('click', function(){ show(parseInt(d.getAttribute('data-target'),10)); start(); });
+  });
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  if (slides.length > 1) { start(); }
+})();
+</script>
+ 
+<script>
+(function(){
+  // Workaround for a theme/GSAP scroll-init race: on first page load, the
+  // very first in-page anchor scroll can get silently swallowed (confirmed
+  // via testing — the browser's native fragment jump and even a raw
+  // scrollIntoView() call both no-op on the very first attempt after load,
+  // but work correctly on any later attempt). This only affects the CTA's
+  // in-page "#" links; a link pointing to a real URL is left alone.
+  var cta = document.getElementById('wp-hero-cta-{{ section.id }}');
+  if (!cta) return;
+ 
+  cta.addEventListener('click', function(e){
+    var href = cta.getAttribute('href') || '';
+    if (href.charAt(0) !== '#' || href.length < 2) return; // real URL — default navigation
+    var target = document.getElementById(href.slice(1));
+    if (!target) return;
+ 
+    e.preventDefault();
+ 
+    function jump(){
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (window.history && history.pushState) {
+        history.pushState(null, '', href);
+      } else {
+        window.location.hash = href;
+      }
+    }
+ 
+    // Waiting a couple of animation frames before scrolling reliably avoids
+    // the race in testing. As a safety net, re-check shortly after and
+    // retry once (instantly) if the page still hasn't actually moved.
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        var before = window.scrollY;
+        jump();
+        setTimeout(function(){
+          if (Math.abs(window.scrollY - before) < 10) {
+            target.scrollIntoView({ behavior: 'instant', block: 'start' });
+          }
+        }, 400);
+      });
+    });
+  });
+})();
+</script>
+ 
+{% schema %}
+{
+  "name": "Affiliate Landing — Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Designer Entryway Mats · 7 Years In The Making"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Make A Grand Entrance"
+    },
+    {
+      "type": "textarea",
+      "id": "lede",
+      "label": "Subheading",
+      "default": "First impressions matter. For both you and your visitors, and a stylish home deserves more than any old doormat."
+    },
+    {
+      "type": "text",
+      "id": "trust_count",
+      "label": "Review count",
+      "default": "3,600+"
+    },
+    {
+      "type": "text",
+      "id": "trust_count_label",
+      "label": "Review count label",
+      "default": "five-star reviews"
+    },
+    {
+      "type": "text",
+      "id": "trust_line_2",
+      "label": "Trust line 2 (optional)",
+      "default": "Created by an interior designer"
+    },
+    {
+      "type": "text",
+      "id": "trust_line_3",
+      "label": "Trust line 3 (optional)",
+      "default": "30-day returns"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "Shop our Collections"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "promo_code",
+      "label": "Promo code (leave blank to hide)",
+      "default": "ENTRY15"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Rotator slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Collection name",
+          "default": "The Insider"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link to collection/product"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Affiliate Landing — Hero",
+      "blocks": [
+        { "type": "slide", "settings": { "label": "The Insider" } },
+        { "type": "slide", "settings": { "label": "The Innerweave" } },
+        { "type": "slide", "settings": { "label": "The Outlier" } },
+        { "type": "slide", "settings": { "label": "The Porter" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

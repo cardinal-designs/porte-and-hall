@@ -46,7 +46,6 @@ class CartDrawer extends HTMLElement {
         this.updateCharCount(event.target);
       }
     });
-    this.disableDrawerFocus();
   }
   updateCharCount(textarea) {
     const currentLength = textarea.value.length;
@@ -58,8 +57,11 @@ class CartDrawer extends HTMLElement {
   }
 
   open() {
+    // inert must be lifted before focusing anything inside the drawer
+    this.drawer.removeAttribute('inert');
     this.drawer.setAttribute('aria-hidden', 'false');
-    this.drawer.setAttribute('aria-expanded', true);
+    // Only programmatically focusable while open (used by the delayed drawer.focus() calls)
+    this.drawer.setAttribute('tabindex', '-1');
 
     this.drawer.querySelector(
       'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
@@ -67,28 +69,18 @@ class CartDrawer extends HTMLElement {
 
     this.pageOverlayElement.classList.add('is-visible');
     document.body.addEventListener('click', this.onBodyClick);
-    this.enableDrawerFocus();
     cartScroll();
   }
 
-  disableDrawerFocus() {
-    this.drawer.querySelectorAll('[tabindex], a, button, input, select, textarea')
-      .forEach(el => el.setAttribute('tabindex', '-1'));
-  }
-
-  // Call this when the drawer opens
-  enableDrawerFocus() {
-    this.drawer.querySelectorAll('[tabindex], a, button, input, select, textarea')
-      .forEach(el => el.removeAttribute('tabindex'));
-  }
-
   close() {
-    this.drawer.setAttribute('aria-hidden', true);
-    this.drawer.removeAttribute('aria-expanded', true);
+    // inert removes the drawer and everything inside it (including content
+    // re-rendered later by section updates or Rebuy) from the focus order
+    this.drawer.setAttribute('aria-hidden', 'true');
+    this.drawer.removeAttribute('tabindex');
+    this.drawer.setAttribute('inert', '');
 
     this.pageOverlayElement.classList.remove('is-visible');
     document.body.removeEventListener('click', this.onBodyClick);
-    this.disableDrawerFocus();
   }
 
   onChange(event) {
