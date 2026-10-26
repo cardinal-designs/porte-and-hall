@@ -732,5 +732,46 @@
       })();
     </script>
 
+    <script>
+      // ADA: Judge.me renders star groups as role="img" containing focusable/role'd stars,
+      // which nests interactive controls. Make the stars purely decorative; the parent's
+      // aria-label already conveys the rating.
+      (function () {
+        var SELECTOR = '.jdgm-rev-widg__summary-stars[role="img"], .jdgm-widget [role="img"]';
+
+        function fixStars(root) {
+          if (!root || !root.querySelectorAll) return;
+          var groups = root.matches && root.matches(SELECTOR) ? [root] : [];
+          groups = groups.concat(Array.prototype.slice.call(root.querySelectorAll(SELECTOR)));
+          groups.forEach(function (group) {
+            group.removeAttribute('tabindex');
+            group.querySelectorAll('*').forEach(function (el) {
+              if (el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+              el.removeAttribute('role');
+              el.removeAttribute('aria-label');
+              el.setAttribute('aria-hidden', 'true');
+            });
+          });
+        }
+
+        function init() {
+          fixStars(document.body);
+          new MutationObserver(function (mutations) {
+            mutations.forEach(function (m) {
+              m.addedNodes.forEach(function (node) {
+                if (node.nodeType === 1) fixStars(node.closest ? node.closest(SELECTOR) || node : node);
+              });
+            });
+          }).observe(document.body, { childList: true, subtree: true });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init);
+        } else {
+          init();
+        }
+      })();
+    </script>
+
   </body>
 </html>
