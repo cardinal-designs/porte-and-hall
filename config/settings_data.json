@@ -40,6 +40,10 @@
     "trade_pricing_discount_percentage": "20",
     "final_sale_property_key": "Final Sale",
     "final_sale_property_value": "No returns, exchanges, or additional discounts.",
+    "gift_note_product": "gift-note",
+    "gift_note_variant_id": "41650434277439",
+    "gift_note_sku": "GFTNT00PH",
+    "gift_note_disclaimer": "GIFT NOTE WILL BE INCLUDED WITHIN THE PACKAGE.",
     "colors_solid_button_labels": "#FFFFFF",
     "colors_accent_1": "#121212",
     "colors_accent_2": "#334FB4",
@@ -57,7 +61,7 @@
         ],
         "settings": {
           "hide_bar": false,
-          "text": "Final Few. Final Chance. <u>Shop Now</u>",
+          "text": "Final Few. Final Chance. <u>SHOP NOW</u>",
           "link": "shopify://collections/sale",
           "background_color": "#546b82",
           "text_color": "#ffffff",
@@ -95,12 +99,7 @@
           "cart_title": "Your Cart",
           "empty_text": "",
           "button": "shopify://collections/shop-all",
-          "button_text": "",
-          "enable_gift_note": true,
-          "gift_note_product": "gift-note",
-          "checkbox_label_text": "Include a personal gift note for [price]?",
-          "note_button_text": "ADD NOW",
-          "gift_note": "Gift Note Will be included within the package."
+          "button_text": ""
         }
       },
       "footer": {

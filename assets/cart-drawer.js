@@ -27,10 +27,7 @@ class CartDrawer extends HTMLElement {
     this.drawer.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
 
     this.pageOverlayElement = document.querySelector('.page-overlay');
-    this.giftWrapCheckbox = document.getElementById('add-gift-wrap'); 
-    
-    this.giftNoteText = document.getElementById('gift-note-text');
-    
+
     // Functionality
     this.currentItemCount = Array.from(this.querySelectorAll('[name="updates[]"]'))
       .reduce((total, quantityInput) => total + parseInt(quantityInput.value), 0);
@@ -39,22 +36,52 @@ class CartDrawer extends HTMLElement {
       this.onChange(event);
     }, 300);
 
-    this.addEventListener('change', this.debouncedOnChange.bind(this));
+    this.addEventListener('change', (event) => {
+      this.lockCheckoutForQuantityChange(event);
+      this.debouncedOnChange(event);
+    });
 
     this.addEventListener('input', (event) => {
-      if (event.target && event.target.id === 'gift-note-text') {
+      if (event.target && event.target.matches('.js-gift-note-text')) {
         this.updateCharCount(event.target);
       }
     });
     this.disableDrawerFocus();
+    this.giftNoteRemovalInFlight = false;
+    requestAnimationFrame(() => this.enforceGiftNoteEligibility());
   }
+
   updateCharCount(textarea) {
+    if (!textarea) return;
     const currentLength = textarea.value.length;
     const maxAttr = textarea.getAttribute('maxlength');
     const maxLength = maxAttr ? parseInt(maxAttr, 10) : 250;
     const remainingChars = maxLength - currentLength;
-    const charCountElement = document.querySelector('.char-count span');
-    charCountElement.textContent = `${remainingChars}`;
+    const charCountElement = this.querySelector('.js-gift-note-char-count');
+    if (charCountElement) charCountElement.textContent = `${remainingChars}`;
+  }
+
+  enforceGiftNoteEligibility() {
+    if (document.querySelector('cart-items')) return;
+
+    const marker = this.querySelector('.js-gift-note-fix');
+    if (!marker) {
+      this.giftNoteRemovalInFlight = false;
+      return;
+    }
+    if (this.giftNoteRemovalInFlight) return;
+
+    const line = marker.dataset.line;
+    if (!line || line === '0') return;
+
+    this.giftNoteRemovalInFlight = true;
+    this.updateQuantity(line, marker.dataset.quantity || 0, null);
+  }
+
+  // Keeps the cart page in sync when the drawer changes the cart on /cart.
+  refreshCartPage() {
+    const cartItems = document.querySelector('cart-items');
+    if (cartItems && typeof cartItems.refresh === 'function') cartItems.refresh();
   }
 
   open() {
@@ -92,27 +119,48 @@ class CartDrawer extends HTMLElement {
   }
 
   onChange(event) {
-    if (event.target.matches('#add-gift-wrap')) {
+    if (event.target.matches('.js-gift-note-checkbox')) {
       this.handleGiftWrapChange(event);
     }else if(event.target.dataset?.index){
       this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
     }
+    this.unlockCheckoutForQuantityChange();
+  }
+
+  // Locks checkout during the debounce delay, before the update request starts.
+  lockCheckoutForQuantityChange(event) {
+    if (!event.target.dataset?.index || this.quantityChangePending) return;
+    this.quantityChangePending = true;
+    CartCheckoutGuard.start();
+  }
+
+  unlockCheckoutForQuantityChange() {
+    if (!this.quantityChangePending) return;
+    this.quantityChangePending = false;
+    CartCheckoutGuard.end();
   }
 
   handleGiftWrapChange(event) {
     if (event.target.checked) {
-      const giftNoteModal = document.getElementById('gift-note-modal');
-      giftNoteModal.classList.add('is-visible');
+      const giftNoteModal = this.querySelector('.js-gift-note-modal');
+      if (giftNoteModal) giftNoteModal.classList.add('is-visible');
     } else {
       this.removeGiftWrapFromCart();
     }
   }
 
   addGiftWrapToCart() {
-    let giftNoteField = document.getElementById('gift-note-text');
-    let giftNoteValue = giftNoteField ? giftNoteField.value : '';
-    let variantId = giftNoteField.getAttribute('data-variant-id');
+    const giftNoteField = this.querySelector('.js-gift-note-text');
+    if (!giftNoteField) return;
 
+    const giftNoteValue = giftNoteField.value;
+    const variantId = giftNoteField.dataset.variantId;
+    if (!variantId) return;
+
+    const propertyName = giftNoteField.dataset.propertyName;
+    const properties = propertyName ? { [propertyName]: giftNoteValue } : {};
+
+    CartCheckoutGuard.start();
     fetch('/cart/add.js', {
       method: 'POST',
       headers: {
@@ -123,9 +171,7 @@ class CartDrawer extends HTMLElement {
           {
             id: variantId,
             quantity: 1,
-            properties: {
-              'Note': giftNoteValue
-            }
+            properties
           },
         ]
       }),
@@ -135,10 +181,18 @@ class CartDrawer extends HTMLElement {
         return response.json();
       })
       .then(() => {
-        
+        const giftNoteModal = this.querySelector('.js-gift-note-modal');
+        if (giftNoteModal) giftNoteModal.classList.remove('is-visible');
+        this.refreshCartPage();
+        if (typeof updateMainCart === 'function') {
+          return updateMainCart(typeof Rebuy !== 'undefined' ? Rebuy : null);
+        }
       })
-      .catch((error) => console.error(error));
-      this.drawer.focus();
+      .catch((error) => console.error(error))
+      .finally(() => {
+        CartCheckoutGuard.end();
+        this.drawer.focus();
+      });
   }
 
   removeGiftWrapFromCart() {
@@ -149,14 +203,14 @@ class CartDrawer extends HTMLElement {
   }
 
   findGiftWrapLineItemIndex() {
-    let giftNoteField = document.getElementById('gift-note-text');
-    let giftNoteValue = giftNoteField ? giftNoteField.value : '';
-    let variantId = giftNoteField.getAttribute('data-variant-id');
-    let giftWrapProductId = variantId;
-    let cartItems = [...this.querySelectorAll('[data-cart-item-id]')];
+    const giftNoteField = this.querySelector('.js-gift-note-text');
+    const variantId = giftNoteField ? giftNoteField.dataset.variantId : null;
+    if (!variantId) return -1;
+
+    const cartItems = [...this.querySelectorAll('[data-cart-item-id]')];
     for (let i = 0; i < cartItems.length; i++) {
-      if (cartItems[i].dataset.cartItemId == giftWrapProductId) {
-        return i;
+      if (cartItems[i].dataset.cartItemId == variantId) {
+        return i + 1;
       }
     }
     return -1;
@@ -193,6 +247,7 @@ class CartDrawer extends HTMLElement {
 
   updateQuantity(line, quantity, name) {
     this.enableLoading(line);
+    CartCheckoutGuard.start();
 
     const body = JSON.stringify({
       line,
@@ -212,9 +267,10 @@ class CartDrawer extends HTMLElement {
           document.getElementById(`Quantity-${line}`) || document.getElementById(`Drawer-quantity-${line}`);
 
         if (parsedState.errors) {
-          quantityElement.value = quantityElement.getAttribute('value');
+          if (quantityElement) quantityElement.value = quantityElement.getAttribute('value');
           this.showLineItemError(line, parsedState.errors);
           this.disableLoading();
+          this.giftNoteRemovalInFlight = false;
           return;
         }
 
@@ -235,8 +291,13 @@ class CartDrawer extends HTMLElement {
 
         this.disableLoading();
         this.drawer.focus();
+        this.enforceGiftNoteEligibility();
+        this.refreshCartPage();
       }).catch(() => {
         this.disableLoading();
+        this.giftNoteRemovalInFlight = false;
+      }).finally(() => {
+        CartCheckoutGuard.end();
       });
   }
 
@@ -261,33 +322,41 @@ class CartDrawer extends HTMLElement {
       .querySelector(selector).innerHTML;
   }
 
-  enableLoading() {
-    document.getElementById('cart-drawer-loading').classList.remove('hidden');
+  enableLoading(line) {
+    const subtotalLoader = document.getElementById('cart-drawer-loading');
+    if (subtotalLoader) subtotalLoader.classList.remove('hidden');
+
+    const lineItem = this.querySelector(`#CartDrawer-Item-${line}`);
+    if (lineItem) {
+      lineItem.querySelectorAll('.cart-item__price .loading-overlay').forEach((overlay) => {
+        overlay.classList.remove('hidden');
+      });
+    }
   }
 
   disableLoading() {
-    document.getElementById('cart-drawer-loading').classList.add('hidden');
+    const subtotalLoader = document.getElementById('cart-drawer-loading');
+    if (subtotalLoader) subtotalLoader.classList.add('hidden');
+
+    this.querySelectorAll('.cart-item__price .loading-overlay').forEach((overlay) => {
+      overlay.classList.add('hidden');
+    });
   }
 
   handleBodyClick(evt) {
     const target = evt.target;
-    let closeGiftModal = document.getElementById('close-gift-note');
-    if (closeGiftModal) {
-      const giftCloseBtn = document.getElementById('close-gift-note');
-      const giftNoteModal = document.getElementById('gift-note-modal');
-      const giftWrapCheckbox = document.getElementById('add-gift-wrap');
-  
-      if (giftCloseBtn && (target.matches('#close-gift-note') || giftCloseBtn.contains(target))) {
-        if (giftWrapCheckbox) {
-          giftWrapCheckbox.checked = false;
-        }
-        if (giftNoteModal) {
-          giftNoteModal.classList.remove('is-visible');
-        }
-      }
+    const giftCloseBtn = target.closest('.js-gift-note-close');
+    if (giftCloseBtn && this.contains(giftCloseBtn)) {
+      evt.preventDefault();
+      const giftWrapCheckbox = this.querySelector('.js-gift-note-checkbox');
+      const giftNoteModal = this.querySelector('.js-gift-note-modal');
+      if (giftWrapCheckbox) giftWrapCheckbox.checked = false;
+      if (giftNoteModal) giftNoteModal.classList.remove('is-visible');
     }
-    const addGiftNoteBtn = document.getElementById('add-gift-note-btn');
-    if (addGiftNoteBtn && target.matches('#add-gift-note-btn')) {
+
+    const addGiftNoteBtn = target.closest('.js-gift-note-add');
+    if (addGiftNoteBtn && this.contains(addGiftNoteBtn)) {
+      evt.preventDefault();
       this.addGiftWrapToCart();
     }
     
@@ -306,7 +375,21 @@ class CartDrawer extends HTMLElement {
 customElements.define('cart-drawer', CartDrawer);
 
 
-function updateMainCart(Rebuy, cartData = null) {
+function refreshCartIconBubble() {
+  const cartIcon = document.getElementById('cart-icon-bubble');
+  if (!cartIcon) return Promise.resolve();
+
+  return fetch(`${window.origin}/?section_id=cart-icon-bubble`)
+    .then((response) => response.text())
+    .then((responseText) => {
+      const html = new DOMParser().parseFromString(responseText, 'text/html');
+      const source = html.querySelector('.shopify-section');
+      if (source) cartIcon.innerHTML = source.innerHTML;
+    });
+}
+
+function updateMainCart(Rebuy) {
+  CartCheckoutGuard.start();
   return fetch(`${window.origin}/?section_id=cart-drawer`)
     .then((response) => response.text())
     .then((responseText) => {
@@ -319,13 +402,19 @@ function updateMainCart(Rebuy, cartData = null) {
           targetElement.replaceWith(sourceElement);
         }
       }
-
-       updateCartIconBubble(cartData || window.getCart() || null);
+    })
+    .then(() => refreshCartIconBubble())
+    .then(() => {
+      const drawerElement = document.querySelector('cart-drawer');
+      if (drawerElement && typeof drawerElement.enforceGiftNoteEligibility === 'function') {
+        drawerElement.enforceGiftNoteEligibility();
+      }
     })
     .catch((e) => {
       console.error(e);
     })
     .finally(() => {
+      CartCheckoutGuard.end();
       setTimeout(() => {
         if (Rebuy) {
           Rebuy.init();

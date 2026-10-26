@@ -61,21 +61,27 @@
 
         {% if shop.customer_accounts_enabled %}
           {% unless page.handle == 'outdoor' %}
-          <a
-            href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
-            class="header__icon header__icon--account hide-mobile"
-          >
-            {% render 'icon', icon: 'account' %}
-            <span class="visually-hidden">
-              {% liquid
-                if customer
-                  echo 'customer.account_fallback' | t
-                else
-                  echo 'customer.log_in' | t
-                endif
-              %}
-            </span>
-          </a>
+            <div>
+              <shopify-account menu="customer-account-main-menu">
+                <div slot="signed-out-avatar">
+                  <div
+                    href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+                    class="header__icon header__icon--account hide-mobile"
+                  >
+                    {% render 'icon', icon: 'account' %}
+                    <span class="visually-hidden">
+                      {% liquid
+                        if customer
+                          echo 'customer.account_fallback' | t
+                        else
+                          echo 'customer.log_in' | t
+                        endif
+                      %}
+                    </span>
+                  </div>
+                </div>
+              </shopify-account>
+            </div>
           {% endunless %}
         {% endif %}
 

@@ -40,6 +40,10 @@
             {% for item in cart.items %}
               {% render 'cart-item' item: item, idx: forloop.index, is_cart: true %}
             {% endfor %}
+            <div class="cart__gift-note">
+              {% render 'gift-note', part: 'option', scope: 'Cart' %}
+            </div>
+            {% render 'gift-note', part: 'modal', scope: 'Cart', modal_class: 'gift-note-modal--page' %}
           {% endif %}
         </div>
       </div>
