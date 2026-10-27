@@ -1827,6 +1827,7 @@ product-form form {
 .main-product-accordion .product__tabs-item p {
   font-size: inherit;
   line-height: inherit;
+  font-weight: 400;
 }
 
 .main-product-accordion .product__tabs-item p:not(:last-child) {
