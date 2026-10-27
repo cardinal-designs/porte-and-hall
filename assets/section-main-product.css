@@ -1855,6 +1855,10 @@ product-form form {
   margin: 5px 0;
 }
 
+.product__tabs-item li strong {
+  font-weight: 500;
+}
+
 /* FAQ entries inside the PDP accordion (custom.faqs metaobjects) */
 .main-product-accordion .product__faq-item {
   line-height: 22px;
