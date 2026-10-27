@@ -821,6 +821,7 @@ endcapture
          </div>
         {% endif %}
 
+        {% if shipping_returns_metafield != blank or section.settings.shipping_returns != blank %}
          <div class="accordion">
            <div data-id="5" class="accordion-title">
              <h2 class="h3">Shipping &amp; Returns</h2>
@@ -838,6 +839,7 @@ endcapture
             </div>
            </div>
          </div>
+         {% endif %}
 
          <div class="accordion">
            <div data-id="6" class="accordion-title">
