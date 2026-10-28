@@ -132,7 +132,7 @@
             "type": "nav_item_style",
             "settings": {
               "menu_item": "indoor doormats",
-              "text_color": "#A73C3C",
+              "text_color": "#a73c3c",
               "font": "brandon_regular",
               "icon": "shopify://shop_images/instagram-icon-color.png",
               "icon_position": "left",
@@ -143,7 +143,7 @@
             "type": "nav_item_style",
             "settings": {
               "menu_item": "Shop All",
-              "text_color": "#E55B06",
+              "text_color": "#e55b06",
               "font": "louize",
               "icon": "shopify://shop_images/instagram-icon-color.png",
               "icon_position": "left",
@@ -154,7 +154,7 @@
             "type": "nav_item_style",
             "settings": {
               "menu_item": "Best sellers",
-              "text_color": "#2D1010",
+              "text_color": "#2d1010",
               "font": "brandon_regular",
               "icon": "shopify://shop_images/facebook-icon-color.png",
               "icon_position": "left",
@@ -235,6 +235,20 @@
       },
       "mobile-menu": {
         "type": "mobile-menu",
+        "blocks": {
+          "nav_item_style_h8Vhe8": {
+            "type": "nav_item_style",
+            "settings": {
+              "menu_item": "shop all",
+              "icon": "shopify://shop_images/facebook-icon-color.png",
+              "icon_position": "left",
+              "icon_height": 20
+            }
+          }
+        },
+        "block_order": [
+          "nav_item_style_h8Vhe8"
+        ],
         "settings": {
           "menu": "2024-best-seller-mobile-new",
           "b2b_menu": "mobile-menu-trade"
