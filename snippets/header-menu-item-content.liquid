@@ -1,9 +1,5 @@
 {%- liquid
   assign icon = item_style.settings.icon
-  assign hide_text = false
-  if icon != blank and item_style.settings.hide_text
-    assign hide_text = true
-  endif
 -%}
 
 {%- capture icon_markup -%}
@@ -13,5 +9,5 @@
 {%- endcapture -%}
 
 {%- if item_style.settings.icon_position != 'right' -%}{{ icon_markup }}{%- endif -%}
-<span class="header__menu-item-text{% if hide_text %} visually-hidden{% endif %}">{{ title | escape }}</span>
+<span class="header__menu-item-text">{{ title | escape }}</span>
 {%- if item_style.settings.icon_position == 'right' -%}{{ icon_markup }}{%- endif -%}

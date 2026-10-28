@@ -5,6 +5,28 @@
   endif
 %}
 
+<style>
+  .menu-drawer__menu-item-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .menu-drawer__menu-item-content .header__menu-item-icon {
+    display: block;
+    width: auto;
+    height: var(--menu-item-icon-height, 20px);
+  }
+
+  {% for block in section.blocks %}
+    {% if block.type == 'nav_item_style' %}
+      .menu-drawer__menu-item--{{ block.id }} {
+        --menu-item-icon-height: {{ block.settings.icon_height }}px;
+      }
+    {% endif %}
+  {% endfor %}
+</style>
+
 <menu-drawer>
   <div
     class="menu-drawer"
@@ -25,12 +47,33 @@
       <div class="menu-drawer__content">
         <ul class="menu-drawer__menu list-unstyled" role="list">
           {% for link in mobile_menu.links %}
+            {% assign downcased_link_title = link.title | downcase | strip %}
+            {% assign item_style = nil %}
+            {% for block in section.blocks %}
+              {% if block.type == 'nav_item_style' and item_style == nil %}
+                {% assign style_menu_item = block.settings.menu_item | strip | downcase %}
+                {% if style_menu_item != blank and style_menu_item == downcased_link_title %}
+                  {% assign item_style = block %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+
+            {% capture link_content %}
+              {%- if item_style != nil -%}
+                <span class="menu-drawer__menu-item-content menu-drawer__menu-item--{{ item_style.id }}">
+                  {%- render 'header-menu-item-content', title: link.title, item_style: item_style -%}
+                </span>
+              {%- else -%}
+                {{ link.title }}
+              {%- endif -%}
+            {% endcapture %}
+
             {% if link.title == 'Swatches' %}
               {% if customer and customer.b2b? %}
               <li>
               {% if link.links != blank %}
                 <button class="menu-drawer__menu-button menu-drawer__menu-button--has-menu body" href="{{ link.url }}">
-                  {{ link.title }}
+                  {{ link_content }}
                   {% render 'icon', icon: 'caret' %}
                 </button>
                 <ul class="menu-drawer__secondary-menu list-unstyled" role="list">
@@ -41,7 +84,7 @@
                   {% endfor %}
                 </ul>
               {% else %}
-                <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link.title }}</a>
+                <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link_content }}</a>
               {% endif %}
             </li>
               {% endif %}
@@ -49,7 +92,7 @@
             <li>
               {% if link.links != blank %}
                 <button class="menu-drawer__menu-button menu-drawer__menu-button--has-menu body" href="{{ link.url }}">
-                  {{ link.title }}
+                  {{ link_content }}
                   {% render 'icon', icon: 'caret' %}
                 </button>
                 <ul class="menu-drawer__secondary-menu list-unstyled" role="list">
@@ -60,7 +103,7 @@
                   {% endfor %}
                 </ul>
               {% else %}
-                <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link.title }}</a>
+                <a class="menu-drawer__menu-button body" href="{{ link.url }}">{{ link_content }}</a>
               {% endif %}
             </li>
             {%endif %}
@@ -104,6 +147,51 @@
       "type": "link_list",
       "id": "b2b_menu",
       "label": "B2B Menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_item_style",
+      "name": "Nav Item Style",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_item",
+          "label": "Menu Item",
+          "info": "Enter the menu item title exactly as it appears in the menu (not case sensitive)."
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "select",
+          "id": "icon_position",
+          "label": "Icon Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left of text"
+            },
+            {
+              "value": "right",
+              "label": "Right of text"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "range",
+          "id": "icon_height",
+          "min": 10,
+          "max": 60,
+          "step": 1,
+          "default": 20,
+          "unit": "px",
+          "label": "Icon Height"
+        }
+      ]
     }
   ]
 }
