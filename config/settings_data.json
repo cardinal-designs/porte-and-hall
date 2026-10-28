@@ -73,6 +73,30 @@
       "header": {
         "type": "header",
         "blocks": {
+          "nav_item_style_wXF6Gb": {
+            "type": "nav_item_style",
+            "settings": {
+              "menu_item": "Shop All",
+              "text_color": "#D22121",
+              "font": "brandon_regular",
+              "icon": "shopify://shop_images/Fade-Resistant-Mat.gif",
+              "icon_position": "left",
+              "icon_height": 20,
+              "hide_text": false
+            }
+          },
+          "nav_item_style_A6GB7t": {
+            "type": "nav_item_style",
+            "settings": {
+              "menu_item": "Best sellers",
+              "text_color": "#2D1010",
+              "font": "brandon_regular",
+              "icon": "shopify://shop_images/IMG_4179_2.webp",
+              "icon_position": "left",
+              "icon_height": 10,
+              "hide_text": false
+            }
+          },
           "538678ad-e47e-4c77-816c-a4e84399e585": {
             "type": "mega_menu",
             "settings": {
@@ -81,6 +105,8 @@
           }
         },
         "block_order": [
+          "nav_item_style_wXF6Gb",
+          "nav_item_style_A6GB7t",
           "538678ad-e47e-4c77-816c-a4e84399e585"
         ],
         "settings": {
