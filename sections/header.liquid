@@ -48,6 +48,41 @@
           width: {{ section.settings.mobile_logo_width }}px;
         }
       }
+
+      .header__menu-item--styled,
+      .header__menu-item--styled > span {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .header__menu-item-icon {
+        display: block;
+        width: auto;
+        height: var(--menu-item-icon-height, 20px);
+      }
+
+      {% for block in section.blocks %}
+        {% if block.type == 'nav_item_style' %}
+          .header__menu-list .header__menu-item--{{ block.id }} {
+            --menu-item-icon-height: {{ block.settings.icon_height }}px;
+            {% if block.settings.text_color != blank %}
+              color: {{ block.settings.text_color }};
+            {% endif %}
+            {% case block.settings.font %}
+              {% when 'louize' %}
+                font-family: louize, serif;
+                font-weight: 500;
+              {% when 'brandon_bold' %}
+                font-family: brandon, sans-serif;
+                font-weight: 600;
+              {% else %}
+                font-family: brandon, sans-serif;
+                font-weight: 400;
+            {% endcase %}
+          }
+        {% endif %}
+      {% endfor %}
     </style>
 
     <!-- Icons -->
@@ -162,11 +197,19 @@
           {% for link in main_menu.links %}
             {% assign downcased_link_title = link.title | downcase | strip %}
             {% assign mega_menu_names = '' %}
+            {% assign item_style = nil %}
+            {% assign item_style_class = '' %}
 
             {% for block in section.blocks %}
               {% if block.type == 'mega_menu' %}
                 {% assign trim_mega_menu_name = block.settings.title | strip %}
                 {% assign mega_menu_names = mega_menu_names | append: trim_mega_menu_name | append: ',' %}
+              {% elsif block.type == 'nav_item_style' and item_style == nil %}
+                {% assign style_menu_item = block.settings.menu_item | strip | downcase %}
+                {% if style_menu_item != blank and style_menu_item == downcased_link_title %}
+                  {% assign item_style = block %}
+                  {% assign item_style_class = ' header__menu-item--styled header__menu-item--' | append: block.id %}
+                {% endif %}
               {% endif %}
             {% endfor %}
 
@@ -188,13 +231,13 @@
               {% else %} {% endcomment %}
               <li>
                 {% if link.links != blank %}
-                  <div class="header__menu-item header__menu-item--has-dropdown">
+                  <div class="header__menu-item header__menu-item--has-dropdown{{ item_style_class }}">
                     <span
                       {% if link.child_active %}
                         class="header__active-menu-item"
                       {% endif %}
                     >
-                      {{- link.title | escape -}}
+                      {%- render 'header-menu-item-content', title: link.title, item_style: item_style -%}
                     </span>
                     {% render 'icon', icon: 'caret' %}
                   </div>
@@ -216,12 +259,12 @@
                 {% else %}
                   <a
                     href="{{ link.url }}"
-                    class="header__menu-item"
+                    class="header__menu-item{{ item_style_class }}"
                     {% if link.current %}
                       aria-current="page"
                     {% endif %}
                   >
-                    {{ link.title | escape }}
+                    {%- render 'header-menu-item-content', title: link.title, item_style: item_style -%}
                   </a>
                 {% endif %}
               </li>
@@ -230,12 +273,12 @@
               <li class="header__mega-menu-wrapper">
                 <a
                   href="{{ link.url }}"
-                  class="header__menu-item header__menu-item--mega body-3 bold"
+                  class="header__menu-item header__menu-item--mega body-3 bold{{ item_style_class }}"
                   {% if link.current %}
                     aria-current="page"
                   {% endif %}
                 >
-                  {{ link.title | escape }}
+                  {%- render 'header-menu-item-content', title: link.title, item_style: item_style -%}
                 </a>
 
                 {% for block in section.blocks %}
@@ -243,7 +286,7 @@
                   {% assign downcased_mega_menu_name = trim_mega_menu_name | downcase %}
                   {% assign mega_menu_names = mega_menu_names | append: trim_mega_menu_name | append: ',' %}
 
-                  {% if downcased_mega_menu_name == downcased_link_title %}
+                  {% if block.type == 'mega_menu' and downcased_mega_menu_name == downcased_link_title %}
                     <div class="header__mega-menu-outer">
                       <div class="header__mega-menu">
                         <div class="page-width">
@@ -429,6 +472,86 @@
           "id": "title",
           "label": "Menu Item",
           "info": "Enter menu item to apply a mega menu dropdown."
+        }
+      ]
+    },
+    {
+      "type": "nav_item_style",
+      "name": "Nav Item Style",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_item",
+          "label": "Menu Item",
+          "info": "Enter the menu item title exactly as it appears in the menu (not case sensitive)."
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Font Color",
+          "info": "Leave empty to use the default nav color."
+        },
+        {
+          "type": "select",
+          "id": "font",
+          "label": "Font",
+          "options": [
+            {
+              "value": "louize",
+              "label": "Louize"
+            },
+            {
+              "value": "brandon_bold",
+              "label": "Brandon Bold"
+            },
+            {
+              "value": "brandon_regular",
+              "label": "Brandon Regular"
+            }
+          ],
+          "default": "brandon_regular"
+        },
+        {
+          "type": "header",
+          "content": "Icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "select",
+          "id": "icon_position",
+          "label": "Icon Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left of text"
+            },
+            {
+              "value": "right",
+              "label": "Right of text"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "range",
+          "id": "icon_height",
+          "min": 10,
+          "max": 60,
+          "step": 1,
+          "default": 20,
+          "unit": "px",
+          "label": "Icon Height"
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_text",
+          "label": "Show icon only",
+          "info": "Hides the link text visually (kept for screen readers). Only applies when an icon is uploaded.",
+          "default": false
         }
       ]
     }
