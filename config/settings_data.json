@@ -73,6 +73,17 @@
       "header": {
         "type": "header",
         "blocks": {
+          "nav_item_style_GAqkcQ": {
+            "type": "nav_item_style",
+            "settings": {
+              "menu_item": "shop all",
+              "text_color": "",
+              "font": "louize",
+              "icon": "shopify://shop_images/instagram-icon-color.png",
+              "icon_position": "left",
+              "icon_height": 20
+            }
+          },
           "538678ad-e47e-4c77-816c-a4e84399e585": {
             "type": "mega_menu",
             "settings": {
@@ -81,6 +92,7 @@
           }
         },
         "block_order": [
+          "nav_item_style_GAqkcQ",
           "538678ad-e47e-4c77-816c-a4e84399e585"
         ],
         "settings": {
