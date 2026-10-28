@@ -73,6 +73,78 @@
       "header": {
         "type": "header",
         "blocks": {
+          "nav_item_style_WF3BFV": {
+            "type": "nav_item_style",
+            "settings": {
+              "menu_item": "Learn",
+              "text_color": "",
+              "font": "brandon_regular",
+              "icon": "shopify://shop_images/instagram-icon-color.png",
+              "icon_position": "left",
+              "icon_height": 20,
+              "hide_text": false
+            }
+          },
+          "nav_item_style_dwgchB": {
+            "type": "nav_item_style",
+            "settings": {
+              "menu_item": "sale",
+              "text_color": "",
+              "font": "brandon_regular",
+              "icon": "shopify://shop_images/instagram-icon-color.png",
+              "icon_position": "left",
+              "icon_height": 20,
+              "hide_text": false
+            }
+          },
+          "nav_item_style_hyr6DR": {
+            "type": "nav_item_style",
+            "settings": {
+              "menu_item": "area mats",
+              "text_color": "",
+              "font": "brandon_regular",
+              "icon": "shopify://shop_images/facebook-icon-color.png",
+              "icon_position": "left",
+              "icon_height": 20,
+              "hide_text": false
+            }
+          },
+          "nav_item_style_kPBpzN": {
+            "type": "nav_item_style",
+            "settings": {
+              "menu_item": "runners",
+              "text_color": "",
+              "font": "brandon_regular",
+              "icon": "shopify://shop_images/instagram-icon-color.png",
+              "icon_position": "left",
+              "icon_height": 20,
+              "hide_text": false
+            }
+          },
+          "nav_item_style_g7m3PN": {
+            "type": "nav_item_style",
+            "settings": {
+              "menu_item": "outdoor doormats",
+              "text_color": "",
+              "font": "brandon_regular",
+              "icon": "shopify://shop_images/facebook-icon-color.png",
+              "icon_position": "left",
+              "icon_height": 20,
+              "hide_text": false
+            }
+          },
+          "nav_item_style_FKYtbd": {
+            "type": "nav_item_style",
+            "settings": {
+              "menu_item": "indoor doormats",
+              "text_color": "#A73C3C",
+              "font": "brandon_regular",
+              "icon": "shopify://shop_images/instagram-icon-color.png",
+              "icon_position": "left",
+              "icon_height": 20,
+              "hide_text": false
+            }
+          },
           "nav_item_style_wXF6Gb": {
             "type": "nav_item_style",
             "settings": {
@@ -105,6 +177,12 @@
           }
         },
         "block_order": [
+          "nav_item_style_WF3BFV",
+          "nav_item_style_dwgchB",
+          "nav_item_style_hyr6DR",
+          "nav_item_style_kPBpzN",
+          "nav_item_style_g7m3PN",
+          "nav_item_style_FKYtbd",
           "nav_item_style_wXF6Gb",
           "nav_item_style_A6GB7t",
           "538678ad-e47e-4c77-816c-a4e84399e585"
