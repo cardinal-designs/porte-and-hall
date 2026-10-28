@@ -27,6 +27,11 @@
         <meta name="robots" content="noindex,nofollow">
       {% endif %}
     {% endif %}
+
+    {% comment %} InstantSearch+ results page: content is query-driven and JS-rendered, keep it out of the index {% endcomment %}
+    {% if request.page_type == 'page' and page.handle == 'search-results' %}
+      <meta name="robots" content="noindex,follow">
+    {% endif %}
         
     <title>
       {{ page_title }}
@@ -543,6 +548,9 @@
     }
     </script>
     {% endif %}
+
+    {% render 'page-article-schema' %}
+    {% render 'page-faq-schema' %}
 
     {% if template.name == 'article' %}
     {%- liquid

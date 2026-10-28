@@ -78,8 +78,10 @@
             {% render 'icon', icon: 'caret' %}
           </li>
         {%- else -%}
+          {%- comment -%} Link to the real shop-all collection (in sitemap) rather than Shopify's auto-generated all-products page {%- endcomment -%}
+          {%- assign shop_all_collection = collections['shop-all'] -%}
           <li class="breadcrumbs__item">
-            <a class="breadcrumbs__link" href="/collections/all" aria-current="collection">Products</a>
+            <a class="breadcrumbs__link" href="{{ shop_all_collection.url | default: routes.all_products_collection_url }}" aria-current="collection">Products</a>
           </li>
           <li class="breadcrumbs__item breadcrumbs__seperator">
             {% render 'icon', icon: 'caret' %}

@@ -1,0 +1,57 @@
+{%- comment -%}
+  Article JSON-LD for editorial pages (guides, inspiration, care, dimensions).
+  Add a page handle to article_page_handles to enable it on that page.
+{%- endcomment -%}
+{%- liquid
+  assign article_page_handles = 'ideas-inspiration,our-favorite-places,innerweave-dimensions,insider-dimensions,innerweave-care' | split: ','
+-%}
+{%- if request.page_type == 'page' and article_page_handles contains page.handle -%}
+{%- liquid
+  assign page_seo_url = request.origin | append: page.url
+  assign page_seo_description = page_description | default: page.content | strip_html | strip_newlines | truncate: 300
+
+  assign page_seo_image = page_image | default: settings.share_image
+  if page_seo_image
+    assign page_seo_image = page_seo_image | image_url: width: 1920
+    unless page_seo_image contains 'http'
+      assign page_seo_image = page_seo_image | prepend: 'https:'
+    endunless
+  endif
+-%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": {{ page_seo_url | append: '#article' | json }},
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ page_seo_url | json }}
+  },
+  "url": {{ page_seo_url | json }},
+  "headline": {{ page.title | truncate: 110 | json }},
+  {%- if page_seo_description != blank %}
+  "description": {{ page_seo_description | json }},
+  {%- endif %}
+  {%- if page_seo_image != blank %}
+  "image": [{{ page_seo_image | json }}],
+  {%- endif %}
+  "author": {
+    {%- if page.author != blank %}
+    "@type": "Person",
+    "name": {{ page.author | json }}
+    {%- else %}
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "url": {{ shop.url | json }}
+    {%- endif %}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "url": {{ shop.url | json }}
+  },
+  "datePublished": {{ page.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' | json }},
+  "dateModified": {{ page.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' | json }}
+}
+</script>
+{%- endif -%}
