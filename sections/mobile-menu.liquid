@@ -22,6 +22,20 @@
     {% if block.type == 'nav_item_style' %}
       .menu-drawer__menu-item--{{ block.id }} {
         --menu-item-icon-height: {{ block.settings.icon_height }}px;
+        {% if block.settings.text_color != blank %}
+          color: {{ block.settings.text_color }};
+        {% endif %}
+        {% case block.settings.font %}
+          {% when 'louize' %}
+            font-family: louize, serif;
+            font-weight: 500;
+          {% when 'brandon_bold' %}
+            font-family: brandon, sans-serif;
+            font-weight: 600;
+          {% else %}
+            font-family: brandon, sans-serif;
+            font-weight: 400;
+        {% endcase %}
       }
     {% endif %}
   {% endfor %}
@@ -159,6 +173,36 @@
           "id": "menu_item",
           "label": "Menu Item",
           "info": "Enter the menu item title exactly as it appears in the menu (not case sensitive)."
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Font Color",
+          "info": "Leave empty to use the default nav color."
+        },
+        {
+          "type": "select",
+          "id": "font",
+          "label": "Font",
+          "options": [
+            {
+              "value": "louize",
+              "label": "Louize"
+            },
+            {
+              "value": "brandon_bold",
+              "label": "Brandon Bold"
+            },
+            {
+              "value": "brandon_regular",
+              "label": "Brandon Regular"
+            }
+          ],
+          "default": "brandon_regular"
+        },
+        {
+          "type": "header",
+          "content": "Icon"
         },
         {
           "type": "image_picker",
