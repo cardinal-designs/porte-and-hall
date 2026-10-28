@@ -33,6 +33,24 @@
     "designer_spotlight_fFHtkW": {
       "type": "designer-spotlight",
       "blocks": {
+        "block_btXCyH": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/designerspotlight_lawson_homepage.jpg",
+            "title": "Meet the Designer",
+            "designer_image": "shopify://shop_images/designerspotlight_lawson.jpg",
+            "designer_name": "Elizabeth Lawson",
+            "designer_title": "Founder, <a href=\"http://elizabethlawsondesign.com\">Elizabeth Lawson Design</a>",
+            "text_header_1": "What’s your most-used design phrase with clients?",
+            "text_1": "Classic and timeless are words you will often hear me use when speaking to clients. I like to encourage the use of colors and materials that will stand the test of time, especially for larger investment pieces.",
+            "text_header_2": "What’s your top tip for creating a beautiful, welcoming entry?",
+            "text_2": "Even if your space doesn't have a dedicated foyer, you can create one by placing a small entry rug by the door. I like to add a console with a table lamp, for warmth, and a small tray to set keys, phone, etc.",
+            "text_header_3": "What’s a design rule you love breaking—or one you’ll never break?",
+            "text_3": "I don't really believe in rules when it comes to design. My goal is always to achieve a beautiful, fresh design that doesn't feel too fussy, and is also practical for families and pets.",
+            "button_label": "SHOP THE LOOK",
+            "button_link": "shopify://products/the-innerweave-chevron-natural-runner"
+          }
+        },
         "block_ymMkAE": {
           "type": "block",
           "settings": {
@@ -143,6 +161,7 @@
         }
       },
       "block_order": [
+        "block_btXCyH",
         "block_ymMkAE",
         "block_rDcCHA",
         "block_Yc9HLD",
