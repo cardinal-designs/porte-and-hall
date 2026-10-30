@@ -23,7 +23,7 @@
     "main": {
       "type": "main-product-accordion",
       "custom_css": [
-        ".product__features-item p {text-align:center;}",
+        ".product__features-item p {text-align: center;}",
         "@media screen and (max-width: 768px) {.product__quantity-atc-wrapper {justify-content: center; width: 100%; }}"
       ],
       "settings": {
@@ -249,6 +249,7 @@
     },
     "see-the-difference": {
       "type": "see-the-difference",
+      "disabled": true,
       "settings": {
         "colleciton": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
         "heading": "Small mat, big difference",
