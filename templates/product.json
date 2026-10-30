@@ -42,89 +42,6 @@
       "type": "product-shop-other-sizes",
       "settings": {}
     },
-    "lp_custom_collections_2_ABDk4m": {
-      "type": "LP-custom-collections-2",
-      "blocks": {
-        "block_wcQHYU": {
-          "type": "block",
-          "settings": {
-            "title": "The Insider",
-            "badge1": "Ultra-thin",
-            "product1_title": "The Insider",
-            "collection1": "the-insider",
-            "product1": "the-insider-wild-side-dove-runner",
-            "product_image1": "shopify://shop_images/WildSideDove_Doormat_v2.jpg",
-            "check1": "Ultra-thin to fit under your door",
-            "check2": "Slip resistant without marking",
-            "check3": "Water absorbent, protects your floor",
-            "check4": "Doesn’t bunch up",
-            "link_text": "",
-            "link_url": ""
-          }
-        },
-        "block_pgGtGT": {
-          "type": "block",
-          "settings": {
-            "title": "The Innerweave",
-            "badge1": "Natural Look",
-            "product1_title": "The Innerweave",
-            "collection1": "the-innerweave",
-            "product1": "the-innerweave-chevron-stone-runner",
-            "product_image1": "shopify://shop_images/5_CHEVRON_STONE_BACKING_1copy.jpg",
-            "check1": "Indoor and outdoor",
-            "check2": "Stain-resistant",
-            "check3": "Soft, woven texture",
-            "check4": "Doesn't shed",
-            "link_text": "",
-            "link_url": ""
-          }
-        },
-        "block_pdi6Ua": {
-          "type": "block",
-          "settings": {
-            "title": "The Outlier",
-            "badge1": "Outdoor",
-            "product1_title": "The Outlier",
-            "collection1": "the-outlier",
-            "product1": "the-outlier-charcoal-doormat",
-            "product_image1": "shopify://shop_images/Screenshot_2024-05-20_at_3.11.04_PM_cc4f1ec4-13d1-416e-a6b8-4e0aaf6d3dbb.png",
-            "check1": "Maximum scrape-ability",
-            "check2": "Vented for water evaporation",
-            "check3": "Rubbery feel",
-            "check4": "Tough bristles",
-            "link_text": "",
-            "link_url": ""
-          }
-        },
-        "block_WMzwR3": {
-          "type": "block",
-          "settings": {
-            "title": "The Porter",
-            "badge1": "Outdoor",
-            "product1_title": "The Porter",
-            "collection1": "the-porter-standard",
-            "product1": "the-porter-greystone-standard",
-            "product_image1": "shopify://shop_images/Porter_Collections_mobile_2x_1f5f9730-4538-4c48-ae48-9f77e19a7552.jpg",
-            "check1": "Hand-knotted, one-of-a-kind design",
-            "check2": "Premium all-weather yarns ",
-            "check3": "Stain- and fade-resistant",
-            "check4": "Traps dirt, rinses clean",
-            "link_text": "",
-            "link_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "block_wcQHYU",
-        "block_pgGtGT",
-        "block_pdi6Ua",
-        "block_WMzwR3"
-      ],
-      "settings": {
-        "title": "Shop our other collections",
-        "subtitle": ""
-      }
-    },
     "logo_marquee_jDAjnD": {
       "type": "logo-marquee",
       "blocks": {
@@ -213,7 +130,138 @@
         "logo_b4Vezr"
       ],
       "settings": {
-        "background_color": "#d8d3c7"
+        "background_color": "#546B82"
+      }
+    },
+    "collection_tiles_JaYcV6": {
+      "type": "collection-tiles",
+      "blocks": {
+        "tile_hQ7aBU": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/The_Insider_92b6fe3e-763c-4aae-aad9-926fb6699fed.jpg",
+            "image_link": "",
+            "heading": "The Insider",
+            "description": "<p>Lies flat, stays put, and fits seamlessly under your door.</p>",
+            "button_label": "Shop the Insider",
+            "button_link": "shopify://collections/the-insider"
+          }
+        },
+        "tile_jqFwEE": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/The_Innerweave_c7048f60-a5b5-4f1a-a157-429660bd1ebb.jpg",
+            "image_link": "",
+            "heading": "The Innerweave",
+            "description": "<p>Soft woven texture that resists stains and shedding.</p>",
+            "button_label": "Shop The Innerweave",
+            "button_link": "shopify://collections/the-innerweave"
+          }
+        }
+      },
+      "block_order": [
+        "tile_hQ7aBU",
+        "tile_jqFwEE"
+      ],
+      "disabled": true,
+      "name": "Collection Tiles + CTA",
+      "settings": {
+        "heading": "Shop Inside Mats",
+        "full_bleed": false,
+        "column_gap": 28,
+        "mobile_tile_width": 78,
+        "padding_top": 56,
+        "padding_bottom": 72,
+        "color_bg": "#EEEFEF",
+        "color_heading": "#546B82",
+        "color_text": "",
+        "color_text_secondary": "",
+        "color_button_bg": "#896A28",
+        "color_button_text": "#FFFFFF",
+        "button_font_size": 13
+      }
+    },
+    "lp_custom_collections_2_ABDk4m": {
+      "type": "LP-custom-collections-2",
+      "blocks": {
+        "block_wcQHYU": {
+          "type": "block",
+          "settings": {
+            "title": "The Insider",
+            "badge1": "Ultra-thin",
+            "product1_title": "The Insider",
+            "collection1": "the-insider",
+            "product1": "the-insider-wild-side-dove-runner",
+            "product_image1": "shopify://shop_images/WildSideDove_Doormat_v2.jpg",
+            "check1": "Ultra-thin to fit under your door",
+            "check2": "Slip resistant without marking",
+            "check3": "Water absorbent, protects your floor",
+            "check4": "Doesn’t bunch up",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_pgGtGT": {
+          "type": "block",
+          "settings": {
+            "title": "The Innerweave",
+            "badge1": "Natural Look",
+            "product1_title": "The Innerweave",
+            "collection1": "the-innerweave",
+            "product1": "the-innerweave-chevron-stone-runner",
+            "product_image1": "shopify://shop_images/5_CHEVRON_STONE_BACKING_1copy.jpg",
+            "check1": "Indoor and outdoor",
+            "check2": "Stain-resistant",
+            "check3": "Soft, woven texture",
+            "check4": "Doesn't shed",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_pdi6Ua": {
+          "type": "block",
+          "settings": {
+            "title": "The Outlier",
+            "badge1": "Outdoor",
+            "product1_title": "The Outlier",
+            "collection1": "the-outlier",
+            "product1": "the-outlier-charcoal-doormat",
+            "product_image1": "shopify://shop_images/Screenshot_2024-05-20_at_3.11.04_PM_cc4f1ec4-13d1-416e-a6b8-4e0aaf6d3dbb.png",
+            "check1": "Maximum scrape-ability",
+            "check2": "Vented for water evaporation",
+            "check3": "Rubbery feel",
+            "check4": "Tough bristles",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "block_WMzwR3": {
+          "type": "block",
+          "settings": {
+            "title": "The Porter",
+            "badge1": "Outdoor",
+            "product1_title": "The Porter",
+            "collection1": "the-porter-standard",
+            "product1": "the-porter-greystone-standard",
+            "product_image1": "shopify://shop_images/Porter_Collections_mobile_2x_1f5f9730-4538-4c48-ae48-9f77e19a7552.jpg",
+            "check1": "Hand-knotted, one-of-a-kind design",
+            "check2": "Premium all-weather yarns ",
+            "check3": "Stain- and fade-resistant",
+            "check4": "Traps dirt, rinses clean",
+            "link_text": "",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_wcQHYU",
+        "block_pgGtGT",
+        "block_pdi6Ua",
+        "block_WMzwR3"
+      ],
+      "settings": {
+        "title": "Shop our other collections",
+        "subtitle": ""
       }
     },
     "design-details": {
@@ -361,8 +409,9 @@
     "breadcrumbs_yDykEc",
     "main",
     "other-sizes",
-    "lp_custom_collections_2_ABDk4m",
     "logo_marquee_jDAjnD",
+    "collection_tiles_JaYcV6",
+    "lp_custom_collections_2_ABDk4m",
     "design-details",
     "product_quote_KP6aXV",
     "see-in-action",
