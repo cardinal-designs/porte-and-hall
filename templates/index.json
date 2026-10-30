@@ -11,14 +11,16 @@
   "sections": {
     "video_text_pk7JCQ": {
       "type": "video-text",
-      "custom_css": [],
+      "custom_css": [
+        "@media (max-width: 749px) {HH_p {font-size: 25px; }}"
+      ],
       "name": "Video with text",
       "settings": {
         "bg_color": "#f4f2ee",
         "video": "shopify://files/videos/November26_Promo_Homepage_1200x1200_web.mp4",
         "mobile_video": "shopify://files/videos/November26_Promo_Homepage_1200x1200_web.mp4",
         "video_poster": "shopify://shop_images/November26_Promo_Homepage_poster.jpg",
-        "subheading": "<div style=\"font-family:louize; font-weight:500; padding-bottom:15px; font-size:55px;\">Home for the Holidays</div>\n<div style=\"font-size:30px; font-weight:400;\">\nGood things are coming home. Take $25 off any order $75+.</div>\n<div style=\"font-family:louize; font-weight:500; padding:15px 0px; font-size:16px;\">Use code ONTHEHOUSE. Ends 11/15. <a href=\"/pages/disclaimers\"><u>See details</u></a>.</div><br>",
+        "subheading": "<div style=\"font-family:louize; font-weight:500; padding-bottom:15px; font-size:55px;\">Home for the Holidays</div>\n<div class=\"HH_p\" style=\"font-size:30px; font-weight:400;\">\nGood things are coming home. Take $25 off any order $75+.</div>\n<div style=\"font-family:louize; font-weight:500; padding:15px 0px; font-size:16px;\">Use code ONTHEHOUSE. Ends 11/15. <a href=\"/pages/disclaimers\"><u>See details</u></a>.</div><br>",
         "title": "",
         "title_font_size": 70,
         "content": "",
