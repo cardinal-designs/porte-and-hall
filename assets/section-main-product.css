@@ -1885,7 +1885,7 @@ product-form form {
 .main-product-accordion .accordion-content .product__care-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1894,14 +1894,14 @@ product-form form {
 .main-product-accordion .product__care-item {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   margin: 0;
 }
 
 .main-product-accordion .product__care-icon {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
 }
 

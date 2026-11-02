@@ -838,7 +838,7 @@ endcapture
                     {%- for instruction in care_instructions -%}
                       <li class="product__care-item">
                         {%- if instruction.icon != blank -%}
-                          {{ instruction.icon.value | image_url: width: 96 | image_tag: width: 40, loading: 'lazy', alt: '', class: 'product__care-icon' }}
+                          {{ instruction.icon.value | image_url: width: 60 | image_tag: width: 20, loading: 'lazy', alt: '', class: 'product__care-icon' }}
                         {%- endif -%}
                         <div class="product__care-text">{{ instruction.text | metafield_tag }}</div>
                       </li>
@@ -1515,7 +1515,8 @@ endcapture
       "type": "richtext",
       "id": "shipping_returns",
       "label": "Shipping & Returns",
-      "info": "Shown on every product. A collection's custom.shipping_returns metafield overrides it."
+      "info": "Shown on every product. A collection's custom.shipping_returns metafield overrides it.",
+      "default": "<p>All orders ship within <strong>3 business days</strong> from our warehouse in Connecticut and standard shipping is an additional 3-8 days. If an item is marked as a <strong>preorder</strong>, its estimated ship date will be noted on the order confirmation email. For more details, visit our <a href=\"/pages/shipping-information\" title=\"Shipping information\"><strong>shipping information</strong></a> page.</p><p>If you need to return an item, please visit our <a href=\"https://porteandhall.loopreturns.com/#/\" target=\"_blank\" title=\"Returns portal\"><strong>returns portal</strong></a>. A return label will be provided to you.</p>"
     },
     {
       "type": "html",
