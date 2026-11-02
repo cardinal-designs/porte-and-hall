@@ -1881,6 +1881,34 @@ product-form form {
   content: 'A: ';
 }
 
+/* Care & Cleaning icon list (custom.care_instructions metaobjects) */
+.main-product-accordion .accordion-content .product__care-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main-product-accordion .product__care-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+}
+
+.main-product-accordion .product__care-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.main-product-accordion .product__care-text p {
+  margin-bottom: 0;
+}
+
 .main-product-accordion .product__faq-answer p:not(:last-child) {
   margin-bottom: 6px;
 }

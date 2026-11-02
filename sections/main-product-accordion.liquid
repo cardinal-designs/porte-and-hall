@@ -45,6 +45,23 @@
   # custom.faqs is a list of FAQ metaobjects (fields: question, answer), the same
   # source the `faq` section repeats over. Not rich text — don't metafield_tag it.
   assign faqs_metaobjects = content_collection.metafields.custom.faqs.value
+  # custom.care_instructions is a list of care_instruction metaobjects (fields: icon,
+  # text). When set it replaces the plain Care rich text.
+  assign care_instructions = content_collection.metafields.custom.care_instructions.value
+
+  # A row only renders when its toggle is on and it has something to show.
+  assign has_care = false
+  if care_instructions != blank or section.settings.care != blank
+    assign has_care = true
+  endif
+  assign has_shipping_returns = false
+  if shipping_returns_metafield != blank or section.settings.shipping_returns != blank
+    assign has_shipping_returns = true
+  endif
+  assign has_faqs = false
+  if faqs_metaobjects != blank or section.settings.faqs != blank
+    assign has_faqs = true
+  endif
 
   capture color_swatch_list
   assign swatch_count = 1
@@ -732,7 +749,7 @@ endcapture
       {% comment %}ACCORDION BEGINS{% endcomment %}
        {% unless product.tags contains 'Swatch' %}
       <pdp-accordion class="product-accordion__container">
-        {% if grouped_collection.metafields.custom.product_features != blank %}
+        {% if section.settings.show_features and grouped_collection.metafields.custom.product_features != blank %}
          <div class="accordion">
            <div data-id="1" class="accordion-title">
              <h2 class="h3">Features</h2>
@@ -760,7 +777,8 @@ endcapture
            </div>
          </div>
         {% endif %}
-       
+
+        {% if section.settings.show_materials and section.settings.materials != blank %}
          <div class="accordion">
            <div data-id="2" class="accordion-title">
              <h2 class="h3">Materials &amp; Construction</h2>
@@ -774,8 +792,9 @@ endcapture
             </div>
            </div>
          </div>
-       
-        {% if grouped_collection.metafields.custom.dimensions != blank %}
+        {% endif %}
+
+        {% if section.settings.show_specifications and grouped_collection.metafields.custom.dimensions != blank %}
          <div class="accordion">
            <div data-id="3" class="accordion-title">
              <h2 class="h3">Specifications</h2>
@@ -805,7 +824,7 @@ endcapture
          </div>
         {% endif %}
 
-        {% if section.settings.care != blank %}
+        {% if section.settings.show_care and has_care %}
          <div class="accordion">
            <div data-id="4" class="accordion-title">
              <h2 class="h3">Care &amp; Cleaning</h2>
@@ -814,14 +833,27 @@ endcapture
            <div data-id="4" class="accordion-content">
             <div class="swiper-slide">
               <div class="product__tabs-item body-sm">
-                {{ section.settings.care }}
+                {%- if care_instructions != blank -%}
+                  <ul class="product__care-list">
+                    {%- for instruction in care_instructions -%}
+                      <li class="product__care-item">
+                        {%- if instruction.icon != blank -%}
+                          {{ instruction.icon.value | image_url: width: 96 | image_tag: width: 40, loading: 'lazy', alt: '', class: 'product__care-icon' }}
+                        {%- endif -%}
+                        <div class="product__care-text">{{ instruction.text | metafield_tag }}</div>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- else -%}
+                  {{ section.settings.care }}
+                {%- endif -%}
               </div>
             </div>
            </div>
          </div>
         {% endif %}
 
-        {% if shipping_returns_metafield != blank or section.settings.shipping_returns != blank %}
+        {% if section.settings.show_shipping_returns and has_shipping_returns %}
          <div class="accordion">
            <div data-id="5" class="accordion-title">
              <h2 class="h3">Shipping &amp; Returns</h2>
@@ -841,6 +873,7 @@ endcapture
          </div>
          {% endif %}
 
+        {% if section.settings.show_faqs and has_faqs %}
          <div class="accordion">
            <div data-id="6" class="accordion-title">
              <h2 class="h3">FAQs</h2>
@@ -867,6 +900,7 @@ endcapture
             </div>
            </div>
          </div>
+        {% endif %}
 
         {% comment %}
         {% if product.handle contains "outlier" %}
@@ -1398,7 +1432,7 @@ endcapture
       "type": "richtext",
       "id": "care",
       "label": "Care",
-      "info": "Connect collection metafields for care"
+      "info": "Connect collection metafields for care. Used only when the collection's care instruction list (custom.care_instructions) is empty."
     },
     {
       "type": "checkbox",
@@ -1438,13 +1472,50 @@ endcapture
     },
     {
       "type": "header",
-      "content": "Accordions"
+      "content": "Accordions",
+      "info": "A row is hidden automatically when it has no content."
     },
     {
-      "type": "html",
+      "type": "checkbox",
+      "id": "show_features",
+      "label": "Show Features",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_materials",
+      "label": "Show Materials & Construction",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_specifications",
+      "label": "Show Specifications",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_care",
+      "label": "Show Care & Cleaning",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping_returns",
+      "label": "Show Shipping & Returns",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_faqs",
+      "label": "Show FAQs",
+      "default": true
+    },
+    {
+      "type": "richtext",
       "id": "shipping_returns",
-      "label": "Shipping & Returns fallback",
-      "info": "Used only when the collection metafield custom.shipping_returns is empty."
+      "label": "Shipping & Returns",
+      "info": "Shown on every product. A collection's custom.shipping_returns metafield overrides it."
     },
     {
       "type": "html",
