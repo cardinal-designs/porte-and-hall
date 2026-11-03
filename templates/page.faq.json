@@ -42,6 +42,14 @@
             "answer": "{{ block.repeater.answer | metafield_tag }}"
           }
         },
+        "faq_fE4e8P": {
+          "type": "faq",
+          "settings": {
+            "title": "Can I verify The Insider’s OEKO-TEX® certification?",
+            "title_richtext": "",
+            "answer": "<p>Of course. The Insider’s certificate number is 041610.O, which you can use to verify its certification directly on the official OEKO-TEX® website.</p>"
+          }
+        },
         "77c71e78-d7a3-4953-b759-623690451f0b": {
           "type": "faq",
           "settings": {
@@ -57,12 +65,22 @@
             "title_richtext": "",
             "answer": "<p>Yes, the Insider is safe to use on all floor types. The Insider has been tested on heated floors and can withstand heat up to 97 degrees fahrenheit. It is also safe on LVP floors. It will not transfer or leave residue.</p>"
           }
+        },
+        "faq_cBkeDC": {
+          "type": "faq",
+          "settings": {
+            "title": "Is The Insider safe for sealed hardwood floors?",
+            "title_richtext": "",
+            "answer": "<p>Yes! The Insider is suitable for use on properly sealed hardwood floors. We recommend making sure your floor is clean and completely dry before putting your mat down.&nbsp;</p>"
+          }
         }
       },
       "block_order": [
         "2c91ed0a-b2c6-4a85-8169-786995743a1c",
+        "faq_fE4e8P",
         "77c71e78-d7a3-4953-b759-623690451f0b",
-        "eb86d0dc-0c1e-4ff3-a541-ec2f672fd415"
+        "eb86d0dc-0c1e-4ff3-a541-ec2f672fd415",
+        "faq_cBkeDC"
       ],
       "settings": {
         "heading": "The Insider",
