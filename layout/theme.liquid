@@ -221,7 +221,7 @@
     {%- render 'head-scripts-loader' -%}
   </head>
 
-  <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
+  <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% if canonical_url contains 'privacy-policy' %} template-policy--privacy{% endif %}{% endif %}">
     <style>
       .sr-only {
         position: absolute !important;
