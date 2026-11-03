@@ -887,12 +887,19 @@ endcapture
                     Same field access as the faq section's repeater blocks:
                     question as plain text, answer through metafield_tag.
                   {%- endcomment -%}
-                  {%- for faq in faqs_metaobjects -%}
+                  {%- for faq in faqs_metaobjects limit: section.settings.faqs_limit -%}
                     <div class="product__faq-item">
                       <p class="product__faq-question">{{ faq.question.value }}</p>
                       <div class="product__faq-answer">{{ faq.answer | metafield_tag }}</div>
                     </div>
                   {%- endfor -%}
+                  {%- comment -%}
+                    Jumps to the faq section further down, whose "Anchor Link" setting is
+                    set to "faqs" on the product templates. Only shown when some were cut.
+                  {%- endcomment -%}
+                  {%- if faqs_metaobjects.size > section.settings.faqs_limit -%}
+                    <a href="#faqs" class="product__faq-more link">See all FAQs</a>
+                  {%- endif -%}
                 {%- else -%}
                   {{ section.settings.faqs }}
                 {%- endif -%}
@@ -1510,6 +1517,16 @@ endcapture
       "id": "show_faqs",
       "label": "Show FAQs",
       "default": true
+    },
+    {
+      "type": "range",
+      "id": "faqs_limit",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "label": "Max FAQs in accordion",
+      "info": "The rest are reached through a \"See all FAQs\" link to the FAQ section (anchor: faqs).",
+      "default": 3
     },
     {
       "type": "richtext",

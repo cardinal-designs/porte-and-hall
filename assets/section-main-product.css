@@ -1881,6 +1881,13 @@ product-form form {
   content: 'A: ';
 }
 
+.main-product-accordion .product__faq-more {
+  display: inline-block;
+  margin-top: 20px;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
 /* Care & Cleaning icon list (custom.care_instructions metaobjects) */
 .main-product-accordion .accordion-content .product__care-list {
   display: flex;
