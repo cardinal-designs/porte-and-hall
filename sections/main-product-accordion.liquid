@@ -898,7 +898,7 @@ endcapture
                     set to "faqs" on the product templates. Only shown when some were cut.
                   {%- endcomment -%}
                   {%- if faqs_metaobjects.size > section.settings.faqs_limit -%}
-                    <a href="#faqs" class="product__faq-more link">See all FAQs</a>
+                    <a href="#faqs" class="product__faq-more link">Click here for more FAQs</a>
                   {%- endif -%}
                 {%- else -%}
                   {{ section.settings.faqs }}
@@ -1525,7 +1525,7 @@ endcapture
       "max": 10,
       "step": 1,
       "label": "Max FAQs in accordion",
-      "info": "The rest are reached through a \"See all FAQs\" link to the FAQ section (anchor: faqs).",
+      "info": "The rest are reached through a \"Click here for more FAQs\" link to the FAQ section (anchor: faqs).",
       "default": 3
     },
     {
