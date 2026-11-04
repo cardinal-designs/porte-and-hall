@@ -1,0 +1,418 @@
+{%- liquid
+  assign sid = section.id
+  assign desktop_img = section.settings.image
+  assign mobile_img = section.settings.mobile_image | default: section.settings.image
+-%}
+ 
+{% style %}
+  .ph-trade-hero-{{ sid }} {
+    --ph-panel-bg: {{ section.settings.panel_color }};
+    --ph-panel-text: {{ section.settings.panel_text_color }};
+    display: grid;
+    grid-template-columns: minmax(0, 46fr) minmax(0, 54fr);
+    min-height: {{ section.settings.desktop_min_height }}px;
+    {%- if section.settings.image_position == 'right' -%}
+      padding-right: {{ section.settings.image_gutter }}px;
+    {%- else -%}
+      padding-left: {{ section.settings.image_gutter }}px;
+    {%- endif -%}
+  }
+  .ph-trade-hero-{{ sid }} .ph-trade-hero__panel {
+    background-color: var(--ph-panel-bg);
+    color: var(--ph-panel-text);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 84px;
+  }
+  .ph-trade-hero-{{ sid }} .ph-trade-hero__heading,
+  .ph-trade-hero-{{ sid }} .ph-trade-hero__subheading,
+  .ph-trade-hero-{{ sid }} .ph-trade-hero__body,
+  .ph-trade-hero-{{ sid }} .ph-trade-hero__body p {
+    color: inherit;
+    margin: 0;
+  }
+  .ph-trade-hero-{{ sid }} .ph-trade-hero__subheading { margin-top: 8px; font-style: italic; }
+  .ph-trade-hero-{{ sid }} .ph-trade-hero__body { margin-top: 35px; max-width: 560px; }
+  .ph-trade-hero-{{ sid }} .ph-trade-hero__body p + p { margin-top: 1em; }
+  .ph-trade-hero-{{ sid }} .ph-trade-hero__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 42px;
+    width: 100%;
+    max-width: 470px;
+  }
+  .ph-trade-hero-{{ sid }} .ph-trade-hero__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: {{ section.settings.btn_height }}px;
+    padding: 0 24px;
+    text-align: center;
+    text-decoration: none;
+    font-size: {{ section.settings.btn_font_size }}px;
+    font-weight: {{ section.settings.btn_font_weight }};
+    text-transform: {{ section.settings.btn_text_transform }};
+    letter-spacing: {{ section.settings.btn_letter_spacing }}px;
+    border-style: solid;
+    border-width: {{ section.settings.btn_border_width }}px;
+    border-radius: {{ section.settings.btn_radius }}px;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  }
+  {%- for n in (1..2) -%}
+    {%- capture k_bg -%}button_{{ n }}_bg{%- endcapture -%}
+    {%- capture k_text -%}button_{{ n }}_text{%- endcapture -%}
+    {%- capture k_border -%}button_{{ n }}_border{%- endcapture -%}
+    {%- capture k_hbg -%}button_{{ n }}_hover_bg{%- endcapture -%}
+    {%- capture k_htext -%}button_{{ n }}_hover_text{%- endcapture -%}
+    {%- capture k_hborder -%}button_{{ n }}_hover_border{%- endcapture -%}
+    .ph-trade-hero-{{ sid }} .ph-trade-hero__btn--{{ n }} {
+      background-color: {{ section.settings[k_bg] | default: 'transparent' }};
+      color: {{ section.settings[k_text] }};
+      border-color: {{ section.settings[k_border] | default: 'transparent' }};
+    }
+    .ph-trade-hero-{{ sid }} .ph-trade-hero__btn--{{ n }}:hover,
+    .ph-trade-hero-{{ sid }} .ph-trade-hero__btn--{{ n }}:focus-visible {
+      background-color: {{ section.settings[k_hbg] | default: 'transparent' }};
+      color: {{ section.settings[k_htext] }};
+      border-color: {{ section.settings[k_hborder] | default: 'transparent' }};
+    }
+  {%- endfor -%}
+  .ph-trade-hero-{{ sid }} .ph-trade-hero__media {
+    position: relative;
+    overflow: hidden;
+    min-height: 0;
+  }
+  .ph-trade-hero-{{ sid }} .ph-trade-hero__media picture,
+  .ph-trade-hero-{{ sid }} .ph-trade-hero__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .ph-trade-hero-{{ sid }} .ph-trade-hero__media img {
+    object-fit: cover;
+    object-position: {{ section.settings.desktop_focal }};
+  }
+  {%- if section.settings.image_position == 'left' -%}
+    .ph-trade-hero-{{ sid }} { grid-template-columns: minmax(0, 54fr) minmax(0, 46fr); }
+    .ph-trade-hero-{{ sid }} .ph-trade-hero__media { order: -1; }
+  {%- endif -%}
+ 
+  @media screen and (max-width: 767px) {
+    /* Stack: image first, then the blue card pulled up over its bottom edge */
+    .ph-trade-hero-{{ sid }} {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      padding: 0 0 28px;
+    }
+    .ph-trade-hero-{{ sid }} .ph-trade-hero__media {
+      order: 0;
+      flex: none;
+      width: 100%;
+      height: {{ section.settings.mobile_image_height }}px;
+    }
+    .ph-trade-hero-{{ sid }} .ph-trade-hero__media img {
+      object-position: {{ section.settings.mobile_focal }};
+    }
+    .ph-trade-hero-{{ sid }} .ph-trade-hero__panel {
+      order: 1;
+      position: relative;
+      z-index: 1;
+      margin: -80px 20px 0;
+      padding: 26px 22px;
+      text-align: center;
+      align-items: center;
+    }
+    .ph-trade-hero-{{ sid }} .ph-trade-hero__subheading { margin-top: 8px; }
+    .ph-trade-hero-{{ sid }} .ph-trade-hero__body { margin-top: 14px; }
+    .ph-trade-hero-{{ sid }} .ph-trade-hero__buttons {
+      gap: 10px;
+      margin-top: 20px;
+      max-width: none;
+    }
+    .ph-trade-hero-{{ sid }} .ph-trade-hero__btn {
+      min-height: {{ section.settings.btn_height_mobile }}px;
+      font-size: {{ section.settings.btn_font_size_mobile }}px;
+    }
+  }
+{% endstyle %}
+ 
+<div class="ph-trade-hero ph-trade-hero-{{ sid }}">
+  <div class="ph-trade-hero__panel">
+    {%- if section.settings.heading != blank -%}
+      <h1 class="ph-trade-hero__heading">{{ section.settings.heading | escape }}</h1>
+    {%- endif -%}
+ 
+    {%- if section.settings.subheading != blank -%}
+      <p class="ph-trade-hero__subheading">{{ section.settings.subheading | escape }}</p>
+    {%- endif -%}
+ 
+    {%- if section.settings.body != blank -%}
+      <div class="ph-trade-hero__body">{{ section.settings.body }}</div>
+    {%- endif -%}
+ 
+    {%- if section.settings.button_1_label != blank or section.settings.button_2_label != blank -%}
+      <div class="ph-trade-hero__buttons">
+        {%- if section.settings.button_1_label != blank -%}
+          <a href="{{ section.settings.button_1_link | default: '#' }}" class="ph-trade-hero__btn ph-trade-hero__btn--1 {{ section.settings.button_1_classes }}">
+            {{- section.settings.button_1_label | escape -}}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.button_2_label != blank -%}
+          <a href="{{ section.settings.button_2_link | default: '#' }}" class="ph-trade-hero__btn ph-trade-hero__btn--2 {{ section.settings.button_2_classes }}">
+            {{- section.settings.button_2_label | escape -}}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+ 
+  <div class="ph-trade-hero__media">
+    {%- if desktop_img != blank -%}
+      <picture>
+        <source
+          media="(max-width: 767px)"
+          srcset="{{ mobile_img | image_url: width: 400 }} 400w, {{ mobile_img | image_url: width: 800 }} 800w, {{ mobile_img | image_url: width: 1200 }} 1200w"
+          sizes="100vw"
+        >
+        {{
+          desktop_img
+          | image_url: width: 2000
+          | image_tag:
+            widths: '800, 1000, 1200, 1500, 2000',
+            sizes: '(min-width: 768px) 55vw, 100vw',
+            loading: 'eager',
+            fetchpriority: 'high',
+            alt: desktop_img.alt
+        }}
+      </picture>
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag }}
+    {%- endif -%}
+  </div>
+</div>
+ 
+{% schema %}
+{
+  "name": "Trade Hero (Split)",
+  "tag": "section",
+  "class": "ph-trade-hero-section",
+  "settings": [
+    { "type": "header", "content": "Images" },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image (optional)",
+      "info": "Used at 767px and below. Leave blank to use the desktop image."
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position (desktop)",
+      "options": [
+        { "value": "right", "label": "Right" },
+        { "value": "left", "label": "Left" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "text",
+      "id": "desktop_focal",
+      "label": "Desktop image focal point",
+      "default": "50% 50%",
+      "info": "CSS object-position. First value is left/right, second is top/bottom. Example: 55% 60%."
+    },
+    {
+      "type": "text",
+      "id": "mobile_focal",
+      "label": "Mobile image focal point",
+      "default": "50% 50%"
+    },
+ 
+    { "type": "header", "content": "Copy" },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading (H1)",
+      "default": "To The Trade"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "From a designer who’s been there."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>We know what it takes to bring a project together, so we’re rolling out the red carpet (er, mat) for our trade community—with exclusive pricing, thoughtful support, and collections that ground your spaces beautifully.</p>"
+    },
+ 
+    { "type": "header", "content": "Button 1" },
+    {
+      "type": "text",
+      "id": "button_1_label",
+      "label": "Label",
+      "default": "Become a Member"
+    },
+    {
+      "type": "text",
+      "id": "button_1_link",
+      "label": "Link",
+      "default": "#apply",
+      "info": "Accepts page anchors (#apply) or paths (/pages/...)."
+    },
+    { "type": "color", "id": "button_1_bg", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "button_1_text", "label": "Text", "default": "#30383D" },
+    { "type": "color", "id": "button_1_border", "label": "Border", "default": "#FFFFFF" },
+    { "type": "color", "id": "button_1_hover_bg", "label": "Hover background", "default": "#EEEFEF" },
+    { "type": "color", "id": "button_1_hover_text", "label": "Hover text", "default": "#30383D" },
+    { "type": "color", "id": "button_1_hover_border", "label": "Hover border", "default": "#EEEFEF" },
+    {
+      "type": "text",
+      "id": "button_1_classes",
+      "label": "Extra CSS classes (optional)",
+      "info": "Leave blank in most cases. The color and font settings in this section override any theme class added here."
+    },
+ 
+    { "type": "header", "content": "Button 2" },
+    {
+      "type": "text",
+      "id": "button_2_label",
+      "label": "Label",
+      "default": "Sign In"
+    },
+    {
+      "type": "text",
+      "id": "button_2_link",
+      "label": "Link",
+      "default": "/account/login"
+    },
+    { "type": "color", "id": "button_2_bg", "label": "Background", "info": "Leave blank for a transparent (outline) button." },
+    { "type": "color", "id": "button_2_text", "label": "Text", "default": "#FFFFFF" },
+    { "type": "color", "id": "button_2_border", "label": "Border", "default": "#FFFFFF" },
+    { "type": "color", "id": "button_2_hover_bg", "label": "Hover background", "default": "#FFFFFF" },
+    { "type": "color", "id": "button_2_hover_text", "label": "Hover text", "default": "#546B82" },
+    { "type": "color", "id": "button_2_hover_border", "label": "Hover border", "default": "#FFFFFF" },
+    {
+      "type": "text",
+      "id": "button_2_classes",
+      "label": "Extra CSS classes (optional)",
+      "info": "Leave blank in most cases. The color and font settings in this section override any theme class added here."
+    },
+ 
+    { "type": "header", "content": "Button font and shape (both buttons)" },
+    {
+      "type": "range", "id": "btn_font_size", "label": "Font size (desktop)",
+      "min": 12, "max": 26, "step": 1, "unit": "px", "default": 18
+    },
+    {
+      "type": "range", "id": "btn_font_size_mobile", "label": "Font size (mobile)",
+      "min": 12, "max": 22, "step": 1, "unit": "px", "default": 16
+    },
+    {
+      "type": "select", "id": "btn_font_weight", "label": "Font weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select", "id": "btn_text_transform", "label": "Letter case",
+      "options": [
+        { "value": "none", "label": "As typed" },
+        { "value": "uppercase", "label": "ALL CAPS" },
+        { "value": "capitalize", "label": "Title Case" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range", "id": "btn_letter_spacing", "label": "Letter spacing",
+      "min": 0, "max": 3, "step": 1, "unit": "px", "default": 0
+    },
+    {
+      "type": "range", "id": "btn_height", "label": "Button height (desktop)",
+      "min": 40, "max": 80, "step": 2, "unit": "px", "default": 64
+    },
+    {
+      "type": "range", "id": "btn_height_mobile", "label": "Button height (mobile)",
+      "min": 40, "max": 64, "step": 2, "unit": "px", "default": 50
+    },
+    {
+      "type": "range", "id": "btn_border_width", "label": "Border width",
+      "min": 0, "max": 4, "step": 1, "unit": "px", "default": 1
+    },
+    {
+      "type": "range", "id": "btn_radius", "label": "Corner radius",
+      "min": 0, "max": 32, "step": 1, "unit": "px", "default": 0
+    },
+ 
+    { "type": "header", "content": "Panel colors" },
+    {
+      "type": "color",
+      "id": "panel_color",
+      "label": "Panel background",
+      "default": "#546B82"
+    },
+    {
+      "type": "color",
+      "id": "panel_text_color",
+      "label": "Panel text",
+      "default": "#FFFFFF",
+      "info": "White on the brand blue meets WCAG AA contrast."
+    },
+ 
+    { "type": "header", "content": "Layout" },
+    {
+      "type": "range",
+      "id": "desktop_min_height",
+      "label": "Desktop height",
+      "min": 500,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "default": 860,
+      "info": "860px fills the rest of a 1920×1080 screen below the header."
+    },
+    {
+      "type": "range",
+      "id": "image_gutter",
+      "label": "Space beside image (desktop)",
+      "min": 0,
+      "max": 80,
+      "step": 8,
+      "unit": "px",
+      "default": 40,
+      "info": "White strip on the image's outer edge, matching the homepage hero."
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "label": "Mobile image height",
+      "min": 300,
+      "max": 560,
+      "step": 20,
+      "unit": "px",
+      "default": 420
+    }
+  ],
+  "presets": [
+    { "name": "Trade Hero (Split)" }
+  ]
+}
+{% endschema %}
