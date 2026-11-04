@@ -359,3 +359,90 @@ button.rebuy-button.is-disabled {
 .template-policy--privacy .shopify-policy__body .rte {
   padding-top: 40px;
 }
+
+.shopify-policy__body .rte ul,
+.shopify-policy__body .rte ol {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  list-style-position: inside;
+}
+
+.shopify-policy__body .rte li,
+.shopify-policy__body .rte p,
+.shopify-policy__body .rte div,
+.shopify-policy__body .rte blockquote {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  text-indent: 0 !important;
+}
+
+.shopify-policy__body .rte div {
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+}
+
+@media screen and (max-width: 1050px) {
+
+  .shopify-policy__body {
+    padding: 0 24px !important;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+
+  .shopify-policy__body {
+    padding: 0 0 !important;
+  }
+
+}
+
+.shopify-policy__body .rte,
+.shopify-policy__body .rte a {
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+  white-space: normal !important;
+}
+
+.shopify-policy__body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.shopify-policy__body .rte table {
+  width: 100% !important;
+  max-width: 100%;
+  table-layout: auto;
+  border-collapse: collapse;
+}
+
+.shopify-policy__body .rte td,
+.shopify-policy__body .rte th {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  vertical-align: top;
+}
+
+@media screen and (max-width: 768px) {
+  .shopify-policy__body .rte table,
+  .shopify-policy__body .rte tbody,
+  .shopify-policy__body .rte tr,
+  .shopify-policy__body .rte td,
+  .shopify-policy__body .rte th {
+    display: block;
+    width: 100% !important;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .shopify-policy__body .rte tr {
+    padding: 12px 0;
+  }
+
+  .shopify-policy__body .rte td,
+  .shopify-policy__body .rte th {
+    padding: 2px 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+  }
+}
