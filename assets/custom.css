@@ -430,25 +430,9 @@ button.rebuy-button.is-disabled {
 }
 
 @media screen and (max-width: 768px) {
-  .shopify-policy__body .rte table,
-  .shopify-policy__body .rte tbody,
-  .shopify-policy__body .rte tr,
-  .shopify-policy__body .rte td,
-  .shopify-policy__body .rte th {
-    display: block;
-    width: 100% !important;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
 
   .shopify-policy__body .rte tr {
     padding: 12px 0;
   }
 
-  .shopify-policy__body .rte td,
-  .shopify-policy__body .rte th {
-    padding: 2px 0 !important;
-    border-left: 0 !important;
-    border-right: 0 !important;
-  }
 }
