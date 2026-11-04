@@ -308,6 +308,56 @@
         "link_text": "",
         "image": "shopify://shop_images/web_collage_copy.png"
       }
+    },
+    "trade_hero_split_biwpkc": {
+      "type": "trade-hero-split",
+      "custom_css": [
+        "p {font-size: 20px; line-height: 28px; letter-spacing: 0.2px;}",
+        "@media screen and (max-width: 767px) {.ph-trade-hero__heading {font-size: 40px; line-height: 1.05; } .ph-trade-hero__subheading {font-size: 16px; } .ph-trade-hero__body, .ph-trade-hero__body p {font-size: 15px; line-height: 1.55; }}"
+      ],
+      "name": "Trade Hero (Split)",
+      "settings": {
+        "image": "shopify://shop_images/IMG_4596.jpg",
+        "mobile_image": "shopify://shop_images/IMG_4596.jpg",
+        "image_position": "right",
+        "desktop_focal": "50% 50%",
+        "mobile_focal": "50% 50%",
+        "heading": "To The Trade",
+        "subheading": "From a designer who’s been there.",
+        "body": "<p>We know what it takes to bring a project together, so we’re rolling out the red carpet (er, mat) for our trade community—with exclusive pricing, thoughtful support, and collections that ground your spaces beautifully.</p>",
+        "button_1_label": "Become a Member",
+        "button_1_link": "#apply",
+        "button_1_bg": "#FFFFFF",
+        "button_1_text": "#30383D",
+        "button_1_border": "#FFFFFF",
+        "button_1_hover_bg": "#EEEFEF",
+        "button_1_hover_text": "#30383D",
+        "button_1_hover_border": "#EEEFEF",
+        "button_1_classes": "",
+        "button_2_label": "Sign In",
+        "button_2_link": "/account/login",
+        "button_2_bg": "",
+        "button_2_text": "#FFFFFF",
+        "button_2_border": "#FFFFFF",
+        "button_2_hover_bg": "#FFFFFF",
+        "button_2_hover_text": "#546B82",
+        "button_2_hover_border": "#FFFFFF",
+        "button_2_classes": "",
+        "btn_font_size": 18,
+        "btn_font_size_mobile": 16,
+        "btn_font_weight": "700",
+        "btn_text_transform": "none",
+        "btn_letter_spacing": 0,
+        "btn_height": 64,
+        "btn_height_mobile": 50,
+        "btn_border_width": 1,
+        "btn_radius": 0,
+        "panel_color": "#546B82",
+        "panel_text_color": "#FFFFFF",
+        "desktop_min_height": 860,
+        "image_gutter": 40,
+        "mobile_image_height": 420
+      }
     }
   },
   "order": [
@@ -323,6 +373,7 @@
     "faq_rQ6PXB",
     "designer_image_layout_NpVzKm",
     "1c0d22eb-2fbd-421d-b48b-c0b1a1200dc2",
-    "3d7a4cfe-b875-4374-902d-1552bb383737"
+    "3d7a4cfe-b875-4374-902d-1552bb383737",
+    "trade_hero_split_biwpkc"
   ]
 }
