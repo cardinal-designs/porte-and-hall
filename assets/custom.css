@@ -389,7 +389,7 @@ button.rebuy-button.is-disabled {
   background: none;
   border-bottom: 1px solid;
   font-size: 30px;
-  line-height: 1.2;
+  line-height: 130%;
   text-align: left;
   color: var(--blue);
 }
@@ -497,6 +497,33 @@ button.rebuy-button.is-disabled {
   vertical-align: top;
   overflow-wrap: anywhere;
   word-break: break-word;
+}
+
+/* base.css sets border-style: hidden on tables, which removes the outer
+   cell borders; restore them. Tables inside a bordered scroll wrapper keep
+   it hidden so the edge isn't doubled. */
+.shopify-policy__body .rte table {
+  border-style: none;
+}
+
+.shopify-policy__body .rte div[style*="overflow-x"] > table {
+  border-style: hidden;
+}
+
+/* Any policy whose content carries its own header (an h1, like the Privacy
+   Policy and the restructured Terms of Service) gets the Privacy layout:
+   Shopify's title hidden and the same top spacing. */
+.shopify-policy__container:has(.shopify-policy__body h1) .shopify-policy__title {
+  display: none;
+}
+
+.shopify-policy__container:has(.shopify-policy__body h1) .shopify-policy__body .rte {
+  padding: 40px 0 0;
+}
+
+/* Terms title is rewritten to title case in theme.liquid; don't re-capitalize "of" */
+.template-policy--terms .shopify-policy__title h1 {
+  text-transform: none;
 }
 
 /* ---- Responsive ---- */
