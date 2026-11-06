@@ -1,0 +1,289 @@
+{%- liquid
+  assign sid = section.id
+  assign s = section.settings
+  assign bg = s.bg_image
+  assign bg_m = s.bg_image_mobile | default: s.bg_image
+-%}
+
+{% style %}
+  #gnf-{{ sid }} {
+    --gnf-bg: {{ s.bg_color }};
+    --gnf-text: {{ s.text_color }};
+    --gnf-accent: {{ s.eyebrow_color }};
+    --gnf-s1: {{ s.stripe_1 }};
+    --gnf-s2: {{ s.stripe_2 }};
+    --gnf-s3: {{ s.stripe_3 }};
+    --gnf-rib-bg: {{ s.ribbon_bg }};
+    --gnf-rib-text: {{ s.ribbon_text_color }};
+    --gnf-pill-bg: {{ s.pill_bg }};
+    --gnf-pill-text: {{ s.pill_text_color }};
+    --gnf-cta-bg: {{ s.cta_bg }};
+    --gnf-cta-text: {{ s.cta_text_color }};
+    --gnf-note-w: {{ s.note_width }}px;
+    --gnf-tilt: {% if s.note_tilt %}-2.5deg{% else %}0deg{% endif %};
+    --gnf-icon: {{ s.icon_size }}px;
+    padding-top: {{ s.pad_top }}px;
+    padding-bottom: {{ s.pad_bottom }}px;
+  }
+  @media screen and (max-width: 768px) {
+    #gnf-{{ sid }} {
+      padding-top: {{ s.pad_top_m }}px;
+      padding-bottom: {{ s.pad_bottom_m }}px;
+    }
+  }
+{% endstyle %}
+
+<section id="gnf-{{ sid }}" class="gnf gnf--note-{{ s.note_side }}{% if s.stripes %} gnf--stripes{% endif %}" aria-label="{{ s.aria_label | escape }}">
+  {%- if bg != blank -%}
+    <div class="gnf__bg" aria-hidden="true">
+      <picture>
+        <source media="(max-width: 768px)" srcset="{{ bg_m | image_url: width: 800 }} 800w, {{ bg_m | image_url: width: 1200 }} 1200w" sizes="100vw">
+        {{
+          bg
+          | image_url: width: 2400
+          | image_tag: widths: '1200, 1600, 1920, 2400, 3200', sizes: '100vw', loading: 'lazy', alt: ''
+        }}
+      </picture>
+    </div>
+  {%- endif -%}
+
+  <div class="gnf__inner{% if s.contain %} page-width{% endif %}">
+    {%- if s.note_image != blank -%}
+      <div class="gnf__note">
+        <div class="gnf__frame{% if s.note_frame %} has-frame{% endif %}">
+          {{
+            s.note_image
+            | image_url: width: 1200
+            | image_tag:
+              widths: '400, 600, 800, 1200',
+              sizes: '(min-width: 769px) 560px, 80vw',
+              loading: 'lazy',
+              alt: s.note_image.alt | default: 'Porte + Hall gift note card'
+          }}
+        </div>
+        {%- if s.ribbon_text != blank -%}<span class="gnf__ribbon">{{ s.ribbon_text | escape }}</span>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="gnf__copy">
+      {%- if s.pill_text != blank or s.eyebrow != blank -%}
+        <div class="gnf__top">
+          {%- if s.pill_text != blank -%}<span class="gnf__pill">{{ s.pill_text | escape }}</span>{%- endif -%}
+          {%- if s.eyebrow != blank -%}<p class="gnf__eyebrow h3">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        </div>
+      {%- endif -%}
+      {%- if s.headline != blank -%}<div class="gnf__headline">{{ s.headline }}</div>{%- endif -%}
+      {%- if s.body != blank -%}<div class="gnf__body">{{ s.body }}</div>{%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ol class="gnf__bullets" role="list">
+          {%- for block in section.blocks -%}
+            {%- assign b = block.settings -%}
+            <li class="gnf__bullet" {{ block.shopify_attributes }}>
+              {%- if b.icon != blank -%}
+                {{
+                  b.icon
+                  | image_url: width: 160
+                  | image_tag: class: 'gnf__icon', width: s.icon_size, height: s.icon_size, loading: 'lazy', alt: ''
+                }}
+              {%- else -%}
+                <span class="gnf__num" aria-hidden="true">{{ forloop.index }}</span>
+              {%- endif -%}
+              <div class="gnf__btext body-sm">
+                {%- if b.title != blank -%}<b class="gnf__btitle">{{ b.title | escape }}</b>{%- endif -%}
+                {%- if b.text != blank -%}<span>{{ b.text }}</span>{%- endif -%}
+              </div>
+            </li>
+          {%- endfor -%}
+        </ol>
+      {%- endif -%}
+
+      {%- if s.cta_label != blank -%}
+        <a class="gnf__cta button" href="{{ s.cta_url | default: '#' }}"><span>{{ s.cta_label | escape }}</span></a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gnf { position: relative; overflow: hidden; background: var(--gnf-bg); color: var(--gnf-text); }
+  .gnf__bg { position: absolute; inset: 0; }
+  .gnf__bg picture, .gnf__bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* striped ribbon edges */
+  .gnf--stripes::before, .gnf--stripes::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 10px; z-index: 2;
+    background: repeating-linear-gradient(90deg, var(--gnf-s1) 0 24px, var(--gnf-s2) 24px 28px, var(--gnf-s1) 28px 52px, var(--gnf-s3) 52px 56px);
+  }
+  .gnf--stripes::before { top: 0; }
+  .gnf--stripes::after { bottom: 0; }
+
+  .gnf__inner {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 80px; align-items: center;
+  }
+  .gnf--note-right .gnf__note { order: 2; }
+
+  /* gift note image + ribbon badge */
+  .gnf__note { position: relative; justify-self: center; width: min(var(--gnf-note-w), 100%); }
+  .gnf__frame { transform: rotate(var(--gnf-tilt)); }
+  .gnf__frame img { display: block; width: 100%; height: auto; }
+  .gnf__frame:not(.has-frame) img { filter: drop-shadow(0 28px 36px rgba(0, 0, 0, .4)); }
+  .gnf__frame.has-frame {
+    background: #fff; padding: 14px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, .35);
+    outline: 1.5px solid var(--gnf-accent); outline-offset: 14px;
+  }
+  .gnf__ribbon {
+    position: absolute; right: -26px; top: 34px; z-index: 1;
+    background: var(--gnf-rib-bg); color: var(--gnf-rib-text);
+    font-family: brandon, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase; line-height: 18px;
+    padding: 12px 22px; transform: rotate(6deg); box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+  }
+  .gnf__ribbon::before {
+    content: ""; position: absolute; left: -12px; top: 0; height: 0;
+    border: 21px solid var(--gnf-rib-bg); border-left-color: transparent; border-right: 0;
+  }
+
+  /* copy */
+  .gnf__copy, .gnf__copy * { color: var(--gnf-text); }
+  .gnf__top { margin-bottom: 14px; }
+  .gnf__pill {
+    display: inline-block; margin-bottom: 18px; padding: 6px 12px;
+    background: var(--gnf-pill-bg); color: var(--gnf-pill-text) !important;
+    font-family: brandon, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; line-height: 1.2;
+  }
+  .gnf__eyebrow { color: var(--gnf-accent) !important; margin: 0; }
+  .gnf__headline { margin-bottom: 20px; }
+  .gnf__headline :is(h1, h2, h3, p, .h1, .h2) { font-family: louize, Georgia, serif; font-weight: 400; line-height: 1.08; }
+  .gnf__body { margin-bottom: 34px; max-width: 620px; opacity: .9; }
+  .gnf__body p + p { margin-top: .6em; }
+
+  /* bullets */
+  .gnf__bullets { list-style: none; margin: 0 0 40px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 26px; }
+  .gnf__bullet { display: flex; flex-direction: column; gap: 12px; }
+  .gnf__icon { width: var(--gnf-icon); height: var(--gnf-icon); object-fit: contain; flex: none; }
+  .gnf__num {
+    width: var(--gnf-icon); height: var(--gnf-icon); flex: none; border-radius: 50%;
+    border: 1.5px solid var(--gnf-accent); color: var(--gnf-accent) !important;
+    display: flex; align-items: center; justify-content: center;
+    font-family: louize, Georgia, serif; font-size: calc(var(--gnf-icon) * .48); line-height: 1;
+  }
+  .gnf__btext { opacity: .85; }
+  .gnf__btitle { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; opacity: 1; }
+
+  /* cta (theme .button, section colors) */
+  .gnf__cta { display: inline-block; text-decoration: none; background: var(--gnf-cta-bg) !important; border-color: var(--gnf-cta-bg) !important; }
+  .gnf__cta, .gnf__cta span { color: var(--gnf-cta-text) !important; }
+  .gnf__cta:hover { filter: brightness(.94); }
+
+  @media screen and (max-width: 1199px) and (min-width: 769px) {
+    .gnf__inner { gap: 48px; }
+    .gnf__bullets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media screen and (max-width: 768px) {
+    .gnf__inner { display: flex; flex-direction: column; align-items: stretch; gap: 26px; }
+    .gnf--note-right .gnf__note { order: 0; }
+    .gnf__note { align-self: center; width: min(var(--gnf-note-w), 60vw); }
+    .gnf__frame.has-frame { padding: 8px; outline-offset: 8px; }
+    .gnf__ribbon { right: -14px; top: 16px; font-size: 11px; letter-spacing: 2px; line-height: 14px; padding: 8px 14px; }
+    .gnf__ribbon::before { border-width: 15px; left: -9px; }
+    .gnf__top { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; margin-bottom: 10px; }
+    .gnf__pill { margin: 0; padding: 4px 9px; font-size: 10px; }
+    .gnf__headline { margin-bottom: 10px; }
+    .gnf__body { margin-bottom: 20px; }
+    .gnf__bullets { grid-template-columns: 1fr; gap: 14px; margin-bottom: 24px; }
+    .gnf__bullet { flex-direction: row; align-items: center; gap: 14px; }
+    .gnf__icon, .gnf__num { width: min(var(--gnf-icon), 38px); height: min(var(--gnf-icon), 38px); }
+    .gnf__num { font-size: 18px; }
+    .gnf__btitle { font-size: 12px; margin-bottom: 0; }
+    .gnf__cta { display: block; text-align: center; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Gift Note Feature",
+  "tag": "div",
+  "class": "section-gift-note-feature",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "header", "content": "Background" },
+    { "type": "image_picker", "id": "bg_image", "label": "Background image (desktop)", "info": "3840 x 1800px recommended. Fills the band (cropped to fit)." },
+    { "type": "image_picker", "id": "bg_image_mobile", "label": "Background image (mobile)", "info": "1200 x 2400px recommended. Leave blank to use the desktop image." },
+    { "type": "color", "id": "bg_color", "label": "Background color", "default": "#1F3B2F", "info": "Shows while the image loads, or if there's no image." },
+    { "type": "checkbox", "id": "stripes", "label": "Striped ribbon on top + bottom edges", "default": true },
+    { "type": "color", "id": "stripe_1", "label": "Stripe main color", "default": "#620F18" },
+    { "type": "color", "id": "stripe_2", "label": "Stripe accent 1", "default": "#DCC392" },
+    { "type": "color", "id": "stripe_3", "label": "Stripe accent 2", "default": "#2C4D3E" },
+
+    { "type": "header", "content": "Gift note image" },
+    { "type": "image_picker", "id": "note_image", "label": "Gift note image" },
+    { "type": "checkbox", "id": "note_tilt", "label": "Tilt the gift note", "default": true },
+    { "type": "checkbox", "id": "note_frame", "label": "White frame + gold outline", "default": true, "info": "Turn off for a transparent PNG that already has its own edges." },
+    { "type": "range", "id": "note_width", "label": "Gift note width (desktop)", "min": 280, "max": 640, "step": 10, "unit": "px", "default": 520 },
+    {
+      "type": "select", "id": "note_side", "label": "Gift note side (desktop)",
+      "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ],
+      "default": "left"
+    },
+    { "type": "text", "id": "ribbon_text", "label": "Ribbon badge (on image)", "default": "Free", "info": "Leave blank to hide." },
+    { "type": "color", "id": "ribbon_bg", "label": "Ribbon color", "default": "#620F18" },
+    { "type": "color", "id": "ribbon_text_color", "label": "Ribbon text", "default": "#FFFFFF" },
+
+    { "type": "header", "content": "Copy" },
+    { "type": "text", "id": "pill_text", "label": "Pill badge (above eyebrow)", "default": "New", "info": "Leave blank to hide." },
+    { "type": "color", "id": "pill_bg", "label": "Pill color", "default": "#896A28" },
+    { "type": "color", "id": "pill_text_color", "label": "Pill text", "default": "#FFFFFF" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Free on Every Order" },
+    {
+      "type": "html", "id": "headline", "label": "Headline (HTML)",
+      "default": "<h2 class=\"h1\">Say It With a Note,<br>On Us</h2>",
+      "info": "Accepts HTML. Theme classes such as h1, h2 or body can be used."
+    },
+    {
+      "type": "html", "id": "body", "label": "Paragraph (HTML)",
+      "default": "<p class=\"body\">Every order can include a personalized gift note, free. Share a holiday wish and we'll print it and tuck it inside, so your gift arrives as thoughtful as it looks.</p>"
+    },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#F8F3EA" },
+    { "type": "color", "id": "eyebrow_color", "label": "Eyebrow, step numbers + frame outline", "default": "#DCC392" },
+    { "type": "range", "id": "icon_size", "label": "Bullet icon size (desktop)", "min": 24, "max": 64, "step": 2, "unit": "px", "default": 46 },
+
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Start Shopping" },
+    { "type": "url", "id": "cta_url", "label": "Button link" },
+    { "type": "color", "id": "cta_bg", "label": "Button color", "default": "#F8F3EA" },
+    { "type": "color", "id": "cta_text_color", "label": "Button text", "default": "#1F3B2F" },
+
+    { "type": "header", "content": "Section" },
+    { "type": "checkbox", "id": "contain", "label": "Use theme page width for the content", "default": true },
+    { "type": "range", "id": "pad_top", "label": "Top padding (desktop)", "min": 40, "max": 160, "step": 10, "unit": "px", "default": 110 },
+    { "type": "range", "id": "pad_bottom", "label": "Bottom padding (desktop)", "min": 40, "max": 160, "step": 10, "unit": "px", "default": 110 },
+    { "type": "range", "id": "pad_top_m", "label": "Top padding (mobile)", "min": 20, "max": 100, "step": 4, "unit": "px", "default": 44 },
+    { "type": "range", "id": "pad_bottom_m", "label": "Bottom padding (mobile)", "min": 20, "max": 100, "step": 4, "unit": "px", "default": 40 },
+    { "type": "text", "id": "aria_label", "label": "Accessible name", "default": "Free gift notes" }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Bullet",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon (optional)", "info": "Square PNG or SVG, transparent background. Without one, the step number shows." },
+        { "type": "text", "id": "title", "label": "Title", "default": "Add to Bag" },
+        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "Shop any mat, runner or gift card." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gift Note Feature",
+      "blocks": [
+        { "type": "bullet", "settings": { "title": "Add to Bag", "text": "Shop any mat, runner or gift card." } },
+        { "type": "bullet", "settings": { "title": "Mark It a Gift", "text": "Check \"This is a gift\" in your bag." } },
+        { "type": "bullet", "settings": { "title": "Write Your Note", "text": "We print it and pack it with care." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
