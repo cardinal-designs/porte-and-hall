@@ -552,9 +552,103 @@
       "name": "Color Story Carousel",
       "settings": {
         "image": "shopify://shop_images/holiday-ivory.jpg",
-        "headline": "<h2 class=\"h2\">Holiday Red</h2>",
-        "body": "<p class=\"body-sm\">Classic, cheerful red for a front door that says welcome home.</p>",
-        "cta_label": "Shop Holiday Red",
+        "headline": "<h2 class=\"h2\">Winter Ivory</h2>",
+        "body": "<p class=\"body-sm\">A palette of soft ivories and winter whites bring a quiet elegance to your entryway, creating the perfect backdrop for the season.</p>",
+        "cta_label": "Shop Winter Ivory",
+        "cta_url": "",
+        "lead_text_color": "#FFFFFF",
+        "overlay_strength": 70,
+        "accent_color": "#620F18",
+        "lead_width": 420,
+        "cards_visible": 3,
+        "button_label": "Add to Bag",
+        "added_label": "Added ✓",
+        "sold_out_label": "Sold Out",
+        "button_style": "outline",
+        "hover_image": true,
+        "controls_align": "right",
+        "bar_width": 300,
+        "aria_label": "Holiday Red products",
+        "contain": true,
+        "bg_color": "#FFFFFF",
+        "pad_top": 32,
+        "pad_bottom": 32,
+        "pad_top_m": 20,
+        "pad_bottom_m": 20
+      }
+    },
+    "color_story_carousel_btfVCD": {
+      "type": "color-story-carousel",
+      "blocks": {
+        "product_card_DqAB6w": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-dreamweaver-champagne-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_JpmhCh": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-dreamweaver-mocha-runner",
+            "eyebrow": "THE INSIDER 2x6 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_rfiyyX": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-dreamweaver-rose-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_WkcjFR": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-dreamweaver-cloud-3-x-5-doormat",
+            "eyebrow": "THE INSIDER 3x5 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_HQzaaT": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-dreamweaver-rose-xl-runner",
+            "eyebrow": "THE INSIDER 2x8 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_8Gabtj": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-dreamweaver-champagne-3-x-5-doormat",
+            "eyebrow": "THE INSIDER 3x5 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_card_DqAB6w",
+        "product_card_JpmhCh",
+        "product_card_rfiyyX",
+        "product_card_WkcjFR",
+        "product_card_HQzaaT",
+        "product_card_8Gabtj"
+      ],
+      "name": "Color Story Carousel",
+      "settings": {
+        "image": "shopify://shop_images/holiday-shimmer.png",
+        "headline": "<h2 class=\"h2\">Shimmer</h2>",
+        "body": "<p class=\"body-sm\">A little sparkle never hurt an entryway. Woven with metallic threads, these Insiders catch the light with every step.</p>",
+        "cta_label": "Shop Shimmer",
         "cta_url": "",
         "lead_text_color": "#FFFFFF",
         "overlay_strength": 70,
@@ -587,6 +681,7 @@
     "color_story_carousel_MzjFLV",
     "color_story_carousel_nkcNXA",
     "color_story_carousel_FYpG3t",
-    "color_story_carousel_Fi3pcW"
+    "color_story_carousel_Fi3pcW",
+    "color_story_carousel_btfVCD"
   ]
 }
