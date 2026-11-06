@@ -689,12 +689,12 @@
         "body": "<p class=\"body\">Good taste is hard to get wrong. Give them a Porte + Hall gift card and let them find the mat that's just right for their home.</p>\n<p>Arrives by email in an instant. Schedule it for the big day and add a little note of your own.</p>",
         "text_color": "#FFFFFF",
         "accent_color": "#DCC392",
-        "gift_card": "",
+        "gift_card": "gift-card",
         "start_amount": "100",
         "amounts_label": "Gift card amount",
         "cta_label": "Buy a Gift Card",
         "cta_style": "white",
-        "cta_fallback_url": "",
+        "cta_fallback_url": "shopify://products/gift-card",
         "contain": true,
         "aria_label": "Gift cards"
       }
