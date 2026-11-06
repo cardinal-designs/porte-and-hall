@@ -22,8 +22,9 @@
     },
     "main": {
       "type": "main-page",
+      "disabled": true,
       "custom_css": [
-        ".Page_Header_Inner h1 {color:#ffffff;}"
+        ".Page_Header_Inner h1 {color: #ffffff;}"
       ],
       "settings": {
         "page_heading": "",
@@ -32,10 +33,82 @@
         "section_height": "250",
         "bg_color": "rgba(0,0,0,0)"
       }
+    },
+    "trade_hero_split_iifPUy": {
+      "type": "trade-hero-split",
+      "blocks": {
+        "mobile_background_ixyXii": {
+          "type": "mobile_background",
+          "settings": {
+            "color": "#DCC392"
+          }
+        },
+        "eyebrow_dhXhW7": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "The Holiday Edit",
+            "color": "#DCC392",
+            "size": 14,
+            "size_mobile": 11
+          }
+        }
+      },
+      "block_order": [
+        "mobile_background_ixyXii",
+        "eyebrow_dhXhW7"
+      ],
+      "custom_css": [
+        "h1 {font-size: 70px;}",
+        "@media (max-width: 749px) {h1 {font-size: 30px; }}"
+      ],
+      "name": "Trade Hero (Split)",
+      "settings": {
+        "image": "shopify://shop_images/hero-stair-runner.jpg",
+        "mobile_image": "shopify://shop_images/hero-stair-runner.jpg",
+        "image_position": "right",
+        "desktop_focal": "50% 100%",
+        "mobile_focal": "50% 80%",
+        "heading": "Holiday Finds Worth Coming Home To",
+        "subheading": "",
+        "body": "<p>Dress your doorstep for the season with warm naturals, festive reds, rich evergreens and a little metallic shimmer. Whether you're refreshing your own entryway or finding something special for someone else, consider this your holiday inspiration.</p>",
+        "button_1_label": "Shop Now",
+        "button_1_link": "#deckhalls",
+        "button_1_bg": "#FFFFFF",
+        "button_1_text": "#30383D",
+        "button_1_border": "#FFFFFF",
+        "button_1_hover_bg": "#EEEFEF",
+        "button_1_hover_text": "#30383D",
+        "button_1_hover_border": "#EEEFEF",
+        "button_1_classes": "",
+        "button_2_label": "Give a Gift Card",
+        "button_2_link": "/products/gift-card",
+        "button_2_bg": "",
+        "button_2_text": "#FFFFFF",
+        "button_2_border": "#FFFFFF",
+        "button_2_hover_bg": "#FFFFFF",
+        "button_2_hover_text": "#546B82",
+        "button_2_hover_border": "#FFFFFF",
+        "button_2_classes": "",
+        "btn_font_size": 18,
+        "btn_font_size_mobile": 16,
+        "btn_font_weight": "700",
+        "btn_text_transform": "none",
+        "btn_letter_spacing": 0,
+        "btn_height": 64,
+        "btn_height_mobile": 50,
+        "btn_border_width": 1,
+        "btn_radius": 0,
+        "panel_color": "#620F18",
+        "panel_text_color": "#FFFFFF",
+        "desktop_min_height": 860,
+        "image_gutter": 0,
+        "mobile_image_height": 420
+      }
     }
   },
   "order": [
     "breadcrumbs_8LXnyk",
-    "main"
+    "main",
+    "trade_hero_split_iifPUy"
   ]
 }
