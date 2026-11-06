@@ -698,6 +698,90 @@
         "contain": true,
         "aria_label": "Gift cards"
       }
+    },
+    "collection_cards_U64nj8": {
+      "type": "collection-cards",
+      "blocks": {
+        "collection_card_RTd9wL": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-insider",
+            "image": "shopify://shop_images/holiday-red.jpg",
+            "image_mobile": "shopify://shop_images/holiday-red.jpg",
+            "eyebrow": "Indoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": ""
+          }
+        },
+        "collection_card_t3bkxU": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-innerweave",
+            "image": "shopify://shop_images/holiday_-_innerweave.jpg",
+            "eyebrow": "Indoor / Outdoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": ""
+          }
+        },
+        "collection_card_mhAxLD": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-porter",
+            "image": "shopify://shop_images/C_Porte_Hall_PorterSingle_Truffle_1051_N_1.jpg",
+            "eyebrow": "Outdoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": ""
+          }
+        },
+        "collection_card_trzwfQ": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-outlier",
+            "image": "shopify://shop_images/holiday-evergreen.jpg",
+            "eyebrow": "Outdoor",
+            "headline": "<h4>The Outlier</h4>",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_card_RTd9wL",
+        "collection_card_t3bkxU",
+        "collection_card_mhAxLD",
+        "collection_card_trzwfQ"
+      ],
+      "name": "Collection Cards",
+      "settings": {
+        "intro": "<div style=\"color:#2B3640;\">\n<h2 class=\"h2\">A Little Something for Every Door</h2>\n<p class=\"body\"><br>Four collections, endless ways to make an entrance. Find a favorite for the front step, the hallway, the kitchen and everywhere in between.</p>\n</div>",
+        "intro_align": "center",
+        "text_align": "left",
+        "image_shape": "portrait",
+        "image_shape_m": "portrait",
+        "show_price": true,
+        "price_label": "Starting from",
+        "price_format": "whole",
+        "bg_color": "",
+        "eyebrow_color": "#896A28",
+        "headline_color": "#2B3640",
+        "price_color": "#2B3640",
+        "link_color": "#2B3640",
+        "contain": true,
+        "gap": 24,
+        "gap_m": 12,
+        "pad_top": 80,
+        "pad_bottom": 80,
+        "pad_top_m": 40,
+        "pad_bottom_m": 40,
+        "aria_label": ""
+      }
     }
   },
   "order": [
@@ -711,6 +795,7 @@
     "color_story_carousel_FYpG3t",
     "color_story_carousel_Fi3pcW",
     "color_story_carousel_btfVCD",
-    "gift_card_feature_7KFrDG"
+    "gift_card_feature_7KFrDG",
+    "collection_cards_U64nj8"
   ]
 }
