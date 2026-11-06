@@ -116,7 +116,7 @@
         "logo_VJkUJe"
       ],
       "settings": {
-        "background_color": "#546B82"
+        "background_color": "#546b82"
       }
     },
     "collection_cards_qY89jb": {
@@ -164,7 +164,7 @@
             "collection": "the-outlier",
             "image": "shopify://shop_images/ideas1.jpg",
             "eyebrow": "Outdoor",
-            "headline": "",
+            "headline": "<h4>The Outlier</h4>",
             "price_override": "",
             "cta_label": "Shop the Collection",
             "cta_url": "shopify://collections/the-outlier"
@@ -178,7 +178,7 @@
         "collection_card_bprmMr"
       ],
       "custom_css": [
-        "h2 {font-weight:500;}"
+        "h2 {font-weight: 500;}"
       ],
       "name": "Collection Cards",
       "settings": {
@@ -190,8 +190,8 @@
         "show_price": true,
         "price_label": "Starting from",
         "price_format": "decimals",
-        "bg_color": "",
-        "eyebrow_color": "#896A28",
+        "bg_color": "#F4F2EE",
+        "eyebrow_color": "#896a28",
         "headline_color": "",
         "price_color": "",
         "link_color": "",
