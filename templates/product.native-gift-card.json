@@ -119,6 +119,88 @@
         "background_color": "#546B82"
       }
     },
+    "collection_cards_qY89jb": {
+      "type": "collection-cards",
+      "blocks": {
+        "collection_card_APK77g": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-insider",
+            "image": "shopify://shop_images/3_Indoor-Mat-Insider-Ripple-Fern-Runner.jpg",
+            "eyebrow": "Indoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": "shopify://collections/the-insider"
+          }
+        },
+        "collection_card_QBxw4W": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-innerweave",
+            "eyebrow": "Indoor / Outdoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": "shopify://collections/the-innerweave"
+          }
+        },
+        "collection_card_iUyyrT": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-porter",
+            "image": "shopify://shop_images/porter_pdp_truffledoor_4_2x_bd2a3dbc-026e-49d0-9627-e77473f0defe.jpg",
+            "eyebrow": "Outdoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": "shopify://collections/the-porter"
+          }
+        },
+        "collection_card_bprmMr": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-outlier",
+            "image": "shopify://shop_images/ideas1.jpg",
+            "eyebrow": "Outdoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": "shopify://collections/the-outlier"
+          }
+        }
+      },
+      "block_order": [
+        "collection_card_APK77g",
+        "collection_card_QBxw4W",
+        "collection_card_iUyyrT",
+        "collection_card_bprmMr"
+      ],
+      "name": "Collection Cards",
+      "settings": {
+        "intro": "<h2 class=\"h2\">Find Your Inspiration</h2><p class=\"body\">Four collections, styled for every corner of the home, from the front step to the fireside.</p>",
+        "intro_align": "center",
+        "text_align": "left",
+        "image_shape": "square",
+        "image_shape_m": "square",
+        "show_price": true,
+        "price_label": "Starting from",
+        "price_format": "decimals",
+        "bg_color": "",
+        "eyebrow_color": "#896A28",
+        "headline_color": "",
+        "price_color": "",
+        "link_color": "",
+        "contain": true,
+        "gap": 24,
+        "gap_m": 12,
+        "pad_top": 80,
+        "pad_bottom": 80,
+        "pad_top_m": 40,
+        "pad_bottom_m": 40,
+        "aria_label": ""
+      }
+    },
     "design-details": {
       "type": "design-detail-arrows",
       "settings": {
@@ -239,94 +321,13 @@
         "show_recent_articles": true,
         "hide_mobile": true
       }
-    },
-    "collection_cards_qY89jb": {
-      "type": "collection-cards",
-      "blocks": {
-        "collection_card_APK77g": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "the-insider",
-            "image": "shopify://shop_images/3_Indoor-Mat-Insider-Ripple-Fern-Runner.jpg",
-            "eyebrow": "Indoor",
-            "headline": "",
-            "price_override": "",
-            "cta_label": "Shop the Collection",
-            "cta_url": "shopify://collections/the-insider"
-          }
-        },
-        "collection_card_QBxw4W": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "the-innerweave",
-            "eyebrow": "Indoor / Outdoor",
-            "headline": "",
-            "price_override": "",
-            "cta_label": "Shop the Collection",
-            "cta_url": "shopify://collections/the-innerweave"
-          }
-        },
-        "collection_card_iUyyrT": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "the-porter",
-            "image": "shopify://shop_images/porter_pdp_truffledoor_4_2x_bd2a3dbc-026e-49d0-9627-e77473f0defe.jpg",
-            "eyebrow": "Outdoor",
-            "headline": "",
-            "price_override": "",
-            "cta_label": "Shop the Collection",
-            "cta_url": "shopify://collections/the-porter"
-          }
-        },
-        "collection_card_bprmMr": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "the-outlier",
-            "image": "shopify://shop_images/ideas1.jpg",
-            "eyebrow": "Outdoor",
-            "headline": "",
-            "price_override": "",
-            "cta_label": "Shop the Collection",
-            "cta_url": "shopify://collections/the-outlier"
-          }
-        }
-      },
-      "block_order": [
-        "collection_card_APK77g",
-        "collection_card_QBxw4W",
-        "collection_card_iUyyrT",
-        "collection_card_bprmMr"
-      ],
-      "name": "Collection Cards",
-      "settings": {
-        "intro": "<h2 class=\"h2\">Find Your Inspiration</h2><p class=\"body\">Four collections, styled for every corner of the home, from the front step to the fireside.</p>",
-        "intro_align": "center",
-        "text_align": "left",
-        "image_shape": "square",
-        "image_shape_m": "square",
-        "show_price": true,
-        "price_label": "Starting from",
-        "price_format": "decimals",
-        "bg_color": "",
-        "eyebrow_color": "#896A28",
-        "headline_color": "",
-        "price_color": "",
-        "link_color": "",
-        "contain": true,
-        "gap": 24,
-        "gap_m": 12,
-        "pad_top": 80,
-        "pad_bottom": 80,
-        "pad_top_m": 40,
-        "pad_bottom_m": 40,
-        "aria_label": ""
-      }
     }
   },
   "order": [
     "breadcrumbs_yDykEc",
     "main",
     "logo_marquee_FJtxKa",
+    "collection_cards_qY89jb",
     "design-details",
     "product_quote_KP6aXV",
     "see-in-action",
@@ -335,7 +336,6 @@
     "reviews",
     "168172537899ce8b94",
     "you-may-like",
-    "featured-articles",
-    "collection_cards_qY89jb"
+    "featured-articles"
   ]
 }
