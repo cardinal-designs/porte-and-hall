@@ -782,6 +782,73 @@
         "pad_bottom_m": 40,
         "aria_label": ""
       }
+    },
+    "gift_note_xVEqEk": {
+      "type": "gift-note",
+      "blocks": {
+        "bullet_9Emyyp": {
+          "type": "bullet",
+          "settings": {
+            "title": "Add to Bag",
+            "text": "Find their perfect mat or gift card."
+          }
+        },
+        "bullet_XgtFAk": {
+          "type": "bullet",
+          "settings": {
+            "title": "Mark It a Gift",
+            "text": "Check \"This is a gift\" at checkout.&nbsp;"
+          }
+        },
+        "bullet_YfbzkC": {
+          "type": "bullet",
+          "settings": {
+            "title": "Write Your Note",
+            "text": "We'll print your message and tuck it inside with care."
+          }
+        }
+      },
+      "block_order": [
+        "bullet_9Emyyp",
+        "bullet_XgtFAk",
+        "bullet_YfbzkC"
+      ],
+      "name": "Gift Note Feature",
+      "settings": {
+        "bg_image": "shopify://shop_images/Gift-Note-Background-Desktop-3840x1600.jpg",
+        "bg_image_mobile": "shopify://shop_images/Gift-Note-Background-Mobile-1200x2400_1.jpg",
+        "bg_color": "#1F3B2F",
+        "stripes": true,
+        "stripe_1": "#620F18",
+        "stripe_2": "#DCC392",
+        "stripe_3": "#2C4D3E",
+        "note_tilt": true,
+        "note_frame": true,
+        "note_width": 520,
+        "note_side": "left",
+        "ribbon_text": "NEW!",
+        "ribbon_bg": "#620F18",
+        "ribbon_text_color": "#FFFFFF",
+        "pill_text": "",
+        "pill_bg": "#896A28",
+        "pill_text_color": "#FFFFFF",
+        "eyebrow": "A Little Something Extra, On Us",
+        "headline": "<h2 class=\"h1\">Make It Personal. We'll Handle the Note.</h2>",
+        "body": "<p class=\"body\">Every order comes with the option to include a personalized gift note. Write a little holiday wish, a thoughtful hello or a message just because. We'll print it and tuck it inside, ready to make someone's day.</p>",
+        "text_color": "#F8F3EA",
+        "eyebrow_color": "#DCC392",
+        "icon_size": 46,
+        "cta_label": "Start Shopping",
+        "cta_url": "",
+        "cta_bg": "#F8F3EA",
+        "cta_text_color": "#1F3B2F",
+        "contain": true,
+        "pad_top": 110,
+        "pad_bottom": 110,
+        "pad_top_m": 44,
+        "pad_bottom_m": 40,
+        "aria_label": "Free gift notes"
+      }
     }
   },
   "order": [
@@ -796,6 +863,7 @@
     "color_story_carousel_Fi3pcW",
     "color_story_carousel_btfVCD",
     "gift_card_feature_7KFrDG",
-    "collection_cards_U64nj8"
+    "collection_cards_U64nj8",
+    "gift_note_xVEqEk"
   ]
 }
