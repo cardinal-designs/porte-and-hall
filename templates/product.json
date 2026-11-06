@@ -252,7 +252,7 @@
         "show_price": true,
         "price_label": "Starting from",
         "price_format": "decimals",
-        "bg_color": "#F4F2EE",
+        "bg_color": "#f4f2ee",
         "eyebrow_color": "#896a28",
         "headline_color": "",
         "price_color": "",
@@ -353,6 +353,7 @@
     },
     "design-details": {
       "type": "design-detail-arrows",
+      "disabled": true,
       "settings": {
         "heading": ""
       }
