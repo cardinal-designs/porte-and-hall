@@ -1,0 +1,630 @@
+{%- liquid
+  assign sid = section.id
+  assign s = section.settings
+  assign lead_img = s.image
+  assign lead_img_m = s.mobile_image | default: s.image
+  assign overlay = s.overlay_strength | divided_by: 100.0
+  assign vis_md = s.cards_visible | minus: 1 | at_least: 2
+  assign lead_focal = 'object-position: 50% 50%;'
+  if lead_img.presentation.focal_point != blank
+    assign lead_focal = 'object-position: ' | append: lead_img.presentation.focal_point | append: ';'
+  endif
+-%}
+
+{% style %}
+  #csc-{{ sid }} {
+    --csc-bg: {{ s.bg_color }};
+    --csc-lead-w: {{ s.lead_width }}px;
+    --csc-gap: 24px;
+    --csc-visible: {{ s.cards_visible }}.3;
+    --csc-visible-md: {{ vis_md }}.3;
+    --csc-text: {{ s.lead_text_color }};
+    --csc-accent: {{ s.accent_color }};
+    --csc-overlay: {{ overlay }};
+    --csc-bar-w: {{ s.bar_width }}px;
+    background: var(--csc-bg);
+    padding-top: {{ s.pad_top }}px;
+    padding-bottom: {{ s.pad_bottom }}px;
+  }
+  @media screen and (min-width: 769px) and (max-width: 1366px) {
+    #csc-{{ sid }} { --csc-visible: var(--csc-visible-md); --csc-gap: 20px; }
+  }
+  @media screen and (max-width: 768px) {
+    #csc-{{ sid }} {
+      padding-top: {{ s.pad_top_m }}px;
+      padding-bottom: {{ s.pad_bottom_m }}px;
+    }
+  }
+{% endstyle %}
+
+<section
+  id="csc-{{ sid }}"
+  class="csc{% if s.controls_align == 'left' %} csc--controls-left{% endif %}"
+  aria-label="{{ s.aria_label | default: 'Featured products' | escape }}"
+  data-csc
+>
+  <div class="{% if s.contain %}page-width{% endif %} csc__wrap">
+    <div class="csc__row" data-csc-row>
+      {%- comment -%} Lead image card {%- endcomment -%}
+      <article class="csc__lead{% if s.accent_color != blank and s.accent_color.alpha != 0.0 %} csc__lead--accent{% endif %}">
+        {%- if lead_img != blank -%}
+          <picture class="csc__lead-media">
+            <source
+              media="(max-width: 768px)"
+              srcset="{{ lead_img_m | image_url: width: 600 }} 600w, {{ lead_img_m | image_url: width: 900 }} 900w"
+              sizes="75vw"
+            >
+            {{
+              lead_img
+              | image_url: width: 1200
+              | image_tag:
+                widths: '500, 700, 900, 1200',
+                sizes: '(min-width: 769px) 500px, 75vw',
+                loading: 'lazy',
+                alt: lead_img.alt,
+                style: lead_focal
+            }}
+          </picture>
+        {%- else -%}
+          <div class="csc__lead-media csc__lead-media--empty">{{ 'lifestyle-1' | placeholder_svg_tag }}</div>
+        {%- endif -%}
+        <span class="csc__lead-shade" aria-hidden="true"></span>
+        <div class="csc__lead-copy">
+          {%- if s.headline != blank -%}<div class="csc__headline">{{ s.headline }}</div>{%- endif -%}
+          {%- if s.body != blank -%}<div class="csc__body">{{ s.body }}</div>{%- endif -%}
+          {%- if s.cta_label != blank -%}
+            <a class="csc__cta text-link" href="{{ s.cta_url | default: '#' }}">{{ s.cta_label | escape }}</a>
+          {%- endif -%}
+        </div>
+      </article>
+
+      {%- comment -%} Product cards {%- endcomment -%}
+      <div class="csc__track" data-csc-track role="list">
+        {%- for block in section.blocks -%}
+          {%- assign p = block.settings.product -%}
+          <div class="csc__card" role="listitem" {{ block.shopify_attributes }}>
+            {%- if p == blank -%}
+              <div class="csc__img csc__img--empty">{{ 'product-1' | placeholder_svg_tag }}</div>
+              <p class="csc__eyebrow body-xs">Select a product</p>
+              <h3 class="csc__title h3">Product card</h3>
+              <p class="csc__size body-sm">Choose a product in the theme editor</p>
+            {%- else -%}
+              {%- liquid
+                assign v = p.selected_or_first_available_variant
+
+                # ---- eyebrow: collection name + indoor/outdoor ----
+                assign eyebrow = block.settings.eyebrow
+                if eyebrow == blank
+                  assign coll_name = p.metafields.custom.collection_for_metafield_content.value.title | split: '|' | first | strip
+                  if coll_name == blank
+                    assign coll_name = p.type
+                  endif
+                  assign tags_lc = p.tags | join: '~~~' | downcase | split: '~~~'
+                  assign use = ''
+                  if tags_lc contains 'indoor' and tags_lc contains 'outdoor'
+                    assign use = 'Indoor/Outdoor'
+                  elsif tags_lc contains 'indoor'
+                    assign use = 'Indoor'
+                  elsif tags_lc contains 'outdoor'
+                    assign use = 'Outdoor'
+                  endif
+                  if coll_name != blank and use != ''
+                    assign eyebrow = coll_name | append: ' · ' | append: use
+                  else
+                    assign eyebrow = coll_name | append: use
+                  endif
+                endif
+
+                # ---- title: strip "The Insider - " prefix and " / Doormat" suffix ----
+                assign title = block.settings.title
+                if title == blank
+                  assign title = p.title
+                  if title contains ' - '
+                    assign title = title | split: ' - ' | last
+                  endif
+                  assign title = title | split: ' / ' | first | strip
+                endif
+
+                # ---- size: style + dimension ----
+                assign size = block.settings.size
+                if size == blank
+                  assign size_style = p.metafields.custom.style.value
+                  assign size_dim = p.metafields.custom.product_dimensions.value.dimension.value
+                  if size_dim == blank
+                    assign size_dim = p.metafields.custom.dimension.value | first
+                  endif
+                  if size_style != blank and size_dim != blank
+                    assign size = size_style | append: ' · ' | append: size_dim
+                  else
+                    assign size = size_style | append: size_dim
+                  endif
+                endif
+
+                assign card_img = block.settings.image | default: p.featured_media.preview_image
+                # second Shopify image for the hover swap (skipped if the product has only one)
+                assign hover_img = p.media[1].preview_image
+                if block.settings.image != blank and hover_img == blank
+                  assign hover_img = p.media[0].preview_image
+                endif
+              -%}
+              <a class="csc__img{% if hover_img != blank and s.hover_image %} csc__img--hover{% endif %}" href="{{ p.url }}" tabindex="-1" aria-hidden="true" draggable="false">
+                {%- if card_img != blank -%}
+                  {{
+                    card_img
+                    | image_url: width: 900
+                    | image_tag:
+                      widths: '300, 450, 600, 900',
+                      sizes: '(min-width: 769px) 26vw, 64vw',
+                      loading: 'lazy',
+                      alt: title,
+                      draggable: 'false',
+                      class: 'csc__img-1'
+                  }}
+                  {%- if hover_img != blank and s.hover_image -%}
+                    {{
+                      hover_img
+                      | image_url: width: 900
+                      | image_tag:
+                        widths: '300, 450, 600, 900',
+                        sizes: '(min-width: 769px) 26vw, 64vw',
+                        loading: 'lazy',
+                        alt: '',
+                        draggable: 'false',
+                        class: 'csc__img-2'
+                    }}
+                  {%- endif -%}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag }}
+                {%- endif -%}
+              </a>
+              {%- if eyebrow != blank -%}<p class="csc__eyebrow body-xs">{{ eyebrow | escape }}</p>{%- endif -%}
+              <h3 class="csc__title h3"><a href="{{ p.url }}" draggable="false">{{ title | escape }}</a></h3>
+              {%- if size != blank -%}<p class="csc__size body-sm">{{ size | escape }}</p>{%- endif -%}
+
+              {%- comment -%} Price — mirrors snippets/product-card.liquid {%- endcomment -%}
+              {%- liquid
+                assign show_discounted_price = false
+                assign auto_discount_price = p.metafields.custom.auto_discount_price
+                if settings.enable_auto_discount_price and auto_discount_price > 0
+                  assign show_discounted_price = true
+                  assign auto_discount_price = auto_discount_price | times: 100 | money_without_trailing_zeros
+                endif
+              -%}
+              {%- liquid
+                assign now_cents = p.price
+                assign was_cents = 0
+                if customer and customer.b2b?
+                  assign trade_pct = settings.trade_pricing_discount_percentage | times: 1
+                  assign discount_factor = 100 | minus: trade_pct
+                  assign original_price = p.price | times: 100 | divided_by: discount_factor
+                  if original_price > p.price
+                    assign was_cents = original_price
+                  endif
+                elsif show_discounted_price
+                  assign was_cents = p.price
+                  assign now_cents = p.metafields.custom.auto_discount_price.value | times: 100 | round
+                elsif p.compare_at_price > p.price
+                  assign was_cents = p.compare_at_price
+                endif
+                assign pct_off = 0
+                if was_cents > now_cents
+                  assign pct_off = was_cents | minus: now_cents | times: 100.0 | divided_by: was_cents | round
+                endif
+              -%}
+              <p class="csc__price body">
+                {%- if pct_off > 0 -%}
+                  <span class="csc__sr">Sale price</span><span class="csc__sale">{{ now_cents | money_without_trailing_zeros }}</span>
+                  <span class="csc__sr">Regular price</span><s class="csc__was">{{ was_cents | money_without_trailing_zeros }}</s>
+                  <span class="csc__pct">({{ pct_off }}% off)</span>
+                {%- else -%}
+                  {{ now_cents | money_without_trailing_zeros }}
+                {%- endif -%}
+              </p>
+
+              <div class="csc__buy">
+              {%- if v.available -%}
+                <button
+                  type="button"
+                  class="csc__atc button button--full{% if s.button_style == 'outline' %} csc__atc--outline{% elsif s.button_style == 'white' %} button--white{% endif %}"
+                  data-csc-add="{{ v.id }}"
+                  aria-label="{{ s.button_label | escape }}: {{ title | escape }}"
+                >
+                  <span>{{ s.button_label | escape }}</span>
+                </button>
+              {%- else -%}
+                <button type="button" class="csc__atc button button--full csc__atc--outline" disabled aria-disabled="true">
+                  <span>{{ s.sold_out_label | escape }}</span>
+                </button>
+              {%- endif -%}
+              <p class="csc__msg body-xs" role="status" aria-live="polite"></p>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- comment -%} Progress bar + arrows (below the carousel) {%- endcomment -%}
+    <div class="csc__nav" data-csc-nav>
+      <div class="csc__bar" aria-hidden="true"><i data-csc-thumb></i></div>
+      <button type="button" class="csc__arrow" data-csc-prev aria-label="Previous products">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button type="button" class="csc__arrow" data-csc-next aria-label="Next products">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---------- layout ---------- */
+  .csc { overflow: hidden; }
+  .csc__row {
+    display: grid;
+    grid-template-columns: min(var(--csc-lead-w), 38%) minmax(0, 1fr);
+    gap: 40px;
+    align-items: stretch;
+  }
+  .csc__track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - (var(--csc-visible) - 0.3) * var(--csc-gap)) / var(--csc-visible));
+    gap: var(--csc-gap);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    cursor: grab;
+  }
+  .csc__track::-webkit-scrollbar, .csc__row::-webkit-scrollbar { display: none; }
+  .csc .is-dragging { scroll-snap-type: none !important; scroll-behavior: auto !important; cursor: grabbing; }
+  .csc .is-dragging a, .csc .is-dragging img { pointer-events: none; }
+
+  /* ---------- lead card ---------- */
+  .csc__lead { position: relative; overflow: hidden; min-height: 480px; color: var(--csc-text); }
+  .csc__wrap:not(.page-width) { padding: 0 40px; }
+  .csc__lead--accent::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; background: var(--csc-accent); z-index: 3; }
+  .csc__lead-media, .csc__lead-media img, .csc__lead-media svg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .csc__lead-media--empty { background: #eeeae3; }
+  .csc__lead-shade {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,var(--csc-overlay)) 100%);
+  }
+  .csc__lead-copy { position: absolute; left: 36px; right: 36px; bottom: 34px; z-index: 2; }
+  .csc__lead-copy, .csc__lead-copy * { color: var(--csc-text); }
+  .csc__headline { margin-bottom: 12px; }
+  .csc__body { margin-bottom: 18px; }
+  .csc__body p + p { margin-top: 0.6em; }
+  .csc__cta { color: var(--csc-text); }
+
+  /* ---------- product card ---------- */
+  .csc__card { display: flex; flex-direction: column; min-width: 0; scroll-snap-align: start; }
+  .csc__img { position: relative; display: block; aspect-ratio: 1 / 1; overflow: hidden; background: #f1ede6; margin-bottom: 16px; }
+  /* image rollover: 2nd Shopify image fades in on hover (mouse devices only) */
+  .csc__img-2 { position: absolute; inset: 0; opacity: 0; transition: opacity .35s ease; }
+  @media (hover: hover) and (pointer: fine) {
+    .csc__img--hover:hover .csc__img-2,
+    .csc__card:focus-within .csc__img--hover .csc__img-2 { opacity: 1; }
+  }
+  .csc__img img, .csc__img svg { width: 100%; height: 100%; object-fit: cover; display: block; user-select: none; -webkit-user-drag: none; }
+  .csc__eyebrow { text-transform: uppercase; color: #6b7682; margin-bottom: 6px; }
+  /* Type sizes for this section (scoped here so the rest of the theme is unchanged) */
+  .csc .csc__eyebrow { font-size: 16px; line-height: 1.25; font-weight: 600; }
+  .csc .body-sm { font-size: 20px; line-height: 1.4; }
+  .csc .text-link { font-size: 20px; line-height: 1.3; }
+  .csc__title { color: var(--blue, #546b82); margin-bottom: 4px; text-transform: none; letter-spacing: normal; font-weight: 400; }
+  .csc .csc__size { font-size: 16px; }
+  .csc__title a { color: inherit; text-decoration: none; }
+  .csc__size { color: #6b7682; }
+  .csc__price { margin: 8px 0 14px; color: #30383d; }
+  .csc__sale { color: #7d3c3c; font-weight: 600; }
+  .csc__was { color: #6b7682; text-decoration: line-through; }
+  .csc__pct { color: #7d3c3c; font-weight: 600; white-space: nowrap; }
+  .csc__sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .csc__buy { position: relative; margin-top: auto; }
+  .csc__atc { padding-left: 12px; padding-right: 12px; }
+  .csc__atc--outline { background: transparent; color: #30383d; border: 1px solid #30383d; }
+  .csc__atc--outline:not([disabled]):hover { background: #30383d; color: #fff; }
+  .csc__atc[disabled] { opacity: .45; cursor: not-allowed; color: #30383d; }
+  .csc__atc.loading::after {
+    content: ""; position: absolute; left: 50%; top: 50%; width: 16px; height: 16px; margin: -8px 0 0 -8px;
+    border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%;
+    animation: csc-spin .7s linear infinite;
+  }
+  .csc__atc { position: relative; }
+  @keyframes csc-spin { to { transform: rotate(360deg); } }
+  .csc__atc.is-added { background: var(--blue, #546b82); border-color: var(--blue, #546b82); color: #fff; }
+  .csc__msg { position: absolute; left: 0; right: 0; bottom: calc(100% + 6px); margin: 0; padding: 6px 8px; background: #fff; border: 1px solid #e5e0d7; color: #7d3c3c; text-transform: none; z-index: 2; }
+  .csc__msg:empty { display: none; }
+
+  /* ---------- progress bar + arrows ---------- */
+  .csc__nav {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 24px;
+    padding-left: calc(min(var(--csc-lead-w), 38%) + 40px);
+    justify-content: flex-end;
+  }
+  .csc--controls-left .csc__nav { justify-content: flex-start; }
+  .csc__bar { position: relative; width: var(--csc-bar-w); height: 2px; background: #e5e0d7; border-radius: 2px; overflow: hidden; margin-right: 6px; }
+  .csc__bar i { position: absolute; top: 0; bottom: 0; left: 0; width: 30%; background: #30383d; border-radius: 2px; transition: left .15s ease, width .15s ease; }
+  .csc__arrow {
+    width: 44px; height: 44px; border-radius: 50%; flex: none; padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #fff; border: 1px solid #e5e0d7; color: #30383d; cursor: pointer;
+  }
+  .csc__arrow:disabled { opacity: .35; cursor: default; }
+  .csc__nav.is-static { display: none; }
+  @media screen and (min-width: 769px) {
+    .csc__track { align-content: start; padding-bottom: 68px; }
+    .csc__nav { position: relative; z-index: 2; margin-top: -44px; }
+    .csc__wrap:has(.csc__nav.is-static) .csc__track { padding-bottom: 0; }
+  }
+  @media screen and (min-width: 769px) and (max-width: 1366px) {
+    .csc__row { gap: 28px; }
+    .csc__nav { padding-left: calc(min(var(--csc-lead-w), 38%) + 28px); }
+  }
+
+  /* ---------- mobile (theme breakpoint 768px) ---------- */
+  @media screen and (max-width: 768px) {
+    .csc__row {
+      display: grid;
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: 72%;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      margin: 0 -20px;
+      padding: 0 20px 2px;
+      scroll-padding: 0 20px;
+    }
+    .csc__track { display: contents; }
+    .csc__lead { scroll-snap-align: start; min-height: 420px; }
+    .csc__wrap:not(.page-width) { padding: 0 20px; }
+    .csc__lead-copy { left: 18px; right: 18px; bottom: 18px; }
+    .csc__headline { margin-bottom: 8px; }
+    .csc__body { margin-bottom: 12px; }
+    .csc__img { margin-bottom: 12px; }
+    .csc__price { margin: 6px 0 10px; }
+    .csc__nav { padding-left: 0; margin-top: 16px; justify-content: flex-start; }
+    .csc__bar { flex: 1; width: auto; }
+    .csc__arrow { width: 36px; height: 36px; }
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.getElementById('csc-{{ sid }}');
+    var ADDED_LABEL = {{ s.added_label | default: 'Added' | json }};
+    if (!root || root.dataset.cscReady) return;
+    root.dataset.cscReady = '1';
+
+    var row = root.querySelector('[data-csc-row]');
+    var track = root.querySelector('[data-csc-track]');
+    var nav = root.querySelector('[data-csc-nav]');
+    var thumb = root.querySelector('[data-csc-thumb]');
+    var prev = root.querySelector('[data-csc-prev]');
+    var next = root.querySelector('[data-csc-next]');
+
+    // Desktop scrolls the track; mobile scrolls the whole row (lead card is slide 1).
+    function scroller() { return row.scrollWidth > row.clientWidth + 2 ? row : track; }
+    function step(sc) {
+      var card = root.querySelector('.csc__card');
+      var gap = parseFloat(getComputedStyle(sc).columnGap) || 0;
+      return card ? card.getBoundingClientRect().width + gap : sc.clientWidth * 0.7;
+    }
+    function update() {
+      var sc = scroller();
+      var max = sc.scrollWidth - sc.clientWidth;
+      nav.classList.toggle('is-static', max <= 2);
+      var ratio = sc.clientWidth / sc.scrollWidth;
+      thumb.style.width = (ratio * 100) + '%';
+      thumb.style.left = (max > 0 ? (sc.scrollLeft / max) * (100 - ratio * 100) : 0) + '%';
+      prev.disabled = sc.scrollLeft < 4;
+      next.disabled = sc.scrollLeft >= max - 4;
+    }
+    [row, track].forEach(function (el) { el.addEventListener('scroll', update, { passive: true }); });
+    window.addEventListener('resize', update);
+    prev.addEventListener('click', function () { var sc = scroller(); sc.scrollBy({ left: -step(sc), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { var sc = scroller(); sc.scrollBy({ left: step(sc), behavior: 'smooth' }); });
+
+    // Mouse drag to scroll (touch already swipes natively).
+    [row, track].forEach(function (el) {
+      var down = false, moved = false, x0 = 0, s0 = 0;
+      el.addEventListener('pointerdown', function (e) {
+        if (e.pointerType !== 'mouse' || e.button !== 0 || el.scrollWidth <= el.clientWidth + 2) return;
+        if (e.target.closest('button')) return;
+        down = true; moved = false; x0 = e.clientX; s0 = el.scrollLeft;
+      });
+      window.addEventListener('pointermove', function (e) {
+        if (!down) return;
+        var dx = e.clientX - x0;
+        if (!moved && Math.abs(dx) > 5) { moved = true; el.classList.add('is-dragging'); }
+        if (moved) el.scrollLeft = s0 - dx;
+      });
+      window.addEventListener('pointerup', function () {
+        if (!down) return;
+        down = false;
+        if (moved) {
+          el.classList.remove('is-dragging');
+          var st = step(el);
+          el.scrollTo({ left: Math.round(el.scrollLeft / st) * st, behavior: 'smooth' });
+          setTimeout(function () { moved = false; }, 50);
+        }
+      });
+      el.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
+    });
+
+    // Add to Bag -> AJAX add, refresh + open the theme's cart drawer.
+    root.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-csc-add]');
+      if (!btn || btn.disabled) return;
+      var msg = btn.closest('.csc__buy').querySelector('.csc__msg');
+      var label = btn.querySelector('span').textContent;
+      btn.disabled = true;
+      btn.classList.add('loading');
+      if (msg) msg.textContent = '';
+
+      fetch((window.Shopify && Shopify.routes ? Shopify.routes.root : '/') + 'cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ items: [{ id: Number(btn.dataset.cscAdd), quantity: 1 }] })
+      })
+        .then(function (r) {
+          return r.json().then(function (data) {
+            if (!r.ok) throw new Error(data.description || data.message || 'Could not add to bag');
+            return data;
+          });
+        })
+        .then(function (data) {
+          document.dispatchEvent(new CustomEvent('cart:item-added', { detail: data }));
+          var drawer = document.querySelector('cart-drawer');
+          if (typeof window.updateMainCart === 'function' && drawer) {
+            return window.updateMainCart(typeof window.Rebuy !== 'undefined' ? window.Rebuy : null).then(function () {
+              var d = document.querySelector('cart-drawer');
+              if (d && typeof d.open === 'function') d.open();
+            });
+          }
+          window.location.href = (window.routes && window.routes.cart_url) || '/cart';
+        })
+        .then(function () {
+          btn.classList.add('is-added');
+          btn.querySelector('span').textContent = ADDED_LABEL;
+          setTimeout(function () {
+            btn.classList.remove('is-added');
+            btn.querySelector('span').textContent = label;
+          }, 2500);
+        })
+        .catch(function (err) {
+          if (msg) {
+            msg.textContent = err.message;
+            clearTimeout(msg._t);
+            msg._t = setTimeout(function () { msg.textContent = ''; }, 5000);
+          }
+        })
+        .finally(function () {
+          btn.disabled = false;
+          btn.classList.remove('loading');
+        });
+    });
+
+    update();
+    if (document.readyState !== 'complete') window.addEventListener('load', update);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Color Story Carousel",
+  "tag": "div",
+  "class": "section-color-story-carousel",
+  "max_blocks": 18,
+  "settings": [
+    { "type": "header", "content": "Lead image card" },
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Portrait or square works best. Set a focal point to control the crop." },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile image (optional)", "info": "Leave blank to use the main image." },
+    {
+      "type": "html",
+      "id": "headline",
+      "label": "Headline (HTML)",
+      "default": "<h2 class=\"h2\">Holiday Red</h2>",
+      "info": "Accepts HTML. Theme classes such as h1, h2, h3 or body-sm can be used."
+    },
+    {
+      "type": "html",
+      "id": "body",
+      "label": "Paragraph (HTML)",
+      "default": "<p class=\"body-sm\">Classic, cheerful red for a front door that says welcome home.</p>"
+    },
+    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Shop Holiday Red" },
+    { "type": "url", "id": "cta_url", "label": "CTA link" },
+    { "type": "color", "id": "lead_text_color", "label": "Text color", "default": "#FFFFFF" },
+    {
+      "type": "range", "id": "overlay_strength", "label": "Image shade behind text",
+      "min": 0, "max": 90, "step": 5, "unit": "%", "default": 70
+    },
+    {
+      "type": "color", "id": "accent_color", "label": "Accent bar color",
+      "default": "#620F18", "info": "Thin bar across the top of the image. Clear the color to hide it."
+    },
+    {
+      "type": "range", "id": "lead_width", "label": "Lead card width (desktop)",
+      "min": 300, "max": 600, "step": 10, "unit": "px", "default": 420
+    },
+    { "type": "header", "content": "Product cards" },
+    {
+      "type": "range", "id": "cards_visible", "label": "Cards visible on desktop",
+      "min": 2, "max": 5, "step": 1, "default": 3,
+      "info": "A partial card always peeks at the edge to show there's more."
+    },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Add to Bag" },
+    { "type": "text", "id": "added_label", "label": "Button label after adding", "default": "Added ✓" },
+    { "type": "text", "id": "sold_out_label", "label": "Sold out label", "default": "Sold Out" },
+    {
+      "type": "select", "id": "button_style", "label": "Button style",
+      "options": [
+        { "value": "outline", "label": "Outline (theme type)" },
+        { "value": "theme", "label": "Theme gold button" },
+        { "value": "white", "label": "Theme white button" }
+      ],
+      "default": "outline"
+    },
+    { "type": "checkbox", "id": "hover_image", "label": "Show second image on hover", "default": true, "info": "Uses each product's second image in Shopify. Products with one image don't change." },
+    { "type": "header", "content": "Carousel controls" },
+    {
+      "type": "select", "id": "controls_align", "label": "Progress bar + arrows position",
+      "options": [
+        { "value": "right", "label": "Right" },
+        { "value": "left", "label": "Left (under first card)" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "range", "id": "bar_width", "label": "Progress bar width (desktop)",
+      "min": 160, "max": 480, "step": 10, "unit": "px", "default": 300
+    },
+    { "type": "header", "content": "Section" },
+    { "type": "text", "id": "aria_label", "label": "Accessible name", "default": "Holiday Red products", "info": "Read by screen readers. Not shown on the page." },
+    { "type": "checkbox", "id": "contain", "label": "Use theme page width", "default": true },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "range", "id": "pad_top", "label": "Top padding (desktop)", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 32 },
+    { "type": "range", "id": "pad_bottom", "label": "Bottom padding (desktop)", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 32 },
+    { "type": "range", "id": "pad_top_m", "label": "Top padding (mobile)", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 20 },
+    { "type": "range", "id": "pad_bottom_m", "label": "Bottom padding (mobile)", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 20 }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product card",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "image_picker", "id": "image", "label": "Image override", "info": "Optional. Defaults to the product's featured image." },
+        {
+          "type": "text", "id": "eyebrow", "label": "Eyebrow override",
+          "info": "Optional. Defaults to the collection name + Indoor / Outdoor (e.g. THE INSIDER · INDOOR)."
+        },
+        { "type": "text", "id": "title", "label": "Title override", "info": "Optional. Defaults to the pattern name, e.g. Maze II (Red)." },
+        {
+          "type": "text", "id": "size", "label": "Size override",
+          "info": "Optional. Defaults to the style + dimension metafields, e.g. Doormat · 2' 3\" x 3'."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Color Story Carousel",
+      "blocks": [
+        { "type": "product_card" },
+        { "type": "product_card" },
+        { "type": "product_card" },
+        { "type": "product_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}
