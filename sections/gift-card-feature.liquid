@@ -1,0 +1,338 @@
+{%- liquid
+  assign sid = section.id
+  assign s = section.settings
+  assign gc = s.gift_card
+  assign bg = s.bg_image
+  assign bg_m = s.bg_image_mobile | default: s.bg_image
+  assign shade = s.shade_strength | divided_by: 100.0
+
+  # starting amount: match the typed value against variant title or price
+  assign start_variant = blank
+  if gc != blank
+    assign want = s.start_amount | remove: '$' | remove: ',' | strip
+    for v in gc.variants
+      assign v_title = v.title | remove: '$' | remove: ',' | strip
+      assign v_price = v.price | divided_by: 100 | append: ''
+      if want != blank and v.available
+        if v_title == want or v_price == want
+          assign start_variant = v
+          break
+        endif
+      endif
+    endfor
+    if start_variant == blank
+      assign start_variant = gc.selected_or_first_available_variant
+    endif
+  endif
+  assign start_amount = start_variant.price | money_without_trailing_zeros
+  assign cta_label = s.cta_label | replace: '[amount]', start_amount
+
+  if gc != blank
+    assign cta_href = gc.url | append: '?variant=' | append: start_variant.id
+  else
+    assign cta_href = s.cta_fallback_url | default: '/products/gift-card'
+  endif
+-%}
+
+{% style %}
+  #gcf-{{ sid }} {
+    --gcf-shade: {{ s.shade_color }};
+    --gcf-shade-rgb: {{ s.shade_color.red }}, {{ s.shade_color.green }}, {{ s.shade_color.blue }};
+    --gcf-shade-a: {{ shade }};
+    --gcf-text: {{ s.text_color }};
+    --gcf-accent: {{ s.accent_color }};
+    --gcf-min-h: {{ s.min_height }}px;
+    --gcf-card-w: {{ s.card_width }}px;
+    --gcf-band-m: {{ s.mobile_band_height }}px;
+    --gcf-tilt: {% if s.card_tilt %}4deg{% else %}0deg{% endif %};
+  }
+{% endstyle %}
+
+<section id="gcf-{{ sid }}" class="gcf" aria-label="{{ s.aria_label | escape }}">
+  <div class="gcf__bg" aria-hidden="true">
+    {%- if bg != blank -%}
+      <picture>
+        <source
+          media="(max-width: 768px)"
+          srcset="{{ bg_m | image_url: width: 800 }} 800w, {{ bg_m | image_url: width: 1200 }} 1200w"
+          sizes="100vw"
+        >
+        {{
+          bg
+          | image_url: width: 2400
+          | image_tag: widths: '1000, 1400, 1920, 2400', sizes: '100vw', loading: 'lazy', alt: ''
+        }}
+      </picture>
+    {%- else -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'gcf__ph' }}
+    {%- endif -%}
+    <span class="gcf__shade"></span>
+  </div>
+
+  <div class="gcf__inner{% if s.contain %} page-width{% endif %}">
+    <div class="gcf__copy">
+      {%- if s.eyebrow != blank -%}<p class="gcf__eyebrow h3">{{ s.eyebrow | escape }}</p>{%- endif -%}
+      {%- if s.headline != blank -%}<div class="gcf__headline">{{ s.headline }}</div>{%- endif -%}
+      {%- if s.body != blank -%}<div class="gcf__body">{{ s.body }}</div>{%- endif -%}
+
+      {%- if gc != blank and gc.variants.size > 1 -%}
+        <div class="gcf__amounts" role="radiogroup" aria-label="{{ s.amounts_label | default: 'Gift card amount' | escape }}" data-gcf-amounts>
+          {%- for v in gc.variants -%}
+            <button
+              type="button"
+              role="radio"
+              class="gcf__amt body-sm{% if v.id == start_variant.id %} is-on{% endif %}"
+              aria-checked="{% if v.id == start_variant.id %}true{% else %}false{% endif %}"
+              data-variant="{{ v.id }}"
+              data-amount="{{ v.price | money_without_trailing_zeros | escape }}"
+              {% unless v.available %}disabled aria-disabled="true"{% endunless %}
+            >
+              {{- v.price | money_without_trailing_zeros -}}
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="gcf__bullets" role="list">
+          {%- for block in section.blocks -%}
+            <li class="gcf__bullet body-sm" {{ block.shopify_attributes }}>
+              {%- if block.settings.icon != blank -%}
+                {{
+                  block.settings.icon
+                  | image_url: width: 96
+                  | image_tag: class: 'gcf__icon', width: 24, height: 24, loading: 'lazy', alt: ''
+                }}
+              {%- else -%}
+                <span class="gcf__spark" aria-hidden="true">✦</span>
+              {%- endif -%}
+              <span>{{ block.settings.text }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if s.cta_label != blank -%}
+        <a
+          class="gcf__cta button{% if s.cta_style == 'white' %} button--white{% elsif s.cta_style == 'outline' %} gcf__cta--outline{% endif %}"
+          href="{{ cta_href }}"
+          data-gcf-cta
+          data-base="{% if gc != blank %}{{ gc.url }}{% endif %}"
+          data-label="{{ s.cta_label | escape }}"
+        >
+          <span>{{ cta_label | escape }}</span>
+        </a>
+      {%- endif -%}
+    </div>
+
+    {%- if s.card_image != blank -%}
+      <div class="gcf__card">
+        {{
+          s.card_image
+          | image_url: width: 1200
+          | image_tag:
+            widths: '400, 600, 800, 1200',
+            sizes: '(min-width: 769px) 520px, 70vw',
+            loading: 'lazy',
+            alt: s.card_image.alt | default: 'Porte + Hall gift card'
+        }}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .gcf { position: relative; overflow: hidden; color: var(--gcf-text); }
+  .gcf__bg { position: absolute; inset: 0; }
+  .gcf__bg picture, .gcf__bg img, .gcf__bg svg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gcf__bg svg { background: #e9e4da; }
+  .gcf__shade {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg,
+      rgba(var(--gcf-shade-rgb), var(--gcf-shade-a)) 0%,
+      rgba(var(--gcf-shade-rgb), calc(var(--gcf-shade-a) * .92)) 36%,
+      rgba(var(--gcf-shade-rgb), calc(var(--gcf-shade-a) * .4)) 56%,
+      rgba(var(--gcf-shade-rgb), 0) 80%);
+  }
+  .gcf__inner {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 60px; align-items: center;
+    min-height: var(--gcf-min-h); padding-top: 72px; padding-bottom: 72px;
+  }
+  .gcf__inner:not(.page-width) { padding-left: 80px; padding-right: 80px; }
+  .gcf__copy, .gcf__copy * { color: var(--gcf-text); }
+  .gcf__eyebrow { color: var(--gcf-accent) !important; margin-bottom: 14px; }
+  .gcf__headline { margin-bottom: 18px; }
+  .gcf__body { margin-bottom: 26px; max-width: 600px; }
+  .gcf__body p + p { margin-top: .6em; }
+
+  /* amounts */
+  .gcf__amounts { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+  .gcf__amt {
+    min-width: 72px; padding: 10px 16px; cursor: pointer; font-family: inherit;
+    background: transparent; border: 1px solid rgba(255, 255, 255, .55); color: var(--gcf-text);
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .gcf__amt:hover:not([disabled]) { border-color: var(--gcf-text); }
+  .gcf__amt.is-on { background: var(--gcf-text); border-color: var(--gcf-text); color: var(--gcf-shade) !important; }
+  .gcf__amt[disabled] { opacity: .4; cursor: not-allowed; text-decoration: line-through; }
+  .gcf__amt:focus-visible { outline: 2px solid var(--gcf-accent); outline-offset: 2px; }
+
+  /* bullets */
+  .gcf__bullets { list-style: none; margin: 0 0 30px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 28px; }
+  .gcf__bullet { display: flex; align-items: center; gap: 8px; }
+  .gcf__icon { width: 24px; height: 24px; object-fit: contain; flex: none; }
+  .gcf__spark { color: var(--gcf-accent) !important; flex: none; }
+
+  /* cta */
+  .gcf__cta { display: inline-block; text-decoration: none; }
+  .gcf__cta--outline { background: transparent; border: 1px solid var(--gcf-text); }
+  .gcf__cta.button--white, .gcf__cta.button--white span { color: var(--gcf-shade) !important; }
+
+  /* card */
+  .gcf__card { display: flex; justify-content: center; }
+  .gcf__card img {
+    width: var(--gcf-card-w); max-width: 100%; height: auto; display: block;
+    transform: rotate(var(--gcf-tilt));
+    filter: drop-shadow(0 28px 36px rgba(0, 0, 0, .45));
+  }
+
+  @media screen and (max-width: 768px) {
+    .gcf { background: var(--gcf-shade); }
+    .gcf__bg { position: relative; height: var(--gcf-band-m); }
+    .gcf__shade { background: linear-gradient(180deg, rgba(var(--gcf-shade-rgb), 0) 40%, rgba(var(--gcf-shade-rgb), 1) 100%); }
+    .gcf__inner {
+      display: flex; flex-direction: column; align-items: stretch; gap: 22px;
+      min-height: 0; padding-top: 0; padding-bottom: 40px;
+      margin-top: calc(var(--gcf-band-m) * -0.5);
+    }
+    .gcf__inner:not(.page-width) { padding-left: 20px; padding-right: 20px; }
+    .gcf__card { order: -1; }
+    .gcf__card img { width: min(var(--gcf-card-w), 64vw); }
+    .gcf__eyebrow { margin-bottom: 8px; }
+    .gcf__headline { margin-bottom: 10px; }
+    .gcf__body { margin-bottom: 18px; }
+    .gcf__amounts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-bottom: 16px; }
+    .gcf__amt { min-width: 0; padding: 9px 0; text-align: center; }
+    .gcf__bullets { gap: 6px 16px; margin-bottom: 20px; }
+    .gcf__cta { display: block; text-align: center; }
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.getElementById('gcf-{{ sid }}');
+    if (!root || root.dataset.gcfReady) return;
+    root.dataset.gcfReady = '1';
+    var group = root.querySelector('[data-gcf-amounts]');
+    var cta = root.querySelector('[data-gcf-cta]');
+    if (!group || !cta) return;
+    var chips = Array.prototype.slice.call(group.querySelectorAll('.gcf__amt'));
+
+    function select(btn, focus) {
+      if (!btn || btn.disabled) return;
+      chips.forEach(function (c) {
+        var on = c === btn;
+        c.classList.toggle('is-on', on);
+        c.setAttribute('aria-checked', on ? 'true' : 'false');
+        c.tabIndex = on ? 0 : -1;
+      });
+      if (focus) btn.focus();
+      if (cta.dataset.base) cta.href = cta.dataset.base + '?variant=' + btn.dataset.variant;
+      cta.querySelector('span').textContent = cta.dataset.label.replace('[amount]', btn.dataset.amount);
+    }
+    chips.forEach(function (c) {
+      c.tabIndex = c.classList.contains('is-on') ? 0 : -1;
+      c.addEventListener('click', function () { select(c, false); });
+    });
+    // radio-group keyboard support: arrow keys move the selection
+    group.addEventListener('keydown', function (e) {
+      var keys = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+      if (!(e.key in keys)) return;
+      e.preventDefault();
+      var enabled = chips.filter(function (c) { return !c.disabled; });
+      var i = enabled.indexOf(document.activeElement);
+      var next = enabled[(i + keys[e.key] + enabled.length) % enabled.length];
+      select(next, true);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Gift Card Feature",
+  "tag": "div",
+  "class": "section-gift-card-feature",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "header", "content": "Background" },
+    { "type": "image_picker", "id": "bg_image", "label": "Background image (desktop)", "info": "2400 x 1200px or larger. Set a focal point so the subject stays in view." },
+    { "type": "image_picker", "id": "bg_image_mobile", "label": "Background image (mobile)", "info": "Optional. Shows as a band across the top on mobile. Leave blank to use the desktop image." },
+    { "type": "color", "id": "shade_color", "label": "Shade color", "default": "#620F18", "info": "Fades over the photo behind the copy, and fills the copy area on mobile." },
+    { "type": "range", "id": "shade_strength", "label": "Shade strength", "min": 40, "max": 100, "step": 5, "unit": "%", "default": 95 },
+    { "type": "range", "id": "min_height", "label": "Minimum height (desktop)", "min": 480, "max": 900, "step": 20, "unit": "px", "default": 680 },
+    { "type": "range", "id": "mobile_band_height", "label": "Photo band height (mobile)", "min": 160, "max": 360, "step": 10, "unit": "px", "default": 220 },
+
+    { "type": "header", "content": "Gift card image" },
+    { "type": "image_picker", "id": "card_image", "label": "Gift card image", "info": "Transparent PNG of the card works best." },
+    { "type": "checkbox", "id": "card_tilt", "label": "Tilt the card", "default": true },
+    { "type": "range", "id": "card_width", "label": "Card width (desktop)", "min": 280, "max": 640, "step": 10, "unit": "px", "default": 520 },
+
+    { "type": "header", "content": "Copy" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Gift of Choice" },
+    {
+      "type": "html", "id": "headline", "label": "Headline (HTML)",
+      "default": "<h2 class=\"h1\">Let Them Pick<br>the Mat</h2>",
+      "info": "Accepts HTML. Theme classes such as h1, h2 or body can be used."
+    },
+    {
+      "type": "html", "id": "body", "label": "Paragraph (HTML)",
+      "default": "<p class=\"body\">Not sure of their style or their door size? Give a Porte + Hall e-gift card and let them choose the mat that makes their house feel like home.</p>"
+    },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#FFFFFF" },
+    { "type": "color", "id": "accent_color", "label": "Eyebrow + sparkle color", "default": "#DCC392" },
+
+    { "type": "header", "content": "Amounts" },
+    { "type": "product", "id": "gift_card", "label": "Gift card product", "info": "Every amount on this product shows as a chip." },
+    { "type": "text", "id": "start_amount", "label": "Starting amount", "default": "100", "info": "Selected when the page loads, e.g. 100. Leave blank for the first amount." },
+    { "type": "text", "id": "amounts_label", "label": "Amounts label (screen readers)", "default": "Gift card amount" },
+
+    { "type": "header", "content": "Button" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Buy a Gift Card", "info": "Add [amount] to show the selected amount, e.g. \"Give [amount]\"." },
+    {
+      "type": "select", "id": "cta_style", "label": "Button style",
+      "options": [
+        { "value": "white", "label": "Theme white" },
+        { "value": "theme", "label": "Theme gold" },
+        { "value": "outline", "label": "Outline" }
+      ],
+      "default": "white"
+    },
+    { "type": "url", "id": "cta_fallback_url", "label": "Button link if no product is chosen" },
+
+    { "type": "header", "content": "Section" },
+    { "type": "checkbox", "id": "contain", "label": "Use theme page width for the content", "default": true },
+    { "type": "text", "id": "aria_label", "label": "Accessible name", "default": "Gift cards" }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Bullet",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon (optional)", "info": "Small square PNG or SVG, shown at 24 x 24px. Without one, a sparkle shows." },
+        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "Delivered instantly by email" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gift Card Feature",
+      "blocks": [
+        { "type": "bullet", "settings": { "text": "Delivered instantly by email" } },
+        { "type": "bullet", "settings": { "text": "Schedule it for the big day" } },
+        { "type": "bullet", "settings": { "text": "Add a personal message" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
