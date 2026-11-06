@@ -104,11 +104,61 @@
         "image_gutter": 0,
         "mobile_image_height": 420
       }
+    },
+    "shipping_banner_K3fDNg": {
+      "type": "shipping-banner",
+      "blocks": {
+        "column_qyzYYM": {
+          "type": "column",
+          "settings": {
+            "icon": "shopify://shop_images/Icon-Shipping-Truck.svg",
+            "eyebrow": "Holiday Shipping",
+            "headline": "<p class=\"h4\">Order by Sunday, Dec 13</p>",
+            "body": "<p class=\"body-sm\">Place your order by the end of the day to receive it in time for the holidays.</p>",
+            "cta_label": "Shipping Details",
+            "cta_url": "shopify://pages/shipping-information"
+          }
+        },
+        "column_TAzJyD": {
+          "type": "column",
+          "settings": {
+            "eyebrow": "Anytime",
+            "headline": "<p class=\"h4\">E-Gift Cards</p>",
+            "body": "<p class=\"body-sm\">Delivered by email, right up to the last minute.</p>",
+            "cta_label": "Shop Gift Cards",
+            "cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_qyzYYM",
+        "column_TAzJyD"
+      ],
+      "name": "Shipping Deadline Banner",
+      "settings": {
+        "bg_color": "#F8F3EA",
+        "separator_color": "#DCC392",
+        "eyebrow_color": "#896A28",
+        "headline_color": "#620F18",
+        "text_color": "#6B7682",
+        "link_color": "#30383D",
+        "icon_size": 32,
+        "align_desktop": "center",
+        "contain": true,
+        "border_top": false,
+        "border_bottom": false,
+        "pad_top": 28,
+        "pad_bottom": 28,
+        "pad_top_m": 24,
+        "pad_bottom_m": 24,
+        "aria_label": "Holiday shipping deadlines"
+      }
     }
   },
   "order": [
     "breadcrumbs_8LXnyk",
     "main",
-    "trade_hero_split_iifPUy"
+    "trade_hero_split_iifPUy",
+    "shipping_banner_K3fDNg"
   ]
 }
