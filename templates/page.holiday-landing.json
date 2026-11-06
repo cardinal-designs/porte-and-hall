@@ -169,6 +169,111 @@
         "link_url": "",
         "custom-class": ""
       }
+    },
+    "color_story_carousel_MzjFLV": {
+      "type": "color-story-carousel",
+      "blocks": {
+        "product_card_NpqpUy": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-maze-ii-red-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_PGk9Qf": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-happy-hour-shirley-temple-runner",
+            "eyebrow": "THE INSIDER 2x6 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_KBd6E7": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-ripple-coral-3-x-5-doormat",
+            "eyebrow": "THE INSIDER 3x5 AREA MAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_8jipxe": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-maze-ii-red-runner",
+            "eyebrow": "THE INSIDER 2x6 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_8katwB": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-happy-hour-shirley-temple-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_QzMQyH": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-ripple-coral-runner",
+            "eyebrow": "THE INSIDER 2x6 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_eP39c4": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-ripple-coral-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_card_NpqpUy",
+        "product_card_PGk9Qf",
+        "product_card_KBd6E7",
+        "product_card_8jipxe",
+        "product_card_8katwB",
+        "product_card_QzMQyH",
+        "product_card_eP39c4"
+      ],
+      "name": "Color Story Carousel",
+      "settings": {
+        "image": "shopify://shop_images/holiday-red.jpg",
+        "mobile_image": "shopify://shop_images/holiday-red.jpg",
+        "headline": "<h2 class=\"h2\">Holiday Red</h2>",
+        "body": "<p class=\"body-sm\">A little red goes a long way. Bring on the cheerful color, classic patterns and all the merry-and-bright energy your front door can handle.</p>",
+        "cta_label": "Shop Holiday Red",
+        "cta_url": "",
+        "lead_text_color": "#FFFFFF",
+        "overlay_strength": 80,
+        "accent_color": "#620F18",
+        "lead_width": 420,
+        "cards_visible": 3,
+        "button_label": "Add to Bag",
+        "added_label": "Added ✓",
+        "sold_out_label": "Sold Out",
+        "button_style": "outline",
+        "hover_image": true,
+        "controls_align": "right",
+        "bar_width": 300,
+        "aria_label": "Holiday Red products",
+        "contain": true,
+        "bg_color": "#FFFFFF",
+        "pad_top": 32,
+        "pad_bottom": 32,
+        "pad_top_m": 20,
+        "pad_bottom_m": 20
+      }
     }
   },
   "order": [
@@ -176,6 +281,7 @@
     "main",
     "trade_hero_split_iifPUy",
     "shipping_banner_K3fDNg",
-    "image_text_WYDcQd"
+    "image_text_WYDcQd",
+    "color_story_carousel_MzjFLV"
   ]
 }
