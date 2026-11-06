@@ -122,11 +122,12 @@
         "column_TAzJyD": {
           "type": "column",
           "settings": {
-            "eyebrow": "Anytime",
+            "icon": "shopify://shop_images/Icon-E-Gift-Card-Envelope.svg",
+            "eyebrow": "Still Time to Gift",
             "headline": "<p class=\"h4\">E-Gift Cards</p>",
-            "body": "<p class=\"body-sm\">Delivered by email, right up to the last minute.</p>",
+            "body": "<p class=\"body-sm\">Delivered straight to their inbox, even at the eleventh hour.</p>",
             "cta_label": "Shop Gift Cards",
-            "cta_url": ""
+            "cta_url": "shopify://products/gift-card"
           }
         }
       },
@@ -153,12 +154,28 @@
         "pad_bottom_m": 24,
         "aria_label": "Holiday shipping deadlines"
       }
+    },
+    "image_text_WYDcQd": {
+      "type": "image-text",
+      "custom_css": [
+        "p {color: #2b3640; padding: 0px 30px 0px 30px;}"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "subheading": "<div id=\"deckhalls\"></div>",
+        "title": "<p><br/>Deck the Halls</p>",
+        "content": "<p><br/>Consider this your holiday decorating starting point. Take a cue from us and start with a color story. Whether&nbsp;you're dressing up your own doorstep or shopping for someone else's, there's a palette for that.</p>",
+        "link_text": "",
+        "link_url": "",
+        "custom-class": ""
+      }
     }
   },
   "order": [
     "breadcrumbs_8LXnyk",
     "main",
     "trade_hero_split_iifPUy",
-    "shipping_banner_K3fDNg"
+    "shipping_banner_K3fDNg",
+    "image_text_WYDcQd"
   ]
 }
