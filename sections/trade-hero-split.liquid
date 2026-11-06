@@ -227,7 +227,40 @@
     {%- endif -%}
   </div>
 </div>
- 
+ <script>
+  (function () {
+    var root = document.querySelector('.ph-trade-hero-{{ section.id }}');
+    if (!root) return;
+    root.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var id = decodeURIComponent(link.getAttribute('href').slice(1));
+        var target = id && document.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
+
+        // Load the lazy images between the hero and the target now,
+        // so the page stops growing while it scrolls
+        document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
+          if (img.compareDocumentPosition(target) & Node.DOCUMENT_POSITION_FOLLOWING) img.loading = 'eager';
+        });
+
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Safety net: if the page still shifted, land exactly on the target
+        var offset = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+        [800, 1600].forEach(function (ms) {
+          setTimeout(function () {
+            if (Math.abs(target.getBoundingClientRect().top - offset) > 4) {
+              target.scrollIntoView({ behavior: 'auto', block: 'start' });
+            }
+          }, ms);
+        });
+
+        if (history.replaceState) history.replaceState(null, '', '#' + id);
+      });
+    });
+  })();
+</script>
 {% schema %}
 {
   "name": "Trade Hero (Split)",
