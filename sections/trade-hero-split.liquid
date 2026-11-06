@@ -1,3 +1,4 @@
+ 
 {%- liquid
   assign sid = section.id
   assign desktop_img = section.settings.image
@@ -32,6 +33,14 @@
     color: inherit;
     margin: 0;
   }
+ .ph-trade-hero-{{ sid }} .ph-trade-hero__eyebrow {
+    color: var(--eb-color);
+    font-size: var(--eb-size);
+    margin: 0 0 22px;
+    letter-spacing:2.6px;
+    font-weight:700;
+  }
+
   .ph-trade-hero-{{ sid }} .ph-trade-hero__subheading { margin-top: 8px; font-style: italic; }
   .ph-trade-hero-{{ sid }} .ph-trade-hero__body { margin-top: 35px; max-width: 560px; }
   .ph-trade-hero-{{ sid }} .ph-trade-hero__body p + p { margin-top: 1em; }
@@ -111,6 +120,11 @@
       min-height: 0;
       padding: 0 0 28px;
     }
+     {%- for block in section.blocks -%}
+      {%- if block.type == 'mobile_background' and block.settings.color != blank -%}
+        .ph-trade-hero-{{ sid }} { background-color: {{ block.settings.color }}; }
+      {%- endif -%}
+    {%- endfor -%}
     .ph-trade-hero-{{ sid }} .ph-trade-hero__media {
       order: 0;
       flex: none;
@@ -129,6 +143,12 @@
       text-align: center;
       align-items: center;
     }
+
+     .ph-trade-hero-{{ sid }} .ph-trade-hero__eyebrow {
+      font-size: var(--eb-size-m);
+      margin-bottom: 12px;
+    }
+
     .ph-trade-hero-{{ sid }} .ph-trade-hero__subheading { margin-top: 8px; }
     .ph-trade-hero-{{ sid }} .ph-trade-hero__body { margin-top: 14px; }
     .ph-trade-hero-{{ sid }} .ph-trade-hero__buttons {
@@ -145,6 +165,16 @@
  
 <div class="ph-trade-hero ph-trade-hero-{{ sid }}">
   <div class="ph-trade-hero__panel">
+   {%- for block in section.blocks -%}
+     {%- if block.type != 'eyebrow' -%}{%- continue -%}{%- endif -%}
+      {%- if block.type == 'eyebrow' and block.settings.text != blank -%}
+        <p
+          class="ph-trade-hero__eyebrow h3"
+          style="--eb-color: {{ block.settings.color }}; --eb-size: {{ block.settings.size }}px; --eb-size-m: {{ block.settings.size_mobile }}px;"
+          {{ block.shopify_attributes }}
+        >{{ block.settings.text | escape }}</p>
+      {%- endif -%}
+    {%- endfor -%}
     {%- if section.settings.heading != blank -%}
       <h1 class="ph-trade-hero__heading">{{ section.settings.heading | escape }}</h1>
     {%- endif -%}
@@ -241,6 +271,7 @@
     },
  
     { "type": "header", "content": "Copy" },
+  
     {
       "type": "text",
       "id": "heading",
@@ -410,6 +441,33 @@
       "unit": "px",
       "default": 420
     }
+  ],
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "name": "Eyebrow",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "text", "label": "Eyebrow text", "default": "The 2026 Holiday Guide" },
+        { "type": "color", "id": "color", "label": "Color", "default": "#DCC392" },
+        { "type": "range", "id": "size", "label": "Font size (desktop)", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 13 },
+        { "type": "range", "id": "size_mobile", "label": "Font size (mobile)", "min": 10, "max": 18, "step": 1, "unit": "px", "default": 11 }
+      ]
+    },
+    {
+  "type": "mobile_background",
+  "name": "Mobile background",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Background color (mobile only)",
+      "default": "#F8F3EA",
+      "info": "Fills the area around the panel below the image on mobile. Desktop is unchanged."
+    }
+  ]
+}
   ],
   "presets": [
     { "name": "Trade Hero (Split)" }
