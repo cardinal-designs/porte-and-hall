@@ -181,6 +181,92 @@
         "button_font_size": 13
       }
     },
+    "collection_cards_gPidyc": {
+      "type": "collection-cards",
+      "blocks": {
+        "collection_card_Kx8GYH": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-insider",
+            "image": "shopify://shop_images/1_Indoor-Mat-Insider-Bark-Graphite-Runner.webp",
+            "eyebrow": "Indoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": "shopify://collections/the-insider"
+          }
+        },
+        "collection_card_FjxxNY": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-innerweave",
+            "image": "shopify://shop_images/4_Indoor-Mat-Innerweave-Tigers-Eye-Taupe-Runner.jpg",
+            "eyebrow": "Indoor / Outdoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": "shopify://collections/the-innerweave"
+          }
+        },
+        "collection_card_XnUgFK": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-porter",
+            "image": "shopify://shop_images/2_Porte_Hall_Porterafter_2x_1.webp",
+            "eyebrow": "Outdoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": "shopify://collections/the-porter"
+          }
+        },
+        "collection_card_9Uzg7E": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-outlier",
+            "image": "shopify://shop_images/3_Outdoor-Mat-Outlier-Pebble-Doormat.jpg",
+            "eyebrow": "Outdoor",
+            "headline": "<h4>The Outlier</h4><h4></h4>",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": "shopify://collections/the-outlier"
+          }
+        }
+      },
+      "block_order": [
+        "collection_card_Kx8GYH",
+        "collection_card_FjxxNY",
+        "collection_card_XnUgFK",
+        "collection_card_9Uzg7E"
+      ],
+      "custom_css": [
+        "h2 {font-weight: 500;}"
+      ],
+      "name": "Collection Cards",
+      "settings": {
+        "intro": "<h2 class=\"blue\">Shop Our Collections</h2><p class=\"body\">Four collections, styled for every corner of the home, from the front step to the fireside.</p>",
+        "intro_align": "center",
+        "text_align": "left",
+        "image_shape": "portrait",
+        "image_shape_m": "square",
+        "show_price": true,
+        "price_label": "Starting from",
+        "price_format": "decimals",
+        "bg_color": "#F4F2EE",
+        "eyebrow_color": "#896a28",
+        "headline_color": "",
+        "price_color": "",
+        "link_color": "",
+        "contain": true,
+        "gap": 24,
+        "gap_m": 12,
+        "pad_top": 80,
+        "pad_bottom": 80,
+        "pad_top_m": 40,
+        "pad_bottom_m": 40,
+        "aria_label": ""
+      }
+    },
     "lp_custom_collections_2_ABDk4m": {
       "type": "LP-custom-collections-2",
       "blocks": {
@@ -404,92 +490,6 @@
         "show_recent_articles": true,
         "hide_mobile": true
       }
-    },
-    "collection_cards_gPidyc": {
-      "type": "collection-cards",
-      "blocks": {
-        "collection_card_Kx8GYH": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "the-insider",
-            "image": "shopify://shop_images/1_Indoor-Mat-Insider-Bark-Graphite-Runner.webp",
-            "eyebrow": "Indoor",
-            "headline": "",
-            "price_override": "",
-            "cta_label": "Shop the Collection",
-            "cta_url": "shopify://collections/the-insider"
-          }
-        },
-        "collection_card_FjxxNY": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "the-innerweave",
-            "image": "shopify://shop_images/4_Indoor-Mat-Innerweave-Tigers-Eye-Taupe-Runner.jpg",
-            "eyebrow": "Indoor / Outdoor",
-            "headline": "",
-            "price_override": "",
-            "cta_label": "Shop the Collection",
-            "cta_url": "shopify://collections/the-innerweave"
-          }
-        },
-        "collection_card_XnUgFK": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "the-porter",
-            "image": "shopify://shop_images/2_Porte_Hall_Porterafter_2x_1.webp",
-            "eyebrow": "Outdoor",
-            "headline": "",
-            "price_override": "",
-            "cta_label": "Shop the Collection",
-            "cta_url": "shopify://collections/the-porter"
-          }
-        },
-        "collection_card_9Uzg7E": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "the-outlier",
-            "image": "shopify://shop_images/3_Outdoor-Mat-Outlier-Pebble-Doormat.jpg",
-            "eyebrow": "Outdoor",
-            "headline": "<h4>The Outlier<h4></h4>\n</h4>",
-            "price_override": "",
-            "cta_label": "Shop the Collection",
-            "cta_url": "shopify://collections/the-outlier"
-          }
-        }
-      },
-      "block_order": [
-        "collection_card_Kx8GYH",
-        "collection_card_FjxxNY",
-        "collection_card_XnUgFK",
-        "collection_card_9Uzg7E"
-      ],
-      "custom_css": [
-        "h2 {font-weight: 500;}"
-      ],
-      "name": "Collection Cards",
-      "settings": {
-        "intro": "<h2 class=\"blue\">Shop Our Collections</h2><p class=\"body\">Four collections, styled for every corner of the home, from the front step to the fireside.</p>",
-        "intro_align": "center",
-        "text_align": "left",
-        "image_shape": "portrait",
-        "image_shape_m": "square",
-        "show_price": true,
-        "price_label": "Starting from",
-        "price_format": "decimals",
-        "bg_color": "",
-        "eyebrow_color": "#896A28",
-        "headline_color": "",
-        "price_color": "",
-        "link_color": "",
-        "contain": true,
-        "gap": 24,
-        "gap_m": 12,
-        "pad_top": 80,
-        "pad_bottom": 80,
-        "pad_top_m": 40,
-        "pad_bottom_m": 40,
-        "aria_label": ""
-      }
     }
   },
   "order": [
@@ -498,6 +498,7 @@
     "other-sizes",
     "logo_marquee_jDAjnD",
     "collection_tiles_JaYcV6",
+    "collection_cards_gPidyc",
     "lp_custom_collections_2_ABDk4m",
     "design-details",
     "product_quote_KP6aXV",
@@ -508,7 +509,6 @@
     "reviews",
     "168172537899ce8b94",
     "you-may-like",
-    "featured-articles",
-    "collection_cards_gPidyc"
+    "featured-articles"
   ]
 }
