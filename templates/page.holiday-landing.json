@@ -670,6 +670,34 @@
         "pad_top_m": 20,
         "pad_bottom_m": 20
       }
+    },
+    "gift_card_feature_7KFrDG": {
+      "type": "gift-card-feature",
+      "name": "Gift Card Feature",
+      "settings": {
+        "bg_image": "shopify://shop_images/porte-hall-bg-desktop-wreath-ribbon-2400x1000.jpg",
+        "bg_image_mobile": "shopify://shop_images/porte-hall-bg-mobile-wreath-ribbon-1080x1350.jpg",
+        "shade_color": "#620F18",
+        "shade_strength": 70,
+        "min_height": 660,
+        "mobile_band_height": 220,
+        "card_image": "shopify://shop_images/porte-hall-gift-card-cutout.png",
+        "card_tilt": true,
+        "card_width": 470,
+        "eyebrow": "For Their Home",
+        "headline": "<h2 class=\"h1\">Let Them Pick Their <br>Perfect Mat</h2>",
+        "body": "<p class=\"body\">Good taste is hard to get wrong. Give them a Porte + Hall gift card and let them find the mat that's just right for their home.</p>\n<p>Arrives by email in an instant. Schedule it for the big day and add a little note of your own.</p>",
+        "text_color": "#FFFFFF",
+        "accent_color": "#DCC392",
+        "gift_card": "",
+        "start_amount": "100",
+        "amounts_label": "Gift card amount",
+        "cta_label": "Buy a Gift Card",
+        "cta_style": "white",
+        "cta_fallback_url": "",
+        "contain": true,
+        "aria_label": "Gift cards"
+      }
     }
   },
   "order": [
@@ -682,6 +710,7 @@
     "color_story_carousel_nkcNXA",
     "color_story_carousel_FYpG3t",
     "color_story_carousel_Fi3pcW",
-    "color_story_carousel_btfVCD"
+    "color_story_carousel_btfVCD",
+    "gift_card_feature_7KFrDG"
   ]
 }
