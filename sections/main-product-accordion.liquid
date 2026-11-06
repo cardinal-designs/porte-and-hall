@@ -45,6 +45,13 @@
   # custom.faqs is a list of FAQ metaobjects (fields: question, answer), the same
   # source the `faq` section repeats over. Not rich text — don't metafield_tag it.
   assign faqs_metaobjects = content_collection.metafields.custom.faqs.value
+
+  assign accordion_faq_count = 0
+  for faq in faqs_metaobjects
+    unless faq.show_on_product_page_accordion.value == false
+      assign accordion_faq_count = accordion_faq_count | plus: 1
+    endunless
+  endfor
   # custom.care_instructions is a list of care_instruction metaobjects (fields: icon,
   # text). When set it replaces the plain Care rich text.
   assign care_instructions = content_collection.metafields.custom.care_instructions.value
@@ -59,7 +66,7 @@
     assign has_shipping_returns = true
   endif
   assign has_faqs = false
-  if faqs_metaobjects != blank or section.settings.faqs != blank
+  if accordion_faq_count > 0 or section.settings.faqs != blank
     assign has_faqs = true
   endif
 
@@ -882,12 +889,16 @@ endcapture
            <div data-id="6" class="accordion-content">
             <div class="swiper-slide">
               <div class="product__tabs-item body-sm">
-                {%- if faqs_metaobjects != blank -%}
+                {%- if accordion_faq_count > 0 -%}
                   {%- comment -%}
                     Same field access as the faq section's repeater blocks:
                     question as plain text, answer through metafield_tag.
                   {%- endcomment -%}
-                  {%- for faq in faqs_metaobjects limit: section.settings.faqs_limit -%}
+                  {%- assign shown_faq_count = 0 -%}
+                  {%- for faq in faqs_metaobjects -%}
+                    {%- if faq.show_on_product_page_accordion.value == false -%}{%- continue -%}{%- endif -%}
+                    {%- if shown_faq_count >= section.settings.faqs_limit -%}{%- break -%}{%- endif -%}
+                    {%- assign shown_faq_count = shown_faq_count | plus: 1 -%}
                     <div class="product__faq-item">
                       <p class="product__faq-question">{{ faq.question.value }}</p>
                       <div class="product__faq-answer">{{ faq.answer | metafield_tag }}</div>
@@ -897,7 +908,7 @@ endcapture
                     Jumps to the faq section further down, whose "Anchor Link" setting is
                     set to "faqs" on the product templates. Only shown when some were cut.
                   {%- endcomment -%}
-                  {%- if faqs_metaobjects.size > section.settings.faqs_limit -%}
+                  {%- if accordion_faq_count > section.settings.faqs_limit -%}
                     <a href="#faqs" class="product__faq-more link">Click here for more FAQs</a>
                   {%- endif -%}
                 {%- else -%}

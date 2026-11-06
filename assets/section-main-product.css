@@ -1795,7 +1795,6 @@ product-form form {
 
 .main-product-accordion .accordion-title {
   padding: 0 15px;
-  background: #f9f9f9;
 }
 
 .main-product-accordion .accordion-title h2 {
@@ -1877,7 +1876,10 @@ product-form form {
   content: 'Q: ';
 }
 
-.main-product-accordion .product__faq-answer > :first-child::before {
+/* metafield_tag wraps rich text in a .metafield-rich_text_field div, so the label
+   goes on the first paragraph inside it to keep "A:" on the same line as the answer. */
+.main-product-accordion .product__faq-answer > :first-child:not(div)::before,
+.main-product-accordion .product__faq-answer > div:first-child > :first-child::before {
   content: 'A: ';
 }
 
