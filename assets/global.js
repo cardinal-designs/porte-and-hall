@@ -1388,7 +1388,10 @@ customElements.define('product-form', class ProductForm extends HTMLElement {
       }
     )
   
-    observer.observe(document.querySelector(".product__info--inner"))
+    // Only the sticky-ATC product sections render .product__info--inner;
+    // on every other template there is nothing to observe.
+    const productInfo = document.querySelector(".product__info--inner")
+    if (productInfo) observer.observe(productInfo)
     // observer.observe(document.querySelector(".product-form") || document.querySelector("product-form"));
   }
 
