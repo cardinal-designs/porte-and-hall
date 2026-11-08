@@ -1776,3 +1776,150 @@ product-form form {
   }
 
 }
+
+/* ---------- PDP accordions (main-product-accordion) ---------- */
+
+.main-product-accordion .product-accordion__container {
+  margin-top: 24px;
+  border: 1px solid #E5E0D7;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.main-product-accordion .accordion {
+  border-bottom: 1px solid #E5E0D7;
+}
+
+.main-product-accordion .accordion:last-child {
+  border: 0;
+}
+
+.main-product-accordion .accordion-title {
+  padding: 0 15px;
+}
+
+.main-product-accordion .accordion-title h2 {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  line-height: 22px;
+  color: var(--blue);
+}
+
+.main-product-accordion .accordion-title svg {
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.main-product-accordion .accordion-content .product__tabs-item {
+  margin-top: 0;
+  padding: 18px 15px 22px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.3px;
+  color: var(--blue);
+}
+
+/* Rich text and the dimensions copy follow the panel's type, not .body-sm's. */
+.main-product-accordion .product__tabs-item p {
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 400;
+}
+
+.main-product-accordion .product__tabs-item p:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.main-product-accordion .accordion-content ul {
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+
+.main-product-accordion .accordion-content ul:last-child {
+  margin-bottom: 0;
+}
+
+.main-product-accordion .product__features-item p {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.product__tabs-item li {
+  font-weight: 400;
+  margin: 5px 0;
+}
+
+.product__tabs-item li strong {
+  font-weight: 500;
+}
+
+/* FAQ entries inside the PDP accordion (custom.faqs metaobjects) */
+.main-product-accordion .product__faq-item {
+  line-height: 22px;
+}
+
+.main-product-accordion .product__faq-item + .product__faq-item {
+  margin-top: 20px;
+}
+
+.main-product-accordion .product__faq-item .product__faq-question {
+  margin: 0 0 2px;
+  font-weight: 500;
+}
+
+.main-product-accordion .product__faq-question::before {
+  content: 'Q: ';
+}
+
+/* metafield_tag wraps rich text in a .metafield-rich_text_field div, so the label
+   goes on the first paragraph inside it to keep "A:" on the same line as the answer. */
+.main-product-accordion .product__faq-answer > :first-child:not(div)::before,
+.main-product-accordion .product__faq-answer > div:first-child > :first-child::before {
+  content: 'A: ';
+}
+
+.main-product-accordion .product__faq-more {
+  display: inline-block;
+  margin-top: 20px;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+/* Care & Cleaning icon list (custom.care_instructions metaobjects) */
+.main-product-accordion .accordion-content .product__care-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main-product-accordion .product__care-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.main-product-accordion .product__care-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.main-product-accordion .product__care-text p {
+  margin-bottom: 0;
+}
+
+.main-product-accordion .product__faq-answer p:not(:last-child) {
+  margin-bottom: 6px;
+}
+
