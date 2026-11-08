@@ -112,6 +112,7 @@
         {% endif %}
       </a>
 
+      {% assign card_badge = product_card_product.metafields.custom.card_badge.value %}
       {%- if show_product_badge -%}
           {% comment %} {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
             <div class="product-card__image-label body-xs visible-on-image">
@@ -130,7 +131,11 @@
               Outdoor
             </div>
           {% endif %} {% endcomment %}
-          {% if lowercase_tags contains 'best seller' %}
+          {% if card_badge != blank %}
+            <div class="product-card__image-label body-xs visible-on-image">
+              {{ card_badge | escape }}
+            </div>
+          {% elsif lowercase_tags contains 'best seller' %}
             <div class="product-card__image-label body-xs visible-on-image">
               Best Seller
             </div>
@@ -153,7 +158,11 @@
     </div> {% endcomment %}
 
     
-    {% if lowercase_tags contains 'best seller' %}
+    {% if card_badge != blank %}
+      <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
+        {{ card_badge | escape }}
+      </div>
+    {% elsif lowercase_tags contains 'best seller' %}
       <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' or template.suffix == 'best-sellers' %}hidden{% endif %}">
         Best Seller
       </div>
@@ -174,7 +183,11 @@
           Outdoor
         {% endif %}
       </div> {% endcomment %}
-      {% if lowercase_tags contains 'best seller' %}
+      {% if card_badge != blank %}
+        <div class="product-card__type-label body-xs">
+          {{ card_badge | escape }}
+        </div>
+      {% elsif lowercase_tags contains 'best seller' %}
         <div class="product-card__type-label body-xs">
           Best Seller
         </div>

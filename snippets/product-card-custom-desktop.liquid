@@ -112,8 +112,13 @@
         {% endif %}
       </a>
 
+      {% assign card_badge = product_card_product.metafields.custom.card_badge.value %}
       {%- if show_product_badge -%}
-          {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
+          {% if card_badge != blank %}
+            <div class="product-card__image-label body-xs visible-on-image">
+              {{ card_badge | escape }}
+            </div>
+          {% elsif product_card_product.first_available_variant.metafields.custom.use != blank %}
             <div class="product-card__image-label body-xs visible-on-image">
               {{ product_card_product.first_available_variant.metafields.custom.use }}
             </div>
@@ -136,7 +141,9 @@
     {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
 
         <div class="product-card__image-label body-xs {% if template.suffix == 'last-chance' %}hidden{% endif %}">
-          {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
+          {% if card_badge != blank %}
+            {{ card_badge | escape }}
+          {% elsif product_card_product.first_available_variant.metafields.custom.use != blank %}
             {{ product_card_product.first_available_variant.metafields.custom.use }}
           {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
             Indoor/Outdoor
@@ -150,7 +157,9 @@
 
     {% if template.suffix == 'last-chance' %}
       <div class="product-card__type-label body-xs">
-        {% if product_card_product.first_available_variant.metafields.custom.use != blank %}
+        {% if card_badge != blank %}
+          {{ card_badge | escape }}
+        {% elsif product_card_product.first_available_variant.metafields.custom.use != blank %}
           {{ product_card_product.first_available_variant.metafields.custom.use }}
         {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
           Indoor/Outdoor

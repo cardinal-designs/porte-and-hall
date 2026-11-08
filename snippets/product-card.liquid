@@ -17,8 +17,13 @@
       {% endif %}
 
       {% assign lowercase_tags = product_card_product.tags | join: '~~~' | downcase | split: '~~~' %}
+      {% assign card_badge = product_card_product.metafields.custom.card_badge.value %}
       
-        {% if lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
+        {% if card_badge != blank %}
+          <div class="product-card__image-label body-xs">
+            {{ card_badge | escape }}
+          </div>
+        {% elsif lowercase_tags contains 'indoor' and lowercase_tags contains 'outdoor' %}
           <div class="product-card__image-label body-xs">
           Indoor/Outdoor
           </div>

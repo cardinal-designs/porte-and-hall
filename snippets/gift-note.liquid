@@ -1,0 +1,146 @@
+{%- comment -%}
+  Gift note option shared by the cart drawer and the cart page.
+  Configured under Theme settings > Gift note.
+
+  Accepts:
+  - part {String}: 'option' (cart fix marker + checkbox), 'modal', or 'item-check'
+  - scope {String}: unique prefix for element IDs, e.g. 'CartDrawer' or 'Cart'
+  - modal_class {String}: optional extra class for the modal
+  - item {Object}: cart line to test, for part 'item-check' (outputs 'true' if it is the gift note)
+
+  Usage:
+  {% render 'gift-note', part: 'option', scope: 'CartDrawer' %}
+  {% render 'gift-note', part: 'modal', scope: 'CartDrawer' %}
+  {% capture is_gift_note %}{% render 'gift-note', part: 'item-check', item: item %}{% endcapture %}
+{%- endcomment -%}
+
+{%- liquid
+  assign gift_note_product = settings.gift_note_product
+  if gift_note_product.title == blank and gift_note_product != blank
+    assign gift_note_product = all_products[gift_note_product]
+  endif
+
+  assign gift_note_variant_id = settings.gift_note_variant_id | strip
+  assign gift_note_sku = settings.gift_note_sku | strip
+  assign gift_note_title = settings.gift_note_heading
+  assign gift_note_price = blank
+  assign gift_note_image = blank
+
+  if gift_note_product.title != blank and gift_note_product.first_available_variant != blank
+    assign gift_note_variant_id = gift_note_product.first_available_variant.id | append: ''
+    assign gift_note_title = gift_note_product.title
+    assign gift_note_price = gift_note_product.first_available_variant.price
+    assign gift_note_image = gift_note_product.featured_image
+  endif
+
+  assign gift_note_in_cart = false
+  assign gift_note_line = 0
+  assign gift_note_quantity = 0
+  assign has_eligible_item = false
+
+  assign gift_note_lines = cart.items
+  if part == 'item-check'
+    assign gift_note_lines = blank
+    assign item_variant_id = item.variant_id | append: ''
+    if gift_note_sku != blank and item.sku == gift_note_sku
+      assign gift_note_in_cart = true
+    elsif gift_note_variant_id != blank and item_variant_id == gift_note_variant_id
+      assign gift_note_in_cart = true
+    elsif gift_note_product.title != blank and item.product_id == gift_note_product.id
+      assign gift_note_in_cart = true
+    endif
+  endif
+
+  for cart_item in gift_note_lines
+    assign item_variant_id = cart_item.variant_id | append: ''
+    assign is_gift_note = false
+
+    if gift_note_sku != blank and cart_item.sku == gift_note_sku
+      assign is_gift_note = true
+    elsif gift_note_variant_id != blank and item_variant_id == gift_note_variant_id
+      assign is_gift_note = true
+    elsif gift_note_product.title != blank and cart_item.product_id == gift_note_product.id
+      assign is_gift_note = true
+    endif
+
+    if is_gift_note
+      assign gift_note_in_cart = true
+      assign gift_note_line = forloop.index
+      assign gift_note_quantity = cart_item.quantity
+    else
+      assign has_eligible_item = true
+    endif
+  endfor
+
+  assign show_gift_note = false
+  if settings.enable_gift_note and has_eligible_item and gift_note_variant_id != blank and gift_note_in_cart == false
+    assign show_gift_note = true
+  endif
+
+  assign gift_note_price_display = ''
+  if gift_note_price != blank
+    assign gift_note_price_display = gift_note_price | money_without_trailing_zeros
+  endif
+-%}
+
+{%- case part -%}
+  {%- when 'item-check' -%}
+    {%- if gift_note_in_cart -%}true{%- endif -%}
+
+  {%- when 'option' -%}
+    {%- comment -%} The JS sets this line to data-quantity: removes a leftover gift note, or caps it at 1 {%- endcomment -%}
+    {%- if gift_note_in_cart and has_eligible_item == false -%}
+      <div class="js-gift-note-fix" data-line="{{ gift_note_line }}" data-quantity="0" hidden></div>
+    {%- elsif gift_note_quantity > 1 -%}
+      <div class="js-gift-note-fix" data-line="{{ gift_note_line }}" data-quantity="1" hidden></div>
+    {%- endif -%}
+
+    {%- if show_gift_note -%}
+      <div class="gift-wrap-option">
+        <input type="checkbox" id="{{ scope }}-GiftNoteCheckbox" class="js-gift-note-checkbox">
+        <label for="{{ scope }}-GiftNoteCheckbox">
+          {{ settings.gift_note_checkbox_label | replace: '[price]', gift_note_price_display }}
+        </label>
+      </div>
+    {%- endif -%}
+
+  {%- when 'modal' -%}
+    {%- if show_gift_note -%}
+      <div class="gift-note-modal js-gift-note-modal {{ modal_class }}" id="{{ scope }}-GiftNoteModal">
+        <div class="gift-note-content">
+          <div class="gift-note__header">
+            <a class="gift-note__close js-gift-note-close" href="#" role="button" aria-label="{{ 'accessibility.close' | t }}">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 6L9 12L15 18" stroke="#444c39" stroke-width="2" stroke-linecap="round" stroke-join="round"/>
+              </svg>
+            </a>
+            <h2>{{ gift_note_title }}</h2>
+          </div>
+          {%- if gift_note_image != blank -%}
+            <div class="gift-note__image">
+              <img src="{{ gift_note_image | image_url: width: 100 }}" alt="{{ gift_note_image.alt | default: gift_note_title | escape }}" height="auto" width="auto">
+            </div>
+          {%- endif -%}
+          <textarea
+            class="gift-note__text js-gift-note-text"
+            id="{{ scope }}-GiftNoteText"
+            placeholder="{{ settings.gift_note_placeholder | escape }}"
+            aria-label="{{ settings.gift_note_placeholder | default: gift_note_title | escape }}"
+            maxlength="{{ settings.gift_note_max_length }}"
+            data-variant-id="{{ gift_note_variant_id }}"
+            data-property-name="{{ settings.gift_note_property_name | escape }}"
+          ></textarea>
+
+          <div class="char-count"><span class="js-gift-note-char-count">{{ settings.gift_note_max_length }}</span> CHARACTERS LEFT</div>
+
+          {%- if settings.gift_note_button_text != blank -%}
+            <a class="gift-note__add-btn js-gift-note-add" href="#" role="button">{{ settings.gift_note_button_text }}</a>
+          {%- endif -%}
+
+          {%- if settings.gift_note_disclaimer != blank -%}
+            <p class="gift-wrap-note">{{ settings.gift_note_disclaimer }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+{%- endcase -%}
