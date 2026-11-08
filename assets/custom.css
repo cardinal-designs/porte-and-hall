@@ -341,6 +341,208 @@ span.jdgm-prev-badge__stars {
 }
 
 button.rebuy-button.is-disabled {
-    opacity: 0.5;
-    pointer-events: none;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Policy pages (/policies/*)
+   Overrides the theme defaults in base.css. Privacy Policy content carries its
+   own inline styles; the element rules below mirror them for the other policies. */
+
+/* ---- Layout ---- */
+
+.shopify-policy__container {
+  max-width: 100% !important;
+  padding: 0;
+}
+
+.shopify-policy__body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Privacy: Shopify title hidden (content has its own heading) */
+.template-policy--privacy .shopify-policy__title {
+  display: none;
+}
+
+.template-policy--privacy .shopify-policy__body .rte {
+  padding-top: 40px;
+}
+
+/* Other policies: no hero image, plain heading matching the Privacy heading */
+.template-policy:not(.template-policy--privacy) .shopify-policy__title {
+  height: auto;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 72px 80px 0;
+  background: none !important;
+}
+
+.template-policy:not(.template-policy--privacy) .shopify-policy__title h1 {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  margin: 0 auto 8px;
+  padding: 0 0 20px;
+  background: none;
+  border-bottom: 1px solid;
+  font-size: 30px;
+  line-height: 130%;
+  text-align: left;
+  color: var(--blue);
+}
+
+.template-policy:not(.template-policy--privacy) .shopify-policy__body .rte {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 0 32px;
+  box-sizing: border-box;
+}
+
+/* ---- Content elements ---- */
+
+.shopify-policy__body .rte,
+.shopify-policy__body .rte a {
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
+  white-space: normal !important;
+}
+
+.shopify-policy__body .rte p {
+  margin: 0 0 14px;
+}
+
+.shopify-policy__body .rte h2,
+.shopify-policy__body .rte h3,
+.shopify-policy__body .rte h5,
+.shopify-policy__body .rte h6 {
+  margin: 28px 0 10px;
+}
+
+.shopify-policy__body .rte h4 {
+  margin: 32px 0 16px;
+}
+
+.shopify-policy__body .rte ul,
+.shopify-policy__body .rte ol {
+  margin-top: 0;
+  margin-bottom: 14px;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  list-style-position: inside;
+}
+
+.shopify-policy__body .rte ul {
+  list-style-type: disc;
+}
+
+.shopify-policy__body .rte ol {
+  list-style-type: decimal;
+}
+
+.shopify-policy__body .rte li {
+  margin: 12px 0;
+}
+
+.shopify-policy__body .rte li > p {
+  display: inline;
+  margin: 0;
+}
+
+.shopify-policy__body .rte li ul,
+.shopify-policy__body .rte li ol {
+  margin: 8px 0 0;
+}
+
+.shopify-policy__body .rte li li {
+  margin: 8px 0;
+}
+
+/* Flush-left content, as on the Privacy Policy */
+.shopify-policy__body .rte li,
+.shopify-policy__body .rte p,
+.shopify-policy__body .rte div,
+.shopify-policy__body .rte blockquote {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  text-indent: 0 !important;
+}
+
+.shopify-policy__body .rte div {
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Keep the policy content wrapper centered */
+.shopify-policy__body .rte > div {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.shopify-policy__body .rte table {
+  width: 100% !important;
+  max-width: 100%;
+  margin: 8px 0;
+  table-layout: auto;
+  border-collapse: collapse;
+}
+
+.shopify-policy__body .rte td,
+.shopify-policy__body .rte th {
+  border: 1px solid;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.shopify-policy__body .rte table {
+  border-style: none;
+}
+
+.shopify-policy__body .rte div[style*="overflow-x"] > table {
+  border-style: hidden;
+}
+
+.shopify-policy__container:has(.shopify-policy__body h1) .shopify-policy__title {
+  display: none;
+}
+
+.shopify-policy__container:has(.shopify-policy__body h1) .shopify-policy__body .rte {
+  padding: 40px 0 0;
+}
+
+.template-policy--terms .shopify-policy__title h1 {
+  text-transform: none;
+}
+
+@media screen and (max-width: 1050px) {
+
+  .shopify-policy__body {
+    padding: 0 24px !important;
+  }
+
+  .template-policy:not(.template-policy--privacy) .shopify-policy__title {
+    padding: 72px 24px 0;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+
+  .shopify-policy__body {
+    padding: 0 !important;
+  }
+
+  .template-policy:not(.template-policy--privacy) .shopify-policy__title {
+    padding: 72px 0 0;
+  }
+
+  .shopify-policy__body .rte tr {
+    padding: 12px 0;
+  }
+
 }

@@ -221,7 +221,7 @@
     {%- render 'head-scripts-loader' -%}
   </head>
 
-  <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
+  <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% if canonical_url contains 'privacy-policy' %} template-policy--privacy{% endif %}{% if canonical_url contains 'terms-of-service' %} template-policy--terms{% endif %}{% endif %}">
     <style>
       .sr-only {
         position: absolute !important;
@@ -282,7 +282,12 @@
     {% endif %}
 
     <main id="MainContent" class="{{collection.template_suffix}} {% if product %}product-template{% endif %} content-for-layout focus-none" role="main" tabindex="-1">
-      {{ content_for_layout }}
+      {%- if request.page_type == 'policy' -%}
+        {%- comment -%} Shopify's default title is sentence case ("Terms of service"); show it in title case like the Privacy Policy heading {%- endcomment -%}
+        {{ content_for_layout | replace: '<h1>Terms of service</h1>', '<h1>Terms of Service</h1>' }}
+      {%- else -%}
+        {{ content_for_layout }}
+      {%- endif -%}
     </main>
 
     {% section 'footer' %}
