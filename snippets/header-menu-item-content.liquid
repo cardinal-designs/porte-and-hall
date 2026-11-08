@@ -1,0 +1,13 @@
+{%- liquid
+  assign icon = item_style.settings.icon
+-%}
+
+{%- capture icon_markup -%}
+  {%- if icon != blank -%}
+    {{ icon | image_url: width: 400 | image_tag: class: 'header__menu-item-icon', loading: 'lazy', alt: '' }}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if item_style.settings.icon_position != 'right' -%}{{ icon_markup }}{%- endif -%}
+<span class="header__menu-item-text">{{ title | escape }}</span>
+{%- if item_style.settings.icon_position == 'right' -%}{{ icon_markup }}{%- endif -%}
