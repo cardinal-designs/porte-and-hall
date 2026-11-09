@@ -201,13 +201,20 @@
  
   @media screen and (max-width: 768px) {
     .gcf { background: var(--gcf-shade); }
-    .gcf__bg { position: relative; height: var(--gcf-band-m); }
-    /* photo band: fades in to the mobile shade strength, then blends to solid in the last few px so there's no seam above the copy */
-    .gcf__shade { background: linear-gradient(180deg, rgba(var(--gcf-shade-rgb), 0) 40%, rgba(var(--gcf-shade-rgb), var(--gcf-shade-a-m)) 88%, rgba(var(--gcf-shade-rgb), 1) 100%); }
+    /* Photo runs behind the whole section, like desktop. The shade is lighter
+       over the top "photo band" (around the card) and reaches the mobile shade
+       strength behind the copy. */
+    .gcf__bg { position: absolute; inset: 0; height: auto; }
+    .gcf__shade {
+      background: linear-gradient(180deg,
+        rgba(var(--gcf-shade-rgb), calc(var(--gcf-shade-a-m) * .25)) 0px,
+        rgba(var(--gcf-shade-rgb), calc(var(--gcf-shade-a-m) * .5)) calc(var(--gcf-band-m) * .6),
+        rgba(var(--gcf-shade-rgb), var(--gcf-shade-a-m)) var(--gcf-band-m),
+        rgba(var(--gcf-shade-rgb), var(--gcf-shade-a-m)) 100%);
+    }
     .gcf__inner {
       display: flex; flex-direction: column; align-items: stretch; gap: 22px;
-      min-height: 0; padding-top: 0; padding-bottom: 40px;
-      margin-top: calc(var(--gcf-band-m) * -0.5);
+      min-height: 0; padding-top: 32px; padding-bottom: 40px;
     }
     .gcf__inner:not(.page-width) { padding-left: 20px; padding-right: 20px; }
     .gcf__card { order: -1; }
@@ -270,12 +277,12 @@
   "settings": [
     { "type": "header", "content": "Background" },
     { "type": "image_picker", "id": "bg_image", "label": "Background image (desktop)", "info": "2400 x 1200px or larger. Set a focal point so the subject stays in view." },
-    { "type": "image_picker", "id": "bg_image_mobile", "label": "Background image (mobile)", "info": "Optional. Shows as a band across the top on mobile. Leave blank to use the desktop image." },
+    { "type": "image_picker", "id": "bg_image_mobile", "label": "Background image (mobile)", "info": "Optional. Fills the whole section on mobile (portrait, about 1200 x 2000px, works best). Leave blank to use the desktop image." },
     { "type": "color", "id": "shade_color", "label": "Shade color", "default": "#620F18", "info": "Fades over the photo behind the copy, and fills the copy area on mobile." },
     { "type": "range", "id": "shade_strength", "label": "Shade strength (desktop)", "min": 40, "max": 100, "step": 5, "unit": "%", "default": 95 },
-    { "type": "range", "id": "shade_strength_mobile", "label": "Shade strength (mobile)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100, "info": "How much the color covers the photo band on mobile. The copy area below always uses the solid shade color." },
+    { "type": "range", "id": "shade_strength_mobile", "label": "Shade strength (mobile)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 85, "info": "How much the color covers the photo behind the copy on mobile. Lower = more photo shows through; keep it high enough that the text stays easy to read." },
     { "type": "range", "id": "min_height", "label": "Minimum height (desktop)", "min": 480, "max": 900, "step": 20, "unit": "px", "default": 680 },
-    { "type": "range", "id": "mobile_band_height", "label": "Photo band height (mobile)", "min": 160, "max": 360, "step": 10, "unit": "px", "default": 220 },
+    { "type": "range", "id": "mobile_band_height", "label": "Lighter shade area at top (mobile)", "min": 160, "max": 360, "step": 10, "unit": "px", "default": 220 },
  
     { "type": "header", "content": "Gift card image" },
     { "type": "image_picker", "id": "card_image", "label": "Gift card image", "info": "Transparent PNG of the card works best." },
@@ -340,3 +347,4 @@
   ]
 }
 {% endschema %}
+ 
