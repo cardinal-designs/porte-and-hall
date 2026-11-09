@@ -87,7 +87,38 @@
     "@type": "Organization",
     "name": {{ shop.name | json }},
     "url": {{ shop.url | json }}
-  }
+  },
+  "blogPost": [
+    {%- for article in blog.articles limit: 10 -%}
+      {%- liquid
+        assign blog_post_image = article.metafields.custom.alternate_featured_image.value | default: article.image
+        if blog_post_image
+          assign blog_post_image = blog_post_image | image_url: width: 1200
+          unless blog_post_image contains 'http'
+            assign blog_post_image = blog_post_image | prepend: 'https:'
+          endunless
+        endif
+      -%}
+    {
+      "@type": "BlogPosting",
+      "@id": {{ request.origin | append: article.url | append: '#article' | json }},
+      "url": {{ request.origin | append: article.url | json }},
+      "headline": {{ article.title | truncate: 110 | json }},
+      {%- if article.excerpt != blank %}
+      "description": {{ article.excerpt | strip_html | strip_newlines | truncate: 300 | json }},
+      {%- endif %}
+      {%- if blog_post_image != blank %}
+      "image": {{ blog_post_image | json }},
+      {%- endif %}
+      "author": {
+        "@type": "Person",
+        "name": {{ article.author | json }}
+      },
+      "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%:z' | json }},
+      "dateModified": {{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%:z' | json }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
 }
 </script>
 
