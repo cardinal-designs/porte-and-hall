@@ -5,6 +5,7 @@
   assign bg = s.bg_image
   assign bg_m = s.bg_image_mobile | default: s.bg_image
   assign shade = s.shade_strength | divided_by: 100.0
+  assign shade_m = s.shade_strength_mobile | divided_by: 100.0
 
   # starting amount: match the typed value against variant title or price
   assign start_variant = blank
@@ -39,6 +40,7 @@
     --gcf-shade: {{ s.shade_color }};
     --gcf-shade-rgb: {{ s.shade_color.red }}, {{ s.shade_color.green }}, {{ s.shade_color.blue }};
     --gcf-shade-a: {{ shade }};
+    --gcf-shade-a-m: {{ shade_m }};
     --gcf-text: {{ s.text_color }};
     --gcf-accent: {{ s.accent_color }};
     --gcf-min-h: {{ s.min_height }}px;
@@ -200,7 +202,7 @@
   @media screen and (max-width: 768px) {
     .gcf { background: var(--gcf-shade); }
     .gcf__bg { position: relative; height: var(--gcf-band-m); }
-    .gcf__shade { background: linear-gradient(180deg, rgba(var(--gcf-shade-rgb), 0) 40%, rgba(var(--gcf-shade-rgb), 1) 100%); }
+    .gcf__shade { background: linear-gradient(180deg, rgba(var(--gcf-shade-rgb), 0) 40%, rgba(var(--gcf-shade-rgb), var(--gcf-shade-a-m)) 88%, rgba(var(--gcf-shade-rgb), 1) 100%);
     .gcf__inner {
       display: flex; flex-direction: column; align-items: stretch; gap: 22px;
       min-height: 0; padding-top: 0; padding-bottom: 40px;
@@ -270,6 +272,7 @@
     { "type": "image_picker", "id": "bg_image_mobile", "label": "Background image (mobile)", "info": "Optional. Shows as a band across the top on mobile. Leave blank to use the desktop image." },
     { "type": "color", "id": "shade_color", "label": "Shade color", "default": "#620F18", "info": "Fades over the photo behind the copy, and fills the copy area on mobile." },
     { "type": "range", "id": "shade_strength", "label": "Shade strength", "min": 40, "max": 100, "step": 5, "unit": "%", "default": 95 },
+    { "type": "range", "id": "shade_strength_mobile", "label": "Shade strength (mobile)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100, "info": "How much the color covers the photo band on mobile. The copy area below always uses the solid shade color." },
     { "type": "range", "id": "min_height", "label": "Minimum height (desktop)", "min": 480, "max": 900, "step": 20, "unit": "px", "default": 680 },
     { "type": "range", "id": "mobile_band_height", "label": "Photo band height (mobile)", "min": 160, "max": 360, "step": 10, "unit": "px", "default": 220 },
 
