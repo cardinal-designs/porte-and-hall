@@ -6,7 +6,7 @@
   assign bg_m = s.bg_image_mobile | default: s.bg_image
   assign shade = s.shade_strength | divided_by: 100.0
   assign shade_m = s.shade_strength_mobile | divided_by: 100.0
-
+ 
   # starting amount: match the typed value against variant title or price
   assign start_variant = blank
   if gc != blank
@@ -27,14 +27,14 @@
   endif
   assign start_amount = start_variant.price | money_without_trailing_zeros
   assign cta_label = s.cta_label | replace: '[amount]', start_amount
-
+ 
   if gc != blank
     assign cta_href = gc.url | append: '?variant=' | append: start_variant.id
   else
     assign cta_href = s.cta_fallback_url | default: '/products/gift-card'
   endif
 -%}
-
+ 
 {% style %}
   #gcf-{{ sid }} {
     --gcf-shade: {{ s.shade_color }};
@@ -49,7 +49,7 @@
     --gcf-tilt: {% if s.card_tilt %}4deg{% else %}0deg{% endif %};
   }
 {% endstyle %}
-
+ 
 <section id="gcf-{{ sid }}" class="gcf" aria-label="{{ s.aria_label | escape }}">
   <div class="gcf__bg" aria-hidden="true">
     {%- if bg != blank -%}
@@ -70,13 +70,13 @@
     {%- endif -%}
     <span class="gcf__shade"></span>
   </div>
-
+ 
   <div class="gcf__inner{% if s.contain %} page-width{% endif %}">
     <div class="gcf__copy">
       {%- if s.eyebrow != blank -%}<p class="gcf__eyebrow h3">{{ s.eyebrow | escape }}</p>{%- endif -%}
       {%- if s.headline != blank -%}<div class="gcf__headline">{{ s.headline }}</div>{%- endif -%}
       {%- if s.body != blank -%}<div class="gcf__body">{{ s.body }}</div>{%- endif -%}
-
+ 
       {%- if gc != blank and gc.variants.size > 1 -%}
         <div class="gcf__amounts" role="radiogroup" aria-label="{{ s.amounts_label | default: 'Gift card amount' | escape }}" data-gcf-amounts>
           {%- for v in gc.variants -%}
@@ -94,7 +94,7 @@
           {%- endfor -%}
         </div>
       {%- endif -%}
-
+ 
       {%- if section.blocks.size > 0 -%}
         <ul class="gcf__bullets" role="list">
           {%- for block in section.blocks -%}
@@ -113,7 +113,7 @@
           {%- endfor -%}
         </ul>
       {%- endif -%}
-
+ 
       {%- if s.cta_label != blank -%}
         <a
           class="gcf__cta button{% if s.cta_style == 'white' %} button--white{% elsif s.cta_style == 'outline' %} gcf__cta--outline{% endif %}"
@@ -126,7 +126,7 @@
         </a>
       {%- endif -%}
     </div>
-
+ 
     {%- if s.card_image != blank -%}
       <div class="gcf__card">
         {{
@@ -142,7 +142,7 @@
     {%- endif -%}
   </div>
 </section>
-
+ 
 <style>
   .gcf { position: relative; overflow: hidden; color: var(--gcf-text); }
   .gcf__bg { position: absolute; inset: 0; }
@@ -167,7 +167,7 @@
   .gcf__headline { margin-bottom: 18px; }
   .gcf__body { margin-bottom: 26px; max-width: 600px; }
   .gcf__body p + p { margin-top: .6em; }
-
+ 
   /* amounts */
   .gcf__amounts { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
   .gcf__amt {
@@ -179,18 +179,18 @@
   .gcf__amt.is-on { background: var(--gcf-text); border-color: var(--gcf-text); color: var(--gcf-shade) !important; }
   .gcf__amt[disabled] { opacity: .4; cursor: not-allowed; text-decoration: line-through; }
   .gcf__amt:focus-visible { outline: 2px solid var(--gcf-accent); outline-offset: 2px; }
-
+ 
   /* bullets */
   .gcf__bullets { list-style: none; margin: 0 0 30px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 28px; }
   .gcf__bullet { display: flex; align-items: center; gap: 8px; }
   .gcf__icon { width: 24px; height: 24px; object-fit: contain; flex: none; }
   .gcf__spark { color: var(--gcf-accent) !important; flex: none; }
-
+ 
   /* cta */
   .gcf__cta { display: inline-block; text-decoration: none; }
   .gcf__cta--outline { background: transparent; border: 1px solid var(--gcf-text); }
   .gcf__cta.button--white, .gcf__cta.button--white span { color: var(--gcf-shade) !important; }
-
+ 
   /* card */
   .gcf__card { display: flex; justify-content: center; }
   .gcf__card img {
@@ -198,11 +198,12 @@
     transform: rotate(var(--gcf-tilt));
     filter: drop-shadow(0 28px 36px rgba(0, 0, 0, .45));
   }
-
+ 
   @media screen and (max-width: 768px) {
     .gcf { background: var(--gcf-shade); }
     .gcf__bg { position: relative; height: var(--gcf-band-m); }
-    .gcf__shade { background: linear-gradient(180deg, rgba(var(--gcf-shade-rgb), 0) 40%, rgba(var(--gcf-shade-rgb), var(--gcf-shade-a-m)) 88%, rgba(var(--gcf-shade-rgb), 1) 100%);
+    /* photo band: fades in to the mobile shade strength, then blends to solid in the last few px so there's no seam above the copy */
+    .gcf__shade { background: linear-gradient(180deg, rgba(var(--gcf-shade-rgb), 0) 40%, rgba(var(--gcf-shade-rgb), var(--gcf-shade-a-m)) 88%, rgba(var(--gcf-shade-rgb), 1) 100%); }
     .gcf__inner {
       display: flex; flex-direction: column; align-items: stretch; gap: 22px;
       min-height: 0; padding-top: 0; padding-bottom: 40px;
@@ -220,7 +221,7 @@
     .gcf__cta { display: block; text-align: center; }
   }
 </style>
-
+ 
 <script>
   (function () {
     var root = document.getElementById('gcf-{{ sid }}');
@@ -230,7 +231,7 @@
     var cta = root.querySelector('[data-gcf-cta]');
     if (!group || !cta) return;
     var chips = Array.prototype.slice.call(group.querySelectorAll('.gcf__amt'));
-
+ 
     function select(btn, focus) {
       if (!btn || btn.disabled) return;
       chips.forEach(function (c) {
@@ -259,7 +260,7 @@
     });
   })();
 </script>
-
+ 
 {% schema %}
 {
   "name": "Gift Card Feature",
@@ -271,16 +272,16 @@
     { "type": "image_picker", "id": "bg_image", "label": "Background image (desktop)", "info": "2400 x 1200px or larger. Set a focal point so the subject stays in view." },
     { "type": "image_picker", "id": "bg_image_mobile", "label": "Background image (mobile)", "info": "Optional. Shows as a band across the top on mobile. Leave blank to use the desktop image." },
     { "type": "color", "id": "shade_color", "label": "Shade color", "default": "#620F18", "info": "Fades over the photo behind the copy, and fills the copy area on mobile." },
-    { "type": "range", "id": "shade_strength", "label": "Shade strength", "min": 40, "max": 100, "step": 5, "unit": "%", "default": 95 },
+    { "type": "range", "id": "shade_strength", "label": "Shade strength (desktop)", "min": 40, "max": 100, "step": 5, "unit": "%", "default": 95 },
     { "type": "range", "id": "shade_strength_mobile", "label": "Shade strength (mobile)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 100, "info": "How much the color covers the photo band on mobile. The copy area below always uses the solid shade color." },
     { "type": "range", "id": "min_height", "label": "Minimum height (desktop)", "min": 480, "max": 900, "step": 20, "unit": "px", "default": 680 },
     { "type": "range", "id": "mobile_band_height", "label": "Photo band height (mobile)", "min": 160, "max": 360, "step": 10, "unit": "px", "default": 220 },
-
+ 
     { "type": "header", "content": "Gift card image" },
     { "type": "image_picker", "id": "card_image", "label": "Gift card image", "info": "Transparent PNG of the card works best." },
     { "type": "checkbox", "id": "card_tilt", "label": "Tilt the card", "default": true },
     { "type": "range", "id": "card_width", "label": "Card width (desktop)", "min": 280, "max": 640, "step": 10, "unit": "px", "default": 520 },
-
+ 
     { "type": "header", "content": "Copy" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Gift of Choice" },
     {
@@ -294,12 +295,12 @@
     },
     { "type": "color", "id": "text_color", "label": "Text color", "default": "#FFFFFF" },
     { "type": "color", "id": "accent_color", "label": "Eyebrow + sparkle color", "default": "#DCC392" },
-
+ 
     { "type": "header", "content": "Amounts" },
     { "type": "product", "id": "gift_card", "label": "Gift card product", "info": "Every amount on this product shows as a chip." },
     { "type": "text", "id": "start_amount", "label": "Starting amount", "default": "100", "info": "Selected when the page loads, e.g. 100. Leave blank for the first amount." },
     { "type": "text", "id": "amounts_label", "label": "Amounts label (screen readers)", "default": "Gift card amount" },
-
+ 
     { "type": "header", "content": "Button" },
     { "type": "text", "id": "cta_label", "label": "Button label", "default": "Buy a Gift Card", "info": "Add [amount] to show the selected amount, e.g. \"Give [amount]\"." },
     {
@@ -312,7 +313,7 @@
       "default": "white"
     },
     { "type": "url", "id": "cta_fallback_url", "label": "Button link if no product is chosen" },
-
+ 
     { "type": "header", "content": "Section" },
     { "type": "checkbox", "id": "contain", "label": "Use theme page width for the content", "default": true },
     { "type": "text", "id": "aria_label", "label": "Accessible name", "default": "Gift cards" }
