@@ -407,12 +407,16 @@
         </script>
     {% endif %}
 
-    <!-- OneTrust Cookies Consent Notice start for www.porteandhall.com -->
+
     <style>
-      #onetrust-banner-sdk {
-        display: none !important;
+      #onetrust-consent-sdk,
+      #onetrust-banner-sdk,
+      #onetrust-pc-sdk,
+      .onetrust-pc-dark-filter {
+        z-index: 2147483647 !important;
       }
     </style>
+  
 
     <script data-lazy-src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
         type="text/javascript"
@@ -428,7 +432,7 @@
           if (banner) {
             banner.style.setProperty('display', 'block', 'important'); 
           }
-        }, 4000);
+        }, 0);
       }
     </script>
     <!-- OneTrust Cookies Consent Notice end for www.porteandhall.com -->
