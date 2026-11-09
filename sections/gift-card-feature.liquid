@@ -95,6 +95,10 @@
         </div>
       {%- endif -%}
  
+      {%- if s.after_amounts != blank -%}
+        <div class="gcf__after">{{ s.after_amounts }}</div>
+      {%- endif -%}
+ 
       {%- if section.blocks.size > 0 -%}
         <ul class="gcf__bullets" role="list">
           {%- for block in section.blocks -%}
@@ -180,6 +184,10 @@
   .gcf__amt[disabled] { opacity: .4; cursor: not-allowed; text-decoration: line-through; }
   .gcf__amt:focus-visible { outline: 2px solid var(--gcf-accent); outline-offset: 2px; }
  
+  /* text under the amounts */
+  .gcf__after { margin-bottom: 24px; max-width: 600px; }
+  .gcf__after p + p { margin-top: .5em; }
+ 
   /* bullets */
   .gcf__bullets { list-style: none; margin: 0 0 30px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 28px; }
   .gcf__bullet { display: flex; align-items: center; gap: 8px; }
@@ -224,6 +232,7 @@
     .gcf__body { margin-bottom: 18px; }
     .gcf__amounts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-bottom: 16px; }
     .gcf__amt { min-width: 0; padding: 9px 0; text-align: center; }
+    .gcf__after { margin-bottom: 18px; }
     .gcf__bullets { gap: 6px 16px; margin-bottom: 20px; }
     .gcf__cta { display: block; text-align: center; }
   }
@@ -307,6 +316,10 @@
     { "type": "product", "id": "gift_card", "label": "Gift card product", "info": "Every amount on this product shows as a chip." },
     { "type": "text", "id": "start_amount", "label": "Starting amount", "default": "100", "info": "Selected when the page loads, e.g. 100. Leave blank for the first amount." },
     { "type": "text", "id": "amounts_label", "label": "Amounts label (screen readers)", "default": "Gift card amount" },
+    {
+      "type": "html", "id": "after_amounts", "label": "Text under amounts (HTML)",
+      "info": "Optional. Shows below the amount buttons. Example: <p class=\"body-sm\">Arrives by email in an instant.</p>"
+    },
  
     { "type": "header", "content": "Button" },
     { "type": "text", "id": "cta_label", "label": "Button label", "default": "Buy a Gift Card", "info": "Add [amount] to show the selected amount, e.g. \"Give [amount]\"." },
@@ -347,4 +360,3 @@
   ]
 }
 {% endschema %}
- 
