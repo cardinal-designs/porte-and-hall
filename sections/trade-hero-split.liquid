@@ -134,6 +134,12 @@
     .ph-trade-hero-{{ sid }} .ph-trade-hero__media img {
       object-position: {{ section.settings.mobile_focal }};
     }
+
+    .ph-trade-hero-{{ sid }} .ph-trade-hero__media picture,
+    .ph-trade-hero-{{ sid }} .ph-trade-hero__media img {
+      bottom: auto;
+      height: calc(100% - 80px); /* use the same number as the panel's negative margin */
+    }
     .ph-trade-hero-{{ sid }} .ph-trade-hero__panel {
       order: 1;
       position: relative;
