@@ -73,6 +73,17 @@
       "header": {
         "type": "header",
         "blocks": {
+          "nav_item_style_iU9yFd": {
+            "type": "nav_item_style",
+            "settings": {
+              "menu_item": "Best Sellers",
+              "text_color": "#896A28",
+              "font": "louize",
+              "icon": "shopify://shop_images/icon.svg",
+              "icon_position": "left",
+              "icon_height": 20
+            }
+          },
           "538678ad-e47e-4c77-816c-a4e84399e585": {
             "type": "mega_menu",
             "settings": {
@@ -81,6 +92,7 @@
           }
         },
         "block_order": [
+          "nav_item_style_iU9yFd",
           "538678ad-e47e-4c77-816c-a4e84399e585"
         ],
         "settings": {
