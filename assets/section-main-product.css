@@ -1327,6 +1327,7 @@ variant-selects {
 .other-sizes__wrapper-links {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .other-sizes__dimension {
