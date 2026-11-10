@@ -409,8 +409,11 @@
 
     <!-- OneTrust Cookies Consent Notice start for www.porteandhall.com -->
     <style>
-      #onetrust-banner-sdk {
-        display: none !important;
+      #onetrust-consent-sdk,
+      #onetrust-banner-sdk,
+      #onetrust-pc-sdk,
+      .onetrust-pc-dark-filter {
+        z-index: 2147483647 !important;
       }
     </style>
 
@@ -422,13 +425,10 @@
 
     <script type="text/javascript">
       function OptanonWrapper() {
-        // Wait 4 seconds after OneTrust initializes, then show banner
-        setTimeout(function () {
           var banner = document.getElementById('onetrust-banner-sdk');
           if (banner) {
             banner.style.setProperty('display', 'block', 'important'); 
           }
-        }, 0);
       }
     </script>
     <!-- OneTrust Cookies Consent Notice end for www.porteandhall.com -->
