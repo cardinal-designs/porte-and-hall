@@ -1297,7 +1297,7 @@ variant-selects {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex: 1;
+  flex: 0 1 auto;
   white-space: nowrap;
   font-family: brandon;
 }
@@ -1327,6 +1327,7 @@ variant-selects {
 .other-sizes__wrapper-links {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .other-sizes__dimension {
