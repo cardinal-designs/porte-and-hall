@@ -10,17 +10,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<!-- OneTrust: load immediately (NOT lazy) so the banner shows on load -->
+<<!-- OneTrust: load immediately (NOT lazy) so the banner shows on load -->
 <link rel="preconnect" href="https://cdn.cookielaw.org" crossorigin>
 <script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
         type="text/javascript"
         charset="UTF-8"
         data-domain-script="392ca035-48a4-413f-b3b6-5ee77c589497"></script>
-
 <script type="text/javascript">
   (function () {
     var observer = null;
-    // Elements that never draw anything on screen, so they can't cover the banner
+    var MAX_Z = 2147483647;
+    // Elements that never draw anything on screen
     var NON_VISUAL = /^(SCRIPT|STYLE|LINK|META|NOSCRIPT|TEMPLATE)$/;
 
     function bannerClosed() {
@@ -32,23 +32,38 @@
       return document.cookie.indexOf('OptanonAlertBoxClosed=') !== -1;
     }
 
-    // True only if a visible element now sits after OneTrust in <body>
+    // Only elements at the max z-index can sit on top of OneTrust
+    function canCover(el) {
+      var z = parseInt(getComputedStyle(el).zIndex, 10);
+      return !isNaN(z) && z >= MAX_Z;
+    }
+
+    // True only if something after OneTrust in <body> could cover it
     function needsBump(sdk) {
       for (var n = sdk.nextElementSibling; n; n = n.nextElementSibling) {
         if (NON_VISUAL.test(n.tagName)) continue;
-        if (n.tagName === 'IFRAME' && n.offsetWidth === 0 && n.offsetHeight === 0) continue; // hidden tracking iframes
-        console.log('Moved because of:', n.tagName, n.id, n.className, n.offsetWidth + 'x' + n.offsetHeight);
-return true;
+        var hit = canCover(n) ? n : null;
+        if (!hit) {
+          var kids = n.getElementsByTagName('*');
+          for (var i = 0; i < kids.length && i < 500; i++) {
+            if (canCover(kids[i])) { hit = kids[i]; break; }
+          }
+        }
+        if (hit) {
+          // console.log('Moved because of:', hit.tagName, hit.id, hit.className); // debug
+          return true;
+        }
       }
       return false;
     }
 
+    // Keep OneTrust above Justuno (and anything else at max z-index)
     function keepOnTop() {
       var sdk = document.getElementById('onetrust-consent-sdk');
       if (!sdk || observer) return;
       var check = function () {
         if (needsBump(sdk)) {
-          console.count('OneTrust moved to top'); // uncomment to debug
+          // console.count('OneTrust moved to top'); // debug
           document.body.appendChild(sdk);
         }
       };
