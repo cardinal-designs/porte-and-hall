@@ -1924,3 +1924,21 @@ product-form form {
   margin-bottom: 6px;
 }
 
+.other-sizes__wrapper-links {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 20px;
+}
+
+.other-sizes__wrapper-links .other-sizes__button {
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
