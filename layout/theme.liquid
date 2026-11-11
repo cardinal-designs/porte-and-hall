@@ -12,15 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 
-<!-- OneTrust: load immediately (NOT lazy) so the banner shows on load -->
-<link rel="preconnect" href="https://cdn.cookielaw.org" crossorigin>
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
-        type="text/javascript"
-        charset="UTF-8"
-        data-domain-script="392ca035-48a4-413f-b3b6-5ee77c589497"></script>
 <script type="text/javascript">
   (function () {
     var observer = null;
+    // Elements that never draw anything on screen, so they can't cover the banner
+    var NON_VISUAL = /^(SCRIPT|STYLE|LINK|META|NOSCRIPT|TEMPLATE)$/;
 
     function bannerClosed() {
       try {
@@ -31,17 +27,27 @@
       return document.cookie.indexOf('OptanonAlertBoxClosed=') !== -1;
     }
 
-    // Keep the OneTrust container as the last element in <body>.
-    // With equal max z-index values, the later element sits on top,
-    // so this keeps the banner above Justuno popups.
+    // True only if a visible element now sits after OneTrust in <body>
+    function needsBump(sdk) {
+      for (var n = sdk.nextElementSibling; n; n = n.nextElementSibling) {
+        if (NON_VISUAL.test(n.tagName)) continue;
+        if (n.tagName === 'IFRAME' && n.offsetWidth === 0 && n.offsetHeight === 0) continue; // hidden tracking iframes
+        return true;
+      }
+      return false;
+    }
+
     function keepOnTop() {
       var sdk = document.getElementById('onetrust-consent-sdk');
       if (!sdk || observer) return;
-      var bump = function () {
-        if (document.body.lastElementChild !== sdk) document.body.appendChild(sdk);
+      var check = function () {
+        if (needsBump(sdk)) {
+          console.count('OneTrust moved to top'); // uncomment to debug
+          document.body.appendChild(sdk);
+        }
       };
-      bump();
-      observer = new MutationObserver(bump);
+      check();
+      observer = new MutationObserver(check);
       observer.observe(document.body, { childList: true });
     }
 
