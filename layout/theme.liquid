@@ -10,6 +10,58 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+
+<!-- OneTrust: load immediately (NOT lazy) so the banner shows on load -->
+<link rel="preconnect" href="https://cdn.cookielaw.org" crossorigin>
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
+        type="text/javascript"
+        charset="UTF-8"
+        data-domain-script="392ca035-48a4-413f-b3b6-5ee77c589497"></script>
+<script type="text/javascript">
+  (function () {
+    var observer = null;
+
+    function bannerClosed() {
+      try {
+        if (window.OneTrust && typeof OneTrust.IsAlertBoxClosed === 'function') {
+          return OneTrust.IsAlertBoxClosed();
+        }
+      } catch (e) {}
+      return document.cookie.indexOf('OptanonAlertBoxClosed=') !== -1;
+    }
+
+    // Keep the OneTrust container as the last element in <body>.
+    // With equal max z-index values, the later element sits on top,
+    // so this keeps the banner above Justuno popups.
+    function keepOnTop() {
+      var sdk = document.getElementById('onetrust-consent-sdk');
+      if (!sdk || observer) return;
+      var bump = function () {
+        if (document.body.lastElementChild !== sdk) document.body.appendChild(sdk);
+      };
+      bump();
+      observer = new MutationObserver(bump);
+      observer.observe(document.body, { childList: true });
+    }
+
+    function release() {
+      if (observer) { observer.disconnect(); observer = null; }
+    }
+
+    window.OptanonWrapper = function () {
+      var closed = bannerClosed();
+      document.documentElement.classList.toggle('ot-banner-open', !closed);
+      if (closed) {
+        release();
+      } else {
+        keepOnTop();
+      }
+    };
+  })();
+</script>
+
+
     {% comment %} <meta name="theme-color" content=""> {% endcomment %}
     <meta name="theme-color" content="#ffffff">
     <link rel="canonical" href="{{ canonical_url }}">
@@ -423,7 +475,7 @@
         data-domain-script="392ca035-48a4-413f-b3b6-5ee77c589497"
         defer="defer"></script>
 
-    <script type="text/javascript">
+    {% comment %} <script type="text/javascript">
       function OptanonWrapper() {
           var banner = document.getElementById('onetrust-banner-sdk');
           if (banner) {
@@ -431,7 +483,7 @@
           }
       }
     </script>
-    <!-- OneTrust Cookies Consent Notice end for www.porteandhall.com -->
+    <!-- OneTrust Cookies Consent Notice end for www.porteandhall.com --> {% endcomment %}
     
     {% style %}
       .ot-floating-button__front {visibility: hidden;}
