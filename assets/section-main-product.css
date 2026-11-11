@@ -1942,3 +1942,29 @@ product-form form {
   justify-content: center;
   text-align: center;
 }
+
+.other-sizes__wrapper-links .other-sizes__button {
+  padding: 14px 12px !important;
+  font-size: 22px !important;
+  line-height: 1.2 !important;
+}
+
+.other-sizes__wrapper-links .other-sizes__button > span {
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+.other-sizes__wrapper-links .other-sizes__button .other-sizes__dimension {
+  font-size: 17px !important;
+}
+
+@media screen and (max-width: 768px) {
+  .other-sizes__wrapper-links .other-sizes__button {
+    font-size: 18px !important;
+    padding: 12px 8px !important;
+  }
+
+  .other-sizes__wrapper-links .other-sizes__button .other-sizes__dimension {
+    font-size: 14px !important;
+  }
+}
