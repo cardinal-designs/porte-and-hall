@@ -2962,7 +2962,7 @@ select#notify_id {
     opacity: 0 !important;
   }
   #onetrust-banner-sdk.otFlat {
-    z-index: 11 !important;
+    z-index: 2147483647 !important;
   }
 
   #onetrust-consent-sdk #onetrust-banner-sdk {
