@@ -37,7 +37,8 @@
       for (var n = sdk.nextElementSibling; n; n = n.nextElementSibling) {
         if (NON_VISUAL.test(n.tagName)) continue;
         if (n.tagName === 'IFRAME' && n.offsetWidth === 0 && n.offsetHeight === 0) continue; // hidden tracking iframes
-        return true;
+        console.log('Moved because of:', n.tagName, n.id, n.className, n.offsetWidth + 'x' + n.offsetHeight);
+return true;
       }
       return false;
     }
