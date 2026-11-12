@@ -30,7 +30,6 @@ html {
   -moz-osx-font-smoothing: antialiased;
 }
 
-html:not(.third-party-scripts-loaded) #onetrust-consent-sdk,
 html:not(.third-party-scripts-loaded) .bx-shroud,
 html:not(.third-party-scripts-loaded) .bx-slab {
   display: none !important;
@@ -2963,7 +2962,7 @@ select#notify_id {
     opacity: 0 !important;
   }
   #onetrust-banner-sdk.otFlat {
-    z-index: 11 !important;
+    z-index: 2147483647 !important;
   }
 
   #onetrust-consent-sdk #onetrust-banner-sdk {
@@ -3581,6 +3580,10 @@ iframe#preview-bar-iframe {
   display: none;
 } /* fix privy not showing on top of cookie bar */
 #onetrust-consent-sdk #onetrust-banner-sdk {
+  z-index: 9999999;
+}
+
+#onetrust-banner-sdk {
   z-index: 9999999;
 }
 
