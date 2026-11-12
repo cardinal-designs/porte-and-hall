@@ -151,22 +151,6 @@
       },
       "mobile-menu": {
         "type": "mobile-menu",
-        "blocks": {
-          "nav_item_style_FeBwjg": {
-            "type": "nav_item_style",
-            "settings": {
-              "menu_item": "Best Sellers",
-              "text_color": "#FFFFFF",
-              "font": "louize",
-              "icon": "shopify://shop_images/icon_1.svg",
-              "icon_position": "left",
-              "icon_height": 20
-            }
-          }
-        },
-        "block_order": [
-          "nav_item_style_FeBwjg"
-        ],
         "settings": {
           "menu": "2024-best-seller-mobile-new",
           "b2b_menu": "mobile-menu-trade"
