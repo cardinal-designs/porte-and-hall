@@ -114,8 +114,11 @@
   color: var(--blue) !important;
 }
 
-#judgeme_product_reviews .jm-custom-answer-filter:hover,
-#judgeme_product_reviews .jm-sort-filter__select:hover {
+#judgeme_product_reviews .jm-custom-answer-filter:hover {
+  background-color: var(--beige-secondary) !important;
+}
+
+.jm-sort-filter.jm-sort-filter--compact:hover {
   background-color: var(--beige-secondary) !important;
 }
 
@@ -274,7 +277,7 @@
   min-inline-size: 40px;
   min-block-size: 40px;
   border-radius: 0 !important;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
 }
 
@@ -379,7 +382,7 @@
 .jdgm-write-review-modal .jdgm-write-review-modal__gdpr-statement,
 .jdgm-write-review-modal .jdgm-write-review-modal__gdpr-statement a {
   font-size: 12px;
-  color: rgba(84, 107, 130, 0.85);
+  color: var(--blue) !important;
 }
 
 .jdgm-write-review-modal .jdgm-write-review-modal__nav-btn,
@@ -438,6 +441,16 @@
 .jdgm-write-review-modal .jdgm-write-review-modal__field-group--media-upload {
   border-color: var(--blue) !important;
   border-radius: 0 !important;
+}
+
+.jm-with-icon.jm-custom-answer-filter__icon svg {
+  height: 22px;
+  width: 22px;
+}
+
+.jm-sort-filter__icon.jm-sort-filter__icon--sort svg {
+  height: 22px;
+  width: 22px;
 }
 
 @media screen and (max-width: 1050px) {
@@ -507,6 +520,11 @@
 
   #judgeme_product_reviews [class*=shop-reply] .jm-text.jm-shop-reply__text p {
     font-size: 16px;
+  }
+
+  #judgeme_product_reviews .jm-pagination-controls__button {
+    min-inline-size: 30px;
+    min-block-size: 30px;
   }
 
 }
