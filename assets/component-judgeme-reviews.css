@@ -453,6 +453,10 @@
   width: 22px;
 }
 
+#judgeme_product_reviews .jm-pagination-controls__button span {
+  font-size: 14px;
+}
+
 @media screen and (max-width: 1050px) {
 
   .rave-reviews-main:has(.jdgm-widget-revamp) {
