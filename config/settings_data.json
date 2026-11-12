@@ -77,7 +77,7 @@
             "type": "nav_item_style",
             "settings": {
               "menu_item": "Best Sellers",
-              "text_color": "#896A28",
+              "text_color": "#896a28",
               "font": "louize",
               "icon": "shopify://shop_images/icon.svg",
               "icon_position": "left",
@@ -151,6 +151,22 @@
       },
       "mobile-menu": {
         "type": "mobile-menu",
+        "blocks": {
+          "nav_item_style_FeBwjg": {
+            "type": "nav_item_style",
+            "settings": {
+              "menu_item": "Best Sellers",
+              "text_color": "#896A28",
+              "font": "louize",
+              "icon": "shopify://shop_images/icon.svg",
+              "icon_position": "left",
+              "icon_height": 20
+            }
+          }
+        },
+        "block_order": [
+          "nav_item_style_FeBwjg"
+        ],
         "settings": {
           "menu": "2024-best-seller-mobile-new",
           "b2b_menu": "mobile-menu-trade"
