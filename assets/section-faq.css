@@ -1,6 +1,10 @@
 .faq {
   background: var(--light-gray);
 }
+
+.faq .page-width[id] {
+  scroll-margin-top: calc(var(--header-height, 0px) + 20px);
+}
 .faq__question > h3{text-transform: none;letter-spacing: 0.3px;}
 
 .faq + .faq.shopify-section.with-spacing > div:first-of-type {

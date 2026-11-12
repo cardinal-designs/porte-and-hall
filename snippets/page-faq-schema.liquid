@@ -1,0 +1,46 @@
+{%- comment -%}
+  FAQPage JSON-LD built from FAQ accordions written in the page body (e.g. Shipping Information, Returns).
+  Expected markup per question:
+    <details class="faq-item"><summary>Question<span class="icon">+</span></summary><div class="faq-a">Answer</div></details>
+{%- endcomment -%}
+{%- if request.page_type == 'page' and page.content contains 'class="faq-item"' -%}
+  {%- liquid
+    assign faq_items = page.content | split: 'class="faq-item"'
+    assign faq_count = 0
+  -%}
+  {%- capture faq_entities -%}
+    {%- for faq_item in faq_items offset: 1 -%}
+      {%- unless faq_item contains '<summary>' and faq_item contains 'class="faq-a"' -%}
+        {%- continue -%}
+      {%- endunless -%}
+      {%- liquid
+        assign faq_question = faq_item | split: '</summary>' | first | split: '<summary>' | last | split: '<span class="icon"' | first | strip_html | strip_newlines | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&quot;', '"' | replace: '&#39;', "'" | strip
+        assign faq_answer = faq_item | split: 'class="faq-a"' | last | split: '</details>' | first | remove_first: '>' | strip_html | strip_newlines | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '&quot;', '"' | replace: '&#39;', "'" | split: ' ' | compact | join: ' ' | strip
+      -%}
+      {%- if faq_question != blank and faq_answer != blank -%}
+        {%- if faq_count > 0 %},{% endif %}
+    {
+      "@type": "Question",
+      "name": {{ faq_question | json }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ faq_answer | json }}
+      }
+    }
+        {%- assign faq_count = faq_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if faq_count > 0 -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": {{ request.origin | append: page.url | append: '#faq' | json }},
+  "mainEntity": [{{ faq_entities }}
+  ]
+}
+</script>
+  {%- endif -%}
+{%- endif -%}

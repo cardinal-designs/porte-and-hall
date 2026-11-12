@@ -106,6 +106,11 @@
         <meta name="robots" content="noindex,nofollow">
       {% endif %}
     {% endif %}
+
+    {% comment %} InstantSearch+ results page: content is query-driven and JS-rendered, keep it out of the index {% endcomment %}
+    {% if request.page_type == 'page' and page.handle == 'search-results' %}
+      <meta name="robots" content="noindex,follow">
+    {% endif %}
         
     <title>
       {{ page_title }}
@@ -300,7 +305,7 @@
     {%- render 'head-scripts-loader' -%}
   </head>
 
-  <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% endif %}">
+  <body class="{{ page.handle }} template__{{ template.suffix }} {% if template contains 'index' %}template-index{% elsif template contains 'product' %}afterpay-pdp{% endif %} {% if canonical_url contains 'policies' %}template-policy{% if canonical_url contains 'privacy-policy' %} template-policy--privacy{% endif %}{% if canonical_url contains 'terms-of-service' %} template-policy--terms{% endif %}{% endif %}">
     <style>
       .sr-only {
         position: absolute !important;
@@ -313,13 +318,13 @@
         clip: rect(0 0 0 0) !important;
     }
 
-  {% comment %} {% if content_for_header contains 'view=sticky-filters' %}
-    @media (max-width: 768px) {
-      .outer-header-wrapper {
-        top: 73px !important; 
+    {% comment %} {% if content_for_header contains 'view=sticky-filters' %}
+      @media (max-width: 768px) {
+        .outer-header-wrapper {
+          top: 73px !important; 
+        }
       }
-    }
-  {% endif %} {% endcomment %}
+    {% endif %} {% endcomment %}
 
     </style>
     <script>
@@ -361,7 +366,12 @@
     {% endif %}
 
     <main id="MainContent" class="{{collection.template_suffix}} {% if product %}product-template{% endif %} content-for-layout focus-none" role="main" tabindex="-1">
-      {{ content_for_layout }}
+      {%- if request.page_type == 'policy' -%}
+        {%- comment -%} Shopify's default title is sentence case ("Terms of service"); show it in title case like the Privacy Policy heading {%- endcomment -%}
+        {{ content_for_layout | replace: '<h1>Terms of service</h1>', '<h1>Terms of Service</h1>' }}
+      {%- else -%}
+        {{ content_for_layout }}
+      {%- endif -%}
     </main>
 
     {% section 'footer' %}
@@ -486,7 +496,7 @@
         </script>
     {% endif %}
 
-    <!-- OneTrust Cookies Consent Notice start for www.porteandhall.com -->
+
     <style>
       #onetrust-consent-sdk,
       #onetrust-banner-sdk,
@@ -498,6 +508,7 @@
     display: block !important;
   }
     </style>
+  
 
      {% comment %}
     <script data-lazy-src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
@@ -626,6 +637,9 @@
     }
     </script>
     {% endif %}
+
+    {% render 'page-article-schema' %}
+    {% render 'page-faq-schema' %}
 
     {% if template.name == 'article' %}
     {%- liquid

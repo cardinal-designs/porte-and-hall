@@ -116,7 +116,93 @@
         "logo_VJkUJe"
       ],
       "settings": {
-        "background_color": "#d8d3c7"
+        "background_color": "#546b82"
+      }
+    },
+    "collection_cards_qY89jb": {
+      "type": "collection-cards",
+      "blocks": {
+        "collection_card_APK77g": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-insider",
+            "image": "shopify://shop_images/3_Indoor-Mat-Insider-Torana-Dune-Doormat.jpg",
+            "eyebrow": "Indoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": "shopify://collections/the-insider"
+          }
+        },
+        "collection_card_QBxw4W": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-innerweave",
+            "image": "shopify://shop_images/5_Indoor-Mat-Innerweave-Chevron-Natural-Area-Mat.jpg",
+            "eyebrow": "Indoor / Outdoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": "shopify://collections/the-innerweave"
+          }
+        },
+        "collection_card_iUyyrT": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-porter",
+            "image": "shopify://shop_images/porter_pdp_truffledoor_4_2x_bd2a3dbc-026e-49d0-9627-e77473f0defe.jpg",
+            "eyebrow": "Outdoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": "shopify://collections/the-porter"
+          }
+        },
+        "collection_card_bprmMr": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-outlier",
+            "image": "shopify://shop_images/ideas1.jpg",
+            "eyebrow": "Outdoor",
+            "headline": "<h4>The Outlier</h4>",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": "shopify://collections/the-outlier"
+          }
+        }
+      },
+      "block_order": [
+        "collection_card_APK77g",
+        "collection_card_QBxw4W",
+        "collection_card_iUyyrT",
+        "collection_card_bprmMr"
+      ],
+      "custom_css": [
+        "h2 {font-weight: 500;}"
+      ],
+      "name": "Collection Cards",
+      "settings": {
+        "intro": "<h2 class=\"blue\">Find Your Inspiration</h2><p class=\"body\">Four collections, styled for every corner of the home, from the front step to the fireside.</p>",
+        "intro_align": "center",
+        "text_align": "left",
+        "image_shape": "square",
+        "image_shape_m": "square",
+        "show_price": true,
+        "price_label": "Starting from",
+        "price_format": "decimals",
+        "bg_color": "#F4F2EE",
+        "eyebrow_color": "#896a28",
+        "headline_color": "",
+        "price_color": "",
+        "link_color": "",
+        "contain": true,
+        "gap": 24,
+        "gap_m": 12,
+        "pad_top": 80,
+        "pad_bottom": 80,
+        "pad_top_m": 40,
+        "pad_bottom_m": 40,
+        "aria_label": ""
       }
     },
     "design-details": {
@@ -144,6 +230,7 @@
     },
     "styling-tips": {
       "type": "styling-tips",
+      "disabled": true,
       "settings": {
         "heading": "Our founder Stafford's styling tips",
         "image": "shopify://shop_images/Stafford_and_dog_1_2x_8d4ed32a-5883-4611-bf23-c1cc022cb717.png",
@@ -152,35 +239,13 @@
     },
     "see-the-difference": {
       "type": "see-the-difference",
+      "disabled": true,
       "settings": {
         "colleciton": "{{ product.metafields.custom.collection_for_metafield_content.value }}",
         "heading": "Small mat, big difference",
         "text": "{{ section.settings.colleciton.metafields.custom.see_the_difference_subhead.value }}",
         "before-label": "Before",
         "after-label": "After"
-      }
-    },
-    "faq": {
-      "type": "faq",
-      "blocks": {
-        "question_1": {
-          "type": "faq",
-          "repeater": "{{ section.settings.collection.metafields.custom.faqs.value }}",
-          "settings": {
-            "title": "{{ block.repeater.question.value }}",
-            "title_richtext": "",
-            "answer": "{{ block.repeater.answer | metafield_tag }}"
-          }
-        }
-      },
-      "block_order": [
-        "question_1"
-      ],
-      "disabled": true,
-      "settings": {
-        "heading": "",
-        "anchor": "",
-        "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
       }
     },
     "reviews": {
@@ -215,6 +280,7 @@
     },
     "you-may-like": {
       "type": "main-product-carousel",
+      "disabled": true,
       "settings": {
         "heading": "Never miss a mat. There's more to see!",
         "background": "",
@@ -265,12 +331,12 @@
     "breadcrumbs_yDykEc",
     "main",
     "logo_marquee_FJtxKa",
+    "collection_cards_qY89jb",
     "design-details",
     "product_quote_KP6aXV",
     "see-in-action",
     "styling-tips",
     "see-the-difference",
-    "faq",
     "reviews",
     "168172537899ce8b94",
     "you-may-like",

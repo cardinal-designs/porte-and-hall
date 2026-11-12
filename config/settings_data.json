@@ -73,6 +73,17 @@
       "header": {
         "type": "header",
         "blocks": {
+          "nav_item_style_iU9yFd": {
+            "type": "nav_item_style",
+            "disabled": true,
+            "settings": {
+              "menu_item": "Best Sellers",
+              "text_color": "#546b82",
+              "font": "brandon_regular",
+              "icon_position": "left",
+              "icon_height": 20
+            }
+          },
           "538678ad-e47e-4c77-816c-a4e84399e585": {
             "type": "mega_menu",
             "settings": {
@@ -81,6 +92,7 @@
           }
         },
         "block_order": [
+          "nav_item_style_iU9yFd",
           "538678ad-e47e-4c77-816c-a4e84399e585"
         ],
         "settings": {
@@ -95,6 +107,9 @@
       },
       "cart-drawer": {
         "type": "cart-drawer",
+        "custom_css": [
+          ".gift-wrap-option label {text-transform: none;}"
+        ],
         "settings": {
           "cart_title": "Your Cart",
           "empty_text": "",

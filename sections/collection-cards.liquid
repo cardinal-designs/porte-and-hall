@@ -1,0 +1,277 @@
+{%- liquid
+  assign sid = section.id
+  assign s = section.settings
+-%}
+
+{% style %}
+  #cc-{{ sid }} {
+    {%- if s.bg_color != blank %} background: {{ s.bg_color }};{% endif %}
+    {%- if s.eyebrow_color != blank %} --cc-eyebrow: {{ s.eyebrow_color }};{% endif %}
+    {%- if s.headline_color != blank %} --cc-head: {{ s.headline_color }};{% endif %}
+    {%- if s.price_color != blank %} --cc-price: {{ s.price_color }};{% endif %}
+    {%- if s.link_color != blank %} --cc-link: {{ s.link_color }};{% endif %}
+    --cc-gap: {{ s.gap }}px;
+    --cc-ratio: {% if s.image_shape == 'portrait' %}3 / 4{% else %}1 / 1{% endif %};
+    --cc-ratio-m: {% if s.image_shape_m == 'portrait' %}3 / 4{% else %}1 / 1{% endif %};
+    --cc-gap-m: {{ s.gap_m }}px;
+    padding-top: {{ s.pad_top }}px;
+    padding-bottom: {{ s.pad_bottom }}px;
+  }
+  @media screen and (max-width: 768px) {
+    #cc-{{ sid }} {
+      padding-top: {{ s.pad_top_m }}px;
+      padding-bottom: {{ s.pad_bottom_m }}px;
+    }
+  }
+{% endstyle %}
+
+<section id="cc-{{ sid }}" class="cc cc--{{ s.text_align }}"{% if s.aria_label != blank %} aria-label="{{ s.aria_label | escape }}"{% endif %}>
+  <div class="cc__wrap{% if s.contain %} page-width{% endif %}">
+    {%- if s.intro != blank -%}
+      <div class="cc__intro cc__intro--{{ s.intro_align }}">{{ s.intro }}</div>
+    {%- endif -%}
+
+    <ul class="cc__grid" role="list">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign b = block.settings
+          assign coll = b.collection
+          assign img = b.image
+          if img == blank and coll != blank
+            assign img = coll.featured_image
+          endif
+          assign img_m = b.image_mobile | default: img
+          assign fp = img.presentation.focal_point | default: '50% 50%'
+          assign fp_style = 'object-position: ' | append: fp
+
+          assign href = b.cta_url
+          if href == blank and coll != blank
+            assign href = coll.url
+          endif
+          if href == blank
+            assign href = '#'
+          endif
+
+          assign name_fallback = coll.title | default: 'Collection name'
+
+          # ---- "Starting from" price: lowest FULL (non-sale) price ----
+          assign low = 0
+          assign low_any = 0
+          if s.show_price and b.price_override == blank and coll != blank
+            for p in coll.products limit: 50
+              for v in p.variants
+                assign full = v.price
+                if v.compare_at_price > v.price
+                  assign full = v.compare_at_price
+                endif
+                if full > 0
+                  if v.available
+                    if low == 0 or full < low
+                      assign low = full
+                    endif
+                  endif
+                  if low_any == 0 or full < low_any
+                    assign low_any = full
+                  endif
+                endif
+              endfor
+            endfor
+            if low == 0
+              assign low = low_any
+            endif
+          endif
+
+          if s.price_format == 'whole'
+            assign low_fmt = low | money_without_trailing_zeros
+          else
+            assign low_fmt = low | money
+          endif
+        -%}
+        <li class="cc__card" {{ block.shopify_attributes }}>
+          <div class="cc__media">
+            {%- if img != blank -%}
+              <picture>
+                {%- if b.image_mobile != blank -%}
+                  <source media="(max-width: 768px)" srcset="{{ img_m | image_url: width: 400 }} 400w, {{ img_m | image_url: width: 800 }} 800w" sizes="50vw">
+                {%- endif -%}
+                {{
+                  img
+                  | image_url: width: 1200
+                  | image_tag:
+                    widths: '400, 600, 800, 1000, 1200',
+                    sizes: '(max-width: 768px) 50vw, 25vw',
+                    loading: 'lazy',
+                    alt: '',
+                    class: 'cc__img',
+                    style: fp_style
+                }}
+              </picture>
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'cc__img cc__img--ph' }}
+            {%- endif -%}
+          </div>
+
+          <div class="cc__text">
+            {%- if b.eyebrow != blank -%}<p class="cc__eyebrow body-xs">{{ b.eyebrow | escape }}</p>{%- endif -%}
+            <div class="cc__headline">
+              {%- if b.headline != blank -%}{{ b.headline }}{%- else -%}<p class="h4">{{ name_fallback | escape }}</p>{%- endif -%}
+            </div>
+            {%- if s.show_price -%}
+              {%- if b.price_override != blank -%}
+                <p class="cc__price body-sm">{{ s.price_label | escape }} {{ b.price_override | escape }}</p>
+              {%- elsif low > 0 -%}
+                <p class="cc__price body-sm">{{ s.price_label | escape }} {{ low_fmt }}</p>
+              {%- endif -%}
+            {%- endif -%}
+            {%- comment -%} The CTA's ::after covers the whole card, so the image and name click through too (one link per card). {%- endcomment -%}
+            <a class="cc__cta text-link{% if b.cta_label == blank %} cc__cta--hidden{% endif %}" href="{{ href }}">
+              {%- if b.cta_label != blank -%}{{ b.cta_label | escape }}{%- else -%}<span class="visually-hidden">{{ name_fallback | escape }}</span>{%- endif -%}
+            </a>
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .cc__intro { max-width: 860px; margin: 0 auto 48px; }
+  .cc__intro--center { text-align: center; }
+  .cc__intro--left { margin-left: 0; }
+  .cc__intro :is(h1, h2, h3, .h1, .h2) { font-family: louize, Georgia, serif; font-weight: 500; font-size:42px; }
+  .cc__intro > * + * { margin-top: 14px; }
+
+  .cc__grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: calc(var(--cc-gap) * 1.5) var(--cc-gap);
+  }
+  .cc__card { position: relative; display: flex; flex-direction: column; min-width: 0; }
+
+  /* Fixed square box; the image fills it regardless of the photo's real proportions */
+  .cc__media { position: relative; aspect-ratio: var(--cc-ratio, 1 / 1); overflow: hidden; background: #f1ede6; }
+  .cc__media picture { display: contents; }
+  .cc__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+  .cc__card:hover .cc__img { transform: scale(1.03); }
+
+  .cc__text { padding-top: 18px; display: flex; flex-direction: column; align-items: flex-start; }
+  .cc--center .cc__text { align-items: center; text-align: center; }
+  .cc__eyebrow { margin: 0 0 6px; text-transform: uppercase; font-weight: 700; color: var(--cc-eyebrow, inherit); }
+  .cc__headline, .cc__headline > * { margin: 0; color: var(--cc-head, inherit); }
+  .cc__headline :is(p, h2, h3, h4, h5, h6) { font-family: louize, Georgia, serif; font-weight: 500; line-height: 1.15; text-wrap: balance; }
+  .cc__price { margin: 6px 0 0; color: var(--cc-price, inherit); }
+  .cc__cta { margin-top: 12px; color: var(--cc-link, inherit); }
+  .cc__cta::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+  .cc__cta--hidden { margin: 0; }
+  .cc__card:has(.cc__cta:focus-visible) { outline: 2px solid currentColor; outline-offset: 4px; }
+  .cc__cta:focus-visible { outline: none; }
+
+  @media screen and (max-width: 768px) {
+    .cc__intro { margin-bottom: 24px; }
+    .cc__intro :is(h1, h2, h3, .h1, .h2) { font-family: louize, Georgia, serif; font-weight: 500; font-size:32px; }
+    .cc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px var(--cc-gap-m); }
+    .cc__media { aspect-ratio: var(--cc-ratio-m, 1 / 1); }
+    .cc__text { padding-top: 12px; }
+    .cc__eyebrow { margin-bottom: 4px; }
+    .cc__price { margin-top: 4px; }
+    .cc__cta { margin-top: 6px; }
+  }
+  /* smaller CTA on tablet + mobile so "Shop The Innerweave"-length labels stay on one line */
+  @media screen and (max-width: 1100px) {
+    .cc__cta { font-size: 12px; letter-spacing: 1.2px; line-height: 20px; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection Cards",
+  "tag": "div",
+  "class": "section-collection-cards",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "header", "content": "Intro" },
+    {
+      "type": "html", "id": "intro", "label": "Intro (HTML)",
+      "default": "<h2 class=\"h2\">Find Your Holiday Inspiration</h2><p class=\"body\">Four collections, styled for every corner of the home, from the front step to the fireside.</p>",
+      "info": "Optional heading + paragraph above the cards. Leave empty to hide."
+    },
+    {
+      "type": "select", "id": "intro_align", "label": "Intro alignment",
+      "options": [ { "value": "center", "label": "Center" }, { "value": "left", "label": "Left" } ],
+      "default": "center"
+    },
+
+    { "type": "header", "content": "Cards" },
+    {
+      "type": "select", "id": "text_align", "label": "Card text alignment",
+      "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" } ],
+      "default": "left"
+    },
+    {
+      "type": "select", "id": "image_shape", "label": "Image shape (desktop)",
+      "options": [ { "value": "square", "label": "Square 1:1" }, { "value": "portrait", "label": "Portrait 3:4 (taller)" } ],
+      "default": "square"
+    },
+    {
+      "type": "select", "id": "image_shape_m", "label": "Image shape (mobile)",
+      "options": [ { "value": "square", "label": "Square 1:1" }, { "value": "portrait", "label": "Portrait 3:4 (taller)" } ],
+      "default": "square",
+      "info": "Square keeps the 2 × 2 mobile grid under ~800px tall; portrait adds about 110px."
+    },
+    { "type": "checkbox", "id": "show_price", "label": "Show \"from\" price", "default": true },
+    { "type": "text", "id": "price_label", "label": "Price label", "default": "from" },
+    {
+      "type": "select", "id": "price_format", "label": "Price format",
+      "options": [ { "value": "decimals", "label": "$69.00" }, { "value": "whole", "label": "$69 (drop .00)" } ],
+      "default": "decimals"
+    },
+
+    { "type": "header", "content": "Colors", "info": "Leave text colors blank to use the theme's colors." },
+    { "type": "color", "id": "bg_color", "label": "Background" },
+    { "type": "color", "id": "eyebrow_color", "label": "Eyebrow", "default": "#896A28" },
+    { "type": "color", "id": "headline_color", "label": "Collection name" },
+    { "type": "color", "id": "price_color", "label": "Price line" },
+    { "type": "color", "id": "link_color", "label": "CTA link" },
+
+    { "type": "header", "content": "Layout" },
+    { "type": "checkbox", "id": "contain", "label": "Use theme page width", "default": true },
+    { "type": "range", "id": "gap", "label": "Space between cards (desktop)", "min": 8, "max": 48, "step": 4, "unit": "px", "default": 24 },
+    { "type": "range", "id": "gap_m", "label": "Space between cards (mobile)", "min": 8, "max": 24, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "pad_top", "label": "Top padding (desktop)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "pad_bottom", "label": "Bottom padding (desktop)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "pad_top_m", "label": "Top padding (mobile)", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "pad_bottom_m", "label": "Bottom padding (mobile)", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 40 },
+    { "type": "text", "id": "aria_label", "label": "Accessible name", "info": "Optional. Read by screen readers if there's no intro heading." }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Collection card",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection", "info": "Powers the \"Starting from\" price and the default link/image." },
+        { "type": "image_picker", "id": "image", "label": "Image (desktop)", "info": "At least 1200 px wide; 1200 × 1600 works for both shapes (it's cropped to fit, using the focal point). Falls back to the collection image." },
+        { "type": "image_picker", "id": "image_mobile", "label": "Image (mobile)", "info": "Optional. At least 800 px wide. Falls back to the desktop image." },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Indoor" },
+        {
+          "type": "html", "id": "headline", "label": "Collection name (HTML)",
+          "info": "Leave empty to use the collection's title. Theme classes such as h3, h4 or body can be used (default is h4)."
+        },
+        { "type": "text", "id": "price_override", "label": "Price override", "info": "Optional. Replaces the calculated price, e.g. $69.00" },
+        { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Shop the Collection" },
+        { "type": "url", "id": "cta_url", "label": "CTA link", "info": "Leave empty to link to the collection." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Cards",
+      "blocks": [
+        { "type": "collection_card", "settings": { "eyebrow": "Indoor" } },
+        { "type": "collection_card", "settings": { "eyebrow": "Indoor / Outdoor" } },
+        { "type": "collection_card", "settings": { "eyebrow": "Outdoor" } },
+        { "type": "collection_card", "settings": { "eyebrow": "Outdoor" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

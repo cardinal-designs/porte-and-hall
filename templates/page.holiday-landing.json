@@ -1,0 +1,876 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs_8LXnyk": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "name": "Breadcrumbs",
+      "settings": {
+        "background_color": "",
+        "padding_top": 10,
+        "padding_bottom": 10,
+        "mobile_padding_top": 10,
+        "mobile_padding_bottom": 10
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [
+        ".Page_Header_Inner h1 {color: #ffffff;}"
+      ],
+      "settings": {
+        "page_heading": "",
+        "subhead": "",
+        "image": "shopify://shop_images/hero3trade.jpg",
+        "section_height": "250",
+        "bg_color": "rgba(0,0,0,0)"
+      }
+    },
+    "trade_hero_split_iifPUy": {
+      "type": "trade-hero-split",
+      "blocks": {
+        "mobile_background_ixyXii": {
+          "type": "mobile_background",
+          "settings": {
+            "color": "#896a28"
+          }
+        },
+        "eyebrow_dhXhW7": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "The Holiday Edit",
+            "color": "#dcc392",
+            "size": 14,
+            "size_mobile": 11
+          }
+        }
+      },
+      "block_order": [
+        "mobile_background_ixyXii",
+        "eyebrow_dhXhW7"
+      ],
+      "custom_css": [
+        "h1 {font-size: 70px;}",
+        "@media (max-width: 749px) {h1 {font-size: 35px; }}"
+      ],
+      "name": "Trade Hero (Split)",
+      "settings": {
+        "image": "shopify://shop_images/hero-stair-runner.jpg",
+        "mobile_image": "shopify://shop_images/hero-stair-runner.jpg",
+        "image_position": "right",
+        "desktop_focal": "50% 80%",
+        "mobile_focal": "50% 110%",
+        "heading": "Holiday Finds Worth Coming Home To",
+        "subheading": "",
+        "body": "<p>Dress your doorstep for the season with warm naturals, festive reds, rich evergreens and a little metallic shimmer.&nbsp;</p>",
+        "button_1_label": "Shop Now",
+        "button_1_link": "#deckthehalls",
+        "button_1_bg": "#ffffff",
+        "button_1_text": "#30383d",
+        "button_1_border": "#ffffff",
+        "button_1_hover_bg": "#eeefef",
+        "button_1_hover_text": "#30383d",
+        "button_1_hover_border": "#eeefef",
+        "button_1_classes": "",
+        "button_2_label": "Give a Gift Card",
+        "button_2_link": "/products/gift-card",
+        "button_2_bg": "",
+        "button_2_text": "#ffffff",
+        "button_2_border": "#ffffff",
+        "button_2_hover_bg": "#ffffff",
+        "button_2_hover_text": "#546b82",
+        "button_2_hover_border": "#ffffff",
+        "button_2_classes": "",
+        "btn_font_size": 18,
+        "btn_font_size_mobile": 16,
+        "btn_font_weight": "700",
+        "btn_text_transform": "none",
+        "btn_letter_spacing": 0,
+        "btn_height": 64,
+        "btn_height_mobile": 50,
+        "btn_border_width": 1,
+        "btn_radius": 0,
+        "panel_color": "#620f18",
+        "panel_text_color": "#ffffff",
+        "desktop_min_height": 860,
+        "image_gutter": 0,
+        "mobile_image_height": 560
+      }
+    },
+    "shipping_banner_K3fDNg": {
+      "type": "shipping-banner",
+      "blocks": {
+        "column_qyzYYM": {
+          "type": "column",
+          "settings": {
+            "icon": "shopify://shop_images/Icon-Shipping-Truck.svg",
+            "eyebrow": "Holiday Shipping",
+            "headline": "<p class=\"h4\">Order by Sunday, Dec 13</p>",
+            "body": "<p class=\"body-sm\">Place your order by the end of the day to receive it in time for the holidays.</p>",
+            "cta_label": "Shipping Details",
+            "cta_url": "shopify://pages/shipping-information"
+          }
+        },
+        "column_TAzJyD": {
+          "type": "column",
+          "settings": {
+            "icon": "shopify://shop_images/Icon-E-Gift-Card-Envelope.svg",
+            "eyebrow": "Still Time to Gift",
+            "headline": "<p class=\"h4\">E-Gift Cards</p>",
+            "body": "<p class=\"body-sm\">Delivered straight to their inbox, even at the eleventh hour.</p>",
+            "cta_label": "Shop Gift Cards",
+            "cta_url": "shopify://products/gift-card"
+          }
+        }
+      },
+      "block_order": [
+        "column_qyzYYM",
+        "column_TAzJyD"
+      ],
+      "name": "Shipping Deadline Banner",
+      "settings": {
+        "bg_color": "#f8f3ea",
+        "separator_color": "#dcc392",
+        "eyebrow_color": "#896a28",
+        "headline_color": "#620f18",
+        "text_color": "#6b7682",
+        "link_color": "#30383d",
+        "icon_size": 32,
+        "align_desktop": "center",
+        "contain": true,
+        "border_top": false,
+        "border_bottom": false,
+        "pad_top": 28,
+        "pad_bottom": 28,
+        "pad_top_m": 24,
+        "pad_bottom_m": 24,
+        "aria_label": "Holiday shipping deadlines"
+      }
+    },
+    "image_text_WYDcQd": {
+      "type": "image-text",
+      "custom_css": [
+        "p {color: #2b3640; padding: 0px 30px 0px 30px;}"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "subheading": "<div id=\"deckthehalls\"></div><br>",
+        "title": "<p>Deck the Halls</p>",
+        "content": "<p>Consider this your holiday decorating starting point. Take a cue from us and start with a color story. Whether&nbsp;you're dressing up your own doorstep or shopping for someone else's, there's a palette for that.<br/><br/></p>",
+        "link_text": "",
+        "link_url": "",
+        "custom-class": ""
+      }
+    },
+    "color_story_carousel_MzjFLV": {
+      "type": "color-story-carousel",
+      "blocks": {
+        "product_card_8katwB": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-happy-hour-shirley-temple-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_NpqpUy": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-maze-ii-red-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_KBd6E7": {
+          "type": "product_card",
+          "disabled": true,
+          "settings": {
+            "product": "the-insider-ripple-coral-3-x-5-doormat",
+            "eyebrow": "THE INSIDER 3x5 AREA MAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_PGk9Qf": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-happy-hour-shirley-temple-runner",
+            "eyebrow": "THE INSIDER 2x6 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_8jipxe": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-maze-ii-red-runner",
+            "eyebrow": "THE INSIDER 2x6 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_QzMQyH": {
+          "type": "product_card",
+          "disabled": true,
+          "settings": {
+            "product": "the-insider-ripple-coral-runner",
+            "eyebrow": "THE INSIDER 2x6 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_eP39c4": {
+          "type": "product_card",
+          "disabled": true,
+          "settings": {
+            "product": "the-insider-ripple-coral-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_card_8katwB",
+        "product_card_NpqpUy",
+        "product_card_KBd6E7",
+        "product_card_PGk9Qf",
+        "product_card_8jipxe",
+        "product_card_QzMQyH",
+        "product_card_eP39c4"
+      ],
+      "name": "Color Story Carousel",
+      "settings": {
+        "image": "shopify://shop_images/holiday-red.jpg",
+        "mobile_image": "shopify://shop_images/holiday-red.jpg",
+        "headline": "<h2 class=\"h2\">Holiday Red</h2>",
+        "body": "<p class=\"body-sm\">A little red goes a long way. Bring on the cheerful color, classic patterns and all the merry-and-bright energy your front door can handle.</p>",
+        "cta_label": "Shop Holiday Red",
+        "cta_url": "/collections/shop-all?filter.v.m.custom.color=Red&filter.v.m.custom.color=Pink",
+        "lead_text_color": "#ffffff",
+        "overlay_strength": 80,
+        "accent_color": "#620f18",
+        "lead_width": 420,
+        "cards_visible": 3,
+        "button_label": "Add to Bag",
+        "added_label": "Added ✓",
+        "sold_out_label": "Sold Out",
+        "button_style": "outline",
+        "hover_image": true,
+        "controls_align": "right",
+        "bar_width": 300,
+        "aria_label": "Holiday Red products",
+        "contain": true,
+        "bg_color": "#ffffff",
+        "pad_top": 32,
+        "pad_bottom": 32,
+        "pad_top_m": 20,
+        "pad_bottom_m": 20
+      }
+    },
+    "color_story_carousel_nkcNXA": {
+      "type": "color-story-carousel",
+      "blocks": {
+        "product_card_Y6HtY7": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-porter-truffle-standard",
+            "eyebrow": "THE PORTER DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_awGgG3": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-innerweave-tigers-eye-taupe-3-x-5-doormat",
+            "eyebrow": "THE INNERWEAVE 3x5 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_DC8QHA": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-innerweave-chevron-natural-doormat-3-x-5",
+            "eyebrow": "THE INNERWEAVE 3x5 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_Fg7jFD": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-innerweave-tigers-eye-natural-doormat",
+            "eyebrow": "THE INNERWEAVE 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_EahkxB": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-innerweave-keya-sand-area-mat",
+            "eyebrow": "THE INNERWEAVE 4x6 AREA MAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_PJmC9U": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-innerweave-chevron-natural-runner",
+            "eyebrow": "THE INNERWEAVE 2x6 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_card_Y6HtY7",
+        "product_card_awGgG3",
+        "product_card_DC8QHA",
+        "product_card_Fg7jFD",
+        "product_card_EahkxB",
+        "product_card_PJmC9U"
+      ],
+      "name": "Color Story Carousel",
+      "settings": {
+        "image": "shopify://shop_images/holiday-natural.jpg",
+        "headline": "<h2 class=\"h2\">Natural</h2>",
+        "body": "<p class=\"body-sm\">Warm, earthy tones bring a little natural charm and depth to your entryway, with a timeless look that never goes out of season.</p>",
+        "cta_label": "Shop Natural",
+        "cta_url": "/collections/shop-all?filter.v.m.custom.color=Brown",
+        "lead_text_color": "#ffffff",
+        "overlay_strength": 70,
+        "accent_color": "#805b11",
+        "lead_width": 420,
+        "cards_visible": 3,
+        "button_label": "Add to Bag",
+        "added_label": "Added ✓",
+        "sold_out_label": "Sold Out",
+        "button_style": "outline",
+        "hover_image": true,
+        "controls_align": "right",
+        "bar_width": 300,
+        "aria_label": "Products that are Natural for holiday decorating",
+        "contain": true,
+        "bg_color": "#ffffff",
+        "pad_top": 32,
+        "pad_bottom": 32,
+        "pad_top_m": 20,
+        "pad_bottom_m": 20
+      }
+    },
+    "color_story_carousel_FYpG3t": {
+      "type": "color-story-carousel",
+      "blocks": {
+        "product_card_gPmQTp": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-maze-ii-forest-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_ER4kXx": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-torana-moss-runner",
+            "eyebrow": "THE INSIDER 2x6 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_kTU7V4": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-ripple-fern-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_mtXwHh": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-maze-ii-forest-runner",
+            "eyebrow": "THE INSIDER 2x6 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_L6DQxR": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-ripple-fern-runner",
+            "eyebrow": "THE INSIDER 2x6 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_QU4TYN": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-torana-moss-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_MKyn9t": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-outlier-hunter-doormat",
+            "eyebrow": "THE OUTLIER DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_card_gPmQTp",
+        "product_card_ER4kXx",
+        "product_card_kTU7V4",
+        "product_card_mtXwHh",
+        "product_card_L6DQxR",
+        "product_card_QU4TYN",
+        "product_card_MKyn9t"
+      ],
+      "name": "Color Story Carousel",
+      "settings": {
+        "image": "shopify://shop_images/holiday-evergreen.jpg",
+        "headline": "<h2 class=\"h2\">Evergreen</h2>",
+        "body": "<p class=\"body-sm\">Green is always in season. Rich, nature-inspired shades bring a little festive magic to your entryway.</p>",
+        "cta_label": "Shop Evergreen",
+        "cta_url": "/collections/shop-all?filter.v.m.custom.color=Green",
+        "lead_text_color": "#ffffff",
+        "overlay_strength": 70,
+        "accent_color": "#255413",
+        "lead_width": 420,
+        "cards_visible": 3,
+        "button_label": "Add to Bag",
+        "added_label": "Added ✓",
+        "sold_out_label": "Notify Me",
+        "button_style": "outline",
+        "hover_image": true,
+        "controls_align": "right",
+        "bar_width": 300,
+        "aria_label": "Products that are green for holiday decorating",
+        "contain": true,
+        "bg_color": "#ffffff",
+        "pad_top": 32,
+        "pad_bottom": 32,
+        "pad_top_m": 20,
+        "pad_bottom_m": 20
+      }
+    },
+    "color_story_carousel_Fi3pcW": {
+      "type": "color-story-carousel",
+      "blocks": {
+        "product_card_AmJJ8B": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-dreamweaver-cloud-runner",
+            "eyebrow": "THE INSIDER 2x6 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_CReDMD": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-bark-ii-creme-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_Pi49JE": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-wild-side-dove-3-x-5-doormat",
+            "eyebrow": "THE INSIDER 3x5 AREA MAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_YgCeqY": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-outlier-pebble-doormat",
+            "eyebrow": "THE OUTLIER DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_HBmMq4": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-bark-ii-creme-area-mat",
+            "eyebrow": "THE INSIDER 4x6 AREA MAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_wVJ8Ff": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-dreamweaver-cloud-3-x-5-doormat",
+            "eyebrow": "THE INSIDER 3x5 AREA MAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_Mgdj89": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-wild-side-dove-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_card_AmJJ8B",
+        "product_card_CReDMD",
+        "product_card_Pi49JE",
+        "product_card_YgCeqY",
+        "product_card_HBmMq4",
+        "product_card_wVJ8Ff",
+        "product_card_Mgdj89"
+      ],
+      "name": "Color Story Carousel",
+      "settings": {
+        "image": "shopify://shop_images/holiday_-_ivory.jpg",
+        "headline": "<h2 class=\"h2\">Winter Ivory</h2>",
+        "body": "<p class=\"body-sm\">A palette of soft ivories and winter whites bring a quiet elegance to your entryway, creating the perfect backdrop for the season.</p>",
+        "cta_label": "Shop Winter Ivory",
+        "cta_url": "/collections/shop-all?filter.v.m.custom.color=Off-White",
+        "lead_text_color": "#ffffff",
+        "overlay_strength": 70,
+        "accent_color": "#f1e7d3",
+        "lead_width": 420,
+        "cards_visible": 3,
+        "button_label": "Add to Bag",
+        "added_label": "Added ✓",
+        "sold_out_label": "Sold Out",
+        "button_style": "outline",
+        "hover_image": true,
+        "controls_align": "right",
+        "bar_width": 300,
+        "aria_label": "Products that are white and ivory for holiday decorating",
+        "contain": true,
+        "bg_color": "#ffffff",
+        "pad_top": 32,
+        "pad_bottom": 32,
+        "pad_top_m": 20,
+        "pad_bottom_m": 20
+      }
+    },
+    "color_story_carousel_btfVCD": {
+      "type": "color-story-carousel",
+      "blocks": {
+        "product_card_DqAB6w": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-dreamweaver-champagne-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_JpmhCh": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-dreamweaver-mocha-runner",
+            "eyebrow": "THE INSIDER 2x6 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_rfiyyX": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-dreamweaver-rose-doormat",
+            "eyebrow": "THE INSIDER 2x3 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_WkcjFR": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-dreamweaver-cloud-3-x-5-doormat",
+            "eyebrow": "THE INSIDER 3x5 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_HQzaaT": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-dreamweaver-rose-xl-runner",
+            "eyebrow": "THE INSIDER 2x8 RUNNER",
+            "title": "",
+            "size": ""
+          }
+        },
+        "product_card_8Gabtj": {
+          "type": "product_card",
+          "settings": {
+            "product": "the-insider-dreamweaver-champagne-3-x-5-doormat",
+            "eyebrow": "THE INSIDER 3x5 DOORMAT",
+            "title": "",
+            "size": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_card_DqAB6w",
+        "product_card_JpmhCh",
+        "product_card_rfiyyX",
+        "product_card_WkcjFR",
+        "product_card_HQzaaT",
+        "product_card_8Gabtj"
+      ],
+      "name": "Color Story Carousel",
+      "settings": {
+        "image": "shopify://shop_images/holiday-shimmer.png",
+        "headline": "<h2 class=\"h2\">Shimmer</h2>",
+        "body": "<p class=\"body-sm\">A little sparkle never hurt an entryway. Woven with metallic threads, these Insiders catch the light with every step.</p>",
+        "cta_label": "",
+        "cta_url": "",
+        "lead_text_color": "#ffffff",
+        "overlay_strength": 70,
+        "accent_color": "#a4881b",
+        "lead_width": 420,
+        "cards_visible": 3,
+        "button_label": "Add to Bag",
+        "added_label": "Added ✓",
+        "sold_out_label": "Sold Out",
+        "button_style": "outline",
+        "hover_image": true,
+        "controls_align": "right",
+        "bar_width": 300,
+        "aria_label": "Products that are metallic/shimmery for holiday decorating",
+        "contain": true,
+        "bg_color": "#ffffff",
+        "pad_top": 32,
+        "pad_bottom": 32,
+        "pad_top_m": 20,
+        "pad_bottom_m": 20
+      }
+    },
+    "gift_card_feature_7KFrDG": {
+      "type": "gift-card-feature",
+      "name": "Gift Card Feature",
+      "settings": {
+        "bg_image": "shopify://shop_images/porte-hall-bg-desktop-wreath-ribbon-2400x1000.jpg",
+        "bg_image_mobile": "shopify://shop_images/porte-hall-bg-mobile-wreath-ribbon-1080x1350.jpg",
+        "shade_color": "#620f18",
+        "shade_strength": 80,
+        "shade_strength_mobile": 80,
+        "min_height": 660,
+        "mobile_band_height": 350,
+        "card_image": "shopify://shop_images/porte-hall-gift-card-cutout.png",
+        "card_tilt": true,
+        "card_width": 470,
+        "eyebrow": "For Their Home",
+        "headline": "<h2 class=\"h1\">Let Them Pick Their <br>Perfect Mat</h2>",
+        "body": "<p class=\"body\">Good taste is hard to get wrong. Give them a Porte + Hall gift card and let them find the mat that's just right for their home.</p>",
+        "text_color": "#ffffff",
+        "accent_color": "#dcc392",
+        "gift_card": "gift-card",
+        "start_amount": "100",
+        "amounts_label": "Gift card amount",
+        "after_amounts": "<p>Arrives by email in an instant. Schedule it for the big day and add a little note of your own.</p>",
+        "cta_label": "Buy a Gift Card",
+        "cta_style": "white",
+        "cta_fallback_url": "shopify://products/gift-card",
+        "contain": true,
+        "aria_label": "Gift cards"
+      }
+    },
+    "collection_cards_U64nj8": {
+      "type": "collection-cards",
+      "blocks": {
+        "collection_card_RTd9wL": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-insider",
+            "image": "shopify://shop_images/holiday-red.jpg",
+            "image_mobile": "shopify://shop_images/holiday-red.jpg",
+            "eyebrow": "Indoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": ""
+          }
+        },
+        "collection_card_t3bkxU": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-innerweave",
+            "image": "shopify://shop_images/holiday_-_innerweave.jpg",
+            "eyebrow": "Indoor / Outdoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": ""
+          }
+        },
+        "collection_card_mhAxLD": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-porter",
+            "image": "shopify://shop_images/C_Porte_Hall_PorterSingle_Truffle_1051_N_1.jpg",
+            "eyebrow": "Outdoor",
+            "headline": "",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": ""
+          }
+        },
+        "collection_card_trzwfQ": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "the-outlier",
+            "image": "shopify://shop_images/holiday-evergreen.jpg",
+            "eyebrow": "Outdoor",
+            "headline": "<h4>The Outlier</h4>",
+            "price_override": "",
+            "cta_label": "Shop the Collection",
+            "cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_card_RTd9wL",
+        "collection_card_t3bkxU",
+        "collection_card_mhAxLD",
+        "collection_card_trzwfQ"
+      ],
+      "name": "Collection Cards",
+      "settings": {
+        "intro": "<div style=\"color:#2B3640;\">\n<h2 class=\"h1\">A Little Something\n<br>for Every Door</h2>\n<p class=\"body\">Four collections, endless ways to make an entrance. Find a favorite for the front step, the hallway, the kitchen and everywhere in between.</p>\n</div>",
+        "intro_align": "center",
+        "text_align": "left",
+        "image_shape": "portrait",
+        "image_shape_m": "portrait",
+        "show_price": true,
+        "price_label": "Starting from",
+        "price_format": "whole",
+        "bg_color": "",
+        "eyebrow_color": "#896a28",
+        "headline_color": "#2b3640",
+        "price_color": "#2b3640",
+        "link_color": "#2b3640",
+        "contain": true,
+        "gap": 24,
+        "gap_m": 12,
+        "pad_top": 80,
+        "pad_bottom": 80,
+        "pad_top_m": 40,
+        "pad_bottom_m": 40,
+        "aria_label": ""
+      }
+    },
+    "gift_note_xVEqEk": {
+      "type": "gift-note",
+      "blocks": {
+        "bullet_9Emyyp": {
+          "type": "bullet",
+          "settings": {
+            "title": "Add to Bag",
+            "text": "Find their perfect mat or gift card."
+          }
+        },
+        "bullet_XgtFAk": {
+          "type": "bullet",
+          "settings": {
+            "title": "Mark It a Gift",
+            "text": "Check \"This is a gift\" at checkout.&nbsp;"
+          }
+        },
+        "bullet_YfbzkC": {
+          "type": "bullet",
+          "settings": {
+            "title": "Write Your Note",
+            "text": "We'll print your message and tuck it inside with care."
+          }
+        }
+      },
+      "block_order": [
+        "bullet_9Emyyp",
+        "bullet_XgtFAk",
+        "bullet_YfbzkC"
+      ],
+      "name": "Gift Note Feature",
+      "settings": {
+        "bg_image": "shopify://shop_images/Gift-Note-Background-Desktop-3840x1600.jpg",
+        "bg_image_mobile": "shopify://shop_images/Gift-Note-Background-Mobile-Flat-1200x2400.jpg",
+        "bg_color": "#1f3b2f",
+        "stripes": true,
+        "stripe_1": "#620f18",
+        "stripe_2": "#dcc392",
+        "stripe_3": "#2c4d3e",
+        "note_image": "shopify://shop_images/porte-hall-gift-note-printed.png",
+        "note_tilt": true,
+        "note_frame": true,
+        "note_width": 520,
+        "note_side": "left",
+        "ribbon_text": "NEW!",
+        "ribbon_bg": "#620f18",
+        "ribbon_text_color": "#ffffff",
+        "pill_text": "",
+        "pill_bg": "#896a28",
+        "pill_text_color": "#ffffff",
+        "eyebrow": "An added touch, on us",
+        "headline": "<h2 class=\"h1\">Make It Personal. We'll Handle the Note.</h2>",
+        "body": "<p class=\"body\">Every order comes with the option to include a personalized gift note. Write a little holiday wish, a thoughtful hello or a message just because. We'll print it and tuck it inside, ready to make someone's day.</p>",
+        "text_color": "#f8f3ea",
+        "eyebrow_color": "#dcc392",
+        "icon_size": 46,
+        "cta_label": "Shop Now",
+        "cta_url": "shopify://collections/shop-all",
+        "cta_bg": "#f8f3ea",
+        "cta_text_color": "#1f3b2f",
+        "contain": true,
+        "pad_top": 110,
+        "pad_bottom": 110,
+        "pad_top_m": 44,
+        "pad_bottom_m": 40,
+        "aria_label": "Free gift notes for all orders"
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs_8LXnyk",
+    "main",
+    "trade_hero_split_iifPUy",
+    "shipping_banner_K3fDNg",
+    "image_text_WYDcQd",
+    "color_story_carousel_MzjFLV",
+    "color_story_carousel_nkcNXA",
+    "color_story_carousel_FYpG3t",
+    "color_story_carousel_Fi3pcW",
+    "color_story_carousel_btfVCD",
+    "gift_card_feature_7KFrDG",
+    "collection_cards_U64nj8",
+    "gift_note_xVEqEk"
+  ]
+}

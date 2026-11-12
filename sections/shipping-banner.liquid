@@ -1,0 +1,200 @@
+{%- liquid
+  assign sid = section.id
+  assign s = section.settings
+  assign cols = section.blocks.size
+  if cols < 1
+    assign cols = 1
+  endif
+-%}
+
+{% style %}
+  #sdb-{{ sid }} {
+    --sdb-bg: {{ s.bg_color }};
+    --sdb-sep: {{ s.separator_color }};
+    --sdb-eyebrow: {{ s.eyebrow_color }};
+    --sdb-head: {{ s.headline_color }};
+    --sdb-text: {{ s.text_color }};
+    --sdb-link: {{ s.link_color }};
+    --sdb-icon: {{ s.icon_size }}px;
+    --sdb-cols: {{ cols }};
+    background: var(--sdb-bg);
+    padding-top: {{ s.pad_top }}px;
+    padding-bottom: {{ s.pad_bottom }}px;
+    {%- if s.border_top %} border-top: 1px solid var(--sdb-sep);{% endif -%}
+    {%- if s.border_bottom %} border-bottom: 1px solid var(--sdb-sep);{% endif -%}
+  }
+  @media screen and (max-width: 768px) {
+    #sdb-{{ sid }} {
+      padding-top: {{ s.pad_top_m }}px;
+      padding-bottom: {{ s.pad_bottom_m }}px;
+    }
+  }
+{% endstyle %}
+
+<section id="sdb-{{ sid }}" class="sdb sdb--{{ cols }}col{% if s.align_desktop == 'center' %} sdb--center{% endif %}" aria-label="{{ s.aria_label | escape }}">
+  <div class="sdb__wrap{% if s.contain %} page-width{% endif %}">
+    <ul class="sdb__cols" role="list">
+      {%- for block in section.blocks -%}
+        {%- assign b = block.settings -%}
+        <li class="sdb__col" {{ block.shopify_attributes }}>
+          <div class="sdb__inner{% if b.icon != blank %} has-icon{% endif %}">
+            {%- if b.icon != blank -%}
+              {{
+                b.icon
+                | image_url: width: 160
+                | image_tag: class: 'sdb__icon', loading: 'lazy', alt: '', width: s.icon_size, height: s.icon_size
+              }}
+            {%- endif -%}
+            {%- if b.eyebrow != blank -%}<p class="sdb__eyebrow body-xs">{{ b.eyebrow | escape }}</p>{%- endif -%}
+            {%- if b.headline != blank -%}<div class="sdb__headline">{{ b.headline }}</div>{%- endif -%}
+            {%- if b.body != blank -%}<div class="sdb__body">{{ b.body }}</div>{%- endif -%}
+            {%- if b.cta_label != blank -%}
+              <a class="sdb__cta text-link" href="{{ b.cta_url | default: '#' }}">{{ b.cta_label | escape }}</a>
+            {%- endif -%}
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .sdb__cols {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(var(--sdb-cols), minmax(0, 1fr));
+  }
+  .sdb__col {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 4px 40px;
+    border-left: 1px solid var(--sdb-sep);
+  }
+  .sdb__col:first-child { border-left: 0; padding-left: 0; }
+  .sdb__col:last-child { padding-right: 0; }
+  /* Icon sits in its own left column, vertically centered on the headline row;
+     eyebrow, paragraph and CTA line up with the headline text. */
+  .sdb__inner { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; }
+  .sdb__inner.has-icon { grid-template-columns: auto minmax(0, 1fr); column-gap: 14px; }
+  .sdb__inner > :not(.sdb__icon) { grid-column: -2 / -1; }
+  .sdb__eyebrow { grid-row: 1; }
+  .sdb__headline { grid-row: 2; }
+  .sdb__body { grid-row: 3; }
+  .sdb__cta { grid-row: 4; justify-self: start; }
+  /* Icon is centered on the FIRST line of the headline, so it stays put when a headline wraps.
+     --sdb-hl-line = height of one headline line (theme .h4: 28px x 1.15 desktop, 20px x 1.15 mobile).
+     The negative bottom margin keeps the icon from making the headline row taller. */
+  .sdb { --sdb-hl-line: 32px; }
+  .sdb__icon {
+    grid-column: 1; grid-row: 2; align-self: start;
+    width: var(--sdb-icon); height: var(--sdb-icon); object-fit: contain;
+    margin-top: calc((var(--sdb-hl-line) - var(--sdb-icon)) / 2);
+    margin-bottom: calc(var(--sdb-icon) * -1);
+  }
+  .sdb__eyebrow { color: var(--sdb-eyebrow); text-transform: uppercase; font-weight: 600; margin: 0 0 4px; }
+  .sdb__headline, .sdb__headline > * { color: var(--sdb-head); margin: 0; }
+  .sdb__headline :is(p, h2, h3, h4, h5, h6) { font-family: louize, Georgia, serif; font-weight: 500; line-height: 1.15; text-wrap: balance; }
+  .sdb__body, .sdb__body > * { color: var(--sdb-text); margin: 0; }
+  .sdb__body { margin-top: 4px; }
+  .sdb__cta { display: inline-block; margin-top: 10px; color: var(--sdb-link); }
+
+  /* 4 columns: slightly tighter gutters so headlines have room.
+     Centered: icon + text sit as a group in the middle of each column (text stays left-aligned). */
+  @media screen and (min-width: 769px) {
+    .sdb--center .sdb__col { justify-content: center; }
+    .sdb--4col .sdb__col:not(:first-child) { padding-left: 28px; }
+    .sdb--4col .sdb__col:not(:last-child) { padding-right: 28px; }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1199px) {
+    .sdb--4col .sdb__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .sdb--4col .sdb__col { padding: 20px 40px; justify-content: flex-start; } /* 2x2: left-align so rows line up */
+    .sdb--4col .sdb__col:nth-child(odd) { border-left: 0; padding-left: 0; }
+    .sdb--4col .sdb__col:nth-child(even) { padding-right: 0; }
+    .sdb--4col .sdb__col:nth-child(-n+2) { padding-top: 4px; }
+    .sdb--4col .sdb__col:nth-child(n+3) { border-top: 1px solid var(--sdb-sep); padding-bottom: 4px; }
+  }
+
+  @media screen and (max-width: 768px) {
+    .sdb { --sdb-hl-line: 23px; }
+    .sdb__cols { grid-template-columns: 1fr; }
+    .sdb__col {
+      padding: 18px 0;
+      border-left: 0;
+      border-top: 1px solid var(--sdb-sep);
+    }
+    .sdb__col:first-child { border-top: 0; padding-top: 0; }
+    .sdb__col:last-child { padding-bottom: 0; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Shipping Deadline Banner",
+  "tag": "div",
+  "class": "section-shipping-deadline-banner",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#F8F3EA" },
+    { "type": "color", "id": "separator_color", "label": "Separator lines", "default": "#DCC392", "info": "Vertical lines between columns on desktop, horizontal lines between stacked columns on mobile." },
+    { "type": "color", "id": "eyebrow_color", "label": "Eyebrow", "default": "#896A28" },
+    { "type": "color", "id": "headline_color", "label": "Headline", "default": "#620F18" },
+    { "type": "color", "id": "text_color", "label": "Paragraph", "default": "#6B7682" },
+    { "type": "color", "id": "link_color", "label": "CTA link", "default": "#30383D" },
+
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "icon_size", "label": "Icon size", "min": 20, "max": 64, "step": 2, "unit": "px", "default": 32 },
+    {
+      "type": "select", "id": "align_desktop", "label": "Column content position (desktop)",
+      "options": [ { "value": "center", "label": "Centered in column" }, { "value": "left", "label": "Left" } ],
+      "default": "center",
+      "info": "Centered places the icon + text in the middle of each column; text stays left-aligned. Mobile is always left."
+    },
+    { "type": "checkbox", "id": "contain", "label": "Use theme page width", "default": true },
+    { "type": "checkbox", "id": "border_top", "label": "Line across the top", "default": false },
+    { "type": "checkbox", "id": "border_bottom", "label": "Line across the bottom", "default": false },
+    { "type": "range", "id": "pad_top", "label": "Top padding (desktop)", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 28 },
+    { "type": "range", "id": "pad_bottom", "label": "Bottom padding (desktop)", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 28 },
+    { "type": "range", "id": "pad_top_m", "label": "Top padding (mobile)", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24 },
+    { "type": "range", "id": "pad_bottom_m", "label": "Bottom padding (mobile)", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24 },
+    { "type": "text", "id": "aria_label", "label": "Accessible name", "default": "Holiday shipping deadlines", "info": "Read by screen readers. Not shown on the page." }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "settings": [
+        { "type": "image_picker", "id": "icon", "label": "Icon", "info": "Square PNG or SVG with a transparent background." },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Holiday Shipping Deadline" },
+        {
+          "type": "html", "id": "headline", "label": "Headline (HTML)",
+          "default": "<p class=\"h4\">Order by Sat, Dec 12</p>",
+          "info": "Accepts HTML. Theme classes such as h2, h4 or body can be used."
+        },
+        {
+          "type": "html", "id": "body", "label": "Paragraph (HTML)",
+          "default": "<p class=\"body-sm\">Order by end of day with Standard Shipping for delivery in time for the holidays.</p>"
+        },
+        { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Shipping Details" },
+        { "type": "url", "id": "cta_url", "label": "CTA link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shipping Deadline Banner",
+      "blocks": [
+        { "type": "column" },
+        {
+          "type": "column",
+          "settings": {
+            "eyebrow": "Anytime",
+            "headline": "<p class=\"h4\">E-Gift Cards</p>",
+            "body": "<p class=\"body-sm\">Delivered by email, right up to the last minute.</p>",
+            "cta_label": "Shop Gift Cards"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
