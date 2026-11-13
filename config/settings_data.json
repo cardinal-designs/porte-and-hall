@@ -155,19 +155,20 @@
       "mobile-menu": {
         "type": "mobile-menu",
         "blocks": {
-          "nav_item_style_yB6YGY": {
+          "nav_item_style_ABFJTf": {
             "type": "nav_item_style",
             "settings": {
-              "menu_item": "",
-              "text_color": "",
+              "menu_item": "Holiday",
+              "text_color": "#FFFFFF",
               "font": "brandon_regular",
+              "icon": "shopify://shop_images/bow-icon-white.svg",
               "icon_position": "left",
               "icon_height": 20
             }
           }
         },
         "block_order": [
-          "nav_item_style_yB6YGY"
+          "nav_item_style_ABFJTf"
         ],
         "settings": {
           "menu": "2024-best-seller-mobile-new",
