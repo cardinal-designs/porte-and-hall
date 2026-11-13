@@ -75,11 +75,10 @@
         "blocks": {
           "nav_item_style_iU9yFd": {
             "type": "nav_item_style",
-            "disabled": true,
             "settings": {
               "menu_item": "Holiday",
               "text_color": "#620F18",
-              "font": "brandon_regular",
+              "font": "brandon_bold",
               "icon": "shopify://shop_images/bow-icon.png",
               "icon_position": "left",
               "icon_height": 20
@@ -155,6 +154,21 @@
       },
       "mobile-menu": {
         "type": "mobile-menu",
+        "blocks": {
+          "nav_item_style_yB6YGY": {
+            "type": "nav_item_style",
+            "settings": {
+              "menu_item": "",
+              "text_color": "",
+              "font": "brandon_regular",
+              "icon_position": "left",
+              "icon_height": 20
+            }
+          }
+        },
+        "block_order": [
+          "nav_item_style_yB6YGY"
+        ],
         "settings": {
           "menu": "2024-best-seller-mobile-new",
           "b2b_menu": "mobile-menu-trade"
