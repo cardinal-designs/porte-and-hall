@@ -1,3 +1,12 @@
+{%- liquid
+  assign hide_grid = false
+  if section.settings.b2b_only
+    unless customer and customer.b2b?
+      assign hide_grid = true
+    endunless
+  endif
+-%}
+{%- unless hide_grid -%}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'component-product-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
@@ -154,6 +163,7 @@
     </div>
   </div>
 </div>
+{%- endunless -%}
 
 {% schema %}
 {
@@ -161,6 +171,12 @@
   "tag": "section",
   "class": "collection-grid-section with-spacing",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "b2b_only",
+      "label": "Only show to logged-in trade (B2B) customers",
+      "default": false
+    },
     {
       "type": "range",
       "id": "products_per_page",
