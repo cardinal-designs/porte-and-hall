@@ -11,6 +11,9 @@
   "sections": {
     "trade_login": {
       "type": "b2b-image-with-text",
+      "custom_css": [
+        ".fifty-fifty__button {width: 225px;}"
+      ],
       "name": "Trade Swatches Login",
       "settings": {
         "b2b_only": false,
