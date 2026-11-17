@@ -18,6 +18,75 @@
 -%}
 
 {%- if show_section and swatch_collection != blank -%}
+
+    {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
+
+    {% liquid
+    assign image = collection.metafields.custom.hero_image
+    assign mobile_image = collection.metafields.custom.mobile_hero_image
+    %}
+
+    <div class="collection-hero{% if section.settings.show_collection_image and image %} collection-hero--with-image{% endif %}">
+    <div class="{% unless section.settings.full_width %} page-width{% endunless %}">
+        <div class="collection-hero__inner">
+        <div class="collection-hero__text-wrapper{% if image != blank %} collection-hero__text-wrapper--overlay{% endif %}">
+            {% if section.settings.show_title %}
+            <h1 class="collection-hero__title">
+            {{- collection.title | escape -}}
+            </h1>
+            {% endif %}
+
+            {% if section.settings.show_collection_description and collection.description != blank %}
+            <div class="collection-hero__description rte">{{ collection.description }}</div>
+            {% endif %}
+        </div>
+
+        {% if image != blank and mobile_image != blank %}
+            {{
+            image
+            | image_url: width: 1600
+            | image_tag:
+                loading: 'eager',
+                class: 'desktop-image hide-mobile',
+                sizes: '100vw',
+                widths: '750, 1100, 1400, 1600'
+            }}
+            {{
+            mobile_image
+            | image_url: width: 900
+            | image_tag:
+                loading: 'eager',
+                fetchpriority: 'high',
+                preload: true,
+                class: 'mobile-image hide-desktop',
+                sizes: '100vw',
+                widths: '375, 550, 750, 900'
+            }}
+        {% elsif image != blank %}
+            {{
+            image
+            | image_url: width: 1600
+            | image_tag:
+                loading: 'eager',
+                fetchpriority: 'high',
+                preload: true,
+                class: 'desktop-image hide-mobile',
+                sizes: '100vw',
+                widths: '750, 1100, 1400, 1600'
+            }}
+        {% endif %}
+        </div>
+    </div>
+    </div>
+
+    {% unless section.settings.show_title %}
+    <div class="page-width">
+    <h1 class="collection-hero__title--top">
+        {{- collection.title | escape -}}
+    </h1>
+    </div>
+    {% endunless %}
+
   {{ 'template-collection.css' | asset_url | stylesheet_tag }}
   {{ 'component-product-card.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
@@ -186,6 +255,30 @@
   "tag": "section",
   "class": "collection-grid-section with-spacing b2b-swatches-collection-section",
   "settings": [
+    {
+      "type": "paragraph",
+      "content": "Collection Banner"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show collection title on image?"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-collection-banner.settings.paragraph.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "default": true,
+      "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width?"
+    },
     {
       "type": "paragraph",
       "content": "Shows only to registered B2B / Trade customers (customer.b2b?). Guests and retail customers never see this grid."
