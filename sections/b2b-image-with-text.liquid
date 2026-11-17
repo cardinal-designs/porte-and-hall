@@ -1,21 +1,9 @@
 {{ 'b2b-image-with-text.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  assign is_b2b_customer = false
-  if customer and customer.b2b?
-    assign is_b2b_customer = true
-  endif
-
+  # Trade login banner: show to guests / non-B2B, hide for logged-in B2B
   assign show_section = true
-
-  if section.settings.b2b_only
-    assign show_section = false
-    if is_b2b_customer
-      assign show_section = true
-    endif
-  endif
-
-  if section.settings.hide_when_b2b and is_b2b_customer
+  if customer and customer.b2b?
     assign show_section = false
   endif
 -%}
@@ -101,24 +89,6 @@
 {
   "name": "50/50 Image With Text",
   "settings": [
-    {
-      "type": "header",
-      "content": "Visibility"
-    },
-    {
-      "type": "checkbox",
-      "id": "b2b_only",
-      "label": "Only show this section to B2B customers",
-      "default": false,
-      "info": "Shows only when a logged-in B2B company customer is present."
-    },
-    {
-      "type": "checkbox",
-      "id": "hide_when_b2b",
-      "label": "Hide when a B2B customer is logged in",
-      "default": false,
-      "info": "Use for trade login gates (e.g. Swatches). Guests and non-B2B customers see this section; logged-in B2B customers do not."
-    },
     {
       "type": "header",
       "content": "Layout"
