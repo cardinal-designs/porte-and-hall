@@ -84,6 +84,26 @@
           } else {
             keepOnTop();
           }
+
+          // Pass the visitor's OneTrust choice to Shopify (only after they have chosen),
+          // so Customer Events, app pixels and the Google & YouTube app follow it.
+          if (closed) {
+            var g = window.OnetrustActiveGroups || '';
+            var consent = {
+              analytics:    g.indexOf('C0002') > -1,
+              preferences:  g.indexOf('C0003') > -1,
+              marketing:    g.indexOf('C0004') > -1,
+              sale_of_data: g.indexOf('C0004') > -1
+            };
+            var send = function () {
+              try { window.Shopify.customerPrivacy.setTrackingConsent(consent, function () {}); } catch (e) {}
+            };
+            if (window.Shopify && window.Shopify.customerPrivacy) {
+              send();
+            } else if (window.Shopify && window.Shopify.loadFeatures) {
+              window.Shopify.loadFeatures([{ name: 'consent-tracking-api', version: '0.1' }], function (err) { if (!err) send(); });
+            }
+          }
         };
       })();
     </script>
