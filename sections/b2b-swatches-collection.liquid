@@ -22,7 +22,7 @@
     {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
     {% unless section.settings.show_title %}
-        <div class="collection-hero
+        <div class="collection-hero">
         <div class="page-width">
             <h1 class="collection-hero__title--top">
                 {{- collection.title | escape -}}
