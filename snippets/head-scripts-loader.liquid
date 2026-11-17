@@ -18,6 +18,12 @@
     const originalAppendChild = document.head.appendChild;
 
     document.head.appendChild = function (element) {
+      // Reject All: never add app-injected trackers in a rejected category
+      if (element.tagName === 'SCRIPT' && window.phConsentBlocked &&
+          window.phConsentBlocked(element.getAttribute('src') || element.dataset.lazySrc || '')) {
+        return element;
+      }
+
       if (!isScriptsLoaded && element.tagName === 'SCRIPT') {
         const src = element.getAttribute('src') || '';
 
