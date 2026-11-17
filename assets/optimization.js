@@ -81,9 +81,13 @@
     document.documentElement.classList.add('third-party-scripts-loaded');
   }
 
-  function onUserActivity() {
+  function onUserActivity(event) {
     // Defer so the first tap (e.g. PDP swatch link) can complete before DOM changes.
-    setTimeout(loadDeferredScripts, 0);
+    // A click in the cookie banner waits a little longer, so OneTrust has saved
+    // the visitor's choice before any tracker is released.
+    const target = event && event.target;
+    const inBanner = target && target.closest && target.closest('#onetrust-consent-sdk');
+    setTimeout(loadDeferredScripts, inBanner ? 500 : 0);
   }
 
   function startListenUserActivity() {
