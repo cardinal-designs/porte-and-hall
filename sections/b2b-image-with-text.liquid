@@ -1,94 +1,109 @@
 {{ 'b2b-image-with-text.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
-  # Trade login banner: show to guests / non-B2B, hide for logged-in B2B
   assign show_section = true
-  if customer and customer.b2b?
+  if section.settings.b2b_only
     assign show_section = false
+    if customer and customer.b2b?
+      assign show_section = true
+    endif
   endif
 -%}
 
 {%- if show_section -%}
-  {%- style -%}
-    #fifty-fifty-{{ section.id }} {
-      --fifty-fifty-bg-color: {{ section.settings.bg_color }};
-      --fifty-fifty-padding-top: {{ section.settings.padding_top }}px;
-      --fifty-fifty-padding-bottom: {{ section.settings.padding_bottom }}px;
-      --fifty-fifty-container-width: {{ section.settings.container_width }}px;
-      --fifty-fifty-column-gap: {{ section.settings.column_gap }}px;
-      --fifty-fifty-image-height: {{ section.settings.image_height }}px;
-      --fifty-fifty-image-radius: {{ section.settings.image_radius }}px;
-      --fifty-fifty-sub-text-color: {{ section.settings.sub_text_color }};
-      --fifty-fifty-heading-color: {{ section.settings.heading_color }};
-      --fifty-fifty-heading-size: {{ section.settings.heading_size }}px;
-      --fifty-fifty-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
-      --fifty-fifty-body-color: {{ section.settings.body_color }};
-      --fifty-fifty-body-size: {{ section.settings.body_size }}px;
-      --fifty-fifty-button-bg-color: {{ section.settings.button_bg_color }};
-      --fifty-fifty-button-text-color: {{ section.settings.button_text_color }};
-      --fifty-fifty-button-radius: {{ section.settings.button_radius }}px;
-      --fifty-fifty-footnote-color: {{ section.settings.footnote_color }};
-      --fifty-fifty-link-color: {{ section.settings.link_color }};
-    }
-  {%- endstyle -%}
+{% unless handle == 'swatches' and customer and customer.b2b? %}
 
-  <div class="fifty-fifty" id="fifty-fifty-{{ section.id }}">
-    <div class="fifty-fifty__inner{% if section.settings.image_position == 'right' %} fifty-fifty__inner--image-right{% endif %}">
+{%- style -%}
+  #fifty-fifty-{{ section.id }} {
+    --fifty-fifty-bg-color: {{ section.settings.bg_color }};
+    --fifty-fifty-padding-top: {{ section.settings.padding_top }}px;
+    --fifty-fifty-padding-bottom: {{ section.settings.padding_bottom }}px;
+    --fifty-fifty-container-width: {{ section.settings.container_width }}px;
+    --fifty-fifty-column-gap: {{ section.settings.column_gap }}px;
+    --fifty-fifty-image-height: {{ section.settings.image_height }}px;
+    --fifty-fifty-image-radius: {{ section.settings.image_radius }}px;
+    --fifty-fifty-sub-text-color: {{ section.settings.sub_text_color }};
+    --fifty-fifty-heading-color: {{ section.settings.heading_color }};
+    --fifty-fifty-heading-size: {{ section.settings.heading_size }}px;
+    --fifty-fifty-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+    --fifty-fifty-body-color: {{ section.settings.body_color }};
+    --fifty-fifty-body-size: {{ section.settings.body_size }}px;
+    --fifty-fifty-button-bg-color: {{ section.settings.button_bg_color }};
+    --fifty-fifty-button-text-color: {{ section.settings.button_text_color }};
+    --fifty-fifty-button-radius: {{ section.settings.button_radius }}px;
+    --fifty-fifty-footnote-color: {{ section.settings.footnote_color }};
+    --fifty-fifty-link-color: {{ section.settings.link_color }};
+  }
+{%- endstyle -%}
 
-      <div class="fifty-fifty__image{% if section.settings.image == blank %} fifty-fifty__image--placeholder{% endif %}">
-        {%- if section.settings.image != blank -%}
-          {{
-            section.settings.image
-            | image_url: width: 1600
-            | image_tag:
-              class: 'fifty-fifty__image-media',
-              loading: 'lazy',
-              widths: '400, 800, 1200, 1600',
-              sizes: '(min-width: 990px) 50vw, 100vw'
-          }}
-        {%- endif -%}
-      </div>
+<div class="fifty-fifty" id="fifty-fifty-{{ section.id }}">
+  <div class="fifty-fifty__inner{% if section.settings.image_position == 'right' %} fifty-fifty__inner--image-right{% endif %}">
 
-      <div class="fifty-fifty__content">
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="fifty-fifty__sub-text">{{ section.settings.eyebrow | escape }}</p>
-        {%- endif -%}
-
-        {%- if section.settings.heading != blank -%}
-          <h2 class="fifty-fifty__heading">{{ section.settings.heading | escape }}</h2>
-        {%- endif -%}
-
-        {%- if section.settings.body_text != blank -%}
-          <div class="fifty-fifty__body">{{ section.settings.body_text }}</div>
-        {%- endif -%}
-
-        {%- if section.settings.button_label != blank -%}
-          <a href="{{ section.settings.button_link | default: routes.account_login_url }}" class="fifty-fifty__button">
-            {{ section.settings.button_label | escape }}
-          </a>
-        {%- endif -%}
-
-        {%- if section.settings.footnote_text != blank -%}
-          <p class="fifty-fifty__footnote">
-            {{ section.settings.footnote_text | escape }}
-            {%- if section.settings.footnote_link_text != blank -%}
-              <a href="{{ section.settings.footnote_link | default: '#' }}" class="fifty-fifty__footnote-link">{{ section.settings.footnote_link_text | escape }}</a>
-            {%- endif -%}
-            {%- if section.settings.footnote_text_after != blank -%}
-              {{ section.settings.footnote_text_after | escape }}
-            {%- endif -%}
-          </p>
-        {%- endif -%}
-      </div>
-
+    <div class="fifty-fifty__image{% if section.settings.image == blank %} fifty-fifty__image--placeholder{% endif %}">
+      {%- if section.settings.image != blank -%}
+        <img
+          class="fifty-fifty__image-media"
+          src="{{ section.settings.image | image_url: width: 1600 }}"
+          alt="{{ section.settings.image.alt | escape }}"
+          loading="lazy"
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+        >
+      {%- endif -%}
     </div>
+
+    <div class="fifty-fifty__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <div class="fifty-fifty__sub-text">{{ section.settings.eyebrow }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="fifty-fifty__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.body_text != blank -%}
+        <div class="fifty-fifty__body">{{ section.settings.body_text }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link | default: '#' }}" class="fifty-fifty__button">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+
+      {%- if section.settings.footnote_text != blank -%}
+        <div class="fifty-fifty__footnote">
+          {{ section.settings.footnote_text }}
+          {%- if section.settings.footnote_link_text != blank -%}
+            <a href="{{ section.settings.footnote_link | default: '#' }}" class="fifty-fifty__footnote-link">{{ section.settings.footnote_link_text }}</a>
+          {%- endif -%}
+          {%- if section.settings.footnote_text_after != blank -%}
+            {{ section.settings.footnote_text_after }}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
   </div>
+</div>
+{% endunless %}
 {%- endif -%}
 
 {% schema %}
 {
   "name": "50/50 Image With Text",
   "settings": [
+    {
+      "type": "header",
+      "content": "Visibility"
+    },
+    {
+      "type": "checkbox",
+      "id": "b2b_only",
+      "label": "Only show this section to B2B customers",
+      "default": false,
+      "info": "Uses {% raw %}{% if customer and customer.b2b? %}{% endraw %} to check for a logged-in B2B company customer."
+    },
     {
       "type": "header",
       "content": "Layout"
@@ -233,7 +248,7 @@
       "type": "text",
       "id": "button_label",
       "label": "Button label",
-      "default": "Log In"
+      "default": "Select Your 5 Swatches"
     },
     {
       "type": "url",
@@ -264,7 +279,7 @@
       "type": "text",
       "id": "footnote_link_text",
       "label": "Footnote link text",
-      "default": "Join now"
+      "default": "Join below ↓"
     },
     {
       "type": "url",
@@ -327,7 +342,7 @@
       "type": "color",
       "id": "button_text_color",
       "label": "Button text color",
-      "default": "#FFFFFF"
+      "default": "#1A1A1A"
     }
   ],
   "presets": [
