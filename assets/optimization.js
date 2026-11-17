@@ -20,6 +20,12 @@
     const lazySrc = scriptTag.dataset.lazySrc;
     if (!lazySrc) return Promise.resolve();
 
+    // Reject All: drop trackers in a rejected category (see snippets/consent-gate.liquid)
+    if (window.phConsentBlocked && window.phConsentBlocked(lazySrc)) {
+      scriptTag.remove();
+      return Promise.resolve();
+    }
+
     const newScript = document.createElement('script');
 
     for (const attr of scriptTag.attributes) {
