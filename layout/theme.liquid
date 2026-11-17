@@ -179,7 +179,7 @@
       var convert_attributes = JSON.parse(
         localStorage.getItem('convert_attributes')
       )
-      if (convert_attributes) {
+      if (convert_attributes && !window.phConsentRejected('C0002')) {
         console.debug('Convert: We have attributes')
         console.debug(convert_attributes)
         //build POST data to be sent
