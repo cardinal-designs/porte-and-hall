@@ -7,6 +7,13 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
+/*
+ * ------------------------------------------------------------
+ * Swatches collection template (/collections/swatches)
+ * - Guests / retail: trade login banner only
+ * - Registered B2B: Trade Swatches Collection + Intelligems
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "trade_login": {
@@ -16,7 +23,6 @@
       ],
       "name": "Trade Swatches Login",
       "settings": {
-        "b2b_only": false,
         "image_position": "left",
         "container_width": 1400,
         "column_gap": 100,
@@ -54,7 +60,16 @@
       "settings": {
         "collection": "swatches",
         "products_per_page": 24,
-        "hide_tag": false
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "hide_tag": false,
+        "add_image_padding": false,
+        "show_image_outline": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_filtering": false,
+        "enable_sorting": false,
+        "collapse_on_larger_devices": false
       }
     }
   },
