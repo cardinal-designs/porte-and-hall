@@ -11,82 +11,82 @@
 -%}
 
 {%- if show_section -%}
-{% unless handle == 'swatches' and customer and customer.b2b? %}
+  {% unless handle == 'swatches' and customer and customer.b2b? %}
 
-{%- style -%}
-  #fifty-fifty-{{ section.id }} {
-    --fifty-fifty-bg-color: {{ section.settings.bg_color }};
-    --fifty-fifty-padding-top: {{ section.settings.padding_top }}px;
-    --fifty-fifty-padding-bottom: {{ section.settings.padding_bottom }}px;
-    --fifty-fifty-container-width: {{ section.settings.container_width }}px;
-    --fifty-fifty-column-gap: {{ section.settings.column_gap }}px;
-    --fifty-fifty-image-height: {{ section.settings.image_height }}px;
-    --fifty-fifty-image-radius: {{ section.settings.image_radius }}px;
-    --fifty-fifty-sub-text-color: {{ section.settings.sub_text_color }};
-    --fifty-fifty-heading-color: {{ section.settings.heading_color }};
-    --fifty-fifty-heading-size: {{ section.settings.heading_size }}px;
-    --fifty-fifty-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
-    --fifty-fifty-body-color: {{ section.settings.body_color }};
-    --fifty-fifty-body-size: {{ section.settings.body_size }}px;
-    --fifty-fifty-button-bg-color: {{ section.settings.button_bg_color }};
-    --fifty-fifty-button-text-color: {{ section.settings.button_text_color }};
-    --fifty-fifty-button-radius: {{ section.settings.button_radius }}px;
-    --fifty-fifty-footnote-color: {{ section.settings.footnote_color }};
-    --fifty-fifty-link-color: {{ section.settings.link_color }};
-  }
-{%- endstyle -%}
+  {%- style -%}
+    #fifty-fifty-{{ section.id }} {
+      --fifty-fifty-bg-color: {{ section.settings.bg_color }};
+      --fifty-fifty-padding-top: {{ section.settings.padding_top }}px;
+      --fifty-fifty-padding-bottom: {{ section.settings.padding_bottom }}px;
+      --fifty-fifty-container-width: {{ section.settings.container_width }}px;
+      --fifty-fifty-column-gap: {{ section.settings.column_gap }}px;
+      --fifty-fifty-image-height: {{ section.settings.image_height }}px;
+      --fifty-fifty-image-radius: {{ section.settings.image_radius }}px;
+      --fifty-fifty-sub-text-color: {{ section.settings.sub_text_color }};
+      --fifty-fifty-heading-color: {{ section.settings.heading_color }};
+      --fifty-fifty-heading-size: {{ section.settings.heading_size }}px;
+      --fifty-fifty-heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+      --fifty-fifty-body-color: {{ section.settings.body_color }};
+      --fifty-fifty-body-size: {{ section.settings.body_size }}px;
+      --fifty-fifty-button-bg-color: {{ section.settings.button_bg_color }};
+      --fifty-fifty-button-text-color: {{ section.settings.button_text_color }};
+      --fifty-fifty-button-radius: {{ section.settings.button_radius }}px;
+      --fifty-fifty-footnote-color: {{ section.settings.footnote_color }};
+      --fifty-fifty-link-color: {{ section.settings.link_color }};
+    }
+  {%- endstyle -%}
 
-<div class="fifty-fifty" id="fifty-fifty-{{ section.id }}">
-  <div class="fifty-fifty__inner{% if section.settings.image_position == 'right' %} fifty-fifty__inner--image-right{% endif %}">
+  <div class="fifty-fifty" id="fifty-fifty-{{ section.id }}">
+    <div class="fifty-fifty__inner{% if section.settings.image_position == 'right' %} fifty-fifty__inner--image-right{% endif %}">
 
-    <div class="fifty-fifty__image{% if section.settings.image == blank %} fifty-fifty__image--placeholder{% endif %}">
-      {%- if section.settings.image != blank -%}
-        <img
-          class="fifty-fifty__image-media"
-          src="{{ section.settings.image | image_url: width: 1600 }}"
-          alt="{{ section.settings.image.alt | escape }}"
-          loading="lazy"
-          width="{{ section.settings.image.width }}"
-          height="{{ section.settings.image.height }}"
-        >
-      {%- endif -%}
+      <div class="fifty-fifty__image{% if section.settings.image == blank %} fifty-fifty__image--placeholder{% endif %}">
+        {%- if section.settings.image != blank -%}
+          <img
+            class="fifty-fifty__image-media"
+            src="{{ section.settings.image | image_url: width: 1600 }}"
+            alt="{{ section.settings.image.alt | escape }}"
+            loading="lazy"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.height }}"
+          >
+        {%- endif -%}
+      </div>
+
+      <div class="fifty-fifty__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <div class="fifty-fifty__sub-text">{{ section.settings.eyebrow }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h2 class="fifty-fifty__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.body_text != blank -%}
+          <div class="fifty-fifty__body">{{ section.settings.body_text }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link | default: '#' }}" class="fifty-fifty__button">
+            {{ section.settings.button_label }}
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.footnote_text != blank -%}
+          <div class="fifty-fifty__footnote">
+            {{ section.settings.footnote_text }}
+            {%- if section.settings.footnote_link_text != blank -%}
+              <a href="{{ section.settings.footnote_link | default: '#' }}" class="fifty-fifty__footnote-link">{{ section.settings.footnote_link_text }}</a>
+            {%- endif -%}
+            {%- if section.settings.footnote_text_after != blank -%}
+              {{ section.settings.footnote_text_after }}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
     </div>
-
-    <div class="fifty-fifty__content">
-      {%- if section.settings.eyebrow != blank -%}
-        <div class="fifty-fifty__sub-text">{{ section.settings.eyebrow }}</div>
-      {%- endif -%}
-
-      {%- if section.settings.heading != blank -%}
-        <h2 class="fifty-fifty__heading">{{ section.settings.heading }}</h2>
-      {%- endif -%}
-
-      {%- if section.settings.body_text != blank -%}
-        <div class="fifty-fifty__body">{{ section.settings.body_text }}</div>
-      {%- endif -%}
-
-      {%- if section.settings.button_label != blank -%}
-        <a href="{{ section.settings.button_link | default: '#' }}" class="fifty-fifty__button">
-          {{ section.settings.button_label }}
-        </a>
-      {%- endif -%}
-
-      {%- if section.settings.footnote_text != blank -%}
-        <div class="fifty-fifty__footnote">
-          {{ section.settings.footnote_text }}
-          {%- if section.settings.footnote_link_text != blank -%}
-            <a href="{{ section.settings.footnote_link | default: '#' }}" class="fifty-fifty__footnote-link">{{ section.settings.footnote_link_text }}</a>
-          {%- endif -%}
-          {%- if section.settings.footnote_text_after != blank -%}
-            {{ section.settings.footnote_text_after }}
-          {%- endif -%}
-        </div>
-      {%- endif -%}
-    </div>
-
   </div>
-</div>
-{% endunless %}
+  {% endunless %}
 {%- endif -%}
 
 {% schema %}
