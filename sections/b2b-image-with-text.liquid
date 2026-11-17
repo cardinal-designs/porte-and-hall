@@ -1,18 +1,26 @@
 {{ 'b2b-image-with-text.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
+  assign is_b2b_customer = false
+  if customer and customer.b2b?
+    assign is_b2b_customer = true
+  endif
+
   assign show_section = true
+
   if section.settings.b2b_only
     assign show_section = false
-    if customer and customer.b2b?
+    if is_b2b_customer
       assign show_section = true
     endif
+  endif
+
+  if section.settings.hide_when_b2b and is_b2b_customer
+    assign show_section = false
   endif
 -%}
 
 {%- if show_section -%}
-  {% unless handle == 'swatches' and customer and customer.b2b? %}
-
   {%- style -%}
     #fifty-fifty-{{ section.id }} {
       --fifty-fifty-bg-color: {{ section.settings.bg_color }};
@@ -41,24 +49,25 @@
 
       <div class="fifty-fifty__image{% if section.settings.image == blank %} fifty-fifty__image--placeholder{% endif %}">
         {%- if section.settings.image != blank -%}
-          <img
-            class="fifty-fifty__image-media"
-            src="{{ section.settings.image | image_url: width: 1600 }}"
-            alt="{{ section.settings.image.alt | escape }}"
-            loading="lazy"
-            width="{{ section.settings.image.width }}"
-            height="{{ section.settings.image.height }}"
-          >
+          {{
+            section.settings.image
+            | image_url: width: 1600
+            | image_tag:
+              class: 'fifty-fifty__image-media',
+              loading: 'lazy',
+              widths: '400, 800, 1200, 1600',
+              sizes: '(min-width: 990px) 50vw, 100vw'
+          }}
         {%- endif -%}
       </div>
 
       <div class="fifty-fifty__content">
         {%- if section.settings.eyebrow != blank -%}
-          <div class="fifty-fifty__sub-text">{{ section.settings.eyebrow }}</div>
+          <p class="fifty-fifty__sub-text">{{ section.settings.eyebrow | escape }}</p>
         {%- endif -%}
 
         {%- if section.settings.heading != blank -%}
-          <h2 class="fifty-fifty__heading">{{ section.settings.heading }}</h2>
+          <h2 class="fifty-fifty__heading">{{ section.settings.heading | escape }}</h2>
         {%- endif -%}
 
         {%- if section.settings.body_text != blank -%}
@@ -66,27 +75,26 @@
         {%- endif -%}
 
         {%- if section.settings.button_label != blank -%}
-          <a href="{{ section.settings.button_link | default: '#' }}" class="fifty-fifty__button">
-            {{ section.settings.button_label }}
+          <a href="{{ section.settings.button_link | default: routes.account_login_url }}" class="fifty-fifty__button">
+            {{ section.settings.button_label | escape }}
           </a>
         {%- endif -%}
 
         {%- if section.settings.footnote_text != blank -%}
-          <div class="fifty-fifty__footnote">
-            {{ section.settings.footnote_text }}
+          <p class="fifty-fifty__footnote">
+            {{ section.settings.footnote_text | escape }}
             {%- if section.settings.footnote_link_text != blank -%}
-              <a href="{{ section.settings.footnote_link | default: '#' }}" class="fifty-fifty__footnote-link">{{ section.settings.footnote_link_text }}</a>
+              <a href="{{ section.settings.footnote_link | default: '#' }}" class="fifty-fifty__footnote-link">{{ section.settings.footnote_link_text | escape }}</a>
             {%- endif -%}
             {%- if section.settings.footnote_text_after != blank -%}
-              {{ section.settings.footnote_text_after }}
+              {{ section.settings.footnote_text_after | escape }}
             {%- endif -%}
-          </div>
+          </p>
         {%- endif -%}
       </div>
 
     </div>
   </div>
-  {% endunless %}
 {%- endif -%}
 
 {% schema %}
@@ -102,7 +110,14 @@
       "id": "b2b_only",
       "label": "Only show this section to B2B customers",
       "default": false,
-      "info": "Uses {% raw %}{% if customer and customer.b2b? %}{% endraw %} to check for a logged-in B2B company customer."
+      "info": "Shows only when a logged-in B2B company customer is present."
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_when_b2b",
+      "label": "Hide when a B2B customer is logged in",
+      "default": false,
+      "info": "Use for trade login gates (e.g. Swatches). Guests and non-B2B customers see this section; logged-in B2B customers do not."
     },
     {
       "type": "header",
@@ -248,7 +263,7 @@
       "type": "text",
       "id": "button_label",
       "label": "Button label",
-      "default": "Select Your 5 Swatches"
+      "default": "Log In"
     },
     {
       "type": "url",
@@ -279,7 +294,7 @@
       "type": "text",
       "id": "footnote_link_text",
       "label": "Footnote link text",
-      "default": "Join below ↓"
+      "default": "Join now"
     },
     {
       "type": "url",
@@ -342,7 +357,7 @@
       "type": "color",
       "id": "button_text_color",
       "label": "Button text color",
-      "default": "#1A1A1A"
+      "default": "#FFFFFF"
     }
   ],
   "presets": [
