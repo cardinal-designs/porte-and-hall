@@ -19,18 +19,7 @@
 
 {%- if show_section and swatch_collection != blank -%}
 
-    {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
-
-    {% unless section.settings.show_title %}
-        <div class="collection-hero">
-        <div class="page-width">
-            <h1 class="collection-hero__title--top">
-                {{- collection.title | escape -}}
-            </h1>
-        </div>
-        </div>
-    {% endunless %}
-
+  {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
   {{ 'template-collection.css' | asset_url | stylesheet_tag }}
   {{ 'component-product-card.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
@@ -64,6 +53,12 @@
     data-intelligems-swatches
     data-collection-handle="{{ swatch_collection.handle }}"
   >
+    {% unless section.settings.show_title %}
+        <h1 class="collection-hero__title--top">
+            {{- collection.title | escape -}}
+        </h1>
+    {% endunless %}
+
     <div class="collection-grid__inner">
       {% comment %}
         {% if section.settings.enable_filtering or section.settings.enable_sorting %}
