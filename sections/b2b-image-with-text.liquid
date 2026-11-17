@@ -1,17 +1,14 @@
 {{ 'b2b-image-with-text.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
+  # Shown to guests and logged-in non-B2B customers; hidden for B2B customers.
   assign show_section = true
-  if section.settings.b2b_only
+  if customer and customer.b2b?
     assign show_section = false
-    if customer and customer.b2b?
-      assign show_section = true
-    endif
   endif
 -%}
 
 {%- if show_section -%}
-{% unless handle == 'swatches' and customer and customer.b2b? %}
 
 {%- style -%}
   #fifty-fifty-{{ section.id }} {
@@ -86,24 +83,12 @@
 
   </div>
 </div>
-{% endunless %}
 {%- endif -%}
 
 {% schema %}
 {
-  "name": "50/50 Image With Text",
+  "name": "Trade Swatches Login",
   "settings": [
-    {
-      "type": "header",
-      "content": "Visibility"
-    },
-    {
-      "type": "checkbox",
-      "id": "b2b_only",
-      "label": "Only show this section to B2B customers",
-      "default": false,
-      "info": "Uses {% raw %}{% if customer and customer.b2b? %}{% endraw %} to check for a logged-in B2B company customer."
-    },
     {
       "type": "header",
       "content": "Layout"
@@ -347,7 +332,7 @@
   ],
   "presets": [
     {
-      "name": "50/50 Image With Text"
+      "name": "Trade Swatches Login"
     }
   ]
 }
