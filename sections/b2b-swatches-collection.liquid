@@ -1,12 +1,8 @@
 {%- liquid
-  assign is_b2b_customer = false
+  # Show collection only when visitor IS a registered B2B customer
+  assign show_collection = false
   if customer and customer.b2b?
-    assign is_b2b_customer = true
-  endif
-
-  assign show_section = false
-  if is_b2b_customer
-    assign show_section = true
+    assign show_collection = true
   endif
 
   assign swatch_collection = section.settings.collection
@@ -17,7 +13,7 @@
   assign products_per_page = section.settings.products_per_page
 -%}
 
-{%- if show_section and swatch_collection != blank -%}
+{%- if show_collection and swatch_collection != blank -%}
 
   {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
   {{ 'template-collection.css' | asset_url | stylesheet_tag }}
