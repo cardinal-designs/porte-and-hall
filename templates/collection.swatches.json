@@ -52,7 +52,7 @@
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
-        "b2b_only": false,
+        "b2b_only": true,
         "products_per_page": 24,
         "image_ratio": "adapt",
         "show_secondary_image": false,
