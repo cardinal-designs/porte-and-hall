@@ -1,0 +1,58 @@
+{%- comment -%}
+  Reject All consent gate. Must be the FIRST thing in <head>.
+  Reads the saved OneTrust choice from cookies (works before OneTrust loads).
+  Visitors who haven't chosen yet are tracked as today.
+  Used by: theme.liquid, head-scripts-loader.liquid, assets/optimization.js.
+{%- endcomment -%}
+<script>
+  (function () {
+    // Turn on only after legal/OneTrust confirm Global Privacy Control should count as an opt-out.
+    var HONOR_GPC = false;
+
+    // Script URL pattern -> OneTrust category. C0002 = Performance, C0004 = Targeting.
+    // Add any new tracker here; nothing else needs to change.
+    var CONSENT_MAP = [
+      ['mm-uxrv.com', 'C0004'],                 // Customers.ai
+      ['bat.bing.com', 'C0004'],                // Bing UET (theme copy)
+      ['djnf6e5yyirys.cloudfront.net', 'C0004'],// Friendbuy (theme copy)
+      ['static.shopmy.us', 'C0004'],            // ShopMy affiliate tracking
+      ['mountain.com', 'C0004'],                // MNTN (also stops LiveIntent)
+      ['clarity.ms', 'C0002'],                  // Microsoft Clarity
+      ['convertexperiments.com', 'C0002'],      // Convert A/B tests
+      ['intelligems.io', 'C0002'],              // Intelligems tests
+      ['analytics.ahrefs.com', 'C0002']         // Ahrefs (remove this line if Kristie keeps it for everyone)
+    ];
+
+    window.phConsentRejected = function (group) {
+      if (HONOR_GPC && group === 'C0004' && navigator.globalPrivacyControl === true) return true;
+      if (document.cookie.indexOf('OptanonAlertBoxClosed=') === -1) return false; // no choice yet
+      var m = document.cookie.match(/(?:^|;\s*)OptanonConsent=([^;]+)/);
+      if (!m) return false;
+      var v = m[1];
+      // OneTrust URL-encodes the groups list; decode up to twice to be safe
+      for (var d = 0; d < 2 && v.indexOf('%') > -1; d++) {
+        try { v = decodeURIComponent(v); } catch (e) { break; }
+      }
+      return v.indexOf(group + ':0') > -1;
+    };
+
+    // True if this script URL belongs to a category the visitor rejected
+    window.phConsentBlocked = function (src) {
+      if (!src) return false;
+      for (var i = 0; i < CONSENT_MAP.length; i++) {
+        if (src.indexOf(CONSENT_MAP[i][0]) > -1) return window.phConsentRejected(CONSENT_MAP[i][1]);
+      }
+      return false;
+    };
+
+    // Loader for scripts that load immediately (not through data-lazy-src)
+    window.phLoadScript = function (src, attrs) {
+      if (window.phConsentBlocked(src)) return;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = src;
+      for (var k in (attrs || {})) s.setAttribute(k, attrs[k]);
+      document.head.appendChild(s);
+    };
+  })();
+</script>
