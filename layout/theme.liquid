@@ -473,8 +473,9 @@
     {% if product %}
       <script>
         window.addEventListener('load', function() {
-        var _learnq = window._learnq || [];
-        function addedToCart() {
+        window.addEventListener('load', function() {
+        if (window.phConsentRejected('C0004')) return; // Reject All: no Klaviyo browse tracking
+        var _learnq = window._learnq || [];        function addedToCart() {
           fetch(`${window.location.origin}/cart.js`)
           .then(res => res.clone().json().then(data => {
             var cart = {
