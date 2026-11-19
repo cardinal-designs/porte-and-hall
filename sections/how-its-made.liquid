@@ -1,0 +1,293 @@
+{%- liquid
+  assign s = section.settings
+  assign cols = section.blocks.size
+  if cols < 1
+    assign cols = 1
+  endif
+  if s.aspect == 'square'
+    assign ratio = '1/1'
+  else
+    assign ratio = '4/5'
+  endif
+  assign heading_id = 'phhm-h-' | append: section.id
+-%}
+
+{%- style -%}
+.phhm{--ink:#30383D;--blue:#546b82;--blue-dk:#43576b;--line:rgba(84,107,130,.28);container-type:inline-size;width:100%;background:var(--phhm-bg,#f5f3ef);color:var(--ink);font-family:'brandon',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+.phhm *,.phhm *::before,.phhm *::after{box-sizing:border-box}
+.phhm__inner{max-width:1560px;margin:0 auto;padding:104px 64px 112px}
+.phhm__head{max-width:780px;margin:0 auto 64px;text-align:center}
+.phhm__eyebrow{margin:0 0 18px;font-size:14px;font-weight:700;letter-spacing:2.6px;line-height:1.4;text-transform:uppercase;color:var(--blue)}
+.phhm__heading{margin:0 0 22px;font-family:'louize',Georgia,serif;font-weight:500;font-size:54px;line-height:1.08;color:var(--blue)}
+.phhm__intro{font-size:18px;line-height:1.7;color:var(--ink)}
+.phhm__intro p{margin:0 0 6px}.phhm__intro p:last-child{margin:0}
+.phhm__steps{display:grid;grid-template-columns:repeat(var(--cols,4),minmax(0,1fr));gap:36px;margin:0;padding:0;list-style:none}
+.phhm__step{display:flex;flex-direction:column;min-width:0}
+.phhm__media{position:relative;display:block;aspect-ratio:var(--ratio,4/5);overflow:hidden;background:#e9e4da}
+.phhm__media img,.phhm__media svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.phhm__text{padding-top:26px}
+.phhm__num{display:flex;align-items:center;gap:14px;margin:0 0 12px;font-size:13px;font-weight:700;letter-spacing:2.4px;color:var(--blue)}
+.phhm__num::after{content:'';flex:1 1 auto;height:1px;background:var(--line)}
+.phhm__title{margin:0 0 12px;font-family:'louize',Georgia,serif;font-weight:500;font-size:32px;line-height:1.1;color:var(--blue)}
+.phhm__body{margin:0;font-size:16px;line-height:1.65;color:var(--ink)}
+.phhm__progress{display:none}
+.phhm__details{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);align-items:center;margin-top:96px;background:#fff}
+.phhm__dmedia{position:relative;aspect-ratio:3/2;overflow:hidden;background:#e9e4da}
+.phhm__dmedia img,.phhm__dmedia svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.phhm__dcopy{padding:56px 80px}
+.phhm__dheading{margin:0 0 18px;font-size:24px;font-weight:700;letter-spacing:3px;line-height:1.3;text-transform:uppercase;color:var(--blue)}
+.phhm__dtext{font-size:20px;line-height:1.6;color:var(--ink)}
+.phhm__dtext p{margin:0}
+.phhm__btn{display:inline-block;margin-top:32px;padding:19px 44px;background:var(--blue);color:#fff;font-family:inherit;font-size:15px;font-weight:700;letter-spacing:3px;line-height:1;text-transform:uppercase;text-decoration:none;border:0;border-radius:0;cursor:pointer;transition:background-color .2s ease}
+.phhm__btn:hover,.phhm__btn:focus-visible{background:var(--blue-dk);color:#fff}
+.phhm__btn:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+@container (max-width:1300px){
+  .phhm__inner{padding:88px 40px 96px}
+  .phhm__steps{gap:24px}
+  .phhm__heading{font-size:46px}
+  .phhm__title{font-size:27px}
+  .phhm__body{font-size:15px}
+  .phhm__dcopy{padding:44px 52px}
+  .phhm__dheading{font-size:21px}
+  .phhm__dtext{font-size:18px}
+}
+@container (max-width:1024px){
+  .phhm__steps{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:52px;column-gap:28px}
+  .phhm__details{grid-template-columns:1fr 1fr;margin-top:72px}
+  .phhm__dcopy{padding:36px 36px}
+}
+@container (max-width:768px){
+  .phhm__inner{padding:60px 0 64px}
+  .phhm__head{margin:0 auto 36px;padding:0 24px}
+  .phhm__eyebrow{font-size:12px;letter-spacing:2.2px;margin-bottom:14px}
+  .phhm__heading{font-size:36px;margin-bottom:16px}
+  .phhm__intro{font-size:16px;line-height:1.65}
+  .phhm__steps{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px;row-gap:36px;padding:0 24px}
+  .phhm__media{aspect-ratio:var(--ratio-m,1/1)}
+  .phhm__text{padding-top:14px}
+  .phhm__num{font-size:11px;letter-spacing:2px;gap:10px;margin-bottom:8px}
+  .phhm__title{font-size:22px;margin-bottom:8px}
+  .phhm__body{font-size:14px;line-height:1.55}
+  .phhm--stack .phhm__steps{grid-template-columns:1fr;row-gap:44px}
+  .phhm--stack .phhm__media{aspect-ratio:var(--ratio,4/5)}
+  .phhm--stack .phhm__text{padding-top:20px}
+  .phhm--stack .phhm__title{font-size:27px}
+  .phhm--stack .phhm__body{font-size:15px}
+  .phhm--swipe .phhm__steps{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(78%,330px);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 24px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .phhm--swipe .phhm__steps::-webkit-scrollbar{display:none}
+  .phhm--swipe .phhm__step{scroll-snap-align:start}
+  .phhm--swipe .phhm__media{aspect-ratio:var(--ratio,4/5)}
+  .phhm--swipe .phhm__title{font-size:27px}
+  .phhm--swipe .phhm__body{font-size:15px}
+  .phhm--swipe .phhm__progress{display:block;position:relative;height:2px;margin:28px 24px 0;background:var(--line);overflow:hidden}
+  .phhm__bar{position:absolute;top:0;left:0;height:100%;width:var(--bw,25%);background:var(--blue);transform:translateX(var(--bx,0%));transition:transform .15s linear}
+  .phhm__details{grid-template-columns:1fr;margin:56px 24px 0;background:transparent}
+  .phhm__dmedia{aspect-ratio:4/3}
+  .phhm__dcopy{padding:32px 4px 0;text-align:center}
+  .phhm__dheading{font-size:19px;letter-spacing:2.6px;margin-bottom:12px}
+  .phhm__dtext{font-size:17px}
+  .phhm__btn{display:block;width:100%;max-width:320px;margin:26px auto 0;padding:18px 24px;font-size:14px}
+}
+@container (min-width:520px) and (max-width:768px){
+  .phhm__head{max-width:640px}
+  .phhm__details{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:32px}
+  .phhm__dcopy{padding:0;text-align:left}
+  .phhm__btn{margin:24px 0 0;display:inline-block;width:auto}
+}
+@media (prefers-reduced-motion:reduce){.phhm__bar{transition:none}}
+{%- endstyle -%}
+
+<section id="phhm-{{ section.id }}"
+  class="phhm{% if s.mobile_layout == 'stack' %} phhm--stack{% elsif s.mobile_layout == 'swipe' %} phhm--swipe{% endif %}"
+  data-ph-section="insider-how-its-made"
+  style="--cols: {{ cols }}; --ratio: {{ ratio }}; --phhm-bg: {{ s.bg_color }};"
+  {% if s.heading != blank %}aria-labelledby="{{ heading_id }}"{% else %}aria-label="How it's made"{% endif %}>
+  <div class="phhm__inner">
+
+    {%- if s.eyebrow != blank or s.heading != blank or s.intro != blank -%}
+      <header class="phhm__head">
+        {%- if s.eyebrow != blank -%}<p class="phhm__eyebrow">{{ s.eyebrow | escape }}</p>{%- endif -%}
+        {%- if s.heading != blank -%}<h2 id="{{ heading_id }}" class="phhm__heading">{{ s.heading | escape }}</h2>{%- endif -%}
+        {%- if s.intro != blank -%}<div class="phhm__intro">{{ s.intro }}</div>{%- endif -%}
+      </header>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ol class="phhm__steps" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign b = block.settings
+            assign fp = '50% 50%'
+            if b.image.presentation.focal_point != blank
+              assign fp = b.image.presentation.focal_point
+            endif
+            assign img_style = 'object-position: ' | append: fp
+            assign alt = b.image.alt | default: b.title
+          -%}
+          <li class="phhm__step" {{ block.shopify_attributes }}>
+            <div class="phhm__media">
+              {%- if b.image != blank -%}
+                {{ b.image | image_url: width: 1400 | image_tag:
+                  widths: '400, 600, 800, 1000, 1400',
+                  sizes: '(min-width: 1025px) 25vw, (min-width: 769px) 50vw, 80vw',
+                  alt: alt,
+                  loading: 'lazy',
+                  style: img_style
+                }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag }}
+              {%- endif -%}
+            </div>
+            <div class="phhm__text">
+              {%- if s.show_numbers -%}<p class="phhm__num" aria-hidden="true">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</p>{%- endif -%}
+              {%- if b.title != blank -%}<h3 class="phhm__title">{{ b.title | escape }}</h3>{%- endif -%}
+              {%- if b.text != blank -%}<p class="phhm__body">{{ b.text | escape | newline_to_br }}</p>{%- endif -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ol>
+      {%- if s.mobile_layout == 'swipe' -%}<div class="phhm__progress" aria-hidden="true"><span class="phhm__bar"></span></div>{%- endif -%}
+    {%- endif -%}
+
+    {%- if s.show_details -%}
+      <div class="phhm__details">
+        <div class="phhm__dmedia">
+          {%- if s.details_image != blank -%}
+            {%- liquid
+              assign dfp = '50% 50%'
+              if s.details_image.presentation.focal_point != blank
+                assign dfp = s.details_image.presentation.focal_point
+              endif
+              assign dimg_style = 'object-position: ' | append: dfp
+            -%}
+            {{ s.details_image | image_url: width: 1800 | image_tag:
+              widths: '600, 900, 1200, 1500, 1800',
+              sizes: '(min-width: 769px) 55vw, 100vw',
+              alt: s.details_image.alt,
+              loading: 'lazy',
+              style: dimg_style
+            }}
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag }}
+          {%- endif -%}
+        </div>
+        <div class="phhm__dcopy">
+          {%- if s.details_heading != blank -%}<h3 class="phhm__dheading">{{ s.details_heading | escape }}</h3>{%- endif -%}
+          {%- if s.details_text != blank -%}<div class="phhm__dtext">{{ s.details_text }}</div>{%- endif -%}
+          {%- if s.button_label != blank -%}
+            <a class="phhm__btn" href="{{ s.button_link | default: '#' }}"
+              {% if s.button_action == 'scroll' %}data-phhm-scroll="{{ s.scroll_selector | escape }}"{% endif %}>
+              {{- s.button_label | escape -}}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<script>
+(function(){
+  function init(root){
+    if(!root || root.dataset.phhmReady) return;
+    root.dataset.phhmReady = '1';
+    var track = root.querySelector('.phhm__steps');
+    var prog = root.querySelector('.phhm__progress');
+    if(track && prog){
+      var update = function(){
+        var max = track.scrollWidth - track.clientWidth;
+        var bw = track.scrollWidth ? (track.clientWidth / track.scrollWidth) * 100 : 100;
+        var p = max > 0 ? track.scrollLeft / max : 0;
+        prog.style.setProperty('--bw', Math.min(bw,100) + '%');
+        prog.style.setProperty('--bx', (p * (100 / Math.max(bw,1) * 100 - 100)) + '%');
+        prog.hidden = max <= 1;
+      };
+      track.addEventListener('scroll', update, {passive:true});
+      window.addEventListener('resize', update);
+      update();
+    }
+    var btn = root.querySelector('[data-phhm-scroll]');
+    if(btn){
+      btn.addEventListener('click', function(e){
+        var sel = btn.getAttribute('data-phhm-scroll') || 'product-form, form[action*="/cart/add"]';
+        var target = null;
+        try { target = document.querySelector(sel); } catch(err) {}
+        if(!target) return; /* no product form found: follow the link */
+        e.preventDefault();
+        var info = target.closest('.product__info-wrapper, .product__info-container, .product-single__meta') || target;
+        var header = document.querySelector('sticky-header, .section-header, header');
+        var offset = header ? Math.min(header.getBoundingClientRect().height, 160) + 16 : 16;
+        var top = info.getBoundingClientRect().top + window.pageYOffset - offset;
+        var smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({top: Math.max(top,0), behavior: smooth ? 'smooth' : 'auto'});
+      });
+    }
+  }
+  function boot(){ document.querySelectorAll('.phhm').forEach(init); }
+  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', boot); } else { boot(); }
+  document.addEventListener('shopify:section:load', function(e){ init(e.target.querySelector('.phhm')); });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Insider How It's Made",
+  "tag": "div",
+  "class": "ph-insider-how-its-made-section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "header", "content": "Intro" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "From Italian Loom to Your Door" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A Weave Above the Rest" },
+    { "type": "richtext", "id": "intro", "label": "Intro", "default": "<p>Good design is in the details. Each Insider pattern is woven thread by thread in Italy, never screen printed on top. From the first pass on the loom to the final cut, every step has a purpose.</p>" },
+    { "type": "header", "content": "Steps" },
+    { "type": "checkbox", "id": "show_numbers", "label": "Show step numbers (01, 02…)", "default": true },
+    {
+      "type": "select", "id": "aspect", "label": "Step photo shape", "default": "portrait",
+      "options": [ { "value": "portrait", "label": "Portrait (4:5)" }, { "value": "square", "label": "Square (1:1)" } ]
+    },
+    {
+      "type": "select", "id": "mobile_layout", "label": "Mobile layout", "default": "grid",
+      "info": "2 x 2 keeps all steps visible without swiping.",
+      "options": [ { "value": "grid", "label": "2 x 2 grid (square photos)" }, { "value": "stack", "label": "Stacked list" }, { "value": "swipe", "label": "Swipe carousel" } ]
+    },
+    { "type": "header", "content": "Details panel" },
+    { "type": "checkbox", "id": "show_details", "label": "Show details panel", "default": true },
+    { "type": "image_picker", "id": "details_image", "label": "Image", "info": "Landscape 3:2, at least 1600 x 1067. Set the focal point in Content > Files." },
+    { "type": "text", "id": "details_heading", "label": "Heading", "default": "It's All in the Details" },
+    { "type": "richtext", "id": "details_text", "label": "Text", "default": "<p>The result? An ultra-thin, slip-resistant, moisture-absorbent mat that works hard and looks right at home.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Choose Your Pattern", "info": "Leave blank to hide the button." },
+    {
+      "type": "select", "id": "button_action", "label": "Button action", "default": "scroll",
+      "options": [ { "value": "scroll", "label": "Scroll to add to cart" }, { "value": "link", "label": "Go to link" } ]
+    },
+    { "type": "url", "id": "button_link", "label": "Link", "info": "Used for 'Go to link', and as a fallback if no add-to-cart form is found." },
+    { "type": "text", "id": "scroll_selector", "label": "Add-to-cart selector (advanced)", "default": "product-form, form[action*='/cart/add']", "info": "Only change if the button doesn't find the product form." },
+    { "type": "header", "content": "Style" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#f5f3ef" }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photo", "info": "Portrait 4:5 (or square), at least 1000 x 1250." },
+        { "type": "text", "id": "title", "label": "Title", "default": "The Weave" },
+        { "type": "textarea", "id": "text", "label": "Text", "info": "One or two sentences." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Insider How It's Made",
+      "blocks": [
+        { "type": "step", "settings": { "title": "The Weave", "text": "Each pattern is woven thread by thread by our trusted partners in Italy, bringing its design to life with depth, dimension and texture." } },
+        { "type": "step", "settings": { "title": "The Cut", "text": "Once woven, the fabric tube is opened into one continuous, flat sheet, ready for its next step." } },
+        { "type": "step", "settings": { "title": "The Backing", "text": "Next comes our signature performance backing, keeping The Insider in place, no rug pad needed." } },
+        { "type": "step", "settings": { "title": "The Finish", "text": "The finished material is wound into master rolls, then precision-cut into doormats, runners and area mats." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
