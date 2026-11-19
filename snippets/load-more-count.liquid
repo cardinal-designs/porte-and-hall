@@ -1,0 +1,15 @@
+{%- liquid
+  assign products_loaded = paginate.current_offset | plus: paginate.page_size
+  if products_loaded > paginate.items
+    assign products_loaded = paginate.items
+  endif
+-%}
+{%- if paginate.items > 0 -%}
+  <p class="load-more__count" data-loaded="{{ products_loaded }}" data-total="{{ paginate.items }}">
+    {%- if products_loaded > 1 -%}
+      Showing 1&ndash;{{ products_loaded }} of {{ paginate.items }}
+    {%- else -%}
+      Showing {{ products_loaded }} of {{ paginate.items }}
+    {%- endif -%}
+  </p>
+{%- endif -%}

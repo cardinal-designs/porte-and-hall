@@ -91,7 +91,7 @@
         </div>
       {% else %}
         <div class="collection">
-          {% paginate collection.products by 50 %}
+          {% paginate collection.products by section.settings.products_per_page %}
             <ul id="product-grid" data-id="{{ section.id }}" class="product-grid product-grid-4 list-unstyled">
               {% for product in collection.products %}
                 {% for collection in product.collections %}
@@ -112,18 +112,7 @@
               {% endfor %}
             </ul>
 
-            <div id="load-more-wrapper" class="load-more-wrapper">
-              {% if paginate.pages > 1 and paginate.next %}
-                <load-more role="button" class="button" data-load-more="{{ paginate.next.url }}">
-                  <span>Load more</span>
-                  <div class="loading-overlay__spinner">
-                    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                    </svg>
-                  </div>
-                </load-more>
-              {% endif %}
-            </div>
+            {% render 'collection-load-more', paginate: paginate, enable_load_more: section.settings.enable_load_more %}
           {% endpaginate %}
         </div>
       {% endif %}
@@ -452,7 +441,14 @@
   "tag": "section",
   "class": "collection-grid-section with-spacing",
   "settings": [
-    { "type": "range", "id": "products_per_page", "min": 8, "max": 24, "step": 4, "default": 16, "label": "Products per page" },
+    {
+      "type": "checkbox",
+      "id": "enable_load_more",
+      "default": false,
+      "label": "Enable load more",
+      "info": "Shows a product count and a \"Load more\" button below the grid. When off, numbered page links are shown instead."
+    },
+    { "type": "range", "id": "products_per_page", "min": 8, "max": 100, "step": 2, "default": 50, "label": "Products per page", "info": "Number of products loaded per page, and per \"Load more\" click." },
     { "type": "select", "id": "image_ratio", "options": [
       { "value": "adapt", "label": "Adapt" },
       { "value": "portrait", "label": "Portrait" },

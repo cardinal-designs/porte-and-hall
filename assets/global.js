@@ -1264,27 +1264,114 @@ var LoadMore = class extends HTMLElement {
   constructor() {
     super();
 
-    const dataUrl = this.dataset.loadMore;
-    const productGrid = this.closest(".collection").querySelector("#product-grid");
-    const loadMoreWrapper = productGrid?.nextElementSibling;
+    this.addEventListener("click", this.loadNextPage.bind(this));
+  }
 
-    this.addEventListener("click", async function(e){
-      e.preventDefault();
+  connectedCallback() {
+    // Reveal-paging grids (Trade Swatches) can be filled by both this element and the
+    // Intelligems script, so drop any card whose product is already in the grid.
+    const revealGrid = this.getRevealGrid();
+    if (revealGrid && !revealGrid.dataset.dedupeObserved) {
+      revealGrid.dataset.dedupeObserved = "true";
+      new MutationObserver(() => LoadMore.removeDuplicateItems(revealGrid)).observe(revealGrid, { childList: true });
+      LoadMore.removeDuplicateItems(revealGrid);
+    }
+  }
 
-      this.classList.add("loading");
+  getRevealGrid() {
+    return this.closest(".collection")?.querySelector("#product-grid[data-reveal-paging]") || null;
+  }
 
-      await fetch(dataUrl).then(response => response.text()).then((responseText) => {
-        const html = responseText;
-        const htmlContent = new DOMParser().parseFromString(html, 'text/html')
+  static removeDuplicateItems(grid) {
+    const seen = new Set();
+    grid.querySelectorAll(":scope > .product-grid__item").forEach((item) => {
+      const id = item.querySelector("[data-product-id]")?.dataset.productId;
+      if (!id) return;
+      if (seen.has(id)) item.remove();
+      else seen.add(id);
+    });
+  }
 
-        productGrid.innerHTML = productGrid.innerHTML + htmlContent.querySelector("#product-grid").innerHTML;
-        loadMoreWrapper.querySelector('load-more').innerHTML = htmlContent.querySelector("load-more").innerHTML || ""
-        this.classList.remove("loading")
-      })
-      window.scrollUtils1();
-      window.scrollUtils2();
-      window.scrollUtils3();
-    }.bind(this))
+  // Shows the next page of cards. Cards already in the grid (loaded by the Intelligems
+  // script) are revealed; the next page is fetched only when they are not there yet.
+  async revealNextPage(grid) {
+    const pageSize = parseInt(grid.dataset.pageSize, 10);
+    const offset = parseInt(grid.dataset.offset, 10) || 0;
+    const total = parseInt(grid.dataset.total, 10);
+    const target = Math.min(parseInt(grid.dataset.revealed, 10) + pageSize, total - offset);
+    const itemCount = () => grid.querySelectorAll(":scope > .product-grid__item").length;
+
+    this.classList.add("loading");
+
+    if (itemCount() < target && this.dataset.loadMore) {
+      try {
+        const responseText = await fetch(this.dataset.loadMore).then(response => response.text());
+        const htmlContent = new DOMParser().parseFromString(responseText, 'text/html');
+        htmlContent.querySelectorAll("#product-grid > .product-grid__item").forEach((item) => {
+          grid.insertAdjacentHTML("beforeend", item.outerHTML);
+        });
+        LoadMore.removeDuplicateItems(grid);
+        const nextButton = htmlContent.querySelector("load-more[data-load-more]");
+        if (nextButton) this.dataset.loadMore = nextButton.dataset.loadMore;
+        else delete this.dataset.loadMore;
+      } catch (error) {
+        this.classList.remove("loading");
+        return;
+      }
+    }
+
+    const revealed = Math.min(target, itemCount());
+    grid.dataset.revealed = revealed;
+
+    const style = document.getElementById(grid.dataset.revealStyle);
+    if (style) style.textContent = style.textContent.replace(/nth-child\(n \+ \d+\)/, `nth-child(n + ${revealed + 1})`);
+
+    const count = this.closest(".load-more-wrapper")?.querySelector(".load-more__count");
+    if (count) {
+      count.dataset.loaded = offset + revealed;
+      count.textContent = `Showing 1–${offset + revealed} of ${total}`;
+    }
+
+    this.classList.remove("loading");
+    if (offset + revealed >= total) this.remove();
+
+    window.scrollUtils1?.();
+    window.scrollUtils2?.();
+    window.scrollUtils3?.();
+  }
+
+  async loadNextPage(event) {
+    event.preventDefault();
+
+    if (this.classList.contains("loading")) return;
+
+    const revealGrid = this.getRevealGrid();
+    if (revealGrid) return this.revealNextPage(revealGrid);
+
+    const nextUrl = this.dataset.loadMore;
+    const productGrid = this.closest(".collection")?.querySelector("#product-grid");
+    const loadMoreWrapper = this.closest(".load-more-wrapper");
+
+    if (!nextUrl || !productGrid || !loadMoreWrapper) return;
+
+    this.classList.add("loading");
+
+    try {
+      const responseText = await fetch(nextUrl).then(response => response.text());
+      const htmlContent = new DOMParser().parseFromString(responseText, 'text/html');
+      const nextGrid = htmlContent.querySelector("#product-grid");
+      const nextWrapper = htmlContent.querySelector(".load-more-wrapper");
+
+      if (nextGrid) productGrid.insertAdjacentHTML("beforeend", nextGrid.innerHTML);
+      loadMoreWrapper.innerHTML = nextWrapper ? nextWrapper.innerHTML : "";
+    } catch (error) {
+      this.classList.remove("loading");
+      return;
+    }
+
+    window.scrollUtils1?.();
+    window.scrollUtils2?.();
+    window.scrollUtils3?.();
   }
 };
 

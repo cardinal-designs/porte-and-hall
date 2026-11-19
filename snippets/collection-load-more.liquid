@@ -1,0 +1,38 @@
+{%- comment -%}
+  Renders the footer below a collection product grid. Must be used within paginate tags.
+
+  Usage:
+  {% render 'collection-load-more', paginate: paginate, enable_load_more: section.settings.enable_load_more %}
+
+  Accepts:
+  - paginate: {Object}
+  - enable_load_more: {Boolean} true shows the product count and "Load more" button;
+    false shows numbered page links instead.
+
+  #load-more-wrapper is always output: collection-filters.js swaps its contents on every
+  AJAX filter/sort reload, and the LoadMore element in global.js replaces it per page.
+{%- endcomment -%}
+<div id="load-more-wrapper" class="load-more-wrapper">
+  {%- if enable_load_more -%}
+    {% render 'load-more-count', paginate: paginate %}
+    {% if paginate.pages > 1 and paginate.next %}
+      <load-more role="button" class="button" data-load-more="{{ paginate.next.url }}">
+        <span>Load more</span>
+        <div class="loading-overlay__spinner">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            role="presentation"
+            class="spinner"
+            viewBox="0 0 66 66"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>
+      </load-more>
+    {% endif %}
+  {%- else -%}
+    {% render 'pagination', paginate: paginate %}
+  {%- endif -%}
+</div>
