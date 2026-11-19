@@ -10,7 +10,43 @@
     assign ratio = '4/5'
   endif
   assign heading_id = 'phhm-h-' | append: section.id
+
+  # ---- Which products show this section ----
+  # Reads the product's "Collection For Metafield Content" metafield
+  # (e.g. "The Insider | Doormat"), keeps the text before the "|"
+  # ("The Insider") and compares it to the "Show on product lines" setting.
+  # Matching ignores capitals and a leading "The", so "Insider" also works.
+  # Blank setting = show on every product.
+  assign phhm_line = ''
+  assign phhm_col = product.metafields.custom.collection_for_metafield_content.value
+  if phhm_col != blank
+    assign phhm_line = phhm_col.title | split: '|' | first | strip | downcase | remove_first: 'the ' | strip
+  endif
+
+  assign phhm_show = false
+  if s.show_for_lines == blank
+    assign phhm_show = true
+  elsif phhm_line != blank
+    assign phhm_targets = s.show_for_lines | split: ','
+    for t in phhm_targets
+      assign phhm_t = t | strip | downcase | remove_first: 'the ' | strip
+      if phhm_t != blank and phhm_t == phhm_line
+        assign phhm_show = true
+        break
+      endif
+    endfor
+  endif
 -%}
+
+{%- if phhm_show == false and request.design_mode -%}
+  <div style="margin:0;padding:14px 20px;background:#f5f3ef;border:1px dashed #b9b2a5;font:14px/1.5 sans-serif;color:#546b82;text-align:center">
+    <strong>How It's Made</strong> is hidden on this product. It shows on products whose Collection For Metafield Content starts with: {{ s.show_for_lines | escape }}.
+    {%- if phhm_line == blank %} This product has no Collection For Metafield Content set.{% endif %}
+    (This note only appears in the theme editor.)
+  </div>
+{%- endif -%}
+
+{%- if phhm_show -%}
 
 {%- style -%}
 .phhm{--ink:#30383D;--blue:#546b82;--blue-dk:#43576b;--line:rgba(84,107,130,.28);container-type:inline-size;width:100%;background:var(--phhm-bg,#f5f3ef);color:var(--ink);font-family:'brandon',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
@@ -229,14 +265,16 @@
   document.addEventListener('shopify:section:load', function(e){ init(e.target.querySelector('.phhm')); });
 })();
 </script>
+{%- endif -%}
 
 {% schema %}
 {
-  "name": "Insider How It's Made",
+  "name": "How It's Made",
   "tag": "div",
   "class": "ph-insider-how-its-made-section",
   "max_blocks": 6,
   "settings": [
+    { "type": "text", "id": "show_for_lines", "label": "Show on product lines", "default": "The Insider", "info": "Matches the text before the | in each product's 'Collection For Metafield Content' (e.g. The Insider | Doormat). Separate several with commas. Leave blank to show on every product." },
     { "type": "header", "content": "Intro" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "From Italian Loom to Your Door" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "A Weave Above the Rest" },
@@ -280,7 +318,7 @@
   ],
   "presets": [
     {
-      "name": "Insider How It's Made",
+      "name": "How It's Made",
       "blocks": [
         { "type": "step", "settings": { "title": "The Weave", "text": "Each pattern is woven thread by thread by our trusted partners in Italy, bringing its design to life with depth, dimension and texture." } },
         { "type": "step", "settings": { "title": "The Cut", "text": "Once woven, the fabric tube is opened into one continuous, flat sheet, ready for its next step." } },
