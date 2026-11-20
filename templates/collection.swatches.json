@@ -51,10 +51,10 @@
       "type": "b2b-swatches-collection",
       "name": "Trade Swatches Collection",
       "settings": {
-        "enable_load_more": false,
+        "enable_load_more": true,
         "show_title": false,
         "collection": "swatches",
-        "products_per_page": 38,
+        "products_per_page": 20,
         "image_ratio": "adapt",
         "show_secondary_image": false,
         "hide_tag": false,
