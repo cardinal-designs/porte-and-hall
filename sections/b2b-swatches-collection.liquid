@@ -10,7 +10,13 @@
     assign swatch_collection = collection
   endif
 
-  assign products_per_page = section.settings.products_per_page
+  # Load more ON: page by the configured size. OFF: render every product on one page
+  # (250 is Shopify's maximum page size for paginate).
+  if section.settings.enable_load_more
+    assign products_per_page = section.settings.products_per_page
+  else
+    assign products_per_page = 250
+  endif
 -%}
 
 {%- if show_collection and swatch_collection != blank -%}
@@ -199,7 +205,7 @@
       "id": "enable_load_more",
       "default": false,
       "label": "Enable load more",
-      "info": "Shows a product count and a \"Load more\" button below the grid. When off, numbered page links are shown instead."
+      "info": "Shows a product count and a \"Load more\" button below the grid. When off, all products in the collection are shown at once (up to 250)."
     },
     {
       "type": "paragraph",
@@ -228,7 +234,7 @@
       "step": 2,
       "default": 50,
       "label": "t:sections.main-collection-product-grid.settings.products_per_page.label",
-      "info": "Number of products loaded per page, and per \"Load more\" click."
+      "info": "Number of products loaded per \"Load more\" click. Ignored when load more is off."
     },
     {
       "type": "header",
