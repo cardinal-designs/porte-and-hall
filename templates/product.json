@@ -182,11 +182,102 @@
         "contain": true,
         "gap": 24,
         "gap_m": 12,
-        "pad_top": 80,
+        "pad_top": 20,
         "pad_bottom": 80,
         "pad_top_m": 40,
         "pad_bottom_m": 40,
         "aria_label": ""
+      }
+    },
+    "logo_marquee_jDAjnD": {
+      "type": "logo-marquee",
+      "blocks": {
+        "logo_mBNg8k": {
+          "type": "logo",
+          "name": "Featured In",
+          "settings": {
+            "logo": "shopify://shop_images/featuredin.png",
+            "svg": ""
+          }
+        },
+        "logo_6ipXXj": {
+          "type": "logo",
+          "name": "Better Homes and Garden",
+          "settings": {
+            "logo": "shopify://shop_images/better-homes-and-gardens-seeklogo_copy_b7ad6b67-efaf-4408-b921-c51fea885314.png",
+            "svg": ""
+          }
+        },
+        "logo_mJJNNN": {
+          "type": "logo",
+          "name": "Forbes",
+          "settings": {
+            "logo": "shopify://shop_images/Forbes-01_0f8e5020-ca8c-4799-bfdf-20323649e33a.png",
+            "svg": ""
+          }
+        },
+        "logo_hPYMnk": {
+          "type": "logo",
+          "name": "Southern Living",
+          "settings": {
+            "logo": "shopify://shop_images/Southern-Living-Logo_copy_81a6b959-9e38-4dc8-8fbc-22cd11990acf.png",
+            "svg": ""
+          }
+        },
+        "logo_ULgRx3": {
+          "type": "logo",
+          "name": "Real Simple",
+          "settings": {
+            "logo": "shopify://shop_images/RealSimple.svg_copy_2_1_a4c57903-a665-48f7-a751-1f564040b71c.png",
+            "svg": ""
+          }
+        },
+        "logo_pQAbxX": {
+          "type": "logo",
+          "name": "Veranda",
+          "settings": {
+            "logo": "shopify://shop_images/Veranda-logo_copy.png",
+            "svg": ""
+          }
+        },
+        "logo_aWNMB7": {
+          "type": "logo",
+          "name": "USA Today",
+          "settings": {
+            "logo": "shopify://shop_images/USA-Today-logo_copy_cd5eca3a-a963-4717-9b53-40e078f1195b.png",
+            "svg": ""
+          }
+        },
+        "logo_Enti77": {
+          "type": "logo",
+          "name": "People Inc",
+          "settings": {
+            "logo": "shopify://shop_images/people-inc.png",
+            "svg": ""
+          }
+        },
+        "logo_b4Vezr": {
+          "type": "logo",
+          "name": "Apartment Therapy",
+          "settings": {
+            "logo": "shopify://shop_images/apartment-therapy_1d580765-3cce-43d1-a704-a03b68af769a.png",
+            "svg": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_mBNg8k",
+        "logo_6ipXXj",
+        "logo_mJJNNN",
+        "logo_hPYMnk",
+        "logo_ULgRx3",
+        "logo_pQAbxX",
+        "logo_aWNMB7",
+        "logo_Enti77",
+        "logo_b4Vezr"
+      ],
+      "settings": {
+        "background_color": "#546b82"
       }
     },
     "lp_custom_collections_2_ABDk4m": {
@@ -336,97 +427,6 @@
         "heading": "",
         "anchor": "faqs",
         "collection": "{{ product.metafields.custom.collection_for_metafield_content.value }}"
-      }
-    },
-    "logo_marquee_jDAjnD": {
-      "type": "logo-marquee",
-      "blocks": {
-        "logo_mBNg8k": {
-          "type": "logo",
-          "name": "Featured In",
-          "settings": {
-            "logo": "shopify://shop_images/featuredin.png",
-            "svg": ""
-          }
-        },
-        "logo_6ipXXj": {
-          "type": "logo",
-          "name": "Better Homes and Garden",
-          "settings": {
-            "logo": "shopify://shop_images/better-homes-and-gardens-seeklogo_copy_b7ad6b67-efaf-4408-b921-c51fea885314.png",
-            "svg": ""
-          }
-        },
-        "logo_mJJNNN": {
-          "type": "logo",
-          "name": "Forbes",
-          "settings": {
-            "logo": "shopify://shop_images/Forbes-01_0f8e5020-ca8c-4799-bfdf-20323649e33a.png",
-            "svg": ""
-          }
-        },
-        "logo_hPYMnk": {
-          "type": "logo",
-          "name": "Southern Living",
-          "settings": {
-            "logo": "shopify://shop_images/Southern-Living-Logo_copy_81a6b959-9e38-4dc8-8fbc-22cd11990acf.png",
-            "svg": ""
-          }
-        },
-        "logo_ULgRx3": {
-          "type": "logo",
-          "name": "Real Simple",
-          "settings": {
-            "logo": "shopify://shop_images/RealSimple.svg_copy_2_1_a4c57903-a665-48f7-a751-1f564040b71c.png",
-            "svg": ""
-          }
-        },
-        "logo_pQAbxX": {
-          "type": "logo",
-          "name": "Veranda",
-          "settings": {
-            "logo": "shopify://shop_images/Veranda-logo_copy.png",
-            "svg": ""
-          }
-        },
-        "logo_aWNMB7": {
-          "type": "logo",
-          "name": "USA Today",
-          "settings": {
-            "logo": "shopify://shop_images/USA-Today-logo_copy_cd5eca3a-a963-4717-9b53-40e078f1195b.png",
-            "svg": ""
-          }
-        },
-        "logo_Enti77": {
-          "type": "logo",
-          "name": "People Inc",
-          "settings": {
-            "logo": "shopify://shop_images/people-inc.png",
-            "svg": ""
-          }
-        },
-        "logo_b4Vezr": {
-          "type": "logo",
-          "name": "Apartment Therapy",
-          "settings": {
-            "logo": "shopify://shop_images/apartment-therapy_1d580765-3cce-43d1-a704-a03b68af769a.png",
-            "svg": ""
-          }
-        }
-      },
-      "block_order": [
-        "logo_mBNg8k",
-        "logo_6ipXXj",
-        "logo_mJJNNN",
-        "logo_hPYMnk",
-        "logo_ULgRx3",
-        "logo_pQAbxX",
-        "logo_aWNMB7",
-        "logo_Enti77",
-        "logo_b4Vezr"
-      ],
-      "settings": {
-        "background_color": "#546b82"
       }
     },
     "reviews": {
