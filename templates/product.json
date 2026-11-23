@@ -49,6 +49,9 @@
     },
     "other-sizes": {
       "type": "product-shop-other-sizes",
+      "custom_css": [
+        ".product-card-simple .product-card__image {width:250px}"
+      ],
       "settings": {}
     },
     "logo_marquee_jDAjnD": {
