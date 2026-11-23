@@ -80,8 +80,8 @@
     "product-grid": {
       "type": "main-collection-sticky-filters-mobile",
       "settings": {
-        "enable_load_more": true,
-        "products_per_page": 8,
+        "enable_load_more": false,
+        "products_per_page": 20,
         "image_ratio": "adapt",
         "show_secondary_image": true,
         "hide_tag": true,
