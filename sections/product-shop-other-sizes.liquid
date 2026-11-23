@@ -9,7 +9,7 @@
 %}
 
 {% assign product_type = grouped_collection.title | remove: 'The ' | split: ' | ' %}
-{% assign default_heading = 'Shop other <br>' | append: product_type[0] | append: ' sizes' %}
+{% assign default_heading = 'Shop Other <br>' | append: product_type[0] | append: ' Sizes' %}
 {% assign active_style = product.selected_or_first_available_variant.title %}
 {% assign product_size = product.options_by_name['size'].values[0] %}
 {% assign active_style = active_style | remove: product_size | remove: " / " %}
