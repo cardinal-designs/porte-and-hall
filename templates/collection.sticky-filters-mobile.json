@@ -61,6 +61,15 @@
         "swap-fonts": false
       }
     },
+    "main_collection_banner_PaHLHe": {
+      "type": "main-collection-banner",
+      "name": "t:sections.main-collection-banner.name",
+      "settings": {
+        "show_title": false,
+        "show_collection_description": true,
+        "full_width": false
+      }
+    },
     "8fcbecee-c2bf-45f1-ab71-1a08ef2f909a": {
       "type": "collection-head-slider",
       "blocks": {
@@ -154,6 +163,7 @@
         "category_m84LW4"
       ],
       "settings": {
+        "enable_load_more": true,
         "products_per_page": 50,
         "image_ratio": "adapt",
         "show_secondary_image": false,
@@ -293,15 +303,6 @@
         "blog": "news",
         "show_recent_articles": true,
         "hide_mobile": false
-      }
-    },
-    "main_collection_banner_PaHLHe": {
-      "type": "main-collection-banner",
-      "name": "t:sections.main-collection-banner.name",
-      "settings": {
-        "show_title": false,
-        "show_collection_description": true,
-        "full_width": false
       }
     }
   },
