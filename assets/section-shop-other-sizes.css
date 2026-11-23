@@ -5,7 +5,7 @@
 
 .shop-other-sizes__inner {
   display: grid;
-  grid-template-columns: repeat(3, minmax(auto, 1fr));
+  grid-template-columns: repeat(2, minmax(auto, 1fr));
   column-gap: 27px;
   justify-content: center;
   align-items: flex-start;
