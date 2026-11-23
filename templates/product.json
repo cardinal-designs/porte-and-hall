@@ -49,7 +49,10 @@
     },
     "other-sizes": {
       "type": "product-shop-other-sizes",
-      "custom_css": [],
+      "custom_css": [
+        ".product-card__image {width: 250px;}",
+        "@media screen and (max-width: 768px) {.product-card__image {width:100%;}}"
+      ],
       "settings": {}
     },
     "logo_marquee_jDAjnD": {
