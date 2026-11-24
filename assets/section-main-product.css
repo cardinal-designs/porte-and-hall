@@ -388,12 +388,15 @@
 }
 
 @media screen and (max-width: 420px) {
+
   .product__price-reviews-divider {
     display: none;
   }
+
 }
 
 @media screen and (max-width: 768px) {
+
   .product__swatches {
     margin-bottom: 20px;
   }
@@ -411,6 +414,12 @@
     height: 44px;
     transform: translate(-50%, -50%);
   }
+
+  .product__swatch[data-tooltip]:hover:before {
+    opacity: 0;
+    visibility: hidden;
+  }
+
 }
 
 .product__swatch {
