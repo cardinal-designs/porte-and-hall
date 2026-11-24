@@ -11,20 +11,25 @@
   "sections": {
     "video_text_pk7JCQ": {
       "type": "video-text",
-      "custom_css": [],
+      "custom_css": [
+        ".Link--underline.button-small {padding: 16px 99px;}",
+        "@media screen and (max-width: 990px) {.Link--underline.button-small {padding: 16px 99px; font-size: 16px; }}",
+        ".ph-cta-wrap {text-align: left; padding: 30px 0;}",
+        "@media (max-width: 767px) {.ph-cta-wrap {text-align: center; }}"
+      ],
       "name": "Video with text",
       "settings": {
         "bg_color": "#f4f2ee",
         "video": "shopify://files/videos/Nov Sale Event_1200x1200 (1) (1).mp4",
         "mobile_video": "shopify://files/videos/Nov Sale Event_1200x1200 (1) (1).mp4",
         "video_poster": "shopify://shop_images/novembervideostill.jpg",
-        "subheading": "<div style=\"font-family:louize; font-weight:500; padding-bottom:15px; font-size:55px;\">Home for the Holidays</div>\n<div id=\"HH_p\" class=\"HH_p\" style=\"font-size:21px; font-weight:400;\">\nBring a little something special home this season. Thoughtfully designed mats that make every space feel a little more inviting, from the first hello to the last goodbye.\n</div>\n<div id=\"HH_offer\" style=\"font-family:louize; font-weight:500; padding:20px 0px; font-size:15px;\"><a href=\"/pages/disclaimers\"><u></u></a></div><br>",
+        "subheading": "<div style=\"font-family:louize; font-weight:500; padding-bottom:15px; font-size:55px;\">Home for the Holidays</div>\n<div id=\"HH_p\" class=\"HH_p\" style=\"font-size:21px; font-weight:400;\">\nBring a little something special home this season. Thoughtfully designed mats that make every space feel a little more inviting, from the first hello to the last goodbye.\n</div>\n<div id=\"HH_offer\" style=\"font-family:louize; font-weight:500; padding:20px 0px; font-size:15px;\"><a href=\"/pages/disclaimers\"><u></u></a></div><div class=\"ph-cta-wrap\">\n  <a href=\"/pages/holiday-gift-guide\" style=\"display: inline-block;\n            background-color: #620f18;\n            color: #ffffff;\n            font-family: brandon;\n            font-size: 16px;\n            font-weight: 500;\n            letter-spacing: 1px; \n            text-transform: uppercase;\n            text-decoration: none;\n            line-height: 24px;\n            padding: 16px 36px;\">\nSHOP THE HOLIDAY EDIT</a>\n</div>",
         "title": "",
         "title_font_size": 70,
         "content": "",
         "content_font_size": 22,
         "content_font_size_mb": 14,
-        "link_text": "Shop Now",
+        "link_text": "Shop All",
         "link_url": "shopify://collections/shop-all",
         "button_style": "small",
         "custom-class": "home-banner",
