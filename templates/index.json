@@ -11,14 +11,17 @@
   "sections": {
     "video_text_pk7JCQ": {
       "type": "video-text",
-      "custom_css": [],
+      "custom_css": [
+        ".Link--underline.button-small {padding: 16px 92px;}",
+        "@media screen and (max-width: 990px) {.Link--underline.button-small {padding: 16px 92px; font-size:16px; }}"
+      ],
       "name": "Video with text",
       "settings": {
         "bg_color": "#f4f2ee",
         "video": "shopify://files/videos/November26_Promo_Homepage_1200x1200_web.mp4",
         "mobile_video": "shopify://files/videos/November26_Promo_Homepage_1200x1200_web.mp4",
         "video_poster": "shopify://shop_images/novembervideostill.jpg",
-        "subheading": "<div style=\"font-family:louize; font-weight:500; padding-bottom:15px; font-size:55px;\">Home for the Holidays</div>\n<div class=\"HH_p\" style=\"font-size:25px; font-weight:400;\">\nGood things are coming home.<br>Take $25 off any order $75+.<br>Use code ONTHEHOUSE.</div>\n<div style=\"font-family:louize; font-weight:500; padding:20px 0px; font-size:15px;\">Offer ends 11/15. <a href=\"/pages/disclaimers\"><u>See details</u></a>.</div><br>",
+        "subheading": "<div style=\"font-family:louize; font-weight:500; padding-bottom:15px; font-size:55px;\">Home for the Holidays</div>\n<div class=\"HH_p\" style=\"font-size:25px; font-weight:400;\">\nGood things are coming home.<br>Take $25 off any order $75+.<br>Use code ONTHEHOUSE.</div>\n<div style=\"font-family:louize; font-weight:500; padding:20px 0px; font-size:15px;\">Offer ends 11/15. <a href=\"/pages/disclaimers\"><u>See details</u></a>.</div>\n\n<div style=\"text-align: left; padding: 30px 0;\">\n  <a href=\"/collections/all\" style=\"display: inline-block;\n            background-color: #896a28;\n            color: #ffffff;\n            font-family: brandon;\n            font-size: 16px;\n            font-weight: 500;\n            letter-spacing: 1px;\n            text-transform: uppercase;\n            text-decoration: none;\n            line-height: 24px;\n            padding: 16px 36px;\n            border: none;\">\nSHOP THE HOLIDAY EDIT</a>\n</div>",
         "title": "",
         "title_font_size": 70,
         "content": "",
