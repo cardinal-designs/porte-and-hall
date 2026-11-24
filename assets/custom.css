@@ -94,10 +94,14 @@ span.jdgm-prev-badge__stars {
   top: -5px;
 }
 
+.product__swatches .product__oos-swatch .product__swatch-badge-new svg {
+  left: -7px;
+  top: -7px;
+}
+
 #ot-sdk-btn-floating.ot-floating-button {
   display: none;
 }
-
 
 /*========== Collection swatch bundle card (B2B) ==========*/
 
