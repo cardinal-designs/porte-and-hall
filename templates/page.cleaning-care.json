@@ -23,7 +23,8 @@
     "main": {
       "type": "main-page",
       "custom_css": [
-        ".Page_Header {display: none;}"
+        ".Page_Header {display: none;}",
+        ".rte{padding:0px;}"
       ],
       "settings": {
         "page_heading": "",
